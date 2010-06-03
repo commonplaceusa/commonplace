@@ -1,0 +1,13 @@
+log/*.log
+tmp/**/*
+tmp/*
+doc/api
+doc/app
+config/database.yml
+**/**/#*
+**/**/.#*
+*~x
+db/*.sqlite3
+cp_textmate.tmproj
+public/system
+test
