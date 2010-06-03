@@ -1,0 +1,77 @@
+form.formtastic {
+  display: inline-block; }
+  form.formtastic commit_button {
+    display: inline-block; }
+  form.formtastic legend {
+    font-weight: bold;
+    padding-bottom: 0.5em; }
+  form.formtastic input {
+    display: inline-block; }
+  form.formtastic fieldset {
+    padding: 0; }
+    form.formtastic fieldset ol {
+      width: 390px; }
+      form.formtastic fieldset ol li, form.formtastic fieldset ol li.string, form.formtastic fieldset ol li.password, form.formtastic fieldset ol li.text {
+        margin-bottom: 0.5em; }
+        form.formtastic fieldset ol li label, form.formtastic fieldset ol li.string label, form.formtastic fieldset ol li.password label, form.formtastic fieldset ol li.text label {
+          font-size: 0.8em;
+          font-weight: bold;
+          color: #888888;
+          text-align: right;
+          position: relative;
+          vertical-align: top;
+          top: 0px;
+          width: 120px;
+          margin-right: 15px; }
+        form.formtastic fieldset ol li input, form.formtastic fieldset ol li textarea, form.formtastic fieldset ol li.string input, form.formtastic fieldset ol li.string textarea, form.formtastic fieldset ol li.password input, form.formtastic fieldset ol li.password textarea, form.formtastic fieldset ol li.text input, form.formtastic fieldset ol li.text textarea {
+          width: 250px; }
+        form.formtastic fieldset ol li input, form.formtastic fieldset ol li.string input, form.formtastic fieldset ol li.password input, form.formtastic fieldset ol li.text input {
+          font-size: 0.8em; }
+          form.formtastic fieldset ol li input#user_avatar, form.formtastic fieldset ol li.string input#user_avatar, form.formtastic fieldset ol li.password input#user_avatar, form.formtastic fieldset ol li.text input#user_avatar {
+            font-size: 0.8em;
+            color: #888888; }
+          form.formtastic fieldset ol li input.create, form.formtastic fieldset ol li input.update, form.formtastic fieldset ol li.string input.create, form.formtastic fieldset ol li.string input.update, form.formtastic fieldset ol li.password input.create, form.formtastic fieldset ol li.password input.update, form.formtastic fieldset ol li.text input.create, form.formtastic fieldset ol li.text input.update {
+            width: auto; }
+        form.formtastic fieldset ol li:after, form.formtastic fieldset ol li.string:after, form.formtastic fieldset ol li.password:after, form.formtastic fieldset ol li.text:after {
+          content: ".";
+          display: block;
+          height: 0;
+          clear: both;
+          visibility: hidden; }
+        form.formtastic fieldset ol li.text textarea, form.formtastic fieldset ol li.string.text textarea, form.formtastic fieldset ol li.password.text textarea, form.formtastic fieldset ol li.text.text textarea {
+          font-size: 0.8em;
+          width: 236px;
+          height: 3.7em;
+          padding: 7px; }
+        form.formtastic fieldset ol li.commit, form.formtastic fieldset ol li.string.commit, form.formtastic fieldset ol li.password.commit, form.formtastic fieldset ol li.text.commit {
+          position: relative;
+          left: 135px;
+          width: 150px; }
+        form.formtastic fieldset ol li#user_session_password_input, form.formtastic fieldset ol li.string#user_session_password_input, form.formtastic fieldset ol li.password#user_session_password_input, form.formtastic fieldset ol li.text#user_session_password_input {
+          position: relative; }
+          form.formtastic fieldset ol li#user_session_password_input p.inline-hints, form.formtastic fieldset ol li.string#user_session_password_input p.inline-hints, form.formtastic fieldset ol li.password#user_session_password_input p.inline-hints, form.formtastic fieldset ol li.text#user_session_password_input p.inline-hints {
+            position: absolute;
+            top: 20px;
+            right: 0px; }
+        form.formtastic fieldset ol li#registration_privacy_policy_input label, form.formtastic fieldset ol li.string#registration_privacy_policy_input label, form.formtastic fieldset ol li.password#registration_privacy_policy_input label, form.formtastic fieldset ol li.text#registration_privacy_policy_input label {
+          padding-left: 135px;
+          vertical-align: text-top; }
+        form.formtastic fieldset ol li#registration_privacy_policy_input input, form.formtastic fieldset ol li.string#registration_privacy_policy_input input, form.formtastic fieldset ol li.password#registration_privacy_policy_input input, form.formtastic fieldset ol li.text#registration_privacy_policy_input input {
+          vertical-align: text-bottom; }
+        form.formtastic fieldset ol li p.inline-hints, form.formtastic fieldset ol li p.inline-errors, form.formtastic fieldset ol li.string p.inline-hints, form.formtastic fieldset ol li.string p.inline-errors, form.formtastic fieldset ol li.password p.inline-hints, form.formtastic fieldset ol li.password p.inline-errors, form.formtastic fieldset ol li.text p.inline-hints, form.formtastic fieldset ol li.text p.inline-errors {
+          float: right;
+          font-size: 0.7em;
+          text-align: right;
+          line-height: 120%;
+          width: 280px;
+          margin-top: 3px; }
+        form.formtastic fieldset ol li p.inline-errors, form.formtastic fieldset ol li.string p.inline-errors, form.formtastic fieldset ol li.password p.inline-errors, form.formtastic fieldset ol li.text p.inline-errors {
+          font-weight: bold; }
+    form.formtastic fieldset.buttons {
+      padding-left: 0%;
+      padding-top: 0%;
+      visibility: visible; }
+    form.formtastic fieldset.inputs ol li.boolean input {
+      width: auto; }
+    form.formtastic fieldset.inputs ol li.boolean label {
+      padding-left: 0; }

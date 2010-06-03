@@ -1,0 +1,291 @@
+body
+  position: absolute
+  height: 100%
+  width: 998px
+  margin: auto
+  top: 0px
+  left: 0px
+  right: 0px
+  bottom: 0px
+  font-size: 1em
+  
+footer
+  position: absolute
+  bottom: 0px
+  margin: 0px 0px 3px 0px
+  width: 992px
+
+#full
+  position: absolute
+  top: 61px
+  bottom: 30px
+  border:
+    width: 2px
+    color: #630
+    style: solid
+  background-color: #963
+  padding: 8px
+  width: 978px
+  -webkit-border-radius: 8px
+  -moz-border-radius: 8px
+  border-radius: 8px
+
+#comm_left, #comm_right
+  display: inline-block
+  position: relative
+  vertical-align: top
+  top: 0px
+  height: 100%
+  width: 480px
+
+#comm_left
+  padding: 0px
+  left: 2px
+  
+#wire
+  width: 100%
+  position: absolute
+  top: 160px
+  bottom: 0px
+  background-color: white
+  overflow: -moz-scrollbars-vertical
+  overflow-x: hidden
+  overflow-y: scroll
+  
+#comm_right
+  left: 10px
+
+#map, #users
+  position: absolute
+  height: 49%
+  width: 100%
+
+#map
+  background-color: white
+
+#users
+  bottom: 0px
+  background-color: #eeffee
+  overflow: -moz-scrollbars-vertical
+  overflow-x: hidden
+  overflow-y: scroll
+
+#submission
+  position: absolute
+  top: 0px
+  left: 0px
+  background-color: #ceeece
+  padding: 8px
+  align: center
+  width: 464px
+  height: 135px
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+  border-radius: 5px
+
+#new_post
+  width: 100%
+  margin: auto
+  p.inline-errors
+    display: none
+  .inputs
+    width: 100%
+    ol
+      width: 100%
+      li
+        width: 100%
+        position: relative
+        textarea, input, label
+          font-size: 0.8em
+        textarea
+          padding: 5px
+          height: 4em
+          width: 449px
+        input
+          width: 100%
+        label
+          position: absolute
+          top: 6px
+          left: 6px
+          color: #888888
+          text-align: left
+          margin: 0px
+          font-weight: normal
+          width: inherit
+  .buttons
+    ol
+      display: table
+      width: 100%
+      li
+        padding: 0
+        margin: 5px
+        float: none
+        display: table-cell
+        button
+          background-color: #2b8829
+          background-image: url("/images/submit_post_background.png")
+          color: white
+          font-weight: bold
+          font-size: 0.9em
+          width: 95%
+          padding: 6px
+          -webkit-border-radius: 8px
+          -moz-border-radius: 8px
+          border-radius: 8px
+          border:
+            width: 1px
+            style: solid
+            color: #aaa
+          &:hover
+            border:
+              color: #333
+
+hr
+  height: 0.5px
+  margin: 3px
+
+hr.top
+  margin: 0px
+  margin-bottom: 3px
+  width: 100%
+
+.post
+  padding: 8px
+  .post_pic
+    position: absolute
+    display: inline
+    width: 60px
+  .post_main
+    min-height: 48px
+    width: 380px
+    position: relative
+    left: 60px
+    .post_top
+      font-size: 0.8em
+    .post_body
+      margin-top: 5px
+      padding-bottom: 2.5px
+      font: Helvetica
+      font-size: 0.9em
+    .post_bottom
+      margin-top: 5px
+      font-size: 0.8em
+
+.reply
+  margin-bottom: 5px
+  .reply_pic, .reply_body
+    position: relative
+    display: inline-block
+    top: 0px
+    vertical-align: top
+  .reply_pic
+    width: 27px
+  .reply_body
+    width: 330px
+    .reply_bottom
+      font-size: 0.8em
+
+.post_body, .reply_body
+  line-height: 120%
+
+#posts_nav
+  position: relative
+  bottom: 8px
+  margin-top: 15px
+  text-align: center
+
+a.show_replies
+  padding: 4px
+  margin: 0px
+
+.user
+  padding: 7px
+  .user_pic, .user_side
+    position: relative
+    display: inline-block
+    vertical-align: top
+    top: 0px
+  .user_pic
+    width: 60px
+  .user_side
+    width: 350px
+    .user_name
+    .user_info
+      font-size: 0.8em
+      margin-top: 7px
+  .expanded_user
+    .user_pic
+      width: 110px
+      img
+        width: 100px
+        height: 100px
+    .user_side
+      width: 300px
+    dl.user_info
+      font-size: 0.8em
+      margin-bottom: 8px
+      dt
+        font-weight: bold
+        color: #666666
+      dd
+        width: 220px
+
+#users
+  .user:hover
+    background-color: #ffffcc
+
+#wire
+  .post:hover
+    background-color: #ffffdd
+    a.show_replies, .replies
+      background-color: #eeffee
+
+a.show_replies, .replies
+  background-color: #eeffee
+
+.replies
+  margin-top: 2px
+  padding: 7px
+  display: block
+  width: 366px
+
+.new_reply
+  form.formtastic.reply
+    fieldset.inputs
+      ol li
+        margin-bottom: 2px
+        position: relative
+        width: 320px
+        left: 30px
+        textarea
+          padding: 4px
+          display: block
+          height: 2.4em
+          width: 320px
+        label.in-field
+          width: 330px
+          position: absolute
+          top: 1px
+          left: 5px
+          float: none
+          color: #888888
+          text-align: left
+          font-weight: normal
+    fieldset.buttons
+      left: 0px
+      text-align: left
+      ol li
+        left: 30px
+        margin-bottom: 0px
+        &.commit
+          input.create
+            width: 60px
+
+form.formtastic fieldset ol li p.inline-errors
+  font-size: small
+  font-weight: bold
+  margin: 5px 0 0 10px
+
+header
+  form
+    display: inline

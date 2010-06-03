@@ -1,0 +1,8 @@
+- content_for :main_side do
+  #main_left
+    %h1 Sign in to CommonPlace
+    %p Please log in to access your community page.
+
+#main_right
+  %h2 Log in
+  = render "user_sessions/new", :user_session => UserSession.new

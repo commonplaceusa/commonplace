@@ -1,0 +1,84 @@
+form.formtastic {
+  display: inline-block;
+  commit_button {
+    display: inline-block; }
+  legend {
+    font-weight: bold;
+    padding-bottom: 0.5em; }
+  input {
+    display: inline-block; }
+  fieldset {
+    padding: 0;
+    ol {
+      width: 390px;
+      li, li.string, li.password, li.text {
+        label {
+          font-size: 0.8em;
+          font-weight: bold;
+          color: #888888;
+          text-align: right;
+          position: relative;
+          vertical-align: top;
+          top: 0px;
+          width: 120px;
+          margin-right: 15px; }
+        margin-bottom: 0.5em;
+        input, textarea {
+          width: 250px; }
+        input {
+          font-size: 0.8em;
+          &#user_avatar {
+            font-size: 0.8em;
+            color: #888888; }
+          &.create, &.update {
+            width: auto; } }
+        &:after {
+          content: ".";
+          display: block;
+          height: 0;
+          clear: both;
+          visibility: hidden; }
+        &.text {
+          textarea {
+            font-size: 0.8em;
+            width: 236px;
+            height: 3.7em;
+            padding: 7px; } }
+        &.commit {
+          position: relative;
+          left: 135px;
+          width: 150px; }
+        &#user_session_password_input {
+          position: relative;
+          p.inline-hints {
+            position: absolute;
+            top: 20px;
+            right: 0px; } }
+        &#registration_privacy_policy_input {
+          label {
+            padding-left: 135px;
+            vertical-align: text-top; }
+          input {
+            vertical-align: text-bottom; } }
+        p.inline-hints, p.inline-errors {
+          float: right;
+          font-size: 0.7em;
+          text-align: right;
+          line-height: 120%;
+          width: 280px;
+          margin-top: 3px; }
+        p.inline-errors {
+          font-weight: bold; } } }
+    &.buttons {
+      padding-left: 0%;
+      padding-top: 0%;
+      visibility: visible; }
+    &.inputs {
+      ol li.boolean {
+        input {
+          width: auto; }
+        label {
+          padding-left: 0; } } } } }
+
+form.registration {
+  fieldset ol li {} }

@@ -30,9 +30,6 @@ Rails::Initializer.run do |config|
 
   config.gem "acts-as-taggable-on", :source => "http://gemcutter.org"
 
-  config.gem 'declarative_authorization'
-
-
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -53,3 +50,7 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
+Haml::Template.options[:format] = :html5
+Sass::Plugin.options[:template_location] = "#{RAILS_ROOT}/app/views/sass"
+ActionController::Base.exempt_from_layout 'js.erb'

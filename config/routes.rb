@@ -1,4 +1,18 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.root :controller => 'site'
+  map.about 'about', :controller => 'site', :action => 'about'
+  map.privacy 'privacy', :controller => 'site', :action => 'privacy'
+  map.terms 'terms', :controller => 'site', :action => 'terms'
+  map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
+
+  map.resource :user_session
+
+  map.resources :password_resets
+
+  map.resource :account
+
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
