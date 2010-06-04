@@ -14,6 +14,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :organizations
 
+  map.resources :events
+
   map.resources :posts do |post|
     post.resources :replies
   end
