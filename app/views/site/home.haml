@@ -8,8 +8,18 @@
 
 #wire
   %ul
-    - Post.all.each do |p|
+    - Post.all.each do |post|
       %li
-        %h2 by #{p.user.full_name}
-        %p= p.body
+        %h2 by #{post.user.full_name}
+        %p= post.body
+        .replies
+          %ol
+            - post.replies.each do |reply|
+              %li= reply.body
+          .new_reply
+            - semantic_form_for [post, Reply.new] do |f|
+              - f.inputs do
+                = f.input :body, :input_html => {:id => "#{dom_id(post)}_reply_body", :rows => 2 }, :label => "Reply here!", :required => true, :label_html => { :class => 'in-field', :for => "#{dom_id(post)}_reply_body" }
+                - f.buttons do
+                  = f.commit_button "Reply"
     

@@ -9,10 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100604143103) do
+ActiveRecord::Schema.define(:version => 20100604163455) do
 
   create_table "posts", :force => true do |t|
     t.text     "body",       :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "replies", :force => true do |t|
+    t.text     "body",       :null => false
+    t.integer  "post_id",    :null => false
     t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
