@@ -20,7 +20,9 @@
    f.association :post, :factory => :post
  end
 
-
+ Factory.define :organization do |f|
+   f.name { Forgery(:name).company_name }
+ end
    
 
  
