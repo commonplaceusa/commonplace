@@ -24,5 +24,8 @@
    f.name { Forgery(:name).company_name }
  end
    
+ Factory.define :event do |f|
+   f.name { Forgery(:lorem_ipsum).words(2) }
+ end
 
  
