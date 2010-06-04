@@ -1,0 +1,31 @@
+- content_for :side do
+  %h1 Edit your account
+  %p Change anything about your account on this page.
+
+#main_right
+  #edit
+    - semantic_form_for current_user, account_path, :html => {:multipart => true} do |f|
+
+      %h2 Edit your information:
+      - f.inputs do
+        = f.input :first_name
+
+        = f.input :last_name
+      
+        = f.input :email
+      
+        = f.input :skill_list, :label => "Skills", :hint => "Example: carpentry, computers"
+
+        = f.input :interest_list, :label => "Interests", :hint => "Example: meeting people, cooking"
+      
+        = f.input :about, :label => "About me", :hint => "Write something about yourself!"
+
+        = f.input :password, :label => "New password"
+
+        = f.input :password_confirmation, :label => 'Confirm password'
+
+        = f.input :avatar
+
+        = f.commit_button 'Update'
+
+

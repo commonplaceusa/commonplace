@@ -1,0 +1,25 @@
+
+%p= flash[:message]
+
+%h2= @user.full_name
+
+%h3 Contact Info:
+
+%dl
+  - if @user.address
+    %dt Address:
+    %dd= @user.address
+  
+  %dt Email:
+  %dd= @user.email
+
+%h3 About
+
+%p= @user.about
+
+%h3 Skills and Interests
+
+%ul
+  - @user.skills.each do |s|
+    %li= s.name
+    

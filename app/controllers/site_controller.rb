@@ -1,6 +1,12 @@
 class SiteController < ApplicationController
 
-  def index ; end
+  def index 
+    if current_user_session
+      render 'index'
+    else
+      render 'home'
+    end
+  end
 
   def about ; end
   

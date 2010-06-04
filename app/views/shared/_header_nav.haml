@@ -3,7 +3,7 @@
 #header_nav
   - if current_user_session
     %p
-      %strong Hi, #{current_user.first_name}! Welcome to #{current_user.community.name}.
+      %strong Hi, #{current_user.first_name}! Welcome to #{CONFIG["community_name"]}.
     %nav
       = link_to 'home', root_url
       |

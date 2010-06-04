@@ -1,0 +1,30 @@
+- content_for :side do
+  %h1 Register for a new account
+  %p Please enter your information to sign up for a new account. At this time, you need your community code to register for a new account.
+
+#main_right
+  - begin
+    - if params[:account] # Don't display any message if there's no code
+      %p.win Welcome to #{check_code}!
+  - rescue 
+    %p.fail Sorry, we didn't recognize your community access code. Try fixing it below?
+  
+  - semantic_form_for @account, :url => account_path do |f|
+    %h2 Please enter your information:
+  
+    - f.inputs do
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :email
+      = f.input :password
+      = f.input :password_confirmation    
+      = f.input :address, :label => "Street address", :hint => "This is so that we can confirm you live in this community."
+
+      - if @account.code.blank? || @account.errors.on(:code)
+        = f.input :code, :label => "Registration code:"
+      - else
+        = f.input :code, :as => :hidden
+
+      = f.input :privacy_policy, :as => :boolean, :label => "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"
+    
+      = f.commit_button 'Register!'

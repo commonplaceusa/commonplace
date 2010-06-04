@@ -1,0 +1,21 @@
+- content_for :side do
+  %h1 Thanks for signing up!
+  %p Before you get started using your new CommonPlace account, why not fill out some more information about yourself? This way your neighbors will be able to find out more about you, and in turn, you can find out more about your neighbors.
+
+#main_right
+  #more_info
+    %h1 Please include some information about yourself for the directory!
+
+    - semantic_form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
+
+      - f.inputs do
+        = f.input :about, :label => "About you", :hint => "Write something about yourself"
+
+        = f.input :skill_list, :label => "Skills", :hint => "Example: carpentry, computers" 
+
+        = f.input :interest_list, :label => "Interests", :hint => "Example: meeting people, cooking" 
+  
+        = f.input :avatar, :label => "Profile picture"
+
+      - f.buttons do
+        = f.commit_button 'Update your profile!'
