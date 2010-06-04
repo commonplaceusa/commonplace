@@ -4,4 +4,12 @@
     - f.inputs "Submit a post!"  do
       = f.input :body, :label => 'A request, offer, announcement, or invite (ex. "Anyone have a ladder I can borrow?")', :input_html => { :class => 'autogrow', :rows => 4}, :label_html => { :class => 'in-field', :style=>"display: table" }
 
-    = f.buttons      
+    = f.buttons
+
+#wire
+  %ul
+    - Post.all.each do |p|
+      %li
+        %h2 by #{p.user.full_name}
+        %p= p.body
+    
