@@ -5,3 +5,5 @@ paperclip
 acts-as-taggable-on
 declarative_authorization
 validatable
+haml
+RedCloth
