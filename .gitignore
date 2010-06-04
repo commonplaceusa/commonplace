@@ -1,5 +1,6 @@
 log/development.log
-log/*.log
+log/test.log
+log/production.log
 tmp/**/*
 tmp/*
 doc/api
