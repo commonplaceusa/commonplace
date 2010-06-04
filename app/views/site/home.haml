@@ -1,28 +1,7 @@
-- content_for :main_side do
-  #main_left
-    %h1 Welcome to CommonPlace
-  
-    %p CommonPlace helps you connect with your neighbors.
-  
-    %p CommonPlace aims to create the first web platform specifically designed to help individuals connect to the people and institutions that make up their local communities. We want to apply new-school media technology to old-school, neighborhood-based information networks.
-  
-.front_page_main
-  #log_in
-    %h2 Log in
-    = render "user_sessions/new", :user_session => UserSession.new
-  
-  %h3 or
-  
-  #register
-    %h2 Register
-    - form_tag new_account_path, :method => :get, :id => 'code' do
-      = label_tag :account_code, "Enter your registration code:"
-      = text_field_tag 'account[code]'
+#submission
+  - semantic_form_for @post do |f|
 
-  %h3 or
-  
-  #more
-    %h2 Get involved
-    %p To find out more about CommonPlace, or sign up your community, contact #{link_to "Pete Davis", 'mailto:pete@commonplace.in'}.
+    - f.inputs "Submit a post!"  do
+      = f.input :body, :label => 'A request, offer, announcement, or invite (ex. "Anyone have a ladder I can borrow?")', :input_html => { :class => 'autogrow', :rows => 4}, :label_html => { :class => 'in-field', :style=>"display: table" }
 
-
+    = f.buttons      
