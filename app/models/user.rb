@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
     c.validate_login_field false
   end
 
+  has_many :posts
+
   
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests
