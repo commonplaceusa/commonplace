@@ -4,7 +4,7 @@
 
 #main_right
   #edit
-    - semantic_form_for current_user, account_path, :html => {:multipart => true} do |f|
+    - semantic_form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
 
       %h2 Edit your information:
       - f.inputs do
