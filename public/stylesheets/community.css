@@ -20,9 +20,9 @@ footer {
   top: 61px;
   bottom: 30px;
   border-width: 2px;
-  border-color: #663300;
+  border-color: #630;
   border-style: solid;
-  background-color: #996633;
+  background-color: #963;
   padding: 8px;
   width: 978px;
   -webkit-border-radius: 8px;
@@ -132,9 +132,9 @@ footer {
         border-radius: 8px;
         border-width: 1px;
         border-style: solid;
-        border-color: #aaaaaa; }
+        border-color: #aaa; }
         #new_post .buttons ol li button:hover {
-          border-color: #333333; }
+          border-color: #333; }
 
 hr {
   height: 0.5px;
