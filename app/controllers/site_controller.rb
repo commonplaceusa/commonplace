@@ -2,9 +2,10 @@ class SiteController < ApplicationController
 
   def index 
     if current_user_session
-      render 'index'
-    else
+      @post = Post.new
       render 'home'
+    else
+      render 'index'
     end
   end
 
