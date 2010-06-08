@@ -1,42 +1,6 @@
-@mixin rounded($radius)
-  -webkit-border-radius: $radius
-  -moz-border-radius: $radius
-  border-radius: $radius
+@import config
 
-@mixin rounded-top($radius)
-  -webkit-border-top-left-radius: $radius
-  -webkit-border-top-right-radius: $radius
-  -moz-border-radius-topleft: $radius
-  -moz-border-radius-topright: $radius
-  border-top-left-radius: $radius
-  border-top-right-radius: $radius
-
-$controlColor = #efefef
-
-body
-  width: 1000px
-
-div
-  border-radius: 4px
-  -webkit-border-radius: 4px
-  -moz-border-radius: 4px
-  
-#header_nav
-  border-bottom-left-radius: 0px
-  border-bottom-right-radius: 0px
-  -webkit-border-bottom-left-radius: 0px
-  -webkit-border-bottom-right-radius: 0px
-  -moz-border-radius-bottomleft: 0px
-  -moz-border-radius-bottomright: 0px
-
-#main
-  background-color: white
-  width: 1000px
-  border: solid 1px black
-  display: table-cell
-  vertical-align: middle
-  align: center
-  padding: 15px
+// Sign up and register page.
 
 .front_page_main, #main_left, #main_right
   font-family: Georgia, Times, "Times New Roman", Serif
@@ -93,19 +57,6 @@ form.formtastic.user_session
 #login
   display: inline-block
 
-.win, .fail
-  padding: 5px
-  font-size: 14px
-  font-weight: bold
-  color: white
-  margin: 5px 0px
-
-.win
-  background-color: #4ba849
-
-.fail
-  background-color: #cc2222
-
 #new_user_session h2
   margin: 20px 125px
 
@@ -113,23 +64,38 @@ form.formtastic.user_session
 // It should be cleaned up in the future to flow with everything else.
 
 #comm_left, #comm_right
-  width: 480px
+  width: 476px
 
-.change
-  padding-top: 9001px  
+#comm_right
+  float: right
 
 div.mode
-  background: #eee !important
-  padding-bottom: .1em
+  background: $controlColor !important
+  padding-bottom: 0
   @include rounded-top(10px)
-  span#toggles div
+#toggles
+  margin-bottom: 1em
+  padding-bottom: 1em
+  div
+    background: #fff
     width: 240px
+    height: 30px
     float: left
     font-size: 2em
     text-align: center
+    padding-top: .5em
+    &.left
+      -webkit-border-top-left-radius: 10px
+      -moz-border-radius-topleft: 10px
+      border-top-left-radius: 10px
+    &.right
+      -webkit-border-top-right-radius: 10px
+      -moz-border-radius-topright: 10px
+      border-top-right-radius: 10px
 .intro
   background: $controlColor
   padding: 1em
+  height: 150px
 .right
   -webkit-border-top-right-radius: 10px
   -moz-border-radius-topright: 10px
@@ -140,17 +106,18 @@ div.mode
   border-top-left-radius: 10px
 .intro
   input
-    font-size: 1em
+    font-size: 1.2em
     width: 100%
   textarea
-    font-size: 1em
+    font-size: 1.2em
     width: 100%
     height: 4em
 
-#directory
+#d
   ul
     padding-left: 0
     margin-bottom: 0em
+    margin-top: 1em
     cursor: pointer
     text-align: center
     &:first-child

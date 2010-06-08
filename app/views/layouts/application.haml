@@ -5,11 +5,17 @@
     %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
     %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
     %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
+    = javascript_include_tag 'jquery-1.4.2.min'
     = javascript_include_tag 'commonscript'
+    = javascript_include_tag 'community'
+    = javascript_include_tag 'jquery.infieldlabel.js'
     = stylesheet_link_tag 'reset'
+    = stylesheet_link_tag 'application'
     = stylesheet_link_tag 'formtastic', 'formtastic_changes'
-    = stylesheet_link_tag 'global'
+    //= stylesheet_link_tag 'global'
     = stylesheet_link_tag 'public'
+    // 'application'
+    = stylesheet_link_tag 'community'
     /[if IE]
       = stylesheet_link_tag 'ie'
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
@@ -19,14 +25,19 @@
 
   %body
     
-    %header#main_head
-      %h1
-        - link_to root_path do
-          = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "349x49"
-      = render 'shared/header_nav'
+    #wrap
+      #top
     
-    #main
-      = yield
+      %header#main_head
+        %h1
+          - link_to root_path do
+            = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "349x49"
+        = render 'shared/header_nav'
+    
+      #main
+        = yield
+    
+    #bottom
     
     %footer
       = render :partial => "shared/footer"

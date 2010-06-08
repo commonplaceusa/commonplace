@@ -2,6 +2,16 @@ html {
   height: 100%; }
 
 body {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  width: 1000px;
+  margin: auto;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  font-size: 1em;
   font-family: sans-serif;
   font-size: medium;
   background: #99dddd;
@@ -10,13 +20,49 @@ body {
   margin: auto;
   line-height: 110%;
   height: 100%; }
+  body #top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: red;
+    z-index: -1; }
+  body #main {
+    background-color: #fefefe;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3000px;
+    text-align: left;
+    border: solid 1px black;
+    vertical-align: middle;
+    align: center;
+    padding: 15px;
+    -webkit-border-radius: 4px !important;
+    -moz-border-radius: 4px !important;
+    border-radius: 4px !important; }
+  body #bottom {
+    margin-top: -200px;
+    position: fixed;
+    bottom: 53px;
+    left: 0;
+    width: 100% !important;
+    height: 200px;
+    background: blue;
+    z-index: -1; }
 
-h2 {
-  font-weight: bolder;
-  margin: 1em 0; }
-
-strong {
-  font-weight: bold; }
+footer {
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 56px;
+  background: #2f2f2f;
+  border-top: 7px solid #444444;
+  bottom: 0;
+  padding: 10px; }
+  footer a {
+    color: #ff5555; }
 
 a {
   color: #0033aa;
@@ -25,6 +71,13 @@ a {
 
 a:hover {
   text-decoration: underline; }
+
+h2 {
+  font-weight: bolder;
+  margin: 1em 0; }
+
+strong {
+  font-weight: bold; }
 
 p {
   margin: 0.5em 0px; }
@@ -57,12 +110,12 @@ header#main_head {
     border-width: 0.5px;
     border-bottom-width: 0px;
     border-style: solid;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    -webkit-border-top-left-radius: 8px;
-    -webkit-border-top-right-radius: 8px;
-    -moz-border-radius-topleft: 8px;
-    -moz-border-radius-topright: 8px;
+    -webkit-border-top-left-radius: 8px !important;
+    -webkit-border-top-right-radius: 8px !important;
+    -moz-border-radius-topleft: 8px !important;
+    -moz-border-radius-topright: 8px !important;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
     padding: 2px 12px 0px;
     text-align: right;
     width: 300px;
@@ -79,19 +132,6 @@ header#main_head {
       height: 1em; }
     header#main_head #header_nav nav {
       font-size: 0.9em; }
-
-footer {
-  margin-top: 3px;
-  padding: 3px;
-  background-color: none;
-  color: #333366;
-  text-align: center;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px; }
-  footer a {
-    color: #333366;
-    font-weight: normal; }
 
 .time, .delete {
   color: #666666; }

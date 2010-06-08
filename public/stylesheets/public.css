@@ -1,28 +1,3 @@
-body {
-  width: 1000px; }
-
-div {
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px; }
-
-#header_nav {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  -webkit-border-bottom-left-radius: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  -moz-border-radius-bottomleft: 0px;
-  -moz-border-radius-bottomright: 0px; }
-
-#main {
-  background-color: white;
-  width: 1000px;
-  border: solid 1px black;
-  display: table-cell;
-  vertical-align: middle;
-  align: center;
-  padding: 15px; }
-
 .front_page_main, #main_left, #main_right {
   font-family: Georgia, Times, "Times New Roman", Serif;
   width: 445px;
@@ -77,46 +52,49 @@ form.formtastic.user_session fieldset.inputs {
 #login {
   display: inline-block; }
 
-.win, .fail {
-  padding: 5px;
-  font-size: 14px;
-  font-weight: bold;
-  color: white;
-  margin: 5px 0px; }
-
-.win {
-  background-color: #4ba849; }
-
-.fail {
-  background-color: #cc2222; }
-
 #new_user_session h2 {
   margin: 20px 125px; }
 
 #comm_left, #comm_right {
-  width: 480px; }
+  width: 476px; }
 
-.change {
-  padding-top: 9001px; }
+#comm_right {
+  float: right; }
 
 div.mode {
-  background: #eeeeee !important;
-  padding-bottom: 0.1em;
-  -webkit-border-top-left-radius: 10px;
-  -webkit-border-top-right-radius: 10px;
-  -moz-border-radius-topleft: 10px;
-  -moz-border-radius-topright: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px; }
-  div.mode span#toggles div {
+  background: #ceeece !important;
+  padding-bottom: 0;
+  -webkit-border-top-left-radius: 10px !important;
+  -webkit-border-top-right-radius: 10px !important;
+  -moz-border-radius-topleft: 10px !important;
+  -moz-border-radius-topright: 10px !important;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important; }
+
+#toggles {
+  margin-bottom: 1em;
+  padding-bottom: 1em; }
+  #toggles div {
+    background: white;
     width: 240px;
+    height: 30px;
     float: left;
     font-size: 2em;
-    text-align: center; }
+    text-align: center;
+    padding-top: 0.5em; }
+    #toggles div.left {
+      -webkit-border-top-left-radius: 10px;
+      -moz-border-radius-topleft: 10px;
+      border-top-left-radius: 10px; }
+    #toggles div.right {
+      -webkit-border-top-right-radius: 10px;
+      -moz-border-radius-topright: 10px;
+      border-top-right-radius: 10px; }
 
 .intro {
-  background: #efefef;
-  padding: 1em; }
+  background: #ceeece;
+  padding: 1em;
+  height: 150px; }
 
 .right {
   -webkit-border-top-right-radius: 10px;
@@ -129,23 +107,24 @@ div.mode {
   border-top-left-radius: 10px; }
 
 .intro input {
-  font-size: 1em;
+  font-size: 1.2em;
   width: 100%; }
 .intro textarea {
-  font-size: 1em;
+  font-size: 1.2em;
   width: 100%;
   height: 4em; }
 
-#directory ul {
+#d ul {
   padding-left: 0;
   margin-bottom: 0em;
+  margin-top: 1em;
   cursor: pointer;
   text-align: center; }
-  #directory ul:first-child {
+  #d ul:first-child {
     padding-left: 0; }
-  #directory ul:last-child {
+  #d ul:last-child {
     padding-right: 0; }
-  #directory ul li {
+  #d ul li {
     list-style: none;
     display: inline;
     padding-left: 0.6em;
@@ -153,35 +132,35 @@ div.mode {
     padding-top: 0.25em;
     padding-bottom: 0.4em;
     border: 1px solid auto; }
-  #directory ul.kinds li {
-    -webkit-border-top-left-radius: 10px;
-    -webkit-border-top-right-radius: 10px;
-    -moz-border-radius-topleft: 10px;
-    -moz-border-radius-topright: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px; }
-    #directory ul.kinds li.selected {
+  #d ul.kinds li {
+    -webkit-border-top-left-radius: 10px !important;
+    -webkit-border-top-right-radius: 10px !important;
+    -moz-border-radius-topleft: 10px !important;
+    -moz-border-radius-topright: 10px !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important; }
+    #d ul.kinds li.selected {
       background: #bbeeee;
       border: 1px solid #dddddd; }
-  #directory ul.selected {
+  #d ul.selected {
     background: #bbeeee;
     border: 1px solid #dddddd; }
-  #directory ul.kinds li.selected {
+  #d ul.kinds li.selected {
     border-bottom: 1px solid #bbeeee; }
-  #directory ul.selected {
+  #d ul.selected {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px; }
-  #directory ul li.all.selected {
+  #d ul li.all.selected {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     border: 1px solid #dddddd; }
-  #directory ul.alphabeta {
+  #d ul.alphabeta {
     margin-top: 6px;
     padding-top: 0.2em;
     padding-bottom: 0.25em; }
-    #directory ul.alphabeta li {
+    #d ul.alphabeta li {
       list-style: none;
       display: inline;
       background: #bbeeee;
@@ -191,18 +170,18 @@ div.mode {
       padding-bottom: 0.25em;
       border: 0;
       margin-top: 0; }
-      #directory ul.alphabeta li a {
+      #d ul.alphabeta li a {
         color: #111111;
         text-decoration: none; }
-#directory .photo {
+#d .photo {
   float: left;
   padding-right: 10px; }
-#directory .info {
+#d .info {
   float: left;
   vertical-align: top; }
-#directory #people div {
+#d #people div {
   margin-bottom: 0.333em; }
-  #directory #people div .info p {
+  #d #people div .info p {
     font-size: 1em; }
 
 .clear {

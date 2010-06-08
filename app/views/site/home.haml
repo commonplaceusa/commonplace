@@ -1,148 +1,149 @@
+#comm_right
+  %p This is the right column.
+
 #comm_left
-  #tabs
-    %span(id="toggles")
-      %div(style="width: 240px; float: left; font-size: 2em; text-align: center;") Wire
-      %div(style="width: 240px; float: left; font-size: 2em; text-align: center;") Directory
-      .clear
-    %span(id="controls")
-      %span(id="stuff")
-        #wire{:style => "display: none;"}
-          .intro.right
-            %p Post to your neighborhood...
-            %form{:style => "padding-top: 1em;"}
-              %textarea{:type => "text"}
-        #directory
-          .intro.left
-            %p Use the directory to find people, organizations, events, or businesses in your community.
-            %form{:style => "padding-top: 1em;"}
-              %input{:type => "search"}
-            %ul#narrow.kinds
-              %li.selected.all{"data-choice" => "all"} All
-              %li{"data-choice" => "people"} People
-              %li{"data-choice" => "organizations"} Organizations
-              %li{"data-choice" => "events"} Events
-              %li{"data-choice" => "businesses"} Businesses
-            %ul.alphabeta.selected{:style => "display: none;"}
-              %li.disabled
-                %a{:href => "#A"} A
-              %li
-                %a{:href => "#B"} B
-              %li
-                %a{:href => "#C"} C
-              %li
-                %a{:href => "#D"} D
-              %li
-                %a{:href => "#E"} E
-              %li
-                %a{:href => "#F"} F
-              %li
-                %a{:href => "#G"} G
-              %li
-                %a{:href => "#H"} H
-              %li
-                %a{:href => "#I"} I
-              %li
-                %a{:href => "#J"} J
-              %li
-                %a{:href => "#K"} K
-              %li
-                %a{:href => "#L"} L
-              %li
-                %a{:href => "#M"} M
-              %li
-                %a{:href => "#N"} N
-              %li
-                %a{:href => "#O"} O
-              %li
-                %a{:href => "#P"} P
-              %li
-                %a{:href => "#Q"} Q
-              %li
-                %a{:href => "#R"} R
-              %li
-                %a{:href => "#S"} S
-              %li
-                %a{:href => "#T"} T
-              %li
-                %a{:href => "#U"} U
-              %li
-                %a{:href => "#V"} V
-              %li
-                %a{:href => "#W"} W
-              %li
-                %a{:href => "#X"} X
-              %li
-                %a{:href => "#Y"} Y
-              %li
-                %a{:href => "#Z"} Z
-          #people
-            / This will be replaced with an AJAX call, hopefully.
-            / Two Modes:
-            / Search for "*" or, show all.
-            / Search for something, show that subset.
-             
-            / For each of these sets of results, have an ALL mode, which breaks stuff down into smaller groups.
-            / %h2 Your Neighbors
-            / %div
-            /   .photo
-            /     %img{:src => "photo.jpg", :style => "height: 48px; width: 48px;"}/
-            /   .info
-            /     %p Ricky Mondello
-            /     %p One of Ricky's interests is cycling.
-            /   .clear
-            / %div
-            /   .photo
-            /     %img{:src => "photo.jpg", :style => "height: 48px; width: 48px;"}/
-            /   .info
-            /     %p Ricky Mondello
-            /     %p One of Ricky's interests is cycling.
-            /   .clear
-            / %h2 Your Mets
-            / %div
-            /   .photo
-            /     %img{:src => "run.jpg", :style => "height: 48px; width: 48px;"}/
-            /   .info
-            /     %p Cross County Run
-            /     %p Wednesday, June 12, 2010
-            /     %p Sponsors: Medford Democrats
-            /   .clear
-            / %h2 Upcoming Events
-            / %h2 Past Events
-            / %h2 Organizations
-            / %div
-            /   .photo
-            /     %img{:src => "dems.jpg", :style => "height: 48px; width: 48px;"}/
-            /   .info
-            /     %p Medford Democrats
-            /   .clear
-            / %h2 Businesses
-  
-  #control
-  
-  #data
-
-#submission
-  - semantic_form_for @post do |f|
-
-    - f.inputs "Submit a post!"  do
-      = f.input :body, :label => 'A request, offer, announcement, or invite (ex. "Anyone have a ladder I can borrow?")', :input_html => { :class => 'autogrow', :rows => 4}, :label_html => { :class => 'in-field', :style=>"display: table" }
-
-    = f.buttons
-
-#wire
-  %ul
-    - Post.all.each do |post|
-      %li
-        %h2 by #{post.user.full_name}
-        %p= post.body
-        .replies
-          %ol
-            - post.replies.each do |reply|
-              %li= reply.body
-          .new_reply
-            - semantic_form_for [post, Reply.new] do |f|
-              - f.inputs do
-                = f.input :body, :input_html => {:id => "#{dom_id(post)}_reply_body", :rows => 2 }, :label => "Reply here!", :required => true, :label_html => { :class => 'in-field', :for => "#{dom_id(post)}_reply_body" }
-                - f.buttons do
-                  = f.commit_button "Reply"
+  #toggles
+    #wireButton Wire
+    #directoryButton Directory
     
+  %span(id="stuff")
+    
+    #w{:style => "display: none;" }
+      .intro
+        %p Post to your neighborhood...
+        #submission
+          - semantic_form_for @post do |f|
+
+            - f.inputs "Submit a post!"  do
+              = f.input :body, :label => 'A request, offer, announcement, or invite (ex. "Anyone have a ladder I can borrow?")', :input_html => { :class => 'autogrow', :rows => 4 }, :label_html => { :class => 'in-field', :style => "display: table;" }
+
+            - f.buttons do
+              = f.commit_button
+      %ul
+        - Post.all.each do |post|
+          %li
+            %h2 #{post.user.full_name}
+            = image_tag post.user.avatar.url, :width => 60, :height => 60
+            %p.post_body= post.body
+            .replies
+              %ol
+                - post.replies.each do |reply|
+                  %li.reply
+                    = reply.body + " by " + reply.user.full_name
+                    = image_tag reply.user.avatar.url, :width => 60, :height => 60
+              .new_reply
+                - semantic_form_for [post, Reply.new] do |f|
+                  - f.inputs do
+                    = f.input :body, :input_html => {:id => "#{dom_id(post)}_reply_body", :rows => 2 }, :label => "Reply here!", :required => true, :label_html => { :class => 'in-field', :for => "#{dom_id(post)}_reply_body" }
+                    - f.buttons do
+                      = f.commit_button "Reply"
+          
+    #d{:style => "display: none;" }
+      .intro
+        %p Use the directory to find people, organizations, events, or businesses in your community.
+        %form{:style => "padding-top: 1em;"}
+          %input{:type => "search"}
+        %ul#narrow.kinds
+          %li.selected.all{"data-choice" => "all"} All
+          %li{"data-choice" => "people"} People
+          %li{"data-choice" => "organizations"} Organizations
+          %li{"data-choice" => "events"} Events
+          %li{"data-choice" => "businesses"} Businesses
+        %ul.alphabeta.selected{:style => "display: none;"}
+          %li.disabled
+            %a{:href => "#A"} A
+          %li
+            %a{:href => "#B"} B
+          %li
+            %a{:href => "#C"} C
+          %li
+            %a{:href => "#D"} D
+          %li
+            %a{:href => "#E"} E
+          %li
+            %a{:href => "#F"} F
+          %li
+            %a{:href => "#G"} G
+          %li
+            %a{:href => "#H"} H
+          %li
+            %a{:href => "#I"} I
+          %li
+            %a{:href => "#J"} J
+          %li
+            %a{:href => "#K"} K
+          %li
+            %a{:href => "#L"} L
+          %li
+            %a{:href => "#M"} M
+          %li
+            %a{:href => "#N"} N
+          %li
+            %a{:href => "#O"} O
+          %li
+            %a{:href => "#P"} P
+          %li
+            %a{:href => "#Q"} Q
+          %li
+            %a{:href => "#R"} R
+          %li
+            %a{:href => "#S"} S
+          %li
+            %a{:href => "#T"} T
+          %li
+            %a{:href => "#U"} U
+          %li
+            %a{:href => "#V"} V
+          %li
+            %a{:href => "#W"} W
+          %li
+            %a{:href => "#X"} X
+          %li
+            %a{:href => "#Y"} Y
+          %li
+            %a{:href => "#Z"} Z
+      
+      #people
+        
+        
+        / This will be replaced with an AJAX call, hopefully.
+        / Two Modes:
+        / Search for "*" or, show all.
+        / Search for something, show that subset.
+         
+        / For each of these sets of results, have an ALL mode, which breaks stuff down into smaller groups.
+        / %h2 Your Neighbors
+        / %div
+        /   .photo
+        /     %img{:src => "photo.jpg", :style => "height: 48px; width: 48px;"}/
+        /   .info
+        /     %p Ricky Mondello
+        /     %p One of Ricky's interests is cycling.
+        /   .clear
+        / %div
+        /   .photo
+        /     %img{:src => "photo.jpg", :style => "height: 48px; width: 48px;"}/
+        /   .info
+        /     %p Ricky Mondello
+        /     %p One of Ricky's interests is cycling.
+        /   .clear
+        / %h2 Your Mets
+        / %div
+        /   .photo
+        /     %img{:src => "run.jpg", :style => "height: 48px; width: 48px;"}/
+        /   .info
+        /     %p Cross County Run
+        /     %p Wednesday, June 12, 2010
+        /     %p Sponsors: Medford Democrats
+        /   .clear
+        / %h2 Upcoming Events
+        / %h2 Past Events
+        / %h2 Organizations
+        / %div
+        /   .photo
+        /     %img{:src => "dems.jpg", :style => "height: 48px; width: 48px;"}/
+        /   .info
+        /     %p Medford Democrats
+        /   .clear
+        / %h2 Businesses
+    .clear
