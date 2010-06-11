@@ -183,12 +183,12 @@ div.mode {
   padding: 0.5em; }
   #d #dresults h2 {
     font-size: 1.8em;
-    margin-top: 0;
+    margin-top: 0.5em;
     margin-bottom: 0;
     padding-bottom: 0.4em;
     border-bottom: 1px solid #cccccc; }
   #d #dresults ul {
-    margin-bottom: 2em; }
+    margin-bottom: 1em; }
     #d #dresults ul li {
       padding-top: 5px;
       min-height: 66px;
@@ -202,6 +202,8 @@ div.mode {
         background: #ffeeaa; }
       #d #dresults ul li.event {
         background: #ffeebb; }
+      #d #dresults ul li.selected {
+        background: #eeeeff; }
       #d #dresults ul li:hover {
         background: #ffeeee; }
 
@@ -212,6 +214,7 @@ div.mode {
   #infobox h2 {
     margin-top: 0.4em;
     padding-bottom: 0;
+    margin-bottom: 0.5em;
     font-size: 2em; }
   #infobox img {
     float: right;
@@ -237,10 +240,22 @@ div.mode {
     padding-bottom: 0.2em;
     border-bottom: 1px dashed #555555;
     font-size: 1.4em; }
+    #infobox p.desc {
+      color: #111111;
+      border-bottom: none;
+      font-size: 1em; }
+    #infobox p.detail {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 1em;
+      color: #555555;
+      border-bottom: none; }
   #infobox textarea {
     font-size: 1.2em;
     width: 100%;
     height: 4em; }
+    #infobox textarea:focus {
+      background: #eeeeff; }
   #infobox button {
     font-size: 1.2em; }
 

@@ -180,12 +180,12 @@ div.mode
     padding: .5em
     h2
       font-size: 1.8em
-      margin-top: 0
+      margin-top: .5em
       margin-bottom: 0
       padding-bottom: .4em
       border-bottom: 1px solid #ccc
     ul
-      margin-bottom: 2em
+      margin-bottom: 1em
       li
         padding-top: 5px
         min-height: 66px
@@ -201,6 +201,8 @@ div.mode
           background: #feb
         &.organization
         &.business
+        &.selected
+          background: #eef
         &:hover
           background: #fee
   // #people div
@@ -216,6 +218,7 @@ div.mode
   h2
     margin-top: .4em
     padding-bottom: 0
+    margin-bottom: .5em
     font-size: 2em
   img
     float: right
@@ -242,10 +245,22 @@ div.mode
     padding-bottom: .2em
     border-bottom: 1px dashed #555
     font-size: 1.4em
+    &.desc
+      color: #111
+      border-bottom: none
+      font-size: 1em
+    &.detail
+      margin-top: 0
+      margin-bottom: 0
+      font-size: 1em
+      color: #555
+      border-bottom: none
   textarea
     font-size: 1.2em
     width: 100%
     height: 4em
+    &:focus
+      background: #eef
   button
     font-size: 1.2em
 

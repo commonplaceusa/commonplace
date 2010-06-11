@@ -3,7 +3,7 @@ var search;
 var url;
 
 $(document).ready(function(){
-
+    
     $("#community_name").click(function(event){
         //event.preventDefault();
         // alert( $(h1).html() );
@@ -58,14 +58,16 @@ $(document).ready(function(){
     $("#d .intro input").keyup(keyCheck);
     
     $("#dresults ul li").live('click', function(){
+        $("#dresults ul li").removeClass('selected');
+        $(this).addClass('selected');
         $("#infobox").html( $(this).attr('data-info') );    // Grab the li's data-info attribute and infobox it.
+        $("textarea").autogrow();
     });
     
     $("ul#narrow li").click(function(){
         choice = $(this).attr('data-choice');       // Grab choice,
         
         directoryChange();
-        // Fire off some AJAX here.
         
         if (choice == "all"){
             $(this).parent().siblings(".alphabeta").fadeOut();
