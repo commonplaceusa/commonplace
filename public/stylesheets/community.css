@@ -24,14 +24,6 @@
   padding: 0px;
   left: 2px; }
 
-/*  width: 100%
- * position: absolute
- * top: 160px
- * bottom: 0px
- * background-color: white
- * overflow: -moz-scrollbars-vertical
- * overflow-x: hidden
- * overflow-y: scroll */
 #map, #users {
   position: absolute;
   height: 49%;

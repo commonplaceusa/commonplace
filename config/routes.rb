@@ -15,11 +15,18 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :organizations
 
   map.resources :events
-
+  
+  map.resource :directory
 
   map.resources :posts do |post|
     post.resources :replies
   end
+  
+  map.connect 'directory/:action', :controller => 'directories'
+  map.connect 'directory/:action/:id', :controller => 'directories'
+  
+  # map.connect 'directory/:filter', :controller => 'directories'
+  # map.connect 'directory/:filter/:term', :controller => 'directories'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -62,4 +69,5 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+  
 end

@@ -114,17 +114,13 @@ div.mode {
   width: 100%;
   height: 4em; }
 
-#d ul {
+#d .intro ul {
+  text-align: center;
+  cursor: pointer;
   padding-left: 0;
   margin-bottom: 0em;
-  margin-top: 1em;
-  cursor: pointer;
-  text-align: center; }
-  #d ul:first-child {
-    padding-left: 0; }
-  #d ul:last-child {
-    padding-right: 0; }
-  #d ul li {
+  margin-top: 1em; }
+  #d .intro ul li {
     list-style: none;
     display: inline;
     padding-left: 0.6em;
@@ -132,35 +128,39 @@ div.mode {
     padding-top: 0.25em;
     padding-bottom: 0.4em;
     border: 1px solid auto; }
-  #d ul.kinds li {
+  #d .intro ul:first-child {
+    padding-left: 0; }
+  #d .intro ul:last-child {
+    padding-right: 0; }
+  #d .intro ul.kinds li {
     -webkit-border-top-left-radius: 10px !important;
     -webkit-border-top-right-radius: 10px !important;
     -moz-border-radius-topleft: 10px !important;
     -moz-border-radius-topright: 10px !important;
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important; }
-    #d ul.kinds li.selected {
+    #d .intro ul.kinds li.selected {
       background: #bbeeee;
       border: 1px solid #dddddd; }
-  #d ul.selected {
+  #d .intro ul.selected {
     background: #bbeeee;
     border: 1px solid #dddddd; }
-  #d ul.kinds li.selected {
+  #d .intro ul.kinds li.selected {
     border-bottom: 1px solid #bbeeee; }
-  #d ul.selected {
+  #d .intro ul.selected {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px; }
-  #d ul li.all.selected {
+  #d .intro ul li.all.selected {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     border: 1px solid #dddddd; }
-  #d ul.alphabeta {
+  #d .intro ul.alphabeta {
     margin-top: 6px;
     padding-top: 0.2em;
     padding-bottom: 0.25em; }
-    #d ul.alphabeta li {
+    #d .intro ul.alphabeta li {
       list-style: none;
       display: inline;
       background: #bbeeee;
@@ -170,7 +170,7 @@ div.mode {
       padding-bottom: 0.25em;
       border: 0;
       margin-top: 0; }
-      #d ul.alphabeta li a {
+      #d .intro ul.alphabeta li a {
         color: #111111;
         text-decoration: none; }
 #d .photo {
@@ -179,10 +179,75 @@ div.mode {
 #d .info {
   float: left;
   vertical-align: top; }
-#d #people div {
-  margin-bottom: 0.333em; }
-  #d #people div .info p {
-    font-size: 1em; }
+#d #dresults {
+  padding: 0.5em; }
+  #d #dresults h2 {
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid #cccccc; }
+  #d #dresults ul {
+    margin-bottom: 2em; }
+    #d #dresults ul li {
+      padding-top: 5px;
+      min-height: 66px;
+      border-bottom: 1px solid #cccccc; }
+      #d #dresults ul li img {
+        float: left;
+        margin-right: 0.5em; }
+      #d #dresults ul li img, #d #dresults ul li p {
+        margin-top: 0; }
+      #d #dresults ul li.person {
+        background: #ffeeaa; }
+      #d #dresults ul li.event {
+        background: #ffeebb; }
+      #d #dresults ul li:hover {
+        background: #ffeeee; }
+
+#infobox {
+  border: 1px dashed #996644;
+  margin-bottom: 1em;
+  padding: 1em; }
+  #infobox h2 {
+    margin-top: 0.4em;
+    padding-bottom: 0;
+    font-size: 2em; }
+  #infobox img {
+    float: right;
+    width: 100px;
+    height: 100px;
+    display: inline;
+    margin-left: 0.2em;
+    margin-bottom: 0.2em; }
+  #infobox ul li {
+    list-style: none;
+    display: inline-block;
+    margin-top: 0.25em;
+    margin-right: 0.25em;
+    border: 1px solid #375d81;
+    background: #abc8e2;
+    padding: 4px;
+    line-height: 1.2em;
+    -webkit-border-radius: 4px !important;
+    -moz-border-radius: 4px !important;
+    border-radius: 4px !important; }
+  #infobox p {
+    margin-top: 1em;
+    padding-bottom: 0.2em;
+    border-bottom: 1px dashed #555555;
+    font-size: 1.4em; }
+  #infobox textarea {
+    font-size: 1.2em;
+    width: 100%;
+    height: 4em; }
+  #infobox button {
+    font-size: 1.2em; }
+
+#mapbox {
+  height: 300px;
+  width: 100%;
+  border: 1px dashed #446699; }
 
 .clear {
   clear: both; }

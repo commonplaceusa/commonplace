@@ -1,31 +1,33 @@
- 
- Factory.define :user do |f|
-   f.password { Forgery(:basic).password }
-   f.password_confirmation {|a| a.password }
-   f.first_name { Forgery(:name).first_name }
-   f.last_name  { Forgery(:name).last_name }
-   f.address { Forgery(:address).street_address }
-   f.email { Forgery(:internet).email_address }
-   f.about { Forgery(:lorem_ipsum).paragraph }
- end
 
- Factory.define :post do |f|
-   f.body { Forgery(:lorem_ipsum).paragraph }
-   f.association :user, :factory => :user
- end
+Factory.define :community do |c|
+  c.name { Forgery(:address).city }
+  c.code { Forgery(:basic).password }
+end
 
- Factory.define :reply do |f|
-   f.body { Forgery(:lorem_ipsum).sentence }
-   f.association :user, :factory => :user
-   f.association :post, :factory => :post
- end
+Factory.define :user do |u|
+  u.first_name { Forgery(:name).first_name }
+  u.last_name { Forgery(:name).last_name }
+  u.skill_list { Array.new((0..4).random){Forgery(:personal).language}.join(',')}
+  u.interest_list { Array.new((0..4).random){Forgery(:basic).color}.join(',')}
+  u.email {|u| "#{u.first_name}.#{u.last_name}@example.com".downcase }
+  u.password { Forgery(:basic).password }
+  u.password_confirmation {|u| u.password }
+  u.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
+  u.about { Forgery(:lorem_ipsum).paragraphs(1) }
+end
 
- Factory.define :organization do |f|
-   f.name { Forgery(:name).company_name }
- end
-   
- Factory.define :event do |f|
-   f.name { Forgery(:lorem_ipsum).words(2) }
- end
 
- 
+Factory.define :post do |p|
+  p.body { Forgery(:lorem_ipsum).paragraphs(1) }
+  p.association :community
+  p.association :user
+  p.after_build do |p| 
+    p.type = "Request"
+  end
+end
+
+Factory.define :reply do |r|
+  r.body { Forgery(:lorem_ipsum).paragraph }
+  r.association :user
+  r.association :post
+end

@@ -1,3 +1,7 @@
+var choice;
+var search;
+var url;
+
 $(document).ready(function(){
 
     $("#community_name").click(function(event){
@@ -17,9 +21,21 @@ $(document).ready(function(){
         $(this).parent().siblings("#stuff").children(":eq(" + num + ")").show();
         
         if (num == 0) {
-            window.location.hash = "wire";
+            window.location.hash = "wire";          // We're in the wire.
+            
+            // Set up the wire with default data unless there is already data there.
+            
         } else {
-            window.location.hash = "directory";
+            window.location.hash = "directory";     // We're in the directory.
+            $.get('directory', function(data) {
+                //$('.result').html(data);
+                
+                //alert(data);
+                
+                $("#dresults").html(data);
+            });
+            
+            
         }
         
         event.preventDefault();
@@ -27,8 +43,30 @@ $(document).ready(function(){
         
     });
     
+    function keyCheck(e) {
+        switch(e.keyCode) {	
+    		case 13:    // return
+    			alert('hi');
+    			directoryChange();
+    			break;
+    		default:
+    			break;	
+    	}
+    }
+    
+    // add style for when that form has focus...
+    $("#d .intro input").keyup(keyCheck);
+    
+    $("#dresults ul li").live('click', function(){
+        $("#infobox").html( $(this).attr('data-info') );    // Grab the li's data-info attribute and infobox it.
+    });
+    
     $("ul#narrow li").click(function(){
-        var choice = $(this).attr('data-choice');
+        choice = $(this).attr('data-choice');       // Grab choice,
+        
+        directoryChange();
+        // Fire off some AJAX here.
+        
         if (choice == "all"){
             $(this).parent().siblings(".alphabeta").fadeOut();
         } else {
@@ -38,6 +76,17 @@ $(document).ready(function(){
         $(this).siblings().removeClass("selected");
         $(this).addClass("selected");
     });
+    
+    function directoryChange() {
+        search = $("#d .intro input").val();   // search term,
+        url = 'directory/' + choice;                // construct a url.
+        if (search) url += '/' + search;
+        alert(url);
+        
+        $.get(url, function(data) {
+            $("#dresults").html(data);
+        });
+    }
     
     $("label.in-field").inFieldLabels({fadeOpacity:0});
     
