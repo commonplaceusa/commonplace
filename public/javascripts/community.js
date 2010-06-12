@@ -1,8 +1,45 @@
+/*
+This Javascript file really needs an organizational cleanup. I'll do that very soon. ~ Ricky
+*/
+
 var choice;
 var search;
 var url;
 
 $(document).ready(function(){
+    
+    url = 'directory';
+    
+    $("#infobox div.rsvp").live('click', function(){
+        
+        if ( $(this).siblings("div.message").is(":visible") ){
+            $(this).siblings("form, div.message").hide();
+        } else {
+            $(this).siblings("form").hide();
+            
+            // fire off ajax...
+            
+            // if the response is one way, show something - if it's another way, show something else
+            
+            // $(this).siblings("div.message").html("derp");
+            
+            $(this).siblings("div.message").show();
+        }
+    });
+    
+    $("#infobox div.refer").live('click', function(){
+        
+        if ( $(this).siblings("form").is(":visible") ){
+            $(this).siblings("form, div.message").hide();
+        } else {
+            $(this).siblings("div.message").hide();
+            
+            // we need some autocomplete going on here
+            
+            $(this).siblings("form").show();
+        }
+        
+    });
     
     $("#community_name").click(function(event){
         //event.preventDefault();
@@ -20,14 +57,19 @@ $(document).ready(function(){
         $(this).parent().siblings("#stuff").children(":eq(" + other + ")").hide();
         $(this).parent().siblings("#stuff").children(":eq(" + num + ")").show();
         
+        $("#infobox").children().hide();
+        
         if (num == 0) {
             window.location.hash = "wire";          // We're in the wire.
+            
+            $("#infobox span.wire").show();
             
             // Set up the wire with default data unless there is already data there.
             
         } else {
-            window.location.hash = "directory";     // We're in the directory.
-            $.get('directory', function(data) {
+            window.location.hash = url;     // We're in the directory.
+            $("#infobox span.directory").show();
+            $.get(url, function(data) {
                 //$('.result').html(data);
                 
                 //alert(data);
@@ -61,7 +103,6 @@ $(document).ready(function(){
         $("#dresults ul li").removeClass('selected');
         $(this).addClass('selected');
         $("#infobox").html( $(this).attr('data-info') );    // Grab the li's data-info attribute and infobox it.
-        $("textarea").autogrow();
     });
     
     $("ul#narrow li").click(function(){
@@ -79,11 +120,14 @@ $(document).ready(function(){
         $(this).addClass("selected");
     });
     
-    function directoryChange() {
-        search = $("#d .intro input").val();   // search term,
-        url = 'directory/' + choice;                // construct a url.
-        if (search) url += '/' + search;
-        alert(url);
+    function directoryChange(url) {
+        if (!url){
+            search = $("#d .intro input").val();   // search term,
+            url = 'directory/' + choice;                // construct a url.
+            if (search) url += '/' + search;
+            alert(url);
+        }
+        window.location.hash = url;
         
         $.get(url, function(data) {
             $("#dresults").html(data);
@@ -91,31 +135,6 @@ $(document).ready(function(){
     }
     
     $("label.in-field").inFieldLabels({fadeOpacity:0});
-    
-    // Old stuff below:
-    
-    $(window).bind('hashchange', function () {
-        var url = window.location.hash.slice(1);
-
-        $.ajax({
-            url: url,
-            dataType: 'script',
-            type: "GET",
-            beforeSend: function (xhr) {
-        
-            },
-            success: function (data, status, xhr) {
-        
-            },
-            complete: function (xhr) {
-        
-            },
-            error: function (xhr, status, error) {
-        
-            }
-        });
-        
-    });
         
     //$("label.in-field").inFieldLabels({fadeOpacity:0});
     //$(".replies").hide();
@@ -133,7 +152,10 @@ $(document).ready(function(){
     
     if (window.location.hash == "#wire"){
         $("#wireButton").click();
-    } else if (window.location.hash == "#directory"){
+        
+        // s.indexOf("oo") != -1
+    } else if (window.location.hash.indexOf("#directory") != -1){
+        url = window.location.hash.slice(1);
         $("#directoryButton").click();
     } else {
         window.location.hash = "#wire";

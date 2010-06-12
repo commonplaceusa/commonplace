@@ -2,6 +2,9 @@
 
 // Sign up and register page.
 
+textarea, input
+  font-size: 1.2em
+
 .front_page_main, #main_left, #main_right
   font-family: Georgia, Times, "Times New Roman", Serif
   width: 445px
@@ -178,6 +181,8 @@ div.mode
     vertical-align: top
   #dresults
     padding: .5em
+    img
+      border: 1px solid #ccc
     h2
       font-size: 1.8em
       margin-top: .5em
@@ -199,6 +204,28 @@ div.mode
           background: #fea
         &.event
           background: #feb
+          div.calendar
+            //@include rounded(10px)
+            float: left
+            text-align: center
+            display: block
+            width: 60px
+            // height: 60px
+            border: 1px solid #888
+            margin-right: 0.5em
+            background: green
+            div.month
+              font-size: 1.1em
+              padding: 4px
+              border: 0
+              height: 20px
+              background: #f66
+            div.date
+              font-size: 1.4em
+              padding: 6px 4px 0px 4px
+              border: 0
+              background: #ccc
+              height: 24px
         &.organization
         &.business
         &.selected
@@ -212,6 +239,8 @@ div.mode
 
 
 #infobox
+  max-height: 480px
+  overflow: auto
   border: 1px dashed #964
   margin-bottom: 1em
   padding: 1em
@@ -227,8 +256,6 @@ div.mode
     display: inline
     margin-left: .2em
     margin-bottom: .2em
-  div
-    // padding-bottom: 1em
   ul
     li
       list-style: none
@@ -263,11 +290,53 @@ div.mode
       background: #eef
   button
     font-size: 1.2em
+  div
+    text-align: center
+    margin: 0 auto
+    font-size: 1.1em
+    margin-top: .75em
+    div.rsvp, div.refer
+      width: 160px
+      cursor: pointer
+      display: inline-block
+      border: 1px solid gray
+      padding: 1em
+      &:hover
+        background: #fee
+    div.rsvp
+      @include rounded-left(10px)
+    div.refer
+      @include rounded-right(10px)
+    form, div.message
+      height: 40px
+      margin: 0 auto
+      margin-top: .3em
+      border: 1px solid gray
+      padding: 0em
+      width: 402px
+      line-height: 1.2em
+      @include rounded(10px)
+      //margin: 0 auto
+    div.message
+      padding-top: 0
+      padding-bottom: 6px
+      p
+        font-size: 1.1em
+        border: 0
+        margin: 0
+        margin-top: 12px
+        margin-bottom: 14px
+    form
+      padding-top: 6px
+      padding-bottom: 0px
+  span.wire, span.directory
+    display: none
 
 #mapbox
   height: 300px
   width: 100%
   border: 1px dashed #469
+  background: black
 
 
 .clear
