@@ -35,3 +35,4 @@ config.gem "cucumber"
 config.gem "cucumber-rails", :lib => false
 config.gem "pickle"
 config.gem "email_spec"
+config.gem "database_cleaner"

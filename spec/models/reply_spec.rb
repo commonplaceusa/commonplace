@@ -2,12 +2,10 @@ require 'spec_helper'
 
 describe Reply do
   before(:each) do
-    @valid_attributes = {
-      
-    }
+    @reply = Factory.build(:reply)
   end
 
   it "should create a new instance given valid attributes" do
-    Reply.create!(@valid_attributes)
+    @reply.valid?.should be_true
   end
 end

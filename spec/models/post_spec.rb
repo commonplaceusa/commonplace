@@ -2,12 +2,10 @@ require 'spec_helper'
 
 describe Post do
   before(:each) do
-    @valid_attributes = {
-      
-    }
+    @post = Factory.build(:post)
   end
 
   it "should create a new instance given valid attributes" do
-    Post.create!(@valid_attributes)
+    @post.valid?.should be_true
   end
 end
