@@ -4,4 +4,7 @@ class Organization < ActiveRecord::Base
 
   validates_presence_of :name
 
+  has_many :sponsorships
+  has_many :events, :through => :sponsorships
+
 end

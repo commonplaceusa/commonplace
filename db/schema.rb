@@ -9,7 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100604201540) do
+ActiveRecord::Schema.define(:version => 20100614153117) do
+
+  create_table "attendances", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "event_id",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "businesses", :force => true do |t|
+    t.string   "name",                                       :null => false
+    t.string   "address",                                    :null => false
+    t.decimal  "lat",        :precision => 15, :scale => 10
+    t.decimal  "lng",        :precision => 15, :scale => 10
+    t.text     "about",                                      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", :force => true do |t|
     t.string   "name",        :null => false
@@ -41,6 +58,14 @@ ActiveRecord::Schema.define(:version => 20100604201540) do
     t.text     "body",       :null => false
     t.integer  "post_id",    :null => false
     t.integer  "user_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sponsorships", :force => true do |t|
+    t.integer  "sponsor_id",   :null => false
+    t.string   "sponsor_type", :null => false
+    t.integer  "event_id",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
