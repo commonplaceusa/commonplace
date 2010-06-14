@@ -8,6 +8,21 @@ var url;
 
 $(document).ready(function(){
     
+    $('textarea').autoResize({
+        // On resize:
+        onResize : function() {
+            $(this).css({opacity:0.8});
+        },
+        // After resize:
+        animateCallback : function() {
+            $(this).css({opacity:1});
+        },
+        // Quite slow animation:
+        animateDuration : 300,
+        // More extra space:
+        extraSpace : 40
+    });
+    
     url = 'directory';
     
     $("#infobox div.rsvp").live('click', function(){
@@ -103,6 +118,26 @@ $(document).ready(function(){
         $("#dresults ul li").removeClass('selected');
         $(this).addClass('selected');
         $("#infobox").html( $(this).attr('data-info') );    // Grab the li's data-info attribute and infobox it.
+        
+        $(document).ready(function(){
+
+            $('textarea').autoResize({
+                // On resize:
+                onResize : function() {
+                    $(this).css({opacity:0.8});
+                },
+                // After resize:
+                animateCallback : function() {
+                    $(this).css({opacity:1});
+                },
+                // Quite slow animation:
+                animateDuration : 300,
+                // More extra space:
+                extraSpace : 20
+            });
+        
+        });
+        
     });
     
     $("ul#narrow li").click(function(){
@@ -125,7 +160,7 @@ $(document).ready(function(){
             search = $("#d .intro input").val();   // search term,
             url = 'directory/' + choice;                // construct a url.
             if (search) url += '/' + search;
-            alert(url);
+            // alert(url);
         }
         window.location.hash = url;
         
