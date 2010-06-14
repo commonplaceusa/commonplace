@@ -9,15 +9,15 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
+  validates_presence_of :first_name, :last_name
+
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests
   acts_as_taggable_on :stuffs
   
-  has_attached_file(:avatar, {
-                      :styles => { :thumb => "100x100" },
-                      #:path => ":attachment/:id/:style.:extension",
-                      :default_url => "/system/avatars/missing.png"
-                    })
+  has_attached_file(:avatar, 
+                    :styles => { :thumb => "100x100" },
+                    :default_url => "/system/avatars/missing.png")
 
   def full_name
     first_name + " " + last_name

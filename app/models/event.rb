@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
                         :conditions => "sponsorships.sponsor_type = 'Organization'"
 
 
-  def publications
-    self.business + self.organizations
+  def sponsors
+    self.businesses + self.organizations
   end
 end
