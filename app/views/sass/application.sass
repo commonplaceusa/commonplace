@@ -1,0 +1,210 @@
+// application.sass
+// Used across the entire street.
+
+@import config
+
+html
+  height: 100%
+
+body
+  position: absolute
+  width: 100%
+  margin: auto
+  top: 0px
+  left: 0px
+  right: 0px
+  bottom: 0px
+  font-size: 1em
+  font-family: sans-serif
+  font-size: medium
+  background: $backgroundGradientColor2
+  // background: $backgroundColor
+  // background: -moz-linear-gradient(right bottom, $backgroundGradientColor1, $backgroundGradientColor2)
+  // background-image: -webkit-gradient(linear, right bottom, left top, color-stop(0.91, $backgroundGradientColor2), color-stop(0.33, $backgroundGradientColor1))
+  margin: auto
+  line-height: 110%
+  height: 100%
+
+  // Clouds and sun.
+  #top
+    margin-bottom: -$topStripHeight + px
+    top: 0
+    left: 0
+    width: 100%
+    height: $topStripHeight + px
+    background: red
+    background: -webkit-gradient(linear, left top, left bottom, from($backgroundGradientColor1), to($backgroundGradientColor2))
+    z-index: -1
+
+  #wrap
+    min-height: 100%
+
+  #main
+    overflow: auto
+    background-color: #fefefe
+    width: 1000px
+    margin-left: auto
+    margin-right: auto
+    margin-bottom: 0em
+    text-align: left
+    border: solid 1px black
+    vertical-align: middle
+    align: center
+    min-height: $topAndBottomStripHeight + px
+    padding: .5em
+    padding-bottom: $totalFooterHeight
+    @include rounded(4px)
+
+  // City and people.
+  #bottom
+    margin-top: -$bottomStripHeight + px
+    position: relative
+    bottom: $footerHeight + px
+    left: 0
+    width: 100% !important
+    height: $bottomStripHeight + px
+    background: blue
+    background: -webkit-gradient(linear, left top, left bottom, from($backgroundGradientColor2), to($backgroundGradientColor1))
+    z-index: -1
+
+footer
+  text-align: center
+  position: relative
+  margin-top: -$footerHeight - ($footerBorder + $footerPadding) + px
+  height: $footerHeight + px
+  // clear: both
+  margin-bottom: -800px
+  background: #2F2F2F
+  border-top: $footerBorder + px solid #444
+  bottom: 0
+  left: 0
+  padding-top: $footerPadding + px
+  a
+    color: #f55
+
+// Standard tags.
+a
+  color: #0033aa
+  font-weight: bold
+  text-decoration: none
+
+a:hover
+  text-decoration: underline
+
+a:visited
+
+a:active
+
+h2
+  font-weight: bolder
+  margin: 1em 0
+
+strong
+  font-weight: bold
+
+p
+  margin: 0.5em 0px
+
+header
+  text-align: center
+  &#main_head
+    padding-top: 10px
+    h1, h2, #community_name, #header_nav
+      display: inline-block
+      position: relative
+      vertical-align: top
+      top: 0px
+    h1
+      left: 0px
+      border: 0px
+      height: 50px
+      width: 370px
+    #community_name
+      font-family: Georgia, Times, "Times New Roman", Serif
+      font-style: oblique
+      vertical-align: bottom
+      font-size: 45px
+      color: yellow
+      padding: 7px
+      width: 250px
+    #header_nav
+      background-color: #349
+      background: -moz-linear-gradient(center bottom, #555, #777)
+      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.94, #777), color-stop(0.42, #555))
+      border:
+        color: #555
+        width: .5px
+        bottom-width: 0px
+        style: solid
+      @include rounded-top(8px)
+      padding: 2px 12px 0px
+      text-align: right
+      width: 300px
+      color: #eee
+      font-size: 0.9em
+      height: 50px
+      a
+        //color: #1144bb
+        color: #bdd
+      p
+        margin-bottom: 0.2em
+      form
+        display: inline
+      h1
+        height: 1em
+      nav
+        font-size: .9em
+
+.time, .delete
+  color: #666666
+
+.delete
+  font-weight: normal
+
+#copy
+  font-size: 12px
+
+a.category
+
+.category
+  color: #222222
+
+#info_img, .info
+  position: relative
+  display: inline-block
+  vertical-align: top
+  top: 0px
+
+#info_img
+  width: 400px
+
+.info
+  width: 530px
+  padding: 0px 15px
+  font-family: Georgia, Times, "Times New Roman", Serif
+  p
+    font-size: 1em
+    margin-bottom: 0.5em
+  h1
+    font-size: 1.5em
+    margin-bottom: 0.5em
+    font-weight: bold
+
+dl
+  display: block
+  dt, dd
+    margin-top: 4px
+  dt
+    width: 80px
+    clear: left
+    float: left
+  dd
+    float: left
+    width: 260px
+
+// suggestion of in-line website. this is broken
+label
+  position: absolute
+  top: 0
+  left: 0
+  

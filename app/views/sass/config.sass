@@ -1,0 +1,46 @@
+// Mixins...
+
+@mixin rounded($radius)
+  -webkit-border-radius: $radius !important
+  -moz-border-radius: $radius !important
+  border-radius: $radius !important
+
+@mixin rounded-top($radius)
+  -webkit-border-top-left-radius: $radius !important
+  -webkit-border-top-right-radius: $radius !important
+  -moz-border-radius-topleft: $radius !important
+  -moz-border-radius-topright: $radius !important
+  border-top-left-radius: $radius !important
+  border-top-right-radius: $radius !important
+
+@mixin rounded-right($radius)
+  -webkit-border-top-right-radius: $radius !important
+  -webkit-border-bottom-right-radius: $radius !important
+  -moz-border-radius-topright: $radius !important
+  -moz-border-radius-bottomright: $radius !important
+  border-top-right-radius: $radius !important
+  border-bottom-right-radius: $radius !important
+
+@mixin rounded-left($radius)
+  -webkit-border-top-left-radius: $radius !important
+  -webkit-border-bottom-left-radius: $radius !important
+  -moz-border-radius-topleft: $radius !important
+  -moz-border-radius-bottomleft: $radius !important
+  border-top-left-radius: $radius !important
+  border-bottom-left-radius: $radius !important
+
+// Variables...
+
+$footerHeight = 26
+$footerBorder = 7
+$footerPadding = 10
+$totalFooterHeight = $footerHeight + $footerBorder + $footerPadding
+
+$backgroundColor = #9dd
+$backgroundGradientColor1 = #6cd
+$backgroundGradientColor2 = #cff
+$controlColor = #ceeece
+
+$topStripHeight = 300
+$bottomStripHeight = 300
+$topAndBottomStripHeight = $topStripHeight + $bottomStripHeight

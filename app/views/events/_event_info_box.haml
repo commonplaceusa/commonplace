@@ -1,0 +1,31 @@
+/ = image_tag event.avatar.url
+%h2 #{event.name}
+
+%p.detail Starts: #{human_date(event.start_time)}
+%p.detail Ends: #{human_date(event.end_time)}
+%p.detail Location: #{event.location}
+%p Description
+%p.desc #{event.description}
+
+/ - unless event.groups.nil?
+/   %div.clear
+/     %p Groups:
+/     = render_tag_list(event.groups)
+/ - unless event.interests.empty?
+/   %p Interests
+/   = render_tag_list(event.interests)
+/ - unless event.skills.empty?
+/   %p Skills
+/   = render_tag_list(event.skills)
+/ - unless event.stuffs.empty?
+/   %p Stuff
+/   = render_tag_list(event.stuffs)
+/ %p RSVP or Refer a Friend
+%div
+  %div.rsvp RSVP
+  %div.refer Refer a Friend
+  %form{:style => "display: none;"}
+    %input
+    %button Refer
+  %div.message{:style => "display: none;"}
+    %p You're attending this event!

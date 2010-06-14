@@ -1,0 +1,33 @@
+/ This is simplistic.
+/ Really, there needs to be a way to input the type being searched for, as well as a query.
+/ In the event an "All" is returned, it needs to be sorted out properly.
+
+/ If mode is all...
+
+- unless @people.empty?
+  %h2 People
+
+  %ul
+    - @people.each do |person|
+      = render person
+      
+/ - unless @organizations.empty?
+/   %h2 Organizations
+/ 
+/   %ul
+/     - @organizations.each do |organization|
+/       = render organization
+
+- unless @events.empty?    
+  %h2 Events
+
+  %ul
+    - @events.each do |event|
+      = render event
+      
+/ - unless @businesses.empty?    
+/   %h2 Businesses
+/ 
+/   %ul
+/     - @businesses.each do |business|
+/       = render business
