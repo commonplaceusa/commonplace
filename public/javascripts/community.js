@@ -9,18 +9,8 @@ var url;
 $(document).ready(function(){
     
     $('textarea').autoResize({
-        // On resize:
-        onResize : function() {
-            $(this).css({opacity:0.8});
-        },
-        // After resize:
-        animateCallback : function() {
-            $(this).css({opacity:1});
-        },
-        // Quite slow animation:
         animateDuration : 300,
-        // More extra space:
-        extraSpace : 40
+        extraSpace : 22
     });
     
     url = 'directory';
@@ -61,18 +51,17 @@ $(document).ready(function(){
         // alert( $(h1).html() );
     });
 
-    // Ricky's stuff below:
-    $("#toggles div").click(function(event){         // Click wireButton or directoryButton.      
-        $("#toggles div").removeClass("mode");
+    // Toggling between the wire and the directory.
+    $("#toggles div").click(function(event){
+        $("#toggles div").removeClass("mode");  // Adjust tab styling.
         $(this).addClass("mode");
         
-        var num = $(this).index();
+        var num = $(this).index();              // Switch the content over.
         var other = Math.abs(num-1);
-        
         $(this).parent().siblings("#stuff").children(":eq(" + other + ")").hide();
         $(this).parent().siblings("#stuff").children(":eq(" + num + ")").show();
         
-        $("#infobox").children().hide();
+        $("#infobox").children().hide();        // ???
         
         if (num == 0) {
             window.location.hash = "wire";          // We're in the wire.
@@ -82,7 +71,7 @@ $(document).ready(function(){
             // Set up the wire with default data unless there is already data there.
             
         } else {
-            window.location.hash = url;     // We're in the directory.
+            window.location.hash = url;             // We're in the directory.
             $("#infobox span.directory").show();
             $.get(url, function(data) {
                 //$('.result').html(data);
@@ -91,23 +80,18 @@ $(document).ready(function(){
                 
                 $("#dresults").html(data);
             });
-            
-            
         }
         
-        event.preventDefault();
-        return false;   // remove this
-        
+        event.preventDefault();     // Don't jump to anchors wire and directory on the page.
     });
     
     function keyCheck(e) {
         switch(e.keyCode) {	
-    		case 13:    // return
-    			alert('hi');
+    		case 13:                // return
     			directoryChange();
     			break;
-    		default:
-    			break;	
+    		// default:
+    		//                break;	
     	}
     }
     
@@ -122,26 +106,15 @@ $(document).ready(function(){
         $(document).ready(function(){
 
             $('textarea').autoResize({
-                // On resize:
-                onResize : function() {
-                    $(this).css({opacity:0.8});
-                },
-                // After resize:
-                animateCallback : function() {
-                    $(this).css({opacity:1});
-                },
-                // Quite slow animation:
                 animateDuration : 300,
-                // More extra space:
                 extraSpace : 20
             });
-        
         });
         
     });
     
     $("ul#narrow li").click(function(){
-        choice = $(this).attr('data-choice');       // Grab choice,
+        choice = $(this).attr('data-choice');       // Grab choice.
         
         directoryChange();
         
@@ -155,12 +128,13 @@ $(document).ready(function(){
         $(this).addClass("selected");
     });
     
+    // directoryChange can autoupdate, or be forced to update a certain way.
     function directoryChange(url) {
         if (!url){
-            search = $("#d .intro input").val();   // search term,
-            url = 'directory/' + choice;                // construct a url.
-            if (search) url += '/' + search;
-            // alert(url);
+            if (typeof choice == 'undefined') choice = 'all'    // grab valid choice
+            search = $("#d .intro input").val();                // and search term,
+            url = 'directory/' + choice;                        // and use them to
+            if (search) url += '/' + search;                    // make a url.
         }
         window.location.hash = url;
         
@@ -185,10 +159,9 @@ $(document).ready(function(){
     });
     */
     
+    // Initial page setup:
     if (window.location.hash == "#wire"){
         $("#wireButton").click();
-        
-        // s.indexOf("oo") != -1
     } else if (window.location.hash.indexOf("#directory") != -1){
         url = window.location.hash.slice(1);
         $("#directoryButton").click();
@@ -198,5 +171,5 @@ $(document).ready(function(){
     }
     
     $(".intro").addClass(".right");
-     
+    
 });

@@ -22,9 +22,9 @@ module ApplicationHelper
     
     if diff < -6
       return self.strftime("%A, %B %d, %Y at %I:%M%p")
-    elsif diff >= -6 and diff < 1
+    elsif diff >= -6 and diff < -1
       return "Last " + it.strftime("%A") + " at " + it.strftime("%I:%M%p")
-    elsif diff >= 1 and diff < 0
+    elsif diff >= -1 and diff < 0
       return "Yesterday at " + it.strftime("%I:%M%p")
     elsif diff == 0
       return "Today at " + it.strftime("%I:%M%p")

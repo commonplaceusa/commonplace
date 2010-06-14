@@ -3,6 +3,335 @@
 // private.sass
 // Logged in, view of wire, directory, profiles, etc.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// From here down is stuff that Ricky added.
+// It should be cleaned up in the future to flow with everything else.
+
+#comm_left, #comm_right
+  width: 476px
+
+#comm_right
+  float: right
+
+div.mode
+  background: $controlColor !important
+  padding-bottom: 0
+  @include rounded-top(10px)
+#toggles
+  margin-bottom: 1em
+  padding-bottom: 1em
+  div
+    background: #fff
+    width: 240px
+    height: 30px
+    float: left
+    font-size: 2em
+    text-align: center
+    padding-top: .5em
+    &.left
+      -webkit-border-top-left-radius: 10px
+      -moz-border-radius-topleft: 10px
+      border-top-left-radius: 10px
+    &.right
+      -webkit-border-top-right-radius: 10px
+      -moz-border-radius-topright: 10px
+      border-top-right-radius: 10px
+.intro
+  background: $controlColor
+  padding: 1em
+  min-height: 150px
+.right
+  -webkit-border-top-right-radius: 10px
+  -moz-border-radius-topright: 10px
+  border-top-right-radius: 10px
+.left
+  -webkit-border-top-left-radius: 10px
+  -moz-border-radius-topleft: 10px
+  border-top-left-radius: 10px
+.intro
+  input
+    font-size: 1.2em
+    width: 100%
+  textarea
+    font-size: 1.2em
+    width: 100%
+    height: 4em
+
+#d
+  .intro ul
+    text-align: center
+    cursor: pointer
+    li
+      list-style: none
+      display: inline
+      padding-left: .6em
+      padding-right: .6em
+      padding-top: .25em
+      padding-bottom: .4em
+      border: 1px solid auto
+    padding-left: 0
+    margin-bottom: 0em
+    margin-top: 1em
+    &:first-child
+      padding-left: 0
+    &:last-child
+      padding-right: 0
+    li
+
+    &.kinds li
+      @include rounded-top(10px)
+      &.selected
+        background: #bee
+        border: 1px solid #ddd
+    &.selected
+      background: #bee
+      border: 1px solid #ddd
+    &.kinds li.selected
+      border-bottom: 1px solid #bee
+    &.selected
+      -webkit-border-radius: 10px
+      -moz-border-radius: 10px
+      border-radius: 10px
+    li.all.selected
+      -webkit-border-radius: 10px
+      -moz-border-radius: 10px
+      border-radius: 10px
+      border: 1px solid #ddd
+    &.alphabeta
+      margin-top: 6px
+      padding-top: .2em
+      padding-bottom: .25em
+      li
+        list-style: none
+        display: inline
+        background: #bee
+        font-size: .9em
+        padding-left: .07em
+        padding-right: .07em
+        padding-bottom: .25em
+        border: 0
+        margin-top: 0
+        a
+          color: #111
+          text-decoration: none
+  .photo
+    float: left
+    padding-right: 10px
+  .info
+    float: left
+    vertical-align: top
+  #dresults
+    padding: .5em
+    img
+      border: 1px solid #ccc
+    h2
+      font-size: 1.8em
+      margin-top: .5em
+      margin-bottom: 0
+      padding-bottom: .4em
+      border-bottom: 1px solid #ccc
+    ul
+      margin-bottom: 1em
+      li
+        padding-top: 5px
+        min-height: 66px
+        border-bottom: 1px solid #ccc
+        img
+          float: left
+          margin-right: .5em
+        img, p
+          margin-top: 0
+        &.person
+          background: #fea
+        &.event
+          background: #feb
+          div.calendar
+            //@include rounded(10px)
+            float: left
+            text-align: center
+            display: block
+            width: 60px
+            // height: 60px
+            border: 1px solid #888
+            margin-right: 0.5em
+            background: green
+            div.month
+              font-size: 1.1em
+              padding: 4px
+              border: 0
+              height: 20px
+              background: #f66
+            div.date
+              font-size: 1.4em
+              padding: 6px 4px 0px 4px
+              border: 0
+              background: #ccc
+              height: 24px
+        &.organization
+        &.business
+        &.selected
+          background: #eef
+        &:hover
+          background: #fee
+  // #people div
+  //   margin-bottom: .333em
+  //   .info p
+  //     font-size: 1em
+
+
+#infobox
+  max-height: 480px
+  overflow: auto
+  border: 1px dashed #964
+  margin-bottom: 1em
+  padding: 1em
+  h2
+    margin-top: .4em
+    padding-bottom: 0
+    margin-bottom: .5em
+    font-size: 2em
+  img
+    float: right
+    width: 100px
+    height: 100px
+    display: inline
+    margin-left: .2em
+    margin-bottom: .2em
+  ul
+    li
+      list-style: none
+      display: inline-block
+      margin-top: .25em
+      margin-right: .25em
+      border: 1px solid #375D81
+      background: #ABC8E2
+      padding: 4px
+      line-height: 1.2em
+      @include rounded(4px)
+  p
+    margin-top: 1em
+    padding-bottom: .2em
+    border-bottom: 1px dashed #555
+    font-size: 1.4em
+    &.desc
+      color: #111
+      border-bottom: none
+      font-size: 1em
+    &.detail
+      margin-top: 0
+      margin-bottom: 0
+      font-size: 1em
+      color: #555
+      border-bottom: none
+  textarea
+    font-size: 1.2em
+    width: 100%
+    height: 2.4em
+    display: block
+    &:focus
+      background: #eef
+  button
+    font-size: 1.2em
+  div
+    text-align: center
+    margin: 0 auto
+    font-size: 1.1em
+    margin-top: .75em
+    div.rsvp, div.refer
+      width: 160px
+      cursor: pointer
+      display: inline-block
+      border: 1px solid gray
+      padding: 1em
+      &:hover
+        background: #fee
+    div.rsvp
+      @include rounded-left(10px)
+    div.refer
+      @include rounded-right(10px)
+    form, div.message
+      height: 40px
+      margin: 0 auto
+      margin-top: .3em
+      border: 1px solid gray
+      padding: 0em
+      width: 402px
+      line-height: 1.2em
+      @include rounded(10px)
+      //margin: 0 auto
+    div.message
+      padding-top: 0
+      padding-bottom: 6px
+      p
+        font-size: 1.1em
+        border: 0
+        margin: 0
+        margin-top: 12px
+        margin-bottom: 14px
+    form
+      padding-top: 6px
+      padding-bottom: 0px
+  span.wire, span.directory
+    display: none
+
+#mapbox
+  height: 300px
+  width: 100%
+  border: 1px dashed #469
+  background: black
+
+
+
+
+
+
+#w
+  #wresults
+    ul
+      margin-bottom: 1em
+      li
+        padding-top: 5px
+        min-height: 66px
+        border-bottom: 1px solid #ccc
+        span
+          position: relative
+          left: 70px
+          display: block
+        p
+          margin-top: 0
+        img
+          float: left
+          display: inline
+          position: absolute
+          margin-right: .5em
+          margin-top: 0
+          width: 60px
+        background: #ffeece + #111111
+        &:hover
+          background: #ffeece
+
+
+
+
+
+
+
+
+
 #full
   position: absolute
   top: 61px
@@ -59,18 +388,21 @@
         width: 100%
         position: relative
         textarea, input, label
-          font-size: 0.8em
+          //font-size: 0.8em
+          font-size: 1em
+          height: 40px
+          display: block
         textarea
           padding: 5px
-          height: 4em
+          //height: 4em
           width: 436px
         input
           width: 100%
         label
           position: absolute
-          top: 6px
+          top: 4px
           left: 6px
-          color: #888888
+          color: #888
           text-align: left
           margin: 0px
           font-weight: normal
