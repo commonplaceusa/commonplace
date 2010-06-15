@@ -6,11 +6,40 @@ var choice;
 var search;
 var url;
 
+function getCurrentPosition() {
+    if (document.body && document.body.scrollTop)
+        return document.body.scrollTop;
+    if (document.documentElement && document.documentElement.scrollTop)
+        return document.documentElement.scrollTop;
+    if (window.pageYOffset)
+        return window.pageYOffset;
+    return 0;
+ };
+
 $(document).ready(function(){
+    
+    // Handles the "floating" right column.
+    var floatTarget = $("#comm_right");
+    $(document).scroll(function(){
+        if (getCurrentPosition() > 64){
+            floatTarget.addClass('fixed');
+        } else {
+            floatTarget.removeClass('fixed');
+        }
+    });
+    
+    $("#wresults ul li div span").live('click', function(){
+        if ( $(this).siblings(".replies").is(":visible") ){
+            $(this).siblings(".replies").hide();
+        } else {
+            $(".replies").hide();
+            $(this).siblings(".replies").show();
+        }
+    });
     
     $('textarea').autoResize({
         animateDuration : 300,
-        extraSpace : 22
+        extraSpace : 20
     });
     
     url = 'directory';
@@ -66,18 +95,21 @@ $(document).ready(function(){
         if (num == 0) {
             window.location.hash = "wire";          // We're in the wire.
             
+            // $(".intro").removeClass("left");
+            // $(".intro").addClass("right");
+            
             $("#infobox span.wire").show();
             
             // Set up the wire with default data unless there is already data there.
             
         } else {
             window.location.hash = url;             // We're in the directory.
+            
+            // $(".intro").removeClass("right");
+            // $(".intro").addClass("left");
+            
             $("#infobox span.directory").show();
             $.get(url, function(data) {
-                //$('.result').html(data);
-                
-                //alert(data);
-                
                 $("#dresults").html(data);
             });
         }
@@ -169,7 +201,5 @@ $(document).ready(function(){
         window.location.hash = "#wire";
         $("#wireButton").click();
     }
-    
-    $(".intro").addClass(".right");
     
 });

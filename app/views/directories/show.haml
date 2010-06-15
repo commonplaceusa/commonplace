@@ -11,12 +11,12 @@
     - @people.each do |person|
       = render person
       
-/ - unless @organizations.empty?
-/   %h2 Organizations
-/ 
-/   %ul
-/     - @organizations.each do |organization|
-/       = render organization
+- unless @organizations.empty?
+  %h2 Organizations
+
+  %ul
+    - @organizations.each do |organization|
+      = render organization
 
 - unless @events.empty?    
   %h2 Events
@@ -25,9 +25,9 @@
     - @events.each do |event|
       = render event
       
-/ - unless @businesses.empty?    
-/   %h2 Businesses
-/ 
-/   %ul
-/     - @businesses.each do |business|
-/       = render business
+- unless @businesses.empty?    
+  %h2 Businesses
+
+  %ul
+    - @businesses.each do |business|
+      = render business
