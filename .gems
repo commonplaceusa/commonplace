@@ -7,3 +7,4 @@ declarative_authorization
 validatable
 haml
 RedCloth
+acts-as-list
