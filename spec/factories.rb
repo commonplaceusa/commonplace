@@ -52,3 +52,9 @@ Factory.define :attendance do |f|
   f.association :event
 end
 
+Factory.define :text_module do |f|
+  f.title { Forgery(:lorem_ipsum).words 2 }
+  f.body { Forgery(:lorem_ipsum).paragraph }
+  f.association :organization
+  f.position 1
+end

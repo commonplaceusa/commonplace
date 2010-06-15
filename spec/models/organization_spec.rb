@@ -8,4 +8,10 @@ describe Organization do
   it "should create a new instance given valid attributes" do
     @organization.valid?.should be_true
   end
+
+
+  it "should relate to text modules" do
+    Organization.reflect_on_association(:text_modules).should_not be_nil
+  end
+
 end

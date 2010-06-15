@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100615192230) do
+ActiveRecord::Schema.define(:version => 20100615195247) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(:version => 20100615192230) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "text_modules", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "position"
+    t.integer  "organization_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

@@ -7,6 +7,8 @@ class Organization < ActiveRecord::Base
   has_many :sponsorships
   has_many :events, :through => :sponsorships
 
+  has_many :text_modules, :order => "position"
+
   has_attached_file(:avatar, :styles => { :thumb => "100x100" })
 
 
