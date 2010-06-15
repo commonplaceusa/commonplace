@@ -9,21 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100614153117) do
+ActiveRecord::Schema.define(:version => 20100615192230) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.integer  "event_id",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "businesses", :force => true do |t|
-    t.string   "name",                                       :null => false
-    t.string   "address",                                    :null => false
-    t.decimal  "lat",        :precision => 15, :scale => 10
-    t.decimal  "lng",        :precision => 15, :scale => 10
-    t.text     "about",                                      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,12 +29,16 @@ ActiveRecord::Schema.define(:version => 20100614153117) do
   end
 
   create_table "organizations", :force => true do |t|
-    t.string   "name",                :null => false
-    t.string   "location"
+    t.string   "name",                                            :null => false
+    t.string   "address"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type",                :default => "Organization", :null => false
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.text     "about"
   end
 
   create_table "posts", :force => true do |t|
