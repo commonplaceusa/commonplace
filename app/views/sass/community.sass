@@ -5,18 +5,15 @@
 
 
 
+#main
+  position: relative
 
-
-
-
-
-
-
-
-
-
-
-
+.fixed
+  position: fixed !important
+  top: auto
+  z-index: auto
+  margin-top: 7px
+  margin-left: 508px
 
 // From here down is stuff that Ricky added.
 // It should be cleaned up in the future to flow with everything else.
@@ -24,8 +21,8 @@
 #comm_left, #comm_right
   width: 476px
 
-#comm_right
-  float: right
+// #comm_right
+//   float: right
 
 div.mode
   background: $controlColor !important
@@ -35,25 +32,18 @@ div.mode
   margin-bottom: 1em
   padding-bottom: 1em
   div
-    background: #fff
-    width: 240px
+    width: 246px
     height: 30px
     float: left
     font-size: 2em
     text-align: center
     padding-top: .5em
-    &.left
-      -webkit-border-top-left-radius: 10px
-      -moz-border-radius-topleft: 10px
-      border-top-left-radius: 10px
-    &.right
-      -webkit-border-top-right-radius: 10px
-      -moz-border-radius-topright: 10px
-      border-top-right-radius: 10px
+
 .intro
   background: $controlColor
   padding: 1em
-  min-height: 150px
+  min-height: 80px
+  margin-top: 30px
 .right
   -webkit-border-top-right-radius: 10px
   -moz-border-radius-topright: 10px
@@ -64,14 +54,21 @@ div.mode
   border-top-left-radius: 10px
 .intro
   input
-    font-size: 1.2em
-    width: 100%
+    //margin-top: .5em
+    font-size: 1em
+    width: 438px
+    border: 1px solid #888
+    padding: 5px
   textarea
-    font-size: 1.2em
+    font-size: 1.1em
     width: 100%
     height: 4em
 
 #d
+  .intro
+    -webkit-border-top-left-radius: 10px !important
+    -moz-border-radius-topleft: 10px !important
+    border-top-left-radius: 10px !important
   .intro ul
     text-align: center
     cursor: pointer
@@ -135,19 +132,21 @@ div.mode
     float: left
     vertical-align: top
   #dresults
-    padding: .5em
+    //padding: .5em
     img
       border: 1px solid #ccc
     h2
       font-size: 1.8em
-      margin-top: .5em
+      margin-top: .666em
       margin-bottom: 0
       padding-bottom: .4em
       border-bottom: 1px solid #ccc
     ul
       margin-bottom: 1em
       li
+        cursor: pointer
         padding-top: 5px
+        padding-left: 5px
         min-height: 66px
         border-bottom: 1px solid #ccc
         img
@@ -182,7 +181,9 @@ div.mode
               background: #ccc
               height: 24px
         &.organization
+          background: #fea + #111
         &.business
+          background: #fea - #111
         &.selected
           background: #eef
         &:hover
@@ -194,6 +195,7 @@ div.mode
 
 
 #infobox
+  min-height: 120px
   max-height: 480px
   overflow: auto
   border: 1px dashed #964
@@ -237,6 +239,12 @@ div.mode
       font-size: 1em
       color: #555
       border-bottom: none
+    &.instruction
+      color: #111
+      border-bottom: none
+      font-size: 1.1em
+      line-height: 1.1em
+      
   textarea
     font-size: 1.2em
     width: 100%
@@ -300,19 +308,39 @@ div.mode
 
 
 #w
+  .intro
+    -webkit-border-top-right-radius: 10px !important
+    -moz-border-radius-topright: 10px !important
+    border-top-right-radius: 10px !important
   #wresults
+    img
+      border: 1px solid #ccc
     ul
       margin-bottom: 1em
       li
         padding-top: 5px
-        min-height: 66px
+        padding-left: 5px
+        padding-bottom: 3px
+        //min-height: 68px
         border-bottom: 1px solid #ccc
-        span
+        div
           position: relative
-          left: 70px
+          margin-left: 70px
           display: block
+          padding-bottom: 5px
+          div
+            margin-left: 0
+
+        span.reply_name
+          font-weight: bold
+          margin-right: .25em
         p
           margin-top: 0
+          &.age
+            font-size: .85em
+            color: #333
+            padding-top: 8px
+            margin-bottom: 0
         img
           float: left
           display: inline
@@ -320,13 +348,65 @@ div.mode
           margin-right: .5em
           margin-top: 0
           width: 60px
+        .expand
+          @include rounded-top(4px)
+          float: right
+          margin-right: 1em
+          width: 90px
+          text-align: center
+          background: #ceeece
+          p
+            padding: .5em
+            margin: 0
         background: #ffeece + #111111
         &:hover
           background: #ffeece
-
-
-
-
+      .replies
+        div
+          margin-left: 48px
+          line-height: 1.1em
+          &.new_reply
+            margin-left: 0
+          overflow-x: hidden
+        li
+          border: none
+          background: none
+          min-height: auto
+          padding-bottom: 0
+          &:hover
+            background: #CEEECE - #050505
+        background: #CEEECE
+        div
+          line-height: 1.2em
+        img
+          width: 38px
+      .new_reply
+        padding-top: 0px
+        label
+          position: absolute
+          padding-top: 6px
+          padding-left: 10px
+          font-size: 1em
+          color: #333
+        textarea
+          margin-left: 5px
+          padding: 5px
+          width: 380px
+          display: block
+          height: 38px
+          font-size: 1em
+        input
+          margin-left: 5px
+          display: inline-block
+          font-size: 0.8em
+          @include rounded(8px)
+          background-image: url("/images/button_repeat.png")
+          padding: 3px 7px
+          border-width: 1px
+          border-style: solid
+          border-color: #aaaaaa
+          &:hover
+            border: 1px solid black
 
 
 
@@ -353,12 +433,20 @@ div.mode
   vertical-align: top
   top: 0px
   height: 100%
-  width: 480px
+  width: 492px
   margin-bottom: $totalFooterHeight + px
 
 #comm_left
   padding: 0px
   left: 2px
+
+#comm_right
+  display: block
+  float: right
+  position: relative
+  //left: 520px
+  // right: 100px
+  //   top: 74px
 
 #map, #users
   position: absolute
@@ -368,12 +456,12 @@ div.mode
 #map
   background-color: white
 
-#users
-  bottom: 0px
-  background-color: #eeffee
-  overflow: -moz-scrollbars-vertical
-  overflow-x: hidden
-  overflow-y: scroll
+// #users
+//   bottom: 0px
+//   background-color: #eeffee
+//   overflow: -moz-scrollbars-vertical
+//   overflow-x: hidden
+//   overflow-y: scroll
 
 #new_post
   width: 100%
@@ -390,7 +478,7 @@ div.mode
         textarea, input, label
           //font-size: 0.8em
           font-size: 1em
-          height: 40px
+          height: 38px
           display: block
         textarea
           padding: 5px
@@ -435,152 +523,166 @@ div.mode
             border:
               color: #333
 
+
+
+
 // TODO: Deprecate our use of horizonal rules.
-hr
-  height: 0.5px
-  margin: 3px
+// hr
+//   height: 0.5px
+//   margin: 3px
+// 
+// hr.top
+//   margin: 0px
+//   margin-bottom: 3px
+//   width: 100%
 
-hr.top
-  margin: 0px
-  margin-bottom: 3px
-  width: 100%
+// .post
+//   padding: 8px
+//   .post_pic
+//     position: absolute
+//     display: inline
+//     width: 60px
+//   .post_main
+//     min-height: 48px
+//     width: 380px
+//     position: relative
+//     left: 60px
+//     .post_top
+//       font-size: 0.8em
+//     .post_body
+//       margin-top: 5px
+//       padding-bottom: 2.5px
+//       font: Helvetica
+//       font-size: 0.9em
+//     .post_bottom
+//       margin-top: 5px
+//       font-size: 0.8em
 
-.post
-  padding: 8px
-  .post_pic
-    position: absolute
-    display: inline
-    width: 60px
-  .post_main
-    min-height: 48px
-    width: 380px
-    position: relative
-    left: 60px
-    .post_top
-      font-size: 0.8em
-    .post_body
-      margin-top: 5px
-      padding-bottom: 2.5px
-      font: Helvetica
-      font-size: 0.9em
-    .post_bottom
-      margin-top: 5px
-      font-size: 0.8em
+// .reply
+//   margin-bottom: 0px
+//   .reply_pic, .reply_body
+//     position: relative
+//     display: inline-block
+//     top: 0px
+//     vertical-align: top
+//   .reply_pic
+//     width: 27px
+//   .reply_body
+//     width: 330px
+//     .reply_bottom
+//       font-size: 0.8em
 
-.reply
-  margin-bottom: 5px
-  .reply_pic, .reply_body
-    position: relative
-    display: inline-block
-    top: 0px
-    vertical-align: top
-  .reply_pic
-    width: 27px
-  .reply_body
-    width: 330px
-    .reply_bottom
-      font-size: 0.8em
+// .post_body, .reply_body
+//   line-height: 120%
+// 
+// #posts_nav
+//   position: relative
+//   bottom: 8px
+//   margin-top: 15px
+//   text-align: center
+// 
+// a.show_replies
+//   padding: 4px
+//   margin: 0px
 
-.post_body, .reply_body
-  line-height: 120%
+// .user
+//   padding: 7px
+//   .user_pic, .user_side
+//     position: relative
+//     display: inline-block
+//     vertical-align: top
+//     top: 0px
+//   .user_pic
+//     width: 60px
+//   .user_side
+//     width: 350px
+//     .user_name
+//     .user_info
+//       font-size: 0.8em
+//       margin-top: 7px
+//   .expanded_user
+//     .user_pic
+//       width: 110px
+//       img
+//         width: 100px
+//         height: 100px
+//     .user_side
+//       width: 300px
+//     dl.user_info
+//       font-size: 0.8em
+//       margin-bottom: 8px
+//       dt
+//         font-weight: bold
+//         color: #666666
+//       dd
+//         width: 220px
+// 
+// #users
+//   .user:hover
+//     background-color: #ffffcc
 
-#posts_nav
-  position: relative
-  bottom: 8px
-  margin-top: 15px
-  text-align: center
+// #wire
+//   .post:hover
+//     //background-color: #ffffdd
+//     a.show_replies, .replies
+//       background-color: #eeffee
 
-a.show_replies
-  padding: 4px
-  margin: 0px
-
-.user
-  padding: 7px
-  .user_pic, .user_side
-    position: relative
-    display: inline-block
-    vertical-align: top
-    top: 0px
-  .user_pic
-    width: 60px
-  .user_side
-    width: 350px
-    .user_name
-    .user_info
-      font-size: 0.8em
-      margin-top: 7px
-  .expanded_user
-    .user_pic
-      width: 110px
-      img
-        width: 100px
-        height: 100px
-    .user_side
-      width: 300px
-    dl.user_info
-      font-size: 0.8em
-      margin-bottom: 8px
-      dt
-        font-weight: bold
-        color: #666666
-      dd
-        width: 220px
-
-#users
-  .user:hover
-    background-color: #ffffcc
-
-#wire
-  .post:hover
-    //background-color: #ffffdd
-    a.show_replies, .replies
-      background-color: #eeffee
-
-a.show_replies, .replies
-  background-color: #eeffee
+// a.show_replies, .replies
+//   background-color: #eeffee
 
 .replies
-  margin-top: 2px
-  padding: 7px
+  margin-top: 6px
+  //padding: 7px
   display: block
-  width: 366px
+  //width: 366px
 
-.new_reply
-  form.formtastic.reply
-    fieldset.inputs
-      ol li
-        margin-bottom: 2px
-        position: relative
-        width: 320px
-        left: 30px
-        textarea
-          padding: 4px
-          display: block
-          height: 2.4em
-          width: 320px
-        label.in-field
-          width: 330px
-          position: absolute
-          top: 1px
-          left: 5px
-          float: none
-          color: #888888
-          text-align: left
-          font-weight: normal
-    fieldset.buttons
-      left: 0px
-      text-align: left
-      ol li
-        left: 30px
-        margin-bottom: 0px
-        &.commit
-          input.create
-            width: 60px
+// new_reply
+//   form.formtastic.reply
+//     fieldset.inputs
+//       &:hover
+//         background: none
+//       ol li
+//         margin-bottom: 2px
+//         position: relative
+//         width: 384px
+//         &:hover
+//           background: red
+//         textarea
+//           font-size: 1em
+//           padding: 4px
+//           display: block
+//           height: 40px
+//           width: 100%
+//         label.in-field
+//           font-size: 1em
+//           width: 370px
+//           position: absolute
+//           top: 8px
+//           left: 12px
+//           float: none
+//           color: #888888
+//           text-align: left
+//           font-weight: normal
+//     fieldset.buttons
+//       &:hover
+//         background: none
+//       left: 0px
+//       text-align: left
+//       ol li, ul li
+//         height: 20px !important
+//         min-height: none
+//         left: 0px
+//         margin-bottom: 0px
+//         border: 0
+//         &.commit
+//           input.create
+//             width: 60px
+//             margin: 0
 
-form.formtastic fieldset ol li p.inline-errors
-  font-size: small
-  font-weight: bold
-  margin: 5px 0 0 10px
+// form.formtastic fieldset ol li p.inline-errors
+//   font-size: 1em
+//   font-weight: bold
+//   margin: 5px 0 0 10px
 
 header
   form

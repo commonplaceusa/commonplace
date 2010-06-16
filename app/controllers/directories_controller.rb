@@ -24,9 +24,11 @@ class DirectoriesController < ApplicationController
     if params[:id].nil?
       @events = Event.all
       @people = User.all
+      @organizations = Organization.all
+      @businesses = Business.all
       render "show"
     else
-      @entries = (User.all | Event.all).shuffle # special case:
+      @entries = (User.all | Event.all | Organization.all | Business.all).shuffle # special case:
       render "index"                            # a little of everything
     end
   end
@@ -34,8 +36,8 @@ class DirectoriesController < ApplicationController
   def show
     @events = Event.all
     @people = User.all
-    # @organizations = Organization.all
-    # @businesses = Business.all
+    @organizations = Organization.all
+    @businesses = Business.all
   end
 
 end

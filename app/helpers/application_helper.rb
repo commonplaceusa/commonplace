@@ -13,7 +13,7 @@ module ApplicationHelper
   
   def human_date(it)
     now = DateTime.now
-    diff = (now.to_i - it.to_i)/86400
+    diff = (it.to_i - now.to_i)/86400
     
     #if it.strftime("%I").include? "0"
     #  hour = it.strftime("%I").slice[1]
@@ -21,7 +21,7 @@ module ApplicationHelper
     #return hour
     
     if diff < -6
-      return self.strftime("%A, %B %d, %Y at %I:%M%p")
+      return it.strftime("%A, %B %d, %Y at %I:%M%p")
     elsif diff >= -6 and diff < -1
       return "Last " + it.strftime("%A") + " at " + it.strftime("%I:%M%p")
     elsif diff >= -1 and diff < 0
