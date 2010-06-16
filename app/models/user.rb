@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  before_save :update_lat_and_lng, :if => "address_changed?"
+
   acts_as_authentic do |c|
     c.login_field :email
   end
@@ -22,5 +24,16 @@ class User < ActiveRecord::Base
   def full_name
     first_name + " " + last_name
   end
+  
+  def update_lat_and_lng
+    location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
+    if location.success?
+      write_attribute(:lat,location.lat)
+      write_attribute(:long, location.lng)
+      write_attribute(:address, location.full_address)
+    end    
+    true  
+  end
+
 
 end
