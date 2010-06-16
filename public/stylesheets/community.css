@@ -6,10 +6,7 @@
   top: auto;
   z-index: auto;
   margin-top: 7px;
-  margin-left: 508px; }
-
-#comm_left, #comm_right {
-  width: 476px; }
+  margin-left: 434px; }
 
 div.mode {
   background: #ceeece !important;
@@ -25,7 +22,7 @@ div.mode {
   margin-bottom: 1em;
   padding-bottom: 1em; }
   #toggles div {
-    width: 246px;
+    width: 210px;
     height: 30px;
     float: left;
     font-size: 2em;
@@ -50,12 +47,12 @@ div.mode {
 
 .intro input {
   font-size: 1em;
-  width: 438px;
+  width: 376px;
   border: 1px solid #888888;
   padding: 5px; }
 .intro textarea {
   font-size: 1.1em;
-  width: 100%;
+  width: 376px;
   height: 4em; }
 
 #d .intro {
@@ -71,8 +68,8 @@ div.mode {
   #d .intro ul li {
     list-style: none;
     display: inline;
-    padding-left: 0.6em;
-    padding-right: 0.6em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
     padding-top: 0.25em;
     padding-bottom: 0.4em;
     border: 1px solid auto; }
@@ -182,13 +179,11 @@ div.mode {
       background: #ffeeee; }
 
 #infobox {
-  min-height: 120px;
-  max-height: 480px;
-  overflow: auto;
   border: 1px dashed #996644;
   margin-bottom: 1em;
   padding: 1em; }
   #infobox h2 {
+    text-align: left;
     margin-top: 0.4em;
     padding-bottom: 0;
     margin-bottom: 0.5em;
@@ -213,6 +208,7 @@ div.mode {
     -moz-border-radius: 4px !important;
     border-radius: 4px !important; }
   #infobox p {
+    text-align: left;
     margin-top: 1em;
     padding-bottom: 0.2em;
     border-bottom: 1px dashed #555555;
@@ -231,7 +227,13 @@ div.mode {
       color: #111111;
       border-bottom: none;
       font-size: 1.1em;
-      line-height: 1.1em; }
+      line-height: 1.2em; }
+    #infobox p.age {
+      font-size: 0.85em;
+      color: #333333;
+      margin-top: 0.5em;
+      margin-bottom: 0;
+      border: 0; }
   #infobox textarea {
     font-size: 1.2em;
     width: 100%;
@@ -293,12 +295,58 @@ div.mode {
       padding-bottom: 0px; }
   #infobox span.wire, #infobox span.directory {
     display: none; }
-
-#mapbox {
-  height: 300px;
-  width: 100%;
-  border: 1px dashed #446699;
-  background: black; }
+  #infobox .replies div {
+    font-size: 0.9em;
+    margin: 0;
+    margin-left: 54px;
+    line-height: 1.1em;
+    overflow-x: hidden;
+    text-align: left; }
+    #infobox .replies div span.reply_name {
+      margin-right: 0.5em; }
+    #infobox .replies div.new_reply {
+      overflow-x: visible;
+      margin-left: 0;
+      height: 100px;
+      padding-top: 0px; }
+      #infobox .replies div.new_reply label {
+        position: absolute;
+        padding-top: 6px;
+        padding-left: 10px;
+        font-size: 1em;
+        color: #333333; }
+      #infobox .replies div.new_reply textarea {
+        margin-left: 5px;
+        padding: 5px;
+        display: block;
+        height: 38px;
+        font-size: 1em; }
+      #infobox .replies div.new_reply form {
+        border: none;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+        border-radius: 0 !important; }
+      #infobox .replies div.new_reply input {
+        margin-left: 5px;
+        display: inline-block;
+        font-size: 0.8em;
+        background-image: url("/images/button_repeat.png");
+        padding: 3px 7px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #aaaaaa; }
+        #infobox .replies div.new_reply input:hover {
+          border: 1px solid black; }
+  #infobox .replies li {
+    border: none;
+    background: none;
+    min-height: auto;
+    padding: 5px;
+    padding-left: 3px; }
+  #infobox .replies img {
+    width: 42px;
+    height: 42px;
+    float: left; }
 
 #w .intro {
   -webkit-border-top-right-radius: 10px !important;
@@ -355,54 +403,6 @@ div.mode {
         margin: 0; }
     #w #wresults ul li:hover {
       background: #ffeece; }
-  #w #wresults ul .replies {
-    background: #ceeece; }
-    #w #wresults ul .replies div {
-      margin-left: 48px;
-      line-height: 1.1em;
-      overflow-x: hidden; }
-      #w #wresults ul .replies div.new_reply {
-        margin-left: 0; }
-    #w #wresults ul .replies li {
-      border: none;
-      background: none;
-      min-height: auto;
-      padding-bottom: 0; }
-      #w #wresults ul .replies li:hover {
-        background: #c9e9c9; }
-    #w #wresults ul .replies div {
-      line-height: 1.2em; }
-    #w #wresults ul .replies img {
-      width: 38px; }
-  #w #wresults ul .new_reply {
-    padding-top: 0px; }
-    #w #wresults ul .new_reply label {
-      position: absolute;
-      padding-top: 6px;
-      padding-left: 10px;
-      font-size: 1em;
-      color: #333333; }
-    #w #wresults ul .new_reply textarea {
-      margin-left: 5px;
-      padding: 5px;
-      width: 380px;
-      display: block;
-      height: 38px;
-      font-size: 1em; }
-    #w #wresults ul .new_reply input {
-      margin-left: 5px;
-      display: inline-block;
-      font-size: 0.8em;
-      -webkit-border-radius: 8px !important;
-      -moz-border-radius: 8px !important;
-      border-radius: 8px !important;
-      background-image: url("/images/button_repeat.png");
-      padding: 3px 7px;
-      border-width: 1px;
-      border-style: solid;
-      border-color: #aaaaaa; }
-      #w #wresults ul .new_reply input:hover {
-        border: 1px solid black; }
 
 #full {
   position: absolute;
@@ -423,59 +423,51 @@ div.mode {
   vertical-align: top;
   top: 0px;
   height: 100%;
-  width: 492px;
   margin-bottom: 43px; }
 
 #comm_left {
+  width: 420px;
   padding: 0px;
   left: 2px; }
 
 #comm_right {
+  width: 566px;
   display: block;
   float: right;
   position: relative; }
 
-#map, #users {
-  position: absolute;
-  height: 49%;
-  width: 100%; }
-
 #map {
-  background-color: white; }
+  position: absolute;
+  width: 564px;
+  background-color: white;
+  height: 300px !important;
+  border: 1px dashed #446699;
+  background: black; }
 
 #new_post {
-  width: 100%;
   margin: auto; }
   #new_post p.inline-errors {
     display: none; }
-  #new_post .inputs {
-    width: 100%; }
-    #new_post .inputs ol {
-      width: 100%; }
-      #new_post .inputs ol li {
-        width: 100%;
-        position: relative; }
-        #new_post .inputs ol li textarea, #new_post .inputs ol li input, #new_post .inputs ol li label {
-          font-size: 1em;
-          height: 38px;
-          display: block; }
-        #new_post .inputs ol li textarea {
-          padding: 5px;
-          width: 436px; }
-        #new_post .inputs ol li input {
-          width: 100%; }
-        #new_post .inputs ol li label {
-          position: absolute;
-          top: 4px;
-          left: 6px;
-          color: #888888;
-          text-align: left;
-          margin: 0px;
-          font-weight: normal;
-          width: inherit; }
+  #new_post .inputs ol li {
+    position: relative; }
+    #new_post .inputs ol li textarea, #new_post .inputs ol li input, #new_post .inputs ol li label {
+      font-size: 1em;
+      height: 38px;
+      display: block; }
+    #new_post .inputs ol li textarea {
+      padding: 5px;
+      width: 376px; }
+    #new_post .inputs ol li label {
+      position: absolute;
+      top: 4px;
+      left: 6px;
+      color: #888888;
+      text-align: left;
+      margin: 0px;
+      font-weight: normal;
+      width: inherit; }
   #new_post .buttons ol {
-    display: table;
-    width: 100%; }
+    display: table; }
     #new_post .buttons ol li {
       padding: 0;
       margin: 5px;
@@ -497,10 +489,6 @@ div.mode {
         border-color: #aaaaaa; }
         #new_post .buttons ol li button:hover {
           border-color: #333333; }
-
-.replies {
-  margin-top: 6px;
-  display: block; }
 
 header form {
   display: inline; }
