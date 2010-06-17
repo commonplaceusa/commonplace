@@ -18,6 +18,30 @@ function getCurrentPosition() {
 
 $(document).ready(function(){
     
+    $("#wresults li").click(function(){
+        
+        // NEW PLAN: Grab the ID of the element, and then just display and hide elements that are already in the preview box.
+        
+        
+        //alert( $("#infobox").html() );
+        $("#infobox").empty();
+        //alert( $("#infobox").html() );
+        //alert( $(this).children('div').children('.info_box_content').get(0) );
+        target = $(this).children('div').children('.info_box_content').clone().get(0);
+        target.style.display = "inline";
+        $("#infobox").append( target );
+        
+        // $(this).children('div').children('.info_box_content')
+        
+        //$("#infobox").replaceWith( $(this).children('div').children('.info_box_content') );
+        //$("#infobox").html( $(this).children('div').children('.info_box_content').html() );
+       
+        $('textarea').autoResize({
+            animateDuration : 300,
+            extraSpace : 20
+        });
+    });
+    
     // Handles the "floating" right column.
     var floatTarget = $("#comm_right");
     $(document).scroll(function(){
@@ -172,6 +196,7 @@ $(document).ready(function(){
         
         $.get(url, function(data) {
             $("#dresults").html(data);
+            $("#map").jellopudding("#dresults ul");
         });
     }
     
@@ -194,9 +219,15 @@ $(document).ready(function(){
     // Initial page setup:
     if (window.location.hash == "#wire"){
         $("#wireButton").click();
-    } else if (window.location.hash.indexOf("#directory") != -1){
-        url = window.location.hash.slice(1);
+    } else if (window.location.hash.indexOf("#directory") != -1){        
+        url = window.location.hash.slice(1);    // Takes everything after first character. Therefore, it drops "#".
+        pieces = url.split("/");        
+        // alert("directory: " + pieces[0] + "\n" + "choice: " + pieces[1] + "\n" + "search: " + pieces[2]);
+        if (typeof pieces[1] != "undefined") choice = pieces[1];
+        if (typeof pieces[2] != "undefined") search = pieces[2];
+        directoryChange();
         $("#directoryButton").click();
+        //$("#map").jellopudding("#dresults");
     } else {
         window.location.hash = "#wire";
         $("#wireButton").click();

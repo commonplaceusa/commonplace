@@ -1,4 +1,5 @@
 %li.post
+  /{"data-info" => render("posts/post_info_box", :post => post)}
   = image_tag post.user.avatar.url, :width => 60, :height => 60
   %div
     %p #{post.user.full_name}
@@ -6,18 +7,5 @@
     %span.expand
       %p #{pluralize(post.replies.size, 'reply')}
     %p.age #{time_ago_in_words(post.created_at, include_seconds = true)} ago
-    .replies{:style => "display: none;"}
-      - if post.replies.size > 0 # if there are replies
-        %ol
-          - post.replies.each do |reply|
-            %li.reply
-              = image_tag reply.user.avatar.url, :width => 38, :height => 38
-              %div
-                %span.reply_name #{reply.user.full_name}
-                = reply.body
-                %p.age #{time_ago_in_words(reply.created_at, include_seconds = true)} ago
-      .new_reply
-        - form_for [post, Reply.new] do |f|
-          = f.text_area :body, :id => "#{dom_id(post)}_reply_body", :rows => 2, :style => ""
-          = f.label :body, "Reply here!", :required => true, :class => 'in-field', :for => "#{dom_id(post)}_reply_body"
-          = f.submit "Reply"
+    .info_box_content{:style => "display: none"}
+      =render("posts/post_info_box", :post => post)
