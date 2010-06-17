@@ -11,5 +11,18 @@ class Organization < ActiveRecord::Base
 
   has_attached_file(:avatar, :styles => { :thumb => "100x100" })
 
+  
+  before_save :update_lat_and_lng, :if => "address_changed?"
 
+  # TODO: pull this out into a module
+  def update_lat_and_lng
+    location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
+    if location.success?
+      write_attribute(:lat,location.lat)
+      write_attribute(:long, location.lng)
+      write_attribute(:address, location.full_address)
+    end    
+    true  
+  end
+  
 end
