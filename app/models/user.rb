@@ -21,6 +21,11 @@ class User < ActiveRecord::Base
                     :styles => { :thumb => "100x100" },
                     :default_url => "/system/avatars/missing.png")
 
+
+  def search(term)
+    User.all
+  end
+
   def full_name
     first_name + " " + last_name
   end
@@ -30,7 +35,7 @@ class User < ActiveRecord::Base
     location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
     if location.success?
       write_attribute(:lat,location.lat)
-      write_attribute(:long, location.lng)
+      write_attribute(:lng, location.lng)
       write_attribute(:address, location.full_address)
     end    
     true  

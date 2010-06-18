@@ -19,6 +19,10 @@ class Event < ActiveRecord::Base
     self.businesses + self.organizations
   end
 
+  def search(term)
+    Event.all
+  end
+
 
   def update_lat_and_lng
     if address.blank?
@@ -27,7 +31,7 @@ class Event < ActiveRecord::Base
       location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
       if location && location.success?
         write_attribute(:lat,location.lat)
-        write_attribute(:long, location.lng)
+        write_attribute(:lng, location.lng)
         write_attribute(:address, location.full_address)
       else
         false

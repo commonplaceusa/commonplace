@@ -1,3 +1,3 @@
-%li.person{'data-marker' => "{\"info_html\": \"Replace this with something\", \"lat\": #{user.lat}, \"lng\": #{user.long}}", "data-info" => render("users/user_info_box", :user => user)}
+%li.person{'data-marker' => "{\"info_html\": \"Replace this with something\", \"lat\": #{user.lat}, \"lng\": #{user.lng}}", "data-info" => render("users/user_info_box", :user => user)}
   = image_tag user.avatar.url, :width => 60, :height => 60
   %p #{user.full_name}
