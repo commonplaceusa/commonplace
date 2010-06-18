@@ -1,5 +1,9 @@
+#submission form#new_post div {
+  display: none !important; }
+
 #main {
-  position: relative; }
+  position: relative;
+  overflow: visible !important; }
 
 .fixed {
   position: fixed !important;
@@ -68,8 +72,8 @@ div.mode {
   #d .intro ul li {
     list-style: none;
     display: inline;
-    padding-left: 0.3em;
-    padding-right: 0.3em;
+    padding-left: 0.42em;
+    padding-right: 0.42em;
     padding-top: 0.25em;
     padding-bottom: 0.4em;
     border: 1px solid auto; }
@@ -78,46 +82,12 @@ div.mode {
   #d .intro ul:last-child {
     padding-right: 0; }
   #d .intro ul.kinds li {
-    -webkit-border-top-left-radius: 10px !important;
-    -webkit-border-top-right-radius: 10px !important;
-    -moz-border-radius-topleft: 10px !important;
-    -moz-border-radius-topright: 10px !important;
-    border-top-left-radius: 10px !important;
-    border-top-right-radius: 10px !important; }
-    #d .intro ul.kinds li.selected {
-      background: #bbeeee;
-      border: 1px solid #dddddd; }
-  #d .intro ul.selected {
-    background: #bbeeee;
-    border: 1px solid #dddddd; }
-  #d .intro ul.kinds li.selected {
-    border-bottom: 1px solid #bbeeee; }
-  #d .intro ul.selected {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px; }
-  #d .intro ul li.all.selected {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    border: 1px solid #dddddd; }
-  #d .intro ul.alphabeta {
-    margin-top: 6px;
-    padding-top: 0.2em;
-    padding-bottom: 0.25em; }
-    #d .intro ul.alphabeta li {
-      list-style: none;
-      display: inline;
+    #d .intro ul.kinds li.selected {
       background: #bbeeee;
-      font-size: 0.9em;
-      padding-left: 0.07em;
-      padding-right: 0.07em;
-      padding-bottom: 0.25em;
-      border: 0;
-      margin-top: 0; }
-      #d .intro ul.alphabeta li a {
-        color: #111111;
-        text-decoration: none; }
+      border: 1px solid #dddddd; }
 #d .photo {
   float: left;
   padding-right: 10px; }
@@ -177,6 +147,13 @@ div.mode {
       background: #eeeeff; }
     #d #dresults ul li:hover {
       background: #ffeeee; }
+
+#infobox textarea {
+  display: block;
+  overflow-x: hidden; }
+
+#left_comm ul li.selected {
+  background: #eeeeff !important; }
 
 #infobox {
   border: 1px dashed #996644;
@@ -437,7 +414,6 @@ div.mode {
   position: relative; }
 
 #map {
-  position: absolute;
   width: 564px;
   background-color: white;
   height: 300px !important;

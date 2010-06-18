@@ -3,10 +3,14 @@
 // private.sass
 // Logged in, view of wire, directory, profiles, etc.
 
-
+#submission form#new_post div
+  display: none !important
+  // fixes mozilla bug
 
 #main
   position: relative
+  overflow: visible !important
+  // for bad firefox bug
 
 .fixed
   position: fixed !important
@@ -20,7 +24,7 @@
 
 // #comm_left, #comm_right
 //   width: 476px
-
+// 
 // #comm_right
 //   float: right
 
@@ -75,8 +79,8 @@ div.mode
     li
       list-style: none
       display: inline
-      padding-left: .3em
-      padding-right: .3em
+      padding-left: .42em
+      padding-right: .42em
       padding-top: .25em
       padding-bottom: .4em
       border: 1px solid auto
@@ -87,44 +91,13 @@ div.mode
       padding-left: 0
     &:last-child
       padding-right: 0
-    li
-
     &.kinds li
-      @include rounded-top(10px)
+      -webkit-border-radius: 10px
+      -moz-border-radius: 10px
+      border-radius: 10px
       &.selected
         background: #bee
         border: 1px solid #ddd
-    &.selected
-      background: #bee
-      border: 1px solid #ddd
-    &.kinds li.selected
-      border-bottom: 1px solid #bee
-    &.selected
-      -webkit-border-radius: 10px
-      -moz-border-radius: 10px
-      border-radius: 10px
-    li.all.selected
-      -webkit-border-radius: 10px
-      -moz-border-radius: 10px
-      border-radius: 10px
-      border: 1px solid #ddd
-    &.alphabeta
-      margin-top: 6px
-      padding-top: .2em
-      padding-bottom: .25em
-      li
-        list-style: none
-        display: inline
-        background: #bee
-        font-size: .9em
-        padding-left: .07em
-        padding-right: .07em
-        padding-bottom: .25em
-        border: 0
-        margin-top: 0
-        a
-          color: #111
-          text-decoration: none
   .photo
     float: left
     padding-right: 10px
@@ -193,6 +166,14 @@ div.mode
   //   .info p
   //     font-size: 1em
 
+#infobox
+  textarea
+    display: block
+    overflow-x: hidden
+
+#left_comm ul li
+  &.selected
+    background: #eef !important
 
 #infobox
   // min-height: 120px
@@ -512,7 +493,7 @@ div.mode
   //   top: 74px
 
 #map
-  position: absolute
+  //position: absolute
   width: 564px
   background-color: white
   height: 300px !important

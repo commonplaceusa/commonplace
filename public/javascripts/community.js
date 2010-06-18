@@ -4,7 +4,8 @@ This Javascript file really needs an organizational cleanup. I'll do that very s
 
 var choice;
 var search;
-var url;
+var url = 'directory';
+var lasturl = '';
 
 function getCurrentPosition() {
     if (document.body && document.body.scrollTop)
@@ -14,35 +15,41 @@ function getCurrentPosition() {
     if (window.pageYOffset)
         return window.pageYOffset;
     return 0;
- };
+};
 
 $(document).ready(function(){
     
-    $("#wresults li").click(function(){
+    $("#wresults li").click(function(){        
+        /*
+        var obj = $("#infobox").empty().clone();    // Clone an empty infobox.
+        $("#infobox").remove();                     // Remove the original from the DOM.
+        target = $(this).find(".info_box_content").clone().get(0);  // Get the target DOM element.
+        target.style.display = "inline";            // Undo 'display: none'
+        obj.append(target);                         // Put the target in our removed DOM element.
+        $("#comm_right").prepend(obj);              // Put '#infobox' back.
+        */
         
-        // NEW PLAN: Grab the ID of the element, and then just display and hide elements that are already in the preview box.
-        
-        
-        //alert( $("#infobox").html() );
+        /*
         $("#infobox").empty();
-        //alert( $("#infobox").html() );
-        //alert( $(this).children('div').children('.info_box_content').get(0) );
-        target = $(this).children('div').children('.info_box_content').clone().get(0);
+        target = $(this).find('.info_box_content').clone().get(0);
         target.style.display = "inline";
         $("#infobox").append( target );
+        */
         
-        // $(this).children('div').children('.info_box_content')
-        
-        //$("#infobox").replaceWith( $(this).children('div').children('.info_box_content') );
-        //$("#infobox").html( $(this).children('div').children('.info_box_content').html() );
-       
-        $('textarea').autoResize({
+        $("#wresults ul li").removeClass('selected');
+        $(this).addClass('selected');
+        $("#infobox").html( $(this).attr('data-info') );    // Grab the li's data-info attribute and infobox it.
+        $('#infobox textarea').autoResize({
             animateDuration : 300,
             extraSpace : 20
         });
+        
+        heightCheck();
+        
     });
     
     // Handles the "floating" right column.
+    
     var floatTarget = $("#comm_right");
     $(document).scroll(function(){
         if (getCurrentPosition() > 64){
@@ -65,8 +72,6 @@ $(document).ready(function(){
         animateDuration : 300,
         extraSpace : 20
     });
-    
-    url = 'directory';
     
     $("#infobox div.rsvp").live('click', function(){
         
@@ -99,9 +104,9 @@ $(document).ready(function(){
         
     });
     
+    // Solid space for a debug function:
     $("#community_name").click(function(event){
-        //event.preventDefault();
-        // alert( $(h1).html() );
+        
     });
 
     // Toggling between the wire and the directory.
@@ -127,16 +132,28 @@ $(document).ready(function(){
             // Set up the wire with default data unless there is already data there.
             
         } else {
+            //alert(url);
             window.location.hash = url;             // We're in the directory.
             
             // $(".intro").removeClass("right");
             // $(".intro").addClass("left");
             
             $("#infobox span.directory").show();
+            
+            directoryChange();
+            //alert(url);
+            /*
             $.get(url, function(data) {
                 $("#dresults").html(data);
             });
+            */
+            
+            $("#left_comm").height("100%");
+            
         }
+        
+        $("#left_comm").height("100%");
+        //$("#right_comm").height("100%");
         
         event.preventDefault();     // Don't jump to anchors wire and directory on the page.
     });
@@ -146,13 +163,22 @@ $(document).ready(function(){
     		case 13:                // return
     			directoryChange();
     			break;
-    		// default:
-    		//                break;	
     	}
     }
     
     // add style for when that form has focus...
     $("#d .intro input").keyup(keyCheck);
+    
+    $("footer").click(function(){
+       alert("Left Height: " + $("#comm_left").height() + '\n' + "Right Height: " + $("#comm_right").height()); 
+    });
+    
+    function heightCheck(){
+        $("#comm_left").height("100%");
+        if ( $("#comm_right").height() > $("#comm_left").height() ){
+            $("#comm_left").height( $("#comm_right").height() );
+        }
+    }
     
     $("#dresults ul li").live('click', function(){
         $("#dresults ul li").removeClass('selected');
@@ -161,25 +187,19 @@ $(document).ready(function(){
         
         $(document).ready(function(){
 
-            $('textarea').autoResize({
+            $('#infobox textarea').autoResize({
                 animateDuration : 300,
                 extraSpace : 20
             });
         });
         
+        heightCheck();
+        
     });
     
     $("ul#narrow li").click(function(){
         choice = $(this).attr('data-choice');       // Grab choice.
-        
         directoryChange();
-        
-        if (choice == "all"){
-            $(this).parent().siblings(".alphabeta").fadeOut();
-        } else {
-            $(this).parent().siblings(".alphabeta").fadeIn();
-        }
-        
         $(this).siblings().removeClass("selected");
         $(this).addClass("selected");
     });
@@ -192,7 +212,17 @@ $(document).ready(function(){
             url = 'directory/' + choice;                        // and use them to
             if (search) url += '/' + search;                    // make a url.
         }
+        
+        $("#narrow li").removeClass("selected");
+        $("#narrow #" + choice).addClass("selected");
+        
         window.location.hash = url;
+        
+        if (url == lasturl){    // Prevents wasted calls. May consider putting data into a caching structure.
+            return false;
+        }
+        
+        lasturl = url;
         
         $.get(url, function(data) {
             $("#dresults").html(data);
@@ -210,12 +240,6 @@ $(document).ready(function(){
         return false;
     });
     
-    /*
-    $("#submission button").live('click',function() {
-        $(this.form).append("<input type='hidden' name='commit' value='"+$(this).attr("value")+"'\>");
-    });
-    */
-    
     // Initial page setup:
     if (window.location.hash == "#wire"){
         $("#wireButton").click();
@@ -225,7 +249,6 @@ $(document).ready(function(){
         // alert("directory: " + pieces[0] + "\n" + "choice: " + pieces[1] + "\n" + "search: " + pieces[2]);
         if (typeof pieces[1] != "undefined") choice = pieces[1];
         if (typeof pieces[2] != "undefined") search = pieces[2];
-        directoryChange();
         $("#directoryButton").click();
         //$("#map").jellopudding("#dresults");
     } else {

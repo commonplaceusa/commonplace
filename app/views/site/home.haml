@@ -38,65 +38,11 @@
         /%label{:for => "that"} Search for something...
         /{:type => "search"}
         %ul#narrow.kinds
-          %li.selected.all{"data-choice" => "all"} All
-          %li{"data-choice" => "people"} People
-          %li{"data-choice" => "organizations"} Organizations
-          %li{"data-choice" => "events"} Events
-          %li{"data-choice" => "businesses"} Businesses
-        %ul.alphabeta.selected{:style => "display: none;"}
-          // TODO: This needs to update which ones are allowed over time, as results come back.
-          %li.disabled
-            %a{:href => "#A"} A
-          %li
-            %a{:href => "#B"} B
-          %li
-            %a{:href => "#C"} C
-          %li
-            %a{:href => "#D"} D
-          %li
-            %a{:href => "#E"} E
-          %li
-            %a{:href => "#F"} F
-          %li
-            %a{:href => "#G"} G
-          %li
-            %a{:href => "#H"} H
-          %li
-            %a{:href => "#I"} I
-          %li
-            %a{:href => "#J"} J
-          %li
-            %a{:href => "#K"} K
-          %li
-            %a{:href => "#L"} L
-          %li
-            %a{:href => "#M"} M
-          %li
-            %a{:href => "#N"} N
-          %li
-            %a{:href => "#O"} O
-          %li
-            %a{:href => "#P"} P
-          %li
-            %a{:href => "#Q"} Q
-          %li
-            %a{:href => "#R"} R
-          %li
-            %a{:href => "#S"} S
-          %li
-            %a{:href => "#T"} T
-          %li
-            %a{:href => "#U"} U
-          %li
-            %a{:href => "#V"} V
-          %li
-            %a{:href => "#W"} W
-          %li
-            %a{:href => "#X"} X
-          %li
-            %a{:href => "#Y"} Y
-          %li
-            %a{:href => "#Z"} Z
+          %li#all{:class => "selected", "data-choice" => "all"} All
+          %li#people{"data-choice" => "people"} People
+          %li#organizations{"data-choice" => "organizations"} Organizations
+          %li#events{"data-choice" => "events"} Events
+          %li#businesses{"data-choice" => "businesses"} Businesses
       
       #dresults
     .clear

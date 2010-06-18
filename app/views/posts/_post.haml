@@ -1,5 +1,4 @@
-%li.post
-  /{"data-info" => render("posts/post_info_box", :post => post)}
+%li.post{"data-info" => render("posts/post_info_box", :post => post)}
   = image_tag post.user.avatar.url, :width => 60, :height => 60
   %div
     %p #{post.user.full_name}
@@ -7,5 +6,5 @@
     %span.expand
       %p #{pluralize(post.replies.size, 'reply')}
     %p.age #{time_ago_in_words(post.created_at, include_seconds = true)} ago
-    .info_box_content{:style => "display: none"}
-      =render("posts/post_info_box", :post => post)
+    /.info_box_content{:style => "display: none"}
+    /=render("posts/post_info_box", :post => post)
