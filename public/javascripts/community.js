@@ -51,12 +51,16 @@ $(document).ready(function(){
     // Handles the "floating" right column.
     
     var floatTarget = $("#comm_right");
-    $(document).scroll(function(){
+    function floatCheck(){
         if (getCurrentPosition() > 64){
             floatTarget.addClass('fixed');
         } else {
             floatTarget.removeClass('fixed');
         }
+    }
+    
+    $(document).scroll(function(){
+        floatCheck();
     });
     
     $("#wresults ul li div span").live('click', function(){
@@ -201,6 +205,7 @@ $(document).ready(function(){
         choice = $(this).attr('data-choice');       // Grab choice.
         directoryChange();
         $("#left_comm").height("auto");
+        floatCheck();
         $(this).siblings().removeClass("selected");
         $(this).addClass("selected");
     });
