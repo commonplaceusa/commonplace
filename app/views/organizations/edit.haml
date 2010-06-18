@@ -4,7 +4,6 @@
       .flash{:class => type.to_s} 
         = flash[type]
 
-
   - form_for @organization do |f|
     
     %p.big.oneline{:contenteditable => "false"} #{@organization.name}
