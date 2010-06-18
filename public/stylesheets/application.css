@@ -185,7 +185,10 @@ dl {
     float: left;
     width: 260px; }
 
-label {
-  position: absolute;
-  top: 0;
-  left: 0; }
+.editarea p {
+  padding: 0.5em; }
+  .editarea p.big {
+    font-size: 1.4em;
+    line-height: 1.4em; }
+  .editarea p:hover {
+    outline: 1px solid #eeeeee; }

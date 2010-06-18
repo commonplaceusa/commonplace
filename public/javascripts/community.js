@@ -19,6 +19,53 @@ function getCurrentPosition() {
 
 $(document).ready(function(){
     
+    
+    // PROFILE EDITING:::
+    
+    $(".editarea p").each(function(){
+        alert();
+        $(this).attr('contenteditable', 'true');
+    })
+    
+    $(".editarea .oneline").keypress(function(event){
+        return event.which != 13;
+    });
+    /*
+    if (!options.newlinesEnabled){
+		// Prevents user from adding newlines to headers, links, etc.
+		editable.keypress(function(event){
+			// event is cancelled if enter is pressed
+			return event.which != 13;
+		});
+	}
+    */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // END PROFILE EDITING
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     $("#wresults li").click(function(){        
         /*
         var obj = $("#infobox").empty().clone();    // Clone an empty infobox.
