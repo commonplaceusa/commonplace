@@ -1,15 +1,20 @@
-- [:success,:error,:message].each do |type|
-  - if flash[type]
-    .flash{:class => type.to_s} 
-      = flash[type]
+.editarea
+  - [:success,:error,:message].each do |type|
+    - if flash[type]
+      .flash{:class => type.to_s} 
+        = flash[type]
 
 
-- form_for @organization do |f|
+  - form_for @organization do |f|
+    
+    %p.big.oneline{:contenteditable => "false"} #{@organization.name}
+    %p.big.oneline{:contenteditable => "false"} #{@organization.address}
+    %p.big{:contenteditable => "false"} #{@organization.about}
   
-  = f.label :name, "Name: "
-  = f.text_field :name
-  = f.label :address, "Address: "
-  = f.text_field :address
-  = f.label :about, "About: "
-  = f.text_area :about
-  = f.submit
+    = f.label :name, "Name: "
+    = f.text_field :name
+    = f.label :address, "Address: "
+    = f.text_field :address
+    = f.label :about, "About: "
+    = f.text_area :about
+    = f.submit
