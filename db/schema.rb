@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100618173414) do
+ActiveRecord::Schema.define(:version => 20100618201511) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -19,13 +19,15 @@ ActiveRecord::Schema.define(:version => 20100618173414) do
   end
 
   create_table "events", :force => true do |t|
-    t.string   "name",        :null => false
+    t.string   "name",                                        :null => false
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "location"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "lat",         :precision => 15, :scale => 10
+    t.decimal  "lng",         :precision => 15, :scale => 10
   end
 
   create_table "groups", :force => true do |t|

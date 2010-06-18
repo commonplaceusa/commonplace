@@ -13,8 +13,25 @@ class Event < ActiveRecord::Base
   has_many :organization, :through => :sponsorships, :source => :organization,
                         :conditions => "sponsorships.sponsor_type = 'Organization'"
 
+  before_save :update_lat_and_lng, :if => "address_changed?"
 
   def sponsors
     self.businesses + self.organizations
+  end
+
+
+  def update_lat_and_lng
+    if address.blank?
+      true
+    else
+      location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
+      if location && location.success?
+        write_attribute(:lat,location.lat)
+        write_attribute(:long, location.lng)
+        write_attribute(:address, location.full_address)
+      else
+        false
+      end    
+    end
   end
 end
