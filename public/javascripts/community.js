@@ -200,6 +200,7 @@ $(document).ready(function(){
     $("ul#narrow li").click(function(){
         choice = $(this).attr('data-choice');       // Grab choice.
         directoryChange();
+        $("#left_comm").height("auto");
         $(this).siblings().removeClass("selected");
         $(this).addClass("selected");
     });
