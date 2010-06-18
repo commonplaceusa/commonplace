@@ -16,14 +16,17 @@ class Organization < ActiveRecord::Base
 
   # TODO: pull this out into a module
   def update_lat_and_lng
-    unless address.blank?
+    if address.blank?
+      true
+    else
       location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
-      if location.success?
+      if location && location.success?
         write_attribute(:lat,location.lat)
         write_attribute(:long, location.lng)
         write_attribute(:address, location.full_address)
+      else
+        false
       end    
-      true  
     end
   end
 end
