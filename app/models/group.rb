@@ -21,7 +21,7 @@ class Group < ActiveRecord::Base
       location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
       if location && location.success?
         write_attribute(:lat,location.lat)
-        write_attribute(:long, location.lng)
+        write_attribute(:lng, location.lng)
         write_attribute(:address, location.full_address)
       else
         false

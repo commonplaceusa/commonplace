@@ -1,8 +1,9 @@
 - content_tag(:li, :class => "event", "data-info" => render("events/event_info_box", :event => event), "data-marker" => event.lat && "{\"info_html\": \"#{event.name}\", \"lat\": \"#{event.lat}\", \"lng\": \"#{event.lng}\"}") do
   /= image_tag person.avatar.url, :width => 60, :height => 60
   /%img{:width => 60, :height => 60}
-  %div.calendar
-    %div.month #{Date::ABBR_MONTHNAMES[event.start_time.mon]}
-    %div.date #{event.start_time.day}
+  - if event.start_time
+    %div.calendar
+      %div.month #{Date::ABBR_MONTHNAMES[event.start_time.mon]}
+      %div.date #{event.start_time.day}
   %p #{event.name}
   %p #{human_date(event.start_time)}

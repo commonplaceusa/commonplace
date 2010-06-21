@@ -18,6 +18,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :directory
 
+  map.resource :wire
+  
+  map.resource :inbox
+
   map.resources :posts do |post|
     post.resources :replies
   end
