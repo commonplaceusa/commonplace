@@ -36,12 +36,12 @@ div.mode
   margin-bottom: 1em
   padding-bottom: 1em
   div
-    width: 210px
-    height: 30px
+    width: 140px
+    height: 32px
     float: left
-    font-size: 2em
+    font-size: 1.8em
     text-align: center
-    padding-top: .5em
+    padding-top: .55em
 
 .intro
   background: $controlColor
@@ -56,6 +56,8 @@ div.mode
   -webkit-border-top-left-radius: 10px
   -moz-border-radius-topleft: 10px
   border-top-left-radius: 10px
+.top
+  @include rounded-top(10px)
 .intro
   input
     //margin-top: .5em
@@ -170,6 +172,17 @@ div.mode
   textarea
     display: block
     overflow-x: hidden
+  table
+    padding: 0
+    tr
+      th
+        padding-right: 10em
+        margin-right: 1em
+        padding: .2em 0
+        width: 100px
+      td
+        margin-left: 1em
+        padding: .2em 0
 
 #left_comm ul li
   &.selected
@@ -278,6 +291,7 @@ div.mode
         margin: 0
         margin-top: 12px
         margin-bottom: 14px
+        text-align: center
     form
       padding-top: 6px
       padding-bottom: 0px

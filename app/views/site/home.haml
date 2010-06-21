@@ -3,6 +3,8 @@
     %span.wire 
       %h2 The Wire
       %p.instruction Use the Wire to post to your neighborhood.
+    %span.index
+      %h2 The Inbox
     %span.directory 
       %h2 The Directory
       %p.instruction Use the directory to find people, organizations, events, or businesses in your community.
@@ -10,14 +12,14 @@
 
 #comm_left
   #toggles
-    #wireButton Wire
-    #directoryButton Directory
+    #wireButton{'data-data' => '#w'} Wire
+    #inboxButton{'data-data' => '#i'} Inbox
+    #directoryButton{'data-data' => '#d'} Directory
     
   %span(id="stuff")
     
     #w{:style => "display: none;" }
       .intro
-        /%p Post to your neighborhood...
         #submission
           - semantic_form_for @post do |f|
 
@@ -30,10 +32,18 @@
         %ul
           - @wire_posts.each do |post|
             #{render post}
-          
+    
+    #i
+      .intro.top
+        #compose
+      
+      #iresults
+        %ul
+          %li Hello
+          %li Derp
+    
     #d{:style => "display: none;" }
       .intro
-        /%p Use the directory to find people, organizations, events, or businesses in your community.
         %input#that
         /%label{:for => "that"} Search for something...
         /{:type => "search"}

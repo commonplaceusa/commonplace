@@ -23,7 +23,7 @@ $(document).ready(function(){
     // PROFILE EDITING:::
     
     $(".editarea p").each(function(){
-        alert();
+        //alert();
         $(this).attr('contenteditable', 'true');
     })
     
@@ -42,7 +42,11 @@ $(document).ready(function(){
     
     
     
-    
+    $(".editarea .submit").click(function(){
+        var token = $(".editarea").attr('data-token');
+        alert(token);
+        return false;
+    });
     
     
     
@@ -67,22 +71,6 @@ $(document).ready(function(){
     
     
     $("#wresults li").click(function(){        
-        /*
-        var obj = $("#infobox").empty().clone();    // Clone an empty infobox.
-        $("#infobox").remove();                     // Remove the original from the DOM.
-        target = $(this).find(".info_box_content").clone().get(0);  // Get the target DOM element.
-        target.style.display = "inline";            // Undo 'display: none'
-        obj.append(target);                         // Put the target in our removed DOM element.
-        $("#comm_right").prepend(obj);              // Put '#infobox' back.
-        */
-        
-        /*
-        $("#infobox").empty();
-        target = $(this).find('.info_box_content').clone().get(0);
-        target.style.display = "inline";
-        $("#infobox").append( target );
-        */
-        
         $("#wresults ul li").removeClass('selected');
         $(this).addClass('selected');
         $("#infobox").html( $(this).attr('data-info') );    // Grab the li's data-info attribute and infobox it.
@@ -160,47 +148,28 @@ $(document).ready(function(){
         
     });
 
-    // Toggling between the wire and the directory.
+    // Moving between the wire, inbox, and directory.
     $("#toggles div").click(function(event){
         $("#toggles div").removeClass("mode");  // Adjust tab styling.
         $(this).addClass("mode");
         
-        var num = $(this).index();              // Switch the content over.
-        var other = Math.abs(num-1);
-        $(this).parent().siblings("#stuff").children(":eq(" + other + ")").hide();
-        $(this).parent().siblings("#stuff").children(":eq(" + num + ")").show();
+        $("#stuff").children().hide();
+        $( $(this).attr('data-data') ).show();
         
-        $("#infobox").children().hide();        // ???
-        
-        if (num == 0) {
+        $("#infobox span").hide();
+        if ( $(this).attr('data-data') == '#w' ) {
             window.location.hash = "wire";          // We're in the wire.
-            
-            // $(".intro").removeClass("left");
-            // $(".intro").addClass("right");
-            
             $("#infobox span.wire").show();
             
             // Set up the wire with default data unless there is already data there.
             
+        } else if ( $(this).attr('data-data') == '#i' ){
+            window.location.hash = "inbox";         // We're in the inbox.
         } else {
-            //alert(url);
-            window.location.hash = url;             // We're in the directory.
-            
-            // $(".intro").removeClass("right");
-            // $(".intro").addClass("left");
-            
+            window.location.hash = url;             // We're in the directory.            
             $("#infobox span.directory").show();
-            
             directoryChange();
-            //alert(url);
-            /*
-            $.get(url, function(data) {
-                $("#dresults").html(data);
-            });
-            */
-            
-            $("#left_comm").height("100%");
-            
+            $("#left_comm").height("100%");            
         }
         
         $("#left_comm").height("100%");
@@ -226,6 +195,7 @@ $(document).ready(function(){
     
     function heightCheck(){
         $("#comm_left").height("100%");
+        //alert("Calling heightCheck()..." + '\n' + "Left Height: " + $("#comm_left").height() + '\n' + "Right Height: " + $("#comm_right").height());
         if ( $("#comm_right").height() > $("#comm_left").height() ){
             $("#comm_left").height( $("#comm_right").height() );
         }
@@ -268,19 +238,7 @@ $(document).ready(function(){
         
         $("#narrow li").removeClass("selected");
         $("#narrow #" + choice).addClass("selected");
-        
         window.location.hash = url;
-        
-        if (url == lasturl){    // Prevents wasted calls. May consider putting data into a caching structure.
-            return false;
-        }
-        
-        lasturl = url;
-        
-        $.get(url, function(data) {
-            $("#dresults").html(data);
-            $("#map").jellopudding("#dresults ul");
-        });
     }
     
     $("label.in-field").inFieldLabels({fadeOpacity:0});
@@ -294,19 +252,52 @@ $(document).ready(function(){
     });
     
     // Initial page setup:
+    // This can likely be generalized into a "updatedHash" function.
     if (window.location.hash == "#wire"){
         $("#wireButton").click();
     } else if (window.location.hash.indexOf("#directory") != -1){        
         url = window.location.hash.slice(1);    // Takes everything after first character. Therefore, it drops "#".
-        pieces = url.split("/");        
-        // alert("directory: " + pieces[0] + "\n" + "choice: " + pieces[1] + "\n" + "search: " + pieces[2]);
-        if (typeof pieces[1] != "undefined") choice = pieces[1];
-        if (typeof pieces[2] != "undefined") search = pieces[2];
+        // pieces = url.split("/");     
+        //        // alert("directory: " + pieces[0] + "\n" + "choice: " + pieces[1] + "\n" + "search: " + pieces[2]);
+        //        if (typeof pieces[1] != "undefined") choice = pieces[1];
+        //        if (typeof pieces[2] != "undefined") search = pieces[2];
         $("#directoryButton").click();
         //$("#map").jellopudding("#dresults");
-    } else {
+    } else if (window.location.hash.indexOf("#inbox") != -1)
+        $("#inboxButton").click();
+    else {
         window.location.hash = "#wire";
         $("#wireButton").click();
     }
     
+    $(window).bind('hashchange', function () {
+        //alert("hashchange");
+        var url = window.location.hash.slice(1);
+        
+        $.ajax({
+            url: url,
+            dataType: 'script',
+            type: "GET",
+            beforeSend: function (xhr) {
+                //alert("before");
+            },
+            success: function (data, status, xhr) {
+                //alert("success");
+            },
+            complete: function (xhr) {
+                floatCheck();
+                heightCheck();
+            },
+            error: function (xhr, status, error) {
+                //alert("error");
+            }
+        });
+        
+    });
+    
+    // Initial page load.
+    if (window.location.hash) {
+        $(window).trigger('hashchange');
+    }
+
 });

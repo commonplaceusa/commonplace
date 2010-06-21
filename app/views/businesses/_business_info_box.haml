@@ -1,19 +1,18 @@
-/= image_tag business.avatar.url
+= image_tag business.avatar.url
 %h2 #{business.name}
-/ - unless user.groups.nil?
-/   %div.clear
-/     %p Groups:
-/     = render_tag_list(user.groups)
-/ - unless user.interests.empty?
-/   %p Interests
-/   = render_tag_list(user.interests)
-/ - unless user.skills.empty?
-/   %p Skills
-/   = render_tag_list(user.skills)
-/ - unless user.stuffs.empty?
-/   %p Stuff
-/   = render_tag_list(user.stuffs)
-/ %p Phone: number
-/ %p Send a Message
-/ %textarea
-/ %button Send
+-if business.about
+  %p.desc #{business.about}
+-if business.phone or business.address
+  %p Contact Information
+  %table
+    -if business.phone
+      %tr
+        %th Phone
+        %td #{business.phone}
+    -if business.address
+      %tr
+        %th Address
+        %td #{business.address}
+%p Send a Message???
+%textarea
+%button Send

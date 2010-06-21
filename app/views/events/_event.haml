@@ -1,5 +1,4 @@
-// #{event.start_time.mon}
-%li.event{"data-info" => render("events/event_info_box", :event => event), 'data-marker' => '{"info_html": "-71!!!", "lat": 40, "lng": -71}'}
+- content_tag(:li, :class => "event", "data-info" => render("events/event_info_box", :event => event), "data-marker" => event.lat && "{\"info_html\": \"#{event.name}\", \"lat\": \"#{event.lat}\", \"lng\": \"#{event.lng}\"}") do
   /= image_tag person.avatar.url, :width => 60, :height => 60
   /%img{:width => 60, :height => 60}
   %div.calendar

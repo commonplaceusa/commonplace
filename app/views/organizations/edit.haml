@@ -1,19 +1,22 @@
-.editarea
+.editarea{"data-token" => "#{form_authenticity_token}"}
   - [:success,:error,:message].each do |type|
     - if flash[type]
       .flash{:class => type.to_s} 
         = flash[type]
 
+  /= form_authenticity_token
+
   - form_for @organization do |f|
     
-    %p.big.oneline{:contenteditable => "false"} #{@organization.name}
-    %p.big.oneline{:contenteditable => "false"} #{@organization.address}
-    %p.big{:contenteditable => "false"} #{@organization.about}
+    %p#name.big.oneline #{@organization.name}
+    %p#address.big.oneline #{@organization.address}
+    %p#about.big #{@organization.about}    
+    %input.submit{:type => "submit", :value => "Submit"}
   
-    = f.label :name, "Name: "
-    = f.text_field :name
-    = f.label :address, "Address: "
-    = f.text_field :address
-    = f.label :about, "About: "
-    = f.text_area :about
-    = f.submit
+    / = f.label :name, "Name: "
+    /     = f.text_field :name
+    /     = f.label :address, "Address: "
+    /     = f.text_field :address
+    /     = f.label :about, "About: "
+    /     = f.text_area :about
+    /     = f.submit

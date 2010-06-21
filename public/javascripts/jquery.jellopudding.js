@@ -31,7 +31,7 @@
       return null;
     }
 
-    var markers = jQuery.map( $(map.data('info')).children(), function(elem){
+    var markers = jQuery.map( $(map.data('info')).children("[data-marker]"), function(elem){
 	    var o = jQuery.parseJSON( $(elem).attr('data-marker') );
 	    return new google.maps.Marker({
         title: o.info_html,

@@ -1,19 +1,19 @@
-/= image_tag organization.avatar.url
+= image_tag organization.avatar.url
 %h2 #{organization.name}
-/ - unless user.groups.nil?
-/   %div.clear
-/     %p Groups:
-/     = render_tag_list(user.groups)
-/ - unless user.interests.empty?
-/   %p Interests
-/   = render_tag_list(user.interests)
-/ - unless user.skills.empty?
-/   %p Skills
-/   = render_tag_list(user.skills)
-/ - unless user.stuffs.empty?
-/   %p Stuff
-/   = render_tag_list(user.stuffs)
-/ %p Phone: number
-/ %p Send a Message
-/ %textarea
-/ %button Send
+-if organization.about
+  %p.desc #{organization.about}
+-if organization.phone or organization.address
+  %p Contact Information
+  %table
+    -if organization.phone
+      %tr
+        %th Phone
+        %td #{organization.phone}
+    -if organization.address
+      %tr
+        %th Address
+        %td #{organization.address}
+/ output some members
+%p Send a Message???
+%textarea
+%button Send

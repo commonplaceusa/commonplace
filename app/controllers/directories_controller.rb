@@ -33,11 +33,11 @@ class DirectoriesController < ApplicationController
     end
   end
 
-  def show
-    @events = Event.all
-    @people = User.all
-    @organizations = Organization.all
-    @businesses = Business.all
-  end
+  # def show
+  #   @events = Event.all
+  #   @people = User.all
+  #   @organizations = Organization.all
+  #   @businesses = Business.all
+  # end
 
 end

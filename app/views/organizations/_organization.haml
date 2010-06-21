@@ -1,3 +1,3 @@
-%li.organization{"data-info" => render("organizations/organization_info_box", :organization => organization), 'data-marker' => '{"info_html": "-71!!!", "lat": 40, "lng": -71}'}
+- content_tag(:li, :class => "organization", "data-info" => render("organizations/organization_info_box", :organization => organization), "data-marker" => organization.lat && "{\"info_html\": \"#{organization.name}\", \"lat\": \"#{organization.lat}\", \"lng\": \"#{organization.lng}\"}") do
   /= image_tag organization.avatar.url, :width => 60, :height => 60
   %p #{organization.name}

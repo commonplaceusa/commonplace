@@ -1,2 +1,2 @@
-class Business < Organization
+class Business < Group
 end

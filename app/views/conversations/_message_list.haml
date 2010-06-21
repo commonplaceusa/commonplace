@@ -1,0 +1,12 @@
+.messages
+  - if conversation.messages.size > 0 # if there are replies
+    %ol
+      - conversation.messages.each do |message|
+        = render("messages/message", :message => message)
+  .new_reply
+    - form_for [message, Message.new] do |f|
+      = f.input :subject, :id => "#{dom_id(post)}_reply_body"
+      = f.text_area :body, :id => "#{dom_id(post)}_reply_body"
+      /= f.label :body, "Reply here!", :required => true, :class => 'in-field', :for => "#{dom_id(post)}_reply_body"
+      = f.submit "Reply"
+  .clear

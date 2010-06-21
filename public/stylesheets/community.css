@@ -26,12 +26,12 @@ div.mode {
   margin-bottom: 1em;
   padding-bottom: 1em; }
   #toggles div {
-    width: 210px;
-    height: 30px;
+    width: 140px;
+    height: 32px;
     float: left;
-    font-size: 2em;
+    font-size: 1.8em;
     text-align: center;
-    padding-top: 0.5em; }
+    padding-top: 0.55em; }
 
 .intro {
   background: #ceeece;
@@ -48,6 +48,14 @@ div.mode {
   -webkit-border-top-left-radius: 10px;
   -moz-border-radius-topleft: 10px;
   border-top-left-radius: 10px; }
+
+.top {
+  -webkit-border-top-left-radius: 10px !important;
+  -webkit-border-top-right-radius: 10px !important;
+  -moz-border-radius-topleft: 10px !important;
+  -moz-border-radius-topright: 10px !important;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important; }
 
 .intro input {
   font-size: 1em;
@@ -151,6 +159,16 @@ div.mode {
 #infobox textarea {
   display: block;
   overflow-x: hidden; }
+#infobox table {
+  padding: 0; }
+  #infobox table tr th {
+    padding-right: 10em;
+    margin-right: 1em;
+    padding: 0.2em 0;
+    width: 100px; }
+  #infobox table tr td {
+    margin-left: 1em;
+    padding: 0.2em 0; }
 
 #left_comm ul li.selected {
   background: #eeeeff !important; }
@@ -266,7 +284,8 @@ div.mode {
         border: 0;
         margin: 0;
         margin-top: 12px;
-        margin-bottom: 14px; }
+        margin-bottom: 14px;
+        text-align: center; }
     #infobox div form {
       padding-top: 6px;
       padding-bottom: 0px; }

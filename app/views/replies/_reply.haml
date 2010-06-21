@@ -1,0 +1,6 @@
+%li.reply
+  = image_tag reply.user.avatar.url, :width => 38, :height => 38
+  %div
+    %span.reply_name #{reply.user.full_name}
+    = reply.body
+    %p.age #{time_ago_in_words(reply.created_at, include_seconds = true)} ago
