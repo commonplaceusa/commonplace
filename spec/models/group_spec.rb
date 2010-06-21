@@ -6,8 +6,4 @@ describe Group do
       
     }
   end
-
-  it "should create a new instance given valid attributes" do
-    Group.create!(@valid_attributes)
-  end
 end
