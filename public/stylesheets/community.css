@@ -67,6 +67,55 @@ div.mode {
   width: 376px;
   height: 4em; }
 
+#wresults ul li, #dresults ul li, #iresults ul li {
+  min-height: 66px; }
+  #wresults ul li img, #dresults ul li img, #iresults ul li img {
+    border: 1px solid #cccccc; }
+  #wresults ul li.person, #dresults ul li.person, #iresults ul li.person {
+    background: #ffeeaa; }
+  #wresults ul li.organization, #dresults ul li.organization, #iresults ul li.organization {
+    background: #ffffbb; }
+  #wresults ul li.business, #dresults ul li.business, #iresults ul li.business {
+    background: #eedd99; }
+  #wresults ul li.selected, #dresults ul li.selected, #iresults ul li.selected {
+    background: #eeeeff; }
+  #wresults ul li:hover, #dresults ul li:hover, #iresults ul li:hover {
+    background: #ffeeee; }
+
+#iresults ul li {
+  padding: 5px; }
+  #iresults ul li p {
+    display: inline; }
+  #iresults ul li img {
+    display: inline; }
+  #iresults ul li.conversation {
+    background: #beaebe; }
+
+#wresults ul li.event, #dresults ul li.event {
+  background: #ffeebb; }
+  #wresults ul li.event div.calendar, #dresults ul li.event div.calendar {
+    float: left;
+    text-align: center;
+    display: block;
+    width: 60px;
+    height: 57px;
+    border: 1px solid #888888;
+    margin-right: 0.5em;
+    margin-left: 0 !important;
+    background: green; }
+    #wresults ul li.event div.calendar div.month, #dresults ul li.event div.calendar div.month {
+      font-size: 1.1em;
+      padding: 4px;
+      border: 0;
+      height: 20px;
+      background: #ff6666; }
+    #wresults ul li.event div.calendar div.date, #dresults ul li.event div.calendar div.date {
+      font-size: 1.4em;
+      padding: 6px 4px 0px 4px;
+      border: 0;
+      background: #cccccc;
+      height: 22px; }
+
 #d .intro {
   -webkit-border-top-left-radius: 10px !important;
   -moz-border-radius-topleft: 10px !important;
@@ -102,8 +151,6 @@ div.mode {
 #d .info {
   float: left;
   vertical-align: top; }
-#d #dresults img {
-  border: 1px solid #cccccc; }
 #d #dresults h2 {
   font-size: 1.8em;
   margin-top: 0.666em;
@@ -123,38 +170,6 @@ div.mode {
       margin-right: 0.5em; }
     #d #dresults ul li img, #d #dresults ul li p {
       margin-top: 0; }
-    #d #dresults ul li.person {
-      background: #ffeeaa; }
-    #d #dresults ul li.event {
-      background: #ffeebb; }
-      #d #dresults ul li.event div.calendar {
-        float: left;
-        text-align: center;
-        display: block;
-        width: 60px;
-        border: 1px solid #888888;
-        margin-right: 0.5em;
-        background: green; }
-        #d #dresults ul li.event div.calendar div.month {
-          font-size: 1.1em;
-          padding: 4px;
-          border: 0;
-          height: 20px;
-          background: #ff6666; }
-        #d #dresults ul li.event div.calendar div.date {
-          font-size: 1.4em;
-          padding: 6px 4px 0px 4px;
-          border: 0;
-          background: #cccccc;
-          height: 24px; }
-    #d #dresults ul li.organization {
-      background: #ffffbb; }
-    #d #dresults ul li.business {
-      background: #eedd99; }
-    #d #dresults ul li.selected {
-      background: #eeeeff; }
-    #d #dresults ul li:hover {
-      background: #ffeeee; }
 
 #infobox textarea {
   display: block;
@@ -348,8 +363,6 @@ div.mode {
   -webkit-border-top-right-radius: 10px !important;
   -moz-border-radius-topright: 10px !important;
   border-top-right-radius: 10px !important; }
-#w #wresults img {
-  border: 1px solid #cccccc; }
 #w #wresults ul {
   margin-bottom: 1em; }
   #w #wresults ul li {
@@ -427,17 +440,16 @@ div.mode {
   left: 2px; }
 
 #comm_right {
-  width: 566px;
+  width: 564px;
   display: block;
   float: right;
   position: relative; }
 
 #map {
-  width: 564px;
-  background-color: white;
-  height: 300px !important;
+  width: 562px;
   border: 1px dashed #446699;
-  background: black; }
+  height: 300px !important;
+  background: #4499ee; }
 
 #new_post {
   margin: auto; }

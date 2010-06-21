@@ -20,6 +20,7 @@ module ApplicationHelper
       #  hour = it.strftime("%I").slice[1]
     
       #return hour
+      # TODO: use a case statement
       
       if diff < -6
         return it.strftime("%A, %B %d, %Y at %I:%M%p")
@@ -35,9 +36,9 @@ module ApplicationHelper
         return "This " + it.strftime("%A") + " at " + it.strftime("%I:%M%p")
       else
         return it.strftime("%A, %B %d, %Y at %I:%M%p")
-      end
     end
     else
-    ""
+      ""
+    end
   end
 end

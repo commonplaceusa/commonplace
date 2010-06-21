@@ -19,15 +19,6 @@
   margin-top: 7px
   margin-left: 434px
 
-// From here down is stuff that Ricky added.
-// It should be cleaned up in the future to flow with everything else.
-
-// #comm_left, #comm_right
-//   width: 476px
-// 
-// #comm_right
-//   float: right
-
 div.mode
   background: $controlColor !important
   padding-bottom: 0
@@ -70,6 +61,63 @@ div.mode
     width: 376px
     height: 4em
 
+#wresults, #dresults, #iresults
+  ul
+    li
+      min-height: 66px
+      img
+        border: 1px solid #ccc
+      &.person
+        background: #fea
+      &.organization
+        background: #fea + #111
+      &.business
+        background: #fea - #111
+      &.selected
+        background: #eef
+      &:hover
+        background: #fee
+
+#iresults
+  ul
+    li
+      padding: 5px
+      p
+        display: inline
+      img
+        display: inline
+      &.conversation
+        background: #beaebe
+
+#wresults, #dresults
+  ul
+    li
+      &.event
+        background: #feb
+        div.calendar
+          //@include rounded(10px)
+          float: left
+          text-align: center
+          display: block
+          width: 60px
+          height: 57px
+          border: 1px solid #888
+          margin-right: 0.5em
+          margin-left: 0 !important
+          background: green
+          div.month
+            font-size: 1.1em
+            padding: 4px
+            border: 0
+            height: 20px
+            background: #f66
+          div.date
+            font-size: 1.4em
+            padding: 6px 4px 0px 4px
+            border: 0
+            background: #ccc
+            height: 22px
+
 #d
   .intro
     -webkit-border-top-left-radius: 10px !important
@@ -107,9 +155,6 @@ div.mode
     float: left
     vertical-align: top
   #dresults
-    //padding: .5em
-    img
-      border: 1px solid #ccc
     h2
       font-size: 1.8em
       margin-top: .666em
@@ -129,44 +174,6 @@ div.mode
           margin-right: .5em
         img, p
           margin-top: 0
-        &.person
-          background: #fea
-        &.event
-          background: #feb
-          div.calendar
-            //@include rounded(10px)
-            float: left
-            text-align: center
-            display: block
-            width: 60px
-            // height: 60px
-            border: 1px solid #888
-            margin-right: 0.5em
-            background: green
-            div.month
-              font-size: 1.1em
-              padding: 4px
-              border: 0
-              height: 20px
-              background: #f66
-            div.date
-              font-size: 1.4em
-              padding: 6px 4px 0px 4px
-              border: 0
-              background: #ccc
-              height: 24px
-        &.organization
-          background: #fea + #111
-        &.business
-          background: #fea - #111
-        &.selected
-          background: #eef
-        &:hover
-          background: #fee
-  // #people div
-  //   margin-bottom: .333em
-  //   .info p
-  //     font-size: 1em
 
 #infobox
   textarea
@@ -370,15 +377,12 @@ div.mode
     -moz-border-radius-topright: 10px !important
     border-top-right-radius: 10px !important
   #wresults
-    img
-      border: 1px solid #ccc
     ul
       margin-bottom: 1em
       li
         padding-top: 5px
         padding-left: 5px
         padding-bottom: 3px
-        //min-height: 68px
         border-bottom: 1px solid #ccc
         div
           position: relative
@@ -417,56 +421,6 @@ div.mode
         background: #ffeece + #111111
         &:hover
           background: #ffeece
-      // .replies
-      //         div
-      //           margin-left: 48px
-      //           line-height: 1.1em
-      //           &.new_reply
-      //             margin-left: 0
-      //           //overflow-x: hidden
-      //         li
-      //           border: none
-      //           background: none
-      //           min-height: auto
-      //           padding-bottom: 0
-      //           &:hover
-      //             background: #CEEECE - #050505
-      //         background: #CEEECE
-      //         div
-      //           line-height: 1.2em
-      //         img
-      //           width: 38px
-      //       .new_reply
-      //         padding-top: 0px
-      //         label
-      //           position: absolute
-      //           padding-top: 6px
-      //           padding-left: 10px
-      //           font-size: 1em
-      //           color: #333
-      //         textarea
-      //           margin-left: 5px
-      //           padding: 5px
-      //           // width: 380px
-      //           display: block
-      //           height: 38px
-      //           font-size: 1em
-      //         input
-      //           margin-left: 5px
-      //           display: inline-block
-      //           font-size: 0.8em
-      //           @include rounded(8px)
-      //           background-image: url("/images/button_repeat.png")
-      //           padding: 3px 7px
-      //           border-width: 1px
-      //           border-style: solid
-      //           border-color: #aaaaaa
-      //           &:hover
-      //             border: 1px solid black
-
-
-
-
 
 #full
   position: absolute
@@ -478,7 +432,6 @@ div.mode
     style: solid
   background-color: #963
   padding: 8px
-  //width: 978px
   -webkit-border-radius: 8px
   -moz-border-radius: 8px
   border-radius: 8px
@@ -489,7 +442,6 @@ div.mode
   vertical-align: top
   top: 0px
   height: 100%
-  //width: 492px
   margin-bottom: $totalFooterHeight + px
 
 #comm_left
@@ -498,21 +450,16 @@ div.mode
   left: 2px
 
 #comm_right
-  width: 566px
+  width: $rightColumnWidth + px
   display: block
   float: right
   position: relative
-  //left: 520px
-  // right: 100px
-  //   top: 74px
 
 #map
-  //position: absolute
-  width: 564px
-  background-color: white
-  height: 300px !important
+  width: ($rightColumnWidth - 2) + px
   border: 1px dashed #469
-  background: black
+  height: 300px !important
+  background: #49e
 
 #new_post
   //width: 100%

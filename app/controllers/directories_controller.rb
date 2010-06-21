@@ -29,7 +29,7 @@ class DirectoriesController < ApplicationController
       render "show"
     else
       @entries = (User.all | Event.all | Organization.all | Business.all).shuffle # special case:
-      render "index"                            # a little of everything
+      render "index"                       # a little of everything
     end
   end
 

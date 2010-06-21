@@ -1,12 +1,18 @@
 /*
 This Javascript file really needs an organizational cleanup. I'll do that very soon. ~ Ricky
+
+TODO:
+* Loading image when an ajax call is firing.
+* Caching system so that calls don't refire.
+
 */
 
+var debug = true;       // Used for short-circut evaluation of alert debug statements.
 var choice;
 var search;
 var url = 'directory';
-var lasturl = '';
 
+// Handles different browser implementations of checking height.
 function getCurrentPosition() {
     if (document.body && document.body.scrollTop)
         return document.body.scrollTop;
@@ -18,6 +24,8 @@ function getCurrentPosition() {
 };
 
 $(document).ready(function(){
+    
+    
     
     
     // PROFILE EDITING:::
@@ -70,18 +78,6 @@ $(document).ready(function(){
     
     
     
-    $("#wresults li").click(function(){        
-        $("#wresults ul li").removeClass('selected');
-        $(this).addClass('selected');
-        $("#infobox").html( $(this).attr('data-info') );    // Grab the li's data-info attribute and infobox it.
-        $('#infobox textarea').autoResize({
-            animateDuration : 300,
-            extraSpace : 20
-        });
-        
-        heightCheck();
-        
-    });
     
     // Handles the "floating" right column.
     
@@ -94,18 +90,22 @@ $(document).ready(function(){
         }
     }
     
+    // Event handler for scroll action.
     $(document).scroll(function(){
         floatCheck();
     });
     
-    $("#wresults ul li div span").live('click', function(){
-        if ( $(this).siblings(".replies").is(":visible") ){
-            $(this).siblings(".replies").hide();
-        } else {
-            $(".replies").hide();
-            $(this).siblings(".replies").show();
-        }
-    });
+    // End handling of the "floating" right column.
+    
+    // Ricky thinks this is dead code on Monday June 21st, 2010.
+    // $("#wresults ul li div span").live('click', function(){
+    //         if ( $(this).siblings(".replies").is(":visible") ){
+    //             $(this).siblings(".replies").hide();
+    //         } else {
+    //             $(".replies").hide();
+    //             $(this).siblings(".replies").show();
+    //         }
+    //     });
     
     $('textarea').autoResize({
         animateDuration : 300,
@@ -120,9 +120,7 @@ $(document).ready(function(){
             $(this).siblings("form").hide();
             
             // fire off ajax...
-            
             // if the response is one way, show something - if it's another way, show something else
-            
             // $(this).siblings("div.message").html("derp");
             
             $(this).siblings("div.message").show();
@@ -131,7 +129,7 @@ $(document).ready(function(){
     
     $("#infobox div.refer").live('click', function(){
         
-        if ( $(this).siblings("form").is(":visible") ){
+        if ( $(this).siblings("form").is(":visible") ) {
             $(this).siblings("form, div.message").hide();
         } else {
             $(this).siblings("div.message").hide();
@@ -150,7 +148,7 @@ $(document).ready(function(){
 
     // Moving between the wire, inbox, and directory.
     $("#toggles div").click(function(event){
-        $("#toggles div").removeClass("mode");  // Adjust tab styling.
+        $("#toggles div").removeClass("mode");      // Adjust tab styling.
         $(this).addClass("mode");
         
         $("#stuff").children().hide();
@@ -165,6 +163,7 @@ $(document).ready(function(){
             
         } else if ( $(this).attr('data-data') == '#i' ){
             window.location.hash = "inbox";         // We're in the inbox.
+            $("#infobox span.inbox").show();
         } else {
             window.location.hash = url;             // We're in the directory.            
             $("#infobox span.directory").show();
@@ -193,29 +192,26 @@ $(document).ready(function(){
        alert("Left Height: " + $("#comm_left").height() + '\n' + "Right Height: " + $("#comm_right").height()); 
     });
     
+    // TODO: Idea. Overflow-y none the main div, then have jQuery animate the resizing of the big 'ol box.
     function heightCheck(){
         $("#comm_left").height("100%");
-        //alert("Calling heightCheck()..." + '\n' + "Left Height: " + $("#comm_left").height() + '\n' + "Right Height: " + $("#comm_right").height());
+        debug && alert("Calling heightCheck()..." + '\n' + "Left Height: " + $("#comm_left").height() + '\n' + "Right Height: " + $("#comm_right").height());
         if ( $("#comm_right").height() > $("#comm_left").height() ){
             $("#comm_left").height( $("#comm_right").height() );
         }
     }
     
-    $("#dresults ul li").live('click', function(){
-        $("#dresults ul li").removeClass('selected');
+    // Clicking a result in any of the three tabs. Updates infobox and registers autoresize.
+    $("#wresults ul li, #iresults ul li, #dresults ul li").live('click', function(){        
+        $("#wresults ul li").removeClass('selected');
         $(this).addClass('selected');
         $("#infobox").html( $(this).attr('data-info') );    // Grab the li's data-info attribute and infobox it.
-        
-        $(document).ready(function(){
-
-            $('#infobox textarea').autoResize({
-                animateDuration : 300,
-                extraSpace : 20
-            });
+        $('#infobox textarea').autoResize({
+            animateDuration : 300,
+            extraSpace : 20
         });
         
         heightCheck();
-        
     });
     
     $("ul#narrow li").click(function(){
@@ -252,17 +248,13 @@ $(document).ready(function(){
     });
     
     // Initial page setup:
-    // This can likely be generalized into a "updatedHash" function.
+    // This WILL be generalized into a "updatedHash" function.
     if (window.location.hash == "#wire"){
         $("#wireButton").click();
     } else if (window.location.hash.indexOf("#directory") != -1){        
         url = window.location.hash.slice(1);    // Takes everything after first character. Therefore, it drops "#".
-        // pieces = url.split("/");     
-        //        // alert("directory: " + pieces[0] + "\n" + "choice: " + pieces[1] + "\n" + "search: " + pieces[2]);
-        //        if (typeof pieces[1] != "undefined") choice = pieces[1];
-        //        if (typeof pieces[2] != "undefined") search = pieces[2];
         $("#directoryButton").click();
-        //$("#map").jellopudding("#dresults");
+        $("#map").jellopudding("#dresults");
     } else if (window.location.hash.indexOf("#inbox") != -1)
         $("#inboxButton").click();
     else {
@@ -271,25 +263,24 @@ $(document).ready(function(){
     }
     
     $(window).bind('hashchange', function () {
-        //alert("hashchange");
         var url = window.location.hash.slice(1);
-        
+        debug && alert(url);
         $.ajax({
             url: url,
             dataType: 'script',
             type: "GET",
             beforeSend: function (xhr) {
-                //alert("before");
+                debug && alert("before");
             },
             success: function (data, status, xhr) {
-                //alert("success");
+                debug && alert("success");
             },
             complete: function (xhr) {
                 floatCheck();
                 heightCheck();
             },
             error: function (xhr, status, error) {
-                //alert("error");
+                debug && alert(error);
             }
         });
         

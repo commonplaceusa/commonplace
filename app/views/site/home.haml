@@ -2,12 +2,13 @@
   #infobox
     %span.wire 
       %h2 The Wire
-      %p.instruction Use the Wire to post to your neighborhood.
-    %span.index
+      %p.instruction Use the Wire to post to your neighborhood. This text needs work.
+    %span.inbox
       %h2 The Inbox
+      %p.instruction Your Inbox is made of private messages between you and a few individuals. This text needs work.
     %span.directory 
       %h2 The Directory
-      %p.instruction Use the directory to find people, organizations, events, or businesses in your community.
+      %p.instruction Use the directory to find people, organizations, events, or businesses in your community. This text needs work.
   #map
 
 #comm_left
@@ -29,18 +30,13 @@
             - f.buttons do
               = f.commit_button
       #wresults
-        %ul
-          - @wire_posts.each do |post|
-            #{render post}
+        #{render "wires/wire"}
     
     #i
       .intro.top
         #compose
       
       #iresults
-        %ul
-          %li Hello
-          %li Derp
     
     #d{:style => "display: none;" }
       .intro
@@ -55,4 +51,5 @@
           %li#businesses{"data-choice" => "businesses"} Businesses
       
       #dresults
+      
     .clear

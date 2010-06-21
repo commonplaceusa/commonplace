@@ -3,7 +3,7 @@ class SiteController < ApplicationController
   def index 
     if current_user_session
       @post = Post.new
-      @wire_posts = Post.all(:order => "created_at DESC")
+      @wire_posts = current_user.wire
       render 'home'
     else
       render 'index'
