@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
-
+  filter_resource_access
   layout "profile"
-  
+
   def show
     @organization = Organization.find(params[:id])
     @count = @organization.members.count

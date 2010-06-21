@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  filter_resource_access
   
   def create
     @post = current_user.posts.build(params[:post])

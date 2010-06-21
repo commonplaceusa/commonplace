@@ -1,4 +1,5 @@
 class DirectoriesController < ApplicationController
+  filter_resource_access
 
   def people
     @entries = User.all

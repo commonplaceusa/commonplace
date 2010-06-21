@@ -1,4 +1,5 @@
 class UserSessionsController < ApplicationController
+  filter_resource_access
 
   def new
   end
