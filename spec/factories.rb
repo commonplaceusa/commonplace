@@ -58,3 +58,19 @@ Factory.define :text_module do |f|
   f.association :organization
   f.position 1
 end
+
+
+Factory.define :message do |f|
+  f.association :user
+  f.association :conversation
+  f.body { Forgery(:lorem_ipsum).sentence }
+end
+
+Factory.define :conversation do |f|
+  f.subject { Forgery(:lorem_ipsum).words(2) }
+end
+
+Factory.define :conversation_membership do |f|
+  f.association :user
+  f.association :conversation
+end
