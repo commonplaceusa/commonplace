@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
+  has_many :messages
+  has_many :conversations
+
   validates_presence_of :first_name, :last_name
 
   acts_as_taggable_on :skills
