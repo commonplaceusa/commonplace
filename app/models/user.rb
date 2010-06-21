@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   has_many :posts
 
   has_many :messages
-  has_many :conversations
+  has_many :conversation_memberships
+  has_many :conversations, :through => :conversation_memberships
 
   validates_presence_of :first_name, :last_name
 
