@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ConversationMemberships do
+describe ConversationMembership do
   before(:each) do
     @valid_attributes = {
       
@@ -8,6 +8,6 @@ describe ConversationMemberships do
   end
 
   it "should create a new instance given valid attributes" do
-    ConversationMemberships.create!(@valid_attributes)
+    ConversationMembership.create!(@valid_attributes)
   end
 end
