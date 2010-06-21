@@ -43,6 +43,9 @@ class User < ActiveRecord::Base
     end    
     true  
   end
-
+  
+  def wire
+    Event.all(:order => "created_at DESC") + Post.all(:order => "created_at DESC")
+  end
 
 end
