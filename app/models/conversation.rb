@@ -4,7 +4,8 @@ class Conversation < ActiveRecord::Base
   has_many :users, :through => :conversation_memberships
   has_many :messages, :after_add => :notify_members
 
-  accepts_nested_attributes_for :messages
+  attr_accessor :to, :body
+
   validates_presence_of :subject
   
   def notify_members(message)
