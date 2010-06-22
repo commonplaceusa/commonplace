@@ -8,6 +8,7 @@ authorization do
   role :user do
     has_permission_on :user_sessions, :to => [:delete]
     has_permission_on :posts, :to => :create
+    has_permission_on :replies, :to => :create
   end
 
 

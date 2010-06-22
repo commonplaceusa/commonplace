@@ -6,7 +6,6 @@ describe PostsController do
   end
   
   it "should allow a user to create a post" do
-    
     activate_authlogic
     @user = Factory :user
     post :create, Factory.attributes_for(:post).merge(:user_id => @user.id)
