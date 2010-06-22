@@ -22,6 +22,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :inbox
 
+  map.resources :conversations
+  
+  map.resources :messages
+
   map.resources :posts do |post|
     post.resources :replies
   end
