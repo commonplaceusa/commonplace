@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  filter_resource_access
+  filter_access_to :new, :create, :destroy
 
   def new
   end

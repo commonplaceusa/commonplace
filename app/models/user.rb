@@ -55,4 +55,12 @@ class User < ActiveRecord::Base
     (Event.all(:order => "created_at DESC") + Post.all(:order => "created_at DESC")).sort_by(&:created_at).reverse
   end
 
+  def role_symbols
+    if new_record?
+      [:guest]
+    else
+      [:user]
+    end
+  end
+
 end
