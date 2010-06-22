@@ -5,6 +5,8 @@ Autotest.add_hook(:initialize) {|at|
   at.add_mapping(%r{^lib/.*\.rb$}) {|f, _|
     Dir['spec/**/*.rb']
   }
-  at.add_mapping(%r{^config/authorization\_rules\.rb$})
+  at.add_mapping(%r{^config/authorization\_rules\.rb$}) {|f, _|
+    Dir['spec/**/*.rb']
+  }
   nil
 }

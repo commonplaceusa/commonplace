@@ -7,6 +7,22 @@ describe AccountsController do
     response.should render_template('new')
     assigns[:account].should_not be_nil
   end
+  
+  it "should allow a guest to create an account" do
+    get :new
+    response.should be_success
+    post :create, Factory.attributes_for(:user).merge(:code => CONFIG["code"])
+    response.should be_success
+  end
+
+  it "should not allow a user to create an account" do
+    activate_authlogic
+    user = Factory :user
+    get :new
+    response.should_not be_success
+    post :create, Factory.attributes_for(:user).merge(:code => CONFIG["code"])
+    response.should_not be_success
+  end
 
   it "should re-render the new template on a failed create" do
     post :create

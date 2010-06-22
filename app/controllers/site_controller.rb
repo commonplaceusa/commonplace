@@ -1,4 +1,5 @@
 class SiteController < ApplicationController
+
   filter_resource_access
   layout "public"
   

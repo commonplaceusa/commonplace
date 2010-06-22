@@ -13,5 +13,4 @@ describe SiteController do
     response.should render_template(:home)
   end
 
-
 end
