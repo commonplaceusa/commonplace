@@ -3,11 +3,11 @@
   %p Please enter your information to sign up for a new account. At this time, you need your community code to register for a new account.
 
 #main_right
-  - begin
-    - if params[:account] # Don't display any message if there's no code
-      %p.win Welcome to #{check_code}!
-  - rescue 
-    %p.fail Sorry, we didn't recognize your community access code. Try fixing it below?
+  - if @account.code
+    - if @account.code == CONFIG["registration_code"]
+      %p.win Welcome to #{CONFIG["community_name"]}!
+    - else  
+      %p.fail Sorry, we didn't recognize your community access code. Try fixing it below?
   
   - form_for @account, :url => account_path do |f|
     %h2 Please enter your information:
@@ -29,14 +29,13 @@
     = f.label :address, "Street address"
     = f.text_field :address
     %p.hint This is so that we can confirm you live in this community.
-    
-          
 
-    - if @account.code.blank? || @account.errors.on(:code)
-      = f.input :code, :label => "Registration code:"
+    - if @account.code == CONFIG["registration_code"]
+      = f.hidden_field :code
     - else
-      = f.input :code, :as => :hidden
-
+      = f.label :code, "Registration code:"
+      = f.text_field :code
+  
     = f.input :privacy_policy, :as => :boolean, :label => "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"
     
     = f.submit 'Register!'

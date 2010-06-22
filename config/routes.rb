@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :password_resets
 
-  map.resource :account
+  map.resource :account, :member => {:more_info => :get}
 
   map.resources :organizations
 

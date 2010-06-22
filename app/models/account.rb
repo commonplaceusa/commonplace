@@ -42,7 +42,7 @@ class Account
       @user = User.new
     end
   end
-  
+
   
   def save
     if valid?
@@ -62,5 +62,4 @@ class Account
     'registration'
   end
 
-  
 end
