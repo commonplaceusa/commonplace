@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100621175125) do
+ActiveRecord::Schema.define(:version => 20100622172420) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(:version => 20100621175125) do
   end
 
   create_table "conversation_memberships", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "conversation_id", :null => false
+    t.integer  "user_id",                            :null => false
+    t.integer  "conversation_id",                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "new_messages",    :default => false
   end
 
   create_table "conversations", :force => true do |t|
