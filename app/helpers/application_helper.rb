@@ -15,13 +15,7 @@ module ApplicationHelper
     if it
       now = DateTime.now
       diff = (it.to_i - now.to_i)/86400
-      
-      #if it.strftime("%I").include? "0"
-      #  hour = it.strftime("%I").slice[1]
-    
-      #return hour
-      # TODO: use a case statement
-      
+            
       if diff < -6
         return it.strftime("%A, %B %d, %Y at %I:%M%p")
       elsif diff >= -6 and diff < -1

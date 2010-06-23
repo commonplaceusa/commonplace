@@ -30,12 +30,23 @@
             - f.buttons do
               = f.commit_button
       #wresults
-        #{render "wires/wire"}
+        /#{render "wires/wire"}
     
     #i
       .intro.top
-        #compose
-      
+        .newthread Compose a Message
+        
+        #compose{:style => "display: none;"}
+          %h2 Compose a Message
+          - form_for Conversation.new do |f|
+            %p To:
+            = f.text_field :to
+            %p Subject:
+            = f.text_field :subject
+            %p body
+            = f.text_area :body
+            = f.submit "Send"
+
       #iresults
     
     #d{:style => "display: none;" }

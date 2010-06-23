@@ -5,5 +5,7 @@
     %div.calendar
       %div.month #{Date::ABBR_MONTHNAMES[event.start_time.mon]}
       %div.date #{event.start_time.day}
-  %p #{event.name}
-  %p #{human_date(event.start_time)}
+  %p #{event.name}  
+  /%span.expand
+  /  %p test
+  %p{:style => "margin-bottom: 0; padding-bottom: 0;"} #{human_date(event.start_time)}

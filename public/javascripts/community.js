@@ -7,10 +7,12 @@ TODO:
 
 */
 
-var debug = true;       // Used for short-circut evaluation of alert debug statements.
+var debug = false;       // Used for short-circut evaluation of alert debug statements.
 var choice;
 var search;
 var url = 'directory';
+var lasturl = '';
+var action;
 
 // Handles different browser implementations of checking height.
 function getCurrentPosition() {
@@ -24,6 +26,13 @@ function getCurrentPosition() {
 };
 
 $(document).ready(function(){
+    
+    $("#i .newthread").live('click', function(){
+        $("#infobox").html( $("#compose").html() );
+        window.location.hash = "inbox~compose";
+    });
+    
+    
     
     
     
@@ -143,7 +152,7 @@ $(document).ready(function(){
     
     // Solid space for a debug function:
     $("#community_name").click(function(event){
-        
+        alert( $("#map").jpCount() );
     });
 
     // Moving between the wire, inbox, and directory.
@@ -203,7 +212,7 @@ $(document).ready(function(){
     
     // Clicking a result in any of the three tabs. Updates infobox and registers autoresize.
     $("#wresults ul li, #iresults ul li, #dresults ul li").live('click', function(){        
-        $("#wresults ul li").removeClass('selected');
+        $("#wresults ul li, #iresults ul li, #dresults ul li").removeClass('selected');
         $(this).addClass('selected');
         $("#infobox").html( $(this).attr('data-info') );    // Grab the li's data-info attribute and infobox it.
         $('#infobox textarea').autoResize({
@@ -214,6 +223,7 @@ $(document).ready(function(){
         heightCheck();
     });
     
+    // Directory. Changing the search narrowing.
     $("ul#narrow li").click(function(){
         choice = $(this).attr('data-choice');       // Grab choice.
         directoryChange();
@@ -252,9 +262,9 @@ $(document).ready(function(){
     if (window.location.hash == "#wire"){
         $("#wireButton").click();
     } else if (window.location.hash.indexOf("#directory") != -1){        
-        url = window.location.hash.slice(1);    // Takes everything after first character. Therefore, it drops "#".
+        //url = window.location.hash.slice(1);    // Takes everything after first character. Therefore, it drops "#".
         $("#directoryButton").click();
-        $("#map").jellopudding("#dresults");
+        //$("#map").jellopudding("#dresults");
     } else if (window.location.hash.indexOf("#inbox") != -1)
         $("#inboxButton").click();
     else {
@@ -264,6 +274,21 @@ $(document).ready(function(){
     
     $(window).bind('hashchange', function () {
         var url = window.location.hash.slice(1);
+        
+        var pieces = url.split('~');
+        if (pieces.length > 1){
+            url = pieces[0];
+            action = pieces[1];
+            alert(url + " " + action);
+        }
+
+        if (url == "inbox" && action == "compose"){
+            $("#i .newthread").click();
+        }
+        
+        if (lasturl == url) return;
+        lasturl = url;
+        
         debug && alert(url);
         $.ajax({
             url: url,
@@ -274,10 +299,21 @@ $(document).ready(function(){
             },
             success: function (data, status, xhr) {
                 debug && alert("success");
+                // alert(data);
+                // alert(status);
+                // alert(xhr);
+                
+                if ( $("#map").jpCount() > 0 ){
+                    $("#map").show();
+                } else {
+                    $("#map").hide();
+                }
+                
             },
             complete: function (xhr) {
                 floatCheck();
                 heightCheck();
+                //$("#map").jellopudding("#dresults");
             },
             error: function (xhr, status, error) {
                 debug && alert(error);

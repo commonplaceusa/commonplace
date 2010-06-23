@@ -5,4 +5,4 @@
     = image_tag user.avatar.url, :width => 60, :height => 60
   %p #{conversation.subject}
   // Make sure this works:
-  %p #{conversation.updated_at}
+  %p Last update: #{human_date(conversation.updated_at)}

@@ -1,11 +1,12 @@
+%h2
+  = conversation.subject
+
 .messages
   .new_reply
-    / - form_for [message, Message.new] do |f|
-    /       = f.input :subject, :id => "#{dom_id(message)}_reply_body"
-    /       = f.text_area :body, :id => "#{dom_id(message)}_reply_body"
-    /       /= f.label :body, "Reply here!", :required => true, :class => 'in-field', :for => "#{dom_id(post)}_reply_body"
+    / - form_for [conversation, Message.new] do |f|
+    /       = f.text_area :body
     /       = f.submit "Reply"
-  %ol
+  %ol.replies
     - conversation.messages.each do |message|
       = render("messages/message", :message => message)
   .clear

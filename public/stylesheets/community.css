@@ -1,5 +1,24 @@
+.newthread {
+  width: 260px;
+  margin: auto;
+  display: inline-block;
+  width: none !important;
+  padding: 0.5em;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 1.4em;
+  -webkit-border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  border-radius: 10px !important;
+  background: #e88e33; }
+  .newthread:hover {
+    background: #ffc166; }
+
 #submission form#new_post div {
   display: none !important; }
+
+#map {
+  display: none; }
 
 #main {
   position: relative;
@@ -10,7 +29,7 @@
   top: auto;
   z-index: auto;
   margin-top: 7px;
-  margin-left: 434px; }
+  margin-left: 436px; }
 
 div.mode {
   background: #ceeece !important;
@@ -68,9 +87,17 @@ div.mode {
   height: 4em; }
 
 #wresults ul li, #dresults ul li, #iresults ul li {
-  min-height: 66px; }
+  cursor: pointer;
+  padding-top: 5px;
+  padding-left: 5px;
+  min-height: 66px;
+  border-bottom: 1px solid #cccccc; }
   #wresults ul li img, #dresults ul li img, #iresults ul li img {
+    float: left;
+    margin-right: 0.5em;
     border: 1px solid #cccccc; }
+  #wresults ul li img, #wresults ul li p, #dresults ul li img, #dresults ul li p, #iresults ul li img, #iresults ul li p {
+    margin-top: 0; }
   #wresults ul li.person, #dresults ul li.person, #iresults ul li.person {
     background: #ffeeaa; }
   #wresults ul li.organization, #dresults ul li.organization, #iresults ul li.organization {
@@ -79,19 +106,25 @@ div.mode {
     background: #eedd99; }
   #wresults ul li.selected, #dresults ul li.selected, #iresults ul li.selected {
     background: #eeeeff; }
+  #wresults ul li.conversation, #dresults ul li.conversation, #iresults ul li.conversation {
+    background: #beaebe; }
+    #wresults ul li.conversation.read, #dresults ul li.conversation.read, #iresults ul li.conversation.read {
+      background: #cfbfcf; }
+    #wresults ul li.conversation.unread, #dresults ul li.conversation.unread, #iresults ul li.conversation.unread {
+      background: #ad9dad; }
   #wresults ul li:hover, #dresults ul li:hover, #iresults ul li:hover {
     background: #ffeeee; }
 
 #iresults ul li {
   padding: 5px; }
   #iresults ul li p {
-    display: inline; }
+    display: inline-block;
+    vertical-align: top; }
   #iresults ul li img {
     display: inline; }
-  #iresults ul li.conversation {
-    background: #beaebe; }
 
 #wresults ul li.event, #dresults ul li.event {
+  position: relative;
   background: #ffeebb; }
   #wresults ul li.event div.calendar, #dresults ul li.event div.calendar {
     float: left;
@@ -159,17 +192,6 @@ div.mode {
   border-bottom: 1px solid #cccccc; }
 #d #dresults ul {
   margin-bottom: 1em; }
-  #d #dresults ul li {
-    cursor: pointer;
-    padding-top: 5px;
-    padding-left: 5px;
-    min-height: 66px;
-    border-bottom: 1px solid #cccccc; }
-    #d #dresults ul li img {
-      float: left;
-      margin-right: 0.5em; }
-    #d #dresults ul li img, #d #dresults ul li p {
-      margin-top: 0; }
 
 #infobox textarea {
   display: block;
@@ -184,9 +206,6 @@ div.mode {
   #infobox table tr td {
     margin-left: 1em;
     padding: 0.2em 0; }
-
-#left_comm ul li.selected {
-  background: #eeeeff !important; }
 
 #infobox {
   border: 1px dashed #996644;
@@ -309,12 +328,13 @@ div.mode {
   #infobox .replies div {
     font-size: 0.9em;
     margin: 0;
-    margin-left: 54px;
+    margin-left: 62px;
     line-height: 1.1em;
     overflow-x: hidden;
     text-align: left; }
     #infobox .replies div span.reply_name {
-      margin-right: 0.5em; }
+      margin-right: 0.5em;
+      font-weight: bold; }
     #infobox .replies div.new_reply {
       overflow-x: visible;
       margin-left: 0;
@@ -351,12 +371,12 @@ div.mode {
   #infobox .replies li {
     border: none;
     background: none;
-    min-height: auto;
+    min-height: 50px;
     padding: 5px;
     padding-left: 3px; }
   #infobox .replies img {
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
     float: left; }
 
 #w .intro {
@@ -496,6 +516,11 @@ div.mode {
         border-color: #aaaaaa; }
         #new_post .buttons ol li button:hover {
           border-color: #333333; }
+
+#i .intro {
+  text-align: center;
+  height: 40px;
+  min-height: 0px; }
 
 header form {
   display: inline; }

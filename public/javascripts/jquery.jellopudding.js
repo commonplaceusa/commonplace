@@ -15,6 +15,7 @@
 
 (function($){
   $.fn.jellopudding = function(info) {
+    //alert("jellopudding");
     var map = this;
 
     var map_elem = map.get(0);
@@ -33,6 +34,7 @@
 
     var markers = jQuery.map( $(map.data('info')).children("[data-marker]"), function(elem){
 	    var o = jQuery.parseJSON( $(elem).attr('data-marker') );
+	    //alert();
 	    return new google.maps.Marker({
         title: o.info_html,
       	position: new google.maps.LatLng(o.lat, o.lng)
@@ -61,6 +63,33 @@
 
     return this;
   };
+  
+  function setup(){
+      
+  }
+  
+  $.fn.jpCount = function(info) {
+    //alert("jellopudding count");
+    
+    var map = this;
 
+    var map_elem = map.get(0);
+
+    if (typeof map_elem == 'undefined') {
+      return null;
+    }
+
+    if (info) map.data('info',info);
+
+    if ( !map.data('info') ) {
+      return null;
+    }
+    
+    if (map.data('mgr')) {
+      return map.data('mgr').getMarkerCount(19);
+    }
+    
+    return 0;
+  };
 
 })(jQuery);

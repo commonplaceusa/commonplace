@@ -3,9 +3,26 @@
 // private.sass
 // Logged in, view of wire, directory, profiles, etc.
 
+.newthread
+  width: 260px
+  margin: auto
+  display: inline-block
+  width: none !important
+  padding: .5em
+  border: 1px solid black
+  text-align: center
+  font-size: 1.4em
+  @include rounded(10px)
+  background: #e88e33
+  &:hover
+    background: #e88e33 + #333
+
 #submission form#new_post div
   display: none !important
   // fixes mozilla bug
+
+#map
+  display: none
 
 #main
   position: relative
@@ -17,7 +34,7 @@
   top: auto
   z-index: auto
   margin-top: 7px
-  margin-left: 434px
+  margin-left: 436px
 
 div.mode
   background: $controlColor !important
@@ -64,9 +81,17 @@ div.mode
 #wresults, #dresults, #iresults
   ul
     li
+      cursor: pointer
+      padding-top: 5px
+      padding-left: 5px
       min-height: 66px
+      border-bottom: 1px solid #ccc
       img
+        float: left
+        margin-right: .5em
         border: 1px solid #ccc
+      img, p
+        margin-top: 0
       &.person
         background: #fea
       &.organization
@@ -75,6 +100,12 @@ div.mode
         background: #fea - #111
       &.selected
         background: #eef
+      &.conversation
+        background: #beaebe
+        &.read
+          background: #beaebe + #111
+        &.unread
+          background: #beaebe - #111
       &:hover
         background: #fee
 
@@ -83,17 +114,20 @@ div.mode
     li
       padding: 5px
       p
-        display: inline
+        display: inline-block
+        vertical-align: top
       img
         display: inline
-      &.conversation
-        background: #beaebe
 
 #wresults, #dresults
   ul
     li
       &.event
+        position: relative
+        // min-height: 96px
         background: #feb
+        .expand
+          // margin-top: 41px
         div.calendar
           //@include rounded(10px)
           float: left
@@ -163,17 +197,17 @@ div.mode
       border-bottom: 1px solid #ccc
     ul
       margin-bottom: 1em
-      li
-        cursor: pointer
-        padding-top: 5px
-        padding-left: 5px
-        min-height: 66px
-        border-bottom: 1px solid #ccc
-        img
-          float: left
-          margin-right: .5em
-        img, p
-          margin-top: 0
+      // li
+      //         cursor: pointer
+      //         padding-top: 5px
+      //         padding-left: 5px
+      //         min-height: 66px
+      //         border-bottom: 1px solid #ccc
+      //         img
+      //           float: left
+      //           margin-right: .5em
+      //         img, p
+      //           margin-top: 0
 
 #infobox
   textarea
@@ -190,10 +224,6 @@ div.mode
       td
         margin-left: 1em
         padding: .2em 0
-
-#left_comm ul li
-  &.selected
-    background: #eef !important
 
 #infobox
   // min-height: 120px
@@ -309,12 +339,13 @@ div.mode
     div
       font-size: .9em
       margin: 0
-      margin-left: 54px
+      margin-left: 62px
       line-height: 1.1em
       overflow-x: hidden
       text-align: left
       span.reply_name
-        margin-right: .5em        
+        margin-right: .5em
+        font-weight: bold
       &.new_reply
         overflow-x: visible
         margin-left: 0
@@ -351,15 +382,15 @@ div.mode
     li
       border: none
       background: none
-      min-height: auto
+      min-height: 50px
       padding: 5px
       padding-left: 3px
       //&:hover
         background: #CEEECE - #050505
     //background: #CEEECE
     img
-      width: 42px
-      height: 42px
+      width: 50px
+      height: 50px
       float: left
     
     
@@ -520,6 +551,12 @@ div.mode
           &:hover
             border:
               color: #333
+
+#i
+  .intro
+    text-align: center
+    height: 40px
+    min-height: 0px
 
 header
   form
