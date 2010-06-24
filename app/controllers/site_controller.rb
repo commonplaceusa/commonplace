@@ -1,10 +1,11 @@
 class SiteController < ApplicationController
-
+  layout "public"
+  
   def index 
     if current_user_session
       @post = Post.new
       @wire_posts = current_user.wire
-      render 'home'
+      render 'home', :layout => "application"
     else
       render 'index'
     end
