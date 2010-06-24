@@ -15,6 +15,8 @@ class Event < ActiveRecord::Base
 
   before_save :update_lat_and_lng, :if => "address_changed?"
 
+  named_scope :upcoming, :conditions => ["? < start_time", Time.now]
+
   def sponsors
     self.businesses + self.organizations
   end
