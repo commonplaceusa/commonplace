@@ -5,6 +5,9 @@ class Group < ActiveRecord::Base
 
   has_many :sponsorships, :as => :sponsor
   has_many :events, :through => :sponsorships, :as => :sponsor
+  
+  has_many :group_memberships
+  has_many :members, :through => :group_memberships, :class_name => "User"
 
   has_many :text_modules, :order => "position"
 

@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :conversation_memberships
   has_many :conversations, :through => :conversation_memberships
 
+  has_many :group_memberships
+  has_many :groups, :through => :group_memberships
+
   validates_presence_of :first_name, :last_name
 
   acts_as_taggable_on :skills
