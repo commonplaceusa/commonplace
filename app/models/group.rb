@@ -3,8 +3,8 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :name, :message => "nice message"
 
-  has_many :sponsorships
-  has_many :events, :through => :sponsorships
+  has_many :sponsorships, :as => :sponsor
+  has_many :events, :through => :sponsorships, :as => :sponsor
 
   has_many :text_modules, :order => "position"
 
