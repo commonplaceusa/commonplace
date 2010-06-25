@@ -22,13 +22,9 @@
     #w{:style => "display: none;" }
       .intro
         #submission
-          - semantic_form_for @post do |f|
-
-            - f.inputs do
-              = f.input :body, :label => 'A request, offer, announcement, or invite (ex. "Anyone have a ladder I can borrow?")', :input_html => { :rows => 4 }, :label_html => { :class => 'in-field', :style => "display: block;" }
-
-            - f.buttons do
-              = f.commit_button
+          - form_for @post do |f|
+            = f.text_area :body, "data-label" => 'A request, offer, announcement, or invite (ex. "Anyone have a ladder I can borrow?")'
+            = f.submit "Post"
       #wresults
         /#{render "wires/wire"}
     

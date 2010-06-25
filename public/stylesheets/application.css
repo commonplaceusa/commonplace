@@ -192,3 +192,11 @@ dl {
     line-height: 1.4em; }
   .editarea p:hover {
     outline: 1px solid #eeeeee; }
+
+.label {
+  color: #666666;
+  -webkit-transition: color 0.1s linear; }
+
+.fading {
+  color: white;
+  -webkit-transition: color 0.1s linear; }

@@ -17,8 +17,10 @@
 #submission form#new_post div {
   display: none !important; }
 
-#map {
-  display: none; }
+#submission textarea {
+  font-size: 1em;
+  padding: 6px;
+  display: block; }
 
 #main {
   position: relative;
@@ -29,7 +31,7 @@
   top: auto;
   z-index: auto;
   margin-top: 7px;
-  margin-left: 436px; }
+  margin-left: 412px; }
 
 div.mode {
   background: #ceeece !important;
@@ -45,10 +47,10 @@ div.mode {
   margin-bottom: 1em;
   padding-bottom: 1em; }
   #toggles div {
-    width: 140px;
+    width: 132px;
     height: 32px;
     float: left;
-    font-size: 1.8em;
+    font-size: 1.6em;
     text-align: center;
     padding-top: 0.55em; }
 
@@ -78,13 +80,16 @@ div.mode {
 
 .intro input {
   font-size: 1em;
-  width: 376px;
+  width: 350px;
   border: 1px solid #888888;
   padding: 5px; }
+  .intro input#post_submit {
+    width: 130px;
+    background: #ffeeee; }
 .intro textarea {
   font-size: 1.1em;
-  width: 376px;
-  height: 4em; }
+  width: 350px;
+  height: 38px; }
 
 #wresults ul li, #dresults ul li, #iresults ul li {
   cursor: pointer;
@@ -199,7 +204,6 @@ div.mode {
 #infobox table {
   padding: 0; }
   #infobox table tr th {
-    padding-right: 10em;
     margin-right: 1em;
     padding: 0.2em 0;
     width: 100px; }
@@ -455,19 +459,19 @@ div.mode {
   margin-bottom: 43px; }
 
 #comm_left {
-  width: 420px;
+  width: 396px;
   padding: 0px;
   left: 2px; }
 
 #comm_right {
-  width: 564px;
+  width: 588px;
   display: block;
   float: right;
   position: relative; }
 
 #map {
-  width: 562px;
-  border: 1px dashed #446699;
+  width: 586px;
+  border: 1px solid #125478;
   height: 300px !important;
   background: #4499ee; }
 

@@ -1,0 +1,210 @@
+#map {
+  width: 664px;
+  border: 3px solid #f9cb9c;
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  border-radius: 4px !important;
+  height: 300px !important;
+  background: #4499ee; }
+
+#main {
+  padding: 0.5em;
+  font-size: 1.15em;
+  line-height: 1.15em; }
+
+h1 {
+  font-size: 2em;
+  font-weight: bold; }
+
+h2 {
+  text-align: left;
+  margin-top: 0.4em;
+  padding-bottom: 0;
+  margin-bottom: 0.5em;
+  font-size: 2em; }
+
+#left {
+  margin-left: 1em;
+  float: left;
+  width: 250px; }
+  #left ul {
+    margin-top: 0;
+    padding-left: 1px; }
+    #left ul li {
+      list-style: none;
+      padding-top: 0.4em;
+      padding-bottom: 0.4em;
+      border-bottom: 1px solid #999999;
+      background: white;
+      padding-left: 4px;
+      margin-right: 1px; }
+      #left ul li:hover {
+        background: #fcd9b5;
+        cursor: pointer; }
+      #left ul li:last-child {
+        border-bottom: 0px; }
+    #left ul:last-child {
+      margin-bottom: 1px; }
+  #left .category {
+    background: #f9cb9c;
+    padding: 1px;
+    margin-bottom: 1em; }
+    #left .category p {
+      padding-left: 5px;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em; }
+
+.relation {
+  font-size: 1.2em;
+  text-align: center; }
+
+.memberpreview li {
+  height: 45px;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important; }
+  .memberpreview li img {
+    height: 45px;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    width: 42px;
+    height: 42px;
+    margin: 0;
+    padding: 0; }
+.memberpreview ul li:last-child {
+  height: auto;
+  padding-top: 0.4em !important;
+  padding-bottom: 0.4em !important; }
+.memberpreview li p {
+  padding: 0 !important;
+  padding-top: 4px !important;
+  margin: 0 !important; }
+
+/* Right. */
+#right {
+  margin-right: 1em;
+  width: 670px;
+  float: right; }
+  #right p {
+    text-align: left;
+    margin-top: 1em;
+    padding-bottom: 0.2em;
+    border-bottom: 1px dashed #555555;
+    font-size: 1.4em; }
+    #right p.top {
+      margin-top: 0em; }
+    #right p.desc {
+      color: #111111;
+      border-bottom: none;
+      font-size: 1em; }
+    #right p.detail {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 1em;
+      color: #555555;
+      border-bottom: none; }
+    #right p.instruction {
+      color: #111111;
+      border-bottom: none;
+      font-size: 1.1em;
+      line-height: 1.2em; }
+    #right p.age {
+      font-size: 0.85em;
+      color: #333333;
+      margin-top: 0.5em;
+      margin-bottom: 0;
+      border: 0; }
+  #right table {
+    padding-bottom: 1em; }
+    #right table th {
+      margin-right: 1em;
+      padding: 0.2em 0;
+      width: 140px; }
+    #right table td {
+      padding: 0.2em 0; }
+
+.name {
+  margin: 0.5em;
+  padding-bottom: 0.333em; }
+
+.contact {
+  font-size: 1.1em;
+  width: 380px;
+  height: 70px; }
+
+.text {
+  margin-left: 2em; }
+
+.block {
+  display: block !important; }
+
+h2.relationship {
+  margin-top: 0;
+  color: #999999; }
+
+.profilephoto {
+  padding-top: 1px;
+  padding-left: 1px;
+  height: 200px;
+  width: 246px; }
+
+.commonality {
+  font-size: 0.8em;
+  padding-top: 4px; }
+
+.list a {
+  color: #183152;
+  display: inline;
+  text-decoration: none;
+  border: 1px solid #375d81;
+  background: #abc8e2;
+  padding: 4px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  line-height: 2em; }
+
+a.same {
+  background-color: #8ebd4f;
+  border: 1px solid #424f2f;
+  color: #111111; }
+
+.list a, #left .category, #signupteaser {
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  border-radius: 4px !important; }
+
+.expansion {
+  margin-top: 1em;
+  display: none; }
+
+.rsvp span {
+  display: none; }
+
+table tr {
+  vertical-align: top; }
+  table tr td:first-child {
+    padding-right: 1em; }
+
+#signupteaser {
+  padding: 1em;
+  border: 2px solid #f9cb9c;
+  margin-bottom: 1em;
+  cursor: pointer; }
+  #signupteaser p {
+    font-size: 1em;
+    border: 0; }
+    #signupteaser p.emphasis {
+      font-weight: bold; }
+  #signupteaser:hover {
+    background: #fcd9b5; }
+  #signupteaser *:first-child {
+    margin-top: 0; }
+  #signupteaser *:last-child {
+    margin-bottom: 0; }
+
+/* Common Classes */
+.right {
+  float: right; }
+
+.clear {
+  clear: both;
+  padding-bottom: 3em; }

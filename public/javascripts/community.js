@@ -7,8 +7,6 @@ TODO:
 
 */
 
-alert();
-
 var debug = false;       // Used for short-circut evaluation of alert debug statements.
 var choice;
 var search;

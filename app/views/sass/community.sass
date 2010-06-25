@@ -21,8 +21,14 @@
   display: none !important
   // fixes mozilla bug
 
+#submission
+  textarea
+    font-size: 1em
+    padding: 6px
+    display: block
+
 #map
-  display: none
+  //display: none
 
 #main
   position: relative
@@ -34,7 +40,7 @@
   top: auto
   z-index: auto
   margin-top: 7px
-  margin-left: 436px
+  margin-left: 412px
 
 div.mode
   background: $controlColor !important
@@ -44,10 +50,10 @@ div.mode
   margin-bottom: 1em
   padding-bottom: 1em
   div
-    width: 140px
+    width: 132px
     height: 32px
     float: left
-    font-size: 1.8em
+    font-size: 1.6em
     text-align: center
     padding-top: .55em
 
@@ -70,13 +76,16 @@ div.mode
   input
     //margin-top: .5em
     font-size: 1em
-    width: 376px
+    width: 350px
     border: 1px solid #888
     padding: 5px
+    &#post_submit
+      width: 130px
+      background: #fee
   textarea
     font-size: 1.1em
-    width: 376px
-    height: 4em
+    width: 350px
+    height: 38px
 
 #wresults, #dresults, #iresults
   ul
@@ -217,7 +226,6 @@ div.mode
     padding: 0
     tr
       th
-        padding-right: 10em
         margin-right: 1em
         padding: .2em 0
         width: 100px
@@ -476,7 +484,7 @@ div.mode
   margin-bottom: $totalFooterHeight + px
 
 #comm_left
-  width: 420px
+  width: 396px
   padding: 0px
   left: 2px
 
@@ -488,7 +496,7 @@ div.mode
 
 #map
   width: ($rightColumnWidth - 2) + px
-  border: 1px dashed #469
+  border: $mapBorder
   height: 300px !important
   background: #49e
 

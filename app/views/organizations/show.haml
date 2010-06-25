@@ -1,2 +1,73 @@
+%h2.name #{@organization.name}
+#left
+  .category
+    = image_tag @organization.avatar.url, :class => "profilephoto"
+    %ul
+      %li.relation Join this group!
+  .category
+    %p Contact Information
+    %ul
+      %li Send a Message
+      %li Phone: #{@organization.phone}
+      %li Website
+  .category.memberpreview
+    - if @organization.members.count > 0
+      %p Members (???/#{@organization.members.count})
+      %ul
+        -@organization.members.take(3).each do |member|
+          %li
+            %span.right
+              = image_tag member.avatar.url
+            %p
+              #{member.name}
+              %br
+              %span{:style => "color: #555"} #{member.role}
+      
+        %li
+          View all members...
+#right
+  -unless current_user
+    #signupteaser
+      %p.emphasis Follow #{@organization.name} on the #{CONFIG["community_name"]} CommonPlace!
+      %p The #{@organization.name} are part of the #{CONFIG["community_name"]} CommonPlace, a way to connect to organizations and people in your neighborhood.
+  -if @organization.about
+    %p.desc.top #{@organization.about}
+  -if @organization.events.upcoming.count > 0
+    %p Upcoming Events
+    -@organization.events.each do |event|
+      .text
+        %a #{event.name}
+        %br
+        #{human_date(event.start_time)}
+        %br
+        %span.expand Learn More
+        •
+        %span.rsvp
+          RSVP
+          %span (attend)
+        .expansion
+          #{event.description}
+  
+  %p#location{"data-marker" => @organization.lat && "{\"info_html\": \"#{@organization.name}\", \"lat\": \"#{@organization.lat}\", \"lng\": \"#{@organization.lng}\"}"} Location
+  %table
+    %tr
+      %th Address
+      %td
+        %a{:href => "#"}
+          #{@organization.address}
+    %tr
+      %th Distance
+      %td 0.4 miles
+    %tr
+      %th Walking Time
+      %td 5 minutes
+  #map
+  / %p Meeting Times
+  / .text
+  /   We meet every Monday at 7PM in the basement of the community center. We have coffee and donuts.
+  / %p Affiliated Groups
+  / .list
+  /   %a{:href => "#"} Medford City Council
+  /   %a.same{:href => "#"} Clean Medford
 
-%h3= @organization.name
+.clear

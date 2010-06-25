@@ -2,9 +2,7 @@
   /= image_tag person.avatar.url, :width => 60, :height => 60
   /%img{:width => 60, :height => 60}
   - if event.start_time
-    %div.calendar
-      %div.month #{Date::ABBR_MONTHNAMES[event.start_time.mon]}
-      %div.date #{event.start_time.day}
+    = render("events/calendar", :event => event)
   %p #{event.name}  
   /%span.expand
   /  %p test
