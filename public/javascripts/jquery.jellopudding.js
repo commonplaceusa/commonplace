@@ -13,83 +13,53 @@
 
   */
 
-(function($){
-  $.fn.jellopudding = function(info) {
-    //alert("jellopudding");
-    var map = this;
 
-    var map_elem = map.get(0);
+(function($){
+  $.fn.jellopudding = function(source_selector) {
+    var $source = $(source_selector);
+    var $map = $(this);
+    var map_elem = $map.get(0);
+    var map_selector = $map.selector
 
     if (typeof map_elem == 'undefined') {
-      alert("invalid map selector: " + map.selector);
+      alert("invalid map selector: " + map_selector);
       return null;
     }
 
-    if (info) map.data('info',info);
+    var markers = $source.map(function(){
+      if (!$(this).attr('data-marker')) {alert($(this).html())}      
+      var o = jQuery.parseJSON( $(this).attr('data-marker') );
 
-    if ( !map.data('info') ) {
-      alert('no source of data');
-      return null;
-    }
-
-    var markers = jQuery.map( $(map.data('info')).children("[data-marker]"), function(elem){
-	    var o = jQuery.parseJSON( $(elem).attr('data-marker') );
-	    //alert();
-	    return new google.maps.Marker({
+      return new google.maps.Marker({
         title: o.info_html,
-      	position: new google.maps.LatLng(o.lat, o.lng)
-	    });
+        position: new google.maps.LatLng(o.lat,o.lng)
+      });
     });
 
-    if (map.data('mgr')) {
+    if ($map.data(source_selector)) {
 
-      map.data('mgr').clearMarkers();
-      map.data('mgr').addMarkers(markers,0);
-      map.data('mgr').refresh();
+      $map.data(source_selector).clearMarkers();
+      $map.data(source_selector).addMarkers(markers,0);
+      $map.data(source_selector).refresh();
 
     } else {
-      map.data('mgr', new MarkerManager(new google.maps.Map(map_elem, {
-	      zoom: 5,
-	      center: new google.maps.LatLng(41,-71),
-	      mapTypeId: google.maps.MapTypeId.ROADMAP
-	    })));
-
-      google.maps.event.addListener(map.data('mgr'), 'loaded', function() {
-	      map.data('mgr').addMarkers(markers,0);
-	      map.data('mgr').refresh();
+      if (!$map.data("map")) {
+        $map.data("map", new google.maps.Map(map_elem, {
+          zoom: 5,
+	  center: new google.maps.LatLng(41,-71),
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
+        }));
+      }
+      $map.data(source_selector, new MarkerManager($map.data("map")));
+      google.maps.event.addListener($map.data(source_selector), 'loaded', function() {
+	$map.data(source_selector).addMarkers(markers,0);
+	$map.data(source_selector).refresh();
       });
-
+      
     }
-
+    
     return this;
   };
   
-  function setup(){
-      
-  }
-  
-  $.fn.jpCount = function(info) {
-    //alert("jellopudding count");
-    
-    var map = this;
-
-    var map_elem = map.get(0);
-
-    if (typeof map_elem == 'undefined') {
-      return null;
-    }
-
-    if (info) map.data('info',info);
-
-    if ( !map.data('info') ) {
-      return null;
-    }
-    
-    if (map.data('mgr')) {
-      return map.data('mgr').getMarkerCount(19);
-    }
-    
-    return 0;
-  };
 
 })(jQuery);
