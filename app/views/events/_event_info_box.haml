@@ -22,10 +22,11 @@
 /   = render_tag_list(event.stuffs)
 / %p RSVP or Refer a Friend
 %div
-  %div.rsvp RSVP
+  = toggle_attendance_for(event,current_user)
   %div.refer Refer a Friend
   %form{:style => "display: none;"}
     %input
     %button Refer
-  %div.message{:style => "display: none;"}
-    %p You're attending this event!
+  %div.message
+    - if current_user.events.exists? event
+      %p You're attending this event!

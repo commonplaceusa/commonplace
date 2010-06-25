@@ -303,11 +303,11 @@ $(document).ready(function(){
                 // alert(status);
                 // alert(xhr);
                 
-                if ( $("#map").jpCount() > 0 ){
+    //            if ( $("#map").jpCount() > 0 ){
                     $("#map").show();
-                } else {
-                    $("#map").hide();
-                }
+      //          } else {
+          //          $("#map").hide();
+        //        }
                 
             },
             complete: function (xhr) {

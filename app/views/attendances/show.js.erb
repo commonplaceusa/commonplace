@@ -1,0 +1,2 @@
+$("#infobox div.message").html("<p>You're attending this event.</p>").show();
+$("#infobox a.rsvp").replaceWith("<%= escape_javascript( toggle_attendance_for(@event,current_user) ) %>");
