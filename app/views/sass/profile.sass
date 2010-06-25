@@ -49,7 +49,7 @@ h2
     background: #F9CB9C
     padding: 1px
     margin-bottom: 1em
-    p
+    > p
       padding-left: 5px
       margin-top: .5em
       margin-bottom: .5em
@@ -76,9 +76,12 @@ h2
     padding-top: .4em !important
     padding-bottom: .4em !important
   li p
-    padding: 0 !important
-    padding-top: 4px !important
-    margin: 0 !important
+    padding: 0
+    margin: 0
+    &.role
+      font-size: .9em
+      padding-top: 4px
+      color: #333
 
 /* Right.
 

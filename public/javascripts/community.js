@@ -264,7 +264,6 @@ $(document).ready(function(){
     } else if (window.location.hash.indexOf("#directory") != -1){        
         //url = window.location.hash.slice(1);    // Takes everything after first character. Therefore, it drops "#".
         $("#directoryButton").click();
-        //$("#map").jellopudding("#dresults");
     } else if (window.location.hash.indexOf("#inbox") != -1)
         $("#inboxButton").click();
     else {
@@ -313,7 +312,6 @@ $(document).ready(function(){
             complete: function (xhr) {
                 floatCheck();
                 heightCheck();
-                //$("#map").jellopudding("#dresults");
             },
             error: function (xhr, status, error) {
                 debug && alert(error);

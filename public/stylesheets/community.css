@@ -22,6 +22,10 @@
   padding: 6px;
   display: block; }
 
+span.name {
+  margin-right: 0.5em;
+  font-weight: bold; }
+
 #main {
   position: relative;
   overflow: visible !important; }
@@ -92,6 +96,7 @@ div.mode {
   height: 38px; }
 
 #wresults ul li, #dresults ul li, #iresults ul li {
+  position: relative;
   cursor: pointer;
   padding-top: 5px;
   padding-left: 5px;
@@ -123,36 +128,10 @@ div.mode {
 #iresults ul li {
   padding: 5px; }
   #iresults ul li p {
-    display: inline-block;
+    display: inline;
     vertical-align: top; }
   #iresults ul li img {
     display: inline; }
-
-#wresults ul li.event, #dresults ul li.event {
-  position: relative;
-  background: #ffeebb; }
-  #wresults ul li.event div.calendar, #dresults ul li.event div.calendar {
-    float: left;
-    text-align: center;
-    display: block;
-    width: 60px;
-    height: 57px;
-    border: 1px solid #888888;
-    margin-right: 0.5em;
-    margin-left: 0 !important;
-    background: green; }
-    #wresults ul li.event div.calendar div.month, #dresults ul li.event div.calendar div.month {
-      font-size: 1.1em;
-      padding: 4px;
-      border: 0;
-      height: 20px;
-      background: #ff6666; }
-    #wresults ul li.event div.calendar div.date, #dresults ul li.event div.calendar div.date {
-      font-size: 1.4em;
-      padding: 6px 4px 0px 4px;
-      border: 0;
-      background: #cccccc;
-      height: 22px; }
 
 #d .intro {
   -webkit-border-top-left-radius: 10px !important;
@@ -167,8 +146,8 @@ div.mode {
   #d .intro ul li {
     list-style: none;
     display: inline;
-    padding-left: 0.42em;
-    padding-right: 0.42em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
     padding-top: 0.25em;
     padding-bottom: 0.4em;
     border: 1px solid auto; }
@@ -336,9 +315,6 @@ div.mode {
     line-height: 1.1em;
     overflow-x: hidden;
     text-align: left; }
-    #infobox .replies div span.reply_name {
-      margin-right: 0.5em;
-      font-weight: bold; }
     #infobox .replies div.new_reply {
       overflow-x: visible;
       margin-left: 0;
@@ -395,23 +371,33 @@ div.mode {
     padding-bottom: 3px;
     border-bottom: 1px solid #cccccc;
     background: #ffffdf; }
-    #w #wresults ul li div {
+    #w #wresults ul li > div {
       position: relative;
+      height: 100%;
+      min-height: 50px;
       margin-left: 70px;
       display: block;
-      padding-bottom: 5px; }
-      #w #wresults ul li div div {
+      padding-bottom: 1em; }
+      #w #wresults ul li > div div {
         margin-left: 0; }
+    #w #wresults ul li > div.calendar {
+      min-height: 40px; }
     #w #wresults ul li span.reply_name {
       font-weight: bold;
       margin-right: 0.25em; }
     #w #wresults ul li p {
-      margin-top: 0; }
+      margin-top: 0;
+      padding-right: 0.5em;
+      line-height: 1.2em; }
       #w #wresults ul li p.age {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-top: 20px;
         font-size: 0.85em;
         color: #333333;
-        padding-top: 8px;
-        margin-bottom: 0; }
+        text-align: right;
+        margin-right: 1.4em; }
     #w #wresults ul li img {
       float: left;
       display: inline;
@@ -426,6 +412,8 @@ div.mode {
       -moz-border-radius-topright: 4px !important;
       border-top-left-radius: 4px !important;
       border-top-right-radius: 4px !important;
+      color: red;
+      vertical-align: bottom;
       float: right;
       margin-right: 1em;
       width: 90px;
@@ -474,6 +462,40 @@ div.mode {
   border: 1px solid #125478;
   height: 300px !important;
   background: #4499ee; }
+
+#wresults ul li.event, #dresults ul li.event {
+  position: relative;
+  background: #ffeebb; }
+  #wresults ul li.event div.calendar, #dresults ul li.event div.calendar {
+    min-height: none;
+    position: relative !important;
+    float: left;
+    text-align: center;
+    display: block;
+    width: 60px;
+    height: 42px !important;
+    height: 57px;
+    border: 1px solid #888888;
+    margin-right: 0.5em;
+    margin-left: 0 !important;
+    background: green; }
+    #wresults ul li.event div.calendar div.month, #dresults ul li.event div.calendar div.month {
+      position: relative !important;
+      min-height: none !important;
+      font-size: 1.1em;
+      padding: 4px;
+      padding-bottom: 0;
+      border: 0;
+      height: 22px !important;
+      background: #ff6666; }
+    #wresults ul li.event div.calendar div.date, #dresults ul li.event div.calendar div.date {
+      position: relative !important;
+      min-height: none !important;
+      font-size: 1.4em;
+      padding: 6px 4px 0px 4px;
+      border: 0;
+      background: #cccccc;
+      height: 26px; }
 
 #new_post {
   margin: auto; }

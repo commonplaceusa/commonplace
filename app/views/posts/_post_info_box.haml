@@ -15,7 +15,6 @@
         = render("replies/reply", :reply => reply)
   .new_reply
     - form_for [post, Reply.new] do |f|
-      = f.text_area :body, :id => "#{dom_id(post)}_reply_body"
-      = f.label :body, "Reply here!", :required => true, :class => 'in-field', :for => "#{dom_id(post)}_reply_body"
+      = f.text_area :body, "data-label" => "Reply here!"
       = f.submit "Reply"
   .clear

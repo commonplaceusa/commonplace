@@ -11,20 +11,26 @@
       %li Phone: #{@organization.phone}
       %li Website
   .category.memberpreview
-    - if @organization.members.count > 0
-      %p Members (???/#{@organization.members.count})
+    - if @count > 0
+      - if @brief
+        %p #{pluralize(@count, 'Member')} 
+      - else
+        %p Members (#{@count}/#{@organization.members.count})
       %ul
-        -@organization.members.take(3).each do |member|
+        -@organization.group_memberships.take(5).each do |membership|
           %li
-            %span.right
-              = image_tag member.avatar.url
-            %p
-              #{member.name}
-              %br
-              %span{:style => "color: #555"} #{member.role}
-      
-        %li
-          View all members...
+            %span.left{:style => "float: left;"}
+              = image_tag membership.member.avatar.url
+            %div{:style => "display: inline-block; padding-left: 4px;"}
+              %p{:style => "margin-top: 0;"}
+                #{membership.member.full_name}
+              %p.role
+                #{membership.role}
+        
+        / TODO: only display the view all members if it's necessary to view more members
+        - unless @brief
+          %li
+            View all members...
 #right
   -unless current_user
     #signupteaser

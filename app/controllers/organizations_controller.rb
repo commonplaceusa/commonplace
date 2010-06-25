@@ -4,6 +4,10 @@ class OrganizationsController < ApplicationController
   
   def show
     @organization = Organization.find(params[:id])
+    @count = @organization.members.count
+    if @count < 5
+      @brief = true
+    end
   end
   
   def edit

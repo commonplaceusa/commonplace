@@ -13,6 +13,14 @@
 
   */
 
+function centerAndZoom(markers){
+    var bounds = new google.maps.LatLngBounds();
+    for (var i=0; i<markers.length; i++) {
+        bounds.extend(markers[i].point);
+    }
+    map.setZoom(map.getBoundsZoomLevel(bounds));
+    map.setCenter(bounds.getCenter());
+}
 
 (function($){
   $.fn.jellopudding = function(source_selector) {
@@ -48,14 +56,16 @@
       if (!$map.data("map")) {
         $map.data("map", new google.maps.Map(map_elem, {
           zoom: 5,
-	  center: new google.maps.LatLng(41,-71),
-	  mapTypeId: google.maps.MapTypeId.ROADMAP
+	      center: new google.maps.LatLng(41,-71),
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
         }));
+        
       }
       $map.data(source_selector, new MarkerManager($map.data("map")));
       google.maps.event.addListener($map.data(source_selector), 'loaded', function() {
-	$map.data(source_selector).addMarkers(markers,0);
-	$map.data(source_selector).refresh();
+	    $map.data(source_selector).addMarkers(markers,0);
+	    $map.data(source_selector).refresh();
+	    
       });
       
     }
