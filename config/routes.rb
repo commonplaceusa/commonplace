@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :organizations
 
   map.resources :events do |event|
-    event.resources :attendances, :shallow => true
+    event.resource :attendance
   end
   
   map.resource :directory

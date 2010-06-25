@@ -22,10 +22,15 @@
 /   = render_tag_list(event.stuffs)
 / %p RSVP or Refer a Friend
 %div
-  = toggle_attendance_for(event,current_user)
+  - form_tag event_attendance_path(event), :method => :put, 'data-remote' => true do 
+    = label_tag "attending", "I'm Attending"
+    = check_box_tag "attending", "1", current_user.events.include?(event)
+    = submit_tag
+  
+
   %div.refer Refer a Friend
   %form{:style => "display: none;"}
-    %input
+    %inputn
     %button Refer
   %div.message
     - if current_user.events.exists? event
