@@ -20,14 +20,16 @@
     var $map = $(this);
     var map_elem = $map.get(0);
     var map_selector = $map.selector
-
+    
     if (typeof map_elem == 'undefined') {
       alert("invalid map selector: " + map_selector);
       return null;
     }
 
     var markers = $source.map(function(){
-      if (!$(this).attr('data-marker')) {alert($(this).html())}      
+      if (!$(this).attr('data-marker')) {
+          return null;
+      }      
       var o = jQuery.parseJSON( $(this).attr('data-marker') );
 
       return new google.maps.Marker({
