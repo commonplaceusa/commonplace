@@ -78,6 +78,7 @@ jQuery(function ($) {
     });
 
     $('a[data-remote],input[data-remote]').live('click', function (e) {
+      e.preventDefault();
         var el = $(this);
         if (el.attr('data-history')) {
             window.location.hash = el.attr('href');
@@ -85,7 +86,8 @@ jQuery(function ($) {
         else {
             $(this).callRemote();
         }
-        e.preventDefault();
+
+
     });
 
     $('a[data-method]:not([data-remote])').live('click', function (e){
@@ -94,7 +96,6 @@ jQuery(function ($) {
         method = link.attr('data-method'),
         form = $('<form method="post" action="'+href+'">'),
         metadata_input = '<input name="_method" value="'+method+'" type="hidden" />';
-
         if (csrf_param != null && csrf_token != null) {
             metadata_input += '<input name="'+csrf_param+'" value="'+csrf_token+'" type="hidden" />';
         }

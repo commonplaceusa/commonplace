@@ -260,52 +260,6 @@ div.mode {
     margin: 0 auto;
     font-size: 1.1em;
     margin-top: 0.75em; }
-    #infobox div div.rsvp, #infobox div div.refer {
-      width: 160px;
-      cursor: pointer;
-      display: inline-block;
-      border: 1px solid gray;
-      padding: 1em; }
-      #infobox div div.rsvp:hover, #infobox div div.refer:hover {
-        background: #ffeeee; }
-    #infobox div div.rsvp {
-      -webkit-border-top-left-radius: 10px !important;
-      -webkit-border-bottom-left-radius: 10px !important;
-      -moz-border-radius-topleft: 10px !important;
-      -moz-border-radius-bottomleft: 10px !important;
-      border-top-left-radius: 10px !important;
-      border-bottom-left-radius: 10px !important; }
-    #infobox div div.refer {
-      -webkit-border-top-right-radius: 10px !important;
-      -webkit-border-bottom-right-radius: 10px !important;
-      -moz-border-radius-topright: 10px !important;
-      -moz-border-radius-bottomright: 10px !important;
-      border-top-right-radius: 10px !important;
-      border-bottom-right-radius: 10px !important; }
-    #infobox div form, #infobox div div.message {
-      height: 40px;
-      margin: 0 auto;
-      margin-top: 0.3em;
-      border: 1px solid gray;
-      padding: 0em;
-      width: 402px;
-      line-height: 1.2em;
-      -webkit-border-radius: 10px !important;
-      -moz-border-radius: 10px !important;
-      border-radius: 10px !important; }
-    #infobox div div.message {
-      padding-top: 0;
-      padding-bottom: 6px; }
-      #infobox div div.message p {
-        font-size: 1.1em;
-        border: 0;
-        margin: 0;
-        margin-top: 12px;
-        margin-bottom: 14px;
-        text-align: center; }
-    #infobox div form {
-      padding-top: 6px;
-      padding-bottom: 0px; }
   #infobox span.wire, #infobox span.directory {
     display: none; }
   #infobox .replies div {
