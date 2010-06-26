@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100625205713) do
+ActiveRecord::Schema.define(:version => 20100626044834) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20100625205713) do
     t.decimal  "lng"
     t.text     "about"
     t.string   "phone"
+    t.string   "website"
   end
 
   create_table "messages", :force => true do |t|
