@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   has_many :events, :through => :attendances
 
   has_many :posts
-
+  
+  has_many :referrals, :foreign_key => "referree_id"
+  
   has_many :messages
   has_many :conversation_memberships
   has_many :conversations, :through => :conversation_memberships

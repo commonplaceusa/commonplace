@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :events do |event|
     event.resource :attendance
+    event.resources :referrals
   end
   
   map.resource :directory
