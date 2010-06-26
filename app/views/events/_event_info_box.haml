@@ -29,5 +29,5 @@
   
     
   - form_for [event, Referral.new], :html => {'data-remote' => true} do |f|
-    = f.text_field :referee_id
+    = f.text_field :referee_id, :class => 'autocomplete'
     = submit_tag
