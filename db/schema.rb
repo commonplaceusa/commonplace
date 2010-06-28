@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100624212716) do
+ActiveRecord::Schema.define(:version => 20100626045949) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20100624212716) do
     t.decimal  "lng"
     t.text     "about"
     t.string   "phone"
+    t.string   "website"
   end
 
   create_table "messages", :force => true do |t|
@@ -77,6 +78,14 @@ ActiveRecord::Schema.define(:version => 20100624212716) do
   create_table "posts", :force => true do |t|
     t.text     "body",       :null => false
     t.integer  "user_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "referrals", :force => true do |t|
+    t.integer  "event_id",    :null => false
+    t.integer  "referee_id",  :null => false
+    t.integer  "referrer_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -118,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20100624212716) do
     t.string   "title"
     t.text     "body"
     t.integer  "position"
-    t.integer  "organization_id", :null => false
+    t.integer  "group_id",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

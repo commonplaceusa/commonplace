@@ -27,11 +27,7 @@
     = check_box_tag "attending", "1", current_user.events.include?(event)
     = submit_tag
   
-
-  %div.refer Refer a Friend
-  %form{:style => "display: none;"}
-    %inputn
-    %button Refer
-  %div.message
-    - if current_user.events.exists? event
-      %p You're attending this event!
+    
+  - form_for [event, Referral.new], :html => {'data-remote' => true} do |f|
+    = f.text_field :referee_id, :class => 'autocomplete'
+    = submit_tag

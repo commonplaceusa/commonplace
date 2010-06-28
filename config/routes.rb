@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :events do |event|
     event.resource :attendance
+    event.resources :referrals
   end
   
   map.resource :directory
@@ -24,7 +25,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :inbox
 
-  map.resources :groups
+  map.resources :groups do |group|
+    group.resources :text_modules
+  end
 
   map.resources :conversations
   

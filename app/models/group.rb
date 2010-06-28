@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
   acts_as_taggable_on :interests
 
   validates_presence_of :name, :message => "nice message"
+  validates_format_of :website, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
 
   has_many :sponsorships, :as => :sponsor
   has_many :events, :through => :sponsorships, :as => :sponsor

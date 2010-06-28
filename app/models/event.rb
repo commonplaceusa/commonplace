@@ -13,6 +13,8 @@ class Event < ActiveRecord::Base
   has_many :organization, :through => :sponsorships, :source => :organization,
                         :conditions => "sponsorships.sponsor_type = 'Organization'"
 
+  has_many :referrals
+
   before_save :update_lat_and_lng, :if => "address_changed?"
 
   named_scope :upcoming, :conditions => ["? < start_time", Time.now]
