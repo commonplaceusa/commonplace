@@ -16,6 +16,9 @@
 .ui-state-hover {
   background: #ffeeee; }
 
+.done {
+  background: #ffeeee; }
+
 .newthread {
   width: 260px;
   margin: auto;

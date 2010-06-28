@@ -36,6 +36,7 @@
           %h2 Compose a Message
           - form_for Conversation.new do |f|
             %p To:
+            /= f.text_field :toe, :id => "to"
             = f.text_field :to, :id => "to"
             %p Subject:
             = f.text_field :subject

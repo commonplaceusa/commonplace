@@ -13,6 +13,7 @@ var search;
 var url = 'directory';
 var lasturl = '';
 var action;
+var completed = false;
 
 // Handles different browser implementations of checking height.
 function getCurrentPosition() {
@@ -25,31 +26,75 @@ function getCurrentPosition() {
     return 0;
 };
 
+function remove(e){
+    //alert( $(this).html() );
+}
+
 $(document).ready(function(){
     
     $("#i .newthread").live('click', function(){
         $("#infobox").html( $("#compose").html() );
-        //source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"]
         
+        $("#conversation_submit").click(function(){
+            if (completed == true){
+                $("input#to").val( $("input#to").data("id") );
+            } else {
+                alert("Specify a user.");
+                return false;
+            }
+        });
+        
+        var keykey;
+        
+        $("input#to").keydown(function(){
+            if (completed == true){
+                // alert( $("input#to").val() );
+                // alert( $("input#to").data("name") );
+                if ( $("input#to").val() != $("input#to").data("name") ){
+                    // alert("different");
+                    $(this).attr("data-disabled", true);
+                    $("input#to").removeClass("done").removeAttr("id").removeAttr("name");
+                    completed = false;
+                    // alert(completed);
+                } else {
+                    // alert("same");
+                }
+            }
+        });
         
         $("input#to").autocomplete({
-            source: function(req, add){  
-                //pass request to server  
-                $.getJSON("users/", req, function(data) {  
-                    
-                    alert(data);
-                    
+            source: function(req, add){
+                if( $("input#to").attr("data-disabled") == "true" ) {
+                    return false;
+                }
+                
+                $.getJSON("users/", req, function(data) {      
                     //create array for response objects  
-                    //var suggestions = [];
-
-                    // process response  
+                    var suggestions = [];
+                    //var corresponding = [];
                     $.each(data, function(i, val){  
-                        // suggestions.push(val.name);  
-                    });  
-
-                //pass array to callback  
-                //add(suggestions);  
+                        suggestions.push(val.label);    // val.label and val.value
+                        // corresponding.push(val.value);
+                    });
+                    keykey = data;
+                    add(suggestions);   // pass array to callback
                 });
+            },
+            select: function(e, ui) {
+                $("input#to").addClass("done");
+                $.each(keykey, function(i, val){
+                    if (ui.item.value == val.label){
+                        $("input#to").data("id", val.value).data("name", val.label);
+                    }
+                });
+                completed = true;
+                //alert(completed);
+                $(this).attr("data-disabled", true);
+            },
+            change: function() {  
+                //prevent 'to' field being updated and correct position  
+                //$("input#to").removeClass("done");
+                //$("input#to").val("");//.css("top", 2);  
             }
         });
         
@@ -175,7 +220,8 @@ $(document).ready(function(){
     
     // Solid space for a debug function:
     $("#community_name").click(function(event){
-        alert( $("#map").jpCount() );
+        alert( completed );
+        alert( "DISABLED: " + $("input#to").attr("data-disabled") );
     });
 
     // Moving between the wire, inbox, and directory.
