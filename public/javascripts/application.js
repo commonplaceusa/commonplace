@@ -1,2 +1,20 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+
+
+var app = $.sammy(function() { 
+
+  this.post("/posts", function() {
+    $.post("/posts.json", this.params, function(response) {
+      $("#new_post").replaceWith(response.newPost);
+      if (response.success) {
+        $('#wresults ul').prepend(response.createdPost);
+      } else {
+      
+      }
+    }, "json");
+  });
+});
+
+
+$(function(){
+  app.run();
+});

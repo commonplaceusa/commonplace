@@ -1,5 +1,13 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+
+  def with_format(format, &block)
+    old_format = @template_format
+    @template_format = format
+    result = block.call
+    @template_format = old_format
+    return result
+  end
   
   def render_tag_list(things)
     content_tag(:ul, {:class => 'list'}) do
