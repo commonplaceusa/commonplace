@@ -184,10 +184,10 @@ $(document).ready(function(){
     //         }
     //     });
     
-    $('textarea').autoResize({
-        animateDuration : 300,
-        extraSpace : 20
-    });
+    // $('textarea').autoResize({
+    //         animateDuration : 300,
+    //         extraSpace : 20
+    //     });
     
     $("#infobox div.rsvp").live('click', function(){
         

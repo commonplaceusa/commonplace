@@ -14,7 +14,7 @@
   %h3 or
   
   #register
-    %h2 Register
+
     - form_tag new_account_path, :method => :get, :id => 'code' do
       = label_tag :account_code, "Enter your registration code:"
       = text_field_tag 'account[code]'

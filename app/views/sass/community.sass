@@ -3,6 +3,75 @@
 // private.sass
 // Logged in, view of wire, directory, profiles, etc.
 
+#x
+  border-bottom: 1px dashed black
+  padding-bottom: 1em
+  #actions
+    padding: 1em 2em 0 2em
+    height: 160px
+    .left
+      textarea
+        width: 360px
+        height: 88px
+        px
+        border: 3px solid #ff9999
+        padding: .4em
+        @include rounded(10px)
+      button
+        width: 100px
+        margin-left: 45px
+        padding: .2em .4em
+      label
+        margin-right: 15px
+    .right
+      padding: 1.75em
+      float: right
+      input
+        width: 300px
+        border: 3px solid #ff9999
+        padding: .4em
+        @include rounded(10px)
+      border: 3px solid grey
+      @include rounded(15px)
+    button
+      border: 3px solid #ff9999
+      padding: .4em
+      @include rounded(10px)
+      font-size: 1.2em
+      background: #99ff99
+  #filters
+    ul
+      padding: 0 1em
+      margin: 1em auto 0
+      text-align: center
+      li
+        list-style: none
+        display: inline-block
+        margin-right: 10px
+        border: 2px solid #ff9999
+        background: #99ff99
+        padding: .5em 1em
+        width: 65px
+        height: 50px
+        font-size: 1.2em
+        @include rounded(4px)
+        &:last-child
+          margin-right: 0
+        &:hover
+          background: #99ff99 - #222
+
+#xs
+  min-height: 600px
+  .left, .right
+    width: 466px
+    min-height: 600px
+    // border: 1px solid red
+    padding: 1em
+  .right
+    float: right
+  .left
+    border-right: 1px solid black
+
 .ui-autocomplete
   position: absolute
   cursor: default
@@ -113,14 +182,16 @@ div.mode
     width: 350px
     height: 38px
 
-#wresults, #dresults, #iresults
+#wresults, #dresults, #iresults, #xs .left
   ul
     li
       position: relative
       cursor: pointer
       padding-top: 5px
       padding-left: 5px
-      min-height: 66px
+      min-height: 78px
+      border: 1px solid #ccc
+      margin-bottom: 1em
       border-bottom: 1px solid #ccc
       img
         float: left
@@ -128,6 +199,10 @@ div.mode
         border: 1px solid #ccc
       img, p
         margin-top: 0
+      &.post
+        background: #FFE4C6
+      &.event
+        background: #C5CBF5
       &.person
         background: #fea
       &.organization
@@ -474,13 +549,13 @@ div.mode
   height: 300px !important
   background: #49e
 
-#wresults, #dresults
+#wresults, #dresults, #xs .left
   ul
     li
       &.event
         position: relative
         // min-height: 96px
-        background: #feb
+        //background: #feb
         div.calendar
           //@include rounded(10px)
           min-height: none
@@ -488,9 +563,8 @@ div.mode
           float: left
           text-align: center
           display: block
-          width: 60px
-          height: 42px !important
-          height: 57px
+          width: 72px
+          height: 72px !important
           border: 1px solid #888
           margin-right: 0.5em
           margin-left: 0 !important
@@ -498,20 +572,20 @@ div.mode
           div.month
             position: relative !important
             min-height: none !important
-            font-size: 1.1em
-            padding: 4px
-            padding-bottom: 0
+            font-size: 1.4em
+            padding-top: 6px
+            padding-bottom: 0px
             border: 0
-            height: 22px !important
+            height: 28px !important
             background: #f66
           div.date
             position: relative !important
             min-height: none !important
-            font-size: 1.4em
+            font-size: 1.6em
             padding: 6px 4px 0px 4px
             border: 0
             background: #ccc
-            height: 26px
+            height: 32px
 
 #new_post
   //width: 100%

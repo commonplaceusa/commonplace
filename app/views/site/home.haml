@@ -1,63 +1,32 @@
-#comm_right
-  #infobox
-    %span.wire 
-      %h2 The Wire
-      %p.instruction Use the Wire to post to your neighborhood. This text needs work.
-    %span.inbox
-      %h2 The Inbox
-      %p.instruction Your Inbox is made of private messages between you and a few individuals. This text needs work.
-    %span.directory 
-      %h2 The Directory
-      %p.instruction Use the directory to find people, organizations, events, or businesses in your community. This text needs work.
-  #map
-
-#comm_left
-  #toggles
-    #wireButton{'data-data' => '#w'} Wire
-    #inboxButton{'data-data' => '#i'} Inbox
-    #directoryButton{'data-data' => '#d'} Directory
-    
-  %span(id="stuff")
-    
-    #w{:style => "display: none;" }
-      .intro
-        #submission
-          - form_for @post do |f|
-            = f.text_area :body, "data-label" => 'A request, offer, announcement, or invite (ex. "Anyone have a ladder I can borrow?")'
-            = f.submit "Post"
-      #wresults
-        /#{render "wires/wire"}
-    
-    #i
-      .intro.top
-        .newthread Compose a Message
-        
-        #compose{:style => "display: none;"}
-          %h2 Compose a Message
-          - form_for Conversation.new do |f|
-            %p To:
-            /= f.text_field :toe, :id => "to"
-            = f.text_field :to, :id => "to"
-            %p Subject:
-            = f.text_field :subject
-            %p body
-            = f.text_area :body
-            = f.submit "Send"
-
-      #iresults
-    
-    #d{:style => "display: none;" }
-      .intro
-        %input#that
-        /%label{:for => "that"} Search for something...
-        /{:type => "search"}
-        %ul#narrow.kinds
-          %li#all{:class => "selected", "data-choice" => "all"} All
-          %li#people{"data-choice" => "people"} People
-          %li#events{"data-choice" => "events"} Events
-          %li#organizations{"data-choice" => "organizations"} Organizations
-          %li#businesses{"data-choice" => "businesses"} Businesses
-      
-      #dresults
-      
-    .clear
+#x
+  #actions
+    .right
+      %input{"data-label" => "Search for anything..."}
+      %button Search
+      %br
+      %p Texty.
+    .left
+      %textarea{"data-label" => "Write a message to your neighbors. It can be about something you need or an announcement."}
+      %br
+      %input{:type => "radio"}
+      %label Ask
+      %input{:type => "radio"}
+      %label Tell
+      %input{:type => "radio"}
+      %label Other
+      %button Post
+  #filters
+    %ul
+      %li{:style => "background: #BFE2F3;"} All
+      %li{:style => "background: #FFE4C6;"} Peo
+      %li{:style => "background: #C5CBF5;"} Eve
+      %li{:style => "background: #FFEFC6;"} Org
+      %li{:style => "background: #BEF6D6;"} Not
+      %li{:style => "background: #FFEFC5;"} Pla
+      %li{:style => "background: #FFD1C5;"} Not
+      %li{:style => "background: #D5C3F5;"} Pla
+#xs
+  .right
+    derp right
+  .left
+    #{render "wires/wire"}
