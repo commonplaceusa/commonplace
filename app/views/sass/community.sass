@@ -3,6 +3,25 @@
 // private.sass
 // Logged in, view of wire, directory, profiles, etc.
 
+.ui-autocomplete
+  position: absolute
+  cursor: default
+  z-index: 2000
+  background: white
+.ui-autocomplete-loading
+  background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat
+
+.ui-menu-item
+  border: 1px solid black
+  padding: 4px
+  a
+    width: 100%
+    
+.ui-state-hover
+  background: #ffeeee
+  
+#ui-active-menuitem
+
 .newthread
   width: 260px
   margin: auto
@@ -218,6 +237,9 @@ div.mode
     padding-bottom: 0
     margin-bottom: .5em
     font-size: 2em
+    a
+      text-decoration: none
+      color: $primaryTextColor
   img
     float: right
     width: 100px
@@ -243,7 +265,7 @@ div.mode
     border-bottom: 1px dashed #555
     font-size: 1.4em
     &.desc
-      color: #111
+      color: $primaryTextColor
       border-bottom: none
       font-size: 1em
     &.detail
@@ -253,7 +275,7 @@ div.mode
       color: #555
       border-bottom: none
     &.instruction
-      color: #111
+      color: $primaryTextColor
       border-bottom: none
       font-size: 1.1em
       line-height: 1.2em
@@ -406,7 +428,7 @@ div.mode
           p
             padding: .5em
             margin: 0
-        background: #ffeece + #111111
+        background: #ffeece + $primaryTextColor
         &:hover
           background: #ffeece
 

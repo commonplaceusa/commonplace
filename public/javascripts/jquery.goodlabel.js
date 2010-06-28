@@ -19,7 +19,7 @@
             $(this).focus(function(){
                 if ($(this).val() == $(this).attr('data-label') && $(this).data("userinput") == false) {                
                     $(this).addClass("fading");
-                    $(this).delay(100).queue(function(){ 
+                    $(this).delay(200).queue(function(){ 
                         $(this).val("");
                         $(this).removeClass("fading").removeClass("label");
                         $(this).dequeue();
@@ -30,7 +30,7 @@
             $(this).blur(function() {
                 if ( $(this).val() == "") {
                     $(this).addClass("fading").removeClass("label");
-                    $(this).delay(100).queue(function(){
+                    $(this).delay(200).queue(function(){
                         $(this).val( $(this).attr('data-label') );
                         $(this).removeClass("fading").addClass("label");
                         $(this).data("userinput", false);

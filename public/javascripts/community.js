@@ -29,10 +29,33 @@ $(document).ready(function(){
     
     $("#i .newthread").live('click', function(){
         $("#infobox").html( $("#compose").html() );
+        //source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"]
+        
+        
+        $("input#to").autocomplete({
+            source: function(req, add){  
+                //pass request to server  
+                $.getJSON("users/", req, function(data) {  
+                    
+                    alert(data);
+                    
+                    //create array for response objects  
+                    //var suggestions = [];
+
+                    // process response  
+                    $.each(data, function(i, val){  
+                        // suggestions.push(val.name);  
+                    });  
+
+                //pass array to callback  
+                //add(suggestions);  
+                });
+            }
+        });
+        
+        
         window.location.hash = "inbox~compose";
     });
-    
-    
     
     
     
@@ -40,7 +63,7 @@ $(document).ready(function(){
     // PROFILE EDITING:::
     
     $(".editarea p").each(function(){
-        //alert();
+        alert();
         $(this).attr('contenteditable', 'true');
     })
     
@@ -264,9 +287,9 @@ $(document).ready(function(){
     } else if (window.location.hash.indexOf("#directory") != -1){        
         //url = window.location.hash.slice(1);    // Takes everything after first character. Therefore, it drops "#".
         $("#directoryButton").click();
-    } else if (window.location.hash.indexOf("#inbox") != -1)
+    } else if (window.location.hash.indexOf("#inbox") != -1){
         $("#inboxButton").click();
-    else {
+    } else {
         window.location.hash = "#wire";
         $("#wireButton").click();
     }
@@ -274,6 +297,7 @@ $(document).ready(function(){
     $(window).bind('hashchange', function () {
         var url = window.location.hash.slice(1);
         
+        // All of this is going to be rewriten. :(
         var pieces = url.split('~');
         if (pieces.length > 1){
             url = pieces[0];

@@ -1,5 +1,8 @@
-= image_tag organization.avatar.url
-%h2 #{organization.name}
+/ peel back
+
+= link_to image_tag organization.avatar.url, :controller => "Organizations", :action => "show", :id => "#{organization.id}"
+%h2 
+  = link_to "#{organization.name}", :controller => "Organizations", :action => "show", :id => "#{organization.id}"
 -if organization.about
   %p.desc #{organization.about}
 -if organization.phone or organization.address
@@ -13,7 +16,8 @@
       %tr
         %th Address
         %td #{organization.address}
+
 / output some members
-%p Send a Message???
-%textarea
-%button Send
+/ %p Send a Message???
+/ %textarea
+/ %button Send

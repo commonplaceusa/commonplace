@@ -1,3 +1,21 @@
+.ui-autocomplete {
+  position: absolute;
+  cursor: default;
+  z-index: 2000;
+  background: white; }
+
+.ui-autocomplete-loading {
+  background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat; }
+
+.ui-menu-item {
+  border: 1px solid black;
+  padding: 4px; }
+  .ui-menu-item a {
+    width: 100%; }
+
+.ui-state-hover {
+  background: #ffeeee; }
+
 .newthread {
   width: 260px;
   margin: auto;
@@ -200,6 +218,9 @@ div.mode {
     padding-bottom: 0;
     margin-bottom: 0.5em;
     font-size: 2em; }
+    #infobox h2 a {
+      text-decoration: none;
+      color: #111111; }
   #infobox img {
     float: right;
     width: 100px;
