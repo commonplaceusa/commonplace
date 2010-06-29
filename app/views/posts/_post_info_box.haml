@@ -14,7 +14,5 @@
       - post.replies.each do |reply|
         = render("replies/reply", :reply => reply)
   .new_reply
-    - form_for [post, Reply.new] do |f|
-      = f.text_area :body, "data-label" => "Reply here!"
-      = f.submit "Reply"
+    = render 'replies/form', :post => post, :reply => Reply.new
   .clear

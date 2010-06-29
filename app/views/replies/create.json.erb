@@ -1,0 +1,5 @@
+{
+  "success": true,
+  "newReply":, <%= with_format(:html) { render 'form', :post => @post, :reply => Reply.new}.to_json %>,
+  "createdReply": <%= with_format(:html) { render @reply }.to_json %>
+}
