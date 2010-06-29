@@ -16,7 +16,8 @@ body {
   background: #ccffff;
   margin: auto;
   line-height: 110%;
-  height: 100%; }
+  height: 100%;
+  text-rendering: optimizeLegibility; }
   body #top {
     margin-bottom: -300px;
     top: 0;
@@ -30,18 +31,19 @@ body {
     min-height: 100%; }
   body #main {
     overflow: auto;
-    background-color: #fefefe;
     width: 1000px;
+    border: 1px solid black;
+    background: #fefefe;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0em;
     text-align: left;
-    border: solid 1px black;
     vertical-align: middle;
     align: center;
     min-height: 600px;
-    padding: 0.5em;
+    padding: 0;
     padding-bottom: 43;
+    display: block;
     -webkit-border-radius: 4px !important;
     -moz-border-radius: 4px !important;
     border-radius: 4px !important; }
@@ -201,3 +203,6 @@ dl {
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear; }
+
+.bottomshiv {
+  height: 28px; }

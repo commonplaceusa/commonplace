@@ -1,16 +1,28 @@
 %li.post{"data-info" => render("posts/post_info_box", :post => post)}
   = image_tag post.user.avatar.url, :width => 72, :height => 72
   %div
-    %p 
-      %span.name #{post.user.full_name}
-      #{post.body}
-    /%span.expand
-    /  %p #{pluralize(post.replies.size, 'reply')}    
-    %p.age 
-      #{time_ago_in_words(post.created_at, include_seconds = true)} ago,
-      - if post.replies.size > 0
-        #{pluralize(post.replies.size, 'reply')}
-      - else
-        no replies yet
+    %div.c
+      %p 
+        %span.name #{post.user.full_name}
+        #{post.body}
+      / %span.expand
+      /   %p #{pluralize(post.replies.size, 'reply')}    
+      / #{time_ago_in_words(post.created_at, include_seconds = true)} ago,
+      %p.expand
+        - if post.replies.size > 0
+          #{pluralize(post.replies.size, 'reply')}
+        - else
+          no replies yet
+    .replies{:style => "display: none;"}
+      - if post.replies.size > 0 # if there are replies
+        %ol
+          - post.replies.each do |reply|
+            = render("replies/reply", :reply => reply)
+      .new_reply
+        - form_for [post, Reply.new] do |f|
+          = f.text_area :body, "data-label" => "Reply here!"
+          = f.submit "Reply"
+      /.clear
+    
     /.info_box_content{:style => "display: none"}
     /=render("posts/post_info_box", :post => post)

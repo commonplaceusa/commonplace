@@ -10,9 +10,9 @@ TODO:
 var debug = false;       // Used for short-circut evaluation of alert debug statements.
 var choice;
 var search;
-var url = 'directory';
-var lasturl = '';
-var action;
+var url = 'directory';  // scrap
+var lasturl = '';       // scrap
+var action;             // scrap
 var completed = false;
 
 // Handles different browser implementations of checking height.
@@ -26,11 +26,19 @@ function getCurrentPosition() {
     return 0;
 };
 
-function remove(e){
-    //alert( $(this).html() );
-}
-
 $(document).ready(function(){
+    
+    $("#xs .left .post").click(function(e){
+        var target = e.target,      // e.target grabs the node that triggered the event.
+            $target = $(target);    // wraps the node in a jQuery object
+        
+        if ( $target.closest(".new_reply").length > 0 ){    // stops clicking on new_reply from closing the div.
+            return false;
+        }
+
+        //$(this).css("position", "relative");
+        $(this).find(".replies").slideToggle();
+    });
     
     $("#i .newthread").live('click', function(){
         $("#infobox").html( $("#compose").html() );
@@ -71,10 +79,8 @@ $(document).ready(function(){
                 $.getJSON("users/", req, function(data) {      
                     //create array for response objects  
                     var suggestions = [];
-                    //var corresponding = [];
                     $.each(data, function(i, val){  
                         suggestions.push(val.label);    // val.label and val.value
-                        // corresponding.push(val.value);
                     });
                     keykey = data;
                     add(suggestions);   // pass array to callback
@@ -90,16 +96,10 @@ $(document).ready(function(){
                 completed = true;
                 //alert(completed);
                 $(this).attr("data-disabled", true);
-            },
-            change: function() {  
-                //prevent 'to' field being updated and correct position  
-                //$("input#to").removeClass("done");
-                //$("input#to").val("");//.css("top", 2);  
             }
         });
         
-        
-        window.location.hash = "inbox~compose";
+        window.location.hash = "inbox~compose";     // scrap
     });
     
     
@@ -184,12 +184,7 @@ $(document).ready(function(){
     //         }
     //     });
     
-    // $('textarea').autoResize({
-    //         animateDuration : 300,
-    //         extraSpace : 20
-    //     });
-    
-    $("#infobox div.rsvp").live('click', function(){
+    $("#infobox div.rsvp").live('click', function(){        // max is rewriting this. derp.
         
         if ( $(this).siblings("div.message").is(":visible") ){
             $(this).siblings("form, div.message").hide();
@@ -200,7 +195,7 @@ $(document).ready(function(){
             // if the response is one way, show something - if it's another way, show something else
             // $(this).siblings("div.message").html("derp");
             
-            $(this).siblings("div.message").show();
+            $(this).siblings("div.message").show();         // max is rewriting this. derp.
         }
     });
     
@@ -267,7 +262,7 @@ $(document).ready(function(){
     $("#d .intro input").keyup(keyCheck);
     
     $("footer").click(function(){
-       alert("Left Height: " + $("#comm_left").height() + '\n' + "Right Height: " + $("#comm_right").height()); 
+        // alert("Left Height: " + $("#comm_left").height() + '\n' + "Right Height: " + $("#comm_right").height()); 
     });
     
     // TODO: Idea. Overflow-y none the main div, then have jQuery animate the resizing of the big 'ol box.
@@ -316,16 +311,6 @@ $(document).ready(function(){
         window.location.hash = url;
     }
     
-    $("label.in-field").inFieldLabels({fadeOpacity:0});
-        
-    //$("label.in-field").inFieldLabels({fadeOpacity:0});
-    //$(".replies").hide();
-    
-    $("a.show_replies").live('click', function(){
-        $(this).siblings(".replies").slideToggle(300);
-        return false;
-    });
-    
     // Initial page setup:
     // This WILL be generalized into a "updatedHash" function.
     if (window.location.hash == "#wire"){
@@ -368,16 +353,7 @@ $(document).ready(function(){
             },
             success: function (data, status, xhr) {
                 debug && alert("success");
-                // alert(data);
-                // alert(status);
-                // alert(xhr);
-                
-    //            if ( $("#map").jpCount() > 0 ){
-                    $("#map").show();
-      //          } else {
-          //          $("#map").hide();
-        //        }
-                
+                $("#map").show();
             },
             complete: function (xhr) {
                 floatCheck();

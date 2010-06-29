@@ -14,8 +14,9 @@
     = javascript_include_tag 'jquery.rails.js'
     = javascript_include_tag 'jquery.jellopudding.js'
     = javascript_include_tag 'jquery.goodlabel.js'
+    = javascript_include_tag 'jquery.curvycorners.min.js'
     = javascript_include_tag 'community'
-    = javascript_include_tag 'global.js'
+    = javascript_include_tag 'global'
     = stylesheet_link_tag 'reset'
     = stylesheet_link_tag 'application'
     = stylesheet_link_tag 'formtastic', 'formtastic_changes'
@@ -25,6 +26,7 @@
     = stylesheet_link_tag 'community'
     /[if IE]
       = stylesheet_link_tag 'ie'
+      = javascript_include_tag 'ie'
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
 
     %title

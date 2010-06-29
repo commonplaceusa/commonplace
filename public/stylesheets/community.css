@@ -1,5 +1,8 @@
 #x {
-  border-bottom: 1px dashed black;
+  padding: 0.25em; }
+
+#x {
+  border-bottom: 1px solid #cccccc;
   padding-bottom: 1em; }
   #x #actions {
     padding: 1em 2em 0 2em;
@@ -71,7 +74,65 @@
   #xs .right {
     float: right; }
   #xs .left {
-    border-right: 1px solid black; }
+    border-right: 1px solid #cccccc; }
+    #xs .left li .age {
+      text-align: right;
+      padding-right: 0.5em;
+      width: 100%;
+      top: 0.5em;
+      font-size: 0.85em;
+      color: #333333;
+      margin-top: 0.5em;
+      margin-bottom: 0;
+      border: 0; }
+    #xs .left li .c {
+      position: relative;
+      min-height: 80px;
+      margin: 0;
+      padding-bottom: 0; }
+      #xs .left li .c > div > p {
+        min-height: 70px; }
+    #xs .left li .expand {
+      min-height: 0px;
+      border-width: 1px 1px 0 1px;
+      border-style: solid;
+      border-color: #cccccc;
+      position: absolute;
+      bottom: -16px;
+      right: 0;
+      -webkit-border-top-left-radius: 4px !important;
+      -webkit-border-top-right-radius: 4px !important;
+      -moz-border-radius-topleft: 4px !important;
+      -moz-border-radius-topright: 4px !important;
+      border-top-left-radius: 4px !important;
+      border-top-right-radius: 4px !important;
+      vertical-align: bottom;
+      float: right;
+      margin-right: 1em;
+      width: 140px;
+      text-align: center;
+      background: #ceeece;
+      padding: 0.5em 0 !important; }
+      #xs .left li .expand p {
+        padding: 0.333em 0 !important;
+        margin: 0 !important; }
+    #xs .left li .replies {
+      border-top: 1px solid #cccccc;
+      margin-left: -5px; }
+      #xs .left li .replies li.reply {
+        min-height: 40px;
+        overflow-x: hidden;
+        height: auto;
+        border: none;
+        margin-right: 10px;
+        margin-bottom: 0.5em; }
+      #xs .left li .replies .new_reply {
+        margin-top: 7px;
+        margin-bottom: 0.5em;
+        padding-left: 3px; }
+        #xs .left li .replies .new_reply textarea {
+          width: 442px;
+          height: 56px; }
 
 .ui-autocomplete {
   position: absolute;
@@ -345,12 +406,6 @@ div.mode {
       border-bottom: none;
       font-size: 1.1em;
       line-height: 1.2em; }
-    #infobox p.age {
-      font-size: 0.85em;
-      color: #333333;
-      margin-top: 0.5em;
-      margin-bottom: 0;
-      border: 0; }
   #infobox textarea {
     font-size: 1.2em;
     width: 100%;
@@ -464,23 +519,6 @@ div.mode {
       margin-right: 0.5em;
       margin-top: 0;
       width: 60px; }
-    #w #wresults ul li .expand {
-      -webkit-border-top-left-radius: 4px !important;
-      -webkit-border-top-right-radius: 4px !important;
-      -moz-border-radius-topleft: 4px !important;
-      -moz-border-radius-topright: 4px !important;
-      border-top-left-radius: 4px !important;
-      border-top-right-radius: 4px !important;
-      color: red;
-      vertical-align: bottom;
-      float: right;
-      margin-right: 1em;
-      width: 90px;
-      text-align: center;
-      background: #ceeece; }
-      #w #wresults ul li .expand p {
-        padding: 0.5em;
-        margin: 0; }
     #w #wresults ul li:hover {
       background: #ffeece; }
 
@@ -540,19 +578,21 @@ div.mode {
       position: relative !important;
       min-height: none !important;
       font-size: 1.4em;
-      padding-top: 6px;
+      padding-top: 8px;
       padding-bottom: 0px;
       border: 0;
-      height: 28px !important;
-      background: #ff6666; }
+      height: 26px !important;
+      background: #a93f40;
+      color: #f9f9f9; }
     #wresults ul li.event div.calendar div.date, #dresults ul li.event div.calendar div.date, #xs .left ul li.event div.calendar div.date {
       position: relative !important;
       min-height: none !important;
-      font-size: 1.6em;
-      padding: 6px 4px 0px 4px;
+      font-size: 1.8em;
+      padding: 12px 4px 0px 4px;
       border: 0;
-      background: #cccccc;
-      height: 32px; }
+      background: #f9f9f9;
+      color: #333333;
+      height: 26px; }
 
 #new_post {
   margin: auto; }

@@ -25,6 +25,7 @@ body
   margin: auto
   line-height: 110%
   height: 100%
+  text-rendering: optimizeLegibility
 
   // Clouds and sun.
   #top
@@ -42,18 +43,19 @@ body
 
   #main
     overflow: auto
-    background-color: #fefefe
     width: 1000px
+    border: 1px solid #000
+    background: #fefefe
     margin-left: auto
     margin-right: auto
     margin-bottom: 0em
     text-align: left
-    border: solid 1px black
     vertical-align: middle
     align: center
     min-height: $topAndBottomStripHeight + px
-    padding: .5em
+    padding: 0
     padding-bottom: $totalFooterHeight
+    display: block
     @include rounded(4px)
 
   // City and people.
@@ -225,3 +227,6 @@ dl
 .fading
   color: #fff
   -webkit-transition: color .2s linear
+
+.bottomshiv
+  height: 28px

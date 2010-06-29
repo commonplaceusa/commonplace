@@ -4,7 +4,10 @@
 // Logged in, view of wire, directory, profiles, etc.
 
 #x
-  border-bottom: 1px dashed black
+  padding: .25em
+
+#x
+  border-bottom: 1px solid #ccc
   padding-bottom: 1em
   #actions
     padding: 1em 2em 0 2em
@@ -70,7 +73,64 @@
   .right
     float: right
   .left
-    border-right: 1px solid black
+    border-right: 1px solid #ccc
+    li
+      .age
+        text-align: right
+        padding-right: .5em
+        width: 100%
+        top: .5em
+        font-size: .85em
+        color: #333
+        margin-top: .5em
+        margin-bottom: 0
+        border: 0
+      .c
+        position: relative
+        min-height: 80px
+        margin: 0
+        padding-bottom: 0
+        > div > p
+          min-height: 70px
+      .expand
+        min-height: 0px
+        border-width: 1px 1px 0 1px
+        border-style: solid
+        border-color: #ccc
+        position: absolute
+        bottom: -16px
+        right: 0
+        @include rounded-top(4px)
+        //margin-top: 20px
+        vertical-align: bottom
+        float: right
+        margin-right: 1em
+        width: 140px
+        text-align: center
+        background: #ceeece
+        padding: .5em 0 !important
+        p
+          padding: .333em 0 !important
+          margin: 0 !important
+      .replies
+        border-top: 1px solid #ccc
+        margin-left: -5px
+        li.reply
+          min-height: 40px
+          overflow-x: hidden
+          div
+            //height: 200px
+          height: auto
+          border: none
+          margin-right: 10px
+          margin-bottom: .5em
+        .new_reply
+          margin-top: 7px
+          margin-bottom: .5em
+          padding-left: 3px
+          textarea
+            width: 442px
+            height: 56px
 
 .ui-autocomplete
   position: absolute
@@ -357,12 +417,6 @@ div.mode
       border-bottom: none
       font-size: 1.1em
       line-height: 1.2em
-    &.age
-      font-size: .85em
-      color: #333
-      margin-top: .5em
-      margin-bottom: 0
-      border: 0
   textarea
     font-size: 1.2em
     width: 100%
@@ -493,19 +547,6 @@ div.mode
           margin-right: .5em
           margin-top: 0
           width: 60px
-        .expand
-          @include rounded-top(4px)
-          color: red
-          //margin-top: 20px
-          vertical-align: bottom
-          float: right
-          margin-right: 1em
-          width: 90px
-          text-align: center
-          background: #ceeece
-          p
-            padding: .5em
-            margin: 0
         background: #ffeece + $primaryTextColor
         &:hover
           background: #ffeece
@@ -573,19 +614,21 @@ div.mode
             position: relative !important
             min-height: none !important
             font-size: 1.4em
-            padding-top: 6px
+            padding-top: 8px
             padding-bottom: 0px
             border: 0
-            height: 28px !important
-            background: #f66
+            height: 26px !important
+            background: #A93F40
+            color: #f9f9f9
           div.date
             position: relative !important
             min-height: none !important
-            font-size: 1.6em
-            padding: 6px 4px 0px 4px
+            font-size: 1.8em
+            padding: 12px 4px 0px 4px
             border: 0
-            background: #ccc
-            height: 32px
+            background: #f9f9f9
+            color: #333
+            height: 26px
 
 #new_post
   //width: 100%
