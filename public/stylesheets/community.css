@@ -15,7 +15,7 @@
       -webkit-border-radius: 10px !important;
       -moz-border-radius: 10px !important;
       border-radius: 10px !important; }
-    #x #actions .left button {
+    #x #actions .left input[type='submit'] {
       width: 100px;
       margin-left: 45px;
       padding: 0.2em 0.4em; }

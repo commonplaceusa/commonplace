@@ -6,15 +6,7 @@
       %br
       %p Texty.
     .left
-      %textarea{"data-label" => "Write a message to your neighbors. It can be about something you need or an announcement."}
-      %br
-      %input{:type => "radio"}
-      %label Ask
-      %input{:type => "radio"}
-      %label Tell
-      %input{:type => "radio"}
-      %label Other
-      %button Post
+      = render 'posts/form', :post => Post.new
   #filters
     %ul
       %li{:style => "background: #BFE2F3;"} All

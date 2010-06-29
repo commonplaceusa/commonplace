@@ -6,7 +6,7 @@ var app = $.sammy(function() {
     $.post(this.path, this.params, function(response) {
       $("#new_post").replaceWith(response.newPost);
       if (response.success) {
-        $('#wresults ul').prepend(response.createdPost);
+        $('#xs ul').prepend(response.createdPost);
       } else {
         alert("reply validation failed");
       }
