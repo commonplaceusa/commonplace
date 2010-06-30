@@ -29,4 +29,20 @@ var app = $.sammy(function() {
 
 $(function(){
   app.run();
+
+  $("input, textarea").goodlabel();
+      
+  $("#xs .left .post").click(function(e){
+    var target = e.target,      // e.target grabs the node that triggered the event.
+    $target = $(target);    // wraps the node in a jQuery object
+    
+    // stops clicking on new_reply from closing the div.
+    if ( $target.closest(".new_reply").length > 0 ){ 
+      return false;
+    }
+    
+    //$(this).css("position", "relative");
+    $(this).find(".replies").slideToggle();
+  });
+
 });
