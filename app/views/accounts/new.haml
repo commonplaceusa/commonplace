@@ -9,22 +9,34 @@
   - rescue 
     %p.fail Sorry, we didn't recognize your community access code. Try fixing it below?
   
-  - semantic_form_for @account, :url => account_path do |f|
+  - form_for @account, :url => account_path do |f|
     %h2 Please enter your information:
-  
-    - f.inputs do
-      = f.input :first_name
-      = f.input :last_name
-      = f.input :email
-      = f.input :password
-      = f.input :password_confirmation    
-      = f.input :address, :label => "Street address", :hint => "This is so that we can confirm you live in this community."
-
-      - if @account.code.blank? || @account.errors.on(:code)
-        = f.input :code, :label => "Registration code:"
-      - else
-        = f.input :code, :as => :hidden
-
-      = f.input :privacy_policy, :as => :boolean, :label => "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"
+    = f.label :first_name, "First Name"
+    = f.text_field :first_name
     
-      = f.commit_button 'Register!'
+    = f.label :last_name, "Last Name"
+    = f.text_field :last_name
+    
+    = f.label :email, "Email"
+    = f.text_field :email
+    
+    = f.label :password, "New password"
+    = f.text_field :password
+
+    = f.label :password_confirmation, "Confirm password"
+    = f.text_field :password_confirmation
+  
+    = f.label :address, "Street address"
+    = f.text_field :address
+    %p.hint This is so that we can confirm you live in this community.
+    
+          
+
+    - if @account.code.blank? || @account.errors.on(:code)
+      = f.input :code, :label => "Registration code:"
+    - else
+      = f.input :code, :as => :hidden
+
+    = f.input :privacy_policy, :as => :boolean, :label => "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"
+    
+    = f.submit 'Register!'

@@ -6,16 +6,21 @@
   #more_info
     %h1 Please include some information about yourself for the directory!
 
-    - semantic_form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
+    - form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
 
-      - f.inputs do
-        = f.input :about, :label => "About you", :hint => "Write something about yourself"
+      = f.label :about, "About you"
+      = f.text_field :about
+      %p.hint Write something about yourself
 
-        = f.input :skill_list, :label => "Skills", :hint => "Example: carpentry, computers" 
-
-        = f.input :interest_list, :label => "Interests", :hint => "Example: meeting people, cooking" 
-  
-        = f.input :avatar, :label => "Profile picture"
-
-      - f.buttons do
-        = f.commit_button 'Update your profile!'
+      = f.label :skill_list, "Skills"
+      = f.input :skill_list
+      %p.hint Example: carpentry, computers
+      
+      = f.label :interest_list, "Interests"
+      = f.input :interest_list
+      %p.hint Example: meeting people, cooking
+      
+      = f.label :avatar, "Profile picture"
+      = f.file_field :avatar
+      
+      = f.submit 'Update your profile!'

@@ -4,28 +4,38 @@
 
 #main_right
   #edit
-    - semantic_form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
+    - form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
 
       %h2 Edit your information:
-      - f.inputs do
-        = f.input :first_name
+      = f.label :first_name, "First Name"
+      = f.text_field :first_name
 
-        = f.input :last_name
+      = f.label :last_name, "Last Name"
+      = f.text_field :last_name
       
-        = f.input :email
+      = f.label :email, "Email"
+      = f.text_field :email
       
-        = f.input :skill_list, :label => "Skills", :hint => "Example: carpentry, computers"
-
-        = f.input :interest_list, :label => "Interests", :hint => "Example: meeting people, cooking"
+      = f.label :skill_list, "Skills"
+      = f.text_field :skill_list
+      %p.hint Example: carpentry, computers
       
-        = f.input :about, :label => "About me", :hint => "Write something about yourself!"
+      = f.label :interests, "Interests"
+      = f.text_field :interest_list
+      %p.hint Example: meeting people, cooking
+        
+      = f.label :about, "About me"
+      = f.text_area  :about
+      %p.hint Write something about yourself!
 
-        = f.input :password, :label => "New password"
+      = f.label :password, "New password"
+      = f.text_field :password
+      
+      = f.label :password_confirmation, "Confirm password"
+      = f.text_field :password_confirmation
 
-        = f.input :password_confirmation, :label => 'Confirm password'
+      = f.file_field :avatar
 
-        = f.input :avatar
-
-        = f.commit_button 'Update'
+      = f.submit 'Update'
 
 
