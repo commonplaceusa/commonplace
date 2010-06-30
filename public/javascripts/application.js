@@ -8,16 +8,20 @@ var app = $.sammy(function() {
       if (response.success) {
         $('#xs ul').prepend(response.createdPost);
       } else {
-        alert("reply validation failed");
+        alert("post validation failed");
       }
     }, "json");
   });
   
   this.post("/posts/:post_id/replies", function() {
+    var $post = $("#post_" + this.params['post_id']);
+    var sammy = this;
+    
     $.post(this.path, this.params, function(response) {
-      $("#post_" + this.params['post_id'] + " .new_reply").replaceWith(response.newReply);
+      sammy.log(response);
+      $("form.new_reply", $post).replaceWith(response.newReply);
       if (response.success) {
-        $("#post_" + this.params['post_id'] + " .replies").append(response.createdReply);
+        $(".replies ol", $post).append(response.createdReply);
       } else {
         alert("reply validation failed");
       }
@@ -32,17 +36,5 @@ $(function(){
 
   $("input, textarea").goodlabel();
       
-  $("#xs .left .post").click(function(e){
-    var target = e.target,      // e.target grabs the node that triggered the event.
-    $target = $(target);    // wraps the node in a jQuery object
-    
-    // stops clicking on new_reply from closing the div.
-    if ( $target.closest(".new_reply").length > 0 ){ 
-      return false;
-    }
-    
-    //$(this).css("position", "relative");
-    $(this).find(".replies").slideToggle();
-  });
-
+ 
 });

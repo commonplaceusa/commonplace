@@ -10,7 +10,7 @@
         #{pluralize(post.replies.size, 'reply')}
       - else
         no replies yet
-  .replies{:style => "display: none;"}
+  .replies
     - if post.replies.size > 0 # if there are replies
       %ol
         - post.replies.each do |reply|
