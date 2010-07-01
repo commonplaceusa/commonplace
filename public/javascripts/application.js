@@ -5,6 +5,7 @@ var app = $.sammy(function() {
   this.post("/posts", function() {
     $.post(this.path, this.params, function(response) {
       $("#new_post").replaceWith(response.newPost);
+      $("#new_post textarea").goodlabel();
       if (response.success) {
         $('#xs ul').prepend(response.createdPost);
       } else {
@@ -20,6 +21,7 @@ var app = $.sammy(function() {
     $.post(this.path, this.params, function(response) {
       sammy.log(response);
       $("form.new_reply", $post).replaceWith(response.newReply);
+      $("form.new_reply textarea", $post).goodlabel();
       if (response.success) {
         $(".replies ol", $post).append(response.createdReply);
       } else {
