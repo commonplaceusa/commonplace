@@ -1,21 +1,22 @@
 
-= image_tag post.user.avatar.url, :width => 72, :height => 72
-%div
-  %div.c
-    %p 
-      %span.name #{post.user.full_name}
-      #{post.body}
-    %p.expand
-      - if post.replies.size > 0
-        #{pluralize(post.replies.size, 'reply')}
-      - else
-        no replies yet
-  .replies
-    - if post.replies.size > 0 # if there are replies
-      %ol
-        - post.replies.each do |reply|
-          = render("replies/reply", :reply => reply)
-    .new_reply
-      - form_for [post, Reply.new] do |f|
-        = f.text_area :body, "data-label" => "Reply here!"
-        = f.submit "Reply"
+
+
+%div.c
+  = image_tag post.user.avatar.url, :width => 72, :height => 72
+  %p 
+    %span.name #{post.user.full_name}
+    #{post.body}
+  %p.expand
+    - if post.replies.size > 0
+      #{pluralize(post.replies.size, 'reply')}
+    - else
+      no replies yet
+.replies
+  - if post.replies.size > 0 # if there are replies
+    %ol
+      - post.replies.each do |reply|
+        = render("replies/reply", :reply => reply)
+  .new_reply
+    - form_for [post, Reply.new] do |f|
+      = f.text_area :body, "data-label" => "Reply here!"
+      = f.submit "Reply"

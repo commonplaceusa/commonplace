@@ -33,7 +33,13 @@ var app = $.sammy(function() {
 
 $(function(){
   app.run();
-
+  
+  $('li.post div.c').live('click', function(e) {
+    $(this).siblings('.replies').slideToggle(250);
+  });
+    
+    
+  
   $("input, textarea").goodlabel();
       
  
