@@ -19,7 +19,6 @@ var app = $.sammy(function() {
     var sammy = this;
     
     $.post(this.path, this.params, function(response) {
-      sammy.log(response);
       $("form.new_reply", $post).replaceWith(response.newReply);
       $("form.new_reply textarea", $post).goodlabel();
       if (response.success) {
@@ -30,16 +29,36 @@ var app = $.sammy(function() {
     }, "json");
   });
 
+  this.get("#/posts/:id", function() {
+    $.getJSON(this.path.slice(1), function(response) {
+      $("#xs .right").html(response.info_box);
+    });    
+  });
+
+  this.get("#/events/:id", function() {
+    $.getJSON(this.path.slice(1), function(response) {
+      $("#xs .right").html(response.info_box);
+    });    
+  });
+
 });
+
+
 
 
 $(function(){
   app.run();
   
   $('li.post div.c').live('click', function(e) {
-    $(this).siblings('.replies').slideToggle(250);
+    var $this = $(this);
+    $this.siblings('.replies').slideToggle(250);
+    app.location_proxy.setLocation("#" + $this.parent().attr('data-url'));
   });
     
+  $('li.event').live('click', function(e) {
+    var $this = $(this);
+    app.location_proxy.setLocation("#" + $this.attr('data-url'));
+  });
     
   
   $("input, textarea").goodlabel();
