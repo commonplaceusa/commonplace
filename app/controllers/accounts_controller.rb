@@ -1,9 +1,5 @@
 class AccountsController < ApplicationController
 
-  def show 
-    @user = current_user
-  end
-
   def new
     @account = Account.new(params[:account])
   end

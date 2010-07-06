@@ -2,9 +2,28 @@ require 'spec_helper'
 
 describe AccountsController do
 
-  #Delete this example and add some real ones
-  it "should use AccountsController" do
-    controller.should be_an_instance_of(AccountsController)
+  it "should render the new template" do
+    get :new
+    response.should render_template('new')
+    assigns[:account].should_not be_nil
   end
 
+  it "should re-render the new template on a failed create" do
+    post :create
+    response.should render_template('new')
+    assigns[:account].should_not be_nil
+  end
+
+  context 'logged in' do
+    before :each do 
+      activate_authlogic
+      UserSession.new(Factory(:user))
+    end
+    
+    it "should render the edit template" do
+      get :edit
+      response.should render_template('edit')
+    end
+
+  end
 end
