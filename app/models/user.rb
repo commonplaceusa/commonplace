@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
     c.login_field :email
   end
 
-  has_many :attendances
-  has_many :events, :through => :attendances
+  has_many :links, :as => :linker
+
+  has_many_polymorphs :linkables, :from => [:events, :groups], :through => :links, :as => :linker
 
   has_many :posts
   

@@ -29,10 +29,6 @@ describe User do
     @user.events.should be_an(Array)
   end
 
-  it "should have attendances" do
-    @user.attendances.should be_an(Array)
-  end
-
   it "should require a first name" do
     @user = Factory.build(:user, :first_name => nil)
     @user.valid?.should_not be_true
