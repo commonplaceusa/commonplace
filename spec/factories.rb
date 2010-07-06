@@ -29,10 +29,12 @@ end
 
 Factory.define :organization do |f|
   f.name { Forgery(:name).company_name }
-  end
+  f.website ""
+end
   
 Factory.define :business do |f|
   f.name { Forgery(:name).company_name }
+  f.website ""
   f.about { Forgery(:lorem_ipsum).paragraph }
   f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
 end
@@ -73,4 +75,10 @@ end
 Factory.define :conversation_membership do |f|
   f.association :user
   f.association :conversation
+end
+
+Factory.define :referral do |f|
+  f.association :event
+  f.association :referee, :factory => :user
+  f.association :referrer, :factory => :user
 end
