@@ -39,21 +39,6 @@ Factory.define :business do |f|
   f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
 end
 
-Factory.define :business_sponsorship, :class => :sponsorship do |f|
-  f.association :sponsor, :factory => :business
-  f.association :event
-end
-
-Factory.define :organization_sponsorship, :class => :sponsorship do |f|
-  f.association :sponsor, :factory => :organization
-  f.association :event
-end
-
-Factory.define :attendance do |f|
-  f.association :user
-  f.association :event
-end
-
 Factory.define :text_module do |f|
   f.title { Forgery(:lorem_ipsum).words 2 }
   f.body { Forgery(:lorem_ipsum).paragraph }

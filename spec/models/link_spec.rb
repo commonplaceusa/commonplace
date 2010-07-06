@@ -1,11 +1,13 @@
 require 'spec_helper'
 
-describe Attendance do
+describe Link do
   before(:each) do
-    @attendance = Factory.build(:attendance)
+    @valid_attributes = {
+      
+    }
   end
 
   it "should create a new instance given valid attributes" do
-    @attendance.valid?.should be_true
+    Link.create!(@valid_attributes)
   end
 end
