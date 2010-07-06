@@ -1,3 +1,3 @@
 %ul
-  - @wire_posts.each do |item|
+  - current_user.wire.each do |item|
     = render 'wires/item', :item => item
