@@ -20,7 +20,7 @@
     = f.label :email, "Email"
     = f.text_field :email
     
-    = f.label :password, "New password"
+    = f.label :password, "Password"
     = f.password_field :password
 
     = f.label :password_confirmation, "Confirm password"
@@ -35,7 +35,7 @@
     - else
       = f.label :code, "Registration code:"
       = f.text_field :code
-  
-    = f.input :privacy_policy, :as => :boolean, :label => "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"
-    
+      
+    = f.check_box :privacy_policy
+    = f.label :privacy_policy, "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"
     = f.submit 'Register!'

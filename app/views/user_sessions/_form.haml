@@ -1,7 +1,7 @@
 - form_for user_session, :url => user_session_path do |f|
-  = f.label "Email"
+  = f.label :email, "Email"
   = f.text_field :email
-  = f.label :password
+  = f.label :password, "Password"
   = f.password_field :password
   %p.hint= link_to("forgot password?", new_password_reset_path)
   = f.submit 'Log in'

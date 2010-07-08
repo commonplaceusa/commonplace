@@ -2,18 +2,13 @@ require 'spec_helper'
 
 describe RepliesController do
 
- context "when logged in" do
-    before :each do
-      activate_authlogic
-      @user = Factory :user
-    end
-    
-    it "should let users create replies" do
-      post :create, Factory.attributes_for(:reply).merge(:post_id => Factory(:post).id,
-                                                         :user_id => @user.id)
-      response.should be_redirect
-    end
-
+  it "should let users create replies" do
+    login
+    @reply = mock_model(Reply, :save => true)
+    @post = mock_model(Post, :replies => mock(:build => @reply))
+    Post.stub!(:find => @post)
+    post :create, :reply => {}
+    response.should render_template('create')
   end
 
 end

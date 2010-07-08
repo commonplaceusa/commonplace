@@ -1,5 +1,5 @@
 class RepliesController < ApplicationController
-  filter_resource_access
+  filter_access_to :all
   
   def create
     @post = Post.find(params[:post_id])

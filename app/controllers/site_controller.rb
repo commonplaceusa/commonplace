@@ -1,6 +1,6 @@
 class SiteController < ApplicationController
 
-  filter_resource_access
+  filter_access_to :all
   layout "public"
   
   def index 

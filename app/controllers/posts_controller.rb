@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
-  filter_resource_access
+  before_filter :load_post
+
+  filter_access_to :all
   
   def create
-    @post = current_user.posts.build(params[:post])
     respond_to do |format|
       if @post.save
+        format.html { redirect_to root_url }
         format.json         
       else
         format.json { render 'new' }
@@ -13,10 +15,21 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     respond_to do |format|
       format.json
     end
+  end
+
+  protected 
+  
+  def load_post
+    @post = if params[:id]
+              Post.find(params[:id])
+            elsif params[:post]
+              Post.new(params[:post].merge(:user => current_user))
+            else 
+              Post.new(:user => current_user)
+            end
   end
     
 end

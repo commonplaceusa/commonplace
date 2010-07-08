@@ -36,7 +36,7 @@ Spork.prefork do
   end
   
   def login(session_stubs = {}, user_stubs = {})
-    UserSession.stub!(:find).and_return(user_session(session_stubs, user_stubs))
+    UserSession.stub!(:find).and_return(user_session(session_stubs, user_stubs.merge(:roles => [:user])))
   end
   
   def logout

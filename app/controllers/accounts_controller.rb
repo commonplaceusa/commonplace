@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
-  filter_resource_access
+
+  filter_access_to :all
 
   def new
     @account = Account.new(params[:account])

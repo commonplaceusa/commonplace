@@ -15,12 +15,9 @@ describe AccountsController do
     response.should be_success
   end
 
-  it "should not allow a user to create an account" do
-    activate_authlogic
-    user = Factory :user
+  it "should not allow a logged in user to create an account" do
+    login
     get :new
-    response.should_not be_success
-    post :create, Factory.attributes_for(:user).merge(:code => CONFIG["code"])
     response.should_not be_success
   end
 
@@ -31,26 +28,27 @@ describe AccountsController do
   end
 
   it "should render more_info on a successful create" do
-    UserSession.stub!(:find).and_return(user_session({},{}))
+    controller.stub!(:current_user, nil)
+    UserSession.stub!(:find).and_return(user_session({},{:roles => [:user]}))
     Account.stub!(:new).and_return(mock_model(Account, :save => true))
     post :create
     response.should render_template('more_info')
   end
 
   it "should render the edit template" do
-    login
+    login({},{:roles => [:user]})
     get :edit
     response.should render_template('edit')
   end
   
   it "should re-render edit on a failed update" do
-    login({},{:update_attributes, false})
+    login({},{:update_attributes => false, :roles => [:user]})
     put :update
     response.should render_template('edit')
   end
 
   it "should redirect to root on a successful update" do
-    login({},{:update_attributes, true})
+    login({},{:update_attributes => true, :roles => [:user]})
     put :update
     response.should redirect_to('/')
   end

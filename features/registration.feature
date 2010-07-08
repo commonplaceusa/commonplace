@@ -23,7 +23,7 @@ Feature: registration
       | Last Name             | Robespierre                    |
       | Email                 | max@example.com                |
       | Password              | secret                         |
-      | Password Confirmation | secret                         |
+      | Confirm Password      | secret                         |
       | Street Address        | 105 Winfield Way, Aptos, 95003 |
       | Registration Code     | Rox!                           |
     And I check "I accept the privacy policy"
