@@ -1,2 +1,0 @@
-class Business < Group
-end

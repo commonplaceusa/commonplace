@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
 
   has_many :links, :as => :linker
 
-  has_many_polymorphs :linkables, :from => [:events, :groups], :through => :links, :as => :linker
+  has_many_polymorphs :linkables, :from => [:events], :through => :links, :as => :linker
 
+  has_many :organizations
+  
   has_many :posts
   
   has_many :referrals, :foreign_key => "referree_id"
@@ -17,9 +19,6 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :conversation_memberships
   has_many :conversations, :through => :conversation_memberships
-
-  has_many :group_memberships
-  has_many :groups, :through => :group_memberships
 
   validates_presence_of :first_name, :last_name
 

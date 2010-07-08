@@ -1,2 +1,0 @@
-module BusinessesHelper
-end

@@ -32,13 +32,6 @@ Factory.define :organization do |f|
   f.website ""
 end
   
-Factory.define :business do |f|
-  f.name { Forgery(:name).company_name }
-  f.website ""
-  f.about { Forgery(:lorem_ipsum).paragraph }
-  f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
-end
-
 Factory.define :text_module do |f|
   f.title { Forgery(:lorem_ipsum).words 2 }
   f.body { Forgery(:lorem_ipsum).paragraph }

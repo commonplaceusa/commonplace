@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100706153440) do
+ActiveRecord::Schema.define(:version => 20100708150902) do
 
   create_table "conversation_memberships", :force => true do |t|
     t.integer  "user_id",                            :null => false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20100706153440) do
   end
 
   create_table "events", :force => true do |t|
-    t.string   "name",        :null => false
+    t.string   "name",            :null => false
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "address"
@@ -35,21 +35,7 @@ ActiveRecord::Schema.define(:version => 20100706153440) do
     t.datetime "updated_at"
     t.decimal  "lat"
     t.decimal  "lng"
-  end
-
-  create_table "groups", :force => true do |t|
-    t.string   "name",                                            :null => false
-    t.string   "address"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "type",                :default => "Organization", :null => false
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.text     "about"
-    t.string   "phone"
-    t.string   "website"
+    t.integer  "organization_id"
   end
 
   create_table "links", :force => true do |t|
@@ -67,6 +53,21 @@ ActiveRecord::Schema.define(:version => 20100706153440) do
     t.text     "body",            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "organizations", :force => true do |t|
+    t.string   "name",                :null => false
+    t.string   "address"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.text     "about"
+    t.string   "phone"
+    t.string   "website"
+    t.integer  "user_id"
   end
 
   create_table "posts", :force => true do |t|
@@ -113,7 +114,7 @@ ActiveRecord::Schema.define(:version => 20100706153440) do
     t.string   "title"
     t.text     "body"
     t.integer  "position"
-    t.integer  "group_id",   :null => false
+    t.integer  "organization_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
