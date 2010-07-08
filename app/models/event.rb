@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :name
 
   has_many :referrals
+  belongs_to :organization
 
   before_save :update_lat_and_lng, :if => "address_changed?"
 
