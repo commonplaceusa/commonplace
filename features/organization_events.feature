@@ -6,9 +6,8 @@ Feature: event management
   Scenario: Create an event
     Given I am logged in
     And an organization exists
-    And I am on the organization's page
-    When I fill in "Event Title" with "Sale!"
-    And I fill in the following:
+    And I am on the organization's edit page
+    When I fill in the following:
     | Event Title       | Sale!               |
     | Event Description | We're selling stuff |
     | Event Date        | 2020-11-01          |

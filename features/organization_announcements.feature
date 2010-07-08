@@ -6,7 +6,7 @@ Feature: announcement management
   Scenario: Create an announcement
     Given I am logged in
     And an organization exists
-    And I am on the organization's page
+    And I am on the organization's edit page
     When I fill in the following:
     | Announcement Title       | Free stuff!                   |
     | Announcement Description | Lots of food and stuff, free. |
