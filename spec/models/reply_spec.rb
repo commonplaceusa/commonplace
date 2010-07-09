@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Reply do
   before(:each) do
+    mock_geocoder
     @reply = Factory.build(:reply)
   end
 

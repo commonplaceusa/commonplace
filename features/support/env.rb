@@ -19,7 +19,17 @@ Spork.prefork do
 
   require 'webrat'
   require 'webrat/core/matchers'
+
+  require 'spec/stubs/cucumber'
   
+  def mock_geocoder
+    location = mock(:success? => true,
+                    :lat => 100,
+                    :lng => 100,
+                    :full_address => "105 Winfield Way, Aptos, CA 95003, USA")
+    Geokit::Geocoders::GoogleGeocoder.stub!(:geocode => location)
+  end
+
   Webrat.configure do |config|
     config.mode = :rails
     config.open_error_files = false # Set to true if you want error pages to pop up in the browser

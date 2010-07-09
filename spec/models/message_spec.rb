@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Message do
   before(:each) do
+    mock_geocoder
     @valid_attrs = Factory.attributes_for :message
     @valid_attrs[:user] = Factory :user
     @valid_attrs[:conversation] = Factory :conversation

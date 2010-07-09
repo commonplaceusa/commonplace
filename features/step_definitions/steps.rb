@@ -1,5 +1,6 @@
 
 def user
+  mock_geocoder
   @user ||= Factory(:user)
 end
 

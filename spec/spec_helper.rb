@@ -42,6 +42,14 @@ Spork.prefork do
   def logout
     @user_session = nil
   end
+
+  def mock_geocoder
+    location = mock(:success? => true,
+                    :lat => 100,
+                    :lng => 100,
+                    :full_address => "105 Winfield Way, Aptos, CA 95003, USA")
+    Geokit::Geocoders::GoogleGeocoder.stub!(:geocode => location)
+  end
   
 end
 

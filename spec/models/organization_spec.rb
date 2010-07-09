@@ -19,6 +19,8 @@ describe Organization do
   end
   
   it "should relate to announcements" do
-    Organization.reflect_on_association(:announcements).should_not be_nil
+    pending("the announcment model is created") do 
+      Organization.reflect_on_association(:announcements).should_not be_nil
+    end
   end
 end

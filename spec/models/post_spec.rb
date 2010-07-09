@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Post do
   before(:each) do
+    mock_geocoder
     @post = Factory.build(:post)
   end
 

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe User do
   before(:each) do
+    mock_geocoder
     @user = Factory.build(:user)
   end
 
