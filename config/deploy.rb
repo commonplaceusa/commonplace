@@ -5,6 +5,8 @@ set :branch, 'master'
 set :deploy_via, :checkout
 set :use_sudo, false
 set :rails_env, "production"
+set :default_stage, "staging"
+
 default_run_options[:pty] = true
 
 after 'deploy:update_code', 'deploy:symlink_db'

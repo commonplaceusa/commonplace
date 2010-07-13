@@ -19,3 +19,6 @@ config.action_mailer.raise_delivery_errors = false
 # Disabled this
 # config.gem "factory_girl"
 config.gem "forgery"
+
+config.gem "capistrano"
+config.gem "capistrano-ext", :lib => false
