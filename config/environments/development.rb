@@ -20,4 +20,4 @@ config.gem "factory_girl"
 config.gem "forgery"
 
 config.gem "capistrano"
-config.gem "capistrano-ext"
+config.gem "capistrano-ext", :lib => false
