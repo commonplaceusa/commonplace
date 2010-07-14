@@ -28,21 +28,21 @@
       -webkit-border-radius: 15px !important;
       -moz-border-radius: 15px !important;
       border-radius: 15px !important; }
-      #x #actions .right input {
+      #x #actions .right input[type="text"] {
         width: 300px;
         border: 3px solid #ff9999;
         padding: 0.4em;
         -webkit-border-radius: 10px !important;
         -moz-border-radius: 10px !important;
         border-radius: 10px !important; }
-    #x #actions button {
-      border: 3px solid #ff9999;
-      padding: 0.4em;
-      -webkit-border-radius: 10px !important;
-      -moz-border-radius: 10px !important;
-      border-radius: 10px !important;
-      font-size: 1.2em;
-      background: #99ff99; }
+      #x #actions .right input[type='submit'] {
+        border: 3px solid #ff9999;
+        padding: 0.4em;
+        -webkit-border-radius: 10px !important;
+        -moz-border-radius: 10px !important;
+        border-radius: 10px !important;
+        font-size: 1.2em;
+        background: #99ff99; }
   #x #filters ul {
     padding: 0 1em;
     margin: 1em auto 0;

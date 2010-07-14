@@ -34,8 +34,9 @@
         #x
           #actions
             .right
-              %input{"data-label" => "Search for anything..."}
-              %button Search
+              - form_tag '', :method => "get" do
+                = text_field_tag :q, params[:q], "data-label" => "Search for anything..."
+                = submit_tag "Search"
               %br
               %p Texty.
             .left

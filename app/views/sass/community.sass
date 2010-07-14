@@ -29,19 +29,19 @@
     .right
       padding: 1.75em
       float: right
-      input
+      input[type="text"]
         width: 300px
         border: 3px solid #ff9999
         padding: .4em
         @include rounded(10px)
       border: 3px solid grey
       @include rounded(15px)
-    button
-      border: 3px solid #ff9999
-      padding: .4em
-      @include rounded(10px)
-      font-size: 1.2em
-      background: #99ff99
+      input[type='submit']
+        border: 3px solid #ff9999
+        padding: .4em
+        @include rounded(10px)
+        font-size: 1.2em
+        background: #99ff99
   #filters
     ul
       padding: 0 1em
