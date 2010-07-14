@@ -31,8 +31,33 @@
         = render 'shared/header_nav'
     
       #main
-        = yield
-    
+        #x
+          #actions
+            .right
+              %input{"data-label" => "Search for anything..."}
+              %button Search
+              %br
+              %p Texty.
+            .left
+              = render 'posts/form', :post => Post.new
+          #filters
+            %ul
+              %li{:style => "background: #BFE2F3;"} 
+                = link_to 'All', root_path
+              %li{:style => "background: #FFE4C6;"}
+                = link_to 'Peo', users_path
+              %li{:style => "background: #C5CBF5;"}
+                = link_to 'Eve', events_path
+              %li{:style => "background: #FFEFC6;"}
+                = link_to 'Org', organizations_path
+              %li{:style => "background: #BEF6D6;"}
+                = link_to 'Ann'
+              %li{:style => "background: #FFEFC5;"} Pla
+              %li{:style => "background: #FFD1C5;"} Not
+              %li{:style => "background: #D5C3F5;"} Pla
+        #xs
+          = yield
+  
     #bottom
     
     %footer

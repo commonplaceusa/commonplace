@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :account, :member => {:more_info => :get}
 
+  map.resources :users
+  
   map.resources :organizations
 
   map.resources :events do |event|
