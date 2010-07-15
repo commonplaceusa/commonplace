@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100708150902) do
+ActiveRecord::Schema.define(:version => 20100715001855) do
 
   create_table "conversation_memberships", :force => true do |t|
     t.integer  "user_id",                            :null => false
@@ -71,10 +71,11 @@ ActiveRecord::Schema.define(:version => 20100708150902) do
   end
 
   create_table "posts", :force => true do |t|
-    t.text     "body",       :null => false
-    t.integer  "user_id",    :null => false
+    t.text     "body",                           :null => false
+    t.integer  "user_id",                        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "purpose",    :default => "tell", :null => false
   end
 
   create_table "referrals", :force => true do |t|
