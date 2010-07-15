@@ -44,13 +44,13 @@
           #filters
             %ul
               %li{:style => "background: #BFE2F3;"} 
-                = link_to 'All', root_path
+                = link_to 'All', root_path(:q => params[:q])
               %li{:style => "background: #FFE4C6;"}
-                = link_to 'Peo', users_path
+                = link_to 'Peo', users_path(:q => params[:q])
               %li{:style => "background: #C5CBF5;"}
-                = link_to 'Eve', events_path
+                = link_to 'Eve', events_path(:q => params[:q])
               %li{:style => "background: #FFEFC6;"}
-                = link_to 'Org', organizations_path
+                = link_to 'Org', organizations_path(:q => params[:q])
               %li{:style => "background: #BEF6D6;"}
                 = link_to 'Ann'
               %li{:style => "background: #FFEFC5;"} Pla
