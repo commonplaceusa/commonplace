@@ -14,9 +14,12 @@ class OrganizationsController < ApplicationController
   end
   
   def new
+    @organization = Organization.new
+    render :new, :layout => "public"
   end
   
   def create
+    @organization = Organization.new(params[:organization])
     respond_to do |format|
      if @organization.save
        format.html { redirect_to root_url }
