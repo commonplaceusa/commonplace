@@ -64,6 +64,25 @@
         margin-right: 0; }
       #x #filters ul li:hover {
         background: #77dd77; }
+      #x #filters ul li#wire_button {
+        background: #bfe2f3; }
+      #x #filters ul li#posts_button {
+        background: #ffe4c6; }
+      #x #filters ul li#announcements_button {
+        background: #c5cbf5; }
+      #x #filters ul li#events_button {
+        background: #ffefc6; }
+      #x #filters ul li#people_button {
+        background: #bef6d6; }
+      #x #filters ul li#organizations_button {
+        background: #ffefc5; }
+      #x #filters ul li#content_tags_button {
+        background: #ffd1c5; }
+      #x #filters ul li#inbox_button {
+        background: #d5c3f5; }
+
+li#wire_button:hover {
+  background: white; }
 
 #xs {
   min-height: 600px; }
