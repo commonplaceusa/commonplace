@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many_polymorphs :linkables, :from => [:events], :through => :links, :as => :linker
 
   has_many :organizations
-  
+  has_many :attendances
   has_many :posts
   
   has_many :referrals, :foreign_key => "referree_id"

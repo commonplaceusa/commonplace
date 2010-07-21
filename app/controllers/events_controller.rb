@@ -9,6 +9,7 @@ class EventsController < ApplicationController
   end
 
   def create
+   @event = Event.new(params[:event])
    respond_to do |format|
      if @event.save
    #    format.html { redirect_to root_url }
@@ -17,6 +18,9 @@ class EventsController < ApplicationController
        format { render 'new' }
      end
    end
+  end
+  
+  def update
   end
 
   def show
