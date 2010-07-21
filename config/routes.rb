@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   
   map.resources :organizations
+  
+  map.resources :organizer, :controller => "organizer"
 
   map.resources :events do |event|
     event.resource :attendance

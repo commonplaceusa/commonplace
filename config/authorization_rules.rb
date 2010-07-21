@@ -12,6 +12,10 @@ authorization do
     has_permission_on :posts, :to => [:create, :read]
     has_permission_on :replies, :to => :create
     has_permission_on :accounts, :to => [:show, :update, :delete, :more_info]
+    has_permission_on :organizer, :to => [:read]
+    has_permission_on :organizer, :to => [:update] do
+      if_attribute :admins => includes { user }
+    end
   end
 
 
