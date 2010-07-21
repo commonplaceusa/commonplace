@@ -1,9 +1,18 @@
 - form_for @event do |f|
-	%h2 New Event
-	= f.text_field :name, "data-label" => 'Title'
-	= f.text_field :description, "data-label" => 'Description'
-	= f.text_field :start_time, "data-label" => 'Start Time'
-	= f.text_field :end_time, "data-label" => 'End Time'
-	= f.text_field :address, "data-label" => 'Address'
-	= f.text_field :organization_id, "data-label" => 'Org ID'
-	= f.submit "Post"
+  %h2 New Event
+  %p
+  = f.text_field :name, "data-label" => 'Title'
+  %p
+  = f.text_field :description, "data-label" => 'Description'
+  %p Start Time
+  = f.date_select :start_time
+  = f.time_select :start_time
+  %p End Time
+  = f.date_select :end_time
+  = f.time_select :end_time
+  %p
+  = f.text_field :address, "data-label" => 'Address'
+  %p
+  = f.text_field :organization_id, "data-label" => 'Org ID'
+  %p
+  = f.submit "Post"
