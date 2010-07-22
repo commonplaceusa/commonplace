@@ -26,7 +26,10 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resource :account, :member => { :more_info => :get }
-  map.resources :organizer, :controller => "organizer"
+
+  map.resources :organizer, :controller => "organizer" do |org|
+    org.resource :profile
+  end
 
   map.resource :inbox
   map.resources :conversations

@@ -16,6 +16,9 @@ authorization do
     has_permission_on :organizer, :to => [:update] do
       if_attribute :admins => includes { user }
     end
+    has_permission_on :profiles, :to => [:update] do
+      if_attribute :admins => includes { user }
+    end
   end
 
 
