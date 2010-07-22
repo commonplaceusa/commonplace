@@ -29,18 +29,19 @@
   border-top-left-radius: $radius !important
   border-bottom-left-radius: $radius !important
   
-@mixin column($width) 
+@mixin column
   top: 0px
   position: relative
   display: inline-block
-  width: $width
   vertical-align: top
   
 @mixin column-right($width)
-  @include column($width)
+  @include column
+  width: $width
 
 @mixin column-left($width)
-  @include column($width)
+  @include column
+  width: $width
   
 
 // Variables...

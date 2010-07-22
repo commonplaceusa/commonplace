@@ -50,10 +50,11 @@ body
   vertical-align: middle
   align: center
   min-height: $topAndBottomStripHeight + px
-  padding: $mainPadding
+  padding: 0
   padding-bottom: $totalFooterHeight
   display: block
   @include rounded(4px)
+  position: relative
 
 // City and people.
 #bottom
@@ -106,54 +107,79 @@ p
   margin: 0.5em 0px
 
 header
-  text-align: center
-  &#main_head
-    padding-top: 10px
-    h1, h2, #community_name, #header_nav
-      display: inline-block
-      position: relative
-      vertical-align: top
-      top: 0px
+  position: relative
+  margin: auto
+  width: $mainWidth
+  padding-top: 10px
+  h1, nav
+    @include column
+  h1
+    left: 0px
+    border: 0px
+    height: 50px
+    width: 370px
+  nav
+    background-color: #349
+    background: -moz-linear-gradient(center bottom, #555, #777)
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.94, #777), color-stop(0.42, #555))
+    border:
+      color: #555
+      width: .5px
+      bottom-width: 0px
+      style: solid
+    @include rounded-top(8px)
+    padding: 2px 12px 0px
+    text-align: right
+    width: 300px
+    color: #eee
+    font-size: 0.9em
+    height: 50px
+    a
+      //color: #1144bb
+      color: #bdd
+    p
+      margin-bottom: 0.2em
+    form
+      display: inline
     h1
-      left: 0px
-      border: 0px
-      height: 50px
-      width: 370px
-    #community_name
-      font-family: Georgia, Times, "Times New Roman", Serif
-      font-style: oblique
-      vertical-align: bottom
-      font-size: 45px
-      color: yellow
-      padding: 7px
-      width: 250px
-    #header_nav
-      background-color: #349
-      background: -moz-linear-gradient(center bottom, #555, #777)
-      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.94, #777), color-stop(0.42, #555))
-      border:
-        color: #555
-        width: .5px
-        bottom-width: 0px
-        style: solid
-      @include rounded-top(8px)
-      padding: 2px 12px 0px
-      text-align: right
-      width: 300px
-      color: #eee
-      font-size: 0.9em
-      height: 50px
-      a
-        //color: #1144bb
-        color: #bdd
-      p
-        margin-bottom: 0.2em
-      form
-        display: inline
-      h1
-        height: 1em
-      nav
-        font-size: .9em
+      height: 1em
+    nav
+      font-size: .9em
+
+#community_tab, #inbox_tab, #account_tab
+  @include column
+  top: 9px
+  z-index: 1
+  border: 2px solid gray
+  border-bottom: none
+  @include rounded-top(15px)
+  background: #ddd
+  &:hover
+    background: white
+  font-size: 18px
+  padding: 11px 14px 11px 14px
+
+.selected_tab
+  padding-bottom: 12px !important
+  background: white !important
+  
+#search
+  @include column
+  top: 8px
+  z-index: 1
+  padding: 5px
+  input[type="text"]
+    width: 200px
+    border: 1px solid silver
+    padding: 5px
+    @include rounded(10px)
+    font-size: 13px
+  input[type='submit']
+    border: 1px solid silver
+    padding: 5px
+    @include rounded(10px)
+    font-size: 13px
+    background: #cfc
 
 .time, .delete
   color: #666666
@@ -164,16 +190,11 @@ header
 #copy
   font-size: 12px
 
-a.category
-
-.category
-  color: #222222
-
 #info_img, .info
-  position: relative
-  display: inline-block
-  vertical-align: top
-  top: 0px
+  @include column
+
+
+
 
 #info_img
   width: 400px

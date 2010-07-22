@@ -3,42 +3,30 @@
 // private.sass
 // Logged in, view of wire, directory, profiles, etc.
   
-#search
-  padding: 0.5em
-  input[type="text"]
-    width: 300px
-    border: 3px solid #ff9999
-    padding: .4em
-    @include rounded(10px)
-  @include rounded(15px)
-  input[type='submit']
-    border: 3px solid #ff9999
-    padding: .4em
-    @include rounded(10px)
-    font-size: 1.2em
-    background: #99ff99
-    
+
 #filters
   ul
     padding: 0 1em
     margin: 1em auto 0
     text-align: center
+    li:hover
+      background: white
     li
       list-style: none
       display: inline-block
-      margin-right: 10px
+      margin-right: 25px
       border: 2px solid #ff9999
       background: #99ff99
       padding: .5em 1em
       width: 95px
-      height: 50px
+      height: 70px
       font-size: 0.8em
       vertical-align: bottom
       @include rounded(4px)
       &:last-child
         margin-right: 0
       &:hover
-        background: #99ff99 - #222
+        background: #ddd !important
       &#wire_button
         background: #BFE2F3
       &#posts_button
@@ -53,11 +41,16 @@
         background: #FFEFC5
 
 #post_submission
+  background-color: #cfc
+  border: 2px solid gray
+  @include rounded(10px)
+  margin-bottom: 1em
+  padding: 10px
   textarea
-    width: 360px
-    height: 88px
+    width: $columnWidth - 45px
+    height: 80px
     border: 3px solid #ff9999
-    padding: .4em
+    padding: 0.4em
     @include rounded(10px)
   input[type='submit']
     width: 100px
@@ -70,16 +63,17 @@
   min-height: 600px
   border-top: 1px solid gray
   margin-top: 1em
+  position: relative
   
 #left_col, #right_col
   min-height: inherit
-  padding-top: $columnPadding
+  padding: $columnPadding
 #right_col
   @include column-right($columnWidth)
-  padding-left: $columnPadding
+  // padding-left: $columnPadding
 #left_col
   @include column-left($columnWidth)
-  padding-right: $columnPadding
+  // padding-right: $columnPadding
   border-right: 1px solid #ccc
   li
     .age
@@ -141,8 +135,9 @@
           height: 56px
           
 #user_info_box
-  padding: 7px
-  border-bottom: 1px solid #ccc 
+  border: 2px solid gray
+  @include rounded(5px)
+  padding: 10px
   .user_pic, .user_side
     position: relative
     display: inline-block
@@ -155,22 +150,65 @@
   .user_side
     width: 290px
     .user_name
-    .user_hidden
-      display: none
-      .user_info
-        width: 320px
-        font-size: 0.8em
-        tr
-          line-height: 120%
-          th
-            font-weight: bold
-            color: #666666
-            width: 90px
-            text-align: right
-            padding-right: 12px
-            padding-top: 10px
-          td
-            width: 240px
+    .user_info
+      width: 320px
+      font-size: 0.8em
+      tr
+        line-height: 120%
+        th
+          font-weight: bold
+          color: #666666
+          width: 90px
+          text-align: right
+          padding-right: 12px
+          padding-top: 10px
+        td
+          width: 240px
+#user_message
+  font-size: 0.8em
+  margin-top: 1em
+  span.success
+    padding: 4px 7px
+    background-color: #ceeece
+    color: #2B8829
+  span.linkish.message_me
+    padding: 4px 7px
+    background-color: #ceeece
+  form.message_form
+    padding: 7px
+    width: 310px
+    background-color: #ceeece
+    display: none
+    label
+      color: #666
+    textarea
+      -webkit-border-radius: 4px
+      -moz-border-radius: 4px
+      border-radius: 4px
+      border: solid 1px #bbb
+      width: 300px
+      height: 3em
+      padding: 4px
+    input
+      display: inline-block
+      position: relative
+      right: 0px
+      background-color: #ddd
+      background-image: url("/images/button_repeat.png")
+      width: auto
+      height: 100%
+      color: black
+      padding: 3px 7px
+      -webkit-border-radius: 8px
+      -moz-border-radius: 8px
+      border-radius: 8px
+      border:
+        width: 1px
+        style: solid
+        color: #aaa
+      &:hover
+        border:
+          color: #333
 
 .ui-autocomplete
   position: absolute
