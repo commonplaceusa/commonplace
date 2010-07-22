@@ -5,13 +5,12 @@
     %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
     %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
     %script{ :type => "text/javascript", :src => "http://maps.google.com/maps/api/js?sensor=true"}
+    
     = javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min.js', 'sammy', 'autoresize.jquery.min.js', 'markermanager_packed.js', 'jquery.jellopudding.js', 'jquery.goodlabel.js', 'application'
 
-
-
-    = stylesheet_link_tag 'reset', 'application', 'community'
+    = stylesheet_link_tag 'reset', 'shared', 'application'
     
-    /[if IE]
+    / [if IE]
       = stylesheet_link_tag 'ie'
       = javascript_include_tag 'ie'
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
@@ -24,26 +23,12 @@
     #wrap
       #top
       = render 'shared/header'
-    
       #main
-        %ul#filters
-          %li#wire_button 
-            = link_to 'Wire', root_path(:q => params[:q])
-          %li#posts_button
-            = link_to 'Posts'
-          %li#announcements_button
-            = link_to 'Announcements'
-          %li#events_button
-            = link_to 'Events', events_path(:q => params[:q])
-          %li#people_button
-            = link_to 'People', users_path(:q => params[:q])
-          %li#organizations_button
-            = link_to 'Organizations', organizations_path(:q => params[:q])
+        = render 'shared/filters'
         #both_columns
           = yield
   
     #bottom
-    
     %footer
       = render :partial => "shared/footer"
     

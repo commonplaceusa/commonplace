@@ -1,0 +1,13 @@
+%ul#filters
+  %li#wire_button 
+    = link_to 'Wire', root_path(:q => params[:q])
+  %li#posts_button
+    = link_to 'Posts'
+  %li#announcements_button
+    = link_to 'Announcements'
+  %li#events_button
+    = link_to 'Events', events_path(:q => params[:q])
+  %li#people_button
+    = link_to 'People', users_path(:q => params[:q])
+  %li#organizations_button
+    = link_to 'Organizations', organizations_path(:q => params[:q])

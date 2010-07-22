@@ -1,7 +1,6 @@
 %header
-  %h1
-    - link_to root_path do
-      = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "349x49"
+  - link_to root_path, :id => 'title' do
+    = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "262x37"
   
   #header_right
     #header_text
@@ -14,7 +13,10 @@
         |
         = link_to 'register', new_account_path
     
-    #account_tab My Account
-    #inbox_tab Inbox (1)
-    #community_tab.selected_tab Roxbury
+    %nav#tabs
+      %a#account_tab My Account
+      %a#organizations_tab My Organizations
+      %a#inbox_tab Inbox (1)
+      %a#community_tab.selected_tab Roxbury
+    
     = render 'shared/search'

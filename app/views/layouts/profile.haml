@@ -5,26 +5,13 @@
     %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
     %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
     %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
-    = javascript_include_tag 'jquery-1.4.2.min'
-    = javascript_include_tag 'jquery-ui-1.8.2.custom.min.js'
-    = javascript_include_tag 'jquery.infieldlabel.js'
-    = javascript_include_tag 'sammy'
-    = javascript_include_tag 'autoresize.jquery.min.js'
+    
+    = javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min.js', 'jquery.infieldlabel.js', 'sammy', 'autoresize.jquery.min.js'
     %script{ :type => "text/javascript", :src => "http://maps.google.com/maps/api/js?sensor=true"}
-    = javascript_include_tag 'markermanager_packed.js'
-    = javascript_include_tag 'jquery.jellopudding.js'
-    = javascript_include_tag 'jquery.goodlabel.js'
-    = javascript_include_tag 'jquery.curvycorners.min.js'
-    = javascript_include_tag 'profile.js'
-    = javascript_include_tag 'global.js'
-    = stylesheet_link_tag 'reset'
-    = stylesheet_link_tag 'application'
-    = stylesheet_link_tag 'formtastic', 'formtastic_changes'
-    //= stylesheet_link_tag 'global'
-    = stylesheet_link_tag 'public'
-    // 'application'
-    = stylesheet_link_tag 'community'
-    = stylesheet_link_tag 'profile'
+    = javascript_include_tag 'markermanager_packed.js', 'jquery.jellopudding.js', 'jquery.goodlabel.js',  'jquery.curvycorners.min.js', 'profile.js', 'global.js'
+    
+    = stylesheet_link_tag 'reset', 'shared', 'profile'
+    
     /[if IE]
       = stylesheet_link_tag 'ie'
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
