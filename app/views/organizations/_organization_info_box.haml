@@ -1,23 +1,22 @@
-/ peel back
+#organization_info_box
+  = link_to image_tag organization.avatar.url, :controller => "Organizations", :action => "show", :id => "#{organization.id}"
+  %h2 
+    = link_to "#{organization.name}", :controller => "Organizations", :action => "show", :id => "#{organization.id}"
+  - if organization.about
+    %p.desc #{organization.about}
+  - if organization.phone or organization.address
+    %p Contact Information
+    %table
+      -if organization.phone
+        %tr
+          %th Phone
+          %td #{organization.phone}
+      -if organization.address
+        %tr
+          %th Address
+          %td #{organization.address}
 
-= link_to image_tag organization.avatar.url, :controller => "Organizations", :action => "show", :id => "#{organization.id}"
-%h2 
-  = link_to "#{organization.name}", :controller => "Organizations", :action => "show", :id => "#{organization.id}"
--if organization.about
-  %p.desc #{organization.about}
--if organization.phone or organization.address
-  %p Contact Information
-  %table
-    -if organization.phone
-      %tr
-        %th Phone
-        %td #{organization.phone}
-    -if organization.address
-      %tr
-        %th Address
-        %td #{organization.address}
-
-/ output some members
-/ %p Send a Message???
-/ %textarea
-/ %button Send
+  / output some members
+  / %p Send a Message???
+  / %textarea
+  / %button Send

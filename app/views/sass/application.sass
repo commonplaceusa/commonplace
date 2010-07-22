@@ -19,56 +19,53 @@ body
   font-size: medium
   color: $primaryTextColor
   background: $backgroundGradientColor2
-  // background: $backgroundColor
-  // background: -moz-linear-gradient(right bottom, $backgroundGradientColor1, $backgroundGradientColor2)
-  // background-image: -webkit-gradient(linear, right bottom, left top, color-stop(0.91, $backgroundGradientColor2), color-stop(0.33, $backgroundGradientColor1))
   margin: auto
   line-height: 110%
   height: 100%
   text-rendering: optimizeLegibility
 
-  // Clouds and sun.
-  #top
-    margin-bottom: -$topStripHeight + px
-    top: 0
-    left: 0
-    width: 100%
-    height: $topStripHeight + px
-    background: red
-    background: -webkit-gradient(linear, left top, left bottom, from($backgroundGradientColor1), to($backgroundGradientColor2))
-    z-index: -1
+// Clouds and sun.
+#top
+  margin-bottom: -$topStripHeight + px
+  top: 0
+  left: 0
+  width: 100%
+  height: $topStripHeight + px
+  background: red
+  background: -webkit-gradient(linear, left top, left bottom, from($backgroundGradientColor1), to($backgroundGradientColor2))
+  z-index: -1
 
-  #wrap
-    min-height: 100%
+#wrap
+  min-height: 100%
 
-  #main
-    overflow: auto
-    width: 1000px
-    border: 1px solid #000
-    background: #fefefe
-    margin-left: auto
-    margin-right: auto
-    margin-bottom: 0em
-    text-align: left
-    vertical-align: middle
-    align: center
-    min-height: $topAndBottomStripHeight + px
-    padding: 0
-    padding-bottom: $totalFooterHeight
-    display: block
-    @include rounded(4px)
+#main
+  overflow: auto
+  width: $mainWidth
+  border: 1px solid #000
+  background: #fefefe
+  margin-left: auto
+  margin-right: auto
+  margin-bottom: 0em
+  text-align: left
+  vertical-align: middle
+  align: center
+  min-height: $topAndBottomStripHeight + px
+  padding: $mainPadding
+  padding-bottom: $totalFooterHeight
+  display: block
+  @include rounded(4px)
 
-  // City and people.
-  #bottom
-    margin-top: -$bottomStripHeight + px
-    position: relative
-    bottom: $footerHeight + px
-    left: 0
-    width: 100% !important
-    height: $bottomStripHeight + px
-    background: blue
-    background: -webkit-gradient(linear, left top, left bottom, from($backgroundGradientColor2), to($backgroundGradientColor1))
-    z-index: -1
+// City and people.
+#bottom
+  margin-top: -$bottomStripHeight + px
+  position: relative
+  bottom: $footerHeight + px
+  left: 0
+  width: 100% !important
+  height: $bottomStripHeight + px
+  background: blue
+  background: -webkit-gradient(linear, left top, left bottom, from($backgroundGradientColor2), to($backgroundGradientColor1))
+  z-index: -1
 
 footer
   text-align: center

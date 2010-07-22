@@ -31,35 +31,22 @@
         = render 'shared/header_nav'
     
       #main
-        #x
-          #filters
-            %ul
-              %li#wire_button 
-                = link_to 'Wire', root_path(:q => params[:q])
-              %li#posts_button
-                = link_to 'Posts'
-              %li#announcements_button
-                = link_to 'Announcements'
-              %li#events_button
-                = link_to 'Events', events_path(:q => params[:q])
-              %li#people_button
-                = link_to 'People', users_path(:q => params[:q])
-              %li#organizations_button
-                = link_to 'Organizations', organizations_path(:q => params[:q])
-              %li#content_tags_button
-                = link_to 'Search'
-              %li#inbox_button
-                = link_to 'Inbox'
-            #actions
-              .right
-                - form_tag '', :method => "get" do
-                  = text_field_tag :q, params[:q], "data-label" => "Search for anything..."
-                  = submit_tag "Search"
-                %br
-                %p Texty.
-              .left
-                = render 'posts/form', :post => Post.new
-        #xs
+        = render 'shared/search'
+        #filters
+          %ul
+            %li#wire_button 
+              = link_to 'Wire', root_path(:q => params[:q])
+            %li#posts_button
+              = link_to 'Posts'
+            %li#announcements_button
+              = link_to 'Announcements'
+            %li#events_button
+              = link_to 'Events', events_path(:q => params[:q])
+            %li#people_button
+              = link_to 'People', users_path(:q => params[:q])
+            %li#organizations_button
+              = link_to 'Organizations', organizations_path(:q => params[:q])
+        #both_columns
           = yield
   
     #bottom

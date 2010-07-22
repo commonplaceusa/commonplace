@@ -28,8 +28,27 @@
   -moz-border-radius-bottomleft: $radius !important
   border-top-left-radius: $radius !important
   border-bottom-left-radius: $radius !important
+  
+@mixin column($width) 
+  top: 0px
+  position: relative
+  display: inline-block
+  width: $width
+  vertical-align: top
+  
+@mixin column-right($width)
+  @include column($width)
+
+@mixin column-left($width)
+  @include column($width)
+  
 
 // Variables...
+$mainWidth = 976px
+$mainPadding = 15px
+$columnPadding = 15px
+
+$columnWidth = ( $mainWidth - $mainPadding * 2 - 2 ) / 2 - 2
 
 $primaryTextColor = #111
 
@@ -38,16 +57,14 @@ $footerBorder = 7
 $footerPadding = 10
 $totalFooterHeight = $footerHeight + $footerBorder + $footerPadding
 
-$backgroundColor = #9dd
-$backgroundGradientColor1 = #6cd
-$backgroundGradientColor2 = #cff
+$backgroundColor = #f8f7f2
+$backgroundGradientColor1 = #f8f7f2 - #222222
+$backgroundGradientColor2 = #f8f7f2 
 $controlColor = #ceeece
 
 $topStripHeight = 300
 $bottomStripHeight = 300
 $topAndBottomStripHeight = $topStripHeight + $bottomStripHeight
-
-$rightColumnWidth = 588
 
 $mapBorder = "1px solid #125478"
 

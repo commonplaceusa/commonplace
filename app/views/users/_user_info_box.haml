@@ -1,19 +1,30 @@
-= image_tag user.avatar.url
-%h2 #{user.full_name}
-/ - unless user.groups.nil?
-/   %div.clear
-/     %p Groups:
-/     = render_tag_list(user.groups)
-- unless user.interests.empty?
-  %p Interests
-  = render_tag_list(user.interests)
-- unless user.skills.empty?
-  %p Skills
-  = render_tag_list(user.skills)
-- unless user.stuffs.empty?
-  %p Stuff
-  = render_tag_list(user.stuffs)
-%p Phone: number
-%p Send a Message
-%textarea
-%button Send
+#user_info_box
+  = image_tag(user.avatar.url(:thumb), :size => "50x50", :class => "user_pic linkish user_link", "data-id" => user.id)
+  .user_side
+    .user_name
+      %span.linkish.user_link{ "data-id" => user.id }= user.full_name
+    .user_hidden
+      %table.user_info
+        %tbody
+          -# unless user.address.nil? || user.address.empty? || user.hide_address
+            %tr#address_row
+              %th.label Address
+              %td= user.address[/(.+?)(,)/, 1]
+
+          -# unless user.about.nil? || user.about.empty?
+            %tr#about_row
+              %th.label About me
+              %td= auto_link user.about, :all, :target => '_blank'
+
+          -# unless user.interests.empty?
+            %tr#interest_row
+              %th.label Interests 
+              %td #{user.interests}
+
+          -# unless user.skills.empty?
+            %tr#skill_row
+              %th.label Shared skills
+              %td #{user.skills}
+      .user_message
+        %span.linkish.message_me{ "data-id" => user.id } Message #{ user.first_name }
+        / = render 'messages/form', :user => user

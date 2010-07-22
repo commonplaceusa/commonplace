@@ -2,155 +2,175 @@
 
 // private.sass
 // Logged in, view of wire, directory, profiles, etc.
-
-#x
-  padding: .25em
-
-#x
-  border-bottom: 1px solid #ccc
-  padding-bottom: 1em
-  #actions
-    padding: 1em 2em 0 2em
-    height: 160px
-    .left
-      textarea
-        width: 360px
-        height: 88px
-        px
-        border: 3px solid #ff9999
-        padding: .4em
-        @include rounded(10px)
-      input[type='submit']
-        width: 100px
-        margin-left: 45px
-        padding: .2em .4em
-      label
-        margin-right: 15px
-    .right
-      padding: 1.75em
-      float: right
-      input[type="text"]
-        width: 300px
-        border: 3px solid #ff9999
-        padding: .4em
-        @include rounded(10px)
-      border: 3px solid grey
-      @include rounded(15px)
-      input[type='submit']
-        border: 3px solid #ff9999
-        padding: .4em
-        @include rounded(10px)
-        font-size: 1.2em
-        background: #99ff99
-  #filters
-    ul
-      padding: 0 1em
-      margin: 1em auto 0
-      text-align: center
-      li
-        list-style: none
-        display: inline-block
-        margin-right: 10px
-        border: 2px solid #ff9999
-        background: #99ff99
-        padding: .5em 1em
-        width: 65px
-        height: 50px
-        font-size: 1.2em
-        @include rounded(4px)
-        &:last-child
-          margin-right: 0
-        &:hover
-          background: #99ff99 - #222
-        &#wire_button
-          background: #BFE2F3
-        &#posts_button
-          background: #FFE4C6
-        &#announcements_button
-          background: #C5CBF5
-        &#events_button
-          background: #FFEFC6
-        &#people_button
-          background: #BEF6D6
-        &#organizations_button
-          background: #FFEFC5
-        &#content_tags_button
-          background: #FFD1C5
-        &#inbox_button
-          background: #D5C3F5
-
-li#wire_button:hover
-  background: white
-
-#xs
-  min-height: 600px
-  .left, .right
-    width: 466px
-    min-height: 600px
-    // border: 1px solid red
-    padding: 1em
-  .right
-    float: right
-  .left
-    border-right: 1px solid #ccc
+  
+#search
+  padding: 0.5em
+  input[type="text"]
+    width: 300px
+    border: 3px solid #ff9999
+    padding: .4em
+    @include rounded(10px)
+  @include rounded(15px)
+  input[type='submit']
+    border: 3px solid #ff9999
+    padding: .4em
+    @include rounded(10px)
+    font-size: 1.2em
+    background: #99ff99
+    
+#filters
+  ul
+    padding: 0 1em
+    margin: 1em auto 0
+    text-align: center
     li
-      .age
-        text-align: right
-        padding-right: .5em
-        width: 100%
-        top: .5em
-        font-size: .85em
-        color: #333
-        margin-top: .5em
-        margin-bottom: 0
-        border: 0
-      .c
-        position: relative
-        min-height: 80px
-        margin: 0
-        padding-bottom: 0
-        > div > p
-          min-height: 70px
-      .expand
-        min-height: 0px
-        border-width: 1px 1px 0 1px
-        border-style: solid
-        border-color: #ccc
-        position: absolute
-        bottom: -16px
-        right: 0
-        @include rounded-top(4px)
-        //margin-top: 20px
-        vertical-align: bottom
-        float: right
-        margin-right: 1em
-        width: 140px
-        text-align: center
-        background: #ceeece
-        padding: .5em 0 !important
-        p
-          padding: .333em 0 !important
-          margin: 0 !important
-      .replies
-        display: none
-        border-top: 1px solid #ccc
-        margin-left: -5px
-        li.reply
-          min-height: 40px
-          overflow-x: hidden
-          div
-            //height: 200px
-          height: auto
-          border: none
-          margin-right: 10px
-          margin-bottom: .5em
-        .new_reply
-          margin-top: 7px
-          margin-bottom: .5em
-          padding-left: 3px
-          textarea
-            width: 442px
-            height: 56px
+      list-style: none
+      display: inline-block
+      margin-right: 10px
+      border: 2px solid #ff9999
+      background: #99ff99
+      padding: .5em 1em
+      width: 95px
+      height: 50px
+      font-size: 0.8em
+      vertical-align: bottom
+      @include rounded(4px)
+      &:last-child
+        margin-right: 0
+      &:hover
+        background: #99ff99 - #222
+      &#wire_button
+        background: #BFE2F3
+      &#posts_button
+        background: #FFE4C6
+      &#announcements_button
+        background: #C5CBF5
+      &#events_button
+        background: #FFEFC6
+      &#people_button
+        background: #BEF6D6
+      &#organizations_button
+        background: #FFEFC5
+
+#post_submission
+  textarea
+    width: 360px
+    height: 88px
+    border: 3px solid #ff9999
+    padding: .4em
+    @include rounded(10px)
+  input[type='submit']
+    width: 100px
+    margin-left: 45px
+    padding: .2em .4em
+  label
+    margin-right: 15px
+
+#both_columns
+  min-height: 600px
+  border-top: 1px solid gray
+  margin-top: 1em
+  
+#left_col, #right_col
+  min-height: inherit
+  padding-top: $columnPadding
+#right_col
+  @include column-right($columnWidth)
+  padding-left: $columnPadding
+#left_col
+  @include column-left($columnWidth)
+  padding-right: $columnPadding
+  border-right: 1px solid #ccc
+  li
+    .age
+      text-align: right
+      padding-right: .5em
+      width: 100%
+      top: .5em
+      font-size: .85em
+      color: #333
+      margin-top: .5em
+      margin-bottom: 0
+      border: 0
+    .c
+      position: relative
+      min-height: 80px
+      margin: 0
+      padding-bottom: 0
+      > div > p
+        min-height: 70px
+    .expand
+      min-height: 0px
+      border-width: 1px 1px 0 1px
+      border-style: solid
+      border-color: #ccc
+      position: absolute
+      bottom: -16px
+      right: 0
+      @include rounded-top(4px)
+      //margin-top: 20px
+      vertical-align: bottom
+      float: right
+      margin-right: 1em
+      width: 140px
+      text-align: center
+      background: #ceeece
+      padding: .5em 0 !important
+      p
+        padding: .333em 0 !important
+        margin: 0 !important
+    .replies
+      display: none
+      border-top: 1px solid #ccc
+      margin-left: -5px
+      li.reply
+        min-height: 40px
+        overflow-x: hidden
+        div
+          //height: 200px
+        height: auto
+        border: none
+        margin-right: 10px
+        margin-bottom: .5em
+      .new_reply
+        margin-top: 7px
+        margin-bottom: .5em
+        padding-left: 3px
+        textarea
+          width: 442px
+          height: 56px
+          
+#user_info_box
+  padding: 7px
+  border-bottom: 1px solid #ccc 
+  .user_pic, .user_side
+    position: relative
+    display: inline-block
+    vertical-align: top
+    top: 0px
+  .user_pic
+    width: 50px
+    height: 50px
+    margin-right: 7px
+  .user_side
+    width: 290px
+    .user_name
+    .user_hidden
+      display: none
+      .user_info
+        width: 320px
+        font-size: 0.8em
+        tr
+          line-height: 120%
+          th
+            font-weight: bold
+            color: #666666
+            width: 90px
+            text-align: right
+            padding-right: 12px
+            padding-top: 10px
+          td
+            width: 240px
 
 .ui-autocomplete
   position: absolute
@@ -262,7 +282,7 @@ div.mode
     width: 350px
     height: 38px
 
-#wresults, #dresults, #iresults, #xs .left
+#both_columns #left_col
   ul
     li
       position: relative
@@ -310,63 +330,6 @@ div.mode
       img
         display: inline
 
-#d
-  .intro
-    -webkit-border-top-left-radius: 10px !important
-    -moz-border-radius-topleft: 10px !important
-    border-top-left-radius: 10px !important
-  .intro ul
-    text-align: center
-    cursor: pointer
-    li
-      list-style: none
-      display: inline
-      padding-left: .3em
-      padding-right: .3em
-      padding-top: .25em
-      padding-bottom: .4em
-      border: 1px solid auto
-    padding-left: 0
-    margin-bottom: 0em
-    margin-top: 1em
-    &:first-child
-      padding-left: 0
-    &:last-child
-      padding-right: 0
-    &.kinds li
-      -webkit-border-radius: 10px
-      -moz-border-radius: 10px
-      border-radius: 10px
-      &.selected
-        background: #bee
-        border: 1px solid #ddd
-  .photo
-    float: left
-    padding-right: 10px
-  .info
-    float: left
-    vertical-align: top
-  #dresults
-    h2
-      font-size: 1.8em
-      margin-top: .666em
-      margin-bottom: 0
-      padding-bottom: .4em
-      border-bottom: 1px solid #ccc
-    ul
-      margin-bottom: 1em
-      // li
-      //         cursor: pointer
-      //         padding-top: 5px
-      //         padding-left: 5px
-      //         min-height: 66px
-      //         border-bottom: 1px solid #ccc
-      //         img
-      //           float: left
-      //           margin-right: .5em
-      //         img, p
-      //           margin-top: 0
-
 #infobox
   textarea
     display: block
@@ -381,11 +344,6 @@ div.mode
       td
         margin-left: 1em
         padding: .2em 0
-
-#infobox
-  // min-height: 120px
-  // max-height: 480px
-  //overflow: auto
   border: 1px dashed #964
   margin-bottom: 1em
   padding: 1em
@@ -509,108 +467,14 @@ div.mode
       width: 50px
       height: 50px
       float: left
-    
-    
-
-
-
-
-
-
-
-
-#w
-  .intro
-    -webkit-border-top-right-radius: 10px !important
-    -moz-border-radius-topright: 10px !important
-    border-top-right-radius: 10px !important
-  #wresults
-    ul
-      margin-bottom: 1em
-      li
-        padding-top: 5px
-        padding-left: 5px
-        padding-bottom: 3px
-        border-bottom: 1px solid #ccc
-        > div
-          position: relative
-          height: 100%
-          min-height: 50px
-          margin-left: 70px
-          display: block
-          padding-bottom: 1em
-          div
-            margin-left: 0
-        > div.calendar
-          min-height: 40px
-        span.reply_name
-          font-weight: bold
-          margin-right: .25em
-        p
-          margin-top: 0
-          // padding-bottom: 1em
-          padding-right: .5em
-          line-height: 1.2em
-          &.age
-            position: absolute
-            bottom: 0
-            right: 0
-            margin-top: 20px
-            font-size: .85em
-            color: #333
-            text-align: right
-            margin-right: 1.4em
-        img
-          float: left
-          display: inline
-          position: absolute
-          margin-right: .5em
-          margin-top: 0
-          width: 60px
-        background: #ffeece + $primaryTextColor
-        &:hover
-          background: #ffeece
-
-#full
-  position: absolute
-  top: 61px
-  bottom: 30px
-  border:
-    width: 2px
-    color: #630
-    style: solid
-  background-color: #963
-  padding: 8px
-  -webkit-border-radius: 8px
-  -moz-border-radius: 8px
-  border-radius: 8px
-
-#comm_left, #comm_right
-  display: inline-block
-  position: relative
-  vertical-align: top
-  top: 0px
-  height: 100%
-  margin-bottom: $totalFooterHeight + px
-
-#comm_left
-  width: 396px
-  padding: 0px
-  left: 2px
-
-#comm_right
-  width: $rightColumnWidth + px
-  display: block
-  float: right
-  position: relative
 
 #map
-  width: ($rightColumnWidth - 2) + px
+  width: ($columnWidth - 2)
   border: $mapBorder
   height: 300px !important
   background: #49e
 
-#wresults, #dresults, #xs .left
+#both_columns #left_col
   ul
     li
       &.event
@@ -649,73 +513,3 @@ div.mode
             background: #f9f9f9
             color: #333
             height: 26px
-
-#new_post
-  //width: 100%
-  margin: auto
-  p.inline-errors
-    display: none
-  .inputs
-    //width: 100%
-    ol
-      //width: 100%
-      li
-        //width: 100%
-        position: relative
-        textarea, input, label
-          //font-size: 0.8em
-          font-size: 1em
-          height: 38px
-          display: block
-        textarea
-          padding: 5px
-          //height: 4em
-          width: 376px
-        input
-          //width: 100%
-        label
-          position: absolute
-          top: 4px
-          left: 6px
-          color: #888
-          text-align: left
-          margin: 0px
-          font-weight: normal
-          width: inherit
-  .buttons
-    ol
-      display: table
-      //width: 100%
-      li
-        padding: 0
-        margin: 5px
-        float: none
-        display: table-cell
-        button
-          background-color: #2b8829
-          background-image: url("/images/submit_post_background.png")
-          color: white
-          font-weight: bold
-          font-size: 0.9em
-          width: 95%
-          padding: 6px
-          -webkit-border-radius: 8px
-          -moz-border-radius: 8px
-          border-radius: 8px
-          border:
-            width: 1px
-            style: solid
-            color: #aaa
-          &:hover
-            border:
-              color: #333
-
-#i
-  .intro
-    text-align: center
-    height: 40px
-    min-height: 0px
-
-header
-  form
-    display: inline

@@ -7,7 +7,7 @@ var app = $.sammy(function() {
       $("#new_post").replaceWith(response.newPost);
       $("#new_post textarea").goodlabel();
       if (response.success) {
-        $('#xs ul').prepend(response.createdPost);
+        $('#both_columns ul').prepend(response.createdPost);
       } else {
         alert("post validation failed");
       }
@@ -31,19 +31,17 @@ var app = $.sammy(function() {
 
   this.get("#/posts/:id", function() {
     $.getJSON(this.path.slice(1), function(response) {
-      $("#xs .right").html(response.info_box);
+      $("#both_columns #right_col").html(response.info_box);
     });    
   });
 
   this.get("#/events/:id", function() {
     $.getJSON(this.path.slice(1), function(response) {
-      $("#xs .right").html(response.info_box);
+      $("#both_columns #right_col").html(response.info_box);
     });    
   });
 
 });
-
-
 
 
 $(function(){

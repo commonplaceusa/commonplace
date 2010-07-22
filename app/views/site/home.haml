@@ -1,5 +1,6 @@
-.right
-  
-.left
+#left_col
+  = render 'posts/form', :post => Post.new
   = render 'shared/list', :items => current_user.wire
   .bottomshiv
+  
+#right_col
