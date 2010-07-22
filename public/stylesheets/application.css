@@ -77,7 +77,7 @@ ul#filters {
     padding: 0.2em 0.4em; }
 
 #both_columns {
-  min-height: 600px;
+  min-height: 500px;
   border-top: 1px solid #cccccc;
   margin-top: 15px;
   position: relative; }

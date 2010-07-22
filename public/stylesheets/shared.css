@@ -55,8 +55,9 @@ dl {
   left: 0;
   width: 100%;
   height: 300px;
-  background: red;
-  background: -webkit-gradient(linear, left top, left bottom, from(#d6d5d0), to(#f8f7f2));
+  background: #f8f7f2;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#d6d5d0), to(#f8f7f2));
+  background: -moz-linear-gradient(center bottom, #f8f7f2, #d6d5d0);
   z-index: -1; }
 
 #wrap {
@@ -89,8 +90,9 @@ dl {
   left: 0;
   width: 100% !important;
   height: 300px;
-  background: blue;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f8f7f2), to(#d6d5d0));
+  background: #f8f7f2;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f8f7f2), to(#d6d5d0));
+  background: -moz-linear-gradient(center bottom, #d6d5d0, #f8f7f2);
   z-index: -1; }
 
 header {

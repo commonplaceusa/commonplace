@@ -65,8 +65,8 @@ dl
   left: 0
   width: 100%
   height: $topStripHeight + px
-  background: red
-  background: -webkit-gradient(linear, left top, left bottom, from($backgroundGradientColor1), to($backgroundGradientColor2))
+  background: $backgroundColor
+  @include vertical-gradient($backgroundGradientColor1, $backgroundGradientColor2)
   z-index: -1
 
 #wrap
@@ -98,8 +98,8 @@ dl
   left: 0
   width: 100% !important
   height: $bottomStripHeight + px
-  background: blue
-  background: -webkit-gradient(linear, left top, left bottom, from($backgroundGradientColor2), to($backgroundGradientColor1))
+  background: $backgroundColor
+  @include vertical-gradient($backgroundGradientColor2, $backgroundGradientColor1)
   z-index: -1
 
 header

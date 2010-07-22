@@ -47,13 +47,19 @@
   @include column
   width: $width
   
+@mixin vertical-gradient($color1, $color2)
+  background-image: -webkit-gradient(linear, left top, left bottom, from($color1), to($color2))
+  background: -moz-linear-gradient(center bottom, $color2, $color1)
 
 // Variables
 
 $mainWidth = 976px
+$mainHeight = 600px
 $mainPadding = 15px
-$columnPadding = 15px
 
+$filterHeight = 100px
+
+$columnPadding = 15px
 $columnWidth = ( $mainWidth - 2 ) / 2 - $columnPadding * 2 - 2
 
 $primaryTextColor = #111
