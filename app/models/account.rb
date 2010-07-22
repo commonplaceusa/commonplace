@@ -26,7 +26,7 @@ class Account
   end
   
 
-  validates_true_for :code, :logic => lambda { CONFIG["registration_code"] == code }, :message => "Sorry, we didn't recognize this registration code."
+  # validates_true_for :code, :logic => lambda { CONFIG["registration_code"] == code }, :message => "Sorry, we didn't recognize this registration code."
   validates_acceptance_of :privacy_policy, :if => lambda {@privacy_policy != "1"}, 
     :message => "Please read and accept our privacy policy!"
   include_errors_from :user
