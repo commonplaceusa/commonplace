@@ -106,7 +106,7 @@ header
   position: relative
   margin: auto
   width: $mainWidth
-  height: 48px
+  height: 38px
   padding-top: 10px
   a#title, nav
     @include column
@@ -123,12 +123,17 @@ header
   right: 0px
   display: inline-block
   
-#header_text
+p#header_text  
+  @include column
+  top: 4px
   text-align: right
+  background-color: #eee
+  border: 1px solid #ccc
+  @include rounded(5px)
   right: 0px
   font-size: 0.8em
-  margin-bottom: 5px
-  margin-right: 15px
+  margin: 0px
+  padding: 3px 10px
 
 nav#tabs a
   @include column
@@ -152,12 +157,12 @@ nav#tabs a
   font-weight: bold !important
   
 #search
+  padding: 0px
   @include column
   top: 0px
   z-index: 1
-  margin-left: 5px
   input[type="text"]
-    width: 200px
+    width: 180px
     border: 1px solid silver
     padding: 5px
     @include rounded(10px)

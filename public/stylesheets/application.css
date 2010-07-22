@@ -1,26 +1,31 @@
 ul#filters {
   padding: 0 1em;
-  margin: 15px auto 0;
-  text-align: center; }
+  margin: 15px auto 0; }
   ul#filters li:hover {
     background: white; }
   ul#filters li {
     list-style: none;
+    top: 0px;
+    position: relative;
     display: inline-block;
-    margin-right: 25px;
+    vertical-align: top;
+    margin-right: 12px;
     border: 1px solid #aaaaaa;
     background: #99ff99;
-    padding: 0.5em 1em;
-    width: 95px;
-    height: 70px;
-    font-size: 0.8em;
+    padding: 10px 0px;
+    width: 97px;
+    height: 65px;
+    text-align: center;
     -webkit-border-radius: 4px !important;
     -moz-border-radius: 4px !important;
     border-radius: 4px !important; }
+    ul#filters li a {
+      font-size: 0.7em;
+      font-weight: normal; }
     ul#filters li:last-child {
       margin-right: 0; }
     ul#filters li:hover {
-      background: #dddddd !important; }
+      background: #eeeeee !important; }
     ul#filters li#wire_button {
       background: #bfe2f3; }
     ul#filters li#posts_button {
@@ -33,6 +38,17 @@ ul#filters {
       background: #bef6d6; }
     ul#filters li#organizations_button {
       background: #ffefc5; }
+    ul#filters li#search_li {
+      width: auto;
+      background: #eeeeee;
+      text-align: left;
+      padding: 10px; }
+      ul#filters li#search_li p {
+        margin: 8px 0px 0px;
+        text-align: left;
+        font-size: 0.8em; }
+        ul#filters li#search_li p a {
+          font-size: 1em !important; }
 
 #post_submission {
   background-color: #eeeeee;
@@ -43,6 +59,9 @@ ul#filters {
   border-radius: 5px !important;
   margin-bottom: 1em;
   padding: 10px; }
+  #post_submission p {
+    margin: 0 0 0.5em;
+    font-weight: bold; }
   #post_submission form textarea {
     font-size: 0.8em;
     width: 420px;

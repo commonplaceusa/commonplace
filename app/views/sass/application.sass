@@ -6,24 +6,27 @@
 ul#filters
   padding: 0 1em
   margin: 15px auto 0
-  text-align: center
+  //text-align: center
   li:hover
     background: white
   li
     list-style: none
-    display: inline-block
-    margin-right: 25px
+    @include column
+    margin-right: 12px
     border: 1px solid #aaa
     background: #99ff99
-    padding: 0.5em 1em
-    width: 95px
-    height: 70px
-    font-size: 0.8em
+    padding: 10px 0px
+    width: 97px
+    height: 65px
+    text-align: center
+    a
+      font-size: 0.7em
+      font-weight: normal
     @include rounded(4px)
     &:last-child
       margin-right: 0
     &:hover
-      background: #ddd !important
+      background: #eee !important
     &#wire_button
       background: #BFE2F3
     &#posts_button
@@ -36,8 +39,22 @@ ul#filters
       background: #BEF6D6
     &#organizations_button
       background: #FFEFC5
+    &#search_li
+      width: auto
+      background: #eee
+      text-align: left
+      padding: 10px
+      p
+        margin: 8px 0px 0px
+        text-align: left
+        font-size: 0.8em
+        a
+          font-size: 1em !important
 
 #post_submission
+  p
+    margin: 0 0 0.5em
+    font-weight: bold
   background-color: #eee
   border: 1px solid #bbb
   border-bottom-color: #888

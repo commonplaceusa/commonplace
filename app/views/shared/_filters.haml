@@ -11,3 +11,6 @@
     = link_to 'People', users_path(:q => params[:q])
   %li#organizations_button
     = link_to 'Organizations', organizations_path(:q => params[:q])
+  %li#search_li
+    = render 'shared/search'
+    %p Examples: #{ link_to 'hiking' }, #{ link_to 'basketball' }, #{ link_to 'lawn care' }
