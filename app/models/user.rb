@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :organizations
   has_many :attendances
   has_many :posts
+
+  has_many :roles
+  has_many :managable_organizations, :through => :roles, :class_name => "Organization"
   
   has_many :referrals, :foreign_key => "referree_id"
   

@@ -8,6 +8,9 @@ class Organization < ActiveRecord::Base
 
   has_many :text_modules, :order => "position"
 
+  has_many :roles
+  has_many :admins, :through => :roles, :class_name => "User"
+
   has_attached_file(:avatar, :styles => { :thumb => "100x100" })
 
   before_save :update_lat_and_lng, :if => "address_changed?"
