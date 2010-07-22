@@ -35,7 +35,7 @@ body {
 #main {
   overflow: auto;
   width: 976px;
-  border: 1px solid black;
+  border: 1px solid #666666;
   background: #fefefe;
   margin-left: auto;
   margin-right: auto;
@@ -76,6 +76,17 @@ footer {
   padding-top: 10px; }
   footer a {
     color: #ff5555; }
+  footer span#footer_left {
+    font-size: 2em;
+    float: left;
+    margin-left: 20px;
+    color: #5f946a; }
+  footer span#footer_right {
+    float: right;
+    margin-right: 20px;
+    color: #a06c44;
+    font-size: 1.4em;
+    font-weight: lighter; }
 
 a {
   color: #0033aa;
@@ -110,45 +121,28 @@ header {
     border: 0px;
     height: 50px;
     width: 370px; }
-  header nav {
-    background-color: #334499;
-    background: -moz-linear-gradient(center bottom, #555555, #777777);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.94, #777777), color-stop(0.42, #555555));
-    border-color: #555555;
-    border-width: 0.5px;
-    border-bottom-width: 0px;
-    border-style: solid;
-    -webkit-border-top-left-radius: 8px !important;
-    -webkit-border-top-right-radius: 8px !important;
-    -moz-border-radius-topleft: 8px !important;
-    -moz-border-radius-topright: 8px !important;
-    border-top-left-radius: 8px !important;
-    border-top-right-radius: 8px !important;
-    padding: 2px 12px 0px;
-    text-align: right;
-    width: 300px;
-    color: #eeeeee;
-    font-size: 0.9em;
-    height: 50px; }
-    header nav a {
-      color: #bbdddd; }
-    header nav p {
-      margin-bottom: 0.2em; }
-    header nav form {
-      display: inline; }
-    header nav h1 {
-      height: 1em; }
-    header nav nav {
-      font-size: 0.9em; }
+
+#header_right {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  display: inline-block; }
+
+#header_text {
+  text-align: right;
+  right: 0px;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+  margin-right: 15px; }
 
 #community_tab, #inbox_tab, #account_tab {
   top: 0px;
   position: relative;
   display: inline-block;
   vertical-align: top;
-  top: 9px;
+  top: 1px;
   z-index: 1;
-  border: 2px solid gray;
+  border: 1px solid #666666;
   border-bottom: none;
   -webkit-border-top-left-radius: 15px !important;
   -webkit-border-top-right-radius: 15px !important;
@@ -156,24 +150,26 @@ header {
   -moz-border-radius-topright: 15px !important;
   border-top-left-radius: 15px !important;
   border-top-right-radius: 15px !important;
+  padding: 7px 10px;
   background: #dddddd;
-  font-size: 18px;
-  padding: 11px 14px 11px 14px; }
+  font-size: 15px;
+  font-weight: normal; }
   #community_tab:hover, #inbox_tab:hover, #account_tab:hover {
-    background: white; }
+    background: #eeeeee; }
 
 .selected_tab {
-  padding-bottom: 12px !important;
-  background: white !important; }
+  padding-bottom: 8px !important;
+  background: white !important;
+  font-weight: bold !important; }
 
 #search {
   top: 0px;
   position: relative;
   display: inline-block;
   vertical-align: top;
-  top: 8px;
+  top: 0px;
   z-index: 1;
-  padding: 5px; }
+  margin-left: 5px; }
   #search input[type="text"] {
     width: 200px;
     border: 1px solid silver;
@@ -189,7 +185,7 @@ header {
     -moz-border-radius: 10px !important;
     border-radius: 10px !important;
     font-size: 13px;
-    background: #ccffcc; }
+    background: #bfe2f3; }
 
 .time, .delete {
   color: #666666; }

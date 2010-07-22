@@ -2,27 +2,19 @@
   %h1
     - link_to root_path do
       = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "349x49"
+  
+  #header_right
+    #header_text
+      - if current_user_session
+        Hi, #{current_user.first_name}!
+        = link_to 'log out', logout_url
+      - else
+        Hi there!
+        = link_to 'log in', new_user_session_path
+        |
+        = link_to 'register', new_account_path
     
-  #account_tab My Account
-  #inbox_tab Inbox (1)
-  #community_tab.selected_tab Roxbury
-    
-  = render 'shared/search'
-
-  / %nav
-  /   - if current_user_session
-  /     %p
-  /       %strong Hi, #{current_user.first_name}! Welcome to #{CONFIG["community_name"]}.
-  /     %nav
-  /       = link_to 'home', root_url
-  /       |
-  /       = link_to 'my account', edit_account_path
-  /       | 
-  /       = link_to 'log out', logout_url
-  /   - else
-  /     %p
-  /       %strong Hi there!
-  /     %nav
-  /       = link_to 'log in', new_user_session_path
-  /       |
-  /       = link_to 'register', new_account_path
+    #account_tab My Account
+    #inbox_tab Inbox (1)
+    #community_tab.selected_tab Roxbury
+    = render 'shared/search'

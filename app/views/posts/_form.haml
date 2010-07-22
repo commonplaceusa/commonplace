@@ -1,11 +1,16 @@
 #post_submission
   - form_for post do |f|
     = f.text_area :body, "data-label" => 'Write a message to your neighbors. It can be about something you need or an announcement.'
-    %br
-    = f.radio_button :purpose, "tell"
-    = f.label :purpose, "tell", :for => "post_purpose_tell"
-    = f.radio_button :purpose, "ask"
-    = f.label :purpose, "ask", :for => "post_purpose_ask"
-    = f.radio_button :purpose, "other"
-    = f.label :purpose, "other", :for => "post_purpose_other"
+    
+    %ul
+      %li
+        = f.radio_button :purpose, "tell"
+        = f.label :purpose, "tell", :for => "post_purpose_tell"
+      %li
+        = f.radio_button :purpose, "ask"
+        = f.label :purpose, "ask", :for => "post_purpose_ask"
+      %li
+        = f.radio_button :purpose, "other"
+        = f.label :purpose, "other", :for => "post_purpose_other"
+
     = f.submit "Post"

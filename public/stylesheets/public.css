@@ -26,6 +26,9 @@ textarea, input {
   .front_page_main p, #main_left p, #main_right p {
     margin: 10px 0px; }
 
+#main {
+  padding: 15px !important; }
+
 #main_left {
   padding: 15px;
   background-color: #eeeeee;
@@ -60,15 +63,3 @@ form.formtastic.user_session fieldset.inputs {
 
 .clear {
   clear: both; }
-
-footer span.left {
-  font-size: 2em;
-  float: left;
-  margin-left: 20px;
-  color: #5f946a; }
-footer span.right {
-  float: right;
-  margin-right: 20px;
-  color: #a06c44;
-  font-size: 1.4em;
-  font-weight: lighter; }

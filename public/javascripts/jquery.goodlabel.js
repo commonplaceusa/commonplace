@@ -6,9 +6,9 @@
 (function($){
     $.fn.goodlabel = function() {
         $(this).each(function(){
-            
+          
             if ( $(this).attr('data-label') === undefined) {
-                //alert("false false false");
+                 // alert("no data label");
                 return null;
             }
             //alert("true true true");

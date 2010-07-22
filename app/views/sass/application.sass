@@ -41,7 +41,7 @@ body
 #main
   overflow: auto
   width: $mainWidth
-  border: 1px solid #000
+  border: 1px solid $mediumGray
   background: #fefefe
   margin-left: auto
   margin-right: auto
@@ -82,6 +82,18 @@ footer
   padding-top: $footerPadding + px
   a
     color: #f55
+  span
+    &#footer_left
+      font-size: 2em
+      float: left
+      margin-left: 20px
+      color: #5F946A
+    &#footer_right
+      float: right
+      margin-right: 20px
+      color: #A06C44
+      font-size: 1.4em
+      font-weight: lighter
 
 // Standard tags.
 a
@@ -118,56 +130,45 @@ header
     border: 0px
     height: 50px
     width: 370px
-  nav
-    background-color: #349
-    background: -moz-linear-gradient(center bottom, #555, #777)
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.94, #777), color-stop(0.42, #555))
-    border:
-      color: #555
-      width: .5px
-      bottom-width: 0px
-      style: solid
-    @include rounded-top(8px)
-    padding: 2px 12px 0px
-    text-align: right
-    width: 300px
-    color: #eee
-    font-size: 0.9em
-    height: 50px
-    a
-      //color: #1144bb
-      color: #bdd
-    p
-      margin-bottom: 0.2em
-    form
-      display: inline
-    h1
-      height: 1em
-    nav
-      font-size: .9em
+
+#header_right
+  position: absolute
+  bottom: 0px
+  right: 0px
+  display: inline-block
+  
+#header_text
+  text-align: right
+  right: 0px
+  font-size: 0.8em
+  margin-bottom: 5px
+  margin-right: 15px
 
 #community_tab, #inbox_tab, #account_tab
   @include column
-  top: 9px
+  // top: 17px
+  top: 1px
   z-index: 1
-  border: 2px solid gray
+  border: 1px solid $mediumGray
   border-bottom: none
   @include rounded-top(15px)
+  padding: 7px 10px
   background: #ddd
   &:hover
-    background: white
-  font-size: 18px
-  padding: 11px 14px 11px 14px
+    background: #eee
+  font-size: 15px
+  font-weight: normal
 
 .selected_tab
-  padding-bottom: 12px !important
+  padding-bottom: 8px !important
   background: white !important
+  font-weight: bold !important
   
 #search
   @include column
-  top: 8px
+  top: 0px
   z-index: 1
-  padding: 5px
+  margin-left: 5px
   input[type="text"]
     width: 200px
     border: 1px solid silver
@@ -179,7 +180,7 @@ header
     padding: 5px
     @include rounded(10px)
     font-size: 13px
-    background: #cfc
+    background: #BFE2F3
 
 .time, .delete
   color: #666666
@@ -192,9 +193,6 @@ header
 
 #info_img, .info
   @include column
-
-
-
 
 #info_img
   width: 400px
@@ -222,12 +220,6 @@ dl
   dd
     float: left
     width: 260px
-
-// suggestion of in-line website. this is broken
-// label
-//   position: absolute
-//   top: 0
-//   left: 0
 
 .editarea
   p

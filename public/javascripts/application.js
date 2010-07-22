@@ -47,7 +47,8 @@ var app = $.sammy(function() {
 $(function(){
   app.run();
   
-  $('li.post div.c').live('click', function(e) {
+  
+  $('li.post div.post_main').live('click', function(e) {
     var $this = $(this);
     $this.siblings('.replies').slideToggle(250);
     app.location_proxy.setLocation("#" + $this.parent().attr('data-url'));
@@ -57,9 +58,8 @@ $(function(){
     var $this = $(this);
     app.location_proxy.setLocation("#" + $this.attr('data-url'));
   });
-    
   
-  $("input, textarea").goodlabel();
-      
+  $("input, textarea").goodlabel();      
+  $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
  
 });

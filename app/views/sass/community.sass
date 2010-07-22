@@ -3,136 +3,140 @@
 // private.sass
 // Logged in, view of wire, directory, profiles, etc.
   
-
-#filters
-  ul
-    padding: 0 1em
-    margin: 1em auto 0
-    text-align: center
-    li:hover
-      background: white
-    li
-      list-style: none
-      display: inline-block
-      margin-right: 25px
-      border: 2px solid #ff9999
-      background: #99ff99
-      padding: .5em 1em
-      width: 95px
-      height: 70px
-      font-size: 0.8em
-      vertical-align: bottom
-      @include rounded(4px)
-      &:last-child
-        margin-right: 0
-      &:hover
-        background: #ddd !important
-      &#wire_button
-        background: #BFE2F3
-      &#posts_button
-        background: #FFE4C6
-      &#announcements_button
-        background: #C5CBF5
-      &#events_button
-        background: #FFEFC6
-      &#people_button
-        background: #BEF6D6
-      &#organizations_button
-        background: #FFEFC5
+ul#filters
+  padding: 0 1em
+  margin: 15px auto 0
+  text-align: center
+  li:hover
+    background: white
+  li
+    list-style: none
+    display: inline-block
+    margin-right: 25px
+    border: 1px solid #aaa
+    background: #99ff99
+    padding: 0.5em 1em
+    width: 95px
+    height: 70px
+    font-size: 0.8em
+    @include rounded(4px)
+    &:last-child
+      margin-right: 0
+    &:hover
+      background: #ddd !important
+    &#wire_button
+      background: #BFE2F3
+    &#posts_button
+      background: #FFE4C6
+    &#announcements_button
+      background: #C5CBF5
+    &#events_button
+      background: #FFEFC6
+    &#people_button
+      background: #BEF6D6
+    &#organizations_button
+      background: #FFEFC5
 
 #post_submission
-  background-color: #cfc
-  border: 2px solid gray
-  @include rounded(10px)
+  background-color: #eee
+  border: 1px solid #bbb
+  border-bottom-color: #888
+  @include rounded(5px)
   margin-bottom: 1em
   padding: 10px
-  textarea
-    width: $columnWidth - 45px
-    height: 80px
-    border: 3px solid #ff9999
-    padding: 0.4em
-    @include rounded(10px)
-  input[type='submit']
-    width: 100px
-    margin-left: 45px
-    padding: .2em .4em
-  label
-    margin-right: 15px
+  form
+    textarea
+      font-size: 0.8em
+      width: 420px
+      height: 3.5em
+      border: 1px solid #aaa
+      padding: 0.4em
+      @include rounded(5px)
+      margin-bottom: 4px
+    ul  
+      @include column
+      width: 300px
+      li
+        @include column
+        width: 75px
+        label
+          margin-right: 15px
+          font-size: 0.8em      
+    input[type='submit']
+      @include column
+      width: 100px
+      padding: .2em .4em
 
 #both_columns
   min-height: 600px
-  border-top: 1px solid gray
-  margin-top: 1em
+  border-top: 1px solid #ccc
+  margin-top: 15px
   position: relative
   
 #left_col, #right_col
   min-height: inherit
   padding: $columnPadding
-#right_col
-  @include column-right($columnWidth)
-  // padding-left: $columnPadding
+  @include column
+  width: $columnWidth
 #left_col
-  @include column-left($columnWidth)
-  // padding-right: $columnPadding
   border-right: 1px solid #ccc
-  li
-    .age
-      text-align: right
-      padding-right: .5em
-      width: 100%
-      top: .5em
-      font-size: .85em
-      color: #333
-      margin-top: .5em
-      margin-bottom: 0
-      border: 0
-    .c
-      position: relative
-      min-height: 80px
-      margin: 0
-      padding-bottom: 0
-      > div > p
-        min-height: 70px
-    .expand
-      min-height: 0px
-      border-width: 1px 1px 0 1px
-      border-style: solid
-      border-color: #ccc
-      position: absolute
-      bottom: -16px
-      right: 0
-      @include rounded-top(4px)
-      //margin-top: 20px
-      vertical-align: bottom
-      float: right
-      margin-right: 1em
-      width: 140px
-      text-align: center
-      background: #ceeece
-      padding: .5em 0 !important
-      p
-        padding: .333em 0 !important
-        margin: 0 !important
-    .replies
-      display: none
-      border-top: 1px solid #ccc
-      margin-left: -5px
-      li.reply
-        min-height: 40px
-        overflow-x: hidden
-        div
-          //height: 200px
-        height: auto
-        border: none
-        margin-right: 10px
-        margin-bottom: .5em
-      .new_reply
-        margin-top: 7px
-        margin-bottom: .5em
-        padding-left: 3px
-        textarea
-          width: 442px
-          height: 56px
+
+li.post
+  .age
+    text-align: right
+    padding-right: .5em
+    width: 100%
+    top: .5em
+    font-size: .85em
+    color: #333
+    margin-top: .5em
+    margin-bottom: 0
+    border: 0
+  .post_main
+    position: relative
+    min-height: 80px
+    margin: 0
+    padding-bottom: 0
+    > div > p
+      min-height: 70px
+  .expand
+    min-height: 0px
+    border-width: 1px 1px 0 1px
+    border-style: solid
+    border-color: #ccc
+    position: absolute
+    bottom: -16px
+    right: 0
+    @include rounded-top(4px)
+    //margin-top: 20px
+    vertical-align: bottom
+    float: right
+    margin-right: 1em
+    width: 140px
+    text-align: center
+    background: #ceeece
+    padding: .5em 0 !important
+    p
+      padding: .333em 0 !important
+      margin: 0 !important
+  .replies
+    display: none
+    border-top: 1px solid #ccc
+    margin-left: -5px
+    li.reply
+      min-height: 40px
+      overflow-x: hidden
+      height: auto
+      border: none
+      margin-right: 10px
+      margin-bottom: .5em
+    .new_reply
+      margin-top: 7px
+      margin-bottom: .5em
+      padding-left: 3px
+      textarea
+        width: 442px
+        height: 56px
           
 #user_info_box
   border: 2px solid gray
@@ -246,16 +250,6 @@
   &:hover
     background: #e88e33 + #333
 
-#submission form#new_post div
-  display: none !important
-  // fixes mozilla bug
-
-#submission
-  textarea
-    font-size: 1em
-    padding: 6px
-    display: block
-
 span.name
   margin-right: .5em
   font-weight: bold
@@ -320,43 +314,42 @@ div.mode
     width: 350px
     height: 38px
 
-#both_columns #left_col
-  ul
-    li
-      position: relative
-      cursor: pointer
-      padding-top: 5px
-      padding-left: 5px
-      min-height: 78px
+ul#wire
+  li
+    position: relative
+    cursor: pointer
+    padding-top: 5px
+    padding-left: 5px
+    min-height: 78px
+    border: 1px solid #ccc
+    margin-bottom: 1em
+    border-bottom: 1px solid #ccc
+    img
+      float: left
+      margin-right: .5em
       border: 1px solid #ccc
-      margin-bottom: 1em
-      border-bottom: 1px solid #ccc
-      img
-        float: left
-        margin-right: .5em
-        border: 1px solid #ccc
-      img, p
-        margin-top: 0
-      &.post
-        background: #FFE4C6
-      &.event
-        background: #C5CBF5
-      &.person
-        background: #fea
-      &.organization
-        background: #fea + #111
-      &.business
-        background: #fea - #111
-      &.selected
-        background: #eef
-      &.conversation
-        background: #beaebe
-        &.read
-          background: #beaebe + #111
-        &.unread
-          background: #beaebe - #111
-      &:hover
-        background: #fee
+    img, p
+      margin-top: 0
+    &.post
+      background: #FFE4C6
+    &.event
+      background: #C5CBF5
+    &.person
+      background: #fea
+    &.organization
+      background: #fea + #111
+    &.business
+      background: #fea - #111
+    &.selected
+      background: #eef
+    &.conversation
+      background: #beaebe
+      &.read
+        background: #beaebe + #111
+      &.unread
+        background: #beaebe - #111
+    &:hover
+      background: #fee
 
 #iresults
   ul
@@ -368,186 +361,40 @@ div.mode
       img
         display: inline
 
-#infobox
-  textarea
-    display: block
-    overflow-x: hidden
-  table
-    padding: 0
-    tr
-      th
-        margin-right: 1em
-        padding: .2em 0
-        width: 100px
-      td
-        margin-left: 1em
-        padding: .2em 0
-  border: 1px dashed #964
-  margin-bottom: 1em
-  padding: 1em
-  h2
-    text-align: left
-    margin-top: .4em
-    padding-bottom: 0
-    margin-bottom: .5em
-    font-size: 2em
-    a
-      text-decoration: none
-      color: $primaryTextColor
-  img
-    float: right
-    width: 100px
-    height: 100px
-    display: inline
-    margin-left: .2em
-    margin-bottom: .2em
-  ul
-    li
-      list-style: none
-      display: inline-block
-      margin-top: .25em
-      margin-right: .25em
-      border: 1px solid #375D81
-      background: #ABC8E2
-      padding: 4px
-      line-height: 1.2em
-      @include rounded(4px)
-  p
-    text-align: left
-    margin-top: 1em
-    padding-bottom: .2em
-    border-bottom: 1px dashed #555
-    font-size: 1.4em
-    &.desc
-      color: $primaryTextColor
-      border-bottom: none
-      font-size: 1em
-    &.detail
-      margin-top: 0
-      margin-bottom: 0
-      font-size: 1em
-      color: #555
-      border-bottom: none
-    &.instruction
-      color: $primaryTextColor
-      border-bottom: none
-      font-size: 1.1em
-      line-height: 1.2em
-  textarea
-    font-size: 1.2em
-    width: 100%
-    height: 2.4em
-    display: block
-    &:focus
-      background: #eef
-  button
-    font-size: 1.2em
-  div
-    text-align: center
-    margin: 0 auto
-    font-size: 1.1em
-    margin-top: .75em
-    
-  span.wire, span.directory
-    display: none
-
-  .replies
-    div
-      font-size: .9em
-      margin: 0
-      margin-left: 62px
-      line-height: 1.1em
-      overflow-x: hidden
-      text-align: left
-      &.new_reply
-        overflow-x: visible
-        margin-left: 0
-        height: 100px
-        padding-top: 0px
-        label
-          position: absolute
-          padding-top: 6px
-          padding-left: 10px
-          font-size: 1em
-          color: #333
-        textarea
-          margin-left: 5px
-          padding: 5px
-          // width: 380px
-          display: block
-          height: 38px
-          font-size: 1em
-        form
-          border: none
-          @include rounded(0)
-        input
-          margin-left: 5px
-          display: inline-block
-          font-size: 0.8em
-          //@include rounded(8px)
-          background-image: url("/images/button_repeat.png")
-          padding: 3px 7px
-          border-width: 1px
-          border-style: solid
-          border-color: #aaaaaa
-          &:hover
-            border: 1px solid black
-    li
-      border: none
-      background: none
-      min-height: 50px
-      padding: 5px
-      padding-left: 3px
-      //&:hover
-        background: #CEEECE - #050505
-    //background: #CEEECE
-    img
-      width: 50px
-      height: 50px
-      float: left
-
 #map
   width: ($columnWidth - 2)
   border: $mapBorder
   height: 300px !important
   background: #49e
 
-#both_columns #left_col
-  ul
-    li
-      &.event
-        position: relative
-        // min-height: 96px
-        //background: #feb
-        div.calendar
-          //@include rounded(10px)
-          min-height: none
-          position: relative !important
-          float: left
-          text-align: center
-          display: block
-          width: 72px
-          height: 72px !important
-          border: 1px solid #888
-          margin-right: 0.5em
-          margin-left: 0 !important
-          background: green
-          div.month
-            position: relative !important
-            min-height: none !important
-            font-size: 1.4em
-            padding-top: 8px
-            padding-bottom: 0px
-            border: 0
-            height: 26px !important
-            background: #A93F40
-            color: #f9f9f9
-          div.date
-            position: relative !important
-            min-height: none !important
-            font-size: 1.8em
-            padding: 12px 4px 0px 4px
-            border: 0
-            background: #f9f9f9
-            color: #333
-            height: 26px
+div.calendar
+  min-height: none
+  position: relative !important
+  float: left
+  text-align: center
+  display: block
+  width: 72px
+  height: 72px !important
+  border: 1px solid #888
+  margin-right: 0.5em
+  margin-left: 0 !important
+  background: green
+  div.month
+    position: relative !important
+    min-height: none !important
+    font-size: 1.4em
+    padding-top: 8px
+    padding-bottom: 0px
+    border: 0
+    height: 26px !important
+    background: #A93F40
+    color: #f9f9f9
+  div.date
+    position: relative !important
+    min-height: none !important
+    font-size: 1.8em
+    padding: 12px 4px 0px 4px
+    border: 0
+    background: #f9f9f9
+    color: #333
+    height: 26px

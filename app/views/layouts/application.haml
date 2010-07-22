@@ -9,7 +9,7 @@
 
 
 
-    = stylesheet_link_tag 'reset', 'application', 'public', 'community'
+    = stylesheet_link_tag 'reset', 'application', 'community'
     
     /[if IE]
       = stylesheet_link_tag 'ie'
@@ -26,20 +26,19 @@
       = render 'shared/header'
     
       #main
-        #filters
-          %ul
-            %li#wire_button 
-              = link_to 'Wire', root_path(:q => params[:q])
-            %li#posts_button
-              = link_to 'Posts'
-            %li#announcements_button
-              = link_to 'Announcements'
-            %li#events_button
-              = link_to 'Events', events_path(:q => params[:q])
-            %li#people_button
-              = link_to 'People', users_path(:q => params[:q])
-            %li#organizations_button
-              = link_to 'Organizations', organizations_path(:q => params[:q])
+        %ul#filters
+          %li#wire_button 
+            = link_to 'Wire', root_path(:q => params[:q])
+          %li#posts_button
+            = link_to 'Posts'
+          %li#announcements_button
+            = link_to 'Announcements'
+          %li#events_button
+            = link_to 'Events', events_path(:q => params[:q])
+          %li#people_button
+            = link_to 'People', users_path(:q => params[:q])
+          %li#organizations_button
+            = link_to 'Organizations', organizations_path(:q => params[:q])
         #both_columns
           = yield
   

@@ -33,12 +33,7 @@
     
     #wrap
       #top
-    
-      %header#main_head
-        %h1
-          - link_to root_path do
-            = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "349x49"
-        = render 'shared/header_nav'
+      = render 'shared/header'
     
       #main
         = yield
