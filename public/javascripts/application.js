@@ -48,7 +48,7 @@ $(function(){
   app.run();
   
   
-  $('li.post div.post_main').live('click', function(e) {
+  $('li.post div.post_clickable').live('click', function(e) {
     var $this = $(this);
     $this.siblings('.replies').slideToggle(250);
     app.location_proxy.setLocation("#" + $this.parent().attr('data-url'));

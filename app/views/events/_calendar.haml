@@ -1,3 +1,3 @@
-%div.calendar
-  %div.month #{Date::ABBR_MONTHNAMES[event.start_time.mon]}
-  %div.date #{event.start_time.day}
+.calendar
+  .month= Date::ABBR_MONTHNAMES[event.start_time.mon]
+  .date= event.start_time.day

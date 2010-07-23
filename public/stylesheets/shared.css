@@ -78,9 +78,18 @@ dl {
   padding: 0;
   padding-bottom: 43;
   display: block;
-  -webkit-border-radius: 4px !important;
-  -moz-border-radius: 4px !important;
-  border-radius: 4px !important;
+  -webkit-border-top-right-radius: 4px !important;
+  -moz-border-radius-topright: 4px !important;
+  border-top-right-radius: 4px !important;
+  -webkit-border-top-left-radius: 4px !important;
+  -moz-border-radius-topleft: 4px !important;
+  border-top-left-radius: 4px !important;
+  -webkit-border-bottom-right-radius: 4px !important;
+  -moz-border-radius-bottomright: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  -webkit-border-bottom-left-radius: 4px !important;
+  -moz-border-radius-bottomleft: 4px !important;
+  border-bottom-left-radius: 4px !important;
   position: relative; }
 
 #bottom {
@@ -102,7 +111,6 @@ header {
   height: 38px;
   padding-top: 10px; }
   header a#title, header nav {
-    top: 0px;
     position: relative;
     display: inline-block;
     vertical-align: top; }
@@ -120,24 +128,31 @@ header {
   display: inline-block; }
 
 p#header_text {
-  top: 0px;
   position: relative;
   display: inline-block;
   vertical-align: top;
   top: 4px;
   text-align: right;
   background-color: #eeeeee;
-  border: 1px solid #cccccc;
-  -webkit-border-radius: 5px !important;
-  -moz-border-radius: 5px !important;
-  border-radius: 5px !important;
+  border: 1px solid #dfdfdc;
+  -webkit-border-top-right-radius: 5px !important;
+  -moz-border-radius-topright: 5px !important;
+  border-top-right-radius: 5px !important;
+  -webkit-border-top-left-radius: 5px !important;
+  -moz-border-radius-topleft: 5px !important;
+  border-top-left-radius: 5px !important;
+  -webkit-border-bottom-right-radius: 5px !important;
+  -moz-border-radius-bottomright: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  -webkit-border-bottom-left-radius: 5px !important;
+  -moz-border-radius-bottomleft: 5px !important;
+  border-bottom-left-radius: 5px !important;
   right: 0px;
   font-size: 0.8em;
   margin: 0px;
   padding: 3px 10px; }
 
 nav#tabs a {
-  top: 0px;
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -145,12 +160,12 @@ nav#tabs a {
   z-index: 1;
   border: 1px solid #666666;
   border-bottom: none;
-  -webkit-border-top-left-radius: 15px !important;
   -webkit-border-top-right-radius: 15px !important;
-  -moz-border-radius-topleft: 15px !important;
   -moz-border-radius-topright: 15px !important;
-  border-top-left-radius: 15px !important;
   border-top-right-radius: 15px !important;
+  -webkit-border-top-left-radius: 15px !important;
+  -moz-border-radius-topleft: 15px !important;
+  border-top-left-radius: 15px !important;
   padding: 7px 10px;
   background: #dddddd;
   font-size: 15px;
@@ -166,7 +181,6 @@ nav#tabs a {
 
 #search {
   padding: 0px;
-  top: 0px;
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -176,16 +190,34 @@ nav#tabs a {
     width: 180px;
     border: 1px solid silver;
     padding: 5px;
-    -webkit-border-radius: 10px !important;
-    -moz-border-radius: 10px !important;
-    border-radius: 10px !important;
+    -webkit-border-top-right-radius: 10px !important;
+    -moz-border-radius-topright: 10px !important;
+    border-top-right-radius: 10px !important;
+    -webkit-border-top-left-radius: 10px !important;
+    -moz-border-radius-topleft: 10px !important;
+    border-top-left-radius: 10px !important;
+    -webkit-border-bottom-right-radius: 10px !important;
+    -moz-border-radius-bottomright: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    -webkit-border-bottom-left-radius: 10px !important;
+    -moz-border-radius-bottomleft: 10px !important;
+    border-bottom-left-radius: 10px !important;
     font-size: 13px; }
   #search input[type='submit'] {
     border: 1px solid silver;
     padding: 5px;
-    -webkit-border-radius: 10px !important;
-    -moz-border-radius: 10px !important;
-    border-radius: 10px !important;
+    -webkit-border-top-right-radius: 10px !important;
+    -moz-border-radius-topright: 10px !important;
+    border-top-right-radius: 10px !important;
+    -webkit-border-top-left-radius: 10px !important;
+    -moz-border-radius-topleft: 10px !important;
+    border-top-left-radius: 10px !important;
+    -webkit-border-bottom-right-radius: 10px !important;
+    -moz-border-radius-bottomright: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    -webkit-border-bottom-left-radius: 10px !important;
+    -moz-border-radius-bottomleft: 10px !important;
+    border-bottom-left-radius: 10px !important;
     font-size: 13px;
     background: #bfe2f3; }
 
@@ -214,17 +246,17 @@ footer {
     font-size: 1.4em;
     font-weight: lighter; }
 
-.time, .delete {
+.time {
   color: #666666; }
 
 .delete {
+  color: #666666;
   font-weight: normal; }
 
 #copy {
   font-size: 12px; }
 
 #info_img, .info {
-  top: 0px;
   position: relative;
   display: inline-block;
   vertical-align: top; }

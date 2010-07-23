@@ -26,22 +26,22 @@ ul#filters
     &:last-child
       margin-right: 0
     &:hover
-      background: #eee !important
+      background: $lightestGray !important
     &#wire_button
-      background: #BFE2F3
+      background: $wireColor
     &#posts_button
-      background: #FFE4C6
+      background: $postColor
     &#announcements_button
-      background: #C5CBF5
+      background: $announcementColor
     &#events_button
-      background: #FFEFC6
+      background: $eventColor
     &#people_button
-      background: #BEF6D6
+      background: $personColor
     &#organizations_button
-      background: #FFEFC5
+      background: $organizationColor
     &#search_li
       width: auto
-      background: #eee
+      background: $lightestGray
       text-align: left
       padding: 10px
       p
@@ -55,10 +55,10 @@ ul#filters
   p
     margin: 0 0 0.5em
     font-weight: bold
-  background-color: #eee
+  background-color: $lightestGray
   border: 1px solid #bbb
   border-bottom-color: #888
-  @include rounded(5px)
+  @include rounded($postBorderRadius)
   margin-bottom: 1em
   padding: 10px
   form
@@ -68,7 +68,7 @@ ul#filters
       height: 3.5em
       border: 1px solid #aaa
       padding: 0.4em
-      @include rounded(5px)
+      @include rounded($postBorderRadius)
       margin-bottom: 4px
     ul  
       @include column
@@ -86,7 +86,7 @@ ul#filters
 
 #both_columns
   min-height: $mainHeight - $filterHeight
-  border-top: 1px solid #ccc
+  border-top: 1px solid $lightGray
   margin-top: 15px
   position: relative
   
@@ -96,64 +96,110 @@ ul#filters
   @include column
   width: $columnWidth
 #left_col
-  border-right: 1px solid #ccc
+  border-right: 1px solid $lightGray
 
-li.post
-  .age
-    text-align: right
-    padding-right: .5em
-    width: 100%
-    top: .5em
-    font-size: .85em
-    color: #333
-    margin-top: .5em
-    margin-bottom: 0
-    border: 0
-  .post_main
+ul#wire li
+  position: relative
+  cursor: pointer
+  background-color: $itemBackground
+  border: 1px solid $itemBorder
+  @include rounded($postBorderRadius)
+  margin-bottom: 1em
+  border-bottom: 1px solid $lightestGray
+  font-size: 0.8em
+  .title_top
+    margin: 0px
     position: relative
-    min-height: 80px
-    margin: 0
-    padding-bottom: 0
-    > div > p
-      min-height: 70px
+    background: none
+    border-bottom: 1px solid $lightGray
+    height: 24px
+    .icon
+      @include column
+      border-right: 1px solid $lightGray
+      height: 24px
+      width: 24px
+      @include rounded-top-left($postBorderRadius)
+    .top_text
+      display: inline-block
+      position: absolute
+      left: 25px
+      right: 0px
+      font-size: 11.5px
+      padding: 4px
+      height: 16px
+      border-left: 1px solid white
+      .category
+        font-style: italic
+      .author
+        font-weight: bold
+      .time
+        position: absolute
+        right: 8px
+        font-size: 0.9em
+        color: $mediumGray
+        font-weight: bold
+  .bottom
+    border-top: 1px solid white
+    .graphic
+      @include column
+      margin: 6px
+      border: 1px solid $lightGray
+      @include rounded($postBorderRadius)
+    .body
+      padding: 4px 4px 4px 0px
+      display: inline-block
+      width: 378px
+      p
+        margin: 0px
   .expand
-    min-height: 0px
-    border-width: 1px 1px 0 1px
-    border-style: solid
-    border-color: #ccc
-    position: absolute
-    bottom: -16px
-    right: 0
-    @include rounded-top(4px)
-    //margin-top: 20px
+    border-width: 1px solid $lightGray
+    position: relative
+    bottom: 0px
+    @include rounded(4px)
     vertical-align: bottom
     float: right
-    margin-right: 1em
-    width: 140px
+    width: 75px
     text-align: center
-    background: #ceeece
-    padding: .5em 0 !important
-    p
-      padding: .333em 0 !important
-      margin: 0 !important
-  .replies
-    display: none
-    border-top: 1px solid #ccc
-    margin-left: -5px
-    li.reply
-      min-height: 40px
-      overflow-x: hidden
-      height: auto
-      border: none
-      margin-right: 10px
-      margin-bottom: .5em
-    .new_reply
-      margin-top: 7px
-      margin-bottom: .5em
-      padding-left: 3px
-      textarea
-        width: 442px
-        height: 56px
+    padding: 2px 4px !important
+    margin: 4px 0px 4px 4px
+    font-size: 0.8em
+  &.post
+    @include customItemStyle($postColor, $postColorDark)
+  &.event
+    @include customItemStyle($eventColor, $eventColorDark)
+  &.announcement
+    @include customItemStyle($announcementColor, $announcementColorDark)
+
+      
+  &.person
+    background: #fea
+  &.organization
+    background: #fea + #111
+  &.business
+    background: #fea - #111
+  &.selected
+    background: #eef
+  &:hover
+    
+        
+li.post .replies
+  display: none
+  border-top: 1px solid $lightGray
+  margin-left: -5px
+  li.reply
+    min-height: 40px
+    overflow-x: hidden
+    height: auto
+    border: none
+    margin-right: 10px
+    margin-bottom: .5em
+  .new_reply
+    margin-top: 7px
+    margin-bottom: .5em
+    padding-left: 3px
+    textarea
+      width: 442px
+      height: 56px
           
 #user_info_box
   border: 2px solid gray
@@ -214,7 +260,7 @@ li.post
       display: inline-block
       position: relative
       right: 0px
-      background-color: #ddd
+      background-color: $lightestGray
       background-image: url("/images/button_repeat.png")
       width: auto
       height: 100%
@@ -331,43 +377,6 @@ div.mode
     width: 350px
     height: 38px
 
-ul#wire
-  li
-    position: relative
-    cursor: pointer
-    padding-top: 5px
-    padding-left: 5px
-    min-height: 78px
-    border: 1px solid #ccc
-    margin-bottom: 1em
-    border-bottom: 1px solid #ccc
-    img
-      float: left
-      margin-right: .5em
-      border: 1px solid #ccc
-    img, p
-      margin-top: 0
-    &.post
-      background: #FFE4C6
-    &.event
-      background: #C5CBF5
-    &.person
-      background: #fea
-    &.organization
-      background: #fea + #111
-    &.business
-      background: #fea - #111
-    &.selected
-      background: #eef
-    &.conversation
-      background: #beaebe
-      &.read
-        background: #beaebe + #111
-      &.unread
-        background: #beaebe - #111
-    &:hover
-      background: #fee
-
 #iresults
   ul
     li
@@ -390,28 +399,29 @@ div.calendar
   float: left
   text-align: center
   display: block
-  width: 72px
-  height: 72px !important
-  border: 1px solid #888
-  margin-right: 0.5em
-  margin-left: 0 !important
-  background: green
+  width: 50px
+  height: 50px !important
+  // border: 1px solid #888
+  margin: 0px !important
+  background: $offWhite
+  @include rounded($postBorderRadius)
   div.month
     position: relative !important
     min-height: none !important
-    font-size: 1.4em
-    padding-top: 8px
-    padding-bottom: 0px
-    border: 0
-    height: 26px !important
+    border: none
+    padding: 2px
+    font-size: 13px
+    height: 17px !important
     background: #A93F40
-    color: #f9f9f9
+    color: $offWhite
+    @include rounded-top($postBorderRadius)
   div.date
     position: relative !important
     min-height: none !important
-    font-size: 1.8em
-    padding: 12px 4px 0px 4px
-    border: 0
-    background: #f9f9f9
+    border: none
+    background: none
     color: #333
-    height: 26px
+    font-weight: bold
+    padding: 4px
+    font-size: 18px
+    @include rounded-bottom($postBorderRadius)

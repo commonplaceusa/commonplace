@@ -4,37 +4,49 @@
 
 // Mixins...
 
-@mixin rounded($radius)
-  -webkit-border-radius: $radius !important
-  -moz-border-radius: $radius !important
-  border-radius: $radius !important
-
-@mixin rounded-top($radius)
+@mixin rounded-top-left($radius)
   -webkit-border-top-left-radius: $radius !important
-  -webkit-border-top-right-radius: $radius !important
   -moz-border-radius-topleft: $radius !important
-  -moz-border-radius-topright: $radius !important
   border-top-left-radius: $radius !important
-  border-top-right-radius: $radius !important
-
-@mixin rounded-right($radius)
+  
+@mixin rounded-top-right($radius)
   -webkit-border-top-right-radius: $radius !important
-  -webkit-border-bottom-right-radius: $radius !important
   -moz-border-radius-topright: $radius !important
-  -moz-border-radius-bottomright: $radius !important
   border-top-right-radius: $radius !important
+  
+@mixin rounded-bottom-left($radius)
+  -webkit-border-bottom-left-radius: $radius !important
+  -moz-border-radius-bottomleft: $radius !important
+  border-bottom-left-radius: $radius !important
+
+@mixin rounded-bottom-right($radius)
+  -webkit-border-bottom-right-radius: $radius !important
+  -moz-border-radius-bottomright: $radius !important
   border-bottom-right-radius: $radius !important
 
-@mixin rounded-left($radius)
-  -webkit-border-top-left-radius: $radius !important
-  -webkit-border-bottom-left-radius: $radius !important
-  -moz-border-radius-topleft: $radius !important
-  -moz-border-radius-bottomleft: $radius !important
-  border-top-left-radius: $radius !important
-  border-bottom-left-radius: $radius !important
+@mixin rounded-top($radius)
+  @include rounded-top-right($radius)
+  @include rounded-top-left($radius)
   
+@mixin rounded-bottom($radius)
+  @include rounded-bottom-right($radius)
+  @include rounded-bottom-left($radius)
+
+@mixin rounded-right($radius)
+  @include rounded-top-right($radius)
+  @include rounded-bottom-right($radius)
+
+@mixin rounded-left($radius)
+  @include rounded-top-left($radius)
+  @include rounded-bottom-left($radius)
+
+@mixin rounded($radius)
+  @include rounded-top($radius)
+  @include rounded-bottom($radius)
+  
+
 @mixin column
-  top: 0px
+  // top: 0px
   position: relative
   display: inline-block
   vertical-align: top
@@ -50,8 +62,21 @@
 @mixin vertical-gradient($color1, $color2)
   background-image: -webkit-gradient(linear, left top, left bottom, from($color1), to($color2))
   background: -moz-linear-gradient(center bottom, $color2, $color1)
+  
+@mixin customItemStyle($color1, $color2)
+  .title_top
+    .icon
+      background-color: $color1
+      &:hover
+        background-color: $color2
+    .top_text
+      .author
+        color: $color2
+  .expand
+    background: $color1
+    color: $color2
 
-// Variables
+// Measurements
 
 $mainWidth = 976px
 $mainHeight = 600px
@@ -62,25 +87,54 @@ $filterHeight = 100px
 $columnPadding = 15px
 $columnWidth = ( $mainWidth - 2 ) / 2 - $columnPadding * 2 - 2
 
-$primaryTextColor = #111
-
 $footerHeight = 26
 $footerBorder = 7
 $footerPadding = 10
 $totalFooterHeight = $footerHeight + $footerBorder + $footerPadding
 
-$backgroundColor = #f8f7f2
-$backgroundGradientColor1 = #f8f7f2 - #222222
-$backgroundGradientColor2 = #f8f7f2 
-$controlColor = #ceeece
-
 $topStripHeight = 300
 $bottomStripHeight = 300
 $topAndBottomStripHeight = $topStripHeight + $bottomStripHeight
 
-$mapBorder = "1px solid #125478"
+$leftWidth = 250
+$rightWidth = 670
+
+$postBorderRadius = 5px
+
+// Colors
+
+$primaryTextColor = #111
+
+$backgroundColor = #f8f7f2
+$backgroundGradientColor1 = #f8f7f2 - #222222
+$backgroundGradientColor2 = #f8f7f2 
+
+$controlColor = #ceeece
+
+$offWhite = #f8f7f2
+$lightestGray = #eee
+$lightGray = #dfdfdc
+
+$wireColor = #BFE2F3
+
+$itemBackground = #f7f7f7
+$itemBorder = #dfdfdc
+
+$postColor     = #edd0d0
+$postColorDark = #ca4b4b
+
+$eventColor = #d4e5ef
+$eventColorDark = #4b9cca
+
+$announcementColor = #e7e7e7
+$announcementColorDark = #a1a1a1
+
+$personColor = #BEF6D6
+$organizationColor = #FFEFC5
+
 
 $mediumGray = #666
 
-$leftWidth = 250
-$rightWidth = 670
+// Other
+
+$mapBorder = "1px solid #125478"

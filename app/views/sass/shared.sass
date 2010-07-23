@@ -127,8 +127,8 @@ p#header_text
   @include column
   top: 4px
   text-align: right
-  background-color: #eee
-  border: 1px solid #ccc
+  background-color: $lightestGray
+  border: 1px solid $lightGray
   @include rounded(5px)
   right: 0px
   font-size: 0.8em
@@ -146,7 +146,7 @@ nav#tabs a
   padding: 7px 10px
   background: #ddd
   &:hover
-    background: #eee
+    background: $lightestGray
   font-size: 15px
   font-weight: normal
   color: black
@@ -201,10 +201,11 @@ footer
       font-size: 1.4em
       font-weight: lighter
 
-.time, .delete
-  color: #666666
+.time
+  color: #666
 
 .delete
+  color: #666
   font-weight: normal
 
 #copy
@@ -235,14 +236,14 @@ footer
       font-size: 1.4em
       line-height: 1.4em
     &:hover
-      outline: 1px solid #eee
+      outline: 1px solid $lightestGray
 
 .label
   color: #666
   -webkit-transition: color .2s linear
 
 .fading
-  color: #fff
+  color: white
   -webkit-transition: color .2s linear
 
 .bottomshiv

@@ -1,4 +1,12 @@
-- if event.start_time
-  = render("events/calendar", :event => event)
-%p #{event.name}  
-%p{:style => "margin-bottom: 0; padding-bottom: 0;"} #{human_date(event.start_time)}
+.event_clickable
+  .title_top
+    .icon
+    .top_text
+      %span.category Neighborhood Event:
+      %span.author= event.name
+      %span.time= event_date event.start_time
+  .bottom
+    .graphic= render("events/calendar", :event => event)
+    .body
+      .expand 11 attending 
+      %p Event description goes here. This event takes places at #{ hours_minutes event.start_time }
