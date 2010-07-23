@@ -129,6 +129,12 @@ ul#wire li
       height: 16px
       border-left: 1px solid white
       .category
+        font-weight: bold
+        font-size: 0.9em
+        color: $mediumGray
+      .from
+        font-size: 0.9em
+        color: $mediumGray
         font-style: italic
       .author
         font-weight: bold
@@ -146,6 +152,8 @@ ul#wire li
       border: 1px solid $lightGray
       @include rounded($postBorderRadius)
     .body
+      h3
+        font-weight: bold
       padding: 4px 4px 4px 0px
       display: inline-block
       width: 378px
@@ -170,7 +178,6 @@ ul#wire li
   &.announcement
     @include customItemStyle($announcementColor, $announcementColorDark)
 
-      
   &.person
     background: #fea
   &.organization
@@ -403,7 +410,7 @@ div.calendar
   height: 50px !important
   // border: 1px solid #888
   margin: 0px !important
-  background: $offWhite
+  background: white
   @include rounded($postBorderRadius)
   div.month
     position: relative !important

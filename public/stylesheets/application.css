@@ -181,6 +181,12 @@ ul#wire li {
       height: 16px;
       border-left: 1px solid white; }
       ul#wire li .title_top .top_text .category {
+        font-weight: bold;
+        font-size: 0.9em;
+        color: #666666; }
+      ul#wire li .title_top .top_text .from {
+        font-size: 0.9em;
+        color: #666666;
         font-style: italic; }
       ul#wire li .title_top .top_text .author {
         font-weight: bold; }
@@ -214,6 +220,8 @@ ul#wire li {
       padding: 4px 4px 4px 0px;
       display: inline-block;
       width: 378px; }
+      ul#wire li .bottom .body h3 {
+        font-weight: bold; }
       ul#wire li .bottom .body p {
         margin: 0px; }
   ul#wire li .expand {
@@ -521,7 +529,7 @@ div.calendar {
   width: 50px;
   height: 50px !important;
   margin: 0px !important;
-  background: #f8f7f2;
+  background: white;
   -webkit-border-top-right-radius: 5px !important;
   -moz-border-radius-topright: 5px !important;
   border-top-right-radius: 5px !important;

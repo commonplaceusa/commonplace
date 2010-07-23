@@ -3,19 +3,20 @@
   .title_top
     .icon
     .top_text
-      %span.category Neighborhood Post
-      from
+      %span.category CATEGORY
+      %span.from from&nbsp;
       %span.author= post.user.full_name
       %span.time= post_date post.created_at
   .bottom
     = image_tag post.user.avatar.url, :width => 50, :height => 50, :class => 'graphic'
     .body
+      %h3 Post title here
+      %p= post.body
       .expand
         - if post.replies.size > 0
           #{pluralize(post.replies.size, 'reply')}
         - else
           no replies yet
-      %p= post.body
   .replies
     - if post.replies.size > 0 # if there are replies
       %ol

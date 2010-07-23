@@ -2,11 +2,13 @@
   .title_top
     .icon
     .top_text
-      %span.category Neighborhood Event:
-      %span.author= event.name
+      %span.category EVENT
+      %span.from from&nbsp;
+      %span.author Organization Name
       %span.time= event_date event.start_time
   .bottom
     .graphic= render("events/calendar", :event => event)
     .body
-      .expand 11 attending 
+      %h3= event.name
       %p Event description goes here. This event takes places at #{ hours_minutes event.start_time }
+      .expand 11 attending
