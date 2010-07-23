@@ -5,10 +5,10 @@
   #header_right
     
     %nav#tabs
-      %a#community_tab.selected_tab Roxbury
-      %a#inbox_tab Inbox (1)
-      %a#organizations_tab My Organizations
-      %a#account_tab My Account
+      = tab_to 'Roxbury', root_url
+      = tab_to 'Inbox (1)', inbox_url
+      = tab_to 'My Organizations', organizer_index_url
+      = tab_to 'My Account', account_url
     
     %p#header_text
       - if current_user_session

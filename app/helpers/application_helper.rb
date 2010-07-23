@@ -19,6 +19,12 @@ module ApplicationHelper
     end
   end
   
+  def tab_to(name, options = {}, html_options = {})
+    html_options[:class] ||= ""
+    html_options[:class] =  " selected_tab" if current_page?(options)
+    link_to(name, options, html_options)
+  end
+  
   def hours_minutes time
     return time.strftime("%I:%M %p")[/(^0)(.+)/, 2] # strip leading zero
   end

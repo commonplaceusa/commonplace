@@ -16,7 +16,9 @@ class AccountsController < ApplicationController
     end
   end
 
-  def edit ; end
+  def edit
+    @user = current_user
+  end
 
   def update
     if current_user.update_attributes(params[:user])
@@ -26,5 +28,8 @@ class AccountsController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+  end
   
 end
