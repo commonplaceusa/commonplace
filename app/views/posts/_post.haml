@@ -2,9 +2,10 @@
 .post_clickable
   .title_top
     .icon
+      %img{ :alt => "Post" }
     .top_text
       %span.category CATEGORY
-      %span.from from&nbsp;
+      %span.from from
       %span.author= post.user.full_name
       %span.time= post_date post.created_at
   .bottom
