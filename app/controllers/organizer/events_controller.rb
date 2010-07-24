@@ -24,5 +24,4 @@ class Organizer::EventsController < ApplicationController
   def load_organization
     @organization = Organization.find(params[:organizer_id])
   end
-
 end
