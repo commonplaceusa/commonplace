@@ -4,7 +4,7 @@ class SiteController < ApplicationController
   layout "public"
   
   def index 
-    redirect_to current_user.community if current_user_session
+    redirect_to community_url(current_user.community.name) if current_user_session
   end
 
   def about ; end
