@@ -18,6 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :organizer, :controller => "organizer" do |org|
     org.resource :profile, :controller => "organizer/profiles"
     org.resources :events, :controller => "organizer/events"
+    org.resources :announcements, :controller => "organizer/announcements"
   end
   
   map.community ':community', :controller => 'communities', :action => 'show'

@@ -1,0 +1,7 @@
+= render 'form', :announcement => @announcement
+
+%h2 Org Announcements
+
+%ol
+  - @announcements.each do |announcement|
+    %li= link_to @announcement.subject, ''
