@@ -40,13 +40,18 @@ var app = $.sammy(function() {
       $("#both_columns #right_col").html(response.info_box);
     });    
   });
+  
+  this.get("#/announcements/:id", function() {
+    $.getJSON(this.path.slice(1), function(response) {
+      $("#both_columns #right_col").html(response.info_box);
+    });    
+  });
 
 });
 
 
 $(function(){
   app.run();
-  
   
   $('li.post div.post_clickable').live('click', function(e) {
     var $this = $(this);
@@ -55,6 +60,11 @@ $(function(){
   });
     
   $('li.event').live('click', function(e) {
+    var $this = $(this);
+    app.location_proxy.setLocation("#" + $this.attr('data-url'));
+  });
+  
+  $('li.announcement').live('click', function(e) {
     var $this = $(this);
     app.location_proxy.setLocation("#" + $this.attr('data-url'));
   });
