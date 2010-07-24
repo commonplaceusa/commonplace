@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
       post.resources :replies
     end
     
-    c.resources :announcements, :only => :index
+    c.resources :announcements, :only => [:index, :show]
     
     c.resources :events, :only => [:index, :show] do |event|
       event.resource :attendance

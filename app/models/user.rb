@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   end
   
   def wire
-    (Event.all(:order => "created_at DESC") + Post.all(:order => "created_at DESC")).sort_by(&:created_at).reverse
+    (Announcement.all(:order => "created_at DESC") + Event.all(:order => "created_at DESC") + Post.all(:order => "created_at DESC")).sort_by(&:created_at).reverse
   end
 
   def role_symbols

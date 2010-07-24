@@ -5,6 +5,7 @@ class Organization < ActiveRecord::Base
   validates_format_of :website, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :allow_blank => true
   
   has_many :events
+  has_many :announcements
 
   has_many :text_modules, :order => "position"
 
