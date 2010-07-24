@@ -177,28 +177,27 @@ nav#tabs a
 footer
   text-align: center
   position: relative
-  margin-top: -$footerHeight - ($footerBorder + $footerPadding) + px
-  height: $footerHeight + px
+  margin-top: -$footerHeight - ($footerBorder + $footerPadding)
+  height: $footerHeight
   // clear: both
   margin-bottom: -800px
   background: #2F2F2F
-  border-top: $footerBorder + px solid #444
+  border-top: $footerBorder solid #444
   bottom: 0
   left: 0
-  padding-top: $footerPadding + px
+  padding-top: $footerPadding
   a
-    color: #f55
+    color: $eventColor - #444
   span
+    color: #777
     &#footer_left
-      font-size: 2em
+      font-size: 1.5em
       float: left
       margin-left: 20px
-      color: #5F946A
     &#footer_right
       float: right
       margin-right: 20px
-      color: #A06C44
-      font-size: 1.4em
+      font-size: 1.1em
       font-weight: lighter
 
 .time

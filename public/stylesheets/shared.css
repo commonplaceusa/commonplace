@@ -97,7 +97,7 @@ dl {
   align: center;
   min-height: 600px;
   padding: 0;
-  padding-bottom: 43;
+  padding-bottom: 32px;
   display: block;
   -webkit-border-top-right-radius: 4px !important;
   -moz-border-radius-topright: 4px !important;
@@ -116,7 +116,7 @@ dl {
 #bottom {
   margin-top: -300px;
   position: relative;
-  bottom: 26px;
+  bottom: 22pxpx;
   left: 0;
   width: 100% !important;
   height: 300px;
@@ -245,27 +245,27 @@ nav#tabs a {
 footer {
   text-align: center;
   position: relative;
-  margin-top: -43px;
-  height: 26px;
+  margin-top: -32px;
+  height: 22px;
   margin-bottom: -800px;
   background: #2f2f2f;
-  border-top: 7px solid #444444;
+  border-top: 4px solid #444444;
   bottom: 0;
   left: 0;
-  padding-top: 10px; }
+  padding-top: 6px; }
   footer a {
-    color: #ff5555; }
-  footer span#footer_left {
-    font-size: 2em;
-    float: left;
-    margin-left: 20px;
-    color: #5f946a; }
-  footer span#footer_right {
-    float: right;
-    margin-right: 20px;
-    color: #a06c44;
-    font-size: 1.4em;
-    font-weight: lighter; }
+    color: #90a1ab; }
+  footer span {
+    color: #777777; }
+    footer span#footer_left {
+      font-size: 1.5em;
+      float: left;
+      margin-left: 20px; }
+    footer span#footer_right {
+      float: right;
+      margin-right: 20px;
+      font-size: 1.1em;
+      font-weight: lighter; }
 
 .time {
   color: #666666; }
