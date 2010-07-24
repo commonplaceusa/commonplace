@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
   has_many :posts
 
   has_many :roles
-  has_many :managable_organizations, :through => :roles, :class_name => "Organization"
-  
+  has_many :managable_organizations, :through => :roles, :source => :organization
+
   has_many :referrals, :foreign_key => "referree_id"
   
   has_many :messages

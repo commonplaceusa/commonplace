@@ -10,7 +10,7 @@ class Organization < ActiveRecord::Base
   has_many :text_modules, :order => "position"
 
   has_many :roles
-  has_many :admins, :through => :roles, :class_name => "User"
+  has_many :admins, :through => :roles, :source => :user
 
   has_attached_file(:avatar, :styles => { :thumb => "100x100" })
 
