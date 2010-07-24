@@ -1,9 +1,8 @@
 #event_info_box
-  = image_tag event.avatar.url
   %h2 #{event.name}
 
-  %p.detail Starts: #{human_date(event.start_time)}
-  %p.detail Ends: #{human_date(event.end_time)}
+  %p.detail Starts: #{event_date(event.start_time)}
+  %p.detail Ends: #{event_date(event.end_time)}
   %p.detail Location: #{event.address}
   %p Description
   %p.desc #{event.description}

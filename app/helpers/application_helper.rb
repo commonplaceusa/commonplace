@@ -57,23 +57,5 @@ module ApplicationHelper
     else
       return "in " + time_string
     end
-          
-    # if diff < -6
-    #   return "in" + time_ago_in_words(time)
-    #   return time.strftime("%A, %B %d, %Y at %I:%M%p")
-    # elsif diff >= -6 and diff < -1
-    #   return "last " + time.strftime("%A") + " at " + time.strftime("%I:%M%p")
-    # elsif diff >= -1 and diff < 0
-    #   return "yesterday at " + time.strftime("%I:%M%p")
-    # elsif diff == 0
-    #   return "today at " + time.strftime("%I:%M%p")
-    # elsif diff >= 1 and diff < 0
-    #   return "tomorrow at " + time.strftime("%I:%M%p")
-    # elsif diff > 1 and diff <= 6
-    #   return "this " + time.strftime("%A") + " at " + time.strftime("%I:%M%p")
-    # else
-    #   return time.strftime("%A, %B %d, %Y at %I:%M%p")
-    # end
-
   end
 end
