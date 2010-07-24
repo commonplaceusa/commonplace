@@ -4,12 +4,7 @@ class SiteController < ApplicationController
   layout "public"
   
   def index 
-    if current_user_session
-      @post = Post.new
-      render 'home', :layout => "application"
-    else
-      render 'index'
-    end
+    redirect_to current_user.community if current_user_session
   end
 
   def about ; end

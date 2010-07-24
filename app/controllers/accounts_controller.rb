@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
 
   def update
     if current_user.update_attributes(params[:user])
-      redirect_to root_url
+      redirect_to community_url(current_user.community)
     else
       render :edit
     end

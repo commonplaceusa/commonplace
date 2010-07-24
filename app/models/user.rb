@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.login_field :email
   end
-
+  
+  belongs_to :community
+  
   has_many :links, :as => :linker
 
   has_many_polymorphs :linkables, :from => [:events], :through => :links, :as => :linker

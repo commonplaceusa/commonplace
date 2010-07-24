@@ -1,11 +1,11 @@
 %header
-  - link_to root_path, :id => 'title' do
+  - link_to root_url, :id => 'title' do
     = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "262x37"
   
   #header_right
     
     %nav#tabs
-      = tab_to 'Roxbury', root_url
+      = tab_to current_user.community.name, community_url(current_user.community)
       = tab_to 'Inbox (1)', inbox_url
       = tab_to 'My Organizations', organizer_index_url
       = tab_to 'My Account', account_url

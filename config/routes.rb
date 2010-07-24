@@ -6,39 +6,34 @@ ActionController::Routing::Routes.draw do |map|
   map.terms 'terms', :controller => 'site', :action => 'terms'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
 
-  map.resource :user_session
+  map.resources :communities, :shallow => true do |c|
+    
+    c.resources :posts do |post|
+      post.resources :replies
+    end
+    
+    c.resources :announcements, :only => :index
+    
+    c.resources :events, :only => [:index, :show] do |event|
+      event.resource :attendance
+      event.resources :referrals
+    end
+    
+    c.resources :users, :only => [:index, :show]
+    
+    c.resources :organizations, :only => [:index, :show]
 
-  map.resources :password_resets
-
-  map.resource :account, :member => {:more_info => :get}
-
-  map.resources :users
+  end
   
-  map.resources :organizations
-  
+  map.resource :account, :member => { :more_info => :get }
   map.resources :organizer, :controller => "organizer"
 
-  map.resources :events do |event|
-    event.resource :attendance
-    event.resources :referrals
-  end
-  
-  map.resource :directory
-
-  map.resource :wire
-  
   map.resource :inbox
-
   map.resources :conversations
-  
   map.resources :messages
-
-  map.resources :posts do |post|
-    post.resources :replies
-  end
   
-  map.connect 'directory/:action', :controller => 'directories'
-  map.connect 'directory/:action/:id', :controller => 'directories'
+  map.resource :user_session
+  map.resources :password_resets
   
   # map.connect 'directory/:filter', :controller => 'directories'
   # map.connect 'directory/:filter/:term', :controller => 'directories'

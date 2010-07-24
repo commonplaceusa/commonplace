@@ -24,8 +24,12 @@
       #top
       = render 'shared/header'
       #main
+        = render 'shared/filters'
         #both_columns
-          = yield
+          #left_col
+            = yield
+            .bottomshiv
+          #right_col
   
     #bottom
     %footer
@@ -40,4 +44,3 @@
         var pageTracker = _gat._getTracker("UA-12888551-2");
         pageTracker._trackPageview();
         } catch(err) {}
-          

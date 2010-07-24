@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class EventsController < CommunitiesController
    
   def index
     @events = Event.all

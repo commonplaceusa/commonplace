@@ -1,6 +1,6 @@
 #post_submission
   %p Write a message to your neighborhood here:
-  - form_for post do |f|
+  - form_for [current_user.community, post] do |f|
     = f.text_area :body, "data-label" => '"Anyone have a ladder I could borrow for tomorrow?"&#10;"Watch out for the pothole on Maple Avenue."'
     
     %ul

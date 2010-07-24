@@ -1,12 +1,16 @@
-class PostsController < ApplicationController
+class PostsController < CommunitiesController
   before_filter :load_post
 
   filter_access_to :all
   
+  def index
+    @posts = Post.all
+  end
+    
   def create
     respond_to do |format|
       if @post.save
-        format.html { redirect_to root_url }
+        format.html { redirect_to community_url(@post.user.community) }
         format.json         
       else
         format.json { render 'new' }
