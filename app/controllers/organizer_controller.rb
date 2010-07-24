@@ -1,13 +1,15 @@
 class OrganizerController < ApplicationController
 
-  before_filter :load_organization, :except => [:index]
-  filter_access_to :all
+  before_filter :load_organization, :except => :index
+
+#  filter_access_to :all
   
   def index
-    @organizations = current_user.managable_organizations
+ #   @organizations = current_user.managable_organizations
   end
 
   def show
+    render :show
   end
 
   def edit

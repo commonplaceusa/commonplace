@@ -1,0 +1,8 @@
+= render 'form', :event => @event
+
+%h2 Org Events
+
+%ol
+  - @events.each do |event|
+    %li= link_to event.name, ''
+  
