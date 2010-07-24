@@ -1,0 +1,13 @@
+#bottom
+%footer
+  = render :partial => "shared/footer"
+
+- if RAILS_ENV == "production"
+  %script{:type=>"text/javascript"}
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  %script{:type=>"text/javascript"}
+    try {
+    var pageTracker = _gat._getTracker("UA-12888551-2");
+    pageTracker._trackPageview();
+    } catch(err) {}
