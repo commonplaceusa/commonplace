@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :organizations
   has_many :attendances
   has_many :posts
+  
+  has_many :subscriptions
+  has_many :organizations, :through => :subscriptions, :source => :organization
 
   has_many :roles
   has_many :managable_organizations, :through => :roles, :source => :organization

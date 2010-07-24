@@ -1,6 +1,7 @@
 class AnnouncementsController < CommunitiesController
   def index
-    @announcements = Announcement.all
+    @organizations = current_user.organizations
+    @announcements = @organizations.map(&:announcements).flatten
   end
   
   def show

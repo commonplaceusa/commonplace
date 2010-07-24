@@ -9,6 +9,9 @@ class Organization < ActiveRecord::Base
 
   has_many :text_modules, :order => "position"
 
+  has_many :subscriptions
+  has_many :subscribers, :through => :subscriptions, :source => :user
+
   has_many :roles
   has_many :admins, :through => :roles, :source => :user
 
