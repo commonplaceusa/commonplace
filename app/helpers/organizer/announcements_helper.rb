@@ -1,0 +1,2 @@
+module Organizer::AnnouncementsHelper
+end

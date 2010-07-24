@@ -1,0 +1,5 @@
+%h2 Announce
+
+- form_for @announcement, :url => organizer_announcements_url(@organization) do |f|
+  = f.label :subject
+  = f.text_field :subject
