@@ -1,10 +1,10 @@
 = link_to "settings"
 %nav
-  = link_to "Manage Events"
+  = link_to "Manage Events", organizer_events_path(@organization.id)
   |
   = link_to "Manage Announcements"
   |
-  = link_to "Edit Profile"
+  = link_to "Edit Profile", organizer_profile_path(@organization.id)
   |
   = link_to "Outreach/Subscribers"
 
