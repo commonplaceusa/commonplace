@@ -1,4 +1,4 @@
-= render "layouts/top_html", :title => 'CommonPlace', :stylesheets => 'application'
+= render 'layouts/top_html' :title => 'CommonPlace', :stylesheets => 'application'
 
 %body
   #wrap
@@ -8,5 +8,5 @@
       #both_columns
         = yield(:content) or yield
 
-  = render :partial => "layouts/bottom_html"
+  = render 'layouts/bottom_html'
         

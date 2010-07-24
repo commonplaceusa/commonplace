@@ -1,4 +1,4 @@
-= render "layouts/top_html", :title => "CommonPlace: " + current_user.community.name, :stylesheets => 'application'
+= render 'layouts/top_html', :title => "CommonPlace: " + current_user.community.name, :stylesheets => 'application'
 
 %body
   #wrap
@@ -12,4 +12,4 @@
           .bottomshiv
         #right_col
 
-  = render "layouts/bottom_html"
+  = render 'layouts/bottom_html'

@@ -1,4 +1,4 @@
-= render "layouts/top_html", :title => 'CommonPlace: Your Organizations', :stylesheets => 'organizer'
+= render 'layouts/top_html', :title => 'CommonPlace: Your Organizations', :stylesheets => 'organizer'
 
 %body
   #wrap
@@ -8,4 +8,4 @@
       = render 'organizer/navigation'
       #organizer_main= yield
       
-  = render "layouts/bottom_html"
+  = render 'layouts/bottom_html'
