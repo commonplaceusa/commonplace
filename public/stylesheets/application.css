@@ -231,16 +231,16 @@ ul#wire li {
         font-size: 0.9em;
         color: #888888; }
       ul#wire li .title_top .top_text .from {
-        font-family: "OldStandardTTRegular", Times, serif;
+        font-family: "OldStandardTT", Times, serif;
         font-size: 1em;
-        color: #666666; }
+        color: #888888; }
       ul#wire li .title_top .top_text .author {
         font-family: "OldStandardTTItalic", Times, serif; }
       ul#wire li .title_top .top_text .time {
         position: absolute;
         right: 8px;
         font-size: 0.9em;
-        color: #666666;
+        color: #888888;
         font-weight: bold; }
   ul#wire li .bottom {
     border-top: 1px solid white; }
@@ -263,7 +263,7 @@ ul#wire li {
       -moz-border-radius-bottomleft: 5px !important;
       border-bottom-left-radius: 5px !important; }
     ul#wire li .bottom .body {
-      font-family: "OldStandardTTRegular", Times, serif;
+      font-family: "OldStandardTT", Times, serif;
       color: black;
       font-size: 1.1em;
       padding: 9px 4px 4px 0px;

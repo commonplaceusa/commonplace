@@ -1,3 +1,6 @@
-%ul#my_organizations
-  - @organizations.each do |org|
-    = render 'organizer/button', :organization => org
+#organizer_main
+  %h1 Click an organization to manage it:
+  
+  %ul#my_organizations
+    - @organizations.each do |org|
+      = render 'organizer/button', :organization => org

@@ -87,7 +87,7 @@ dl {
 #main {
   overflow: auto;
   width: 976px;
-  border: 1px solid #666666;
+  border: 1px solid #888888;
   background: #fefefe;
   margin-left: auto;
   margin-right: auto;
@@ -179,7 +179,7 @@ nav#tabs a {
   vertical-align: top;
   top: 1px;
   z-index: 1;
-  border: 1px solid #666666;
+  border: 1px solid #888888;
   border-bottom: none;
   -webkit-border-top-right-radius: 15px !important;
   -moz-border-radius-topright: 15px !important;
@@ -266,6 +266,51 @@ footer {
       margin-right: 20px;
       font-size: 1.1em;
       font-weight: lighter; }
+
+nav#organizer_nav {
+  padding: 15px; }
+
+#organizer_main {
+  padding: 15px; }
+  #organizer_main h1 {
+    margin: 0 0 1em;
+    font-size: 1.5em;
+    font-family: "OldStandardTTBold", Times, serif; }
+
+ul#my_organizations li {
+  position: relative;
+  width: 500px;
+  border: 1px solid #dfdfdc;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffefc5), to(#eedeb4));
+  background: -moz-linear-gradient(center bottom, #eedeb4, #ffefc5);
+  -webkit-border-top-right-radius: 5px !important;
+  -moz-border-radius-topright: 5px !important;
+  border-top-right-radius: 5px !important;
+  -webkit-border-top-left-radius: 5px !important;
+  -moz-border-radius-topleft: 5px !important;
+  border-top-left-radius: 5px !important;
+  -webkit-border-bottom-right-radius: 5px !important;
+  -moz-border-radius-bottomright: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  -webkit-border-bottom-left-radius: 5px !important;
+  -moz-border-radius-bottomleft: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  padding: 15px;
+  margin-bottom: 1em; }
+  ul#my_organizations li:hover {
+    border-color: #888888;
+    cursor: pointer; }
+  ul#my_organizations li .org_image, ul#my_organizations li .org_name {
+    position: relative;
+    display: inline-block;
+    vertical-align: top; }
+  ul#my_organizations li .org_image {
+    width: 70px; }
+  ul#my_organizations li .org_name {
+    font-size: 1.2em;
+    position: absolute;
+    top: 28px;
+    font-family: "OldStandardTTBold", Times, serif; }
 
 .time {
   color: #666666; }

@@ -3,29 +3,3 @@
 
 @import config
 
-#main
-
-nav#organizer_nav
-  padding: $mainPadding
-
-#organizer_main
-  border-top: 1px solid $lightGray
-  padding: $mainPadding
-
-ul#my_organizations li
-  width: 500px
-  border: 1px solid $lightGray
-  @include vertical-gradient($organizationColor, $organizationColorDark)
-  @include rounded($postBorderRadius)
-  padding: 15px
-  margin-bottom: 1em
-  &:hover
-    border-color: $mediumGray
-    cursor: pointer
-  .org_image, .org_name
-    @include column
-  .org_image
-    width: 70px
-  .org_name
-    font-size: 1.2em
-    font-family: 'OldStandardTTBold', Times, serif

@@ -1,12 +1,11 @@
-= render 'layouts/top_html' :title => 'CommonPlace', :stylesheets => 'application'
+= render 'layouts/top_html', :title => 'CommonPlace', :stylesheets => 'application'
 
 %body
   #wrap
     #top
     = render 'shared/header'
     #main
-      #both_columns
-        = yield(:content) or yield
+      = yield(:content) or yield
 
   = render 'layouts/bottom_html'
         

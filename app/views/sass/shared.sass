@@ -200,6 +200,37 @@ footer
       font-size: 1.1em
       font-weight: lighter
 
+nav#organizer_nav
+  padding: $mainPadding
+
+#organizer_main
+  h1
+    margin: 0 0 1em 
+    font-size: 1.5em
+    @include oldStandardBold
+  padding: $mainPadding
+
+ul#my_organizations li
+  position: relative
+  width: 500px
+  border: 1px solid $lightGray
+  @include vertical-gradient($organizationColor, $organizationColorDark)
+  @include rounded($postBorderRadius)
+  padding: 15px
+  margin-bottom: 1em
+  &:hover
+    border-color: $mediumGray
+    cursor: pointer
+  .org_image, .org_name
+    @include column
+  .org_image
+    width: 70px
+  .org_name
+    font-size: 1.2em
+    position: absolute
+    top: 28px
+    @include oldStandardBold
+
 .time
   color: #666
 

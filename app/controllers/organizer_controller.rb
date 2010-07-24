@@ -2,6 +2,8 @@ class OrganizerController < ApplicationController
 
   before_filter :load_organization, :except => :index
 
+  layout 'application', :only => :index
+
   # filter_access_to :all
   
   def index

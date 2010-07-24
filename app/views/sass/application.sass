@@ -137,7 +137,7 @@ ul#wire li
         font-size: 0.9em
         color: #888
       .from
-        font-family: 'OldStandardTTRegular', Times, serif
+        @include oldStandard
         font-size: 1em
         color: $mediumGray
       .author
@@ -155,12 +155,12 @@ ul#wire li
       margin: 6px
       border: 1px solid $lightGray
       @include rounded($postBorderRadius)
-    .body
-      font-family: 'OldStandardTTRegular', Times, serif
+    .body  
+      @include oldStandard
       color: black
       font-size: 1.1em
       h3
-        font-family: 'OldStandardTTBold', Times, serif
+        @include oldStandardBold
         font-size: 1.2em
         margin-bottom: 2px
       padding: 9px 4px 4px 0px
