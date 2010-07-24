@@ -64,4 +64,4 @@ end
 
 Haml::Template.options[:format] = :html5
 Sass::Plugin.options[:template_location] = "#{RAILS_ROOT}/app/views/sass"
-ActionController::Base.exempt_from_layout 'js.erb'
+ActionController::Base.exempt_from_layout 'js.erb', 'json.erb'
