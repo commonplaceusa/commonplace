@@ -13,7 +13,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
   map.resources :password_resets
 
+  map.resource :account, :member => { :more_info => :get }
 
+  map.resources :organizer, :controller => "organizer" do |org|
+    org.resource :profile
+  end
+  
   map.community ':community', :controller => 'communities', :action => 'show'
 
   map.with_options :path_prefix => "/:community", :shallow => true do |c|
@@ -34,16 +39,7 @@ ActionController::Routing::Routes.draw do |map|
 
   end
   
-  map.resource :account, :member => { :more_info => :get }
-
-  map.resources :organizer, :controller => "organizer" do |org|
-    org.resource :profile
-  end
-  
-  # map.connect 'directory/:filter', :controller => 'directories'
-  # map.connect 'directory/:filter/:term', :controller => 'directories'
-
-  # The priority is based upon order of creation: first created -> highest priority.
+    # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
