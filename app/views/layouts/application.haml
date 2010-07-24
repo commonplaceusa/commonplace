@@ -25,7 +25,7 @@
       = render 'shared/header'
       #main
         #both_columns
-          = yield
+          = yield(:content) or yield
   
     #bottom
     %footer

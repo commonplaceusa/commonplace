@@ -18,3 +18,42 @@
   src: local("OldStandardTTBold"), url("/fonts/old-standard/OldStandard-Bold-webfont.woff") format("woff"), url("/fonts/old-standard/OldStandard-Bold-webfont.ttf") format("truetype"), url("/fonts/old-standard/OldStandard-Bold-webfont.svg") format("svg");
   font-weight: normal;
   font-style: normal; }
+
+nav#organizer_nav {
+  padding: 15px; }
+
+#organizer_main {
+  border-top: 1px solid #dfdfdc;
+  padding: 15px; }
+
+ul#my_organizations li {
+  width: 500px;
+  border: 1px solid #dfdfdc;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffefc5), to(#eedeb4));
+  background: -moz-linear-gradient(center bottom, #eedeb4, #ffefc5);
+  -webkit-border-top-right-radius: 5px !important;
+  -moz-border-radius-topright: 5px !important;
+  border-top-right-radius: 5px !important;
+  -webkit-border-top-left-radius: 5px !important;
+  -moz-border-radius-topleft: 5px !important;
+  border-top-left-radius: 5px !important;
+  -webkit-border-bottom-right-radius: 5px !important;
+  -moz-border-radius-bottomright: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  -webkit-border-bottom-left-radius: 5px !important;
+  -moz-border-radius-bottomleft: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  padding: 15px;
+  margin-bottom: 1em; }
+  ul#my_organizations li:hover {
+    border-color: #666666;
+    cursor: pointer; }
+  ul#my_organizations li .org_image, ul#my_organizations li .org_name {
+    position: relative;
+    display: inline-block;
+    vertical-align: top; }
+  ul#my_organizations li .org_image {
+    width: 70px; }
+  ul#my_organizations li .org_name {
+    font-size: 1.2em;
+    font-family: "OldStandardTTBold", Times, serif; }

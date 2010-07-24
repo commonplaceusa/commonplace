@@ -1,1 +1,3 @@
-%ul
+%ul#my_organizations
+  - @organizations.each do |org|
+    = render 'organizer/button', :organization => org
