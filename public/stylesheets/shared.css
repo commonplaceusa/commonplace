@@ -272,12 +272,21 @@ nav#organizer_nav {
 
 #organizer_main {
   padding: 15px; }
-  #organizer_main h1 {
+  #organizer_main h1, #organizer_main h2 {
     margin: 0 0 1em;
-    font-size: 1.5em;
     font-family: "OldStandardTTBold", Times, serif; }
+  #organizer_main h1 {
+    font-size: 1.5em;
+    font-weight: normal; }
+  #organizer_main h2 {
+    font-size: 1.2em;
+    font-weight: normal; }
+  #organizer_main a {
+    font-weight: normal; }
 
-ul#my_organizations li {
+nav#my_organizations a {
+  font-weight: normal;
+  display: block;
   position: relative;
   width: 500px;
   border: 1px solid #dfdfdc;
@@ -297,16 +306,16 @@ ul#my_organizations li {
   border-bottom-left-radius: 5px !important;
   padding: 15px;
   margin-bottom: 1em; }
-  ul#my_organizations li:hover {
+  nav#my_organizations a:hover {
     border-color: #888888;
     cursor: pointer; }
-  ul#my_organizations li .org_image, ul#my_organizations li .org_name {
+  nav#my_organizations a .org_image, nav#my_organizations a .org_name {
     position: relative;
     display: inline-block;
     vertical-align: top; }
-  ul#my_organizations li .org_image {
+  nav#my_organizations a .org_image {
     width: 70px; }
-  ul#my_organizations li .org_name {
+  nav#my_organizations a .org_name {
     font-size: 1.2em;
     position: absolute;
     top: 28px;

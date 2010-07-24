@@ -1,13 +1,12 @@
 class OrganizerController < ApplicationController
 
-  before_filter :load_organization, :except => :index
-
-  layout 'application', :only => :index
+  before_filter :load_organization, :except => [:index, :new]
 
   # filter_access_to :all
   
   def index
     @organizations = current_user.managable_organizations
+    render :layout => 'application'
   end
 
   def show
@@ -15,6 +14,17 @@ class OrganizerController < ApplicationController
   end
 
   def edit
+  end
+  
+  def update
+  end
+  
+  def new
+    @organization = Organization.new
+    render :layout => 'application'
+  end
+  
+  def create
   end
 
   protected
