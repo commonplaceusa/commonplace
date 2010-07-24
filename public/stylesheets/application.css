@@ -55,29 +55,29 @@ ul#filters {
     ul#filters li:last-child {
       margin-right: 0; }
     ul#filters li#wire_button {
-      background: #b8d6f3; }
+      background: #a7c5e2; }
       ul#filters li#wire_button:hover {
-        background: #a7c5e2; }
+        background: #b8d6f3; }
     ul#filters li#posts_button {
-      background: #edd0d0; }
+      background: #dcbfbf; }
       ul#filters li#posts_button:hover {
-        background: #dcbfbf; }
+        background: #edd0d0; }
     ul#filters li#announcements_button {
-      background: #e7e7e7; }
+      background: #d6d6d6; }
       ul#filters li#announcements_button:hover {
-        background: #d6d6d6; }
+        background: #e7e7e7; }
     ul#filters li#events_button {
-      background: #d4e5ef; }
+      background: #c3d4de; }
       ul#filters li#events_button:hover {
-        background: #c3d4de; }
+        background: #d4e5ef; }
     ul#filters li#people_button {
-      background: #bef6d6; }
+      background: #ade5c5; }
       ul#filters li#people_button:hover {
-        background: #ade5c5; }
+        background: #bef6d6; }
     ul#filters li#organizations_button {
-      background: #ffefc5; }
+      background: #eedeb4; }
       ul#filters li#organizations_button:hover {
-        background: #eedeb4; }
+        background: #ffefc5; }
     ul#filters li#search_li {
       width: auto;
       background: #eeeeee;

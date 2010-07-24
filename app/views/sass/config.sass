@@ -61,9 +61,9 @@
   background: -moz-linear-gradient(center bottom, $color2, $color1)
 
 @mixin filterBackground($color)  
-  background: $color
+  background: $color - #111
   &:hover
-    background: $color - #111  
+    background: $color  
   
 @mixin customItemStyle($color1, $color2)
   .title_top
