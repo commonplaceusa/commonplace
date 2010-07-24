@@ -6,9 +6,18 @@ ActionController::Routing::Routes.draw do |map|
   map.terms 'terms', :controller => 'site', :action => 'terms'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
 
-  map.resources :communities, :shallow => true do |c|
-    
-    c.resources :posts do |post|
+  map.resource :inbox
+  map.resources :conversations
+  map.resources :messages
+  
+  map.resource :user_session
+  map.resources :password_resets
+
+
+  map.community ':community', :controller => 'communities', :action => 'show'
+
+  map.with_options :path_prefix => "/:community", :shallow => true do |c|
+    c.resources :posts  do |post|
       post.resources :replies
     end
     
@@ -30,13 +39,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :organizer, :controller => "organizer" do |org|
     org.resource :profile
   end
-
-  map.resource :inbox
-  map.resources :conversations
-  map.resources :messages
-  
-  map.resource :user_session
-  map.resources :password_resets
   
   # map.connect 'directory/:filter', :controller => 'directories'
   # map.connect 'directory/:filter/:term', :controller => 'directories'

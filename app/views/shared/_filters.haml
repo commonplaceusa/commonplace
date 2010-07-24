@@ -1,16 +1,16 @@
 %ul#filters
   %li#wire_button 
-    = link_to 'Wire', community_path(current_user.community, :q => params[:q])
+    = link_to 'Wire', community_path(:q => params[:q])
   %li#posts_button
-    = link_to 'Neighborhood Posts', community_posts_path(current_user.community, :q => params[:q])
+    = link_to 'Neighborhood Posts', posts_path(:q => params[:q])
   %li#announcements_button
-    = link_to 'Your Announcements', community_announcements_path(current_user.community, :q => params[:q])
+    = link_to 'Your Announcements', announcements_path(:q => params[:q])
   %li#events_button
-    = link_to 'Events', community_events_path(current_user.community, :q => params[:q])
+    = link_to 'Events', events_path(:q => params[:q])
   %li#people_button
-    = link_to 'Neighbors', community_users_path(current_user.community, :q => params[:q])
+    = link_to 'Neighbors', users_path(:q => params[:q])
   %li#organizations_button
-    = link_to 'Organizations', community_organizations_path(current_user.community, :q => params[:q])
+    = link_to 'Organizations', organizations_path(:q => params[:q])
   %li#search_li
     = render 'shared/search'
     %p Examples: #{ link_to 'hiking' }, #{ link_to 'basketball' }, #{ link_to 'lawn care' }

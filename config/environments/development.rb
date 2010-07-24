@@ -16,8 +16,7 @@ config.action_controller.perform_caching             = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
 
-# Disabled this
-# config.gem "factory_girl"
+config.gem "factory_girl"
 config.gem "forgery"
 
 config.gem "capistrano"

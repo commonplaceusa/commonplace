@@ -3,12 +3,12 @@
     = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "262x37"
   
   #header_right
-    
-    %nav#tabs
-      = tab_to current_user.community.name, community_url(current_user.community)
-      = tab_to 'Inbox (1)', inbox_url
-      = tab_to 'My Organizations', organizer_index_url
-      = tab_to 'My Account', account_url
+    - if current_user_session
+      %nav#tabs
+        = tab_to current_user.community.name, community_url(current_user.community.name)
+        = tab_to 'Inbox (1)', inbox_url
+        = tab_to 'My Organizations', organizer_index_url
+        = tab_to 'My Account', account_url
     
     %p#header_text
       - if current_user_session
