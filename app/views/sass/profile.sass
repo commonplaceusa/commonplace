@@ -5,20 +5,28 @@
 
 a
   &:hover, &:visited, &:active
-  
-  
-h2, h1
-  border-bottom: 1px solid $lightGray
+   
+h2, h1  
+  margin-bottom: 15px
+  padding-bottom: 4px
   &.top
     margin-top: 0
 h2    
   margin-bottom: 0px !important
-h1
-  padding-bottom: 4px
-  margin-bottom: 1em
+  font-size: 1.5em
+.underline
+  border-bottom: 1px solid $lightGray
+  @include oldStandardBold
 
+#permanent_page_container
+  padding: $mainPadding
+
+h1#title
+  padding-left: $profilePageLeft
+  
 #left_col, #right_col
   @include column
+  left: $profilePageLeft
   
 #left_col
   width: 220px
@@ -152,10 +160,19 @@ ul#members li
     width: 150px
   .user_name
     font-weight: bold
-    font-size: 0.9em
   .user_role
     color: $mediumGray
     font-size: 0.8em
+    font-weight: normal
+    
+li
+  font-size: 0.9em
+  
+.contact_field
+  font-weight: bold
+
+.none
+  color: $mediumGray
 
 #signupteaser
   padding: 1em

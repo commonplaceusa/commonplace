@@ -1,4 +1,4 @@
-%h1= @organization.name
+%h1#title.underline= @organization.name
 
 #left_col
   %ul#top_left
@@ -7,9 +7,13 @@
 
   %ul#contact
     %li Contact Information
-    %li Send a Message
-    %li Phone: #{ @organization.phone || "none listed" }
-    %li Website: #{ @organization.website || "none listed" }
+    %li.contact_field Send a Message
+    %li
+      %span.contact_field Phone:
+      = display_or_none @organization.phone
+    %li
+      %span.contact_field Website:
+      = display_or_none @organization.website
     
   %ul#members
     %li Members (#{ @organization.subscribers.take(3).length }/#{ @organization.subscribers.length })
@@ -27,19 +31,19 @@
       %h3 Follow Medford Democrats on the Medford CommonPlace!
       %p The Medford Democrats are part of the Medford CommonPlace, a way to connect to organizations and people in your neighborhood.
   
-  %h2.top About us
+  %h2.top.underline About us
   %p.info= @organization.about
   
   - @organization.profile_fields.each do |p|
-    %h2= p.subject
+    %h2.underline= p.subject
     %p.info= p.body
     
-  %h2 Upcoming Events
+  %h2.underline Upcoming Events
   %ul#events
     - @organization.events.each do |event|
       = render 'shared/item', :item => event
   
-  %h2 Location
+  %h2.underline Location
   %table.info
     %tr
       %td Address

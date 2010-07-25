@@ -3,29 +3,25 @@
 
 @import config
   
-ul#filters
+nav#filters
   padding: 0 1em
   margin: 15px auto 0
   //text-align: center
-  li:hover
+  a:hover
     background: white
-  li
-    list-style: none
+  a.filter, #search
     @include column
     margin-right: 12px
-    border: 1px solid #aaa
-    background: #99ff99
-    padding: 10px 0px
-    width: 96px
+    border: 1px solid $lightGray
     height: 65px
-    text-align: center
-    a
-      font-size: 0.7em
-      font-weight: normal
-      color: black
+    color: black
     @include rounded(4px)
-    &:last-child
-      margin-right: 0
+  a.filter  
+    padding: 10px 0px
+    text-align: center
+    font-weight: normal
+    font-size: 0.7em
+    width: 96px
     &#wire_button
       @include filterBackground($wireColor)
     &#posts_button
@@ -38,17 +34,20 @@ ul#filters
       @include filterBackground($personColor)
     &#organizations_button
       @include filterBackground($organizationColor)
-    &#search_li
-      width: auto
-      background: $lightestGray
+  #search
+    @include column
+    width: auto
+    background: $lightestGray
+    text-align: left
+    padding: 10px 7px !important
+    margin-right: 0
+    p
+      margin: 8px 0px 0px
       text-align: left
-      padding: 10px
-      p
-        margin: 8px 0px 0px
-        text-align: left
-        font-size: 0.8em
-        a
-          font-size: 1em !important
+      font-size: 0.8em !important
+      a
+        font-size: 1em !important
+        font-weight: normal
 
 #post_submission
   p

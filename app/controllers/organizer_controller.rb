@@ -6,7 +6,13 @@ class OrganizerController < ApplicationController
   
   def index
     @organizations = current_user.managable_organizations
-    render :layout => 'application'
+    if @organizations.length == 0
+      redirect_to new_organizer_url
+    elsif @organizations.length == 1
+      redirect_to organizer_url(@organizations.first)
+    else
+      render :layout => 'application'
+    end
   end
 
   def show

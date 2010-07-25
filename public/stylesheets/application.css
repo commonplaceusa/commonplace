@@ -19,23 +19,19 @@
   font-weight: normal;
   font-style: normal; }
 
-ul#filters {
+nav#filters {
   padding: 0 1em;
   margin: 15px auto 0; }
-  ul#filters li:hover {
+  nav#filters a:hover {
     background: white; }
-  ul#filters li {
-    list-style: none;
+  nav#filters a.filter, nav#filters #search {
     position: relative;
     display: inline-block;
     vertical-align: top;
     margin-right: 12px;
-    border: 1px solid #aaaaaa;
-    background: #99ff99;
-    padding: 10px 0px;
-    width: 96px;
+    border: 1px solid #dfdfdc;
     height: 65px;
-    text-align: center;
+    color: black;
     -webkit-border-top-right-radius: 4px !important;
     -moz-border-radius-topright: 4px !important;
     border-top-right-radius: 4px !important;
@@ -48,47 +44,52 @@ ul#filters {
     -webkit-border-bottom-left-radius: 4px !important;
     -moz-border-radius-bottomleft: 4px !important;
     border-bottom-left-radius: 4px !important; }
-    ul#filters li a {
-      font-size: 0.7em;
-      font-weight: normal;
-      color: black; }
-    ul#filters li:last-child {
-      margin-right: 0; }
-    ul#filters li#wire_button {
+  nav#filters a.filter {
+    padding: 10px 0px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 0.7em;
+    width: 96px; }
+    nav#filters a.filter#wire_button {
       background: #a7c5e2; }
-      ul#filters li#wire_button:hover {
+      nav#filters a.filter#wire_button:hover {
         background: #b8d6f3; }
-    ul#filters li#posts_button {
+    nav#filters a.filter#posts_button {
       background: #dcbfbf; }
-      ul#filters li#posts_button:hover {
+      nav#filters a.filter#posts_button:hover {
         background: #edd0d0; }
-    ul#filters li#announcements_button {
+    nav#filters a.filter#announcements_button {
       background: #d6d6d6; }
-      ul#filters li#announcements_button:hover {
+      nav#filters a.filter#announcements_button:hover {
         background: #e7e7e7; }
-    ul#filters li#events_button {
+    nav#filters a.filter#events_button {
       background: #c3d4de; }
-      ul#filters li#events_button:hover {
+      nav#filters a.filter#events_button:hover {
         background: #d4e5ef; }
-    ul#filters li#people_button {
+    nav#filters a.filter#people_button {
       background: #ade5c5; }
-      ul#filters li#people_button:hover {
+      nav#filters a.filter#people_button:hover {
         background: #bef6d6; }
-    ul#filters li#organizations_button {
+    nav#filters a.filter#organizations_button {
       background: #eedeb4; }
-      ul#filters li#organizations_button:hover {
+      nav#filters a.filter#organizations_button:hover {
         background: #ffefc5; }
-    ul#filters li#search_li {
-      width: auto;
-      background: #eeeeee;
+  nav#filters #search {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    background: #eeeeee;
+    text-align: left;
+    padding: 10px 7px !important;
+    margin-right: 0; }
+    nav#filters #search p {
+      margin: 8px 0px 0px;
       text-align: left;
-      padding: 10px; }
-      ul#filters li#search_li p {
-        margin: 8px 0px 0px;
-        text-align: left;
-        font-size: 0.8em; }
-        ul#filters li#search_li p a {
-          font-size: 1em !important; }
+      font-size: 0.8em !important; }
+      nav#filters #search p a {
+        font-size: 1em !important;
+        font-weight: normal; }
 
 #post_submission {
   background-color: #eeeeee;
@@ -271,6 +272,7 @@ ul#wire li {
       width: 378px; }
       ul#wire li .bottom .body h3 {
         font-family: "OldStandardTTBold", Times, serif;
+        font-weight: normal;
         font-size: 1.2em;
         margin-bottom: 2px; }
       ul#wire li .bottom .body p {

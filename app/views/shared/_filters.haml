@@ -1,16 +1,8 @@
-%ul#filters
-  %li#wire_button 
-    = link_to 'Wire', community_path(:q => params[:q])
-  %li#posts_button
-    = link_to 'Neighborhood Posts', posts_path(:q => params[:q])
-  %li#announcements_button
-    = link_to 'Your Announcements', announcements_path(:q => params[:q])
-  %li#events_button
-    = link_to 'Events', events_path(:q => params[:q])
-  %li#people_button
-    = link_to 'Neighbors', users_path(:q => params[:q])
-  %li#organizations_button
-    = link_to 'Organizations', organizations_path(:q => params[:q])
-  %li#search_li
-    = render 'shared/search'
-    %p Examples: #{ link_to 'hiking' }, #{ link_to 'basketball' }, #{ link_to 'lawn care' }
+%nav#filters
+  = link_to 'Wire', community_path(:q => params[:q]), :id => "wire_button", :class => 'filter'
+  = link_to 'Neighborhood Posts', posts_path(:q => params[:q]), :id => "posts_button", :class => 'filter'
+  = link_to 'Your Announcements', announcements_path(:q => params[:q]), :id => "announcements_button", :class => 'filter'
+  = link_to 'Events', events_path(:q => params[:q]), :id => "events_button", :class => 'filter'
+  = link_to 'Neighbors', users_path(:q => params[:q]), :id => "people_button", :class => 'filter'
+  = link_to 'Organizations', organizations_path(:q => params[:q]), :id => "organizations_button", :class => 'filter'
+  = render 'shared/search'

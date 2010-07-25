@@ -20,21 +20,31 @@
   font-style: normal; }
 
 h2, h1 {
-  border-bottom: 1px solid #dfdfdc; }
+  margin-bottom: 15px;
+  padding-bottom: 4px; }
   h2.top, h1.top {
     margin-top: 0; }
 
 h2 {
-  margin-bottom: 0px !important; }
+  margin-bottom: 0px !important;
+  font-size: 1.5em; }
 
-h1 {
-  padding-bottom: 4px;
-  margin-bottom: 1em; }
+.underline {
+  border-bottom: 1px solid #dfdfdc;
+  font-family: "OldStandardTTBold", Times, serif;
+  font-weight: normal; }
+
+#permanent_page_container {
+  padding: 15px; }
+
+h1#title {
+  padding-left: 80px; }
 
 #left_col, #right_col {
   position: relative;
   display: inline-block;
-  vertical-align: top; }
+  vertical-align: top;
+  left: 80px; }
 
 #left_col {
   width: 220px;
@@ -190,6 +200,7 @@ ul#events li {
       width: 378px; }
       ul#events li .bottom .body h3 {
         font-family: "OldStandardTTBold", Times, serif;
+        font-weight: normal;
         font-size: 1.2em;
         margin-bottom: 2px; }
       ul#events li .bottom .body p {
@@ -259,11 +270,20 @@ ul#members li .user_image {
 ul#members li .user_info {
   width: 150px; }
 ul#members li .user_name {
-  font-weight: bold;
-  font-size: 0.9em; }
+  font-weight: bold; }
 ul#members li .user_role {
   color: #888888;
-  font-size: 0.8em; }
+  font-size: 0.8em;
+  font-weight: normal; }
+
+li {
+  font-size: 0.9em; }
+
+.contact_field {
+  font-weight: bold; }
+
+.none {
+  color: #888888; }
 
 #signupteaser {
   padding: 1em;

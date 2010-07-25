@@ -25,6 +25,10 @@ module ApplicationHelper
     link_to(name, options, html_options)
   end
   
+  def display_or_none(field)
+    field || '<span class="none">none listed</span>'
+  end
+  
   def hours_minutes time
     return time.strftime("%I:%M %p")[/(^0)(.+)/, 2] # strip leading zero
   end
