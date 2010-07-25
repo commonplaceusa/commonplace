@@ -3,11 +3,19 @@
 
 @import config
 
-.expand, .rsvp
-  color: #755
-
 a
   &:hover, &:visited, &:active
+  
+  
+h2, h1
+  border-bottom: 1px solid $lightGray
+  &.top
+    margin-top: 0
+h2    
+  margin-bottom: 0px !important
+h1
+  padding-bottom: 4px
+  margin-bottom: 1em
 
 #left_col, #right_col
   @include column
@@ -15,28 +23,119 @@ a
 #left_col
   width: 220px
   margin-right: 15px
-
-ul
-  margin-top: 0
-  background: none
-  border: 1px solid $organizationColor - #444
-  margin-bottom: 1em
-  li
-    list-style: none
-    padding: 7px
-    border-bottom: 1px solid #999
-    background: white
-    &:hover
-      background: $organizationColor
-      cursor: pointer
+  ul
+    margin-top: 0
+    background: none
+    border: 1px solid $organizationColor - #444
+    margin-bottom: 1em
+    li
+      list-style: none
+      padding: 7px
+      border-bottom: 1px solid #999
+      background: white
+      &:hover
+        background: $organizationColor
+        cursor: pointer
+      &:last-child
+        border-bottom: 0px
     &:last-child
-      border-bottom: 0px
-  &:last-child
-    margin-bottom: 1px
-  li:first-child
-    background-color: $organizationColor - #444
-    color: white
-    font-weight: bold
+      margin-bottom: 1px
+    li:first-child
+      background-color: $organizationColor - #444
+      color: white
+      font-weight: bold
+
+ul#events li
+  margin: 10px 10px 30px
+  position: relative
+  cursor: pointer
+  background-color: $itemBackground
+  border: 1px solid $itemBorder
+  @include rounded($postBorderRadius)
+  margin-bottom: 1em
+  border-bottom: 1px solid $lightestGray
+  font-size: 0.8em
+  .title_top
+    margin: 0px
+    position: relative
+    background: none
+    border-bottom: 1px solid $lightGray
+    height: 24px
+    .icon
+      @include column
+      border-right: 1px solid $lightGray
+      height: 18px
+      width: 18px
+      padding: 3px
+      img
+        height: 18px
+        width: 18px
+        @include rounded($postBorderRadius)
+    .top_text
+      display: inline-block
+      position: absolute
+      left: 25px
+      right: 0px
+      top: 0px
+      font-size: 11.5px
+      padding: 4px
+      height: 16px
+      border-left: 1px solid white
+      .category
+        font-weight: bold
+        font-size: 0.9em
+        color: #888
+      .from
+        @include oldStandard
+        font-size: 1em
+        color: $mediumGray
+      .author
+        font-family: 'OldStandardTTItalic', Times, serif
+      .time
+        position: absolute
+        right: 8px
+        font-size: 0.9em
+        color: $mediumGray
+        font-weight: bold
+  .bottom
+    border-top: 1px solid white
+    .graphic
+      @include column
+      margin: 6px
+      border: 1px solid $lightGray
+      @include rounded($postBorderRadius)
+    .body  
+      @include oldStandard
+      color: black
+      font-size: 1.1em
+      h3
+        @include oldStandardBold
+        font-size: 1.2em
+        margin-bottom: 2px
+      padding: 9px 4px 4px 0px
+      display: inline-block
+      width: 378px
+      p
+        margin: 0px
+  .expand
+    font-family: 'Helvetica', Arial, sans-serif
+    border-width: 1px solid $lightGray
+    position: relative
+    bottom: 0px
+    @include rounded(4px)
+    vertical-align: bottom
+    float: right
+    width: 75px
+    text-align: center
+    padding: 2px 4px !important
+    margin: 5px 0px 4px 4px
+    font-size: 0.8em
+  &.post
+    @include customItemStyle($postColor, $postColorDark)
+  &.event
+    @include customItemStyle($eventColor, $eventColorDark)
+  &.announcement
+    @include customItemStyle($announcementColor, $announcementColorDark)
 
 li#relation
   font-size: 1.2em
@@ -70,20 +169,17 @@ ul#members li
       margin-bottom: 0
 
 #right_col
-  width: 600px
-  h2
-    margin-bottom: 0px
-    border-bottom: 1px dashed #555
-    &.top
-      margin-top: 0
-
+  width: 480px
+  
 .contact
   font-size: 1.1em
   width: 380px
   height: 70px
 
 .info
-  margin: 0.5em 0.5em 1em
+  padding: 7px 10px 30px !important
+  margin: 0 !important
+  line-height: 130%
 
 .block
   display: block !important

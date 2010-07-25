@@ -321,6 +321,59 @@ nav#my_organizations a {
     top: 28px;
     font-family: "OldStandardTTBold", Times, serif; }
 
+div.calendar {
+  min-height: none;
+  position: relative !important;
+  float: left;
+  text-align: center;
+  display: block;
+  width: 50px;
+  height: 50px !important;
+  margin: 0px !important;
+  background: white;
+  -webkit-border-top-right-radius: 5px !important;
+  -moz-border-radius-topright: 5px !important;
+  border-top-right-radius: 5px !important;
+  -webkit-border-top-left-radius: 5px !important;
+  -moz-border-radius-topleft: 5px !important;
+  border-top-left-radius: 5px !important;
+  -webkit-border-bottom-right-radius: 5px !important;
+  -moz-border-radius-bottomright: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  -webkit-border-bottom-left-radius: 5px !important;
+  -moz-border-radius-bottomleft: 5px !important;
+  border-bottom-left-radius: 5px !important; }
+  div.calendar div.month {
+    position: relative !important;
+    min-height: none !important;
+    border: none;
+    padding: 2px;
+    font-size: 13px;
+    height: 17px !important;
+    background: #a93f40;
+    color: #f8f7f2;
+    -webkit-border-top-right-radius: 5px !important;
+    -moz-border-radius-topright: 5px !important;
+    border-top-right-radius: 5px !important;
+    -webkit-border-top-left-radius: 5px !important;
+    -moz-border-radius-topleft: 5px !important;
+    border-top-left-radius: 5px !important; }
+  div.calendar div.date {
+    position: relative !important;
+    min-height: none !important;
+    border: none;
+    background: none;
+    color: #333333;
+    font-weight: bold;
+    padding: 4px;
+    font-size: 18px;
+    -webkit-border-bottom-right-radius: 5px !important;
+    -moz-border-radius-bottomright: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    -webkit-border-bottom-left-radius: 5px !important;
+    -moz-border-radius-bottomleft: 5px !important;
+    border-bottom-left-radius: 5px !important; }
+
 .time {
   color: #666666; }
 

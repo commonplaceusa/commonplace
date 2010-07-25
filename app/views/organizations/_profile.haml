@@ -1,3 +1,5 @@
+%h1= @organization.name
+
 #left_col
   %ul#top_left
     %li= image_tag @organization.avatar.url, :class => "profilephoto"
@@ -6,10 +8,9 @@
   %ul#contact
     %li Contact Information
     %li Send a Message
-    %li Phone: 123-456-7890
-  %ul#website
-    %li Websites
-    %li Personal Website
+    %li Phone: #{ @organization.phone || "none listed" }
+    %li Website: #{ @organization.website || "none listed" }
+    
   %ul#members
     %li Members (#{ @organization.subscribers.take(3).length }/#{ @organization.subscribers.length })
     - @organization.subscribers.take(3).each do |subscriber|
@@ -19,37 +20,30 @@
           .user_name= subscriber.full_name
           .user_role subscriber
     %li#more_members View all members...
+
 #right_col
-  %h1= @organization.name
-  #signupteaser
-    %h3 Follow Medford Democrats on the Medford CommonPlace!
-    %p The Medford Democrats are part of the Medford CommonPlace, a way to connect to organizations and people in your neighborhood.
-  %h2.top Who We Are
-  %p.info The Medford Democrats are a local chapter of the National Democratic Party. We strive to elect local and strong candidates to city and county offices.
+  - unless @organization.subscribers.index current_user
+    #signupteaser
+      %h3 Follow Medford Democrats on the Medford CommonPlace!
+      %p The Medford Democrats are part of the Medford CommonPlace, a way to connect to organizations and people in your neighborhood.
   
+  %h2.top About us
+  %p.info= @organization.about
+  
+  - @organization.profile_fields.each do |p|
+    %h2= p.subject
+    %p.info= p.body
+    
   %h2 Upcoming Events
-  .info
-    %a{:href => "#"} Recall Scott Brown Barbecue
-    %br/
-    This Saturday, June 5, 2010
-    %br/
-    %span.expand Learn More
-    •
-    %span.rsvp
-      RSVP
-      %span (attend)
-    .expansion
-      This Saturday, come and roast burgers and Scott Brown. We'll be discuss our coherent strategy to get back Teddy's seat, as well as having a great time!
+  %ul#events
+    - @organization.events.each do |event|
+      = render 'shared/item', :item => event
   
   %h2 Headquarters Location
   %table.info
     %tr
       %td Address
-      %td
-        %a{:href => "#"}
-          365 Boston Ave
-          %br/
-          Medford MA, 02155
+      %td= @organization.address || "no address listed"
     %tr
       %td Distance
       %td 0.4 miles
@@ -58,6 +52,3 @@
       %td 5 minutes
   
   #map
-  
-  %h2 Meeting Times
-  .info We meet every Monday at 7PM in the basement of the community center. We have coffee and donuts.

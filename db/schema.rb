@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100724215951) do
+ActiveRecord::Schema.define(:version => 20100725025505) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",         :null => false
@@ -34,30 +34,30 @@ ActiveRecord::Schema.define(:version => 20100724215951) do
   end
 
   create_table "conversation_memberships", :force => true do |t|
-    t.integer  "user_id",                            :null => false
-    t.integer  "conversation_id",                    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "new_messages",    :default => false
+    t.integer   "user_id",                            :null => false
+    t.integer   "conversation_id",                    :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "new_messages",    :default => false
   end
 
   create_table "conversations", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "subject",    :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "events", :force => true do |t|
-    t.string   "name",            :null => false
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "address"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.integer  "organization_id"
+    t.string    "name",            :null => false
+    t.timestamp "start_time"
+    t.timestamp "end_time"
+    t.string    "address"
+    t.text      "description"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.decimal   "lat"
+    t.decimal   "lng"
+    t.integer   "organization_id"
   end
 
   create_table "links", :force => true do |t|
@@ -70,11 +70,11 @@ ActiveRecord::Schema.define(:version => 20100724215951) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "conversation_id", :null => false
-    t.text     "body",            :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id",         :null => false
+    t.integer   "conversation_id", :null => false
+    t.text      "body",            :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "organizations", :force => true do |t|
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20100724215951) do
     t.text     "about"
     t.string   "phone"
     t.string   "website"
+    t.integer  "community_id"
   end
 
   create_table "posts", :force => true do |t|
@@ -97,6 +98,15 @@ ActiveRecord::Schema.define(:version => 20100724215951) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "purpose",    :default => "tell", :null => false
+  end
+
+  create_table "profile_fields", :force => true do |t|
+    t.string   "subject",         :null => false
+    t.string   "body",            :null => false
+    t.integer  "organization_id", :null => false
+    t.integer  "position",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "referrals", :force => true do |t|
@@ -108,11 +118,11 @@ ActiveRecord::Schema.define(:version => 20100724215951) do
   end
 
   create_table "replies", :force => true do |t|
-    t.text     "body",       :null => false
-    t.integer  "post_id",    :null => false
-    t.integer  "user_id",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text      "body",       :null => false
+    t.integer   "post_id",    :null => false
+    t.integer   "user_id",    :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "roles", :force => true do |t|
@@ -130,13 +140,13 @@ ActiveRecord::Schema.define(:version => 20100724215951) do
   end
 
   create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "taggable_type"
-    t.string   "context"
-    t.datetime "created_at"
+    t.integer   "tag_id"
+    t.integer   "taggable_id"
+    t.integer   "tagger_id"
+    t.string    "tagger_type"
+    t.string    "taggable_type"
+    t.string    "context"
+    t.timestamp "created_at"
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
@@ -156,23 +166,23 @@ ActiveRecord::Schema.define(:version => 20100724215951) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",               :null => false
-    t.string   "crypted_password",    :null => false
-    t.string   "password_salt",       :null => false
-    t.string   "persistence_token",   :null => false
-    t.string   "single_access_token", :null => false
-    t.string   "perishable_token",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "first_name",          :null => false
-    t.string   "last_name",           :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.string   "address",             :null => false
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.text     "about"
-    t.integer  "community_id"
+    t.string    "email",               :null => false
+    t.string    "crypted_password",    :null => false
+    t.string    "password_salt",       :null => false
+    t.string    "persistence_token",   :null => false
+    t.string    "single_access_token", :null => false
+    t.string    "perishable_token",    :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "first_name",          :null => false
+    t.string    "last_name",           :null => false
+    t.string    "avatar_file_name"
+    t.string    "avatar_content_type"
+    t.string    "address",             :null => false
+    t.decimal   "lat"
+    t.decimal   "lng"
+    t.text      "about"
+    t.integer   "community_id"
   end
 
 end
