@@ -1,7 +1,12 @@
-= render 'form', :announcement => @announcement
+#both_columns
+  #left_col
+    %h3 Write a new announcement
+    = render 'form', :announcement => @announcement
 
-%h2 Org Announcements
-
-%ol
-  - @announcements.each do |announcement|
-    %li= link_to announcement.subject, ''
+  #right_col
+    %h3 Your announcements
+    %ul#wire
+      - @announcements.each do |a|
+        - content_tag :li, :class => dom_class(a), :id => dom_id(a), "data-url" => url_for(a) do
+          = render 'announcements/announcement', :announcement => a
+      

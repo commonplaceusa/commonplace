@@ -1,6 +1,7 @@
 %nav#organizer_nav
-  = link_to_unless_current "&laquo; back to organizations", organizer_index_url
-  |
+  - if current_user.managable_organizations.length > 1
+    = link_to_unless_current "view all organizations", organizer_index_url
+    |
   = link_to_unless_current "Preview", organizer_url(@organization)
   |
   = link_to_unless_current "Events", organizer_events_path(@organization)
@@ -12,3 +13,5 @@
   = link_to_unless_current "Edit Profile", organizer_profile_path(@organization)
   |
   = link_to_unless_current "Settings"
+  | 
+  = link_to_unless_current "New Organization", new_organizer_url

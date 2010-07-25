@@ -5,7 +5,7 @@
   
 nav#filters
   padding: 0 1em
-  margin: 15px auto 0
+  margin: 15px auto 15px
   //text-align: center
   a:hover
     background: white
@@ -85,7 +85,6 @@ nav#filters
 #both_columns
   min-height: $mainHeight - $filterHeight
   border-top: 1px solid $lightGray
-  margin-top: 15px
   position: relative
   
 #left_col, #right_col
@@ -147,6 +146,7 @@ ul#wire li
         font-size: 0.9em
         color: $mediumGray
         font-weight: bold
+        font-family: Arial, Helvetica, Verdana, sans-serif
   .bottom
     border-top: 1px solid white
     .graphic
@@ -180,6 +180,12 @@ ul#wire li
     padding: 2px 4px !important
     margin: 5px 0px 4px 4px
     font-size: 0.8em
+  img.user_image, p.user_name
+    @include column
+  img.user_image
+    margin-right: 5px
+  p.user_name
+    font-weight: bold
   &.post
     @include customItemStyle($postColor, $postColorDark)
   &.event
@@ -187,8 +193,9 @@ ul#wire li
   &.announcement
     @include customItemStyle($announcementColor, $announcementColorDark)
 
-  &.person
-    background: #fea
+  &.user
+    @include customItemStyle($personColor, $personColorDark)
+    padding: 7px
   &.organization
     background: #fea + #111
   &.business

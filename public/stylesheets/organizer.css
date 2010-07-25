@@ -20,10 +20,65 @@
   font-style: normal; }
 
 #organizer_main {
+  padding: 15px;
   border-top: 1px solid #dfdfdc; }
   #organizer_main h1 {
     font-size: 2em;
+    font-weight: bold;
     margin-bottom: 15px; }
   #organizer_main h2 {
     font-size: 1.5em;
     padding-bottom: 4px; }
+
+nav#organizer_nav {
+  padding: 15px; }
+
+nav#my_organizations a {
+  font-weight: normal;
+  display: block;
+  position: relative;
+  width: 500px;
+  border: 1px solid #dfdfdc;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffefc5), to(#eedeb4));
+  background: -moz-linear-gradient(center bottom, #eedeb4, #ffefc5);
+  -webkit-border-top-right-radius: 5px !important;
+  -moz-border-radius-topright: 5px !important;
+  border-top-right-radius: 5px !important;
+  -webkit-border-top-left-radius: 5px !important;
+  -moz-border-radius-topleft: 5px !important;
+  border-top-left-radius: 5px !important;
+  -webkit-border-bottom-right-radius: 5px !important;
+  -moz-border-radius-bottomright: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  -webkit-border-bottom-left-radius: 5px !important;
+  -moz-border-radius-bottomleft: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  padding: 15px;
+  margin-bottom: 1em; }
+  nav#my_organizations a:hover {
+    border-color: #888888;
+    cursor: pointer; }
+  nav#my_organizations a .org_image, nav#my_organizations a .org_name {
+    position: relative;
+    display: inline-block;
+    vertical-align: top; }
+  nav#my_organizations a .org_image {
+    width: 70px; }
+  nav#my_organizations a .org_name {
+    font-size: 1.2em;
+    position: absolute;
+    top: 28px;
+    font-family: "OldStandardTTBold", Times, serif;
+    font-weight: normal; }
+
+h3 {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 1em; }
+
+li.profile_field {
+  padding: 8px; }
+  li.profile_field h4 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 0.5em; }

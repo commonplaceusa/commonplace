@@ -9,7 +9,6 @@ class Organization < ActiveRecord::Base
   has_many :events
   has_many :announcements
 
-  # has_many :text_modules, :order => "position"
   has_many :profile_fields, :order => "position"
 
   has_many :subscriptions
@@ -21,7 +20,7 @@ class Organization < ActiveRecord::Base
   has_attached_file(:avatar, :styles => { :thumb => "100x100" })
 
   before_save :update_lat_and_lng, :if => "address_changed?"
-  # before_save :update_community
+  # before_save :update_community # KEEP THIS!
 
   # TODO: pull this out into a module
   def update_lat_and_lng

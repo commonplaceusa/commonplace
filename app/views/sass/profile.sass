@@ -14,22 +14,40 @@ h2, h1
 h2    
   margin-bottom: 0px !important
   font-size: 1.5em
+h1#title
+  // padding-left: $profilePageLeft
+  font-size: 2em
+  font-weight: bold
 .underline
   border-bottom: 1px solid $lightGray
-  @include oldStandardBold
-
+  // @include oldStandardBold
+  
 #permanent_page_container
   padding: $mainPadding
 
-h1#title
-  padding-left: $profilePageLeft
-  
-#left_col, #right_col
+#left_profile_col, #right_profile_col, #far_right_profile_col
   @include column
-  left: $profilePageLeft
+  // left: $profilePageLeft
+
+#far_right_profile_col
+  background: $lightestGray
+  @include rounded($postBorderRadius)
+  width: 210px
+  padding: 10px
+  margin-left: 15px
+  min-height: 500px
+  h3
+    font-size: 1em
+    font-weight: bold
+    margin: 0.75em 0px 0.5em
+    line-height: 120%
+  h3:first-child
+    margin-top: 0
+  p
+    font-size: 0.8em
   
-#left_col
-  width: 220px
+#left_profile_col
+  width: 215px
   margin-right: 15px
   ul
     margin-top: 0
@@ -55,97 +73,8 @@ h1#title
       color: white
       font-weight: bold
 
-ul#events li
-  margin: 10px 10px 30px
-  position: relative
-  cursor: pointer
-  background-color: $itemBackground
-  border: 1px solid $itemBorder
-  @include rounded($postBorderRadius)
-  margin-bottom: 1em
-  border-bottom: 1px solid $lightestGray
-  font-size: 0.8em
-  .title_top
-    margin: 0px
-    position: relative
-    background: none
-    border-bottom: 1px solid $lightGray
-    height: 24px
-    .icon
-      @include column
-      border-right: 1px solid $lightGray
-      height: 18px
-      width: 18px
-      padding: 3px
-      img
-        height: 18px
-        width: 18px
-        @include rounded($postBorderRadius)
-    .top_text
-      display: inline-block
-      position: absolute
-      left: 25px
-      right: 0px
-      top: 0px
-      font-size: 11.5px
-      padding: 4px
-      height: 16px
-      border-left: 1px solid white
-      .category
-        font-weight: bold
-        font-size: 0.9em
-        color: #888
-      .from
-        @include oldStandard
-        font-size: 1em
-        color: $mediumGray
-      .author
-        font-family: 'OldStandardTTItalic', Times, serif
-      .time
-        position: absolute
-        right: 8px
-        font-size: 0.9em
-        color: $mediumGray
-        font-weight: bold
-  .bottom
-    border-top: 1px solid white
-    .graphic
-      @include column
-      margin: 6px
-      border: 1px solid $lightGray
-      @include rounded($postBorderRadius)
-    .body  
-      @include oldStandard
-      color: black
-      font-size: 1.1em
-      h3
-        @include oldStandardBold
-        font-size: 1.2em
-        margin-bottom: 2px
-      padding: 9px 4px 4px 0px
-      display: inline-block
-      width: 378px
-      p
-        margin: 0px
-  .expand
-    font-family: 'Helvetica', Arial, sans-serif
-    border-width: 1px solid $lightGray
-    position: relative
-    bottom: 0px
-    @include rounded(4px)
-    vertical-align: bottom
-    float: right
-    width: 75px
-    text-align: center
-    padding: 2px 4px !important
-    margin: 5px 0px 4px 4px
-    font-size: 0.8em
-  &.post
-    @include customItemStyle($postColor, $postColorDark)
-  &.event
-    @include customItemStyle($eventColor, $eventColorDark)
-  &.announcement
-    @include customItemStyle($announcementColor, $announcementColorDark)
+ul#wire
+  margin: 10px 0px 30px
 
 li#relation
   font-size: 1.2em
@@ -187,18 +116,19 @@ li
     &:last-child
       margin-bottom: 0
 
-#right_col
-  width: 480px
+#right_profile_col
+  width: 460px
   
 .contact
   font-size: 1.1em
   width: 380px
   height: 70px
 
-.info
-  padding: 7px 10px 30px !important
+.profile_info
+  padding: 7px 0px  !important
   margin: 0 !important
   line-height: 130%
+  font-family: Georgia, Times, serif
 
 .block
   display: block !important

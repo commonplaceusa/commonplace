@@ -1,7 +1,7 @@
 class EventsController < CommunitiesController
    
   def index
-    @events = Event.all
+    @events = Event.all.reverse
   end
   
   def new

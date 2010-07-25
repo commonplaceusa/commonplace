@@ -199,46 +199,6 @@ footer
       margin-right: 20px
       font-size: 1.1em
       font-weight: lighter
-      
-nav#organizer_nav
-  padding: $mainPadding
-
-#organizer_main
-  h1, h2
-    margin: 0 0 1em 
-    @include oldStandardBold
-  h1
-    font-size: 1.5em
-    font-weight: normal
-  h2
-    font-size: 1.2em
-    font-weight: normal
-  padding: $mainPadding
-  a
-    font-weight: normal
-
-nav#my_organizations a
-  font-weight: normal
-  display: block
-  position: relative
-  width: 500px
-  border: 1px solid $lightGray
-  @include vertical-gradient($organizationColor, $organizationColorDark)
-  @include rounded($postBorderRadius)
-  padding: 15px
-  margin-bottom: 1em
-  &:hover
-    border-color: $mediumGray
-    cursor: pointer
-  .org_image, .org_name
-    @include column
-  .org_image
-    width: 70px
-  .org_name
-    font-size: 1.2em
-    position: absolute
-    top: 28px
-    @include oldStandardBold
 
 div.calendar
   min-height: none

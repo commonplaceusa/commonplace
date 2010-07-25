@@ -1,3 +1,2 @@
-
-= image_tag user.avatar.url, :width => 60, :height => 60
-%p #{user.full_name}
+= image_tag user.avatar.url, :size => "30x30", :class => 'user_image'
+%p.user_name= user.full_name

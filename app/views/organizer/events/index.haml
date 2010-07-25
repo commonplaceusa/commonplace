@@ -1,8 +1,11 @@
-= render 'form', :event => @event
+#both_columns
+  #left_col
+    %h3 Make a new event
+    = render 'form', :event => @event
 
-%h2 Org Events
-
-%ol
-  - @events.each do |event|
-    %li= link_to event.name, ''
-  
+  #right_col
+    %h3 Your Events
+    %ul#wire
+      - @events.each do |event|
+        - content_tag :li, :class => dom_class(event), :id => dom_id(event), "data-url" => url_for(event) do
+          = render 'events/event', :event => event

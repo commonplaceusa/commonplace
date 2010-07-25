@@ -4,6 +4,7 @@ class Organizer::ProfilesController < ApplicationController
   layout 'organizer'
   
   def show
+    @profile_fields = @organization.profile_fields
   end
 
 

@@ -4,7 +4,7 @@ class Organizer::AnnouncementsController < ApplicationController
   layout "organizer"
 
   def index 
-    @announcements = @organization.announcements
+    @announcements = @organization.announcements.sort{ |a,b| b.created_at <=> a.created_at }
     @announcement = Announcement.new
   end
 
@@ -16,7 +16,9 @@ class Organizer::AnnouncementsController < ApplicationController
       render :new
     end
   end
+  
   protected
+  
   def load_organization
     @organization = Organization.find(params[:organizer_id])
   end

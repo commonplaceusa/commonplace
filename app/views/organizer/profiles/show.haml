@@ -1,1 +1,12 @@
-%h2 Profile Preview
+#both_columns
+  #left_col
+    %h3 Add a new profile field
+    =# render 'form', :profile_field => @profile_field
+
+  #right_col
+    %h3 Your Profile Fields
+    %ul#wire
+      - @profile_fields.each do |field|
+        %li.profile_field
+          %h4= field.subject
+          %p= field.body

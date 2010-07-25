@@ -1,8 +1,10 @@
-%h2 Announce
-
-- form_for @announcement, :url => organizer_announcements_url do |f|
-  = f.label :subject
-  = f.text_field :subject
-  = f.label :body
-  = f.text_area :body
-  = f.submit
+%ul
+  - form_for @announcement, :url => organizer_announcements_url do |f|
+    %li
+      = f.label :subject
+      = f.text_field :subject
+    %li
+      = f.label :body
+      = f.text_area :body
+    %li
+      = f.submit
