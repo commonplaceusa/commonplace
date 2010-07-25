@@ -11,5 +11,6 @@
     .graphic= render("events/calendar", :event => event)
     .body
       %h3= event.name
-      %p Event description goes here. This event takes places at #{ hours_minutes event.start_time }
-      .expand 11 attending
+      .time= hours_minutes event.start_time
+      %p= event.description
+      .expand #{ event.attendances.length } attending

@@ -375,7 +375,8 @@ div.calendar {
     border-bottom-left-radius: 5px !important; }
 
 .time {
-  color: #666666; }
+  color: #666666;
+  font-family: "OldStandardTT", Times, serif; }
 
 .delete {
   color: #666666;
