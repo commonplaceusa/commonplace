@@ -18,3 +18,12 @@
   src: local("OldStandardTTBold"), url("/fonts/old-standard/OldStandard-Bold-webfont.woff") format("woff"), url("/fonts/old-standard/OldStandard-Bold-webfont.ttf") format("truetype"), url("/fonts/old-standard/OldStandard-Bold-webfont.svg") format("svg");
   font-weight: normal;
   font-style: normal; }
+
+#organizer_main {
+  border-top: 1px solid #dfdfdc; }
+  #organizer_main h1 {
+    font-size: 2em;
+    margin-bottom: 15px; }
+  #organizer_main h2 {
+    font-size: 1.5em;
+    padding-bottom: 4px; }

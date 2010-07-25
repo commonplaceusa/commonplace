@@ -7,6 +7,7 @@ class OrganizationsController < CommunitiesController
   def show
     @organization = Organization.find_by_id(params[:id])
     @events = Event.find(:all, :conditions => ["organization_id = ?", @organization.id])
+    render :layout => 'profile'
   end
   
 end

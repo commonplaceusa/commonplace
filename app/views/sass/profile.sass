@@ -3,144 +3,87 @@
 
 @import config
 
-#map
-  width: ($rightWidth - 6) + px
-  border: 3px solid #F9CB9C
-  @include rounded(4px)
-  height: 300px !important
-  background: #49e
+.expand, .rsvp
+  color: #755
 
-#main
-  padding: .5em !important
-  font-size: 1.15em
-  line-height: 1.15em
+a
+  &:hover, &:visited, &:active
 
-h1
-  font-size: 2em
-  font-weight: bold
+#left_col, #right_col
+  @include column
+  
+#left_col
+  width: 220px
+  margin-right: 15px
 
-h2
-  text-align: left
-  margin-top: .4em
-  padding-bottom: 0
-  margin-bottom: .5em
-  font-size: 2em
-
-#left
-  margin-left: 1em
-  float: left
-  width: $leftWidth + px
-  ul
-    margin-top: 0
-    padding-left: 1px
-    li
-      list-style: none
-      padding-top: .4em
-      padding-bottom: .4em
-      border-bottom: 1px solid #999
-      background: #fff
-      padding-left: 4px
-      margin-right: 1px
-      &:hover
-        background: #FCD9B5
-        cursor: pointer
-      &:last-child
-        border-bottom: 0px
+ul
+  margin-top: 0
+  background: none
+  border: 1px solid $organizationColor - #444
+  margin-bottom: 1em
+  li
+    list-style: none
+    padding: 7px
+    border-bottom: 1px solid #999
+    background: white
+    &:hover
+      background: $organizationColor
+      cursor: pointer
     &:last-child
-      margin-bottom: 1px
-  .category
-    background: #F9CB9C
-    padding: 1px
-    margin-bottom: 1em
-    > p
-      padding-left: 5px
-      margin-top: .5em
-      margin-bottom: .5em
+      border-bottom: 0px
+  &:last-child
+    margin-bottom: 1px
+  li:first-child
+    background-color: $organizationColor - #444
+    color: white
+    font-weight: bold
 
-.relation
+li#relation
   font-size: 1.2em
   text-align: center
 
-.memberpreview
-  li
-    height: 45px
-    padding-top: 2px !important
-    padding-bottom: 2px !important
-    img
-      height: 45px
-      padding-top: 2px !important
-      padding-bottom: 2px !important
-      width: 42px
-      height: 42px
-      margin: 0
-      padding: 0
-  ul li:last-child
-    height: auto
-    padding-top: .4em !important
-    padding-bottom: .4em !important
-  li p
-    padding: 0
-    margin: 0
-    &.role
-      font-size: .9em
-      padding-top: 4px
-      color: #333
+ul#members li
+  .user_image, .user_info
+    @include column
+  .user_image
+    width: 35px
+  .user_info
+    width: 150px
+  .user_name
+    font-weight: bold
+    font-size: 0.9em
+  .user_role
+    color: $mediumGray
+    font-size: 0.8em
 
-/* Right.
-
-#right
-  margin-right: 1em
-  width: $rightWidth + px
-  float: right
-  p
-    text-align: left
-    margin-top: 1em
-    padding-bottom: .2em
-    border-bottom: 1px dashed #555
-    font-size: 1.4em
-    &.top
-      margin-top: 0em
-    &.desc
-      color: #111
-      border-bottom: none
-      font-size: 1em
-    &.detail
+#signupteaser
+  padding: 1em
+  border: 2px solid $organizationColor
+  margin-bottom: 1em
+  cursor: pointer
+  &:hover
+    background: $organizationColor
+  *
+    &:first-child
       margin-top: 0
+    &:last-child
       margin-bottom: 0
-      font-size: 1em
-      color: #555
-      border-bottom: none
-    &.instruction
-      color: #111
-      border-bottom: none
-      font-size: 1.1em
-      line-height: 1.2em
-    &.age
-      font-size: .85em
-      color: #333
-      margin-top: .5em
-      margin-bottom: 0
-      border: 0
-  table
-    padding-bottom: 1em
-    th
-      margin-right: 1em
-      padding: .2em 0
-      width: 140px
-    td
-      padding: .2em 0
 
-.name
-  margin: .5em
-  padding-bottom: .333em
+#right_col
+  width: 600px
+  h2
+    margin-bottom: 0px
+    border-bottom: 1px dashed #555
+    &.top
+      margin-top: 0
 
 .contact
   font-size: 1.1em
   width: 380px
   height: 70px
 
-.text
-  margin-left: 2em
+.info
+  margin: 0.5em 0.5em 1em
 
 .block
   display: block !important
@@ -153,7 +96,7 @@ h2.relationship
   padding-top: 1px
   padding-left: 1px
   height: 200px
-  width: 246px
+  width: 196px
 
 .commonality
   font-size: .8em
@@ -176,7 +119,9 @@ a.same
   color: #111
 
 .list a, #left .category, #signupteaser
-  @include rounded(4px)
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  border-radius: 4px
 
 .expansion
   margin-top: 1em
@@ -184,35 +129,16 @@ a.same
 
 .rsvp span
   display: none
+  
+#map
+  height: 300px
+  width: 480px
+  background: $lightGray
+  border: 1px solid $lightestGray
+  @include rounded($postBorderRadius)
+  margin-bottom: 1.5em
 
 table tr
   vertical-align: top
   td:first-child
     padding-right: 1em
-
-#signupteaser
-  p
-    font-size: 1em
-    border: 0
-    &.emphasis
-      font-weight: bold
-  padding: 1em
-  border: 2px solid #F9CB9C
-  margin-bottom: 1em
-  cursor: pointer
-  &:hover
-    background: #FCD9B5
-  *
-    &:first-child
-      margin-top: 0
-    &:last-child
-      margin-bottom: 0
-
-/* Common Classes
-
-.right
-  float: right
-
-.clear
-  clear: both
-  padding-bottom: 3em

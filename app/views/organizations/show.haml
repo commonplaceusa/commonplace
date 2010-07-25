@@ -1,11 +1,1 @@
-
-%h1= @organization.name
-%a{:href => "/organizations/edit/#{@organization.id}"} Edit
-
--@events.each do |event|
- %h2 #{event.name}
- %p.detail Starts: #{human_date(event.start_time)}
- %p.detail Ends: #{human_date(event.end_time)}
- %p.detail Location: #{event.address}
- %p Description
- %p.desc #{event.description}
+= render 'profile'
