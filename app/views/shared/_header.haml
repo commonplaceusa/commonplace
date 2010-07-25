@@ -5,10 +5,10 @@
   #header_right
     - if current_user_session
       %nav#tabs
-        = tab_to current_user.community.name, community_url(current_user.community.name)
-        = tab_to 'Inbox (1)', inbox_url
-        = tab_to 'My Organizations', organizer_index_url
-        = tab_to 'My Account', account_url
+        = tab_to current_user.community.name, community_url(current_user.community.name), :id => 'community'
+        = tab_to 'Inbox (1)', inbox_url, :id => 'inbox'
+        = tab_to 'My Organizations', organizer_index_url, :id => 'organizations'
+        = tab_to 'My Account', account_url, :id => 'account'
     
     %p#header_text
       - if current_user_session

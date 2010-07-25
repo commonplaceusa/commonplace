@@ -1,6 +1,10 @@
 = render 'layouts/top_html', :title => 'CommonPlace: Your Organizations', :stylesheets => ['application', 'organizer', 'profile']
 
+
 %body
+  :javascript
+    selectTab("organizations");
+
   #wrap
     #top
     = render 'shared/header'

@@ -1,6 +1,8 @@
 = render 'layouts/top_html', :title => "CommonPlace: " + current_user.community.name, :stylesheets => 'application'
 
 %body
+  :javascript
+    selectTab("community");
   #wrap
     #top
     = render 'shared/header'
