@@ -1,16 +1,3 @@
-- form_for @event, :url => organizer_events_url do |f|
-  %p
-  = f.text_field :name, "data-label" => 'Title'
-  %p
-  = f.text_field :description, "data-label" => 'Description'
-  %p Start Time
-  = f.date_select :start_time
-  = f.time_select :start_time
-  %p End Time
-  = f.date_select :end_time
-  = f.time_select :end_time
-  %p
-  = f.text_field :address, "data-label" => 'Address'
-
-  %p
-  = f.submit "Post"
+- semantic_form_for @event, :url => organizer_events_url do |f|
+  = f.inputs :name, :description, :start_time, :end_time, :address
+  = f.buttons

@@ -1,0 +1,44 @@
+// forms.sass
+// Form styling across the site
+
+@import config
+
+input[type=text], textarea
+  @include styled_input
+  width: $inputBoxWidth
+  
+textarea
+  height: 4em
+  
+input[type=submit]
+  @include styled_button
+  
+label
+  width: $labelWidth
+  padding-right: 10px
+  display: inline-block
+  font-size: 0.9em
+  font-weight: bold
+  color: $mediumGray
+  text-align: right
+  position: relative
+  top: 0px
+
+p.inline-errors
+  float: right
+  font-size: 0.8em
+  text-align: right
+  line-height: 120%
+  width: 280px
+  margin: -7px 2px 10px 2px
+  font-weight: bold
+  color: #cc0000
+  
+form fieldset
+  ol
+    li
+      display: block
+      position: relative
+      margin-bottom: 7px
+      // vertical-align: top
+  

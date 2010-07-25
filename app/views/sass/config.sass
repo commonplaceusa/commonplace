@@ -87,6 +87,35 @@
 @mixin oldStandard
   font-family: 'OldStandardTT', Times, serif
 
+@mixin styled_input
+  font-size: 0.8em
+  height: 14px
+  padding: 4px
+  background-color: $inputBackground
+  &#user_avatar
+    background-color: white
+    border-color: white
+    padding: 0px
+    width: 170px
+  color: black
+  font-family: Verdana, sans-serif
+  border: 1px solid $lightGray
+  @include rounded($postBorderRadius)
+
+@mixin styled_button
+  //eek--stolen directly from SoundCloud
+  background-color: $lightestGray
+  background-image: url("/images/button_repeat.png")
+  width: auto
+  height: 100%
+  color: black
+  padding: 3px 7px
+  cursor: pointer
+  border: 1px solid $lightGray
+  @include rounded($postBorderRadius)
+  &:hover
+    border-color: $mediumGray
+
 // Measurements
 
 $mainWidth = 976px
@@ -114,6 +143,9 @@ $postBorderRadius = 5px
 
 $profilePageLeft = 80px
 
+$inputBoxWidth = 250px
+$labelWidth = 120px
+
 // Colors
 
 $primaryTextColor = #111
@@ -128,6 +160,8 @@ $offWhite = #f8f7f2
 $lightestGray = #eee
 $lightGray = #dfdfdc
 $mediumGray = #888
+
+$inputBackground = #faffbd
 
 $itemBackground = #f7f7f7
 $itemBorder = #dfdfdc
