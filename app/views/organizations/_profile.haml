@@ -16,8 +16,8 @@
       = display_or_none @organization.website
     
   %ul#members
-    %li Members (#{ @organization.subscribers.take(3).length }/#{ @organization.subscribers.length })
-    - @organization.subscribers.take(3).each do |subscriber|
+    %li Members (#{ @subscribers.take(3).length }/#{ @subscribers.length })
+    - @subscribers.take(3).each do |subscriber|
       %li
         .user_image= image_tag subscriber.avatar.url, :size => "30x30"
         .user_info
@@ -26,7 +26,7 @@
     %li#more_members View all members...
 
 #right_profile_col
-  - unless @organization.subscribers.index current_user
+  - unless @subscribers.index current_user
     #signupteaser
       %h3 Follow Medford Democrats on the Medford CommonPlace!
       %p The Medford Democrats are part of the Medford CommonPlace, a way to connect to organizations and people in your neighborhood.

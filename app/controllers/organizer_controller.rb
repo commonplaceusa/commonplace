@@ -16,6 +16,7 @@ class OrganizerController < ApplicationController
   end
 
   def show
+    @subscribers = @organization.subscribers
     render :show
   end
 
@@ -31,6 +32,8 @@ class OrganizerController < ApplicationController
   end
   
   def create
+    @organization = current_user.managable_organizations.build(params[:organization])
+    @organization.community = current_user.community
   end
 
   protected
