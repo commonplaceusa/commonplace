@@ -5,6 +5,14 @@ function selectTab(tab) {
   });
 };
 
+function setInfoBox() {
+  $.getJSON(this.path.slice(1), function(response) {
+    $("#both_columns #right_col").html(response.info_box).offset({
+      top: Math.max($(window).scrollTop(), $("#both_columns").offset().top)
+    });
+  });
+}    
+
 var app = $.sammy(function() { 
 
   this.post("/posts", function() {
@@ -34,23 +42,9 @@ var app = $.sammy(function() {
     }, "json");
   });
 
-  this.get("#/posts/:id", function() {
-    $.getJSON(this.path.slice(1), function(response) {
-      $("#both_columns #right_col").html(response.info_box);
-    });    
-  });
-
-  this.get("#/events/:id", function() {
-    $.getJSON(this.path.slice(1), function(response) {
-      $("#both_columns #right_col").html(response.info_box);
-    });    
-  });
-  
-  this.get("#/announcements/:id", function() {
-    $.getJSON(this.path.slice(1), function(response) {
-      $("#both_columns #right_col").html(response.info_box);
-    });    
-  });
+  this.get("#/posts/:id", setInfoBox);
+  this.get("#/events/:id", setInfoBox);
+  this.get("#/announcements/:id", setInfoBox);
 
 });
 
