@@ -9,4 +9,6 @@ class ProfileField < ActiveRecord::Base
     self.position = self.organization.profile_fields.length
   end
   
+  validates_presence_of :subject, :body
+  
 end

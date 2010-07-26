@@ -9,11 +9,12 @@ class Organizer::AnnouncementsController < ApplicationController
   end
 
   def create
-    @announcement = @organization.announcements.build(params[:announcement])
+    @announcement = @organization.announcements.new(params[:announcement])
     if @announcement.save
       redirect_to organizer_announcements_url(@organization)
     else
-      render :new
+      @announcements = @organization.announcements.sort{ |a,b| b.created_at <=> a.created_at }
+      render :index
     end
   end
   

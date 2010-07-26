@@ -8,21 +8,12 @@ class Organizer::EventsController < ApplicationController
     @event = Event.new
   end
 
-  def show 
-    @event = Event.find(params[:id])
-  end
-
-
-  def new
-    @event = @organization.events.build
-  end
-
   def create
     @event = @organization.events.build(params[:event])
     if @event.save
       redirect_to organizer_events_path(@organizer)
     else
-      render :new
+      render :index
     end
   end
 

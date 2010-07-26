@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   
-  validates_presence_of :name
+  validates_presence_of :name, :description, :start_time
 
   has_many :referrals
   has_many :attendances

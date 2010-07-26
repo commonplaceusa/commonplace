@@ -1,3 +1,5 @@
 - semantic_form_for @announcement, :url => organizer_announcements_url do |f|
-  = f.inputs :subject, :body
-  = f.buttons
+  - f.inputs do
+    = f.input :subject
+    = f.input :body, :as => :text
+    = f.commit_button
