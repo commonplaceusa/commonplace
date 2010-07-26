@@ -348,7 +348,8 @@ ul#wire li {
     ul#wire li.user:hover .icon img {
       background-color: #ade5c5; }
   ul#wire li.organization {
-    background: #ffffbb; }
+    background: #ffffbb;
+    padding: 7px; }
   ul#wire li.business {
     background: #eedd99; }
   ul#wire li.selected {
