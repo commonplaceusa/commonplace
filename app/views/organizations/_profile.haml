@@ -28,8 +28,8 @@
 #right_profile_col
   - unless @subscribers.index current_user
     #signupteaser
-      %h3 Follow Medford Democrats on the Medford CommonPlace!
-      %p The Medford Democrats are part of the Medford CommonPlace, a way to connect to organizations and people in your neighborhood.
+      %h3 Follow #{ @organization.name } on CommonPlace!
+      %p The #{ @organization.name } are part of the #{ @organization.community.name } CommonPlace, a way to connect to organizations and people in your neighborhood.
   
   %h2.top.underline About us
   %p.profile_info= @organization.about
