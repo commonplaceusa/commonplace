@@ -1,0 +1,9 @@
+- semantic_form_for @organization, :url => new_organizer_url do |f|
+  - f.inputs do
+    = f.input :community
+    = f.input :name
+    = f.input :about
+    = f.input :address
+    = f.input :phone
+    = f.input :website
+    = f.commit_button

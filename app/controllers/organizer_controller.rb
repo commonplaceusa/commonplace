@@ -21,6 +21,7 @@ class OrganizerController < ApplicationController
   end
 
   def edit
+    @organization = Organization.find params[:id]
   end
   
   def update

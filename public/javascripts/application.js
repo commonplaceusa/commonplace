@@ -1,7 +1,7 @@
 
 function selectTab(tab) {
   $(document).ready(function(){
-    $('nav#tabs a#' + tab).addClass('selected_tab');
+    $('header #' + tab).addClass('selected_nav');
   });
 };
 

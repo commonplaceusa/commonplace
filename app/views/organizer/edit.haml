@@ -1,0 +1,8 @@
+#both_columns
+  #left_col
+    %h3 Edit your organization's info
+    = render 'form'
+  
+  #right_col
+    %h3 Your info box preview
+    = render 'organizations/info_box', :organization => @organization

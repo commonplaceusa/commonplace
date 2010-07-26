@@ -2,20 +2,17 @@
   - link_to root_url, :id => 'title' do
     = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "262x37"
   
-  #header_right
+  - if current_user_session
+    = tab_to current_user.community.name, community_url(current_user.community.name), :id => 'community_nav'
+  
+  %nav#header_right
     - if current_user_session
-      %nav#tabs
-        = tab_to current_user.community.name, community_url(current_user.community.name), :id => 'community'
-        = tab_to 'Inbox (1)', inbox_url, :id => 'inbox'
-        = tab_to 'My Organizations', organizer_index_url, :id => 'organizations'
-        = tab_to 'My Account', account_url, :id => 'account'
-    
-    %p#header_text
-      - if current_user_session
-        Hi, #{current_user.first_name}!
-        = link_to 'Log out', logout_url
-      - else
-        Hi there!
-        = link_to 'Log in', new_user_session_path
-        |
-        = link_to 'Register', new_account_path
+      Hi, #{current_user.first_name}!
+      = tab_to 'Inbox (1)', inbox_url, :id => 'inbox'
+      = tab_to 'My Organizations', organizer_index_url, :id => 'organizations'
+      = tab_to 'My Account', account_url, :id => 'account'
+      = link_to 'Log out', logout_url
+    - else
+      Hi there!
+      = link_to 'Log in', new_user_session_path
+      = link_to 'Register', new_account_path

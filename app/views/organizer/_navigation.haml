@@ -10,8 +10,8 @@
   |
   = link_to_unless_current "Subscribers", organizer_subscriptions_path(@organization)
   |
-  = link_to_unless_current "Edit Profile", organizer_profile_path(@organization)
+  = link_to_unless_current "Profile Fields", organizer_profile_path(@organization)
   |
-  = link_to_unless_current "Settings"
+  = link_to_unless_current "Info", edit_organizer_path(@organization)
   | 
   = link_to_unless_current "New Organization", new_organizer_url

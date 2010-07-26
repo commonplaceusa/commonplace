@@ -108,53 +108,58 @@ header
   width: $mainWidth
   height: 38px
   padding-top: 10px
-  a#title, nav
+  a#title, #community_nav, nav
     @include column
-  a#title
+  a#title  
     position: absolute
     left: 0px
     border: 0px
     bottom: 0px
     top: auto
 
-#header_right
+#community_nav
   position: absolute
-  bottom: 0px
-  right: 0px
   display: inline-block
-  
-p#header_text  
-  @include column
-  top: 4px
-  text-align: right
-  background-color: $lightestGray
-  border: 1px solid $lightGray
-  @include rounded(5px)
-  right: 0px
-  font-size: 0.8em
-  margin: 0px
-  padding: 3px 10px
-
-nav#tabs a
-  @include column
-  // top: 17px
-  top: 1px
   z-index: 1
   border: 1px solid $mediumGray
-  border-bottom: none
-  @include rounded-top(15px)
-  padding: 7px 10px
+  @include rounded($postBorderRadius)
   background: #ddd
   &:hover
-    background: $lightestGray
-  font-size: 15px
-  font-weight: normal
+    background-color: $lightestGray
   color: black
+  padding: 7px 10px
+  left: 275px
+  font-weight: bold
+  &.selected_nav
+    background: white !important
+    font-weight: bold !important
 
-.selected_tab
-  padding-bottom: 8px !important
-  background: white !important
-  font-weight: bold !important
+nav#header_right
+  bottom: 8px
+  right: 0px
+  position: absolute
+  display: inline-block
+  background-color: $lightestGray
+  border: 1px solid $lightGray
+  @include rounded($postBorderRadius)
+  font-size: 0.8em
+  margin: 0px
+  padding: 0px 0px 0px 7px
+
+nav#header_right a
+  font-weight: normal
+  display: inline-block
+  padding: 3px 7px
+  margin: 0
+  border-left: 1px solid $lightGray
+  &:first-child
+    margin-left: 4px
+  &:last-child
+    @include rounded-right($postBorderRadius)
+  &:hover
+    background: #fafafa
+  &.selected_nav
+    background-color: white
   
 #search
   padding: 0px
