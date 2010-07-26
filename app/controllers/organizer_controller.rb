@@ -28,7 +28,7 @@ class OrganizerController < ApplicationController
   end
   
   def new
-    @organization = Organization.new
+    @organization = current_user.managable_organizations.new(params[:organization])
     render :layout => 'application'
   end
   
