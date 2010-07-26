@@ -28,19 +28,24 @@ class OrganizerController < ApplicationController
   end
   
   def new
-    @organization = current_user.managable_organizations.new(params[:organization])
+    @organization = Organization.new
     render :layout => 'application'
   end
   
   def create
     @organization = current_user.managable_organizations.build(params[:organization])
     @organization.community = current_user.community
+    if @organization.save
+      redirect_to organizer_index_url
+    else
+      render :new
+    end
   end
 
   protected
   
   def load_organization
-    @organization = Organization.find(params[:id])
+    @organization = Organization.find(params[:organization])
   end
 
 end
