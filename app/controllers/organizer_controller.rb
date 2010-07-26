@@ -1,6 +1,6 @@
 class OrganizerController < ApplicationController
 
-  before_filter :load_organization, :except => [:index, :new]
+  before_filter :load_organization, :except => [:index, :new, :create]
 
   # filter_access_to :all
   
@@ -33,10 +33,10 @@ class OrganizerController < ApplicationController
   end
   
   def create
-    @organization = current_user.managable_organizations.build(params[:organization])
-    @organization.community = current_user.community
+    @organization = current_user.community.organizations.build(params[:organization])
+    @organization.admins << current_user
     if @organization.save
-      redirect_to organizer_index_url
+      redirect_to organizer_url(@organization)
     else
       render :new
     end
@@ -45,7 +45,7 @@ class OrganizerController < ApplicationController
   protected
   
   def load_organization
-    @organization = Organization.find(params[:organization])
+    @organization = Organization.find(params[:id])
   end
 
 end
