@@ -9,12 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100725025505) do
+ActiveRecord::Schema.define(:version => 20100726173025) do
 
   create_table "announcements", :force => true do |t|
-    t.string   "subject",         :null => false
-    t.string   "body",            :null => false
-    t.integer  "organization_id", :null => false
+    t.string   "subject",                        :null => false
+    t.text     "body",            :limit => 255, :null => false
+    t.integer  "organization_id",                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,10 +101,10 @@ ActiveRecord::Schema.define(:version => 20100725025505) do
   end
 
   create_table "profile_fields", :force => true do |t|
-    t.string   "subject",         :null => false
-    t.string   "body",            :null => false
-    t.integer  "organization_id", :null => false
-    t.integer  "position",        :null => false
+    t.string   "subject",                        :null => false
+    t.text     "body",            :limit => 255, :null => false
+    t.integer  "organization_id",                :null => false
+    t.integer  "position",                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
