@@ -34,7 +34,7 @@
   %h2.top.underline About us
   %p.profile_info= @organization.about
   
-  - @organization.profile_fields.each do |p|
+  - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
     %h2.underline= p.subject
     %p.profile_info= p.body
     
