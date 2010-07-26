@@ -3,8 +3,7 @@
 #left_profile_col
   %ul#top_left
     %li= image_tag @organization.avatar.url, :class => "profilephoto"
-    %li#relation Join this group!
-
+  
   %ul#contact
     %li Contact Information
     %li.contact_field Send a Message
@@ -25,11 +24,17 @@
           .user_role subscriber
     %li#more_members View all members...
 
+  - if @subscribers.index current_user
+    #unsubscribe= button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete
+
+
 #right_profile_col
+  - if flash[:win]
+    #win= flash[:win]
   - unless @subscribers.index current_user
     #signupteaser
-      %h3 Follow #{ @organization.name } on CommonPlace!
-      %p The #{ @organization.name } are part of the #{ @organization.community.name } CommonPlace, a way to connect to organizations and people in your neighborhood.
+      = button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization) 
+      %p #{ @organization.name } is part of the #{ @organization.community.name } CommonPlace, a way to connect to organizations and people in your neighborhood.
   
   %h2.top.underline About us
   %p.profile_info= @organization.about

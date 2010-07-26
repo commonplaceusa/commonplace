@@ -366,6 +366,26 @@ div.calendar {
     margin-bottom: 0.5em;
     font-weight: bold; }
 
+#win {
+  background-color: #cceecc;
+  border: 1px solid #dfdfdc;
+  -webkit-border-top-right-radius: 5px !important;
+  -moz-border-radius-topright: 5px !important;
+  border-top-right-radius: 5px !important;
+  -webkit-border-top-left-radius: 5px !important;
+  -moz-border-radius-topleft: 5px !important;
+  border-top-left-radius: 5px !important;
+  -webkit-border-bottom-right-radius: 5px !important;
+  -moz-border-radius-bottomright: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  -webkit-border-bottom-left-radius: 5px !important;
+  -moz-border-radius-bottomleft: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  padding: 6px 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 1em; }
+
 .editarea p {
   padding: 0.5em; }
   .editarea p.big {

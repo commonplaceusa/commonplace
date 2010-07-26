@@ -80,6 +80,11 @@ li#relation
   font-size: 1.2em
   text-align: center
 
+#unsubscribe
+  margin: 0.5em 0
+  input
+    @include styledButton
+
 ul#members li
   .user_image, .user_info
     @include column
@@ -104,17 +109,19 @@ li
   color: $mediumGray
 
 #signupteaser
-  padding: 1em
+  padding: 0.75em
   border: 2px solid $organizationColor
   margin-bottom: 1em
-  cursor: pointer
-  &:hover
-    background: $organizationColor
-  *
-    &:first-child
-      margin-top: 0
-    &:last-child
-      margin-bottom: 0
+  background: $organizationColor
+  @include rounded($postBorderRadius)
+  input
+    @include styledButton
+    font-size: 1.2em
+    font-weight: bold
+    margin: 0px 0px 0.5em 0px
+  p
+    font-size: 0.9em
+    margin-bottom: 0
 
 #right_profile_col
   width: 460px

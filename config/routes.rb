@@ -38,7 +38,9 @@ ActionController::Routing::Routes.draw do |map|
     
     c.resources :users, :only => [:index, :show]
     
-    c.resources :organizations, :only => [:index, :show]
+    c.resources :organizations, :only => [:index, :show] do |org|
+      org.resource :subscription, :only => [:index, :show, :create, :destroy]
+    end
 
   end
   

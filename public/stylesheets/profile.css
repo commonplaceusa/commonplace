@@ -128,6 +128,32 @@ li#relation {
   font-size: 1.2em;
   text-align: center; }
 
+#unsubscribe {
+  margin: 0.5em 0; }
+  #unsubscribe input {
+    background-color: #eeeeee;
+    background-image: url("/images/button_repeat.png");
+    width: auto;
+    height: 100%;
+    color: black;
+    padding: 3px 7px;
+    cursor: pointer;
+    border: 1px solid #dfdfdc;
+    -webkit-border-top-right-radius: 5px !important;
+    -moz-border-radius-topright: 5px !important;
+    border-top-right-radius: 5px !important;
+    -webkit-border-top-left-radius: 5px !important;
+    -moz-border-radius-topleft: 5px !important;
+    border-top-left-radius: 5px !important;
+    -webkit-border-bottom-right-radius: 5px !important;
+    -moz-border-radius-bottomright: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    -webkit-border-bottom-left-radius: 5px !important;
+    -moz-border-radius-bottomleft: 5px !important;
+    border-bottom-left-radius: 5px !important; }
+    #unsubscribe input:hover {
+      border-color: #888888; }
+
 ul#members li .user_image, ul#members li .user_info {
   position: relative;
   display: inline-block;
@@ -153,15 +179,50 @@ li {
   color: #888888; }
 
 #signupteaser {
-  padding: 1em;
+  padding: 0.75em;
   border: 2px solid #ffefc5;
   margin-bottom: 1em;
-  cursor: pointer; }
-  #signupteaser:hover {
-    background: #ffefc5; }
-  #signupteaser *:first-child {
-    margin-top: 0; }
-  #signupteaser *:last-child {
+  background: #ffefc5;
+  -webkit-border-top-right-radius: 5px !important;
+  -moz-border-radius-topright: 5px !important;
+  border-top-right-radius: 5px !important;
+  -webkit-border-top-left-radius: 5px !important;
+  -moz-border-radius-topleft: 5px !important;
+  border-top-left-radius: 5px !important;
+  -webkit-border-bottom-right-radius: 5px !important;
+  -moz-border-radius-bottomright: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  -webkit-border-bottom-left-radius: 5px !important;
+  -moz-border-radius-bottomleft: 5px !important;
+  border-bottom-left-radius: 5px !important; }
+  #signupteaser input {
+    background-color: #eeeeee;
+    background-image: url("/images/button_repeat.png");
+    width: auto;
+    height: 100%;
+    color: black;
+    padding: 3px 7px;
+    cursor: pointer;
+    border: 1px solid #dfdfdc;
+    -webkit-border-top-right-radius: 5px !important;
+    -moz-border-radius-topright: 5px !important;
+    border-top-right-radius: 5px !important;
+    -webkit-border-top-left-radius: 5px !important;
+    -moz-border-radius-topleft: 5px !important;
+    border-top-left-radius: 5px !important;
+    -webkit-border-bottom-right-radius: 5px !important;
+    -moz-border-radius-bottomright: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    -webkit-border-bottom-left-radius: 5px !important;
+    -moz-border-radius-bottomleft: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0px 0px 0.5em 0px; }
+    #signupteaser input:hover {
+      border-color: #888888; }
+  #signupteaser p {
+    font-size: 0.9em;
     margin-bottom: 0; }
 
 #right_profile_col {
