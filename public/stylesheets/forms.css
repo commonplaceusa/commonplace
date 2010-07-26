@@ -19,14 +19,13 @@
   font-weight: normal;
   font-style: normal; }
 
-input[type=text], textarea {
+form.formtastic input[type=text], form.formtastic textarea {
   font-size: 0.8em;
   height: 14px;
   padding: 4px;
-  background-color: #faffbd;
   color: black;
   font-family: Verdana, sans-serif;
-  border: 1px solid #dfdfdc;
+  border: 1px solid #888888;
   -webkit-border-top-right-radius: 5px !important;
   -moz-border-radius-topright: 5px !important;
   border-top-right-radius: 5px !important;
@@ -40,16 +39,14 @@ input[type=text], textarea {
   -moz-border-radius-bottomleft: 5px !important;
   border-bottom-left-radius: 5px !important;
   width: 250px; }
-  input[type=text]#user_avatar, textarea#user_avatar {
+  form.formtastic input[type=text]#user_avatar, form.formtastic textarea#user_avatar {
     background-color: white;
     border-color: white;
     padding: 0px;
     width: 170px; }
-
-textarea {
+form.formtastic textarea {
   height: 4em; }
-
-input[type=submit] {
+form.formtastic input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
   width: auto;
@@ -69,22 +66,25 @@ input[type=submit] {
   border-bottom-right-radius: 5px !important;
   -webkit-border-bottom-left-radius: 5px !important;
   -moz-border-radius-bottomleft: 5px !important;
-  border-bottom-left-radius: 5px !important; }
-  input[type=submit]:hover {
+  border-bottom-left-radius: 5px !important;
+  left: 130px;
+  position: relative;
+  margin-top: 10px;
+  font-size: 1.2em; }
+  form.formtastic input[type=submit]:hover {
     border-color: #888888; }
-
-label {
+form.formtastic label {
   width: 120px;
-  padding-right: 10px;
+  padding: 4px 10px 0 0;
   display: inline-block;
   font-size: 0.9em;
   font-weight: bold;
   color: #888888;
   text-align: right;
   position: relative;
-  top: 0px; }
-
-p.inline-errors {
+  top: 0px;
+  float: left; }
+form.formtastic p.inline-errors {
   float: right;
   font-size: 0.8em;
   text-align: right;
@@ -93,8 +93,7 @@ p.inline-errors {
   margin: -7px 2px 10px 2px;
   font-weight: bold;
   color: #cc0000; }
-
-form fieldset ol li {
+form.formtastic fieldset ol li {
   display: block;
   position: relative;
   margin-bottom: 7px; }
