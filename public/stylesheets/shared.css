@@ -211,7 +211,9 @@ nav#header_right a {
   nav#header_right a:hover {
     background: #fafafa; }
   nav#header_right a.selected_nav {
-    background-color: white; }
+    background-color: white;
+    color: black;
+    font-weight: bold; }
 
 #search {
   padding: 0px;
