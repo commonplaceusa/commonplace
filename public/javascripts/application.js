@@ -7,9 +7,9 @@ function selectTab(tab) {
 
 function setInfoBox() {
   $.getJSON(this.path.slice(1), function(response) {
-    $("#both_columns #right_col").html(response.info_box).offset({
-      top: Math.max($(window).scrollTop(), $("#both_columns").offset().top)
-    });
+    $("#both_columns #right_col").html(
+      response.info_box).css("top", 
+        Math.max(0, $(window).scrollTop() - $("#both_columns").offset().top));
   });
 }    
 
@@ -48,9 +48,12 @@ var app = $.sammy(function() {
 
 });
 
-
 $(function(){
   app.run();
+
+  $(document).bind('scrollup',function(){
+    $("#right_col").css("top", null);
+  });
   
   $('li.post div.post_clickable').live('click', function(e) {
     var $this = $(this);
@@ -72,3 +75,90 @@ $(function(){
   $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
  
 });
+
+(function(){
+  
+  jQuery.event.special.scrollup = {
+    setup: function() {
+      var startscroll;
+      jQuery(this).bind('scrollstart',function(){
+        startscroll = $(window).scrollTop();
+      });
+      jQuery(this).bind('scrollstop',function(evt){
+        var _self = this,
+        _args = arguments;
+        if ($(window).scrollTop() < startscroll) {
+          evt.type = 'scrollup';
+          jQuery.event.handle.apply(_self,_args);
+        }
+      });
+    },
+    teardown: function () {
+
+    }
+  }
+ 
+  var special = jQuery.event.special,
+  uid1 = 'D' + (+new Date()),
+  uid2 = 'D' + (+new Date() + 1);
+  special.scrollstart = {
+    setup: function() {
+      
+      var timer,
+      handler =  function(evt) {
+        var _self = this,
+        _args = arguments;
+ 
+        if (timer) {
+          clearTimeout(timer);
+        } else {
+          evt.type = 'scrollstart';
+          jQuery.event.handle.apply(_self, _args);
+        }
+ 
+        timer = setTimeout( function(){
+          timer = null;
+        }, special.scrollstop.latency);
+ 
+      };
+ 
+      jQuery(this).bind('scroll', handler).data(uid1, handler);
+ 
+    },
+    teardown: function(){
+      jQuery(this).unbind( 'scroll', jQuery(this).data(uid1) );
+    }
+  };
+ 
+  special.scrollstop = {
+    latency: 300,
+    setup: function() {
+ 
+      var timer,
+      handler = function(evt) {
+ 
+        var _self = this,
+        _args = arguments;
+        if (timer) {
+          clearTimeout(timer);
+        }
+ 
+        timer = setTimeout( function(){
+ 
+          timer = null;
+          evt.type = 'scrollstop';
+          jQuery.event.handle.apply(_self, _args);
+ 
+        }, special.scrollstop.latency);
+ 
+      };
+ 
+      jQuery(this).bind('scroll', handler).data(uid2, handler);
+ 
+    },
+    teardown: function() {
+      jQuery(this).unbind( 'scroll', jQuery(this).data(uid2) );
+    }
+  };
+ 
+})();
