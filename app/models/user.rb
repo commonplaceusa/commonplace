@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
   end
 
   def inbox
-    self.referrals
+    self.referrals + PlatformUpdate.all
   end
 
   def role_symbols

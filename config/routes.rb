@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
 
   map.resource :inbox
+  map.resources :platform_updates
   map.resources :conversations
   map.resources :messages
   
