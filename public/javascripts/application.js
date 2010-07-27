@@ -52,7 +52,7 @@ $(function(){
   app.run();
 
   $(document).bind('scrollup',function(){
-    $("#right_col").animate({top: 0});
+    $("#right_col").animate({top: Math.max(0, $(window).scrollTop() - $("#both_columns").offset().top)});
   });
   
   $('li.post div.post_clickable').live('click', function(e) {
