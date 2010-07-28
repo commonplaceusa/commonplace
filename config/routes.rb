@@ -13,9 +13,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :user_session
   map.resources :password_resets
-
+  
   map.resource :account, :member => { :more_info => :get }
-
+  map.resources :mets
   map.resources :organizer, :controller => "organizer" do |org|
     org.resource :profile, :controller => "organizer/profiles"
     org.resources :events, :controller => "organizer/events"
@@ -37,7 +37,10 @@ ActionController::Routing::Routes.draw do |map|
       event.resources :referrals
     end
     
-    c.resources :users, :only => [:index, :show]
+    c.resources :users, :only => [:index, :show] do |user|
+      user.resource :met, :only => [:create]
+    end
+      
     
     c.resources :organizations, :only => [:index, :show] do |org|
       org.resource :subscription, :only => [:index, :show, :create, :destroy]

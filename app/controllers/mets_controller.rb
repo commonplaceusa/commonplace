@@ -1,0 +1,2 @@
+class MetsController < ApplicationController
+end

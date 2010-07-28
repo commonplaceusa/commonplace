@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :conversation_memberships
   has_many :conversations, :through => :conversation_memberships
+  has_many :mets, :foreign_key => "requestee_id"
+  
 
   validates_presence_of :first_name, :last_name
 
@@ -63,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def inbox
-    self.referrals + PlatformUpdate.all
+    self.referrals + PlatformUpdate.all + self.conversations + self.mets
   end
 
   def role_symbols
