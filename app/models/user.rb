@@ -22,11 +22,13 @@ class User < ActiveRecord::Base
   has_many :roles
   has_many :managable_organizations, :through => :roles, :source => :organization
 
-  has_many :referrals, :foreign_key => "referree_id"
+  has_many :referrals, :foreign_key => "referee_id"
   
   has_many :messages
   has_many :conversation_memberships
   has_many :conversations, :through => :conversation_memberships
+  has_many :mets, :foreign_key => "requestee_id"
+  
 
   validates_presence_of :first_name, :last_name
 
@@ -60,6 +62,10 @@ class User < ActiveRecord::Base
   
   def wire
     (self.organizations.map(&:announcements).flatten + Event.all(:order => "created_at DESC") + Post.all(:order => "created_at DESC")).sort_by(&:created_at).reverse
+  end
+
+  def inbox
+    self.referrals + PlatformUpdate.all + self.conversations + self.mets
   end
 
   def role_symbols
