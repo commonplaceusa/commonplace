@@ -1,5 +1,5 @@
 // config.sass
-// Sass delcarations for mixins and variables
+// Sass declarations for mixins and variables
 // Ideally we'd keep all numbers out of other stylsheets
 
 // Mixins...
@@ -44,6 +44,8 @@
   @include rounded-top($radius)
   @include rounded-bottom($radius)
   
+@mixin dropShadow
+  -moz-box-shadow: 2px 2px 4px $shadow
 
 @mixin column
   // top: 0px
@@ -159,13 +161,14 @@ $controlColor = #ceeece
 
 $offWhite = #f8f7f2
 $lightestGray = #eee
-$lightGray = #dfdfdc
+$lightGray = #dddddd
 $mediumGray = #888
+$shadow = #E7E4D7
 
 $inputBackground = #faffbd
 
 $itemBackground = #f7f7f7
-$itemBorder = #dfdfdc
+$itemBorder = #dddddd
 
 $wireColor = #B8D6F3
 $wireColorDark = $wireColor - #111

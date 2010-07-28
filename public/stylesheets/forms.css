@@ -54,7 +54,7 @@ form.formtastic input[type=submit] {
   color: black;
   padding: 3px 7px;
   cursor: pointer;
-  border: 1px solid #dfdfdc;
+  border: 1px solid #dddddd;
   -webkit-border-top-right-radius: 5px !important;
   -moz-border-radius-topright: 5px !important;
   border-top-right-radius: 5px !important;

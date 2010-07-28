@@ -176,7 +176,7 @@ nav#header_right {
   position: absolute;
   display: inline-block;
   background-color: #eeeeee;
-  border: 1px solid #dfdfdc;
+  border: 1px solid #dddddd;
   -webkit-border-top-right-radius: 5px !important;
   -moz-border-radius-topright: 5px !important;
   border-top-right-radius: 5px !important;
@@ -198,7 +198,7 @@ nav#header_right a {
   display: inline-block;
   padding: 3px 7px;
   margin: 0;
-  border-left: 1px solid #dfdfdc; }
+  border-left: 1px solid #dddddd; }
   nav#header_right a:first-child {
     margin-left: 4px; }
   nav#header_right a:last-child {
@@ -369,7 +369,7 @@ div.calendar {
 
 #win {
   background-color: #cceecc;
-  border: 1px solid #dfdfdc;
+  border: 1px solid #dddddd;
   -webkit-border-top-right-radius: 5px !important;
   -moz-border-radius-topright: 5px !important;
   border-top-right-radius: 5px !important;

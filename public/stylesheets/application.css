@@ -29,7 +29,7 @@ nav#filters {
     display: inline-block;
     vertical-align: top;
     margin-right: 12px;
-    border: 1px solid #dfdfdc;
+    border: 1px solid #dddddd;
     height: 65px;
     color: black;
     -webkit-border-top-right-radius: 4px !important;
@@ -153,7 +153,7 @@ nav#filters {
 
 #both_columns {
   min-height: 500px;
-  border-top: 1px solid #dfdfdc;
+  border-top: 1px solid #dddddd;
   position: relative; }
 
 #left_col, #right_col {
@@ -165,13 +165,13 @@ nav#filters {
   vertical-align: top; }
 
 #left_col {
-  border-right: 1px solid #dfdfdc; }
+  border-right: 1px solid #dddddd; }
 
 ul#wire li, .info_box {
   position: relative;
   cursor: pointer;
   background-color: #f7f7f7;
-  border: 1px solid #dfdfdc;
+  border: 1px solid #dddddd;
   -webkit-border-top-right-radius: 5px !important;
   -moz-border-radius-topright: 5px !important;
   border-top-right-radius: 5px !important;
@@ -185,7 +185,7 @@ ul#wire li, .info_box {
   -moz-border-radius-bottomleft: 5px !important;
   border-bottom-left-radius: 5px !important;
   margin-bottom: 1em;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #dddddd;
   font-size: 0.8em; }
   ul#wire li img.user_image, ul#wire li p.user_name, .info_box img.user_image, .info_box p.user_name {
     position: relative;
@@ -230,7 +230,7 @@ ul#wire li, .info_box {
     height: 35px;
     padding: 20px 7px 7px 7px; }
 #event_info_box .expand {
-  background-color: #d4e5ef; }
+  background-color: #4b9cca; }
 
 li.post .title_top .icon img {
   background-color: #edd0d0; }
@@ -285,13 +285,13 @@ li.selected {
   margin: 0px;
   position: relative;
   background: none;
-  border-bottom: 1px solid #dfdfdc;
+  border-bottom: 1px solid #dddddd;
   height: 24px; }
   .title_top .icon {
     position: relative;
     display: inline-block;
     vertical-align: top;
-    border-right: 1px solid #dfdfdc;
+    border-right: 1px solid #dddddd;
     height: 18px;
     width: 18px;
     padding: 3px; }
@@ -329,7 +329,7 @@ li.selected {
       font-size: 1em;
       color: #888888; }
     .title_top .top_text .author {
-      font-family: "OldStandardTTItalic", Times, serif; }
+      font-family: "OldStandardTT", Times, serif; }
     .title_top .top_text .time {
       position: absolute;
       right: 8px;
@@ -345,7 +345,7 @@ li.selected {
     display: inline-block;
     vertical-align: top;
     margin: 6px;
-    border: 1px solid #dfdfdc;
+    border: 1px solid #dddddd;
     -webkit-border-top-right-radius: 5px !important;
     -moz-border-radius-topright: 5px !important;
     border-top-right-radius: 5px !important;
@@ -375,7 +375,7 @@ li.selected {
 
 .expand {
   font-family: "Helvetica", Arial, sans-serif;
-  border-width: 1px solid #dfdfdc;
+  border-width: 1px solid #dddddd;
   position: relative;
   bottom: 0px;
   -webkit-border-top-right-radius: 4px !important;
@@ -400,7 +400,7 @@ li.selected {
 
 li.post .replies {
   display: none;
-  border-top: 1px solid #dfdfdc;
+  border-top: 1px solid #dddddd;
   margin-left: -5px; }
   li.post .replies li.reply {
     min-height: 40px;

@@ -102,7 +102,7 @@ ul#wire li, .info_box
   border: 1px solid $itemBorder
   @include rounded($postBorderRadius)
   margin-bottom: 1em
-  border-bottom: 1px solid $lightestGray
+  border-bottom: 1px solid $lightGray
   font-size: 0.8em
   img.user_image, p.user_name
     @include column
@@ -147,7 +147,7 @@ ul#wire li, .info_box
       height: 35px
       padding: 20px 7px 7px 7px
   .expand
-    background-color: $eventColor
+    background-color: $eventColorDark
 
 li.post
   @include customItemStyle($postColor, $postColorDark)
@@ -199,7 +199,7 @@ li.selected
       font-size: 1em
       color: $mediumGray
     .author
-      font-family: 'OldStandardTTItalic', Times, serif
+      font-family: 'OldStandardTT', Times, serif
     .time
       position: absolute
       right: 8px

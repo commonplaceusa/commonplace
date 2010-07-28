@@ -21,7 +21,7 @@
 
 #organizer_main {
   padding: 15px;
-  border-top: 1px solid #dfdfdc; }
+  border-top: 1px solid #dddddd; }
   #organizer_main h1 {
     font-size: 2em;
     font-weight: bold;
@@ -38,7 +38,7 @@ nav#my_organizations a {
   display: block;
   position: relative;
   width: 500px;
-  border: 1px solid #dfdfdc;
+  border: 1px solid #dddddd;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#ffefc5), to(#eedeb4));
   background: -moz-linear-gradient(center bottom, #eedeb4, #ffefc5);
   -webkit-border-top-right-radius: 5px !important;
