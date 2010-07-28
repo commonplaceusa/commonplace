@@ -1,22 +1,35 @@
-#organization_info_box
-  = link_to image_tag organization.avatar.url, :controller => "Organizations", :action => "show", :id => "#{organization.id}"
-  %h2 
-    = link_to "#{organization.name}", :controller => "Organizations", :action => "show", :id => "#{organization.id}"
-  - if organization.about
-    %p.desc #{organization.about}
-  - if organization.phone or organization.address
-    %p Contact Information
-    %table
-      -if organization.phone
-        %tr
-          %th Phone
-          %td #{organization.phone}
-      -if organization.address
-        %tr
-          %th Address
-          %td #{organization.address}
+#organization_info_box.info_box
+  .title_top
+    .icon
+      %img{ :alt => "organization" }
+    .top_text
+      %span.category ORGANIZATION
+      / %span.from from
+      %span.author= organization.name
+      %span.time Subscribed
+  .bottom
+    = image_tag organization.avatar.url, :width => 120, :height => 150, :class => 'graphic'
+    .body
+      %h3= organization.name
+      %table
+        %tbody
+          %tr#about
+            %th.label About Us
+            %td= organization.about
+            
+          - organization.profile_fields.each do |field|
+            %tr.profile_field
+              %th.label= field.subject
+              %td= field.body
+          
+          - if organization.phone
+            %tr#phone
+              %th.label Phone
+              %td= organization.phone
+        
+          - unless organization.address.nil? || organization.address.empty?
+            %tr#address_row
+              %th.label Address
+              %td= organization.address[/(.+?)(,)/, 1]
 
-  / output some members
-  / %p Send a Message???
-  / %textarea
-  / %button Send
+      .expand Contact Us

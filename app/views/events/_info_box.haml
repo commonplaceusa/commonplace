@@ -1,19 +1,32 @@
-#event_info_box
-  %h2 #{event.name}
+#event_info_box.info_box
+  .title_top
+    .icon
+      %img{ :alt => "event" }
+    .top_text
+      %span.category EVENT
+      / %span.from from
+      %span.author= event.name
+      %span.time Attending
+  .bottom
+    = render("events/calendar", :event => event)
+    .body
+      %h3= event.name
+      %table
+        %tbody
+          %tr#about
+            %th.label Description
+            %td= event.description
+          %tr.time
+            %th.label Starts at
+            %td= event_date event.start_time
+          %tr.time
+            %th.label Ends at
+            %td= event_date event.end_time
+        
+          - unless event.address.nil? || event.address.empty?
+            %tr#address_row
+              %th.label Address
+              %td= event.address
 
-  %p.detail Starts: #{event_date(event.start_time)}
-  %p.detail Ends: #{event_date(event.end_time)}
-  %p.detail Location: #{event.address}
-  %p Description
-  %p.desc #{event.description}
-
-  %div
-    - form_tag event_attendance_path(event), :method => :put, 'data-remote' => true do 
-      = label_tag "attending", "I'm Attending"
-      = check_box_tag "attending", "1", current_user.events.include?(event)
-      = submit_tag
-  
-    
-    - form_for [event, Referral.new], :html => {'data-remote' => true} do |f|
-      = f.text_field :referee_id, :class => 'autocomplete'
-      = submit_tag
+        
+      .expand Attend

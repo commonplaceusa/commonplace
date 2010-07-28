@@ -303,7 +303,8 @@ div.calendar {
   border-bottom-right-radius: 5px !important;
   -webkit-border-bottom-left-radius: 5px !important;
   -moz-border-radius-bottomleft: 5px !important;
-  border-bottom-left-radius: 5px !important; }
+  border-bottom-left-radius: 5px !important;
+  font-family: "OldStandardTT", Times, serif; }
   div.calendar div.month {
     position: relative !important;
     min-height: none !important;
