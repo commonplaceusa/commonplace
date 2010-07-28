@@ -286,7 +286,7 @@ a.same {
 
 #map {
   height: 300px;
-  width: 480px;
+  width: 100%;
   background: #dfdfdc;
   border: 1px solid #eeeeee;
   -webkit-border-top-right-radius: 5px !important;
