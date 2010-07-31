@@ -3,7 +3,9 @@ class Event < ActiveRecord::Base
   validates_presence_of :name, :description, :start_time
 
   has_many :referrals
+  has_many :messages, :as => :notify
   has_many :attendances
+  has_many :attendees, :through => :attendances
   belongs_to :organization
 
   before_save :update_lat_and_lng, :if => "address_changed?"
@@ -11,6 +13,9 @@ class Event < ActiveRecord::Base
   named_scope :upcoming, :conditions => ["? < start_time", Time.now]
   named_scope :past, :conditions => ["start_time < ?", Time.now]
 
+  has_many :thread_memberships, :as => :thread
+  has_many :subscribers, :as => :thread, :through => :thread_memberships
+  
   def search(term)
     Event.all
   end

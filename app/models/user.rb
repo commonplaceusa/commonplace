@@ -64,7 +64,11 @@ class User < ActiveRecord::Base
   end
 
   def inbox
-    self.referrals + PlatformUpdate.all + self.mets + self.thread_memberships.unread
+    self.referrals + 
+      PlatformUpdate.all + 
+      self.mets + 
+      self.thread_memberships.unread +
+      self.attendances.unread
   end
 
   def role_symbols
