@@ -1,1 +1,3 @@
-= render 'shared/list', :items => current_user.inbox
+%ul#inbox
+  - current_user.inbox.each do |item|
+    = render 'item', :item => item

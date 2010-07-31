@@ -25,8 +25,7 @@ class User < ActiveRecord::Base
   has_many :referrals, :foreign_key => "referee_id"
   
   has_many :messages
-  has_many :conversation_memberships
-  has_many :conversations, :through => :conversation_memberships
+  has_many :thread_memberships
   has_many :mets, :foreign_key => "requestee_id"
   
 
@@ -65,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def inbox
-    self.referrals + PlatformUpdate.all + self.conversations + self.mets
+    self.referrals + PlatformUpdate.all + self.mets + self.thread_memberships.unread
   end
 
   def role_symbols

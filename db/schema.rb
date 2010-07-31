@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100727233034) do
+ActiveRecord::Schema.define(:version => 20100728211942) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                        :null => false
@@ -70,11 +70,12 @@ ActiveRecord::Schema.define(:version => 20100727233034) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "conversation_id", :null => false
-    t.text     "body",            :null => false
+    t.integer  "user_id",     :null => false
+    t.integer  "thread_id",   :null => false
+    t.text     "body",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "thread_type"
   end
 
   create_table "mets", :force => true do |t|
@@ -168,6 +169,15 @@ ActiveRecord::Schema.define(:version => 20100727233034) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "thread_memberships", :force => true do |t|
+    t.integer  "thread_id",     :null => false
+    t.string   "thread_type",   :null => false
+    t.integer  "user_id",       :null => false
+    t.string   "current_state", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
