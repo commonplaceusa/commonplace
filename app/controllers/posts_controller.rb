@@ -10,7 +10,7 @@ class PostsController < CommunitiesController
   def create
     respond_to do |format|
       if @post.save
-        format.html { redirect_to community_url(@post.user.community.name) }
+        format.html { redirect_to root_url }
         format.json         
       else
         format.json { render 'new' }

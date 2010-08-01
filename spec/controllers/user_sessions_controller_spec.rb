@@ -21,17 +21,22 @@ describe UserSessionsController do
     
   end
     
-  it "should allow a guest to create a session" do
-    get :new
-    response.should render_template(:new)
-    UserSession.stub!(:new => mock_model(UserSession, :save => true))
-    post :create
-    response.should be_redirect
-  end
-  
-  it "should not allow a guest to log out" do
-    delete :destroy
-    response.should_not be_success
+  context "logged out user" do
+    before :each do
+      logout
+    end
+    it "should allow a guest to create a session" do
+      get :new
+      response.should render_template(:new)
+      UserSession.stub!(:new => mock_model(UserSession, :save => true))
+      post :create
+      response.should be_redirect
+    end
+    
+    it "should not allow a guest to log out" do
+      delete :destroy
+      response.should_not be_success
+    end
   end
 
 end

@@ -8,7 +8,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       reload_current_user!
-      redirect_to community_url(current_user.community.name)
+      redirect_to root_url
     else
       render :new
     end

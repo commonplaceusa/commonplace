@@ -40,7 +40,7 @@ Spork.prefork do
   end
   
   def logout
-    @user_session = nil
+    UserSession.stub!(:find).and_return(mock_model(UserSession, {:user => nil}))
   end
 
   def mock_geocoder

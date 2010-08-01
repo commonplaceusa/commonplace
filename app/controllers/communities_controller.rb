@@ -1,9 +1,7 @@
 class CommunitiesController < ApplicationController
   
   layout 'community'
-  
-  before_filter :load_community, :only => :index
-
+2
 
   def show
     load_community

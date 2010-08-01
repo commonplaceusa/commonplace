@@ -32,14 +32,6 @@ Factory.define :organization do |f|
   f.website ""
 end
   
-Factory.define :text_module do |f|
-  f.title { Forgery(:lorem_ipsum).words 2 }
-  f.body { Forgery(:lorem_ipsum).paragraph }
-  f.association :organization
-  f.position 1
-end
-
-
 Factory.define :message do |f|
   f.association :user
   f.association :conversation
@@ -48,11 +40,6 @@ end
 
 Factory.define :conversation do |f|
   f.subject { Forgery(:lorem_ipsum).words(2) }
-end
-
-Factory.define :conversation_membership do |f|
-  f.association :user
-  f.association :conversation
 end
 
 Factory.define :referral do |f|

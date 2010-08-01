@@ -47,9 +47,9 @@ describe AccountsController do
     response.should render_template('edit')
   end
 
-  it "should redirect to root on a successful update" do
+  it "should redirect to account on a successful update" do
     login({},{:update_attributes => true, :roles => [:user]})
     put :update
-    response.should redirect_to('/')
+    response.should redirect_to(account_url)
   end
 end
