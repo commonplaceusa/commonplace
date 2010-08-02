@@ -15,7 +15,8 @@ module NavigationHelpers
       new_account_path
     when /the more info page/
       more_info_account_path
-
+      
+      
     # the following are examples using path_to_pickle
 
     when /^#{capture_model}(?:'s)? page$/

@@ -3,7 +3,7 @@
     = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "262x37"
   
   - if current_user_session
-    = tab_to current_user.community.name, '', :id => 'community_nav'
+    = tab_to "Community", '', :id => 'community_nav'
     
   %nav#header_right
     - if current_user_session
@@ -13,4 +13,4 @@
       - form_for UserSession.new, :url => user_session_path do |f|
         = f.text_field :email
         = f.password_field :password
-        = f.submit "log in"
+        = f.submit "Log in"

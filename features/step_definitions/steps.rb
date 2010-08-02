@@ -2,14 +2,17 @@
 def user
   mock_geocoder
   @user ||= Factory(:user)
+  @user.community = Community.create(:name => "Cambridge")
+  @user.save
+  @user
 end
 
 
 def login
   user
   visit path_to("the homepage")
-  fill_in "Email", :with => user.email
-  fill_in "Password", :with => user.password
+  fill_in "user_session_email", :with => user.email
+  fill_in "user_session_password", :with => user.password
   click_button "Log in"
 end
 
