@@ -1,4 +1,4 @@
-= render 'layouts/top_html', :title => "CommonPlace: " + current_user.community.name, :stylesheets => 'application'
+= render 'layouts/top_html', :title => "CommonPlace: ", :stylesheets => 'application'
 
 %body
   :javascript
@@ -13,5 +13,6 @@
           = yield
           .bottomshiv
         #right_col>
+          = yield :infoarea
 
   = render 'layouts/bottom_html'
