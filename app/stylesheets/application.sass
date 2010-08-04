@@ -1,121 +1,54 @@
-@import "compass/layout/sticky-footer"
-@import "compass/utilities/general/clearfix"
-@import "compass/css3/border-radius"
-@import "compass/css3/gradient"
-@import "grid"
-@import "text"
-@import "base"
+@import "layout"
 @import "item"
 @import "info_box"
 @import "form"
-+global-reset
-
-body
-  +linear-gradient(color-stops(#D6D5D0,#F8F7F2,#D6D5D0))
-  color: $primaryTextColor
-  text-rendering: optimizeLegibility
-  padding: 20px 0
-  min-width: 960px
-
-nav, header, footer
-  display: block
-
-+sticky-footer(53px, "#wrap", "#wrap_footer", "footer")
-
-#wrap
-  +grid-system(24)
-  padding-bottom: 20px
-  
-  header
-    position: relative
-    +clearfix
-    +grid-children
-    
-    h1
-      +grid(12)
-
-    nav
-      +border-radius(5px)
-      position: absolute
-      right: 0
-      bottom: 2px
-      background: $lightestGray
-      font-size: 12px
-      padding: 5px 0px
-      border: 1px solid $lightGray
-      text-align: right
-      
-      form
-        input[type="text"],input[type="password"]
-          width: 150px
-
-      a
-        &:hover
-          background: #fafafa
-        border-left: 1px solid $lightGray
-        padding: 3px 7px
-
-  #main
-    +grid-children
-    +border-radius(5px)
-    border: 1px black solid
-    background: #fefefe
-    +clearfix
-      
-    nav#filters
-      +grid-children
-      +grid-prefix(1)
-      +grid-suffix(1)
-      +clearfix
-      border-bottom: 1px solid black
-      display:block
-      padding-top: 15px
-      padding-bottom: 15px
-
-      a.filter
-        padding-top: 10px
-        padding-bottom: 10px
-        +grid(2.5)
-        
-        img
-          width: 60px
-          height: 60px
-            
-      form#search
-        +grid-prefix(1 / 2)      
-        +grid(6)
-        +grid-suffix(1 / 2)
-        +omega
-        +border-radius(5px)
-        background-color: #eee
-        border: 1px solid $lightGray
-        height: 60px
-        padding:
-          top: 10px
-          bottom: 10px
           
-    
-    div#list
-      +grid(12 + 1/4)
-      border-right: 1px solid black
-      margin-right: 0
-      padding-top: 10px
+nav#filters
+  +grid-children
+  +grid-prefix(1)
+  +grid-suffix(1)
+  +clearfix
+  border-bottom: 1px solid black
+  display:block
+  padding-top: 15px
+  padding-bottom: 15px
+
+a.filter
+  padding-top: 10px
+  padding-bottom: 10px
+  +grid(2.5)
+        
+  img
+    width: 60px
+    height: 60px
+            
+form#search
+  +grid-prefix(1 / 2)      
+  +grid(6)
+  +grid-suffix(1 / 2)
+  +omega
+  +border-radius(5px)
+  background-color: #eee
+  border: 1px solid $lightGray
+  height: 60px
+  padding:
+    top: 10px
+    bottom: 10px
+        
+div#list
+  +grid(12 + 1/4)
+  border-right: 1px solid black
+  margin-right: 0
+  padding-top: 10px
 
     
-    div#info
-      +grid(12)
-      +alpha
+div#info
+  +grid(12)
+  +alpha
+  margin-top: 10px
 
-      margin-top: 10px
 
-footer
-  background: #2F2F2F
-  border-top: $footerBorder solid #444
-  width: 100%
-  nav
-    float: right
-    a
-      color: $eventColor - #444
+ 
    
 
 
