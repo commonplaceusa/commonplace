@@ -1060,9 +1060,10 @@ body {
   color: #111111;
   text-rendering: optimizeLegibility;
   padding: 20px 0;
+  min-width: 960px;
 }
 
-/* line 18, ../../app/stylesheets/application.sass */
+/* line 19, ../../app/stylesheets/application.sass */
 nav, header, footer {
   display: block;
 }
@@ -1092,7 +1093,7 @@ footer {
   height: 53px;
 }
 
-/* line 23, ../../app/stylesheets/application.sass */
+/* line 24, ../../app/stylesheets/application.sass */
 #wrap {
   margin-left: auto;
   margin-right: auto;
@@ -1394,7 +1395,7 @@ footer {
 #wrap .omega {
   margin-right: 0;
 }
-/* line 27, ../../app/stylesheets/application.sass */
+/* line 28, ../../app/stylesheets/application.sass */
 #wrap header {
   position: relative;
   overflow: hidden;
@@ -1408,7 +1409,7 @@ footer {
 #wrap header .omega {
   margin-right: 0;
 }
-/* line 32, ../../app/stylesheets/application.sass */
+/* line 33, ../../app/stylesheets/application.sass */
 #wrap header h1 {
   display: inline;
   float: left;
@@ -1416,7 +1417,7 @@ footer {
   margin-right: 10px;
   width: 460px;
 }
-/* line 35, ../../app/stylesheets/application.sass */
+/* line 36, ../../app/stylesheets/application.sass */
 #wrap header nav {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1433,20 +1434,20 @@ footer {
   border: 1px solid #dddddd;
   text-align: right;
 }
-/* line 47, ../../app/stylesheets/application.sass */
+/* line 48, ../../app/stylesheets/application.sass */
 #wrap header nav form input[type="text"], #wrap header nav form input[type="password"] {
   width: 150px;
 }
-/* line 50, ../../app/stylesheets/application.sass */
+/* line 51, ../../app/stylesheets/application.sass */
 #wrap header nav a {
   border-left: 1px solid #dddddd;
   padding: 3px 7px;
 }
-/* line 51, ../../app/stylesheets/application.sass */
+/* line 52, ../../app/stylesheets/application.sass */
 #wrap header nav a:hover {
   background: #fafafa;
 }
-/* line 56, ../../app/stylesheets/application.sass */
+/* line 57, ../../app/stylesheets/application.sass */
 #wrap #main {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1467,7 +1468,7 @@ footer {
 #wrap #main .omega {
   margin-right: 0;
 }
-/* line 63, ../../app/stylesheets/application.sass */
+/* line 64, ../../app/stylesheets/application.sass */
 #wrap #main nav#filters {
   padding-left: 40px;
   padding-right: 40px;
@@ -1485,7 +1486,7 @@ footer {
 #wrap #main nav#filters .omega {
   margin-right: 0;
 }
-/* line 73, ../../app/stylesheets/application.sass */
+/* line 74, ../../app/stylesheets/application.sass */
 #wrap #main nav#filters a.filter {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -1495,12 +1496,12 @@ footer {
   margin-right: 10px;
   width: 80px;
 }
-/* line 78, ../../app/stylesheets/application.sass */
+/* line 79, ../../app/stylesheets/application.sass */
 #wrap #main nav#filters a.filter img {
   width: 60px;
   height: 60px;
 }
-/* line 82, ../../app/stylesheets/application.sass */
+/* line 83, ../../app/stylesheets/application.sass */
 #wrap #main nav#filters form#search {
   padding-left: 20px;
   display: inline;
@@ -1522,7 +1523,7 @@ footer {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 96, ../../app/stylesheets/application.sass */
+/* line 97, ../../app/stylesheets/application.sass */
 #wrap #main div#list {
   display: inline;
   float: left;
@@ -1533,7 +1534,7 @@ footer {
   margin-right: 0;
   padding-top: 10px;
 }
-/* line 103, ../../app/stylesheets/application.sass */
+/* line 104, ../../app/stylesheets/application.sass */
 #wrap #main div#info {
   display: inline;
   float: left;
@@ -1544,17 +1545,17 @@ footer {
   margin-top: 10px;
 }
 
-/* line 111, ../../app/stylesheets/application.sass */
+/* line 110, ../../app/stylesheets/application.sass */
 footer {
   background: #2f2f2f;
   border-top: 4px solid #444444;
   width: 100%;
 }
-/* line 115, ../../app/stylesheets/application.sass */
+/* line 114, ../../app/stylesheets/application.sass */
 footer nav {
   float: right;
 }
-/* line 117, ../../app/stylesheets/application.sass */
+/* line 116, ../../app/stylesheets/application.sass */
 footer nav a {
   color: #90a1ab;
 }
