@@ -1,12 +1,8 @@
-#organization_info_box.info_box
-  .title_top
-    .icon
-      %img{ :alt => "organization" }
-    .top_text
-      %span.category ORGANIZATION
-      / %span.from from
-      %span.author= organization.name
-      %span.time Subscribed
+.info_box.organization
+  .header
+    %img.icon{ :alt => "organization" }
+    %span.category ORGANIZATION
+    %span.name= organization.name
   .bottom
     = image_tag organization.avatar.url, :width => 120, :height => 150, :class => 'graphic'
     .body

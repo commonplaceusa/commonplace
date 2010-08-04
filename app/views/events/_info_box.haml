@@ -1,12 +1,8 @@
-#event_info_box.info_box
-  .title_top
-    .icon
-      %img{ :alt => "event" }
-    .top_text
+.info_box.event
+  .header
+    %img.icon{ :alt => "event" }
       %span.category EVENT
-      / %span.from from
-      %span.author= event.name
-      %span.time Attending
+      %span.name= event.name
   .bottom
     = render("events/calendar", :event => event)
     .body
