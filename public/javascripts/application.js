@@ -57,7 +57,7 @@ $(function(){
   app.run();
 
   $(document).bind('scrollup',function(){
-    $("#right_col").animate({top: Math.max(0, $(window).scrollTop() - $("#both_columns").offset().top)});
+    $("#info").animate({top: Math.max(0, $(window).scrollTop() - $("#list").offset().top)});
   });
   
   $('li.post div.post_clickable').live('click', function(e) {
