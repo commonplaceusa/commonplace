@@ -28,5 +28,8 @@
               %th.label Address
               %td= event.address
 
-        
-      .expand Attend
+      - if event.attendees.exists?(current_user)
+        %p You are attending this event
+        = button_to "Unattend", event_attendance_path(event), :method => :delete
+      - else
+        = button_to "Attend!", event_attendance_path(event) 

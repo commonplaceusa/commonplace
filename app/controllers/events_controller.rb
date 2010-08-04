@@ -26,7 +26,7 @@ class EventsController < CommunitiesController
   def show
     @event = Event.find(params[:id])
 
-    if attendance = @event.attendance.first(:conditions => {:user_id => current_user.id})
+    if attendance = @event.attendances.first(:conditions => {:user_id => current_user.id})
       attendance.view!
     end
 

@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   has_many :referrals
   has_many :messages, :as => :notify
   has_many :attendances
-  has_many :attendees, :through => :attendances
+  has_many :attendees, :through => :attendances, :source => :user
   belongs_to :organization
 
   before_save :update_lat_and_lng, :if => "address_changed?"
