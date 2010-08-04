@@ -73,6 +73,8 @@ $(function(){
   
   $("input, textarea").goodlabel();      
   $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
+  
+  $('.filter').tipsy({ gravity: 'sw', delayOut: 0});
  
 });
 

@@ -1,4 +1,4 @@
-= render 'layouts/top_html', :title => "CommonPlace: ", :stylesheets => 'application'
+= render 'layouts/top_html', :title => "CommonPlace: #{ current_user.community.name }", :stylesheets => 'application'
 
 %body
   :javascript
