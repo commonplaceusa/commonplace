@@ -1,2 +1,7 @@
-= render 'posts/form', :post => Post.new
-= render 'shared/list', :items => @posts
+= render 'shared/filters'
+
+#list
+  = render 'posts/form', :post => Post.new
+  = render 'shared/list', :items => @posts
+
+#info
