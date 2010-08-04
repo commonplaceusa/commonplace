@@ -1,26 +1,38 @@
-- permitted_to? :create, :posts do
-  = render 'posts/form', :post => Post.new
 
-= render 'shared/list', :items => current_user.wire
+= render 'shared/filters'
 
-- if !current_user_session
-  - content_for :infoarea do
-    - semantic_form_for Account.new, :url => account_path do |f|
+#list
+  - permitted_to? :create, :posts do
+    = render 'posts/form', :post => Post.new
+
+  = render 'shared/list', :items => current_user.wire
+
+#info
+  - if !current_user_session
+    - form_for Account.new, :url => account_path do |f|
       %h2 Register:
 
-      = f.input :first_name, :input_html => {:autocomplete => "off"}
+      = f.label :first_name
+      = f.text_field :first_name
     
-      = f.input :last_name, :input_html => {:autocomplete => "off"}
+      = f.label :last_name
+      = f.text_field :last_name
     
-      = f.input :email, :input_html => {:autocomplete => "off"}
-    
-      = f.input :password, :input_html => {:autocomplete => "off"}
-
-      = f.input :password_confirmation, :input_html => {:autocomplete => "off"}, :label => "Confirm Password"
-  
-      = f.input :address
-      %p.hint This is so that we can confirm you live in this community.
+      = f.label :email
+      = f.text_field :email
       
+      = f.label :password
+      = f.password_field :password
+
+      = f.label :password_confirmation, "Confirm Password"
+      = f.password_field :password_confirmation
+
+      = f.label :address
+      = f.text_field :address
+
+      %p.hint This is so that we can confirm you live in this community.
+
+      = f.label :privacy_policy, "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"      
       = f.check_box :privacy_policy
-      = f.label :privacy_policy, "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"
+
       = f.submit 'Register!'

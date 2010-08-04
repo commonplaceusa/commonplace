@@ -1,12 +1,8 @@
-#user_info_box.info_box
-  .title_top
-    .icon
-      %img{ :alt => "user" }
-    .top_text
-      %span.category YOUR NEIGHBOR
-      / %span.from from
-      %span.author= user.full_name
-      %span.time You've met
+.info_box.user
+  .header
+    %img.icon{ :alt => "user" }
+    %span.category YOUR NEIGHBOR
+    %span.name= user.full_name
   .bottom
     = image_tag user.avatar.url, :width => 120, :height => 150, :class => 'graphic'
     .body

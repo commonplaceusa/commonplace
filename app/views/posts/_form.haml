@@ -1,7 +1,7 @@
-#post_submission
-  %p Write a message to your neighborhood here:
+#submit_post
+  = link_to "Write a message to your neighborhood here:", "#" + new_post_path
   - form_for post do |f|
-    = f.text_area :body, "data-label" => '"Anyone have a ladder I could borrow for tomorrow?"&#10;"Watch out for the pothole on Maple Avenue."'
+    = f.text_area :body, "data-label" => '"Anyone have a ladder I could borrow for tomorrow?"&#10;"Watch out for the pothole on Maple Avenue."', :rows => 4
     
     %ul
       %li
@@ -13,5 +13,5 @@
       %li
         = f.radio_button :purpose, "other"
         = f.label :purpose, "other", :for => "post_purpose_other"
-
+      
     = f.submit "Post"

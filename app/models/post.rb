@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   has_many :thread_memberships, :as => :thread
-  has_many :users, :through => :thread_memberships
+  has_many :users, :through => :thread_memberships, :as => :thread
   has_many :replies, :after_add => :mark_thread_unread
 
   validates_presence_of :user

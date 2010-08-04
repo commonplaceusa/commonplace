@@ -7,9 +7,9 @@ function selectTab(tab) {
 
 function setInfoBox() {
   $.getJSON(this.path.slice(1), function(response) {
-    $("#both_columns #right_col").html(
+    $("#info").html(
       response.info_box).css("top", 
-        Math.max(0, $(window).scrollTop() - $("#both_columns").offset().top));
+        Math.max(0, $(window).scrollTop() - $("#list").offset().top));
   });
 }    
 
@@ -42,6 +42,11 @@ var app = $.sammy(function() {
     }, "json");
   });
 
+  this.get("#/posts/new", function() {
+    $("form#new_post").show();
+  });
+
+
   this.get("#/posts/:id", setInfoBox);
   this.get("#/events/:id", setInfoBox);
   this.get("#/announcements/:id", setInfoBox);
@@ -52,7 +57,7 @@ $(function(){
   app.run();
 
   $(document).bind('scrollup',function(){
-    $("#right_col").animate({top: Math.max(0, $(window).scrollTop() - $("#both_columns").offset().top)});
+    $("#info").animate({top: Math.max(0, $(window).scrollTop() - $("#list").offset().top)});
   });
   
   $('li.post div.post_clickable').live('click', function(e) {

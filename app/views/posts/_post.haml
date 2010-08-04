@@ -1,29 +1,27 @@
 
-.post_clickable
-  .title_top
-    .icon
-      %img{ :alt => "Post" }
-    .top_text
-      %span.category CATEGORY
-      %span.from from
-      %span.author= post.user.full_name
-      %span.time= post_date post.created_at
-  .bottom
-    = image_tag post.user.avatar.url, :width => 50, :height => 50, :class => 'graphic'
-    .body
-      %h3 Post title here
-      %p= post.body
-      .expand
-        - if post.replies.size > 0
-          #{pluralize(post.replies.size, 'reply')}
-        - else
-          no replies yet
-  .replies
-    - if post.replies.size > 0 # if there are replies
-      %ol
-        - post.replies.each do |reply|
-          = render("replies/reply", :reply => reply)
-    .new_reply
-      - form_for [post, Reply.new] do |f|
-        = f.text_area :body, "data-label" => "Reply here!"
-        = f.submit "Reply"
+%span.header
+  %img.icon{ :alt => "Post", :width => "20", :height => "20"}
+  %span.category Post
+  %span.from from
+  %span.author= post.user.full_name
+%span.time= post_date post.created_at
+
+- link_to ("#" + post_path(post)) do
+  = image_tag post.user.avatar.url, :width => 50, :height => 50, :class => 'graphic'
+
+
+  .body
+    %h3 Post title here
+    %p= post.body
+    .expand
+      - if post.replies.size > 0
+        #{pluralize(post.replies.size, 'reply')}
+      - else
+        no replies yet
+.replies
+  %ol
+    - post.replies.each do |reply|
+      = render("replies/reply", :reply => reply)
+  - form_for [post, Reply.new] do |f|
+    = f.text_area :body, "data-label" => "Reply here!"
+    = f.submit "Reply"
