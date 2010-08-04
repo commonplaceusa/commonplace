@@ -1,16 +1,16 @@
-.event_clickable
-  .title_top
-    .icon
-      %img{ :alt => "Event" }
-    .top_text
-      %span.category EVENT
-      %span.from from
-      %span.author= event.organization.name
-      %span.time= event_date event.start_time
-  .bottom
-    .graphic= render("events/calendar", :event => event)
-    .body
-      %h3= event.name
-      .time= hours_minutes event.start_time
-      %p= event.description
-      .expand #{ event.attendances.length } attending
+
+%span.header
+  %img.icon{ :alt => "Event", :width => "20", :height => "20" }
+  %span.category EVENT
+  %span.from from
+  %span.author= event.organization.name
+%span.time= event_date event.start_time
+ 
+
+- link_to ("#" + event_path(event)) do
+  .graphic= render("events/calendar", :event => event)
+  .body
+    %h3= event.name
+    .time= hours_minutes event.start_time
+    %p= event.description
+  .data #{ event.attendances.length } attending

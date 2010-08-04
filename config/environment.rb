@@ -26,6 +26,10 @@ Rails::Initializer.run do |config|
 
   config.gem 'authlogic'
 
+  config.gem 'compass-960-plugin', :lib => 'ninesixty'
+  
+  config.gem 'compass'
+
   config.gem 'haml'
 
   config.gem 'formtastic'
@@ -65,5 +69,4 @@ Rails::Initializer.run do |config|
 end
 
 Haml::Template.options[:format] = :html5
-Sass::Plugin.options[:template_location] = "#{RAILS_ROOT}/app/views/sass"
 ActionController::Base.exempt_from_layout 'js.erb', 'json.erb'
