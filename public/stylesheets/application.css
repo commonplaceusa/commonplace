@@ -868,8 +868,8 @@ fieldset {
   font-style: normal;
 }
 
-/* line 5, ../../app/stylesheets/_item.sass */
-div#list ul li {
+/* line 4, ../../app/stylesheets/_item.sass */
+div#list ul#wire li {
   display: inline;
   float: left;
   margin-left: 10px;
@@ -886,8 +886,8 @@ div#list ul li {
   margin-bottom: 10px;
   background: #f7f7f7;
 }
-/* line 13, ../../app/stylesheets/_item.sass */
-div#list ul li .header {
+/* line 12, ../../app/stylesheets/_item.sass */
+div#list ul#wire li .header {
   display: inline;
   float: left;
   margin-left: 10px;
@@ -895,8 +895,8 @@ div#list ul li .header {
   width: 220px;
   margin-left: 0;
 }
-/* line 18, ../../app/stylesheets/_item.sass */
-div#list ul li .header img.icon {
+/* line 17, ../../app/stylesheets/_item.sass */
+div#list ul#wire li .header img.icon {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   -o-border-radius: 3px;
@@ -905,8 +905,8 @@ div#list ul li .header img.icon {
   border-radius: 3px;
   text-align: center;
 }
-/* line 21, ../../app/stylesheets/_item.sass */
-div#list ul li .time {
+/* line 20, ../../app/stylesheets/_item.sass */
+div#list ul#wire li .time {
   display: inline;
   float: left;
   margin-left: 10px;
@@ -915,8 +915,8 @@ div#list ul li .time {
   margin-right: 0;
   text-align: right;
 }
-/* line 26, ../../app/stylesheets/_item.sass */
-div#list ul li a {
+/* line 25, ../../app/stylesheets/_item.sass */
+div#list ul#wire li a {
   display: inline;
   float: left;
   margin-left: 10px;
@@ -928,13 +928,13 @@ div#list ul li a {
   border-top: 1px solid #dddddd;
 }
 
-/* line 33, ../../app/stylesheets/_item.sass */
+/* line 32, ../../app/stylesheets/_item.sass */
 .replies {
   display: none;
 }
 
 /* line 2, ../../app/stylesheets/_form.sass */
-.new_account {
+form.new_account {
   padding-left: 40px;
   display: inline;
   float: left;
@@ -954,7 +954,7 @@ div#list ul li a {
   background: #f7f7f7;
 }
 /* line 14, ../../app/stylesheets/_form.sass */
-.new_account label {
+form.new_account label {
   display: inline;
   float: left;
   margin-left: 10px;
@@ -964,13 +964,32 @@ div#list ul li a {
   text-align: right;
 }
 /* line 19, ../../app/stylesheets/_form.sass */
-.new_account input[type="text|password"] {
+form.new_account input[type="text|password"] {
   display: inline;
   float: left;
   margin-left: 10px;
   margin-right: 10px;
   width: 220px;
   margin-right: 0;
+}
+
+/* line 23, ../../app/stylesheets/_form.sass */
+div#submit_post {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: #dddddd;
+}
+/* line 31, ../../app/stylesheets/_form.sass */
+div#submit_post form#new_post {
+  display: none;
 }
 
 /* line 14, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */

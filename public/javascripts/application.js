@@ -42,6 +42,11 @@ var app = $.sammy(function() {
     }, "json");
   });
 
+  this.get("#/posts/new", function() {
+    $("form#new_post").show();
+  });
+
+
   this.get("#/posts/:id", setInfoBox);
   this.get("#/events/:id", setInfoBox);
   this.get("#/announcements/:id", setInfoBox);
