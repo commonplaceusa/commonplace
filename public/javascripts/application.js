@@ -7,9 +7,9 @@ function selectTab(tab) {
 
 function setInfoBox() {
   $.getJSON(this.path.slice(1), function(response) {
-    $("#both_columns #right_col").html(
+    $("#info").html(
       response.info_box).css("top", 
-        Math.max(0, $(window).scrollTop() - $("#both_columns").offset().top));
+        Math.max(0, $(window).scrollTop() - $("#list").offset().top));
   });
 }    
 
