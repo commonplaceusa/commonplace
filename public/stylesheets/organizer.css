@@ -1416,7 +1416,6 @@ header nav form input[type=text], header nav form input[type=password] {
   font-size: 0.8em;
   height: 14px;
   padding: 4px;
-  color: black;
   border: 1px solid #888888;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   -moz-border-radius: 5px;
@@ -1444,7 +1443,7 @@ header nav form input[type=submit] {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 27, ../../app/stylesheets/_mixins.sass */
+/* line 26, ../../app/stylesheets/_mixins.sass */
 header nav form input[type=submit]:hover {
   border-color: #888888;
 }
