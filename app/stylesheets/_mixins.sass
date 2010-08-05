@@ -1,8 +1,31 @@
 @mixin sans
-  font-family: Arial, Helvetica, Verdana, sans-serif
+  font-family: Helvetica, Arial, Verdana, sans-serif
 
 @mixin serif
   font-family: 'OldStandardTT', Times, serif
+  
+@mixin styledInput
+  font-size: 0.8em
+  height: 14px
+  padding: 4px
+  color: black
+  border: 1px solid $mediumGray
+  @include sans
+  +border-radius(5px)
+
+@mixin styledButton
+  //eek--stolen directly from SoundCloud
+  background-color: $lightestGray
+  background-image: url("/images/button_repeat.png")
+  width: auto
+  height: 100%
+  color: black
+  padding: 3px 7px
+  cursor: pointer
+  border: 1px solid $lightGray
+  +border-radius(5px)
+  &:hover
+    border-color: $mediumGray
 
 @mixin oldStandardBold
   font-family: 'OldStandardTTBold', Times, serif

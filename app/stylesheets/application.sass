@@ -1,8 +1,9 @@
-@import "layout"
+@import "core"
 @import "item"
 @import "info_box"
 @import "form"
 @import "organization"
+
 nav#filters
   +grid-children
   +grid-prefix(1)
@@ -23,17 +24,26 @@ a.filter
     height: 60px
             
 form#search
-  +grid-prefix(1 / 2)      
+  +grid-prefix(1 / 4)      
   +grid(6)
-  +grid-suffix(1 / 2)
+  +grid-suffix(1 / 4)
   +omega
-  +border-radius(5px)
+  +border-radius($defaultRadius)
   background-color: #eee
   border: 1px solid $lightGray
   height: 60px
   padding:
     top: 10px
     bottom: 10px
+  input[type=text]
+    @include styledInput
+    +grid(4)
+  input[type=submit]
+    @include styledButton
+  p
+    margin-top: 10px
+    @include sans
+    font-size: 0.8em
         
 div#list
   +grid(12 + 1/4)
@@ -46,11 +56,3 @@ div#info
   +grid(12)
   +alpha
   margin-top: 10px
-
-
- 
-   
-
-
-
-

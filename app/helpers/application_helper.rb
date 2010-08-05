@@ -3,7 +3,7 @@ module ApplicationHelper
 
   def include_javascript_folder folder
     files = Dir.glob("#{ RAILS_ROOT }/public/javascripts/#{ folder }/*.js")
-    files.map!{ |f| File.basename f }
+    files.map!{ |f| folder + "/" + File.basename(f) }
     javascript_include_tag files
   end
 

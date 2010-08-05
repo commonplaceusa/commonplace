@@ -1,18 +1,22 @@
 @import "grid"
 @import "text"
+
+@import "mixins"
+@import "colors"
+@import "measurements"
+
 @import "compass/layout/sticky-footer"
 @import "compass/utilities/general/clearfix"
 @import "compass/css3/border-radius"
 @import "compass/css3/gradient"
 @import "compass/reset/utilities"
-@import "mixins"
-@import "colors"
+
 
 +global-reset
 
 
 body
-  padding: 20px 0
+  padding: 10px 0
   min-width: 960px
   +linear-gradient(color-stops(#D6D5D0,#F8F7F2,#D6D5D0))
   color: $primaryTextColor
@@ -20,56 +24,96 @@ body
 
 nav, header, footer
   display: block
+  
+a
+  color: $linkColor
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+  &:visited
+  &:active 
 
-+sticky-footer(53px, "#wrap", "#wrap_footer", "footer")
++sticky-footer(auto, "#wrap", "#wrap_footer", "footer")
 
 #wrap
   +grid-system(24)
   padding-bottom: 20px
 
-  header
-    position: relative
-    +clearfix
-    +grid-children
+header
+  position: relative
+  +clearfix
+  +grid-children
 
-    h1
-      +grid(12)
-    
-    nav
+  h1
+    +grid(12)
+    #community_nav
+      border: 1px solid $mediumGray
+      +border-radius($defaultRadius)
+      background: #ddd
+      &:hover
+        background-color: $lightestGray
+      color: black
+      padding: 7px 10px
+      font-weight: bold
       position: absolute
-      padding: 5px 0
-      right: 0
-      bottom: 2px
-      +border-radius(5px)
-      background: $lightestGray
-      font-size: 12px
-      border: 1px solid $lightGray
-      text-align: right
-      
-      a
-        padding: 3px 7px
-        border-left: 1px solid $lightGray
-        &:hover
-          background: #fafafa
-
-      form
-        input[type="text|password"]
-          width: 150px
+      bottom: 5px
+      &.selected_nav
+        background: white !important
+        font-weight: bold !important
+  
+  nav
+    position: absolute
+    padding: 6px
+    @include sans
+    right: 0px
+    bottom: 5px
+    +border-radius($defaultRadius)
+    background: $lightestGray
+    font-size: 0.8em
+    border: 1px solid $lightGray
+    text-align: right
+    a
+      padding: 3px 7px
+      border-left: 1px solid $lightGray
+      &:hover
+        background: #fafafa
+      &:first-child
+        margin-left: 6px
+      &:last-child
+        padding-right: 0px
+    form
+      input[type=text], input[type=password]
+        width: 150px
+        @include styledInput
+        padding: 2px
+      input[type=submit]
+        @include styledButton
       
 
 #main
   +grid-children
-  +border-radius(5px)
+  +border-radius($defaultRadius)
   border: 1px black solid
   background: #fefefe
   +clearfix
 
+.label 
+  color: #666666
+  -webkit-transition: color 0.2s linear
 
+.fading 
+  color: white
+  -webkit-transition: color 0.2s linear
 
 footer
+  padding: 10px
   background: #2F2F2F
   border-top: $footerBorder solid #444
-  width: 100%
+  width: auto
+  @include sans
+  font-size: 0.8em
+  color: $lightGray
+  span#footer_copy
   nav
     float: right
     a

@@ -19,38 +19,13 @@
   %body.bp
 
     #wrap
-
-      %header
-        %h1
-          - link_to root_url, :id => 'title' do
-            = image_tag 'transparent.png', :id => 'logo', :alt => "CommonPlace", :size => "262x37"
-
-          - if current_user_session
-            = tab_to "Community", '', :id => 'community_nav'
-
-        %nav
-          - if current_user_session
-            Hi, #{current_user.first_name}!
-            = tab_to(user_inbox_size, inbox_url, :id => 'inbox') + tab_to('My Account', account_url, :id => 'account') + tab_to(user_organization_text, organizer_index_url, :id => 'organizations') + tab_to('Log out', logout_url)
-          - else
-            - form_for UserSession.new, :url => user_session_path do |f|
-              = f.text_field :email
-              = f.password_field :password
-              = f.submit "Log in"
+      = render 'shared/header'
 
       #main  
         = yield
 
       #wrap_footer
-    %footer
-      %span.copy Commonplace &copy;
-      %nav
-        = link_to 'About', about_url
-        |
-        = link_to 'Terms', terms_url
-        |
-        = link_to 'Privacy Policy', privacy_url
-
+    = render 'shared/footer'
 
     - if RAILS_ENV == "production"
       %script{:type=>"text/javascript"}
