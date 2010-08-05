@@ -13,6 +13,6 @@
       = tab_to(user_inbox_size, inbox_url, :id => 'inbox') + tab_to('My Account', account_url, :id => 'account') + tab_to(user_organization_text, organizer_index_url, :id => 'organizations') + tab_to('Log out', logout_url)
     - else
       - form_for UserSession.new, :url => user_session_path do |f|
-        = f.text_field :email
+        = f.text_field :email, 'data-label' => "Email"
         = f.password_field :password
         = f.submit "Log in"
