@@ -1,16 +1,17 @@
-@import "grid"
-@import "text"
+@import grid
+@import text
+        
+@import mixins
+@import colors
+@import measurements
+        
+@import compass/layout/sticky-footer
+@import compass/utilities/general/clearfix
+@import compass/css3/border-radius
+@import compass/css3/gradient
+@import compass/reset/utilities
 
-@import "mixins"
-@import "colors"
-@import "measurements"
-
-@import "compass/layout/sticky-footer"
-@import "compass/utilities/general/clearfix"
-@import "compass/css3/border-radius"
-@import "compass/css3/gradient"
-@import "compass/reset/utilities"
-
+@import tipsy
 
 +global-reset
 
@@ -104,6 +105,8 @@ header
 .fading 
   color: white
   -webkit-transition: color 0.2s linear
+
+
 
 footer
   padding: 10px

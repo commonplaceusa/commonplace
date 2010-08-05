@@ -8,6 +8,7 @@
     / [if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"    
     
+    %script{ :type => 'text/javascript', :src => 'http://maps.google.com/maps/api/js?sensor=true' }
     = include_javascript_folder 'jquery'
     = javascript_include_tag 'sammy', 'markermanager_packed.js'
     = javascript_include_tag 'application'
@@ -28,12 +29,4 @@
     = render 'shared/footer'
 
     - if RAILS_ENV == "production"
-      %script{:type=>"text/javascript"}
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-      %script{:type=>"text/javascript"}
-        try {
-        var pageTracker = _gat._getTracker("UA-12888551-2");
-        pageTracker._trackPageview();
-        } catch(err) {}
-        
+      = render 'shared/analytics'

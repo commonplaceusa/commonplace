@@ -13,12 +13,16 @@ nav#filters
   display:block
   padding-top: 15px
   padding-bottom: 15px
+  position: relative
 
 a.filter
-  padding-top: 10px
-  padding-bottom: 10px
+  margin-top: 20px
+  bottom: 0
+  background-color: $lightestGray
   +grid(2.5)
-        
+  height: 60px
+  border: 1px solid $lightGray
+  +border-radius($defaultRadius)
   img
     width: 60px
     height: 60px
