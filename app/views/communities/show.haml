@@ -1,6 +1,4 @@
 
-= render 'shared/filters'
-
 #list
   - permitted_to? :create, :posts do
     = render 'posts/form', :post => Post.new
