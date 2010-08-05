@@ -21,7 +21,6 @@ body
   min-width: 960px
   color: $primaryTextColor
   text-rendering: optimizeLegibility
-  // +linear-gradient(color-stops(#D6D5D0,#F8F7F2,#D6D5D0))
   background: white
 
 nav, header, footer
@@ -81,15 +80,11 @@ header
     right: 0px
     bottom: 5px
     font-size: 0.8em
-    // background: white
-    // border: 1px solid $lightGray
-    // +border-radius($defaultRadius)
     text-align: right
     a
       padding: 3px 7px
       border-left: 1px solid $lightGray
       &:hover
-        // background: #fafafa
       &:first-child
         margin-left: 6px
       &:last-child
@@ -106,8 +101,6 @@ header
 #main
   +grid-children
   +border-radius($defaultRadius)
-  // border: 1px black solid
-  // background: #fefefe
   +clearfix
 
 .label 
@@ -123,12 +116,12 @@ header
 footer
   padding: 10px
   background: #2F2F2F
-  border-top: $footerBorder solid #444
   width: auto
   @include sans
   font-size: 0.8em
   color: $lightGray
   span#footer_copy
+  border-top: 1px solid #444
   nav
     float: right
     a
