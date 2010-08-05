@@ -1,6 +1,12 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  def include_javascript_folder folder
+    files = Dir.glob("#{ RAILS_ROOT }/public/javascripts/#{ folder }/*.js")
+    files.map!{ |f| File.basename f }
+    javascript_include_tag files
+  end
+
   def with_format(format, &block)
     old_format = @template_format
     @template_format = format

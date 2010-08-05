@@ -6,11 +6,13 @@
     %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
 
     / [if IE]
-      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
-      
-    = javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min.js', 'sammy', 'autoresize.jquery.min.js', 'markermanager_packed.js', 'jquery.jellopudding.js', 'jquery.goodlabel.js', 'application'
-
-    = stylesheet_link_tag 'application.css'
+      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"    
+    
+    = include_javascript_folder 'jquery'
+    = javascript_include_tag 'sammy', 'markermanager_packed.js'
+    = javascript_include_tag 'application'
+    
+    = stylesheet_link_tag 'application'
 
     %title Commonplace
 
