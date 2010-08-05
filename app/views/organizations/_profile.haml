@@ -1,9 +1,8 @@
-%h1#title.underline= @organization.name
 
-#left_profile_col
-  %ul#top_left
-    %li= image_tag @organization.avatar.url, :class => "profilephoto"
-  
+%h1= @organization.name
+
+.contact
+  = image_tag @organization.avatar.url, :class => "profilephoto", :height => 200, :width => 200
   %ul#contact
     %li Contact Information
     %li.contact_field Send a Message
@@ -28,7 +27,7 @@
     #unsubscribe= button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete
 
 
-#right_profile_col
+.about
   - if flash[:win]
     #win= flash[:win]
   - unless @subscribers.index current_user
@@ -63,7 +62,7 @@
   #map
   
 
-#far_right_profile_col
+.related
   %h3 The potential right column
   %p We could sell ads here like Facebook does.
   %p Or there might actually be valuable content we could include here. I'm not sure.

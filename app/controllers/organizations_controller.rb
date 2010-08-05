@@ -8,7 +8,7 @@ class OrganizationsController < CommunitiesController
     @organization = Organization.find params[:id]
     @events = Event.find(:all, :conditions => ["organization_id = ?", @organization.id])
     @subscribers = @organization.subscribers
-    render :layout => 'profile'
+    render :layout => 'application'
   end
   
 end
