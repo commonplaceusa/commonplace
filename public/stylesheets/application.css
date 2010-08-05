@@ -1395,25 +1395,13 @@ header nav {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   right: 0px;
   bottom: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  background: #eeeeee;
   font-size: 0.8em;
-  border: 1px solid #dddddd;
   text-align: right;
 }
 /* line 88, ../../app/stylesheets/_core.sass */
 header nav a {
   padding: 3px 7px;
   border-left: 1px solid #dddddd;
-}
-/* line 91, ../../app/stylesheets/_core.sass */
-header nav a:hover {
-  background: #fafafa;
 }
 /* line 93, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
