@@ -9,10 +9,14 @@ nav#filters
   +grid-prefix(1)
   +grid-suffix(1)
   +clearfix
-  border-bottom: 1px solid black
-  display:block
-  padding-top: 15px
-  padding-bottom: 15px
+  border:
+    top: 1px solid $lightGray
+    bottom: 1px solid $lightGray
+  +border-radius($defaultRadius)
+  display: block
+  padding:
+    top: 1em
+    bottom: 1em
   position: relative
 
 a.filter
@@ -51,7 +55,7 @@ form#search
         
 div#list
   +grid(12 + 1/4)
-  border-right: 1px solid black
+  border-right: 1px solid $lightGray
   margin-right: 0
   padding-top: 10px
 

@@ -976,26 +976,24 @@ a img {
 
 /* line 19, ../../app/stylesheets/_core.sass */
 body {
-  padding: 10px 0;
+  padding: 0;
   min-width: 960px;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #d6d5d0), color-stop(50%, #f8f7f2), color-stop(100%, #d6d5d0));
-  background-image: -moz-linear-gradient(top, #d6d5d0 0%, #f8f7f2 50%, #d6d5d0 100%);
-  background-image: linear-gradient(top, #d6d5d0 0%, #f8f7f2 50%, #d6d5d0 100%);
   color: #111111;
   text-rendering: optimizeLegibility;
+  background: white;
 }
 
-/* line 26, ../../app/stylesheets/_core.sass */
+/* line 27, ../../app/stylesheets/_core.sass */
 nav, header, footer {
   display: block;
 }
 
-/* line 29, ../../app/stylesheets/_core.sass */
+/* line 30, ../../app/stylesheets/_core.sass */
 a {
   color: #0033aa;
   text-decoration: none;
 }
-/* line 32, ../../app/stylesheets/_core.sass */
+/* line 33, ../../app/stylesheets/_core.sass */
 a:hover {
   text-decoration: underline;
 }
@@ -1025,7 +1023,7 @@ footer {
   height: auto;
 }
 
-/* line 39, ../../app/stylesheets/_core.sass */
+/* line 40, ../../app/stylesheets/_core.sass */
 #wrap {
   margin-left: auto;
   margin-right: auto;
@@ -1328,11 +1326,26 @@ footer {
   margin-right: 0;
 }
 
-/* line 43, ../../app/stylesheets/_core.sass */
+/* line 44, ../../app/stylesheets/_core.sass */
+#top {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f8f7f2), color-stop(100%, #ffffff));
+  background-image: -moz-linear-gradient(top, #f8f7f2 0%, #ffffff 100%);
+  background-image: linear-gradient(top, #f8f7f2 0%, #ffffff 100%);
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: -3;
+}
+
+/* line 54, ../../app/stylesheets/_core.sass */
 header {
   position: relative;
   overflow: hidden;
   *zoom: 1;
+  margin: 1em 0;
 }
 /* line 56, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
 header .alpha {
@@ -1342,7 +1355,7 @@ header .alpha {
 header .omega {
   margin-right: 0;
 }
-/* line 48, ../../app/stylesheets/_core.sass */
+/* line 60, ../../app/stylesheets/_core.sass */
 header h1 {
   display: inline;
   float: left;
@@ -1350,7 +1363,7 @@ header h1 {
   margin-right: 10px;
   width: 460px;
 }
-/* line 50, ../../app/stylesheets/_core.sass */
+/* line 62, ../../app/stylesheets/_core.sass */
 header h1 #community_nav {
   border: 1px solid #888888;
   -moz-border-radius: 5px;
@@ -1366,16 +1379,16 @@ header h1 #community_nav {
   position: absolute;
   bottom: 5px;
 }
-/* line 54, ../../app/stylesheets/_core.sass */
+/* line 66, ../../app/stylesheets/_core.sass */
 header h1 #community_nav:hover {
   background-color: #eeeeee;
 }
-/* line 61, ../../app/stylesheets/_core.sass */
+/* line 73, ../../app/stylesheets/_core.sass */
 header h1 #community_nav.selected_nav {
   background: white !important;
   font-weight: bold !important;
 }
-/* line 65, ../../app/stylesheets/_core.sass */
+/* line 77, ../../app/stylesheets/_core.sass */
 header nav {
   position: absolute;
   padding: 6px;
@@ -1393,24 +1406,24 @@ header nav {
   border: 1px solid #dddddd;
   text-align: right;
 }
-/* line 76, ../../app/stylesheets/_core.sass */
+/* line 88, ../../app/stylesheets/_core.sass */
 header nav a {
   padding: 3px 7px;
   border-left: 1px solid #dddddd;
 }
-/* line 79, ../../app/stylesheets/_core.sass */
+/* line 91, ../../app/stylesheets/_core.sass */
 header nav a:hover {
   background: #fafafa;
 }
-/* line 81, ../../app/stylesheets/_core.sass */
+/* line 93, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
   margin-left: 6px;
 }
-/* line 83, ../../app/stylesheets/_core.sass */
+/* line 95, ../../app/stylesheets/_core.sass */
 header nav a:last-child {
   padding-right: 0px;
 }
-/* line 86, ../../app/stylesheets/_core.sass */
+/* line 98, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   font-size: 0.8em;
@@ -1426,7 +1439,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 90, ../../app/stylesheets/_core.sass */
+/* line 102, ../../app/stylesheets/_core.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -1448,7 +1461,7 @@ header nav form input[type=submit]:hover {
   border-color: #888888;
 }
 
-/* line 94, ../../app/stylesheets/_core.sass */
+/* line 106, ../../app/stylesheets/_core.sass */
 #main {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1456,8 +1469,6 @@ header nav form input[type=submit]:hover {
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  border: 1px black solid;
-  background: #fefefe;
   overflow: hidden;
   *zoom: 1;
 }
@@ -1470,19 +1481,19 @@ header nav form input[type=submit]:hover {
   margin-right: 0;
 }
 
-/* line 101, ../../app/stylesheets/_core.sass */
+/* line 113, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 105, ../../app/stylesheets/_core.sass */
+/* line 117, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 111, ../../app/stylesheets/_core.sass */
+/* line 123, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   background: #2f2f2f;
@@ -1492,11 +1503,11 @@ footer {
   font-size: 0.8em;
   color: #dddddd;
 }
-/* line 120, ../../app/stylesheets/_core.sass */
+/* line 132, ../../app/stylesheets/_core.sass */
 footer nav {
   float: right;
 }
-/* line 122, ../../app/stylesheets/_core.sass */
+/* line 134, ../../app/stylesheets/_core.sass */
 footer nav a {
   color: #90a1ab;
 }
