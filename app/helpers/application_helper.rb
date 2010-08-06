@@ -1,7 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-  def include_javascript_folder folder
+  def include_javascript_folder(folder)
     files = Dir.glob("#{ RAILS_ROOT }/public/javascripts/#{ folder }/*.js")
     files.map!{ |f| folder + "/" + File.basename(f) }
     javascript_include_tag files

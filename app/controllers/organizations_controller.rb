@@ -2,6 +2,10 @@ class OrganizationsController < CommunitiesController
   
   def index
     @organizations = current_user.community.organizations
+    respond_to do |format|
+      format.json
+      format.html
+    end
   end
 
   def show

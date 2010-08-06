@@ -6,12 +6,18 @@ function selectTab(tab) {
 };
 
 function setInfoBox() {
-  $.getJSON(this.path.slice(1), function(response) {
+   $.getJSON(this.path.slice(1), function(response) {
     $("#info").html(
       response.info_box).css("top", 
         Math.max(0, $(window).scrollTop() - $("#list").offset().top));
   });
-}    
+} 
+
+function setList() {
+  $.getJSON(this.path.slice(1), function(response) {
+    $("#list").html(response.list);
+  });
+}
 
 var app = $.sammy(function() { 
 
@@ -58,6 +64,14 @@ var app = $.sammy(function() {
   this.get("#/posts/:id", setInfoBox);
   this.get("#/events/:id", setInfoBox);
   this.get("#/announcements/:id", setInfoBox);
+  
+  
+  this.get("#/announcements", setList);
+  this.get("#/events", setList);
+  this.get("#/", setList);
+  this.get("#/users", setList);
+  this.get("#/organizations", setList);
+  this.get("#/posts", setList);
 
 });
 
