@@ -28,19 +28,19 @@ ActionController::Routing::Routes.draw do |map|
     post.resources :replies
   end
   
-  map.resources :announcements, :only => [:index, :show]
+  map.resources :announcements
   
-  map.resources :events, :only => [:index, :show] do |event|
+  map.resources :events do |event|
     event.resource :attendance
     event.resources :referrals
   end
   
-  map.resources :users, :only => [:index, :show] do |user|
+  map.resources :users do |user|
     user.resource :met, :only => [:create]
   end
   
     
-  map.resources :organizations, :only => [:index, :show] do |org|
+  map.resources :organizations do |org|
     org.resource :subscription, :only => [:index, :show, :create, :destroy]
   end
 

@@ -11,6 +11,9 @@ class EventsController < CommunitiesController
   
   def new
     @event = Event.new
+    respond_to do |format|
+      format.json
+    end
   end
 
   def create

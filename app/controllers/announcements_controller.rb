@@ -14,4 +14,11 @@ class AnnouncementsController < CommunitiesController
       format.json
     end
   end
+
+  def new
+    @announcement = Announcement.new
+    respond_to do |format|
+      format.json
+    end
+  end
 end

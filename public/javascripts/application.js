@@ -7,8 +7,7 @@ function selectTab(tab) {
 
 function setInfoBox() {
    $.getJSON(this.path.slice(1), function(response) {
-    $("#info").html(
-      response.info_box).css("top", 
+    $("#info").html(response.info_box).css("top", 
         Math.max(0, $(window).scrollTop() - $("#list").offset().top));
   });
 } 
@@ -51,16 +50,42 @@ var app = $.sammy(function() {
   this.get("#/posts/new", function() {
     var sammy = this;
     $.getJSON('/posts/new', function(response) {      
-      $('<div></div>').html(response.newPost)
-        .modal({
-          overlayClose: true,
-          onClose: function() { 
-            $.modal.close(); 
-            sammy.redirect("#", "posts");
-          },
-        });
+      $(response.form).modal({
+        overlayClose: true,
+        onClose: function() { 
+          $.modal.close(); 
+          sammy.redirect("#", "posts");
+        }
+      });
     });
   });
+
+  this.get("#/announcements/new", function() {
+    var sammy = this;
+    $.getJSON('/announcements/new', function(response) {
+      $(response.form).modal({
+        overlayClose: true,
+        onClose: function() { 
+          $.modal.close(); 
+          sammy.redirect("#", "announcements");
+        }
+      });
+    });
+  });
+
+  this.get("#/events/new", function() {
+    var sammy = this;
+    $.getJSON('/events/new', function(response) {
+      $(response.form).modal({
+        overlayClose: true,
+        onClose: function() { 
+          $.modal.close(); 
+          sammy.redirect("#", "events");
+        }
+      });
+    });
+  });
+        
 
   this.get("#/posts/:id", setInfoBox);
   this.get("#/events/:id", setInfoBox);
