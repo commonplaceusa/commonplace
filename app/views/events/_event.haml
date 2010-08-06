@@ -1,16 +1,8 @@
 
-%span.header
-  %img.icon{ :alt => "Event", :width => "20", :height => "20" }
-  %span.category EVENT
-  %span.from from
-  %span.author= event.organization.name
-%span.time= event_date event.start_time
- 
 
-- link_to event_path(event), 'data-remote' => true do
-  .graphic= render("events/calendar", :event => event)
-  .body
-    %h3= event.name
-    .time= hours_minutes event.start_time
-    %p= event.description
-  .data #{ event.attendances.length } attending
+.graphic= render("events/calendar", :event => event)
+.body
+  %h3= event.name
+  .time= hours_minutes event.start_time
+  %p= event.description
+.data #{ event.attendances.length } attending

@@ -1,2 +1,11 @@
 - content_tag :li, :class => dom_class(item), :id => dom_id(item), "data-url" => url_for(item) do
-  = render item
+  %span.header
+    %img.icon{ :width => 20, :height => 20 }
+      %span.category= item.class.human_name
+      %span.from from
+      %span.author= item.author_name
+      %span.time= item.time
+  - link_to url_for(item), 'data-remote' => true do
+
+    = render item 
+.replies
