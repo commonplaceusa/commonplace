@@ -1414,7 +1414,6 @@ header nav a:last-child {
 /* line 98, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
-  font-size: 0.8em;
   height: 14px;
   padding: 4px;
   border: 1px solid #888888;
@@ -1444,7 +1443,7 @@ header nav form input[type=submit] {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 26, ../../app/stylesheets/_mixins.sass */
+/* line 25, ../../app/stylesheets/_mixins.sass */
 header nav form input[type=submit]:hover {
   border-color: #888888;
 }

@@ -1414,7 +1414,6 @@ header nav a:last-child {
 /* line 98, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
-  font-size: 0.8em;
   height: 14px;
   padding: 4px;
   border: 1px solid #888888;
@@ -1444,7 +1443,7 @@ header nav form input[type=submit] {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 26, ../../app/stylesheets/_mixins.sass */
+/* line 25, ../../app/stylesheets/_mixins.sass */
 header nav form input[type=submit]:hover {
   border-color: #888888;
 }
@@ -1664,7 +1663,6 @@ form#new_post ul li {
 }
 /* line 37, ../../app/stylesheets/_form.sass */
 form#new_post textarea {
-  font-size: 0.8em;
   height: 14px;
   padding: 4px;
   border: 1px solid #888888;
@@ -1675,6 +1673,7 @@ form#new_post textarea {
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
+  font-size: 0.8em;
   height: 3em;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1684,7 +1683,7 @@ form#new_post textarea {
   margin-right: 10px;
   width: 380px;
 }
-/* line 44, ../../app/stylesheets/_form.sass */
+/* line 45, ../../app/stylesheets/_form.sass */
 form#new_post input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -1701,7 +1700,7 @@ form#new_post input[type=submit] {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 26, ../../app/stylesheets/_mixins.sass */
+/* line 25, ../../app/stylesheets/_mixins.sass */
 form#new_post input[type=submit]:hover {
   border-color: #888888;
 }
@@ -1843,7 +1842,7 @@ form#search input[type=text] {
   margin-right: 10px;
   width: 140px;
 }
-/* line 49, ../../app/stylesheets/application.sass */
+/* line 50, ../../app/stylesheets/application.sass */
 form#search input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -1860,18 +1859,18 @@ form#search input[type=submit] {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 26, ../../app/stylesheets/_mixins.sass */
+/* line 25, ../../app/stylesheets/_mixins.sass */
 form#search input[type=submit]:hover {
   border-color: #888888;
 }
-/* line 51, ../../app/stylesheets/application.sass */
+/* line 52, ../../app/stylesheets/application.sass */
 form#search p {
   margin-top: 10px;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 0.8em;
 }
 
-/* line 56, ../../app/stylesheets/application.sass */
+/* line 57, ../../app/stylesheets/application.sass */
 div#list {
   display: inline;
   float: left;
@@ -1883,7 +1882,7 @@ div#list {
   padding-top: 10px;
 }
 
-/* line 63, ../../app/stylesheets/application.sass */
+/* line 64, ../../app/stylesheets/application.sass */
 div#info {
   display: inline;
   float: left;
