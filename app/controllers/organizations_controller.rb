@@ -14,5 +14,12 @@ class OrganizationsController < CommunitiesController
     @subscribers = @organization.subscribers
     render :layout => 'application'
   end
+
+  def new
+    @organization = Organization.new
+    respond_to do |format|
+      format.json 
+    end
+  end
   
 end

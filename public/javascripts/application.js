@@ -18,6 +18,18 @@ function setList() {
   });
 }
 
+function setModal() {
+  $.getJSON(this.path.slice(1), function(response) {
+    $(response.form).modal({
+      overlayClose: true,
+      onClose: function() { 
+        $.modal.close(); 
+        history.back()
+      }
+    });
+  });
+}
+
 var app = $.sammy(function() { 
 
   this.post("/posts", function() {
@@ -47,44 +59,10 @@ var app = $.sammy(function() {
     }, "json");
   });
 
-  this.get("#/posts/new", function() {
-    var sammy = this;
-    $.getJSON('/posts/new', function(response) {      
-      $(response.form).modal({
-        overlayClose: true,
-        onClose: function() { 
-          $.modal.close(); 
-          sammy.redirect("#", "posts");
-        }
-      });
-    });
-  });
-
-  this.get("#/announcements/new", function() {
-    var sammy = this;
-    $.getJSON('/announcements/new', function(response) {
-      $(response.form).modal({
-        overlayClose: true,
-        onClose: function() { 
-          $.modal.close(); 
-          sammy.redirect("#", "announcements");
-        }
-      });
-    });
-  });
-
-  this.get("#/events/new", function() {
-    var sammy = this;
-    $.getJSON('/events/new', function(response) {
-      $(response.form).modal({
-        overlayClose: true,
-        onClose: function() { 
-          $.modal.close(); 
-          sammy.redirect("#", "events");
-        }
-      });
-    });
-  });
+  this.get("#/posts/new", setModal);
+  this.get("#/announcements/new", setModal);
+  this.get("#/events/new", setModal);
+  this.get("#/organizations/new", setModal);
         
 
   this.get("#/posts/:id", setInfoBox);
