@@ -39,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
     user.resource :met, :only => [:create]
   end
   
+  map.resources :invites
     
   map.resources :organizations do |org|
     org.resource :subscription, :only => [:index, :show, :create, :destroy]

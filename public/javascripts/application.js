@@ -63,7 +63,7 @@ var app = $.sammy(function() {
   this.get("#/announcements/new", setModal);
   this.get("#/events/new", setModal);
   this.get("#/organizations/new", setModal);
-        
+  this.get("#/invites/new", setModal);
 
   this.get("#/posts/:id", setInfoBox);
   this.get("#/events/:id", setInfoBox);
