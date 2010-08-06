@@ -731,7 +731,14 @@ div#list ul#wire li a {
 }
 
 /* line 2, ../../app/stylesheets/_form.sass */
-form.new_user {
+form.new_account {
+  padding-left: 40px;
+  display: inline;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 390px;
+  padding-right: 40px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
@@ -740,11 +747,11 @@ form.new_user {
   border-radius: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border: 0px solid #dddddd;
+  border: 1px solid #dddddd;
   background: #f7f7f7;
 }
-/* line 11, ../../app/stylesheets/_form.sass */
-form.new_user label {
+/* line 14, ../../app/stylesheets/_form.sass */
+form.new_account label {
   display: inline;
   float: left;
   margin-left: 5px;
@@ -753,8 +760,8 @@ form.new_user label {
   margin-left: 0;
   text-align: right;
 }
-/* line 16, ../../app/stylesheets/_form.sass */
-form.new_user input[type="text|password"] {
+/* line 19, ../../app/stylesheets/_form.sass */
+form.new_account input[type="text|password"] {
   display: inline;
   float: left;
   margin-left: 5px;
@@ -763,7 +770,7 @@ form.new_user input[type="text|password"] {
   margin-right: 0;
 }
 
-/* line 20, ../../app/stylesheets/_form.sass */
+/* line 23, ../../app/stylesheets/_form.sass */
 div#submit_post {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -779,11 +786,11 @@ div#submit_post {
   background-color: #eeeeee;
 }
 
-/* line 29, ../../app/stylesheets/_form.sass */
+/* line 32, ../../app/stylesheets/_form.sass */
 form#new_post {
   display: none;
 }
-/* line 31, ../../app/stylesheets/_form.sass */
+/* line 34, ../../app/stylesheets/_form.sass */
 form#new_post ul li {
   margin-top: 2px;
   display: inline;
@@ -792,7 +799,7 @@ form#new_post ul li {
   margin-right: 5px;
   width: 110px;
 }
-/* line 34, ../../app/stylesheets/_form.sass */
+/* line 37, ../../app/stylesheets/_form.sass */
 form#new_post textarea {
   font-size: 0.8em;
   height: 14px;
@@ -814,7 +821,7 @@ form#new_post textarea {
   margin-right: 5px;
   width: 390px;
 }
-/* line 41, ../../app/stylesheets/_form.sass */
+/* line 44, ../../app/stylesheets/_form.sass */
 form#new_post input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");

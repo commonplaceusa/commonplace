@@ -3,12 +3,11 @@ class AccountsController < ApplicationController
   filter_access_to :all
 
   def new
-    @account = Account.new(params[:account])
   end
   
   def create    
-    @account = Account.new(params[:account])
-    if @account.save
+    @user = User.new(params[:user].merge(:community => Community.first))
+    if @user.save
       reload_current_user!
       render :more_info
     else

@@ -39,8 +39,6 @@ Rails::Initializer.run do |config|
   config.gem 'paperclip'
 
   config.gem "acts-as-taggable-on", :source => "http://gemcutter.org"
-
-  config.gem "validatable"
   
   config.gem "RedCloth"
 
