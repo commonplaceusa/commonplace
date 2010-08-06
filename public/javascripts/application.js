@@ -43,7 +43,7 @@ var app = $.sammy(function() {
   });
 
   this.get("#/posts/new", function() {
-    $("form#new_post").show();
+    $dialog.dialog('open');
   });
 
 
@@ -56,27 +56,18 @@ var app = $.sammy(function() {
 $(function(){
   app.run();
 
+  var $dialog = $('<div></div>')
+    .html('This dialog will show every time!')
+    .dialog({
+      autoOpen: false,
+      title: 'Basic Dialog'
+    });
+
+
   $(document).bind('scrollup',function(){
     $("#info").animate({top: Math.max(0, $(window).scrollTop() - $("#list").offset().top)});
   });
   
-  $('li.post div.post_clickable').live('click', function(e) {
-    var $this = $(this);
-    $this.siblings('.replies').slideToggle(250);
-    app.location_proxy.setLocation("#" + $this.parent().attr('data-url'));
-  });
-    
-  $('li.event').live('click', function(e) {
-    var $this = $(this);
-    app.location_proxy.setLocation("#" + $this.attr('data-url'));
-  });
-  
-  $('li.announcement').live('click', function(e) {
-    var $this = $(this);
-    app.location_proxy.setLocation("#" + $this.attr('data-url'));
-  });
-  
-  $("input, textarea").goodlabel();      
   $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
   
   $('.filter').tipsy({ gravity: 's', delayOut: 0 });
