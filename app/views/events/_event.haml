@@ -7,7 +7,7 @@
 %span.time= event_date event.start_time
  
 
-- link_to ("#" + event_path(event)) do
+- link_to event_path(event), 'data-remote' => true do
   .graphic= render("events/calendar", :event => event)
   .body
     %h3= event.name

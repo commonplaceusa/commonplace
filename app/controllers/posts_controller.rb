@@ -6,7 +6,13 @@ class PostsController < CommunitiesController
   def index
     @posts = Post.all
   end
-    
+
+  def new
+    respond_to do |format|
+      format.json
+    end
+  end
+  
   def create
     respond_to do |format|
       if @post.save

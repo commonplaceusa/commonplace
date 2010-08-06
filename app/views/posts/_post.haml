@@ -6,7 +6,7 @@
   %span.author= post.user.full_name
 %span.time= post_date post.created_at
 
-- link_to ("#" + post_path(post)) do
+- link_to post_path(post), 'data-remote' => true do
   = image_tag post.user.avatar.url, :width => 50, :height => 50, :class => 'graphic'
 
 

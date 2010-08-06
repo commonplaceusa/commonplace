@@ -29,18 +29,3 @@ div#submit_post
   border-bottom-color: #888
   background-color: $lightestGray  
 
-form#new_post
-  display: none
-  ul li
-    margin-top: 2px
-    +grid(3)
-  textarea
-    @include styledInput
-    height: 3em
-    margin:
-      top: 10px
-      bottom: 10px
-    +grid(10)
-  input[type=submit]
-    // +grid(2)
-    @include styledButton

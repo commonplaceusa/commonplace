@@ -43,7 +43,15 @@ var app = $.sammy(function() {
   });
 
   this.get("#/posts/new", function() {
-    $dialog.dialog('open');
+    $.getJSON('/posts/new', function(response) {      
+      $('<div></div>').html(response.newPost)
+        .dialog({
+          title: 'Basic Dialog',
+          modal: true,
+          width: 480,
+          close: function(event, ui) { redirect("#") }
+        });
+    });
   });
 
 
@@ -55,14 +63,12 @@ var app = $.sammy(function() {
 
 $(function(){
   app.run();
-
-  var $dialog = $('<div></div>')
-    .html('This dialog will show every time!')
-    .dialog({
-      autoOpen: false,
-      title: 'Basic Dialog'
-    });
-
+  
+  $('a[data-remote]').click(function(e) {
+    app.location_proxy.setLocation("#" + $(this).attr('href'));
+    e.preventDefault()
+  });
+                            
 
   $(document).bind('scrollup',function(){
     $("#info").animate({top: Math.max(0, $(window).scrollTop() - $("#list").offset().top)});

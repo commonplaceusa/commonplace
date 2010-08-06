@@ -3,7 +3,7 @@
 
   #actions
     #new 
-      %a Post to your neighbors
+      = link_to "Post to your neighbors", new_post_path, 'data-remote' => true
     = render 'shared/search'
   = render 'shared/filters'
   = yield

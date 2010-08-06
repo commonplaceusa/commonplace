@@ -1,17 +1,15 @@
-#submit_post
-  = link_to "Write a message to your neighborhood here:", "#" + new_post_path
-  - form_for post do |f|
-    = f.text_area :body, "data-label" => '"Anyone have a ladder I could borrow for tomorrow?"&#10;"Watch out for the pothole on Maple Avenue."', :rows => 4
+- form_for post do |f|
+  = f.text_area :body, "data-label" => '"Anyone have a ladder I could borrow for tomorrow?"&#10;"Watch out for the pothole on Maple Avenue."', :rows => 4
     
-    %ul
-      %li
-        = f.radio_button :purpose, "tell"
-        = f.label :purpose, "tell", :for => "post_purpose_tell"
-      %li
-        = f.radio_button :purpose, "ask"
-        = f.label :purpose, "ask", :for => "post_purpose_ask"
-      %li
-        = f.radio_button :purpose, "other"
-        = f.label :purpose, "other", :for => "post_purpose_other"
+  %ul
+    %li
+      = f.radio_button :purpose, "tell"
+      = f.label :purpose, "tell", :for => "post_purpose_tell"
+    %li
+      = f.radio_button :purpose, "ask"
+      = f.label :purpose, "ask", :for => "post_purpose_ask"
+    %li
+      = f.radio_button :purpose, "other"
+      = f.label :purpose, "other", :for => "post_purpose_other"
       
-    = f.submit "Post"
+  = f.submit "Post"
