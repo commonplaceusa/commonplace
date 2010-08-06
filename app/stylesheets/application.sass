@@ -3,63 +3,57 @@
 @import "info_box"
 @import "form"
 @import "organization"
-nav#filters
-  +grid-children
-  +grid-prefix(1)
-  +grid-suffix(1)
-  +clearfix
+
+a.filter
+  +grid(4)
+  text-align: center
+  margin-top: 20px
+  img
+    width: 70px
+    height: 70px
+    background-color: $lightGray
+
+a.filter:first-child
+
+a.filter:last-child
+  +omega
+#actions
+  text-align: right
+#new
   border:
     top: 1px solid $lightGray
     bottom: 1px solid $lightGray
-  +border-radius($defaultRadius)
-  display: block
-  padding:
-    top: 1em
-    bottom: 1em
-  position: relative
+  +grid(16)
+  text-align: center
+  a
+    display: block
+    height: 25px
+    padding: 5px
 
-a.filter
-  margin-top: 20px
-  bottom: 0
-  background-color: $lightestGray
-  +grid(2.5)
-  height: 60px
-  border: 1px solid $lightGray
-  +border-radius($defaultRadius)
-  img
-    width: 60px
-    height: 60px
-            
-form#search
-  +grid-prefix(1 / 4)      
-  +grid(6)
-  +grid-suffix(1 / 4)
-  +omega
-  +border-radius($defaultRadius)
-  background-color: $lightestGray
-  border: 1px solid $lightGray
-  height: 60px
-  padding:
-    top: 10px
-    bottom: 10px
-  input[type=text]
-    @include styledInput
-    +grid(4)
-  input[type=submit]
-    @include styledButton
+
+#search
+  border:
+    top: 1px solid $lightGray
+    bottom: 1px solid $lightGray
+  +grid(8)
+
+
+  text-align: center
+  form
+    padding: 5px
+  
   p
     margin-top: 10px
     @include sans
     font-size: 0.8em
         
 div#list
-  +grid(12 + 1/4)
-  border-right: 1px solid $lightGray
+  +grid(12)
   margin-right: 0
   padding-top: 10px
 
     
 div#info
   +grid(12)
-  +alpha
   margin-top: 10px
+

@@ -1,21 +1,20 @@
 %nav#filters
 
   - link_to  root_url, :id => "wire_button", :class => 'filter', :title => "Your neighborhood wire" do
-    =# image_tag 'all_icon.png'
-
+    %img
+    %p All
   - link_to posts_path(:q => params[:q]), :id => "posts_button", :class => 'filter', :title => "Posts from your neighbors" do
-    =# image_tag 'post_icon.png'
-
+    %img
+    %p Posts
   - link_to announcements_path(:q => params[:q]), :id => "announcements_button", :class => 'filter', :title => "Your announcements" do
-    =# image_tag 'announcement_icon.png'
-
+    %img
+    %p Announcements
   - link_to events_path(:q => params[:q]), :id => "events_button", :class => 'filter', :title => "Community events" do
-    =# image_tag 'event_icon.png'
-
+    %img
+    %p Events
   - link_to users_path(:q => params[:q]), :id => "people_button", :class => 'filter', :title => "Your neighbors" do
-    =# image_tag 'user_icon.png'
-
+    %img
+    %p Neighbors
   - link_to organizations_path(:q => params[:q]), :id => "organizations_button", :class => 'filter', :title => "Your organizations" do
-    =# image_tag 'organization_icon.png'
-
-  = render 'shared/search'
+    %img
+    %p Organizations
