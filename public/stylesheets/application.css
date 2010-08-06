@@ -829,6 +829,11 @@ div#submit_post {
   margin-right: 0;
 }
 
+/* line 2, ../../app/stylesheets/_modal.sass */
+.simplemodal-overlay {
+  background: black;
+}
+
 /* line 7, ../../app/stylesheets/application.sass */
 a.filter {
   display: inline;

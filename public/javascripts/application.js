@@ -49,22 +49,22 @@ var app = $.sammy(function() {
   });
 
   this.get("#/posts/new", function() {
+    var sammy = this;
     $.getJSON('/posts/new', function(response) {      
       $('<div></div>').html(response.newPost)
-        .dialog({
-          title: 'Basic Dialog',
-          modal: true,
-          width: 480,
-          close: function(event, ui) { redirect("#") }
+        .modal({
+          overlayClose: true,
+          onClose: function() { 
+            $.modal.close(); 
+            sammy.redirect("#", "posts");
+          },
         });
     });
   });
 
-
   this.get("#/posts/:id", setInfoBox);
   this.get("#/events/:id", setInfoBox);
   this.get("#/announcements/:id", setInfoBox);
-  
   
   this.get("#/announcements", setList);
   this.get("#/events", setList);
