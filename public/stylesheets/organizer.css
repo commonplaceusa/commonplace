@@ -128,7 +128,7 @@ a img {
   border: none;
 }
 
-/* line 20, ../../app/stylesheets/_core.sass */
+/* line 21, ../../app/stylesheets/_core.sass */
 body {
   padding: 0;
   min-width: 960px;
@@ -137,17 +137,17 @@ body {
   background: white;
 }
 
-/* line 27, ../../app/stylesheets/_core.sass */
+/* line 28, ../../app/stylesheets/_core.sass */
 nav, header, footer {
   display: block;
 }
 
-/* line 30, ../../app/stylesheets/_core.sass */
+/* line 31, ../../app/stylesheets/_core.sass */
 a {
   color: #0033aa;
   text-decoration: none;
 }
-/* line 33, ../../app/stylesheets/_core.sass */
+/* line 34, ../../app/stylesheets/_core.sass */
 a:hover {
   text-decoration: underline;
 }
@@ -177,7 +177,7 @@ footer {
   height: auto;
 }
 
-/* line 40, ../../app/stylesheets/_core.sass */
+/* line 41, ../../app/stylesheets/_core.sass */
 #wrap {
   margin-left: auto;
   margin-right: auto;
@@ -481,11 +481,11 @@ footer {
   margin-right: 0;
 }
 
-/* line 47, ../../app/stylesheets/_core.sass */
+/* line 48, ../../app/stylesheets/_core.sass */
 header h1 {
   padding-top: 20px;
 }
-/* line 49, ../../app/stylesheets/_core.sass */
+/* line 50, ../../app/stylesheets/_core.sass */
 header h1 #community_nav {
   position: relative;
   bottom: 15px;
@@ -501,16 +501,16 @@ header h1 #community_nav {
   padding: 7px 10px;
   font-weight: bold;
 }
-/* line 55, ../../app/stylesheets/_core.sass */
+/* line 56, ../../app/stylesheets/_core.sass */
 header h1 #community_nav:hover {
   background-color: #eeeeee;
 }
-/* line 60, ../../app/stylesheets/_core.sass */
+/* line 61, ../../app/stylesheets/_core.sass */
 header h1 #community_nav.selected_nav {
   background: white !important;
   font-weight: bold !important;
 }
-/* line 64, ../../app/stylesheets/_core.sass */
+/* line 65, ../../app/stylesheets/_core.sass */
 header nav {
   position: absolute;
   background: #eeeeee;
@@ -535,20 +535,20 @@ header nav {
   font-size: 0.8em;
   text-align: right;
 }
-/* line 77, ../../app/stylesheets/_core.sass */
+/* line 78, ../../app/stylesheets/_core.sass */
 header nav a {
   padding: 3px 7px;
   border-left: 1px solid #dddddd;
 }
-/* line 81, ../../app/stylesheets/_core.sass */
+/* line 82, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
   margin-left: 6px;
 }
-/* line 83, ../../app/stylesheets/_core.sass */
+/* line 84, ../../app/stylesheets/_core.sass */
 header nav a:last-child {
   padding-right: 0px;
 }
-/* line 86, ../../app/stylesheets/_core.sass */
+/* line 87, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   height: 14px;
@@ -563,7 +563,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 90, ../../app/stylesheets/_core.sass */
+/* line 91, ../../app/stylesheets/_core.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -585,7 +585,7 @@ header nav form input[type=submit]:hover {
   border-color: #888888;
 }
 
-/* line 93, ../../app/stylesheets/_core.sass */
+/* line 94, ../../app/stylesheets/_core.sass */
 #top {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f8f7f2), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #f8f7f2 0%, #ffffff 100%);
@@ -599,7 +599,7 @@ header nav form input[type=submit]:hover {
   z-index: -3;
 }
 
-/* line 104, ../../app/stylesheets/_core.sass */
+/* line 105, ../../app/stylesheets/_core.sass */
 #main {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -619,19 +619,19 @@ header nav form input[type=submit]:hover {
   margin-right: 0;
 }
 
-/* line 109, ../../app/stylesheets/_core.sass */
+/* line 110, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 113, ../../app/stylesheets/_core.sass */
+/* line 114, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 119, ../../app/stylesheets/_core.sass */
+/* line 120, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   background: #2f2f2f;
@@ -641,11 +641,11 @@ footer {
   color: #dddddd;
   border-top: 1px solid #444444;
 }
-/* line 128, ../../app/stylesheets/_core.sass */
+/* line 129, ../../app/stylesheets/_core.sass */
 footer nav {
   float: right;
 }
-/* line 130, ../../app/stylesheets/_core.sass */
+/* line 131, ../../app/stylesheets/_core.sass */
 footer nav a {
   color: #90a1ab;
 }

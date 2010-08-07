@@ -1,11 +1,22 @@
 - content_tag :li, :class => dom_class(item), :id => dom_id(item), "data-url" => url_for(item) do
-  %span.header
-    %img.icon{ :width => 20, :height => 20 }
-      %span.category= item.class.human_name
-      %span.from from
-      %span.author= item.author_name
+  .header
+    .icon
+    .header_text
+      %span.author= item.owner.name
+      %span.from HAS A NEIGHBORHOOD
+      %span.category= item.class.human_name.upcase
       %span.time= item.time
   - link_to url_for(item), 'data-remote' => true do
+    - if item.is_a? Event
+      .small_calendar= render("events/calendar", :event => item)
+    - else
+      = image_tag item.owner.avatar.url, :width => 50, :height => 50, :class => 'graphic'
+    .body
+      %h3= item.subject
+      - if item.is_a? Event
+        .event_start_time= full_date item.start_time
+      %p
+        = item.body
+        %span.reply_count= item.reply_count
 
-    = render item 
 .replies

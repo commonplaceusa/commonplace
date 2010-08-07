@@ -6,17 +6,87 @@ ul#wire
   li
     +border-radius($defaultRadius)
     border: 1px solid $lightGray
-    margin-top: 20px
-    .header  
-      img.icon
-        +border-radius(3px)
-        text-align: center
-      .time
-        float: right
+    margin-bottom: 1em
+    background: $itemBackground
+    .header
+      +sans
+      height: 22px
+      font-size: 11px
+      position: relative
+      border-bottom: 1px solid $lightGray
+      .icon
+        +inline-block
+        height: 22px
+        width: 22px
+        // background-image: icon!!
+        border-right: 1px solid $lightGray
+      .header_text
+        +inline-block
+        position: absolute
+        border-left: 1px solid white
+        left: 23px
+        right: 0px
+        padding: 5px 7px
+        span.author
+          font-weight: bold
+        span.from, span.category
+          color: $mediumGray
+        .time
+          float: right
+          font-weight: bold
     a
       display: block
-      padding: 2px 0
-      border-top: 1px solid $lightGray
+      border-top: 1px solid white
+      padding: 7px
+      line-height: 120%
+      color: black
+      text-decoration: none
+      img
+        +inline-block
+        vertical-align: top
+        margin-right: 7px
+      .small_calendar
+        +inline-block
+        width: 50px
+        height: 50px
+        margin-right: 7px
+        vertical-align: top
+        text-align: center
+        background-color: $offWhite
+        border: 1px solid $lightGray
+        +border-radius($defaultRadius)
+        .month
+          +sans
+          background-color: $calendarTopColor
+          +border-top-radius($defaultRadius)
+          color: $offWhite
+          padding: 1px 7px
+          font-size: 12px
+          line-height: 16px
+        .date
+          +oldStandardBold
+          font-size: 22px
+          padding-top: 5px
+          
+      .body
+        +inline-block
+        width: 390px
+        h3
+          font-weight: bold
+        p  
+          font-size: 0.9em
+        .event_start_time
+          +sans
+          font-size: 0.7em
+          color: $eventColorDark
+        span.reply_count
+          +sans
+          font-size: 0.7em
+          margin-left: 5px
+          padding: 2px 7px
+          background-color: $lightestGray
+          border: 1px $lightGray solid
+          +border-radius($defaultRadius)
 
     .replies
       display: none

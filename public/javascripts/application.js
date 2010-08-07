@@ -94,7 +94,5 @@ $(function(){
   $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
   
   $('.filter').tipsy({ gravity: 's', delayOut: 0 });
-  
-  $("input[type='text']").goodLabel();
  
 });

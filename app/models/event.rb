@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+
+  require 'lib/helper'
   
   validates_presence_of :name, :description, :start_time
 
@@ -20,15 +22,26 @@ class Event < ActiveRecord::Base
     Event.all
   end
 
-  def author_name
-    organization.name
-  end
-
   def time
-    self.start_time
+    help.event_date self.start_time
   end
-
-    
+  
+  def subject
+    self.name
+  end
+  
+  def body
+    self.description
+  end
+  
+  def owner
+    self.organization
+  end
+  
+  # Delete this soon!
+  def reply_count
+    "4&nbsp;replies"
+  end
 
   def update_lat_and_lng
     if address.blank?

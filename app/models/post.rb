@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
   
+  require "lib/helper"
+  
   belongs_to :user
 
   has_many :thread_memberships, :as => :thread
@@ -9,13 +11,25 @@ class Post < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :body, :message => "Please enter some text for your post"
 
-
-  def author_name
-    user.full_name
-  end
   
   def time
-    self.created_at
+    help.post_date self.created_at
+  end
+  
+  def subject
+    "Hello, World!"
+  end
+  
+  def reply_count
+    if self.replies.size > 0
+      pluralize(self.replies.size, 'reply') + "&nbsp;replies"
+    else
+      "no replies yet"
+    end
+  end
+  
+  def owner
+    self.user
   end
 
   protected

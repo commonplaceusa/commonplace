@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
     first_name + " " + last_name
   end
   
+  def name
+    first_name + " " + last_name[/^./] + "."
+  end
+  
   # TODO: pull this out into a module
   def update_lat_and_lng
     location = Geokit::Geocoders::GoogleGeocoder.geocode(address)

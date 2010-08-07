@@ -1,5 +1,9 @@
 module TimeHelper
   
+  def full_date date
+    date.strftime("%A, %B %d at %I:%M %p")
+  end
+  
   def hours_minutes time
     return time.strftime("%I:%M %p")[/(^0)(.+)/, 2] # strip leading zero
   end
@@ -14,9 +18,9 @@ module TimeHelper
     if diff < 7
       return time_ago_in_words(time, include_seconds = true) + " ago"
     elsif diff < 365
-      return time.strftime("%b %d")
+      return time.strftime("%B %d")
     else
-      return time.strftime("%b %d %Y")
+      return time.strftime("%B %d %Y")
     end
   end
   
