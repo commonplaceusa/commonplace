@@ -1,7 +1,10 @@
 class CommunitiesController < ApplicationController
 
   def show
-    @post = Post.new
+    respond_to do |format|
+      format.json
+      format.html
+    end
   end
 
 end

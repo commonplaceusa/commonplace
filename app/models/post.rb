@@ -8,7 +8,16 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :body, :message => "Please enter some text for your post"
+
+
+  def author_name
+    user.full_name
+  end
   
+  def time
+    self.created_at
+  end
+
   protected
 
   def mark_thread_unread(message)

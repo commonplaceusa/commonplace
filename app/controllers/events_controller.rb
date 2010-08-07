@@ -2,10 +2,18 @@ class EventsController < CommunitiesController
    
   def index
     @events = Event.all.reverse
+    respond_to do |format|
+      format.json
+      format.html
+    end
+      
   end
   
   def new
     @event = Event.new
+    respond_to do |format|
+      format.json
+    end
   end
 
   def create

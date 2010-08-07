@@ -1,5 +1,5 @@
 
-- form_tag '', :method => "get", :id => "search" do
-    = text_field_tag :q, params[:q], "data-label" => "Search"
+#search
+  - form_tag '', :method => "get" do
+    = text_field_tag :q, params[:q], :value => "Search"
     = submit_tag "Go"
-    %p Try: #{ link_to 'hiking' }, #{ link_to 'basketball' }, #{ link_to 'lawn care' }

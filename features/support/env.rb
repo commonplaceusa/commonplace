@@ -16,7 +16,7 @@ Spork.prefork do
   require 'cucumber/rails/active_record'
   require 'cucumber/web/tableish'
 
-
+  
   require 'webrat'
   require 'webrat/core/matchers'
 
@@ -72,4 +72,6 @@ Spork.each_run do
     rescue LoadError => ignore_if_database_cleaner_not_present
     end
   end
+  Community.create(:name => "Cambridge")
+
 end

@@ -5,8 +5,18 @@ class PostsController < CommunitiesController
   
   def index
     @posts = Post.all
+    respond_to do |format|
+      format.json
+      format.html
+    end
   end
-    
+
+  def new
+    respond_to do |format|
+      format.json
+    end
+  end
+  
   def create
     respond_to do |format|
       if @post.save

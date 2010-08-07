@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   
 
   validates_presence_of :first_name, :last_name
+  validates_acceptance_of :privacy_policy, :on => :create
 
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests
@@ -69,6 +70,10 @@ class User < ActiveRecord::Base
       self.mets + 
       self.thread_memberships.unread +
       self.attendances.unread
+  end
+  
+  def inbox_size
+    "Inbox (1)" 
   end
 
   def role_symbols

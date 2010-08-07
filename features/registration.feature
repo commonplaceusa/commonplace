@@ -16,3 +16,8 @@ Feature: registration
     And I check "I accept the privacy policy"
     And I press "Register!"
     Then I should see "Please include some information about yourself for the directory"
+
+
+
+
+  

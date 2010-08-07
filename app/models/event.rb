@@ -20,6 +20,16 @@ class Event < ActiveRecord::Base
     Event.all
   end
 
+  def author_name
+    organization.name
+  end
+
+  def time
+    self.start_time
+  end
+
+    
+
   def update_lat_and_lng
     if address.blank?
       true

@@ -1,15 +1,10 @@
 
-= render 'shared/filters'
-
 #list
-  - permitted_to? :create, :posts do
-    = render 'posts/form', :post => Post.new
-
   = render 'shared/list', :items => current_user.wire
 
 #info
   - if !current_user_session
-    - form_for Account.new, :url => account_path do |f|
+    - form_for User.new, :url => account_path do |f|
       %h2 Register:
 
       = f.label :first_name
