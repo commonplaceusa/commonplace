@@ -70,10 +70,6 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
-SubdomainFu.tld_sizes = { 
-  :development => 0,
-  :test => 0,
-  :production => 1
-}
+
 Haml::Template.options[:format] = :html5
 ActionController::Base.exempt_from_layout 'js.erb', 'json.erb'
