@@ -698,11 +698,12 @@ footer nav a {
   *vertical-align: auto;
   position: absolute;
   border-left: 1px solid white;
+  top: 0px;
   left: 23px;
   right: 0px;
   padding: 5px 7px;
 }
-/* line 27, ../../app/stylesheets/_styled_box.sass */
+/* line 28, ../../app/stylesheets/_styled_box.sass */
 .styled_box .header .header_text span.category {
   color: #888888;
 }
@@ -1235,6 +1236,7 @@ a.filter:last-child {
   *display: inline;
   *vertical-align: auto;
   position: absolute;
+  top: 0px;
   right: 0;
   padding: 3px 15px;
   text-align: center;
@@ -1246,7 +1248,7 @@ a.filter:last-child {
   -khtml-border-top-right-radius: 7px;
   border-top-right-radius: 7px;
 }
-/* line 62, ../../app/stylesheets/application.sass */
+/* line 63, ../../app/stylesheets/application.sass */
 #search p {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -1256,7 +1258,7 @@ a.filter:last-child {
   *vertical-align: auto;
   font-size: 0.9em;
 }
-/* line 65, ../../app/stylesheets/application.sass */
+/* line 66, ../../app/stylesheets/application.sass */
 #search form {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -1265,7 +1267,7 @@ a.filter:last-child {
   *display: inline;
   *vertical-align: auto;
 }
-/* line 67, ../../app/stylesheets/application.sass */
+/* line 68, ../../app/stylesheets/application.sass */
 #search form input[type=text] {
   font-size: 0.7em;
   height: 14px;
@@ -1284,7 +1286,7 @@ a.filter:last-child {
   margin-right: 5px;
   width: 150px;
 }
-/* line 71, ../../app/stylesheets/application.sass */
+/* line 72, ../../app/stylesheets/application.sass */
 #search form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -1306,7 +1308,7 @@ a.filter:last-child {
   border-color: #888888;
 }
 
-/* line 74, ../../app/stylesheets/application.sass */
+/* line 75, ../../app/stylesheets/application.sass */
 div#list {
   display: inline;
   float: left;
@@ -1317,7 +1319,7 @@ div#list {
   margin-left: 8px;
 }
 
-/* line 80, ../../app/stylesheets/application.sass */
+/* line 81, ../../app/stylesheets/application.sass */
 div#info {
   display: inline;
   float: left;
