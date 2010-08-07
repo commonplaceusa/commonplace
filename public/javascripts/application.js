@@ -81,7 +81,7 @@ var app = $.sammy(function() {
 $(function(){
   app.run();
   
-  $('a[data-remote]').click(function(e) {
+  $('a[data-remote]').live('click', function(e) {
     app.location_proxy.setLocation("#" + $(this).attr('href'));
     e.preventDefault()
   });
