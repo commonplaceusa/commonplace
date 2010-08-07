@@ -85,8 +85,7 @@ $(function(){
     app.location_proxy.setLocation("#" + $(this).attr('href'));
     e.preventDefault()
   });
-                            
-
+  
   $(document).bind('scrollup',function(){
     $("#info").animate({top: Math.max(0, $(window).scrollTop() - $("#list").offset().top)});
   });

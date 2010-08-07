@@ -69,21 +69,23 @@ header
     border: 1px solid $lightGray
     border-top: 0px
     +border-bottom-radius($defaultRadius)
-    
-    padding: 6px
+    padding: 4px 0px 4px 7px
     @include sans
     right: 5px
     top: 0px
     font-size: 0.8em
     text-align: right
     a
-      padding: 3px 7px
+      padding: 4px 7px
       border-left: 1px solid $lightGray
       &:hover
+        background-color: white
       &:first-child
-        margin-left: 6px
+        padding-left: 7px
       &:last-child
-        padding-right: 0px
+        padding-right: 7px
+        +border-bottom-right-radius($defaultRadius)
+        
     form
       input[type=text], input[type=password]
         width: 150px

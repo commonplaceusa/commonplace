@@ -528,27 +528,37 @@ header nav {
   -ms-border-bottom-right-radius: 5px;
   -khtml-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  padding: 6px;
+  padding: 4px 0px 4px 7px;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   right: 5px;
   top: 0px;
   font-size: 0.8em;
   text-align: right;
 }
-/* line 79, ../../app/stylesheets/_core.sass */
+/* line 78, ../../app/stylesheets/_core.sass */
 header nav a {
-  padding: 3px 7px;
+  padding: 4px 7px;
   border-left: 1px solid #dddddd;
+}
+/* line 81, ../../app/stylesheets/_core.sass */
+header nav a:hover {
+  background-color: white;
 }
 /* line 83, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
-  margin-left: 6px;
+  padding-left: 7px;
 }
 /* line 85, ../../app/stylesheets/_core.sass */
 header nav a:last-child {
-  padding-right: 0px;
+  padding-right: 7px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -o-border-bottom-right-radius: 5px;
+  -ms-border-bottom-right-radius: 5px;
+  -khtml-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
-/* line 88, ../../app/stylesheets/_core.sass */
+/* line 90, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   height: 14px;
@@ -563,7 +573,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 92, ../../app/stylesheets/_core.sass */
+/* line 94, ../../app/stylesheets/_core.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -585,7 +595,7 @@ header nav form input[type=submit]:hover {
   border-color: #888888;
 }
 
-/* line 95, ../../app/stylesheets/_core.sass */
+/* line 97, ../../app/stylesheets/_core.sass */
 #top {
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f8f7f2), color-stop(100%, #ffffff));
   background-image: -moz-linear-gradient(top, #f8f7f2 0%, #ffffff 100%);
@@ -599,7 +609,7 @@ header nav form input[type=submit]:hover {
   z-index: -3;
 }
 
-/* line 106, ../../app/stylesheets/_core.sass */
+/* line 108, ../../app/stylesheets/_core.sass */
 #main {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -619,19 +629,19 @@ header nav form input[type=submit]:hover {
   margin-right: 0;
 }
 
-/* line 111, ../../app/stylesheets/_core.sass */
+/* line 113, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 115, ../../app/stylesheets/_core.sass */
+/* line 117, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 121, ../../app/stylesheets/_core.sass */
+/* line 123, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   background: #2f2f2f;
@@ -641,11 +651,11 @@ footer {
   color: #dddddd;
   border-top: 1px solid #444444;
 }
-/* line 130, ../../app/stylesheets/_core.sass */
+/* line 132, ../../app/stylesheets/_core.sass */
 footer nav {
   float: right;
 }
-/* line 132, ../../app/stylesheets/_core.sass */
+/* line 134, ../../app/stylesheets/_core.sass */
 footer nav a {
   color: #90a1ab;
 }
