@@ -7,12 +7,18 @@
     / - if current_user_session
     /   = tab_to current_user.community.name, '', :id => 'community_nav'
 
-  %nav
-    - if current_user_session
-      Hi, #{current_user.first_name}!
-      = tab_to(current_user.inbox_size, inbox_url, :id => 'inbox') + tab_to('My Account', account_url, :id => 'account') + tab_to(user_organization_text, organizer_index_url, :id => 'organizations') + tab_to('Log out', logout_url)
-    - else
-      - form_for UserSession.new, :url => user_session_path do |f|
-        = f.text_field :email, 'data-label' => "Email"
-        = f.password_field :password
-        = f.submit "Log in"
+    
+  #styled_main_nav<>
+    #main_nav_left_radius.main_nav_radius_set<>
+      #main_nav_left_radius_inner.main_nav_radius_set
+    %nav<>
+      - if current_user_session
+        #greeting> Hi, #{current_user.first_name}!
+        = tab_to(current_user.inbox_size, inbox_url, :id => 'inbox') + tab_to('My Account', account_url, :id => 'account') + tab_to(user_organization_text, organizer_index_url, :id => 'organizations') + tab_to('Log out', logout_url)
+      - else
+        - form_for UserSession.new, :url => user_session_path do |f|
+          = f.text_field :email, 'data-label' => "Email"
+          = f.password_field :password
+          = f.submit "Log in"
+    #main_nav_right_radius.main_nav_radius_set<>
+      #main_nav_right_radius_inner.main_nav_radius_set

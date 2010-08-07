@@ -65,26 +65,44 @@ header
         background: white !important
         font-weight: bold !important
   
-  nav
+  #styled_main_nav
     position: absolute
-    background: $offWhite
-    // border: 1px solid $lightGray
-    border-top: 0px
-    +border-bottom-radius($defaultRadius)
-    padding: 4px 0px 5px 7px
-    @include sans
     right: 5px
     top: 5px
+    
+  .main_nav_radius_set
+    +inline-block
+    top: 0px
+    vertical-align: top
+    width: 21px
+    height: 21px
+  #main_nav_left_radius, #main_nav_right_radius
+    background-color: $offWhite
+  #main_nav_left_radius_inner
+    background-color: white
+    +border-top-right-radius($defaultRadius)
+  #main_nav_right_radius_inner
+    background-color: white
+    +border-top-left-radius($defaultRadius)
+  nav
+    +inline-block
+    top: 0px
+    vertical-align: top
+    +border-bottom-radius($defaultRadius)
+    background-color: $offWhite
+    padding: 0
+    +sans
     font-size: 0.7em
     text-align: right
+    
+    #greeting, a
+      +inline-block
+      padding: 5px 7px
     a
-      padding: 3px 7px 4px 7px
       border-left: 1px solid $lightGray
       &:hover
-        // background-color: white
       &:first-child
         padding-left: 7px
-        margin-left: 5px
       &:last-child
         padding-right: 7px
         +border-bottom-right-radius($defaultRadius)
