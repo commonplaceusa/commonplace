@@ -1,31 +1,32 @@
-.info_box.user
+.info_box.styled_box.user
   .header
-    %img.icon{ :alt => "user" }
-    %span.category YOUR NEIGHBOR
-    %span.name= user.full_name
-  .bottom
-    = image_tag user.avatar.url, :width => 120, :height => 150, :class => 'graphic'
+    .icon{ :alt => "user" }
+    .header_text
+      %span.category YOUR NEIGHBOR
+    - if true # yes this is awful... but we need to check if you guys are friends
+      %span.met_status You've met
+  #info_box_main
+    #info_box_main_left
+      = image_tag user.avatar.url, :width => 120, :height => 150, :class => 'graphic'
+      = link_to "Have you met?", "", :class => "have_you_met"
+      = link_to "Message #{ user.first_name }", "", :class => "message_me"
     .body
       %h3= user.full_name
-      %table
-        %tbody
-          - if true # unless user.address.nil? || user.address.empty? || user.hide_address
-            %tr#address_row
-              %th.label Address
-              %td= user.address[/(.+?)(,)/, 1]
-
-          - unless user.about.nil? || user.about.empty?
-            %tr#about_row
-              %th.label About me
-              %td= auto_link user.about, :all, :target => '_blank'
-
-          - unless user.interests.empty?
-            %tr#interest_row
-              %th.label Interests 
-              %td= user.interests
-
-          - unless user.skills.empty?
-            %tr#skill_row
-              %th.label Shared skills
-              %td= user.skills
-      .expand Message Me
+      %p.user_about= auto_link user.about, :all, :target => '_blank'
+      %ol.user_info
+        - unless user.interests.empty?
+          %li
+            %span.info_title= "Shared skills".upcase
+            = user.skills
+        - unless user.interests.empty?
+          %li
+            %span.info_title= "Interests".upcase
+            = user.interests
+        - unless user.organizations.empty?
+          %li
+            %span.info_title= "Organizations".upcase
+            = user.organizations.map{ |org| link_to org.name, org, :target => '_blank' }.join(", ")
+        %li
+          %span.info_title= "Address".upcase 
+          = user.address[/(.+?)(,)/, 1]
+      = image_tag "/images/fake_map.png", :id => "map"

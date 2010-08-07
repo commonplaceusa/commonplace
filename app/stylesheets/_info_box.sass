@@ -1,12 +1,72 @@
 .info_box
   +grid(12)
-  +border-radius(5px)
-  border: 1px solid #ddd
-  background: #f7f7f7
   
   .header
-    +grid(12)
-    +alpha
-    +omega
-    border-bottom: 1px solid #ddd
+    span.met_status
+      float: right
+      color: white
+      background-color: $metColor
+      padding: 3px 4px
+      margin-top: 2px
+      margin-right: 2px
+      +border-top-right-radius($defaultRadius)
+      +border-bottom-left-radius($defaultRadius)
+  
+  #info_box_main
+    border-top: 1px solid white
+    padding: 10px 12px
+    line-height: 120%
+    color: black
+    #info_box_main_left
+      +inline-block
+      margin-right: 14px
+      vertical-align: top
+      img
+        margin-bottom: 7px
+      a
+        +border-radius($defaultRadius)
+        width: 100px
+        padding: 4px 10px
+        display: block
+        text-decoration: none
+        +sans
+        font-size: 0.7em
+        color: white
+        text-align: center
+        &.have_you_met
+          background-color: $metColor - #222
+          margin-bottom: 7px
+        &.message_me
+          background-color: $postColorDark
+    .body
+      +inline-block
+      vertical-align: top
+      width: 305px
+      h3
+        color: $postColorDark
+        font-size: 1.5em
+        margin-bottom: 10px
+      p.user_about
+        font-size: 0.9em
+        padding-bottom: 10px
+        border-bottom: 1px solid $lightGray
+      ol.user_info
+        padding-top: 10px
+        border-top: 1px solid white
+        li
+          color: $postColorDark
+          a
+            color: $postColorDark
+          line-height: 110%
+          margin-bottom: 6px
+          font-size: 0.8em
+          span.info_title
+            font-size: 0.8em
+            +sans
+            color: $mediumGray
+      img#map
+        border: 1px solid $lightGray
+        margin-top: 8px
+        
+        
       

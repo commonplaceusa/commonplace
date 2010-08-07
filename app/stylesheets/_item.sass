@@ -4,33 +4,12 @@ ul#wire
   +alpha
   
   li
-    +box-shadow($lightestGray, 1px, 1px, 3px)
-    +border-radius($defaultRadius)
-    border: 1px solid $lightGray
     margin-bottom: 10px
-    background: $itemBackground
     .header
-      +sans
-      height: 22px
-      font-size: 11px
-      position: relative
-      border-bottom: 1px solid $lightGray
-      .icon
-        +inline-block
-        height: 22px
-        width: 22px
-        // background-image: icon!!
-        border-right: 1px solid $lightGray
       .header_text
-        +inline-block
-        position: absolute
-        border-left: 1px solid white
-        left: 23px
-        right: 0px
-        padding: 5px 7px
         span.author
           font-weight: bold
-        span.from, span.category
+        span.from
           color: $mediumGray
         .time
           float: right
