@@ -3,7 +3,7 @@
     .icon{ :alt => "user" }
     .header_text
       %span.category YOUR NEIGHBOR
-    - if true # yes this is awful... but we need to check if you guys are friends
+    - if current_user.mets.exists?(user)
       %span.follow_status You've met
   #info_box_main
     #info_box_main_left
