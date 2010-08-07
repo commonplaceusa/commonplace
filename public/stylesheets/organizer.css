@@ -514,7 +514,7 @@ header h1 #community_nav.selected_nav {
 /* line 68, ../../app/stylesheets/_core.sass */
 header nav {
   position: absolute;
-  background: #eeeeee;
+  background: #f8f7f2;
   border-top: 0px;
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -543,8 +543,9 @@ header nav a {
 /* line 85, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
   padding-left: 7px;
+  margin-left: 5px;
 }
-/* line 87, ../../app/stylesheets/_core.sass */
+/* line 88, ../../app/stylesheets/_core.sass */
 header nav a:last-child {
   padding-right: 7px;
   -moz-border-radius-bottomright: 5px;
@@ -554,7 +555,7 @@ header nav a:last-child {
   -khtml-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-/* line 92, ../../app/stylesheets/_core.sass */
+/* line 93, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   height: 14px;
@@ -569,7 +570,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 96, ../../app/stylesheets/_core.sass */
+/* line 97, ../../app/stylesheets/_core.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -591,9 +592,9 @@ header nav form input[type=submit]:hover {
   border-color: #888888;
 }
 
-/* line 99, ../../app/stylesheets/_core.sass */
+/* line 100, ../../app/stylesheets/_core.sass */
 #top {
-  background: #eeeeee;
+  background: #f8f7f2;
   position: absolute;
   width: 100%;
   height: 5px;
@@ -603,7 +604,7 @@ header nav form input[type=submit]:hover {
   z-index: -3;
 }
 
-/* line 111, ../../app/stylesheets/_core.sass */
+/* line 112, ../../app/stylesheets/_core.sass */
 #main {
   overflow: hidden;
   *zoom: 1;
@@ -619,19 +620,19 @@ header nav form input[type=submit]:hover {
   margin-right: 0;
 }
 
-/* line 117, ../../app/stylesheets/_core.sass */
+/* line 118, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 121, ../../app/stylesheets/_core.sass */
+/* line 122, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 127, ../../app/stylesheets/_core.sass */
+/* line 128, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   background: #2f2f2f;
@@ -641,11 +642,11 @@ footer {
   color: #dddddd;
   border-top: 1px solid #444444;
 }
-/* line 136, ../../app/stylesheets/_core.sass */
+/* line 137, ../../app/stylesheets/_core.sass */
 footer nav {
   float: right;
 }
-/* line 138, ../../app/stylesheets/_core.sass */
+/* line 139, ../../app/stylesheets/_core.sass */
 footer nav a {
   color: #90a1ab;
 }
