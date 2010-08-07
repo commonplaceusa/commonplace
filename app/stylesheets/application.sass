@@ -33,48 +33,40 @@ a.filter
 a.filter:first-child
 
 a.filter:last-child
-  // +omega
   margin-right: 0px
   
 #actions
   +border-top-radius(7px)
   background-color: #4a7eb0
   +linear-gradient(color-stops(#4a7eb0, #46759f))
-  height: 30px
-  // +alpha
-  // +grid(24)
-  // +omega
   color: $offWhite
   position: relative
   width: 972px
   margin-top: 10px
   border-bottom: 1px solid $lightGray
+  +clearfix
   
 #new
-  +inline-block
+  float: left
   text-align: left
-  padding: 5px 15px
+  padding: 8px 15px
 
 #search
-  position: absolute
-  top: 0px
-  right: 0
-  padding: 3px 15px
+  float: right
+  padding: 6px 15px
   height: 24px
   text-align: center
   background-color: #396081
   +border-top-right-radius(7px)
-  p
-    +inline-block
-    font-size: 0.9em
   form
-    +inline-block
     input[type=text]
       font-size: 0.7em
       @include styledInput
-      +grid(4)
+      +inline-block
+      width: 300px
     input[type=submit]
       @include styledButton
+
         
 div#list
   +grid(12)
