@@ -1,6 +1,31 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.with_options :conditions => { :subdomain => /[A-Za-z]+/ }, :shallow => true do |community|
 
-  map.root :controller => 'communities', :action => 'show', :id => "Cambridge"
+    community.root :controller => "communities", :action => "show"
+
+    community.resources :posts  do |post|
+      post.resources :replies
+    end
+    
+    community.resources :announcements
+    
+    community.resources :events do |event|
+      event.resource :attendance
+      event.resources :referrals
+    end
+    
+    community.resources :users do |user|
+      user.resource :met, :only => [:create]
+    end
+    
+    community.resources :invites
+    
+    community.resources :organizations do |org|
+      org.resource :subscription, :only => [:index, :show, :create, :destroy]
+    end
+  end
+  map.root :controller => 'site'
   map.about 'about', :controller => 'site', :action => 'about'
   map.privacy 'privacy', :controller => 'site', :action => 'privacy'
   map.terms 'terms', :controller => 'site', :action => 'terms'
@@ -22,29 +47,6 @@ ActionController::Routing::Routes.draw do |map|
     org.resources :announcements, :controller => "organizer/announcements"
     org.resources :subscriptions, :controller => "organizer/subscriptions"
   end
-  
-  
-  map.resources :posts  do |post|
-    post.resources :replies
-  end
-  
-  map.resources :announcements
-  
-  map.resources :events do |event|
-    event.resource :attendance
-    event.resources :referrals
-  end
-  
-  map.resources :users do |user|
-    user.resource :met, :only => [:create]
-  end
-  
-  map.resources :invites
-    
-  map.resources :organizations do |org|
-    org.resource :subscription, :only => [:index, :show, :create, :destroy]
-  end
-
   
   # The priority is based upon order of creation: first created -> highest priority.
 

@@ -1,9 +1,9 @@
 class SiteController < ApplicationController
 
   filter_access_to :all
-  layout "public"
   
   def index 
+    @communities = Community.all
   end
 
   def about ; end

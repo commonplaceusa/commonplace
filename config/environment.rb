@@ -19,6 +19,8 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
+  
+  config.gem 'subdomain-fu'
 
   config.gem 'nested_layouts'
   
@@ -68,5 +70,10 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
+SubdomainFu.tld_sizes = { 
+  :development => 0,
+  :test => 0,
+  :production => 1
+}
 Haml::Template.options[:format] = :html5
 ActionController::Base.exempt_from_layout 'js.erb', 'json.erb'
