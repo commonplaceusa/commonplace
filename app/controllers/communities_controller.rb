@@ -11,7 +11,7 @@ class CommunitiesController < ApplicationController
   private
   
   def current_community
-    @current_community = Community.find_by_name!(current_subdomain)
+    @current_community = Community.find_by_name(current_subdomain)
   end
   
 
