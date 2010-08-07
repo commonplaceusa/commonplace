@@ -88,7 +88,7 @@ $(function(){
   });
   
   $(document).bind('scrollup',function(){
-    $(".info_box").animate({top: Math.max(0, $(window).scrollTop() - $("#info").offset().top)});
+    $(".info_box").animate({top: Math.max(0, $(window).scrollTop() - $("#info").offset().top + 10)});
   });
   
   $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
