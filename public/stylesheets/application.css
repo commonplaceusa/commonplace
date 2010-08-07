@@ -946,6 +946,12 @@ ul#wire li .replies {
 }
 
 /* line 1, ../../app/stylesheets/_info_box.sass */
+.fixed .info_box {
+  position: fixed;
+  top: 10px;
+}
+
+/* line 5, ../../app/stylesheets/_info_box.sass */
 .info_box {
   position: relative;
   display: inline;
@@ -954,7 +960,7 @@ ul#wire li .replies {
   margin-right: 5px;
   width: 470px;
 }
-/* line 6, ../../app/stylesheets/_info_box.sass */
+/* line 10, ../../app/stylesheets/_info_box.sass */
 .info_box .header span.follow_status {
   float: right;
   color: white;
@@ -975,14 +981,14 @@ ul#wire li .replies {
   -khtml-border-bottom-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-/* line 16, ../../app/stylesheets/_info_box.sass */
+/* line 20, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main {
   border-top: 1px solid white;
   padding: 10px 12px;
   line-height: 120%;
   color: black;
 }
-/* line 21, ../../app/stylesheets/_info_box.sass */
+/* line 25, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main #info_box_main_left {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -993,11 +999,11 @@ ul#wire li .replies {
   margin-right: 14px;
   vertical-align: top;
 }
-/* line 25, ../../app/stylesheets/_info_box.sass */
+/* line 29, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main #info_box_main_left img {
   margin-bottom: 7px;
 }
-/* line 27, ../../app/stylesheets/_info_box.sass */
+/* line 31, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main #info_box_main_left a {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1014,24 +1020,24 @@ ul#wire li .replies {
   color: white;
   text-align: center;
 }
-/* line 37, ../../app/stylesheets/_info_box.sass */
+/* line 41, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main #info_box_main_left a#follow_link {
   background-color: #89a362;
   margin-bottom: 7px;
 }
-/* line 40, ../../app/stylesheets/_info_box.sass */
+/* line 44, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main #info_box_main_left a#follow_link:hover {
   background-color: #abc584;
 }
-/* line 42, ../../app/stylesheets/_info_box.sass */
+/* line 46, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main #info_box_main_left a#message_me {
   background-color: #ca4b4b;
 }
-/* line 44, ../../app/stylesheets/_info_box.sass */
+/* line 48, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main #info_box_main_left a#message_me:hover {
   background-color: #ec6d6d;
 }
-/* line 46, ../../app/stylesheets/_info_box.sass */
+/* line 50, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -1042,41 +1048,41 @@ ul#wire li .replies {
   vertical-align: top;
   width: 305px;
 }
-/* line 50, ../../app/stylesheets/_info_box.sass */
+/* line 54, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body h3 {
   color: #ca4b4b;
   font-size: 1.5em;
   margin-bottom: 10px;
 }
-/* line 54, ../../app/stylesheets/_info_box.sass */
+/* line 58, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body p.user_about {
   font-size: 0.9em;
   padding-bottom: 10px;
   border-bottom: 1px solid #dddddd;
 }
-/* line 58, ../../app/stylesheets/_info_box.sass */
+/* line 62, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info {
   padding-top: 10px;
   border-top: 1px solid white;
 }
-/* line 61, ../../app/stylesheets/_info_box.sass */
+/* line 65, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li {
   color: #ca4b4b;
   line-height: 110%;
   margin-bottom: 6px;
   font-size: 0.8em;
 }
-/* line 63, ../../app/stylesheets/_info_box.sass */
+/* line 67, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li a {
   color: #ca4b4b;
 }
-/* line 68, ../../app/stylesheets/_info_box.sass */
+/* line 72, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li span.info_title {
   font-size: 0.8em;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #888888;
 }
-/* line 72, ../../app/stylesheets/_info_box.sass */
+/* line 76, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body img#map {
   border: 1px solid #dddddd;
   margin-top: 8px;

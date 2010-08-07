@@ -2,7 +2,8 @@ class PostsController < CommunitiesController
   before_filter :load_post
 
   filter_access_to :all
-  
+
+  caches_action :show
   def index
     @posts = Post.all
     respond_to do |format|
