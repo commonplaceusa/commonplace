@@ -1,5 +1,6 @@
 
 #search
+  %p Search: 
   - form_tag '', :method => "get" do
-    = text_field_tag :q, params[:q], :value => "Search"
-    = submit_tag "Go"
+    = text_field_tag :q, params[:q], :type => "search"
+    / = submit_tag "Go"

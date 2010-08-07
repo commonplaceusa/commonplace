@@ -5,59 +5,78 @@
 @import form
 @import organization
 @import modal
+
+#main
+  margin-top: 10px
+  border: 1px solid $lightGray
+  +border-top-radius(7px)
+  border-bottom: none
+
+nav#filters
+  +linear-gradient(color-stops($offWhite, white))
+  padding: 20px 60px
+  display: block
+  z-index: -1
+  
 a.filter
-  +grid(4)
+  // +grid(4)
+  +inline-block
   text-align: center
-  margin-top: 20px
-  margin-bottom: 15px
+  margin-right: 70px
   img
-    width: 70px
+    width: 80px
     height: 70px
     background-color: $lightGray
+    +border-radius(7px)
 
 a.filter:first-child
 
 a.filter:last-child
-  +omega
+  // +omega
+  margin-right: 0px
+  
 #actions
-  text-align: right
-#new
-  border:
-    top: 1px solid $lightGray
-    bottom: 1px solid $lightGray
-  +grid(16)
-  text-align: center
+  +border-top-radius(7px)
+  +linear-gradient(color-stops(#4a7eb0, #46759f))
   height: 30px
-  a
-    padding: 5px
+  // +alpha
+  // +grid(24)
+  // +omega
+  color: $offWhite
+  position: relative
+  
+  
+#new
+  +inline-block
+  text-align: left
+  padding: 5px 15px
 
 #search
-  border:
-    top: 1px solid $lightGray
-    bottom: 1px solid $lightGray
-  +grid(8)
-  height: 30px
+  +inline-block
+  position: absolute
+  right: 0
+  padding: 3px 15px
   text-align: center
+  background-color: #396081
+  +border-top-right-radius(7px)
+  p
+    +inline-block
+    font-size: 0.9em
   form
-    padding: 5px
+    +inline-block
     input[type=text]
-      font-size: 0.8em
+      font-size: 0.7em
       @include styledInput
       +grid(4)
     input[type=submit]
       @include styledButton
-  p
-    margin-top: 10px
-    @include sans
-    font-size: 0.8em
         
 div#list
   +grid(12)
-  margin-right: 0
-  padding-top: 10px
+  margin-right: 0px
+  margin-left: 8px
 
     
 div#info
   +grid(12)
-  margin-top: 10px
 

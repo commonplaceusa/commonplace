@@ -2,7 +2,8 @@
   +box-shadow($lightestGray, 1px, 1px, 3px)
   +border-radius($defaultRadius)
   border: 1px solid $lightGray
-  background: $itemBackground
+  // background: $itemBackground
+  +linear-gradient(color-stops($itemBackground + #060606, $itemBackground ))
 
   .header
     +sans

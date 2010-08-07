@@ -1,9 +1,9 @@
 
 - inside_layout 'application' do
-
   #actions
-    #new 
-      = link_to "Post to your neighbors", new_post_path, 'data-remote' => true
+    #new See what's going on in your community:
+    /= link_to "Post to your neighbors", new_post_path, 'data-remote' => true
+    
     = render 'shared/search'
   = render 'shared/filters'
   = yield
