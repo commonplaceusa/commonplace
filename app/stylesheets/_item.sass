@@ -13,7 +13,7 @@ ul#wire
           color: $mediumGray
         .time
           float: right
-          font-weight: bold
+          color: $mediumGray
     a
       display: block
       border-top: 1px solid white
@@ -56,7 +56,6 @@ ul#wire
         +inline-block
         width: 390px
         h3
-          font-weight: bold
         .event_start_time
           +sans
           font-size: 0.7em
@@ -66,12 +65,11 @@ ul#wire
         span.reply_count
           +sans
           font-size: 0.7em
-          // margin-left: 5px
           padding: 2px 7px
           background-color: $lightestGray
           +border-radius($defaultRadius)
           vertical-align: top
-    
+            
     &.post
       +styled-item($postColor, $postColorDark)
     &.announcement
