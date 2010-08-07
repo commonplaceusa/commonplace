@@ -2,7 +2,7 @@
   +grid(12)
   
   .header
-    span.met_status
+    span.follow_status
       float: right
       color: white
       background-color: $metColor
@@ -33,11 +33,15 @@
         font-size: 0.7em
         color: white
         text-align: center
-        &.have_you_met
+        &#follow_link
           background-color: $metColor - #222
           margin-bottom: 7px
-        &.message_me
+          &:hover
+            background-color: $metColor
+        &#message_me
           background-color: $postColorDark
+          &:hover
+            background-color: $postColorDark + #222
     .body
       +inline-block
       vertical-align: top

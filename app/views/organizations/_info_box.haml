@@ -1,31 +1,30 @@
-.info_box.organization
+.info_box.styled_box.organization
   .header
-    %img.icon{ :alt => "organization" }
-    %span.category ORGANIZATION
-    %span.name= organization.name
-  .bottom
-    = image_tag organization.avatar.url, :width => 120, :height => 150, :class => 'graphic'
+    .icon{ :alt => "organization" }
+    .header_text
+      %span.category COMMUNITY ORGANIZATION
+    - if true # yes this is awful... but we need to check if you guys are friends
+      %span.follow_status Subscribed
+  #info_box_main
+    #info_box_main_left
+      = image_tag organization.avatar.url, :width => 120, :height => 150, :class => 'graphic'
+      = link_to "Subscribe", "", :id => "follow_link"
+      = link_to "Message #{ organization.name }", "", :id => "message_me"
     .body
       %h3= organization.name
-      %table
-        %tbody
-          %tr#about
-            %th.label About Us
-            %td= organization.about
+      %p.user_about= auto_link organization.about, :all, :target => '_blank'
+      %ol.user_info
+        - organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+          %li
+            %span.info_title= p.subject.upcase
+            = p.body
             
-          - organization.profile_fields.each do |field|
-            %tr.profile_field
-              %th.label= field.subject
-              %td= field.body
-          
-          - if organization.phone
-            %tr#phone
-              %th.label Phone
-              %td= organization.phone
-        
-          - unless organization.address.nil? || organization.address.empty?
-            %tr#address_row
-              %th.label Address
-              %td= organization.address[/(.+?)(,)/, 1]
-
-      .expand Contact Us
+        - if organization.phone
+          %li
+            %span.info_title= "Phone".upcase
+            = organization.phone
+            
+        %li
+          %span.info_title= "Address".upcase 
+          = organization.address[/(.+?)(,)/, 1]
+      = image_tag "/images/fake_map.png", :id => "map"

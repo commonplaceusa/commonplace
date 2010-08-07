@@ -910,7 +910,7 @@ ul#wire li .replies {
   width: 470px;
 }
 /* line 5, ../../app/stylesheets/_info_box.sass */
-.info_box .header span.met_status {
+.info_box .header span.follow_status {
   float: right;
   color: white;
   background-color: #abc584;
@@ -970,15 +970,23 @@ ul#wire li .replies {
   text-align: center;
 }
 /* line 36, ../../app/stylesheets/_info_box.sass */
-.info_box #info_box_main #info_box_main_left a.have_you_met {
+.info_box #info_box_main #info_box_main_left a#follow_link {
   background-color: #89a362;
   margin-bottom: 7px;
 }
 /* line 39, ../../app/stylesheets/_info_box.sass */
-.info_box #info_box_main #info_box_main_left a.message_me {
-  background-color: #ca4b4b;
+.info_box #info_box_main #info_box_main_left a#follow_link:hover {
+  background-color: #abc584;
 }
 /* line 41, ../../app/stylesheets/_info_box.sass */
+.info_box #info_box_main #info_box_main_left a#message_me {
+  background-color: #ca4b4b;
+}
+/* line 43, ../../app/stylesheets/_info_box.sass */
+.info_box #info_box_main #info_box_main_left a#message_me:hover {
+  background-color: #ec6d6d;
+}
+/* line 45, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -989,41 +997,41 @@ ul#wire li .replies {
   vertical-align: top;
   width: 305px;
 }
-/* line 45, ../../app/stylesheets/_info_box.sass */
+/* line 49, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body h3 {
   color: #ca4b4b;
   font-size: 1.5em;
   margin-bottom: 10px;
 }
-/* line 49, ../../app/stylesheets/_info_box.sass */
+/* line 53, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body p.user_about {
   font-size: 0.9em;
   padding-bottom: 10px;
   border-bottom: 1px solid #dddddd;
 }
-/* line 53, ../../app/stylesheets/_info_box.sass */
+/* line 57, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info {
   padding-top: 10px;
   border-top: 1px solid white;
 }
-/* line 56, ../../app/stylesheets/_info_box.sass */
+/* line 60, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li {
   color: #ca4b4b;
   line-height: 110%;
   margin-bottom: 6px;
   font-size: 0.8em;
 }
-/* line 58, ../../app/stylesheets/_info_box.sass */
+/* line 62, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li a {
   color: #ca4b4b;
 }
-/* line 63, ../../app/stylesheets/_info_box.sass */
+/* line 67, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li span.info_title {
   font-size: 0.8em;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #888888;
 }
-/* line 67, ../../app/stylesheets/_info_box.sass */
+/* line 71, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body img#map {
   border: 1px solid #dddddd;
   margin-top: 8px;
