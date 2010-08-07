@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
     if self.replies.size > 0
       pluralize(self.replies.size, 'reply') + "&nbsp;replies"
     else
-      "no replies yet"
+      "no&nbsp;replies&nbsp;yet"
     end
   end
   

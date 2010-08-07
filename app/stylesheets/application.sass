@@ -7,16 +7,17 @@
 @import modal
 
 #main
-  margin-top: 10px
   border: 1px solid $lightGray
-  +border-top-radius(7px)
+  border-top: none
   border-bottom: none
 
 nav#filters
+  background-color: $offWhite
   +linear-gradient(color-stops($offWhite, white))
   padding: 20px 60px
   display: block
-  z-index: -1
+  height: 72px
+  margin-bottom: 10px
   
 a.filter
   // +grid(4)
@@ -37,6 +38,7 @@ a.filter:last-child
   
 #actions
   +border-top-radius(7px)
+  background-color: #4a7eb0
   +linear-gradient(color-stops(#4a7eb0, #46759f))
   height: 30px
   // +alpha
@@ -44,7 +46,9 @@ a.filter:last-child
   // +omega
   color: $offWhite
   position: relative
-  
+  width: 972px
+  margin-top: 10px
+  border-bottom: 1px solid $lightGray
   
 #new
   +inline-block
@@ -57,6 +61,7 @@ a.filter:last-child
   top: 0px
   right: 0
   padding: 3px 15px
+  height: 24px
   text-align: center
   background-color: #396081
   +border-top-right-radius(7px)
