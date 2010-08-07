@@ -7,8 +7,9 @@ function selectTab(tab) {
 
 function setInfoBox() {
    $.getJSON(this.path.slice(1), function(response) {
-    $("#info").html(response.info_box).css("top", 
-        Math.max(0, $(window).scrollTop() - $("#list").offset().top));
+     $("#info").html(response.info_box);
+     $(".info_box").css("top", 
+                        Math.max(0, $(window).scrollTop() - $("#info").offset().top));
   });
 } 
 
@@ -87,7 +88,7 @@ $(function(){
   });
   
   $(document).bind('scrollup',function(){
-    $("#info").animate({top: Math.max(0, $(window).scrollTop() - $("#list").offset().top)});
+    $(".info_box").animate({top: Math.max(0, $(window).scrollTop() - $("#info").offset().top)});
   });
   
   $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
