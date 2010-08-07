@@ -605,12 +605,6 @@ header nav form input[type=submit]:hover {
 
 /* line 111, ../../app/stylesheets/_core.sass */
 #main {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
   overflow: hidden;
   *zoom: 1;
   width: 970px;
@@ -625,19 +619,19 @@ header nav form input[type=submit]:hover {
   margin-right: 0;
 }
 
-/* line 118, ../../app/stylesheets/_core.sass */
+/* line 117, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 122, ../../app/stylesheets/_core.sass */
+/* line 121, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 128, ../../app/stylesheets/_core.sass */
+/* line 127, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   background: #2f2f2f;
@@ -647,11 +641,11 @@ footer {
   color: #dddddd;
   border-top: 1px solid #444444;
 }
-/* line 137, ../../app/stylesheets/_core.sass */
+/* line 136, ../../app/stylesheets/_core.sass */
 footer nav {
   float: right;
 }
-/* line 139, ../../app/stylesheets/_core.sass */
+/* line 138, ../../app/stylesheets/_core.sass */
 footer nav a {
   color: #90a1ab;
 }
