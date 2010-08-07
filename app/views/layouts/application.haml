@@ -23,16 +23,9 @@
   %body.bp
   
     #top
-    
     #wrap
       = render 'shared/header'
-      #actions
-        #new See what's going on in your community:
-        /= link_to "Post to your neighbors", new_post_path, 'data-remote' => true
-
-        = render 'shared/search'
-      #main  
-        = yield
+      = yield
 
       #wrap_footer
     = render 'shared/footer'

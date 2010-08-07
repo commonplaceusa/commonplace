@@ -537,7 +537,7 @@ header nav {
 }
 /* line 80, ../../app/stylesheets/_core.sass */
 header nav a {
-  padding: 4px 7px;
+  padding: 3px 7px 4px 7px;
   border-left: 1px solid #dddddd;
 }
 /* line 85, ../../app/stylesheets/_core.sass */
