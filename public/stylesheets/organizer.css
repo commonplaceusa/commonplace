@@ -580,7 +580,7 @@ header nav form input[type=submit] {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 25, ../../app/stylesheets/_mixins.sass */
+/* line 36, ../../app/stylesheets/_mixins.sass */
 header nav form input[type=submit]:hover {
   border-color: #888888;
 }

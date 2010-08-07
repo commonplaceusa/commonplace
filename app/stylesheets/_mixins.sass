@@ -1,3 +1,14 @@
+@mixin styled-item($color1, $color2)
+  &:hover
+    .header .icon
+      background-color: $color1
+  .header .header_text span.author
+    color: $color2
+  a .body p span.reply_count
+    color: $color2
+    background-color: $color1
+    
+
 @mixin sans
   font-family: Helvetica, Arial, Verdana, sans-serif
 

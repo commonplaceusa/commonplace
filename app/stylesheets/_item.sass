@@ -7,7 +7,7 @@ ul#wire
     +box-shadow($lightestGray, 1px, 1px, 3px)
     +border-radius($defaultRadius)
     border: 1px solid $lightGray
-    margin-bottom: 1em
+    margin-bottom: 10px
     background: $itemBackground
     .header
       +sans
@@ -53,22 +53,22 @@ ul#wire
         margin-right: 7px
         vertical-align: top
         text-align: center
-        background-color: $offWhite
+        background-color: white
         border: 1px solid $lightGray
         +border-radius($defaultRadius)
         .month
           +sans
           background-color: $calendarTopColor
           +border-top-radius($defaultRadius)
-          color: $offWhite
+          color: white
           padding: 1px 7px
-          font-size: 12px
+          font-size: 11px
           line-height: 16px
         .date
           +oldStandardBold
           font-size: 22px
           padding-top: 5px
-          
+        
       .body
         +inline-block
         width: 390px
@@ -86,8 +86,14 @@ ul#wire
           margin-left: 5px
           padding: 2px 7px
           background-color: $lightestGray
-          border: 1px $lightGray solid
           +border-radius($defaultRadius)
+    
+    &.post
+      +styled-item($postColor, $postColorDark)
+    &.announcement
+      +styled-item($announcementColor, $announcementColorDark)
+    &.event
+      +styled-item($eventColor, $eventColorDark)
 
     .replies
       display: none

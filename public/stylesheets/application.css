@@ -580,7 +580,7 @@ header nav form input[type=submit] {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 25, ../../app/stylesheets/_mixins.sass */
+/* line 36, ../../app/stylesheets/_mixins.sass */
 header nav form input[type=submit]:hover {
   border-color: #888888;
 }
@@ -672,7 +672,7 @@ ul#wire li {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   border: 1px solid #dddddd;
-  margin-bottom: 1em;
+  margin-bottom: 10px;
   background: #f7f7f7;
 }
 /* line 12, ../../app/stylesheets/_item.sass */
@@ -755,7 +755,7 @@ ul#wire li a .small_calendar {
   margin-right: 7px;
   vertical-align: top;
   text-align: center;
-  background-color: #f8f7f2;
+  background-color: white;
   border: 1px solid #dddddd;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -780,9 +780,9 @@ ul#wire li a .small_calendar .month {
   -ms-border-top-right-radius: 5px;
   -khtml-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
-  color: #f8f7f2;
+  color: white;
   padding: 1px 7px;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 16px;
 }
 /* line 67, ../../app/stylesheets/_item.sass */
@@ -823,7 +823,6 @@ ul#wire li a .body span.reply_count {
   margin-left: 5px;
   padding: 2px 7px;
   background-color: #eeeeee;
-  border: 1px #dddddd solid;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
@@ -831,7 +830,46 @@ ul#wire li a .body span.reply_count {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 92, ../../app/stylesheets/_item.sass */
+/* line 3, ../../app/stylesheets/_mixins.sass */
+ul#wire li.post:hover .header .icon {
+  background-color: #edd0d0;
+}
+/* line 5, ../../app/stylesheets/_mixins.sass */
+ul#wire li.post .header .header_text span.author {
+  color: #ca4b4b;
+}
+/* line 7, ../../app/stylesheets/_mixins.sass */
+ul#wire li.post a .body p span.reply_count {
+  color: #ca4b4b;
+  background-color: #edd0d0;
+}
+/* line 3, ../../app/stylesheets/_mixins.sass */
+ul#wire li.announcement:hover .header .icon {
+  background-color: #e7e7e7;
+}
+/* line 5, ../../app/stylesheets/_mixins.sass */
+ul#wire li.announcement .header .header_text span.author {
+  color: #a1a1a1;
+}
+/* line 7, ../../app/stylesheets/_mixins.sass */
+ul#wire li.announcement a .body p span.reply_count {
+  color: #a1a1a1;
+  background-color: #e7e7e7;
+}
+/* line 3, ../../app/stylesheets/_mixins.sass */
+ul#wire li.event:hover .header .icon {
+  background-color: #d4e5ef;
+}
+/* line 5, ../../app/stylesheets/_mixins.sass */
+ul#wire li.event .header .header_text span.author {
+  color: #4b9cca;
+}
+/* line 7, ../../app/stylesheets/_mixins.sass */
+ul#wire li.event a .body p span.reply_count {
+  color: #4b9cca;
+  background-color: #d4e5ef;
+}
+/* line 98, ../../app/stylesheets/_item.sass */
 ul#wire li .replies {
   display: none;
 }
@@ -1064,7 +1102,7 @@ a.filter:last-child {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 25, ../../app/stylesheets/_mixins.sass */
+/* line 36, ../../app/stylesheets/_mixins.sass */
 #search form input[type=submit]:hover {
   border-color: #888888;
 }
