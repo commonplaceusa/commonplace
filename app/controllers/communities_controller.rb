@@ -1,4 +1,5 @@
 class CommunitiesController < ApplicationController
+  before_filter :current_community
 
   def show
     respond_to do |format|
@@ -6,5 +7,12 @@ class CommunitiesController < ApplicationController
       format.html
     end
   end
+
+  private
+  
+  def current_community
+    @current_community = Community.find_by_name!(current_subdomain)
+  end
+  
 
 end
