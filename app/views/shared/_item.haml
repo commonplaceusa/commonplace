@@ -10,7 +10,8 @@
     - if item.is_a? Event
       .small_calendar= render("events/calendar", :event => item)
     - else
-      = image_tag item.owner.avatar.url, :width => 50, :height => 50, :class => 'graphic'
+      .graphic{ :style => "background-image: url('#{ item.owner.avatar.url }')" }
+      =# image_tag item.owner.avatar.url, :width => 50, :height => 50, :class => 'graphic'
     .body
       %h3= item.subject
       - if item.is_a? Event

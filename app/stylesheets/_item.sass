@@ -42,7 +42,11 @@ ul#wire
       line-height: 120%
       color: black
       text-decoration: none
-      img
+      .graphic
+        height: 50px
+        width: 50px
+        +border-radius($defaultRadius)
+        border: 1px solid $lightGray
         +inline-block
         vertical-align: top
         margin-right: 7px
@@ -74,19 +78,20 @@ ul#wire
         width: 390px
         h3
           font-weight: bold
-        p  
-          font-size: 0.9em
         .event_start_time
           +sans
           font-size: 0.7em
           color: $eventColorDark
+        p
+          font-size: 0.9em
         span.reply_count
           +sans
           font-size: 0.7em
-          margin-left: 5px
+          // margin-left: 5px
           padding: 2px 7px
           background-color: $lightestGray
           +border-radius($defaultRadius)
+          vertical-align: top
     
     &.post
       +styled-item($postColor, $postColorDark)

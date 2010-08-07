@@ -732,7 +732,16 @@ ul#wire li a {
   text-decoration: none;
 }
 /* line 45, ../../app/stylesheets/_item.sass */
-ul#wire li a img {
+ul#wire li a .graphic {
+  height: 50px;
+  width: 50px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
   display: -moz-inline-box;
   -moz-box-orient: vertical;
   display: inline-block;
@@ -742,7 +751,7 @@ ul#wire li a img {
   vertical-align: top;
   margin-right: 7px;
 }
-/* line 49, ../../app/stylesheets/_item.sass */
+/* line 53, ../../app/stylesheets/_item.sass */
 ul#wire li a .small_calendar {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -764,7 +773,7 @@ ul#wire li a .small_calendar {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 59, ../../app/stylesheets/_item.sass */
+/* line 63, ../../app/stylesheets/_item.sass */
 ul#wire li a .small_calendar .month {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   background-color: #a93f40;
@@ -785,14 +794,14 @@ ul#wire li a .small_calendar .month {
   font-size: 11px;
   line-height: 16px;
 }
-/* line 67, ../../app/stylesheets/_item.sass */
+/* line 71, ../../app/stylesheets/_item.sass */
 ul#wire li a .small_calendar .date {
   font-family: "OldStandardTTBold", Times, serif;
   font-weight: normal;
   font-size: 22px;
   padding-top: 5px;
 }
-/* line 72, ../../app/stylesheets/_item.sass */
+/* line 76, ../../app/stylesheets/_item.sass */
 ul#wire li a .body {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -802,25 +811,24 @@ ul#wire li a .body {
   *vertical-align: auto;
   width: 390px;
 }
-/* line 75, ../../app/stylesheets/_item.sass */
+/* line 79, ../../app/stylesheets/_item.sass */
 ul#wire li a .body h3 {
   font-weight: bold;
 }
-/* line 77, ../../app/stylesheets/_item.sass */
-ul#wire li a .body p {
-  font-size: 0.9em;
-}
-/* line 79, ../../app/stylesheets/_item.sass */
+/* line 81, ../../app/stylesheets/_item.sass */
 ul#wire li a .body .event_start_time {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 0.7em;
   color: #4b9cca;
 }
-/* line 83, ../../app/stylesheets/_item.sass */
+/* line 85, ../../app/stylesheets/_item.sass */
+ul#wire li a .body p {
+  font-size: 0.9em;
+}
+/* line 87, ../../app/stylesheets/_item.sass */
 ul#wire li a .body span.reply_count {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 0.7em;
-  margin-left: 5px;
   padding: 2px 7px;
   background-color: #eeeeee;
   -moz-border-radius: 5px;
@@ -829,6 +837,7 @@ ul#wire li a .body span.reply_count {
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
+  vertical-align: top;
 }
 /* line 3, ../../app/stylesheets/_mixins.sass */
 ul#wire li.post:hover .header .icon {
@@ -869,7 +878,7 @@ ul#wire li.event a .body p span.reply_count {
   color: #4b9cca;
   background-color: #d4e5ef;
 }
-/* line 98, ../../app/stylesheets/_item.sass */
+/* line 103, ../../app/stylesheets/_item.sass */
 ul#wire li .replies {
   display: none;
 }
