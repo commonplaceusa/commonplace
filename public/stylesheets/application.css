@@ -153,37 +153,14 @@ a:hover {
   text-decoration: underline;
 }
 
-/* line 10, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-html, body {
-  height: 100%;
-}
-
-/* line 12, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-#wrap {
-  clear: both;
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin-bottom: -auto;
-}
-/* line 18, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-#wrap #wrap_footer {
-  height: auto;
-}
-
-/* line 20, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-footer {
-  clear: both;
-  position: relative;
-  height: auto;
-}
-
 /* line 43, ../../app/stylesheets/_core.sass */
 #wrap {
   margin-left: auto;
   margin-right: auto;
   width: 960px;
   position: relative;
+  overflow: hidden;
+  width: 972px;
 }
 /* line 33, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
 #wrap .grid_1, #wrap .grid_2, #wrap .grid_3, #wrap .grid_4, #wrap .grid_5, #wrap .grid_6, #wrap .grid_7, #wrap .grid_8, #wrap .grid_9, #wrap .grid_10, #wrap .grid_11, #wrap .grid_12, #wrap .grid_13, #wrap .grid_14, #wrap .grid_15, #wrap .grid_16, #wrap .grid_17, #wrap .grid_18, #wrap .grid_19, #wrap .grid_20, #wrap .grid_21, #wrap .grid_22, #wrap .grid_23, #wrap .grid_24 {
@@ -481,12 +458,18 @@ footer {
   margin-right: 0;
 }
 
-/* line 50, ../../app/stylesheets/_core.sass */
+/* line 49, ../../app/stylesheets/_core.sass */
+header {
+  width: 960px;
+  margin: auto;
+  position: relative;
+}
+/* line 53, ../../app/stylesheets/_core.sass */
 header h1 {
   margin-left: 10px;
   padding-top: 20px;
 }
-/* line 53, ../../app/stylesheets/_core.sass */
+/* line 56, ../../app/stylesheets/_core.sass */
 header h1 #community_nav {
   position: relative;
   bottom: 15px;
@@ -502,22 +485,22 @@ header h1 #community_nav {
   padding: 7px 10px;
   font-weight: bold;
 }
-/* line 59, ../../app/stylesheets/_core.sass */
+/* line 62, ../../app/stylesheets/_core.sass */
 header h1 #community_nav:hover {
   background-color: #eeeeee;
 }
-/* line 64, ../../app/stylesheets/_core.sass */
+/* line 67, ../../app/stylesheets/_core.sass */
 header h1 #community_nav.selected_nav {
   background: white !important;
   font-weight: bold !important;
 }
-/* line 68, ../../app/stylesheets/_core.sass */
+/* line 71, ../../app/stylesheets/_core.sass */
 header #styled_main_nav {
   position: absolute;
-  right: -33px;
+  right: -21px;
   top: 7px;
 }
-/* line 73, ../../app/stylesheets/_core.sass */
+/* line 76, ../../app/stylesheets/_core.sass */
 header .main_nav_radius_set {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -530,11 +513,11 @@ header .main_nav_radius_set {
   width: 21px;
   height: 21px;
 }
-/* line 79, ../../app/stylesheets/_core.sass */
+/* line 82, ../../app/stylesheets/_core.sass */
 header #main_nav_left_radius, header #main_nav_right_radius {
   background-color: #eaeae8;
 }
-/* line 81, ../../app/stylesheets/_core.sass */
+/* line 84, ../../app/stylesheets/_core.sass */
 header #main_nav_left_radius_inner {
   background-color: white;
   -moz-border-radius-topright: 5px;
@@ -544,7 +527,7 @@ header #main_nav_left_radius_inner {
   -khtml-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-/* line 84, ../../app/stylesheets/_core.sass */
+/* line 87, ../../app/stylesheets/_core.sass */
 header #main_nav_right_radius_inner {
   background-color: white;
   -moz-border-radius-topleft: 5px;
@@ -554,7 +537,7 @@ header #main_nav_right_radius_inner {
   -khtml-border-top-left-radius: 5px;
   border-top-left-radius: 5px;
 }
-/* line 87, ../../app/stylesheets/_core.sass */
+/* line 90, ../../app/stylesheets/_core.sass */
 header nav {
   display: inline-block;
   position: relative;
@@ -578,7 +561,7 @@ header nav {
   font-size: 0.7em;
   text-align: right;
 }
-/* line 99, ../../app/stylesheets/_core.sass */
+/* line 102, ../../app/stylesheets/_core.sass */
 header nav #greeting, header nav a {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -588,15 +571,15 @@ header nav #greeting, header nav a {
   *vertical-align: auto;
   padding: 9px 7px;
 }
-/* line 102, ../../app/stylesheets/_core.sass */
+/* line 105, ../../app/stylesheets/_core.sass */
 header nav a {
   border-left: 1px solid #eeeeee;
 }
-/* line 105, ../../app/stylesheets/_core.sass */
+/* line 108, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
   padding-left: 9px;
 }
-/* line 107, ../../app/stylesheets/_core.sass */
+/* line 110, ../../app/stylesheets/_core.sass */
 header nav a:last-child {
   padding-right: 9px;
   -moz-border-radius-bottomright: 5px;
@@ -606,7 +589,7 @@ header nav a:last-child {
   -khtml-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-/* line 112, ../../app/stylesheets/_core.sass */
+/* line 115, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   height: 14px;
@@ -621,7 +604,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 116, ../../app/stylesheets/_core.sass */
+/* line 119, ../../app/stylesheets/_core.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -643,7 +626,7 @@ header nav form input[type=submit]:hover {
   border-color: #888888;
 }
 
-/* line 119, ../../app/stylesheets/_core.sass */
+/* line 122, ../../app/stylesheets/_core.sass */
 #top {
   background: #eaeae8;
   position: absolute;
@@ -655,36 +638,54 @@ header nav form input[type=submit]:hover {
   z-index: -3;
 }
 
-/* line 130, ../../app/stylesheets/_core.sass */
+/* line 133, ../../app/stylesheets/_core.sass */
 #main {
   overflow: hidden;
   *zoom: 1;
-  width: 970px;
-  padding-bottom: 10px;
-}
-/* line 56, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
-#main .alpha {
-  margin-left: 0;
-}
-/* line 58, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
-#main .omega {
-  margin-right: 0;
+  padding-bottom: 10000px;
+  margin-bottom: -10000px;
 }
 
-/* line 136, ../../app/stylesheets/_core.sass */
+/* line 138, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 140, ../../app/stylesheets/_core.sass */
+/* line 142, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 146, ../../app/stylesheets/_core.sass */
+/* line 10, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 12, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+#wrap {
+  clear: both;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -41px;
+}
+/* line 18, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+#wrap #wrap_footer {
+  height: 41px;
+}
+
+/* line 20, ../../../../../usr/lib64/ruby/gems/1.8/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
 footer {
+  clear: both;
+  position: relative;
+  height: 41px;
+}
+
+/* line 148, ../../app/stylesheets/_core.sass */
+footer {
+  height: 20px;
   padding: 10px;
   background: #2f2f2f;
   width: auto;
@@ -693,11 +694,11 @@ footer {
   color: #dddddd;
   border-top: 1px solid #444444;
 }
-/* line 155, ../../app/stylesheets/_core.sass */
+/* line 158, ../../app/stylesheets/_core.sass */
 footer nav {
   float: right;
 }
-/* line 157, ../../app/stylesheets/_core.sass */
+/* line 160, ../../app/stylesheets/_core.sass */
 footer nav a {
   color: #90a1ab;
 }
@@ -1226,7 +1227,7 @@ div#submit_post {
   border-bottom: none;
 }
 
-/* line 15, ../../app/stylesheets/application.sass */
+/* line 16, ../../app/stylesheets/application.sass */
 nav#filters {
   background-color: #f8f7f2;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f8f7f2), color-stop(100%, #ffffff));
@@ -1238,7 +1239,7 @@ nav#filters {
   margin-bottom: 10px;
 }
 
-/* line 23, ../../app/stylesheets/application.sass */
+/* line 24, ../../app/stylesheets/application.sass */
 a.filter {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -1249,7 +1250,7 @@ a.filter {
   text-align: center;
   margin-right: 70px;
 }
-/* line 28, ../../app/stylesheets/application.sass */
+/* line 29, ../../app/stylesheets/application.sass */
 a.filter img {
   width: 80px;
   height: 70px;
@@ -1262,12 +1263,12 @@ a.filter img {
   border-radius: 7px;
 }
 
-/* line 36, ../../app/stylesheets/application.sass */
+/* line 37, ../../app/stylesheets/application.sass */
 a.filter:last-child {
   margin-right: 0px;
 }
 
-/* line 39, ../../app/stylesheets/application.sass */
+/* line 40, ../../app/stylesheets/application.sass */
 #actions {
   -moz-border-radius-topleft: 7px;
   -webkit-border-top-left-radius: 7px;
@@ -1287,21 +1288,20 @@ a.filter:last-child {
   background-image: linear-gradient(top, #4a7eb0 0%, #46759f 100%);
   color: #f8f7f2;
   position: relative;
-  width: 972px;
   margin-top: 10px;
   border-bottom: 1px solid #dddddd;
   overflow: hidden;
   *zoom: 1;
 }
 
-/* line 50, ../../app/stylesheets/application.sass */
+/* line 51, ../../app/stylesheets/application.sass */
 #new {
   float: left;
   text-align: left;
   padding: 8px 15px;
 }
 
-/* line 55, ../../app/stylesheets/application.sass */
+/* line 56, ../../app/stylesheets/application.sass */
 #search {
   float: right;
   padding: 6px 15px;
@@ -1315,7 +1315,7 @@ a.filter:last-child {
   -khtml-border-top-right-radius: 7px;
   border-top-right-radius: 7px;
 }
-/* line 63, ../../app/stylesheets/application.sass */
+/* line 64, ../../app/stylesheets/application.sass */
 #search form input[type=text] {
   font-size: 0.7em;
   height: 14px;
@@ -1336,7 +1336,7 @@ a.filter:last-child {
   *vertical-align: auto;
   width: 300px;
 }
-/* line 68, ../../app/stylesheets/application.sass */
+/* line 69, ../../app/stylesheets/application.sass */
 #search form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -1358,18 +1358,16 @@ a.filter:last-child {
   border-color: #888888;
 }
 
-/* line 72, ../../app/stylesheets/application.sass */
+/* line 73, ../../app/stylesheets/application.sass */
 div#list {
   display: inline;
   float: left;
   margin-left: 5px;
   margin-right: 5px;
   width: 470px;
-  margin-right: 0px;
-  margin-left: 8px;
 }
 
-/* line 78, ../../app/stylesheets/application.sass */
+/* line 77, ../../app/stylesheets/application.sass */
 div#info {
   display: inline;
   float: left;

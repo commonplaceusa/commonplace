@@ -38,15 +38,18 @@ a
   &:visited
   &:active 
 
-+sticky-footer(auto, "#wrap", "#wrap_footer", "footer")
+
 
 #wrap
   +grid-system(24)
-  // padding-bottom: 20px
   position: relative
+  overflow: hidden
+  width: 972px
 
 header
-
+  width: 960px
+  margin: auto
+  position: relative
   h1
     margin-left: 10px
     padding-top: 20px
@@ -67,7 +70,7 @@ header
   
   #styled_main_nav
     position: absolute
-    right: -33px
+    right: -21px
     top: 7px
     
   .main_nav_radius_set
@@ -128,10 +131,9 @@ header
 
 
 #main
-  +grid-children
   +clearfix
-  width: 970px
-  padding-bottom: 10px
+  padding-bottom: 10000px
+  margin-bottom: -10000px
 
 .label 
   color: #666666
@@ -141,9 +143,10 @@ header
   color: white
   -webkit-transition: color 0.2s linear
 
-
++sticky-footer( 20px + 2 * 10px + 1px, "#wrap", "#wrap_footer", "footer")
 
 footer
+  height: 20px
   padding: 10px
   background: #2F2F2F
   width: auto
