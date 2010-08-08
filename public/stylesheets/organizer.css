@@ -642,7 +642,7 @@ header nav form input[type=submit]:hover {
 #main {
   overflow: hidden;
   *zoom: 1;
-  padding-bottom: 10000px;
+  padding-bottom: 10020px;
   margin-bottom: -10000px;
 }
 
