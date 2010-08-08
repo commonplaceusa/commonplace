@@ -4,30 +4,7 @@
 
 #info
   - if !current_user_session
-    - form_for User.new, :url => account_path do |f|
+    #registration
       %h2 Register:
-
-      = f.label :first_name
-      = f.text_field :first_name
+      = render 'accounts/form', :user => User.new
     
-      = f.label :last_name
-      = f.text_field :last_name
-    
-      = f.label :email
-      = f.text_field :email
-      
-      = f.label :password
-      = f.password_field :password
-
-      = f.label :password_confirmation, "Confirm Password"
-      = f.password_field :password_confirmation
-
-      = f.label :address
-      = f.text_field :address
-
-      %p.hint This is so that we can confirm you live in this community.
-
-      = f.label :privacy_policy, "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"      
-      = f.check_box :privacy_policy
-
-      = f.submit 'Register!'

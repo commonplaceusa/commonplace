@@ -57,7 +57,23 @@ var app = $.sammy(function() {
       }
     }, "json");
   });
-
+  
+  this.post("/account", function() {
+    $.post(this.path, this.params, function(response) {
+      if (response.success) {
+        $('#registration').hide('slide', {}, 500,  
+                                function(){ 
+                                  $(this).html(response.more_info)
+                                    .show('slide');
+                                });
+        
+        
+      } else {
+        alert("bah");
+      }
+    }, "json");
+  });
+  
   this.get("#/posts/new", setModal);
   this.get("#/announcements/new", setModal);
   this.get("#/events/new", setModal);

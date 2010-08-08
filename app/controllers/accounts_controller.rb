@@ -3,16 +3,20 @@ class AccountsController < ApplicationController
   filter_access_to :all
 
   def new
+
   end
   
   def create    
-    @user = User.new(params[:user].merge(:community => Community.first))
-    if @user.save
-      reload_current_user!
-      render :more_info
-    else
-      render :new
+    respond_to do |format|
+      format.json
     end
+    # @user = User.new(params[:user].merge(:community => Community.first))
+    # if @user.save
+    #   reload_current_user!
+    #   render :more_info
+    # else
+    #   render :new
+    # end
   end
 
   def edit

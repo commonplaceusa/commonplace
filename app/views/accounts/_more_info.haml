@@ -1,0 +1,21 @@
+
+%h1 Please include some information about yourself for the directory!
+
+- form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
+  %dl 
+    %dt= f.label :avatar, "Profile picture"
+    %dd= f.file_field :avatar
+  = f.submit "Upload"
+
+- form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
+  %dl
+    %dt= f.label :about, "About you"
+    %dd= f.text_area :about
+  
+    %dt= f.label :skill_list, "Skills"
+    %dd= f.text_field :skill_list
+      
+    %dt= f.label :interest_list, "Interests"
+    %dd= f.text_field :interest_list
+        
+  = f.submit 'Submit'

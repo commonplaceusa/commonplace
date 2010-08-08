@@ -1174,14 +1174,59 @@ div#submit_post {
   background: black;
 }
 
-/* line 9, ../../app/stylesheets/application.sass */
+/* line 2, ../../app/stylesheets/_registration.sass */
+#registration {
+  border: 1px solid #dddddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #fdfdfd), color-stop(100%, #f7f7f7));
+  background-image: -moz-linear-gradient(top, #fdfdfd 0%, #f7f7f7 100%);
+  background-image: linear-gradient(top, #fdfdfd 0%, #f7f7f7 100%);
+  -moz-box-shadow: #eeeeee 1px 1px 3px 0;
+  -webkit-box-shadow: #eeeeee 1px 1px 3px 0;
+  -o-box-shadow: #eeeeee 1px 1px 3px 0;
+  box-shadow: #eeeeee 1px 1px 3px 0;
+  padding: 5px;
+}
+/* line 11, ../../app/stylesheets/_registration.sass */
+#registration form {
+  overflow: hidden;
+  *zoom: 1;
+  width: 420px;
+}
+/* line 14, ../../app/stylesheets/_registration.sass */
+#registration form dt, #registration form dd {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  width: 200px;
+  margin-top: 30px;
+}
+/* line 18, ../../app/stylesheets/_registration.sass */
+#registration form dt {
+  text-align: right;
+}
+/* line 21, ../../app/stylesheets/_registration.sass */
+#registration form input[type="submit"] {
+  float: right;
+}
+
+/* line 10, ../../app/stylesheets/application.sass */
 #main {
   border: 1px solid #dddddd;
   border-top: none;
   border-bottom: none;
 }
 
-/* line 14, ../../app/stylesheets/application.sass */
+/* line 15, ../../app/stylesheets/application.sass */
 nav#filters {
   background-color: #f8f7f2;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f8f7f2), color-stop(100%, #ffffff));
@@ -1193,7 +1238,7 @@ nav#filters {
   margin-bottom: 10px;
 }
 
-/* line 22, ../../app/stylesheets/application.sass */
+/* line 23, ../../app/stylesheets/application.sass */
 a.filter {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -1204,7 +1249,7 @@ a.filter {
   text-align: center;
   margin-right: 70px;
 }
-/* line 27, ../../app/stylesheets/application.sass */
+/* line 28, ../../app/stylesheets/application.sass */
 a.filter img {
   width: 80px;
   height: 70px;
@@ -1217,12 +1262,12 @@ a.filter img {
   border-radius: 7px;
 }
 
-/* line 35, ../../app/stylesheets/application.sass */
+/* line 36, ../../app/stylesheets/application.sass */
 a.filter:last-child {
   margin-right: 0px;
 }
 
-/* line 38, ../../app/stylesheets/application.sass */
+/* line 39, ../../app/stylesheets/application.sass */
 #actions {
   -moz-border-radius-topleft: 7px;
   -webkit-border-top-left-radius: 7px;
@@ -1249,14 +1294,14 @@ a.filter:last-child {
   *zoom: 1;
 }
 
-/* line 49, ../../app/stylesheets/application.sass */
+/* line 50, ../../app/stylesheets/application.sass */
 #new {
   float: left;
   text-align: left;
   padding: 8px 15px;
 }
 
-/* line 54, ../../app/stylesheets/application.sass */
+/* line 55, ../../app/stylesheets/application.sass */
 #search {
   float: right;
   padding: 6px 15px;
@@ -1270,7 +1315,7 @@ a.filter:last-child {
   -khtml-border-top-right-radius: 7px;
   border-top-right-radius: 7px;
 }
-/* line 62, ../../app/stylesheets/application.sass */
+/* line 63, ../../app/stylesheets/application.sass */
 #search form input[type=text] {
   font-size: 0.7em;
   height: 14px;
@@ -1291,7 +1336,7 @@ a.filter:last-child {
   *vertical-align: auto;
   width: 300px;
 }
-/* line 67, ../../app/stylesheets/application.sass */
+/* line 68, ../../app/stylesheets/application.sass */
 #search form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -1313,7 +1358,7 @@ a.filter:last-child {
   border-color: #888888;
 }
 
-/* line 71, ../../app/stylesheets/application.sass */
+/* line 72, ../../app/stylesheets/application.sass */
 div#list {
   display: inline;
   float: left;
@@ -1324,7 +1369,7 @@ div#list {
   margin-left: 8px;
 }
 
-/* line 77, ../../app/stylesheets/application.sass */
+/* line 78, ../../app/stylesheets/application.sass */
 div#info {
   display: inline;
   float: left;
