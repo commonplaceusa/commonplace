@@ -1,4 +1,5 @@
-- form_for User.new, :url => account_path do |f|
+- form_for user, :url => account_path do |f|
+  = error_messages_for :user
   %dl
 
     %dt= f.label :first_name
@@ -22,5 +23,6 @@
 
     %dt= f.label :privacy_policy, "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"      
     %dd= f.check_box :privacy_policy
+ 
 
   = f.submit 'Register!'
