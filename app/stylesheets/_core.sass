@@ -120,7 +120,7 @@ header
         @include styledButton
       
 #top
-  background: #eaeae8
+  background: $topColor 
   position: absolute
   width: 100%
   height: 7px
@@ -143,19 +143,15 @@ header
   color: white
   -webkit-transition: color 0.2s linear
 
-+sticky-footer( 20px + 2 * 10px + 1px, "#wrap", "#wrap_footer", "footer")
++sticky-footer( 21px "#wrap", "#wrap_footer", "footer")
 
 footer
-  height: 20px
   padding: 10px
-  background: #2F2F2F
+  background: $topColor
   width: auto
   @include sans
-  font-size: 0.8em
-  color: $lightGray
+  font-size: 11px
+  color: $topColor - #666
   span#footer_copy
-  border-top: 1px solid #444
   nav
     float: right
-    a
-      color: $eventColor - #444

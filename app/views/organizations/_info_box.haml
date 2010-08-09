@@ -3,7 +3,7 @@
     .icon{ :alt => "organization" }
     .header_text
       %span.category COMMUNITY ORGANIZATION
-    - if true # yes this is awful... but we need to check if you guys are friends
+    - if current_user.organizations.include? organization
       %span.follow_status Subscribed
   #info_box_main
     #info_box_main_left
