@@ -25,11 +25,22 @@ end
 
 Factory.define :event do |f|
   f.name { Forgery(:lorem_ipsum).words(2) }
+  f.description { Forgery(:lorem_ipsum).paragraph }
+  f.start_time { Time.now + 1.week }
+  f.association :organization
+  f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
+end
+
+Factory.define :announcement do |f|
+  f.subject { Forgery(:lorem_ipsum).words(2) }
+  f.body { Forgery(:lorem_ipsum).paragraph }
+  f.association :organization
 end
 
 Factory.define :organization do |f|
   f.name { Forgery(:name).company_name }
   f.website ""
+  f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
 end
   
 Factory.define :message do |f|
