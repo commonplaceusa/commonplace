@@ -51,22 +51,12 @@ header
   margin: auto
   position: relative
   h1
-    margin-left: 10px
+    margin-left: 3px
     padding-top: 20px
-    #community_nav
-      position: relative
-      bottom: 15px
-      border: 1px solid $mediumGray
-      +border-radius($defaultRadius)
-      background: #ddd
-      &:hover
-        background-color: $lightestGray
-      color: black
-      padding: 7px 10px
-      font-weight: bold
-      &.selected_nav
-        background: white !important
-        font-weight: bold !important
+    img
+      width: 360px
+      height: 31px
+
   
   #styled_main_nav
     position: absolute
@@ -96,14 +86,17 @@ header
     background-color: #eaeae8
     padding: 0
     +sans
-    font-size: 0.7em
-    text-align: right
+    font-size: 11px
+    color: $topTextColor
     
     #greeting, a
       +inline-block
       padding: 9px 7px
-    a
-      border-left: 1px solid $lightestGray
+      font-weight: bold
+      padding: 10px 10px 9px
+    a 
+      color: $topLinkColor
+      border-left: 1px solid $lightGray
       &:hover
       &:first-child
         padding-left: 9px
@@ -152,7 +145,9 @@ footer
   width: auto
   @include sans
   font-size: 11px
-  color: $topColor - #666
+  color: $topTextColor
+  a
+    color: $topLinkColor
   span#footer_copy
   nav
     float: right

@@ -7,6 +7,7 @@
     %h3 Your announcements
     %ul#wire
       - @announcements.each do |a|
-        - content_tag :li, :class => dom_class(a), :id => dom_id(a), "data-url" => url_for(a) do
-          = render 'announcements/announcement', :announcement => a
+        = render 'shared/item/', :item => a
+        / - content_tag :li, :class => dom_class(a), :id => dom_id(a), "data-url" => url_for(a) do
+        /   = render 'announcements/announcement', :announcement => a
       

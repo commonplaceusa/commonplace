@@ -14,14 +14,17 @@ ul#wire
       .time
         float: right
         text-align: right
-        padding: 5px
-        color: $mediumGray
+        font-size: 10px
+        padding: 5px 7px
+        color: #aaa
+        font-weight: bold
     a
       display: block
       border-top: 1px solid white
-      padding: 7px
+      padding: 7px 7px 10px
       line-height: 120%
       color: black
+      font-size: 17px
       text-decoration: none
       img
         height: 50px
@@ -57,27 +60,33 @@ ul#wire
       .body
         +inline-block
         width: 390px
+        margin-top: -3px
+        vertical-align: top
         h3
         .event_start_time
           +sans
-          font-size: 0.7em
+          font-size: 11px
+          margin-top: -2px
           color: $eventColorDark
         p
-          font-size: 0.9em
+          color: #525252
+          font-size: 0.8em
+          line-height: 1.35em
         span.reply_count
           +sans
           font-size: 0.7em
           padding: 2px 7px
-          background-color: $lightestGray
+          margin-left: 2px
+          background-color: #e7e7e7
           +border-radius($defaultRadius)
           vertical-align: top
             
     &.post
-      +styled-item($postColor, $postColorDark)
+      +styled-item($postColorDark)
     &.announcement
-      +styled-item($announcementColor, $announcementColorDark)
+      +styled-item($announcementColorDark)
     &.event
-      +styled-item($eventColor, $eventColorDark)
+      +styled-item($eventColorDark)
 
     .replies
       display: none

@@ -10,6 +10,7 @@
     span.follow_status
       float: right
       color: white
+      font-size: 11px
       background-color: $metColor
       padding: 3px 4px
       margin: 3px 3px 0px 3px
@@ -32,7 +33,7 @@
         padding: 6px 10px
         display: block
         +sans
-        font-size: 12px
+        font-size: 0.7em
         color: white
         text-decoration: none
         text-align: center
@@ -41,10 +42,10 @@
           cursor: pointer
           width: 120px
           border: none
-          background-color: $metColor - #222
+          background-color: #396081
           margin-bottom: 7px
           &:hover
-            background-color: $metColor
+            background-color: #4A7EB0
         &#message_me
           width: 100px
           background-color: $postColorDark
@@ -56,12 +57,15 @@
         margin-top: 10px
         border-top: 1px solid $lightGray
         line-height: 140%
+        width: 120px
+        +sans
+        font-size: 11px
     .body
       +inline-block
       vertical-align: top
       width: 305px
       h3
-        color: $postColorDark
+        color: $infoBoxTitle
         font-size: 1.5em
         margin-bottom: 10px
       p.user_about
@@ -69,15 +73,15 @@
         padding-bottom: 10px
         border-bottom: 1px solid $lightGray
       ol.user_info
-        padding-top: 10px
+        padding-top: 5px
         border-top: 1px solid white
         li
-          color: $postColorDark
-          a
-            color: $postColorDark
+          color: #525252
           line-height: 110%
           margin-bottom: 6px
           font-size: 0.8em
+          a
+            color: $infoBoxTitle
           span.info_title
             font-size: 0.8em
             +sans
