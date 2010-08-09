@@ -651,39 +651,41 @@ html, body {
 }
 
 /* line 12, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-#wrap_footer {
+#wrap {
   clear: both;
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin-bottom: -21px "#wrap";
+  margin-bottom: -31px;
 }
 /* line 18, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-#wrap_footer footer {
-  height: 21px "#wrap";
+#wrap #wrap_footer {
+  height: 31px;
 }
 
 /* line 20, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-0.10.3/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-#footer {
+footer {
   clear: both;
   position: relative;
-  height: 21px "#wrap";
+  height: 31px;
 }
 
 /* line 142, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
+  height: 11px;
   background: #eaeae8;
   width: auto;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
   color: #777777;
 }
-/* line 149, ../../app/stylesheets/_core.sass */
+/* line 150, ../../app/stylesheets/_core.sass */
 footer a {
   color: #4a7eb0;
 }
-/* line 152, ../../app/stylesheets/_core.sass */
+/* line 153, ../../app/stylesheets/_core.sass */
 footer nav {
+  display: inline;
   float: right;
 }
