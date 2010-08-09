@@ -144,10 +144,11 @@ header
   color: white
   -webkit-transition: color 0.2s linear
 
-+sticky-footer( 21px "#wrap", "#wrap_footer", "footer")
++sticky-footer(31px, "#wrap", "#wrap_footer", "footer")
 
 footer
   padding: 10px
+  height: 11px
   background: $topColor
   width: auto
   @include sans
@@ -155,4 +156,5 @@ footer
   color: $topColor - #666
   span#footer_copy
   nav
+    display: inline
     float: right
