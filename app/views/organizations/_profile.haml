@@ -23,14 +23,14 @@
           .user_role subscriber
     %li#more_members View all members...
 
-  - if @subscribers.index current_user
+  - if @subscribers.include? current_user
     #unsubscribe= button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete
 
 
 .about
   - if flash[:win]
     #win= flash[:win]
-  - unless @subscribers.index current_user
+  - unless @subscribers.include? current_user
     #signupteaser
       = button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization) 
       %p #{ @organization.name } is part of the #{ @organization.community.name } CommonPlace, a way to connect to organizations and people in your neighborhood.

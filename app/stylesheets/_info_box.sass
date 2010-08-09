@@ -27,25 +27,35 @@
       vertical-align: top
       img
         margin-bottom: 7px
-      a
+      .link_button
         +border-radius($defaultRadius)
-        width: 100px
-        padding: 4px 10px
+        padding: 6px 10px
         display: block
-        text-decoration: none
         +sans
-        font-size: 0.7em
+        font-size: 12px
         color: white
+        text-decoration: none
         text-align: center
+        line-height: 15px
         &#follow_link
+          cursor: pointer
+          width: 120px
+          border: none
           background-color: $metColor - #222
           margin-bottom: 7px
           &:hover
             background-color: $metColor
         &#message_me
+          width: 100px
           background-color: $postColorDark
           &:hover
             background-color: $postColorDark + #222
+      a#unsubscribe
+        display: block
+        padding: 10px 0px
+        margin-top: 10px
+        border-top: 1px solid $lightGray
+        line-height: 140%
     .body
       +inline-block
       vertical-align: top

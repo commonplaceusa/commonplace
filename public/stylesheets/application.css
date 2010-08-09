@@ -987,40 +987,52 @@ ul#wire li .replies {
   margin-bottom: 7px;
 }
 /* line 30, ../../app/stylesheets/_info_box.sass */
-.info_box #info_box_main #info_box_main_left a {
+.info_box #info_box_main #info_box_main_left .link_button {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  width: 100px;
-  padding: 4px 10px;
+  padding: 6px 10px;
   display: block;
-  text-decoration: none;
   font-family: Helvetica, Arial, Verdana, sans-serif;
-  font-size: 0.7em;
+  font-size: 12px;
   color: white;
+  text-decoration: none;
   text-align: center;
+  line-height: 15px;
 }
 /* line 40, ../../app/stylesheets/_info_box.sass */
-.info_box #info_box_main #info_box_main_left a#follow_link {
+.info_box #info_box_main #info_box_main_left .link_button#follow_link {
+  cursor: pointer;
+  width: 120px;
+  border: none;
   background-color: #89a362;
   margin-bottom: 7px;
 }
-/* line 43, ../../app/stylesheets/_info_box.sass */
-.info_box #info_box_main #info_box_main_left a#follow_link:hover {
+/* line 46, ../../app/stylesheets/_info_box.sass */
+.info_box #info_box_main #info_box_main_left .link_button#follow_link:hover {
   background-color: #abc584;
 }
-/* line 45, ../../app/stylesheets/_info_box.sass */
-.info_box #info_box_main #info_box_main_left a#message_me {
+/* line 48, ../../app/stylesheets/_info_box.sass */
+.info_box #info_box_main #info_box_main_left .link_button#message_me {
+  width: 100px;
   background-color: #ca4b4b;
 }
-/* line 47, ../../app/stylesheets/_info_box.sass */
-.info_box #info_box_main #info_box_main_left a#message_me:hover {
+/* line 51, ../../app/stylesheets/_info_box.sass */
+.info_box #info_box_main #info_box_main_left .link_button#message_me:hover {
   background-color: #ec6d6d;
 }
-/* line 49, ../../app/stylesheets/_info_box.sass */
+/* line 53, ../../app/stylesheets/_info_box.sass */
+.info_box #info_box_main #info_box_main_left a#unsubscribe {
+  display: block;
+  padding: 10px 0px;
+  margin-top: 10px;
+  border-top: 1px solid #dddddd;
+  line-height: 140%;
+}
+/* line 59, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -1031,41 +1043,41 @@ ul#wire li .replies {
   vertical-align: top;
   width: 305px;
 }
-/* line 53, ../../app/stylesheets/_info_box.sass */
+/* line 63, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body h3 {
   color: #ca4b4b;
   font-size: 1.5em;
   margin-bottom: 10px;
 }
-/* line 57, ../../app/stylesheets/_info_box.sass */
+/* line 67, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body p.user_about {
   font-size: 0.9em;
   padding-bottom: 10px;
   border-bottom: 1px solid #dddddd;
 }
-/* line 61, ../../app/stylesheets/_info_box.sass */
+/* line 71, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info {
   padding-top: 10px;
   border-top: 1px solid white;
 }
-/* line 64, ../../app/stylesheets/_info_box.sass */
+/* line 74, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li {
   color: #ca4b4b;
   line-height: 110%;
   margin-bottom: 6px;
   font-size: 0.8em;
 }
-/* line 66, ../../app/stylesheets/_info_box.sass */
+/* line 76, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li a {
   color: #ca4b4b;
 }
-/* line 71, ../../app/stylesheets/_info_box.sass */
+/* line 81, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li span.info_title {
   font-size: 0.8em;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #888888;
 }
-/* line 75, ../../app/stylesheets/_info_box.sass */
+/* line 85, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body img#map {
   border: 1px solid #dddddd;
   margin-top: 8px;
