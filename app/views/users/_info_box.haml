@@ -31,7 +31,7 @@
           %span.info_title= "Address".upcase 
           = user.address[/(.+?)(,)/, 1]
 
-  - unless user.address.blank?
+  - unless user.lat.blank? or user.lng.blank?
     #map  
       :javascript
         gMapInit(#{user.lat}, #{user.lng});
