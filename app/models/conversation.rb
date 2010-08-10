@@ -7,6 +7,8 @@ class Conversation < ActiveRecord::Base
   attr_accessor :to, :body
 
   validates_presence_of :subject
+
+  accepts_nested_attributes_for :messages
   
   def notify_members(message)
     puts "Hello"
