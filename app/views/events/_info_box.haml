@@ -28,4 +28,8 @@
           %li
             %span.info_title= "Address".upcase 
             = event.address[/(.+?)(,)/, 1]
-      = image_tag "/images/fake_map.png", :id => "map"
+            
+  - unless event.address.blank?
+    #map  
+      :javascript
+        gMapInit(#{event.lat}, #{event.lng});

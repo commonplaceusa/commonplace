@@ -1122,10 +1122,12 @@ ul#wire li .replies {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #888888;
 }
-/* line 111, ../../app/stylesheets/_info_box.sass */
-.info_box #info_box_main .body img#map {
+
+/* line 112, ../../app/stylesheets/_info_box.sass */
+#map {
   border: 1px solid #dddddd;
-  margin-top: 8px;
+  margin: 10px;
+  height: 200px;
 }
 
 /* line 1, ../../app/stylesheets/_form.sass */

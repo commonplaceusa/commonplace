@@ -30,4 +30,8 @@
         %li
           %span.info_title= "Address".upcase 
           = user.address[/(.+?)(,)/, 1]
-      = image_tag "/images/fake_map.png", :id => "map"
+
+  - unless user.address.blank?
+    #map  
+      :javascript
+        gMapInit(#{user.lat}, #{user.lng});

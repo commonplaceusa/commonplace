@@ -1,4 +1,27 @@
 
+
+function gMapInit(lat, lng) {
+  
+  var latlng = new google.maps.LatLng(lat, lng);
+  
+  var myOptions = {
+    zoom: 15,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    navigationControl: true,
+    mapTypeControl: false,
+    scaleControl: true
+  };
+  
+  var map = new google.maps.Map(document.getElementById("map"),
+    myOptions);
+      
+  var marker = new google.maps.Marker({
+    position: latlng, 
+    map: map,
+  });
+}
+
 function selectTab(tab) {
   $(document).ready(function(){
     $('header #' + tab).addClass('selected_nav');
@@ -120,5 +143,7 @@ $(function(){
   $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
   
   $('.filter').tipsy({ gravity: 's', delayOut: 0 });
- 
+  
 });
+
+
