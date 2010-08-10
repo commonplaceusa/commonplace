@@ -1,31 +1,30 @@
-.info_box.event
+.info_box.styled_box.organization
   .header
-    %img.icon{ :alt => "event" }
-      %span.category EVENT
-      %span.name= event.name
-  .bottom
-    = render("events/calendar", :event => event)
+    .icon{ :alt => "event" }
+    .header_text
+      %span.category Community Event
+    - if event.attendees.include? current_user
+      %span.follow_status Attending
+  #info_box_main
+    #info_box_main_left
+      #big_calendar.graphic= render 'events/calendar', :event => event
+      - unless event.attendees.exists? current_user 
+        = button_to "Attend", event_attendance_path(event) , :id => "follow_link", :class => "link_button"
+      = link_to "Message #{ event.organization.name }", "", :id => "message_me", :class => "link_button"
+      - if event.attendees.exists? current_user 
+        = link_to "I'm not attending #{ event.name }", event_attendance_path(event), :method => :delete, :id => "unsubscribe"
     .body
       %h3= event.name
-      %table
-        %tbody
-          %tr#about
-            %th.label Description
-            %td= event.description
-          %tr.time
-            %th.label Starts at
-            %td= event_date event.start_time
-          %tr.time
-            %th.label Ends at
-            %td= event_date event.end_time
-        
-          - unless event.address.nil? || event.address.empty?
-            %tr#address_row
-              %th.label Address
-              %td= event.address
-
-      - if event.attendees.exists?(current_user)
-        %p You are attending this event
-        = button_to "Unattend", event_attendance_path(event), :method => :delete
-      - else
-        = button_to "Attend!", event_attendance_path(event) 
+      %p.user_about= auto_link event.description, :all, :target => '_blank'
+      %ol.user_info            
+        %li
+          %span.info_title= "Starts at".upcase
+          = event_date event.start_time
+        - unless event.end_time.nil?
+          %li  
+            %span.info_title= "Ends at".upcase
+            = event_date event.end_time
+        %li
+          %span.info_title= "Address".upcase 
+          = event.address[/(.+?)(,)/, 1]
+      = image_tag "/images/fake_map.png", :id => "map"

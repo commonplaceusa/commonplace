@@ -473,14 +473,15 @@ header h1 {
 header h1 img {
   width: 360px;
   height: 31px;
+  margin: 10px 0px;
 }
-/* line 61, ../../app/stylesheets/_core.sass */
+/* line 62, ../../app/stylesheets/_core.sass */
 header #styled_main_nav {
   position: absolute;
   right: -21px;
   top: 7px;
 }
-/* line 66, ../../app/stylesheets/_core.sass */
+/* line 67, ../../app/stylesheets/_core.sass */
 header .main_nav_radius_set {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -493,11 +494,11 @@ header .main_nav_radius_set {
   width: 21px;
   height: 21px;
 }
-/* line 72, ../../app/stylesheets/_core.sass */
+/* line 73, ../../app/stylesheets/_core.sass */
 header #main_nav_left_radius, header #main_nav_right_radius {
   background-color: #eaeae8;
 }
-/* line 74, ../../app/stylesheets/_core.sass */
+/* line 75, ../../app/stylesheets/_core.sass */
 header #main_nav_left_radius_inner {
   background-color: white;
   -moz-border-radius-topright: 5px;
@@ -507,7 +508,7 @@ header #main_nav_left_radius_inner {
   -khtml-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-/* line 77, ../../app/stylesheets/_core.sass */
+/* line 78, ../../app/stylesheets/_core.sass */
 header #main_nav_right_radius_inner {
   background-color: white;
   -moz-border-radius-topleft: 5px;
@@ -517,7 +518,7 @@ header #main_nav_right_radius_inner {
   -khtml-border-top-left-radius: 5px;
   border-top-left-radius: 5px;
 }
-/* line 80, ../../app/stylesheets/_core.sass */
+/* line 81, ../../app/stylesheets/_core.sass */
 header nav {
   display: inline-block;
   position: relative;
@@ -541,7 +542,7 @@ header nav {
   font-size: 11px;
   color: #777777;
 }
-/* line 92, ../../app/stylesheets/_core.sass */
+/* line 93, ../../app/stylesheets/_core.sass */
 header nav #greeting, header nav a {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -553,16 +554,16 @@ header nav #greeting, header nav a {
   font-weight: bold;
   padding: 10px 10px 9px;
 }
-/* line 97, ../../app/stylesheets/_core.sass */
+/* line 98, ../../app/stylesheets/_core.sass */
 header nav a {
   color: #4a7eb0;
   border-left: 1px solid #dddddd;
 }
-/* line 101, ../../app/stylesheets/_core.sass */
+/* line 102, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
   padding-left: 9px;
 }
-/* line 103, ../../app/stylesheets/_core.sass */
+/* line 104, ../../app/stylesheets/_core.sass */
 header nav a:last-child {
   padding-right: 9px;
   -moz-border-radius-bottomright: 5px;
@@ -572,11 +573,11 @@ header nav a:last-child {
   -khtml-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-/* line 107, ../../app/stylesheets/_core.sass */
+/* line 108, ../../app/stylesheets/_core.sass */
 header nav form {
   padding: 5px 7px;
 }
-/* line 109, ../../app/stylesheets/_core.sass */
+/* line 110, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   height: 14px;
@@ -591,7 +592,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 113, ../../app/stylesheets/_core.sass */
+/* line 114, ../../app/stylesheets/_core.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -613,7 +614,7 @@ header nav form input[type=submit]:hover {
   border-color: #888888;
 }
 
-/* line 116, ../../app/stylesheets/_core.sass */
+/* line 117, ../../app/stylesheets/_core.sass */
 #top {
   background: #eaeae8;
   position: absolute;
@@ -625,7 +626,7 @@ header nav form input[type=submit]:hover {
   z-index: -3;
 }
 
-/* line 127, ../../app/stylesheets/_core.sass */
+/* line 128, ../../app/stylesheets/_core.sass */
 #main {
   overflow: hidden;
   *zoom: 1;
@@ -633,13 +634,13 @@ header nav form input[type=submit]:hover {
   margin-bottom: -10000px;
 }
 
-/* line 132, ../../app/stylesheets/_core.sass */
+/* line 133, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 136, ../../app/stylesheets/_core.sass */
+/* line 137, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
@@ -670,7 +671,7 @@ footer {
   height: 31px;
 }
 
-/* line 142, ../../app/stylesheets/_core.sass */
+/* line 143, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   height: 11px;
@@ -680,11 +681,11 @@ footer {
   font-size: 11px;
   color: #777777;
 }
-/* line 150, ../../app/stylesheets/_core.sass */
+/* line 151, ../../app/stylesheets/_core.sass */
 footer a {
   color: #4a7eb0;
 }
-/* line 153, ../../app/stylesheets/_core.sass */
+/* line 154, ../../app/stylesheets/_core.sass */
 footer nav {
   display: inline;
   float: right;

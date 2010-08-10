@@ -26,6 +26,25 @@
       +inline-block
       margin-right: 14px
       vertical-align: top
+      #big_calendar
+        margin-bottom: 10px
+        width: 120px
+        background-color: white
+        border: 1px solid $lightGray
+        text-align: center
+        +border-radius($defaultRadius)
+        .month
+          +sans
+          background-color: $calendarTopColor
+          +border-top-radius($defaultRadius)
+          color: white
+          padding: 7px 10px
+          font-size: 16px
+          line-height: 16px
+        .date
+          +oldStandardBold
+          font-size: 40px
+          padding: 25px
       img
         margin-bottom: 7px
       .link_button
@@ -68,6 +87,7 @@
         color: $infoBoxTitle
         font-size: 1.5em
         margin-bottom: 10px
+        line-height: 110%
       p.user_about
         font-size: 0.9em
         padding-bottom: 10px
