@@ -24,7 +24,8 @@
           %li  
             %span.info_title= "Ends at".upcase
             = event_date event.end_time
-        %li
-          %span.info_title= "Address".upcase 
-          = event.address[/(.+?)(,)/, 1]
+        - unless event.address.blank?
+          %li
+            %span.info_title= "Address".upcase 
+            = event.address[/(.+?)(,)/, 1]
       = image_tag "/images/fake_map.png", :id => "map"

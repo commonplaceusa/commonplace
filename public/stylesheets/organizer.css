@@ -687,6 +687,13 @@ footer a {
 }
 /* line 154, ../../app/stylesheets/_core.sass */
 footer nav {
-  display: inline;
-  float: right;
+  color: black;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  position: absolute;
+  right: 10px;
 }

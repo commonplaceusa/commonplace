@@ -687,8 +687,15 @@ footer a {
 }
 /* line 154, ../../app/stylesheets/_core.sass */
 footer nav {
-  display: inline;
-  float: right;
+  color: black;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  position: absolute;
+  right: 10px;
 }
 
 /* line 1, ../../app/stylesheets/_styled_box.sass */
@@ -1412,9 +1419,11 @@ div#list {
   margin-left: 5px;
   margin-right: 5px;
   width: 470px;
+  margin-left: 8px;
+  margin-right: 1px;
 }
 
-/* line 78, ../../app/stylesheets/application.sass */
+/* line 80, ../../app/stylesheets/application.sass */
 div#info {
   display: inline;
   float: left;

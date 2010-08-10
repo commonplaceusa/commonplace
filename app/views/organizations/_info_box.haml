@@ -26,8 +26,8 @@
           %li
             %span.info_title= "Phone".upcase
             = organization.phone
-            
-        %li
-          %span.info_title= "Address".upcase 
-          = organization.address[/(.+?)(,)/, 1]
+        - unless organization.address.blank?    
+          %li
+            %span.info_title= "Address".upcase 
+            = organization.address[/(.+?)(,)/, 1]
       = image_tag "/images/fake_map.png", :id => "map"
