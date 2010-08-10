@@ -14,8 +14,8 @@
       - if organization.subscribers.include? current_user
         = link_to "Unsubscribe from #{ organization.name }", organization_subscription_url(organization), :method => :delete, :id => "unsubscribe"
     .body
-      %h3= organization.name
-      %p.user_about= auto_link organization.about, :all, :target => '_blank'
+      %h3= link_to organization.name, organization, :target => :blank
+      %p.user_about= auto_link organization.about, :all, :target => :blank
       %ol.user_info
         - organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
           %li

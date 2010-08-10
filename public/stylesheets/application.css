@@ -1091,34 +1091,38 @@ ul#wire li .replies {
   line-height: 110%;
 }
 /* line 91, ../../app/stylesheets/_info_box.sass */
+.info_box #info_box_main .body h3 a {
+  color: #ca4b4b;
+}
+/* line 93, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body p.user_about {
   font-size: 0.9em;
   padding-bottom: 10px;
   border-bottom: 1px solid #dddddd;
 }
-/* line 95, ../../app/stylesheets/_info_box.sass */
+/* line 97, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info {
   padding-top: 5px;
   border-top: 1px solid white;
 }
-/* line 98, ../../app/stylesheets/_info_box.sass */
+/* line 100, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li {
   color: #525252;
   line-height: 110%;
   margin-bottom: 6px;
   font-size: 0.8em;
 }
-/* line 103, ../../app/stylesheets/_info_box.sass */
+/* line 105, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li a {
   color: #ca4b4b;
 }
-/* line 105, ../../app/stylesheets/_info_box.sass */
+/* line 107, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body ol.user_info li span.info_title {
   font-size: 0.8em;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #888888;
 }
-/* line 109, ../../app/stylesheets/_info_box.sass */
+/* line 111, ../../app/stylesheets/_info_box.sass */
 .info_box #info_box_main .body img#map {
   border: 1px solid #dddddd;
   margin-top: 8px;
@@ -1180,36 +1184,39 @@ div#submit_post {
   background-color: #eeeeee;
 }
 
+/* line 2, ../../app/stylesheets/_organization.sass */
+#organization_profile {
+  overflow: hidden;
+  *zoom: 1;
+}
 /* line 5, ../../app/stylesheets/_organization.sass */
 #organization_profile h1 {
-  padding-left: 20px;
   display: inline;
   float: left;
   margin-left: 5px;
   margin-right: 5px;
-  width: 930px;
+  width: 950px;
   margin: 10px;
   border-bottom: 1px solid #dddddd;
   font-size: 2em;
   fond-weight: bold;
 }
-/* line 14, ../../app/stylesheets/_organization.sass */
+/* line 15, ../../app/stylesheets/_organization.sass */
 #organization_profile .contact {
-  padding-left: 20px;
+  margin-left: 0;
   display: inline;
   float: left;
   margin-left: 5px;
   margin-right: 5px;
-  width: 210px;
+  width: 230px;
 }
-/* line 18, ../../app/stylesheets/_organization.sass */
+/* line 19, ../../app/stylesheets/_organization.sass */
 #organization_profile .about {
-  padding-left: 40px;
   display: inline;
   float: left;
   margin-left: 5px;
   margin-right: 5px;
-  width: 390px;
+  width: 430px;
   padding-right: 40px;
 }
 /* line 23, ../../app/stylesheets/_organization.sass */
@@ -1218,8 +1225,7 @@ div#submit_post {
   float: left;
   margin-left: 5px;
   margin-right: 5px;
-  width: 210px;
-  padding-right: 20px;
+  width: 230px;
   margin-right: 0;
 }
 
