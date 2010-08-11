@@ -13,12 +13,12 @@ describe AccountsController do
     response.should_not be_success
   end
 
-  it "should render more_info on a successful create" do
+  it "should render create template on a successful create" do
     controller.stub!(:current_user, nil)
     UserSession.stub!(:find).and_return(user_session({},{:roles => [:user]}))
     User.stub!(:new).and_return(mock_model(User, :save => true))
     post :create, :user => {}
-    response.should render_template('more_info')
+    response.should render_template('create')
   end
 
   it "should render the edit template" do

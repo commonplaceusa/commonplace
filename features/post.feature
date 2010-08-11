@@ -1,3 +1,4 @@
+@pending
 Feature: posting
   In order to communicate with my community
   As a user

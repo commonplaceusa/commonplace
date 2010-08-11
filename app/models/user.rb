@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   before_save :update_lat_and_lng, :if => "address_changed?"
-
+  before_create :place_in_community
   acts_as_authentic do |c|
     c.login_field :email
   end
@@ -87,5 +87,11 @@ class User < ActiveRecord::Base
       [:user]
     end
   end
+
+  # TODO: find community based on address
+  def place_in_community
+    self.community = Community.first
+  end
+
 
 end

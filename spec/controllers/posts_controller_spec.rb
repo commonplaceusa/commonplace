@@ -9,7 +9,6 @@ describe PostsController do
   end
   
   it "should allow a user to create a post" do
-
     post :create, :post => {}
     response.should redirect_to(root_url)
   end

@@ -8,8 +8,6 @@ class AccountsController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    @user.community = Community.first
-    
     respond_to do |format|
       if @user.save
         reload_current_user!
