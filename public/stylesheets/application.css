@@ -757,15 +757,21 @@ ul#wire {
 ul#wire li {
   margin-bottom: 10px;
 }
-/* line 10, ../../app/stylesheets/_item.sass */
+/* line 7, ../../app/stylesheets/_item.sass */
+ul#wire li:hover {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f7f7f7), color-stop(100%, #f1f1f1));
+  background-image: -moz-linear-gradient(top, #f7f7f7 0%, #f1f1f1 100%);
+  background-image: linear-gradient(top, #f7f7f7 0%, #f1f1f1 100%);
+}
+/* line 12, ../../app/stylesheets/_item.sass */
 ul#wire li .header .header_text span.author {
   font-weight: bold;
 }
-/* line 12, ../../app/stylesheets/_item.sass */
+/* line 14, ../../app/stylesheets/_item.sass */
 ul#wire li .header .header_text span.from {
   color: #888888;
 }
-/* line 14, ../../app/stylesheets/_item.sass */
+/* line 16, ../../app/stylesheets/_item.sass */
 ul#wire li .header .time {
   float: right;
   text-align: right;
@@ -774,7 +780,7 @@ ul#wire li .header .time {
   color: #aaaaaa;
   font-weight: bold;
 }
-/* line 21, ../../app/stylesheets/_item.sass */
+/* line 23, ../../app/stylesheets/_item.sass */
 ul#wire li a {
   display: block;
   border-top: 1px solid white;
@@ -784,7 +790,7 @@ ul#wire li a {
   font-size: 17px;
   text-decoration: none;
 }
-/* line 29, ../../app/stylesheets/_item.sass */
+/* line 31, ../../app/stylesheets/_item.sass */
 ul#wire li a img {
   height: 50px;
   width: 50px;
@@ -804,7 +810,7 @@ ul#wire li a img {
   vertical-align: top;
   margin-right: 7px;
 }
-/* line 37, ../../app/stylesheets/_item.sass */
+/* line 39, ../../app/stylesheets/_item.sass */
 ul#wire li a .small_calendar {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -826,7 +832,7 @@ ul#wire li a .small_calendar {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 47, ../../app/stylesheets/_item.sass */
+/* line 49, ../../app/stylesheets/_item.sass */
 ul#wire li a .small_calendar .month {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   background-color: #5a758c;
@@ -847,14 +853,14 @@ ul#wire li a .small_calendar .month {
   font-size: 11px;
   line-height: 16px;
 }
-/* line 55, ../../app/stylesheets/_item.sass */
+/* line 57, ../../app/stylesheets/_item.sass */
 ul#wire li a .small_calendar .date {
   font-family: "OldStandardTTBold", Times, serif;
   font-weight: normal;
   font-size: 22px;
   padding-top: 5px;
 }
-/* line 60, ../../app/stylesheets/_item.sass */
+/* line 62, ../../app/stylesheets/_item.sass */
 ul#wire li a .body {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -866,20 +872,20 @@ ul#wire li a .body {
   margin-top: -3px;
   vertical-align: top;
 }
-/* line 66, ../../app/stylesheets/_item.sass */
+/* line 68, ../../app/stylesheets/_item.sass */
 ul#wire li a .body .event_start_time {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
   margin-top: -2px;
   color: #497fb0;
 }
-/* line 71, ../../app/stylesheets/_item.sass */
+/* line 73, ../../app/stylesheets/_item.sass */
 ul#wire li a .body p {
   color: #525252;
   font-size: 0.8em;
   line-height: 1.35em;
 }
-/* line 75, ../../app/stylesheets/_item.sass */
+/* line 77, ../../app/stylesheets/_item.sass */
 ul#wire li a .body span.reply_count {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 0.7em;
@@ -918,7 +924,7 @@ ul#wire li.event .header .header_text span.author {
 ul#wire li.event a .body p span.reply_count {
   color: #497fb0;
 }
-/* line 91, ../../app/stylesheets/_item.sass */
+/* line 93, ../../app/stylesheets/_item.sass */
 ul#wire li .replies {
   display: none;
 }

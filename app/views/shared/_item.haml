@@ -5,7 +5,7 @@
       %span.from has a Neighborhood 
       %span.category= item.class.human_name
     %span.time= item.time
-  - link_to url_for(item), 'data-remote' => true do
+  - link_to url_for(item), :class => 'display_info_box', 'data-remote' => true do
     - if item.is_a? Event
       .small_calendar= render("events/calendar", :event => item)
     - else
