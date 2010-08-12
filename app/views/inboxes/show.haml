@@ -1,3 +1,5 @@
 %ul#inbox
-  - current_user.inbox.each do |item|
-    = render 'item', :item => item
+  - @inbox.each do |item|
+    %li
+      ITEM
+      = render 'item', :item => item
