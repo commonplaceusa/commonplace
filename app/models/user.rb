@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   
   has_attached_file(:avatar, 
                     :styles => { :thumb => "100x100" },
-                    :default_url => "/system/avatars/missing.png")
+                    :default_url => "/avatars/missing.png")
 
 
   def search(term)
