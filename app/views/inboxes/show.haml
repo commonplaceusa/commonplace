@@ -1,5 +1,3 @@
 %ul#inbox
-  - @inbox.each do |item|
-    %li
-      ITEM
-      = render 'item', :item => item
+  - current_user.notifications.each do |notification|
+    %p notifcation.notifiable.body

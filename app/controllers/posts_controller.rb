@@ -30,10 +30,6 @@ class PostsController < CommunitiesController
   end
 
   def show
-    if current_user_session && 
-        thread = @post.thread_memberships.find(:first, :conditions => ["user_id = ?",current_user.id])
-      thread.view!
-    end
     respond_to do |format|
       format.html
       format.json

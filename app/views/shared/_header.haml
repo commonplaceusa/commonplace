@@ -3,9 +3,6 @@
   %h1
     - link_to root_url, :id => 'title' do
       = image_tag 'transparent_small.png', :id => 'logo', :alt => "CommonPlace", :size => "420 × 37"
-    / 
-    / - if current_user_session
-    /   = tab_to current_user.community.name, '', :id => 'community_nav'
 
     
   #styled_main_nav<>
@@ -14,7 +11,7 @@
     %nav<>
       - if current_user_session
         #greeting> Hi, #{current_user.first_name}!
-        = tab_to("Home", root_url) + tab_to(current_user.inbox_size, inbox_url, :id => 'inbox') + tab_to('My Account', edit_account_url, :id => 'account') + tab_to(user_organization_text, organizer_index_url, :id => 'organizations') + tab_to('Log out', logout_url)
+        = tab_to("Home", root_url) + tab_to("Inbox (#{current_user.notifications.count})", inbox_url, :id => 'inbox') + tab_to('My Account', edit_account_url, :id => 'account') + tab_to(user_organization_text, organizer_index_url, :id => 'organizations') + tab_to('Log out', logout_url)
       - else
         - form_for UserSession.new, :url => user_session_path do |f|
           = f.text_field :email, 'data-label' => "Email"

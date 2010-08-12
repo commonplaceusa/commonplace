@@ -16,6 +16,7 @@ class Users::MessagesController < ApplicationController
       @message.save!
       @message.conversation.users << current_user << @user
       @message.conversation.save!
+      @user.notifications.create(:notifiable => @message)
     end
     
   rescue

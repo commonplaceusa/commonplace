@@ -25,9 +25,9 @@ class User < ActiveRecord::Base
   has_many :referrals, :foreign_key => "referee_id"
   
   has_many :messages
-  has_many :thread_memberships
   has_many :mets, :foreign_key => "requestee_id"
   
+  has_many :notifications
 
   validates_presence_of :first_name, :last_name
   validates_acceptance_of :privacy_policy
@@ -66,18 +66,6 @@ class User < ActiveRecord::Base
   
   def wire
     (self.organizations.map(&:announcements).flatten + Event.all(:order => "created_at DESC") + Post.all(:order => "created_at DESC")).sort_by(&:created_at).reverse
-  end
-
-  def inbox
-    self.referrals + 
-      PlatformUpdate.all + 
-      self.mets + 
-      self.thread_memberships.unread +
-      self.attendances.unread
-  end
-  
-  def inbox_size
-    "Inbox (1)" 
   end
 
   def role_symbols

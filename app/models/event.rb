@@ -15,9 +15,6 @@ class Event < ActiveRecord::Base
   named_scope :upcoming, :conditions => ["? < start_time", Time.now]
   named_scope :past, :conditions => ["start_time < ?", Time.now]
 
-  has_many :thread_memberships, :as => :thread
-  has_many :subscribers, :as => :thread, :through => :thread_memberships
-  
   def search(term)
     Event.all
   end
