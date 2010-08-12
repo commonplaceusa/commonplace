@@ -18,3 +18,4 @@ test
 coverage
 coverage.data
 rerun.txt
+config/config.yml
