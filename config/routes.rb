@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
     
     community.resources :users do |user|
       user.resource :met, :only => [:create]
-      user.resources :conversations, :only => [:create, :new], :controller => 'users/conversations'
+      user.resources :messages, :only => [:create, :new], :controller => 'users/messages'
     end
     
     community.resources :invites

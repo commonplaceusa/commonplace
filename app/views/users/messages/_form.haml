@@ -1,0 +1,10 @@
+- form_for [user, message] do |f|
+  - f.fields_for :conversation_attributes, message.build_conversation do |c|
+    = c.label :subject
+    = c.text_field :subject
+  
+  = f.label :body
+  = f.text_area :body
+
+  = f.submit
+  
