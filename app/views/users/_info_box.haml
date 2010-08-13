@@ -7,7 +7,7 @@
       %span.follow_status You've met
   #info_box_main
     #info_box_main_left
-      = image_tag user.avatar.url, :width => 120, :height => 150, :class => 'graphic'
+      = image_tag user.avatar.url, :width => 120, :height => 120, :class => 'graphic'
       - unless current_user.mets.exists?(user)
         = button_to "Have you met?", "", :id => "follow_link", :class => "link_button"
       = link_to "Message #{ user.first_name }", new_user_message_path(user), :id => "message_me", :class => "link_button", 'data-remote' => true
