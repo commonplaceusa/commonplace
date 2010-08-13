@@ -1,4 +1,4 @@
 { 
   "success": false,
-  "newReply": <%= with_format(:html) { render 'form', :post => @post, :reply => @replyx }.to_json %>
+  "newReply": <%= html_to_json { render 'form', :post => @post, :reply => @reply } %>
 }

@@ -1,3 +1,3 @@
 {
-  "info_box": <%= with_format(:html) {render 'organizations/info_box', :organization => @announcement.organization}.to_json %>
+  "info_box": <%= html_to_json {render 'organizations/info_box', :organization => @announcement.organization} %>
 }

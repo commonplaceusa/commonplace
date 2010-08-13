@@ -1,4 +1,4 @@
 {
   "title": "Message <%= @user.full_name %>",
-  "form": <%= with_format(:html) { render 'form', :user => @user, :message => @message }.to_json %>
+  "form": <%= html_to_json { render 'form', :user => @user, :message => @message } %>
 }

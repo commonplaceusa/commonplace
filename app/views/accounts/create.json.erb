@@ -1,4 +1,4 @@
 { 
   "success": true,
-  "more_info": <%= with_format(:html) { render 'more_info' }.to_json %>
+  "more_info": <%= html_to_json { render 'more_info' } %>
 }
