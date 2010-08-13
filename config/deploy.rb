@@ -1,5 +1,5 @@
-set :repository, "file:///home/deploy/commonplace.git"
-set :local_repository, "git+ssh://commonplace.in/home/deploy/commonplace.git"
+set :repository, "git@github.com:maxtilford/commonplace.git"
+#set :local_repository, "git+ssh://commonplace.in/home/deploy/commonplace.git"
 set :scm, :git
 set :branch, 'master'
 set :deploy_via, :checkout
