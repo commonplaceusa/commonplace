@@ -25,6 +25,9 @@ class OrganizerController < ApplicationController
   end
   
   def update
+    @organization = Organization.find params[:id]
+    @organization.update_attributes(params[:organization])
+    redirect_to :show
   end
   
   def new
