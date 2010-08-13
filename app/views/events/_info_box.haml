@@ -18,11 +18,11 @@
       %p.user_about= auto_link event.description, :all, :target => '_blank'
       %ol.user_info            
         %li
-          %span.info_title= "Starts at".upcase
+          %span.info_title= "Starts".upcase
           = event_date event.start_time
         - unless event.end_time.nil?
           %li  
-            %span.info_title= "Ends at".upcase
+            %span.info_title= "Ends".upcase
             = event_date event.end_time
         - unless event.address.blank?
           %li
