@@ -1445,7 +1445,7 @@ form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   *zoom: 1;
   border-left: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
-  padding: 0px 5px;
+  padding: 0px 5px 15px;
   background-color: #fcfcfc;
 }
 /* line 33, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
