@@ -148,6 +148,24 @@ $(function(){
   //   window.location = "#" + $(this).attr('data-url');
   // });
   
+  $('#toggle_map').toggle( function(){
+    $('#map').css({
+      width: "100%",
+      height: "250px",
+      "margin-bottom": "10px"
+    });
+    $("#toggle_map").html("COLLAPSE MAP");
+  }, function() {
+    $('#map').css({
+      width: "150px",
+      height: "150px",
+      "margin-bottom": "0"
+    });
+    $("#toggle_map").html("EXPAND MAP");
+  });
+  
+
+  
 });
 
 

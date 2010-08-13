@@ -7,10 +7,6 @@ module TextHelper
       "Manage Organizations"
     end
   end
-
-  def display_or_none(field)
-    field || '<span class="none">none listed</span>'
-  end
   
   # Move me to User.rb!
   def user_inbox_size

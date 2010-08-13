@@ -130,6 +130,22 @@ header
   padding-bottom: 10020px
   margin-bottom: -10000px
 
+    
+#win, #fail
+  width: inherit
+  color: white
+  padding: 7px 10px
+  +sans
+  font-size: 12px
+  font-weight: bold
+  margin-bottom: 10px
+  +border-radius($defaultRadius)
+
+#win
+  background-color: green
+#fail
+  background-color: red
+
 .label 
   color: #666666
   -webkit-transition: color 0.2s linear

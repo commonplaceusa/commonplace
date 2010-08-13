@@ -1,75 +1,78 @@
 
-%h1= @organization.name
 
-.contact
-  = image_tag @organization.avatar.url, :class => "profilephoto", :height => 200, :width => 200
-  %ul#contact
+%h1
+  = @organization.name
+  - unless @subscribers.include? current_user
+    #subscribe= button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization)
+
+.left_col
+  = image_tag @organization.avatar.url, :id => "profile_photo", :height => 200, :width => 200
+  
+  %ul#contact.styled_list
     %li Contact Information
-    %li.contact_field Send a Message
-    %li
-      %span.contact_field Phone:
-      = display_or_none @organization.phone
-    %li
-      %span.contact_field Website:
-      = display_or_none @organization.website
-    
-  %ul#members
-    %li Members (#{ @subscribers.take(3).length }/#{ @subscribers.length })
-    - @subscribers.take(3).each do |subscriber|
+    %li.intense.clickable= "Send a Message".upcase
+    - unless @organization.phone.blank?
       %li
+        %span.label Phone:
+        = display_or_none @organization.phone
+    - unless @organization.website.blank?
+      %li
+        %span.label Website:
+        = display_or_none @organization.website
+    
+  %ul#members.styled_list
+    %li Members (#{ @subscribers.length })
+    - @subscribers.take(5).each do |subscriber|
+      %li.member.clickable
         .user_image= image_tag subscriber.avatar.url, :size => "30x30"
         .user_info
-          .user_name= subscriber.full_name
+          .user_name= subscriber.name
           .user_role subscriber
-    %li#more_members View all members...
+    - if @subscribers.length > 5
+      %li.intense.clickable= "+ view all members".upcase
 
   - if @subscribers.include? current_user
-    #unsubscribe= button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete
+    =button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete, :id => :unsubscribe
 
 
-.about
+.middle_col
   - if flash[:win]
     #win= flash[:win]
-  - unless @subscribers.include? current_user
-    #signupteaser
-      = button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization) 
-      %p #{ @organization.name } is part of the #{ @organization.community.name } CommonPlace, a way to connect to organizations and people in your neighborhood.
-  
-  %h2.top.underline About us
-  %p.profile_info= @organization.about
-  
-  - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
-    %h2.underline= p.subject
-    %p.profile_info= p.body
     
-  %h2.underline Upcoming Events
-  %ul#wire
-    - @organization.events.each do |event|
-      = render 'shared/item', :item => event
+  %ul#modules
+    %li.profile_field
+      %h2 About us
+      %p= @organization.about
   
-  %h2.underline Location
-  %table.profile_info
-    %tr
-      %td Address
-      %td= @organization.address || "no address listed"
-    %tr
-      %td Distance
-      %td 0.4 miles
-    %tr
-      %td Walking Time
-      %td 5 minutes
-  
-  #map
+    - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+      %li.profile_field
+        %h2= p.subject
+        %p= p.body
+    
+    %li#map_container
+      %h2 Location
+      #map
+      %p= @organization.address || "no address listed"
+      #toggle_map= "Expand map".upcase
+      #get_directions= "Get Directions".upcase
+        
+    
+    %li#events
+      %h2.underline Upcoming Events
+      %ul#wire
+        - @organization.events.each do |event|
+          %li= render 'shared/item_body', :item => event
   
 
-.related
-  %h3 The potential right column
-  %p We could sell ads here like Facebook does.
-  %p Or there might actually be valuable content we could include here. I'm not sure.
   
-  %h3 What content could we include here?
-  %p I don't know, but I'd be interested to find out. We should think about this. The three column layout does look pretty good, I think.
+
+%ul.right_col
+  %li Announcements
   
+  - @organization.announcements.each do |a|
+    %li
+      %h3= a.subject
+      %p= a.body
   
   
   
