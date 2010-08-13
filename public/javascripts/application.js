@@ -164,7 +164,8 @@ $(function(){
     $("#toggle_map").html("EXPAND MAP / GET DIRECTIONS");
   });
   
-
+  $('#modules').sortable();
+  $('#modules').disableSelection();
   
 });
 
