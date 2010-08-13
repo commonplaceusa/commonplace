@@ -1784,7 +1784,7 @@ div#submit_post {
   margin-right: 15px;
 }
 /* line 119, ../../app/stylesheets/_profile.sass */
-.profile .middle_col ul#modules li#map_container #get_directions, .profile .middle_col ul#modules li#map_container #toggle_map {
+.profile .middle_col ul#modules li#map_container #toggle_map {
   cursor: pointer;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #af4339;

@@ -161,7 +161,7 @@ $(function(){
       height: "150px",
       "margin-bottom": "0"
     });
-    $("#toggle_map").html("EXPAND MAP");
+    $("#toggle_map").html("EXPAND MAP / GET DIRECTIONS");
   });
   
 
