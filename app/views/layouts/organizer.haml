@@ -1,42 +1,10 @@
-!!! 5
-%html
-  %head
-    %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
-    %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
-    %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
 
-    / [if IE]
-      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
-      
-    = javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min.js', 'sammy', 'autoresize.jquery.min.js', 'markermanager_packed.js', 'jquery.jellopudding.js', 'jquery.goodlabel.js', 'application'
-
-    = stylesheet_link_tag 'organizer.css'
-
-    %title CommonPlace
-
-
-  %body
-    :javascript
-      selectTab("organizations");
+- inside_layout 'application' do
+  
+  #management_top_container
+    #selection Manage:
+    #management_actions.actions
+      = render 'organizer/navigation'
     
-    #top
-    #wrap
-      = render 'shared/header'
-
-      #main
-        = render 'organizer/navigation'
-        = yield
-
-      #wrap_footer
-      
-    = render 'shared/footer'
-
-    - if RAILS_ENV == "production"
-      %script{:type=>"text/javascript"}
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-      %script{:type=>"text/javascript"}
-        try {
-        var pageTracker = _gat._getTracker("UA-12888551-2");
-        pageTracker._trackPageview();
-        } catch(err) {}
+  #main
+    = yield

@@ -128,7 +128,7 @@ a img {
   border: none;
 }
 
-/* line 22, ../../app/stylesheets/_core.sass */
+/* line 23, ../../app/stylesheets/_core.sass */
 body {
   padding: 0;
   min-width: 960px;
@@ -138,22 +138,22 @@ body {
   font-family: Georgia, Times, serif;
 }
 
-/* line 30, ../../app/stylesheets/_core.sass */
+/* line 31, ../../app/stylesheets/_core.sass */
 nav, header, footer {
   display: block;
 }
 
-/* line 33, ../../app/stylesheets/_core.sass */
+/* line 34, ../../app/stylesheets/_core.sass */
 a {
   color: #0033aa;
   text-decoration: none;
 }
-/* line 36, ../../app/stylesheets/_core.sass */
+/* line 37, ../../app/stylesheets/_core.sass */
 a:hover {
   text-decoration: underline;
 }
 
-/* line 43, ../../app/stylesheets/_core.sass */
+/* line 44, ../../app/stylesheets/_core.sass */
 #wrap {
   margin-left: auto;
   margin-right: auto;
@@ -458,30 +458,30 @@ a:hover {
   margin-right: 0;
 }
 
-/* line 49, ../../app/stylesheets/_core.sass */
+/* line 50, ../../app/stylesheets/_core.sass */
 header {
   width: 960px;
   margin: auto;
   position: relative;
 }
-/* line 53, ../../app/stylesheets/_core.sass */
+/* line 54, ../../app/stylesheets/_core.sass */
 header h1 {
   margin-left: 3px;
   padding-top: 20px;
 }
-/* line 56, ../../app/stylesheets/_core.sass */
+/* line 57, ../../app/stylesheets/_core.sass */
 header h1 img {
   width: 360px;
   height: 31px;
   margin: 10px 0px;
 }
-/* line 62, ../../app/stylesheets/_core.sass */
+/* line 63, ../../app/stylesheets/_core.sass */
 header #styled_main_nav {
   position: absolute;
   right: -21px;
   top: 7px;
 }
-/* line 67, ../../app/stylesheets/_core.sass */
+/* line 68, ../../app/stylesheets/_core.sass */
 header .main_nav_radius_set {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -494,11 +494,11 @@ header .main_nav_radius_set {
   width: 21px;
   height: 21px;
 }
-/* line 73, ../../app/stylesheets/_core.sass */
+/* line 74, ../../app/stylesheets/_core.sass */
 header #main_nav_left_radius, header #main_nav_right_radius {
   background-color: #eaeae8;
 }
-/* line 75, ../../app/stylesheets/_core.sass */
+/* line 76, ../../app/stylesheets/_core.sass */
 header #main_nav_left_radius_inner {
   background-color: white;
   -moz-border-radius-topright: 5px;
@@ -508,7 +508,7 @@ header #main_nav_left_radius_inner {
   -khtml-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-/* line 78, ../../app/stylesheets/_core.sass */
+/* line 79, ../../app/stylesheets/_core.sass */
 header #main_nav_right_radius_inner {
   background-color: white;
   -moz-border-radius-topleft: 5px;
@@ -518,7 +518,7 @@ header #main_nav_right_radius_inner {
   -khtml-border-top-left-radius: 5px;
   border-top-left-radius: 5px;
 }
-/* line 81, ../../app/stylesheets/_core.sass */
+/* line 82, ../../app/stylesheets/_core.sass */
 header nav {
   display: inline-block;
   position: relative;
@@ -542,7 +542,7 @@ header nav {
   font-size: 11px;
   color: #777777;
 }
-/* line 93, ../../app/stylesheets/_core.sass */
+/* line 94, ../../app/stylesheets/_core.sass */
 header nav #greeting, header nav a {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -554,16 +554,16 @@ header nav #greeting, header nav a {
   font-weight: bold;
   padding: 10px 10px 9px;
 }
-/* line 98, ../../app/stylesheets/_core.sass */
+/* line 99, ../../app/stylesheets/_core.sass */
 header nav a {
   color: #4a7eb0;
   border-left: 1px solid #dddddd;
 }
-/* line 102, ../../app/stylesheets/_core.sass */
+/* line 103, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
   padding-left: 9px;
 }
-/* line 104, ../../app/stylesheets/_core.sass */
+/* line 105, ../../app/stylesheets/_core.sass */
 header nav a:last-child {
   padding-right: 9px;
   -moz-border-radius-bottomright: 5px;
@@ -573,11 +573,11 @@ header nav a:last-child {
   -khtml-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-/* line 108, ../../app/stylesheets/_core.sass */
+/* line 109, ../../app/stylesheets/_core.sass */
 header nav form {
   padding: 5px 7px;
 }
-/* line 110, ../../app/stylesheets/_core.sass */
+/* line 111, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   height: 14px;
@@ -592,7 +592,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 114, ../../app/stylesheets/_core.sass */
+/* line 115, ../../app/stylesheets/_core.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -614,7 +614,7 @@ header nav form input[type=submit]:hover {
   border-color: #888888;
 }
 
-/* line 117, ../../app/stylesheets/_core.sass */
+/* line 118, ../../app/stylesheets/_core.sass */
 #top {
   background: #eaeae8;
   position: absolute;
@@ -626,7 +626,31 @@ header nav form input[type=submit]:hover {
   z-index: -3;
 }
 
-/* line 128, ../../app/stylesheets/_core.sass */
+/* line 129, ../../app/stylesheets/_core.sass */
+.actions {
+  -moz-border-radius-topleft: 7px;
+  -webkit-border-top-left-radius: 7px;
+  -o-border-top-left-radius: 7px;
+  -ms-border-top-left-radius: 7px;
+  -khtml-border-top-left-radius: 7px;
+  border-top-left-radius: 7px;
+  -moz-border-radius-topright: 7px;
+  -webkit-border-top-right-radius: 7px;
+  -o-border-top-right-radius: 7px;
+  -ms-border-top-right-radius: 7px;
+  -khtml-border-top-right-radius: 7px;
+  border-top-right-radius: 7px;
+  color: #f8f7f2;
+  position: relative;
+  margin-top: 10px;
+  border-bottom: 1px solid #dddddd;
+  background-color: #888888;
+  overflow: hidden;
+  *zoom: 1;
+  font-size: 15px;
+}
+
+/* line 140, ../../app/stylesheets/_core.sass */
 #main {
   overflow: hidden;
   *zoom: 1;
@@ -634,7 +658,7 @@ header nav form input[type=submit]:hover {
   margin-bottom: -10000px;
 }
 
-/* line 134, ../../app/stylesheets/_core.sass */
+/* line 146, ../../app/stylesheets/_core.sass */
 #win, #fail {
   width: inherit;
   color: white;
@@ -651,23 +675,23 @@ header nav form input[type=submit]:hover {
   border-radius: 5px;
 }
 
-/* line 144, ../../app/stylesheets/_core.sass */
+/* line 156, ../../app/stylesheets/_core.sass */
 #win {
   background-color: green;
 }
 
-/* line 146, ../../app/stylesheets/_core.sass */
+/* line 158, ../../app/stylesheets/_core.sass */
 #fail {
   background-color: red;
 }
 
-/* line 149, ../../app/stylesheets/_core.sass */
+/* line 161, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 153, ../../app/stylesheets/_core.sass */
+/* line 165, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
@@ -698,7 +722,7 @@ footer {
   height: 31px;
 }
 
-/* line 159, ../../app/stylesheets/_core.sass */
+/* line 171, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   height: 11px;
@@ -708,11 +732,11 @@ footer {
   font-size: 11px;
   color: #777777;
 }
-/* line 167, ../../app/stylesheets/_core.sass */
+/* line 179, ../../app/stylesheets/_core.sass */
 footer a {
   color: #4a7eb0;
 }
-/* line 170, ../../app/stylesheets/_core.sass */
+/* line 182, ../../app/stylesheets/_core.sass */
 footer nav {
   color: black;
   display: -moz-inline-box;
@@ -723,4 +747,811 @@ footer nav {
   *vertical-align: auto;
   position: absolute;
   right: 10px;
+}
+
+/* line 2, ../../app/stylesheets/_item.sass */
+ul#wire {
+  display: inline;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 470px;
+  margin-left: 0;
+}
+/* line 6, ../../app/stylesheets/_item.sass */
+ul#wire li {
+  margin-bottom: 10px;
+}
+/* line 7, ../../app/stylesheets/_item.sass */
+ul#wire li:hover {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f7f7f7), color-stop(100%, #f1f1f1));
+  background-image: -moz-linear-gradient(top, #f7f7f7 0%, #f1f1f1 100%);
+  background-image: linear-gradient(top, #f7f7f7 0%, #f1f1f1 100%);
+}
+/* line 12, ../../app/stylesheets/_item.sass */
+ul#wire li .header .header_text span.author {
+  font-weight: bold;
+}
+/* line 14, ../../app/stylesheets/_item.sass */
+ul#wire li .header .header_text span.from {
+  color: #888888;
+}
+/* line 16, ../../app/stylesheets/_item.sass */
+ul#wire li .header .time {
+  float: right;
+  text-align: right;
+  font-size: 10px;
+  padding: 5px 7px;
+  color: #aaaaaa;
+  font-weight: bold;
+}
+/* line 23, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body {
+  display: block;
+  border-top: 1px solid white;
+  padding: 7px 7px 10px;
+  line-height: 120%;
+  color: black;
+  font-size: 17px;
+  text-decoration: none;
+  position: relative;
+}
+/* line 32, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body img {
+  height: 50px;
+  width: 50px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+  border: 1px solid #dddddd;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  vertical-align: top;
+  margin-right: 7px;
+}
+/* line 40, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body .small_calendar {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  width: 50px;
+  height: 50px;
+  margin-right: 7px;
+  vertical-align: top;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #dddddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 50, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body .small_calendar .month {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  background-color: #5a758c;
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -o-border-top-left-radius: 5px;
+  -ms-border-top-left-radius: 5px;
+  -khtml-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -o-border-top-right-radius: 5px;
+  -ms-border-top-right-radius: 5px;
+  -khtml-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  color: white;
+  padding: 1px 7px;
+  font-size: 11px;
+  line-height: 16px;
+}
+/* line 58, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body .small_calendar .date {
+  font-family: "OldStandardTTBold", Times, serif;
+  font-weight: normal;
+  font-size: 22px;
+  padding-top: 5px;
+}
+/* line 63, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body .body {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  width: 390px;
+  margin-top: -3px;
+  vertical-align: top;
+  position: relative;
+}
+/* line 70, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body .body .event_start_time {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 11px;
+  margin-top: -2px;
+  color: #497fb0;
+}
+/* line 75, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body .body p {
+  color: #525252;
+  font-size: 0.8em;
+  line-height: 1.35em;
+  width: inherit;
+  position: relative;
+}
+/* line 81, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body .reply_div {
+  float: right;
+  display: none;
+}
+/* line 87, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body .reply_fade {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  width: 60px;
+  height: 20px;
+  background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(0%, rgba(241, 241, 241, 0)), color-stop(100%, #f1f1f1));
+  background-image: -moz-linear-gradient(left, rgba(241, 241, 241, 0) 0%, #f1f1f1 100%);
+  background-image: linear-gradient(left, rgba(241, 241, 241, 0) 0%, #f1f1f1 100%);
+  margin-left: 2px;
+  display: none;
+}
+/* line 94, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body .reply_count {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  font-size: 11px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  vertical-align: top;
+}
+/* line 104, ../../app/stylesheets/_item.sass */
+ul#wire li .item_body:hover .reply_div {
+  display: block;
+}
+/* line 2, ../../app/stylesheets/_mixins.sass */
+ul#wire li.post .header .header_text span.author {
+  color: #b53f3c;
+}
+/* line 4, ../../app/stylesheets/_mixins.sass */
+ul#wire li.post a .reply_count {
+  color: #b53f3c;
+}
+/* line 2, ../../app/stylesheets/_mixins.sass */
+ul#wire li.announcement .header .header_text span.author {
+  color: #666666;
+}
+/* line 4, ../../app/stylesheets/_mixins.sass */
+ul#wire li.announcement a .reply_count {
+  color: #666666;
+}
+/* line 2, ../../app/stylesheets/_mixins.sass */
+ul#wire li.event .header .header_text span.author {
+  color: #497fb0;
+}
+/* line 4, ../../app/stylesheets/_mixins.sass */
+ul#wire li.event a .reply_count {
+  color: #497fb0;
+}
+/* line 114, ../../app/stylesheets/_item.sass */
+ul#wire li .replies {
+  display: none;
+}
+
+/* line 1, ../../app/stylesheets/_profile.sass */
+.profile {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  overflow: hidden;
+  *zoom: 1;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  padding: 0px 5px;
+  background-color: #fcfcfc;
+}
+/* line 33, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_1, .profile .grid_2, .profile .grid_3, .profile .grid_4, .profile .grid_5, .profile .grid_6, .profile .grid_7, .profile .grid_8, .profile .grid_9, .profile .grid_10, .profile .grid_11, .profile .grid_12, .profile .grid_13, .profile .grid_14, .profile .grid_15, .profile .grid_16, .profile .grid_17, .profile .grid_18, .profile .grid_19, .profile .grid_20, .profile .grid_21, .profile .grid_22, .profile .grid_23, .profile .grid_24 {
+  display: inline;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_1 {
+  width: 30px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_2 {
+  width: 70px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_3 {
+  width: 110px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_4 {
+  width: 150px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_5 {
+  width: 190px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_6 {
+  width: 230px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_7 {
+  width: 270px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_8 {
+  width: 310px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_9 {
+  width: 350px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_10 {
+  width: 390px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_11 {
+  width: 430px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_12 {
+  width: 470px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_13 {
+  width: 510px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_14 {
+  width: 550px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_15 {
+  width: 590px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_16 {
+  width: 630px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_17 {
+  width: 670px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_18 {
+  width: 710px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_19 {
+  width: 750px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_20 {
+  width: 790px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_21 {
+  width: 830px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_22 {
+  width: 870px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_23 {
+  width: 910px;
+}
+/* line 36, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .grid_24 {
+  width: 950px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_1 {
+  padding-left: 40px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_2 {
+  padding-left: 80px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_3 {
+  padding-left: 120px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_4 {
+  padding-left: 160px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_5 {
+  padding-left: 200px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_6 {
+  padding-left: 240px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_7 {
+  padding-left: 280px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_8 {
+  padding-left: 320px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_9 {
+  padding-left: 360px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_10 {
+  padding-left: 400px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_11 {
+  padding-left: 440px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_12 {
+  padding-left: 480px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_13 {
+  padding-left: 520px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_14 {
+  padding-left: 560px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_15 {
+  padding-left: 600px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_16 {
+  padding-left: 640px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_17 {
+  padding-left: 680px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_18 {
+  padding-left: 720px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_19 {
+  padding-left: 760px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_20 {
+  padding-left: 800px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_21 {
+  padding-left: 840px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_22 {
+  padding-left: 880px;
+}
+/* line 44, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .prefix_23 {
+  padding-left: 920px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_1 {
+  padding-right: 40px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_2 {
+  padding-right: 80px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_3 {
+  padding-right: 120px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_4 {
+  padding-right: 160px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_5 {
+  padding-right: 200px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_6 {
+  padding-right: 240px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_7 {
+  padding-right: 280px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_8 {
+  padding-right: 320px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_9 {
+  padding-right: 360px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_10 {
+  padding-right: 400px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_11 {
+  padding-right: 440px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_12 {
+  padding-right: 480px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_13 {
+  padding-right: 520px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_14 {
+  padding-right: 560px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_15 {
+  padding-right: 600px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_16 {
+  padding-right: 640px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_17 {
+  padding-right: 680px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_18 {
+  padding-right: 720px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_19 {
+  padding-right: 760px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_20 {
+  padding-right: 800px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_21 {
+  padding-right: 840px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_22 {
+  padding-right: 880px;
+}
+/* line 52, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .suffix_23 {
+  padding-right: 920px;
+}
+/* line 56, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .alpha {
+  margin-left: 0;
+}
+/* line 58, ../../../.rvm/gems/ruby-1.8.7-p174/gems/compass-960-plugin-0.9.13/stylesheets/960/_grid.sass */
+.profile .omega {
+  margin-right: 0;
+}
+/* line 10, ../../app/stylesheets/_profile.sass */
+.profile h1 {
+  display: inline;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 950px;
+  margin: 15px;
+  font-size: 2em;
+  color: #555555;
+}
+/* line 19, ../../app/stylesheets/_profile.sass */
+.profile h1 #subscribe {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  vertical-align: top;
+}
+/* line 22, ../../app/stylesheets/_profile.sass */
+.profile h1 #subscribe input {
+  background-color: #eeeeee;
+  background-image: url("/images/button_repeat.png");
+  width: auto;
+  height: 100%;
+  color: black;
+  padding: 3px 7px;
+  cursor: pointer;
+  border: 1px solid #dddddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 32, ../../app/stylesheets/_mixins.sass */
+.profile h1 #subscribe input:hover {
+  border-color: #888888;
+}
+/* line 25, ../../app/stylesheets/_profile.sass */
+.profile .left_col {
+  margin-left: 0;
+  display: inline;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 210px;
+  padding-right: 20px;
+}
+/* line 30, ../../app/stylesheets/_profile.sass */
+.profile .left_col img#profile_photo {
+  border: 6px solid #4a7fb1;
+}
+/* line 34, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul.styled_list {
+  margin-top: 10px;
+}
+/* line 36, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul.styled_list li {
+  background-color: #f7f7f7;
+  padding: 7px 7px;
+  border: 1px solid #dddddd;
+  border-top: 1px solid white;
+  font-size: 0.8em;
+  color: #555555;
+}
+/* line 43, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul.styled_list li span.label {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 12px;
+  color: #4a7fb1;
+  font-weight: bold;
+}
+/* line 48, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul.styled_list li.intense {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  color: #af4339;
+  font-weight: red;
+  text-align: center;
+  font-size: 0.7em;
+  font-weight: bold;
+}
+/* line 55, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul.styled_list li.clickable {
+  cursor: pointer;
+}
+/* line 57, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul.styled_list li.clickable:hover {
+  background-color: #e6e6e6;
+}
+/* line 59, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul.styled_list li:first-child {
+  background-color: #4a7fb1;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: bold;
+  -moz-border-radius-topleft: 7px;
+  -webkit-border-top-left-radius: 7px;
+  -o-border-top-left-radius: 7px;
+  -ms-border-top-left-radius: 7px;
+  -khtml-border-top-left-radius: 7px;
+  border-top-left-radius: 7px;
+  -moz-border-radius-topright: 7px;
+  -webkit-border-top-right-radius: 7px;
+  -o-border-top-right-radius: 7px;
+  -ms-border-top-right-radius: 7px;
+  -khtml-border-top-right-radius: 7px;
+  border-top-right-radius: 7px;
+  border: none;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 12px;
+}
+/* line 67, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul.styled_list li:last-child {
+  -moz-border-radius-bottomleft: 7px;
+  -webkit-border-bottom-left-radius: 7px;
+  -o-border-bottom-left-radius: 7px;
+  -ms-border-bottom-left-radius: 7px;
+  -khtml-border-bottom-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  -moz-border-radius-bottomright: 7px;
+  -webkit-border-bottom-right-radius: 7px;
+  -o-border-bottom-right-radius: 7px;
+  -ms-border-bottom-right-radius: 7px;
+  -khtml-border-bottom-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+/* line 72, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul#members li.member .user_image {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  margin-right: 5px;
+}
+/* line 75, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul#members li.member .user_info {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+}
+/* line 77, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul#members li.member .user_info .user_name {
+  font-size: 1.2em;
+}
+/* line 79, ../../app/stylesheets/_profile.sass */
+.profile .left_col ul#members li.member .user_info .user_role {
+  color: #4a7fb1;
+  font-size: 0.9em;
+  margin-top: 3px;
+}
+/* line 85, ../../app/stylesheets/_profile.sass */
+.profile .left_col #unsubscribe {
+  background-color: #eeeeee;
+  background-image: url("/images/button_repeat.png");
+  width: auto;
+  height: 100%;
+  color: black;
+  padding: 3px 7px;
+  cursor: pointer;
+  border: 1px solid #dddddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+/* line 32, ../../app/stylesheets/_mixins.sass */
+.profile .left_col #unsubscribe:hover {
+  border-color: #888888;
+}
+/* line 89, ../../app/stylesheets/_profile.sass */
+.profile .middle_col {
+  display: inline;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 450px;
+  padding-right: 20px;
+}
+/* line 94, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul#modules li {
+  margin-bottom: 1em;
+}
+/* line 96, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul#modules li h2 {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #444444;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 8px;
+}
+/* line 104, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul#modules li p {
+  color: #444444;
+  line-height: 140%;
+  font-size: 0.9em;
+}
+/* line 109, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul#modules li#map_container {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 111, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul#modules li#map_container p {
+  padding-top: 10px;
+}
+/* line 113, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul#modules li#map_container #map {
+  float: left;
+  width: 200px;
+  height: 150px;
+  background-color: #dddddd;
+  margin-right: 15px;
+}
+/* line 119, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul#modules li#map_container #toggle_map {
+  cursor: pointer;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  color: #af4339;
+  font-weight: red;
+  font-size: 0.7em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+/* line 128, ../../app/stylesheets/_profile.sass */
+.profile .right_col {
+  display: inline;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 230px;
+  margin-right: 0;
+  background-color: #e9e8e4;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -o-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  border-radius: 7px;
+  border: 1px solid #dddddd;
+  color: #444444;
+}
+/* line 135, ../../app/stylesheets/_profile.sass */
+.profile .right_col li {
+  padding: 10px 13px 5px;
+  font-size: 0.8em;
+}
+/* line 138, ../../app/stylesheets/_profile.sass */
+.profile .right_col li h3 {
+  color: #666666;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+/* line 142, ../../app/stylesheets/_profile.sass */
+.profile .right_col li p {
+  line-height: 140%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f8f7f2;
+}
+/* line 147, ../../app/stylesheets/_profile.sass */
+.profile .right_col li:first-child {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-weight: bold;
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 10px;
+}
+/* line 153, ../../app/stylesheets/_profile.sass */
+.profile .right_col li:last-child p {
+  border: none;
 }

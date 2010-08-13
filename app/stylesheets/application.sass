@@ -5,6 +5,7 @@
 @import form
 @import organization
 @import profile
+@import management
 @import modal
 @import registration
 
@@ -12,7 +13,6 @@
   border: 1px solid $lightGray
   border-top: none
   border-bottom: none
-
 
 nav#filters
   background-color: $offWhite
@@ -38,16 +38,9 @@ a.filter:first-child
 a.filter:last-child
   margin-right: 0px
   
-#actions
-  +border-top-radius(7px)
+#community_actions.actions  
   background-color: #4a7eb0
   +linear-gradient(color-stops(#4a7eb0, #46759f))
-  color: $offWhite
-  position: relative
-  margin-top: 10px
-  border-bottom: 1px solid $lightGray
-  +clearfix
-  font-size: 15px
   
 #actions_top_text
   float: left

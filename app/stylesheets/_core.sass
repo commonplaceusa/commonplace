@@ -6,6 +6,7 @@
 @import compass/css3/gradient
 @import compass/css3/inline-block
 @import compass/css3/box-shadow
+@import compass/css3/text-shadow
 @import compass/reset/utilities
         
 @import mixins
@@ -123,6 +124,17 @@ header
   left: 0px
   right: 0px
   z-index: -3
+  
+
+.actions
+  +border-top-radius(7px)
+  color: $offWhite
+  position: relative
+  margin-top: 10px
+  border-bottom: 1px solid $lightGray
+  background-color: $mediumGray
+  +clearfix
+  font-size: 15px
 
 
 #main

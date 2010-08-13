@@ -1,80 +1,80 @@
+#organization_profile.profile
 
+  %h1
+    = @organization.name
+    - unless @subscribers.include? current_user
+      #subscribe= button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization)
 
-%h1
-  = @organization.name
-  - unless @subscribers.include? current_user
-    #subscribe= button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization)
-
-.left_col
-  = image_tag @organization.avatar.url, :id => "profile_photo", :height => 200, :width => 200
+  .left_col
+    = image_tag @organization.avatar.url, :id => "profile_photo", :height => 200, :width => 200
   
-  %ul#contact.styled_list
-    %li Contact Information
-    %li.intense.clickable= "Send a Message".upcase
-    - unless @organization.phone.blank?
-      %li
-        %span.label Phone:
-        = display_or_none @organization.phone
-    - unless @organization.website.blank?
-      %li
-        %span.label Website:
-        = display_or_none @organization.website
+    %ul#contact.styled_list
+      %li Contact Information
+      %li.intense.clickable= "Send a Message".upcase
+      - unless @organization.phone.blank?
+        %li
+          %span.label Phone:
+          = display_or_none @organization.phone
+      - unless @organization.website.blank?
+        %li
+          %span.label Website:
+          = display_or_none @organization.website
     
-  %ul#members.styled_list
-    %li Members (#{ @subscribers.length })
-    - @subscribers.take(5).each do |subscriber|
-      %li.member.clickable
-        .user_image= image_tag subscriber.avatar.url, :size => "30x30"
-        .user_info
-          .user_name= subscriber.name
-          .user_role subscriber
-    - if @subscribers.length > 5
-      %li.intense.clickable= "+ view all members".upcase
+    %ul#members.styled_list
+      %li Members (#{ @subscribers.length })
+      - @subscribers.take(5).each do |subscriber|
+        %li.member.clickable
+          .user_image= image_tag subscriber.avatar.url, :size => "30x30"
+          .user_info
+            .user_name= subscriber.name
+            .user_role subscriber
+      - if @subscribers.length > 5
+        %li.intense.clickable= "+ view all members".upcase
 
-  - if @subscribers.include? current_user
-    =button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete, :id => :unsubscribe
+    - if @subscribers.include? current_user
+      =button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete, :id => :unsubscribe
 
 
-.middle_col
-  - if flash[:win]
-    #win= flash[:win]
+  .middle_col
+    - if flash[:win]
+      #win= flash[:win]
     
-  %ul#modules
-    %li.profile_field
-      %h2 About us
-      %p= @organization.about
-  
-    - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+    %ul#modules
       %li.profile_field
-        %h2= p.subject
-        %p= p.body
+        %h2 About us
+        %p= @organization.about
+  
+      - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+        %li.profile_field
+          %h2= p.subject
+          %p= p.body
     
-    - unless @organization.lat.blank? or @organization.lng.blank?
-      %li#map_container
-        %h2 Location
-        #map
-          :javascript
-            gMapInit(#{@organization.lat}, #{@organization.lng});
-        %p= @organization.address.sub(",", "<br/>")
-        #toggle_map= "Expand map / Get Directions".upcase
+      - unless @organization.lat.blank? or @organization.lng.blank?
+        %li#map_container
+          %h2 Location
+          #map
+            :javascript
+              gMapInit(#{@organization.lat}, #{@organization.lng});
+          %p= @organization.address.sub(",", "<br/>")
+          #toggle_map= "Expand map / Get Directions".upcase
         
     
-    %li#events
-      %h2.underline Upcoming Events
-      %ul#wire
-        - @organization.events.each do |event|
-          %li= render 'shared/item_body', :item => event
+      %li#events
+        %h2.underline Upcoming Events
+        %ul#wire
+          - @organization.events.each do |event|
+            %li= render 'shared/item_body', :item => event
   
 
   
 
-%ul.right_col
-  %li Announcements
+  %ul.right_col
+    %li Announcements
   
-  - @organization.announcements.each do |a|
-    %li
-      %h3= a.subject
-      %p= a.body
+    - @organization.announcements.each do |a|
+      %li
+        %h3= a.subject
+        %p= a.body
   
   
   

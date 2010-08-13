@@ -128,7 +128,7 @@ a img {
   border: none;
 }
 
-/* line 22, ../../app/stylesheets/_core.sass */
+/* line 23, ../../app/stylesheets/_core.sass */
 body {
   padding: 0;
   min-width: 960px;
@@ -138,22 +138,22 @@ body {
   font-family: Georgia, Times, serif;
 }
 
-/* line 30, ../../app/stylesheets/_core.sass */
+/* line 31, ../../app/stylesheets/_core.sass */
 nav, header, footer {
   display: block;
 }
 
-/* line 33, ../../app/stylesheets/_core.sass */
+/* line 34, ../../app/stylesheets/_core.sass */
 a {
   color: #0033aa;
   text-decoration: none;
 }
-/* line 36, ../../app/stylesheets/_core.sass */
+/* line 37, ../../app/stylesheets/_core.sass */
 a:hover {
   text-decoration: underline;
 }
 
-/* line 43, ../../app/stylesheets/_core.sass */
+/* line 44, ../../app/stylesheets/_core.sass */
 #wrap {
   margin-left: auto;
   margin-right: auto;
@@ -458,30 +458,30 @@ a:hover {
   margin-right: 0;
 }
 
-/* line 49, ../../app/stylesheets/_core.sass */
+/* line 50, ../../app/stylesheets/_core.sass */
 header {
   width: 960px;
   margin: auto;
   position: relative;
 }
-/* line 53, ../../app/stylesheets/_core.sass */
+/* line 54, ../../app/stylesheets/_core.sass */
 header h1 {
   margin-left: 3px;
   padding-top: 20px;
 }
-/* line 56, ../../app/stylesheets/_core.sass */
+/* line 57, ../../app/stylesheets/_core.sass */
 header h1 img {
   width: 360px;
   height: 31px;
   margin: 10px 0px;
 }
-/* line 62, ../../app/stylesheets/_core.sass */
+/* line 63, ../../app/stylesheets/_core.sass */
 header #styled_main_nav {
   position: absolute;
   right: -21px;
   top: 7px;
 }
-/* line 67, ../../app/stylesheets/_core.sass */
+/* line 68, ../../app/stylesheets/_core.sass */
 header .main_nav_radius_set {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -494,11 +494,11 @@ header .main_nav_radius_set {
   width: 21px;
   height: 21px;
 }
-/* line 73, ../../app/stylesheets/_core.sass */
+/* line 74, ../../app/stylesheets/_core.sass */
 header #main_nav_left_radius, header #main_nav_right_radius {
   background-color: #eaeae8;
 }
-/* line 75, ../../app/stylesheets/_core.sass */
+/* line 76, ../../app/stylesheets/_core.sass */
 header #main_nav_left_radius_inner {
   background-color: white;
   -moz-border-radius-topright: 5px;
@@ -508,7 +508,7 @@ header #main_nav_left_radius_inner {
   -khtml-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-/* line 78, ../../app/stylesheets/_core.sass */
+/* line 79, ../../app/stylesheets/_core.sass */
 header #main_nav_right_radius_inner {
   background-color: white;
   -moz-border-radius-topleft: 5px;
@@ -518,7 +518,7 @@ header #main_nav_right_radius_inner {
   -khtml-border-top-left-radius: 5px;
   border-top-left-radius: 5px;
 }
-/* line 81, ../../app/stylesheets/_core.sass */
+/* line 82, ../../app/stylesheets/_core.sass */
 header nav {
   display: inline-block;
   position: relative;
@@ -542,7 +542,7 @@ header nav {
   font-size: 11px;
   color: #777777;
 }
-/* line 93, ../../app/stylesheets/_core.sass */
+/* line 94, ../../app/stylesheets/_core.sass */
 header nav #greeting, header nav a {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -554,16 +554,16 @@ header nav #greeting, header nav a {
   font-weight: bold;
   padding: 10px 10px 9px;
 }
-/* line 98, ../../app/stylesheets/_core.sass */
+/* line 99, ../../app/stylesheets/_core.sass */
 header nav a {
   color: #4a7eb0;
   border-left: 1px solid #dddddd;
 }
-/* line 102, ../../app/stylesheets/_core.sass */
+/* line 103, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
   padding-left: 9px;
 }
-/* line 104, ../../app/stylesheets/_core.sass */
+/* line 105, ../../app/stylesheets/_core.sass */
 header nav a:last-child {
   padding-right: 9px;
   -moz-border-radius-bottomright: 5px;
@@ -573,11 +573,11 @@ header nav a:last-child {
   -khtml-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-/* line 108, ../../app/stylesheets/_core.sass */
+/* line 109, ../../app/stylesheets/_core.sass */
 header nav form {
   padding: 5px 7px;
 }
-/* line 110, ../../app/stylesheets/_core.sass */
+/* line 111, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   height: 14px;
@@ -592,7 +592,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 114, ../../app/stylesheets/_core.sass */
+/* line 115, ../../app/stylesheets/_core.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -614,7 +614,7 @@ header nav form input[type=submit]:hover {
   border-color: #888888;
 }
 
-/* line 117, ../../app/stylesheets/_core.sass */
+/* line 118, ../../app/stylesheets/_core.sass */
 #top {
   background: #eaeae8;
   position: absolute;
@@ -626,7 +626,31 @@ header nav form input[type=submit]:hover {
   z-index: -3;
 }
 
-/* line 128, ../../app/stylesheets/_core.sass */
+/* line 129, ../../app/stylesheets/_core.sass */
+.actions {
+  -moz-border-radius-topleft: 7px;
+  -webkit-border-top-left-radius: 7px;
+  -o-border-top-left-radius: 7px;
+  -ms-border-top-left-radius: 7px;
+  -khtml-border-top-left-radius: 7px;
+  border-top-left-radius: 7px;
+  -moz-border-radius-topright: 7px;
+  -webkit-border-top-right-radius: 7px;
+  -o-border-top-right-radius: 7px;
+  -ms-border-top-right-radius: 7px;
+  -khtml-border-top-right-radius: 7px;
+  border-top-right-radius: 7px;
+  color: #f8f7f2;
+  position: relative;
+  margin-top: 10px;
+  border-bottom: 1px solid #dddddd;
+  background-color: #888888;
+  overflow: hidden;
+  *zoom: 1;
+  font-size: 15px;
+}
+
+/* line 140, ../../app/stylesheets/_core.sass */
 #main {
   overflow: hidden;
   *zoom: 1;
@@ -634,7 +658,7 @@ header nav form input[type=submit]:hover {
   margin-bottom: -10000px;
 }
 
-/* line 134, ../../app/stylesheets/_core.sass */
+/* line 146, ../../app/stylesheets/_core.sass */
 #win, #fail {
   width: inherit;
   color: white;
@@ -651,23 +675,23 @@ header nav form input[type=submit]:hover {
   border-radius: 5px;
 }
 
-/* line 144, ../../app/stylesheets/_core.sass */
+/* line 156, ../../app/stylesheets/_core.sass */
 #win {
   background-color: green;
 }
 
-/* line 146, ../../app/stylesheets/_core.sass */
+/* line 158, ../../app/stylesheets/_core.sass */
 #fail {
   background-color: red;
 }
 
-/* line 149, ../../app/stylesheets/_core.sass */
+/* line 161, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 153, ../../app/stylesheets/_core.sass */
+/* line 165, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
@@ -698,7 +722,7 @@ footer {
   height: 31px;
 }
 
-/* line 159, ../../app/stylesheets/_core.sass */
+/* line 171, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   height: 11px;
@@ -708,11 +732,11 @@ footer {
   font-size: 11px;
   color: #777777;
 }
-/* line 167, ../../app/stylesheets/_core.sass */
+/* line 179, ../../app/stylesheets/_core.sass */
 footer a {
   color: #4a7eb0;
 }
-/* line 170, ../../app/stylesheets/_core.sass */
+/* line 182, ../../app/stylesheets/_core.sass */
 footer nav {
   color: black;
   display: -moz-inline-box;
@@ -1945,6 +1969,83 @@ form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   border: none;
 }
 
+/* line 1, ../../app/stylesheets/_management.sass */
+#management_top_container {
+  position: relative;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+/* line 5, ../../app/stylesheets/_management.sass */
+#selection {
+  position: absolute;
+  left: 15px;
+  top: -7px;
+  bottom: -7px;
+  width: 225px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -o-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  border-radius: 7px;
+  border: 1px solid #c0544a;
+  vertical-align: center;
+  color: white;
+  text-shadow: #444444 1px 1px 1px;
+  padding: 17px 10px;
+  z-index: 10;
+  background-color: #af4339;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #af4339), color-stop(100%, #8d2117));
+  background-image: -moz-linear-gradient(top, #af4339 0%, #8d2117 100%);
+  background-image: linear-gradient(top, #af4339 0%, #8d2117 100%);
+}
+
+/* line 21, ../../app/stylesheets/_management.sass */
+#management_actions.actions {
+  background-color: #888888;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #888888), color-stop(100%, #666666));
+  background-image: -moz-linear-gradient(top, #888888 0%, #666666 100%);
+  background-image: linear-gradient(top, #888888 0%, #666666 100%);
+}
+/* line 25, ../../app/stylesheets/_management.sass */
+#management_actions.actions nav#organizer_nav {
+  position: relative;
+  left: 280px;
+  padding: 10px;
+}
+/* line 29, ../../app/stylesheets/_management.sass */
+#management_actions.actions nav#organizer_nav a {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  background-color: white;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ffffff), color-stop(100%, #cccccc));
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #cccccc 100%);
+  background-image: linear-gradient(top, #ffffff 0%, #cccccc 100%);
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -o-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  border-radius: 7px;
+  border-top: 1px solid white;
+  padding: 6px 9px;
+  color: #af4339;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 3px;
+}
+/* line 33, ../../app/stylesheets/_management.sass */
+#management_actions.actions nav#organizer_nav a:hover {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #cccccc), color-stop(100%, #ffffff));
+  background-image: -moz-linear-gradient(top, #cccccc 0%, #ffffff 100%);
+  background-image: linear-gradient(top, #cccccc 0%, #ffffff 100%);
+}
+
 /* line 2, ../../app/stylesheets/_modal.sass */
 #simplemodal-overlay {
   background: black;
@@ -2002,7 +2103,7 @@ form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   float: right;
 }
 
-/* line 11, ../../app/stylesheets/application.sass */
+/* line 12, ../../app/stylesheets/application.sass */
 #main {
   border: 1px solid #dddddd;
   border-top: none;
@@ -2051,40 +2152,21 @@ a.filter:last-child {
 }
 
 /* line 41, ../../app/stylesheets/application.sass */
-#actions {
-  -moz-border-radius-topleft: 7px;
-  -webkit-border-top-left-radius: 7px;
-  -o-border-top-left-radius: 7px;
-  -ms-border-top-left-radius: 7px;
-  -khtml-border-top-left-radius: 7px;
-  border-top-left-radius: 7px;
-  -moz-border-radius-topright: 7px;
-  -webkit-border-top-right-radius: 7px;
-  -o-border-top-right-radius: 7px;
-  -ms-border-top-right-radius: 7px;
-  -khtml-border-top-right-radius: 7px;
-  border-top-right-radius: 7px;
+#community_actions.actions {
   background-color: #4a7eb0;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #4a7eb0), color-stop(100%, #46759f));
   background-image: -moz-linear-gradient(top, #4a7eb0 0%, #46759f 100%);
   background-image: linear-gradient(top, #4a7eb0 0%, #46759f 100%);
-  color: #f8f7f2;
-  position: relative;
-  margin-top: 10px;
-  border-bottom: 1px solid #dddddd;
-  overflow: hidden;
-  *zoom: 1;
-  font-size: 15px;
 }
 
-/* line 52, ../../app/stylesheets/application.sass */
+/* line 45, ../../app/stylesheets/application.sass */
 #actions_top_text {
   float: left;
   text-align: left;
   padding: 9px 15px;
 }
 
-/* line 57, ../../app/stylesheets/application.sass */
+/* line 50, ../../app/stylesheets/application.sass */
 #search {
   float: right;
   padding: 5px 15px 6px;
@@ -2097,7 +2179,7 @@ a.filter:last-child {
   -khtml-border-top-right-radius: 7px;
   border-top-right-radius: 7px;
 }
-/* line 64, ../../app/stylesheets/application.sass */
+/* line 57, ../../app/stylesheets/application.sass */
 #search form input[type=text] {
   font-size: 0.7em;
   height: 14px;
@@ -2118,7 +2200,7 @@ a.filter:last-child {
   *vertical-align: auto;
   width: 300px;
 }
-/* line 69, ../../app/stylesheets/application.sass */
+/* line 62, ../../app/stylesheets/application.sass */
 #search form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -2140,7 +2222,7 @@ a.filter:last-child {
   border-color: #888888;
 }
 
-/* line 73, ../../app/stylesheets/application.sass */
+/* line 66, ../../app/stylesheets/application.sass */
 div#list {
   display: inline;
   float: left;
@@ -2151,7 +2233,7 @@ div#list {
   margin-right: 1px;
 }
 
-/* line 79, ../../app/stylesheets/application.sass */
+/* line 72, ../../app/stylesheets/application.sass */
 div#info {
   display: inline;
   float: left;

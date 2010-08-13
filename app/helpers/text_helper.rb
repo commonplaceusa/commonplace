@@ -8,10 +8,5 @@ module TextHelper
     end
   end
   
-  # Move me to User.rb!
-  def user_inbox_size
-    "Inbox (1)"
-  end
-  
   
 end

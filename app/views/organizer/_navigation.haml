@@ -1,17 +1,9 @@
 %nav#organizer_nav
-  - if current_user.managable_organizations.length > 1
-    = link_to_unless_current "view all organizations", organizer_index_url
-    |
-  = link_to_unless_current "Preview", organizer_url(@organization)
-  |
-  = link_to_unless_current "Events", organizer_events_path(@organization)
-  |
-  = link_to_unless_current "Announcements", organizer_announcements_path(@organization)
-  |
-  = link_to_unless_current "Subscribers", organizer_subscriptions_path(@organization)
-  |
-  = link_to_unless_current "Profile Fields", organizer_profile_path(@organization)
-  |
-  = link_to_unless_current "Info", edit_organizer_path(@organization)
-  | 
-  = link_to_unless_current "New Organization", new_organizer_url
+
+  = link_to "Profile", organizer_url(@organization)
+  = link_to "Events", organizer_events_path(@organization)
+  = link_to "Announcements", organizer_announcements_path(@organization)
+  = link_to "Subscribers", organizer_subscriptions_path(@organization)
+  = link_to "Profile Fields", organizer_profile_path(@organization)
+  = link_to "Settings", edit_organizer_path(@organization)
+  /= link_to "New Organization", new_organizer_url
