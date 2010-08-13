@@ -12,7 +12,11 @@ class OrganizationsController < CommunitiesController
     @organization = Organization.find params[:id]
     @events = Event.find(:all, :conditions => ["organization_id = ?", @organization.id])
     @subscribers = @organization.subscribers
-    render :layout => 'application'
+
+    respond_to do |format|
+      format.json 
+      format.html { render :layout => 'application' }
+    end
   end
 
   def new

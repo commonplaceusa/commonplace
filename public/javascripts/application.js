@@ -114,7 +114,9 @@ var app = $.sammy(function() {
   this.get("#/posts/:id", setInfoBox);
   this.get("#/events/:id", setInfoBox);
   this.get("#/announcements/:id", setInfoBox);
-  
+  this.get("#/users/:id", setInfoBox);
+  this.get("#/organizations/:id", setInfoBox);
+
   this.get("#/announcements", setList);
   this.get("#/events", setList);
   this.get("#/", setList);

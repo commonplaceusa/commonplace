@@ -1,0 +1,7 @@
+
+%ul#wire
+  - items.each do |item|
+    %li.styled_box
+      - link_to url_for(item), 'data-remote' => true, :class => "item_body" do
+        = image_tag item.avatar.url, :width => 20, :height => 20, :class => 'graphix'
+        = item.name
