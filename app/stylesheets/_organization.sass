@@ -1,5 +1,38 @@
 
 #organization_profile
-
-
+  ul#organization_events
+    li
+      .body
+        +inline-block
+        position: relative
+        width: 375px
+        h3
+        .event_start_time
+          font-size: 11px
+          color: $eventColorDark
+          margin: 2px 0px 4px
+        .attendance
+          position: absolute
+          top: 0px
+          right: 0px
+          background-color: #a2b7d2
+          color: #eae9ef
+          font-weight: bold
+          +border-radius(7px)
+          +sans
+          font-size: 10px
+          padding: 4px 7px
+          display: none
+          cursor: pointer
+          .check_box
+            +inline-block
+            height: 10px
+            width: 10px
+            vertical-align: top
+            margin-right: 2px
+            background-color: #c0d0e0
+        
+      &:hover
+        .attendance
+          display: block
     

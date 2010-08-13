@@ -862,57 +862,7 @@ ul#wire li .item_body img {
   vertical-align: top;
   margin-right: 7px;
 }
-/* line 40, ../../app/stylesheets/_item.sass */
-ul#wire li .item_body .small_calendar {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *display: inline;
-  *vertical-align: auto;
-  width: 50px;
-  height: 50px;
-  margin-right: 7px;
-  vertical-align: top;
-  text-align: center;
-  background-color: white;
-  border: 1px solid #dddddd;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-}
-/* line 50, ../../app/stylesheets/_item.sass */
-ul#wire li .item_body .small_calendar .month {
-  font-family: Helvetica, Arial, Verdana, sans-serif;
-  background-color: #5a758c;
-  -moz-border-radius-topleft: 5px;
-  -webkit-border-top-left-radius: 5px;
-  -o-border-top-left-radius: 5px;
-  -ms-border-top-left-radius: 5px;
-  -khtml-border-top-left-radius: 5px;
-  border-top-left-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-right-radius: 5px;
-  -o-border-top-right-radius: 5px;
-  -ms-border-top-right-radius: 5px;
-  -khtml-border-top-right-radius: 5px;
-  border-top-right-radius: 5px;
-  color: white;
-  padding: 1px 7px;
-  font-size: 11px;
-  line-height: 16px;
-}
-/* line 58, ../../app/stylesheets/_item.sass */
-ul#wire li .item_body .small_calendar .date {
-  font-family: "OldStandardTTBold", Times, serif;
-  font-weight: normal;
-  font-size: 22px;
-  padding-top: 5px;
-}
-/* line 63, ../../app/stylesheets/_item.sass */
+/* line 41, ../../app/stylesheets/_item.sass */
 ul#wire li .item_body .body {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -925,14 +875,14 @@ ul#wire li .item_body .body {
   vertical-align: top;
   position: relative;
 }
-/* line 70, ../../app/stylesheets/_item.sass */
+/* line 48, ../../app/stylesheets/_item.sass */
 ul#wire li .item_body .body .event_start_time {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
   margin-top: -2px;
   color: #497fb0;
 }
-/* line 75, ../../app/stylesheets/_item.sass */
+/* line 53, ../../app/stylesheets/_item.sass */
 ul#wire li .item_body .body p {
   color: #525252;
   font-size: 0.8em;
@@ -940,12 +890,12 @@ ul#wire li .item_body .body p {
   width: inherit;
   position: relative;
 }
-/* line 81, ../../app/stylesheets/_item.sass */
+/* line 59, ../../app/stylesheets/_item.sass */
 ul#wire li .item_body .reply_div {
   float: right;
   display: none;
 }
-/* line 87, ../../app/stylesheets/_item.sass */
+/* line 65, ../../app/stylesheets/_item.sass */
 ul#wire li .item_body .reply_fade {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -961,7 +911,7 @@ ul#wire li .item_body .reply_fade {
   margin-left: 2px;
   display: none;
 }
-/* line 94, ../../app/stylesheets/_item.sass */
+/* line 72, ../../app/stylesheets/_item.sass */
 ul#wire li .item_body .reply_count {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   display: -moz-inline-box;
@@ -979,7 +929,7 @@ ul#wire li .item_body .reply_count {
   border-radius: 5px;
   vertical-align: top;
 }
-/* line 104, ../../app/stylesheets/_item.sass */
+/* line 82, ../../app/stylesheets/_item.sass */
 ul#wire li .item_body:hover .reply_div {
   display: block;
 }
@@ -1007,9 +957,60 @@ ul#wire li.event .header .header_text span.author {
 ul#wire li.event a .reply_count {
   color: #497fb0;
 }
-/* line 114, ../../app/stylesheets/_item.sass */
+/* line 92, ../../app/stylesheets/_item.sass */
 ul#wire li .replies {
   display: none;
+}
+
+/* line 95, ../../app/stylesheets/_item.sass */
+.small_calendar {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  width: 50px;
+  height: 50px;
+  margin-right: 7px;
+  vertical-align: top;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #dddddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 105, ../../app/stylesheets/_item.sass */
+.small_calendar .month {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  background-color: #5a758c;
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -o-border-top-left-radius: 5px;
+  -ms-border-top-left-radius: 5px;
+  -khtml-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -o-border-top-right-radius: 5px;
+  -ms-border-top-right-radius: 5px;
+  -khtml-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  color: white;
+  padding: 1px 7px;
+  font-size: 11px;
+  line-height: 16px;
+}
+/* line 113, ../../app/stylesheets/_item.sass */
+.small_calendar .date {
+  font-family: "OldStandardTTBold", Times, serif;
+  font-weight: normal;
+  font-size: 22px;
+  padding-top: 5px;
 }
 
 /* line 1, ../../app/stylesheets/_info_box.sass */
@@ -1377,6 +1378,62 @@ form.formtastic fieldset ol li.date fieldset ol li label {
 form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   width: 75px;
   margin-left: 0px;
+}
+
+/* line 5, ../../app/stylesheets/_organization.sass */
+#organization_profile ul#organization_events li .body {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  position: relative;
+  width: 375px;
+}
+/* line 10, ../../app/stylesheets/_organization.sass */
+#organization_profile ul#organization_events li .body .event_start_time {
+  font-size: 11px;
+  color: #497fb0;
+  margin: 2px 0px 4px;
+}
+/* line 14, ../../app/stylesheets/_organization.sass */
+#organization_profile ul#organization_events li .body .attendance {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #a2b7d2;
+  color: #eae9ef;
+  font-weight: bold;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -o-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  border-radius: 7px;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 10px;
+  padding: 4px 7px;
+  display: none;
+  cursor: pointer;
+}
+/* line 27, ../../app/stylesheets/_organization.sass */
+#organization_profile ul#organization_events li .body .attendance .check_box {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  height: 10px;
+  width: 10px;
+  vertical-align: top;
+  margin-right: 2px;
+  background-color: #c0d0e0;
+}
+/* line 36, ../../app/stylesheets/_organization.sass */
+#organization_profile ul#organization_events li:hover .attendance {
+  display: block;
 }
 
 /* line 1, ../../app/stylesheets/_profile.sass */
@@ -1875,13 +1932,16 @@ form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   width: 450px;
   padding-right: 20px;
 }
-/* line 94, ../../app/stylesheets/_profile.sass */
-.profile .middle_col ul#modules li {
+/* line 93, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul#modules {
   cursor: move;
-  margin-bottom: 1em;
 }
 /* line 97, ../../app/stylesheets/_profile.sass */
-.profile .middle_col ul#modules li h2 {
+.profile .middle_col ul li {
+  margin-bottom: 1em;
+}
+/* line 99, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul li h2 {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 1.1em;
   font-weight: bold;
@@ -1890,31 +1950,31 @@ form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   border-bottom: 1px solid #dddddd;
   margin-bottom: 8px;
 }
-/* line 105, ../../app/stylesheets/_profile.sass */
-.profile .middle_col ul#modules li p {
+/* line 107, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul li p {
   color: #444444;
   line-height: 140%;
   font-size: 0.9em;
 }
-/* line 110, ../../app/stylesheets/_profile.sass */
-.profile .middle_col ul#modules li#map_container {
+/* line 112, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul li#map_container {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 112, ../../app/stylesheets/_profile.sass */
-.profile .middle_col ul#modules li#map_container p {
+/* line 114, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul li#map_container p {
   padding-top: 10px;
 }
-/* line 114, ../../app/stylesheets/_profile.sass */
-.profile .middle_col ul#modules li#map_container #map {
+/* line 116, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul li#map_container #map {
   float: left;
   width: 200px;
   height: 150px;
   background-color: #dddddd;
   margin-right: 15px;
 }
-/* line 120, ../../app/stylesheets/_profile.sass */
-.profile .middle_col ul#modules li#map_container #toggle_map {
+/* line 122, ../../app/stylesheets/_profile.sass */
+.profile .middle_col ul li#map_container #toggle_map {
   cursor: pointer;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #af4339;
@@ -1923,7 +1983,7 @@ form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   font-weight: bold;
   margin-top: 10px;
 }
-/* line 129, ../../app/stylesheets/_profile.sass */
+/* line 131, ../../app/stylesheets/_profile.sass */
 .profile .right_col {
   display: inline;
   float: left;
@@ -1941,31 +2001,31 @@ form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   border: 1px solid #dddddd;
   color: #444444;
 }
-/* line 136, ../../app/stylesheets/_profile.sass */
+/* line 138, ../../app/stylesheets/_profile.sass */
 .profile .right_col li {
   padding: 10px 13px 5px;
   font-size: 0.8em;
 }
-/* line 139, ../../app/stylesheets/_profile.sass */
+/* line 141, ../../app/stylesheets/_profile.sass */
 .profile .right_col li h3 {
   color: #666666;
   margin-bottom: 10px;
   font-weight: bold;
 }
-/* line 143, ../../app/stylesheets/_profile.sass */
+/* line 145, ../../app/stylesheets/_profile.sass */
 .profile .right_col li p {
   line-height: 140%;
   padding-bottom: 10px;
   border-bottom: 1px solid #f8f7f2;
 }
-/* line 148, ../../app/stylesheets/_profile.sass */
+/* line 150, ../../app/stylesheets/_profile.sass */
 .profile .right_col li:first-child {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-weight: bold;
   border-bottom: 1px solid #dddddd;
   padding-bottom: 10px;
 }
-/* line 154, ../../app/stylesheets/_profile.sass */
+/* line 156, ../../app/stylesheets/_profile.sass */
 .profile .right_col li:last-child p {
   border: none;
 }

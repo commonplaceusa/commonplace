@@ -49,6 +49,7 @@
           %h2= p.subject
           %p= p.body
     
+    %ul
       - unless @organization.lat.blank? or @organization.lng.blank?
         %li#map_container
           %h2 Location
@@ -61,9 +62,20 @@
     
       %li#events
         %h2.underline Upcoming Events
-        %ul#wire
+        %ul#organization_events
           - @organization.events.each do |event|
-            %li= render 'shared/item_body', :item => event
+            %li
+              .small_calendar= render("events/calendar", :event => event)
+              .body
+                %h3
+                  = event.subject
+                  .attendance
+                    .check_box
+                    ATTEND
+
+                .event_start_time= full_date event.start_time
+                %p= event.body
+              
   
 
   
