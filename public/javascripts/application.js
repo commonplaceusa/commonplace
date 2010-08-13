@@ -170,6 +170,8 @@ $(function(){
   $('#modules').sortable();
   $('#modules').disableSelection();
   
+  $('#org_url').textTruncate("100px");
+  
 });
 
 
