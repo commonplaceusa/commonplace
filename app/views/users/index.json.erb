@@ -1,3 +1,4 @@
-
-{ "list": <%= with_format(:html) { render('list', :items => @users) }.to_json %>
+{ 
+  "list": <%= html_to_json { render('list', :items => @users) } %>,
+  "add": <%= html_to_json { render 'add' } %>
 }

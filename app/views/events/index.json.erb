@@ -1,3 +1,4 @@
-
-{ "list": <%= with_format(:html) { render 'shared/list', :items => @events }.to_json %>
+{ 
+  "list": <%= html_to_json { render 'shared/list', :items => @events } %>,
+  "add": <%= html_to_json { render 'add' } %>
 }

@@ -1,2 +1,4 @@
-{ "list": <%= with_format(:html) { render 'shared/list', :items => current_user.wire }.to_json %>
+{ 
+  "list": <%= with_format(:html) { render 'shared/list', :items => current_user.wire }.to_json %>,
+  "add": <%= with_format(:html) { render 'posts/add' }.to_json %>
 }

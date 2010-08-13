@@ -1,5 +1,3 @@
-
-
 function gMapInit(lat, lng) {
   
   var latlng = new google.maps.LatLng(lat, lng);
@@ -36,7 +34,8 @@ function setInfoBox() {
 
 function setList() {
   $.getJSON(this.path.slice(1), function(response) {
-    $("#list").html(response.list);
+    $("#add").replaceWith(response.add);
+    $("#wire").replaceWith(response.list);
   });
 }
 
