@@ -28,9 +28,11 @@
   
   = f.label :password_confirmation, "Confirm password"
   = f.password_field :password_confirmation
-
-  = f.file_field :avatar
-
   = f.submit 'Update'
+
+- form_for current_user, :url => account_path, :html => {:multipart => true } do |f|
+  = f.file_field :avatar
+    
+  = f.submit
 
 
