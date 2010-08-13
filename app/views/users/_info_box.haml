@@ -18,11 +18,11 @@
         - unless user.interests.empty?
           %li
             %span.info_title= "Shared skills".upcase
-            = user.skills
+            = user.skill_list.join(", ")
         - unless user.interests.empty?
           %li
             %span.info_title= "Interests".upcase
-            = user.interests
+            = user.interest_list.join(", ")
         - unless user.organizations.empty?
           %li
             %span.info_title= "Organizations".upcase
