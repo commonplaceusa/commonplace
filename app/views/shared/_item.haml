@@ -17,6 +17,8 @@
         .event_start_time= full_date item.start_time
       %p
         = item.body
-        %span.reply_count= item.reply_count
+    .reply_div
+      .reply_fade>
+      .reply_count= item.reply_count
 
 .replies

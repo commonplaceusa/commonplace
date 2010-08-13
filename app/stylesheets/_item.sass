@@ -28,6 +28,7 @@ ul#wire
       color: black
       font-size: 17px
       text-decoration: none
+      position: relative
       img
         height: 50px
         width: 50px
@@ -64,6 +65,7 @@ ul#wire
         width: 390px
         margin-top: -3px
         vertical-align: top
+        position: relative
         h3
         .event_start_time
           +sans
@@ -74,14 +76,31 @@ ul#wire
           color: #525252
           font-size: 0.8em
           line-height: 1.35em
-        span.reply_count
-          +sans
-          font-size: 0.7em
-          padding: 2px 7px
-          margin-left: 2px
-          background-color: #e7e7e7
-          +border-radius($defaultRadius)
-          vertical-align: top
+          width: inherit
+          position: relative
+      .reply_div
+        position: absolute
+        right: 7px
+        bottom: 7px
+        display: none
+      .reply_fade
+        +inline-block
+        width: 60px
+        height: 20px
+        +linear-gradient(color-stops(rgba(241, 241, 241, 0), rgb(241, 241, 241)), left)
+        margin-left: 2px
+      .reply_count
+        +sans
+        +inline-block
+        font-size: 11px
+        line-height: 130%
+        padding: 4px 7px
+        background-color: #e7e7e7
+        +border-radius($defaultRadius)
+        vertical-align: baseline
+      &:hover
+        .reply_div
+          display: block
             
     &.post
       +styled-item($postColorDark)

@@ -789,8 +789,9 @@ ul#wire li a {
   color: black;
   font-size: 17px;
   text-decoration: none;
+  position: relative;
 }
-/* line 31, ../../app/stylesheets/_item.sass */
+/* line 32, ../../app/stylesheets/_item.sass */
 ul#wire li a img {
   height: 50px;
   width: 50px;
@@ -810,7 +811,7 @@ ul#wire li a img {
   vertical-align: top;
   margin-right: 7px;
 }
-/* line 39, ../../app/stylesheets/_item.sass */
+/* line 40, ../../app/stylesheets/_item.sass */
 ul#wire li a .small_calendar {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -832,7 +833,7 @@ ul#wire li a .small_calendar {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 49, ../../app/stylesheets/_item.sass */
+/* line 50, ../../app/stylesheets/_item.sass */
 ul#wire li a .small_calendar .month {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   background-color: #5a758c;
@@ -853,14 +854,14 @@ ul#wire li a .small_calendar .month {
   font-size: 11px;
   line-height: 16px;
 }
-/* line 57, ../../app/stylesheets/_item.sass */
+/* line 58, ../../app/stylesheets/_item.sass */
 ul#wire li a .small_calendar .date {
   font-family: "OldStandardTTBold", Times, serif;
   font-weight: normal;
   font-size: 22px;
   padding-top: 5px;
 }
-/* line 62, ../../app/stylesheets/_item.sass */
+/* line 63, ../../app/stylesheets/_item.sass */
 ul#wire li a .body {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -871,26 +872,57 @@ ul#wire li a .body {
   width: 390px;
   margin-top: -3px;
   vertical-align: top;
+  position: relative;
 }
-/* line 68, ../../app/stylesheets/_item.sass */
+/* line 70, ../../app/stylesheets/_item.sass */
 ul#wire li a .body .event_start_time {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
   margin-top: -2px;
   color: #497fb0;
 }
-/* line 73, ../../app/stylesheets/_item.sass */
+/* line 75, ../../app/stylesheets/_item.sass */
 ul#wire li a .body p {
   color: #525252;
   font-size: 0.8em;
   line-height: 1.35em;
+  width: inherit;
+  position: relative;
 }
-/* line 77, ../../app/stylesheets/_item.sass */
-ul#wire li a .body span.reply_count {
-  font-family: Helvetica, Arial, Verdana, sans-serif;
-  font-size: 0.7em;
-  padding: 2px 7px;
+/* line 81, ../../app/stylesheets/_item.sass */
+ul#wire li a .reply_div {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  display: none;
+}
+/* line 86, ../../app/stylesheets/_item.sass */
+ul#wire li a .reply_fade {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  width: 60px;
+  height: 20px;
+  background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(0%, rgba(241, 241, 241, 0)), color-stop(100%, #f1f1f1));
+  background-image: -moz-linear-gradient(left, rgba(241, 241, 241, 0) 0%, #f1f1f1 100%);
+  background-image: linear-gradient(left, rgba(241, 241, 241, 0) 0%, #f1f1f1 100%);
   margin-left: 2px;
+}
+/* line 92, ../../app/stylesheets/_item.sass */
+ul#wire li a .reply_count {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *vertical-align: auto;
+  font-size: 11px;
+  line-height: 130%;
+  padding: 4px 7px;
   background-color: #e7e7e7;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -898,14 +930,18 @@ ul#wire li a .body span.reply_count {
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  vertical-align: top;
+  vertical-align: baseline;
+}
+/* line 102, ../../app/stylesheets/_item.sass */
+ul#wire li a:hover .reply_div {
+  display: block;
 }
 /* line 2, ../../app/stylesheets/_mixins.sass */
 ul#wire li.post .header .header_text span.author {
   color: #b53f3c;
 }
 /* line 4, ../../app/stylesheets/_mixins.sass */
-ul#wire li.post a .body p span.reply_count {
+ul#wire li.post a .reply_count {
   color: #b53f3c;
 }
 /* line 2, ../../app/stylesheets/_mixins.sass */
@@ -913,7 +949,7 @@ ul#wire li.announcement .header .header_text span.author {
   color: #666666;
 }
 /* line 4, ../../app/stylesheets/_mixins.sass */
-ul#wire li.announcement a .body p span.reply_count {
+ul#wire li.announcement a .reply_count {
   color: #666666;
 }
 /* line 2, ../../app/stylesheets/_mixins.sass */
@@ -921,10 +957,10 @@ ul#wire li.event .header .header_text span.author {
   color: #497fb0;
 }
 /* line 4, ../../app/stylesheets/_mixins.sass */
-ul#wire li.event a .body p span.reply_count {
+ul#wire li.event a .reply_count {
   color: #497fb0;
 }
-/* line 93, ../../app/stylesheets/_item.sass */
+/* line 112, ../../app/stylesheets/_item.sass */
 ul#wire li .replies {
   display: none;
 }
