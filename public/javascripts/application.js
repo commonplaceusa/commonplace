@@ -126,7 +126,10 @@ var app = $.sammy(function() {
 
 $(function(){
   app.run();
-  
+  $("input[name='_method']").each(function() { 
+    var method = $(this).val(); 
+    $(this).closest('form').attr('method', method); 
+  }); 
   $('a[data-remote]').live('click', function(e) {
     app.location_proxy.setLocation("#" + $(this).attr('href'));
     e.preventDefault()
