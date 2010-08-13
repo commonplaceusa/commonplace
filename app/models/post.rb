@@ -17,10 +17,6 @@ class Post < ActiveRecord::Base
     help.post_date self.created_at
   end
   
-  def subject
-    "Hello, World!"
-  end
-  
   def reply_count
     if self.replies.size > 0
       pluralize(self.replies.size, 'reply') + "&nbsp;replies"
