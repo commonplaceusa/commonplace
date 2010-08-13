@@ -18,7 +18,7 @@
       - unless @organization.website.blank?
         %li
           %span.label Website:
-          %span#org_url= @organization.website
+          %span#org_url= link_to @organization.website
     
     %ul#members.styled_list
       %li Members (#{ @subscribers.length })
