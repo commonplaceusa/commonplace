@@ -1250,6 +1250,111 @@ div#submit_post {
   background-color: #eeeeee;
 }
 
+/* line 33, ../../app/stylesheets/_form.sass */
+form.standard_form input[type=text], form.standard_form textarea, form.standard_form input[type=password] {
+  height: 14px;
+  padding: 4px;
+  border: 1px solid #888888;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  width: 300px;
+  font-family: Georgia, Times, serif;
+}
+/* line 38, ../../app/stylesheets/_form.sass */
+form.standard_form textarea {
+  height: 4em;
+}
+/* line 41, ../../app/stylesheets/_form.sass */
+form.standard_form input[type=submit] {
+  background-color: #eeeeee;
+  background-image: url("/images/button_repeat.png");
+  width: auto;
+  height: 100%;
+  color: black;
+  padding: 3px 7px;
+  cursor: pointer;
+  border: 1px solid #dddddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  left: 85px;
+  position: relative;
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-family: Georgia, Times, serif;
+}
+/* line 32, ../../app/stylesheets/_mixins.sass */
+form.standard_form input[type=submit]:hover {
+  border-color: #888888;
+}
+/* line 49, ../../app/stylesheets/_form.sass */
+form.standard_form label {
+  width: 75px;
+  padding: 4px 10px 0 0;
+  display: inline-block;
+  font-size: 0.7em;
+  font-weight: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #888888;
+  text-align: right;
+  position: relative;
+  top: 0px;
+  float: left;
+}
+/* line 62, ../../app/stylesheets/_form.sass */
+form.standard_form p.inline-errors {
+  font-size: 0.7em;
+  display: inline;
+  line-height: 120%;
+  margin-left: 10px;
+  font-weight: normal;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  color: #cc0000;
+}
+/* line 71, ../../app/stylesheets/_form.sass */
+form.standard_form li.boolean {
+  left: 85px;
+}
+/* line 73, ../../app/stylesheets/_form.sass */
+form.standard_form li.boolean label {
+  text-align: left;
+}
+/* line 77, ../../app/stylesheets/_form.sass */
+form.standard_form fieldset ol li {
+  display: block;
+  position: relative;
+  margin-bottom: 7px;
+}
+
+/* line 83, ../../app/stylesheets/_form.sass */
+form.formtastic fieldset ol li.date label {
+  display: none;
+}
+/* line 87, ../../app/stylesheets/_form.sass */
+form.formtastic fieldset ol li.date fieldset ol li {
+  display: inline-block;
+}
+/* line 89, ../../app/stylesheets/_form.sass */
+form.formtastic fieldset ol li.date fieldset ol li label {
+  text-align: right;
+  display: inline-block;
+  width: auto;
+  margin-left: 15px;
+}
+/* line 94, ../../app/stylesheets/_form.sass */
+form.formtastic fieldset ol li.date fieldset ol li:first-child label {
+  width: 75px;
+  margin-left: 0px;
+}
+
 /* line 1, ../../app/stylesheets/_profile.sass */
 .profile {
   margin-left: auto;
@@ -1778,7 +1883,7 @@ div#submit_post {
 /* line 113, ../../app/stylesheets/_profile.sass */
 .profile .middle_col ul#modules li#map_container #map {
   float: left;
-  width: 150px;
+  width: 200px;
   height: 150px;
   background-color: #dddddd;
   margin-right: 15px;
@@ -1841,8 +1946,15 @@ div#submit_post {
 }
 
 /* line 2, ../../app/stylesheets/_modal.sass */
-.simplemodal-overlay {
+#simplemodal-overlay {
   background: black;
+}
+
+/* line 5, ../../app/stylesheets/_modal.sass */
+#simplemodal-container {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
 }
 
 /* line 2, ../../app/stylesheets/_registration.sass */
