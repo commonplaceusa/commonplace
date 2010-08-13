@@ -79,9 +79,10 @@ ul#wire
           width: inherit
           position: relative
       .reply_div
-        position: absolute
-        right: 7px
-        bottom: 7px
+        float: right
+        // position: absolute
+        // right: 7px
+        // bottom: 7px
         display: none
       .reply_fade
         +inline-block
@@ -89,15 +90,16 @@ ul#wire
         height: 20px
         +linear-gradient(color-stops(rgba(241, 241, 241, 0), rgb(241, 241, 241)), left)
         margin-left: 2px
+        display: none
       .reply_count
         +sans
         +inline-block
         font-size: 11px
-        line-height: 130%
-        padding: 4px 7px
-        background-color: #e7e7e7
+        // line-height: 130%
+        // padding: 2px 7px
+        // background-color: rgb(241, 241, 241)
         +border-radius($defaultRadius)
-        vertical-align: baseline
+        vertical-align: top
       &:hover
         .reply_div
           display: block

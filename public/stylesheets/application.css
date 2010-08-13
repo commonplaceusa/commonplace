@@ -891,12 +891,10 @@ ul#wire li a .body p {
 }
 /* line 81, ../../app/stylesheets/_item.sass */
 ul#wire li a .reply_div {
-  position: absolute;
-  right: 7px;
-  bottom: 7px;
+  float: right;
   display: none;
 }
-/* line 86, ../../app/stylesheets/_item.sass */
+/* line 87, ../../app/stylesheets/_item.sass */
 ul#wire li a .reply_fade {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -910,8 +908,9 @@ ul#wire li a .reply_fade {
   background-image: -moz-linear-gradient(left, rgba(241, 241, 241, 0) 0%, #f1f1f1 100%);
   background-image: linear-gradient(left, rgba(241, 241, 241, 0) 0%, #f1f1f1 100%);
   margin-left: 2px;
+  display: none;
 }
-/* line 92, ../../app/stylesheets/_item.sass */
+/* line 94, ../../app/stylesheets/_item.sass */
 ul#wire li a .reply_count {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   display: -moz-inline-box;
@@ -921,18 +920,15 @@ ul#wire li a .reply_count {
   *display: inline;
   *vertical-align: auto;
   font-size: 11px;
-  line-height: 130%;
-  padding: 4px 7px;
-  background-color: #e7e7e7;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  vertical-align: baseline;
+  vertical-align: top;
 }
-/* line 102, ../../app/stylesheets/_item.sass */
+/* line 104, ../../app/stylesheets/_item.sass */
 ul#wire li a:hover .reply_div {
   display: block;
 }
@@ -960,7 +956,7 @@ ul#wire li.event .header .header_text span.author {
 ul#wire li.event a .reply_count {
   color: #497fb0;
 }
-/* line 112, ../../app/stylesheets/_item.sass */
+/* line 114, ../../app/stylesheets/_item.sass */
 ul#wire li .replies {
   display: none;
 }

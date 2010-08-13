@@ -12,13 +12,15 @@
       / .graphic{ :style => "background-image: url('#{ item.owner.avatar.url }')" }
       = image_tag item.owner.avatar.url, :width => 50, :height => 50, :class => 'graphic'
     .body
-      %h3= item.subject
+      %h3
+        = item.subject
+        .reply_div
+          .reply_fade>
+          .reply_count= item.reply_count
+        
       - if item.is_a? Event
         .event_start_time= full_date item.start_time
       %p
         = item.body
-    .reply_div
-      .reply_fade>
-      .reply_count= item.reply_count
 
 .replies
