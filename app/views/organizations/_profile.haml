@@ -14,11 +14,11 @@
       - unless @organization.phone.blank?
         %li
           %span.label Phone:
-          = display_or_none @organization.phone
+          = @organization.phone
       - unless @organization.website.blank?
         %li
           %span.label Website:
-          = display_or_none @organization.website
+          = @organization.website
     
     %ul#members.styled_list
       %li Members (#{ @subscribers.length })
