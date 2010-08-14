@@ -35,6 +35,15 @@ class PostsController < CommunitiesController
       format.json
     end
   end
+  
+  def destroy
+    if @post.destroy
+      flash[:win] = "Post deleted."
+    else
+      flash[:fail] = "There was an error deleting your post--please try again."
+    end
+    redirect_to root_url
+  end
 
   protected 
   

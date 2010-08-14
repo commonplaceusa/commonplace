@@ -1,15 +1,25 @@
-- form_for post do |f|
-  = f.text_area :body, "data-label" => '"Anyone have a ladder I could borrow for tomorrow?"&#10;"Watch out for the pothole on Maple Avenue."', :rows => 4
+- form_for post, :html => { :class => "standard_form" } do |f|
+  %fieldset
+    %ol
     
-  %ul
-    %li
-      = f.radio_button :purpose, "tell"
-      = f.label :purpose, "tell", :for => "post_purpose_tell"
-    %li
-      = f.radio_button :purpose, "ask"
-      = f.label :purpose, "ask", :for => "post_purpose_ask"
-    %li
-      = f.radio_button :purpose, "other"
-      = f.label :purpose, "other", :for => "post_purpose_other"
-      
-  = f.submit "Post"
+      %li
+        = f.label "Subject"
+        = f.text_field :subject, "data-label"  => "subject"
+      %li
+        = f.label "Body"
+        = f.text_area :body, "data-label" => '"Anyone have a ladder I could borrow for tomorrow?"&#10;"Watch out for the pothole on Maple Avenue."', :rows => 4
+    
+      %li
+        = f.label "Category"
+        %ul.inline
+          %li
+            = f.radio_button :purpose, "tell"
+            = f.label :purpose, "tell", :for => "post_purpose_tell"
+          %li
+            = f.radio_button :purpose, "ask"
+            = f.label :purpose, "ask", :for => "post_purpose_ask"
+          %li
+            = f.radio_button :purpose, "other"
+            = f.label :purpose, "other", :for => "post_purpose_other"
+    
+      %li= f.submit "Post"

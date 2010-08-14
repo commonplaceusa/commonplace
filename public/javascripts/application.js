@@ -58,10 +58,11 @@ var app = $.sammy(function() {
       $("#new_post").replaceWith(response.newPost);
       $("#new_post textarea").goodlabel();
       if (response.success) {
-        $('#both_columns ul').prepend(response.createdPost);
+        $('ul#wire').prepend(response.createdPost);
       } else {
         alert("post validation failed");
       }
+      $.modal.close();
     }, "json");
   });
   

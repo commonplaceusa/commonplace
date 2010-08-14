@@ -10,11 +10,13 @@ authorization do
     has_permission_on :site, :to => [:index]
     has_permission_on :user_sessions, :to => [:delete]
     has_permission_on :posts, :to => [:create, :read]
+    has_permission_on :posts do
+      to :delete
+      if_attribute :user => is { user }
+    end
     has_permission_on :replies, :to => :create
     has_permission_on :accounts, :to => [:show, :update, :delete, :more_info]
   end
-
-
 
 end
 

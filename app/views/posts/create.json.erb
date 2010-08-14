@@ -1,5 +1,5 @@
 {
   "success": true,
   "newPost": <%= html_to_json { render 'form', :post => Post.new } %>,
-  "createdPost": <%= html_to_json { render 'wires/item', :item => @post } %>
+  "createdPost": <%= html_to_json { render 'shared/item', :item => @post } %>
 }
