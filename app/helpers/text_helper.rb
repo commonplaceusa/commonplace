@@ -8,5 +8,9 @@ module TextHelper
     end
   end
   
+  def link_to_add(item)
+    
+  end
+  
   
 end

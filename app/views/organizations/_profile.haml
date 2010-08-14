@@ -72,6 +72,8 @@
                   = event.subject
                   .attendance
                     .check_box
+                      - if event.attendees.exists? current_user
+                        &#x2713;
                     ATTEND
 
                 .event_start_time= full_date event.start_time

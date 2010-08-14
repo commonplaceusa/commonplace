@@ -1450,8 +1450,9 @@ form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   vertical-align: top;
   margin-right: 2px;
   background-color: #c0d0e0;
+  color: white;
 }
-/* line 36, ../../app/stylesheets/_organization.sass */
+/* line 37, ../../app/stylesheets/_organization.sass */
 #organization_profile ul#organization_events li:hover .attendance {
   display: block;
 }
@@ -2330,13 +2331,32 @@ div#info {
 /* line 75, ../../app/stylesheets/application.sass */
 a#add {
   display: block;
+  text-align: left;
+  margin-bottom: 10px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  border: 1px solid #dddddd;
-  margin-bottom: 10px;
-  padding: 5px;
+  padding: 7px 12px;
+  background-color: #bbbbbb;
+  -moz-box-shadow: #eeeeee 1px 1px 3px 0;
+  -webkit-box-shadow: #eeeeee 1px 1px 3px 0;
+  -o-box-shadow: #eeeeee 1px 1px 3px 0;
+  box-shadow: #eeeeee 1px 1px 3px 0;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 13px;
+  color: white;
+  text-shadow: #aaaaaa 1px 1px 1px;
+  text-decoration: none;
+  font-weight: bold;
+}
+/* line 82, ../../app/stylesheets/application.sass */
+a#add:hover {
+  background-color: #aaaaaa;
+}
+/* line 91, ../../app/stylesheets/application.sass */
+a#add img {
+  margin-right: 2px;
 }

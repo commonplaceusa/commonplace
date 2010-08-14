@@ -1,1 +1,3 @@
-= link_to 'Add your event', new_event_path, 'data-remote' => true, :id => 'add'
+- link_to new_event_path, 'data-remote' => true, :id => 'add' do
+  = image_tag 'plus_sign.png'
+  = "Create a new event for your community"
