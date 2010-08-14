@@ -4,9 +4,10 @@
       %span.author= item.owner.name
       %span.from has a
       %span.category= item.class.human_name
+      - if item.owner == current_user && item.is_a?(Post)
+        &sdot;
+        = link_to 'Delete', item, :method => :delete, :class => 'delete_item'
     %span.time= item.time
-    - if item.owner == current_user && item.is_a?( Post )
-      #delete_item= link_to 'Delete', item, :method => :delete, :class => "delete"
     
   - link_to url_for(item), :class => 'item_body', 'data-remote' => true do
     - if item.is_a? Event
@@ -25,5 +26,7 @@
         .event_start_time= full_date item.start_time
       %p
         = item.body
+        
+
 
 .replies

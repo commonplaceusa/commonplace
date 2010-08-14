@@ -791,6 +791,10 @@ footer nav {
   font-size: 11px;
 }
 /* line 22, ../../app/stylesheets/_styled_box.sass */
+.styled_box .header .header_text a {
+  color: #888888;
+}
+/* line 24, ../../app/stylesheets/_styled_box.sass */
 .styled_box .header .header_text span.category {
   color: #888888;
 }
@@ -1313,7 +1317,7 @@ form.standard_form input[type=submit] {
   left: 85px;
   position: relative;
   margin-top: 10px;
-  font-size: 1.2em;
+  font-size: 1em;
   font-family: Georgia, Times, serif;
 }
 /* line 32, ../../app/stylesheets/_mixins.sass */
@@ -2133,6 +2137,10 @@ form.formtastic fieldset ol li.date fieldset ol li:first-child label {
   background-color: white;
   padding: 20px;
   border: 1px solid black;
+}
+/* line 9, ../../app/stylesheets/_modal.sass */
+#simplemodal-container h1 {
+  margin-bottom: 15px;
 }
 
 /* line 2, ../../app/stylesheets/_registration.sass */
