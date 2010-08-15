@@ -1,0 +1,5 @@
+{
+  "success": true,
+  "newReply": <%= html_to_json { render 'form', :announcement => @announcement, :reply => Reply.new} %>,
+  "createdReply": <%= html_to_json { render @reply } %>
+}

@@ -75,12 +75,43 @@ var app = $.sammy(function() {
       $("form.new_reply", $post).replaceWith(response.newReply);
       $("form.new_reply textarea", $post).goodlabel();
       if (response.success) {
-        $(".replies ol", $post).append(response.createdReply);
+        $(".replies ul", $post).append(response.createdReply);
       } else {
         alert("reply validation failed");
       }
     }, "json");
   });
+
+  this.post("/events/:event_id/replies", function() {
+    var $event = $("#event_" + this.params['event_id']);
+    var sammy = this;
+    
+    $.post(this.path, this.params, function(response) {
+      $("form.new_reply", $event).replaceWith(response.newReply);
+      $("form.new_reply textarea", $event).goodlabel();
+      if (response.success) {
+        $(".replies ul", $event).append(response.createdReply);
+      } else {
+        alert("reply validation failed");
+      }
+    }, "json");
+  });
+
+  this.post("/announcements/:announcement_id/replies", function() {
+    var $announcement = $("#announcement_" + this.params['announcement_id']);
+    var sammy = this;
+    
+    $.post(this.path, this.params, function(response) {
+      $("form.new_reply", $announcement).replaceWith(response.newReply);
+      $("form.new_reply textarea", $announcement).goodlabel();
+      if (response.success) {
+        $(".replies ul", $announcement).append(response.createdReply);
+      } else {
+        alert("reply validation failed");
+      }
+    }, "json");
+  });
+
   
   this.post("/account", function() {
     // Because HTML does not send empty checkboxes, Rails adds a hidden field as

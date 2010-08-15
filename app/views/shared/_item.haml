@@ -32,12 +32,8 @@
 
   .replies
     %ul
-      = list_of(item.replies) do |reply|
-        %p
-          = reply.body
-          by
-          = reply.user.name
-  
+      - item.replies.each do |reply|
+        = render reply
 
     - semantic_form_for [item,Reply.new] do |f|
       - f.inputs do 
