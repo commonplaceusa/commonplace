@@ -15,6 +15,10 @@ class Event < ActiveRecord::Base
   named_scope :upcoming, :conditions => ["? < start_time", Time.now]
   named_scope :past, :conditions => ["start_time < ?", Time.now]
 
+  def replies
+    []
+  end
+
   def search(term)
     Event.all
   end

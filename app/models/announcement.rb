@@ -18,4 +18,8 @@ class Announcement < ActiveRecord::Base
     "2&nbsp;replies"
   end
   
+  def replies
+    []
+  end
+  
 end

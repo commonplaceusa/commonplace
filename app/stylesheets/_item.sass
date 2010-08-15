@@ -6,13 +6,17 @@ ul#wire
   li
     &:hover
       +linear-gradient(color-stops($itemBackground, $itemBackground - #060606))
+      .header .header_text span.reply_info
+        display: inline
     margin-bottom: 10px
     .header
       .header_text
+        color: $mediumGray
         span.author
           font-weight: bold
         span.from
-          color: $mediumGray
+        span.reply_info
+          display: none
       .time
         float: right
         text-align: right
@@ -56,8 +60,8 @@ ul#wire
           line-height: 1.35em
           width: inherit
           position: relative
-      .reply_div
-        float: right
+      .reply_info_container
+        // float: right
         // position: absolute
         // right: 7px
         // bottom: 7px
@@ -79,7 +83,7 @@ ul#wire
         +border-radius($defaultRadius)
         vertical-align: top
       &:hover
-        .reply_div
+        .reply_info
           display: block
             
     &.post

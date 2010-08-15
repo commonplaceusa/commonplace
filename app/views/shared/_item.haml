@@ -6,7 +6,10 @@
       %span.category= item.class.human_name
       - if item.owner == current_user && item.is_a?(Post)
         &sdot;
-        = link_to 'Delete', item, :method => :delete, :class => 'delete_item'
+        = link_to 'Delete', item, :method => :delete, :class => 'delete_item'    
+      %span.reply_info
+        &sdot; 
+        = link_to "click for more (#{ item.replies.size } replies)", url_for(item), 'data-remote' => true
     %span.time= item.time
     
   - link_to url_for(item), :class => 'item_body', 'data-remote' => true do
@@ -18,9 +21,9 @@
     .body
       %h3
         = item.subject
-        .reply_div
-          .reply_fade>
-          .reply_count= item.reply_count
+        / .reply_info_container
+        /   .reply_fade>
+        /   .reply_count= item.reply_count
 
       - if item.is_a? Event
         .event_start_time= full_date item.start_time
