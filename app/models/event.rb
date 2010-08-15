@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :name, :description, :start_time
 
   has_many :referrals
-  has_many :messages, :as => :notify
+  has_many :replies, :as => :repliable
   has_many :attendances
   has_many :attendees, :through => :attendances, :source => :user
   belongs_to :organization
@@ -14,10 +14,6 @@ class Event < ActiveRecord::Base
 
   named_scope :upcoming, :conditions => ["? < start_time", Time.now]
   named_scope :past, :conditions => ["start_time < ?", Time.now]
-
-  def replies
-    []
-  end
 
   def search(term)
     Event.all
@@ -39,11 +35,6 @@ class Event < ActiveRecord::Base
     self.organization
   end
   
-  # Delete this soon!
-  def reply_count
-    "4&nbsp;replies"
-  end
-
   def update_lat_and_lng
     if address.blank?
       true

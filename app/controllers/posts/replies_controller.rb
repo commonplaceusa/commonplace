@@ -1,4 +1,4 @@
-class RepliesController < ApplicationController
+class Posts::RepliesController < ApplicationController
   filter_access_to :all
   
   def create

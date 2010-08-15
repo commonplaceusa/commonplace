@@ -4,15 +4,18 @@ ActionController::Routing::Routes.draw do |map|
 
     community.root :controller => "communities", :action => "show"
 
-    community.resources :posts  do |post|
-      post.resources :replies
+    community.resources :posts do |post|
+      post.resources :replies, :controller => 'posts/replies'
     end
     
-    community.resources :announcements
+    community.resources :announcements do |announcement|
+      announcement.resources :replies, :controller => 'announcements/replies'
+    end
     
     community.resources :events do |event|
       event.resource :attendance
       event.resources :referrals
+      event.resources :replies, :controller => 'events/replies'
     end
     
     community.resources :users do |user|

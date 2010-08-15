@@ -29,7 +29,20 @@
         .event_start_time= full_date item.start_time
       %p
         = item.body
-        
+
+  .replies
+    %ul
+      = list_of(item.replies) do |reply|
+        %p
+          = reply.body
+          by
+          = reply.user.name
+  
+
+    - semantic_form_for [item,Reply.new] do |f|
+      - f.inputs do 
+        = f.input :body, :input_html => { :rows => 2 }
+      - f.buttons do
+        = f.commit_button
 
 
-.replies

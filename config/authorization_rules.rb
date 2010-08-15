@@ -14,7 +14,7 @@ authorization do
       to :delete
       if_attribute :user => is { user }
     end
-    has_permission_on :replies, :to => :create
+    has_permission_on :posts_replies, :to => :create
     has_permission_on :accounts, :to => [:show, :update, :delete, :more_info]
   end
 

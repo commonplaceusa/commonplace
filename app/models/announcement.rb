@@ -1,7 +1,8 @@
 class Announcement < ActiveRecord::Base
   
   require "lib/helper"
-  
+
+  has_many :replies, :as => :repliable
   belongs_to :organization
   validates_presence_of :subject, :body
   
@@ -12,14 +13,5 @@ class Announcement < ActiveRecord::Base
   def owner
     self.organization
   end
-  
-  # this will be real!
-  def reply_count
-    "2&nbsp;replies"
-  end
-  
-  def replies
-    []
-  end
-  
+
 end

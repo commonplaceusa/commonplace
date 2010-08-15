@@ -30,6 +30,7 @@ function setInfoBox() {
    $.getJSON(this.path.slice(1), function(response) {
      $("#info").html(response.info_box);
   });
+  $('a[href=' + this.path.slice(1) + ']').siblings('.replies').show();
 } 
 
 function setList() {
