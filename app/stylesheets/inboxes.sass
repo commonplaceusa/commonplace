@@ -1,0 +1,30 @@
+@import core
+@import styled_box
+@import item
+@import header
+
+#main
+  border-top: 1px solid $lightestGray
+
+h2
+  background-color: $mediumGray
+
+#list
+  width: 470px
+  float: left
+  padding: 10px 5px 10px 10px
+
+#info
+  width: 470px
+  float: right
+  padding: 10px 10px 10px 5px
+
+#list ul li
+  padding: 5px
+  +styledBox
+
+#info
+  form
+    padding: 5px
+    display: block
+    +styledBox

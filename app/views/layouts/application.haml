@@ -21,13 +21,9 @@
     %title CommonPlace
 
   %body.bp
-    
-    = render 'shared/header'
-    #wrap      
+    #wrap          
+      = render 'shared/header'
       = yield
 
       #wrap_footer
     = render 'shared/footer'
-
-    - if RAILS_ENV == "production"
-      = render 'shared/analytics'

@@ -3,7 +3,13 @@
     color: $color
   a .reply_count
     color: $color
-    
+
+@mixin styledBox
+  +box-shadow($lightestGray, 1px, 1px, 3px)
+  +border-radius($defaultRadius)
+  border: 1px solid $lightGray
+  background: $itemBackground + #020202
+  +linear-gradient(color-stops($itemBackground + #060606, $itemBackground ))
 
 @mixin sans
   font-family: Helvetica, Arial, Verdana, sans-serif

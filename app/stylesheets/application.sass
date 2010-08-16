@@ -8,11 +8,7 @@
 @import management
 @import modal
 @import registration
-
-#main
-  border: 1px solid $lightGray
-  border-top: none
-  border-bottom: none
+@import header
 
 nav#filters
   clear: both
@@ -51,24 +47,6 @@ a.filter:last-child
   +linear-gradient(color-stops(#4a7eb0, #46759f))
   +border-top-left-radius(7px)
 
-#search
-  width: 215px
-  height: 30px
-  float: right
-  padding: 5px 15px 3px
-  background-color: #396081
-  color: $offWhite
-  font-size: 15px
-  +border-top-right-radius(7px)
-  form
-    input[type=text]
-      font-size: 0.7em
-      @include styledInput
-      +inline-block
-    input[type=submit]
-      @include styledButton
-
-        
 div#list
   +grid(12)
   margin-left: 8px

@@ -22,7 +22,6 @@ $ninesixty-gutter-width: 10px
 
 body
   border-top: 7px solid $topColor
-  padding: 0
   min-width: 960px
   color: $primaryTextColor
   text-rendering: optimizeLegibility
@@ -40,90 +39,16 @@ a
   &:visited
   &:active 
 
-
-
 #wrap
-  +grid-system(24)
   position: relative
+  margin:
+    top: -7px
+    left: auto
+    right: auto
   overflow: hidden
   width: 972px
+  padding: 0 5px
 
-header:before
-  content: ' '
-  width: 5px
-  height: 5px
-  display: block
-  background-color: white
-  position: relative
-  float: right
-  right: -5px
-  top: 0
-  margin-left: -5px
-  +border-top-left-radius($defaultRadius)
-
-header
-  width: 972px
-  margin: auto
-  h1
-    padding-top: 20px
-    img
-      width: 360px
-      height: 31px
-      margin: 10px 0px
-    
-  nav:after
-    content: ' '
-    width: 5px
-    height: 5px
-    display: block
-    background-color: white
-    position: absolute
-    left: -5px
-    top: 7px
-    +border-top-right-radius($defaultRadius)
-  nav:before
-    width: 100%
-    top: 7px
-    padding: 0 5px
-    left: -5px
-    height: 5px
-    display: block
-    content: ' '
-    position: absolute
-    background-color: $topColor
-    z-index: -3
-  nav
-    top: -7px
-    background-color: #eaeae8
-    float: right
-    +border-bottom-radius($defaultRadius)
-    position: relative
-    font-size: 11px
-    font-family: Helvetica, Arial, Verdana, sans-serif
-    color: $topTextColor
-    #greeting, a
-      +inline-block
-      padding: 9px 7px
-      font-weight: bold
-      padding: 10px 10px 9px
-    a 
-      color: $topLinkColor
-      border-left: 1px solid $lightGray
-      &:hover
-      &:first-child
-        padding-left: 9px
-      &:last-child
-        padding-right: 9px
-        +border-bottom-right-radius($defaultRadius)
-        
-    form
-      padding: 5px 7px
-      input[type=text], input[type=password]
-        width: 150px
-        @include styledInput
-        padding: 2px
-      input[type=submit]
-        @include styledButton
       
 .actions
   +border-top-radius(7px)
@@ -135,13 +60,42 @@ header
   font-size: 15px
   color: $offWhite
 
-
 #main
   +clearfix
-  padding-bottom: 10020px
-  margin-bottom: -10000px
+  border: 1px solid $lightGray
+  border-top: none
+  border-bottom: none
+  margin-bottom: -1000px
+  padding-bottom: 1000px
 
-    
+h2
+  float: left
+  padding: 10px 15px 8px
+  height: 20px
+  width: 697px
+  background-color: #4a7eb0
+  color: $offWhite
+  font-size: 15px
+  +border-top-left-radius(7px)
+
+#search
+  width: 215px
+  height: 30px
+  float: right
+  padding: 5px 15px 3px
+  background-color: #396081
+  color: $offWhite
+  font-size: 15px
+  +border-top-right-radius(7px)
+  form
+    input[type=text]
+      font-size: 0.7em
+      @include styledInput
+      +inline-block
+    input[type=submit]
+      @include styledButton
+
+
 #win, #fail
   width: inherit
   color: white
@@ -165,10 +119,10 @@ header
   color: white
   -webkit-transition: color 0.2s linear
 
-+sticky-footer(31px, "#wrap", "#wrap_footer", "footer")
++sticky-footer(30px, "#wrap", "#wrap_footer", "footer")
 
 footer
-  padding: 10px
+  padding: 10px 0 9px
   height: 11px
   background: $topColor
   width: auto
