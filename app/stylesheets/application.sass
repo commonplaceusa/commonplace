@@ -15,13 +15,15 @@
   border-bottom: none
 
 nav#filters
+  clear: both
   background-color: $offWhite
   +linear-gradient(color-stops($offWhite, white))
   padding: 20px 60px
   display: block
   height: 72px
-  margin-bottom: 10px
-  
+  border:
+    left: 1px solid $lightGray
+    right: 1px solid $lightGray
 a.filter
   // +grid(4)
   +inline-block
@@ -38,27 +40,31 @@ a.filter:first-child
 a.filter:last-child
   margin-right: 0px
   
-#community_actions.actions  
-  background-color: #4a7eb0
-  +linear-gradient(color-stops(#4a7eb0, #46759f))
-  
-#actions_top_text
+#filter_description
   float: left
-  text-align: left
-  padding: 9px 15px
+  padding: 10px 15px 8px
+  height: 20px
+  width: 697px
+  background-color: #4a7eb0
+  color: $offWhite
+  font-size: 15px
+  +linear-gradient(color-stops(#4a7eb0, #46759f))
+  +border-top-left-radius(7px)
 
 #search
+  width: 215px
+  height: 30px
   float: right
-  padding: 5px 15px 6px
-  text-align: center
+  padding: 5px 15px 3px
   background-color: #396081
+  color: $offWhite
+  font-size: 15px
   +border-top-right-radius(7px)
   form
     input[type=text]
       font-size: 0.7em
       @include styledInput
       +inline-block
-      width: 300px
     input[type=submit]
       @include styledButton
 

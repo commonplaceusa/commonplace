@@ -632,7 +632,6 @@ header nav form input[type=submit]:hover {
   -ms-border-top-right-radius: 7px;
   -khtml-border-top-right-radius: 7px;
   border-top-right-radius: 7px;
-  color: #f8f7f2;
   position: relative;
   margin-top: 10px;
   border-bottom: 1px solid #dddddd;
@@ -640,6 +639,7 @@ header nav form input[type=submit]:hover {
   overflow: hidden;
   *zoom: 1;
   font-size: 15px;
+  color: #f8f7f2;
 }
 
 /* line 139, ../../app/stylesheets/_core.sass */

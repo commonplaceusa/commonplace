@@ -1,11 +1,7 @@
 
 - inside_layout 'application' do
 
-  #community_actions.actions
-    #actions_top_text See what's going on in your community:
-    /= link_to "Post to your neighbors", new_post_path, 'data-remote' => true
+  = render 'shared/filters'
 
-    = render 'shared/search'
   #main
-    = render 'shared/filters'
     = yield
