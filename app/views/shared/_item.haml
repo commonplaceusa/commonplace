@@ -23,7 +23,7 @@
         = item.subject
         / .reply_info_container
         /   .reply_fade>
-        /   .reply_count= item.reply_count
+        /   .reply_count= reply_count(item)
 
       - if item.is_a? Event
         .event_start_time= full_date item.start_time

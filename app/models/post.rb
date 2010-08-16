@@ -20,5 +20,5 @@ class Post < ActiveRecord::Base
   def owner
     self.user
   end
-
+  
 end
