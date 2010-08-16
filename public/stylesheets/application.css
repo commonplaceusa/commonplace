@@ -130,6 +130,7 @@ a img {
 
 /* line 23, ../../app/stylesheets/_core.sass */
 body {
+  border-top: 7px solid #eaeae8;
   padding: 0;
   min-width: 960px;
   color: #111111;
@@ -138,22 +139,22 @@ body {
   font-family: Georgia, Times, serif;
 }
 
-/* line 31, ../../app/stylesheets/_core.sass */
+/* line 32, ../../app/stylesheets/_core.sass */
 nav, header, footer {
   display: block;
 }
 
-/* line 34, ../../app/stylesheets/_core.sass */
+/* line 35, ../../app/stylesheets/_core.sass */
 a {
   color: #0033aa;
   text-decoration: none;
 }
-/* line 37, ../../app/stylesheets/_core.sass */
+/* line 38, ../../app/stylesheets/_core.sass */
 a:hover {
   text-decoration: underline;
 }
 
-/* line 44, ../../app/stylesheets/_core.sass */
+/* line 45, ../../app/stylesheets/_core.sass */
 #wrap {
   margin-left: auto;
   margin-right: auto;
@@ -458,59 +459,18 @@ a:hover {
   margin-right: 0;
 }
 
-/* line 50, ../../app/stylesheets/_core.sass */
-header {
-  width: 960px;
-  margin: auto;
+/* line 51, ../../app/stylesheets/_core.sass */
+header:before {
+  content: " ";
+  width: 5px;
+  height: 5px;
+  display: block;
+  background-color: white;
   position: relative;
-}
-/* line 54, ../../app/stylesheets/_core.sass */
-header h1 {
-  margin-left: 3px;
-  padding-top: 20px;
-}
-/* line 57, ../../app/stylesheets/_core.sass */
-header h1 img {
-  width: 360px;
-  height: 31px;
-  margin: 10px 0px;
-}
-/* line 63, ../../app/stylesheets/_core.sass */
-header #styled_main_nav {
-  position: absolute;
-  right: -21px;
-  top: 7px;
-}
-/* line 68, ../../app/stylesheets/_core.sass */
-header .main_nav_radius_set {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *display: inline;
-  *vertical-align: auto;
-  top: 0px;
-  vertical-align: top;
-  width: 21px;
-  height: 21px;
-}
-/* line 74, ../../app/stylesheets/_core.sass */
-header #main_nav_left_radius, header #main_nav_right_radius {
-  background-color: #eaeae8;
-}
-/* line 76, ../../app/stylesheets/_core.sass */
-header #main_nav_left_radius_inner {
-  background-color: white;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-right-radius: 5px;
-  -o-border-top-right-radius: 5px;
-  -ms-border-top-right-radius: 5px;
-  -khtml-border-top-right-radius: 5px;
-  border-top-right-radius: 5px;
-}
-/* line 79, ../../app/stylesheets/_core.sass */
-header #main_nav_right_radius_inner {
-  background-color: white;
+  float: right;
+  right: -5px;
+  top: 0;
+  margin-left: -5px;
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
   -o-border-top-left-radius: 5px;
@@ -518,12 +478,57 @@ header #main_nav_right_radius_inner {
   -khtml-border-top-left-radius: 5px;
   border-top-left-radius: 5px;
 }
-/* line 82, ../../app/stylesheets/_core.sass */
+
+/* line 64, ../../app/stylesheets/_core.sass */
+header {
+  width: 972px;
+  margin: auto;
+}
+/* line 67, ../../app/stylesheets/_core.sass */
+header h1 {
+  padding-top: 20px;
+}
+/* line 69, ../../app/stylesheets/_core.sass */
+header h1 img {
+  width: 360px;
+  height: 31px;
+  margin: 10px 0px;
+}
+/* line 74, ../../app/stylesheets/_core.sass */
+header nav:first-child:after {
+  content: " ";
+  width: 5px;
+  height: 5px;
+  display: block;
+  background-color: white;
+  position: absolute;
+  left: -5px;
+  top: 7px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -o-border-top-right-radius: 5px;
+  -ms-border-top-right-radius: 5px;
+  -khtml-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+/* line 84, ../../app/stylesheets/_core.sass */
+header nav:first-child:before {
+  width: 100%;
+  top: 7px;
+  padding: 0 5px;
+  left: -5px;
+  height: 5px;
+  display: block;
+  content: " ";
+  position: absolute;
+  background-color: #eaeae8;
+  z-index: -3;
+}
+/* line 95, ../../app/stylesheets/_core.sass */
 header nav {
-  display: inline-block;
-  position: relative;
   top: -7px;
-  vertical-align: top;
+  background-color: #eaeae8;
+  float: right;
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
   -o-border-bottom-left-radius: 5px;
@@ -536,13 +541,12 @@ header nav {
   -ms-border-bottom-right-radius: 5px;
   -khtml-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  background-color: #eaeae8;
-  padding: 0;
-  font-family: Helvetica, Arial, Verdana, sans-serif;
+  position: relative;
   font-size: 11px;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #777777;
 }
-/* line 94, ../../app/stylesheets/_core.sass */
+/* line 104, ../../app/stylesheets/_core.sass */
 header nav #greeting, header nav a {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -554,16 +558,16 @@ header nav #greeting, header nav a {
   font-weight: bold;
   padding: 10px 10px 9px;
 }
-/* line 99, ../../app/stylesheets/_core.sass */
+/* line 109, ../../app/stylesheets/_core.sass */
 header nav a {
   color: #4a7eb0;
   border-left: 1px solid #dddddd;
 }
-/* line 103, ../../app/stylesheets/_core.sass */
+/* line 113, ../../app/stylesheets/_core.sass */
 header nav a:first-child {
   padding-left: 9px;
 }
-/* line 105, ../../app/stylesheets/_core.sass */
+/* line 115, ../../app/stylesheets/_core.sass */
 header nav a:last-child {
   padding-right: 9px;
   -moz-border-radius-bottomright: 5px;
@@ -573,11 +577,11 @@ header nav a:last-child {
   -khtml-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-/* line 109, ../../app/stylesheets/_core.sass */
+/* line 119, ../../app/stylesheets/_core.sass */
 header nav form {
   padding: 5px 7px;
 }
-/* line 111, ../../app/stylesheets/_core.sass */
+/* line 121, ../../app/stylesheets/_core.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   height: 14px;
@@ -592,7 +596,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 115, ../../app/stylesheets/_core.sass */
+/* line 125, ../../app/stylesheets/_core.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");
@@ -614,19 +618,7 @@ header nav form input[type=submit]:hover {
   border-color: #888888;
 }
 
-/* line 118, ../../app/stylesheets/_core.sass */
-#top {
-  background: #eaeae8;
-  position: absolute;
-  width: 100%;
-  height: 7px;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: -3;
-}
-
-/* line 129, ../../app/stylesheets/_core.sass */
+/* line 128, ../../app/stylesheets/_core.sass */
 .actions {
   -moz-border-radius-topleft: 7px;
   -webkit-border-top-left-radius: 7px;
@@ -650,7 +642,7 @@ header nav form input[type=submit]:hover {
   font-size: 15px;
 }
 
-/* line 140, ../../app/stylesheets/_core.sass */
+/* line 139, ../../app/stylesheets/_core.sass */
 #main {
   overflow: hidden;
   *zoom: 1;
@@ -658,7 +650,7 @@ header nav form input[type=submit]:hover {
   margin-bottom: -10000px;
 }
 
-/* line 146, ../../app/stylesheets/_core.sass */
+/* line 145, ../../app/stylesheets/_core.sass */
 #win, #fail {
   width: inherit;
   color: white;
@@ -675,23 +667,23 @@ header nav form input[type=submit]:hover {
   border-radius: 5px;
 }
 
-/* line 156, ../../app/stylesheets/_core.sass */
+/* line 155, ../../app/stylesheets/_core.sass */
 #win {
   background-color: green;
 }
 
-/* line 158, ../../app/stylesheets/_core.sass */
+/* line 157, ../../app/stylesheets/_core.sass */
 #fail {
   background-color: red;
 }
 
-/* line 161, ../../app/stylesheets/_core.sass */
+/* line 160, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 165, ../../app/stylesheets/_core.sass */
+/* line 164, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
@@ -722,7 +714,7 @@ footer {
   height: 31px;
 }
 
-/* line 171, ../../app/stylesheets/_core.sass */
+/* line 170, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   height: 11px;
@@ -732,11 +724,11 @@ footer {
   font-size: 11px;
   color: #777777;
 }
-/* line 179, ../../app/stylesheets/_core.sass */
+/* line 178, ../../app/stylesheets/_core.sass */
 footer a {
   color: #4a7eb0;
 }
-/* line 182, ../../app/stylesheets/_core.sass */
+/* line 181, ../../app/stylesheets/_core.sass */
 footer nav {
   color: black;
   display: -moz-inline-box;

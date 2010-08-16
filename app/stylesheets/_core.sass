@@ -21,6 +21,7 @@ $ninesixty-columns: 24
 $ninesixty-gutter-width: 10px
 
 body
+  border-top: 7px solid $topColor
   padding: 0
   min-width: 960px
   color: $primaryTextColor
@@ -47,50 +48,59 @@ a
   overflow: hidden
   width: 972px
 
-header
-  width: 960px
-  margin: auto
+header:before
+  content: ' '
+  width: 5px
+  height: 5px
+  display: block
+  background-color: white
   position: relative
+  float: right
+  right: -5px
+  top: 0
+  margin-left: -5px
+  +border-top-left-radius($defaultRadius)
+
+header
+  width: 972px
+  margin: auto
   h1
-    margin-left: 3px
     padding-top: 20px
     img
       width: 360px
       height: 31px
       margin: 10px 0px
 
-  
-  #styled_main_nav
+  nav:first-child:after
+    content: ' '
+    width: 5px
+    height: 5px
+    display: block
+    background-color: white
     position: absolute
-    right: -21px
+    left: -5px
     top: 7px
-    
-  .main_nav_radius_set
-    +inline-block
-    top: 0px
-    vertical-align: top
-    width: 21px
-    height: 21px
-  #main_nav_left_radius, #main_nav_right_radius
-    background-color: #eaeae8
-  #main_nav_left_radius_inner
-    background-color: white
     +border-top-right-radius($defaultRadius)
-  #main_nav_right_radius_inner
-    background-color: white
-    +border-top-left-radius($defaultRadius)
+  nav:first-child:before
+    width: 100%
+    top: 7px
+    padding: 0 5px
+    left: -5px
+    height: 5px
+    display: block
+    content: ' '
+    position: absolute
+    background-color: $topColor
+    z-index: -3
   nav
-    display: inline-block
-    position: relative
     top: -7px
-    vertical-align: top
-    +border-bottom-radius($defaultRadius)
     background-color: #eaeae8
-    padding: 0
-    +sans
+    float: right
+    +border-bottom-radius($defaultRadius)
+    position: relative
     font-size: 11px
+    font-family: Helvetica, Arial, Verdana, sans-serif
     color: $topTextColor
-    
     #greeting, a
       +inline-block
       padding: 9px 7px
@@ -115,17 +125,6 @@ header
       input[type=submit]
         @include styledButton
       
-#top
-  background: $topColor 
-  position: absolute
-  width: 100%
-  height: 7px
-  top: 0px
-  left: 0px
-  right: 0px
-  z-index: -3
-  
-
 .actions
   +border-top-radius(7px)
   color: $offWhite
