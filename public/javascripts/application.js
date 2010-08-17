@@ -96,15 +96,14 @@ var app = $.sammy(function() {
     }, "json");
   });
 
-  this.post("/announcements/:announcement_id/replies", function() {
-    var $announcement = $("#announcement_" + this.params['announcement_id']);
+  this.post("/replies", function() {
     var sammy = this;
-    
+    $item = $(this.target).closest('li');
     $.post(this.path, this.params, function(response) {
-      $("form.new_reply", $announcement).replaceWith(response.newReply);
-      $("form.new_reply textarea", $announcement).goodlabel();
+      $("form.new_reply", $item).replaceWith(response.newReply);
+      $("form.new_reply textarea", $item).goodlabel();
       if (response.success) {
-        $(".replies ul", $announcement).append(response.createdReply);
+        $(".replies ul", $item).append(response.createdReply);
       } else {
         alert("reply validation failed");
       }

@@ -1,0 +1,6 @@
+
+- form_for reply do |f|
+  = f.hidden_field :repliable_id
+  = f.hidden_field :repliable_type
+  = f.text_area :body, "data-label" => "Reply here!", :rows => 2
+  = f.submit "Reply"
