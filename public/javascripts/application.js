@@ -65,36 +65,6 @@ var app = $.sammy(function() {
       $.modal.close();
     }, "json");
   });
-  
-  this.post("/posts/:post_id/replies", function() {
-    var $post = $("#post_" + this.params['post_id']);
-    var sammy = this;
-    
-    $.post(this.path, this.params, function(response) {
-      $("form.new_reply", $post).replaceWith(response.newReply);
-      $("form.new_reply textarea", $post).goodlabel();
-      if (response.success) {
-        $(".replies ul", $post).append(response.createdReply);
-      } else {
-        alert("reply validation failed");
-      }
-    }, "json");
-  });
-
-  this.post("/events/:event_id/replies", function() {
-    var $event = $("#event_" + this.params['event_id']);
-    var sammy = this;
-    
-    $.post(this.path, this.params, function(response) {
-      $("form.new_reply", $event).replaceWith(response.newReply);
-      $("form.new_reply textarea", $event).goodlabel();
-      if (response.success) {
-        $(".replies ul", $event).append(response.createdReply);
-      } else {
-        alert("reply validation failed");
-      }
-    }, "json");
-  });
 
   this.post("/replies", function() {
     var sammy = this;
