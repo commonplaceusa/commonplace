@@ -30,7 +30,6 @@ function setInfoBox() {
    $.getJSON(this.path.slice(1), function(response) {
      $("#info").html(response.info_box);
   });
-  $('a[href=' + this.path.slice(1) + ']').siblings('.replies').show();
 } 
 
 function setList() {
@@ -185,6 +184,10 @@ $(function(){
   //   window.location = "#" + $(this).attr('data-url');
   // });
   
+  $('ul#wire').accordion({'header': 'a.item_body', 
+                          'collapsible': true, 
+                          'autoHeight': false,
+                         });
   $('#toggle_map').toggle( function(){
     $('#map').css({
       width: "100%",
