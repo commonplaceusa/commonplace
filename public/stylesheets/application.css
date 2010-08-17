@@ -641,6 +641,36 @@ ul#wire li .replies {
   padding-top: 5px;
 }
 
+/* line 124, ../../app/stylesheets/_item.sass */
+ul#wire li .replies {
+  display: block;
+}
+
+/* line 127, ../../app/stylesheets/_item.sass */
+.replies {
+  background-color: #eeeeee;
+  margin: 0 10px;
+  padding: 5px;
+}
+/* line 131, ../../app/stylesheets/_item.sass */
+.replies ul {
+  display: block;
+  margin-bottom: 5px;
+}
+/* line 135, ../../app/stylesheets/_item.sass */
+.replies ul img {
+  float: left;
+  margin-right: 5px;
+}
+/* line 138, ../../app/stylesheets/_item.sass */
+.replies ul p.body {
+  display: inline;
+}
+/* line 140, ../../app/stylesheets/_item.sass */
+.replies ul p.ago {
+  font-size: 12px;
+}
+
 /* line 1, ../../app/stylesheets/_info_box.sass */
 .fixed .info_box {
   position: fixed;

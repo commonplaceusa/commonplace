@@ -37,7 +37,7 @@
 
     - semantic_form_for [item,Reply.new] do |f|
       - f.inputs do 
-        = f.input :body, :input_html => { :rows => 2 }
+        = f.input :body, :input_html => { :rows => 2 }, :label => false
       - f.buttons do
         = f.commit_button
 
