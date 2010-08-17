@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
 
   has_many :referrals
   has_many :replies, :as => :repliable
+  has_many :repliers, :through => :replies, :uniq => true, :source => :user
   has_many :attendances
   has_many :attendees, :through => :attendances, :source => :user
   belongs_to :organization

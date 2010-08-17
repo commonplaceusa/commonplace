@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   has_many :replies, :as => :repliable
-  has_many :users, :through => :replies, :uniq => true
+  has_many :repliers, :through => :replies, :uniq => true, :source => :user
   validates_presence_of :user
   validates_presence_of :body, :message => "Please enter some text for your post"
 
