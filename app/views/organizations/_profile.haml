@@ -42,18 +42,18 @@
     
     %ul#modules
       %li.profile_field
-        %h2 About us
+        %h3 About us
         %p= @organization.about
   
       - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
         %li.profile_field
-          %h2= p.subject
+          %h3= p.subject
           %p= p.body
     
     %ul
       - unless @organization.lat.blank? or @organization.lng.blank?
         %li#map_container
-          %h2 Location
+          %h3 Location
           #map
             :javascript
               gMapInit(#{@organization.lat}, #{@organization.lng});
@@ -62,7 +62,7 @@
         
     
       %li#events
-        %h2.underline Upcoming Events
+        %h3.underline Upcoming Events
         %ul#organization_events
           - @organization.events.each do |event|
             %li
