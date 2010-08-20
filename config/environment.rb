@@ -25,8 +25,6 @@ Rails::Initializer.run do |config|
   config.gem 'nested_layouts'
   
   config.gem 'aasm'
-  
-  config.gem 'has_many_polymorphs'
 
   config.gem 'authlogic'
 
