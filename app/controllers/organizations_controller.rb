@@ -1,7 +1,9 @@
 class OrganizationsController < CommunitiesController
   
   def index
-    @organizations = current_user.community.organizations
+    @subscribed_organizations = current_user.organizations
+    @suggested_organizations = []
+    @community_organizations = current_community.organizations.all(:conditions => ["id NOT IN (?)", @subscribed_organizations + @suggested_organizations])
     respond_to do |format|
       format.json
       format.html

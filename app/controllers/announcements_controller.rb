@@ -1,7 +1,8 @@
 class AnnouncementsController < CommunitiesController
   def index
-    @organizations = current_user.organizations
-    @announcements = @organizations.map(&:announcements).flatten.sort{ |a,b| b.created_at <=> a.created_at }
+    @subscribed_announcements = current_user.organizations.map(&:announcements).flatten
+    @community_announcements = current_community.announcements.all(:conditions => ["announcements.id NOT IN (?)", @subscribed_announcements])
+
     respond_to do |format|
       format.json
       format.html

@@ -1,8 +1,8 @@
 class UsersController < CommunitiesController
 
-
   def index
-    @users = User.all
+    @neighbors = []
+    @community_users = current_community.users.all(:conditions => ["users.id NOT IN (?)", @neighbors + [0]])
     respond_to do |format|
       format.json
       format.html

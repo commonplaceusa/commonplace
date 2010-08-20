@@ -1,9 +1,30 @@
+
 - link_to_add(new_post_path) do
   = "&#x271a; Create an organization in your community" 
-%ul#wire
-  - @organizations.each do |item|
-    %li.styled_box
-      - link_to url_for(item), 'data-remote' => true, :class => "item_body" do
-        = image_tag item.avatar.url, :width => 20, :height => 20, :class => 'graphix'
-        = item.name
+
+- unless @subscribed_organizations.empty?
+  %h3 Your Organizations
+  %ul#wire
+    - @subscribed_organizations.each do |item|
+      %li.styled_box
+        - link_to url_for(item), 'data-remote' => true, :class => "item_body" do
+          = image_tag item.avatar.url, :width => 20, :height => 20, :class => 'graphix'
+          = item.name
+- unless @suggested_organizations.empty?
+  %h3 Suggested Organizations
+  %ul#wire
+    - @suggested_organizations.each do |item|
+      %li.styled_box
+        - link_to url_for(item), 'data-remote' => true, :class => "item_body" do
+          = image_tag item.avatar.url, :width => 20, :height => 20, :class => 'graphix'
+          = item.name
+- unless @community_organizations.empty?
+  %h3 All Organizations
+  %ul#wire
+    - @community_organizations.each do |item|
+      %li.styled_box
+        - link_to url_for(item), 'data-remote' => true, :class => "item_body" do
+          = image_tag item.avatar.url, :width => 20, :height => 20, :class => 'graphix'
+          = item.name
+
       

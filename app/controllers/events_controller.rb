@@ -1,7 +1,9 @@
 class EventsController < CommunitiesController
    
   def index
-    @events = Event.all.reverse
+    @subscribed_events = current_user.organizations.map(&:events).flatten
+    @suggested_events = []
+    @community_events = current_community.events.all(:conditions => ["events.id NOT IN (?)", @subscribed_events + @suggested_events])
     respond_to do |format|
       format.json
       format.html

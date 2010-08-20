@@ -1,9 +1,21 @@
 
 - link_to_add(new_post_path) do
   = "&#x271a; Invite someone to CommonPlace" 
-%ul#wire
-  - @users.each do |item|
-    %li.styled_box
-      - link_to url_for(item), 'data-remote' => true, :class => "item_body" do
-        = image_tag item.avatar.url, :width => 20, :height => 20, :class => 'graphix'
-        = item.name
+
+- unless @neighbors.empty?
+  %h3 Your Neighbors
+  %ul#wire
+    - @neighbors.each do |user|
+      %li.styled_box
+        - link_to url_for(user), 'data-remote' => true, :class => "item_body" do
+          = image_tag user.avatar.url, :width => 20, :height => 20, :class => 'graphix'
+          = user.name
+
+- unless @community_users.empty?
+  %h3 Everyone
+  %ul#wire
+    - @community_users.each do |user|
+      %li.styled_box
+        - link_to url_for(user), 'data-remote' => true, :class => "item_body" do
+          = image_tag user.avatar.url, :width => 20, :height => 20, :class => 'graphix'
+          = user.name
