@@ -1,6 +1,7 @@
-
+- link_to_add(new_post_path) do
+  = "&#x271a; Create an organization in your community" 
 %ul#wire
-  - items.each do |item|
+  - @organizations.each do |item|
     %li.styled_box
       - link_to url_for(item), 'data-remote' => true, :class => "item_body" do
         = image_tag item.avatar.url, :width => 20, :height => 20, :class => 'graphix'

@@ -26,5 +26,11 @@ module ApplicationHelper
     html_options[:class] = " selected_nav" if current_page?(options)
     link_to(name, options, html_options)
   end
+
+  def link_to_add(options, html_options = {}, &block) 
+    html_options[:id] ||= ""
+    html_options[:id] += "add"
+    link_to(options, html_options, &block)
+  end
   
 end

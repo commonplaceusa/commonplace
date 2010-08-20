@@ -34,8 +34,7 @@ function setInfoBox() {
 
 function setList() {
   $.getJSON(this.path.slice(1), function(response) {
-    $("#add").replaceWith(response.add);
-    $("#wire").replaceWith(response.list);
+    $("#list").html(response.list);    
   });
 }
 

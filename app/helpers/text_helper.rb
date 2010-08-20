@@ -7,10 +7,7 @@ module TextHelper
       "Manage Organizations"
     end
   end
-  
-  def link_to_add(item)
-  end
-  
+
   def reply_count(item)
     if item.replies.length == 0
       "no replies yet"
