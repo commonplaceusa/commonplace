@@ -12,7 +12,7 @@ module ActsAsTaggableOn::Taggable
     module InstanceMethods
       
       def related_of_class(klass, options = {})
-        tags_to_find = base_tags.collect { |t| t.name }
+        tags_to_find = base_tags.map { |t| t.aliases.map(&:name) }.flatten
 
         exclude_self = "#{klass.table_name}.id != #{id} AND" if self.class == klass
 
@@ -27,4 +27,26 @@ group_columns = "#{klass.table_name}.#{klass.primary_key}"
 
     end
   end
+end
+
+
+class ActsAsTaggableOn::Tag < ActiveRecord::Base
+  belongs_to :canonical_tag, :class_name => 'ActsAsTaggableOn::Tag'
+  has_many :aliases, :foreign_key => 'canonical_tag_id', :class_name => 'ActsAsTaggableOn::Tag', :dependent => :nullify, :primary_key => :canonical_tag_id
+  
+  after_create :set_canonical_tag_id
+  
+  def canonical?
+    canonical_tag_id == id
+  end
+  
+  protected
+
+  def set_canonical_tag_id
+    unless self.canonical_tag_id
+      self.canonical_tag_id = self.id
+      self.save
+    end
+  end
+  
 end
