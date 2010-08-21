@@ -1,4 +1,5 @@
 class Organization < ActiveRecord::Base
+  CATEGORIES = %w{Municipal Business Non-profit Club}
   acts_as_taggable_on :tags
 
   validates_presence_of :name, :message => "nice message"
@@ -20,7 +21,8 @@ class Organization < ActiveRecord::Base
   has_attached_file(:avatar, :styles => { :thumb => "100x100" })
 
   before_save :update_lat_and_lng, :if => "address_changed?"
-  # before_save :update_community # KEEP THIS!
+
+  before_create :place_in_community
 
   # TODO: pull this out into a module
   def update_lat_and_lng
@@ -37,9 +39,13 @@ class Organization < ActiveRecord::Base
       end    
     end
   end
-  
-  def update_community
-    # How do we get the user that's doing the saving?
+
+
+  protected
+
+  # TODO: find community based on address
+  def place_in_community
+    self.community = Community.first
   end
   
 end

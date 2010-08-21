@@ -1,8 +1,0 @@
-#organizer_main
-  %h1 Click an organization to manage it:
-  
-  %nav#my_organizations
-    - @organizations.each do |org|
-      = render 'organizer/button', :organization => org
-      
-  %h2= link_to 'Or click here to create an organization!', new_organizer_path

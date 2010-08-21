@@ -1,7 +1,7 @@
-class Organizer::ProfilesController < ApplicationController
+class Management::ProfilesController < ApplicationController
 
   before_filter :load_organization
-  layout 'organizer'
+  layout 'management'
   
   def show
     @profile_fields = @organization.profile_fields
@@ -11,7 +11,7 @@ class Organizer::ProfilesController < ApplicationController
   def create
     @profile_field = @organization.profile_fields.build(params[:profile_field])
     if @profile_field.save
-      redirect_to organizer_profile_path(@organizer)
+      redirect_to management_profile_path(@management)
     else
       render :new
     end
@@ -20,6 +20,6 @@ class Organizer::ProfilesController < ApplicationController
   protected
 
   def load_organization
-    @organization = Organization.find(params[:organizer_id])
+    @organization = Organization.find(params[:management_id])
   end
 end

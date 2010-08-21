@@ -1,7 +1,7 @@
-class Organizer::AnnouncementsController < ApplicationController
+class Management::AnnouncementsController < ApplicationController
 
   before_filter :load_organization
-  layout "organizer"
+  layout "management"
 
   def index 
     @announcements = @organization.announcements.sort{ |a,b| b.created_at <=> a.created_at }
@@ -11,7 +11,7 @@ class Organizer::AnnouncementsController < ApplicationController
   def create
     @announcement = @organization.announcements.new(params[:announcement])
     if @announcement.save
-      redirect_to organizer_announcements_url(@organization)
+      redirect_to management_announcements_url(@organization)
     else
       @announcements = @organization.announcements.sort{ |a,b| b.created_at <=> a.created_at }
       render :index
@@ -21,6 +21,6 @@ class Organizer::AnnouncementsController < ApplicationController
   protected
   
   def load_organization
-    @organization = Organization.find(params[:organizer_id])
+    @organization = Organization.find(params[:management_id])
   end
 end

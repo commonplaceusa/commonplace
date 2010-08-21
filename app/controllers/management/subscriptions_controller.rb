@@ -1,7 +1,7 @@
-class Organizer::SubscriptionsController < ApplicationController
+class Management::SubscriptionsController < ApplicationController
 
   before_filter :load_organization
-  layout "organizer"
+  layout "management"
 
   def index
     @subscriptions = @organization.subscriptions
@@ -10,7 +10,7 @@ class Organizer::SubscriptionsController < ApplicationController
 
   protected
   def load_organization
-    @organization = Organization.find(params[:organizer_id])
+    @organization = Organization.find(params[:management_id])
   end
 
 end

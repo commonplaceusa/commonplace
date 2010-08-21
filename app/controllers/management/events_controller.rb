@@ -1,7 +1,7 @@
-class Organizer::EventsController < ApplicationController
+class Management::EventsController < ApplicationController
 
   before_filter :load_organization
-  layout "organizer"
+  layout "management"
 
   def index
     @events = @organization.events
@@ -11,7 +11,7 @@ class Organizer::EventsController < ApplicationController
   def create
     @event = @organization.events.build(params[:event])
     if @event.save
-      redirect_to organizer_events_path(@organizer)
+      redirect_to management_events_path(@management)
     else
       render :index
     end
@@ -27,6 +27,6 @@ class Organizer::EventsController < ApplicationController
 
   protected
   def load_organization
-    @organization = Organization.find(params[:organizer_id])
+    @organization = Organization.find(params[:management_id])
   end
 end
