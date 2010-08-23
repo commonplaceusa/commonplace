@@ -1,24 +1,3 @@
-function gMapInit(lat, lng) {
-  
-  var latlng = new google.maps.LatLng(lat, lng);
-  
-  var myOptions = {
-    zoom: 15,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    navigationControl: true,
-    mapTypeControl: false,
-    scaleControl: true
-  };
-  
-  var map = new google.maps.Map(document.getElementById("map"),
-    myOptions);
-      
-  var marker = new google.maps.Marker({
-    position: latlng, 
-    map: map,
-  });
-}
 
 function selectTab(tab) {
   $(document).ready(function(){
@@ -29,6 +8,9 @@ function selectTab(tab) {
 function setInfoBox() {
    $.getJSON(this.path.slice(1), function(response) {
      $("#info").html(response.info_box);
+     if (response.map) {
+       renderMap(response.map);
+     }
   });
 } 
 
@@ -180,4 +162,32 @@ $(function(){
   
 });
 
+function renderMap(args) {
+  var directionsService = new google.maps.DirectionsService(),
+      directionsDisplay = new google.maps.DirectionsRenderer(),
+      from = new google.maps.LatLng(args.directions.from.lat, args.directions.from.lng),
+      to = new google.maps.LatLng(args.directions.to.lat, args.directions.to.lng),
+      myOptions = {
+        zoom: 15,
+        center: from,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        navigationControl: true,
+        mapTypeControl: false,
+        scaleControl: true
+      },
+      map = new google.maps.Map(document.getElementById("map"), myOptions),
+      directionsRequest = {
+        origin: from,
+        destination: to,
+        travelMode: google.maps.DirectionsTravelMode.WALKING
+      };
+
+  directionsDisplay.setMap(map);    
+
+  directionsService.route(directionsRequest, function(result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(result);
+    }
+  });
+}
 

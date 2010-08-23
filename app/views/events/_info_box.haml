@@ -29,7 +29,5 @@
             %span.info_title= "Address".upcase 
             = event.address[/(.+?)(,)/, 1]
             
-  - unless event.lat.blank? or event.lng.blank?
-    #map  
-      :javascript
-        gMapInit(#{event.lat}, #{event.lng});
+
+  #map  
