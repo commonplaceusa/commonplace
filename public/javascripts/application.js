@@ -164,7 +164,9 @@ $(function(){
 
 function renderMap(args) {
   var directionsService = new google.maps.DirectionsService(),
-      directionsDisplay = new google.maps.DirectionsRenderer(),
+      directionsDisplay = new google.maps.DirectionsRenderer({ 
+        suppressMarkers: true
+      }),
       from = new google.maps.LatLng(args.directions.from.lat, args.directions.from.lng),
       to = new google.maps.LatLng(args.directions.to.lat, args.directions.to.lng),
       myOptions = {
@@ -182,12 +184,22 @@ function renderMap(args) {
         travelMode: google.maps.DirectionsTravelMode.WALKING
       };
 
+  
   directionsDisplay.setMap(map);    
+  var fromMarker = new google.maps.Marker({
+    position: from, 
+    map: map
+  });
+  var toMarker = new google.maps.Marker({
+    position: to,
+    map: map
+  });
 
   directionsService.route(directionsRequest, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(result);
     }
   });
+
 }
 
