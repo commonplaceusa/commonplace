@@ -4,7 +4,7 @@
 
 %nav#filters
     
-  = link_to 'Posts', posts_path(:q => params[:q]), :id => "posts_button", :class => 'filter', 'data-remote' => true 
+  = link_to 'Neighborhood Posts', posts_path(:q => params[:q]), :id => "posts_button", :class => 'filter', 'data-remote' => true 
     
   = link_to 'Announcements', announcements_path(:q => params[:q]), :id => "announcements_button", :class => 'filter', 'data-remote' => true 
     
