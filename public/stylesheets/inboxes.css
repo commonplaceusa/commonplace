@@ -221,10 +221,11 @@ h2 {
   width: 215px;
   height: 30px;
   float: right;
-  padding: 5px 15px 3px;
+  padding: 8px 15px 0;
   background-color: #396081;
   color: #f8f7f2;
   font-size: 15px;
+  text-align: center;
   -moz-border-radius-topright: 7px;
   -webkit-border-top-right-radius: 7px;
   -o-border-top-right-radius: 7px;
@@ -232,7 +233,7 @@ h2 {
   -khtml-border-top-right-radius: 7px;
   border-top-right-radius: 7px;
 }
-/* line 91, ../../app/stylesheets/_core.sass */
+/* line 92, ../../app/stylesheets/_core.sass */
 #search form input[type=text] {
   font-size: 0.7em;
   height: 14px;
@@ -245,33 +246,6 @@ h2 {
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *display: inline;
-  *vertical-align: auto;
-}
-/* line 95, ../../app/stylesheets/_core.sass */
-#search form input[type=submit] {
-  background-color: #eeeeee;
-  background-image: url("/images/button_repeat.png");
-  width: auto;
-  height: 100%;
-  color: black;
-  padding: 3px 7px;
-  cursor: pointer;
-  border: 1px solid #dddddd;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-}
-/* line 38, ../../app/stylesheets/_mixins.sass */
-#search form input[type=submit]:hover {
-  border-color: #888888;
 }
 
 /* line 99, ../../app/stylesheets/_core.sass */
