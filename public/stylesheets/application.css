@@ -2044,46 +2044,47 @@ a.filter {
   font-family: Helvetica;
   text-align: center;
   font-size: 10.5px;
+  color: #487baa;
 }
 
-/* line 35, ../../app/stylesheets/application.sass */
+/* line 36, ../../app/stylesheets/application.sass */
 a.filter:hover {
   background-position: 30px -123px;
   color: #b53f3c;
   text-decoration: none;
 }
 
-/* line 40, ../../app/stylesheets/application.sass */
+/* line 41, ../../app/stylesheets/application.sass */
 #posts_button {
   background-image: url("/images/posts.png");
 }
 
-/* line 42, ../../app/stylesheets/application.sass */
+/* line 43, ../../app/stylesheets/application.sass */
 #people_button {
   background-image: url("/images/users.png");
 }
 
-/* line 44, ../../app/stylesheets/application.sass */
+/* line 45, ../../app/stylesheets/application.sass */
 #organizations_button {
   background-image: url("/images/organizations.png");
 }
 
-/* line 46, ../../app/stylesheets/application.sass */
+/* line 47, ../../app/stylesheets/application.sass */
 #events_button {
   background-image: url("/images/events.png");
 }
 
-/* line 48, ../../app/stylesheets/application.sass */
+/* line 49, ../../app/stylesheets/application.sass */
 #announcements_button {
   background-image: url("/images/announcements.png");
 }
 
-/* line 50, ../../app/stylesheets/application.sass */
+/* line 51, ../../app/stylesheets/application.sass */
 #goods_and_skills_button {
   background-image: url("/images/goods_and_skills.png");
 }
 
-/* line 54, ../../app/stylesheets/application.sass */
+/* line 55, ../../app/stylesheets/application.sass */
 #filter_description {
   float: left;
   padding: 10px 15px 8px;
@@ -2103,7 +2104,7 @@ a.filter:hover {
   border-top-left-radius: 7px;
 }
 
-/* line 65, ../../app/stylesheets/application.sass */
+/* line 66, ../../app/stylesheets/application.sass */
 div#list {
   display: inline;
   float: left;
@@ -2114,7 +2115,7 @@ div#list {
   margin-right: 1px;
 }
 
-/* line 71, ../../app/stylesheets/application.sass */
+/* line 72, ../../app/stylesheets/application.sass */
 div#info {
   display: inline;
   float: left;
@@ -2123,7 +2124,7 @@ div#info {
   width: 470px;
 }
 
-/* line 74, ../../app/stylesheets/application.sass */
+/* line 75, ../../app/stylesheets/application.sass */
 a#add {
   display: block;
   text-align: left;
@@ -2147,16 +2148,16 @@ a#add {
   text-decoration: none;
   font-weight: bold;
 }
-/* line 81, ../../app/stylesheets/application.sass */
+/* line 82, ../../app/stylesheets/application.sass */
 a#add:hover {
   background-color: #aaaaaa;
 }
-/* line 90, ../../app/stylesheets/application.sass */
+/* line 91, ../../app/stylesheets/application.sass */
 a#add img {
   margin-right: 2px;
 }
 
-/* line 93, ../../app/stylesheets/application.sass */
+/* line 94, ../../app/stylesheets/application.sass */
 .replies {
   display: none;
 }
