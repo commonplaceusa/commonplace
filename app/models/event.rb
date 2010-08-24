@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
 
   require 'lib/helper'
   
+  acts_as_taggable_on :tags
+
   validates_presence_of :name, :description, :start_time
 
   has_many :referrals

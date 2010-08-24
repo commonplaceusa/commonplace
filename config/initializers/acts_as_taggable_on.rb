@@ -4,11 +4,12 @@ module ActsAsTaggableOn::Taggable
     module ClassMethods
       def tagged_with_aliases(tags, options = {})
         tags = tags.map do |t| 
-          ActsAsTaggableOn::Tag.find_by_name(t).aliases.map(&:name)
+          tag = ActsAsTaggableOn::Tag.find_by_name(t)
+          tag ? tag.aliases.map(&:name) : nil
         end.flatten
         tag_list = ActsAsTaggableOn::TagList.from(tags)
 
-        return {} if tag_list.empty?
+        return [] if tag_list.empty?
 
         joins = []
         conditions = []
