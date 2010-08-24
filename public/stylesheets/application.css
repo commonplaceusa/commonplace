@@ -2163,7 +2163,7 @@ a#add img {
 }
 
 /* line 97, ../../app/stylesheets/application.sass */
-h3 {
+#list > h3 {
   border-bottom: 1px solid gray;
   padding: 5px;
   margin-bottom: 5px;
