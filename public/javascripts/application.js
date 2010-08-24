@@ -128,12 +128,7 @@ $(function(){
 
   $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
   
-  $('.filter').tipsy({ gravity: 's', delayOut: 0 });
-  
-  // $('ul#wire li').mouseenter(function() { 
-  //   window.location = "#" + $(this).attr('data-url');
-  // });
-  
+   
   $('ul#wire').accordion({'header': 'a.item_body', 
                           'active': false,
                           'collapsible': true, 

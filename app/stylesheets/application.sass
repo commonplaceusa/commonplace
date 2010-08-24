@@ -14,27 +14,42 @@ nav#filters
   clear: both
   background-color: $offWhite
   +linear-gradient(color-stops($offWhite, white))
-  padding: 20px 60px
+  padding: 20px 0px
   display: block
-  height: 72px
+  margin: auto
   border:
     left: 1px solid $lightGray
     right: 1px solid $lightGray
+
 a.filter
-  // +grid(4)
   +inline-block
   text-align: center
-  margin-right: 70px
-  img
-    width: 80px
-    height: 70px
-    background-color: $lightGray
-    +border-radius(7px)
+  width: 155px
+  background-position: 30px top
+  background-repeat: no-repeat
+  padding-top: 96px
+  font-family: Helvetica
+  text-align: center
+  font-size: 10.5px
+    
+a.filter:hover
+  background-position: 30px -123px
+  color: #b53f3c
+  text-decoration: none
 
-a.filter:first-child
+#posts_button
+  background-image: url("/images/posts.png")
+#people_button
+  background-image: url("/images/users.png")
+#organizations_button
+  background-image: url("/images/organizations.png")
+#events_button
+  background-image: url("/images/events.png")
+#announcements_button
+  background-image: url("/images/announcements.png")
+#goods_and_skills_button
+  background-image: url("/images/goods_and_skills.png")
 
-a.filter:last-child
-  margin-right: 0px
   
 #filter_description
   float: left

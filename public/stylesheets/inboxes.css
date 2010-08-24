@@ -691,15 +691,9 @@ header {
 }
 /* line 15, ../../app/stylesheets/_header.sass */
 header h1 {
-  padding-top: 20px;
+  padding: 30px 10px 10px;
 }
-/* line 17, ../../app/stylesheets/_header.sass */
-header h1 img {
-  width: 360px;
-  height: 31px;
-  margin: 10px 0px;
-}
-/* line 22, ../../app/stylesheets/_header.sass */
+/* line 18, ../../app/stylesheets/_header.sass */
 header nav:after {
   content: " ";
   width: 5px;
@@ -716,7 +710,7 @@ header nav:after {
   -khtml-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-/* line 33, ../../app/stylesheets/_header.sass */
+/* line 29, ../../app/stylesheets/_header.sass */
 header nav:before {
   width: 100%;
   padding: 0 5px;
@@ -729,7 +723,7 @@ header nav:before {
   background-color: #eaeae8;
   z-index: -3;
 }
-/* line 44, ../../app/stylesheets/_header.sass */
+/* line 40, ../../app/stylesheets/_header.sass */
 header nav {
   background-color: #eaeae8;
   float: right;
@@ -750,7 +744,7 @@ header nav {
   font-family: Helvetica, Arial, Verdana, sans-serif;
   color: #777777;
 }
-/* line 53, ../../app/stylesheets/_header.sass */
+/* line 49, ../../app/stylesheets/_header.sass */
 header nav #greeting, header nav a {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -762,16 +756,16 @@ header nav #greeting, header nav a {
   font-weight: bold;
   padding: 10px 10px 9px;
 }
-/* line 58, ../../app/stylesheets/_header.sass */
+/* line 54, ../../app/stylesheets/_header.sass */
 header nav a {
   color: #4a7eb0;
   border-left: 1px solid #dddddd;
 }
-/* line 62, ../../app/stylesheets/_header.sass */
+/* line 58, ../../app/stylesheets/_header.sass */
 header nav a:first-child {
   padding-left: 9px;
 }
-/* line 64, ../../app/stylesheets/_header.sass */
+/* line 60, ../../app/stylesheets/_header.sass */
 header nav a:last-child {
   padding-right: 9px;
   -moz-border-radius-bottomright: 5px;
@@ -781,11 +775,11 @@ header nav a:last-child {
   -khtml-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-/* line 68, ../../app/stylesheets/_header.sass */
+/* line 64, ../../app/stylesheets/_header.sass */
 header nav form {
   padding: 5px 7px;
 }
-/* line 70, ../../app/stylesheets/_header.sass */
+/* line 66, ../../app/stylesheets/_header.sass */
 header nav form input[type=text], header nav form input[type=password] {
   width: 150px;
   height: 14px;
@@ -800,7 +794,7 @@ header nav form input[type=text], header nav form input[type=password] {
   border-radius: 5px;
   padding: 2px;
 }
-/* line 74, ../../app/stylesheets/_header.sass */
+/* line 70, ../../app/stylesheets/_header.sass */
 header nav form input[type=submit] {
   background-color: #eeeeee;
   background-image: url("/images/button_repeat.png");

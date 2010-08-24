@@ -3,15 +3,15 @@
 = render 'shared/search'
 
 %nav#filters
-  - link_to  root_path, :id => "wire_button", :class => 'filter', :title => "Your neighborhood wire", 'data-remote' => true do
-    %img
-  - link_to posts_path(:q => params[:q]), :id => "posts_button", :class => 'filter', :title => "Posts from your neighbors", 'data-remote' => true do
-    %img
-  - link_to announcements_path(:q => params[:q]), :id => "announcements_button", :class => 'filter', :title => "Your announcements", 'data-remote' => true do
-    %img
-  - link_to events_path(:q => params[:q]), :id => "events_button", :class => 'filter', :title => "Community events", 'data-remote' => true do
-    %img
-  - link_to users_path(:q => params[:q]), :id => "people_button", :class => 'filter', :title => "Your neighbors", 'data-remote' => true do
-    %img
-  - link_to organizations_path(:q => params[:q]), :id => "organizations_button", :class => 'filter', :title => "Your organizations", 'data-remote' => true do
-    %img
+    
+  = link_to 'Posts', posts_path(:q => params[:q]), :id => "posts_button", :class => 'filter', 'data-remote' => true 
+    
+  = link_to 'Announcements', announcements_path(:q => params[:q]), :id => "announcements_button", :class => 'filter', 'data-remote' => true 
+    
+  = link_to 'Events', events_path(:q => params[:q]), :id => "events_button", :class => 'filter', 'data-remote' => true 
+    
+  = link_to 'People', users_path(:q => params[:q]), :id => "people_button", :class => 'filter', 'data-remote' => true 
+    
+  = link_to 'Organizations', organizations_path(:q => params[:q]), :id => "organizations_button", :class => 'filter', 'data-remote' => true 
+    
+  = link_to 'Goods & Skills', root_path, :id => "goods_and_skills_button", :class => 'filter', 'data-remote' => true
