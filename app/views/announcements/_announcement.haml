@@ -1,0 +1,26 @@
+- item_tag(announcement) do
+  .header
+    %span.header_text
+      %span.author= announcement.owner.name
+      %span.from has a
+      %span.category= announcement.class.human_name
+      %span.reply_info
+        &sdot; 
+        = link_to "click for more (#{ announcement.replies.size } replies)", url_for(announcement), 'data-remote' => true
+    %span.time= announcement.time
+    
+  - link_to url_for(announcement), :class => 'item_body', 'data-remote' => true do
+    = image_tag announcement.owner.avatar.url, :width => 50, :height => 50, :class => 'graphic'
+    .body
+      %h3
+        = announcement.subject
+
+      %p
+        = announcement.body
+
+  .replies
+    %ul
+      - announcement.replies.each do |reply|
+        = render reply
+
+    = render 'replies/form', :reply => announcement.replies.new

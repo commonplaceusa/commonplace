@@ -5,18 +5,18 @@
   %h3 Your Events (Events from organizations you've subscribed to)
   %ul#wire
     - @subscribed_events.each do |event|
-      = render 'shared/item', :item => event
+      = render event
 
 - unless @suggested_events.empty?
   %h3 Suggested Events
   %ul#wire
     - @suggested_events.each do |event|
-      = render 'shared/item', :item => event
+      = render event
 
 - unless @community_events.empty?
   %h3 All Events
   %ul#wire
     - @community_events.each do |event|
-      = render 'shared/item', :item => event
+      = render event
 
 

@@ -1,0 +1,28 @@
+- item_tag(event) do
+  .header
+    %span.header_text
+      %span.author= event.owner.name
+      %span.from has a
+      %span.category= event.class.human_name
+      %span.reply_info
+        &sdot; 
+        = link_to "click for more (#{ event.replies.size } replies)", url_for(event), 'data-remote' => true
+    %span.time= event.time
+    
+  - link_to url_for(event), :class => 'item_body', 'data-remote' => true do
+    .small_calendar= render("events/calendar", :event => event)
+
+    .body
+      %h3
+        = event.subject
+
+      .event_start_time= full_date event.start_time
+      %p
+        = event.body
+
+  .replies
+    %ul
+      - event.replies.each do |reply|
+        = render reply
+
+    = render 'replies/form', :reply => event.replies.new

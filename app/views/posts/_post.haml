@@ -1,0 +1,30 @@
+- item_tag(post) do
+  .header
+    %span.header_text
+      %span.author= post.owner.name
+      %span.from has a
+      %span.category= post.class.human_name
+      / TODO: use Declarative Auth's has_permission_on
+      - if post.owner == current_user
+        &sdot;
+        = link_to 'Delete', post, :method => :delete, :class => 'delete_item'    
+      %span.reply_info
+        &sdot; 
+        = link_to "click for more (#{ post.replies.size } replies)", url_for(post), 'data-remote' => true
+    %span.time= post.time
+    
+  - link_to url_for(post), :class => 'item_body', 'data-remote' => true do
+    = image_tag post.owner.avatar.url, :width => 50, :height => 50, :class => 'graphic'
+    .body
+      %h3
+        = post.subject
+
+      %p
+        = post.body
+
+  .replies
+    %ul
+      - post.replies.each do |reply|
+        = render reply
+
+    = render 'replies/form', :reply => post.replies.new

@@ -7,11 +7,11 @@
   %h3 Your Announcements (Announcements from organizations you've subscribed to)
   %ul#wire
     - @subscribed_announcements.each do |announcement|
-      = render 'shared/item', :item => announcement
+      = render announcement
 
 - unless @community_announcements.empty?
   %h3 All Announcements
   %ul#wire
     - @community_announcements.each do |announcement|
-      = render 'shared/item', :item => announcement
+      = render announcement
 

@@ -6,16 +6,9 @@
   %h3 Your Neighbors
   %ul#wire
     - @neighbors.each do |user|
-      %li.styled_box
-        - link_to url_for(user), 'data-remote' => true, :class => "item_body" do
-          = image_tag user.avatar.url, :width => 20, :height => 20, :class => 'graphix'
-          = user.name
-
+      = render user
 - unless @community_users.empty?
   %h3 Everyone
   %ul#wire
     - @community_users.each do |user|
-      %li.styled_box
-        - link_to url_for(user), 'data-remote' => true, :class => "item_body" do
-          = image_tag user.avatar.url, :width => 20, :height => 20, :class => 'graphix'
-          = user.name
+      = render user
