@@ -4,7 +4,7 @@
 
 
 - unless @subscribed_announcements.empty?
-  %h3 Your Announcements (Announcements from organizations you've subscribed to)
+  %h3 Your Announcements
   %ul#wire
     - @subscribed_announcements.each do |announcement|
       = render announcement

@@ -2,7 +2,7 @@
   = "&#x271a; Create a new event for your community" 
 
 - unless @subscribed_events.empty?
-  %h3 Your Events (Events from organizations you've subscribed to)
+  %h3 Your Events
   %ul#wire
     - @subscribed_events.each do |event|
       = render event
