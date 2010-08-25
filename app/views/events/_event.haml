@@ -1,5 +1,5 @@
 - item_tag(event) do
-  - link_to url_for(event), :class => 'item_body', 'data-remote' => true do
+  - link_to event, :class => 'item_body', 'data-remote' => true do
     .author
       .small_calendar= render("events/calendar", :event => event)      
       = event.owner.name
