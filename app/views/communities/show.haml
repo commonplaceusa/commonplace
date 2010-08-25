@@ -1,6 +1,8 @@
-
-#list
-  = render 'list'
+#syndicate
+  - link_to_add(new_post_path, 'data-remote' => true) do
+    = "&#x271a; Post to your neighbors"
+  #list
+    = render 'list'
 
 #info
   - if !current_user_session

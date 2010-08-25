@@ -63,33 +63,34 @@ a.filter:hover
   +linear-gradient(color-stops(#4a7eb0, #46759f))
   +border-top-left-radius(7px)
 
-div#list
-  +grid(12)
-  margin-left: 8px
-  margin-right: 1px
+div#syndicate
+  width: 485px
+  float: left
 
-    
+
+div#list
+  background: $topColor
+  padding-left: 8px
+  padding-top: 10px
+  padding-right: 10px
+  margin-right: 1px
+  +clearfix
+  +border-top-right-radius($defaultRadius)
+
 div#info
-  +grid(12)
+  width: 480px
+  float: right
 
 a#add
-  display: block
-  text-align: left
-  margin-bottom: 10px
-  +border-radius($defaultRadius)
+  +inline-block
+  +border-top-right-radius($defaultRadius)
   padding: 7px 12px
-  background-color: #bbb
-  &:hover
-    background-color: #aaa
-  +box-shadow($lightestGray, 1px, 1px, 3px)
+  background-color: $topColor
   +sans
   font-size: 13px
-  color: white
-  +text-shadow
+  color: #396081
   text-decoration: none
-  font-weight: bold
-  img
-    margin-right: 2px
+  font-weight: 200
     
 .replies
   display: none
