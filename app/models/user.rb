@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :links, :as => :linker
 
   has_many :attendances
+  has_many :events, :through => :attendances
   has_many :posts
   has_many :replies
   has_many :subscriptions

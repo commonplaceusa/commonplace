@@ -3,7 +3,8 @@ require 'spec_helper'
 describe AccountsController do
   
   it "should allow a guest to create an account" do
-    post :create, :user => Factory.attributes_for(:user)
+    post :create, :user => {}
+    User.stub!(:new).and_return(mock_model(User, :save => true))
     response.should be_success
   end
 

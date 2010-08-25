@@ -13,7 +13,8 @@ Spork.prefork do
   require 'authlogic/test_case'
 
   require "email_spec"
-  
+  require 'rr'
+
   # Uncomment the next line to use webrat's matchers
   #require 'webrat/integrations/rspec-rails'
 
@@ -22,6 +23,7 @@ Spork.prefork do
   Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
   Spec::Runner.configure do |config|
+    config.mock_with RR::Adapters::Rspec
     config.include(EmailSpec::Helpers)
     config.include(EmailSpec::Matchers)
     config.use_transactional_fixtures = true
