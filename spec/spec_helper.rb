@@ -29,28 +29,32 @@ Spork.prefork do
     config.use_transactional_fixtures = true
   end
 
-  def current_user(stubs = {})
-  @current_user ||= mock_model(User, stubs)
+  def current_user
+  @current_user ||= User.new
   end
   
-  def user_session(stubs = {}, user_stubs = {})
-    @current_user ||= mock_model(UserSession, {:user => current_user(user_stubs)}.merge(stubs))
+  def current_user_session
+    @current_user_session ||= stub(UserSession.new).user { stub(current_user).role_symbols { [:user] } }
   end
   
-  def login(session_stubs = {}, user_stubs = {})
-    UserSession.stub!(:find).and_return(user_session(session_stubs, user_stubs.merge(:roles => [:user])))
+  def login
+    stub(UserSession).find { current_user_session }
   end
   
   def logout
-    UserSession.stub!(:find).and_return(mock_model(UserSession, {:user => nil}))
+    stub(current_user).role_symbols { [:guest] }
+    stub(UserSession).find { current_user_session }
   end
 
   def mock_geocoder
-    location = mock(:success? => true,
-                    :lat => 100,
-                    :lng => 100,
-                    :full_address => "105 Winfield Way, Aptos, CA 95003, USA")
-    Geokit::Geocoders::GoogleGeocoder.stub!(:geocode => location)
+    location = Object.new
+    stub(location) do
+      success? { true }
+      lat { 100 }
+      lng { 100 }
+      full_address { "105 Winfield Way, Aptos, CA, 95003, USA" }
+    end
+    stub(Geokit::Geocoders::GoogleGeocoder).geocode { location }
   end
   
 end

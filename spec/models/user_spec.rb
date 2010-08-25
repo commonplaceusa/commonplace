@@ -31,12 +31,12 @@ describe User do
   end
 
   it "should require a first name" do
-    @user = Factory.build(:user, :first_name => nil)
+    @user.first_name = nil
     @user.valid?.should_not be_true
   end
   
   it "should require a last name" do
-    @user = Factory.build(:user, :last_name => nil)
+    @user.last_name = nil
     @user.valid?.should_not be_true
   end
 

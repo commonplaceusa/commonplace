@@ -5,6 +5,7 @@ class RepliesController < ApplicationController
     respond_to do |format|
       if @reply.save
         Notifier.reply_notify(@reply)
+        format.html
         format.json
       else
         format.json { render :new }

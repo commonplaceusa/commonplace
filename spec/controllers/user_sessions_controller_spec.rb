@@ -4,7 +4,7 @@ describe UserSessionsController do
   
   context "logged in user" do 
     before :each do
-      login({:destroy => true, :email => "", :password => ""},{})
+      login
     end
     
     it "should not be allowed to create a session" do
@@ -23,12 +23,11 @@ describe UserSessionsController do
     
   context "logged out user" do
     before :each do
-      logout
+
     end
     it "should allow a guest to create a session" do
-      get :new
-      response.should render_template(:new)
-      UserSession.stub!(:new => mock_model(UserSession, :save => true))
+      new_instance_of(UserSession).save { true }
+      stub(controller).reload_current_user!
       post :create
       response.should be_redirect
     end

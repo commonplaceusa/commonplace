@@ -11,9 +11,11 @@ class AccountsController < ApplicationController
     respond_to do |format|
       if @user.save
         reload_current_user!
-        format.json      
+        format.json
+        format.html
       else
         format.json { render :new }
+        format.html { render :new }
       end
     end
   end

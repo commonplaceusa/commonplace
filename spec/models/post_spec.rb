@@ -20,7 +20,4 @@ describe Post do
     @post.should_not be_valid
   end
 
-  it "should have replies" do
-    @post.replies.should be_an(Array)
-  end    
 end
