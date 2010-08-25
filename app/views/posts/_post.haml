@@ -14,7 +14,7 @@
     %span.time= post.time
     
   - link_to url_for(post), :class => 'item_body', 'data-remote' => true do
-    = image_tag post.owner.avatar.url, :width => 50, :height => 50, :class => 'graphic'
+    = image_tag post.owner.avatar.url(:thumb), :width => 50, :height => 50, :class => 'graphic'
     .body
       %h3
         = post.subject
