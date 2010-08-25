@@ -1863,10 +1863,6 @@ header nav form input[type=submit]:hover {
 /* line 13, ../../app/stylesheets/application.sass */
 nav#filters {
   clear: both;
-  background-color: #f8f7f2;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f8f7f2), color-stop(100%, #ffffff));
-  background-image: -moz-linear-gradient(top, #f8f7f2 0%, #ffffff 100%);
-  background-image: linear-gradient(top, #f8f7f2 0%, #ffffff 100%);
   padding: 20px 0px;
   display: block;
   margin: auto;
@@ -1874,7 +1870,7 @@ nav#filters {
   border-right: 1px solid #dddddd;
 }
 
-/* line 24, ../../app/stylesheets/application.sass */
+/* line 22, ../../app/stylesheets/application.sass */
 a.filter {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -1893,44 +1889,44 @@ a.filter {
   color: #396081;
 }
 
-/* line 36, ../../app/stylesheets/application.sass */
+/* line 34, ../../app/stylesheets/application.sass */
 a.filter:hover {
   background-position: 30px -123px;
   color: #b53f3c;
   text-decoration: none;
 }
 
-/* line 41, ../../app/stylesheets/application.sass */
+/* line 39, ../../app/stylesheets/application.sass */
 #posts_button {
   background-image: url("/images/posts.png");
 }
 
-/* line 43, ../../app/stylesheets/application.sass */
+/* line 41, ../../app/stylesheets/application.sass */
 #people_button {
   background-image: url("/images/users.png");
 }
 
-/* line 45, ../../app/stylesheets/application.sass */
+/* line 43, ../../app/stylesheets/application.sass */
 #organizations_button {
   background-image: url("/images/organizations.png");
 }
 
-/* line 47, ../../app/stylesheets/application.sass */
+/* line 45, ../../app/stylesheets/application.sass */
 #events_button {
   background-image: url("/images/events.png");
 }
 
-/* line 49, ../../app/stylesheets/application.sass */
+/* line 47, ../../app/stylesheets/application.sass */
 #announcements_button {
   background-image: url("/images/announcements.png");
 }
 
-/* line 51, ../../app/stylesheets/application.sass */
+/* line 49, ../../app/stylesheets/application.sass */
 #goods_and_skills_button {
   background-image: url("/images/goods_and_skills.png");
 }
 
-/* line 55, ../../app/stylesheets/application.sass */
+/* line 53, ../../app/stylesheets/application.sass */
 #filter_description {
   float: left;
   padding: 10px 15px 8px;
@@ -1950,13 +1946,13 @@ a.filter:hover {
   border-top-left-radius: 7px;
 }
 
-/* line 66, ../../app/stylesheets/application.sass */
+/* line 64, ../../app/stylesheets/application.sass */
 div#syndicate {
   width: 485px;
   float: left;
 }
 
-/* line 71, ../../app/stylesheets/application.sass */
+/* line 69, ../../app/stylesheets/application.sass */
 div#list {
   background: #eaeae8;
   padding-left: 8px;
@@ -1973,13 +1969,13 @@ div#list {
   border-top-right-radius: 5px;
 }
 
-/* line 80, ../../app/stylesheets/application.sass */
+/* line 78, ../../app/stylesheets/application.sass */
 div#info {
   width: 480px;
   float: right;
 }
 
-/* line 84, ../../app/stylesheets/application.sass */
+/* line 82, ../../app/stylesheets/application.sass */
 a#add {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -2002,12 +1998,12 @@ a#add {
   font-weight: 200;
 }
 
-/* line 95, ../../app/stylesheets/application.sass */
+/* line 93, ../../app/stylesheets/application.sass */
 .replies {
   display: none;
 }
 
-/* line 98, ../../app/stylesheets/application.sass */
+/* line 96, ../../app/stylesheets/application.sass */
 #list > h3 {
   border-bottom: 1px solid gray;
   padding: 5px;
