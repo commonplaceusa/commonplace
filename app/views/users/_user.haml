@@ -1,4 +1,4 @@
 - item_tag(user) do
   - link_to user, 'data-remote' => true, :class => "item_body" do
-    = image_tag user.avatar.url, :size => "30x30", :class => 'graphix'
+    = image_tag user.avatar.url(:thumb), :size => "30x30", :class => 'graphix'
     = user.name
