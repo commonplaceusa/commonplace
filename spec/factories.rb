@@ -1,3 +1,6 @@
+Factory.define :community do |f|
+  f.name { Forgery(:address).city }
+end
 
 Factory.define :user do |f|
   f.first_name { Forgery(:name).first_name }
@@ -9,18 +12,13 @@ Factory.define :user do |f|
   f.password_confirmation {|u| u.password }
   f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
   f.about { Forgery(:lorem_ipsum).paragraphs(1) }
+  f.association :community
 end
 
 
 Factory.define :post do |f|
   f.body { Forgery(:lorem_ipsum).paragraphs(1) }
   f.association :user
-end
-
-Factory.define :reply do |f|
-  f.body { Forgery(:lorem_ipsum).paragraph }
-  f.association :user
-  f.association :post
 end
 
 Factory.define :event do |f|
@@ -39,7 +37,7 @@ end
 
 Factory.define :organization do |f|
   f.name { Forgery(:name).company_name }
-  f.website ""
+  f.website { "http://" + Forgery(:internet).domain_name }
   f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
 end
   
@@ -52,6 +50,12 @@ end
 Factory.define :conversation do |f|
   f.subject { Forgery(:lorem_ipsum).words(2) }
 end
+
+Factory.define :conversation_membership do |f|
+  f.association :conversation
+  f.association :user
+end
+
 
 Factory.define :referral do |f|
   f.association :event
