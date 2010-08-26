@@ -9,7 +9,7 @@
       = announcement.time
     %p
       = announcement.body
-     %span.reply_count #{ announcement.replies.size } replies
+      %span.reply_count #{ announcement.replies.size } replies
   .replies
     %ul
       - announcement.replies.each do |reply|
