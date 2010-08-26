@@ -134,7 +134,7 @@ body {
   min-width: 960px;
   color: #111111;
   text-rendering: optimizeLegibility;
-  background: #fcfcfc;
+  background: white;
   font-family: Georgia, Times, serif;
 }
 
@@ -170,9 +170,10 @@ a:hover {
   *zoom: 1;
   margin-bottom: -1000px;
   padding-bottom: 1000px;
+  background-color: #fafafa;
 }
 
-/* line 68, ../../app/stylesheets/_core.sass */
+/* line 69, ../../app/stylesheets/_core.sass */
 h2.title {
   float: left;
   padding: 10px 15px 8px;
@@ -189,7 +190,7 @@ h2.title {
   border-top-left-radius: 7px;
 }
 
-/* line 78, ../../app/stylesheets/_core.sass */
+/* line 79, ../../app/stylesheets/_core.sass */
 #search {
   width: 215px;
   height: 30px;
@@ -205,14 +206,8 @@ h2.title {
   -ms-border-top-right-radius: 7px;
   -khtml-border-top-right-radius: 7px;
   border-top-right-radius: 7px;
-  -moz-border-radius-bottomright: 7px;
-  -webkit-border-bottom-right-radius: 7px;
-  -o-border-bottom-right-radius: 7px;
-  -ms-border-bottom-right-radius: 7px;
-  -khtml-border-bottom-right-radius: 7px;
-  border-bottom-right-radius: 7px;
 }
-/* line 89, ../../app/stylesheets/_core.sass */
+/* line 90, ../../app/stylesheets/_core.sass */
 #search form input[type=text] {
   font-size: 0.7em;
   height: 14px;
@@ -227,7 +222,7 @@ h2.title {
   border-radius: 5px;
 }
 
-/* line 96, ../../app/stylesheets/_core.sass */
+/* line 97, ../../app/stylesheets/_core.sass */
 #win, #fail {
   width: inherit;
   color: white;
@@ -244,23 +239,23 @@ h2.title {
   border-radius: 5px;
 }
 
-/* line 106, ../../app/stylesheets/_core.sass */
+/* line 107, ../../app/stylesheets/_core.sass */
 #win {
   background-color: green;
 }
 
-/* line 108, ../../app/stylesheets/_core.sass */
+/* line 109, ../../app/stylesheets/_core.sass */
 #fail {
   background-color: red;
 }
 
-/* line 111, ../../app/stylesheets/_core.sass */
+/* line 112, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 115, ../../app/stylesheets/_core.sass */
+/* line 116, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
@@ -291,7 +286,7 @@ footer {
   height: 30px;
 }
 
-/* line 121, ../../app/stylesheets/_core.sass */
+/* line 122, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   height: 11px;
@@ -301,11 +296,11 @@ footer {
   font-size: 11px;
   color: #777777;
 }
-/* line 129, ../../app/stylesheets/_core.sass */
+/* line 130, ../../app/stylesheets/_core.sass */
 footer a {
   color: #4a7eb0;
 }
-/* line 132, ../../app/stylesheets/_core.sass */
+/* line 133, ../../app/stylesheets/_core.sass */
 footer nav {
   color: black;
   display: -moz-inline-box;
@@ -541,7 +536,7 @@ header:after {
   width: 5px;
   height: 5px;
   display: block;
-  background-color: #fcfcfc;
+  background-color: white;
   position: absolute;
   top: 7px;
   right: 0px;
@@ -568,7 +563,7 @@ header nav:after {
   width: 5px;
   height: 5px;
   display: block;
-  background-color: #fcfcfc;
+  background-color: white;
   top: 7px;
   position: absolute;
   left: -5px;

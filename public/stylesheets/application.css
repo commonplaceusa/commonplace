@@ -134,7 +134,7 @@ body {
   min-width: 960px;
   color: #111111;
   text-rendering: optimizeLegibility;
-  background: #fcfcfc;
+  background: white;
   font-family: Georgia, Times, serif;
 }
 
@@ -170,9 +170,10 @@ a:hover {
   *zoom: 1;
   margin-bottom: -1000px;
   padding-bottom: 1000px;
+  background-color: #fafafa;
 }
 
-/* line 68, ../../app/stylesheets/_core.sass */
+/* line 69, ../../app/stylesheets/_core.sass */
 h2.title {
   float: left;
   padding: 10px 15px 8px;
@@ -189,7 +190,7 @@ h2.title {
   border-top-left-radius: 7px;
 }
 
-/* line 78, ../../app/stylesheets/_core.sass */
+/* line 79, ../../app/stylesheets/_core.sass */
 #search {
   width: 215px;
   height: 30px;
@@ -205,14 +206,8 @@ h2.title {
   -ms-border-top-right-radius: 7px;
   -khtml-border-top-right-radius: 7px;
   border-top-right-radius: 7px;
-  -moz-border-radius-bottomright: 7px;
-  -webkit-border-bottom-right-radius: 7px;
-  -o-border-bottom-right-radius: 7px;
-  -ms-border-bottom-right-radius: 7px;
-  -khtml-border-bottom-right-radius: 7px;
-  border-bottom-right-radius: 7px;
 }
-/* line 89, ../../app/stylesheets/_core.sass */
+/* line 90, ../../app/stylesheets/_core.sass */
 #search form input[type=text] {
   font-size: 0.7em;
   height: 14px;
@@ -227,7 +222,7 @@ h2.title {
   border-radius: 5px;
 }
 
-/* line 96, ../../app/stylesheets/_core.sass */
+/* line 97, ../../app/stylesheets/_core.sass */
 #win, #fail {
   width: inherit;
   color: white;
@@ -244,23 +239,23 @@ h2.title {
   border-radius: 5px;
 }
 
-/* line 106, ../../app/stylesheets/_core.sass */
+/* line 107, ../../app/stylesheets/_core.sass */
 #win {
   background-color: green;
 }
 
-/* line 108, ../../app/stylesheets/_core.sass */
+/* line 109, ../../app/stylesheets/_core.sass */
 #fail {
   background-color: red;
 }
 
-/* line 111, ../../app/stylesheets/_core.sass */
+/* line 112, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 115, ../../app/stylesheets/_core.sass */
+/* line 116, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
@@ -291,7 +286,7 @@ footer {
   height: 30px;
 }
 
-/* line 121, ../../app/stylesheets/_core.sass */
+/* line 122, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   height: 11px;
@@ -301,11 +296,11 @@ footer {
   font-size: 11px;
   color: #777777;
 }
-/* line 129, ../../app/stylesheets/_core.sass */
+/* line 130, ../../app/stylesheets/_core.sass */
 footer a {
   color: #4a7eb0;
 }
-/* line 132, ../../app/stylesheets/_core.sass */
+/* line 133, ../../app/stylesheets/_core.sass */
 footer nav {
   color: black;
   display: -moz-inline-box;
@@ -1662,7 +1657,7 @@ header:after {
   width: 5px;
   height: 5px;
   display: block;
-  background-color: #fcfcfc;
+  background-color: white;
   position: absolute;
   top: 7px;
   right: 0px;
@@ -1689,7 +1684,7 @@ header nav:after {
   width: 5px;
   height: 5px;
   display: block;
-  background-color: #fcfcfc;
+  background-color: white;
   top: 7px;
   position: absolute;
   left: -5px;
@@ -1894,12 +1889,18 @@ h2.right_side {
 #welcome_bottom {
   margin: 15px 0;
   background-color: #eaeae8;
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
-  -o-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -khtml-border-radius: 7px;
-  border-radius: 7px;
+  -moz-border-radius-topleft: 7px;
+  -webkit-border-top-left-radius: 7px;
+  -o-border-top-left-radius: 7px;
+  -ms-border-top-left-radius: 7px;
+  -khtml-border-top-left-radius: 7px;
+  border-top-left-radius: 7px;
+  -moz-border-radius-bottomleft: 7px;
+  -webkit-border-bottom-left-radius: 7px;
+  -o-border-bottom-left-radius: 7px;
+  -ms-border-bottom-left-radius: 7px;
+  -khtml-border-bottom-left-radius: 7px;
+  border-bottom-left-radius: 7px;
   padding: 10px;
 }
 
@@ -1960,7 +1961,7 @@ h2.right_side {
 #neighborhood_activity {
   padding: 10px 15px 15px;
   margin-top: 15px;
-  background-color: #fcfcfc;
+  background-color: white;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
   -o-border-radius: 7px;
@@ -1981,13 +1982,14 @@ h2.right_side {
 
 /* line 14, ../../app/stylesheets/application.sass */
 nav#filters {
+  background-color: #fafafa;
   clear: both;
   padding: 20px 0px;
   display: block;
   margin: auto;
 }
 
-/* line 20, ../../app/stylesheets/application.sass */
+/* line 21, ../../app/stylesheets/application.sass */
 a.filter {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -2006,44 +2008,44 @@ a.filter {
   color: #396081;
 }
 
-/* line 32, ../../app/stylesheets/application.sass */
+/* line 33, ../../app/stylesheets/application.sass */
 a.filter:hover {
   background-position: 30px -123px;
   color: #b53f3c;
   text-decoration: none;
 }
 
-/* line 37, ../../app/stylesheets/application.sass */
+/* line 38, ../../app/stylesheets/application.sass */
 #posts_button {
   background-image: url("/images/posts.png");
 }
 
-/* line 39, ../../app/stylesheets/application.sass */
+/* line 40, ../../app/stylesheets/application.sass */
 #people_button {
   background-image: url("/images/users.png");
 }
 
-/* line 41, ../../app/stylesheets/application.sass */
+/* line 42, ../../app/stylesheets/application.sass */
 #organizations_button {
   background-image: url("/images/organizations.png");
 }
 
-/* line 43, ../../app/stylesheets/application.sass */
+/* line 44, ../../app/stylesheets/application.sass */
 #events_button {
   background-image: url("/images/events.png");
 }
 
-/* line 45, ../../app/stylesheets/application.sass */
+/* line 46, ../../app/stylesheets/application.sass */
 #announcements_button {
   background-image: url("/images/announcements.png");
 }
 
-/* line 47, ../../app/stylesheets/application.sass */
+/* line 48, ../../app/stylesheets/application.sass */
 #goods_and_skills_button {
   background-image: url("/images/goods_and_skills.png");
 }
 
-/* line 51, ../../app/stylesheets/application.sass */
+/* line 52, ../../app/stylesheets/application.sass */
 #filter_description {
   float: left;
   padding: 10px 15px 8px;
@@ -2061,21 +2063,15 @@ a.filter:hover {
   -ms-border-top-left-radius: 7px;
   -khtml-border-top-left-radius: 7px;
   border-top-left-radius: 7px;
-  -moz-border-radius-bottomleft: 7px;
-  -webkit-border-bottom-left-radius: 7px;
-  -o-border-bottom-left-radius: 7px;
-  -ms-border-bottom-left-radius: 7px;
-  -khtml-border-bottom-left-radius: 7px;
-  border-bottom-left-radius: 7px;
 }
 
-/* line 62, ../../app/stylesheets/application.sass */
+/* line 63, ../../app/stylesheets/application.sass */
 div#syndicate {
   width: 485px;
   float: left;
 }
 
-/* line 67, ../../app/stylesheets/application.sass */
+/* line 68, ../../app/stylesheets/application.sass */
 div#list {
   background: #eaeae8;
   padding-left: 8px;
@@ -2092,13 +2088,13 @@ div#list {
   border-top-right-radius: 5px;
 }
 
-/* line 76, ../../app/stylesheets/application.sass */
+/* line 77, ../../app/stylesheets/application.sass */
 div#info {
   width: 480px;
   float: right;
 }
 
-/* line 80, ../../app/stylesheets/application.sass */
+/* line 81, ../../app/stylesheets/application.sass */
 a#add {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -2106,12 +2102,6 @@ a#add {
   vertical-align: middle;
   *display: inline;
   *vertical-align: auto;
-  -moz-border-radius-topleft: 5px;
-  -webkit-border-top-left-radius: 5px;
-  -o-border-top-left-radius: 5px;
-  -ms-border-top-left-radius: 5px;
-  -khtml-border-top-left-radius: 5px;
-  border-top-left-radius: 5px;
   -moz-border-radius-topright: 5px;
   -webkit-border-top-right-radius: 5px;
   -o-border-top-right-radius: 5px;
@@ -2125,21 +2115,21 @@ a#add {
   color: #5b82a3;
   text-decoration: none;
 }
-/* line 89, ../../app/stylesheets/application.sass */
+/* line 90, ../../app/stylesheets/application.sass */
 a#add span.add_text {
   font-weight: bold;
 }
-/* line 91, ../../app/stylesheets/application.sass */
+/* line 92, ../../app/stylesheets/application.sass */
 a#add:hover {
   color: #6c93b4;
 }
 
-/* line 94, ../../app/stylesheets/application.sass */
+/* line 95, ../../app/stylesheets/application.sass */
 .replies {
   display: none;
 }
 
-/* line 97, ../../app/stylesheets/application.sass */
+/* line 98, ../../app/stylesheets/application.sass */
 #list > h3 {
   border-bottom: 1px solid gray;
   padding: 5px;
