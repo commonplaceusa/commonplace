@@ -164,7 +164,7 @@ a:hover {
   padding: 0 5px;
 }
 
-/* line 63, ../../app/stylesheets/_core.sass */
+/* line 53, ../../app/stylesheets/_core.sass */
 #main {
   overflow: hidden;
   *zoom: 1;
@@ -173,7 +173,7 @@ a:hover {
   background-color: #fafafa;
 }
 
-/* line 69, ../../app/stylesheets/_core.sass */
+/* line 59, ../../app/stylesheets/_core.sass */
 h2.title {
   float: left;
   padding: 10px 15px 8px;
@@ -190,7 +190,7 @@ h2.title {
   border-top-left-radius: 7px;
 }
 
-/* line 79, ../../app/stylesheets/_core.sass */
+/* line 69, ../../app/stylesheets/_core.sass */
 #search {
   width: 215px;
   height: 30px;
@@ -206,8 +206,14 @@ h2.title {
   -ms-border-top-right-radius: 7px;
   -khtml-border-top-right-radius: 7px;
   border-top-right-radius: 7px;
+  -moz-border-radius-bottomright: 7px;
+  -webkit-border-bottom-right-radius: 7px;
+  -o-border-bottom-right-radius: 7px;
+  -ms-border-bottom-right-radius: 7px;
+  -khtml-border-bottom-right-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
-/* line 90, ../../app/stylesheets/_core.sass */
+/* line 80, ../../app/stylesheets/_core.sass */
 #search form input[type=text] {
   font-size: 0.7em;
   height: 14px;
@@ -222,7 +228,7 @@ h2.title {
   border-radius: 5px;
 }
 
-/* line 97, ../../app/stylesheets/_core.sass */
+/* line 87, ../../app/stylesheets/_core.sass */
 #win, #fail {
   width: inherit;
   color: white;
@@ -239,23 +245,23 @@ h2.title {
   border-radius: 5px;
 }
 
-/* line 107, ../../app/stylesheets/_core.sass */
+/* line 97, ../../app/stylesheets/_core.sass */
 #win {
   background-color: green;
 }
 
-/* line 109, ../../app/stylesheets/_core.sass */
+/* line 99, ../../app/stylesheets/_core.sass */
 #fail {
   background-color: red;
 }
 
-/* line 112, ../../app/stylesheets/_core.sass */
+/* line 102, ../../app/stylesheets/_core.sass */
 .label {
   color: #666666;
   -webkit-transition: color 0.2s linear;
 }
 
-/* line 116, ../../app/stylesheets/_core.sass */
+/* line 106, ../../app/stylesheets/_core.sass */
 .fading {
   color: white;
   -webkit-transition: color 0.2s linear;
@@ -286,7 +292,7 @@ footer {
   height: 30px;
 }
 
-/* line 122, ../../app/stylesheets/_core.sass */
+/* line 112, ../../app/stylesheets/_core.sass */
 footer {
   padding: 10px;
   height: 11px;
@@ -296,11 +302,11 @@ footer {
   font-size: 11px;
   color: #777777;
 }
-/* line 130, ../../app/stylesheets/_core.sass */
+/* line 120, ../../app/stylesheets/_core.sass */
 footer a {
   color: #4a7eb0;
 }
-/* line 133, ../../app/stylesheets/_core.sass */
+/* line 123, ../../app/stylesheets/_core.sass */
 footer nav {
   color: black;
   display: -moz-inline-box;
@@ -2062,6 +2068,12 @@ a.filter:hover {
   -ms-border-top-left-radius: 7px;
   -khtml-border-top-left-radius: 7px;
   border-top-left-radius: 7px;
+  -moz-border-radius-bottomleft: 7px;
+  -webkit-border-bottom-left-radius: 7px;
+  -o-border-bottom-left-radius: 7px;
+  -ms-border-bottom-left-radius: 7px;
+  -khtml-border-bottom-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
 /* line 63, ../../app/stylesheets/application.sass */
@@ -2101,6 +2113,12 @@ a#add {
   vertical-align: middle;
   *display: inline;
   *vertical-align: auto;
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -o-border-top-left-radius: 5px;
+  -ms-border-top-left-radius: 5px;
+  -khtml-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
   -moz-border-radius-topright: 5px;
   -webkit-border-top-right-radius: 5px;
   -o-border-top-right-radius: 5px;
