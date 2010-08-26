@@ -17,6 +17,9 @@ nav#filters
   padding: 20px 0px
   display: block
   margin: auto
+  background: #fafafa
+  +border-bottom-radius(7px)
+  margin-bottom: 15px
 
 a.filter
   +inline-block
@@ -58,7 +61,7 @@ a.filter:hover
   color: $offWhite
   font-size: 15px
   +linear-gradient(color-stops(#4a7eb0, #46759f))
-  +border-left-radius(7px)
+  +border-top-left-radius(7px)
 
 div#syndicate
   width: 485px
@@ -69,7 +72,7 @@ div#list
   background: $topColor
   padding-left: 8px
   padding-top: 10px
-  padding-right: 10px
+  padding: 10px
   margin-right: 1px
   +clearfix
   +border-top-right-radius($defaultRadius)
