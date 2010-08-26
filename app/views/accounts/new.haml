@@ -10,7 +10,7 @@
       %p.fail Sorry, we didn't recognize your community access code. Try fixing it below?
   
   - form_for @account, :url => account_path do |f|
-    %h2 Please enter your information:
+    %h2.title Please enter your information:
     = f.label :first_name, "First Name"
     = f.text_field :first_name
     

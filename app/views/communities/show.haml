@@ -10,4 +10,6 @@
     #registration
       %h2 Register:
       = render 'accounts/form', :user => User.new
+  - else
+    = render 'right'
     

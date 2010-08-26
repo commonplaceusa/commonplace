@@ -1,0 +1,45 @@
+#welcome_top
+  #welcome_neighbor.intro_post
+    %hr
+    %h2 Welcome, Neighbor!
+    %p CommonPlace is a place for neighbors. Take a look at what your neighbors have to say and reply or post your own messages.
+
+  #recommended_posts.intro_post
+    %hr
+    %h2.right_side= "Recommended Posts".upcase
+    %ul#recommended
+      %li
+        %h3= "Free Lassi".upcase
+        %p Hey everyone, come by the...    
+      %li
+        %h3= "Lunch Meeting".upcase
+        %p Yo guys, we're throwing a...
+      %li
+        %h3= "Yard Sale".upcase
+        %p Wow! We're having an...  
+
+#welcome_bottom        
+  #featured_posts
+    %h2.right_side= "Featured Posts".upcase
+    %ul
+      %li
+        %h3 Featured Post
+        .author Your Neighbor
+        %p Hey everyone, we're throwing a potluck lunch event next week for everyone to get a chance to meet each other. It would be great if everyone could reply and say what they're bringing!
+         
+      %li
+        %h3 Featured Post Two Lines
+        .author Ashley Costelloe
+        %p Hey guys, I'm just trying to put this new sattelite dish up on my roof, but I don't have a ladder! Anyone have one I can borrow for the afternoon? (You might end up with some cookies later)
+
+      %li
+        %h3 Free Lassi
+        .author Punjabi Dhaba
+        %p  Hey everyone, come by the restaurant today between 4PM and 6PM for a free lassi with any dinner special! Your choice of plain, mango, or pineapple.
+        
+        
+
+  #neighborhood_activity
+    %h2.right_side= "Your Neighborhood Activity".upcase
+    #map_container
+      #map

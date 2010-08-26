@@ -173,7 +173,7 @@ a:hover {
 }
 
 /* line 68, ../../app/stylesheets/_core.sass */
-h2 {
+h2.title {
   float: left;
   padding: 10px 15px 8px;
   height: 20px;
