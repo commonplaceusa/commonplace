@@ -10,7 +10,7 @@
 
     %p
       = event.body
-      #{ event.replies.size } replies
+      %span.reply_count #{ event.replies.size } replies
   .replies
     %ul
       - event.replies.each do |reply|

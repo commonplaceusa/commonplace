@@ -25,7 +25,7 @@ body
   min-width: 960px
   color: $primaryTextColor
   text-rendering: optimizeLegibility
-  background: white
+  background: $backgroundColor
   +serif
 
 nav, header, footer
@@ -50,21 +50,18 @@ a
   padding: 0 5px
 
       
-.actions
-  +border-top-radius(7px)
-  position: relative
-  margin-top: 10px
-  border-bottom: 1px solid $lightGray
-  background-color: $mediumGray
-  +clearfix
-  font-size: 15px
-  color: $offWhite
+// .actions
+//   +border-radius(7px)
+//   position: relative
+//   margin-top: 10px
+//   // border-bottom: 1px solid $lightGray
+//   background-color: $mediumGray
+//   +clearfix
+//   font-size: 15px
+//   color: $offWhite
 
 #main
   +clearfix
-  border: 1px solid $lightGray
-  border-top: none
-  border-bottom: none
   margin-bottom: -1000px
   padding-bottom: 1000px
 
@@ -87,7 +84,7 @@ h2
   color: $offWhite
   font-size: 15px
   text-align: center
-  +border-top-right-radius(7px)
+  +border-right-radius(7px)
   form
     input[type=text]
       font-size: 0.7em
@@ -122,7 +119,7 @@ h2
 +sticky-footer(30px, "#wrap", "#wrap_footer", "footer")
 
 footer
-  padding: 10px 0 9px
+  padding: 10px
   height: 11px
   background: $topColor
   width: auto

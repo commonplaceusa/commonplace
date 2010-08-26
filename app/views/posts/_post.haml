@@ -10,7 +10,7 @@
 
     %p
       = post.body
-      #{ post.replies.size } replies
+      %span.reply_count= "#{ post.replies.size } replies"
   .replies
     %ul
       - post.replies.each do |reply|

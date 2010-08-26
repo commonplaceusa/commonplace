@@ -10,6 +10,9 @@ ul#wire
       display: block
       color: black
       text-decoration: none
+      background-color: white
+      border: 1px solid #bbb
+      +border-radius(7px)
 
       .author
         width: 50px
@@ -19,6 +22,9 @@ ul#wire
         margin-left: -60px
         color: #B8413E       
         font-size: 11px
+        line-height: 120%
+        +sans
+        font-weight: bold
 
         img
           height: 50px
@@ -26,6 +32,7 @@ ul#wire
           +border-radius(8px)
           border: 1px solid $lightGray
           vertical-align: top
+          margin-bottom: 5px
 
       h3
         font-size: 17px
@@ -38,41 +45,29 @@ ul#wire
         font-size: 11px
         line-height: 100%
         float: right
-      
+        +sans
+        font-weight: bold
 
       p
-        border-top: 1px solid grey
+        border-top: 1px solid $lightGray
         padding-top: 5px
-
-      .reply_info_container
-        float: right
-        display: none
-      .reply_fade
-        +inline-block
-        width: 60px
-        height: 20px
-        +linear-gradient(color-stops(rgba(241, 241, 241, 0), rgb(241, 241, 241)), left)
-        margin-left: 2px
-        display: none
-      .reply_count
+        margin-top: 2px
+        font-size: 0.9em
+        color: #555
+      span.reply_count
         +sans
-        +inline-block
-        font-size: 11px
-        // line-height: 130%
-        // padding: 2px 7px
-        // background-color: rgb(241, 241, 241)
-        +border-radius($defaultRadius)
-        vertical-align: top
-      &:hover
-        .reply_info
-          display: block
-            
-    &.post
-      +styled-item($postColorDark)
-    &.announcement
-      +styled-item($announcementColorDark)
-    &.event
-      +styled-item($eventColorDark)
+        color: #aaa
+        font-weight: bold
+        font-size: 0.9em
+        padding-left: 4px
+    
+    // Please leave this in--I think we should bring this back at some point, soon.
+    // &.post
+    //   +styled-item($postColorDark)
+    // &.announcement
+    //   +styled-item($announcementColorDark)
+    // &.event
+    //   +styled-item($eventColorDark)
 
     .replies
       display: none
@@ -82,11 +77,12 @@ ul#wire
   width: 50px
   height: 50px
   margin-right: 7px
+  margin-bottom: 5px
   vertical-align: top
   text-align: center
   background-color: white
-  border: 1px solid $lightGray
-  +border-radius($defaultRadius)
+  // border: 1px solid $lightGray
+  // +border-radius($defaultRadius)
   .month
     +sans
     background-color: $calendarTopColor
@@ -98,7 +94,11 @@ ul#wire
   .date
     +oldStandardBold
     font-size: 22px
-    padding-top: 5px
+    padding-top: 8px
+    background-color: $lightestGray
+    height: 23px
+    border-top: 1px solid white
+    +border-bottom-radius(7px)
 
 .replies
   background-color: $lightestGray

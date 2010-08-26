@@ -15,9 +15,6 @@ nav#filters
   padding: 20px 0px
   display: block
   margin: auto
-  border:
-    left: 1px solid $lightGray
-    right: 1px solid $lightGray
 
 a.filter
   +inline-block
@@ -59,7 +56,7 @@ a.filter:hover
   color: $offWhite
   font-size: 15px
   +linear-gradient(color-stops(#4a7eb0, #46759f))
-  +border-top-left-radius(7px)
+  +border-left-radius(7px)
 
 div#syndicate
   width: 485px
@@ -81,14 +78,17 @@ div#info
 
 a#add
   +inline-block
-  +border-top-right-radius($defaultRadius)
-  padding: 7px 12px
+  +border-top-radius($defaultRadius)
+  padding: 8px 12px 2px
   background-color: $topColor
   +sans
-  font-size: 13px
-  color: #396081
+  font-size: 12px
+  color: #396081 + #111
   text-decoration: none
-  font-weight: 200
+  span.add_text
+    font-weight: bold
+  &:hover
+    color: #396081 + #222
     
 .replies
   display: none
