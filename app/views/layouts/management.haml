@@ -20,10 +20,13 @@
   %body
     #wrap
       = render 'shared/header'
-      #management_top_container
-        #selection Manage:
-        #management_actions.actions
-          = render 'management/navigation'
+      %nav.management        
+        - form_tag '#manage', :method => "get" do
+          = select_tag "manage", management_options_for(current_user)
+          = submit_tag "Manage"
+
+        = yield :navigation
+      
       #main
         = yield
       #wrap_footer

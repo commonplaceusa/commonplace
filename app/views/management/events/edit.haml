@@ -1,0 +1,5 @@
+- content_for :navigation do
+  = render 'navigation'
+- semantic_form_for [:management, @event] do |f|
+  = f.inputs :name, :description, :address, :start_time, :end_time, :tag_list
+  = f.buttons

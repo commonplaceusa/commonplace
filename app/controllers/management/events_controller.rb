@@ -1,20 +1,7 @@
-class Management::EventsController < ApplicationController
+class Management::EventsController < ManagementController
 
-  before_filter :load_organization
-  layout "management"
-
-  def index
-    @events = @organization.events
-    @event = Event.new
-  end
-
-  def create
-    @event = @organization.events.build(params[:event])
-    if @event.save
-      redirect_to management_events_path(@management)
-    else
-      render :index
-    end
+  def show
+    @event = Event.find(params[:id])
   end
 
   def edit
@@ -23,10 +10,12 @@ class Management::EventsController < ApplicationController
   
   def update
     @event = Event.find(params[:id])
+    if @event.update_attributes(params[:event])
+      redirect_to management_event_url(@event)
+    else
+      render :edit
+    end
   end
 
-  protected
-  def load_organization
-    @organization = Organization.find(params[:management_id])
-  end
+
 end

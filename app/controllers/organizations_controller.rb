@@ -18,9 +18,6 @@ class OrganizationsController < CommunitiesController
 
   def show
     @organization = Organization.find params[:id]
-    @events = Event.find(:all, :conditions => ["organization_id = ?", @organization.id])
-    @subscribers = @organization.subscribers
-
     respond_to do |format|
       format.json 
       format.html { render :layout => 'application' }

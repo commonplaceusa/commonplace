@@ -1,0 +1,8 @@
+
+- content_for :navigation do
+  = render 'management/organizations/navigation'
+
+
+%ul#wire
+  - @possible_subscribers.each do |user|
+    = render 'users/user', :user => user

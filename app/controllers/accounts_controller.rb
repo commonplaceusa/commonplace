@@ -22,11 +22,12 @@ class AccountsController < ApplicationController
 
   def edit
     @user = current_user
+    render :layout => 'management'
   end
 
   def update
     if current_user.update_attributes(params[:user])
-      redirect_to account_url
+      redirect_to management_url
     else
       render :edit
     end

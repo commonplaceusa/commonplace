@@ -1,0 +1,18 @@
+class Management::Organizations::AnnouncementsController < ManagementController
+  def index
+    @organization = Organization.find(params[:organization_id])
+    @announcements = @organization.announcements
+    @announcement = Announcement.new
+  end
+  
+  def create
+    @organization = Organization.find(params[:organization_id])
+    @announcement = @organization.announcements.build(params[:announcement])
+    if @announcement.save
+      redirect_to management_organization_announcements_url(@organization)
+    else
+      @announcements = @organization.announcements
+      render :index
+    end
+  end
+end

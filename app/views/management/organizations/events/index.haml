@@ -1,0 +1,11 @@
+- content_for :navigation do
+  = render 'management/organizations/navigation'
+
+- semantic_form_for [:management, @organization, @event] do |f|
+  %h3 Create an Event
+  = f.inputs :name, :description, :address, :start_time, :end_time
+  = f.buttons
+
+%ul#wire
+  - @events.each do |event|
+    = render 'events/event', :event => event

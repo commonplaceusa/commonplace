@@ -1,38 +1,9 @@
+- content_for :navigation do
+  = link_to "New Organization", new_management_organization_path
 
-- form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
-
-  %h2.title Edit your information:
-  = f.label :first_name, "First Name"
-  = f.text_field :first_name
-
-  = f.label :last_name, "Last Name"
-  = f.text_field :last_name
+- semantic_form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
+  = f.inputs :avatar, :first_name, :last_name, :email, :skill_list, :about, :password, :password_confirmation
+  = f.buttons
   
-  = f.label :email, "Email"
-  = f.text_field :email
   
-  = f.label :skill_list, "Skills"
-  = f.text_field :skill_list
-  %p.hint Example: carpentry, computers
-
-  = f.label :interests, "Interests"
-  = f.text_field :interest_list
-  %p.hint Example: meeting people, cooking
-    
-  = f.label :about, "About me"
-  = f.text_area  :about
-  %p.hint Write something about yourself!
-
-  = f.label :password, "New password"
-  = f.password_field :password
-  
-  = f.label :password_confirmation, "Confirm password"
-  = f.password_field :password_confirmation
-  = f.submit 'Update'
-
-- form_for current_user, :url => account_path, :html => {:multipart => true } do |f|
-  = f.file_field :avatar
-    
-  = f.submit
-
 

@@ -1,0 +1,8 @@
+
+- content_for :navigation do
+  = render 'management/events/navigation'
+
+%p these are people who tagged themselves with things you tagged your event with
+%ul#wire
+  - @possible_attendees.each do |user|
+    = render 'users/user', :user => user

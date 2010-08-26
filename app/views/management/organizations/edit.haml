@@ -1,0 +1,16 @@
+- content_for :navigation do
+  = render 'navigation'
+
+- semantic_form_for [:management, @organization] do |f|
+  - f.inputs do
+    = f.input :name
+    = f.input :address
+    = f.input :avatar
+    = f.input :about
+    = f.input :phone
+    = f.input :website
+    = f.input :category, :as => :select, :collection => Organization::CATEGORIES
+  
+  - f.buttons do
+    = f.commit_button 'Update'
+  

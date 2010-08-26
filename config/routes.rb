@@ -42,10 +42,17 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :account, :member => { :more_info => :get }
   map.resources :mets
-  map.resource :management, :controller => "management", :only => [:show] do |man|
-    man.resources :organizations, :controller => "management/organizations"
-    man.resources :events, :controller => "management/events"
-    man.resources :announcements, :controller => "management/announcements"
+  map.management 'management', :controller => 'accounts', :action => 'edit'
+  map.namespace :management do |man|
+    man.resources :organizations do |org|
+      org.resources :announcements, :controller => 'organizations/announcements'
+      org.resources :events, :controller => 'organizations/events'
+      org.resources :profile_fields, :controller => 'organizations/profile_fields'
+      org.resources :outreaches, :controller => 'organizations/outreaches'
+    end
+    man.resources :events do |event|
+      event.resources :outreaches, :controller => 'events/outreaches'
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

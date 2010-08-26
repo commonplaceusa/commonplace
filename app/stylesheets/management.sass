@@ -3,49 +3,43 @@
 @import organization
 @import profile
 @import header
+@import modal
 
 #main
   padding-top: 30px
+  padding-left: 10px
+  padding-right: 10px
+  
+  form
+    width: 48%
+    +inline-block
 
-#management_top_container
-  position: relative
-  +sans
 
-#selection
-  position: absolute
-  left: 15px
-  top: -7px
-  bottom: -7px
-  width: 225px
-  +border-radius(7px)
-  border: 1px solid $orgPageRed + #111
-  vertical-align: center
-  color: white
-  +text-shadow(#444)
-  padding: 17px 10px
-  z-index: 10
-  background-color: $orgPageRed
-  +linear-gradient(color-stops($orgPageRed, $orgPageRed - #222))
-
-#management_actions.actions
+nav.management
   background-color: $mediumGray
   +linear-gradient(color-stops($mediumGray, $mediumGray - #222))
+  padding: 10px
+  +border-top-radius(7px)
 
-  nav#management_nav
-    position: relative
-    left: 280px
-    padding: 10px
-    a
-      +inline-block
-      background-color: white
-      +linear-gradient(color-stops(white, #ccc))
-      &:hover
-        +linear-gradient(color-stops(#ccc, white))
-      +border-radius(7px)
-      border-top: 1px solid white
-      padding: 6px 9px
-      color: $orgPageRed
-      font-size: 0.8em
-      font-weight: bold
-      text-decoration: none
-      margin-right: 3px
+  form
+    display: inline-block
+    margin: 0 15px
+    
+nav.management > a
+  +inline-block
+  background-color: white
+  +linear-gradient(color-stops(white, #ccc))
+  &:hover
+    +linear-gradient(color-stops(#ccc, white))
+  +border-radius(7px)
+  border-top: 1px solid white
+  padding: 6px 9px
+  color: $orgPageRed
+  font-size: 0.8em
+  font-weight: bold
+  text-decoration: none
+  margin-right: 3px
+
+ul#wire
+  +inline-block
+  width: 50%

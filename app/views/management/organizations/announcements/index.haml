@@ -1,0 +1,12 @@
+- content_for :navigation do
+  = render 'management/organizations/navigation'
+
+
+- semantic_form_for [:management, @organization, @announcement] do |f|
+  %h3 Create an Announcement
+  = f.inputs :subject, :body
+  = f.buttons
+
+%ul#wire
+  - @announcements.each do |announcement|
+    = render 'announcements/announcement', :announcement => announcement
