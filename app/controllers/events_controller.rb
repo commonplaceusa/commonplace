@@ -7,10 +7,7 @@ class EventsController < CommunitiesController
         format.json { render :search }
         format.html { render :search }
       else
-        @subscribed_events = current_user.organizations.map(&:events).flatten
-        @suggested_events = []
-        @community_events = current_community.events.all(:conditions => ["events.id NOT IN (?)", @subscribed_events + @suggested_events + [0]])
-        
+        @events = current_community.events
         format.json
         format.html
       end

@@ -7,9 +7,7 @@ class UsersController < CommunitiesController
         format.json { render :search }
         format.html { render :search }
       else
-        @neighbors = []
-        @community_users = current_community.users.all(:conditions => ["users.id NOT IN (?)", @neighbors + [0]])
-        
+        @users = current_community.users
         format.json
         format.html
       end

@@ -2,16 +2,6 @@
 - link_to_add(new_post_path) do
   = "&#x271a; Make an announcement to your community".capitalize
 
-
-- unless @subscribed_announcements.empty?
-  %h3 Your Announcements
-  %ul#wire
-    - @subscribed_announcements.each do |announcement|
-      = render announcement
-
-- unless @community_announcements.empty?
-  %h3 All Announcements
-  %ul#wire
-    - @community_announcements.each do |announcement|
-      = render announcement
-
+%ul#wire
+  - @announcements.each do |announcement|
+    = render announcement

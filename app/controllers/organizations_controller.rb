@@ -7,9 +7,7 @@ class OrganizationsController < CommunitiesController
         format.json { render :search }
         format.html { render :search }
       else
-        @subscribed_organizations = current_user.organizations
-        @suggested_organizations = []
-        @community_organizations = current_community.organizations.all(:conditions => ["id NOT IN (?)", @subscribed_organizations + @suggested_organizations + [0]])
+        @organizations = current_user.organizations
         format.json
         format.html
       end

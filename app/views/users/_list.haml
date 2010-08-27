@@ -2,13 +2,6 @@
 - link_to_add(new_post_path) do
   = "&#x271a; Invite someone to CommonPlace" 
 
-- unless @neighbors.empty?
-  %h3 Your Neighbors
-  %ul#wire
-    - @neighbors.each do |user|
-      = render user
-- unless @community_users.empty?
-  %h3 Everyone
-  %ul#wire
-    - @community_users.each do |user|
-      = render user
+%ul#wire
+  - @users.each do |user|
+    = render user

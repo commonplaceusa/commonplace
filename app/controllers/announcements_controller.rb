@@ -1,8 +1,6 @@
 class AnnouncementsController < CommunitiesController
   def index
-    @subscribed_announcements = current_user.organizations.map(&:announcements).flatten
-    @community_announcements = current_community.announcements.all(:conditions => ["announcements.id NOT IN (?)", @subscribed_announcements + [0]])
-
+    @announcements = current_community.announcements
     respond_to do |format|
       format.json
       format.html
