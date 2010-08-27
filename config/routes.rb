@@ -10,6 +10,8 @@ ActionController::Routing::Routes.draw do |map|
 
     community.resources :replies
     
+    community.resources :tags
+    
     community.resources :events do |event|
       event.resource :attendance
       event.resources :referrals

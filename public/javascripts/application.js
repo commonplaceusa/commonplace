@@ -100,6 +100,7 @@ var app = $.sammy(function() {
   this.get("#/users/:id", setInfoBox);
   this.get("#/organizations/:id", setInfoBox);
 
+  this.get("#/tags", setList);
   this.get("#/announcements", setList);
   this.get("#/events", setList);
   this.get("#/", setList);

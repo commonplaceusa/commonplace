@@ -1,0 +1,14 @@
+- item_tag(tag) do
+  %div.item_body
+    %h3= tag.name
+    = button_to "I have this #{type.singularize}"
+    
+    %p #{User.tagged_with(tag.name, :on => type).count} people have this #{type.singularize}
+    %ul
+      - User.tagged_with(tag.name, :on => type).each do |user|
+        %li
+          = link_to user.name, user, 'data-remote' => true
+        
+
+      
+      

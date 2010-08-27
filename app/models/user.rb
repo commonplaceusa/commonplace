@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
 
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests
+  acts_as_taggable_on :goods
   acts_as_taggable_on :stuffs
   
   has_attached_file(:avatar, 
