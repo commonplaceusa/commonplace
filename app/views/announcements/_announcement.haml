@@ -10,9 +10,6 @@
     %p
       = announcement.body
       %span.reply_count #{ announcement.replies.size } replies
-  .replies
-    %ul
-      - announcement.replies.each do |reply|
-        = render reply
 
-    = render 'replies/form', :reply => announcement.replies.new
+  = render 'shared/replies', :item => announcement
+

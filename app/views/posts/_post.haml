@@ -11,9 +11,6 @@
     %p
       = post.body
       %span.reply_count= "#{ post.replies.size } replies"
-  .replies
-    %ul
-      - post.replies.each do |reply|
-        = render reply
 
-    = render 'replies/form', :reply => post.replies.new
+  = render 'shared/replies', :item => post
+

@@ -11,10 +11,7 @@
     %p
       = event.body
       %span.reply_count #{ event.replies.size } replies
-  .replies
-    %ul
-      - event.replies.each do |reply|
-        = render reply
 
-    = render 'replies/form', :reply => event.replies.new
+  = render 'shared/replies', :item => event
+
 
