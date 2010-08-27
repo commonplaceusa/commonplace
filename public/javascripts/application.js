@@ -95,6 +95,7 @@ var app = $.sammy(function() {
   this.get("#/organizations/new", setModal);
   this.get("#/invites/new", setModal);
   this.get("#/users/:user_id/messages/new", setModal);
+  this.get("#/tags/new", setModal);
   this.get("#/posts/:id", setInfoBox);
   this.get("#/events/:id", setInfoBox);
   this.get("#/announcements/:id", setInfoBox);
