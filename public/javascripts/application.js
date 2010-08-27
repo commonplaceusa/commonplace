@@ -21,18 +21,6 @@ function setList() {
   });
 }
 
-function setModal() {
-  $.getJSON(this.path.slice(1), function(response) {
-    $(response.form).modal({
-      overlayClose: true,
-      onClose: function() { 
-        $.modal.close(); 
-        history.back()
-      }
-    });
-  });
-}
-
 var app = $.sammy(function() { 
 
   this.post("/posts", function() {
@@ -133,45 +121,3 @@ $(function(){
                           'autoHeight': false,
                          });
 });
-
-function renderMap(args) {
-  var directionsService = new google.maps.DirectionsService(),
-      directionsDisplay = new google.maps.DirectionsRenderer({ 
-        suppressMarkers: true
-      }),
-      from = new google.maps.LatLng(args.directions.from.lat, args.directions.from.lng),
-      to = new google.maps.LatLng(args.directions.to.lat, args.directions.to.lng),
-      myOptions = {
-        zoom: 15,
-        center: from,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        navigationControl: true,
-        mapTypeControl: false,
-        scaleControl: true
-      },
-      map = new google.maps.Map(document.getElementById("map"), myOptions),
-      directionsRequest = {
-        origin: from,
-        destination: to,
-        travelMode: google.maps.DirectionsTravelMode.WALKING
-      };
-
-  
-  directionsDisplay.setMap(map);    
-  var fromMarker = new google.maps.Marker({
-    position: from, 
-    map: map
-  });
-  var toMarker = new google.maps.Marker({
-    position: to,
-    map: map
-  });
-
-  directionsService.route(directionsRequest, function(result, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(result);
-    }
-  });
-
-}
-
