@@ -74,9 +74,7 @@ var app = $.sammy(function() {
       }
     }, "json");
   });
-  
-  this.get("#/management/organizations/:organization_id/profile_fields/new", setModal);
-  
+    
   this.get("#/posts/new", setModal);
   this.get("#/announcements/new", setModal);
   this.get("#/events/new", setModal);
@@ -97,10 +95,6 @@ var app = $.sammy(function() {
   this.get("#/users", setList);
   this.get("#/organizations", setList);
   this.get("#/posts", setList);
-
-  this.get("#manage", function () {
-    this.redirect(this.params["manage"]);
-  });
 
 });
 
