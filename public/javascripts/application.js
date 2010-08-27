@@ -118,14 +118,6 @@ var app = $.sammy(function() {
 
 $(function(){
   app.run();
-  $("input[name='_method']").each(function() { 
-    var method = $(this).val(); 
-    $(this).closest('form').attr('method', method); 
-  }); 
-  $('a[data-remote]').live('click', function(e) {
-    app.location_proxy.setLocation("#" + $(this).attr('href'));
-    e.preventDefault()
-  });
   
   $(document).scroll(function (){
     if ($(window).scrollTop() + 10 > $('#info').offset().top){
@@ -135,35 +127,11 @@ $(function(){
     }
   });
 
-  $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
-  
-   
   $('ul#wire').accordion({'header': 'a.item_body', 
                           'active': false,
                           'collapsible': true, 
                           'autoHeight': false,
                          });
-  $('#toggle_map').toggle( function(){
-    $('#map').css({
-      width: "100%",
-      height: "250px",
-      "margin-bottom": "10px"
-    });
-    $("#toggle_map").html("COLLAPSE MAP");
-  }, function() {
-    $('#map').css({
-      width: "200px",
-      height: "150px",
-      "margin-bottom": "0"
-    });
-    $("#toggle_map").html("EXPAND MAP / GET DIRECTIONS");
-  });
-  
-  $('#modules').sortable();
-  $('#modules').disableSelection();
-  
-  $('#org_url').textTruncate(140);
-  
 });
 
 function renderMap(args) {
