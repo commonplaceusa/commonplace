@@ -27,10 +27,10 @@ module ApplicationHelper
     link_to(name, options, html_options)
   end
 
-  def link_to_add(options, html_options = {}, &block) 
+  def link_to_add(text, options, html_options = {}) 
     html_options[:id] ||= ""
     html_options[:id] += "add"
-    link_to(options, html_options, &block)
+    link_to(text, options, html_options)
   end
   
 end

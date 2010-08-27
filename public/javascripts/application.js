@@ -16,7 +16,8 @@ function setInfoBox() {
 
 function setList() {
   $.getJSON(this.path.slice(1), function(response) {
-    $("#list").html(response.list);    
+    $("#list").html(response.list);
+    $("#add").replaceWith(response.add);
   });
 }
 

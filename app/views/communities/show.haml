@@ -1,9 +1,7 @@
-#syndicate
-  - link_to_add(new_post_path, 'data-remote' => true) do
-    = "&#x271a;"
-    %span.add_text= "Post to your neighbors".upcase
-  #list
-    = render 'list'
+= link_to_add("&#x271a; Post to your neighbors".upcase, new_post_path, 'data-remote' => true)
+
+#list
+  = render 'list'
 
 #info
   - if !current_user_session

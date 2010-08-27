@@ -1,7 +1,3 @@
-
-- link_to_add(new_post_path) do
-  = "&#x271a; Make an announcement to your community".capitalize
-
 %ul#wire
   - @announcements.each do |announcement|
     = render announcement
