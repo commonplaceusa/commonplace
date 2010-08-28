@@ -1,6 +1,7 @@
 %li.reply
   = image_tag reply.user.avatar.url, :width => 25, :height => 25
-  = link_to reply.user.name, reply.user
+  = link_to reply.user.name, reply.user, :class => 'author'
   %p.body= reply.body
-  %p.ago #{time_ago_in_words(reply.created_at, include_seconds = true)} ago
+  %br
+  %time #{time_ago_in_words(reply.created_at, include_seconds = true)} ago
   

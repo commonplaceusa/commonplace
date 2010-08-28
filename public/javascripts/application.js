@@ -6,6 +6,7 @@ function selectTab(tab) {
 };
 
 function setInfoBox() {
+
    $.getJSON(this.path.slice(1), function(response) {
      $("#info").html(response.info_box);
      if (response.map) {
