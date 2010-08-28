@@ -65,6 +65,7 @@ var app = $.sammy(function() {
                   $(this).html(response.more_info)
                     .show('slide');
                 });
+        $('header').replaceWith(response.header);
       } else {
         $('#registration')
           .hide('slide',{}, 500,
