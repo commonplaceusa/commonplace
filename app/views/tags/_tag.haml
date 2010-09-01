@@ -3,7 +3,7 @@
     %h3= tag.name
     = button_to "I have this #{type.singularize}"
     
-    %p #{User.tagged_with(tag.name, :on => type).count} people have this #{type.singularize}
+    %p #{User.tagged_with(tag.name, :on => type).count} people have this #{type.singularize}:
     %ul
       - User.tagged_with(tag.name, :on => type).each do |user|
         %li
