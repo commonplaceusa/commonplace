@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100822032453) do
+ActiveRecord::Schema.define(:version => 20100901152819) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",         :null => false
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20100822032453) do
     t.decimal  "lat"
     t.decimal  "lng"
     t.integer  "organization_id"
+    t.string   "cached_tag_list"
   end
 
   create_table "invites", :force => true do |t|
@@ -111,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20100822032453) do
     t.string   "website"
     t.integer  "community_id"
     t.string   "category"
+    t.string   "cached_tag_list"
   end
 
   create_table "platform_updates", :force => true do |t|
@@ -188,23 +190,26 @@ ActiveRecord::Schema.define(:version => 20100822032453) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",               :null => false
-    t.string   "crypted_password",    :null => false
-    t.string   "password_salt",       :null => false
-    t.string   "persistence_token",   :null => false
-    t.string   "single_access_token", :null => false
-    t.string   "perishable_token",    :null => false
+    t.string   "email",                :null => false
+    t.string   "crypted_password",     :null => false
+    t.string   "password_salt",        :null => false
+    t.string   "persistence_token",    :null => false
+    t.string   "single_access_token",  :null => false
+    t.string   "perishable_token",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name",          :null => false
-    t.string   "last_name",           :null => false
+    t.string   "first_name",           :null => false
+    t.string   "last_name",            :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
-    t.string   "address",             :null => false
+    t.string   "address",              :null => false
     t.decimal  "lat"
     t.decimal  "lng"
     t.text     "about"
-    t.integer  "community_id",        :null => false
+    t.integer  "community_id",         :null => false
+    t.string   "cached_skill_list"
+    t.string   "cached_interest_list"
+    t.string   "cached_good_list"
   end
 
 end
