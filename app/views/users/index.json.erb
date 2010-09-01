@@ -1,4 +1,5 @@
 {
   "add": <%= html_to_json { link_to_add("&#x271a; Invite someone to CommonPlace".upcase, new_post_path, 'data-remote' => true) } %>,
-  "list": <%= html_to_json { render 'list'} %>
+  "list": <%= html_to_json { render 'list'} %>,
+  "info": <%= html_to_json { render 'communities/right' } %>
 }
