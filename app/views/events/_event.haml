@@ -9,7 +9,7 @@
       = event.time
 
     %p
-      = event.body
+      = truncate event.body, :length => 160
       %span.reply_count #{ event.replies.size } replies
 
   = render 'shared/replies', :item => event

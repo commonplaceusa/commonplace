@@ -5,4 +5,4 @@
     %h3
       = organization.name
     %p
-      = organization.about
+      = truncate organization.about, :length => 160

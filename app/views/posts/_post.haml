@@ -9,7 +9,7 @@
       = post.time
 
     %p
-      = post.body
+      = truncate post.body, :length => 160
       %span.reply_count= "#{ post.replies.size } replies"
 
   = render 'shared/replies', :item => post

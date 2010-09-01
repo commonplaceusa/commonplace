@@ -8,7 +8,7 @@
     %time
       = announcement.time
     %p
-      = announcement.body
+      = truncate announcement.body, :length => 160
       %span.reply_count #{ announcement.replies.size } replies
 
   = render 'shared/replies', :item => announcement
