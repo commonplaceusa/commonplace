@@ -117,4 +117,10 @@ $(function(){
                           'collapsible': true, 
                           'autoHeight': false,
                          });
+
+  $('body').click(function(e) {
+    if (e.pageX < (($('body').width() - $('#wrap').width()) / 2)) {
+      history.back();
+    }
+  });
 });
