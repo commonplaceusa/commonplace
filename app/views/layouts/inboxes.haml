@@ -18,13 +18,12 @@
     = stylesheet_link_tag 'jquery-ui', 'inboxes'
     %title CommonPlace
 
-  %body.bp
+  %body
     #wrap    
       = render 'shared/header'
 
       %h2 Your inbox:
 
-      = render 'shared/search'
       #main
         = yield  
 
