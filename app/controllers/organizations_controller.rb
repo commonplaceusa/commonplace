@@ -7,7 +7,7 @@ class OrganizationsController < CommunitiesController
         format.json { render :search }
         format.html { render :search }
       else
-        @organizations = current_user.organizations
+        @organizations = current_community.organizations
         format.json
         format.html
       end
