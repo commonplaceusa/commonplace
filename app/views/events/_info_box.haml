@@ -1,10 +1,5 @@
-.info_box.styled_box.organization
-  .header
-    .icon{ :alt => "event" }
-    .header_text
-      %span.category Community Event
-    - if event.attendees.include? current_user
-      %span.follow_status Attending
+.info_box.organization
+
   #info_box_main
     #info_box_main_left
       #big_calendar.graphic= render 'events/calendar', :event => event

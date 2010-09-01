@@ -1,22 +1,11 @@
 .fixed .info_box
   position: fixed
   top: 10px
+  width: 460px
 
 .info_box
-  position: relative
-  +grid(12)
-  
-  .header
-    span.follow_status
-      float: right
-      color: white
-      font-size: 11px
-      background-color: $metColor
-      padding: 3px 4px
-      margin: 3px 3px 0px 3px
-      +border-top-right-radius($defaultRadius)
-      +border-bottom-left-radius($defaultRadius)
-  
+  border: 10px solid $topColor
+  +border-radius($defaultRadius)
   #info_box_main
     border-top: 1px solid white
     padding: 10px 12px
@@ -82,7 +71,7 @@
     .body
       +inline-block
       vertical-align: top
-      width: 305px
+      width: 295px
       h3
         color: $infoBoxTitle
         font-size: 1.5em

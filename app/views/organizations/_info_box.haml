@@ -1,10 +1,5 @@
-.info_box.styled_box.organization
-  .header
-    .icon{ :alt => "organization" }
-    .header_text
-      %span.category Organization
-    - if current_user.organizations.include? organization
-      %span.follow_status Subscribed
+.info_box.organization
+
   #info_box_main
     #info_box_main_left
       = image_tag organization.avatar.url, :width => 120, :height => 150, :class => 'graphic'

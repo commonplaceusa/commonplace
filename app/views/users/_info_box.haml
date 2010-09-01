@@ -1,10 +1,5 @@
-.info_box.styled_box.user
-  .header
-    .icon{ :alt => "user" }
-    .header_text
-      %span.category Your Neighbor
-    - if current_user.mets.exists?(user)
-      %span.follow_status You've met
+.info_box.user
+
   #info_box_main
     #info_box_main_left
       = image_tag user.avatar.url, :width => 120, :height => 120, :class => 'graphic'
