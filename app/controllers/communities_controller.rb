@@ -7,11 +7,13 @@ class CommunitiesController < ApplicationController
         @results = Event.tagged_with_aliases(params[:q], :any => true) + 
           User.tagged_with_aliases(params[:q], :any => true) + 
           Organization.tagged_with_aliases(params[:q], :any => true)
-        format.json { render 'search' }
         format.html { render 'search' }
+        format.json { render 'search' }
+
       else
-        format.json
         format.html
+        format.json
+
       end
     end
   end
