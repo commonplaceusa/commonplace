@@ -90,6 +90,18 @@ ActiveRecord::Schema.define(:version => 20100901152819) do
     t.datetime "updated_at"
   end
 
+  create_table "neighborhoods", :force => true do |t|
+    t.decimal  "north_bound",  :null => false
+    t.decimal  "south_bound",  :null => false
+    t.decimal  "east_bound",   :null => false
+    t.decimal  "west_bound",   :null => false
+    t.string   "name",         :null => false
+    t.text     "about",        :null => false
+    t.integer  "community_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notifications", :force => true do |t|
     t.integer  "user_id",         :null => false
     t.integer  "notifiable_id",   :null => false
