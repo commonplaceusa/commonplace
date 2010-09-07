@@ -66,7 +66,10 @@ function renderNeighborhood(args) {
     fillColor: "#0000FF",
     fillOpacity: 0.35
   });
-
+  home = new google.maps.Marker({
+    position: new google.maps.LatLng(args.center.lat,args.center.lng),
+    map: map
+  });
   neighborhood.setMap(map);
 }
   
