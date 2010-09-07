@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
 
   before_save :update_lat_and_lng, :if => "address_changed?"
-  before_create :place_in_community
+
   acts_as_authentic do |c|
     c.login_field :email
   end
   
-  belongs_to :community
+  belongs_to :neighborhood  
   
   has_many :links, :as => :linker
 
@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
     end    
     true  
   end
+
+  def community
+    neighborhood.community
+  end
   
   def wire
     (self.organizations.map(&:announcements).flatten + Event.all(:order => "created_at DESC") + Post.all(:order => "created_at DESC")).sort_by(&:created_at).reverse
@@ -71,11 +75,6 @@ class User < ActiveRecord::Base
     else
       [:user]
     end
-  end
-
-  # TODO: find community based on address
-  def place_in_community
-    self.community = Community.first
   end
 
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100901152819) do
+ActiveRecord::Schema.define(:version => 20100905220900) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",         :null => false
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20100901152819) do
     t.decimal  "lat"
     t.decimal  "lng"
     t.text     "about"
-    t.integer  "community_id",         :null => false
+    t.integer  "neighborhood_id",      :null => false
     t.string   "cached_skill_list"
     t.string   "cached_interest_list"
     t.string   "cached_good_list"
