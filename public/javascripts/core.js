@@ -60,10 +60,10 @@ function renderNeighborhood(args) {
   }),
   neighborhood = new google.maps.Polygon({
     paths: path,
-    strokeColor: "#00FF00",
+    strokeColor: "#0000FF",
     strokeOpacity: 0.8,
     strokeWeight: 2,
-    fillColor: "#00FF00",
+    fillColor: "#0000FF",
     fillOpacity: 0.35
   });
 
