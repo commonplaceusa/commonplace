@@ -1,21 +1,32 @@
+#more_info.info_box
 
-%h1 Please include some information about yourself for the directory!
+  #info_box_main
 
-- form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
-  %dl 
-    %dt= f.label :avatar, "Profile picture"
-    %dd= f.file_field :avatar
-  = f.submit "Upload"
+    - form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
+      #info_box_main_left
+        = image_tag current_user.avatar.url, :width => 120, :height => 120, :class => 'graphic'
+        %br
+        = f.file_field :avatar
 
-- form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
-  %dl
-    %dt= f.label :about, "About you"
-    %dd= f.text_area :about
-  
-    %dt= f.label :skill_list, "Skills"
-    %dd= f.text_field :skill_list
+      .body
+        %h3= current_user.full_name
       
-    %dt= f.label :interest_list, "Interests"
-    %dd= f.text_field :interest_list
-        
-  = f.submit 'Submit'
+        = f.label :about, "About you"
+        = f.text_area :about, :cols => 30, :rows => 3
+      
+        %ol.user_info
+          %li
+            = f.label :interest_list, "Interests"
+            = f.text_field :interest_list
+          %li
+            = f.label :skill_list, "Skills"
+            = f.text_field :skill_list
+          %li
+            = f.label :good_list, "Goods"
+            = f.text_field :good_list
+        = f.submit 'Submit'
+  
+    %h3= current_user.neighborhood.name
+    %p= current_user.neighborhood.about
+
+    #map

@@ -45,6 +45,31 @@ function setModal() {
   });
 }
 
+function renderNeighborhood(args) {
+  var myOptions = {
+    zoom: 13,
+    center: new google.maps.LatLng(args.center.lat,args.center.lng),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    navigationControl: true,
+    mapTypeControl: false,
+    scaleControl: true
+  },
+  map = new google.maps.Map(document.getElementById("map"), myOptions),
+  path = $.map(args.neighborhood.bounds, function(p) {
+    return new google.maps.LatLng(p.lat,p.lng)
+  }),
+  neighborhood = new google.maps.Polygon({
+    paths: path,
+    strokeColor: "#00FF00",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#00FF00",
+    fillOpacity: 0.35
+  });
+
+  neighborhood.setMap(map);
+}
+  
 function renderMap(args) {
   var directionsService = new google.maps.DirectionsService(),
       directionsDisplay = new google.maps.DirectionsRenderer({ 

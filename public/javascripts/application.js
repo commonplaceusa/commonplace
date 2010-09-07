@@ -72,9 +72,12 @@ var app = $.sammy(function() {
         $('#registration')
           .hide('slide', {}, 500,  
                 function(){ 
-                  $(this).html(response.more_info)
-                    .show('slide');
-                });
+                  $(this).replaceWith(response.more_info)
+                    .show('slide', function () {
+                      renderNeighborhood(response.map);
+                    });
+                 });
+
         $('header').replaceWith(response.header);
       } else {
         $('#registration')

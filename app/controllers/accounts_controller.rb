@@ -7,7 +7,8 @@ class AccountsController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
+    @neighborhood = Neighborhood.find_for(params[:user][:address])
+    @user = @neighborhood.users.build(params[:user])
     respond_to do |format|
       if @user.save
         reload_current_user!
