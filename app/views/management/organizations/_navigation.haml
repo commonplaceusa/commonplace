@@ -1,9 +1,10 @@
 
-
-= tab_to "Edit Profile", management_organization_path(@organization)
-= tab_to "Create Events", management_organization_events_path(@organization)
-= tab_to "Create Announcements", management_organization_announcements_path(@organization)
-= tab_to "Invite Subscribers", management_organization_outreaches_path(@organization)
+%h2 Managing Organization: #{@organization.name}
+%nav#profile_section_navigation
+  = tab_to "Edit Profile", management_organization_path(@organization)
+  = tab_to "Create Events", management_organization_events_path(@organization)
+  = tab_to "Create Announcements", management_organization_announcements_path(@organization)
+  = tab_to "Invite Subscribers", management_organization_outreaches_path(@organization)
 
 
 

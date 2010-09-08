@@ -1,9 +1,103 @@
 - content_for :navigation do
-  = link_to "New Organization", new_management_organization_path
+  %h2 Managing Your Personal Profile
+  %nav#profile_section_navigation
 
 - semantic_form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
-  = f.inputs :avatar, :first_name, :last_name, :email, :skill_list, :about, :password, :password_confirmation
+  - f.inputs do 
+    = f.input :email, :input_html => {:size => 15}
+    = f.input :password, :input_html => {:size => 15}
+    = f.input :password_confirmation, :input_html => {:size => 15}
   = f.buttons
-  
-  
 
+- form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
+  
+  .info_box.user
+    #info_box_main
+      #info_box_main_left
+        = image_tag current_user.avatar.url, :width => 120, :height => 120, :class => 'graphic'
+        %br
+        = f.file_field :avatar, :style => "width: 120px"
+      .body
+        = f.text_field :first_name, :size => 10
+        = f.text_field :last_name, :size => 10
+
+        %ol.user_info
+          %li
+            %span.info_title About
+            = f.text_area :about, :rows => 3, :cols => 30
+          %li
+            %span.info_title= "Shared skills".upcase
+            = f.text_field :skill_list
+          %li
+            %span.info_title= "Interests".upcase
+            = f.text_field :interest_list
+          %li
+            %span.info_title= "Address".upcase 
+            = f.text_field :address
+        = f.submit "Update"
+    #map  
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

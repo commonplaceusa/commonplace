@@ -4,64 +4,62 @@
 @import profile
 @import header
 @import modal
+@import info_box
+
 
 #main
-  margin: 0px 10px
+  float: right
+  width: 922px
   border: 1px solid #ddd
     top: 0px
 
+#wrap
+  width: 1100px
+header
+  width: 1100px
+.profile
+  border: none
 
-nav.management
+nav#profile_navigation
+  margin-top: 50px
+  width: 165px
+  float: left
+  border: 1px solid #ddd
+    right: 0px
+  padding: 5px
+  
+  li.level_1
+    margin: 10px 0
+      
+  li.level_2
+    margin: 5px 0px 5px 10px
+    &:before
+      display: marker
+      content: "-"
+  li.new
+    &:before
+      display: marker
+      content: "+"
+
+h2
+  color: #B8413E
+  display: inline
+  font-size: 1.2em
+  padding: 5px 0
+  width: 922px
+  float: right
+
+nav#profile_section_navigation
+  float: right
+  width: 904px
+  height: 25px
+  background-color: $topLinkColor
+  padding: 7px 10px
   +border-top-radius($defaultRadius)
-  padding:
-    top: 15px
-    left: 10px
-    right: 10px
-
-  a.account
-    background-color: #414141
-    color: white
-      
-  a.event
-    background-color: #3d5f84
-      
-  a.organization
-    background-color: #b94545
-
-  a.selected_nav
+  a
+    +inline-block
     background-color: white
-    color: black
-    border: 1px solid #ddd
-      bottom: 1px solid white
-    position: relative
-    bottom: -1px
-  div.nav_group
-    +border-top-radius(5px)
-    display: inline-block
-    margin: 0px 10px
-    padding: 5px
-      bottom: 0px
-    a
-      color: black
-      padding: 5px
-      display: inline-block
-      
-  div.second_tier
-    font-size: .8em
-    padding: 5px
-      bottom: 10px
-    border: 1px solid #ddd
-      bottom: 0px
-    a 
-      color: black
-      display: inline-block
-      background-color: grey
-      padding: 5px
-      margin-left: 5px
-
-    a.selected_nav
-      color: white
-    
-ul#wire
-  +inline-block
-  width: 50%
+    padding: 4px 3px
+    +border-radius(5px)
+    color: #222
+    margin: 0 5px

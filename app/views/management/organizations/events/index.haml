@@ -5,7 +5,3 @@
   %h3 Create an Event
   = f.inputs :name, :description, :address, :start_time, :end_time
   = f.buttons
-
-%ul#wire
-  - @events.each do |event|
-    = render 'events/event', :event => event

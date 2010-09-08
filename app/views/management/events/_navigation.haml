@@ -1,4 +1,6 @@
 
-= tab_to 'Edit Profile', management_event_path(@event)
-= tab_to 'Invite Attendees', management_event_outreaches_path(@event)
-= tab_to 'Settings', edit_management_event_path(@event)
+%h2 Managing Event: #{@event.name}
+%nav#profile_section_navigation
+  = tab_to 'Edit Profile', management_event_path(@event)
+  = tab_to 'Invite Attendees', management_event_outreaches_path(@event)
+  = tab_to 'Settings', edit_management_event_path(@event)
