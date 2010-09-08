@@ -6,7 +6,6 @@
 @import modal
 
 #main
-  padding-top: 30px
   margin: 0px 10px
   border: 1px solid #ddd
     top: 0px
@@ -50,46 +49,21 @@ nav.management
       display: inline-block
       
   div.second_tier
+    font-size: .8em
     padding: 5px
+      bottom: 10px
     border: 1px solid #ddd
       bottom: 0px
-
     a 
       color: black
       display: inline-block
       background-color: grey
       padding: 5px
+      margin-left: 5px
+
+    a.selected_nav
+      color: white
     
-    
-    
-
-
-
-// nav.management
-//   background-color: $mediumGray
-//   +linear-gradient(color-stops($mediumGray, $mediumGray - #222))
-//   padding: 10px
-//   +border-top-radius(7px)
-
-//   form
-//     display: inline-block
-//     margin: 0 15px
-    
-// nav.management > a
-//   +inline-block
-//   background-color: white
-//   +linear-gradient(color-stops(white, #ccc))
-//   &:hover
-//     +linear-gradient(color-stops(#ccc, white))
-//   +border-radius(7px)
-//   border-top: 1px solid white
-//   padding: 6px 9px
-//   color: $orgPageRed
-//   font-size: 0.8em
-//   font-weight: bold
-//   text-decoration: none
-//   margin-right: 3px
-
 ul#wire
   +inline-block
   width: 50%

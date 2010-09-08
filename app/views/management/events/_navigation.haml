@@ -1,4 +1,4 @@
 
-= link_to 'Profile', management_event_path(@event)
-= link_to 'Outreach', management_event_outreaches_path(@event)
-= link_to 'Settings', edit_management_event_path(@event)
+= tab_to 'Edit Profile', management_event_path(@event)
+= tab_to 'Invite Attendees', management_event_outreaches_path(@event)
+= tab_to 'Settings', edit_management_event_path(@event)

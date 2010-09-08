@@ -1,9 +1,9 @@
 
 
-= link_to "Profile", management_organization_path(@organization)
-= link_to "Events", management_organization_events_path(@organization)
-= link_to "Announcements", management_organization_announcements_path(@organization)
-= link_to "Outreach", management_organization_outreaches_path(@organization)
-= link_to "Settings", edit_management_organization_path(@organization)
-= link_to "New Organization", new_management_organization_path
+= tab_to "Edit Profile", management_organization_path(@organization)
+= tab_to "Create Events", management_organization_events_path(@organization)
+= tab_to "Create Announcements", management_organization_announcements_path(@organization)
+= tab_to "Invite Subscribers", management_organization_outreaches_path(@organization)
+= tab_to "Settings", edit_management_organization_path(@organization)
+
 
