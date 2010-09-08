@@ -22,11 +22,16 @@
     #wrap
       = render 'shared/header'
       %nav.management        
-        - form_tag '#manage', :method => "get" do
-          = select_tag "manage", management_options_for(current_user)
-          = submit_tag "Manage"
+        %div.nav_group
+          = tab_to 'Account', [:management], :class => "account"
+        - current_user.managable_organizations.each do |org|
+          %div.nav_group
+            = tab_to org.name, [:management,org], :class => "organization"
+            - org.events.each do |event|
+              = tab_to event.name, [:management,event], :class => "event"
+        %div.second_tier
+          = yield :navigation
 
-        = yield :navigation
       
       #main
         = yield

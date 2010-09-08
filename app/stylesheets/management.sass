@@ -7,38 +7,88 @@
 
 #main
   padding-top: 30px
-  padding-left: 10px
-  padding-right: 10px
-  
+  margin: 0px 10px
+  border: 1px solid #ddd
+    top: 0px
   form
     width: 48%
     +inline-block
 
-
 nav.management
-  background-color: $mediumGray
-  +linear-gradient(color-stops($mediumGray, $mediumGray - #222))
-  padding: 10px
-  +border-top-radius(7px)
+  +border-top-radius($defaultRadius)
+  padding:
+    top: 15px
+    left: 10px
+    right: 10px
 
-  form
+  a.account
+    background-color: #414141
+    color: white
+      
+  a.event
+    background-color: #3d5f84
+      
+  a.organization
+    background-color: #b94545
+
+  a.selected_nav
+    background-color: white
+    color: black
+    border: 1px solid #ddd
+      bottom: 1px solid white
+    position: relative
+    bottom: -1px
+  div.nav_group
+    +border-top-radius(5px)
     display: inline-block
-    margin: 0 15px
+    margin: 0px 10px
+    padding: 5px
+      bottom: 0px
+    a
+      color: black
+      padding: 5px
+      display: inline-block
+      
+  div.second_tier
+    padding: 5px
+    border: 1px solid #ddd
+      bottom: 0px
+
+    a 
+      color: black
+      display: inline-block
+      background-color: grey
+      padding: 5px
     
-nav.management > a
-  +inline-block
-  background-color: white
-  +linear-gradient(color-stops(white, #ccc))
-  &:hover
-    +linear-gradient(color-stops(#ccc, white))
-  +border-radius(7px)
-  border-top: 1px solid white
-  padding: 6px 9px
-  color: $orgPageRed
-  font-size: 0.8em
-  font-weight: bold
-  text-decoration: none
-  margin-right: 3px
+    
+    
+
+
+
+// nav.management
+//   background-color: $mediumGray
+//   +linear-gradient(color-stops($mediumGray, $mediumGray - #222))
+//   padding: 10px
+//   +border-top-radius(7px)
+
+//   form
+//     display: inline-block
+//     margin: 0 15px
+    
+// nav.management > a
+//   +inline-block
+//   background-color: white
+//   +linear-gradient(color-stops(white, #ccc))
+//   &:hover
+//     +linear-gradient(color-stops(#ccc, white))
+//   +border-radius(7px)
+//   border-top: 1px solid white
+//   padding: 6px 9px
+//   color: $orgPageRed
+//   font-size: 0.8em
+//   font-weight: bold
+//   text-decoration: none
+//   margin-right: 3px
 
 ul#wire
   +inline-block
