@@ -23,7 +23,7 @@ module ApplicationHelper
   
   def tab_to(name, options = {}, html_options = {})
     html_options[:class] ||= ""
-    html_options[:class] = " selected_nav" if current_page?(options)
+    html_options[:class] += " selected_nav" if current_page?(options)
     link_to(name, options, html_options)
   end
 
