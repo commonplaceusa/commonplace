@@ -1,16 +1,5 @@
 { 
   "success": true,
   "more_info": <%= html_to_json { render 'more_info' } %>,
-  "header": <%= html_to_json { render 'shared/header' } %>,
-  "map": {
-    "center": {"lat": <%= current_user.lat %>, "lng": <%= current_user.lng %> },
-    "neighborhood": {
-      "bounds": [ 
-        {"lat": <%= @neighborhood.north_bound %>, "lng": <%= @neighborhood.east_bound %> },
-        {"lat": <%= @neighborhood.south_bound %>, "lng": <%= @neighborhood.east_bound %> },
-        {"lat": <%= @neighborhood.south_bound %>, "lng": <%= @neighborhood.west_bound %> },
-        {"lat": <%= @neighborhood.north_bound %>, "lng": <%= @neighborhood.west_bound %> }
-      ]
-    }
-  }
+  "header": <%= html_to_json { render 'shared/header' } %>
 }

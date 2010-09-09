@@ -28,4 +28,10 @@
             = organization.address[/(.+?)(,)/, 1]
     
   
-  #map
+  = render_map do |map|
+    - map.center :lat => organization.lat, :lng => organization.lng
+    - map.marker :lat => current_user.lat, :lng => current_user.lng
+    - map.marker :lat => organization.lat, :lng => organization.lng
+    - map.directions do |dir|
+      - dir.origin :lat => current_user.lat, :lng => current_user.lng
+      - dir.destination :lat => organization.lat, :lng => organization.lng

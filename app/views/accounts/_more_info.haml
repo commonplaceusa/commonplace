@@ -29,4 +29,11 @@
     %h3= current_user.neighborhood.name
     %p= current_user.neighborhood.about
 
-    #map
+    = render_map do |map|
+      - map.center :lat => current_user.lat, :lng => current_user.lng
+      - map.marker :lat => current_user.lat, :lng => current_user.lng
+      - map.polygon do |poly|
+        - poly.vertex :lat => @neighborhood.north_bound, :lng => @neighborhood.east_bound
+        - poly.vertex :lat => @neighborhood.south_bound, :lng => @neighborhood.east_bound
+        - poly.vertex :lat => @neighborhood.south_bound, :lng => @neighborhood.west_bound
+        - poly.vertex :lat => @neighborhood.north_bound, :lng => @neighborhood.west_bound

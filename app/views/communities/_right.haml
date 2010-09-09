@@ -42,4 +42,6 @@
   #neighborhood_activity
     %h2.right_side= "Your Neighborhood Activity".upcase
     #map_container
-      #map
+      = render_map do |map|
+        - map.center :lat => current_user.lat, :lng => current_user.lng
+        - map.marker :lat => current_user.lat, :lng => current_user.lng

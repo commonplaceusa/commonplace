@@ -14,13 +14,11 @@ function selectTab(tab) {
 };
 
 function setInfoBox() {
-
-   $.getJSON(this.path.slice(1), function(response) {
-     $("#info").html(response.info_box);
-     setInfoBoxPosition();
-     if (response.map) {
-       renderMap(response.map);
-     }
+  
+  $.getJSON(this.path.slice(1), function(response) {
+    $("#info").html(response.info_box);
+    setInfoBoxPosition();
+    renderMaps();
   });
 } 
 
@@ -74,10 +72,9 @@ var app = $.sammy(function() {
                 function(){ 
                   $(this).replaceWith(response.more_info)
                     .show('slide', function () {
-                      renderNeighborhood(response.map);
+                      renderMaps();
                     });
                  });
-
         $('header').replaceWith(response.header);
       } else {
         $('#registration')
@@ -107,6 +104,7 @@ var app = $.sammy(function() {
   this.get("#/announcements", setList);
   this.get("#/events", setList);
   this.get("#/", setList);
+  this.get("", renderMaps);
   this.get("#/users", setList);
   this.get("#/organizations", setList);
   this.get("#/posts", setList);
@@ -115,7 +113,6 @@ var app = $.sammy(function() {
 
 $(function(){
   app.run();
-
   window.onscroll = setInfoBoxPosition;
   
   $('ul#wire').accordion({'header': 'a.item_body', 

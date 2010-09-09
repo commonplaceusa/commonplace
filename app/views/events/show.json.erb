@@ -1,16 +1,3 @@
 {
-  "info_box": <%= html_to_json {render 'info_box', :event => @event} %>,
-    "map": {
-    "directions": {
-      "from": {
-        "lat": <%= current_user.lat %>,
-        "lng": <%= current_user.lng %>
-      },
-      "to": {
-        "lat": <%= @event.lat %>,
-        "lng": <%= @event.lng %>
-      }
-    }
-  }
-
+  "info_box": <%= html_to_json {render 'info_box', :event => @event} %>
 }

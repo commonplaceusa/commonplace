@@ -32,85 +32,80 @@ $(function() {
 
 });
 
-
 function setModal() {
   $.getJSON(this.path.slice(1), function(response) {
     $(response.form).modal({
       overlayClose: true,
       onClose: function() { 
         $.modal.close(); 
-        history.back()
+        history.back();
       }
     });
   });
 }
 
-function renderNeighborhood(args) {
-  var myOptions = {
-    zoom: 13,
-    center: new google.maps.LatLng(args.center.lat,args.center.lng),
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    navigationControl: true,
-    mapTypeControl: false,
-    scaleControl: true
-  },
-  map = new google.maps.Map(document.getElementById("map"), myOptions),
-  path = $.map(args.neighborhood.bounds, function(p) {
-    return new google.maps.LatLng(p.lat,p.lng)
-  }),
+
+function renderMaps() {
+  $('div[data-map]').each(function() {
+    var args = $.parseJSON($(this).attr('data-map')),
+        defaultOptions = {
+          zoom: 15,
+          center: jsonToLatLng(args.center),
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          navigationControl: true,
+          mapTypeControl: false,
+          scaleControl: true
+        },
+        map = new google.maps.Map(this, defaultOptions);
+    
+    $.each(args.markers, function() {renderMarker(this,map)});
+    $.each(args.polygons, function() {renderPolygon(this,map)});
+    $.each(args.directions, function() {renderDirections(this,map)});
+  });
+}
+
+function renderMarker(args,map) {
+  new google.maps.Marker({
+    position: jsonToLatLng(args.position),
+    map: map
+  });
+}
+
+function jsonToLatLng(args) {
+  return new google.maps.LatLng(args.lat,args.lng);
+}
+
+function renderPolygon(args,map) {
+  var path = $.map(args.vertices, jsonToLatLng),
   neighborhood = new google.maps.Polygon({
     paths: path,
     strokeColor: "#0000FF",
     strokeOpacity: 0.8,
     strokeWeight: 2,
     fillColor: "#0000FF",
-    fillOpacity: 0.35
-  });
-  home = new google.maps.Marker({
-    position: new google.maps.LatLng(args.center.lat,args.center.lng),
-    map: map
+        fillOpacity: 0.35
   });
   neighborhood.setMap(map);
 }
-  
-function renderMap(args) {
+function renderDirections(args,map) {
   var directionsService = new google.maps.DirectionsService(),
-      directionsDisplay = new google.maps.DirectionsRenderer({ 
-        suppressMarkers: true
-      }),
-      from = new google.maps.LatLng(args.directions.from.lat, args.directions.from.lng),
-      to = new google.maps.LatLng(args.directions.to.lat, args.directions.to.lng),
-      myOptions = {
-        zoom: 15,
-        center: from,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        navigationControl: true,
-        mapTypeControl: false,
-        scaleControl: true
-      },
-      map = new google.maps.Map(document.getElementById("map"), myOptions),
-      directionsRequest = {
-        origin: from,
-        destination: to,
-        travelMode: google.maps.DirectionsTravelMode.WALKING
-      };
-
-  
-  directionsDisplay.setMap(map);    
-  var fromMarker = new google.maps.Marker({
-    position: from, 
-    map: map
-  });
-  var toMarker = new google.maps.Marker({
-    position: to,
-    map: map
-  });
-
+  directionsDisplay = new google.maps.DirectionsRenderer({ 
+    suppressMarkers: true
+  }),
+  directionsRequest = {
+    origin: jsonToLatLng(args.origin),
+    destination: jsonToLatLng(args.destination),
+    travelMode: google.maps.DirectionsTravelMode.WALKING
+  };
+  directionsDisplay.setMap(map);
   directionsService.route(directionsRequest, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(result);
     }
   });
 }
+
+
+
 
 
