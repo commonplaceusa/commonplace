@@ -1,4 +1,5 @@
 
+
 - content_for :navigation do
   = render 'management/organizations/navigation'
 
@@ -31,10 +32,9 @@
 #invite_by_email
   %h3 Invite People by Email
   
-  - form_for Invite.new do |f|
-    = f.label :email, "The person's email address:"
-    = f.text_field :email
-    = f.label :body, "The message you'd like to send:"
-    = f.text_area :body
+  - semantic_form_for Invite.new do |f|
+    - f.inputs do
+      = f.input :email, :label => "The person's email address:"
+      = f.input :body,  :label => "The message you'd like to send:", :input_html => { :rows => 5, :cols => 40 }
 
   
