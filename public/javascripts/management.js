@@ -13,5 +13,6 @@ $(function() {
   
   $('#modules').sortable();
   $('#modules').disableSelection();
-  
+
+  $(".tabs").tabs();
 });
