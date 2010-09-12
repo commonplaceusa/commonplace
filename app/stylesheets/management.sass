@@ -11,7 +11,7 @@ nav#profile_navigation
   margin-top: 37px
   width: 175px
   float: left
-  border: 1px solid #ddd
+  border: 1px solid $lightGray
     right: 0px
   padding: 10px
   
@@ -33,17 +33,28 @@ nav#profile_navigation
   width: 776px
 #main
   padding: 10px
-  border: 1px solid #ddd
+  border: 1px solid $lightGray
     top: 0px
 
 .profile
   border: none
   
 nav#profile_section_navigation
-  color: #B8413E
-  display: inline
-  font-size: 1.2em
-  padding: 5px 0
+
+  background-color: $lightGray
+  a
+    +sans
+    color: #333
+    font-weight: bold
+    font-size: 12px
+    +inline-block
+    color: white
+    padding: 7px 10px
+    color: #222
+    border-right: 1px solid white
+    &.selected_nav
+      background-color: #666
+      color: white 
 
 h2#management_section_header
   font-size: 15px
@@ -53,14 +64,6 @@ h2#management_section_header
   color: white
   +border-top-radius($defaultRadius)
   
-  // a
-  //   +inline-block
-  //   background-color: white
-  //   padding: 4px 3px
-  //   +border-radius(5px)
-  //   color: #222
-  //   margin: 0 5px
-
 #invite_on_commonplace, #invite_by_email
   margin: 10px
   width: 465px
