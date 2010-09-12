@@ -7,27 +7,13 @@
 @import info_box
 @import tabs
 
-#main
-  float: right
-  width: 972px
-  border: 1px solid #ddd
-    top: 0px
-
-#wrap
-  width: 1140px
-header
-  width: 1140px
-
-.profile
-  border: none
-
 nav#profile_navigation
-  margin-top: 50px
-  width: 155px
+  margin-top: 37px
+  width: 175px
   float: left
   border: 1px solid #ddd
     right: 0px
-  padding: 5px
+  padding: 10px
   
   li.level_1
     margin: 10px 0
@@ -41,30 +27,39 @@ nav#profile_navigation
     &:before
       display: marker
       content: "+"
+      
+#organization_main
+  float: right
+  width: 776px
+#main
+  padding: 10px
+  border: 1px solid #ddd
+    top: 0px
 
-
+.profile
+  border: none
+  
 nav#profile_section_navigation
   color: #B8413E
   display: inline
   font-size: 1.2em
   padding: 5px 0
-  width: 972px
-  float: right
 
 h2#management_section_header
-  float: right
-  width: 974px
-  height: 25px
+  font-size: 15px
+  height: 20px
+  padding: 10px 15px 8px
   background-color: $topLinkColor
-  padding: 7px 0px
+  color: white
   +border-top-radius($defaultRadius)
-  a
-    +inline-block
-    background-color: white
-    padding: 4px 3px
-    +border-radius(5px)
-    color: #222
-    margin: 0 5px
+  
+  // a
+  //   +inline-block
+  //   background-color: white
+  //   padding: 4px 3px
+  //   +border-radius(5px)
+  //   color: #222
+  //   margin: 0 5px
 
 #invite_on_commonplace, #invite_by_email
   margin: 10px
