@@ -2,109 +2,38 @@
 - content_for :navigation do
   = render 'navigation'
 
-#organization_profile.profile
+#edit_profile
+  
+  - form_for @organization, :url => management_organization_path(@organization), :html => {:multipart => true} do |f|
+    = f.file_field :avatar
+    = f.submit "upload"
 
-  - form_for @organization, :url => management_organization_path(@organization) do |f|
-    %h1
-      = f.text_field :name
-      - unless @organization.subscribers.include? current_user
-        #subscribe= button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization)
-      = f.submit
-  
-    .left_col
-      = image_tag @organization.avatar.url, :id => "profile_photo", :height => 200, :width => 200
-      = f.file_field :avatar
-    
-      %ul#contact.styled_list
-        %li Contact Information
-        %li.intense.clickable= "Send a Message".upcase
-        %li
-          %span.label Phone:
-          = f.text_field :phone, :size => 15
-        %li
-          %span.label Website:
-          = f.text_field :website, :size => 15
+  %hr
+
+  - semantic_form_for @organization, :url => management_organization_path(@organization) do |f|
+    - f.inputs do
+      = f.input :name
+      = f.input :phone
+      = f.input :website
+      = f.input :address
+      = f.input :tag_list, :as => :string
+    = f.buttons
       
-      %ul#members.styled_list
-        %li Members (#{ @organization.subscribers.length })
-        - @organization.subscribers.take(5).each do |subscriber|
-          %li.member.clickable
-            .user_image= image_tag subscriber.avatar.url, :size => "30x30"
-            .user_info
-              .user_name= subscriber.name
-              .user_role subscriber
-        - if @organization.subscribers.length > 5
-          %li.intense.clickable= "+ view all members".upcase
-  
-      - if @organization.subscribers.include? current_user
-        =button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete, :id => :unsubscribe
-  
-  
-    .middle_col
-      - if flash[:win]
-        #win= flash[:win]
-      
-      = button_to "Add Field", "#" + new_management_organization_profile_field_path(@organization), :method => :get
-  
-      %ul#modules
-        %li.profile_field
-          %h3 About us
-          %p= @organization.about
-    
-        - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
-          %li.profile_field
-            %h3= p.subject
-            %p= p.body
-      
-      %ul
-        - unless @organization.lat.blank? or @organization.lng.blank?
-          %li#map_container
-            %h3 Location
-            #map
-              :javascript
-                gMapInit(#{@organization.lat}, #{@organization.lng});
-            = f.text_field :address
-            #toggle_map= "Expand map / Get Directions".upcase
-          
-      
-        %li#events
-          %h3.underline 
-            Upcoming Events
-            = link_to 'Add an event', [:management,@organization,:events]
-          %ul#organization_events
-            - @organization.events.each do |event|
-              %li
-                .small_calendar= render("events/calendar", :event => event)
-                .body
-                  %h3
-                    = event.subject
-                    .attendance
-                      .check_box
-                        - if event.attendees.exists? current_user
-                          &#x2713;
-                      ATTEND
-  
-                  .event_start_time= full_date event.start_time
-                  %p= event.body
+        
                 
-    
-  
-    
-  
-    %ul.right_col
-      %li 
-        Announcements
-        = link_to 'Add an announcement', [:management, @organization, :announcements]
-      - @organization.announcements.all(:limit => 2).each do |a|
-        %li
-          %h3= a.subject
-          %p= a.body
 
-      %li
-        %h3 Tags
-        = f.text_field :tag_list
-    
-    = f.submit  
-    
+#edit_profile_modules
+
+  = button_to "Add Field", "#" + new_management_organization_profile_field_path(@organization), :method => :get
+
+  %ul#modules
+    %li.profile_field
+      %h3 About us
+      %p= @organization.about
   
+    - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+      %li.profile_field
+        %h3= p.subject
+        %p= p.body
+    
   
