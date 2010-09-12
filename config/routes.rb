@@ -44,7 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :account, :member => { :more_info => :get }
   map.resources :mets
-  map.management 'management', :controller => 'accounts', :action => 'edit'
+  map.resource :management, :controller => 'management'
   map.namespace :management do |man|
     man.resources :organizations do |org|
       org.resources :announcements, :controller => 'organizations/announcements'

@@ -1,0 +1,18 @@
+%nav#profile_navigation
+  %p Click on the organization, event, or personal profile you want to manage
+  %ul
+    %li.level_1
+      = image_tag current_user.avatar.url, :width => 15, :height => 15
+      = link_to 'My Profile', [:management]
+    - current_user.managable_organizations.each do |org|
+      %li.level_1
+        = image_tag org.avatar.url, :width => 15, :height => 15
+        = link_to org.name, [:management,org]
+        %ul
+          - org.events.each do |event|
+            %li.level_2
+              = link_to event.name, [:management,event]
+          %li.level_2.new
+            = link_to "Add #{org.name} event", [:management,org,:events]
+    %li.level_1.new
+      = link_to 'New Organization', [:new,:management,:organization]
