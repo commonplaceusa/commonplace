@@ -1,5 +1,5 @@
 - content_for :navigation do
-  %h2 Managing Your Personal Profile
+  %h2#management_section_header Managing Your Personal Profile
   %nav#profile_section_navigation
 
 - semantic_form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
