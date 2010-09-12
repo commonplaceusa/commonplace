@@ -2,25 +2,17 @@
 - content_for :navigation do
   = render 'navigation'
 
-- form_for @event, :url => management_event_path(@event) do |f|
-  .info_box
-    #info_box_main
-      #info_box_main_left
-        #big_calendar.graphic= render 'events/calendar', :event => @event
-      .body
-        = f.text_field :name
-        = f.text_area :description, :rows => 3, :cols => 30
-        %ol.user_info            
-          %li
-            %span.info_title= "Starts".upcase
-            = f.text_field :start_time, :size => 15
-          %li  
-            %span.info_title= "Ends".upcase
-            = f.text_field :end_time, :size => 15
+#edit_profile
+  - semantic_form_for @event, :url => management_event_path(@event) do |f|
+    - f.inputs do
+      = f.input :name
+      = f.input :description, :input_html => {:rows => 4, :cols => 40}
+      = f.input :address
+      = f.input :start_time, :as => :string
+      = f.input :end_time, :as => :string
+      = f.input :tag_list
+    = f.buttons
 
-          %li
-            %span.info_title= "Address".upcase 
-            = f.text_field :address, :size => 15
-              
-  
-    #map 
+
+#profile
+  = render 'events/info_box', :event => @event
