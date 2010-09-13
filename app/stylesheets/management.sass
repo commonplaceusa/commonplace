@@ -19,9 +19,9 @@ nav#management_navigation
     height: 20px
   a
     color: #333
-    background-color: $lightGray
+    background-color: #CFDAE3
     display: block
-    border-top: 1px solid white
+    border-bottom: 1px solid $offWhite
     padding: 8px 10px 8px 15px
     +sans
     font-size: 12px
@@ -32,13 +32,11 @@ nav#management_navigation
       margin-bottom: -3px
     &:last-child
       +border-bottom-left-radius(7px)
-    &:hover
-      background-color: #666
+      border-bottom: none
+    &:hover, &.selected_nav
+      background-color: #62839E
       text-decoration: none
-      color: white
-    &.selected_nav
-      background-color: #666
-      color: white
+      color: $offWhite
     &.level_1
     &.level_2
       padding-left: 20px
@@ -50,13 +48,15 @@ nav#management_navigation
         display: marker
         content: "+ "
       color: #888
+      &:hover, &.selected_nav
+        color: $offWhite
       
 #organization_main
   width: 786px
   float: right
   
 #main
-  border: 1px solid #888
+  border: 1px solid $lightGray
     top: 0px
   padding: 15px 15px 20px 15px
   margin-bottom: 0px
@@ -83,7 +83,6 @@ nav#profile_section_navigation
     color: white
     padding: 7px 10px
     color: #222
-    border-right: 1px solid white
     &.selected_nav
       background-color: #666
       color: white 
