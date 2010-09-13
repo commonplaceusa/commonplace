@@ -58,10 +58,9 @@ nav#management_navigation
   float: right
   
 #main
-  padding: 10px
   border: 1px solid #888
     top: 0px
-  padding-bottom: 20px
+  padding: 15px 15px 20px 15px
   margin-bottom: 0px
   +clearfix
   
@@ -69,10 +68,10 @@ nav#management_navigation
 #profile
   float: right
   .info_box
-    width: 400px
-    border-width: 1px
+    width: 395px
+    border: 1px solid $lightGray
     #info_box_main .body
-      width: 242px
+      width: 237px
   
 nav#profile_section_navigation
   background-color: $lightGray
@@ -111,7 +110,7 @@ h2#management_section_header
 
 
 #edit_profile
-  width: 350px
+  width: 345px
   margin-right: 10px
   float: left
     
@@ -119,9 +118,64 @@ h3.management_field
   font-size: 16px
   font-weight: bold
   padding-bottom: 4px
-  color: #444
+  color: #555
   border-bottom: 1px solid #888
   margin-bottom: 10px
   
 form.management_form
-  margin-bottom: 1em
+  margin-bottom: 2em
+  +clearfix
+  label
+    +sans
+    font-size: 0.8em
+    color: #555
+    text-align: right
+    width: $labelWidth
+    display: block
+    float: left
+    margin: 3px 10px 0 0
+    line-height: 13px
+  input[type=text], input[type=password], textarea
+    width: 200px
+    +border-radius(5px)
+    background-color: white
+    border: 1px solid $mediumGray
+    padding: 3px 6px
+    margin: 0
+    
+  input[type=submit]
+    font-size: 1em
+    cursor: pointer
+    +border-radius(7px)
+    +serif
+    padding: 4px 7px
+    background-color: $offWhite
+    border: 1px solid $lightGray
+    &:hover 
+      border-color: #888
+    margin-left: $labelWidth + 10px
+  ol
+    li
+      margin-bottom: 7px
+      +clearfix
+
+form#edit_avatar
+  img
+    float: left
+    margin-right: 10px
+  label
+    display: block
+    margin: 0.5em 0
+    text-align: left
+    width: 100%
+  input[type=file]
+    width: 200px
+    display: block
+    margin-bottom: 0.5em
+  input[type=submit]
+    margin: 1em 0 0 0 
+    
+    
+    
+    
+    

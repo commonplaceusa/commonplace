@@ -4,7 +4,7 @@
     = image_tag current_user.avatar.url, :width => 15, :height => 15
     = "My Profile"
   - current_user.managable_organizations.each do |org|
-    - link_to [:management,org] do 
+    - tab_to [:management,org] do 
       = image_tag org.avatar.url, :width => 15, :height => 15
       = org.name
     - org.events.each do |event|

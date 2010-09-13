@@ -5,22 +5,23 @@
 
 #edit_profile
   
-  - form_for current_user, :url => account_path, :html => {:multipart => true, :class => "management_form"} do |f|
+  - form_for current_user, :url => account_path, :html => {:multipart => true, :class => "management_form", :id => "edit_avatar"} do |f|
     %h3.management_field Edit your profile picture
     = image_tag current_user.avatar.url, :width => 120, :height => 120, :class => 'graphic'
-    = f.label :avatar, "Upload your avatar"
-    = f.file_field :avatar, :style => "width: 120px"
-    = f.submit
+    %fieldset
+      = f.label :avatar, "Upload a new profile picture:"
+      = f.file_field :avatar
+      = f.submit "Save your profile photo"
   
   - semantic_form_for current_user, :url => account_path, :html => { :class => "management_form" } do |f|
     %h3.management_field Edit your profile info
     - f.inputs do 
       = f.input :first_name
       = f.input :last_name
+      = f.input :skill_list, :label => "Shared skills"
+      = f.input :good_list, :label => "Shared goods"
       = f.input :about, :input_html => {:rows => 4, :cols => 40}
-      = f.input :interest_list
-      = f.input :skill_list
-      = f.input :good_list
+      = f.input :interest_list, :label => "Interests"
       = f.input :address
     = f.buttons
 
