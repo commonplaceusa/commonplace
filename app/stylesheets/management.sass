@@ -8,25 +8,50 @@
 @import tabs
 
 nav#management_navigation
-  margin-top: 37px
-  width: 165px
+  color: $offWhite
+  width: 186px
   float: left
-  border: 1px solid $lightGray
-    right: 0px
-  padding: 10px
-  
-  li.level_1
-    margin: 10px 0
-      
-  li.level_2
-    margin: 5px 0px 5px 10px
-    &:before
-      display: marker
-      content: "-"
-  li.new
-    &:before
-      display: marker
-      content: "+"
+  p#open_nav
+    background-color: #396081
+    font-size: 15px
+    +border-top-left-radius(7px)
+    padding: 10px 15px 8px
+    height: 20px
+    &:hover 
+      text-decoration: underline
+      cursor: pointer
+  a
+    color: #333
+    background-color: $lightGray
+    display: block
+    border-top: 1px solid white
+    padding: 8px 15px
+    +sans
+    font-size: 12px
+    font-weight: bold
+    line-height: 140%
+    img
+      margin-right: 5px
+      margin-bottom: -3px
+    &:last-child
+      +border-bottom-left-radius(7px)
+    &:hover
+      background-color: #666
+      text-decoration: none
+      color: white
+    &.selected_nav
+      background-color: #666
+      color: white
+    &.level_1
+    &.level_2
+      padding-left: 30px
+      &:before
+        display: marker
+        content: "- "
+    &.new
+      &:before
+        display: marker
+        content: "+ "
       
 #organization_main
   width: 786px
@@ -34,20 +59,24 @@ nav#management_navigation
   
 #main
   padding: 10px
-  border: 1px solid $lightGray
+  border: 1px solid #888
     top: 0px
   padding-bottom: 20px
   margin-bottom: 0px
-  
+  +clearfix
   
 
 #profile
   float: right
   .info_box
+    width: 400px
     border-width: 1px
+    #info_box_main .body
+      width: 242px
   
 nav#profile_section_navigation
   background-color: $lightGray
+  border-left: 1px solid #888
   a
     +sans
     color: #333
@@ -68,7 +97,8 @@ h2#management_section_header
   padding: 10px 15px 8px
   background-color: $topLinkColor
   color: white
-  +border-top-radius($defaultRadius)
+  +border-top-right-radius($defaultRadius)
+  border-left: 1px solid #396081
   
 #invite_on_commonplace, #invite_by_email
   margin: 10px
@@ -83,8 +113,7 @@ h3
   margin: 5px
 
 #edit_profile
-  width: 150px
+  width: 360px
   float: left
-    
   hr
     margin: 20px 10px

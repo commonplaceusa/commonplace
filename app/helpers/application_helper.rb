@@ -21,10 +21,10 @@ module ApplicationHelper
     javascript_include_tag files
   end
   
-  def tab_to(name, options = {}, html_options = {})
+  def tab_to(name, options = {}, html_options = {}, &block)
     html_options[:class] ||= ""
     html_options[:class] += " selected_nav" if current_page?(options)
-    link_to(name, options, html_options)
+    link_to(name, options, html_options, block)
   end
 
   def link_to_add(text, options, html_options = {}) 
