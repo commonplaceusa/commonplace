@@ -24,17 +24,16 @@
   @include sans
   +border-radius(5px)
 
-@mixin styledButton
-  background-color: $lightestGray
-  width: auto
-  height: 100%
-  color: black
-  padding: 3px 7px
+@mixin styled-button
+  font-size: 1em
   cursor: pointer
+  +border-radius(7px)
+  +serif
+  padding: 4px 7px
+  background-color: $offWhite
   border: 1px solid $lightGray
-  +border-radius(5px)
-  &:hover
-    border-color: $mediumGray
+  &:hover 
+    border-color: #888
 
 @mixin oldStandardBold
   font-family: 'OldStandardTTBold', Times, serif

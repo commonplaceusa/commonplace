@@ -1,5 +1,8 @@
 
-- semantic_form_for [:management, organization, profile_field] do |f|
-  = f.inputs :subject, :body
+- semantic_form_for [:management, organization, profile_field], :html => { :class => "management_form" } do |f|
+  %h3.management_field Add a section to your profile
+  - f.inputs do 
+    = f.input :subject, :label => "Title"
+    = f.input :body, :input_html => {:rows => 4, :cols => 40}, :label => "Body"
   = f.buttons
   

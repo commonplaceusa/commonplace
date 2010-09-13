@@ -154,15 +154,7 @@ form.management_form
     margin: 0
     
   input[type=submit]
-    font-size: 1em
-    cursor: pointer
-    +border-radius(7px)
-    +serif
-    padding: 4px 7px
-    background-color: $offWhite
-    border: 1px solid $lightGray
-    &:hover 
-      border-color: #888
+    +styled-button
     margin-left: $labelWidth + 10px
   ol
     li
@@ -184,19 +176,32 @@ form#edit_avatar
     margin-bottom: 0.5em
   input[type=submit]
     margin: 1em 0 0 0 
-    
+
+.styled_button
+  +styled-button
+  margin-bottom: 1em
+
 ul#modules
+  +clearfix
   li
     cursor: move
-    margin-bottom: 1em
+    margin-bottom: 0.5em
+    background: $lightestGray
+    padding: 10px
+    +border-radius(7px)
     h3
       +sans
       font-size: 0.9em
       font-weight: bold
       color: #444
-      padding-bottom: 4px
-      border-bottom: 1px solid $lightGray
-      margin-bottom: 8px
+      padding-bottom: 3px
+      border-bottom: 1px solid #ccc
+      margin-bottom: 4px
+      span.admin  
+        a
+          font-size: 0.8em
+          color: #666
+          font-weight: normal
     p
       color: #444
       line-height: 140%

@@ -23,15 +23,22 @@
     = f.buttons
           
   #edit_profile_modules
-    %h3.management_field Add sections to your profile
-    = button_to "Add Field", "#" + new_management_organization_profile_field_path(@organization), :method => :get
+    %h3.management_field Manage profile fields
+    
+    = button_to "Add a new profile field", "#" + new_management_organization_profile_field_path(@organization), :method => :get, :id => "new_profile_field", :class => "styled_button"
 
     %ul#modules
-  
       - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
         %li.profile_field
-          %h3= p.subject
+          %h3
+            = p.subject
+            %span.admin
+              = link_to 'edit'
+              &sdot;
+              = link_to 'delete'
           %p= p.body
+    = link_to 'Save', '#', :id => "save_profile_fields", :class => "styled_button"
+
     
 #profile
   = link_to "Preview #{@organization.name}'s profile &raquo;", @organization, :class => "profile_preview", :target => :blank
