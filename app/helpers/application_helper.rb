@@ -22,9 +22,15 @@ module ApplicationHelper
   end
   
   def tab_to(name, options = {}, html_options = {}, &block)
+    options, html_options = name, options if block
+
     html_options[:class] ||= ""
     html_options[:class] += " selected_nav" if current_page?(options)
-    link_to(name, options, html_options, block)
+    if block
+      link_to(options, html_options, &block)
+    else
+      link_to(name, options, html_options)
+    end
   end
 
   def link_to_add(text, options, html_options = {}) 

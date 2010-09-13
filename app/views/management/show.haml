@@ -4,15 +4,16 @@
   %nav#profile_section_navigation
 
 #edit_profile
-  - form_for current_user, :url => account_path, :html => {:multipart => true} do |f|
+  
+  - form_for current_user, :url => account_path, :html => {:multipart => true, :class => "management_form"} do |f|
+    %h3.management_field Edit your profile picture
     = image_tag current_user.avatar.url, :width => 120, :height => 120, :class => 'graphic'
     = f.label :avatar, "Upload your avatar"
     = f.file_field :avatar, :style => "width: 120px"
     = f.submit
-
-  %hr
   
-  - semantic_form_for current_user, :url => account_path do |f|
+  - semantic_form_for current_user, :url => account_path, :html => { :class => "management_form" } do |f|
+    %h3.management_field Edit your profile info
     - f.inputs do 
       = f.input :first_name
       = f.input :last_name
@@ -22,9 +23,9 @@
       = f.input :good_list
       = f.input :address
     = f.buttons
-  %hr
 
-  - semantic_form_for current_user, :url => account_path do |f|
+  - semantic_form_for current_user, :url => account_path, :html => { :class => "management_form" } do |f|
+    %h3.management_field Edit your account info
     = f.inputs :email, :password, :password_confirmation
     = f.buttons
 

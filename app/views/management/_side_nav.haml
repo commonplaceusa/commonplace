@@ -1,6 +1,6 @@
 %nav#management_navigation>
   %p#open_nav Choose an account &raquo;
-  - link_to [:management], :class => 'level_1' do 
+  - tab_to [:management], :class => 'level_1' do 
     = image_tag current_user.avatar.url, :width => 15, :height => 15
     = "My Profile"
   - current_user.managable_organizations.each do |org|
