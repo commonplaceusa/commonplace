@@ -11,7 +11,7 @@ class Management::Organizations::EventsController < ManagementController
     @event = @organization.events.build(params[:event])
 
     if @event.save
-      redirect_to management_organization_events_url(@organization)
+      redirect_to management_event_url(@event)
     else
       @events = @organizations.events
       render :index
