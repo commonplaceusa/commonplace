@@ -1,28 +1,30 @@
-
-
 - content_for :navigation do
   = render 'navigation'
 
 #edit_profile
+
+  = link_to "Preview #{@organization.name}'s profile &raquo;", @organization, :class => "profile_preview", :target => :blank
   
-  - form_for @organization, :url => management_organization_path(@organization), :html => {:multipart => true} do |f|
-    = f.file_field :avatar
-    = f.submit "upload"
+  - form_for @organization, :url => management_organization_path(@organization), :html => { :multipart => true, :class => "management_form", :id => "edit_avatar" } do |f|
+    %h3.management_field Edit #{ @organization.name }'s profile picture
+    = image_tag @organization.avatar.url, :width => 120, :height => 120, :class => 'graphic'
+    %fieldset
+      = f.label :avatar, "Upload a new profile picture:"
+      = f.file_field :avatar
+      = f.submit "Save your profile photo"
 
-  %hr
-
-  - semantic_form_for @organization, :url => management_organization_path(@organization) do |f|
+  - semantic_form_for @organization, :url => management_organization_path(@organization), :html => { :class => "management_form" } do |f|
+    %h3.management_field Edit #{ @organization.name }'s profile
     - f.inputs do
       = f.input :name
+      = f.input :about, :input_html => {:rows => 4, :cols => 40}
       = f.input :phone
       = f.input :website
       = f.input :address
-      = f.input :tag_list, :as => :string
+      = f.input :tag_list, :as => :string, :label => "Tag list"
     = f.buttons
       
-        
-                
-
+      
 #edit_profile_modules
 
   = button_to "Add Field", "#" + new_management_organization_profile_field_path(@organization), :method => :get

@@ -3,8 +3,7 @@
   = render 'management/events/navigation'
 
 #invite_on_commonplace
-  %h3 Invite People on CommonPlace to Attend
-
+  %h3.management_field Invite People on CommonPlace to Attend
   .tabs
     %ul
       %li
@@ -28,9 +27,8 @@
         %li= link_to user.name, user, 'data-remote' => true
 
 #invite_by_email
-  %h3 Invite People by Email
-  
-  - semantic_form_for Invite.new do |f|
+  %h3.management_field Invite People by Email  
+  - semantic_form_for Invite.new, :html => { :class => "management_form" } do |f|
     - f.inputs do
-      = f.input :email, :label => "The person's email address:"
-      = f.input :body,  :label => "The message you'd like to send:", :input_html => { :rows => 5, :cols => 40 }
+      = f.input :email
+      = f.input :body,  :label => "Message", :input_html => { :rows => 5, :cols => 40 }

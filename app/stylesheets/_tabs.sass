@@ -1,38 +1,36 @@
 
-
-
-
 .ui-tabs-hide
   display: none
 
 .ui-tabs-panel
-  border-top: 1px solid $mediumGray
-  li
-    border-bottom: 1px solid $mediumGray
-    padding: 5px
-
   height: 200px
-  overflow-y: auto
-
-.tabs
-  border: 1px solid $mediumGray
 
 .ui-tabs-nav
-  background-color: $mediumGray
-  margin: 5px
+  background: $lightGray
   +clearfix
   li
     float: left
-    background-color: white
-    margin: 5px
-      bottom: 0px
-    border-bottom: 1px solid $mediumGray
-    padding: 5px
-      bottom: 4px
-
-  li.ui-state-active
-    padding-bottom: 5px
-    border-bottom: 0px
-
-    
+    a
+      color: #333
+      +sans
+      font-size: 12px
+      font-weight: bold
+      line-height: inherit
+      display: block
+      padding: 8px 8px
       
+  li.ui-state-active
+    border-bottom: 0px
+    background-color: $mediumGray
+    a
+      color: $offWhite
+
+p.ui-widget-content, ul.ui-widget-content
+  padding: 10px
+  border: 1px solid $lightGray
+  line-height: 140%
+  color: #333    
+
+.tabs
+  border: none
+  padding: 0

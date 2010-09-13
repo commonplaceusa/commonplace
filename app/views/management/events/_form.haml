@@ -1,3 +1,4 @@
-- semantic_form_for @event, :url => management_events_url do |f|
-  = f.inputs :name, :description, :start_time, :end_time, :address
+- semantic_form_for [:management, @event] do |f|
+  %h3.management_field Edit your event
+  = f.inputs :name, :description, :address, :start_time, :end_time, :tag_list
   = f.buttons

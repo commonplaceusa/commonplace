@@ -4,7 +4,7 @@
   = render 'management/organizations/navigation'
 
 #invite_on_commonplace
-  %h3 Invite People on CommonPlace to Join
+  %h3.management_field Invite People on CommonPlace to Join
   .tabs
     %ul
       %li
@@ -15,12 +15,11 @@
           All People
     - if @possible_subscribers.size > 0
       %ul#suggested-people
-
         - @possible_subscribers.each do |user|
           %li= link_to user.name, user, 'data-remote' => true
     - else
       %p#suggested-people
-        We weren't able to find any users with interestes similar
+        We weren't able to find any users with interests similar
         to your organization. If you haven't already, try adding tags
         to your organization.
       
@@ -30,11 +29,11 @@
         %li= link_to user.name, user, 'data-remote' => true
 
 #invite_by_email
-  %h3 Invite People by Email
+  %h3.management_field Invite People by Email
   
-  - semantic_form_for Invite.new do |f|
+  - semantic_form_for Invite.new, :html => { :class => "management_form" } do |f|
     - f.inputs do
-      = f.input :email, :label => "The person's email address:"
-      = f.input :body,  :label => "The message you'd like to send:", :input_html => { :rows => 5, :cols => 40 }
+      = f.input :email
+      = f.input :body,  :label => "Message", :input_html => { :rows => 5, :cols => 40 }
 
   

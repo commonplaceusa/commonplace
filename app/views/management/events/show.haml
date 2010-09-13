@@ -3,7 +3,8 @@
   = render 'navigation'
 
 #edit_profile
-  - semantic_form_for @event, :url => management_event_path(@event) do |f|
+  - semantic_form_for @event, :url => management_event_path(@event), :html => { :class => "management_form" } do |f|
+    %h3.management_field Edit your Event
     - f.inputs do
       = f.input :name
       = f.input :description, :input_html => {:rows => 4, :cols => 40}
