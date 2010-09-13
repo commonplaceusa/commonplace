@@ -2,8 +2,6 @@
   = render 'navigation'
 
 #edit_profile
-
-  = link_to "Preview #{@organization.name}'s profile &raquo;", @organization, :class => "profile_preview", :target => :blank
   
   - form_for @organization, :url => management_organization_path(@organization), :html => { :multipart => true, :class => "management_form", :id => "edit_avatar" } do |f|
     %h3.management_field Edit #{ @organization.name }'s profile picture
@@ -23,20 +21,18 @@
       = f.input :address
       = f.input :tag_list, :as => :string, :label => "Tag list"
     = f.buttons
-      
-      
-#edit_profile_modules
+          
+  #edit_profile_modules
+    %h3.management_field Add sections to your profile
+    = button_to "Add Field", "#" + new_management_organization_profile_field_path(@organization), :method => :get
 
-  = button_to "Add Field", "#" + new_management_organization_profile_field_path(@organization), :method => :get
-
-  %ul#modules
-    %li.profile_field
-      %h3 About us
-      %p= @organization.about
+    %ul#modules
   
-    - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
-      %li.profile_field
-        %h3= p.subject
-        %p= p.body
+      - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+        %li.profile_field
+          %h3= p.subject
+          %p= p.body
     
-  
+#profile
+  = link_to "Preview #{@organization.name}'s profile &raquo;", @organization, :class => "profile_preview", :target => :blank
+  = render 'organizations/info_box', :organization => @organization

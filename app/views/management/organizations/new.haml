@@ -3,7 +3,8 @@
   %h2#management_section_header New Organization
   %nav#profile_section_navigation
 
-- semantic_form_for [:management, @organization] do |f|
+- semantic_form_for [:management, @organization], :html => { :class => "management_form" } do |f|
+  %h3.management_field Create a new organization
   - f.inputs do 
     = f.input :name
     = f.input :address

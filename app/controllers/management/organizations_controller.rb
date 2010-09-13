@@ -26,7 +26,7 @@ class Management::OrganizationsController < ManagementController
   def update
     @organization = Organization.find(params[:id])
     if @organization.update_attributes(params[:organization])
-      redirect_to edit_management_organization_url(@organization)
+      redirect_to management_organization_url(@organization)
     else
       render :edit
     end
