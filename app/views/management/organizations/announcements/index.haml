@@ -2,11 +2,14 @@
   = render 'management/organizations/navigation'
 
 
-- semantic_form_for [:management, @organization, @announcement], :html => { :class => "management_form" } do |f|
-  %h3.management_field Create an Announcement
-  = f.inputs :subject, :body
-  = f.buttons
+#edit_profile
+  - semantic_form_for [:management, @organization, @announcement], :html => { :class => "management_form" } do |f|
+    %h3.management_field Create an Announcement
+    - f.inputs do
+      = f.input :subject
+      = f.input :body, :input_html => {:rows => 4, :cols => 40}
+    = f.buttons
 
-%ul#wire
+%ul#wire.management_wire
   - @announcements.each do |announcement|
     = render 'announcements/announcement', :announcement => announcement
