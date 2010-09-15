@@ -1,6 +1,7 @@
 
 %h2#management_section_header Managing Event: #{@event.name}
 %nav#profile_section_navigation<
-  = tab_to 'Edit Profile', management_event_path(@event)
-  = tab_to 'Invite Attendees', management_event_outreaches_path(@event)
-  = tab_to 'Settings', edit_management_event_path(@event)
+  = tab_to 'Edit Event Profile', management_event_path(@event)
+  = tab_to 'Invite People to Your Event', management_event_outreaches_path(@event)
+  = tab_to 'Send a Message to Attendees', ""
+  = tab_to 'Settings', edit_management_event_path(@event), :class => 'settings'

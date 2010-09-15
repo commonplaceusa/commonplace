@@ -92,6 +92,9 @@ nav#profile_section_navigation
       background-color: #666
       color: white 
 
+  a.settings
+    float: right
+
 h2#management_section_header
   font-size: 15px
   height: 20px
@@ -100,7 +103,10 @@ h2#management_section_header
   color: white
   +border-top-right-radius($defaultRadius)
   border-left: 1px solid #396081
-  
+    
+  img
+    vertical-align: text-top
+
 #invite_on_commonplace, #invite_by_email
   width: 365px
   
@@ -160,10 +166,24 @@ form.management_form
   input[type=submit]
     +styled-button
     margin-left: $labelWidth + 10px
+
+  p.form-hint
+    text-align: left
+    font-size: 11px
+    color: $mediumGray
+    margin: 15px 20px
+    line-height: 1.2
+
   ol
     li
       margin-bottom: 7px
       +clearfix
+      p.inline-hints
+        text-align: right
+        padding: 3px
+        margin-right: 45px
+        font-size: 10px
+        color: $mediumGray
 
 form#edit_avatar
   img

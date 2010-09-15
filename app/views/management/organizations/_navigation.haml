@@ -1,10 +1,13 @@
 
-%h2#management_section_header Managing Organization: #{@organization.name}
+
+%h2#management_section_header 
+  = image_tag @organization.avatar.url, :width => 20, :height => 20
+  Managing Organization: #{@organization.name}
 %nav#profile_section_navigation<
   = tab_to "Edit Profile", management_organization_path(@organization)
-  = tab_to "Create an Event", management_organization_events_path(@organization)
-  = tab_to "Create Announcements", management_organization_announcements_path(@organization)
-  = tab_to "Invite Subscribers", management_organization_outreaches_path(@organization)
-
+  = tab_to "Post a New Event", management_organization_events_path(@organization)
+  = tab_to "Post a New Announcement", management_organization_announcements_path(@organization)
+  = tab_to "Invite New Subscribers", management_organization_outreaches_path(@organization)
+  = tab_to "Settings", "", :class => "settings"
 
 

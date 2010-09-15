@@ -1,8 +1,14 @@
-#both_columns
-  #left_col
-    %h3 Edit your organization's info
-    = render 'form'
-  
-  #right_col
-    %h3 Your info box preview
-    = render 'organizations/info_box', :organization => @organization
+- content_for :navigation do
+  = render 'user_navigation'
+
+#edit_profile
+
+
+  - semantic_form_for current_user, :url => account_path, :html => { :class => "management_form" } do |f|
+    %h3.management_field Edit your account info
+    - f.inputs do
+      = f.input :email
+      = f.input :password, :input_html => {:autocomplete => "off"}
+      = f.input :password_confirmation, :input_html => {:autocomplete => "off"}
+    - f.buttons do
+      = f.submit "Update Account"

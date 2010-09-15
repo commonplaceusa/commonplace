@@ -6,6 +6,10 @@ var app = $.sammy(function() {
     this.redirect(this.params["manage"]);
   });
   
+  this.get("", function () {
+    renderMaps();
+  });
+  
 });
 
 $(function() {

@@ -5,6 +5,7 @@
 #edit_profile
   - semantic_form_for [:management, @organization, @announcement], :html => { :class => "management_form" } do |f|
     %h3.management_field Create an Announcement
+    %p.form-hint When you create an announcement, people who have subscribe to your organization will be notified. In addition, your announcement will be seen in the Announcement section on the main page.
     - f.inputs do
       = f.input :subject
       = f.input :body, :input_html => {:rows => 4, :cols => 40}

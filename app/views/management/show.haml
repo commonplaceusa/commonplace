@@ -1,6 +1,4 @@
 
-- content_for :navigation do
-  = render 'user_navigation'
 
 #edit_profile
   
@@ -17,18 +15,12 @@
     - f.inputs do 
       = f.input :first_name
       = f.input :last_name
-      = f.input :skill_list, :label => "Shared skills"
-      = f.input :good_list, :label => "Shared goods"
-      = f.input :about, :input_html => {:rows => 4, :cols => 40}
-      = f.input :interest_list, :label => "Interests"
+      = f.input :about, :label => "About me"
+      = f.input :skill_list, :label => "Shared skills", :hint => "For example: lawnmowing, baking, ..."
+      = f.input :good_list, :label => "Shared goods", :hint => "For example: lawnmower, cookware, ..."
+      = f.input :interest_list, :label => "Interests", :hint => "For example: skiing, politics, ..."
       = f.input :address
     = f.buttons
-
-  - semantic_form_for current_user, :url => account_path, :html => { :class => "management_form" } do |f|
-    %h3.management_field Edit your account info
-    = f.inputs :email, :password, :password_confirmation
-    = f.buttons
-
 
 #profile
   = render 'users/info_box', :user => current_user
