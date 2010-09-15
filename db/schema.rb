@@ -9,12 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100912150501) do
+ActiveRecord::Schema.define(:version => 20100916152713) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "name"
+    t.string   "primary"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "announcements", :force => true do |t|
-    t.string   "subject",                        :null => false
-    t.text     "body",            :limit => 255, :null => false
-    t.integer  "organization_id",                :null => false
+    t.string   "subject",         :null => false
+    t.text     "body",            :null => false
+    t.integer  "organization_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -145,10 +154,10 @@ ActiveRecord::Schema.define(:version => 20100912150501) do
   end
 
   create_table "profile_fields", :force => true do |t|
-    t.string   "subject",                        :null => false
-    t.text     "body",            :limit => 255, :null => false
-    t.integer  "organization_id",                :null => false
-    t.integer  "position",                       :null => false
+    t.string   "subject",         :null => false
+    t.text     "body",            :null => false
+    t.integer  "organization_id", :null => false
+    t.integer  "position",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -57,7 +57,7 @@ function renderMaps() {
           scaleControl: true
         },
         map = new google.maps.Map(this, defaultOptions);
-    
+    $(this).data('map', map);
     $.each(args.markers, function() {renderMarker(this,map)});
     $.each(args.polygons, function() {renderPolygon(this,map)});
     $.each(args.directions, function() {renderDirections(this,map)});
@@ -104,8 +104,3 @@ function renderDirections(args,map) {
     }
   });
 }
-
-
-
-
-

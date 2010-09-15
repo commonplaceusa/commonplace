@@ -1,4 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.with_options :conditions => { :subdomain => "admin" } do |admin|
+    admin.root :controller => "administration", :action => "show"
+    admin.resources :addresses, :controller => "administration/addresses"
+  end
   
   map.with_options :conditions => { :subdomain => /[A-Za-z]+/ }, :shallow => true do |community|
 
