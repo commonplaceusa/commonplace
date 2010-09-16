@@ -11,7 +11,6 @@
 
 
 ActiveRecord::Schema.define(:version => 20100920182901) do
-
   create_table "addresses", :force => true do |t|
     t.string   "name"
     t.string   "primary"
