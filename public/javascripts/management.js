@@ -15,6 +15,8 @@ var app = $.sammy(function() {
 $(function() {
   app.run();
   
+  $('input.date').datepicker();
+  
   $('#modules').sortable();
   $('#modules').disableSelection();
 
