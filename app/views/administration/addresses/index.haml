@@ -6,6 +6,6 @@
 
 
 = render_map do |map|
+  - map.center :lat => 42.283285, :lng => -71.157144
   - @addresses.each do |address|
-    - map.center :lat => 42.283285, :lng => -71.157144
     - map.marker :lat => address.lat, :lng => address.lng
