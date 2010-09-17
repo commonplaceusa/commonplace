@@ -1,5 +1,7 @@
 class Users::MessagesController < ApplicationController
 
+  before_filter :load_message
+  
   def new
     @user = User.find(params[:user_id])
     @message = Message.new
@@ -29,5 +31,17 @@ class Users::MessagesController < ApplicationController
     end
   end
   
+  def show
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+  
+  protected
+  
+  def load_message
+    @message = Message.find(params[:id])
+  end
 
 end
