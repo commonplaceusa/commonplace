@@ -18,6 +18,8 @@ class Organization < ActiveRecord::Base
   has_many :roles
   has_many :admins, :through => :roles, :source => :user
 
+  has_many :invites, :as => :inviter
+
   has_attached_file(:avatar, :styles => { :thumb => "100x100" })
 
   before_save :update_lat_and_lng, :if => "address_changed?"

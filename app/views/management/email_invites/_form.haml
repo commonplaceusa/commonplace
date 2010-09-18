@@ -1,0 +1,13 @@
+
+- semantic_form_for invite, :url => management_email_invites_path, :html => { :class => "management_form", :id => "new_email_invite" } do |f|
+  = hidden_field_tag "invite[inviter_id]", inviter.id
+  = hidden_field_tag "invite[inviter_type]", inviter.class.human_name
+  - f.inputs do
+    = f.input :email
+    = f.input :body,  :label => "Message", :input_html => { :rows => 5, :cols => 40 }
+
+  - f.buttons do
+    = f.commit_button "Invite"
+
+
+  

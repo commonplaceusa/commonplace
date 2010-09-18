@@ -60,6 +60,8 @@ ActionController::Routing::Routes.draw do |map|
     man.resources :events do |event|
       event.resources :outreaches, :controller => 'events/outreaches'
     end
+    man.resources :invites
+    man.resources :email_invites
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

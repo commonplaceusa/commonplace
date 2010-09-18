@@ -13,6 +13,8 @@ class Event < ActiveRecord::Base
   has_many :attendees, :through => :attendances, :source => :user
   belongs_to :organization
 
+  has_many :invites, :as => :inviter
+
   before_save :update_lat_and_lng, :if => "address_changed?"
 
   named_scope :upcoming, :conditions => ["? < start_time", Time.now]

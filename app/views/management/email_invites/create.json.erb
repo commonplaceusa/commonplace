@@ -1,0 +1,4 @@
+{
+  "success": true,
+  "form": <%= html_to_json { render 'form', :invite => Invite.new, :inviter => @invite.inviter }  %>
+}

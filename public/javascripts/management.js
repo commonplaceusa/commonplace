@@ -9,7 +9,31 @@ var app = $.sammy(function() {
   this.get("", function () {
     renderMaps();
   });
-  
+
+  this.get("#/management/invites/new", setModal);
+
+
+  this.post("/management/invites", function() {
+    $.post(this.path, this.params, function(response) {
+      if (response.success) {
+        $.modal.close();
+        alert("Invitation sent");
+      } else {
+        $("#new_invite").replaceWith(response.form);
+      }
+    }, "json");
+  });
+
+  this.post("/management/email_invites", function() {
+    $.post(this.path, this.params, function(response) {
+      if (response.success) {
+        alert("Invitation sent");
+        $("#new_email_invite").replaceWith(response.form);
+      } else {
+        $("#new_email_invite").replaceWith(response.form);
+      }
+    }, "json");
+  });
 });
 
 $(function() {
