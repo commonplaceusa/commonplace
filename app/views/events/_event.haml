@@ -5,6 +5,8 @@
       = event.owner.name
     %h3
       = event.subject
+      - if event.attendees.exists? current_user
+        %span.member Attending
     %time
       = event.time
 

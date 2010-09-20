@@ -7,10 +7,13 @@
   border-top: 1px solid $lightestGray
 
 h2
-  background-color: $mediumGray
+  padding: 10px 15px 8px
   height: 20px
-  padding: 10px
-  +border-top-radius($defaultRadius)
+  background-color: #4a7eb0
+  color: $offWhite
+  font-size: 15px
+  +linear-gradient(color-stops(#4a7eb0, #46759f))
+  +border-top-radius(7px)
 
 #list
   width: 470px
@@ -24,10 +27,8 @@ h2
 
 #list ul li
   padding: 5px
-  +styledBox
 
 #info
   form
     padding: 5px
     display: block
-    +styledBox
