@@ -44,6 +44,16 @@ var app = $.sammy(function() {
       }
     }, "json");
   });
+
+  this.post("/management/organizations/:organization_id/profile_fields/order", function () {
+    $.post(this.path, $.extend(this.params, 
+                               {
+                                 fields: $.map($("#modules").sortable("toArray"),
+                                               function(m) { return m.replace("field_", ""); })
+                               }), 
+           function () { }, "json");
+  });
+ 
 });
 
 $(function() {

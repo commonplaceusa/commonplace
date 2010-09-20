@@ -31,4 +31,5 @@ class Management::OrganizationsController < ManagementController
       render :edit
     end
   end  
+
 end
