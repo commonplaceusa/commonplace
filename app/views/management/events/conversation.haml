@@ -8,7 +8,7 @@
       = render 'replies/reply', :reply => reply
     
   %h3.management_field Add an official reply
-  - semantic_form_for Reply.new, :url => replies_management_event_path1(@event) do |f|
+  - semantic_form_for Reply.new, :url => replies_management_event_path(@event) do |f|
     - f.inputs do 
       = f.input :body, :input_html => { :rows => 3, :cols => 35 }
     
