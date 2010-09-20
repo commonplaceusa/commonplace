@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
       org.resources :profile_fields, :controller => 'organizations/profile_fields'
       org.resources :outreaches, :controller => 'organizations/outreaches'
     end
-    man.resources :events do |event|
+    man.resources :events, :member => [:conversation, :replies] do |event|
       event.resources :outreaches, :controller => 'events/outreaches'
     end
     man.resources :invites

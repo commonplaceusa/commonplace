@@ -17,5 +17,22 @@ class Management::EventsController < ManagementController
     end
   end
 
+  def conversation
+    @event = Event.find(params[:id])
+  end
 
+  def replies
+    @event = Event.find(params[:id])
+    @reply = @event.replies.new(params[:reply].merge(:user => current_user))
+    @reply.official = true
+
+    respond_to do |format|
+      if @reply.save
+        format.json {render :json => {:success => true}}
+      else
+        format.json
+      end
+    end
+  end
+  
 end

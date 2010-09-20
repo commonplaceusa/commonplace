@@ -1,0 +1,25 @@
+- content_for :navigation do
+  = render 'navigation'
+
+#edit_profile
+  %h3.management_field #{@event.name}'s reply thread
+  %ol.reply_thread
+    - @event.replies.each do |reply|
+      = render 'replies/reply', :reply => reply
+    
+  %h3.management_field Add an official reply
+  - semantic_form_for Reply.new, :url => replies_management_event_path1(@event) do |f|
+    - f.inputs do 
+      = f.input :body, :input_html => { :rows => 3, :cols => 35 }
+    
+    = f.buttons
+
+#edit_profile
+  %h3.management_field Send a message to all attendees
+  
+
+  
+      
+
+
+  
