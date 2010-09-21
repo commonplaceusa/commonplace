@@ -1,7 +1,5 @@
 class PostsController < CommunitiesController
-  before_filter :load_post
-
-  filter_access_to :all
+  load_and_authorize_resource
 
   caches_action :show
   def index
@@ -43,18 +41,6 @@ class PostsController < CommunitiesController
       flash[:fail] = "There was an error deleting your post--please try again."
     end
     redirect_to root_url
-  end
-
-  protected 
-  
-  def load_post
-    @post = if params[:id]
-              Post.find(params[:id])
-            elsif params[:post]
-              Post.new(params[:post].merge(:user => current_user))
-            else 
-              Post.new(:user => current_user)
-            end
   end
     
 end

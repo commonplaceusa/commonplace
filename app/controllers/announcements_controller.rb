@@ -1,4 +1,5 @@
 class AnnouncementsController < CommunitiesController
+  load_and_authorize_resource
   def index
     @announcements = current_community.announcements
     respond_to do |format|
@@ -8,14 +9,12 @@ class AnnouncementsController < CommunitiesController
   end
   
   def show
-    @announcement = Announcement.find(params[:id])
     respond_to do |format|
       format.json
     end
   end
 
   def new
-    @announcement = Announcement.new
     respond_to do |format|
       format.json
     end

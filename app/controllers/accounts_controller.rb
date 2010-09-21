@@ -1,12 +1,11 @@
 class AccountsController < ApplicationController
-
-  filter_access_to :all
-
+  
   def new
-    
+    authorize! :new, User
   end
   
   def create
+    authorize! :create, User
     @neighborhood = Neighborhood.find_for(params[:user][:address])
     @user = @neighborhood.users.build(params[:user])
     respond_to do |format|
@@ -22,11 +21,13 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    authorize! :edit, User
     @user = current_user
     render :layout => 'management'
   end
 
   def update
+    authorize! :update, User
     if current_user.update_attributes(params[:user])
       redirect_to management_url
     else
@@ -34,8 +35,4 @@ class AccountsController < ApplicationController
     end
   end
 
-  def show
-    @user = current_user
-  end
-  
 end

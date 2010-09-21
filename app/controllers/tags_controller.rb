@@ -1,5 +1,5 @@
 class TagsController < CommunitiesController
-  
+
   def index
     @goods = ActsAsTaggableOn::Tagging.all(:conditions => {:context => "goods"}).map(&:tag).map(&:canonical_tag).uniq
     @skills = ActsAsTaggableOn::Tagging.all(:conditions => {:context => "skills"}).map(&:tag).map(&:canonical_tag).uniq

@@ -1,10 +1,11 @@
 class UserSessionsController < ApplicationController
-  filter_access_to :new, :create, :destroy
-
+  
   def new
+    authorize! :new, UserSession
   end
 
   def create
+    authorize! :create, UserSession
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       reload_current_user!
@@ -15,6 +16,7 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, UserSession
     current_user_session.destroy
     redirect_to root_url
   end

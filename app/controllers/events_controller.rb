@@ -1,5 +1,5 @@
 class EventsController < CommunitiesController
-   
+  load_and_authorize_resource
   def index
     respond_to do |format|
       if params[:q]
@@ -15,15 +15,12 @@ class EventsController < CommunitiesController
   end
   
   def new
-    @event = Event.new
     respond_to do |format|
       format.json
     end
   end
 
   def create
-    @event = Event.new(params[:event])
-    
     respond_to do |format|
       if @event.save
         format.json         
@@ -37,7 +34,6 @@ class EventsController < CommunitiesController
   end
 
   def show
-    @event = Event.find(params[:id])
     respond_to do |format|
       format.json
     end

@@ -1,15 +1,13 @@
 class Management::EventsController < ManagementController
+  load_and_authorize_resource :event
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
   
   def update
-    @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
       redirect_to management_event_url(@event)
     else
@@ -18,11 +16,9 @@ class Management::EventsController < ManagementController
   end
 
   def conversation
-    @event = Event.find(params[:id])
   end
 
   def replies
-    @event = Event.find(params[:id])
     @reply = @event.replies.new(params[:reply].merge(:user => current_user))
     @reply.official = true
 
@@ -33,6 +29,11 @@ class Management::EventsController < ManagementController
         format.json
       end
     end
+  end
+
+  def outreach
+    @event = Event.find(params[:id])
+    @possible_attendees = User.tagged_with_aliases(@event.tags.map(&:name), :any => true)
   end
   
 end

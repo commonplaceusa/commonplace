@@ -1,4 +1,5 @@
 class OrganizationsController < CommunitiesController
+  load_and_authorize_resource
   
   def index
     respond_to do |format|
@@ -15,7 +16,6 @@ class OrganizationsController < CommunitiesController
   end
 
   def show
-    @organization = Organization.find params[:id]
     respond_to do |format|
       format.json 
       format.html { render :layout => 'application' }
@@ -23,7 +23,6 @@ class OrganizationsController < CommunitiesController
   end
 
   def new
-    @organization = Organization.new
     respond_to do |format|
       format.json 
     end

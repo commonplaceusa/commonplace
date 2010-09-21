@@ -51,15 +51,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :mets
   map.resource :management, :controller => 'management'
   map.namespace :management do |man|
-    man.resources :organizations do |org|
+    man.resources :organizations, :member => [:outreach]do |org|
       org.resources :announcements, :controller => 'organizations/announcements'
       org.resources :events, :controller => 'organizations/events'
       org.resources :profile_fields, :controller => 'organizations/profile_fields', :collection => {:order => :post}
-      org.resources :outreaches, :controller => 'organizations/outreaches'
     end
-    man.resources :events, :member => [:conversation, :replies] do |event|
-      event.resources :outreaches, :controller => 'events/outreaches'
-    end
+    man.resources :events, :member => [:conversation, :replies, :outreach]
     man.resources :invites
     man.resources :email_invites
   end

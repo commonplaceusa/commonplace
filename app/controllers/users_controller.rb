@@ -1,5 +1,5 @@
 class UsersController < CommunitiesController
-
+  load_and_authorize_resource
   def index
     respond_to do |format|
       if params[:q]
@@ -15,7 +15,6 @@ class UsersController < CommunitiesController
   end
 
   def show
-    @user = User.find(params[:id])
     respond_to do |format|
       format.json
     end

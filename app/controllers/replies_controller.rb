@@ -1,6 +1,7 @@
 class RepliesController < ApplicationController
   
   def create
+    authorize! :create, Reply
     @reply = current_user.replies.build(params[:reply])
     respond_to do |format|
       if @reply.save
