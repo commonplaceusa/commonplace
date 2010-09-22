@@ -1,5 +1,5 @@
 worker_processes 2
-working_directory "/home/deploy/commonplace"
+working_directory "/home/deploy/commonplace/current"
 
 # This loads the application in the master process before forking
 # worker processes
@@ -11,13 +11,13 @@ timeout 30
 
 # This is where we specify the socket.
 # We will point the upstream Nginx module to this socket later on
-listen "/home/deploy/commonplace/tmp/sockets/unicorn.sock", :backlog => 64
+listen "/home/deploy/commonplace/current/tmp/sockets/unicorn.sock", :backlog => 64
 
-pid "/home/deploy/commonplace/tmp/pids/unicorn.pid"
+pid "/home/deploy/commonplace/current/tmp/pids/unicorn.pid"
 
 # Set the path of the log files inside the log folder of the testapp
-stderr_path "/home/deploy/commonplace/log/unicorn.stderr.log"
-stdout_path "/home/deploy/commonplace/log/unicorn.stdout.log"
+stderr_path "/home/deploy/commonplace/current/log/unicorn.stderr.log"
+stdout_path "/home/deploy/commonplace/current/log/unicorn.stdout.log"
 
 before_fork do |server, worker|
 # This option works in together with preload_app true setting
