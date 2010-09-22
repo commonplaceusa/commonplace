@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
     
     community.resources :invites
     
-    community.resources :organizations do |org|
+    community.resources :organizations, :member => [:claim] do |org|
       org.resource :subscription, :only => [:index, :show, :create, :destroy]
     end
   end

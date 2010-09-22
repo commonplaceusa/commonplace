@@ -2,5 +2,17 @@
 %h2 New Organization
 
 - semantic_form_for @organization do |f|
-  = f.inputs :community, :name, :avatar, :address, :about, :phone, :website, :category, :tag_list
+  - f.inputs do
+    = f.input :community
+    = f.input :name
+    = f.input :avatar
+    = f.input :address
+    = f.input :about
+    = f.input :phone
+    = f.input :website
+    = f.input :category
+    = f.input :tag_list
+    = f.input :claimed, :value => false
+    = f.input :code
+  
   = f.buttons

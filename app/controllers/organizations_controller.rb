@@ -28,4 +28,22 @@ class OrganizationsController < CommunitiesController
     end
   end
   
+  def claim
+    case request.request_method
+    when :get
+      respond_to do |format|
+        format.json 
+      end
+    when :post
+      if params[:code] == @organization.code
+        @organization.admins << current_user
+        @organization.claimed = true
+        @organization.save
+        redirect_to management_organization_url(@organization)
+      else
+        render :claim
+      end
+    end
+  end
+
 end

@@ -86,7 +86,8 @@ var app = $.sammy(function() {
       }
     }, "json");
   });
-    
+  
+  this.get("#/organizations/:id/claim", setModal);
   this.get("#/posts/new", setModal);
   this.get("#/announcements/new", setModal);
   this.get("#/events/new", setModal);

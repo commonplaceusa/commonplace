@@ -90,6 +90,14 @@
       %li
         %h3= a.subject
         %p= a.body
+    - unless @organization.claimed?
+      %li
+        %p 
+          This profile has not been claimed. If you are affiliated with 
+          this organization, and would like to manage this profile, #{link_to "click here", claim_organization_path, 'data-remote' => true}.
+          
+        
+      
   
   
   

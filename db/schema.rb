@@ -9,8 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20100920182901) do
+ActiveRecord::Schema.define(:version => 20100922175917) do
   create_table "addresses", :force => true do |t|
     t.string   "name"
     t.string   "primary"
@@ -127,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20100920182901) do
   end
 
   create_table "organizations", :force => true do |t|
-    t.string   "name",                :null => false
+    t.string   "name",                                  :null => false
     t.string   "address"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -141,6 +140,8 @@ ActiveRecord::Schema.define(:version => 20100920182901) do
     t.integer  "community_id"
     t.string   "category"
     t.string   "cached_tag_list"
+    t.string   "code"
+    t.boolean  "claimed",             :default => true
   end
 
   create_table "platform_updates", :force => true do |t|

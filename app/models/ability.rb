@@ -16,7 +16,7 @@ class Ability
     can :read, User
     can :read, Announcement
     can :read, Event
-    can :read, Organization
+    can :manage, Organization
     can :read, ActsAsTaggableOn::Tag
   end
 
