@@ -24,7 +24,7 @@ namespace :deploy do
         end
         nginx_config_file = <<-EOF
             upstream #{application}_server {
-              server unix:/tmp/#{application}.sock fail_timeout=0;
+              server unix:#{deploy_to}/tmp/sockets/unicorn.sock fail_timeout=0;
             }
             server {
               listen #{web_port};
