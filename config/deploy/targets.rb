@@ -4,7 +4,7 @@ task :production do
   role :db,  "69.164.212.22", :primary => true
   set :web_server, :nginx
   set :nginx_conf_dir, '/etc/nginx/conf'
-  set :domain, "westroxbury.commonplace.co"
+  set :domain, "westroxbury.commonplaceusa.com"
   set :web_port, "80"
 end
 
