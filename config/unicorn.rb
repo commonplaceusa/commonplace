@@ -13,7 +13,7 @@ timeout 30
 # We will point the upstream Nginx module to this socket later on
 listen "/home/deploy/commonplace/current/tmp/sockets/unicorn.sock", :backlog => 64
 
-pid "/home/deploy/commonplace/current/tmp/pids/unicorn.pid"
+pid "/home/deploy/commonplace/shared/pids/unicorn.pid"
 
 # Set the path of the log files inside the log folder of the testapp
 stderr_path "/home/deploy/commonplace/current/log/unicorn.stderr.log"
