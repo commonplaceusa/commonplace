@@ -7,5 +7,5 @@ God.log_file  = "#{RAILS_ROOT}/log/god.log"
 God.log_level = :info
 
 %w(unicorn).each do |config|
-  God.load "#{RAILS_ROOT}/config/god/#{config}.god"
+  God.load "#{RAILS_ROOT}/config/#{config}.god"
 end
