@@ -6,6 +6,7 @@ task :production do
   set :nginx_conf_dir, '/etc/nginx/conf'
   set :domain, "westroxbury.commonplaceusa.com"
   set :web_port, "80"
+  set :rails_env, "production"
 end
 
 task :staging do
@@ -15,4 +16,5 @@ task :staging do
   set :web_server, :nginx
   set :domain, "westroxbury.staging.commonplaceusa.com"
   set :web_port, "80"
+  set :rails_env, "production"
 end
