@@ -1,4 +1,9 @@
-class Management::Organizations::ProfileFieldsController < ApplicationController
+class Management::Organizations::ProfileFieldsController < ManagementController
+
+  def index
+    @organization = Organization.find(params[:organization_id])
+  end
+
 
   def new
     @organization = Organization.find(params[:organization_id])
@@ -12,7 +17,7 @@ class Management::Organizations::ProfileFieldsController < ApplicationController
     @organization = Organization.find(params[:organization_id])
     @profile_field = @organization.profile_fields.build(params[:profile_field])
     @profile_field.save
-    redirect_to url_for([:management, @organization])
+    redirect_to url_for([:management, @organization, :profile_fields])
   end
 
   def order
