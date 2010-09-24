@@ -34,34 +34,37 @@ ActionController::Routing::Routes.draw do |map|
     community.resources :organizations, :member => [:claim] do |org|
       org.resource :subscription, :only => [:index, :show, :create, :destroy]
     end
-  end
-  map.root :controller => 'site'
-  map.about 'about', :controller => 'site', :action => 'about'
-  map.privacy 'privacy', :controller => 'site', :action => 'privacy'
-  map.terms 'terms', :controller => 'site', :action => 'terms'
-  map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
 
-  map.resource :inbox
-  map.resources :platform_updates
-  map.resources :conversations
-  map.resources :messages
-  
-  map.resource :user_session
-  map.resources :password_resets
-  
-  map.resource :account, :member => { :more_info => :get }
-  map.resources :mets
-  map.resource :management, :controller => 'management'
-  map.namespace :management do |man|
-    man.resources :organizations, :member => [:outreach]do |org|
-      org.resources :announcements, :controller => 'organizations/announcements'
-      org.resources :events, :controller => 'organizations/events'
-      org.resources :profile_fields, :controller => 'organizations/profile_fields', :collection => {:order => :post}
+    map.about 'about', :controller => 'site', :action => 'about'
+    map.privacy 'privacy', :controller => 'site', :action => 'privacy'
+    map.terms 'terms', :controller => 'site', :action => 'terms'
+    map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
+    map.resource :inbox
+    map.resources :platform_updates
+    map.resources :conversations
+    map.resources :messages
+    
+    map.resource :user_session
+    map.resources :password_resets
+    
+    map.resource :account, :member => { :more_info => :get }
+    map.resources :mets
+    map.resource :management, :controller => 'management'
+
+    map.namespace :management do |man|
+      man.resources :organizations, :member => [:outreach]do |org|
+        org.resources :announcements, :controller => 'organizations/announcements'
+        org.resources :events, :controller => 'organizations/events'
+        org.resources :profile_fields, :controller => 'organizations/profile_fields', :collection => {:order => :post}
+      end
+      man.resources :events, :member => [:conversation, :replies, :outreach]
+      man.resources :invites
+      man.resources :email_invites
     end
-    man.resources :events, :member => [:conversation, :replies, :outreach]
-    man.resources :invites
-    man.resources :email_invites
+
+    
   end
+
   
   # The priority is based upon order of creation: first created -> highest priority.
 
