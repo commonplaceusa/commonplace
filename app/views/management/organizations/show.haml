@@ -22,22 +22,5 @@
       = f.input :tag_list, :as => :string, :label => "Tag list", :hint => "For example: outdoors, skiing"
     = f.buttons
 
-#edit_profile
-  %h3.management_field Manage profile fields
-  
-  = button_to "Add a new profile field", "#" + new_management_organization_profile_field_path(@organization), :method => :get, :id => "new_profile_field", :class => "styled_button"
-
-  %ul#modules
-    - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
-      %li.profile_field{:id => "field_#{p.id}"}
-        %h3
-          = p.subject
-          %span.admin
-            = link_to 'edit'
-            &sdot;
-            = link_to 'delete'
-        %p= p.body
-  = button_to 'Save', order_management_organization_profile_fields_path(@organization), :id => "save_profile_fields", :class => "styled_button"
-= link_to "Preview #{@organization.name}'s profile &raquo;", @organization, :class => "profile_preview", :target => :blank          
-  
-
+#profile
+  = render 'preview'

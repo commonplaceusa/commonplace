@@ -1,0 +1,32 @@
+.info_box.organization.preview
+  #info_box_top= "Organization".upcase
+
+  #info_box_main
+    #info_box_main_left
+      = image_tag @organization.avatar.url, :width => 120, :height => 150, :class => 'graphic'
+      %span{:id => "follow_link", :class => "link_button"} 
+        Subscribe
+      %span{:id => "message_me", :class => "link_button"}
+        Message #{ @organization.name }
+    .body
+      %h3= link_to @organization.name, @organization, :target => :blank
+      %p.user_about= auto_link @organization.about, :all, :target => :blank
+      %ol.user_info
+        - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+          %li
+            %span.info_title= p.subject.upcase
+            = p.body
+            
+        - if @organization.phone
+          %li
+            %span.info_title= "Phone".upcase
+            = @organization.phone
+        - unless @organization.address.blank?    
+          %li
+            %span.info_title= "Address".upcase 
+            = @organization.address[/(.+?)(,)/, 1]
+    
+  
+  = render_map do |map|
+    - map.center :lat => @organization.lat, :lng => @organization.lng
+    - map.marker :lat => @organization.lat, :lng => @organization.lng

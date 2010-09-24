@@ -1,0 +1,32 @@
+.info_box.event.preview
+  #info_box_top= "Community Event".upcase
+
+  #info_box_main
+    #info_box_main_left
+      #big_calendar.graphic= render 'events/calendar', :event => @event
+      %span{:id => "follow_link", :class => "link_button"}
+        Attend
+      %span{ :id => "message_me", :class => "link_button"}
+        Message #{@event.organization.name}
+
+    .body
+      %h3= @event.name
+      %p.user_about= auto_link @event.description, :all, :target => '_blank'
+      %ol.user_info            
+        %li
+          %span.info_title= "Starts".upcase
+          = event_date @event.start_time
+        - unless @event.end_time.nil?
+          %li  
+            %span.info_title= "Ends".upcase
+            = event_date @event.end_time
+        - unless @event.address.blank?
+          %li
+            %span.info_title= "Address".upcase 
+            = @event.address[/(.+?)(,)/, 1]
+            
+
+  = render_map do |map|
+    - map.center :lat => @event.lat, :lng => @event.lng
+    - map.marker :lat => @event.lat, :lng => @event.lng
+
