@@ -1,13 +1,21 @@
 - content_for :navigation do
   = render 'management/organizations/navigation'
 
-- semantic_form_for [:management, @organization, @event], :html => {:class => "management_form" } do |f|
-  %h3.management_field Create an Event
-  - f.inputs do
-    = f.input :name
-    = f.input :description, :input_html => {:rows => 4, :cols => 40}
-    = f.input :address
-    = f.input :start_time, :as => :string, :input_html => {:class => 'date'}
-    = f.input :end_time, :as => :string, :input_html => {:class => "date"}
-    = f.input :tag_list
-  = f.buttons
+#edit_profile
+  - semantic_form_for [:management, @organization, @event], :html => {:class => "management_form" } do |f|
+    %h3.management_field Create an Event
+    - f.inputs do
+      = f.input :name
+      = f.input :description, :input_html => {:rows => 4, :cols => 40}
+      = f.input :address
+      = f.input :date, :as => :string, :input_html => {:class => 'date'}
+      = f.input :start_time, :as => :string
+      = f.input :end_time, :as => :string
+      = f.input :tag_list
+    = f.buttons
+
+#edit_profile
+  %h3.management_field Other Events
+  %ul.management_list#wire
+    - @events.each do |event|
+      = render event
