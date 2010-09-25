@@ -9,7 +9,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100922175917) do
+ActiveRecord::Schema.define(:version => 20100924164852) do
+
   create_table "addresses", :force => true do |t|
     t.string   "name"
     t.string   "primary"
@@ -59,8 +60,6 @@ ActiveRecord::Schema.define(:version => 20100922175917) do
 
   create_table "events", :force => true do |t|
     t.string   "name",            :null => false
-    t.datetime "start_time"
-    t.datetime "end_time"
     t.string   "address"
     t.text     "description",     :null => false
     t.datetime "created_at"
@@ -69,6 +68,9 @@ ActiveRecord::Schema.define(:version => 20100922175917) do
     t.decimal  "lng"
     t.integer  "organization_id"
     t.string   "cached_tag_list"
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
   end
 
   create_table "invites", :force => true do |t|

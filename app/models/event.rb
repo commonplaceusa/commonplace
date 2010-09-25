@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   
   acts_as_taggable_on :tags
 
-  validates_presence_of :name, :description, :start_time
+  validates_presence_of :name, :description, :date
 
   has_many :referrals
   has_many :replies, :as => :repliable
@@ -17,15 +17,15 @@ class Event < ActiveRecord::Base
 
   before_save :update_lat_and_lng, :if => "address_changed?"
 
-  named_scope :upcoming, :conditions => ["? < start_time", Time.now]
-  named_scope :past, :conditions => ["start_time < ?", Time.now]
+  named_scope :upcoming, :conditions => ["? < date", Time.now]
+  named_scope :past, :conditions => ["date < ?", Time.now]
 
   def search(term)
     Event.all
   end
 
   def time
-    help.event_date self.start_time
+    help.hours_minutes self.start_time
   end
   
   def subject

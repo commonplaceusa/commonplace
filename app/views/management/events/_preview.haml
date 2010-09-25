@@ -15,11 +15,11 @@
       %ol.user_info            
         %li
           %span.info_title= "Starts".upcase
-          = event_date @event.start_time
+          = hours_minutes @event.start_time
         - unless @event.end_time.nil?
           %li  
             %span.info_title= "Ends".upcase
-            = event_date @event.end_time
+            = hours_minutes @event.end_time
         - unless @event.address.blank?
           %li
             %span.info_title= "Address".upcase 

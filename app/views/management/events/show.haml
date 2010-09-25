@@ -9,8 +9,9 @@
       = f.input :name
       = f.input :description, :input_html => {:rows => 4, :cols => 40}
       = f.input :address
-      = f.input :start_time, :as => :string, :input_html => {:class => "date"}
-      = f.input :end_time, :as => :string, :input_html => {:class => "date"}
+      = f.input :date, :as => :string, :input_html => {:class => "date"}
+      = f.input :start_time, :as => :string
+      = f.input :end_time, :as => :string
       = f.input :tag_list, :hint => "For example: outdoors, skiing"
     = f.buttons
 

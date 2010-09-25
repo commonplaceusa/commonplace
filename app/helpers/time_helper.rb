@@ -1,7 +1,7 @@
 module TimeHelper
   
-  def full_date date
-    date.strftime("%A, %B %d at %I:%M %p")
+  def full_date(date,time)
+    date.strftime("%A, %B %d") + "at" + hours_minutes(time)
   end
   
   def hours_minutes time
@@ -23,7 +23,8 @@ module TimeHelper
       return time.strftime("%B %d %Y")
     end
   end
-  
+
+
   def event_date time 
     unless time
       return ""
