@@ -6,7 +6,7 @@ namespace :deploy do
 
   desc "Restart the application"    
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{File.join(current_path,'tmp','restart.txt')}"
+    run "kill -USR2 `cat #{shared_path}/pids/unicorn.pid`"
   end
 
   namespace :web do
