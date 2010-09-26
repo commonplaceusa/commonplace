@@ -86,8 +86,38 @@ var app = $.sammy(function() {
       }
     }, "json");
   });
+    
+  this.get("#/organizations/:id/claim/new", setModal);
+  this.get("#/organizations/:id/claim/edit", setModal);
+  this.get("#/organizations/:id/claim/edit_fields", setModal);
   
-  this.get("#/(organizations/)?:id/claim", setModal);
+
+  this.post("/organizations/:organization_id/claim", function () {
+    var context = this;
+    $.post(this.path, this.params, function (response) {
+      if (response.success) {
+        $.modal.close();
+        app.location_proxy.setLocation("#/organizations/" + context.params.organization_id + "/claim/edit");
+      }
+    }, "json");
+  });
+  
+  this.put("/organizations/:organization_id/claim", function () {
+    var context = this;
+        $.modal.close();
+        app.location_proxy.setLocation("#/organizations/" + context.params.organization_id + "/claim/edit_fields");
+
+  });
+
+  this.get("/management/organizations/:organization_id/profile_fields/new", function() {
+    var context = this;
+    $.getJSON(this.path, function(response) {
+      $("#edit_profile_fields #modules").append(response.form);
+    });
+  });
+
+
+  this.get("#/organizations/:id/claim/new", setModal);
   this.get("#/posts/new", setModal);
   this.get("#/announcements/new", setModal);
   this.get("#/events/new", setModal);
@@ -126,5 +156,10 @@ $(function(){
     if (e.pageX < (($('body').width() - $('#wrap').width()) / 2)) {
       history.back();
     }
+  });
+  
+  $('a[data-nohistory]').live('click', function(e) {
+    e.preventDefault();
+    app.runRoute("get",$(this).attr('href'));
   });
 });

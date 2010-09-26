@@ -6,11 +6,12 @@
 @import organization
 @import profile
 @import management
+@import management_form
 @import modal
 @import registration
 @import header
 @import right
-
+@import profile_fields
 
 nav#filters
   clear: both
@@ -93,3 +94,18 @@ a#add
     
 .replies
   display: none
+
+#edit_profile_fields
+  width: 400px
+  +inline-block
+  border-right: 1px solid black
+  min-height: 400px
+  padding-right: 10px
+  margin-right: 10px
+
+#edit_avatar
+  width: 300px
+  +inline-block
+
+
+

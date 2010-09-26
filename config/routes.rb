@@ -33,8 +33,9 @@ ActionController::Routing::Routes.draw do |map|
     
     community.resources :invites
     
-    community.resources :organizations, :member => [:claim] do |org|
+    community.resources :organizations do |org|
       org.resource :subscription, :only => [:index, :show, :create, :destroy]
+      org.resource :claim, :member => [:edit_fields]
     end
 
     map.about 'about', :controller => 'site', :action => 'about'

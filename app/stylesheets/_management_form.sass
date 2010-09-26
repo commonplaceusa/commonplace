@@ -1,0 +1,53 @@
+  
+form.management_form
+  margin-bottom: 2em
+  +clearfix
+  label
+    +sans
+    font-size: 0.8em
+    color: #555
+    text-align: right
+    width: $labelWidth
+    display: block
+    float: left
+    margin: 3px 10px 0 0
+    line-height: 13px
+  input[type=text], input[type=password], textarea
+    width: 200px
+    +border-radius(5px)
+    background-color: white
+    border: 1px solid $mediumGray
+    padding: 3px 6px
+    margin: 0
+    
+  input[type=submit]
+    +styled-button
+    margin-left: $labelWidth + 10px
+
+  p.form-hint
+    text-align: left
+    font-size: 11px
+    color: $mediumGray
+    margin: 15px 20px
+    line-height: 1.2
+
+  ol
+    li
+      margin-bottom: 7px
+      +clearfix
+      p.inline-hints
+        text-align: right
+        padding: 3px
+        margin-right: 45px
+        font-size: 10px
+        color: $mediumGray
+      &.boolean
+        label
+          padding-left: $labelWidth
+          text-align: left
+          width: 200px
+          padding-bottom: 7px
+        input
+          float: left
+          margin-left: -15px
+          margin-right: 12px
