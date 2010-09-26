@@ -1,11 +1,11 @@
 module TimeHelper
   
   def full_date(date,time)
-    date.strftime("%A, %B %d") + "at" + hours_minutes(time)
+    date.strftime("%A, %B %d") + " at " + hours_minutes(time)
   end
   
   def hours_minutes time
-    return time.strftime("%I:%M %p")[/(^0)(.+)/, 2] # strip leading zero
+    return time.strftime("%I:%M %p").sub(/^0/,'') # strip leading zero
   end
   
   def post_date time 
