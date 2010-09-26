@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(:version => 20100924164852) do
   end
 
   create_table "announcements", :force => true do |t|
-    t.string   "subject",                           :null => false
-    t.text     "body",                              :null => false
-    t.integer  "organization_id",                   :null => false
+    t.string   "subject",                                          :null => false
+    t.text     "body",            :limit => 255,                   :null => false
+    t.integer  "organization_id",                                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "public",          :default => true, :null => false
+    t.boolean  "public",                         :default => true, :null => false
   end
 
   create_table "attendances", :force => true do |t|
@@ -163,10 +163,10 @@ ActiveRecord::Schema.define(:version => 20100924164852) do
   end
 
   create_table "profile_fields", :force => true do |t|
-    t.string   "subject",         :null => false
-    t.text     "body",            :null => false
-    t.integer  "organization_id", :null => false
-    t.integer  "position",        :null => false
+    t.string   "subject",                        :null => false
+    t.text     "body",            :limit => 255, :null => false
+    t.integer  "organization_id",                :null => false
+    t.integer  "position",                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -222,27 +222,26 @@ ActiveRecord::Schema.define(:version => 20100924164852) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                   :null => false
-    t.string   "crypted_password",                        :null => false
-    t.string   "password_salt",                           :null => false
-    t.string   "persistence_token",                       :null => false
-    t.string   "single_access_token",                     :null => false
-    t.string   "perishable_token",                        :null => false
+    t.string   "email",                :null => false
+    t.string   "crypted_password",     :null => false
+    t.string   "password_salt",        :null => false
+    t.string   "persistence_token",    :null => false
+    t.string   "single_access_token",  :null => false
+    t.string   "perishable_token",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name",                              :null => false
-    t.string   "last_name",                               :null => false
+    t.string   "first_name",           :null => false
+    t.string   "last_name",            :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
-    t.string   "address",                                 :null => false
+    t.string   "address",              :null => false
     t.decimal  "lat"
     t.decimal  "lng"
     t.text     "about"
-    t.integer  "neighborhood_id",                         :null => false
+    t.integer  "neighborhood_id",      :null => false
     t.string   "cached_skill_list"
     t.string   "cached_interest_list"
     t.string   "cached_good_list"
-    t.boolean  "receive_digests",      :default => false, :null => false
   end
 
 end
