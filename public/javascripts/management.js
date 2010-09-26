@@ -59,7 +59,12 @@ var app = $.sammy(function() {
 $(function() {
   app.run();
   
-  $('input.date').datepicker();
+  $('input.date').datepicker({
+    prevText: '&laquo;',
+    nextText: '&raquo;',
+    showOtherMonths: true,
+    defaultDate: null, 
+  });
   
   $('#modules').sortable();
   $('#modules').disableSelection();

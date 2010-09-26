@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   def search(term)
     Event.all
   end
-
+  
   def time
     help.hours_minutes self.start_time
   end

@@ -7,23 +7,54 @@
   .ui-datepicker-header
     background-color: $calendarTopColor
     +border-radius($defaultRadius)
-    padding: 5px
-    font-size: 12px
+    padding: 7px
+    font-size: 14px
     margin: 5px
+    color: white
     .ui-datepicker-prev
       float: left
     .ui-datepicker-next
       float: right
+    .ui-datepicker-next, .ui-datepicker-prev
+      color: white
+      cursor: pointer
+      padding: 0 4px
+      +border-radius(4px)
+      &:hover
+        text-decoration: none
+        background-color:  $calendarTopColor + #222
     .ui-datepicker-title
       text-align: center
     .ui-datepicker-month
     .ui-datepicker-year  
   .ui-datepicker-calendar
+    border-collapse: collapse
     margin: 5px
-    td
+    +sans
+    font-size: 12px
+    td, th
       width: 28.5px
-    .ui-datepicker-current-day
+      padding: 4px      
+      text-align: center
+    td
+      border: 2px solid white
+    th
+      font-weight: bold
+      background-color: $lightGray
+    td
+      &:hover
+        background-color: #fafaaa
     .ui-datepicker-week-end
+    .ui-datepicker-today
+      background-color: $lightGray
+    .ui-datepicker-current-day
+      background-color: #fafaaa
     .ui-state-default
-  
+      +inline-block
+    a.ui-state-default
+      text-decoration: underline
+    .ui-datepicker-other-month
+      color: $mediumGray
+      &:hover
+        background-color: white
   
