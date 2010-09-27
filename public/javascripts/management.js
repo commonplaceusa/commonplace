@@ -53,8 +53,23 @@ var app = $.sammy(function() {
                                }), 
            function () { }, "json");
   });
+  
+  this.get("#/image/edit", function() {
+    $.getJSON(this.path.slice(1), function(response) {
+      $(response.form).modal({
+        overlayClose: true,
+        onClose: function() { 
+          $.modal.close(); 
+          history.back();
+        }
+      });
+      $('#avatar_to_crop').Jcrop();
+    });
+  });
  
 });
+
+
 
 $(function() {
   app.run();
@@ -70,4 +85,9 @@ $(function() {
   $('#modules').disableSelection();
 
   $(".tabs").tabs();
+    
+  $('#close_modal').click(function() {
+    $.modal.close();
+  });
+  
 });

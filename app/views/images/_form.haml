@@ -1,0 +1,11 @@
+%form#crop_avatar_form
+  = image_tag current_user.avatar.url, :id => 'avatar_to_crop'
+  
+  %input.hidden_field#x1
+  %input.hidden_field#x2
+  %input.hidden_field#y1
+  %input.hidden_field#y2
+  
+  %button Crop
+  
+  = link_to 'Cancel', '', :id => 'close_modal'

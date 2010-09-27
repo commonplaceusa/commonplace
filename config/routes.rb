@@ -8,7 +8,9 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.with_options :conditions => { :subdomain => /[A-Za-z]+/ }, :shallow => true do |community|
-
+    
+    community.resource :image, :only => [:new, :edit]
+    
     community.root :controller => "communities", :action => "show"
 
     community.resources :posts
