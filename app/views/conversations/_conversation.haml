@@ -2,7 +2,7 @@
   / output as many avatars as possible
   / TODO: Output order is most recent contributors to the conversation.
   - conversation.users.take(3).each do |user|
-    = image_tag user.avatar.url, :width => 60, :height => 60
+    = image_tag user.avatar_url(:thumb), :width => 60, :height => 60
   %p= conversation.subject
   %br
   %p Updated #{human_date(conversation.updated_at)}

@@ -1,7 +1,7 @@
 - item_tag(user) do
   - link_to user, :class => 'item_body', 'data-remote' => true do
     .author
-      = image_tag user.avatar.url(:thumb), :size => "50x50"
+      = image_tag user.avatar_url(:thumb), :size => "50x50"
     %h3
       = user.name
     %p

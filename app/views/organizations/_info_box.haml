@@ -3,7 +3,7 @@
 
   #info_box_main
     #info_box_main_left
-      = image_tag organization.avatar.url, :width => 120, :height => 150, :class => 'graphic'
+      = image_tag organization.avatar_url(:normal), :class => 'graphic'
       - unless organization.subscribers.include? current_user
         = button_to "Subscribe", organization_subscription_url(organization), :id => "follow_link", :class => "link_button"
       = link_to "Message #{ organization.name }", "", :id => "message_me", :class => "link_button"

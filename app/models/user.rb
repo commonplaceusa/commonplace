@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   before_save :update_lat_and_lng, :if => "address_changed?"
-
+  before_create :set_default_avatar
   acts_as_authentic do |c|
     c.login_field :email
   end
@@ -32,11 +32,12 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests
   acts_as_taggable_on :goods
-  
-  has_attached_file(:avatar, 
-                    :styles => { :thumb => "100x100" },
-                    :default_url => "/avatars/missing.png")
 
+  has_one :avatar, :as => :owner
+
+  def avatar_url(style)
+    avatar.image.url(style)
+  end
 
   def search(term)
     User.all
@@ -76,6 +77,9 @@ class User < ActiveRecord::Base
       [:user]
     end
   end
-
+  
+  def set_default_avatar
+    avatar = Avatar.new
+  end
 
 end

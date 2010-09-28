@@ -3,7 +3,7 @@
 
   #info_box_main
     #info_box_main_left
-      = image_tag current_user.avatar.url, :width => 120, :height => 120, :class => 'graphic'
+      = image_tag current_user.avatar_url(:normal), :class => 'graphic'
 
       %span{:id => "message_me", :class => "link_button", 'data-remote' => true}
         Message #{ current_user.first_name }

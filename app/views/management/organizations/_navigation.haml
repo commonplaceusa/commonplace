@@ -1,7 +1,7 @@
 
 
 %h2#management_section_header 
-  = image_tag @organization.avatar.url, :width => 20, :height => 20
+  = image_tag @organization.avatar_url(:thumb), :width => 20, :height => 20
   Managing Organization: #{@organization.name}
 %nav#profile_section_navigation<
   = tab_to "Edit Organization Info", management_organization_path(@organization)

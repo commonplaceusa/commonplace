@@ -1,7 +1,7 @@
 - item_tag(organization) do
   - link_to organization, :class => 'item_body', 'data-remote' => true do
     .author
-      = image_tag organization.avatar.url, :size => "50x50"
+      = image_tag organization.avatar_url(:thumb), :size => "50x50"
     %h3
       = organization.name
     %p

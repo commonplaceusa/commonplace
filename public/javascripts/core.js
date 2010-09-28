@@ -1,5 +1,14 @@
 
 $(function() {
+  jQuery.extend({
+    put: function(url, data, callback, type) {
+      return _ajax_request(url, data, callback, type, 'PUT');
+    },
+    delete_: function(url, data, callback, type) {
+      return _ajax_request(url, data, callback, type, 'DELETE');
+    }
+  });
+
   $("input[name='_method']").each(function() { 
     var method = $(this).val(); 
     $(this).closest('form').attr('method', method); 
@@ -102,5 +111,19 @@ function renderDirections(args,map) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(result);
     }
+  });
+}
+      
+function _ajax_request(url, data, callback, type, method) {
+  if (jQuery.isFunction(data)) {
+    callback = data;
+    data = {};
+  }
+  return jQuery.ajax({
+    type: method,
+    url: url,
+    data: data,
+    success: callback,
+    dataType: type
   });
 }

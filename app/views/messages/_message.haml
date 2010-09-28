@@ -1,5 +1,5 @@
 %li.message
-  = image_tag message.user.avatar.url, :width => 38, :height => 38
+  = image_tag message.user.avatar_url(:thumb), :width => 38, :height => 38
   %div
     %span.reply_name #{message.user.full_name}
     = message.body

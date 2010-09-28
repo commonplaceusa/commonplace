@@ -46,15 +46,33 @@ var app = $.sammy(function() {
   });
 
   this.post("/management/organizations/:organization_id/profile_fields/order", function () {
-    $.post(this.path, $.extend(this.params, 
-                               {
-                                 fields: $.map($("#modules").sortable("toArray"),
-                                               function(m) { return m.replace("field_", ""); })
-                               }), 
-           function () { }, "json");
+    var params = 
+      $.extend(this.params, 
+               {
+                 fields: 
+                 $.map($("#modules").sortable("toArray"),
+                       function(m) { return m.replace("field_", ""); })
+               });
+
+    $.post(this.path, params, function () { }, "json");
+    
   });
   
-  this.get("#/image/edit", function() {
+  this.any("/avatars/:id", function() {
+    this.log(this.params);
+    $.put(this.path, this.params, function () {
+      $.modal.close();
+      $("img.normal").animate({opacity: 0.0}, 500, 
+                              function () { this.src = this.src + "0" })
+        .animate({opacity: 1}, 500);
+
+    });
+  });
+  this.after(function() {
+
+  });
+
+  this.get("#/avatars/:id/edit", function() {
     $.getJSON(this.path.slice(1), function(response) {
       $(response.form).modal({
         overlayClose: true,
@@ -63,7 +81,15 @@ var app = $.sammy(function() {
           history.back();
         }
       });
-      $('#avatar_to_crop').Jcrop();
+      $('#avatar_to_crop').Jcrop({
+        aspectRatio: 1,
+        onChange: function (args) {
+          $("#avatar_x").val(args.x)
+          $("#avatar_y").val(args.y)
+          $("#avatar_w").val(args.w)
+          $("#avatar_h").val(args.h)
+        }
+      });
     });
   });
  
@@ -88,6 +114,20 @@ $(function() {
     
   $('#close_modal').click(function() {
     $.modal.close();
+  });
+  
+  $("#edit_avatar input").change(function() {
+    $(this).parent().ajaxSubmit({
+      beforeSubmit: function(a,f,o) {
+        o.dataType = 'json';
+      },
+      complete: function(xhr, textStatus) {
+        $("img.normal").animate({opacity: 0.0}, 500,
+                                function () { this.src = this.src + "0" })
+          .animate({opacity: 1}, 500);
+      }
+
+    });
   });
   
 });

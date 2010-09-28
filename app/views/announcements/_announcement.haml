@@ -1,7 +1,7 @@
 - item_tag(announcement) do
   - link_to announcement, :class => 'item_body', 'data-remote' => true do
     .author
-      = image_tag announcement.owner.avatar.url, :width => 50, :height => 50
+      = image_tag announcement.owner.avatar_url(:thumb), :width => 50, :height => 50
       = announcement.owner.name
     %h3
       = announcement.subject    

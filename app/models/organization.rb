@@ -20,11 +20,11 @@ class Organization < ActiveRecord::Base
 
   has_many :invites, :as => :inviter
 
-  has_attached_file(:avatar, :styles => { :thumb => "100x100" })
-
   before_save :update_lat_and_lng, :if => "address_changed?"
 
   before_create :place_in_community
+
+  has_one :avatar, :as => :owner
 
   # TODO: pull this out into a module
   def update_lat_and_lng
@@ -42,6 +42,10 @@ class Organization < ActiveRecord::Base
     end
   end
 
+
+  def avatar_url(style)
+    avatar.image.url(style)
+  end
 
   protected
 

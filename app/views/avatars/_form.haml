@@ -1,0 +1,12 @@
+- form_for @avatar, :id => "crop_avatar_form", :html => {:method => "put"} do |f|
+
+  = image_tag @avatar.image.url(:original), :id => 'avatar_to_crop'
+  
+  = f.hidden_field :x 
+  = f.hidden_field :y
+  = f.hidden_field :w
+  = f.hidden_field :h
+  
+  = f.submit "Crop"
+  
+  = link_to 'Cancel', '', :id => 'close_modal'

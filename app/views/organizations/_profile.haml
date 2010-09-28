@@ -6,7 +6,7 @@
       #subscribe= button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization)
 
   .left_col
-    = image_tag @organization.avatar.url, :id => "profile_photo", :height => 200, :width => 200
+    = image_tag @organization.avatar_url(:large), :id => "profile_photo"
   
     %ul#contact.styled_list
       %li Contact Information

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100924164852) do
+ActiveRecord::Schema.define(:version => 20100928230144) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -21,17 +21,27 @@ ActiveRecord::Schema.define(:version => 20100924164852) do
   end
 
   create_table "announcements", :force => true do |t|
-    t.string   "subject",                                          :null => false
-    t.text     "body",            :limit => 255,                   :null => false
-    t.integer  "organization_id",                                  :null => false
+    t.string   "subject",                           :null => false
+    t.text     "body",                              :null => false
+    t.integer  "organization_id",                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "public",                         :default => true, :null => false
+    t.boolean  "public",          :default => true, :null => false
   end
 
   create_table "attendances", :force => true do |t|
     t.integer  "event_id",   :null => false
     t.integer  "user_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "avatars", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.string   "image_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -108,15 +118,15 @@ ActiveRecord::Schema.define(:version => 20100924164852) do
   end
 
   create_table "neighborhoods", :force => true do |t|
-    t.decimal  "north_bound",  :null => false
-    t.decimal  "south_bound",  :null => false
-    t.decimal  "east_bound",   :null => false
-    t.decimal  "west_bound",   :null => false
     t.string   "name",         :null => false
     t.text     "about",        :null => false
     t.integer  "community_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "north_bound"
+    t.decimal  "south_bound"
+    t.decimal  "east_bound"
+    t.decimal  "west_bound"
   end
 
   create_table "notifications", :force => true do |t|
@@ -128,10 +138,8 @@ ActiveRecord::Schema.define(:version => 20100924164852) do
   end
 
   create_table "organizations", :force => true do |t|
-    t.string   "name",                                  :null => false
+    t.string   "name",                              :null => false
     t.string   "address"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "lat"
@@ -143,7 +151,7 @@ ActiveRecord::Schema.define(:version => 20100924164852) do
     t.string   "category"
     t.string   "cached_tag_list"
     t.string   "code"
-    t.boolean  "claimed",             :default => true
+    t.boolean  "claimed",         :default => true
   end
 
   create_table "platform_updates", :force => true do |t|
@@ -163,10 +171,10 @@ ActiveRecord::Schema.define(:version => 20100924164852) do
   end
 
   create_table "profile_fields", :force => true do |t|
-    t.string   "subject",                        :null => false
-    t.text     "body",            :limit => 255, :null => false
-    t.integer  "organization_id",                :null => false
-    t.integer  "position",                       :null => false
+    t.string   "subject",         :null => false
+    t.text     "body",            :null => false
+    t.integer  "organization_id", :null => false
+    t.integer  "position",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -222,26 +230,25 @@ ActiveRecord::Schema.define(:version => 20100924164852) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                :null => false
-    t.string   "crypted_password",     :null => false
-    t.string   "password_salt",        :null => false
-    t.string   "persistence_token",    :null => false
-    t.string   "single_access_token",  :null => false
-    t.string   "perishable_token",     :null => false
+    t.string   "email",                                   :null => false
+    t.string   "crypted_password",                        :null => false
+    t.string   "password_salt",                           :null => false
+    t.string   "persistence_token",                       :null => false
+    t.string   "single_access_token",                     :null => false
+    t.string   "perishable_token",                        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name",           :null => false
-    t.string   "last_name",            :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.string   "address",              :null => false
+    t.string   "first_name",                              :null => false
+    t.string   "last_name",                               :null => false
+    t.string   "address",                                 :null => false
     t.decimal  "lat"
     t.decimal  "lng"
     t.text     "about"
-    t.integer  "neighborhood_id",      :null => false
+    t.integer  "neighborhood_id",                         :null => false
     t.string   "cached_skill_list"
     t.string   "cached_interest_list"
     t.string   "cached_good_list"
+    t.boolean  "receive_digests",      :default => false, :null => false
   end
 
 end

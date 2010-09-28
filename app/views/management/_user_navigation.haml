@@ -1,6 +1,6 @@
 
 %h2#management_section_header
-  = image_tag current_user.avatar.url, :width => 20, :height => 20
+  = image_tag current_user.avatar_url(:thumb), :width => 20, :height => 20
   Managing Your Personal Profile
 %nav#profile_section_navigation<
   = tab_to "Edit Profile", management_url

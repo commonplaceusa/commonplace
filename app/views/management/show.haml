@@ -3,15 +3,13 @@
 
 #edit_profile
   
-  - form_for current_user, :url => account_path, :html => {:multipart => true, :class => "management_form", :id => "edit_avatar"} do |f|
+  - form_for current_user.avatar, :html => {:multipart => true, :class => "management_form", :id => "edit_avatar"} do |f|
     %h3.management_field Edit your profile picture
-    = image_tag current_user.avatar.url, :width => 120, :height => 120, :class => 'graphic'
-    %fieldset
-      = f.label :avatar, "Upload a new profile picture:"
-      = link_to 'Crop your photo', edit_image_path, 'data-remote' => true 
-      = f.file_field :avatar
-      = f.submit "Save your profile photo"
-  
+    = image_tag current_user.avatar_url(:normal), :class => "graphic normal"
+    = f.label :image, "Upload a new profile picture:"
+    = link_to 'Crop your photo', edit_avatar_path(current_user.avatar), 'data-remote' => true 
+    = f.file_field :image
+
   - semantic_form_for current_user, :url => account_path, :html => { :class => "management_form" } do |f|
     %h3.management_field Edit your profile info
     - f.inputs do 
