@@ -11,7 +11,7 @@ class AvatarsController < ApplicationController
     @avatar = Avatar.find(params[:id])
     @avatar.update_attributes(params[:avatar])
     @avatar.save
-    render :nothing => true
+    render :json => {".normal.#{dom_id(@avatar)}" => @avatar.image.url(:normal)}
   end
   
 end

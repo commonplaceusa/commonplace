@@ -5,7 +5,7 @@
   
   - form_for @organization.avatar, :html => {:multipart => true, :class => "management_form", :id => "edit_avatar"} do |f|
     %h3.management_field Edit your profile picture
-    = image_tag @organization.avatar_url(:normal), :class => "graphic normal"
+    = image_tag @organization.avatar_url(:normal), :class => "graphic normal #{dom_id @organization.avatar}"
     = f.label :image, "Upload a new profile picture:"
     = link_to 'Crop your photo', edit_avatar_path(@organization.avatar), 'data-remote' => true 
     = f.file_field :image

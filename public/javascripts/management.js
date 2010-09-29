@@ -122,11 +122,13 @@ $(function() {
         o.dataType = 'json';
       },
       complete: function(xhr, textStatus) {
-        $("img.normal").animate({opacity: 0.0}, 500,
-                                function () { this.src = this.src + "0" })
-          .animate({opacity: 1}, 500);
-      }
-
+        $.each($.parseJSON(xhr.responseText), function (k,v) {
+          $(k).animate({opacity: 0.0}, 500,
+                       function () { this.src = v })
+            .animate({opacity: 1}, 500);
+        });
+      },
+      dataType: "json"
     });
   });
   
