@@ -3,7 +3,7 @@
   %nav
     - if current_user_session
       #greeting> Hi, #{current_user.first_name}!
-      = tab_to("Home", root_url) + tab_to("Inbox (#{current_user.notifications.count})", inbox_url, :id => 'inbox') + tab_to('Manage Profiles', management_url, :id => 'organizations') + tab_to('Log out', logout_url)
+      = tab_to("Home", root_url) + tab_to("Inbox (#{current_user.notifications.count})", inbox_url, :id => 'inbox') + tab_to('Manage Profiles', management_url, :id => 'organizations') + tab_to('Log out', logout_url, :method => :delete)
     - else
       - form_for UserSession.new, :url => user_session_path do |f|
         = f.text_field :email, 'data-label' => "Email"

@@ -8,8 +8,8 @@ class Ability
     else
       can :update, User
       can :create, Post
-      can :delete, Post, :user_id => user.id
-      can :delete, UserSession
+      can :destroy, Post, :user_id => user.id
+      can :destroy, UserSession
     end
 
     can :read, Post
