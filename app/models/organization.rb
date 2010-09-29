@@ -26,6 +26,8 @@ class Organization < ActiveRecord::Base
 
   has_one :avatar, :as => :owner
 
+  has_friendly_id :name, :use_slug => true, :scope => :community
+
   # TODO: pull this out into a module
   def update_lat_and_lng
     if address.blank?
@@ -43,7 +45,7 @@ class Organization < ActiveRecord::Base
   end
 
 
-  def avatar_url(style)
+  def avatar_url(style = :default)
     avatar.image.url(style)
   end
 

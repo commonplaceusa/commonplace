@@ -1,5 +1,6 @@
 class OrganizationsController < CommunitiesController
-  load_and_authorize_resource
+  before_filter :load, :except => :index
+  authorize_resource
   
   def index
     respond_to do |format|
@@ -45,5 +46,15 @@ class OrganizationsController < CommunitiesController
       end
     end
   end
-
+  
+  protected
+  def load
+    @organization = 
+      if params[:id]
+        Organization.find(params[:id], :scope => current_community)
+      else
+        Organization.new
+      end
+  end
+                        
 end

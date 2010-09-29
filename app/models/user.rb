@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
   has_one :avatar, :as => :owner
 
-  def avatar_url(style)
+  def avatar_url(style = :default)
     avatar.image.url(style)
   end
 

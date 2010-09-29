@@ -25,7 +25,7 @@
       %li Members (#{ @organization.subscribers.length })
       - @organization.subscribers.take(5).each do |subscriber|
         %li.member.clickable
-          .user_image= image_tag subscriber.avatar.url, :size => "30x30"
+          .user_image= image_tag subscriber.avatar_url, :size => "30x30"
           .user_info
             .user_name= subscriber.name
             .user_role subscriber
@@ -94,7 +94,7 @@
       %li
         %p 
           This profile has not been claimed. If you are affiliated with 
-          this organization, and would like to manage this profile, #{link_to "click here", claim_organization_path, 'data-remote' => true}.
+          this organization, and would like to manage this profile, #{link_to "click here", claim_organization_path(@organization), 'data-remote' => true}.
           
         
       

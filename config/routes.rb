@@ -64,9 +64,10 @@ ActionController::Routing::Routes.draw do |map|
       man.resources :email_invites
     end
 
+    map.profile ':id', :controller => 'organizations', :action => 'show', :conditions => { :method => :get }
     
   end
-
+  
   
   # The priority is based upon order of creation: first created -> highest priority.
 
