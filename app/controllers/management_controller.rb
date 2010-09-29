@@ -1,6 +1,7 @@
 class ManagementController < ApplicationController
   
   def show
+    authorize!(:read, :management)
   end
 
 

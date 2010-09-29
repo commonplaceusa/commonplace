@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = exception.message
+    redirect_to root_url
+  end
  
   protected
   
