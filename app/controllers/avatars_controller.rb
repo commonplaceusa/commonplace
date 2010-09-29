@@ -11,7 +11,8 @@ class AvatarsController < ApplicationController
     @avatar = Avatar.find(params[:id])
     @avatar.update_attributes(params[:avatar])
     @avatar.save
-    render :json => {".normal.#{dom_id(@avatar)}" => @avatar.image.url(:normal)}
+    # We can't send json because firefox will try to download it.
+    render :text => {".normal.#{dom_id(@avatar)}" => @avatar.image.url(:normal)}.to_json
   end
   
 end

@@ -122,13 +122,16 @@ $(function() {
         o.dataType = 'json';
       },
       complete: function(xhr, textStatus) {
-        $.each($.parseJSON(xhr.responseText), function (k,v) {
+        // We have to slice off the inserted html. See AvatarsController
+        var json = xhr.responseText.slice(xhr.responseText.indexOf('{'),
+                                          xhr.responseText.indexOf('}') +1);
+        $.each($.parseJSON(json), function (k,v) {
           $(k).animate({opacity: 0.0}, 500,
                        function () { this.src = v })
             .animate({opacity: 1}, 500);
         });
       },
-      dataType: "json"
+
     });
   });
   
