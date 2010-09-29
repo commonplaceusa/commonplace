@@ -54,11 +54,13 @@
       - unless @organization.lat.blank? or @organization.lng.blank?
         %li#map_container
           %h3 Location
-          #map
-            :javascript
-              gMapInit(#{@organization.lat}, #{@organization.lng});
-          %p= @organization.address.sub(",", "<br/>")
-          #toggle_map= "Expand map / Get Directions".upcase
+          = render_map do |map|
+            - map.center :lat => organization.lat, :lng => organization.lng
+            - map.marker :lat => current_user.lat, :lng => current_user.lng
+            - map.marker :lat => organization.lat, :lng => organization.lng
+            - map.directions do |dir|
+              - dir.origin :lat => current_user.lat, :lng => current_user.lng
+              - dir.destination :lat => organization.lat, :lng => organization.lng
         
     
       %li#events
