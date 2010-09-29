@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
  
   protected
   
+  
+  def current_community
+    @current_community = Community.find_by_slug(current_subdomain)
+  end
 
   def store_location
     session[:return_to] = request.request_uri

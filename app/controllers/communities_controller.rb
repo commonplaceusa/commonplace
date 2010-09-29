@@ -18,11 +18,7 @@ class CommunitiesController < ApplicationController
     end
   end
 
-  private
-  
-  def current_community
-    @current_community = Community.find_by_slug(current_subdomain)
-  end
+
   
 
 end

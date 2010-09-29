@@ -1,5 +1,6 @@
 class Management::OrganizationsController < ManagementController
-  load_and_authorize_resource
+  before_filter :load
+  authorize_resource
 
   def show
   end
@@ -31,5 +32,14 @@ class Management::OrganizationsController < ManagementController
   def outreach
     @organization = Organization.find(params[:id])
     @possible_subscribers = User.tagged_with_aliases(@organization.tags.map(&:name), :any => true)
+  end
+  
+  def load
+    @organization = 
+      if params[:id] 
+        Organization.find(params[:id], :scope => current_community)
+      else
+        Organization.new
+      end
   end
 end
