@@ -1,5 +1,5 @@
 
-- content_for(:current_page, "New Organization")
+- content_for(:current_page, "Editing #{@organization.name}")
 
 - semantic_form_for @organization do |f|
   - f.inputs do
@@ -11,12 +11,16 @@
     = f.input :website
     = f.input :category
     = f.input :tag_list
-    = f.input :claimed, :checked => false
+    = f.input :claimed
     = f.input :code
+
   - f.inputs :for => :avatar do |a|
     = a.input :image, :as => :file
-  - f.inputs :for => :profile_fields do |pf|
-    = pf.input :subject
-    = pf.input :body
-
+  
   = f.buttons
+
+%ul#profile_fields
+  = link_to "add field", new_profile_field_path, 'data-remote' => true
+  - @organization.profile_fields.each do |pf|
+    - semantic_form_for pf do |f|
+      = f.inputs :subject, :body

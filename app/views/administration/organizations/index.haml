@@ -1,3 +1,18 @@
-%ul
+
+- content_for(:current_page, 'All Organizations')
+
+%table
+  %tr.even
+    %th Name
+    %th Created
+    %th Claimed
+    %th Edit
+    %th Delete
+  
   - @organizations.each do |org|
-    %li= link_to org.name, org
+    %tr{:class => cycle('odd','even')}
+      %td= link_to org.name, org
+      %td= org.created_at.to_s(:date_time12)
+      %td= org.claimed ? "claimed" : "unclaimed"
+      %td= link_to 'edit', edit_organization_path(org)
+      %td= button_to 'delete', organization_path(org), :method => :delete

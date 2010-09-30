@@ -1,3 +1,56 @@
+@import core
+
+#wrap
+  width: 1000px
+  margin: auto
+
+header
+  margin-top: 30px
+  background-color: #D74F4C
+  +border-top-radius(7px)
+  overflow: hidden
+  h1 
+    +inline-block
+    color: white
+    background-color: #B53F3C
+    width: 186px
+    padding: 10px 7px
+  h2 
+    +inline-block
+    color: white
+
+#admin_global_nav
+  overflow: hidden
+  width: 200px
+  display: block
+  +border-bottom-left-radius(7px)
+  float: left
+
+  a
+    display: block
+    background-color: #E9C5C3
+    padding: 8px 10px 8px 15px
+    &.selected_nav
+      background-color: #D4706E
+      
+#main
+  width: 798px
+  border: 
+    left: 1px solid black
+    right: 1px solid black
+
+table
+  margin: 30px auto
+  width: 650px
+  tr.even
+    background-color: $offWhite
+  tr.odd
+    background-color: white
+  th
+    font-weight: bold
+  th,td
+    padding: 5px 10px
+
 div[data-map]
   height: 600px
   width: 850px
@@ -8,3 +61,18 @@ div[data-map]
   width: 400px
   overflow-y: auto
   
+
+.formtastic
+  fieldset
+    background-color: tan
+    width: 300px
+    margin: 10px
+    padding: 10px
+
+#profile_fields
+  float: right
+.formtastic.organization
+  float: left
+  width: 300px
+
+    

@@ -1,5 +1,6 @@
 class Organization < ActiveRecord::Base
   CATEGORIES = %w{Municipal Business Non-profit Club}
+  
   acts_as_taggable_on :tags
 
   validates_presence_of :name, :message => "nice message"
@@ -28,6 +29,8 @@ class Organization < ActiveRecord::Base
 
   has_friendly_id :name, :use_slug => true, :scope => :community
 
+  accepts_nested_attributes_for :profile_fields
+
   # TODO: pull this out into a module
   def update_lat_and_lng
     if address.blank?
@@ -49,11 +52,22 @@ class Organization < ActiveRecord::Base
     avatar.image.url(style)
   end
 
+  def to_param
+    self.id.to_s
+  end
+  
   protected
 
   # TODO: find community based on address
   def place_in_community
     self.community = Community.first
   end
-  
+
+  def after_initialize
+    if new_record?
+      profile_fields.build([{:subject => "History"},
+                            {:subject => "About"}])
+    end
+  end
+
 end

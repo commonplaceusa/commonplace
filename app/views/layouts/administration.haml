@@ -13,14 +13,21 @@
     
     = javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min'
     = include_javascript_folder 'jquery'
-    = javascript_include_tag 'sammy', 'markermanager_packed.js', 'core'
+    = javascript_include_tag 'sammy-0.6', 'sammy.haml.js', 'sammy.json.js', 'sammy.meld.js', 'sammy.mustache.js', 'markermanager_packed.js'
 
-    = javascript_include_tag 'administration' 
+    = javascript_include_tag 'administration'
        
     = stylesheet_link_tag 'administration'
 
   %body
     #wrap
-      = yield
+      %header
+        %h1 Administration
+        %h2= yield :current_page
+        %nav
+          
+      = render 'administration/navigation'
+      #main
+        = yield
       #wrap_footer
     = render 'shared/footer'
