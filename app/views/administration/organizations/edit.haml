@@ -19,8 +19,3 @@
   
   = f.buttons
 
-%ul#profile_fields
-  = link_to "add field", new_profile_field_path, 'data-remote' => true
-  - @organization.profile_fields.each do |pf|
-    - semantic_form_for pf do |f|
-      = f.inputs :subject, :body

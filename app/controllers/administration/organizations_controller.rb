@@ -25,5 +25,13 @@ class Administration::OrganizationsController < AdministrationController
     @organization = Organization.find(params[:id])
   end
                                       
+  def update
+    @organization = Organization.find(params[:id])
+    if @organization.update_attributes(params[:organization])
+      redirect_to organizations_path
+    else
+      render :edit
+    end
+  end
     
 end
