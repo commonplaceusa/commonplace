@@ -19,7 +19,7 @@ class OrganizationsController < CommunitiesController
   def show
     respond_to do |format|
       format.json 
-      format.html { render :layout => 'application' }
+      format.html { render :layout => 'profile' }
     end
   end
 
