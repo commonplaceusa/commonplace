@@ -1088,12 +1088,20 @@
       return returned;
     },
 
+    _getFormVerb: function(form) {
+      var $form = $(form), verb, $_method;
+      $_method = $form.find('input[name="_method"]');
+      if ($_method.length > 0) { verb = $_method.val(); }
+      if (!verb) { verb = $form[0].getAttribute('method'); }
+      return $.trim(verb.toString().toLowerCase());
+    },
+
     _checkFormSubmission: function(form) {
       var $form, path, verb, params, returned;
       this.trigger('check-form-submission', {form: form});
       $form = $(form);
       path  = $form.attr('action');
-      verb  = $.trim($form.attr('method').toString().toLowerCase());
+      verb  = this._getFormVerb($form);
       if (!verb || verb == '') { verb = 'get'; }
       this.log('_checkFormSubmission', $form, path, verb);
       if (verb === 'get') {
