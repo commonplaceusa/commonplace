@@ -135,4 +135,6 @@ $(function() {
     });
   });
   
+  $('.management_disabled').attr('title', "Sorry, this feature is not yet available.").tipsy({gravity: 'n'});
+  
 });
