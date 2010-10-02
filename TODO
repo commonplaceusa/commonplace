@@ -1,0 +1,15 @@
+
+* Small tasks
+  
+
+* Medium tasks
+
+** Merge the controllers in the management namespace with the un-namespaced controllers. There isn't significant overlap as far as controller actions go, and having the management namespace isn't as clean as originally thought
+
+** Update to the latest version of sammy. Which has breaking changes to our codebase, but introduces some cool stuff. See http://www.quirkey.com/blog/2010/09/02/sammy-0-6-california-suite/
+
+** Hand-in-hand with updating sammy, get rid of those *.json.erb files, and give up all pretense of supporting non-javascript enabled browsers. (Facebook doesn't!)
+
+* Large tasks
+
+** Rails 3
