@@ -1,43 +1,12 @@
 
 $.sammy("body")
 
-  .get("#/", setList)
-
-function setInfoBoxPosition() {
-  if ($(window).scrollTop() + 10 > $('#info').offset().top){
-    $('.info_box').css('position','fixed');
-  } else {
-    $('.info_box').css('position', 'static');
-  }
-}
-
-function selectTab(tab) {
-  $(document).ready(function(){
-    $('header #' + tab).addClass('selected_nav');
-  });
-};
-
-function setInfoBox() {
-  
-  $.getJSON(this.path.slice(1), function(response) {
-    $("#info").html(response.info_box);
-    setInfoBoxPosition();
-    renderMaps();
-  });
-} 
-
-function setList() {
-  $.getJSON(this.path.slice(1), function(response) {
-    $("#list").html(response.list);
-    $("#add").replaceWith(response.add);
-    $("#info").html(response.info);
-  });
-}
+  .get("#/", setList);
 
 $(document).ready(function() {
   $.sammy("body").run()
 
-  window.onscroll = setInfoBoxPosition;
+  $window.onscroll = setInfoBoxPosition;
   
   $('ul#wire').accordion({'header': 'a.item_body', 
                           'active': false,

@@ -1,3 +1,4 @@
+
 $.sammy("body")
 
   .post("/organizations/:organization_id/claim", function () {
