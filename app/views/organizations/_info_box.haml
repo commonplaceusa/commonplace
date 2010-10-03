@@ -10,22 +10,25 @@
       - if organization.subscribers.include? current_user
         = link_to "Unsubscribe from #{ organization.name }", organization_subscription_url(organization), :method => :delete, :id => "unsubscribe"
     .body
-      %h3= link_to organization.name, organization, :target => :blank
+      %h3= link_to organization.name, organization
       %p.user_about= auto_link organization.about, :all, :target => :blank
       %ol.user_info
-        - organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+        - unless @organization.tag_list.empty?
           %li
-            %span.info_title= p.subject.upcase
-            = p.body
-            
-        - if organization.phone
+            %span.info_title= "Tags".upcase
+            = @organization.tag_list.join(", ")
+        - if @organization.website
+          %li
+            %span.info_title= "Website".upcase
+            = auto_link @organization.website
+        - if @organization.phone
           %li
             %span.info_title= "Phone".upcase
-            = organization.phone
-        - unless organization.address.blank?    
+            = @organization.phone
+        - unless @organization.address.blank?    
           %li
             %span.info_title= "Address".upcase 
-            = organization.address[/(.+?)(,)/, 1]
+            = @organization.address[/(.+?)(,)/, 1]
     
   
   = render_map do |map|

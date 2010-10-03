@@ -3,7 +3,7 @@
   %h1
     = @organization.name
     - unless @organization.subscribers.include? current_user
-      #subscribe= button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization)
+      #subscribe= button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization), :class => 'linkish_button'
 
   .left_col
     = image_tag @organization.avatar_url(:large), :id => "profile_photo"
@@ -33,14 +33,14 @@
         %li.intense.clickable= "+ view all members".upcase
 
     - if @organization.subscribers.include? current_user
-      =button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete, :id => :unsubscribe
+      =button_to "Unsubscribe from #{ @organization.name }", organization_subscription_url(@organization), :method => :delete, :id => :unsubscribe, :class => 'linkish_button'
 
 
   .middle_col
     - if flash[:win]
       #win= flash[:win]
     
-    %ul#modules
+    %ul
       %li.profile_field
         %h3 About us
         %p= @organization.about

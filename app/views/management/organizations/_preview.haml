@@ -19,7 +19,7 @@
         - if @organization.website
           %li
             %span.info_title= "Website".upcase
-            = @organization.website
+            = link_to @organization.website
         - if @organization.phone
           %li
             %span.info_title= "Phone".upcase
