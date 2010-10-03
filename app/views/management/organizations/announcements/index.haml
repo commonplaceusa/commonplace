@@ -9,7 +9,7 @@
     - f.inputs do
       = f.input :subject
       = f.input :body, :input_html => {:rows => 4, :cols => 40}
-      = f.input :public, :label => "This announcement will be seen by everyone in the community"
+      = f.input :private, :label => "This announcement will be seen only by subscribers"
     = f.buttons
 
 %ul#wire.management_wire
