@@ -12,10 +12,6 @@
       %h3= link_to @organization.name, @organization, :target => :blank
       %p.user_about= auto_link @organization.about, :all, :target => :blank
       %ol.user_info
-        - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
-          %li
-            %span.info_title= p.subject.upcase
-            = p.body
         - unless @organization.tag_list.empty?
           %li
             %span.info_title= "Tags".upcase
