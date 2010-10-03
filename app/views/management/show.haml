@@ -7,7 +7,8 @@
     %h3.management_field Edit your profile picture
     = image_tag current_user.avatar_url(:normal), :class => "graphic normal #{dom_id current_user.avatar}"
     = f.label :image, "Upload a new profile picture:"
-    = link_to 'Crop your photo', edit_avatar_path(current_user.avatar), 'data-remote' => true 
+    - if current_user.avatar.image.file?
+      = link_to 'Crop your photo', edit_avatar_path(current_user.avatar), 'data-remote' => true 
     = f.file_field :image
 
   - semantic_form_for current_user, :url => account_path, :html => { :class => "management_form" } do |f|
