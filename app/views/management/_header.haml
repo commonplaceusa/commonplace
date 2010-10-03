@@ -1,9 +1,14 @@
 
 %header.management
   
-  %nav
+  %nav<>
     - if current_user_session
-      = link_to "Log out", logout_url, :id => 'management_logout'
+      - if current_page? management_url
+        = "#{link_to "See all organizations", organizations_url}"
+      - else 
+        = "#{link_to "Manage organizations", management_url}"
+      
+      = "#{link_to "Log out", logout_url}"
     
   %h1
     - link_to organizations_url, :id => 'title' do
