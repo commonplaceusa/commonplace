@@ -16,7 +16,10 @@
           %li
             %span.info_title= p.subject.upcase
             = p.body
-            
+        - unless @organization.tag_list.empty?
+          %li
+            %span.info_title= "Tags".upcase
+            = @organization.tag_list.join(", ")
         - if @organization.phone
           %li
             %span.info_title= "Phone".upcase
@@ -25,6 +28,7 @@
           %li
             %span.info_title= "Address".upcase 
             = @organization.address[/(.+?)(,)/, 1]
+            
     
   
   = render_map do |map|
