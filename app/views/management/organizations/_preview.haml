@@ -20,6 +20,10 @@
           %li
             %span.info_title= "Tags".upcase
             = @organization.tag_list.join(", ")
+        - if @organization.website
+          %li
+            %span.info_title= "Website".upcase
+            = @organization.website
         - if @organization.phone
           %li
             %span.info_title= "Phone".upcase
