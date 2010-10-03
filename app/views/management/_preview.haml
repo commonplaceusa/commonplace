@@ -13,12 +13,17 @@
       %ol.user_info
         - unless current_user.interests.empty?
           %li
-            %span.info_title= "Shared skills".upcase
-            = current_user.skill_list.join(", ")
-        - unless current_user.interests.empty?
-          %li
             %span.info_title= "Interests".upcase
             = current_user.interest_list.join(", ")
+
+        - unless current_user.good_list.empty?
+          %li
+            %span.info_title= "Shared goods".upcase
+            = current_user.good_list.join(", ")
+        - unless current_user.skill_list.empty?
+          %li
+            %span.info_title= "Shared skills".upcase
+            = current_user.skill_list.join(", ")
         - unless current_user.organizations.empty?
           %li
             %span.info_title= "Organizations".upcase
