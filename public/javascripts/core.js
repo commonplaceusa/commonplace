@@ -1,4 +1,3 @@
-
 $(function() {
   jQuery.extend({
     put: function(url, data, callback, type) {
@@ -10,7 +9,7 @@ $(function() {
   });
 
   $('a[data-remote]').live('click', function(e) {
-    app.location_proxy.setLocation("#" + $(this).attr('href'));
+    $.sammy("body").setLocation("#" + $(this).attr('href'));
     e.preventDefault()
   });
 
