@@ -1,6 +1,8 @@
 
-#filter_description See what's going on in your community:
-= render 'shared/search'
+#filter_description
+  %span.filter_text See what's going on in your community:
+  = link_to 'Manage your organizations', management_url, :class => 'filter_text'
+
 
 %nav#filters
     

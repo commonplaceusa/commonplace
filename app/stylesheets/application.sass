@@ -54,15 +54,20 @@ a.filter:hover
 
   
 #filter_description
-  float: left
-  padding: 10px 15px 8px
-  height: 20px
-  width: 697px
+  width: 100%
   background-color: #4a7eb0
   color: $offWhite
   font-size: 15px
   +linear-gradient(color-stops(#4a7eb0, #46759f))
-  +border-top-left-radius(7px)
+  +border-top-radius(7px)
+  a
+    background-color: #396081
+    float: right
+    color: white
+    +border-top-right-radius(7px)
+  .filter_text
+    +inline-block
+    padding: 10px 15px
 
 div#list
   width: 460px
