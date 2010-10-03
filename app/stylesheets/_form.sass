@@ -31,29 +31,28 @@ div#submit_post
 form.standard_form
 
   input[type=text], textarea, input[type=password]
-    @include styledInput
-    width: $inputBoxWidth
-    @include serif
+    font-size: 1em
+    width: 250px
+    +serif
   
   textarea
     height: 4em
   
   input[type=submit]
-    @include styled-button
-    left: $labelWidth + 10px
+    +styled-button
+    margin-left: 100px + 16px
     position: relative
     margin-top: 10px
     font-size: 1em
-    @include serif
+    +serif
   
   label
-    width: $labelWidth
-    padding: 4px 10px 0 0 
-    display: inline-block
-    font-size: 0.7em
+    width: 100px
+    padding: 8px
+    font-size: 0.8em
     font-weight: normal
     font-family: Arial, Helvetica, sans-serif
-    color: $mediumGray
+    color: #444
     text-align: right
     position: relative
     top: 0px
@@ -65,9 +64,14 @@ form.standard_form
     line-height: 120%
     margin-left: 10px
     font-weight: normal
-    @include sans
+    +sans
     color: #cc0000
   
+  p.hint
+    +sans
+    font-size: 0.8em
+    margin-left: 100px + 16px
+    
   li.boolean
     left: $labelWidth + 10px
     label
@@ -86,7 +90,7 @@ form.standard_form
     li
       display: block
       position: relative
-      margin-bottom: 7px
+      margin-bottom: 1em
       
 form.formtastic fieldset ol li.date
   label
