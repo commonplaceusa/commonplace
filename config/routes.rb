@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.with_options :conditions => { :subdomain => "admin" } do |admin|
     admin.root :controller => "administration", :action => "show"
-
+    
     admin.resources :addresses, :controller => "administration/addresses"
     admin.resources :organizations, :controller => "administration/organizations"
   end
@@ -36,6 +36,7 @@ ActionController::Routing::Routes.draw do |map|
     community.resources :organizations do |org|
       org.resource :subscription, :only => [:index, :show, :create, :destroy]
       org.resource :claim, :member => [:edit_fields]
+      org.resources :announcements, :controller => "organizations/announcements"
     end
 
     map.about 'about', :controller => 'site', :action => 'about'

@@ -12,3 +12,5 @@ $.sammy("body")
   .get("#/organizations/:id", setInfoBox)
   .get("#/organizations/new", setModal)
   .get("#/organizations", setList)
+
+  .get("#/organizations/:organization_id/announcements/new", setModal)

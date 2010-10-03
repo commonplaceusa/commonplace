@@ -1,5 +1,5 @@
 
-$.sammmy("body")
+$.sammy("body")
 
   .post("/account", function() {
     // Because HTML does not send empty checkboxes, Rails adds a hidden field as
