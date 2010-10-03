@@ -25,7 +25,7 @@ class Management::OrganizationsController < ManagementController
     if @organization.update_attributes(params[:organization])
       redirect_to management_organization_url(@organization)
     else
-      render :edit
+      render :show
     end
   end  
   
