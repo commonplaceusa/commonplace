@@ -15,6 +15,7 @@ $.sammy("body")
   .get("#/avatars/:id/edit", function() {
     $.getJSON(this.path.slice(1), function(response) {
       $(response.form).modal({
+        autoResize: true,
         overlayClose: true,
         onClose: function() { 
           $.modal.close(); 
