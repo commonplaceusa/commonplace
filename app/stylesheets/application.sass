@@ -32,12 +32,15 @@ a.filter
   font-family: Helvetica
   text-align: center
   font-size: 10.5px
-  color: #396081
-    
-a.filter:hover
-  background-position: 30px -123px
-  color: #b53f3c
-  text-decoration: none
+  color: #396081    
+  &:hover
+    background-position: 30px -123px
+    color: #b53f3c
+    text-decoration: none
+  &.disabled_link
+    +disabled-link
+    background-position: 30px top
+
 
 #posts_button
   background-image: url("/images/posts.png")

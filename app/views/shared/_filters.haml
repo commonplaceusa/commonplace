@@ -5,14 +5,14 @@
 
 %nav#filters
     
-  = link_to 'Neighborhood Posts', posts_path(:q => params[:q]), :id => "posts_button", :class => 'filter', 'data-remote' => true 
+  = link_to 'Neighborhood Posts', posts_path(:q => params[:q]), :id => "posts_button", :class => 'filter disabled_link', 'data-remote' => true 
     
-  = link_to 'Announcements', announcements_path(:q => params[:q]), :id => "announcements_button", :class => 'filter', 'data-remote' => true 
+  = link_to 'Announcements', announcements_path(:q => params[:q]), :id => "announcements_button", :class => 'filter disabled_link', 'data-remote' => true 
     
-  = link_to 'Events', events_path(:q => params[:q]), :id => "events_button", :class => 'filter', 'data-remote' => true 
+  = link_to 'Events', events_path(:q => params[:q]), :id => "events_button", :class => 'filter disabled_link', 'data-remote' => true 
     
-  = link_to 'People', users_path(:q => params[:q]), :id => "people_button", :class => 'filter', 'data-remote' => true 
+  = link_to 'People', users_path(:q => params[:q]), :id => "people_button", :class => 'filter disabled_link', 'data-remote' => true 
     
   = link_to 'Organizations', organizations_path(:q => params[:q]), :id => "organizations_button", :class => 'filter', 'data-remote' => true 
     
-  = link_to 'Goods & Skills', tags_path, :id => "goods_and_skills_button", :class => 'filter', 'data-remote' => true
+  = link_to 'Goods & Skills', tags_path, :id => "goods_and_skills_button", :class => 'filter disabled_link', 'data-remote' => true

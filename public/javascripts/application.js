@@ -57,5 +57,8 @@ $(document).ready(function() {
   });
 
   renderMaps();
+  
+  $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
+  
 
 });
