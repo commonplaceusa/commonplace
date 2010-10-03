@@ -2,7 +2,7 @@ class Management::Organizations::AnnouncementsController < ManagementController
   load_and_authorize_resource :organization
   def index
     @organization = Organization.find(params[:organization_id])
-    @announcements = @organization.announcements
+    @announcements = @organization.announcements.all(:order => "created_at DESC")
     @announcement = Announcement.new
   end
   
