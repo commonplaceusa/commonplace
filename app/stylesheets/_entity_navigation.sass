@@ -14,6 +14,7 @@
       margin-left: 32px                         
       text-align: center
       font-size: 11px
+      font-weight: bold
       color: $baseText
       &:first-child                             
         margin-left: 0                          
@@ -24,13 +25,13 @@
 
       span                                      
         background-color: $baseGray
-        border: 1px solid #aaa
+        border: 1px solid #ccc
         display: block
         +border-radius(5px)
         span
           padding: 4px 0
-          border: 1px solid #efefef
-            bottom: #aaa
+          border: 1px solid #f8f8f8
+            bottom: #ddd 1px solid
         
       &.posts div
         background-image: url("/images/posts.png")
@@ -47,7 +48,14 @@
               
       &:hover
         color: white
-        span
-          background-color: $baseRed
         div
           background-position: 0px 93px
+
+        span
+          border: #8c3431 1px solid
+          span
+            background-color: #b53f3c
+            border: #c95855 1px solid
+              bottom: #9a2b27 1px solid
+
+
