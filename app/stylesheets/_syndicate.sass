@@ -46,12 +46,13 @@
     border: 1px solid black                     
     margin: 10px 0    
     overflow: hidden
+    &:hover
+      background-color: $listingHover
+
     a
       +border-radius(5px)
       padding: 10px
       +clearfix
-      &:hover
-        background-color: $listingHover
       display: block
       color: $baseText
       .header, .body                          
