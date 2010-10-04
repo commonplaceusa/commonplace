@@ -1,5 +1,4 @@
 
-@import 960/grid
 @import compass/layout/sticky-footer
 @import compass/utilities/general/clearfix
 @import compass/utilities/lists/inline-list        
@@ -17,71 +16,8 @@
 @import tipsy
 
 +global-reset
- 
-$ninesixty-columns: 24
-$ninesixty-gutter-width: 10px
-
 body
-  min-width: 960px
-  color: $primaryTextColor
   text-rendering: optimizeLegibility
-  background-color: $backgroundColor
-  +serif
-
-nav, header, footer
-  display: block
-  
-a
-  color: $linkColor
-  text-decoration: none
-  &:hover
-    text-decoration: underline
-  &:visited
-  &:active 
-
-#wrap
-  position: relative
-  margin:
-    left: auto
-    right: auto
-  overflow: hidden
-  width: 972px
-  padding: 0 5px
-  +clearfix
-
-
-#main
-  +clearfix
-  margin-bottom: -1000px
-  padding-bottom: 1000px
-
-h2.title
-  float: left
-  padding: 10px 15px 8px
-  height: 20px
-  width: 697px
-  background-color: #4a7eb0
-  color: $offWhite
-  font-size: 15px
-  +border-top-left-radius(7px)
-
-#search
-  width: 215px
-  height: 30px
-  float: right
-  padding: 8px 15px 0
-  background-color: #396081
-  color: $offWhite
-  font-size: 15px
-  text-align: center
-  +border-top-right-radius(7px)
-  form
-    input[type=text]
-      font-size: 0.7em
-      @include styledInput
-
-
-
 
 #win, #fail
   width: inherit
@@ -92,46 +28,3 @@ h2.title
   margin-bottom: 10px
   +border-radius($defaultRadius)
 
-#win
-  background-color: #BFDEBF
-#fail
-  background-color: red
-  color: white
-
-.label 
-  color: #666666
-  -webkit-transition: color 0.2s linear
-
-.fading 
-  color: white
-  -webkit-transition: color 0.2s linear
-
-+sticky-footer(30px, "#wrap", "#wrap_footer", "footer")
-
-footer
-  padding: 10px
-  height: 11px
-  background: $topColor
-  width: auto
-  @include sans
-  font-size: 11px
-  color: $topTextColor
-  a
-    color: $topLinkColor
-  span#footer_copy
-    float: left
-  span#nav
-    display: inline
-    color: black
-    float: right
-    
-.linkish_button
-  background-color: transparent
-  border: none
-  text-decoration: underline
-  color: $linkColor
-  cursor: pointer
-      
-img.normal
-  width: 120px
-  height: 120px

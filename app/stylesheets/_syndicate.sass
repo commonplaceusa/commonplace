@@ -1,0 +1,87 @@
+@import replies
+.application
+  #syndicate
+    width: 458px                                
+    float: left                                 
+    background-color: #ebebeb                   
+    +border-radius(5px)
+    padding: 10px                               
+    margin-right: 12px                          
+  nav
+    +clearfix
+                                                
+  #create-entity
+    padding: 10px 10px
+    background-color: $baseBlue
+    font-size: 12px
+    font-weight: bold
+    +sans
+    color: white
+    float: left 
+    border: 1px solid black
+    +border-radius(5px)
+                                                
+  #filters
+    padding: 10px 10px
+    float: left                                 
+    border-left: 1px solid #555
+    padding-left: 10px                          
+    margin-left: 10px 
+
+    a
+      color: $baseText
+      +sans
+      font-size: 10px
+      padding: 5px 10px
+      background-color: $baseGray
+      border: 1px solid #aaa
+      +border-radius(5px)
+      +clearfix
+    a.selected
+      background-color: #ddd
+
+  .listing                                      
+    background-color: white
+    +border-radius(5px)
+    border: 1px solid black                     
+    margin: 10px 0    
+    overflow: hidden
+    a
+      +border-radius(5px)
+      padding: 10px
+      +clearfix
+      &:hover
+        background-color: $listingHover
+      display: block
+      color: $baseText
+      .header, .body                          
+        margin-left: 60px
+      .body
+        +serif
+        font-size: 12px
+        line-height: 1.6
+      .header > 
+        time
+          float: right
+          color: $timeAgo
+          +sans
+          font-size: 10px
+        .title
+          font-size: 18px
+          +serif
+        .author
+          font-size: 12px
+          color: $subtitle
+          font-family: arial
+          line-height: 1.2
+          +sans
+      aside
+        float: left
+        .avatar                                 
+          width: 50px                           
+          height: 50px                          
+        .reply-count 
+          width: 50px                           
+          text-align: center
+          font-size: 12px
+        

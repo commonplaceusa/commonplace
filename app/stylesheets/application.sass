@@ -1,116 +1,19 @@
-@import core
-@import styled_box
-@import item
-@import info_box
-@import form
-@import organization
-@import profile
-@import management_form
-@import modal
-@import registration
-@import right
-@import profile_fields
-@import header
-@import get_started
-
-nav#filters
-  clear: both
-  padding: 20px 0px
-  display: block
-  margin: auto
-  border: 2px solid $lightestGray
-  border-top: none
-  +border-bottom-radius(7px)
-  margin-bottom: 15px
-
-a.filter
-  +inline-block
-  text-align: center
-  width: 155px
-  background-position: 30px top
-  background-repeat: no-repeat
-  padding-top: 96px
-  font-family: Helvetica
-  text-align: center
-  font-size: 10.5px
-  color: #396081
-    
-a.filter:hover
-  background-position: 30px -123px
-  color: #b53f3c
-  text-decoration: none
-
-#posts_button
-  background-image: url("/images/posts.png")
-#people_button
-  background-image: url("/images/users.png")
-#organizations_button
-  background-image: url("/images/organizations.png")
-#events_button
-  background-image: url("/images/events.png")
-#announcements_button
-  background-image: url("/images/announcements.png")
-#goods_and_skills_button
-  background-image: url("/images/goods_and_skills.png")
-
-  
-#filter_description
-  width: 100%
-  background-color: #4a7eb0
-  color: $offWhite
-  font-size: 15px
-  +linear-gradient(color-stops(#4a7eb0, #46759f))
-  +border-top-radius(7px)
-  a
-    background-color: #396081
-    float: right
-    color: white
-    +border-top-right-radius(7px)
-  .filter_text
-    +inline-block
-    padding: 10px 15px
-
-div#list
-  width: 460px
-  float: left
-  background: $topColor
-  padding: 10px
-  margin-right: 1px
-  +clearfix
-  +border-top-right-radius($defaultRadius)
-
-div#info
-  width: 480px
-  float: right
-
-a#add
-  margin-right: 500px
-  float: left
-  +border-top-radius($defaultRadius)
-  padding: 8px 12px 2px
-  background-color: $topColor
-  +sans
-  font-size: 12px
-  color: $mediumBlue
-  text-decoration: none
-  font-weight: bold
-  &:hover
-    color: $mediumBlue + #111
-    
-.replies
-  display: none
-
-#edit_profile_fields
-  width: 400px
-  +inline-block
-  border-right: 1px solid black
-  min-height: 400px
-  padding-right: 10px
-  margin-right: 10px
-
-#edit_avatar
-  width: 300px
-  +inline-block
-
-
-
+@import entity_navigation
+@import syndicate
+@import information
+.application                                  
+  #wrap                                       
+    width: 970px                                
+    margin: auto                                
+    color: $baseText
+  #tooltip                                      
+    width: 448px
+    +sans
+    color: #656565
+    font-size: 12px
+    font-weight: bold
+    padding: 15px                               
+    float: left                                 
+    background-color: #ebebeb                   
+    +border-radius(5px)
+    margin-bottom: 12px                         

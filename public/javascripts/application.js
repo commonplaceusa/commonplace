@@ -5,8 +5,6 @@ $.sammy("body")
 
 $(document).ready(function() {
   $.sammy("body").run()
-
-  $window.onscroll = setInfoBoxPosition;
   
   $('ul#wire').accordion({'header': 'a.item_body', 
                           'active': false,
@@ -25,6 +23,11 @@ $(document).ready(function() {
     $.sammy("body").runRoute("get",$(this).attr('href'));
   });
 
-  renderMaps();
+  //uncomment when newlayout is finished
+  //renderMaps();
+  //window.onscroll = setInfoBoxPosition;
+  
+
+  $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
 
 });

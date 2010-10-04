@@ -10,3 +10,40 @@ header.management
         border-right: none
         margin-right: 0
         padding-right: 0
+  
+.application
+  header
+    background-color: $baseGray                   
+    padding: 10px                               
+    margin-top: 15px
+    +border-top-radius(5px)
+    +clearfix
+    h1                                          
+      float: left
+      color: $baseBlue
+      +serif
+      font-size: 22px
+      font-weight: bold
+      line-height: 1
+    h2
+      float: left
+      color: $baseRed
+      font-weight: bold
+      font-size: 18px
+      line-height: 1.4
+      margin-left: 10px
+      +serif
+    nav                                         
+      float: right
+      a
+        font-size: 11px
+        padding: 5px
+        color: $baseText
+        font-weight: bold
+        vertical-align: bottom
+        +sans
+        text-decoration: none
+        &.current_page
+          color: $baseBlue
+        &:hover
+          color: $baseBlue

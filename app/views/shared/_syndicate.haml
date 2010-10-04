@@ -1,0 +1,71 @@
+#syndicate
+  %nav
+    %a#create-entity POST TO YOUR NEIGHBORS
+    #filters
+      %a.selected YOU
+      %a ALL
+  %ul
+    %li.listing
+      %a.post
+        %aside
+          %img.avatar/
+          %div.reply-count 7 replies
+        .header
+          %time 30 minutes ago
+          .title Ladder?
+          .author Max N.
+        %p.body
+          Hey guys, I'm just trying to put this new satelite dish up on my roof, but I don't have a ladder! Anyone have one I can borrow for the afternoon? (You might end up with some cookies later)
+
+    %li.listing
+      %a.post
+        %aside
+          %img.avatar/
+          %div.reply-count 14 replies
+        .header
+          %time 4 hours ago
+          .title This is the hover state
+          .author Mark M.
+        %p.body
+          Hey guys, I'm just trying to put this new satelite dish up on my roof, but I don't have a ladder! Anyone have one I can borrow for the afternoon? (You might end up with some cookies later)
+
+    %li.listing
+      %a.post
+        %aside
+          %img.avatar/
+          %div.reply-count 14 replies
+        .header
+          %time 4 hours ago
+          .title This is the hover state
+          .author Mark M.
+        %p.body
+          Hey guys, I'm just trying to put this new satelite dish up on my roof, but I don't have a ladder! Anyone have one I can borrow for the afternoon? (You might end up with some cookies later)
+      .replies
+        %ul
+          %li.reply
+            %img.avatar/
+            .author Ashley C.
+            %p.body 
+              Thanks Brian! See you there. I'll bring cookies
+              %time 4 hours ago
+          %li.reply
+            %img.avatar/
+            .author Ashley C.
+            %p.body 
+              Thanks Brian! See you there. I'll bring cookies
+              %time 4 hours ago
+          %li.reply
+            %img.avatar/
+            .author Ashley C.
+            %p.body 
+              Thanks Brian! See you there. I'll bring cookies
+              %time 4 hours ago
+          %li.reply
+            %img.avatar/
+            .author Ashley C.
+            %p.body 
+              I have a ladder you can use. But I won't be available until sometime tomorrow afternoon. Is that OK?
+              %time 4 hours ago
+        %form.new_reply
+          %textarea{:cols => "40", :rows => "2"}
+          %input{:type => "submit", :value => "Reply"}/

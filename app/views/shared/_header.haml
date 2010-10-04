@@ -1,17 +1,9 @@
-
 %header
+  %h1 CommonPlace 
+  %h2 West Roxbury
   %nav
-    - if current_user_session
-      #greeting> Hi, #{current_user.first_name}!
-      = tab_to("Home", root_url) + tab_to("Inbox (#{current_user.notifications.count})", inbox_url, :id => 'inbox') + tab_to('Manage Profiles', management_url, :id => 'organizations') + tab_to('Log out', logout_url, :method => :delete)
-    - else
-      - form_for UserSession.new, :url => user_session_path do |f|
-        = f.text_field :email, 'data-label' => "Email"
-        = f.password_field :password
-        = f.submit "Log in"
-
-  %h1
-    - link_to root_url, :id => 'title' do
-      = image_tag 'logo.png', :id => 'logo', :alt => "CommonPlace"
-
-
+    = link_to "Home", "/", :class => 'current_page'
+    = link_to "Inbox (8)", "/inbox"
+    = link_to "Manage Profile", "/account"
+    = link_to "Create an Organization", "/organizations/new"
+    = link_to "Log Out", "/user_session/destroy"

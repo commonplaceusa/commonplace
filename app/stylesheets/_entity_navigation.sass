@@ -1,0 +1,53 @@
+.application                                                
+  #entities
+    border: 2px solid $baseGray
+      top: 0px
+    +border-bottom-radius(5px)
+    +clearfix
+    padding: 12px                               
+    margin-bottom: 15px
+    a 
+      width: 130px
+      +sans
+      display: block                            
+      float: left                               
+      margin-left: 32px                         
+      text-align: center
+      font-size: 11px
+      color: $baseText
+      &:first-child                             
+        margin-left: 0                          
+      div
+        width: 96px
+        height: 93px
+        margin: 0px auto 10px
+
+      span                                      
+        background-color: $baseGray
+        border: 1px solid #aaa
+        display: block
+        +border-radius(5px)
+        span
+          padding: 4px 0
+          border: 1px solid #efefef
+            bottom: #aaa
+        
+      &.posts div
+        background-image: url("/images/posts.png")
+      &.announcements div
+        background-image: url("/images/announcements.png")
+      &.events div
+        background-image: url("/images/events.png")
+      &.users div
+        background-image: url("/images/users.png")
+      &.organizations div
+        background-image: url("/images/organizations.png")
+      &.goods_and_skills div
+        background-image: url("/images/goods_and_skills.png")
+              
+      &:hover
+        color: white
+        span
+          background-color: $baseRed
+        div
+          background-position: 0px 93px
