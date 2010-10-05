@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
     
     community.resources :avatars, :only => [:edit, :update]
     
-    community.root :controller => "organizations", :action => "index"
+    community.root :controller => "communities", :action => "show"
 
     community.resources :posts
     
@@ -43,7 +43,6 @@ ActionController::Routing::Routes.draw do |map|
     map.privacy 'privacy', :controller => 'site', :action => 'privacy'
     map.terms 'terms', :controller => 'site', :action => 'terms'
     map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
-    map.login 'get-started', :controller => 'user_sessions', :action => 'new'
     map.resource :inbox
     map.resources :platform_updates
     map.resources :conversations

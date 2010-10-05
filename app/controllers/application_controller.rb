@@ -47,14 +47,5 @@ class ApplicationController < ActionController::Base
     @current_user_session = UserSession.find
     @current_user = current_user_session.user
   end
-  
-  def require_user
-    unless current_user_session
-      store_location
-      flash[:message] = "You must log in to access this page."
-      redirect_to login_url
-      return false
-    end
-  end
 
 end

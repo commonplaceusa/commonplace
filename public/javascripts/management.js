@@ -42,6 +42,6 @@ $(function() {
     });
   });
   
-  $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
+  $('.management_disabled').attr('title', "Sorry, this feature is not yet available.").tipsy({gravity: 'n'});
   
 });
