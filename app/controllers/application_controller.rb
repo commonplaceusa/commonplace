@@ -13,15 +13,21 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = exception.message
-    redirect_to root_url
+    store_location
+    redirect_to new_user_session_url
   end
  
   protected
   
   
   def current_community
-    @current_community = Community.find_by_slug(current_subdomain)
+    @current_community ||= Community.find_by_slug(current_subdomain)
+    if @current_community
+      authorize! :read, @current_community
+    else
+      raise "Requires community subdomain"
+    end
+    return @current_community
   end
 
   def store_location

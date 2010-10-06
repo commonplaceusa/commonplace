@@ -11,7 +11,8 @@ class Ability
       can :destroy, Post, :user_id => user.id
       can :destroy, UserSession
     end
-
+    
+    can :read, Community
     can :read, Post
     can :read, User
     can :read, Announcement
