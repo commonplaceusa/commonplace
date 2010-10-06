@@ -53,5 +53,5 @@ class ApplicationController < ActionController::Base
     @current_user_session = UserSession.find
     @current_user = current_user_session.user
   end
-
+  
 end
