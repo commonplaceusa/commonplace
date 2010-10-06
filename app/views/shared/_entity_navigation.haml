@@ -1,25 +1,25 @@
 %nav#entities
-  %a.posts
+  - link_to :posts, :class => 'posts' do 
     %div
     %span
       %span Neighborhood Posts
-  %a.announcements
+  - link_to :announcements, :class => 'announcements' do
     %div
     %span
       %span Announcements
-  %a.events
+  - link_to :events, :class => 'events' do
     %div
     %span
       %span Events
-  %a.users
+  - link_to :users, :class => 'users' do
     %div
     %span
       %span People
-  %a.organizations
+  - link_to :organizations, :class => 'organizations' do
     %div
     %span
       %span Organizations
-  %a.goods_and_skills
+  - link_to :tags, :class => 'goods_and_skills' do
     %div
     %span
       %span Goods & Skills

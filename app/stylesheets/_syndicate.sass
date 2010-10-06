@@ -1,4 +1,5 @@
 @import replies
+
 .application
   #syndicate
     width: 458px                                
@@ -12,13 +13,14 @@
       +clearfix
                                                 
   #create-entity
+    +text-shadow(#376287, 2px, 1px, 1px)
+    font-weight: bold
     img
       width: 5px
       height: 5px
       border: 1px solid black
       +inline-block
     font-size: 10px
-    font-weight: bold
     +sans
     display: block
     color: white
@@ -73,7 +75,7 @@
       height: 100%
       
 
-  .listing                                      
+  .item
     background-color: white
     +border-radius(5px)
     border: 1px solid #aaa
@@ -83,6 +85,7 @@
       background-color: $listingHover
 
     a
+      text-decoration: none
       +border-radius(5px)
       padding: 10px
       +clearfix
