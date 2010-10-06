@@ -1,6 +1,4 @@
 .profile
-  +grid-system(24)
-  +clearfix
   border: 
     left: 1px solid $lightGray
     right: 1px solid $lightGray
@@ -8,10 +6,6 @@
   background-color: #fcfcfc
   
   h1
-    // +grid-prefix(1/2)
-    // +grid(23 + 1/2)
-    +grid(24)
-  
     margin: 15px
     font-size: 2em
     color: #555
@@ -21,10 +15,6 @@
       vertical-align: top
 
   .left_col
-    +alpha
-    +grid(5.5)
-    +grid-suffix(1/2)
-    
     img#profile_photo
       border: 6px solid $orgPageBlue
     
@@ -83,11 +73,7 @@
       margin-top: 10px
         
   .middle_col
-    +grid(11.5)
-    +grid-suffix(0.5)
-    
     ul#modules
-    
     ul
       li
         margin-bottom: 1em
@@ -117,8 +103,6 @@
           margin-bottom: 10px
   
   .right_col 
-    +grid(6)
-    +omega
     background-color: #e9e8e4
     +border-radius(7px)
     border: 1px solid $lightGray
