@@ -1,6 +1,5 @@
 set :application, "commonplace"
 default_run_options[:pty] = true
-set :branch, "origin/master"
 set :scm, :git
 set :repository,  "git@github.com:maxtilford/#{application}.git"
 set :uses_ssl, false

@@ -7,6 +7,7 @@ task :production do
   set :domain, "westroxbury.commonplaceusa.com"
   set :web_port, "80"
   set :rails_env, "production"
+  set :branch, "origin/pre-launch"
 end
 
 task :staging do
@@ -14,7 +15,8 @@ task :staging do
   role :app, "69.164.215.169"
   role :db,  "69.164.215.169", :primary => true
   set :web_server, :nginx
-  set :domain, "westroxbury.staging.commonplaceusa.com"
+  set :domain, "westroxbury.commonplace.co"
   set :web_port, "80"
   set :rails_env, "production"
+  set :branch, "origin/master"
 end
