@@ -23,9 +23,9 @@ $(document).ready(function() {
     $.sammy("body").runRoute("get",$(this).attr('href'));
   });
 
-  //uncomment when newlayout is finished
-  //renderMaps();
-  //window.onscroll = setInfoBoxPosition;
+  renderMaps();
+
+  window.onscroll = setInfoBoxPosition;
   
 
   $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});

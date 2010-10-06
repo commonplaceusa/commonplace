@@ -33,20 +33,21 @@ function setModal() {
 
 function renderMaps() {
   $('div[data-map]').each(function() {
-    var args = $.parseJSON($(this).attr('data-map')),
-        defaultOptions = {
-          zoom: 15,
-          center: jsonToLatLng(args.center),
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          navigationControl: true,
-          mapTypeControl: false,
-          scaleControl: true
-        },
-        map = new google.maps.Map(this, defaultOptions);
-    $(this).data('map', map);
-    $.each(args.markers, function() {renderMarker(this,map)});
-    $.each(args.polygons, function() {renderPolygon(this,map)});
-    $.each(args.directions, function() {renderDirections(this,map)});
+    var args = $.parseJSON($(this).attr('data-map'))
+    if (args && args.center) {
+      var map = new google.maps.Map(this, {
+        zoom: 15,
+        center: jsonToLatLng(args.center),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        navigationControl: true,
+        mapTypeControl: false,
+        scaleControl: true
+      });
+      $(this).data('map', map);
+      $.each(args.markers, function() {renderMarker(this,map)});
+      $.each(args.polygons, function() {renderPolygon(this,map)});
+      $.each(args.directions, function() {renderDirections(this,map)});
+    }
   });
 }
 
@@ -107,7 +108,7 @@ function _ajax_request(url, data, callback, type, method) {
 
 
 function setInfoBoxPosition() {
-  if ($(window).scrollTop() + 10 > $('#info').offset().top){
+  if ($(window).scrollTop() + 10 > $('#information').offset().top){
     $('.info_box').css('position','fixed');
   } else {
     $('.info_box').css('position', 'static');
