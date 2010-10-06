@@ -1,6 +1,32 @@
-= link_to_add("&#x271a; Create a new event for your community".upcase, new_post_path, 'data-remote' => true)
 
-#list
-  = render 'list'
 
-#info
+#syndicate
+  %nav
+    %a#create-entity
+      %span
+        %img
+        POST AN EVENT
+
+    #filters
+      %a.selected
+        %span ALL
+      %a
+        %span YOURS
+      %a
+        %span SUGGESTED
+
+  %ul.items
+    - @events.each do |event|
+      %li.item
+        
+        - link_to event, :class => 'event', 'data-remote' => true do
+          .small_calendar.avatar= render 'events/calendar', :event => event
+          %time= event.time
+          .reply-count #{event.replies.size} replies
+          .title= event.subject
+          .author= event.organization.name
+          %p.body= truncate event.body, :length => 160
+
+        = render 'shared/replies', :item => event
+
+

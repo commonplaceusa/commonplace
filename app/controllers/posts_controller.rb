@@ -4,10 +4,6 @@ class PostsController < CommunitiesController
   caches_action :show
   def index
     @posts = Post.all
-    respond_to do |format|
-      format.json
-      format.html
-    end
   end
 
   def new

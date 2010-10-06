@@ -1,17 +1,7 @@
 class EventsController < CommunitiesController
   load_and_authorize_resource
   def index
-    respond_to do |format|
-      if params[:q]
-        @results = current_community.events.tagged_with_aliases(params[:q], :any => true)
-        format.json { render :search }
-        format.html { render :search }
-      else
-        @events = current_community.events
-        format.json
-        format.html
-      end
-    end
+    @events = current_community.events
   end
   
   def new

@@ -1,5 +1,0 @@
-{ 
-  "add": <%= html_to_json { link_to_add("&#x271a; Post to your neighbors".upcase, new_post_path, 'data-remote' => true) } %>,
-  "list": <%= html_to_json { render 'list' } %>,
-  "info": <%= html_to_json { render 'communities/right' } %>
-}

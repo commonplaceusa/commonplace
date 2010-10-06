@@ -1,7 +1,25 @@
 
-= link_to_add("&#x271a; Make an announcement to your community".upcase, new_post_path, 'data-remote' => true)
+#syndicate
+  %nav
+    %a#create-entity
+      %span
+        %img
+        POST AN ANNOUNCEMENT
+    #filters
+      %a.selected
+        %span ALL
+      %a
+        %span SUBSCRIBED
+  %ul.items
+    - @announcements.each do |announcement|
+      %li.item
+        - link_to announcement, :class => 'announcement', 'data-remote' => true do
+          = image_tag announcement.owner.avatar_url(:thumb), :class => 'avatar'
+          %time= announcement.time
+          .reply-count #{ announcement.replies.size } replies
+          .title= announcement.subject
+          .author= announcement.owner.name
+          %p.body= truncate announcement.body, :length => 160
+        
+        = render 'shared/replies', :item => announcement
 
-#list
-  = render 'shared/list', :items => @announcements
-
-#info

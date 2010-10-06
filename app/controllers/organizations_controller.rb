@@ -3,17 +3,7 @@ class OrganizationsController < CommunitiesController
   authorize_resource
   
   def index
-    respond_to do |format|
-      if params[:q]
-        @results = current_community.organizations.tagged_with_aliases(params[:q], :any => true)
-        format.json { render :search }
-        format.html { render :search }
-      else
-        @organizations = current_community.organizations
-        format.json
-        format.html
-      end
-    end
+    @organizations = current_community.organizations
   end
 
   def show
