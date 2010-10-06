@@ -121,9 +121,8 @@ function selectTab(tab) {
 };
 
 function setInfoBox() {
-  
   $.getJSON(this.path.slice(1), function(response) {
-    $("#info").html(response.info_box);
+    $("#information").html(response.info_box);
     setInfoBoxPosition();
     renderMaps();
   });
