@@ -1,7 +1,11 @@
 #information
   #neighborhood-activity
     %h3 MAP OF YOUR NEIGHBORHOOD ACTIVITY
-    .map{"data-map" => ""}
+    = render_map do |map|
+      - map.center :lat => current_community.lat, :lng => current_community.lng
+      - items.each do |item|
+        - map.marker :lat => item.lat, :lng => item.lng
+    
   %hr
 
   #history

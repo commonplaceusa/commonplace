@@ -25,3 +25,7 @@
         = render 'shared/replies', :item => post
 
 
+#tooltip
+  Hi Brian! Welcome to West Roxbury's first community website.
+  
+= render 'shared/information', :items => @posts.map(&:owner)
