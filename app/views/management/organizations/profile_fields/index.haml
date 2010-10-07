@@ -3,7 +3,7 @@
  
 #edit_profile
   %h3.management_field Manage profile fields
-  
+  %p.form-hint These Profile Fields will be shown on the your organization profile page. You can change their order, add new ones, and edit them.
   = button_to "Add a new profile field", "#" + new_management_organization_profile_field_path(@organization), :method => :get, :id => "new_profile_field", :class => "styled_button"
 
   %ul#modules{'data-organization' => @organization.id}
