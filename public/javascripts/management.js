@@ -61,6 +61,12 @@ $(function() {
     });
   });
 
-  $('.management_disabled').attr('title', "Coming soon!").tipsy({gravity: 'n'});
+  $('ul#wire').accordion({'header': 'a.item_body', 
+                          'active': false,
+                          'collapsible': true, 
+                          'autoHeight': false,
+                         });
+
+  $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   
 });
