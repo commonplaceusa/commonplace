@@ -22,6 +22,14 @@ $(document).ready(function() {
 
   $.sammy("body").run();
 
+  window.onscroll = setInfoBoxPosition;
+  
+  $('ul#wire').accordion({'header': 'a.item_body', 
+                          'active': false,
+                          'collapsible': true, 
+                          'autoHeight': false,
+                         });
+
   $('body').click(function(e) {
     if (e.pageX < (($('body').width() - $('#wrap').width()) / 2)) {
       $('#filters .selected_nav').click();
