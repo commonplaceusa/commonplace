@@ -12,6 +12,7 @@ $(document).ready(function() {
 
   $.sammy("body").run()
 
+
   $('ul#wire').accordion({'header': 'a.item_body', 
                           'active': false,
                           'collapsible': true, 
