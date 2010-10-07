@@ -15,7 +15,13 @@
     = f.buttons
 
 #edit_profile
-  %h3.management_field Other Events
-  %ul.management_list#wire
-    - @events.each do |event|
-      = render event
+  - unless @upcoming.empty?
+    %h3.management_field Upcoming Events
+    %ul.management_list#wire
+      - @upcoming.each do |event|
+        = render event
+  - unless @past.empty?
+    %h3.management_field Past Events
+    %ul.management_list#wire
+      - @past.each do |event|
+        = render event

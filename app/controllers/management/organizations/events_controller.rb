@@ -2,7 +2,8 @@ class Management::Organizations::EventsController < ManagementController
   load_and_authorize_resource :organization
 
   def index
-    @events = @organization.events.all(:order => "date DESC")
+    @past = @organization.events.past(:order => "date DESC")
+    @upcoming = @organization.events.upcoming(:order => "date DESC")
     @event = Event.new
   end
 
