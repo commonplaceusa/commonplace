@@ -12,6 +12,8 @@
       = f.input :private, :label => "Check this box if you want this to be seen only by subscribers"
     = f.buttons
 
-%ul#wire.management_wire
-  - @announcements.each do |announcement|
-    = render 'announcements/announcement', :announcement => announcement
+#profile
+  %h3.management_field Past Announcements
+  %ul#wire.management_wire
+    - @announcements.each do |announcement|
+      = render 'announcements/announcement', :announcement => announcement
