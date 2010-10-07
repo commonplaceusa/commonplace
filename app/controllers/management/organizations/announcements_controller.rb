@@ -16,4 +16,12 @@ class Management::Organizations::AnnouncementsController < ManagementController
       render :index
     end
   end
+  
+  def destroy
+    @organization = Organization.find(params[:organization_id])
+    @announcement = Announcement.find(params[:id])
+    @announcement.destroy
+    redirect_to management_organization_announcements_url(@organization)
+  end
+    
 end

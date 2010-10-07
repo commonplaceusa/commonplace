@@ -1,0 +1,18 @@
+- item_tag(announcement) do
+  %span{:class => 'item_body'}
+    .author
+      = image_tag announcement.owner.avatar_url(:thumb), :width => 50, :height => 50
+      = announcement.owner.name
+    %h3
+      = announcement.subject    
+
+    = link_to 'delete', [:management, announcement.owner, announcement], :method => "delete"
+    %time
+      = announcement.time
+
+    %p
+      = truncate announcement.body, :length => 160
+      %span.reply_count #{ announcement.replies.size } replies
+
+  = render 'shared/replies', :item => announcement
+
