@@ -14,7 +14,20 @@ $(function() {
     defaultDate: null, 
   });
   
-  $('#modules').sortable();
+  $('#modules').sortable({
+    update: function(event, ui) {
+      var params = 
+        $.extend(this.params, 
+                 {
+                   fields: 
+                   $.map($("#modules").sortable("toArray"),
+                         function(m) { return m.replace("field_", ""); })
+                 });
+      $.post("/management/organizations/" 
+             + $("#modeles").attr("data-organization") 
+             + "/profile_fields/order", params, function () { }, "json");
+    }
+  });
   $('#modules').disableSelection();
 
   $(".tabs").tabs();
