@@ -14,7 +14,7 @@
           %span.admin
             = link_to 'edit'
             &sdot;
-            = link_to 'delete'
+            = link_to 'delete', [:management, @organization, p], :method => "delete"
         %p= p.body
   = button_to 'Save', order_management_organization_profile_fields_path(@organization), :id => "save_profile_fields", :class => "styled_button"
 = link_to "Preview #{@organization.name}'s profile &raquo;", @organization, :class => "profile_preview", :target => :blank          

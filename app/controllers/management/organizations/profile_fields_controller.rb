@@ -26,4 +26,11 @@ class Management::Organizations::ProfileFieldsController < ManagementController
     end
     render :nothing => true
   end    
+  
+  def destroy
+    @organization = Organization.find(params[:organization_id])
+    @profile_field = ProfileField.find(params[:id])
+    @profile_field.destroy
+    redirect_to management_organization_profile_fields_url(@organization)
+  end
 end
