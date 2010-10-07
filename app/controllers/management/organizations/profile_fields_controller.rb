@@ -33,4 +33,10 @@ class Management::Organizations::ProfileFieldsController < ManagementController
     @profile_field.destroy
     redirect_to management_organization_profile_fields_url(@organization)
   end
+
+  def update
+    @profile_field = ProfileField.find(params[:id])
+    @profile_field.update_attributes(params[:profile_field])
+    render :nothing => true
+  end
 end

@@ -10,12 +10,13 @@
     - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
       %li.profile_field{:id => "field_#{p.id}"}
         %h3
-          = p.subject
           %span.admin
-            = link_to 'edit'
+            = link_to 'edit', [:edit, :management, @organization, p], 'data-remote' => true, :class => 'edit'
             &sdot;
             = link_to 'delete', [:management, @organization, p], :method => "delete"
-        %p= p.body
+          %span.subject= p.subject
+
+        %p.body= p.body
 
 = link_to "Preview #{@organization.name}'s profile &raquo;", @organization, :class => "profile_preview", :target => :blank          
   
