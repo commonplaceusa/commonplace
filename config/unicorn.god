@@ -1,20 +1,21 @@
-
+rails_root = '/home/deploy/commonplace/current'
+pid_dir = '/home/deploy/commonblog/shared/pids'
 God.watch do |w|
-  w.name = "unicorn"
+  w.name = "commonplace_unicorn"
   w.interval = 30.seconds # default
   
   # unicorn needs to be run from the rails root
-  w.start = "cd #{RAILS_ROOT} && #{BIN_PATH}/unicorn_rails -c #{RAILS_ROOT}/config/unicorn.rb -E #{RAILS_ENV} -D"
+  w.start = "cd #{rails_root} && #{BIN_PATH}/unicorn_rails -c #{rails_root}/config/unicorn.rb -E #{RAILS_ENV} -D"
 
   # QUIT gracefully shuts down workers
-  w.stop = "kill -QUIT `cat #{PID_DIR}/unicorn.pid`"
+  w.stop = "kill -QUIT `cat #{pid_dir}/unicorn.pid`"
 
   # USR2 causes the master to re-create itself and spawn a new worker pool
-  w.restart = "kill -USR2 `cat #{PID_DIR}/unicorn.pid`"
+  w.restart = "kill -USR2 `cat #{pid_dir}/unicorn.pid`"
 
   w.start_grace = 10.seconds
   w.restart_grace = 10.seconds
-  w.pid_file = "#{PID_DIR}/unicorn.pid"
+  w.pid_file = "#{pid_dir}/unicorn.pid"
 
   w.uid = 'deploy'
   w.gid = 'deploy'
