@@ -1,5 +1,5 @@
 rails_root = '/home/deploy/commonplace/current'
-pid_dir = '/home/deploy/commonblog/shared/pids'
+pid_dir = '/home/deploy/commonplace/shared/pids'
 God.watch do |w|
   w.name = "commonplace_unicorn"
   w.interval = 30.seconds # default
