@@ -1,5 +1,5 @@
 
-%div
+%div.claim
   - semantic_form_for @organization, :url => organization_claim_path(@organization), :html => { :class => "management_form", :method => :put } do |f|
     %h3.management_field Edit #{ @organization.name }'s profile
     - f.inputs do
