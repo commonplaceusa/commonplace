@@ -49,6 +49,8 @@ Rails::Initializer.run do |config|
   config.gem "cancan"
 
   config.gem "friendly_id"
+
+  config.gem "tlsmail"
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -71,3 +73,16 @@ Rails::Initializer.run do |config|
 end
 
 ActionController::Base.exempt_from_layout 'js.erb', 'json.erb'
+
+require 'tlsmail'
+Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+
+ActionMailer::Base.smtp_settings = {
+  :address  => 'smtp.sendgrid.net',
+  :port  => 587,
+  :domain => "commonplaceusa.com",
+  :authentication => :plain, 
+  :user_name  => 'maxtilford@gmail.com',
+  :password  => 'tlax1copo'
+}
+
