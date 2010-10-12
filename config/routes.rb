@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
     
     community.root :controller => "communities", :action => "show"
 
-    community.resources :posts
+    community.resources :posts, :collection => {"_form" => :get}
     
     community.resources :announcements 
 

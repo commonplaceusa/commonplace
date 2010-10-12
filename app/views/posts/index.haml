@@ -1,6 +1,6 @@
 #syndicate
   %nav
-    %a#create-entity
+    - link_to new_post_path, 'data-remote' => true, :id => "create-entity" do 
       %span
         %img
         POST TO YOUR NEIGHBORS

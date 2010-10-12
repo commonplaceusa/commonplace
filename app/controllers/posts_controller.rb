@@ -1,6 +1,8 @@
 class PostsController < CommunitiesController
-  load_and_authorize_resource
+  helper_method :post
 
+  load_and_authorize_resource
+  
   caches_action :show
   def index
     @posts = Post.all
@@ -10,6 +12,11 @@ class PostsController < CommunitiesController
     respond_to do |format|
       format.json
     end
+  end
+
+  def _form
+    @post = Post.new
+    render :layout => false
   end
   
   def create
@@ -37,6 +44,11 @@ class PostsController < CommunitiesController
       flash[:fail] = "There was an error deleting your post--please try again."
     end
     redirect_to root_url
+  end
+  
+  protected 
+  def post
+    @post 
   end
     
 end

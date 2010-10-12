@@ -15,7 +15,18 @@ $.sammy("body")
   })
 
 
-  .get("#/posts/new", setModal)
+  .get("#/posts/new", function(context) {
+    this.render('/posts/_form.html')
+      .then(function(content) {
+        context.log(content);
+        $(content).modal({
+          overlayClose: true,
+          onClose: function() { 
+            $.modal.close(); 
+          }
+        });
+      });
+  })
 
   .get("#/posts/:id", setInfoBox)
 

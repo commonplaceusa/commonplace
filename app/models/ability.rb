@@ -1,7 +1,11 @@
 class Ability
   include CanCan::Ability
   
+  
   def initialize(user)
+
+    alias_action :_form, :to => :create
+
     if user.new_record?
       can :create, User
       can :create, UserSession
@@ -12,7 +16,6 @@ class Ability
       can :destroy, UserSession
       can :read, Community
     end
-    
 
     can :read, Post
     can :read, User
@@ -21,5 +24,7 @@ class Ability
     can :manage, Organization
     can :read, ActsAsTaggableOn::Tag
   end
+
+  
 
 end
