@@ -14,9 +14,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
 
   rescue_from CanCan::AccessDenied do |exception|
-    
     store_location
-    p request
     redirect_to new_user_session_url
   end
  

@@ -5,7 +5,12 @@ class PostsController < CommunitiesController
   
   caches_action :show
   def index
-    @posts = Post.all
+    @posts = current_community.posts
+  end
+  
+  def neighborhood
+    @posts = current_user.neighborhood.posts
+    render :index
   end
 
   def new

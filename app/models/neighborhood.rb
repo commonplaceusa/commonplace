@@ -9,6 +9,10 @@ class Neighborhood < ActiveRecord::Base
   def contains?(address)
     bounds.contains?(address)
   end
+
+  def posts
+    users.map(&:posts).flatten
+  end
   
   private
   

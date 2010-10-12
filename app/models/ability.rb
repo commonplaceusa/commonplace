@@ -5,7 +5,7 @@ class Ability
   def initialize(user)
 
     alias_action :_form, :to => :create
-
+    alias_action :neighborhood, :to => :read
     if user.new_record?
       can :create, User
       can :create, UserSession

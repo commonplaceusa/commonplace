@@ -42,8 +42,9 @@
     border-left: 1px solid #bbb
     margin-left: 10px 
     a
+      text-decoration: none
       +inline-block      
-      margin: 6px 0px
+      margin: 6px 0px 6px 10px
       color: #888
       +sans
       font-size: 10px
@@ -58,9 +59,8 @@
           bottom: 1px solid #ddd
       +border-radius(5px)
       +clearfix
-      &:first-child
-        margin-left: 10px
-      &.selected, &:hover
+        
+      &.selected_nav, &:hover
         color: #c0c0c0
         background-color: #ddd
         span
