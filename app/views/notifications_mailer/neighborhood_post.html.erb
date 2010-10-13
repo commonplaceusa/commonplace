@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>Notifications</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  </head>
+  <body bgcolor="#eeeeee" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    
+    <table id="Table_01" width="600" height="405" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF">
+      <tr>
+        <td colspan="7" valign="top"><a href="http://westroxbury.ourcommonplace.com" target="_blank"><img src="images/notification_header.png" alt="CommonPlace West Roxbury" width="600" height="56" border="0" align="top"></a></td>
+      </tr>
+      <tr>
+        <td width="16" rowspan="16" bgcolor="#ffffff">&nbsp;</td>
+        <td colspan="5" height="10" style="border-top:2px solid #eeeeee;">&nbsp;</td>
+        <td width="16" rowspan="16" bgcolor="#ffffff">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="5" valign="top"  style="color:#656565;height:40px;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;">Hey <name>, <a href="<%= users_url(@post.user) %>"><font color="#b53f3c"><%= @post.user.full_name %></font></a> posted a/an <%= @post.category %> to your neighborhood on CommonPlace:</td>
+      </tr>
+      <tr>
+        <td height="12" colspan="5" bgcolor="#f5f5f5"><img src="images/notification_border.png" width="568" height="12"></td>
+      </tr>
+      <tr>
+        <td width="12" rowspan="2" bgcolor="#f5f5f5">&nbsp;</td>
+        <td width="0" height="0" bgcolor="#f5f5f5"></td>
+        <td width="12" rowspan="2" bgcolor="#f5f5f5">&nbsp;</td>
+        <td width="482" rowspan="2" valign="top" bgcolor="#f5f5f5" style="font-family:Georgia, 'Times New Roman', Times, serif;"><span style="font-size:18px;"><%= @post.subject %></span><br/>
+          <span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#888888;">posted by <a href="#"><font color="#b53f3c"><%= @post.user.full_name %></font></a> on <%= @post.created_at %></span>
+          <div style="font-size:14px;margin-top:7px;"><%= @post.body %></div>
+        </td>
+        <td width="12" rowspan="3" valign="top" bgcolor="#f5f5f5">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top" bgcolor="#f5f5f5">
+          <%= image_tag @post.user.avatar_url(:thumb), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top" %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" valign="top" bgcolor="#f5f5f5">&nbsp;</td>
+        <td width="482" valign="top" bgcolor="#f5f5f5" align="left">
+          <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:1px;"><a href="<%= posts_url(@post) %>" style="text-decoration:none;"><font color="#ffdad9">Reply to <%= @post.user.name %></font></a></div> OR
+          <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:1px;"><a href="<%= new_user_message_url("Beisrtan") %>" style="text-decoration:none;"><font color="#ffdad9">Privately message <%= @post.user.name %></font></a></div>
+        </td>
+      </tr>
+      <tr>
+        <td height="12" colspan="5" bgcolor="#f5f5f5"><img src="images/notification_border.png" width="568" height="12"></td>
+      </tr>
+      <tr>
+        <td height="40" colspan="5">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="5" align="right" style="">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5" align="center" style="font-family:Arial, Helvetica, sans-serif;color:#bbbbbb;font-size:11px;">Want to disable this and/or other e-mails? Click <a href="#"><font color="#b53f3c">unsubscribe</font></a>. Click <a href="#"><font color="#b53f3c">here</font></a> to manage your subscriptions.</td>
+      </tr>
+      <tr>
+        <td height="12" colspan="5">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="5" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#3b6085;"><a href="#"><font color="#3b6085"><strong>www.OurCommonPlace.com</strong></font></a><br/>
+          &copy; 2010 CommonPlace.</td>
+      </tr>
+      <tr>
+        <td height="12" colspan="5">&nbsp;</td>
+      </tr>
+    </table>
+    <!-- End Save for Web Slices -->
+  </body>
+</html>

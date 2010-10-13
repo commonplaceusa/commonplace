@@ -21,6 +21,8 @@ class Organization < ActiveRecord::Base
 
   has_many :invites, :as => :inviter
 
+  has_many :notifications, :as => :notified
+
   before_save :update_lat_and_lng, :if => "address_changed?"
 
   before_create :set_default_avatar

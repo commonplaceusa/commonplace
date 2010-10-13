@@ -17,6 +17,7 @@ class PostsController < CommunitiesController
   def create
     @post.user = current_user
     if @post.save
+      current_user.neighborhood.notifications.create(:notifiable => @post)
       flash[:message] = "Post Created!"
       redirect_to posts_url
     else
