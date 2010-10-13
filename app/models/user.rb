@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
 
   has_one :avatar, :as => :owner
 
+  def subscribed_announcements
+    organizations.map(&:announcements).flatten
+  end
+
   def avatar_url(style = :default)
     avatar.image.url(style)
   end

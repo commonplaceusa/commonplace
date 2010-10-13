@@ -6,9 +6,9 @@
         %img
         POST AN ANNOUNCEMENT
     #filters
-      %a.selected
+      - tab_to announcements_path, 'data-remote' => true do
         %span ALL
-      %a
+      - tab_to subscribed_announcements_path, 'data-remote' => true do
         %span SUBSCRIBED
   %ul.items
     - @announcements.each do |announcement|

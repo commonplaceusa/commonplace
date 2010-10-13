@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
 
     community.resources :posts, :collection => {"_form" => :get, "neighborhood" => :get}
     
-    community.resources :announcements 
+    community.resources :announcements, :collection => {"subscribed" => :get}
 
     community.resources :replies
     
