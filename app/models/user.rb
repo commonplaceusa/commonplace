@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     organizations.map(&:announcements).flatten
   end
 
+  def suggested_events
+    []
+  end
+
   def avatar_url(style = :default)
     avatar.image.url(style)
   end

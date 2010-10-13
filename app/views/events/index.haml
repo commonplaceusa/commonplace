@@ -8,11 +8,11 @@
         POST AN EVENT
 
     #filters
-      %a.selected
+      - tab_to events_path, 'data-remote' => true do
         %span ALL
-      %a
+      - tab_to your_events_path, 'data-remote' => true do
         %span YOURS
-      %a
+      - tab_to suggested_events_path, 'data-remote' => true do
         %span SUGGESTED
 
   %ul.items
