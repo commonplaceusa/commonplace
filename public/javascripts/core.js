@@ -1,3 +1,4 @@
+
 $(function() {
   jQuery.extend({
     put: function(url, data, callback, type) {
@@ -137,5 +138,13 @@ function setList() {
     $("#list").html(response.list);
     $("#add").replaceWith(response.add);
     $("#info").html(response.info);
+  });
+}
+
+function merge(html, context) {
+  $(html).each(function () { 
+    if (this) {
+      $("#" + this.id, context).replaceWith(this.outerHTML);
+    }
   });
 }

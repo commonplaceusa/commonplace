@@ -1,3 +1,4 @@
+
 #syndicate
   %nav
     - link_to new_post_path, 'data-remote' => true, :id => "create-entity" do 
@@ -6,9 +7,9 @@
         POST TO YOUR NEIGHBORS
 
     #filters
-      - tab_to neighborhood_posts_path do 
+      - tab_to neighborhood_posts_path, 'data-remote' => true do 
         %span NEIGHBORHOOD
-      - tab_to posts_path do
+      - tab_to posts_path, 'data-remote' => true do
         %span ALL
 
   %ul.items

@@ -26,7 +26,17 @@ $.sammy("body")
         });
       });
   })
+  .get("#/posts/neighborhood", function(c) {
+    $.get("/posts/neighborhood", function(r) {
+      merge(r, $("body"));
+    }, "html");
+  })
+
+  .get("#/posts", function(c) {
+    $.get("/posts", function(r) {
+      merge(r, $("body"));
+    }, "html");
+  })
+
 
   .get("#/posts/:id", setInfoBox)
-
-  .get("#/posts", setList)

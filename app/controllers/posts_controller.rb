@@ -4,6 +4,7 @@ class PostsController < CommunitiesController
   load_and_authorize_resource
   
   caches_action :show
+  layout false
   def index
     @posts = current_community.posts
   end
