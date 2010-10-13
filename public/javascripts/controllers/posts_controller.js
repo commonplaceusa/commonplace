@@ -3,12 +3,11 @@ $.sammy("body")
 
   .post("/posts", function() {
     $.post(this.path, this.params, function(response) {
-      $("#new_post").replaceWith(response.newPost);
-      $("#new_post textarea").goodlabel();
-      if (response.success) {
-        $('ul#wire').prepend(response.createdPost);
+      if (response.saved) {
+        $("#tooltip").html("Post Saved!").addClass("win");
+        
       } else {
-        alert("post validation failed");
+        
       }
       $.modal.close();
     }, "json");  

@@ -30,6 +30,9 @@ function setModal() {
   });
 }
 
+function setTooltip(text, class) {
+  $("#tooltip").html(text).attr("class", class);
+}
 
 function renderMaps() {
   $('div[data-map]').each(function() {

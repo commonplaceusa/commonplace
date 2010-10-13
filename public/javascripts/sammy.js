@@ -13,9 +13,9 @@
       _isFunction = function( obj ) { return Object.prototype.toString.call(obj) === "[object Function]"; },
       _isArray = function( obj ) { return Object.prototype.toString.call(obj) === "[object Array]"; },
       _decode = decodeURIComponent,
-      _escapeHTML = function(s) {
-        return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      },
+      // _escapeHTML = function(s) {
+      //   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      // },
       _routeWrapper = function(verb) {
         return function(path, callback) { return this.route.apply(this, [verb, path, callback]); };
       },
@@ -122,8 +122,8 @@
 
     // Escape HTML in string, use in templates to prevent script injection.
     // Also aliased as `h()`
-    escapeHTML: _escapeHTML,
-    h: _escapeHTML,
+    // escapeHTML: _escapeHTML,
+    // h: _escapeHTML,
 
     // Returns a copy of the object with Functions removed.
     toHash: function() {

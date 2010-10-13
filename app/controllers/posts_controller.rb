@@ -25,13 +25,11 @@ class PostsController < CommunitiesController
   end
   
   def create
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to root_url }
-        format.json         
-      else
-        format.json { render 'new' }
-      end
+    @post.user = current_user
+    if @post.save
+      render :json => {"saved" => true}
+    else
+      render :json => {"saved" => false, "post" => @post.errors.as_json}
     end
   end
 
