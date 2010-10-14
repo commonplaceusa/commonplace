@@ -1,38 +1,29 @@
 .application                                                
-  #entities
-    border: 2px solid $baseGray
-      top: 0px
+  #zones
     +border-bottom-radius(5px)
     +clearfix
-    padding: 12px                               
-    margin-bottom: 15px
+    float: left
+    background-color: #4A7EB0
+    width: 480px
+
     a 
-      width: 130px
+      width: 60px
       +sans
-      display: block                            
-      float: left                               
-      margin-left: 32px                         
+      +inline-block
+      
+      margin: 20px 30px
       text-align: center
       font-size: 11px
       font-weight: bold
       color: $baseText
-      text-decoration: none
-      &:first-child                             
-        margin-left: 0                          
+      text-decoration: non
+
       div
-        width: 96px
-        height: 93px
+        width: 60px
+        height: 60px
         margin: 0px auto 10px
 
-      span                                      
-        background-color: $baseGray
-        border: 1px solid #ccc
-        display: block
-        +border-radius(5px)
-        span
-          padding: 4px 0
-          border: 1px solid #f8f8f8
-            bottom: #ddd 1px solid
+
         
       &.posts div
         background-image: url("/images/posts.png")

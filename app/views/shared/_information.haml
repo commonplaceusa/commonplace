@@ -1,73 +1,57 @@
 #information
-  #neighborhood-activity
-    %h3 MAP OF YOUR NEIGHBORHOOD ACTIVITY
-    = render_map do |map|
-      - map.center :lat => current_community.lat, :lng => current_community.lng
-      - items.each do |item|
-        - map.marker :lat => item.lat, :lng => item.lng
+  %h3 Your Community
+  = render_map do |map|
+    - map.center :lat => current_community.lat, :lng => current_community.lng
+    - items.each do |item|
+      - map.marker :lat => item.lat, :lng => item.lng
+
+  %ul.inventories
+    %li
+      %h4 YOUR INTERESTS
+      %ul
+        %li
+          Arts and Crafts
+        %li 
+          Basketball
+      .more
+        add-more (2)
     
-  %hr
-
-  #history
-    %h3 YOUR RECENT HISTORY
-    %ul
-      %li
-        %img.icon/
-        %p
-          You met
-          %a Ashley C.
-        %time 30 minutes ago
-      %li
-        %img.icon/
-        %p
-          You replied to
-          %a Ashley C.
-          on
-          = succeed "..." do
-            %em Selected
-        %time 30 minutes ago
-      %li
-        %img.icon/
-        %p
-          You met
-          %a Ashley C.
-        %time 30 minutes ago
-      %li
-        %img.icon/
-        %p
-          You met
-          %a Ashley C.
-        %time 30 minutes ago
-      %li
-        %img.icon/
-        %p
-          You met
-          %a Ashley C.
-        %time 30 minutes ago
-
-  #interests
-    %h3 YOUR COMMUNITY INTERESTS
-    %ul#current-interests
-      %li
-        %a Arts and Crafts
-      %li
-        %a ...add Running?
-      %li
-        %a Basketball
-      %li
-        %a ...add Pottery?
-      %li
-        %a
-      %li
-        %a ...add Writing?
-      %li
-        %a
-      %li
-        %a ...add Painting?
-    %a#view-all View all(2)
-    %a#find-more 
-      %span FIND MORE
-  %hr
-
-  #community-sponsors
-    %h3 COMMUNITY SPONSORS
+    %li
+      %h4 YOUR SUBSCRIPTIONS
+      %ul
+        %li
+          Punjabi Dhaba
+        %li 
+          CommonPlace
+        %li
+          Organization
+    
+      .more
+        add-more (14)
+    
+    %li
+      %h4 YOUR EVENTS
+      %ul
+        %li
+          Tree Planting a...
+        %li 
+          Soup Kitchen
+      
+      .more
+        view all (2)
+    
+    %li
+      %h4 YOUR POSTS
+      %ul
+        %li
+          Ladder?
+        %li 
+          Post Title
+        %li
+          This is the h...
+        %li
+          Longer Post T...
+        %li
+          Test Post
+      .more
+        view all (9)

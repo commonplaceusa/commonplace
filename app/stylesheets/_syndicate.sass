@@ -2,12 +2,11 @@
 
 .application
   #syndicate
-    width: 458px                                
+    width: 478px                                
     float: left                                 
-    background-color: #ebebeb                   
+    background-color: #4a7eb0
     +border-radius(5px)
-    padding: 10px                               
-    margin-right: 12px                          
+    margin-right: 12px                   
 
     nav
       +clearfix
@@ -25,9 +24,9 @@
     +sans
     display: block
     color: white
-    border: 1px solid #3b6085
     float: left 
     +border-radius(5px)
+    padding: 10px
     span
       border: 1px solid #7fa6c9
         bottom: 1px solid #4f7599
@@ -37,10 +36,11 @@
       +border-radius(5px)
 
   #filters
+    margin: 10px
+      left: 0
     height: 32px
     float: left
     border-left: 1px solid #bbb
-    margin-left: 10px 
     a
       text-decoration: none
       +inline-block      
@@ -74,13 +74,16 @@
       background-color: orange
       float: left
       height: 100%
-      
+
+  .items
+    background-color: #f0f0f0
+    padding: 10px
 
   .item
     background-color: white
     +border-radius(5px)
     border: 1px solid #aaa
-    margin: 10px 0    
+    margin: 0 0 10px
     overflow: hidden
     &:hover
       background-color: $listingHover
