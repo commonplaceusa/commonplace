@@ -174,10 +174,11 @@ function setList() {
 
 function merge(html, context) {
   $(html).each(function () { 
+    var $this = $(this);
     if (this) {
-      $("#" + this.id, context).replaceWith(this.outerHTML);
+      $("#" + $this.attr('id'), context).replaceWith($this.get(0));
     }
-    if (this.id == "modal") {
+    if ($this.attr('id') == "modal") {
       $(window).trigger('resize.modal');
     }
     
