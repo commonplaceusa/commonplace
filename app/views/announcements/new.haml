@@ -1,0 +1,9 @@
+#modal
+  - link_to "close", :id => "modal-close", 'data-remote' => true do
+    = image_tag 'modal-close.png'
+  - semantic_form_for @announcement do |f|
+    - f.inputs do
+      = f.input :subject
+      = f.input :body
+    - f.buttons do
+      = f.commit_button "Send Announcment"

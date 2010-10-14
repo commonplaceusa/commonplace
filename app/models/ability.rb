@@ -11,6 +11,7 @@ class Ability
       can :create, User
       can :create, UserSession
     else
+      can :create, Announcement
       can :update, User
       can :create, Post
       can :destroy, Post, :user_id => user.id

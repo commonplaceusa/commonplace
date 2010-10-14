@@ -13,7 +13,11 @@ $.sammy("body")
   })
 
 
-  .get("#/announcements/new", setModal)
+  .get("#/announcements/new", function(c) {
+    $.get("/announcements/new", function (r) {
+      merge(r, $("body"));
+    }, "html");
+  })
 
   .get("#/announcements/:id", setInfoBox)
 

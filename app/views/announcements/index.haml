@@ -1,7 +1,7 @@
 
 #syndicate
   %nav
-    %a#create-entity
+    - link_to new_announcement_path, 'data-remote' => true, :id => "create-entity" do
       %span
         %img
         POST AN ANNOUNCEMENT
