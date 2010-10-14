@@ -30,8 +30,7 @@
           .title= user.name
           %p.body= user.about
 
-#tooltip
-  = flash[:message] || "Hi #{current_user.first_name}! Welcome to West Roxbury's first community website."
+= render 'shared/tooltip'
 
 = render 'shared/zones'
   

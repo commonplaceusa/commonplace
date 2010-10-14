@@ -28,7 +28,6 @@
         
         = render 'shared/replies', :item => announcement
 
-#tooltip
-  Hi Brian! Welcome to West Roxbury's first community website.
+= render 'shared/tooltip'
   
 = render 'shared/information', :items => @announcements.map(&:owner)

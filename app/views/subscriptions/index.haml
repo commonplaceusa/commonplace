@@ -22,8 +22,7 @@
           .title= organization.name
           %p.body= organization.about
 
-#tooltip
-  = flash[:message] || "Hi #{current_user.first_name}! Welcome to West Roxbury's first community website."
+= render 'shared/tooltip'
   
 = render 'shared/zones'
 = render 'shared/information', :items => @organizations
