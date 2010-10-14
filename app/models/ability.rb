@@ -5,7 +5,7 @@ class Ability
   def initialize(user)
 
     alias_action :_form, :to => :create
-    alias_action(:neighborhood, :subscribed, :your, :suggested,
+    alias_action(:neighborhood, :subscribed, :your, :suggested, :neighbors,
                  :to => :read)
     if user.new_record?
       can :create, User
@@ -14,6 +14,7 @@ class Ability
       can :create, Announcement
       can :create, Event
       can :update, User
+      can :read, User
       can :create, Post
       can :destroy, Post, :user_id => user.id
       can :destroy, UserSession

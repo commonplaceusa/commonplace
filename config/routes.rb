@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
     
     community.root :controller => "communities", :action => "show"
 
-    community.resources :posts, :collection => {"neighborhood" => :get}
+    community.resources :posts
     
     community.resources :announcements, :collection => {"subscribed" => :get}
 
@@ -37,6 +37,11 @@ ActionController::Routing::Routes.draw do |map|
       org.resource :subscription, :only => [:index, :show, :create, :destroy]
       org.resource :claim, :member => [:edit_fields]
       org.resources :announcements, :controller => "organizations/announcements"
+    end
+
+    community.namespace :neighborhood do |neighborhood|
+      neighborhood.resources :posts, :only => :index
+      neighborhood.resources :people, :only => :index
     end
 
     map.about 'about', :controller => 'site', :action => 'about'

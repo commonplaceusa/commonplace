@@ -1,0 +1,31 @@
+#syndicate
+  %nav
+    - link_to new_post_path, 'data-remote' => true, :id => "create-entity" do 
+      %span
+        %img
+        POST TO YOUR NEIGHBORS
+
+    #filters
+      - tab_to neighborhood_posts_path, 'data-remote' => true do 
+        %span Posts
+      - tab_to neighborhood_people_path, 'data-remote' => true do
+        %span Neighbors
+
+  %ul.items
+    - @users.each do |user|
+      %li.item
+        - link_to user, :class => 'user', 'data-remote' => true do
+          = image_tag user.avatar_url(:thumb), :class => "avatar"
+          .title= user.name
+          %p.body= user.about
+            
+
+
+#tooltip
+  = flash[:message] || "Hi #{current_user.first_name}! Welcome to West Roxbury's first community website."
+
+= render 'shared/zones'  
+
+= render 'shared/information', :items => @users
+
+#modal
