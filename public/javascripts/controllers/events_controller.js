@@ -19,6 +19,10 @@ $.sammy("body")
     }, "html");
   })
 
-  .get("#/events/new", setModal)
+  .get("#/events/new", function(c) {
+    $.get("/events/new", function(r) {
+      merge(r, $("body"));
+    }, "html");
+  })
 
   .get("#/events/:id", setInfoBox)

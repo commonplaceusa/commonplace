@@ -1,1 +1,9 @@
-= render :partial => "form"
+#modal
+  - link_to "close", :id => "modal-close", 'data-remote' => true do
+    = image_tag 'modal-close.png'
+  - semantic_form_for @event do |f|
+    - f.inputs do
+      = f.input :name
+
+    - f.buttons do
+      = f.commit_button "Create Event"

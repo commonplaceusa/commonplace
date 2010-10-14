@@ -2,7 +2,7 @@
 
 #syndicate
   %nav
-    %a#create-entity
+    - link_to new_event_path, 'data-remote' => true, :id => "create-entity" do
       %span
         %img
         POST AN EVENT
