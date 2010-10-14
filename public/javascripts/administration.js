@@ -1,6 +1,7 @@
 
 
 $(function () {
+
   renderMaps();
   var map = $('[data-map]').first().data('map')
 
@@ -28,7 +29,8 @@ $(function () {
       } else {
         alert("Geocoder failed due to: " + status);
       }
-      
+
     });
   });
+
 });

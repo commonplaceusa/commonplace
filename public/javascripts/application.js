@@ -1,11 +1,12 @@
 
 $.sammy("body")
-
-  .get("#/", setList);
+  .get("#/", setList)
+  .setLocationProxy(new Sammy.CPLocationProxy($.sammy('body')));
 
 $(document).ready(function() {
+
   $.sammy("body").run()
-  
+
   $('ul#wire').accordion({'header': 'a.item_body', 
                           'active': false,
                           'collapsible': true, 
@@ -27,7 +28,8 @@ $(document).ready(function() {
 
   window.onscroll = setInfoBoxPosition;
   
-
+  
+  
   $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
 
 });

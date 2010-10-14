@@ -1,3 +1,17 @@
+Sammy.CPLocationProxy = function(app) {
+  this.app = app
+};
+Sammy.CPLocationProxy.prototype = {
+  bind: function () {},
+  unbind: function() {},
+  getLocation: function() {
+    var matches = window.location.toString().match(/^[^#]*(#.+)$/);
+    return matches ? matches[1] : '';
+  },
+  setLocation: function(new_location) {
+      return (window.location = new_location);
+  }
+}
 
 $(function() {
   jQuery.extend({
@@ -11,12 +25,27 @@ $(function() {
 
   $('a[data-remote]').live('click', function(e) {
     $.sammy("body").setLocation("#" + $(this).attr('href'));
+    $.sammy("body").runRoute("get", "#" + $(this).attr('href'));
     e.preventDefault()
   });
 
   $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
 
   $('#org_url').textTruncate(140);
+
+  $(window).bind('resize.modal', function () {
+    var $m = $("#modal"),
+    w = $m.width(),
+    h = $m.height(),
+    $b = $(window),
+    bw = $b.width(),
+    bh = $b.height();
+    
+    $m.css({top: (bh - h) / 2,
+            left: (bw - w) / 2,
+           });
+  });
+  $(window).trigger('resize.modal');
 
 });
 
@@ -146,5 +175,9 @@ function merge(html, context) {
     if (this) {
       $("#" + this.id, context).replaceWith(this.outerHTML);
     }
+    if (this.id == "modal") {
+      $(window).trigger('resize.modal');
+    }
+    
   });
 }
