@@ -1,39 +1,10 @@
-#syndicate
-  %nav
 
-    #filters
-      - tab_to users_path, 'data-remote' => true do
-        %span PEOPLE
-      - tab_to organizations_path, 'data-remote' => true do
-        %span ORGANIZATIONS
-      - tab_to business_organizations_path, 'data-remote' => true do
-        %span BUSINESSES
-      - tab_to municipal_organizations_path, 'data-remote' => true do
-        %span MUNICIPAL
-      - tab_to "#", 'data-remote' => true, :class => 'disabled' do
-        %span GOODS
-      - tab_to "#", 'data-remote' => true, :class => 'disabled' do
-        %span SKILLS
-      - tab_to "#", 'data-remote' => true, :class => 'disabled' do
-        %span TAGS
-        
-
-      %a.selected
-        %span NEIGHBORHOOD
-      %a
-        %span ALL
-  %ul.items
-    - @organizations.each do |organization|
-      %li.item
-        - link_to organization, :class => 'organization', 'data-remote' => true do
-          = image_tag organization.avatar_url(:thumb), :class => "avatar"
-          .title= organization.name
-          %p.body= organization.about
-
-= render 'shared/tooltip'
-
-= render 'shared/zones'
-  
-= render 'shared/information', :items => @organizations
-
-#modal
+- content_for :syndicate_navigation do
+  #filters
+    - winnow_button "PEOPLE", users_path
+    - winnow_button "ORGANIZATIONS", organizations_path
+    - winnow_button "BUSINESSES", business_organizations_path
+    - winnow_button "MUNICIPAL", municipal_organizations_path
+    - winnow_button "GOODS", "disabled"
+    - winnow_button "SKILLS", "disabled"
+    - winnow_button "TAGS", "disabled"

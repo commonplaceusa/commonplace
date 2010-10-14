@@ -1,15 +1,7 @@
-- item_tag(announcement) do
-  - link_to announcement, :class => 'item_body', 'data-remote' => true do
-    .author
-      = image_tag announcement.owner.avatar_url(:thumb), :width => 50, :height => 50
-      = announcement.owner.name
-    %h3
-      = announcement.subject    
-    %time
-      = announcement.time
-    %p
-      = truncate announcement.body, :length => 160
-      %span.reply_count #{ announcement.replies.size } replies
-
-  = render 'shared/replies', :item => announcement
-
+- link_to announcement, :class => 'announcement', 'data-remote' => true do
+  = image_tag announcement.owner.avatar_url(:thumb), :class => 'avatar'
+  %time= announcement.time
+  .reply-count #{ announcement.replies.size } replies
+  .title= announcement.subject
+  .author= announcement.owner.name
+  %p.body= truncate announcement.body, :length => 160

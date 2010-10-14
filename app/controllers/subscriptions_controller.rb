@@ -1,13 +1,13 @@
 class SubscriptionsController < ApplicationController
 
-  layout false
+  layout 'zone'
 
   def index
-    @organizations = current_user.organizations
+    @items = current_user.organizations
   end
 
   def recommended
-    @organizations = Organization.all
+    @items = Organization.all
     render :index
   end
   

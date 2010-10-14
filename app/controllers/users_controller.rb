@@ -1,9 +1,10 @@
 class UsersController < CommunitiesController
   load_and_authorize_resource
 
-  layout false
+  layout 'zone'
+
   def index
-    @users = current_community.users
+    @items = current_community.users
   end
 
   def show

@@ -1,36 +1,10 @@
 
-#syndicate
-  %nav
-    - link_to new_post_path, 'data-remote' => true, :id => "create-entity" do 
-      %span
-        %img
-        POST TO YOUR NEIGHBORS
+- content_for :syndicate_navigation do
+  - link_to new_post_path, 'data-remote' => true, :id => "create-entity" do 
+    %span
+      %img
+      POST TO YOUR NEIGHBORS
 
-    #filters
-      - tab_to neighborhood_posts_path, 'data-remote' => true do 
-        %span Posts
-      - tab_to neighborhood_people_path, 'data-remote' => true do
-        %span Neighbors
-
-  %ul.items
-    - @posts.each do |post|
-      %li.item
-        - link_to post, :class => 'post', 'data-remote' => true do
-          = image_tag post.owner.avatar_url(:thumb), :class => "avatar"
-          %time= post.time
-          .reply-count #{ post.replies.size } replies
-          .title= post.subject
-          .author= post.owner.name
-          %p.body= truncate post.body, :length => 160
-
-        = render 'shared/replies', :item => post
-
-
-= render 'shared/tooltip'
-
-= render 'shared/zones'
-  
-= render 'shared/information', :items => @posts.map(&:owner)
-
-#modal
-
+  #filters
+    - winnow_button "POSTS", neighborhood_posts_path
+    - winnow_button "NEIGHBORS", neighborhood_people_path

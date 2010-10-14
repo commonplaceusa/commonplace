@@ -1,6 +1,6 @@
 .replies
   %ul
     - item.replies.each do |reply|
-      = render reply
+      = render 'replies/reply', :reply => reply
       
   = render 'replies/form', :reply => item.replies.new

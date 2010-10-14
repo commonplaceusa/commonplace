@@ -1,30 +1,11 @@
 
-#syndicate
-  %nav
-    - link_to new_announcement_path, 'data-remote' => true, :id => "create-entity" do
-      %span
-        %img
-        POST AN ANNOUNCEMENT
-    #filters
-      - tab_to announcements_path, 'data-remote' => true do
-        %span ALL
-      - tab_to subscribed_announcements_path, 'data-remote' => true do
-        %span YOURS
-      - tab_to subscriptions_path, 'data-remote' => true do
-        %span YOUR SUBSCRIPTIONS
-      - tab_to recommended_subscriptions_path, 'data-remote' => true do
-        %span RECOMMENDED
-  %ul.items
-    - @organizations.each do |organization|
-      %li.item
-        - link_to organization, :class => 'organization', 'data-remote' => true do
-          = image_tag organization.avatar_url(:thumb), :class => "avatar"
-          .title= organization.name
-          %p.body= organization.about
-
-= render 'shared/tooltip'
-  
-= render 'shared/zones'
-= render 'shared/information', :items => @organizations
-
-#modal
+- content_for :syndicate_navigation do
+  - link_to new_announcement_path, 'data-remote' => true, :id => "create-entity" do
+    %span
+      %img
+      POST AN ANNOUNCEMENT
+  #filters
+    - winnow_button "ALL", announcements_path
+    - winnow_button "YOURS", subscribed_announcements_path
+    - winnow_button "YOUR SUBSCRIPTIONS", subscriptions_path
+    - winnow_button "RECOMMENDED", recommended_subscriptions_path

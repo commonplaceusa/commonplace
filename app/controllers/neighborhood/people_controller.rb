@@ -1,9 +1,10 @@
 class Neighborhood::PeopleController < CommunitiesController
   
-  layout false
+  layout 'zone'
   
   def index
     authorize! :read, User
-    @users = current_user.neighborhood.users
+    @items = current_user.neighborhood.users
+    @render_args = Proc.new { |u| ['users/user', {:user => u}] }
   end
 end

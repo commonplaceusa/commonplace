@@ -1,19 +1,19 @@
 class EventsController < CommunitiesController
   load_and_authorize_resource
 
-  layout false
+  layout 'zone'
   
   def index
-    @events = current_community.events
+    @items = current_community.events
   end
 
   def your
-    @events = current_user.events
+    @items = current_user.events
     render :index
   end
 
   def suggested
-    @events = current_user.suggested_events
+    @items = current_user.suggested_events
     render :index
   end
   

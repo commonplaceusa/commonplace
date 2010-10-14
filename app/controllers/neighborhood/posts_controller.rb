@@ -1,10 +1,10 @@
 class Neighborhood::PostsController < CommunitiesController 
   
-  layout false
+  layout 'zone'
 
   def index
     authorize! :read, Post
-    @posts = current_user.neighborhood.posts
+    @items = current_user.neighborhood.posts
   end
 
 end

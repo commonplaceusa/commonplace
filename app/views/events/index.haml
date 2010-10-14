@@ -1,40 +1,12 @@
 
-
-#syndicate
-  %nav
-    - link_to new_event_path, 'data-remote' => true, :id => "create-entity" do
-      %span
-        %img
+- content_for :syndicate_navigation do 
+  - link_to new_event_path, 'data-remote' => true, :id => "create-entity" do
+    %span
+      %img
         POST AN EVENT
 
-    #filters
-      - tab_to events_path, 'data-remote' => true do
-        %span ALL
-      - tab_to your_events_path, 'data-remote' => true do
-        %span YOURS
-      - tab_to suggested_events_path, 'data-remote' => true do
-        %span SUGGESTED
-      - tab_to "#", :class => "disabled" do
-        %span BY TAG
-
-  %ul.items
-    - @events.each do |event|
-      %li.item
-        
-        - link_to event, :class => 'event', 'data-remote' => true do
-          .small_calendar.avatar= render 'events/calendar', :event => event
-          %time= event.time
-          .reply-count #{event.replies.size} replies
-          .title= event.subject
-          .author= event.organization.name
-          %p.body= truncate event.body, :length => 160
-
-        = render 'shared/replies', :item => event
-
-= render 'shared/tooltip'
-
-= render 'shared/zones'
-  
-= render 'shared/information', :items => @events
-
-#modal
+  #filters
+    - winnow_button "ALL", events_path
+    - winnow_button "YOURS", your_events_path
+    - winnow_button "SUGGESTED", suggested_events_path
+    - winnow_button "BY TAG", "disabled"
