@@ -14,10 +14,23 @@ $.sammy("body")
 
 
   .get("#/announcements/new", function(c) {
-    $.get("/announcements/new", function (r) {
+    $.get("/announcements/new", function(r) {
       merge(r, $("body"));
     }, "html");
   })
+
+  .get("#/subscriptions", function(c) {
+    $.get("/subscriptions", function(r) {
+      merge(r, $("body"));
+    }, "html");
+  })
+
+  .get("#/subscriptions/recommended", function(c) {
+    $.get("/subscriptions/recommended", function(r) {
+      merge(r, $("body"));
+    }, "html");
+  })
+
 
   .get("#/announcements/:id", setInfoBox)
 

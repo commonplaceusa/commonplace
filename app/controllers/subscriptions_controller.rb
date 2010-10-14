@@ -1,4 +1,16 @@
 class SubscriptionsController < ApplicationController
+
+  layout false
+
+  def index
+    @organizations = current_user.organizations
+  end
+
+  def recommended
+    @organizations = Organization.all
+    render :index
+  end
+  
   def create
     @organization = Organization.find params[:organization_id]
     current_user.organizations << @organization
