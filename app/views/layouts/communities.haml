@@ -24,6 +24,17 @@
       = render 'shared/header'
       #main
         #syndicate
+          %nav
+            = yield :syndicate_navigation
+          %ul.items
+            - @items.each do |item|
+              %li.item
+                - if @render_args
+                  = render *@render_args.call(item)
+                - else
+                  = render item
+                - if item.respond_to?(:replies)
+                  = render 'shared/replies', :item => item
 
         = render 'shared/tooltip'
 
