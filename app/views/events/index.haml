@@ -14,6 +14,8 @@
         %span YOURS
       - tab_to suggested_events_path, 'data-remote' => true do
         %span SUGGESTED
+      - tab_to "#", :class => "disabled" do
+        %span BY TAG
 
   %ul.items
     - @events.each do |event|
@@ -29,8 +31,11 @@
 
         = render 'shared/replies', :item => event
 
-
 #tooltip
-  Hi Brian! Welcome to West Roxbury's first community website.
+  = flash[:message] || "Hi #{current_user.first_name}! Welcome to West Roxbury's first community website."
+
+= render 'shared/zones'
   
 = render 'shared/information', :items => @events
+
+#modal
