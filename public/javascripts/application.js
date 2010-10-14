@@ -1,6 +1,11 @@
 
 $.sammy("body")
   .get("#/", setList)
+  .get("#close", function() {
+    $.sammy("body").setLocation("#/posts");
+    $("#modal").html("");
+  })
+
   .setLocationProxy(new Sammy.CPLocationProxy($.sammy('body')));
 
 $(document).ready(function() {

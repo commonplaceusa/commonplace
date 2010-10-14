@@ -1,11 +1,44 @@
+body
+  z-index: 0
 
-#simplemodal-overlay
-  background: black
+#modal:not(:empty)
+  margin: auto
+  position: fixed
+  border: 1px solid black
+  display: block
+  z-index: 2000
 
-#simplemodal-container
-  background-color: white
-  padding: 20px
-  border: 1px solid rgba(0,0,0,1)
-  // +border-radius(7px)
-  h1
-    margin-bottom: 15px
+  > #modal-close
+    padding: 0
+    background: transparent
+    float: right
+    position: absolute
+    top: -7px
+    left: -7px
+
+  > *
+    background-color: white
+    padding: 20px
+    
+  &:after
+    content: " "
+    position: fixed
+    bottom: 0
+    top: 0
+    left: 0
+    right: 0
+    background-color: black
+    opacity: 0.52
+    z-index: -1000
+
+
+/* #simplemodal-overlay
+/*   background: black
+
+/* #simplemodal-container
+/*   background-color: white
+/*   padding: 20px
+/*
+/*   // +border-radius(7px)
+/*   h1
+/*     margin-bottom: 15px
