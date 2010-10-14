@@ -1,5 +1,6 @@
 Sammy.CPLocationProxy = function(app) {
-  this.app = app
+  this.app = app;
+  this._last_location = "";
 };
 Sammy.CPLocationProxy.prototype = {
   bind: function () {},
@@ -9,7 +10,8 @@ Sammy.CPLocationProxy.prototype = {
     return matches ? matches[1] : '';
   },
   setLocation: function(new_location) {
-      return (window.location = new_location);
+    this._last_location = this.getLocation();
+    return (window.location = new_location);
   }
 }
 
@@ -180,4 +182,8 @@ function merge(html, context) {
     }
     
   });
+}
+
+function currentIndex(path) {
+  return path.replace(/\/[^\/]*$/,"");
 }

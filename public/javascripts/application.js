@@ -1,8 +1,8 @@
 
 $.sammy("body")
   .get("#/", setList)
-  .get("#close", function() {
-    $.sammy("body").setLocation("#/posts");
+  .get("#close", function(c) {
+    $.sammy("body").setLocation(currentIndex($.sammy("body")._location_proxy._last_location));
     $("#modal").html("");
   })
 
