@@ -5,4 +5,8 @@ $.sammy("body")
 
   .get("#/users/:id", setInfoBox)
 
-  .get("#/users", setList)
+  .get("#/users", function(c) {
+    $.get("/users", function(r) {
+      merge(r, $("body"));
+    });
+  })

@@ -3,14 +3,29 @@
     %a#create-entity
       %span
         %img
-          ADD YOUR ORGANIZATION
+        INVITE PEOPLE TO COMMONPLACE
 
     #filters
-      %a.selected
-        %span ALL
-      %a
-        %span SUBSCRIBED
+      - tab_to users_path, 'data-remote' => true do
+        %span PEOPLE
+      - tab_to organizations_path, 'data-remote' => true do
+        %span ORGANIZATIONS
+      - tab_to business_organizations_path, 'data-remote' => true do
+        %span BUSINESSES
+      - tab_to municipal_organizations_path, 'data-remote' => true do
+        %span MUNICIPAL
+      - tab_to "#", 'data-remote' => true, :class => 'disabled' do
+        %span GOODS
+      - tab_to "#", 'data-remote' => true, :class => 'disabled' do
+        %span SKILLS
+      - tab_to "#", 'data-remote' => true, :class => 'disabled' do
+        %span TAGS
+        
 
+      %a.selected
+        %span NEIGHBORHOOD
+      %a
+        %span ALL
   %ul.items
     - @organizations.each do |organization|
       %li.item
@@ -18,9 +33,12 @@
           = image_tag organization.avatar_url(:thumb), :class => "avatar"
           .title= organization.name
           %p.body= organization.about
-            
 
 #tooltip
-  Hi Brian! Welcome to West Roxbury's first community website.
+  = flash[:message] || "Hi #{current_user.first_name}! Welcome to West Roxbury's first community website."
+
+= render 'shared/zones'
   
 = render 'shared/information', :items => @organizations
+
+#modal

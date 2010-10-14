@@ -33,7 +33,9 @@ ActionController::Routing::Routes.draw do |map|
     
     community.resources :invites
     
-    community.resources :organizations do |org|
+    community.resources(:organizations, 
+                        :collection => {"municipal" => :get, "business" => :get}
+                        ) do |org|
       org.resource :subscription, :only => [:index, :show, :create, :destroy]
       org.resource :claim, :member => [:edit_fields]
       org.resources :announcements, :controller => "organizations/announcements"

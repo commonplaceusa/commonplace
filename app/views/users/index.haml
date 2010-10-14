@@ -6,6 +6,22 @@
         INVITE PEOPLE TO COMMONPLACE
 
     #filters
+      - tab_to users_path, 'data-remote' => true do
+        %span PEOPLE
+      - tab_to organizations_path, 'data-remote' => true do
+        %span ORGANIZATIONS
+      - tab_to business_organizations_path, 'data-remote' => true do
+        %span BUSINESSES
+      - tab_to municipal_organizations_path, 'data-remote' => true do
+        %span MUNICIPAL
+      - tab_to "#", 'data-remote' => true, :class => 'disabled' do
+        %span GOODS
+      - tab_to "#", 'data-remote' => true, :class => 'disabled' do
+        %span SKILLS
+      - tab_to "#", 'data-remote' => true, :class => 'disabled' do
+        %span TAGS
+        
+
       %a.selected
         %span NEIGHBORHOOD
       %a
@@ -18,10 +34,12 @@
           = image_tag user.avatar_url(:thumb), :class => "avatar"
           .title= user.name
           %p.body= user.about
-            
-
 
 #tooltip
-  Hi Brian! Welcome to West Roxbury's first community website.
+  = flash[:message] || "Hi #{current_user.first_name}! Welcome to West Roxbury's first community website."
+
+= render 'shared/zones'
   
 = render 'shared/information', :items => @users
+
+#modal

@@ -6,6 +6,7 @@ class Ability
 
     alias_action :_form, :to => :create
     alias_action(:neighborhood, :subscribed, :your, :suggested, :neighbors,
+                 :business, :municipal,
                  :to => :read)
     if user.new_record?
       can :create, User
