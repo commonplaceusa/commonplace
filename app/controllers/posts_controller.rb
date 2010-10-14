@@ -15,20 +15,13 @@ class PostsController < CommunitiesController
   end
 
   def new
-    respond_to do |format|
-      format.json
-    end
   end
 
-  def _form
-    @post = Post.new
-    render :layout => false
-  end
-  
   def create
     @post.user = current_user
-    if @post.save
-      render :json => {"saved" => true}
+    if @post.save || true
+      flash[:message] = "Post Created!"
+      redirect_to neighborhood_posts_url
     else
       render :json => {"saved" => false, "post" => @post.errors.as_json}
     end

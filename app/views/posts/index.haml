@@ -26,9 +26,11 @@
         = render 'shared/replies', :item => post
 
 #tooltip
-  Hi Brian! Welcome to West Roxbury's first community website.
+  = flash[:message] || "Hi #{current_user.first_name}! Welcome to West Roxbury's first community website."
 
 = render 'shared/zones'
-
   
 = render 'shared/information', :items => @posts.map(&:owner)
+
+#modal
+

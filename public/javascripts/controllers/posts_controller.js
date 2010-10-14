@@ -1,31 +1,12 @@
 
 $.sammy("body")
 
-  .post("/posts", function() {
-    $.post(this.path, this.params, function(response) {
-      if (response.saved) {
-        $("#tooltip").html("Post Saved!").addClass("win");
-        
-      } else {
-        
-      }
-      $.modal.close();
-    }, "json");  
+  .post("/posts", function(c) {
+    $.post(this.path, this.params, function(r) {
+        merge(r, $("body"));
+    }, "html");  
   })
 
-
-  .get("#/posts/new", function(context) {
-    this.render('/posts/_form.html')
-      .then(function(content) {
-        context.log(content);
-        $(content).modal({
-          overlayClose: true,
-          onClose: function() { 
-            $.modal.close(); 
-          }
-        });
-      });
-  })
   .get("#/posts/neighborhood", function(c) {
     $.get("/posts/neighborhood", function(r) {
       merge(r, $("body"));
@@ -38,5 +19,10 @@ $.sammy("body")
     }, "html");
   })
 
+  .get("#/posts/new", function(context) {
+    $.get("/posts/new", function(r) {
+      merge(r, $("body"));
+    }, "html")
+  })
 
   .get("#/posts/:id", setInfoBox)
