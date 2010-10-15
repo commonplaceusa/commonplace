@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   end
   
   def name
-    first_name + " " + last_name[/^./] + "."
+    full_name
   end
   
   # TODO: pull this out into a module
