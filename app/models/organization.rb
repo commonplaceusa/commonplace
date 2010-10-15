@@ -25,6 +25,8 @@ class Organization < ActiveRecord::Base
 
   before_create :place_in_community
 
+  before_create :set_default_avatar
+
   has_one :avatar, :as => :owner
 
   has_friendly_id :name, :use_slug => true, :scope => :community
@@ -67,6 +69,12 @@ class Organization < ActiveRecord::Base
     if new_record?
       profile_fields.build([{:subject => "History"},
                             {:subject => "About"}])
+    end
+  end
+
+  def set_default_avatar
+    if self.avatar.nil?
+      self.avatar = Avatar.new
     end
   end
 

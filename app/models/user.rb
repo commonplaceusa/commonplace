@@ -87,7 +87,9 @@ class User < ActiveRecord::Base
   end
   
   def set_default_avatar
-    avatar = Avatar.new
+    if self.avatar.nil?
+      self.avatar = Avatar.new
+    end
   end
 
 end
