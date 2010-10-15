@@ -24,7 +24,7 @@ namespace :deploy do
         end
         nginx_config_file = <<-EOF
             upstream #{application}_server {
-              server unix:#{deploy_to}/tmp/sockets/unicorn.sock fail_timeout=0;
+              server unix:#{deploy_to}/current/tmp/sockets/unicorn.sock fail_timeout=0;
             }
             server {
               listen #{web_port};
@@ -59,7 +59,7 @@ namespace :deploy do
 
             }
         EOF
-        sudo_put nginx_config_file, "#{nginx_conf_dir}/#{application}_#{nginx_rails_env}.conf"
+        sudo_put nginx_config_file, "/etc/nginx/conf/#{application}_#{nginx_rails_env}.conf"
       end
     end
     namespace :ssl do
