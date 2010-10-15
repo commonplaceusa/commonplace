@@ -18,7 +18,7 @@ class PostsController < CommunitiesController
     @post.user = current_user
     if @post.save
       flash[:message] = "Post Created!"
-      redirect_to neighborhood_posts_url
+      redirect_to posts_url
     else
       render :json => {"saved" => false, "post" => @post.errors.as_json}
     end
