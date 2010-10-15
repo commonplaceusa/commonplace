@@ -7,12 +7,7 @@ class PostsController < CommunitiesController
   layout 'zone'
 
   def index
-    @posts = current_community.posts
-  end
-  
-  def neighborhood
-    @posts = current_user.neighborhood.posts
-    render :index
+    @items = current_user.neighborhood.posts.sort_by(&:created_at).reverse
   end
 
   def new

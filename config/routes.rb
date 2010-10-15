@@ -42,7 +42,6 @@ ActionController::Routing::Routes.draw do |map|
     end
 
     community.namespace :neighborhood do |neighborhood|
-      neighborhood.resources :posts, :only => :index
       neighborhood.resources :people, :only => :index
     end
 
