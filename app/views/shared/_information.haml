@@ -1,58 +1,59 @@
 #information
-  %h3 Your Community
+  %h3 YOUR COMMUNITY
   = render_map do |map|
     - map.center :lat => current_community.lat, :lng => current_community.lng
     - items.each do |item|
       - if item.respond_to? :lat
         - map.marker :lat => item.lat, :lng => item.lng
 
-  %ul.inventories
-    %li
-      %h4 YOUR INTERESTS
-      %ul
-        %li
-          Arts and Crafts
-        %li 
-          Basketball
-      .more
-        add-more (2)
-    
-    %li
-      %h4 YOUR SUBSCRIPTIONS
-      %ul
-        %li
-          Punjabi Dhaba
-        %li 
-          CommonPlace
-        %li
-          Organization
-    
-      .more
-        add-more (14)
-    
-    %li
-      %h4 YOUR EVENTS
-      %ul
-        %li
-          Tree Planting a...
-        %li 
-          Soup Kitchen
+  .inventories
+    %ul
+      %li
+        %h4 YOUR INTERESTS
+        %ul
+          %li
+            Arts and Crafts
+          %li 
+            Basketball
+        .more
+          add-more (2)
       
-      .more
-        view all (2)
-    
-    %li
-      %h4 YOUR POSTS
-      %ul
-        %li
-          Ladder?
-        %li 
-          Post Title
-        %li
-          This is the h...
-        %li
-          Longer Post T...
-        %li
-          Test Post
-      .more
-        view all (9)
+      %li
+        %h4 YOUR SUBSCRIPTIONS
+        %ul
+          %li
+            Punjabi Dhaba
+          %li 
+            CommonPlace
+          %li
+            Organization
+      
+        .more
+          add-more (14)
+      
+      %li
+        %h4 YOUR EVENTS
+        %ul
+          %li
+            Tree Planting a...
+          %li 
+            Soup Kitchen
+        
+        .more
+          view all (2)
+      
+      %li
+        %h4 YOUR POSTS
+        %ul
+          %li
+            Ladder?
+          %li 
+            Post Title
+          %li
+            This is the h...
+          %li
+            Longer Post T...
+          %li
+            Test Post
+        .more
+          view all (9)
