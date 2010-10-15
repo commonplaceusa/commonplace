@@ -2,11 +2,14 @@
   - link_to "close", :id => "modal-close", 'data-remote' => true do
     = image_tag 'modal-close.png'
 
-  - semantic_form_for post, :html => { :class => "standard_form"} do |f|
+  - semantic_form_for post do |f|
   
     %h1 Write a post to your neighbors
+    %p This post will be emailed and posted to your neighborhood -- the 500 or so houses around you, who you can view here.
     - f.inputs do
       = f.input :subject
       = f.input :body
+      = f.input :category, :as => :radio, :collection => Post::CATEGORIES
+      
     - f.buttons do
       = f.commit_button "Submit Post"

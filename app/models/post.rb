@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  
+  CATEGORIES = %w{Request Offer Invitation Announcement Question}  
   require "lib/helper"
   
   belongs_to :user

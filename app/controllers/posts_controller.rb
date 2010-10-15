@@ -16,11 +16,12 @@ class PostsController < CommunitiesController
   end
 
   def new
+    render :layout => false
   end
 
   def create
     @post.user = current_user
-    if @post.save || true
+    if @post.save
       flash[:message] = "Post Created!"
       redirect_to neighborhood_posts_url
     else
