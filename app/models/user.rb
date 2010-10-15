@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
   
   def wire
-    (self.organizations.map(&:announcements).flatten + Event.all(:order => "created_at DESC") + Post.all(:order => "created_at DESC")).sort_by(&:created_at).reverse
+    (subscribed_announcements + organizations.map(&:events).flatten + neighborhood.posts).sort_by(&:created_at).reverse
   end
 
   def role_symbols
