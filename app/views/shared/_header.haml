@@ -1,6 +1,7 @@
 %header
   %h1 
-    = image_tag "#{current_community.slug}.png", :alt => "Commonplace #{current_community.name}"
+    - link_to root_url do
+      = image_tag "#{current_community.slug}.png", :alt => "Commonplace #{current_community.name}"
 
   %nav
     = link_to "Home", "/", :class => 'current_page'
