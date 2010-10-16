@@ -7,7 +7,7 @@
     %hr.staple
   
     %h1 Write a post to your neighbors
-    %p This post will be emailed and posted to your neighborhood -- the 500 or so houses around you, who you can view #{link_to "here", neighborhood_people_path, :target => "_blank"}.
+    %p.hint This post will be emailed and posted to your neighborhood -- the 500 or so houses around you, who you can view #{link_to "here", neighborhood_people_path, :target => "_blank"}.
     - f.inputs do
       = f.input :subject
       = f.input :body, :input_html => { :rows => 2, :cols => 21 }

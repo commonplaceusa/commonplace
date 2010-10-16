@@ -20,7 +20,7 @@ class PostsController < CommunitiesController
       flash[:message] = "Post Created!"
       redirect_to posts_url
     else
-      render :json => {"saved" => false, "post" => @post.errors.as_json}
+      render :new, :layout => false
     end
   end
 

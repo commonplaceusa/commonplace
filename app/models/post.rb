@@ -7,7 +7,9 @@ class Post < ActiveRecord::Base
   has_many :replies, :as => :repliable
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
   validates_presence_of :user
+  validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
+  validates_presence_of :category, :message => "Please select a category for your post"
 
   def self.human_name
     "Neighborhood Post"
