@@ -14,47 +14,51 @@
       border: 1px solid #f5f5f5
         bottom: 0
       +border-top-radius(5px)
+      padding: 9px 9px 11px 9px
                                                 
   #create-entity
-    +text-shadow(#376287, 2px, 1px, 1px)
+    +text-shadow($cpDarkRed, 2px, 1px, 1px)
+    +box-shadow( #497daf - #222, 0, 2px, 2px, 0, false)
     text-decoration: none
     font-weight: bold
     img
-      width: 5px
-      height: 5px
+      width: 8px
+      height: 8px
       border: 1px solid black
       +inline-block
+      margin-right: 5px
     font-size: 10px
     +sans
     display: block
     color: white
-    float: left 
+    float: left
+    
+    border: 1px solid $cpDarkRed - #111
     +border-radius(5px)
-    padding: 10px
     span
-      border: 1px solid #7fa6c9
-        bottom: 1px solid #4f7599
+      border: 1px solid $cpRed + #222
+        bottom: 1px solid $cpDarkRed
       display: block
-      padding: 10px 10px
-      background-color: $baseBlue
+      padding: 8px
+      background-color: $cpRed
       +border-radius(5px)
 
   #filters
-    margin: 10px
-      left: 0
-
-    float: left
-    border-left: 1px solid #bbb
+    float: right
+    // width: 265px
     +clearfix
+    &.announcements
+      width: 278px
     a
+      +box-shadow( #497daf - #222, 0, 2px, 2px, 0, false)
       text-decoration: none
       +inline-block      
-      margin: 6px 0px 6px 10px
-      color: #888
+      margin: 4px 5px
+      color: $cpRed
       +sans
       font-size: 10px
       font-weight: bold
-      background-color: $baseGray
+      background-color: white
       border: 1px solid #ccc
       span
         padding: 5px 10px
@@ -66,11 +70,12 @@
       +clearfix
         
       &.selected_nav, &:hover
-        color: #c0c0c0
+        // color: #c0c0c0 // Mark has this but I don't like it
         background-color: #ddd
         span
           border: 1px solid #e9e9e7
             bottom: 1px solid #ccc
+        
             
     &:before
       content: " "
