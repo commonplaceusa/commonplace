@@ -1,17 +1,20 @@
 %nav#zones
   - link_to posts_path, :class => 'posts', 'data-remote' => true do 
-    %div
-    %span
-      %span Neighborhood Posts
+    .img_container
+    .text_container
+      %p= "Neighborhood Posts".upcase
+      
   - link_to :announcements, :class => 'announcements', 'data-remote' => true do
-    %div
-    %span
-      %span Announcements
+    .img_container
+    .text_container
+      %p= "Community Announcements".upcase
+      
   - link_to :events, :class => 'events', 'data-remote' => true do
-    %div
-    %span
-      %span Events
+    .img_container
+    .text_container
+      %p= "Community Events".upcase
+      
   - link_to :users, :class => 'users', 'data-remote' => true do
-    %div
-    %span
-      %span People
+    .img_container
+    .text_container
+      %p= "Neighborhood Directory".upcase

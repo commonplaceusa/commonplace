@@ -5,43 +5,50 @@
     background-color: #4A7EB0
     border-bottom: 1px solid #507599
     a 
-      width: 58px
+      width: 89px
       +sans
       +inline-block
       
-      margin: 20px 30px
+      margin: 15px
       text-align: center
-      font-size: 11px
-      font-weight: bold
-      color: $baseText
-      text-decoration: non
+      font-size: 9px
+      font-weight: normal
+      color: white
+      text-decoration: none
+      line-height: 130%
 
-      div
+      .text_container
+        border: 1px solid transparent
+        p
+          padding: 1px 2px
+          border: 1px solid transparent
+
+      .img_container
         width: 60px
         height: 60px
         margin: 0px auto 10px
         
-      &.posts div
+      &.posts .img_container
         background-image: url("/images/posts.png")
-      &.announcements div
+      &.announcements .img_container
         background-image: url("/images/announcements.png")
-      &.events div
+      &.events .img_container
         background-image: url("/images/events.png")
-      &.users div
+      &.users .img_container
         background-image: url("/images/users.png")
-      &.organizations div
+      &.organizations .img_container
         background-image: url("/images/organizations.png")
-      &.goods_and_skills div
+      &.goods_and_skills .img_container
         background-image: url("/images/goods_and_skills.png")
               
       &:hover
         color: white
-        div
+        .img_container
           background-position: 0px 93px
 
-        span
+        .text_container
           border: #8c3431 1px solid
-          span
+          p
             background-color: #b53f3c
             border: #c95855 1px solid
               bottom: #9a2b27 1px solid
