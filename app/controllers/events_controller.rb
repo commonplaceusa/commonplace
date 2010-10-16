@@ -18,6 +18,7 @@ class EventsController < CommunitiesController
   end
   
   def new
+    render :layout => false
   end
 
   def create

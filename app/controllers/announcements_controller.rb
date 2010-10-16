@@ -19,5 +19,6 @@ class AnnouncementsController < CommunitiesController
   end
 
   def new
+    render :layout => false
   end
 end
