@@ -33,13 +33,17 @@
     
     border: 1px solid $cpDarkRed - #111
     +border-radius(5px)
-    span
+    > span
       border: 1px solid $cpRed + #222
         bottom: 1px solid $cpDarkRed
       display: block
-      padding: 8px
+      padding: 6px 8px
       background-color: $cpRed
       +border-radius(5px)
+      span
+        +inline-block
+        vertical-align: top
+        margin-top: 2px
 
   #filters
     float: right

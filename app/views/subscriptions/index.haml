@@ -3,7 +3,7 @@
   - link_to new_announcement_path, 'data-remote' => true, :id => "create-entity" do
     %span
       = image_tag 'pin-icon.png'
-      POST AN ANNOUNCEMENT
+      %span POST AN ANNOUNCEMENT
   #filters
     - winnow_button "ALL", announcements_path
     - winnow_button "YOURS", subscribed_announcements_path
