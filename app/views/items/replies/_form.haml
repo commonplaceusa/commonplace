@@ -1,5 +1,6 @@
 
 - form_for reply do |f|
+  = image_tag reply.user.avatar_url(:thumb)
   = f.hidden_field :repliable_type => item.class.to_s
   = f.hidden_field :repliable_id => item.id
   = f.text_area :body, "data-label" => "Reply here!"

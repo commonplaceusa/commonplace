@@ -3,4 +3,4 @@
     - item.replies.each do |reply|
       = render 'replies/reply', :reply => reply
       
-  = render 'replies/form', :reply => item.replies.new
+  = render 'replies/form', :reply => item.replies.new(:user => current_user)

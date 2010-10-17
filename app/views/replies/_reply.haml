@@ -1,5 +1,5 @@
 %li.reply
-  = image_tag reply.user.avatar_url(:thumb), :width => 25, :height => 25
+  = image_tag reply.user.avatar_url(:thumb)
   = link_to reply.user.name, reply.user, :class => 'author'
   %p.body= reply.body
   %br
