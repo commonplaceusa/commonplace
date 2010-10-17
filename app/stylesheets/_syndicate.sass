@@ -105,7 +105,7 @@
     a
       text-decoration: none
       +border-radius(5px)
-      padding: 10px
+      padding: 8px
       +clearfix
       display: block
       color: $baseText
@@ -113,18 +113,20 @@
         margin-left: 60px
       .body
         +serif
-        font-size: 12px
+        font-size: 0.8em
         line-height: 1.4
-        color: black
+        color: $textColor
       .title
-        color: black
+        color: $titleColor
         font-size: 18px
+        margin-bottom: 3px
         +serif
       .author
         font-size: 11px
         color: $subtitle
         font-family: arial
         line-height: 1.2
+        margin-bottom: 5px
         +sans
         font-weight: bold
       time
@@ -142,9 +144,8 @@
       .reply-count 
         float: left
         width: 50px
-        margin-top: 10px
+        margin-top: 5px
         text-align: center
-        font-weight: bold
         font-size: 10px
         clear: left
         +sans
