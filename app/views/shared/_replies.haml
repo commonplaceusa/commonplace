@@ -1,4 +1,4 @@
-%div{:class => "replies #{dom_id(item)}_replies"}
+%div{:id => "#{dom_id(item)}_replies", :class => ["replies",hide ? "hide": nil].join(" ")}
   %ul
     - item.replies.each do |reply|
       = render 'replies/reply', :reply => reply

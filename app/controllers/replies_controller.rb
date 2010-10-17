@@ -1,17 +1,15 @@
 class RepliesController < ApplicationController
   
+  layout false
   def create
     authorize! :create, Reply
     @reply = current_user.replies.build(params[:reply])
-    respond_to do |format|
-      if @reply.save
-        Notifier.reply_notify(@reply)
-        format.html
-        format.json
-      else
-        format.json { render :new }
-      end
+    if @reply.save
+      Notifier.reply_notify(@reply)
+      render :new
+    else
+      render :show
     end
   end
-
+  
 end

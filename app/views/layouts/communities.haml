@@ -34,7 +34,7 @@
                 - else
                   = render item
                 - if item.respond_to?(:replies)
-                  = render 'shared/replies', :item => item
+                  = render 'shared/replies', :item => item, :hide => true
         #main-navigation
           = render 'shared/tooltip'
 
