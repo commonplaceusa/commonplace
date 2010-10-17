@@ -26,8 +26,8 @@ $.sammy("body")
   })
 
   .get("#/posts/:id", function(c) {
+    $(c.target).siblings(".replies").show();
     $.get(c.path.slice(1), function(r) {
-      $(c.target).siblings(".replies").show();
       merge(r, $("body"));
     }, "html");
   })
