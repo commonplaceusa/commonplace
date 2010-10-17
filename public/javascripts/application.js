@@ -28,13 +28,12 @@ $(document).ready(function() {
     e.preventDefault();
     $.sammy("body").runRoute("get",$(this).attr('href'));
   });
-
+  
+  $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
+  $('header nav .disabled_link').attr('title', "Coming soon!").tipsy({gravity: 's'});
+  
   renderMaps();
 
   window.onscroll = setInfoBoxPosition;
   
-  
-  
-  $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
-
 });

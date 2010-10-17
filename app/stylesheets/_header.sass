@@ -37,7 +37,7 @@ header.management
       padding: 8px 0 12px 0 
       float: right
       display: inline
-      a
+      a, .disabled_link
         font-size: 11px
         padding: 5px
         color: $baseText + #222
@@ -45,7 +45,9 @@ header.management
         vertical-align: bottom
         +sans
         text-decoration: none
-        &.current_page
-          color: #3b6085
-        &:hover
-          color: #3b6085
+      a.current_page
+        color: #3b6085
+      a:hover
+        color: #3b6085
+      .disabled_link
+        cursor: default
