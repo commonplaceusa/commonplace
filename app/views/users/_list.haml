@@ -1,3 +1,4 @@
 %ul#wire
   - @users.each do |user|
-    = render user
+    %li{ :class => cycle('odd','even') }
+      = render user

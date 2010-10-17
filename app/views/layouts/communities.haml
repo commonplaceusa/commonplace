@@ -28,7 +28,7 @@
             = yield :syndicate_navigation
           %ul.items
             - @items.each do |item|
-              %li.item
+              %li.item{ :class => "#{cycle('odd', 'even')} #{item.class.to_s.downcase}" }
                 - if @render_args
                   = render *@render_args.call(item)
                 - else

@@ -101,7 +101,7 @@
     overflow: hidden
     &:hover
       background-color: $listingHover
-
+    
     a
       text-decoration: none
       +border-radius(5px)
@@ -149,3 +149,21 @@
         font-size: 10px
         clear: left
         +sans
+        
+    &.user, &.organization
+      border: none
+      +border-radius(0)
+      margin: 0
+      a
+        .avatar
+          height: 30px
+          width: 30px
+        .title
+          margin-left: 40px
+          margin-top: 4px
+      &.odd
+        background-color: white
+      &.even
+        background-color: #efefef
+      &:hover
+        background-color: $listingHover
