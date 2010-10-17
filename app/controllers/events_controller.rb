@@ -22,12 +22,11 @@ class EventsController < CommunitiesController
   end
 
   def create
-    respond_to do |format|
-      if @event.save
-        format.json         
-      else
-        format { render 'new' }
-      end
+    @event = Event.new(params[:event])
+    if @event.save
+      redirect_to events_url
+    else
+      render :new, :layout => false
     end
   end
   

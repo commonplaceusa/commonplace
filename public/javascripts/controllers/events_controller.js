@@ -13,6 +13,20 @@ $.sammy("body")
     }, "html");
   })
 
+  .post("/events", function(c) {
+    $.post(c.path, c.params, function(r) {
+      merge(r, $("body"));
+
+      $('input.date').datepicker({
+        prevText: '&laquo;',
+        nextText: '&raquo;',
+        showOtherMonths: true,
+        defaultDate: null, 
+      });
+
+    }, "html");
+  })
+
   .get("#/events/suggested", function(c) {
     $.get("/events/suggested", function(r) {
       merge(r, $("body"));
