@@ -1,7 +1,5 @@
 
 .info_box
-  top: 10px
-  width: 460px
   +border-radius($defaultRadius)
   #info_box_main
     border-top: 1px solid white
@@ -46,7 +44,7 @@
         line-height: 15px
         &#follow_link
           cursor: pointer
-          width: 100px
+          width: 120px
           border: none
           background-color: #396081
           margin-bottom: 7px
@@ -71,6 +69,9 @@
       vertical-align: top
       width: 295px
       h3
+        text-align: left
+        padding: 6px 0
+        background-color: transparent
         color: $infoBoxTitle
         font-size: 1.5em
         margin-bottom: 10px
@@ -103,8 +104,9 @@
         
 #info_box_top
   color: #888
-  font-size: 12px
+  font-size: 11px
   text-align: center
-  margin: 10px 10px 6px
-  padding-bottom: 6px
-  border-bottom: 2px solid $lightestGray
+  +sans
+  font-weight: bold
+  padding: 6px
+  border-bottom: 1px solid #ccc
