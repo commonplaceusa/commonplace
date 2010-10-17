@@ -3,7 +3,7 @@
 
 _Stylesheets_
  - styled_box.sass
- 
+ - merge _form.sass and _modal_form.sass  
 _Views_
 
 

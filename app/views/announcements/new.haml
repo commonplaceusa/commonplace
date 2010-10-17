@@ -1,9 +1,15 @@
 #modal
   - link_to "close", :id => "modal-close", 'data-remote' => true do
     = image_tag 'modal-close.png'
+
   - semantic_form_for @announcement do |f|
+    %hr.staple
+    %h1 Post an announcement from your organization
+    %p.hint Ask Pete for text
+
     - f.inputs do
+      = f.input :organization, :collection => current_user.managable_organizations
       = f.input :subject
-      = f.input :body
+      = f.input :body, :input_html => { :rows => 5, :cols => 21 }
     - f.buttons do
-      = f.commit_button "Send Announcment"
+      #submit_wrapper= f.commit_button "Send Announcment"

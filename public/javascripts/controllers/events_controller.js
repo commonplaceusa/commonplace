@@ -22,6 +22,14 @@ $.sammy("body")
   .get("#/events/new", function(c) {
     $.get("/events/new", function(r) {
       merge(r, $("body"));
+
+      $('input.date').datepicker({
+        prevText: '&laquo;',
+        nextText: '&raquo;',
+        showOtherMonths: true,
+        defaultDate: null, 
+      });
+
     }, "html");
   })
 
