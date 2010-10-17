@@ -3,7 +3,7 @@ $.sammy("body")
 
   .post("/posts", function(c) {
     $.post(this.path, this.params, function(r) {
-        merge(r, $("body"));
+      merge(r, $("body"));
     }, "html");  
   })
 
@@ -22,7 +22,12 @@ $.sammy("body")
   .get("#/posts/new", function(context) {
     $.get("/posts/new", function(r) {
       merge(r, $("body"));
-    }, "html")
+    }, "html");
   })
 
-  .get("#/posts/:id", setInfoBox)
+  .get("#/posts/:id", function(c) {
+    $.get(c.path.slice(1), function(r) {
+      $(c.target).siblings(".replies").show();
+      merge(r, $("body"));
+    }, "html");
+  })

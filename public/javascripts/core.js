@@ -27,7 +27,7 @@ $(function() {
 
   $('a[data-remote]').live('click', function(e) {
     $.sammy("body").setLocation("#" + $(this).attr('href'));
-    $.sammy("body").runRoute("get", "#" + $(this).attr('href'));
+    $.sammy("body").runRoute("get", "#" + $(this).attr('href'), {}, this);
     e.preventDefault()
   });
 

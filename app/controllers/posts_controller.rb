@@ -25,10 +25,7 @@ class PostsController < CommunitiesController
   end
 
   def show
-    respond_to do |format|
-      format.html
-      format.json
-    end
+    render :layout => false
   end
   
   def destroy
