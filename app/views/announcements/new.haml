@@ -2,9 +2,9 @@
   - link_to "close", :id => "modal-close", 'data-remote' => true do
     = image_tag 'modal-close.png'
 
-  - semantic_form_for @announcement do |f|
+  - semantic_form_for @announcement, :html => { :class => "new_entity" } do |f|
     %hr.staple
-    %h1 Post an announcement from your organization
+    %h1 Make an announcement from your organization
     %p.hint Ask Pete for text
 
     - f.inputs do
