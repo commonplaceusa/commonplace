@@ -10,8 +10,8 @@
     %p.hint This post will be emailed and posted to your neighborhood -- the 500 or so houses around you, who you can view #{link_to "here", neighborhood_people_path, :target => "_blank"}.
     - f.inputs do
       = f.input :subject
-      = f.input :body, :input_html => { :rows => 2, :cols => 21 }
-      = f.input :category, :as => :radio, :collection => Post::CATEGORIES, :label => false
+      = f.input :body, :input_html => { :rows => 5, :cols => 21 }
+      = f.input :category, :as => :radio, :collection => Post::CATEGORIES, :label => "Category"
       
     - f.buttons do
-      = f.commit_button "Post!"
+      #submit_wrapper= f.commit_button "Submit your post"
