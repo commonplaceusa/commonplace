@@ -2,7 +2,7 @@
 - content_for :syndicate_navigation do
   - link_to new_announcement_path, 'data-remote' => true, :id => "create-entity" do
     %span
-      %img
+      = image_tag 'pin-icon.png'
       POST AN ANNOUNCEMENT
   #filters
     - winnow_button "ALL", announcements_path

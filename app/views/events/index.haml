@@ -2,8 +2,8 @@
 - content_for :syndicate_navigation do 
   - link_to new_event_path, 'data-remote' => true, :id => "create-entity" do
     %span
-      %img
-        POST AN EVENT
+      = image_tag 'pin-icon.png'
+      POST AN EVENT
 
   #filters
     - winnow_button "ALL", events_path
