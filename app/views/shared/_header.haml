@@ -8,5 +8,5 @@
       = link_to "Home", "/", :class => 'current_page'
       %span.disabled_link Inbox (8)
       = link_to "Manage Profile", management_url
-      = link_to "Create an Organization", new_organization_url
+      = link_to "Create an Organization", new_organization_path, 'data-remote' => true
       = link_to "Log Out", "/user_session", :method => :delete

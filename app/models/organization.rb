@@ -1,9 +1,9 @@
 class Organization < ActiveRecord::Base
-  CATEGORIES = %w{Municipal Business Non-profit Club}
+  CATEGORIES = %w{Municipal Business}
   
   acts_as_taggable_on :tags
 
-  validates_presence_of :name, :message => "nice message"
+  validates_presence_of :name, :address
   validates_format_of :website, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :allow_blank => true
   
   belongs_to :community
@@ -22,8 +22,6 @@ class Organization < ActiveRecord::Base
   has_many :invites, :as => :inviter
 
   before_save :update_lat_and_lng, :if => "address_changed?"
-
-  before_create :place_in_community
 
   before_create :set_default_avatar
 
@@ -60,15 +58,11 @@ class Organization < ActiveRecord::Base
   
   protected
 
-  # TODO: find community based on address
-  def place_in_community
-    self.community = Community.first
-  end
 
   def after_initialize
-    if new_record?
-      profile_fields.build([{:subject => "History"},
-                            {:subject => "About"}])
+    if new_record? && profile_fields.empty?
+      profile_fields.build([{:subject => "History", :body => ""},
+                            {:subject => "About", :body => ""}])
     end
   end
 

@@ -26,7 +26,19 @@ $.sammy("body")
     });
   })
 
+  .get("#/organizations/new", function(c) {
+    $.get(c.path.slice(1), function(r) {
+      merge(r, $('body'));
+    }, "html");
+  })
+
+  .post("/organizations", function(c) {
+    $.post(c.path, c.params, function(r) {
+      merge(r,$('body'));
+    },"html");
+  })
+
   .get("#/organizations/:id", setInfoBox)
-  .get("#/organizations/new", setModal)
+
 
   .get("#/organizations/:organization_id/announcements/new", setModal)

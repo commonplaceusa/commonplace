@@ -26,8 +26,16 @@ class OrganizationsController < CommunitiesController
   end
 
   def new
-    respond_to do |format|
-      format.json 
+    render :layout => false
+  end
+
+  def create
+    @organization = current_community.organizations.new(params[:organization])
+    if @organization.save
+      @organization.admins << current_user
+      redirect_to organizations_url
+    else
+      render :new, :layout => false
     end
   end
   
