@@ -1,71 +1,54 @@
 #information
   %h3 YOUR COMMUNITY
-  = render_map do |map|
-    - map.center :lat => current_community.lat, :lng => current_community.lng
-    - items.each do |item|
-      - if item.respond_to? :lat
-        - map.marker :lat => item.lat, :lng => item.lng
+  #information_content
+    = render_map do |map|
+      - map.center :lat => current_community.lat, :lng => current_community.lng
+      - items.each do |item|
+        - if item.respond_to? :lat
+          - map.marker :lat => item.lat, :lng => item.lng
 
-  .inventories
-    %ul
-      %li
-        %h4
-          YOUR
-          %br
-          INTERESTS
-        %ul
-          %li
-            Arts and Crafts
-          %li 
-            Basketball
-        .more
-          Add more (2)
+    .inventories
+      %ul
+        %li
+          %h4
+            YOUR
+            %br
+            INTERESTS
+          %ul
+            %li Arts and Crafts
+            %li Basketball
+          .more Add more (2)
       
-      %li
-        %h4
-          YOUR
-          %br
-          SUBSCRIPTIONS
-        %ul
-          %li
-            Punjabi Dhaba
-          %li 
-            CommonPlace
-          %li
-            Organization
+        %li
+          %h4
+            YOUR
+            %br
+            SUBSCRIPTIONS
+          %ul
+            %li Punjabi Dhaba
+            %li CommonPlace
+            %li Organization
+          .more Add more (14)
       
-        .more
-          Add more (14)
+        %li
+          %h4
+            YOUR
+            %br
+            EVENTS
+          %ul
+            %li Tree Planting and more...
+            %li Soup Kitchen
+          .more View all (2)
       
-      %li
-        %h4
-          YOUR
-          %br
-          EVENTS
-        %ul
-          %li
-            Tree Planting a...
-          %li 
-            Soup Kitchen
-        
-        .more
-          View all (2)
-      
-      %li
-        %h4
-          YOUR
-          %br
-          POSTS
-        %ul
-          %li
-            Ladder?
-          %li 
-            Post Title
-          %li
-            This is the h...
-          %li
-            Longer Post T...
-          %li
-            Test Post
-        .more
-          View all (9)
+        %li
+          %h4
+            YOUR
+            %br
+            POSTS
+          %ul
+            %li Ladder?
+            %li Post Title
+            %li This is the h...
+            %li Longer Post T...
+            %li Test Post
+          .more View all (9)

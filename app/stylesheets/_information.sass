@@ -21,7 +21,14 @@
         top: 1px #f0f0f0 solid
         left: 1px #f0f0f0 solid
         right: 1px #f0f0f0 solid
-                                                
+    
+    #information_content
+      +border-radius($defaultRadius)
+      border: 1px solid #aaa
+      background-color: white
+      margin: 0 10px 10px 10px
+      padding: 12px
+                                   
     div[data-map]
       height: 200px      
       background-color: #ddd
@@ -31,20 +38,15 @@
   
     div.inventories
       background-color: white
-      padding: 20px 0px
+      padding-top: 20px
       +border-radius(2px)
       overflow: hidden
-      padding-bottom: 10px
-      border: 1px solid #f0f0f0
-        bottom-width: 2px
       > ul 
         +clearfix
-
-        border-bottom: 10px solid white
       > ul > li
         float: left
         border-bottom: 10px solid orange
-        width: 98px
+        width: 88px
         padding: 0px 9px 
         border-left: 1px solid #dbdbdb
         padding-bottom: 500px
