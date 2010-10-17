@@ -27,13 +27,13 @@
           %span.info_title= "Address".upcase 
           = user.address[/(.+?)(,)/, 1]
 
-  = render_map do |map|
-    - map.center :lat => user.lat, :lng => user.lng
-    - map.marker :lat => current_user.lat, :lng => current_user.lng
-    - map.marker :lat => user.lat, :lng => user.lng
-    - map.directions do |dir|
-      - dir.origin :lat => current_user.lat, :lng => current_user.lng
-      - dir.destination :lat => user.lat, :lng => user.lng
-      
-      
-  
+    = render_map do |map|
+      - map.center :lat => user.lat, :lng => user.lng
+      - map.marker :lat => current_user.lat, :lng => current_user.lng
+      - map.marker :lat => user.lat, :lng => user.lng
+      - map.directions do |dir|
+        - dir.origin :lat => current_user.lat, :lng => current_user.lng
+        - dir.destination :lat => user.lat, :lng => user.lng
+    
+    
+

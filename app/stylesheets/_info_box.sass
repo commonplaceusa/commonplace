@@ -1,8 +1,12 @@
 
-.info_box
+#information.info_box
   +border-radius($defaultRadius)
-  #info_box_main
-    border-top: 1px solid white
+  #info_box_main  
+    +border-radius($defaultRadius)
+    border: 1px solid #aaa
+    padding: 4px
+    background-color: white
+    margin: 0 10px 10px 10px
     padding: 10px 12px
     line-height: 120%
     color: black
@@ -67,7 +71,7 @@
     .body
       +inline-block
       vertical-align: top
-      width: 295px
+      width: 286px
       h3
         text-align: left
         padding: 6px 0
@@ -99,14 +103,13 @@
 
   div[data-map]
     border: 1px solid $lightGray
-    margin: 10px
+    margin-top: 10px
     height: 200px
         
-#info_box_top
+#info_box_top    
   color: #888
   font-size: 11px
   text-align: center
   +sans
   font-weight: bold
   padding: 6px
-  border-bottom: 1px solid #ccc
