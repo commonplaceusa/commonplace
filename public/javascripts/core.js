@@ -31,7 +31,7 @@ $(function() {
     e.preventDefault()
   });
 
-  $('textarea').autoResize({animateDuration: 50, extraSpace: 5});
+  $('textarea').autoResize({animateDuration: 0, extraSpace: 20, animate: false});
 
   $('#org_url').textTruncate(140);
 
