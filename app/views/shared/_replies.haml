@@ -1,4 +1,5 @@
 %div{:id => "#{dom_id(item)}_replies", :class => ["replies",hide ? "hide": nil].join(" ")}
+  = image_tag 'reply-arrow-top.png', :class => "reply-arrow"
   %ul
     - item.replies.each do |reply|
       = render 'replies/reply', :reply => reply
