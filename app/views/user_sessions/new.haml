@@ -15,7 +15,7 @@
       = f.submit 'Log in'
   
   
-  - semantic_form_for User.new, :url => account_url, :html => { :class => "standard_form", :id => "sign_up"} do |f|
+  - semantic_form_for @user, :url => account_url, :html => { :class => "standard_form", :id => "sign_up"} do |f|
     %h2 Sign up
     
     - f.inputs do 

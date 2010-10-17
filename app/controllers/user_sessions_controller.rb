@@ -2,6 +2,7 @@ class UserSessionsController < ApplicationController
   
   def new
     authorize! :new, UserSession
+    @user = User.new
   end
 
   def create
