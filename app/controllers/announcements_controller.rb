@@ -21,4 +21,13 @@ class AnnouncementsController < CommunitiesController
   def new
     render :layout => false
   end
+
+  def create
+    @announcement = Announcement.new(params[:announcement])
+    if @announcement.save
+      redirect_to announcements_url
+    else
+      render :new, :layout => false
+    end
+  end
 end

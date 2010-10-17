@@ -19,6 +19,12 @@ $.sammy("body")
     }, "html");
   })
 
+  .post("/announcements", function(c) {
+    $.post(c.path, c.params, function(r) {
+      merge(r, $("body"));
+    }, "html");
+  })
+
   .get("#/subscriptions", function(c) {
     $.get("/subscriptions", function(r) {
       merge(r, $("body"));
