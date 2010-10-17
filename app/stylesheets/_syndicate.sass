@@ -23,8 +23,9 @@
     text-decoration: none
     font-weight: bold
     img
-      +inline-block
+      display: block
       margin-right: 5px
+      float: left
     font-size: 10px
     +sans
     display: block
@@ -40,14 +41,14 @@
       padding: 6px 8px
       background-color: $cpRed
       +border-radius(5px)
+      +clearfix
       span
-        +inline-block
-        vertical-align: top
-        margin-top: 2px
+        display: block
+        float: right
+        line-height: 15px
 
   #filters
     float: right
-    // width: 265px
     +clearfix
     &.announcements
       width: 278px
