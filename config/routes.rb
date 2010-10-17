@@ -49,6 +49,8 @@ ActionController::Routing::Routes.draw do |map|
     map.privacy 'privacy', :controller => 'site', :action => 'privacy'
     map.terms 'terms', :controller => 'site', :action => 'terms'
     map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
+    map.login 'get-started', :controller => 'user_sessions', :action => 'new'
+    
     map.resource :inbox
     map.resources :platform_updates
     map.resources :conversations
