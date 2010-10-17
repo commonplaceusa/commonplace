@@ -22,12 +22,10 @@
 
   %body
     #wrap
-      = render 'management/header'
+      = render 'shared/header'
       = yield :title
       = render 'management/side_nav'
       #organization_main>
         = yield :navigation
         #main
           = yield
-      #wrap_footer
-    = render 'shared/footer'

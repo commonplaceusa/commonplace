@@ -1,4 +1,4 @@
-%header
+%header.application
   %h1 
     - link_to root_url do
       = image_tag "#{current_community.slug}.png", :alt => "Commonplace #{current_community.name}"
@@ -7,6 +7,6 @@
     %nav
       = link_to "Home", "/", :class => 'current_page'
       %span.disabled_link Inbox (8)
-      = link_to "Manage Profile", "/account"
-      = link_to "Create an Organization", "/organizations/new"
+      = link_to "Manage Profile", management_url
+      = link_to "Create an Organization", new_organization_url
       = link_to "Log Out", "/user_session", :method => :delete
