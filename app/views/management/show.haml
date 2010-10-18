@@ -23,7 +23,8 @@
       = f.input :skill_list, :label => "Shared skills", :hint => "For example: lawnmowing, baking, ..."
 
 
-    = f.buttons
+    - f.buttons do
+      = f.commit_button 'Update Profile'
 
 #profile
   = render 'preview'
