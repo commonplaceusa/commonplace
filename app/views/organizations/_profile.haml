@@ -1,10 +1,5 @@
 #organization_profile.profile
 
-  %h1
-    = @organization.name
-    - unless @organization.subscribers.include? current_user
-      #subscribe= button_to "Subscribe to #{ @organization.name } on CommonPlace!", organization_subscription_url(@organization), :class => 'linkish_button'
-
   .left_col
     = image_tag @organization.avatar_url(:large), :id => "profile_photo"
   
@@ -39,6 +34,12 @@
   .middle_col
     - if flash[:win]
       #win= flash[:win]
+      
+    %h1
+      = @organization.name
+      - unless @organization.subscribers.include? current_user
+        #subscribe= button_to "Subscribe", organization_subscription_url(@organization), :class => 'linkish_button'
+    
     
     %ul
       %li.profile_field

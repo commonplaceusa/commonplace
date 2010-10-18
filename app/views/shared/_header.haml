@@ -5,8 +5,8 @@
 
   - if current_user_session
     %nav
-      = link_to "Home", "/", :class => 'current_page'
+      = tab_to "Home", "/"
       %span.disabled_link Inbox (8)
-      = link_to "Manage Profile", management_url
-      = link_to "Create an Organization", new_organization_path, 'data-remote' => true
-      = link_to "Log Out", "/user_session", :method => :delete
+      = tab_to "Manage Profile", management_url
+      = tab_to "Create an Organization", new_organization_path, 'data-remote' => true
+      = tab_to "Log Out", "/user_session", :method => :delete
