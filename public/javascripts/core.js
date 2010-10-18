@@ -72,7 +72,7 @@ function renderMaps() {
     var args = $.parseJSON($(this).attr('data-map'))
     if (args && args.center) {
       var map = new google.maps.Map(this, {
-        zoom: 15,
+        zoom: 13,
         center: jsonToLatLng(args.center),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         navigationControl: true,
