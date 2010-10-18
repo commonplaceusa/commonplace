@@ -12,6 +12,7 @@ class UserSessionsController < ApplicationController
       reload_current_user!
       redirect_back_or_default root_url
     else
+      @user = User.new
       render :new
     end
   end
