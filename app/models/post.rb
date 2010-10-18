@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   end
   
   def time
-    help.post_date(self.created_at).sub(/(\s)(0)(\d*)/, '\1\3')
+    help.post_date(self.created_at)
   end
   
   def owner

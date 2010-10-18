@@ -18,9 +18,9 @@ module TimeHelper
     if diff < 7
       return time_ago_in_words(time, include_seconds = true) + " ago"
     elsif diff < 365
-      return time.strftime("%B %d")
+      return time.strftime("%B %d").sub(/(\s)(0)(\d*)/, '\1\3')
     else
-      return time.strftime("%B %d %Y")
+      return time.strftime("%B %d %Y").sub(/(\s)(0)(\d*)/, '\1\3')
     end
   end
 

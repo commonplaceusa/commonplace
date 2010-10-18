@@ -8,7 +8,7 @@ class Announcement < ActiveRecord::Base
   validates_presence_of :subject, :body
   
   def time
-    help.post_date self.created_at
+    help.post_date(self.created_at)
   end 
   
   def owner
