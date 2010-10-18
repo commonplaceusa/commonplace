@@ -1,8 +1,14 @@
 $.sammy("body")
 
   .get("#manage", function () {
-    this.redirect(this.params["manage"]);
+    this.redirect(this.params["manage"])
   })
+  .get("#close", function(c) {
+    $("#modal").html("");
+    $.sammy("body").setLocation(currentIndex($.sammy("body")._location_proxy._last_location));
+  })
+
+  .setLocationProxy(new Sammy.CPLocationProxy($.sammy('body')));
 
 $(function() {
   $.sammy("body").run();
