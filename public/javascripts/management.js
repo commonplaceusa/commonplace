@@ -55,6 +55,6 @@ $(function() {
     });
   });
 
-  $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
+  $('.management_disabled').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   
 });
