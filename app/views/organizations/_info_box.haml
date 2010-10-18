@@ -20,7 +20,7 @@
         - unless organization.website.blank?
           %li
             %span.info_title= "Website".upcase
-            = auto_link organization.website
+            = auto_link organization.website, :html => { :target => '_blank' }
         - unless organization.phone.blank?
           %li
             %span.info_title= "Phone".upcase
