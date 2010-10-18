@@ -47,4 +47,8 @@ $.sammy("body")
     }, "html");
   })
 
-  .get("#/events/:id", setInfoBox)
+  .get("#/events/:id", function(c) {
+    $.get(c.path.slice(1), function(r) {
+      merge(r, $('body'));
+    });
+  })
