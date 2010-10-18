@@ -1,4 +1,4 @@
-- link_to post, :class => 'post', 'data-remote' => true do
+- link_to post, :class => 'post tooltip', 'data-tooltip' => 'Click to see replies to this post and more about the author.', 'data-remote' => true do
   = image_tag post.owner.avatar_url(:thumb), :class => "avatar"
   %time= post.time
   .reply-count #{ post.replies.size } replies
