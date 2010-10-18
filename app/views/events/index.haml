@@ -1,12 +1,12 @@
 
 - content_for :syndicate_navigation do 
-  - link_to new_event_path, 'data-remote' => true, :id => "create-entity" do
+  - link_to new_event_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Make a new event for your community.' do
     %span
       = image_tag 'pin-icon.png'
       %span POST AN EVENT
 
   #filters
-    - winnow_button "ALL", events_path
-    - winnow_button "YOURS", your_events_path
-    - winnow_button "SUGGESTED", suggested_events_path
+    - winnow_button "ALL", events_path, :class => 'tooltip', 'data-title' => "View all events."
+    - winnow_button "YOURS", your_events_path, :class => 'tooltip', 'data-title' => "View events that you're attending."
+    - winnow_button "SUGGESTED", suggested_events_path, :class => 'tooltip', 'data-title' => "View suggested events."
     - winnow_button "BY TAG", "disabled"

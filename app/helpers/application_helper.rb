@@ -39,8 +39,9 @@
      link_to(text, options, html_options)
    end
 
-   def winnow_button(text, target)
-     tab_to target, 'data-remote' => true do
+   def winnow_button(text, target, html_options = {})
+     html_options['data-remote'] = true
+     tab_to target, html_options do
        content_tag(:span, text)
      end
    end

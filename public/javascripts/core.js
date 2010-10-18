@@ -179,7 +179,7 @@ var showTooltips = function() {
     return ($('#zones .selected_nav').attr('data-title') || $(this).attr('title'));
   });
 
-  $('a.zone').mouseover(function() {
+  $('a.tooltip').mouseover(function() {
     $('#tooltip').html($(this).attr('data-title'));
   }).mouseout(function() {
     $('#tooltip').html($('#tooltip').attr('title'));

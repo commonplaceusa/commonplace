@@ -1,12 +1,12 @@
 
 - content_for :syndicate_navigation do
-  - link_to new_announcement_path, 'data-remote' => true, :id => "create-entity" do
+  - link_to new_announcement_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Make a new announcement to your community.' do
     %span
       = image_tag 'pin-icon.png'
       %span POST AN ANNOUNCEMENT
   #filters.announcements
-    - winnow_button "ALL", announcements_path
-    - winnow_button "YOURS", subscribed_announcements_path
-    - winnow_button "YOUR SUBSCRIPTIONS", subscriptions_path
+    - winnow_button "ALL", announcements_path, :class => 'tooltip', 'data-title' => "View all announcements."
+    - winnow_button "YOURS", subscribed_announcements_path, :class => 'tooltip', 'data-title' => "View all of your announcements."
+    - winnow_button "YOUR SUBSCRIPTIONS", subscriptions_path, :class => 'tooltip', 'data-title' => "View announcements from organizations you've subscribed to."
     / - winnow_button "RECOMMENDED", recommended_subscriptions_path
 
