@@ -37,7 +37,8 @@ $.sammy("body")
     }, "html");
   })
 
-
-  .get("#/announcements/:id", setInfoBox)
-
-
+  .get("#/announcements/:id", function(c) {
+    $.get(c.path.slice(1), function(r) {
+      merge(r, $('body'));
+    });
+  })

@@ -13,9 +13,7 @@ class AnnouncementsController < CommunitiesController
   end
 
   def show
-    respond_to do |format|
-      format.json
-    end
+    render :layout => false
   end
 
   def new
