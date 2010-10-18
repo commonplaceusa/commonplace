@@ -20,7 +20,7 @@
       %li Members (#{ @organization.subscribers.length })
       - @organization.subscribers.take(5).each do |subscriber|
         %li.member.clickable
-          .user_image= image_tag subscriber.avatar_url, :size => "30x30"
+          .user_image= image_tag subscriber.avatar_url(:thumb), :size => "30x30"
           .user_info
             .user_name= subscriber.name
             .user_role subscriber
