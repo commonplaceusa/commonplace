@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-  CATEGORIES = %w{Municipal Business}
+  CATEGORIES = %w{Municipal Business Civic}
   
   acts_as_taggable_on :tags
 
