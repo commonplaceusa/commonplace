@@ -5,6 +5,7 @@ nav#management_navigation
   width: 186px
   float: left
   p#open_nav
+    +serif
     background-color: #396081
     font-size: 15px
     +border-top-left-radius(7px)
@@ -20,6 +21,7 @@ nav#management_navigation
     font-size: 12px
     font-weight: bold
     line-height: 140%
+    text-decoration: none
     img
       margin-right: 5px
       margin-bottom: -3px
@@ -58,11 +60,12 @@ nav#management_navigation
 #profile
   float: right
   .info_box
+    background-color: #efefef
     width: 395px
     border: 1px solid $lightGray
     #info_box_main
       .body
-        width: 237px
+        width: 215px
       #info_box_main_left
         #big_calendar
           width: 117px
@@ -81,13 +84,15 @@ nav#profile_section_navigation
     color: white
     padding: 7px 10px
     color: #222
+    text-decoration: none
+    &.selected_nav, &:hover
+      background-color: #666
+      color: white
     &.management_disabled
       color: #888
       &:hover
+        background-color: $lightGray
         text-decoration: none
-    &.selected_nav
-      background-color: #666
-      color: white 
 
 
 h2#management_section_header
@@ -98,8 +103,9 @@ h2#management_section_header
   color: white
   +border-top-right-radius($defaultRadius)
   border-left: 1px solid #396081
-    
+  +serif
   img
+    margin: -1px 5px 0 0 
     vertical-align: text-top
 
 #invite_on_commonplace, #invite_by_email
@@ -136,6 +142,7 @@ h3.management_field
   color: #555
   border-bottom: 1px solid #888
   margin-bottom: 10px
+  +serif
   
 form.management_form
   margin-bottom: 2em
@@ -190,13 +197,11 @@ form#edit_avatar
     float: left
     margin-right: 10px
   label
-    display: block
     margin: 0.5em 0
     text-align: left
-    width: 100%
+    width: 200px
   input[type=file]
     width: 200px
-    display: block
     margin-bottom: 0.5em
   input[type=submit]
     margin: 1em 0 0 0 
@@ -235,9 +240,7 @@ ul#modules
     
 div[data-map]
   border: 1px solid $lightGray
-  margin: 20px
-  height: 200px    
-  width: 350px
+  height: 200px
 
 .invite-button
   float: right
