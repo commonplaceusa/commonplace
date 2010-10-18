@@ -14,7 +14,7 @@ $(document).ready(function() {
 
   $('body').click(function(e) {
     if (e.pageX < (($('body').width() - $('#wrap').width()) / 2)) {
-      history.back();
+      $('#filters .selected_nav').click();
     }
   });
   
@@ -23,7 +23,7 @@ $(document).ready(function() {
     $.sammy("body").runRoute("get",$(this).attr('href'));
   });
   
-  $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
+  $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   $('header nav .disabled_link').attr('title', "Coming soon!").tipsy({gravity: 's'});
   
   showTooltips();
