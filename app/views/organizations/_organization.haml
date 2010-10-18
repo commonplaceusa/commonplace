@@ -1,5 +1,4 @@
-%li.item
-  - link_to organization, :class => 'organization', 'data-remote' => true do
-    = image_tag organization.avatar_url(:thumb), :class => "avatar"
-    .title= organization.name
-    %p.body= organization.about
+- link_to organization, :class => 'organization', 'data-remote' => true do
+  = image_tag organization.avatar_url(:thumb), :class => "avatar"
+  .title= organization.name
+  %p.body= organization.about
