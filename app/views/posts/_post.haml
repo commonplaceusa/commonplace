@@ -4,4 +4,4 @@
   .reply-count #{ post.replies.size } replies
   .title= post.subject
   .author= post.owner.name
-  %p.body= truncate post.body, :length => 160
+  %p.body= post.body # truncate post.body, :length => 160
