@@ -4,4 +4,4 @@
   .reply-count #{event.replies.size} replies
   .title= event.subject
   .author= event.organization.name
-  %p.body= truncate event.body, :length => 160
+  %p.body= event.body #truncate event.body, :length => 160
