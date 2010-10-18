@@ -38,6 +38,7 @@ $.sammy("body")
   })
 
   .get("#/announcements/:id", function(c) {
+    accordionReplies($(c.target).siblings(".replies"));
     $.get(c.path.slice(1), function(r) {
       merge(r, $('body'));
     });

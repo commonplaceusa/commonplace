@@ -33,3 +33,8 @@ $(document).ready(function() {
   
   
 });
+
+function accordionReplies($replies) {
+  $("#syndicate .replies").not($replies.get(0)).slideUp();
+  $replies.slideDown();
+}
