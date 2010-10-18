@@ -1,3 +1,2 @@
-- @msg = "Hi #{current_user.first_name}! Welcome to West Roxbury's first community website."
-#tooltip{ :title => @msg }
-/= flash[:message] || @msg
+
+#tooltip{ :title => (flash[:message] || "Hi #{current_user.first_name}! Welcome to West Roxbury's first community website.") }
