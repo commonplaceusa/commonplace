@@ -1,0 +1,13 @@
+#modal
+
+  - link_to "close", :id => "modal-close", 'data-remote' => true do
+    = image_tag 'modal-close.png'
+
+  - semantic_form_for [@user,@message], :html => { :class => "new_entity" } do |f|
+    %hr.staple
+    %h1 Send a message to #{@user.name}
+    = f.inputs :subject, :for => :conversation
+    = f.inputs :body
+
+    - f.buttons do
+      #submit_wrapper= f.commit_button "Send"

@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
     
     community.resources :users do |user|
       user.resource :met, :only => [:create]
-      user.resources :messages, :only => [:create, :new], :controller => 'users/messages'
+      user.resources :messages, :only => [:create, :new]
     end
     
     community.resources :invites
@@ -54,7 +54,6 @@ ActionController::Routing::Routes.draw do |map|
     map.resource :inbox
     map.resources :platform_updates
     map.resources :conversations
-    map.resources :messages
     
     map.resource :user_session
     map.resources :password_resets
