@@ -26,10 +26,10 @@
             = event.address[/(.+?)(,)/, 1]
             
 
-  = render_map do |map|
-    - map.center :lat => event.lat, :lng => event.lng
-    - map.marker :lat => current_user.lat, :lng => current_user.lng
-    - map.marker :lat => event.lat, :lng => event.lng
-    - map.directions do |dir|
-      - dir.origin :lat => current_user.lat, :lng => current_user.lng
-      - dir.destination :lat => event.lat, :lng => event.lng
+    = render_map do |map|
+      - map.center :lat => event.lat, :lng => event.lng
+      - map.marker :lat => current_user.lat, :lng => current_user.lng
+      - map.marker :lat => event.lat, :lng => event.lng
+      - map.directions do |dir|
+        - dir.origin :lat => current_user.lat, :lng => current_user.lng
+        - dir.destination :lat => event.lat, :lng => event.lng
