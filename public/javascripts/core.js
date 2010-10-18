@@ -49,6 +49,7 @@ $(function() {
   });
   $(window).trigger('resize.modal');
 
+  renderMaps();
 });
 
 function setModal() {
@@ -195,6 +196,7 @@ function merge(html, context) {
       $(window).trigger('resize.modal');
     }
     showTooltips();
+    renderMaps();
   });
 }
 
