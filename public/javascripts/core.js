@@ -195,6 +195,7 @@ function merge(html, context) {
     if ($this.attr('id') == "modal") {
       $(window).trigger('resize.modal');
     }
+    $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
     showTooltips();
     renderMaps();
     setInfoBoxPosition();
