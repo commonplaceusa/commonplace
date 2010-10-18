@@ -144,13 +144,15 @@ function _ajax_request(url, data, callback, type, method) {
 
 
 function setInfoBoxPosition() {
-  if ($(window).scrollTop() + 10 > $('#zones').offset().top + $('#zones').height()){
-    $('#information').css({'position':'fixed','top': 10, 'margin-left': $("#syndicate").width() + 14});
-  } else {
-    $('#information').css({'position': 'static', 'margin-left': 0});
+  if ($('#information').get(0) && $('#zones').get(0)) {
+    if ($(window).scrollTop() + 10 > $('#zones').offset().top + $('#zones').height()){
+      $('#information').css({'position':'fixed','top': 10, 'margin-left': $("#syndicate").width() + 14});
+    } else {
+      $('#information').css({'position': 'static', 'margin-left': 0});
+    }
   }
 }
-
+  
 function selectTab(tab) {
   $(document).ready(function(){
     $('header #' + tab).addClass('selected_nav');

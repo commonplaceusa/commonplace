@@ -1,0 +1,13 @@
+#modal
+  - link_to "close", :id => "modal-close", 'data-remote' => true do
+    = image_tag 'modal-close.png'
+
+  - form_for @avatar, :id => "crop_avatar_form" do |f|
+    = image_tag @avatar.image.url(:original), :id => 'avatar_to_crop'
+  
+    = f.hidden_field :x 
+    = f.hidden_field :y
+    = f.hidden_field :w
+    = f.hidden_field :h
+  
+    = f.submit "Crop"

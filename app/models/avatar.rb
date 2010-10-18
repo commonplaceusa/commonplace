@@ -3,8 +3,7 @@ class Avatar < ActiveRecord::Base
                     :styles => { 
                       :thumb => "100x100^", 
                       :normal => "120x120^",
-                      :large => "200x200^",
-                      :original => "500x500>"
+                      :large => "200x200^"
                     },
                     :default_url => "/avatars/missing.png", 
                     :processors => [:cropper],
