@@ -144,10 +144,10 @@ function _ajax_request(url, data, callback, type, method) {
 
 
 function setInfoBoxPosition() {
-  if ($(window).scrollTop() + 10 > $('#information').offset().top){
-    $('.info_box').css('position','fixed');
+  if ($(window).scrollTop() + 10 > $('#zones').offset().top + $('#zones').height()){
+    $('#information').css({'position':'fixed','top': 10, 'margin-left': $("#syndicate").width() + 14});
   } else {
-    $('.info_box').css('position', 'static');
+    $('#information').css({'position': 'static', 'margin-left': 0});
   }
 }
 
@@ -197,6 +197,7 @@ function merge(html, context) {
     }
     showTooltips();
     renderMaps();
+    setInfoBoxPosition();
   });
 }
 
