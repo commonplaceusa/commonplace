@@ -32,8 +32,10 @@ $(document).ready(function() {
   $('.disabled_link').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   $('header nav .disabled_link').attr('title', "Coming soon!").tipsy({gravity: 's'});
   
+  showTooltips();
   renderMaps();
 
   window.onscroll = setInfoBoxPosition;
+  
   
 });

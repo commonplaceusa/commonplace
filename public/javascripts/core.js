@@ -172,6 +172,19 @@ function setList() {
   });
 }
 
+
+var showTooltips = function() {
+  $('#tooltip').html(function() {
+    return ($('#zones .selected_nav').attr('data-title') || $(this).attr('title'));
+  });
+
+  $('a.zone').mouseover(function() {
+    $('#tooltip').html($(this).attr('data-title'));
+  }).mouseout(function() {
+    $('#tooltip').html($('#tooltip').attr('title'));
+  });
+};
+
 function merge(html, context) {
   $(html).each(function () { 
     var $this = $(this);
@@ -181,7 +194,7 @@ function merge(html, context) {
     if ($this.attr('id') == "modal") {
       $(window).trigger('resize.modal');
     }
-    
+    showTooltips();
   });
 }
 

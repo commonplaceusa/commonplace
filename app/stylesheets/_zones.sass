@@ -5,11 +5,11 @@
     background-color: #4A7EB0
     border-bottom: 1px solid #507599
     a 
-      width: 89px
+      width: 119px
       +sans
       +inline-block
       
-      margin: 12px 15px
+      margin: 12px 0px
       text-align: center
       font-size: 9px
       font-weight: normal
@@ -19,6 +19,8 @@
 
       .text_container
         border: 1px solid transparent
+        width: 90px
+        margin: auto
         +border-radius(4px)
         p
           +border-radius(4px)
@@ -30,16 +32,16 @@
         height: 58px
         margin: 0px auto 10px
         
-      &.neighborhood-zone .img_container
+      &.neighborhood.zone .img_container
         background-image: url("/images/neighborhood-zone.png")
-      &.announcement-zone .img_container
+      &.announcement.zone .img_container
         background-image: url("/images/announcement-zone.png")
-      &.event-zone .img_container
+      &.event.zone .img_container
         background-image: url("/images/event-zone.png")
-      &.directory-zone .img_container
+      &.directory.zone .img_container
         background-image: url("/images/directory-zone.png")
               
-      &:hover
+      &:hover, &.selected_nav
         color: white
         .img_container
           background-position: 0px 58px
