@@ -20,8 +20,8 @@ class OrganizationsController < CommunitiesController
 
   def show
     respond_to do |format|
-      format.json 
-      format.html { render :layout => 'profile' }
+      format.html { render :profile, :layout => 'profile' }
+      format.text { render :layout => false }
     end
   end
 

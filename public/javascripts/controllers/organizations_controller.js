@@ -38,7 +38,11 @@ $.sammy("body")
     },"html");
   })
 
-  .get("#/organizations/:id", setInfoBox)
+  .get("#/organizations/:id", function(c) {
+    $.get(c.path.slice(1), function(r) {
+      merge(r, $('body'));
+    }, "text");
+  })
 
 
   .get("#/organizations/:organization_id/announcements/new", setModal)
