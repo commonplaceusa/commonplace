@@ -2,6 +2,6 @@
   = image_tag reply.user.avatar_url(:thumb), :class => "avatar"
   .body
     %p
-      = link_to reply.user.name, reply.user, :class => 'author'
+      = link_to reply.user.name, reply.user, :class => 'author', 'data-remote' => true
       = reply.body
     %time #{time_ago_in_words(reply.created_at, include_seconds = true)} ago
