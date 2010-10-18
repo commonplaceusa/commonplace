@@ -20,14 +20,14 @@ $(function() {
     put: function(url, data, callback, type) {
       return _ajax_request(url, data, callback, type, 'PUT');
     },
-    delete_: function(url, data, callback, type) {
+    del: function(url, data, callback, type) {
       return _ajax_request(url, data, callback, type, 'DELETE');
     }
   });
 
   $('a[data-remote]').live('click', function(e) {
     $.sammy("body").setLocation("#" + $(this).attr('href'));
-    $.sammy("body").runRoute("get", "#" + $(this).attr('href'), {}, this);
+    $.sammy("body").runRoute($(this).attr('data-method') || "get", "#" + $(this).attr('href'), {}, this);
     e.preventDefault()
   });
 
