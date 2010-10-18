@@ -4,7 +4,6 @@
   - semantic_form_for @event, :html => { :class => "new_entity" } do |f|
     - f.inputs do
       %h1 Create an event for your organization
-      %p.hint Get text from Pete
       
       - f.inputs do 
         = f.input :organization, :collection => current_user.managable_organizations
