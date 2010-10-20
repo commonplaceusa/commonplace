@@ -63,8 +63,8 @@ function setModal() {
   });
 }
 
-function setTooltip(text, class) {
-  $("#tooltip").html(text).attr("class", class);
+function setTooltip(text, klass) {
+  $("#tooltip").html(text).attr("class", klass);
 }
 
 function renderMaps() {
