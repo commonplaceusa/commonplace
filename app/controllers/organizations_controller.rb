@@ -19,10 +19,11 @@ class OrganizationsController < CommunitiesController
   end
 
   def show
-    respond_to do |format|
-      format.html { render :profile, :layout => 'profile' }
-      format.text { render :layout => false }
-    end
+    render :layout => false
+  end
+
+  def profile
+    render :layout => 'profile'
   end
 
   def new

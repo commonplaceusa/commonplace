@@ -73,7 +73,7 @@ ActionController::Routing::Routes.draw do |map|
       man.resources :email_invites
     end
 
-    map.profile ':id', :controller => 'organizations', :action => 'show', :conditions => { :method => :get }
+    map.profile ':id', :controller => 'organizations', :action => 'profile', :conditions => { :method => :get }
     
   end
   

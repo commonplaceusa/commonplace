@@ -10,7 +10,7 @@
       - if organization.subscribers.include? current_user
         = link_to "Unsubscribe from #{ organization.name }", organization_subscription_url(organization), :method => :delete, :id => "unsubscribe"
     .body
-      %h3= link_to organization.name, organization, :target => :blank
+      %h3= link_to organization.name, profile_path(organization.slug.name), :target => :blank
       %p.user_about= auto_link organization.about, :all, :target => :blank
       %ol.user_info
         - unless organization.tag_list.empty?

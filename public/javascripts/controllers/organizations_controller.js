@@ -18,8 +18,4 @@ $.sammy("body")
 
   .post("/organizations")
 
-  .get("/organizations/:id", function(c) {
-    $.get(c.path.slice(1), function(r) {
-      merge(r, $('body'));
-    }, "text");
-  })
+  .get("/organizations/:id")
