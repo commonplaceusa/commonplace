@@ -1,23 +1,11 @@
 
 $.sammy("body")
 
-  .get("#/organizations", function(c) {
-    $.get("/organizations", function(r) {
-      merge(r, $("body"));
-    });
-  })
+  .get("/organizations")
 
-  .get("#/organizations/business", function(c) {
-    $.get("/organizations/business", function(r) {
-      merge(r, $("body"));
-    });
-  })
+  .get("/organizations/business")
 
-  .get("#/organizations/municipal", function(c) {
-    $.get("/organizations/municipal", function(r) {
-      merge(r, $("body"));
-    });
-  })
+  .get("/organizations/municipal")
 
   .get("/management/organizations/:organization_id/profile_fields/new", function() {
       var context = this;
@@ -26,23 +14,12 @@ $.sammy("body")
     });
   })
 
-  .get("#/organizations/new", function(c) {
-    $.get(c.path.slice(1), function(r) {
-      merge(r, $('body'));
-    }, "html");
-  })
+  .get("/organizations/new")
 
-  .post("/organizations", function(c) {
-    $.post(c.path, c.params, function(r) {
-      merge(r,$('body'));
-    },"html");
-  })
+  .post("/organizations")
 
-  .get("#/organizations/:id", function(c) {
+  .get("/organizations/:id", function(c) {
     $.get(c.path.slice(1), function(r) {
       merge(r, $('body'));
     }, "text");
   })
-
-
-  .get("#/organizations/:organization_id/announcements/new", setModal)

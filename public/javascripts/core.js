@@ -6,12 +6,12 @@ Sammy.CPLocationProxy.prototype = {
   bind: function () {},
   unbind: function() {},
   getLocation: function() {
-    var matches = window.location.toString().match(/^[^#]*(#.+)$/);
+    var matches = window.location.toString().match(/^[^#]*#(.+)$/);
     return matches ? matches[1] : '';
   },
   setLocation: function(new_location) {
     this._last_location = this.getLocation();
-    return (window.location = new_location);
+    return (window.location = "#" + new_location);
   }
 }
 
@@ -26,8 +26,8 @@ $(function() {
   });
 
   $('a[data-remote]').live('click', function(e) {
-    $.sammy("body").setLocation("#" + $(this).attr('href'));
-    $.sammy("body").runRoute($(this).attr('data-method') || "get", "#" + $(this).attr('href'), {}, this);
+    $.sammy("body").setLocation($(this).attr('href'));
+    $.sammy("body").runRoute($(this).attr('data-method') || "get", $(this).attr('href'), {}, this);
     e.preventDefault()
   });
 
@@ -68,23 +68,25 @@ function setTooltip(text, klass) {
 }
 
 function renderMaps() {
-  $('div[data-map]').each(function() {
-    var args = $.parseJSON($(this).attr('data-map'))
-    if (args && args.center) {
-      var map = new google.maps.Map(this, {
-        zoom: 13,
-        center: jsonToLatLng(args.center),
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        navigationControl: true,
-        mapTypeControl: false,
-        scaleControl: true
-      });
-      $(this).data('map', map);
-      $.each(args.markers, function() {renderMarker(this,map)});
-      $.each(args.polygons, function() {renderPolygon(this,map)});
-      $.each(args.directions, function() {renderDirections(this,map)});
-    }
-  });
+  if (window.google) {
+    $('div[data-map]').each(function() {
+      var args = $.parseJSON($(this).attr('data-map'))
+      if (args && args.center) {
+        var map = new google.maps.Map(this, {
+          zoom: 13,
+          center: jsonToLatLng(args.center),
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          navigationControl: true,
+          mapTypeControl: false,
+          scaleControl: true
+        });
+        $(this).data('map', map);
+        $.each(args.markers, function() {renderMarker(this,map)});
+        $.each(args.polygons, function() {renderPolygon(this,map)});
+        $.each(args.directions, function() {renderDirections(this,map)});
+      }
+    });
+  }
 }
 
 function renderMarker(args,map) {

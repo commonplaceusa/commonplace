@@ -1,16 +1,29 @@
 
 $.sammy("body")
-  .get("#/", setList)
-  .get("#close", function(c) {
+  .get("close", function(c) {
     $.sammy("body").setLocation(currentIndex($.sammy("body")._location_proxy._last_location));
     $("#modal").html("");
+  })
+
+  .around(function(callback) {
+    var context = this;
+    this.log(context);
+    $.ajax({type: context.verb,
+            url: context.path,
+            data: context.params,
+            dataType: "html",
+            success: function(response) {
+              merge(response, $('body'))
+            },
+            complete: callback
+           });
   })
 
   .setLocationProxy(new Sammy.CPLocationProxy($.sammy('body')));
 
 $(document).ready(function() {
 
-  $.sammy("body").run()
+  $.sammy("body").run();
 
   $('body').click(function(e) {
     if (e.pageX < (($('body').width() - $('#wrap').width()) / 2)) {

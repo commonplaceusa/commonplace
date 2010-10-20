@@ -17,7 +17,7 @@
       //   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
       // },
       _routeWrapper = function(verb) {
-        return function(path, callback) { return this.route.apply(this, [verb, path, callback]); };
+        return function(path, callback) { return this.route.apply(this, [verb, path, callback || function() {}]); };
       },
       _template_cache = {},
       loggers = [];

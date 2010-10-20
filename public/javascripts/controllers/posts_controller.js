@@ -1,33 +1,16 @@
 
 $.sammy("body")
 
-  .post("/posts", function(c) {
-    $.post(this.path, this.params, function(r) {
-      merge(r, $("body"));
-    }, "html");  
-  })
+  .post("/posts")
 
-  .get("#/posts/neighborhood", function(c) {
-    $.get("/posts/neighborhood", function(r) {
-      merge(r, $("body"));
-    }, "html");
-  })
+  .get("/posts/neighborhood")
 
-  .get("#/posts", function(c) {
-    $.get("/posts", function(r) {
-      merge(r, $("body"));
-    }, "html");
-  })
+  .get("/posts")
 
-  .get("#/posts/new", function(context) {
-    $.get("/posts/new", function(r) {
-      merge(r, $("body"));
-    }, "html");
-  })
+  .get("/posts/new")
 
-  .get("#/posts/:id", function(c) {
-    accordionReplies($(c.target).siblings(".replies"));
-    $.get(c.path.slice(1), function(r) {
-      merge(r, $("body"));
-    }, "html");
+  .get("/posts/:id")
+  
+  .before(/\/posts\/\d+/, function() {
+    accordionReplies($(this.target).siblings(".replies"));
   })
