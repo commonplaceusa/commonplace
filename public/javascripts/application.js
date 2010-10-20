@@ -7,10 +7,9 @@ $.sammy("body")
 
   .around(function(callback) {
     var context = this;
-    this.log(context);
     $.ajax({type: context.verb,
             url: context.path,
-            data: context.params,
+            data: context.verb == "get" ? null : context.params,
             dataType: "html",
             success: function(response) {
               merge(response, $('body'))
