@@ -2,21 +2,18 @@ class ClaimsController < CommunitiesController
   before_filter :organization
 
   def new
-    respond_to do |format|
-      format.json
-    end
+    render :layout => false
   end
   
   def create
-    respond_to do |format|
-      if params[:code] == @organization.code
-        @organization.admins << current_user
-        @organization.claimed = true
-        @organization.save
-        format.json { render :create }
-      else
-        format.json { render :new }
-      end
+    if params[:code] == @organization.code
+      @organization.admins << current_user
+      @organization.claimed = true
+      @organization.save
+      redirect_to edit_organization_url(@organization)
+    else
+      flash.now[:error] = "Sorry, that claim code is not valid."
+      render :new
     end
   end
 
