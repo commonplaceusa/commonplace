@@ -46,7 +46,7 @@ class OrganizationsController < CommunitiesController
 
   def update
     if @organization.update_attributes(params[:organization])
-      redirect_to edit_organization_profile_fields(@organization)
+      redirect_to organization_profile_fields_url(@organization)
     else
       render :edit, :layout => false
     end

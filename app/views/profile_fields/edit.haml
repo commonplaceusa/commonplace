@@ -1,13 +1,2 @@
 
-- content_tag_for :li, @profile_field do
-  - form_for @profile_field do |f|
-    = f.hidden_field :subject
-    = f.hidden_field :body
-    %h3 
-      %span.admin
-        = f.submit 'save'
-        &sdot;
-        = link_to 'delete', profile_field_path(@profile_field), 'data-method' => 'delete', 'data-remote' => true
-        %span.subject{:contenteditable => true}= @profile_field.subject
-    %p.body{:contenteditable => true}= @profile_field.body
-  
+= render 'form'

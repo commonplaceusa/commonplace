@@ -11,3 +11,6 @@
           %span.subject= p.subject
 
         %p.body= p.body
+    %li#new_profile_field
+
+  = link_to "New Profile Field", new_organization_profile_field_path(@organization), 'data-remote' => true
