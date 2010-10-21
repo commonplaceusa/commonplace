@@ -18,6 +18,6 @@
 
         %p.body= p.body
 
-= link_to "Preview #{@organization.name}'s profile &raquo;", @organization, :class => "profile_preview", :target => :blank          
+= link_to "Preview #{@organization.name}'s profile &raquo;", profile_path(@organization.slug.name), :class => "profile_preview", :target => :blank          
   
 
