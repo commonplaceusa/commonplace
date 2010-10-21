@@ -1,0 +1,13 @@
+- render :layout => 'shared/modal' do 
+  
+  %ul#modules{'data-organization' => @organization.id}
+    - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+      - content_tag_for(:li, p) do
+        %h3
+          %span.admin
+            = link_to 'edit', edit_profile_field_path(p), 'data-remote' => true
+            &sdot;
+            = link_to 'delete', profile_field_path(p), :method => "delete"
+          %span.subject= p.subject
+
+        %p.body= p.body
