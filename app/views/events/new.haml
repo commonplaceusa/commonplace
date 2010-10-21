@@ -1,6 +1,5 @@
-#modal
-  - link_to "close", :id => "modal-close", 'data-remote' => true do
-    = image_tag 'modal-close.png'
+- render :layout => 'shared/modal' do
+
   - semantic_form_for @event, :html => { :class => "new_entity" } do |f|
     - f.inputs do
       %h1 Create an event for your organization

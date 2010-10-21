@@ -1,7 +1,4 @@
-#modal
-
-  - link_to "close", :id => "modal-close", 'data-remote' => true do
-    = image_tag 'modal-close.png'
+- render :layout => 'shared/modal' do
 
   - form_tag organization_claim_path(@organization) do
     = label_tag "Enter your claim code:"

@@ -1,7 +1,4 @@
-#modal
-
-  - link_to "close", :id => "modal-close", 'data-remote' => true do
-    = image_tag 'modal-close.png'
+- render :layout => 'shared/modal' do
 
   - semantic_form_for [@user,@message], :html => { :class => "new_entity" } do |f|
     %hr.staple
