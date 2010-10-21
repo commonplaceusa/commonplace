@@ -9,8 +9,5 @@
     = f.input :phone
     = f.input :website
     = f.input :category, :as => :radio, :collection => Organization::CATEGORIES
-    - f.semantic_fields_for :profile_fields do |pf|
-      = pf.input :subject
-      = pf.input :body
   - f.buttons do
     #submit_wrapper= f.commit_button "Create Organization"

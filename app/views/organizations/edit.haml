@@ -1,24 +1,6 @@
-#{link_to "Create Event", :controller => :events, :action => :new}
+#modal
 
-.editarea{"data-token" => "#{form_authenticity_token}"}
-  - [:success,:error,:message].each do |type|
-    - if flash[type]
-      .flash{:class => type.to_s} 
-        = flash[type]
+  - link_to "close", :id => "modal-close", 'data-remote' => true do
+    = image_tag 'modal-close.png'
 
-  /= form_authenticity_token
-
-  - form_for @organization do |f|
-    
-    %p#name.big.oneline #{@organization.name}
-    %p#address.big.oneline #{@organization.address}
-    %p#about.big #{@organization.about}    
-    %input.submit{:type => "submit", :value => "Submit"}
-  
-    / = f.label :name, "Name: "
-    /     = f.text_field :name
-    /     = f.label :address, "Address: "
-    /     = f.text_field :address
-    /     = f.label :about, "About: "
-    /     = f.text_area :about
-    /     = f.submit
+  = render 'form'

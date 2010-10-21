@@ -39,6 +39,18 @@ class OrganizationsController < CommunitiesController
       render :new, :layout => false
     end
   end
+
+  def edit
+    render :layout => false
+  end
+
+  def update
+    if @organization.update_attributes(params[:organization])
+      redirect_to edit_organization_profile_fields(@organization)
+    else
+      render :edit, :layout => false
+    end
+  end
   
   protected
   def load
