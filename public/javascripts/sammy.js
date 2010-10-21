@@ -17,9 +17,10 @@
       //   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
       // },
       _routeWrapper = function(verb) {
-        return function(path, callback) { return this.route.apply(this, [verb, path, callback || function() {}]); };
+        return function(path, callback) { return this.route.apply(this, [verb, path, callback || this._default_callback]); };
       },
       _template_cache = {},
+      _default_callback = function(c) {},
       loggers = [];
 
 
@@ -119,6 +120,11 @@
   };
 
   $.extend(Sammy.Object.prototype, {
+
+    defaultCallback: function(callback) {
+      this._default_callback = callback;
+      return this;
+    },
 
     // Escape HTML in string, use in templates to prevent script injection.
     // Also aliased as `h()`

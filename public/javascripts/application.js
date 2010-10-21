@@ -5,16 +5,14 @@ $.sammy("body")
     $("#modal").html("");
   })
 
-  .around(function(callback) {
-    var context = this;
-    $.ajax({type: context.verb,
-            url: context.path,
-            data: context.verb == "get" ? null : context.params,
+  .defaultCallback(function(c) {
+    $.ajax({type: c.verb,
+            url: c.path,
+            data: c.verb == "get" ? null : c.params,
             dataType: "html",
             success: function(response) {
               merge(response, $('body'))
-            },
-            complete: callback
+            }
            });
   })
 
