@@ -203,6 +203,12 @@ function merge(html, context) {
     showTooltips();
     renderMaps();
     setInfoBoxPosition();
+    $('input.date').datepicker({
+      prevText: '&laquo;',
+      nextText: '&raquo;',
+      showOtherMonths: true,
+      defaultDate: null, 
+    });
   });
 }
 

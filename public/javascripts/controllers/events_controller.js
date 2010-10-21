@@ -5,25 +5,11 @@ $.sammy("body")
 
   .get("/events/your")
 
-  .post("/events", function(c) {
-      $('input.date').datepicker({
-        prevText: '&laquo;',
-        nextText: '&raquo;',
-        showOtherMonths: true,
-        defaultDate: null, 
-      });
-  })
+  .post("/events")
 
   .get("/events/suggested")
 
-  .get("/events/new", function(c) {
-      $('input.date').datepicker({
-        prevText: '&laquo;',
-        nextText: '&raquo;',
-        showOtherMonths: true,
-        defaultDate: null, 
-      });
-  })
+  .get("/events/new")
 
   .get("/events/:id")
 
