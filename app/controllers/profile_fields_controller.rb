@@ -6,6 +6,14 @@ class ProfileFieldsController < CommunitiesController
     @organization = Organization.find(params[:organization_id])
   end
 
+  def order
+    params[:fields].each_with_index do |id, index|
+      ProfileField.update_all(["position=?", index+1], ["id=?", id])
+    end
+    render :nothing => true
+  end
+  
+
   def new
     @organization = Organization.find(params[:organization_id])
     @profile_field = ProfileField.new

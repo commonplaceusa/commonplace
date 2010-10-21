@@ -4,11 +4,17 @@ $.sammy("body")
 
   .get("/organizations/:organization_id/profile_fields/new")
 
-  .post("/organizations/:organization_id/profile_fields", function () {
-    var $target = $(this.target);
-    this.params["profile_field[subject]"] = $(".subject", $target).html();
-    this.params["profile_field[body]"] = $(".body", $target).html();
-    $.post(this.path.slice(1), this.params, function(r) {
+  .put("/organizations/:organization_id/profile_fields/order", function(c) {
+    c.params["fields"] = $.map($("#modules").sortable("toArray").slice(0,-1),
+                               function(m) { return m.replace("profile_field_", ""); });
+    $.put(c.path, c.params, function(){},"html")
+  })
+
+  .post("/organizations/:organization_id/profile_fields", function (c) {
+    var $target = $(c.target);
+    c.params["profile_field[subject]"] = $(".subject", $target).html();
+    c.params["profile_field[body]"] = $(".body", $target).html();
+    $.post(c.path.slice(1), c.params, function(r) {
       merge(r, $('body'));
     }, "html");
   })
@@ -18,11 +24,11 @@ $.sammy("body")
 
   .get("/profile_fields/:id/edit")
 
-  .put("/profile_fields/:id", function () {
-    var $target = $(this.target);
-    this.params["profile_field[subject]"] = $(".subject", $target).html();
-    this.params["profile_field[body]"] = $(".body", $target).html();
-    $.put(this.path.slice(1), this.params, function(r) {
+  .put("/profile_fields/:id", function (c) {
+    var $target = $(c.target);
+    c.params["profile_field[subject]"] = $(".subject", $target).html();
+    c.params["profile_field[body]"] = $(".body", $target).html();
+    $.put(c.path.slice(1), c.params, function(r) {
       merge(r, $('body'));
     }, "html");
   })

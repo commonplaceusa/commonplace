@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
       org.resource :subscription, :only => [:index, :show, :create, :destroy]
       org.resource :claim, :member => [:edit_fields]
       org.resources :announcements, :controller => "organizations/announcements"
-      org.resources :profile_fields
+      org.resources :profile_fields, :collection => {"order" => :put}
     end
 
     community.namespace :neighborhood do |neighborhood|

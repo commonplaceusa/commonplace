@@ -199,18 +199,22 @@ function merge(html, context) {
     if ($this.attr('id') == "modal") {
       $(window).trigger('resize.modal');
     }
-    $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
-    showTooltips();
-    renderMaps();
-    setInfoBoxPosition();
-    $('input.date').datepicker({
-      prevText: '&laquo;',
-      nextText: '&raquo;',
-      showOtherMonths: true,
-      defaultDate: null, 
-    });
   });
-}
+  
+  $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
+  showTooltips();
+  renderMaps();
+  setInfoBoxPosition();
+  $('input.date').datepicker({
+    prevText: '&laquo;',
+    nextText: '&raquo;',
+    showOtherMonths: true,
+    defaultDate: null, 
+  });
+  
+  $('#modules').sortable();
+  $('#modules').disableSelection();}
+
 
 function currentIndex(path) {
   return path.replace(/\/[^\/]*$/,"");
