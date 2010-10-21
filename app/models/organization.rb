@@ -59,12 +59,6 @@ class Organization < ActiveRecord::Base
   protected
 
 
-  def after_initialize
-    if new_record? && profile_fields.empty?
-      profile_fields.build([{:subject => "History", :body => ""},
-                            {:subject => "About", :body => ""}])
-    end
-  end
 
   def set_default_avatar
     if self.avatar.nil?
