@@ -19,21 +19,40 @@ $.sammy("body")
   .setLocationProxy(new Sammy.CPLocationProxy($.sammy('body')));
 
 $(document).ready(function() {
-
+  
   $.sammy("body").run();
-
+  
   window.onscroll = setInfoBoxPosition;
+  
+  
+  $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
+  $('header nav .disabled_link').attr('title', "Coming soon!").tipsy({gravity: 's'});
+  showTooltips();
+  
+  renderMaps();
+  
+  $('#modules').sortable();
+  $('#modules').disableSelection();
   
   $('ul#wire').accordion({'header': 'a.item_body', 
                           'active': false,
                           'collapsible': true, 
                           'autoHeight': false,
                          });
-
+  
+  $(".tabs").tabs();
+  
   $('body').click(function(e) {
     if (e.pageX < (($('body').width() - $('#wrap').width()) / 2)) {
       $('#filters .selected_nav').click();
     }
+  });
+
+  $('input.date').datepicker({
+    prevText: '&laquo;',
+    nextText: '&raquo;',
+    showOtherMonths: true,
+    defaultDate: null, 
   });
   
   $('a[data-nohistory]').live('click', function(e) {
@@ -41,18 +60,27 @@ $(document).ready(function() {
     $.sammy("body").runRoute("get",$(this).attr('href'));
   });
   
-  $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
-  $('header nav .disabled_link').attr('title', "Coming soon!").tipsy({gravity: 's'});
-  
-  showTooltips();
-  renderMaps();
-
-  window.onscroll = setInfoBoxPosition;
-  
-  
+  $("#edit_avatar input").change(function() {
+    $(this).parent().ajaxSubmit({
+      beforeSubmit: function(a,f,o) {
+        o.dataType = 'json';
+      },
+      complete: function(xhr, textStatus) {
+        // We have to slice off the inserted html. See AvatarsController
+        var json = xhr.responseText.slice(xhr.responseText.indexOf('{'),
+                                          xhr.responseText.indexOf('}') +1);
+        $.each($.parseJSON(json), function (k,v) {
+          $(k).animate({opacity: 0.0}, 500,
+                       function () { this.src = v })
+            .animate({opacity: 1}, 500);
+        });
+      },
+      
+    });
+  });
 });
-
-function accordionReplies($replies) {
-  $("#syndicate .replies").not($replies.get(0)).slideUp();
-  $replies.slideDown();
-}
+  
+  function accordionReplies($replies) {
+    $("#syndicate .replies").not($replies.get(0)).slideUp();
+    $replies.slideDown();
+  }

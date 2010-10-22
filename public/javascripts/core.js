@@ -2,6 +2,7 @@ Sammy.CPLocationProxy = function(app) {
   this.app = app;
   this._last_location = "";
 };
+
 Sammy.CPLocationProxy.prototype = {
   bind: function () {},
   unbind: function() {},
@@ -51,21 +52,6 @@ $(function() {
 
   renderMaps();
 });
-
-function setModal() {
-  $.getJSON(this.path.slice(1), function(response) {
-    $(response.form).modal({
-      overlayClose: true,
-      onClose: function() { 
-        $.modal.close(); 
-      }
-    });
-  });
-}
-
-function setTooltip(text, klass) {
-  $("#tooltip").html(text).attr("class", klass);
-}
 
 function renderMaps() {
   if (window.google) {
@@ -144,7 +130,6 @@ function _ajax_request(url, data, callback, type, method) {
   });
 }
 
-
 function setInfoBoxPosition() {
   if ($('#information').get(0) && $('#zones').get(0)) {
     if ($(window).scrollTop() + 10 > $('#zones').offset().top + $('#zones').height()){
@@ -154,35 +139,12 @@ function setInfoBoxPosition() {
     }
   }
 }
-  
-function selectTab(tab) {
-  $(document).ready(function(){
-    $('header #' + tab).addClass('selected_nav');
-  });
-};
 
-function setInfoBox() {
-  $.getJSON(this.path.slice(1), function(response) {
-    $("#information").html(response.info_box);
-    setInfoBoxPosition();
-    renderMaps();
-  });
-} 
-
-function setList() {
-  $.getJSON(this.path.slice(1), function(response) {
-    $("#list").html(response.list);
-    $("#add").replaceWith(response.add);
-    $("#info").html(response.info);
-  });
-}
-
-
-var showTooltips = function() {
+function showTooltips() {
   $('#tooltip').html(function() {
     return ($('#zones .selected_nav').attr('data-title') || $(this).attr('title'));
   });
-
+  
   $('a.tooltip').mouseover(function() {
     $('#tooltip').html($(this).attr('data-title'));
   }).mouseout(function() {
@@ -215,7 +177,11 @@ function merge(html, context) {
   $('#modules').sortable();
   $('#modules').disableSelection();}
 
-
 function currentIndex(path) {
   return path.replace(/\/[^\/]*$/,"");
+}
+
+function accordionReplies($replies) {
+  $("#syndicate .replies").not($replies.get(0)).slideUp();
+  $replies.slideDown();
 }
