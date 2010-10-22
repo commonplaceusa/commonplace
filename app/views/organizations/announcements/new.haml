@@ -1,0 +1,5 @@
+- render :layout => "shared/modal" do
+  - semantic_form_for [@organization, @announcement], :html => {:class => "new_entity"} do |f|
+    = f.inputs :subject, :body
+    - f.buttons do 
+      = f.commit_button "Add your first announcement"

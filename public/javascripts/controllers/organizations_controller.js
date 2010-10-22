@@ -19,3 +19,15 @@ $.sammy("body")
   .post("/organizations")
 
   .get("/organizations/:id")
+
+  .get("/organizations/:organization_id/announcements/new")
+
+  .post("/organizations/:organization_id/announcements", function(c) {
+    $.post(c.path, c.params, function(r) {
+      if (/<div id="new_post">/.test(r)) {
+        merge(r,$("body"));
+      } else {
+        window.location = "/management/organizations/" + c.params["organization_id"];
+      }
+    });
+  })
