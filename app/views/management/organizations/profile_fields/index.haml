@@ -4,19 +4,11 @@
 #edit_profile
   %h3.management_field Manage profile fields
   %p.form-hint These Profile Fields will be shown on the your organization profile page. You can change their order, add new ones, and edit them.
-  = button_to "Add a new profile field", "#" + new_management_organization_profile_field_path(@organization), :method => :get, :id => "new_profile_field", :class => "styled_button"
+  = render 'profile_fields/index_form'
 
-  %ul#modules{'data-organization' => @organization.id}
-    - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
-      %li.profile_field{:id => "field_#{p.id}"}
-        %h3
-          %span.admin
-            = link_to 'edit', [:edit, :management, @organization, p], 'data-remote' => true, :class => 'edit'
-            &sdot;
-            = link_to 'delete', [:management, @organization, p], :method => "delete"
-          %span.subject= p.subject
+  = button_to "New Profile Field", new_organization_profile_field_path(@organization), :method => :get
 
-        %p.body= p.body
+  = button_to "Save order", order_organization_profile_fields_path(@organization), :method => :put
 
 = link_to "Preview #{@organization.name}'s profile &raquo;", profile_path(@organization.slug.name), :class => "profile_preview", :target => :blank          
   

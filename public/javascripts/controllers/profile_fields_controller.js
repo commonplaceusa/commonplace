@@ -14,9 +14,11 @@ $.sammy("body")
     var $target = $(c.target);
     c.params["profile_field[subject]"] = $(".subject", $target).html();
     c.params["profile_field[body]"] = $(".body", $target).html();
-    $.post(c.path.slice(1), c.params, function(r) {
+    $.post(c.path, c.params, function(r) {
       merge(r, $('body'));
     }, "html");
+    $('#modules').sortable();
+    $('#modules').disableSelection();
   })
        
 
@@ -28,8 +30,10 @@ $.sammy("body")
     var $target = $(c.target);
     c.params["profile_field[subject]"] = $(".subject", $target).html();
     c.params["profile_field[body]"] = $(".body", $target).html();
-    $.put(c.path.slice(1), c.params, function(r) {
+    $.put(c.path, c.params, function(r) {
       merge(r, $('body'));
     }, "html");
+    $('#modules').sortable();
+    $('#modules').disableSelection();
   })
 

@@ -23,7 +23,7 @@ class ProfileFieldsController < CommunitiesController
     @organization = Organization.find(params[:organization_id])
     @profile_field = @organization.profile_fields.build(params[:profile_field])
     if @profile_field.save
-      redirect_to organization_profile_fields_url(@organization)
+      render :show
     else
       render :new
     end
@@ -36,7 +36,8 @@ class ProfileFieldsController < CommunitiesController
   def update
     @profile_field = ProfileField.find(params[:id])
     if @profile_field.update_attributes(params[:profile_field])
-      redirect_to organization_profile_fields_url(@profile_field.organization)
+      @organization = @profile_field.organization
+      render :show
     else
       render :edit
     end
