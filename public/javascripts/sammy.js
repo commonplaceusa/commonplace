@@ -1183,8 +1183,8 @@
         returned = false;
       } else {
         params = $.extend({}, this._parseFormParams($form));
-        returned = this.runRoute(verb, path, params, form.get(0));
       };
+      returned = this.runRoute(verb, path, params, form.get(0));
       return (typeof returned == 'undefined') ? false : returned;
     },
 
