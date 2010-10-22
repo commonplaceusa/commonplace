@@ -35,3 +35,12 @@ namespace :sass do
   # Generate all the stylesheets manually (from their Sass templates) before each restart.
   before 'deploy:restart', 'sass:update'
 end
+
+namespace :resque do
+  desc "Restarts resque workers"
+  task :restart, :roles => :app do
+    run("cd #{current_path} && /usr/local/rvm/gems/ree-1.8.7-2010.02/bin/rake resque:restart_workers RAILS_ENV=#{rails_env}")
+  end
+
+  after 'deploy:restart', 'resque:restart'
+end

@@ -1,4 +1,15 @@
 class NotificationsMailer < ActionMailer::Base
+
+  @queue = :notifications_mailer
+
+  def self.perform(notified_type, notifiable_type, 
+                   notified_id, notifiable_id)
+    notified = notified_type.constantize.find(notified_id.to_i)
+    notifiable = notifiable_type.constantize.find(notifiable_id.to_i)
+    method = [notified_type, notifiable_type].join("_").downcase
+    self.send("deliver_#{method}", notified, notifiable)
+  end
+
   
   def neighborhood_post(neighborhood, post)
     recipients neighborhood.users.reject{|u| u == post.user}.map(&:email)
