@@ -1,9 +1,12 @@
+require 'smtp_api_header.rb'
+
 class NotificationsMailer < ActionMailer::Base
 
   @queue = :notifications_mailer
 
   def self.perform(notified_type, notifiable_type, 
                    notified_id, notifiable_id)
+    
     notified = notified_type.constantize.find(notified_id.to_i)
     notifiable = notifiable_type.constantize.find(notifiable_id.to_i)
     method = [notified_type, notifiable_type].join("_").downcase
@@ -12,13 +15,22 @@ class NotificationsMailer < ActionMailer::Base
 
   
   def neighborhood_post(neighborhood, post)
-    recipients neighborhood.users.reject{|u| u == post.user}.map(&:email)
+    recipients = neighborhood.users.reject{|u| u == post.user}
+    header = SmtpApiHeader.new
+    header.addTo(recipients.map(&:email))
+    header.addSubVal('<name>', recipients.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
     subject "#{post.user.full_name} posted a/an #{post.category} to your neighborhood"
     from "neighborhood-posts@commonplaceusa.com"
     body :post => post
   end
 
   def organization_event(organization, event)
+    recipients = organization.subscribers
+    header = SmtpApiHeader.new
+    header.addTo(recipients.map(&:email))
+    header.addSubVal('<name>', recipients.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
     recipients organization.subscribers.map(&:email)
     subject "#{organization.name} posted a new event"
     from "events@commonplaceusa.com"
@@ -26,10 +38,13 @@ class NotificationsMailer < ActionMailer::Base
   end
 
   def organization_announcement(organization, announcement)
-    recipients organization.subscribers.map(&:email)
+    recipients = organization.subscribers
+    header = SmtpApiHeader.new
+    header.addTo(recipients.map(&:email))
+    header.addSubVal('<name>', recipients.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
     subject "#{organization.name} posted a new announcement"
     from "announcements@commonplaceusa.com"
     body :organization => organization, :announcement => announcement
   end
-
 end
