@@ -1,18 +1,12 @@
 
 #get_started
-  
-  - form_for UserSession.new, :url => user_session_path, :html => { :class => "standard_form", :id => "sign_in" } do |f|
+  - semantic_form_for @user_session || UserSession.new, :url => user_session_path, :html => { :class => "standard_form", :id => "sign_in" } do |f|
     %h2 Sign in
-    %fieldset
-      %ol
-        %li
-          = f.label :email, "Email"
-          = f.text_field :email
-        %li  
-          = f.label :password, "Password"
-          = f.password_field :password
-        %p.hint= link_to("forgot password?", new_password_reset_path)
-      = f.submit 'Log in'
+    = f.semantic_errors
+    = f.inputs :email, :password
+    %p.hint= link_to("forgot password?", new_password_reset_path)
+    - f.buttons do 
+      = f.commit_button "Log in"
   
   
   - semantic_form_for @user, :url => account_url, :html => { :class => "standard_form", :id => "sign_up"} do |f|
