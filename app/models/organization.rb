@@ -4,8 +4,7 @@ class Organization < ActiveRecord::Base
   acts_as_taggable_on :tags
 
   validates_presence_of :name, :address
-  validates_format_of :website, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :allow_blank => true
-  
+    
   belongs_to :community
   
   has_many :events
