@@ -7,7 +7,8 @@
   %h3.management_field Create a new organization
   - f.inputs do 
     = f.input :name
-    = f.input :address
+  = f.inputs :street_address, :zip_code, :for => :location
+  - f.inputs do
     = f.input :avatar
     = f.input :about
     = f.input :phone

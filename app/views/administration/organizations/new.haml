@@ -5,7 +5,6 @@
   - f.inputs do
     = f.input :community
     = f.input :name
-    = f.input :address
     = f.input :about
     = f.input :phone
     = f.input :website
@@ -13,6 +12,7 @@
     = f.input :tag_list
     = f.input :claimed, :checked => false
     = f.input :code
+  = f.inputs :street_address, :zip_code, :for => :location
   - f.inputs :for => :avatar do |a|
     = a.input :image, :as => :file
   - f.inputs :for => :profile_fields do |pf|

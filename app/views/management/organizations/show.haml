@@ -18,8 +18,8 @@
       = f.input :about, :input_html => {:rows => 4, :cols => 40}
       = f.input :website
       = f.input :phone
-      = f.input :address
       = f.input :tag_list, :as => :string, :label => "Tag list", :hint => "For example: outdoors, skiing"
+    = f.inputs :street_address, :zip_code, :for => :location
     = f.buttons
 
 #profile

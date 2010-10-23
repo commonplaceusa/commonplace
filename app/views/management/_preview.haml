@@ -35,6 +35,6 @@
           = current_user.address[/(.+?)(,)/, 1]
 
     = render_map do |map|
-      - map.center :lat => current_user.lat, :lng => current_user.lng
-      - map.marker :lat => current_user.lat, :lng => current_user.lng
+      - map.center current_user
+      - map.marker current_user
 

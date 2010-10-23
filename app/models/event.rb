@@ -15,7 +15,9 @@ class Event < ActiveRecord::Base
 
   has_many :invites, :as => :inviter
 
-  before_save :update_lat_and_lng, :if => "address_changed?"
+  has_one :location, :as => :locatable
+
+  accepts_nested_attributes_for :location
 
   named_scope :upcoming, :conditions => ["? < date", Time.now]
   named_scope :past, :conditions => ["date < ?", Time.now]
@@ -39,19 +41,14 @@ class Event < ActiveRecord::Base
   def owner
     self.organization
   end
-  
-  def update_lat_and_lng
-    if address.blank?
-      true
-    else
-      location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
-      if location && location.success?
-        write_attribute(:lat,location.lat)
-        write_attribute(:lng, location.lng)
-        write_attribute(:address, location.full_address)
-      else
-        false
-      end
-    end
+
+  def address
+    self.location.street_address
   end
+
+  def after_initialize
+    unless self.location
+      self.location = Location.new
+    end
+  end  
 end

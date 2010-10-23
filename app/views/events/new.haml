@@ -8,9 +8,9 @@
         = f.input :organization, :collection => current_user.managable_organizations
         = f.input :name
         = f.input :description, :input_html => { :rows => 5, :cols => 21}
-        = f.input :address
         = f.input :date, :as => :string, :input_html => {:class => 'date'}
         = event_select_time('start_time')
         = event_select_time('end_time')
+      = f.inputs :street_address, :zip_code, :for => :location
     - f.buttons do
       #submit_wrapper= f.commit_button "Create Event"

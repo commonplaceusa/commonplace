@@ -10,7 +10,7 @@
       = f.input :email
       = f.input :password, :input_html => {:autocomplete => "off"}
       = f.input :password_confirmation, :input_html => {:autocomplete => "off"}
-      = f.input :address
+    = f.inputs :street_address, :zip_code, :for => :location
       
 
     - f.buttons do
@@ -18,5 +18,5 @@
 
 #profile
   = render_map do |map|
-    - map.center :lat => current_user.lat, :lng => current_user.lng
-    - map.marker :lat => current_user.lat, :lng => current_user.lng
+    - map.center current_user
+    - map.marker current_user

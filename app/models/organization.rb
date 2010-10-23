@@ -4,7 +4,7 @@ class Organization < ActiveRecord::Base
   acts_as_taggable_on :tags
 
   validates_presence_of :name, :address
-    
+  validates_format_of :website, :with => /^(http|https)?:\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :allow_blank => true  
   belongs_to :community
   
   has_many :events
@@ -22,32 +22,17 @@ class Organization < ActiveRecord::Base
 
   has_many :notifications, :as => :notified
 
-  before_save :update_lat_and_lng, :if => "address_changed?"
-
   before_create :set_default_avatar
 
   has_one :avatar, :as => :owner
 
+  has_one :location, :as => :locatable
+
   has_friendly_id :name, :use_slug => true, :scope => :community
 
   accepts_nested_attributes_for :profile_fields
-
-  # TODO: pull this out into a module
-  def update_lat_and_lng
-    if address.blank?
-      true
-    else
-      location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
-      if location && location.success?
-        write_attribute(:lat,location.lat)
-        write_attribute(:lng, location.lng)
-        write_attribute(:address, location.full_address)
-      else
-        false
-      end    
-    end
-  end
-
+  
+  accepts_nested_attributes_for :location
 
   def avatar_url(style = :default)
     avatar.image.url(style)
@@ -56,10 +41,12 @@ class Organization < ActiveRecord::Base
   def to_param
     self.id.to_s
   end
+
+  def address
+    self.location.street_address
+  end
   
   protected
-
-
 
   def set_default_avatar
     if self.avatar.nil?
@@ -67,4 +54,9 @@ class Organization < ActiveRecord::Base
     end
   end
 
+  def after_initialize
+    unless self.location
+      self.location = Location.new
+    end
+  end
 end

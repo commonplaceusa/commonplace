@@ -5,7 +5,8 @@
   - f.inputs do
     = f.input :community
     = f.input :name
-    = f.input :address
+  = f.inputs :street_address, :zip_code, :for => :location
+  - f.inputs do
     = f.input :about
     = f.input :phone
     = f.input :website

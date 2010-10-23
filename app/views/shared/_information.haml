@@ -4,8 +4,8 @@
     = render_map do |map|
       - map.center :lat => current_community.lat, :lng => current_community.lng
       - items.each do |item|
-        - if item.respond_to? :lat
-          - map.marker :lat => item.lat, :lng => item.lng
+        - if item.respond_to? :location
+          - map.marker item
 
     .inventories
       %ul

@@ -32,5 +32,5 @@
     
   
     = render_map do |map|
-      - map.center :lat => @organization.lat, :lng => @organization.lng
-      - map.marker :lat => @organization.lat, :lng => @organization.lng
+      - map.center @organization
+      - map.marker @organization

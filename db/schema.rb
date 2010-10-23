@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101022193409) do
+ActiveRecord::Schema.define(:version => 20101023225835) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -70,12 +70,9 @@ ActiveRecord::Schema.define(:version => 20101022193409) do
 
   create_table "events", :force => true do |t|
     t.string   "name",            :null => false
-    t.string   "address"
     t.text     "description",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "lat"
-    t.decimal  "lng"
     t.integer  "organization_id"
     t.string   "cached_tag_list"
     t.date     "date"
@@ -98,6 +95,17 @@ ActiveRecord::Schema.define(:version => 20101022193409) do
     t.string   "linkable_type", :null => false
     t.integer  "linker_id",     :null => false
     t.string   "linker_type",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "street_address"
+    t.string   "zip_code"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.integer  "locatable_id",   :null => false
+    t.string   "locatable_type", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -140,11 +148,8 @@ ActiveRecord::Schema.define(:version => 20101022193409) do
 
   create_table "organizations", :force => true do |t|
     t.string   "name",                              :null => false
-    t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "lat"
-    t.decimal  "lng"
     t.text     "about"
     t.string   "phone"
     t.string   "website"
@@ -253,9 +258,6 @@ ActiveRecord::Schema.define(:version => 20101022193409) do
     t.datetime "updated_at"
     t.string   "first_name",                              :null => false
     t.string   "last_name",                               :null => false
-    t.string   "address",                                 :null => false
-    t.decimal  "lat"
-    t.decimal  "lng"
     t.text     "about"
     t.integer  "neighborhood_id",                         :null => false
     t.string   "cached_skill_list"

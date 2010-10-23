@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 
-  before_save :update_lat_and_lng, :if => "address_changed?"
   before_create :set_default_avatar
   acts_as_authentic do |c|
     c.login_field :email
@@ -27,6 +26,10 @@ class User < ActiveRecord::Base
   has_many :people, :through => :mets, :source => "requestee"
   
   has_many :notifications
+
+  has_one :location, :as => :locatable
+
+  accepts_nested_attributes_for :location
 
   validates_presence_of :first_name, :last_name
   validates_acceptance_of :privacy_policy
@@ -61,17 +64,6 @@ class User < ActiveRecord::Base
     full_name
   end
   
-  # TODO: pull this out into a module
-  def update_lat_and_lng
-    location = Geokit::Geocoders::GoogleGeocoder.geocode(address)
-    if location.success?
-      write_attribute(:lat,location.lat)
-      write_attribute(:lng, location.lng)
-      write_attribute(:address, location.full_address)
-    end    
-    true  
-  end
-
   def community
     neighborhood.community
   end
@@ -87,10 +79,20 @@ class User < ActiveRecord::Base
       [:user]
     end
   end
+
+  def address
+    self.location.street_address
+  end
   
   def set_default_avatar
     if self.avatar.nil?
       self.avatar = Avatar.new
+    end
+  end
+
+  def after_initialize
+    unless self.location
+      self.location = Location.new
     end
   end
 

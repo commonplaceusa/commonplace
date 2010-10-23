@@ -56,12 +56,12 @@
         %li#map_container
           %h3 Location
           = render_map do |map|
-            - map.center :lat => organization.lat, :lng => organization.lng
-            - map.marker :lat => current_user.lat, :lng => current_user.lng
-            - map.marker :lat => organization.lat, :lng => organization.lng
+            - map.center organization
+            - map.marker current_user
+            - map.marker organization
             - map.directions do |dir|
-              - dir.origin :lat => current_user.lat, :lng => current_user.lng
-              - dir.destination :lat => organization.lat, :lng => organization.lng
+              - dir.origin current_user
+              - dir.destination organization
         
     
       %li#events
