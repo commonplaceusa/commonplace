@@ -8,7 +8,7 @@ num_workers.times do |num|
     w.group    = 'resque-workers'
     w.interval = 30.seconds
     w.env      = {"QUEUE"=>"*", "RAILS_ENV"=>rails_env}
-    w.start    = "#{BIN_PATH} -f #{rails_root}/Rakefile environment resque:work"
+    w.start    = "cd #{rails_root} && #{BIN_PATH}/rake -f #{rails_root}/Rakefile environment resque:work"
     w.stop_signal = 'QUIT'
     
     w.uid = 'deploy'
