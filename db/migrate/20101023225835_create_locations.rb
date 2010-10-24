@@ -16,8 +16,8 @@ class CreateLocations < ActiveRecord::Migration
       klass.all.each do |k|
         Location.create(:locatable_id => k.id,
                         :locatable_type => klass.to_s,
-                        :street_address => k.address.split(",").first,
-                        :zip_code => k.address.scan(/\d{5}/).first,
+                        :street_address => k.address ? k.address.split(",").first : "",
+                        :zip_code => k.address ?  k.address.scan(/\d{5}/).first : "",
                         :lat => k.lat,
                         :lng => k.lng)
       end
