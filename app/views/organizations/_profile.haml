@@ -52,7 +52,7 @@
           %p= p.body
     
     %ul
-      - unless @organization.lat.blank? or @organization.lng.blank?
+      - unless @organization.address.blank?
         %li#map_container
           %h3 Location
           = render_map do |map|
