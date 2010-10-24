@@ -5,11 +5,16 @@ class OrganizationsController < CommunitiesController
   layout 'zone'
   
   def index
-    @items = current_community.organizations
+    @items = current_community.organizations.all(:order => "name ASC")
+  end
+
+  def organization
+    @items = current_community.organizations.organization.all(:order => "name ASC")
+    render :index
   end
 
   def business
-    @items = current_community.organizations
+    @items = current_community.organizations.business.all(:order => "name ASC")
     render :index
   end
 
@@ -34,7 +39,7 @@ class OrganizationsController < CommunitiesController
     @organization = current_community.organizations.new(params[:organization])
     if @organization.save
       @organization.admins << current_user
-      redirect_to organizations_url
+      redirect_to organization_profile_fields_url(@organization)
     else
       render :new, :layout => false
     end
