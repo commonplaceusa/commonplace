@@ -5,6 +5,10 @@ class Organization < ActiveRecord::Base
 
   validates_presence_of :name, :address
   validates_format_of :website, :with => /^(http|https)?:\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :allow_blank => true  
+
+  named_scope :business, :conditions => ["category = ?", "Business"]
+  named_scope :organization, :conditions => ["category = ?", "Organization"]
+
   belongs_to :community
   
   has_many :events
