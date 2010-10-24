@@ -28,7 +28,7 @@
         - unless organization.address.blank?    
           %li
             %span.info_title= "Address".upcase 
-            = organization.address[/(.+?)(,)/, 1]
+            = organization.address
     
   
     = render_map do |map|
