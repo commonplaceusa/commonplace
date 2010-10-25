@@ -2,13 +2,16 @@ body
   z-index: 0
 
 #modal:not(:empty)
-  margin: auto
-  position: fixed
-  border: 1px solid black
-  display: block
-  z-index: 2000
 
-  > #modal-close
+
+  #modal-content
+    border: 1px solid black
+    z-index: 2000
+    background-color: white
+    padding: 20px
+    position: fixed
+    margin: auto
+  #modal-close
     padding: 0
     background: transparent
     float: right
@@ -16,11 +19,7 @@ body
     top: -15px
     left: -15px
 
-  > *
-    background-color: white
-    padding: 20px
-    
-  &:after
+  #modal-overlay
     content: " "
     position: fixed
     bottom: 0
@@ -29,5 +28,4 @@ body
     right: 0
     background-color: black
     opacity: 0.52
-    z-index: -1000
 

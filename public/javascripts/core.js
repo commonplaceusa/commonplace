@@ -37,7 +37,7 @@ $(function() {
   $('#org_url').textTruncate(140);
 
   $(window).bind('resize.modal', function () {
-    var $m = $("#modal"),
+    var $m = $("#modal-content"),
     w = $m.width(),
     h = $m.height(),
     $b = $(window),
@@ -158,9 +158,6 @@ function merge(html, context) {
     if (this) {
       $("#" + $this.attr('id'), context).replaceWith($this.get(0));
     }
-    if ($this.attr('id') == "modal") {
-      $(window).trigger('resize.modal');
-    }
   });
   
   $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
@@ -175,7 +172,9 @@ function merge(html, context) {
   });
   
   $('#modules').sortable();
-  $('#modules').disableSelection();}
+  $('#modules').disableSelection();
+  $(window).trigger('resize.modal');
+}
 
 function currentIndex(path) {
   return path.replace(/\/[^\/]*$/,"");
