@@ -5,7 +5,7 @@
     %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
     %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
     %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
-    %title= "CommonPlace - #{current_user.community.name}"
+    %title= "CommonPlace - #{current_community.name}"
     
     / [if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"    
@@ -43,5 +43,11 @@
       
         = render 'shared/information', :items => @items
 
-
-    #modal
+    - if current_user_session
+      #modal
+    - else
+      #modal
+        #modal-overlay
+        #modal-content
+          = render 'user_sessions/form'
+      

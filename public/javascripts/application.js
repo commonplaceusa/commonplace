@@ -3,8 +3,13 @@ $.sammy("body")
   .get("close", function(c) {
     $.sammy("body").setLocation(currentIndex($.sammy("body")._location_proxy._last_location));
     $("#modal").html("");
-  })
 
+  })
+  .get(/\/?/, function(c) {
+    setTimeout(function(){
+    $(window).trigger("resize.modal");
+    }, 0);
+  })
   .defaultCallback(function(c) {
     $.ajax({type: c.verb,
             url: c.path,
@@ -23,7 +28,6 @@ $(document).ready(function() {
   $.sammy("body").run();
   
   window.onscroll = setInfoBoxPosition;
-  
   
   $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   $('header nav .disabled_link').attr('title', "Coming soon!").tipsy({gravity: 's'});
@@ -78,6 +82,8 @@ $(document).ready(function() {
       
     });
   });
+  $(window).trigger("resize.modal");
+
 });
   
   function accordionReplies($replies) {

@@ -95,5 +95,11 @@ class User < ActiveRecord::Base
       self.location = Location.new
     end
   end
+  
+  alias_method :real_neighborhood, :neighborhood
 
+  def neighborhood
+    real_neighborhood || Neighborhood.new
+  end
+  
 end

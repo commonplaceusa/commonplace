@@ -19,10 +19,10 @@ class Ability
       can :create, Post
       can :destroy, Post, :user_id => user.id
       can :destroy, UserSession
-      can :read, Community
+
       can :create, Reply
     end
-
+    can :read, Community
     can :read, Post
     can :read, User
     can :read, Announcement
