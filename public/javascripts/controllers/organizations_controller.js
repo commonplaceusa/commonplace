@@ -18,6 +18,10 @@ $.sammy("body")
 
   .post("/organizations")
 
+  .put("/organizations/:id")
+
+  .get("/organizations/:id/edit")
+
   .get("/organizations/:id")
 
   .get("/organizations/:organization_id/announcements/new")
