@@ -5,10 +5,16 @@
 
   - f.inputs do
     = f.input :name
-  = f.inputs :street_address, :zip_code, :for => :location
-  - f.inputs do
     = f.input :phone
     = f.input :website
     = f.input :category, :as => :radio, :collection => Organization::CATEGORIES
+  
+  - f.semantic_fields_for :location do |l|
+    - l.inputs do
+      - unless @organization.new_record?
+        = l.input :id, :as => :hidden
+      = l.input :street_address
+      = l.input :zip_code
+
   - f.buttons do
-    #submit_wrapper= f.commit_button "Create Organization"
+    #submit_wrapper= f.commit_button "Continue"
