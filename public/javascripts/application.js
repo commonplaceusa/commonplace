@@ -5,7 +5,7 @@ $.sammy("body")
     $("#modal").html("");
 
   })
-  .get(/\/?/, function(c) {
+  .get(/^\/?$/, function(c) {
     setTimeout(function(){
     $(window).trigger("resize.modal");
     }, 0);
