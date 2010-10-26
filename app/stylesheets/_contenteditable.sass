@@ -1,8 +1,19 @@
 
 [contenteditable]
-  border: 2px solid orange
+  background-color: white
+  border: 1px solid #555
   display: inline-block
   padding: 2px
-  +border-radius(5px)
   margin: 2px
+  &.subject
+    width: 170px
+  &.body
+    width: 292px
     
+input#profile_field_submit[type=submit]
+  background: none
+  border: none
+  cursor: pointer
+  margin: 0px
+  padding: 0px
+  text-decoration: underline
