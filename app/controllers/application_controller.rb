@@ -57,4 +57,17 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session.user
   end
   
+  def no_xhr
+    request.env['HTTP_X_REQUESTED_WITH'].nil?
+  end
+  
+  def render_communities_or_zone(action = nil)
+    layout = (no_xhr ? 'communities' : 'zone')
+    if action
+      render action, :layout => layout
+    else 
+      render :layout => layout
+    end
+  end
+  
 end
