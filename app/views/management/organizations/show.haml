@@ -19,7 +19,7 @@
       = f.input :website
       = f.input :phone
       = f.input :tag_list, :as => :string, :label => "Tag list", :hint => "For example: outdoors, skiing"
-    = f.inputs :street_address, :zip_code, :for => :location
+    = f.inputs :street_address, :zip_code, :for => @organization.location
     = f.buttons
 
 #profile

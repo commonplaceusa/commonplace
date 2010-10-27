@@ -22,6 +22,7 @@ class Management::OrganizationsController < ManagementController
   end
   
   def update
+    @organization.location.update_attributes(params[:organization].delete(:location))
     if @organization.update_attributes(params[:organization])
       redirect_to management_organization_url(@organization)
     else
