@@ -12,7 +12,7 @@ $.sammy("body")
 
   .get("/subscriptions/recommended")
 
-  .get("/announcements/:id",function(){this.log(this);})
+  .get("/announcements/:id")
 
   .before(/\/announcements\/\d+/, function() {
     accordionReplies($(this.target).siblings(".replies"));
