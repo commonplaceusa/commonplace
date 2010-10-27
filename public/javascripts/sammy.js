@@ -77,7 +77,7 @@
   // unknown number of arguments and should print them or send them somewhere
   // The first argument is always a timestamp.
   Sammy.addLogger = function(logger) {
-    loggers.push(logger);
+    //    loggers.push(logger);
   };
 
   // Sends a log message to each logger listed in the global
