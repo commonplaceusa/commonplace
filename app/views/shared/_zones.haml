@@ -1,20 +1,20 @@
 %nav#zones
-  - tab_to posts_path, :class => 'neighborhood zone tooltip', 'data-title' => 'View posts from your neighbors.',  'data-remote' => true do 
+  - tab_to posts_path, :class => 'neighborhood zone tooltip', 'data-title' => 'Announcements, offers, questions, etc. from your neighbors',  'data-remote' => true do 
     .img_container
     .text_container
       %p= "Neighborhood Posts".upcase
       
-  - tab_to :announcements, :class => 'announcement zone tooltip', 'data-title' => 'View announcements from local businesses in your community.', 'data-remote' => true do
+  - tab_to :announcements, :class => 'announcement zone tooltip', 'data-title' => 'Announcements from local organizations', 'data-remote' => true do
     .img_container
     .text_container
       %p= "Community Announcements".upcase
       
-  - tab_to :events, :class => 'event zone tooltip', 'data-title' => 'View upcoming events in your community.', 'data-remote' => true do
+  - tab_to :events, :class => 'event zone tooltip', 'data-title' => 'Upcoming events in West Roxbury', 'data-remote' => true do
     .img_container
     .text_container
       %p= "Community Events".upcase
       
-  - tab_to :users, :class => 'directory zone tooltip', 'data-title' => 'Browse people and organizations in your community.', 'data-remote' => true do
+  - tab_to :users, :class => 'directory zone tooltip', 'data-title' => 'Neighbors, local organizations and businesses in West Roxbury', 'data-remote' => true do
     .img_container
     .text_container
       %p= "Neighborhood Directory".upcase
