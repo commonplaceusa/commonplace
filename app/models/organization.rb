@@ -26,8 +26,6 @@ class Organization < ActiveRecord::Base
 
   has_many :notifications, :as => :notified
 
-  before_create :set_default_avatar
-
   has_one :avatar, :as => :owner
 
   has_one :location, :as => :locatable
@@ -58,9 +56,14 @@ class Organization < ActiveRecord::Base
     end
   end
 
-  def after_initialize
+  def set_location
     unless self.location
       self.location = Location.new
     end
   end
+  def after_initialize
+    set_default_avatar
+    set_location
+  end
+
 end

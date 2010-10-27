@@ -1,20 +1,18 @@
-- semantic_form_for @organization, :html => { :class => 'new_entity' } do |f|
-  %hr.staple
-    
-  %h1 Create a local organization
+- semantic_form_for @organization, :html => { :class => 'new_entity', :multipart => true } do |f|
 
   - f.inputs do
     = f.input :name
+    = f.input :about, :hint => "This is the official summary of your organization on CommonPlace.", :input_html => {:rows => 2}
+    = f.input :category, :as => :radio, :collection => Organization::CATEGORIES
+  - f.inputs :for => @organization.avatar do |a|
+    = a.input :image, :label => "Profile picture"
+  - f.inputs do
     = f.input :phone
     = f.input :website
-    = f.input :category, :as => :radio, :collection => Organization::CATEGORIES
-  
-  - f.semantic_fields_for :location do |l|
-    - l.inputs do
-      - unless @organization.new_record?
-        = l.input :id, :as => :hidden
-      = l.input :street_address
-      = l.input :zip_code
-
+  - f.inputs :for => @organization.location do |l|
+    = l.input :street_address
+    = l.input :zip_code
+  - f.inputs do
+    = f.input :tag_list, :hint => "Examples: cooking, families, tacos, plumbing, etc."
   - f.buttons do
     #submit_wrapper= f.commit_button "Continue"

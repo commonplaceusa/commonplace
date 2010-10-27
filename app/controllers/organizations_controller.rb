@@ -50,6 +50,7 @@ class OrganizationsController < CommunitiesController
   end
 
   def update
+    @organization.location.update_attributes(params[:organization].delete(:location))
     if @organization.update_attributes(params[:organization])
       redirect_to organization_profile_fields_url(@organization)
     else
