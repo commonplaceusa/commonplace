@@ -31,7 +31,11 @@ $.sammy("body")
       if (/<div id="new_post">/.test(r)) {
         merge(r,$("body"));
       } else {
-        window.location = "/management/organizations/" + c.params["organization_id"];
+        window.location = "/management/organizations/" + c.params["organization_id"] + "?welcome=1;
       }
     });
+  })
+
+  .get("/management/organizations/:id\??", function(c) {
+    window.location = "/management/organizations/" + c.params["id"];
   })
