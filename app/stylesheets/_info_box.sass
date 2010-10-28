@@ -9,8 +9,9 @@
     line-height: 120%
     color: black
     #info_box_main_left
-      +inline-block
+      float: left
       margin-right: 10px
+      margin-bottom: 10px
       vertical-align: top
       #big_calendar
         margin-bottom: 10px
@@ -69,7 +70,8 @@
     .body
       +inline-block
       vertical-align: top
-      width: 286px
+      width: 215px
+
       h3
         text-align: left
         padding: 6px 0
@@ -103,6 +105,7 @@
             color: $mediumGray
 
   div[data-map]
+    clear: both
     border: 1px solid $lightGray
     margin-top: 10px
     height: 200px

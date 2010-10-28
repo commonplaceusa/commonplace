@@ -19,7 +19,7 @@
         - if @organization.website
           %li
             %span.info_title= "Website".upcase
-            = link_to @organization.website
+            = link_to truncate(@organization.website, :length => 30), @organization.website
         - if @organization.phone
           %li
             %span.info_title= "Phone".upcase
