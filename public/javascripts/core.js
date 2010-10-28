@@ -56,7 +56,7 @@ $(function() {
 function renderMaps() {
   if (window.google) {
     $('div[data-map]').each(function() {
-      var args = $.parseJSON($(this).attr('data-map'))
+      var args = $.parseJSON($(this).attr('data-map'));
       if (args && args.center) {
         var map = new google.maps.Map(this, {
           zoom: 13,
