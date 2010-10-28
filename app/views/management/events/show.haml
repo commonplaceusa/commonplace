@@ -8,7 +8,7 @@
     - f.inputs do
       = f.input :name
       = f.input :description, :input_html => {:rows => 4, :cols => 40}
-    = f.inputs :street_address, :zip_code, :for => :location
+    = f.inputs :street_address, :zip_code, :for => @event.location
     - f.inputs do
       = f.input :date, :as => :string, :input_html => {:class => "date", :value => @event.date}
       = event_select_time('start_time')
