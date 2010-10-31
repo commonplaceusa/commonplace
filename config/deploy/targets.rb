@@ -15,8 +15,19 @@ task :staging do
   role :app, "69.164.215.169"
   role :db,  "69.164.215.169", :primary => true
   set :web_server, :nginx
-  set :domain, "staging.commonplace.co yourtown.ourcommonplace.com yourtown.commonplaceusa.com"
+  set :domain, "staging.commonplace.co"
   set :web_port, "80"
   set :rails_env, "production"
   set :branch, "origin/master"
+end
+
+task :demo do
+  role :web, "69.164.215.169"
+  role :app, "69.164.215.169"
+  role :db,  "69.164.215.169", :primary => true
+  set :web_server, :nginx
+  set :domain, "yourtown.ourcommonplace.com yourtown.commonplaceusa.com"
+  set :web_port, "80"
+  set :rails_env, "production"
+  set :branch, "origin/demo"
 end
