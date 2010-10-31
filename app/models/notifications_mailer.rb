@@ -3,7 +3,7 @@ require 'smtp_api_header.rb'
 class NotificationsMailer < ActionMailer::Base
 
   @queue = :notifications_mailer
-
+  RECIPIENT = "sengrid@example.com"
   def self.perform(notified_type, notifiable_type, 
                    notified_id, notifiable_id)
     
@@ -15,10 +15,11 @@ class NotificationsMailer < ActionMailer::Base
 
   
   def neighborhood_post(neighborhood, post)
-    recipients = neighborhood.users.reject{|u| u == post.user}
+    recipients RECIPIENT
+    users = neighborhood.users.reject{|u| u == post.user}
     header = SmtpApiHeader.new
-    header.addTo(recipients.map(&:email))
-    header.addSubVal('<name>', recipients.map(&:name))
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     subject "#{post.user.full_name} posted a/an #{post.category} to your neighborhood"
     from "neighborhood-posts@commonplaceusa.com"
@@ -26,22 +27,24 @@ class NotificationsMailer < ActionMailer::Base
   end
 
   def organization_event(organization, event)
-    recipients = organization.subscribers
+    recipients RECIPIENT
+    users = organization.subscribers
     header = SmtpApiHeader.new
-    header.addTo(recipients.map(&:email))
-    header.addSubVal('<name>', recipients.map(&:name))
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
-    recipients organization.subscribers.map(&:email)
+    users organization.subscribers.map(&:email)
     subject "#{organization.name} posted a new event"
     from "events@commonplaceusa.com"
     body :organization => organization, :event => event
   end
 
   def organization_announcement(organization, announcement)
-    recipients = organization.subscribers
+    recipients RECIPIENT
+    users = organization.subscribers
     header = SmtpApiHeader.new
-    header.addTo(recipients.map(&:email))
-    header.addSubVal('<name>', recipients.map(&:name))
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     subject "#{organization.name} posted a new announcement"
     from "announcements@commonplaceusa.com"
