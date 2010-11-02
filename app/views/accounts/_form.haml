@@ -1,28 +1,4 @@
-- form_for user, :url => account_path do |f|
-  = error_messages_for :user
-  %dl
-
-    %dt= f.label :first_name
-    %dd= f.text_field :first_name
-
-    %dt= f.label :last_name
-    %dd= f.text_field :last_name
-
-    %dt= f.label :email
-    %dd= f.text_field :email
-  
-    %dt= f.label :password
-    %dd= f.password_field :password
-
-    %dt= f.label :password_confirmation, "Confirm Password"
-    %dd= f.password_field :password_confirmation
-
-    %dt= f.label :address
-    %dd= f.text_field :address
-
-
-    %dt= f.label :privacy_policy, "I accept the #{link_to 'privacy policy', privacy_path, :popup => true}"      
-    %dd= f.check_box :privacy_policy
- 
-
-  = f.submit 'Register!'
+- semantic_form_for user, :url => account_path, :html => {:class => "new_entity"} do |f|
+  = f.inputs :first_name, :last_name, :email, :password, :password_confirmation, :address, :privacy_policy
+  - f.buttons do
+    = f.commit_button "Continue"

@@ -69,6 +69,8 @@ class User < ActiveRecord::Base
   end
   
   def wire
+    new_record? ?
+    (community.announcements + community.events).sort_by(&:created_at).reverse :
     (subscribed_announcements + organizations.map(&:events).flatten + neighborhood.posts).sort_by(&:created_at).reverse
   end
 

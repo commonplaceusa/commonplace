@@ -36,18 +36,24 @@
                   = render item
                 - if item.respond_to?(:replies)
                   = render 'shared/replies', :item => item, :hide => true
-        #main-navigation
-          = render 'shared/tooltip'
 
-          = render 'shared/zones'
-      
-        = render 'shared/information', :items => @items
-
-    - if current_user_session
-      #modal
-    - else
-      #modal
-        #modal-overlay
-        #modal-content
-          = render 'user_sessions/form'
+        - if current_user_session
+          #main-navigation
+            = render 'shared/tooltip'
+            = render 'shared/zones'
+          = render 'shared/information', :items => @items
+        - else
+          #main-navigation
+            #tooltip
+            #zones
+              - form_for UserSession.new, :url => user_session_path do |f|
+                = f.text_field :email, :size => 20
+                = f.text_field :password, :size => 20
+          #information
+            %h3 SIGN UP
+            #information_content
+              = render 'accounts/form', :user => User.new
+              
+    #modal
+    
       
