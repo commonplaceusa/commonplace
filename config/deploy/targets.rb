@@ -8,6 +8,7 @@ task :production do
   set :web_port, "80"
   set :rails_env, "production"
   set :branch, "origin/pre-launch"
+  set :deploy_to, "/home/#{user}/#{application}"
 end
 
 task :staging do
@@ -19,6 +20,7 @@ task :staging do
   set :web_port, "80"
   set :rails_env, "production"
   set :branch, "origin/master"
+  set :deploy_to, "/home/#{user}/staging"
 end
 
 task :demo do
@@ -30,4 +32,5 @@ task :demo do
   set :web_port, "80"
   set :rails_env, "production"
   set :branch, "origin/demo"
+  set :deploy_to, "/home/#{user}/demo"
 end

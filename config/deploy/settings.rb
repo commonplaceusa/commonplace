@@ -14,5 +14,5 @@ set :weird_symlinks, {
   "logs"               => "log"
 }
 set :user, "deploy"
-set :deploy_to, "/home/#{user}/#{application}"
+
 
