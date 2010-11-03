@@ -6,7 +6,7 @@ class PasswordsMailer < ActionMailer::Base
     from "passwords@commonplaceusa.com"
     subject "CommonPlace password reset"
     body <<END
-<p>Follow this link to reset your password: #{edit_password_reset_url(user.perishable_token, :host => "ourcommonplace.com") }</p>
+<p>Follow this link to reset your password: #{edit_password_reset_url(user.perishable_token, :host => "#{user.community.slug}.ourcommonplace.com") }</p>
 <br>
 --
 #{ user.community.name }'s CommonPlace: #{user.community.slug + ".ourcommonplace.com"}
