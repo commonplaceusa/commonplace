@@ -26,11 +26,12 @@ ActionController::Routing::Routes.draw do |map|
     community.resources :events, :collection => {"your" => :get, "suggested" => :get} do |event|
       event.resource :attendance
       event.resources :referrals
+      event.resources :messages, :only => [:create, :new], :requirements => {:messagable => "Event"}
     end
     
     community.resources :users do |user|
       user.resource :met, :only => [:create]
-      user.resources :messages, :only => [:create, :new]
+      user.resources :messages, :only => [:create, :new], :requirements => {:messagable => "User"}
     end
     
     community.resources :invites
@@ -45,6 +46,7 @@ ActionController::Routing::Routes.draw do |map|
       org.resource :claim, :member => [:edit_fields]
       org.resources :announcements, :controller => "organizations/announcements"
       org.resources :profile_fields, :collection => {"order" => :put}
+      org.resources :messages, :only => [:create, :new], :requirements => {:messagable => "Organization"}
     end
 
     community.namespace :neighborhood do |neighborhood|

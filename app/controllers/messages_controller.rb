@@ -1,19 +1,23 @@
 class MessagesController < ApplicationController
-
+  helper_method :parent
   layout false
 
   def new
-    @user = User.find(params[:user_id])
+    @user = parent
     @message = Message.new(:conversation => Conversation.new)
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @message = @user.messages.build(params[:message])
+    @message = parent.messages.build(params[:message])
     if @message.save
-      flash.now[:message] = "Message sent to #{@user.name}"
+      flash.now[:message] = "Message sent to #{parent.name}"
     else
       render :new
     end
+  end
+
+  protected
+  def parent
+    @parent ||= params[:messagable].constantize.find(params[(params[:messagable].downcase + "_id").intern])
   end
 end
