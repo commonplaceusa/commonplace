@@ -1,7 +1,7 @@
 // name: sammy
-// version: 0.6.0pre
+// version: 0.6.2
 
-(function($) {
+(function($, window) {
 
   var Sammy,
       PATH_REPLACER = "([^\/]+)",
@@ -13,11 +13,11 @@
       _isFunction = function( obj ) { return Object.prototype.toString.call(obj) === "[object Function]"; },
       _isArray = function( obj ) { return Object.prototype.toString.call(obj) === "[object Array]"; },
       _decode = decodeURIComponent,
-      // _escapeHTML = function(s) {
-      //   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      // },
+      _escapeHTML = function(s) {
+        return s ? s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : s;
+      },
       _routeWrapper = function(verb) {
-        return function(path, callback) { return this.route.apply(this, [verb, path, callback || this._default_callback]); };
+        return function(path, callback) { return this.route.apply(this, [verb, path, callback || this._default_callback] ); };
       },
       _template_cache = {},
       _default_callback = function(c) {},
@@ -71,13 +71,13 @@
     }
   };
 
-  Sammy.VERSION = '0.6.0';
+  Sammy.VERSION = '0.6.2';
 
   // Add to the global logger pool. Takes a function that accepts an
   // unknown number of arguments and should print them or send them somewhere
   // The first argument is always a timestamp.
   Sammy.addLogger = function(logger) {
-    //    loggers.push(logger);
+    loggers.push(logger);
   };
 
   // Sends a log message to each logger listed in the global
@@ -128,8 +128,8 @@
 
     // Escape HTML in string, use in templates to prevent script injection.
     // Also aliased as `h()`
-    // escapeHTML: _escapeHTML,
-    // h: _escapeHTML,
+    escapeHTML: _escapeHTML,
+    h: _escapeHTML,
 
     // Returns a copy of the object with Functions removed.
     toHash: function() {
@@ -233,7 +233,7 @@
         if (proxy.is_native === false && !non_native) {
           Sammy.log('native hash change exists, using');
           proxy.is_native = true;
-          clearInterval(Sammy.HashLocationProxy._interval);
+          window.clearInterval(Sammy.HashLocationProxy._interval);
         }
         app.trigger('location-changed');
       });
@@ -248,7 +248,7 @@
       $(window).unbind('hashchange.' + this.app.eventNamespace());
       Sammy.HashLocationProxy._bindings--;
       if (Sammy.HashLocationProxy._bindings <= 0) {
-        clearInterval(Sammy.HashLocationProxy._interval);
+        window.clearInterval(Sammy.HashLocationProxy._interval);
       }
     },
 
@@ -272,17 +272,17 @@
       if (!Sammy.HashLocationProxy._interval) {
         if (!every) { every = 10; }
         var hashCheck = function() {
-          current_location = proxy.getLocation();
+          var current_location = proxy.getLocation();
           if (!Sammy.HashLocationProxy._last_location ||
             current_location != Sammy.HashLocationProxy._last_location) {
-            setTimeout(function() {
+            window.setTimeout(function() {
               $(window).trigger('hashchange', [true]);
             }, 13);
           }
           Sammy.HashLocationProxy._last_location = current_location;
         };
         hashCheck();
-        Sammy.HashLocationProxy._interval = setInterval(hashCheck, every);
+        Sammy.HashLocationProxy._interval = window.setInterval(hashCheck, every);
       }
     }
   };
@@ -324,7 +324,18 @@
 
     // An array of the default events triggered by the
     // application during its lifecycle
-    APP_EVENTS: ['run','unload','lookup-route','run-route','route-found','event-context-before','event-context-after','changed','error','check-form-submission','redirect'],
+    APP_EVENTS: ['run',
+                 'unload',
+                 'lookup-route',
+                 'run-route',
+                 'route-found',
+                 'event-context-before',
+                 'event-context-after',
+                 'changed',
+                 'error',
+                 'check-form-submission',
+                 'redirect',
+                 'location-changed'],
 
     _last_route: null,
     _location_proxy: null,
@@ -412,22 +423,22 @@
       var args = _makeArray(arguments),
           plugin = args.shift(),
           plugin_name = plugin || '';
-      try {
+//      try {
         args.unshift(this);
         if (typeof plugin == 'string') {
           plugin_name = 'Sammy.' + plugin;
           plugin = Sammy[plugin];
         }
         plugin.apply(this, args);
-      } catch(e) {
-        if (typeof plugin === 'undefined') {
-          this.error("Plugin Error: called use() but plugin (" + plugin_name.toString() + ") is not defined", e);
-        } else if (!_isFunction(plugin)) {
-          this.error("Plugin Error: called use() but '" + plugin_name.toString() + "' is not a function", e);
-        } else {
-          this.error("Plugin Error", e);
-        }
-      }
+  //    } catch(e) {
+        // if (typeof plugin === 'undefined') {
+        //   this.error("Plugin Error: called use() but plugin (" + plugin_name.toString() + ") is not defined", e);
+        // } else if (!_isFunction(plugin)) {
+        //   this.error("Plugin Error: called use() but '" + plugin_name.toString() + "' is not a function", e);
+        // } else {
+        //   this.error("Plugin Error", e);
+        // }
+   //   }
       return this;
     },
 
@@ -475,7 +486,7 @@
     //    of a method on the application.
     //
     route: function(verb, path, callback) {
-      var app = this, param_names = [], add_route;
+      var app = this, param_names = [], add_route, path_match;
 
       // if the method signature is just (path, callback)
       // assume the verb is 'any'
@@ -941,6 +952,7 @@
           befores,
           before,
           callback_args,
+          path_params,
           final_returned;
 
       this.log('runRoute', [verb, path].join(' '));
@@ -997,11 +1009,11 @@
           var last_wrapped_route = wrapped_route;
           wrapped_route = function() { return around.apply(context, [last_wrapped_route]); };
         });
-        try {
+      //  try {
           final_returned = wrapped_route();
-        } catch(e) {
-          this.error(['500 Error', verb, path].join(' '), e);
-        }
+       // } catch(e) {
+       //   this.error(['500 Error', verb, path].join(' '), e);
+       // }
         return final_returned;
       } else {
         return this.notFound(verb, path);
@@ -1123,6 +1135,11 @@
       }
     },
 
+    // clear the templateCache
+    clearTemplateCache: function() {
+      return _template_cache = {};
+    },
+
     // This thows a '404 Not Found' error by invoking `error()`.
     // Override this method or `error()` to provide custom
     // 404 behavior (i.e redirecting to / or showing a warning)
@@ -1153,9 +1170,9 @@
       // get current location
       location = this.getLocation();
       // compare to see if hash has changed
-      if (location != this.last_location) {
+      if (!this.last_location || this.last_location[0] != 'get' || this.last_location[1] != location) {
         // reset last location
-        this.last_location = location;
+        this.last_location = ['get', location];
         // lookup route for current hash
         returned = this.runRoute('get', location);
       }
@@ -1163,7 +1180,7 @@
     },
 
     _getFormVerb: function(form) {
-      var $form = $(form), verb;
+      var $form = $(form), verb, $_method;
       $_method = $form.find('input[name="_method"]');
       if ($_method.length > 0) { verb = $_method.val(); }
       if (!verb) { verb = $form[0].getAttribute('method'); }
@@ -1183,8 +1200,8 @@
         returned = false;
       } else {
         params = $.extend({}, this._parseFormParams($form));
+        returned = this.runRoute(verb, path, params, form.get(0));
       };
-      returned = this.runRoute(verb, path, params, form.get(0));
       return (typeof returned == 'undefined') ? false : returned;
     },
 
@@ -1275,6 +1292,9 @@
     // called. This allows for the guarunteed order of execution while working
     // with async operations.
     //
+    // If then() is passed a string instead of a function, the string is looked
+    // up as a helper method on the event context.
+    //
     // ### Example
     //
     //      this.get('#/', function() {
@@ -1290,19 +1310,29 @@
     //      });
     //
     then: function(callback) {
-      if (_isFunction(callback)) {
-        var context = this;
-        if (this.waiting) {
-          this.callbacks.push(callback);
+      if (!_isFunction(callback)) {
+        // if a string is passed to then, assume we want to call
+        // a helper on the event context in its context
+        if (typeof callback === 'string' && callback in this.event_context) {
+          var helper = this.event_context[callback];
+          callback = function(content) {
+            return helper.apply(this.event_context, [content]);
+          };
         } else {
-          this.wait();
-          setTimeout(function() {
-            var returned = callback.apply(context, [context.content, context.previous_content]);
-            if (returned !== false) {
-              context.next(returned);
-            }
-          }, 13);
+          return this;
         }
+      }
+      var context = this;
+      if (this.waiting) {
+        this.callbacks.push(callback);
+      } else {
+        this.wait();
+        window.setTimeout(function() {
+          var returned = callback.apply(context, [context.content, context.previous_content]);
+          if (returned !== false) {
+            context.next(returned);
+          }
+        }, 13);
       }
       return this;
     },
@@ -1370,7 +1400,7 @@
     load: function(location, options, callback) {
       var context = this;
       return this.then(function() {
-        var should_cache, cached;
+        var should_cache, cached, is_json, location_array;
         if (_isFunction(options)) {
           callback = options;
           options = {};
@@ -1380,8 +1410,11 @@
         if (callback) { this.then(callback); }
         if (typeof location === 'string') {
           // its a path
-          should_cache = !(options.cache === false);
+          is_json      = (location.match(/\.json$/) || options.json);
+          should_cache = ((is_json && options.cache === true) || options.cache !== false);
+          context.next_engine = context.event_context.engineFor(location);
           delete options.cache;
+          delete options.json;
           if (options.engine) {
             context.next_engine = options.engine;
             delete options.engine;
@@ -1393,6 +1426,7 @@
           $.ajax($.extend({
             url: location,
             data: {},
+            dataType: is_json ? 'json' : null,
             type: 'get',
             success: function(data) {
               if (should_cache) {
@@ -1432,42 +1466,101 @@
       if (_isFunction(location) && !data) {
         return this.then(location);
       } else {
-        return this.load(location).interpolate(data, location).then(callback);
+        if (!data && this.content) { data = this.content; }
+        return this.load(location)
+                   .interpolate(data, location)
+                   .then(callback);
       }
+    },
+
+    // `render()` the the `location` with `data` and then `swap()` the
+    // app's `$element` with the rendered content.
+    partial: function(location, data) {
+      return this.render(location, data).swap();
+    },
+
+    // defers the call of function to occur in order of the render queue.
+    // The function can accept any number of arguments as long as the last
+    // argument is a callback function. This is useful for putting arbitrary
+    // asynchronous functions into the queue. The content passed to the
+    // callback is passed as `content` to the next item in the queue.
+    //
+    // === Example
+    //
+    //        this.send($.getJSON, '/app.json')
+    //            .then(function(json) {
+    //              $('#message).text(json['message']);
+    //            });
+    //
+    //
+    send: function() {
+      var context = this,
+          args = _makeArray(arguments),
+          fun  = args.shift();
+
+      if (_isArray(args[0])) { args = args[0]; }
+
+      return this.then(function(content) {
+        args.push(function(response) { context.next(response); });
+        context.wait();
+        fun.apply(fun, args);
+        return false;
+      });
     },
 
     // itterates over an array, applying the callback for each item item. the
     // callback takes the same style of arguments as `jQuery.each()` (index, item).
     // The return value of each callback is collected as a single string and stored
     // as `content` to be used in the next iteration of the `RenderContext`.
-    collect: function(array, callback) {
+    collect: function(array, callback, now) {
       var context = this;
-      return this.then(function() {
-        var contents = "";
+      var coll = function() {
+        if (_isFunction(array)) {
+          callback = array;
+          array = this.content;
+        }
+        var contents = [], doms = false;
         $.each(array, function(i, item) {
           var returned = callback.apply(context, [i, item]);
-          contents += returned;
+          if (returned.jquery && returned.length == 1) {
+            returned = returned[0];
+            doms = true;
+          }
+          contents.push(returned);
           return returned;
         });
-        return contents;
-      });
+        return doms ? contents : contents.join('');
+      };
+      return now ? coll() : this.then(coll);
     },
 
     // loads a template, and then interpolates it for each item in the `data`
-    // array.
+    // array. If a callback is passed, it will call the callback with each
+    // item in the array _after_ interpolation
     renderEach: function(location, name, data, callback) {
       if (_isArray(name)) {
         callback = data;
         data = name;
         name = null;
       }
-      if (!data && _isArray(this.content)) {
-        data = this.content;
-      }
-      return this.load(location).collect(data, function(i, value) {
-        var idata = {};
-        name ? (idata[name] = value) : (idata = value);
-        return this.event_context.interpolate(this.content, idata, location);
+      return this.load(location).then(function(content) {
+          var rctx = this;
+          if (!data) {
+            data = _isArray(this.previous_content) ? this.previous_content : [];
+          }
+          if (callback) {
+            $.each(data, function(i, value) {
+              var idata = {}, engine = this.next_engine || location;
+              name ? (idata[name] = value) : (idata = value);
+              callback(value, rctx.event_context.interpolate(content, idata, engine));
+            });
+          } else {
+            return this.collect(data, function(i, value) {
+              var idata = {}, engine = this.next_engine || location;
+              name ? (idata[name] = value) : (idata = value);
+              return this.event_context.interpolate(content, idata, engine);
+            }, true);
+          }
       });
     },
 
@@ -1479,6 +1572,7 @@
     interpolate: function(data, engine, retain) {
       var context = this;
       return this.then(function(content, prev) {
+        if (!data && prev) { data = prev; }
         if (this.next_engine) {
           engine = this.next_engine;
           this.next_engine = false;
@@ -1598,6 +1692,7 @@
       if (engine && _isFunction(context[engine])) {
         return context[engine];
       }
+
       if (context.app.template_engine) {
         return this.engineFor(context.app.template_engine);
       }
@@ -1627,6 +1722,22 @@
       return new Sammy.RenderContext(this).render(location, data, callback);
     },
 
+    // Create and return a `Sammy.RenderContext` calling `renderEach()` on it.
+    // Loads the template and interpolates the data for each item,
+    // however does not actual place it in the DOM.
+    //
+    // ### Example
+    //
+    //      // mytemplate.mustache <div class="name">{{name}}</div>
+    //      renderEach('mytemplate.mustache', [{name: 'quirkey'}, {name: 'endor'}])
+    //      // sets the `content` to <div class="name">quirkey</div><div class="name">endor</div>
+    //      renderEach('mytemplate.mustache', [{name: 'quirkey'}, {name: 'endor'}]).appendTo('ul');
+    //      // appends the rendered content to $('ul')
+    //
+    renderEach: function(location, name, data, callback) {
+      return new Sammy.RenderContext(this).renderEach(location, name, data, callback);
+    },
+
     // create a new `Sammy.RenderContext` calling `load()` with `location` and
     // `options`. Called without interpolation or placement, this allows for
     // preloading/caching the templates.
@@ -1637,7 +1748,14 @@
     // `render()` the the `location` with `data` and then `swap()` the
     // app's `$element` with the rendered content.
     partial: function(location, data) {
-      return this.render(location, data).swap();
+      return new Sammy.RenderContext(this).partial(location, data);
+    },
+
+    // create a new `Sammy.RenderContext` calling `send()` with an arbitrary
+    // function
+    send: function() {
+      var rctx = new Sammy.RenderContext(this);
+      return rctx.send.apply(rctx, arguments);
     },
 
     // Changes the location of the current window. If `to` begins with
@@ -1660,7 +1778,7 @@
         to = args[0];
       }
       this.trigger('redirect', {to: to});
-      this.app.last_location = this.path;
+      this.app.last_location = [this.verb, this.path];
       this.app.setLocation(to);
       if (current_location == to) {
         this.app.trigger('location-changed');
@@ -1689,6 +1807,12 @@
       return this.app.notFound(this.verb, this.path);
     },
 
+    // Default JSON parsing uses jQuery's `parseJSON()`. Include `Sammy.JSON`
+    // plugin for the more conformant "crockford special".
+    json: function(string) {
+      return $.parseJSON(string);
+    },
+
     // //=> Sammy.EventContext: get #/ {}
     toString: function() {
       return "Sammy.EventContext: " + [this.verb, this.path, this.params].join(' ');
@@ -1699,4 +1823,4 @@
   // An alias to Sammy
   $.sammy = window.Sammy = Sammy;
 
-})(jQuery);
+})(jQuery, window);

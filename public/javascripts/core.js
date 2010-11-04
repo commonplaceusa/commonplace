@@ -153,6 +153,7 @@ function showTooltips() {
 };
 
 function merge(html, context) {
+
   $(html).each(function () { 
     var $this = $(this);
     if (this) {

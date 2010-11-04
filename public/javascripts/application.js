@@ -25,7 +25,7 @@ $.sammy("body")
 
 $(document).ready(function() {
   
-  $.sammy("body").run();
+  $.sammy("body").run("/");
   
   window.onscroll = setInfoBoxPosition;
   
@@ -86,7 +86,9 @@ $(document).ready(function() {
 
 });
   
-  function accordionReplies($replies) {
+function accordionReplies($replies) {
+  if ($replies.get(0)) {
     $("#syndicate .replies").not($replies.get(0)).slideUp();
     $replies.slideDown();
   }
+}
