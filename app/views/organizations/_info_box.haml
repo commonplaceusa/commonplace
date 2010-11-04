@@ -5,7 +5,7 @@
     #info_box_main_left
       = image_tag organization.avatar_url(:normal), :class => 'graphic'
       - unless organization.subscribers.include? current_user
-        = button_to "Subscribe", organization_subscription_url(organization), :id => "follow_link", :class => "link_button"
+        = button_to "Subscribe", organization_subscription_path(organization), :id => "follow_link", :class => "link_button"
       = link_to "Message #{ organization.name }", new_organization_message_path(@organization), :id => "message_me", :class => "link_button"
       - if organization.subscribers.include? current_user
         = link_to "Unsubscribe from #{ organization.name }", organization_subscription_path(organization), 'data-method' => :delete, :id => "unsubscribe", 'data-remote' => true
