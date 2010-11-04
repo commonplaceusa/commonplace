@@ -1,6 +1,10 @@
 
 - content_for :syndicate_navigation do
-  - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
-    %span
-      = image_tag 'pin-icon.png'
-      %span POST TO YOUR NEIGHBORS
+  - if current_user_session
+    - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
+      %span
+        = image_tag 'pin-icon.png'
+        %span POST TO YOUR NEIGHBORS
+
+  - else
+    %p Preview of #{current_community.name}'s Announcement and Event Feed
