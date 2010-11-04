@@ -1,4 +1,7 @@
 - semantic_form_for user, :url => account_path, :html => {:class => "new_entity"} do |f|
-  = f.inputs :first_name, :last_name, :email, :password, :password_confirmation, :address, :privacy_policy
+  = f.inputs :first_name, :last_name, :email, :password, :password_confirmation
+  = f.inputs :street_address, :zip_code, :for => user.location
+  - f.inputs do 
+    = f.input :privacy_policy, :as => :boolean
   - f.buttons do
     = f.commit_button "Continue"
