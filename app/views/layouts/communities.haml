@@ -48,7 +48,8 @@
             #zones
               - form_for UserSession.new, :url => user_session_path do |f|
                 = f.text_field :email, :size => 20
-                = f.text_field :password, :size => 20
+                = f.password_field :password, :size => 20
+                = f.submit "Log in"
           #information
             %h3 SIGN UP
             #information_content

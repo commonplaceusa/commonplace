@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
       redirect_back_or_default root_url
     else
       @user = User.new
-      render :new
+      redirect_to root_url
     end
   end
 
