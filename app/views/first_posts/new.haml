@@ -1,0 +1,14 @@
+- render :layout => 'shared/modal' do
+
+  - semantic_form_for @post, :url => first_posts_path, :html => { :class => "new_entity" } do |f|
+    %hr.staple
+  
+    %h1 Write your first post to your neighbors
+    %p.hint This post will be posted to your neighborhood -- the 500 or so houses around you, which you can view #{link_to("here", root_url + "#" + neighborhood_people_path, :target => "_blank")}.
+    - f.inputs do
+      = f.input :subject, :input_html => {:value => "#{current_user.name} just joined your neighborhood CommonPlace"}
+      = f.input :body, :input_html => { :rows => 5, :cols => 21 }
+      = f.input :category, :as => :radio, :collection => Post::CATEGORIES, :label => "Category"
+      
+    - f.buttons do
+      #submit_wrapper= f.commit_button "Submit your post"

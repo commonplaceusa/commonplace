@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
 
     authorize! :update, User
     if current_user.update_attributes(params[:user]) || true
-      redirect_to new_post_url
+      redirect_to new_first_post_url
     else
       render :edit
     end
