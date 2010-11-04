@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     store_location
-    redirect_to login_url
+    redirect_to new_account_url
   end
  
   protected

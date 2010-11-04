@@ -21,12 +21,12 @@ class Ability
       can :destroy, UserSession
       can :read, Reply
       can :create, Reply
+      can :read, Post
+      can :read, User
+      can :read, Announcement
+      can :read, Event
     end
     can :read, Community
-    can :read, Post
-    can :read, User
-    can :read, Announcement
-    can :read, Event
     can :manage, Organization
     can :read, ActsAsTaggableOn::Tag
   end

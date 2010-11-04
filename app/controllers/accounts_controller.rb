@@ -2,6 +2,8 @@ class AccountsController < ApplicationController
   
   def new
     authorize! :new, User
+    @user = User.new
+    render :layout => false
   end
   
   def create
