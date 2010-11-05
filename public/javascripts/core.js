@@ -163,6 +163,7 @@ function merge(html, context) {
   
   $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   showTooltips();
+  $('#tooltip').html($('#tooltip').attr('title'));
   renderMaps();
   setInfoBoxPosition();
   $('input.date').datepicker({
