@@ -1,10 +1,1 @@
-- content_for :syndicate_navigation do
-  - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post for your neighbors.' do 
-    %span
-      = image_tag 'pin-icon.png'
-      %span POST TO YOUR NEIGHBORS
-
-  #filters
-    - winnow_button "POSTS", posts_path, :class => 'tooltip', 'data-title' => "View all posts."
-    - winnow_button "NEIGHBORS", neighborhood_people_path, :class => 'tooltip', 'data-title' => "View your neighbors."
-
+= render 'shared/neighborhood_syndicate_nav'

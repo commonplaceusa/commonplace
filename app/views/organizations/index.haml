@@ -1,10 +1,1 @@
-
-- content_for :syndicate_navigation do
-  #filters.directory
-    - winnow_button "PEOPLE", users_path, :class => 'tooltip', 'data-title' => "Browse through everyone who lives in your neighborhood."
-    - winnow_button "ORGANIZATIONS", organization_organizations_path, :class => 'tooltip', 'data-title' => "Browse organizations in your community."
-    - winnow_button "BUSINESSES", business_organizations_path, :class => 'tooltip', 'data-title' => "Browse businesses in your area."
-    - winnow_button "GOODS AND SKILLS", "disabled"
-    / - winnow_button "MUNICIPAL", municipal_organizations_path
-    / - winnow_button "SKILLS", "disabled"
-    / - winnow_button "TAGS", "disabled"
+= render 'shared/directory_syndicate_nav'
