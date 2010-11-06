@@ -2,7 +2,6 @@ class FirstPostsController < ApplicationController
 
   def new
     @post = Post.new
-    render :layout => false
   end
 
   def create
@@ -12,7 +11,7 @@ class FirstPostsController < ApplicationController
       flash[:message] = "Post Created!"
       redirect_to posts_url
     else
-      render :new, :layout => false
+      render :new
     end
   end
 
