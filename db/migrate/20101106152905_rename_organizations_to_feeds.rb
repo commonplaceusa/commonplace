@@ -1,4 +1,7 @@
 class RenameOrganizationsToFeeds < ActiveRecord::Migration
+  class Role < ActiveRecord::Base
+  end
+
   def self.up
     Avatar.all.select {|a| a.owner_type == "Organization"}.each do |a|
       a.owner_type = "Feed"
@@ -11,9 +14,6 @@ class RenameOrganizationsToFeeds < ActiveRecord::Migration
     end
 
     add_column :organizations, :user_id, :integer
-
-    class Role < ActiveRecord::Base
-    end
 
     Role.all.each do |r|
       begin
