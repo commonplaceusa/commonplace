@@ -7,10 +7,12 @@ class EventsController < CommunitiesController
 
   def your
     @items = current_user.events
+    render :index
   end
 
   def suggested
     @items = current_user.suggested_events
+    render :index
   end
   
   def new
