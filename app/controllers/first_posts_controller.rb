@@ -1,4 +1,4 @@
-class FirstPostsController < ApplicationController
+class FirstPostsController < CommunitiesController
 
   def new
     @post = Post.new
