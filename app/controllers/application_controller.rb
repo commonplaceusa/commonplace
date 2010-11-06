@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
+  before_filter :set_template_format
+  
 
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
@@ -20,7 +22,12 @@ class ApplicationController < ActionController::Base
  
   protected
   
-  
+  def set_template_format
+    if request.env['HTTP_X_REQUESTED_WITH'].present?
+      response.template.template_format = :json
+    end
+  end
+
   def current_community
     @current_community ||= Community.find_by_slug(current_subdomain)
   end

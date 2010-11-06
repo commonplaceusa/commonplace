@@ -13,7 +13,7 @@ $.sammy("body")
   })
   .defaultCallback(function(c) {
     $.ajax({type: c.verb,
-            url: c.path + ".json",
+            url: c.path,
             data: c.verb == "get" ? null : c.params,
             dataType: "json",
             success: function(response) {

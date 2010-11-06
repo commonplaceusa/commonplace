@@ -28,7 +28,7 @@ class FeedsController < CommunitiesController
     @feed = current_community.feeds.new(params[:feed])
     @feed.user = current_user
     if @feed.save
-      redirect_to feed_url(@feed, :format => :json)
+      redirect_to feed_url(@feed)
     else
       render :new
     end

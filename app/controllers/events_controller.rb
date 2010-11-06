@@ -21,7 +21,7 @@ class EventsController < CommunitiesController
   def create
     @event = Event.new(params[:event])
     if @event.save
-      redirect_to events_url(:format => :json)
+      redirect_to events_url
     else
       render :new
     end
