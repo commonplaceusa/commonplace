@@ -1,9 +1,10 @@
-class AccountsController < ApplicationController
+class AccountsController < CommunitiesController
   
   def new
-    authorize! :new, User
+    unless can? :new, User
+      redirect_to root_url
+    end
     @user = User.new
-    render :layout => false
   end
   
   def create
@@ -13,21 +14,19 @@ class AccountsController < ApplicationController
     @neighborhood = current_community.neighborhoods.first
     @user = @neighborhood.users.build(params[:user])
     if @user.save
+      @location.locatable = @user
       @location.save
-      redirect_to edit_account_url
+      redirect_to edit_account_url(:format => :json)
     else
-      render :new, :layout => false
+      render :new
     end
   end
 
   def edit
     @user = current_user
-    @items = @user.wire
-    render :layout => false
   end
 
   def update
-
     authorize! :update, User
     if current_user.update_attributes(params[:user]) || true
       redirect_to new_first_post_url

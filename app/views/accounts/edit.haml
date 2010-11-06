@@ -1,5 +1,21 @@
 
-= render 'shared/information', :items => @items
+- content_for :information do
+  = render 'shared/information', :items => current_user.wire
+
+- content_for :zones do
+  = render 'shared/zones'
+
+- content_for :syndicate_navigation do
+  %nav
+    - if current_user_session
+      - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
+        %span
+          = image_tag 'pin-icon.png'
+          %span POST TO YOUR NEIGHBORS
+
+    - else
+      %p Preview of #{current_community.name}'s Announcement and Event Feed
+
 
 - render :layout => 'shared/modal' do
   %hr.staple
@@ -17,16 +33,8 @@
     - f.buttons do
       #submit_wrapper= f.commit_button "Continue"
 
+= render 'shared/items', :items => current_user.wire
 
-#syndicate
-  %nav
-    = yield :syndicate_navigation
-  %ul.items
-    - @items.each do |item|
-      %li.item{ :class => "#{cycle('odd', 'even')} #{item.class.to_s.downcase}" }
-        - if @render_args
-          = render *@render_args.call(item)
-        - else
-          = render item
-        - if item.respond_to?(:replies)
-          = render 'shared/replies', :item => item, :hide => true
+- content_for :header do
+  = render 'shared/header'
+  
