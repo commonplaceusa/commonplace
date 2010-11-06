@@ -21,8 +21,7 @@ class EventsController < CommunitiesController
   def create
     @event = Event.new(params[:event])
     if @event.save
-      @event.feed.notifications.create(:notifiable => @event)
-      redirect_to events_url
+      redirect_to events_url(:format => :json)
     else
       render :new
     end

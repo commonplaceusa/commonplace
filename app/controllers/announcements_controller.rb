@@ -19,8 +19,7 @@ class AnnouncementsController < CommunitiesController
   def create
     @announcement = Announcement.new(params[:announcement])
     if @announcement.save
-      @announcement.feed.notifications.create(:notifiable => @announcement)
-      redirect_to announcements_url
+      redirect_to announcements_url(:format => :json)
     else
       render :new
     end
