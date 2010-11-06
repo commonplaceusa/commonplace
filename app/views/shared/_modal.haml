@@ -1,9 +1,13 @@
-#modal
-  #modal-overlay  
-  #modal-content
-    - link_to "close", :id => "modal-close", 'data-remote' => true do
-      = image_tag 'modal-close.png'
+- content_for :modal do
+  #modal
+    #modal-overlay  
+    #modal-content
+      - link_to "close", :id => "modal-close", 'data-remote' => true do
+        = image_tag 'modal-close.png'
 
-    = yield
+      = yield
+
+
+
 
     

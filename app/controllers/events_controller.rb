@@ -1,7 +1,5 @@
 class EventsController < CommunitiesController
   load_and_authorize_resource
-
-  layout 'zone'
   
   def index
     @items = current_community.events
@@ -9,16 +7,13 @@ class EventsController < CommunitiesController
 
   def your
     @items = current_user.events
-    render :index
   end
 
   def suggested
     @items = current_user.suggested_events
-    render :index
   end
   
   def new
-    render :layout => false
   end
 
   def create
@@ -27,7 +22,7 @@ class EventsController < CommunitiesController
       @event.organization.notifications.create(:notifiable => @event)
       redirect_to events_url
     else
-      render :new, :layout => false
+      render :new
     end
   end
   
@@ -35,7 +30,9 @@ class EventsController < CommunitiesController
   end
 
   def show
-    render :layout => false
+    if current_user.events.include?(@event) && !flash.now[:message]
+      flash.now[:message] = "You are attending #{@event.name}"
+    end
   end
   
 end

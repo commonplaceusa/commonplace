@@ -1,6 +1,5 @@
-class MessagesController < ApplicationController
+class MessagesController < CommunitiesController
   helper_method :parent
-  layout false
 
   def new
     @user = parent

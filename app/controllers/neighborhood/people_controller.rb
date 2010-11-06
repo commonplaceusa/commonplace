@@ -1,7 +1,5 @@
 class Neighborhood::PeopleController < CommunitiesController
-  
-  layout 'zone'
-  
+   
   def index
     authorize! :read, User
     @items = current_user.neighborhood.users

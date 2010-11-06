@@ -5,6 +5,7 @@ $.sammy("body")
     $("#modal").html("");
 
   })
+  .get("/", function(){})
   .get(/^\/?$/, function(c) {
     setTimeout(function(){
     $(window).trigger("resize.modal");
@@ -12,19 +13,19 @@ $.sammy("body")
   })
   .defaultCallback(function(c) {
     $.ajax({type: c.verb,
-            url: c.path,
+            url: c.path + ".json",
             data: c.verb == "get" ? null : c.params,
-            dataType: "html",
+            dataType: "json",
             success: function(response) {
-              merge(response, $('body'))
-            }
+              merge(response);
+            },
+
            });
   })
 
   .setLocationProxy(new Sammy.CPLocationProxy($.sammy('body')));
 
 $(document).ready(function() {
-  
   $.sammy("body").run("/");
   
   window.onscroll = setInfoBoxPosition;

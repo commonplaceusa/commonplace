@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
     @neighborhood = current_community.neighborhoods.first
     @user = @neighborhood.users.build(params[:user])
     if @user.save
+      @location.save
       redirect_to edit_account_url
     else
       render :new, :layout => false
@@ -20,7 +21,6 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    authorize! :update, User
     @user = current_user
     @items = @user.wire
     render :layout => false

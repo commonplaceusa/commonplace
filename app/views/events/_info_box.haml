@@ -1,35 +1,37 @@
-#information.info_box.event
-  #info_box_top= "Community Event".upcase
-
-  #info_box_main
-    #info_box_main_left
-      #big_calendar.graphic= render 'events/calendar', :event => event
-      - unless event.attendees.exists? current_user 
-        = button_to "Attend", event_attendance_path(event) , :id => "follow_link", :class => "link_button"
-      = link_to "Message #{ event.organization.name }", new_event_message_path(@event), :id => "message_me", :class => "link_button", 'data-remote' => true
-      - if event.attendees.exists? current_user 
-        = link_to "I'm not attending #{ event.name }", event_attendance_path(event), :id => "unsubscribe", 'data-method' => "delete", 'data-remote' => true
-    .body
-      %h3= event.name
-      %p.user_about= auto_link event.description, :all, :target => '_blank'
-      %ol.user_info            
-        %li
-          %span.info_title= "Starts".upcase
-          = hours_minutes event.start_time
-        - unless event.end_time.nil?
-          %li  
-            %span.info_title= "Ends".upcase
-            = hours_minutes event.end_time
-        - unless event.address.blank?
+- content_for :information do
+  #information.info_box.event
+    #info_box_top= "Community Event".upcase
+  
+    #info_box_main
+      #info_box_main_left
+        #big_calendar.graphic= render 'events/calendar', :event => event
+        - unless event.attendees.exists? current_user 
+          = button_to "Attend", event_attendance_path(event) , :id => "follow_link", :class => "link_button"
+        = link_to "Message #{ event.organization.name }", new_event_message_path(@event), :id => "message_me", :class => "link_button", 'data-remote' => true
+        - if event.attendees.exists? current_user 
+          = link_to "I'm not attending #{ event.name }", event_attendance_path(event), :id => "unsubscribe", 'data-method' => "delete", 'data-remote' => true
+      .body
+        %h3= event.name
+        %p.user_about= auto_link event.description, :all, :target => '_blank'
+        %ol.user_info            
           %li
-            %span.info_title= "Address".upcase 
-            = event.address[/(.+?)(,)/, 1]
-            
-
-    = render_map do |map|
-      - map.center event
-      - map.marker current_user
-      - map.marker event
-      - map.directions do |dir|
-        - dir.origin current_user
-        - dir.destination event
+            %span.info_title= "Starts".upcase
+            = hours_minutes event.start_time
+          - unless event.end_time.nil?
+            %li  
+              %span.info_title= "Ends".upcase
+              = hours_minutes event.end_time
+          - unless event.address.blank?
+            %li
+              %span.info_title= "Address".upcase 
+              = event.address[/(.+?)(,)/, 1]
+              
+  
+      = render_map do |map|
+        - map.center event
+        - map.marker current_user
+        - map.marker event
+        - map.directions do |dir|
+          - dir.origin current_user
+          - dir.destination event
+  

@@ -1,6 +1,4 @@
-class SubscriptionsController < ApplicationController
-
-  layout 'zone'
+class SubscriptionsController < CommunitiesController
 
   def index
     @items = current_user.organizations
@@ -15,7 +13,7 @@ class SubscriptionsController < ApplicationController
     @organization = Organization.find params[:organization_id]
     current_user.organizations << @organization
     flash[:message] = "You've subscribed to #{ @organization.name }."
-    redirect_to @organization
+    redirect_to organization_url(@organization, :format => :json)
   end
   
   def destroy
@@ -23,6 +21,6 @@ class SubscriptionsController < ApplicationController
     current_user.organizations.delete @organization
     current_user.save
     flash[:message] = "You've unsubscribed from #{ @organization.name }."
-    redirect_to @organization
+    redirect_to organization_url(@organization, :format => :json)
   end
 end

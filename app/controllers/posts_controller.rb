@@ -4,14 +4,12 @@ class PostsController < CommunitiesController
   load_and_authorize_resource
   
   caches_action :show
-  layout 'zone'
 
   def index
     @items = current_user.neighborhood.posts.sort_by(&:created_at).reverse
   end
 
   def new
-    render :layout => false
   end
 
   def create
@@ -21,12 +19,11 @@ class PostsController < CommunitiesController
       flash[:message] = "Post Created!"
       redirect_to posts_url
     else
-      render :new, :layout => false
+      render :new
     end
   end
 
   def show
-    render :layout => false
   end
   
   def destroy

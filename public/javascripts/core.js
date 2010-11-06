@@ -153,14 +153,13 @@ function showTooltips() {
 };
 
 function merge(html, context) {
-
-  $(html).each(function () { 
-    var $this = $(this);
-    if (this) {
-      $("#" + $this.attr('id'), context).replaceWith($this.get(0));
-    }
-  });
-  
+  if (html) {
+    $.each(html, function(selector, content) {
+      if (content) {
+        $(selector).replaceWith(content);
+      }
+    });
+  }
   $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   showTooltips();
   $('#tooltip').html($('#tooltip').attr('title'));

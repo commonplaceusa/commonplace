@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
   def no_xhr
     request.env['HTTP_X_REQUESTED_WITH'].nil?
   end
-  
+
   def render_communities_or_zone(action = nil)
     layout = (no_xhr ? 'communities' : 'zone')
     if action

@@ -1,3 +1,5 @@
+- unless content_for? :tooltip
+  - render 'shared/tooltip'
 
 !!! 5
 %html
@@ -25,26 +27,18 @@
       = render 'shared/header'
       #main
         #syndicate
-          %nav
-            = yield :syndicate_navigation
-          %ul.items
-            - @items.each do |item|
-              %li.item{ :class => "#{cycle('odd', 'even')} #{item.class.to_s.downcase}" }
-                - if @render_args
-                  = render *@render_args.call(item)
-                - else
-                  = render item
-                - if item.respond_to?(:replies)
-                  = render 'shared/replies', :item => item, :hide => true
+          = yield :syndicate_navigation
+          = yield :syndicate_items
 
         - if current_user_session
           #main-navigation
-            = render 'shared/tooltip'
+            = yield :tooltip
             = render 'shared/zones'
-          = render 'shared/information', :items => @items
+          = render 'shared/information', :items => []
         - else
           #main-navigation
-            #tooltip
+            = yield :tooltip
+
             #zones
               - form_for UserSession.new, :url => user_session_path do |f|
                 = f.text_field :email, :size => 20
@@ -54,7 +48,10 @@
             %h3 SIGN UP
             #information_content
               = render 'accounts/form', :user => User.new
-              
-    #modal
+
+    - if content_for? :modal
+      = yield :modal
+    - else
+      #modal
     
       

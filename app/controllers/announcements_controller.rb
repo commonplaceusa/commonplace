@@ -1,8 +1,6 @@
 class AnnouncementsController < CommunitiesController
   load_and_authorize_resource
 
-  layout 'zone'
-
   def index
     @items = current_community.announcements.all(:order => "created_at DESC")
   end
@@ -13,11 +11,9 @@ class AnnouncementsController < CommunitiesController
   end
 
   def show
-    render :layout => false
   end
 
   def new
-    render :layout => false
   end
 
   def create
@@ -26,7 +22,7 @@ class AnnouncementsController < CommunitiesController
       @announcement.organization.notifications.create(:notifiable => @announcement)
       redirect_to announcements_url
     else
-      render :new, :layout => false
+      render :new
     end
   end
 end
