@@ -9,7 +9,7 @@ class FirstPostsController < ApplicationController
     @post.user = current_user
     if @post.save
       flash[:message] = "Post Created!"
-      redirect_to posts_url
+      redirect_to posts_url(:format => :json)
     else
       render :new
     end
