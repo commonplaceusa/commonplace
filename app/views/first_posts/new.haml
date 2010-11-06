@@ -6,8 +6,8 @@
     %h1 Write your first post to your neighbors
     %p.hint This post will be posted to your neighborhood -- the 500 or so houses around you, which you can view #{link_to("here", root_url + "#" + neighborhood_people_path, :target => "_blank")}.
     - f.inputs do
-      = f.input :subject, :input_html => {:value => "#{current_user.name} just joined your neighborhood CommonPlace"}
-      = f.input :body, :input_html => { :rows => 5, :cols => 21 }
+      = f.input :subject, :as => :hidden, :input_html => {:value => "#{current_user.name} just joined your neighborhood CommonPlace"}
+      = f.input :body, :input_html => { :rows => 5, :cols => 21 }, :label => false
       = f.input :category, :as => :hidden, :input_html => { :value => "Announcement" }
       
     - f.buttons do
