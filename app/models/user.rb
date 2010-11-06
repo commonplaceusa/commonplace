@@ -7,15 +7,13 @@ class User < ActiveRecord::Base
   
   belongs_to :neighborhood  
   
-  has_many :links, :as => :linker
-
-  has_many :attendances
+  has_many :attendances, :dependent => :destroy
   has_many :events, :through => :attendances
-  has_many :posts
-  has_many :replies
-  has_many :subscriptions
+  has_many :posts, :dependent => :destroy
+  has_many :replies, :dependent => :destroy
+  has_many :subscriptions, :dependent => :destroy
   has_many :organizations, :through => :subscriptions
-  has_many :roles
+  has_many :roles, :dependent => :destroy
   has_many :managable_organizations, :through => :roles, :source => :organization
 
   has_many :referrals, :foreign_key => "referee_id"
