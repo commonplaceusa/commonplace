@@ -7,8 +7,8 @@ class MetsController < ApplicationController
     unless current_user.people.exists? @user
       current_user.people << @user
     end
-    flash.now[:message] = "You have met #{@user.name}"
-    render :show
+    flash[:message] = "You have met #{@user.name}"
+    redirect_to user_url(@user)
   end
     
 end
