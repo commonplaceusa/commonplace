@@ -12,6 +12,9 @@ class RenameOrganizationsToFeeds < ActiveRecord::Migration
 
     add_column :organizations, :user_id, :integer
 
+    class Role < ActiveRecord::Base
+    end
+
     Role.all.each do |r|
       begin
         o = Organization.find(r.organization_id)
