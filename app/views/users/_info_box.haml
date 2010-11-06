@@ -20,10 +20,10 @@
             %li
               %span.info_title= "Interests".upcase
               = user.interest_list.join(", ")
-          - unless user.organizations.empty?
+          - unless user.feeds.empty?
             %li
-              %span.info_title= "Organizations".upcase
-              = user.organizations.map{ |org| link_to org.name, org, :target => '_blank' }.join(", ")
+              %span.info_title= "Feeds".upcase
+              = user.feeds.map{ |feed| link_to feed.name, feed, :target => '_blank' }.join(", ")
           %li
             %span.info_title= "Address".upcase 
             = user.address

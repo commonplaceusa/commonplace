@@ -7,7 +7,7 @@
       %span{:id => "follow_link", :class => "link_button"}
         Attend
       %span{ :id => "message_me", :class => "link_button"}
-        Message #{@event.organization.name}
+        Message #{@event.feed.name}
 
     .body
       %h3= @event.name

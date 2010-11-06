@@ -4,14 +4,14 @@
   %nav<>
     - if current_user_session
       - if current_page? management_url
-        = "#{link_to "See all organizations", organizations_url}"
+        = "#{link_to "See all feeds", feeds_url}"
       - else 
-        = "#{link_to "Manage organizations", management_url}"
+        = "#{link_to "Manage feeds", management_url}"
       
       = "#{link_to "Log out", logout_url}"
     
   %h1
-    - link_to organizations_url, :id => 'title' do
+    - link_to feeds_url, :id => 'title' do
       = image_tag 'logo.png', :id => 'logo', :alt => "CommonPlace"
 
 

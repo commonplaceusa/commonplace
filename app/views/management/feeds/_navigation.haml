@@ -1,0 +1,14 @@
+
+
+%h2#management_section_header 
+  = image_tag @feed.avatar_url(:thumb), :width => 20, :height => 20
+  Managing Feed: #{@feed.name}
+%nav#profile_section_navigation<
+  = tab_to "Edit Feed Info", management_feed_path(@feed)
+  = tab_to "Edit Profile", management_feed_profile_fields_path(@feed)
+  = tab_to "Manage Events", management_feed_events_path(@feed)
+  = tab_to "Post a New Announcement", management_feed_announcements_path(@feed)
+  = tab_to "Invite New Subscribers", '#',  :class => 'management_disabled'
+  = tab_to "Settings", '#',  :class => 'management_disabled'
+
+

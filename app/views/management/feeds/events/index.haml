@@ -1,0 +1,28 @@
+- content_for :navigation do
+  = render 'management/feeds/navigation'
+
+#edit_profile
+  - semantic_form_for [:management, @feed, @event], :html => {:class => "management_form" } do |f|
+    %h3.management_field Create an Event
+    - f.inputs do
+      = f.input :name
+      = f.input :description, :input_html => {:rows => 4, :cols => 40}
+    = f.inputs :street_address, :zip_code, :for => :location
+    - f.inputs do
+      = f.input :date, :as => :string, :input_html => {:class => 'date'}
+      = event_select_time('start_time')
+      = event_select_time('end_time')
+      = f.input :tag_list
+    = f.buttons
+
+#edit_profile
+  - unless @upcoming.empty?
+    %h3.management_field Upcoming Events
+    %ul.management_list#wire
+      - @upcoming.each do |event|
+        = render event
+  - unless @past.empty?
+    %h3.management_field Past Events
+    %ul.management_list#wire
+      - @past.each do |event|
+        = render event

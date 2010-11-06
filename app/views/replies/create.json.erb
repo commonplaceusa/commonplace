@@ -1,5 +1,0 @@
-{
-  "success": true,
-  "newReply": <%= html_to_json { render 'form', :reply => @reply.repliable.replies.new} %>,
-  "createdReply": <%= html_to_json { render @reply } %>
-}

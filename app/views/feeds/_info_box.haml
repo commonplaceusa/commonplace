@@ -1,0 +1,29 @@
+- content_for :information do
+  #information.info_box.feed
+    #info_box_top= "Feed".upcase
+  
+    #info_box_main
+      #info_box_main_left
+        = image_tag feed.avatar_url(:normal), :class => 'graphic'
+        - unless feed.subscribers.include? current_user
+          = button_to "Subscribe", feed_subscription_path(feed), :id => "follow_link", :class => "link_button"
+        = link_to "Message #{ feed.name }", new_feed_message_path(feed), :id => "message_me", :class => "link_button", 'data-remote' => true
+        - if feed.subscribers.include? current_user
+          = link_to "Unsubscribe from #{ feed.name }", feed_subscription_path(feed), 'data-method' => :delete, :id => "unsubscribe", 'data-remote' => true
+      .body
+        %h3= feed.name
+        %p.user_about= auto_link feed.about, :all, :target => :blank
+        %ol.user_info
+          - unless feed.tag_list.empty?
+            %li
+              %span.info_title= "Tags".upcase
+              = feed.tag_list.join(", ")
+          - unless feed.website.blank?
+            %li
+              %span.info_title= "Website".upcase
+              = auto_link feed.website, :html => { :target => '_blank' }
+          - unless feed.phone.blank?
+            %li
+              %span.info_title= "Phone".upcase
+              = feed.phone
+      %div{:style=>"clear:both;"}

@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.root :controller => "administration", :action => "show"
     
     admin.resources :addresses, :controller => "administration/addresses"
-    admin.resources :organizations, :controller => "administration/organizations"
+    admin.resources :feeds, :controller => "administration/feeds"
     admin.resources :deliveries
   end
   
@@ -36,17 +36,12 @@ ActionController::Routing::Routes.draw do |map|
     
     community.resources :invites
     
-    community.resources(:organizations, 
-                        :collection => {
-                          "municipal" => :get, 
-                          "business" => :get,
-                          "organization" => :get
-                        }) do |org|
-      org.resource :subscription, :only => [:index, :show, :create, :destroy]
-      org.resource :claim, :member => [:edit_fields]
-      org.resources :announcements, :controller => "organizations/announcements"
-      org.resources :profile_fields, :collection => {"order" => :put}
-      org.resources :messages, :only => [:create, :new], :requirements => {:messagable => "Organization"}
+    community.resources :feeds do |feed|
+      feed.resource :subscription, :only => [:index, :show, :create, :destroy]
+      feed.resource :claim, :member => [:edit_fields]
+      feed.resources :announcements, :controller => "feeds/announcements"
+      feed.resources :profile_fields, :collection => {"order" => :put}
+      feed.resources :messages, :only => [:create, :new], :requirements => {:messagable => "Feed"}
     end
 
     community.namespace :neighborhood do |neighborhood|
@@ -72,18 +67,16 @@ ActionController::Routing::Routes.draw do |map|
     map.resource :management, :controller => 'management'
 
     map.namespace :management do |man|
-      man.resources :organizations, :member => [:outreach]do |org|
-        org.resources :announcements, :controller => 'organizations/announcements'
-        org.resources :events, :controller => 'organizations/events'
-        org.resources :profile_fields, :controller => 'organizations/profile_fields', :collection => {:order => :post}
+      man.resources :feeds, :member => [:outreach]do |feed|
+        feed.resources :announcements, :controller => 'feeds/announcements'
+        feed.resources :events, :controller => 'feeds/events'
+        feed.resources :profile_fields, :controller => 'feeds/profile_fields', :collection => {:order => :post}
       end
       man.resources :events, :member => [:conversation, :replies, :outreach]
       man.resources :invites
       man.resources :email_invites
     end
 
-    map.profile ':id', :controller => 'organizations', :action => 'profile', :conditions => { :method => :get }
-    
   end
   
   

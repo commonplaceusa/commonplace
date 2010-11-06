@@ -3,11 +3,11 @@
   - tab_to [:management], :class => 'level_1' do 
     = image_tag current_user.avatar_url(:thumb), :width => 15, :height => 15
     = "My Profile"
-  - current_user.managable_organizations.each do |org|
+  - current_user.managable_feeds.each do |org|
     - tab_to [:management,org] do 
       = image_tag org.avatar_url(:thumb), :width => 15, :height => 15
       = org.name
     - org.events.each do |event|
       = tab_to event.name, [:management,event], :class => "level_2"
     = tab_to "Add #{org.name} event", [:management,org,:events], :class => "level_2 new"
-  = tab_to 'New Organization', new_organization_path, :class => "level_1 new", 'data-remote' => true
+  = tab_to 'New Feed', new_feed_path, :class => "level_1 new", 'data-remote' => true

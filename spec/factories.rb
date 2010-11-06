@@ -39,20 +39,18 @@ Factory.define :event do |f|
   f.description { Forgery(:lorem_ipsum).paragraph }
   f.date { Time.now + rand(6).week }
   f.start_time { Time.parse("#{rand(24)}:#{rand(60)}") }
-  f.association :organization
+  f.association :feed
   f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
 end
 
 Factory.define :announcement do |f|
   f.subject { Forgery(:lorem_ipsum).words(2) }
   f.body { Forgery(:lorem_ipsum).paragraph }
-  f.association :organization
+  f.association :feed
 end
 
-Factory.define :organization do |f|
+Factory.define :feed do |f|
   f.name { Forgery(:name).company_name }
-  f.website { "http://" + Forgery(:internet).domain_name }
-  f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
   f.association :avatar
   f.after_build {|o| o.profile_fields = [] }
 end

@@ -27,7 +27,7 @@ class Ability
       can :read, Event
     end
     can :read, Community
-    can :manage, Organization
+    can :manage, Feed
     can :read, ActsAsTaggableOn::Tag
   end
 

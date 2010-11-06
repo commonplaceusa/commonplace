@@ -1,7 +1,7 @@
 %div
   #edit_profile_fields
     %ul#modules
-      - @organization.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+      - @feed.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
         %li.profile_field{:id => "field_#{p.id}"}
           %h3
             = p.subject
@@ -11,15 +11,15 @@
               = link_to 'delete'
           %p= p.body
 
-    = link_to "Add a new profile field", new_management_organization_profile_field_path(@organization), :id => "new_profile_field", :class => "styled_button", 'data-nohistory' => true
-    = button_to 'Save', order_management_organization_profile_fields_path(@organization), :id => "save_profile_fields", :class => "styled_button"
+    = link_to "Add a new profile field", new_management_feed_profile_field_path(@feed), :id => "new_profile_field", :class => "styled_button", 'data-nohistory' => true
+    = button_to 'Save', order_management_feed_profile_fields_path(@feed), :id => "save_profile_fields", :class => "styled_button"
 
 
   
   #edit_avatar
-    - form_for @organization, :url => organization_claim_path(@organization), :html => { :multipart => true, :class => "management_form", :id => "edit_avatar" } do |f|
-      %h3.management_field Edit #{ @organization.name }'s profile picture
-      = image_tag @organization.avatar_url(:normal), :width => 120, :height => 120, :class => 'graphic'
+    - form_for @feed, :url => feed_claim_path(@feed), :html => { :multipart => true, :class => "management_form", :id => "edit_avatar" } do |f|
+      %h3.management_field Edit #{ @feed.name }'s profile picture
+      = image_tag @feed.avatar_url(:normal), :width => 120, :height => 120, :class => 'graphic'
       %fieldset
         = f.label :avatar, "Upload a new profile picture:"
         = f.file_field :avatar

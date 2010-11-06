@@ -4,7 +4,7 @@ class Announcement < ActiveRecord::Base
 
   has_many :replies, :as => :repliable
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
-  belongs_to :organization
+  belongs_to :feed
   validates_presence_of :subject, :body
   
   def time
@@ -12,7 +12,7 @@ class Announcement < ActiveRecord::Base
   end 
   
   def owner
-    self.organization
+    self.feed
   end
 
 end

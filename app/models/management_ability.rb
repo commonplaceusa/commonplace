@@ -4,12 +4,12 @@ class ManagementAbility
   def initialize(user)
     if user.new_record?
     else
-      can :manage, Organization do |action, org|
-        org.admins.include? user
+      can :manage, Feed do |action, feed|
+        feed.user == user
       end
       
       can :manage, Event do |action, event|
-        event.organization.admins.include? user
+        event.feed.user == user
       end
       
       can :read, :management

@@ -2,10 +2,10 @@
 
   - semantic_form_for @announcement, :html => { :class => "new_entity" } do |f|
     %hr.staple
-    %h1 Make an announcement from your organization
+    %h1 Make an announcement from your feed
 
     - f.inputs do
-      = f.input :organization, :collection => current_user.managable_organizations
+      = f.input :feed, :collection => current_user.managable_feeds
       = f.input :subject
       = f.input :body, :input_html => { :rows => 5, :cols => 21 }
     - f.buttons do

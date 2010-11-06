@@ -26,10 +26,10 @@
           %li
             %span.info_title= "Shared skills".upcase
             = current_user.skill_list.join(", ")
-        - unless current_user.organizations.empty?
+        - unless current_user.feeds.empty?
           %li
-            %span.info_title= "Organizations".upcase
-            = current_user.organizations.map{ |org| link_to org.name, org, :target => '_blank' }.join(", ")
+            %span.info_title= "Feeds".upcase
+            = current_user.feeds.map{ |org| link_to org.name, org, :target => '_blank' }.join(", ")
         %li
           %span.info_title= "Address".upcase 
           = current_user.address[/(.+?)(,)/, 1]

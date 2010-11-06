@@ -26,28 +26,28 @@ class NotificationsMailer < ActionMailer::Base
     body :post => post
   end
 
-  def organization_event(organization, event)
+  def feed_event(feed, event)
     recipients RECIPIENT
-    users = organization.subscribers
+    users = feed.subscribers
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
-    users organization.subscribers.map(&:email)
-    subject "#{organization.name} posted a new event"
+    users feed.subscribers.map(&:email)
+    subject "#{feed.name} posted a new event"
     from "events@commonplaceusa.com"
-    body :organization => organization, :event => event
+    body :feed => feed, :event => event
   end
 
-  def organization_announcement(organization, announcement)
+  def feed_announcement(feed, announcement)
     recipients RECIPIENT
-    users = organization.subscribers
+    users = feed.subscribers
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
-    subject "#{organization.name} posted a new announcement"
+    subject "#{feed.name} posted a new announcement"
     from "announcements@commonplaceusa.com"
-    body :organization => organization, :announcement => announcement
+    body :feed => feed, :announcement => announcement
   end
 end

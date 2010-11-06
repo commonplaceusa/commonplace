@@ -1,16 +1,16 @@
 class ClaimsController < CommunitiesController
-  before_filter :organization
+  before_filter :feed
 
   def new
     render :layout => false
   end
   
   def create
-    if params[:code] == @organization.code
-      @organization.admins << current_user
-      @organization.claimed = true
-      @organization.save
-      redirect_to edit_organization_url(@organization)
+    if params[:code] == @feed.code
+      @feed.admins << current_user
+      @feed.claimed = true
+      @feed.save
+      redirect_to edit_feed_url(@feed)
     else
       flash.now[:error] = "Sorry, that claim code is not valid."
       render :new
@@ -25,7 +25,7 @@ class ClaimsController < CommunitiesController
 
   def update
     respond_to do |format|
-      if @organization.update_attributes(params[:organization])
+      if @feed.update_attributes(params[:feed])
         format.json 
       else
         format.json
@@ -41,9 +41,8 @@ class ClaimsController < CommunitiesController
 
   protected
 
-  def organization
-    @organization = Organization.find(params[:organization_id])
-
+  def feed
+    @feed = Feed.find(params[:feed_id])
   end
 
 end

@@ -3,7 +3,7 @@ class ProfileFieldsController < CommunitiesController
   layout false
 
   def index
-    @organization = Organization.find(params[:organization_id])
+    @feed = Feed.find(params[:feed_id])
   end
 
   def order
@@ -15,13 +15,13 @@ class ProfileFieldsController < CommunitiesController
   
 
   def new
-    @organization = Organization.find(params[:organization_id])
+    @feed = Feed.find(params[:feed_id])
     @profile_field = ProfileField.new
   end
   
   def create
-    @organization = Organization.find(params[:organization_id])
-    @profile_field = @organization.profile_fields.build(params[:profile_field])
+    @feed = Feed.find(params[:feed_id])
+    @profile_field = @feed.profile_fields.build(params[:profile_field])
     if @profile_field.save
       render :show
     else
@@ -36,7 +36,7 @@ class ProfileFieldsController < CommunitiesController
   def update
     @profile_field = ProfileField.find(params[:id])
     if @profile_field.update_attributes(params[:profile_field])
-      @organization = @profile_field.organization
+      @feed = @profile_field.feed
       render :show
     else
       render :edit

@@ -1,0 +1,30 @@
+#information.info_box.feed.preview
+  #info_box_top= "Feed".upcase
+
+  #info_box_main
+    #info_box_main_left
+      = image_tag @feed.avatar_url(:normal), :class => 'graphic normal'
+      %span{:id => "follow_link", :class => "link_button"} 
+        Subscribe
+      %span{:id => "message_me", :class => "link_button"}
+        Message #{ @feed.name }
+    .body
+      %h3= link_to @feed.name, @feed, :target => :blank
+      %p.user_about= auto_link @feed.about, :all, :target => :blank
+      %ol.user_info
+        - unless @feed.tag_list.empty?
+          %li
+            %span.info_title= "Tags".upcase
+            = @feed.tag_list.join(", ")
+        - if @feed.website
+          %li
+            %span.info_title= "Website".upcase
+            = link_to truncate(@feed.website, :length => 30), @feed.website
+        - if @feed.phone
+          %li
+            %span.info_title= "Phone".upcase
+            = @feed.phone
+  
+    = render_map do |map|
+      - map.center @feed
+      - map.marker @feed

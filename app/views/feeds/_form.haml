@@ -1,0 +1,12 @@
+- semantic_form_for @feed, :html => { :class => 'new_entity', :multipart => true } do |f|
+
+  - f.inputs do
+    = f.input :name
+    = f.input :about, :hint => "This is the official summary of your feed on CommonPlace.", :input_html => {:rows => 2}
+    = f.input :category, :as => :radio, :collection => Feed::CATEGORIES
+    = f.input :phone
+    = f.input :website
+  - f.inputs do
+    = f.input :tag_list, :hint => "Examples: cooking, families, tacos, plumbing, etc."
+  - f.buttons do
+    #submit_wrapper= f.commit_button "Continue"

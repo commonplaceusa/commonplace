@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
   has_many :attendances
   has_many :attendees, :through => :attendances, :source => :user
-  belongs_to :organization
+  belongs_to :feed
 
   has_many :invites, :as => :inviter
 
@@ -39,7 +39,7 @@ class Event < ActiveRecord::Base
   end
   
   def owner
-    self.organization
+    self.feed
   end
 
   def address

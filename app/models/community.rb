@@ -1,8 +1,8 @@
 class Community < ActiveRecord::Base
-  has_many :organizations
+  has_many :feeds
   has_many :neighborhoods
-  has_many :events, :through => :organizations
-  has_many :announcements, :through => :organizations
+  has_many :events, :through => :feeds
+  has_many :announcements, :through => :feeds
 
 
   def posts

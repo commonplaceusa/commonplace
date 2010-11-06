@@ -1,0 +1,96 @@
+#feed_profile.profile
+
+  .left_col
+    = image_tag @feed.avatar_url(:large), :id => "profile_photo"
+  
+    %ul#contact.styled_list
+      %li Contact Information
+      %li.intense.clickable= "Send a Message".upcase
+      - unless @feed.phone.blank?
+        %li
+          %span.label Phone:
+          = @feed.phone
+      - unless @feed.website.blank?
+        %li
+          %span.label Website:
+          - link_to @feed.website do
+            %span#org_url= @feed.website
+    
+    %ul#members.styled_list
+      %li Members (#{ @feed.subscribers.length })
+      - @feed.subscribers.take(5).each do |subscriber|
+        %li.member.clickable
+          .user_image= image_tag subscriber.avatar_url(:thumb), :size => "30x30"
+          .user_info
+            .user_name= subscriber.name
+            .user_role subscriber
+      - if @feed.subscribers.length > 5
+        %li.intense.clickable= "+ view all members".upcase
+
+    - if @feed.subscribers.include? current_user
+      =button_to "Unsubscribe from #{ @feed.name }", feed_subscription_url(@feed), :method => :delete, :id => :unsubscribe, :class => 'linkish_button'
+
+
+  .middle_col
+    - if flash[:win]
+      #win= flash[:win]
+      
+    %h1
+      = @feed.name
+      - unless @feed.subscribers.include? current_user
+        #subscribe= button_to "Subscribe", feed_subscription_url(@feed), :class => 'linkish_button'
+    
+    
+    %ul
+      %li.profile_field
+        %h3 About us
+        %p= @feed.about
+  
+      - @feed.profile_fields.sort{ |x,y| x.position <=> y.position }.each do |p|
+        %li.profile_field
+          %h3= p.subject
+          %p= p.body
+    
+    %ul
+      %li#events
+        %h3.underline Upcoming Events
+        %ul#feed_events
+          - @feed.events.each do |event|
+            %li
+              .small_calendar= render("events/calendar", :event => event)
+              .body
+                %h3
+                  = event.subject
+                  .attendance
+                    .check_box
+                      - if event.attendees.exists? current_user
+                        &#x2713;
+                    ATTEND
+
+                .event_start_time= full_date(event.date,event.start_time)
+                %p= event.body
+              
+  
+
+  
+
+  %ul.right_col
+    %li Announcements
+  
+    - @feed.announcements.each do |a|
+      %li
+        %h3= a.subject
+        %p= a.body
+    - unless @feed.claimed?
+      %li
+        %p 
+          This profile has not been claimed. If you are affiliated with 
+          this feed, and would like to manage this profile, #{link_to "click here", new_feed_claim_path(@feed), 'data-remote' => true}.
+          
+        
+      
+  
+  
+  
+  
+  

@@ -26,7 +26,7 @@
       = render 'shared/header'
       = yield :title
       = render 'management/side_nav'
-      #organization_main>
+      #feed_main>
         = yield :navigation
         #main
           = yield
@@ -34,12 +34,12 @@
       - render :layout => 'shared/modal' do
         #welcome
           Dear #{current_user.first_name}
-          %p.hint Congratulations!  Your #{@organization.category.downcase} is now registered with CommonPlace.  Here is your management zone, where you can edit #{@organization.name}'s profile, as well as post announcements and events.  Plus, you can click your name on the left to edit your personal CommonPlace profile.  You can click "Home" to get back to the main page and click "Manage Profiles" if you ever want to get back to this management zone.  
+          %p.hint Congratulations!  Your #{@feed.category.downcase} is now registered with CommonPlace.  Here is your management zone, where you can edit #{@feed.name}'s profile, as well as post announcements and events.  Plus, you can click your name on the left to edit your personal CommonPlace profile.  You can click "Home" to get back to the main page and click "Manage Profiles" if you ever want to get back to this management zone.  
           %p.hint In a few weeks, the whole town will be on the platform.  Feel free to email Max Novendstern (Max@CommonPlaceUSA.com) anytime with any questions or concerns.
           Thanks,
           %br
           The West Roxbury CommonPlace Team
             
-        = button_to "Continue to Management Zone", management_organization_path(@organization), :method => :get, 'data-remote' => false
+        = button_to "Continue to Management Zone", management_feed_path(@feed), :method => :get, 'data-remote' => false
     - else
       #modal

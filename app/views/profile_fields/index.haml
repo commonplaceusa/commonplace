@@ -3,12 +3,12 @@
   %hr.staple
     
   %h1 Step 2 of  3: Create Your Profile
-  %p.hint You can add profile fields to your #{@organization.category}'s CommonPlace page.  Click "New Profile Field, and write in the input boxes the Header and Body of your field.  For example, you could write "Hours" in the header field and "Monday Through Friday, 9 AM to 5PM" in the body field.  If you add more than one profile field, you can drag and drop the fields to change the order.  Click "Continue" when you are done.
+  %p.hint You can add profile fields to your #{@feed.category}'s CommonPlace page.  Click "New Profile Field, and write in the input boxes the Header and Body of your field.  For example, you could write "Hours" in the header field and "Monday Through Friday, 9 AM to 5PM" in the body field.  If you add more than one profile field, you can drag and drop the fields to change the order.  Click "Continue" when you are done.
   
   = render 'index_form'
 
-  = button_to "New Profile Field", new_organization_profile_field_path(@organization), :method => :get, :class => "new_profile_field"
+  = button_to "New Profile Field", new_feed_profile_field_path(@feed), :method => :get, :class => "new_profile_field"
 
-  = button_to "Save order", order_organization_profile_fields_path(@organization), :method => :put, :class => "save_profile_fields"
+  = button_to "Save order", order_feed_profile_fields_path(@feed), :method => :put, :class => "save_profile_fields"
 
-  = button_to "Continue", new_organization_announcement_path(@organization), :method => :get, :class => "continue"
+  = button_to "Continue", new_feed_announcement_path(@feed), :method => :get, :class => "continue"

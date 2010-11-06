@@ -1,16 +1,16 @@
 class Management::SubscriptionsController < ApplicationController
 
-  before_filter :load_organization
+  before_filter :load_feed
   layout "management"
 
   def index
-    @subscriptions = @organization.subscriptions
+    @subscriptions = @feed.subscriptions
   end
 
 
   protected
-  def load_organization
-    @organization = Organization.find(params[:management_id])
+  def load_feed
+    @feed = Feed.find(params[:management_id])
   end
 
 end

@@ -3,11 +3,11 @@ module ManagementHelper
   def management_options_for(user)
     options = { 'Account' => management_path }
 
-    user.managable_organizations.each do |organization|
-      options[organization.name] = url_for([:management, organization])
+    user.managable_feeds.each do |feed|
+      options[feed.name] = url_for([:management, feed])
     end
 
-    user.managable_organizations.map(&:events).flatten.each do |event|
+    user.managable_feeds.map(&:events).flatten.each do |event|
       options[event.name] = url_for([:management, event])
     end
     options_for_select(options)

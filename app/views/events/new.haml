@@ -2,10 +2,10 @@
 
   - semantic_form_for @event, :html => { :class => "new_entity" } do |f|
     - f.inputs do
-      %h1 Create an event for your organization
+      %h1 Create an event for your feed
       
       - f.inputs do 
-        = f.input :organization, :collection => current_user.managable_organizations
+        = f.input :feed, :collection => current_user.managable_feeds
         = f.input :name
         = f.input :description, :input_html => { :rows => 5, :cols => 21}
         = f.input :date, :as => :string, :input_html => {:class => 'date'}

@@ -12,9 +12,8 @@ class User < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_many :replies, :dependent => :destroy
   has_many :subscriptions, :dependent => :destroy
-  has_many :organizations, :through => :subscriptions
-  has_many :roles, :dependent => :destroy
-  has_many :managable_organizations, :through => :roles, :source => :organization
+  has_many :feeds, :through => :subscriptions
+  has_many :managable_feeds, :class_name => "Feed"
 
   has_many :referrals, :foreign_key => "referee_id"
   
@@ -39,7 +38,7 @@ class User < ActiveRecord::Base
   has_one :avatar, :as => :owner
 
   def subscribed_announcements
-    organizations.map(&:announcements).flatten
+    feeds.map(&:announcements).flatten
   end
 
   def suggested_events
@@ -69,7 +68,7 @@ class User < ActiveRecord::Base
   def wire
     new_record? ?
     (community.announcements + community.events).sort_by(&:created_at).reverse :
-    (subscribed_announcements + organizations.map(&:events).flatten + neighborhood.posts).sort_by(&:created_at).reverse
+    (subscribed_announcements + feeds.map(&:events).flatten + neighborhood.posts).sort_by(&:created_at).reverse
   end
 
   def role_symbols

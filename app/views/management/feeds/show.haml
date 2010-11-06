@@ -1,0 +1,25 @@
+- content_for :navigation do
+  = render 'navigation'
+
+#edit_profile
+  
+  - form_for @feed.avatar, :html => {:multipart => true, :class => "management_form", :id => "edit_avatar"} do |f|
+    %h3.management_field Edit your profile picture
+    = image_tag @feed.avatar_url(:normal), :class => "graphic normal #{dom_id @feed.avatar}"
+    = f.label :image, "Upload a new profile picture:"
+    - if @feed.avatar.image.file?
+      = link_to 'Crop your photo', edit_avatar_path(@feed.avatar), 'data-remote' => true 
+    = f.file_field :image
+
+  - semantic_form_for @feed, :url => management_feed_path(@feed), :html => { :class => "management_form" } do |f|
+    %h3.management_field Edit #{ @feed.name }'s profile
+    - f.inputs do
+      = f.input :name
+      = f.input :about, :input_html => {:rows => 4, :cols => 40}
+      = f.input :website
+      = f.input :phone
+      = f.input :tag_list, :as => :string, :label => "Tag list", :hint => "For example: outdoors, skiing"
+    = f.buttons
+
+#profile
+  = render 'preview'

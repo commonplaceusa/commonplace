@@ -29,7 +29,7 @@
         to your event.
 
     %ul#all-people
-      - @event.organization.community.users.each do |user|
+      - @event.feed.community.users.each do |user|
         %li
           = link_to user.name, user, 'data-remote' => true
           = link_to "Invite", new_management_invite_path(:invite => {:invitee_id => user.id, :inviter_id => @event.id, :inviter_type => @event.class.human_name}), :class => "invite-button", 'data-remote' => true

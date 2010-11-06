@@ -1,26 +1,26 @@
 class SubscriptionsController < CommunitiesController
 
   def index
-    @items = current_user.organizations
+    @items = current_user.feeds
   end
 
   def recommended
-    @items = Organization.all
+    @items = Feed.all
     render :index
   end
   
   def create
-    @organization = Organization.find params[:organization_id]
-    current_user.organizations << @organization
-    flash[:message] = "You've subscribed to #{ @organization.name }."
-    redirect_to organization_url(@organization, :format => :json)
+    @feed = Feed.find params[:feed_id]
+    current_user.feeds << @feed
+    flash[:message] = "You've subscribed to #{ @feed.name }."
+    redirect_to feed_url(@feed, :format => :json)
   end
   
   def destroy
-    @organization = Organization.find params[:organization_id]
-    current_user.organizations.delete @organization
+    @feed = Feed.find params[:feed_id]
+    current_user.feeds.delete @feed
     current_user.save
-    flash[:message] = "You've unsubscribed from #{ @organization.name }."
-    redirect_to organization_url(@organization, :format => :json)
+    flash[:message] = "You've unsubscribed from #{ @feed.name }."
+    redirect_to feed_url(@feed, :format => :json)
   end
 end

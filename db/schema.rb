@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101023225835) do
+ActiveRecord::Schema.define(:version => 20101106152905) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(:version => 20101023225835) do
   end
 
   create_table "announcements", :force => true do |t|
-    t.string   "subject",                            :null => false
-    t.text     "body",                               :null => false
-    t.integer  "organization_id",                    :null => false
+    t.string   "subject",                       :null => false
+    t.text     "body",                          :null => false
+    t.integer  "feed_id",                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "private",         :default => false, :null => false
+    t.boolean  "private",    :default => false, :null => false
   end
 
   create_table "attendances", :force => true do |t|
@@ -73,11 +73,26 @@ ActiveRecord::Schema.define(:version => 20101023225835) do
     t.text     "description",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.integer  "feed_id"
     t.string   "cached_tag_list"
     t.date     "date"
     t.time     "start_time"
     t.time     "end_time"
+  end
+
+  create_table "feeds", :force => true do |t|
+    t.string   "name",                              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "about"
+    t.string   "phone"
+    t.string   "website"
+    t.integer  "community_id"
+    t.string   "category"
+    t.string   "cached_tag_list"
+    t.string   "code"
+    t.boolean  "claimed",         :default => true
+    t.integer  "user_id"
   end
 
   create_table "invites", :force => true do |t|
@@ -88,15 +103,6 @@ ActiveRecord::Schema.define(:version => 20101023225835) do
     t.text     "body"
     t.string   "inviter_type"
     t.integer  "invitee_id"
-  end
-
-  create_table "links", :force => true do |t|
-    t.integer  "linkable_id",   :null => false
-    t.string   "linkable_type", :null => false
-    t.integer  "linker_id",     :null => false
-    t.string   "linker_type",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "locations", :force => true do |t|
@@ -146,27 +152,6 @@ ActiveRecord::Schema.define(:version => 20101023225835) do
     t.string   "notified_type"
   end
 
-  create_table "organizations", :force => true do |t|
-    t.string   "name",                              :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "about"
-    t.string   "phone"
-    t.string   "website"
-    t.integer  "community_id"
-    t.string   "category"
-    t.string   "cached_tag_list"
-    t.string   "code"
-    t.boolean  "claimed",         :default => true
-  end
-
-  create_table "platform_updates", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.text     "body",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "posts", :force => true do |t|
     t.text     "body",       :null => false
     t.integer  "user_id",    :null => false
@@ -177,10 +162,10 @@ ActiveRecord::Schema.define(:version => 20101023225835) do
   end
 
   create_table "profile_fields", :force => true do |t|
-    t.string   "subject",         :null => false
-    t.text     "body",            :null => false
-    t.integer  "organization_id", :null => false
-    t.integer  "position",        :null => false
+    t.string   "subject",    :null => false
+    t.text     "body",       :null => false
+    t.integer  "feed_id",    :null => false
+    t.integer  "position",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -203,13 +188,6 @@ ActiveRecord::Schema.define(:version => 20101023225835) do
     t.boolean  "official",       :default => false, :null => false
   end
 
-  create_table "roles", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "organization_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "slugs", :force => true do |t|
     t.string   "name"
     t.integer  "sluggable_id"
@@ -223,8 +201,8 @@ ActiveRecord::Schema.define(:version => 20101023225835) do
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "organization_id", :null => false
+    t.integer  "user_id",    :null => false
+    t.integer  "feed_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

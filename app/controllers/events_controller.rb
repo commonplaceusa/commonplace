@@ -21,7 +21,7 @@ class EventsController < CommunitiesController
   def create
     @event = Event.new(params[:event])
     if @event.save
-      @event.organization.notifications.create(:notifiable => @event)
+      @event.feed.notifications.create(:notifiable => @event)
       redirect_to events_url
     else
       render :new

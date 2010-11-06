@@ -1,4 +1,4 @@
 $.sammy("body")
 
-  .post("/organizations/:id/subscription")
-  .del("/organizations/:id/subscription")
+  .post("/feeds/:id/subscription")
+  .del("/feeds/:id/subscription")

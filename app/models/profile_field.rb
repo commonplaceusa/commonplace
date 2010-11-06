@@ -1,6 +1,6 @@
 class ProfileField < ActiveRecord::Base
   
-  belongs_to :organization
+  belongs_to :feed
   
   validates_presence_of :subject, :body
 
@@ -9,7 +9,7 @@ class ProfileField < ActiveRecord::Base
   protected
   
   def append_field
-    self.position = self.organization.profile_fields.length
+    self.position = self.feed.profile_fields.length
   end
   
 end

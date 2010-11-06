@@ -1,13 +1,12 @@
 
 %div.claim
-  - semantic_form_for @organization, :url => organization_claim_path(@organization), :html => { :class => "management_form", :method => :put } do |f|
-    %h3.management_field Edit #{ @organization.name }'s profile
+  - semantic_form_for @feed, :url => feed_claim_path(@feed), :html => { :class => "management_form", :method => :put } do |f|
+    %h3.management_field Edit #{ @feed.name }'s profile
     - f.inputs do
       = f.input :name
       = f.input :about, :input_html => {:rows => 4, :cols => 40}
       = f.input :phone
       = f.input :website
       = f.input :tag_list, :as => :string, :label => "Tag list", :hint => "For example: outdoors, skiing"
-    = f.inputs :street_address, :zip_code, :for => :location
     - f.buttons do
       = f.commit_button "Continue"
