@@ -32,7 +32,7 @@
             = current_user.feeds.map{ |org| link_to org.name, org, :target => '_blank' }.join(", ")
         %li
           %span.info_title= "Address".upcase 
-          = current_user.address[/(.+?)(,)/, 1]
+          = current_user.address
 
     = render_map do |map|
       - map.center current_user

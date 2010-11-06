@@ -24,7 +24,4 @@
           %li
             %span.info_title= "Phone".upcase
             = @feed.phone
-  
-    = render_map do |map|
-      - map.center @feed
-      - map.marker @feed
+    %div{:style=>"clear:both;"}
