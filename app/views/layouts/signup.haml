@@ -45,10 +45,11 @@
           %h3 Sign Up
           = render 'accounts/form', :user => User.new
       
-      %ul.syndicate.items
-        %li#title Welcome to West Roxbury's first community website.
-        - @items.take(3).each do |item|
-          %li.item= render item
+      #syndicate_container      
+        %h3#syndicate_title Welcome to West Roxbury's first community website.
+        %ul.syndicate.items
+          - @items.take(3).each do |item|
+            %li.item= render item
 
     - if content_for? :modal
       = yield :modal

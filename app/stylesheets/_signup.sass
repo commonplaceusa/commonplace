@@ -46,9 +46,9 @@ body.signup
             margin: 0
             border: 1px solid #777
         #submit_wrapper
-          margin-top: 18px
-          float: right
-          display: block
+          margin-top: 18px          
+          +inline-block
+          vertical-align: top
           +box-shadow( #497daf - #222, 0, 2px, 2px, 0, false)
           +sans
           background-color: $cpRed
@@ -71,11 +71,11 @@ body.signup
       margin: 45px 0
       background-color: #497daf
     
-  ul.items
+  
+  #syndicate_container
     float: left
     width: 476px
-    li#title
-      margin-bottom: 1em
+    h3#syndicate_title
       background-color: $cpRed
       +border-radius(5px)
       padding: 12px
@@ -83,17 +83,18 @@ body.signup
       +sans
       font-size: 0.9em
       font-weight: bold
-    li.item
-      padding: 0 10px
-      border-bottom: none
-      &:hover
-        background-color: white
-      a
-        padding: 20px 0
-        border-bottom: 1px solid #ccc
-      &:last-child
+    ul.items
+      li.item
+        padding: 0 10px
+        border-bottom: none
+        &:hover
+          background-color: white
         a
-          border-bottom: none
+          padding: 20px 0
+          border-bottom: 1px solid #ccc
+        &:last-child
+          a
+            border-bottom: none
       
       
       
