@@ -2,9 +2,9 @@
 
 .application
   #syndicate
-    background-color: #efefef
+    background-color: white
     width: 476px
-    border: 1px solid #ccc
+    border: 1px solid #aaa
     float: left                
     +border-radius(6px)
     margin-right: 12px                   
@@ -92,16 +92,14 @@
 
   .items
     min-height: 500px
-    background-color: #efefef
-    padding: 10px
-    border: 1px solid #f5f5f5
-      top: 0px
+    background-color: white
+    padding: 0px
+    border: none
 
   .item
     background-color: white
-    +border-radius(5px)
-    border: 1px solid #aaa
-    margin: 0 0 10px
+    border-bottom: 1px solid #aaa
+    padding: 0px
     overflow: hidden
     &:hover
       background-color: $listingHover
@@ -109,12 +107,12 @@
     > a
       text-decoration: none
       +border-radius(5px)
-      padding: 8px
+      padding: 12px 10px
       +clearfix
       display: block
       color: $baseText
       .title, .author, .body                          
-        margin-left: 60px
+        margin-left: 62px
       .body
         +serif
         font-size: 0.8em
