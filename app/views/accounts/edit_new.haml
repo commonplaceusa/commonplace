@@ -22,7 +22,7 @@
   %h1 Create your CommonPlace profile
   %p.hint Before you begin using CommonPlace fill out some information below
 
-  - semantic_form_for @user, :url => account_path, :html => {:class => "new_entity"} do |f|
+  - semantic_form_for @user, :url => update_new_account_path, :html => {:class => "new_entity"} do |f|
       
     - f.inputs do 
       = f.input :about, :label => "About Me"

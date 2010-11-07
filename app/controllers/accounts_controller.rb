@@ -16,7 +16,7 @@ class AccountsController < CommunitiesController
     if @user.save
       @location.locatable = @user
       @location.save
-      redirect_to edit_account_path
+      redirect_to edit_new_account_path
     else
       render :new
     end
@@ -26,10 +26,28 @@ class AccountsController < CommunitiesController
     @user = current_user
   end
 
-  def update
+  def edit_new
+    @user = current_user
+  end
+
+  def update_new
     authorize! :update, User
-    if current_user.update_attributes(params[:user]) || true
+    if current_user.update_attributes(params[:user])
       redirect_to new_first_post_path
+    else
+      render :edit
+    end
+  end
+
+  def update
+    
+    if params[:user][:location]
+      @location = current_user.location
+      @location.update_attributes(params[:user][:location])
+      params[:user].delete(:location)
+    end
+    if current_user.update_attributes(params[:user])
+      redirect_to management_url
     else
       render :edit
     end

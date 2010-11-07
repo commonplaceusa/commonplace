@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   has_one :location, :as => :locatable
 
-  accepts_nested_attributes_for :location
+  accepts_nested_attributes_for :location, :update_only => true
 
   validates_presence_of :first_name, :last_name
   validates_acceptance_of :privacy_policy
