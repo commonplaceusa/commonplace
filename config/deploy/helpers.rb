@@ -41,6 +41,4 @@ namespace :resque do
   task :restart, :roles => :app do
     sudo("#{bin_path}/god restart resque-workers")
   end
-
-  after 'deploy:restart', 'resque:restart'
 end
