@@ -15,7 +15,7 @@ $.sammy("body")
           }
         });
       });
-    }, "html");
+    }, "json");
   })
 
   .put("/avatars/:id")
