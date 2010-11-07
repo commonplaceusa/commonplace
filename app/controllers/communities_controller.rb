@@ -5,7 +5,11 @@ class CommunitiesController < ApplicationController
   
   def show
     @items = current_user.wire
-    render :layout => params[:partial] ? 'zone' : 'communities'
+    if current_user_session
+      render :layout => 'communities'
+    else
+      render :layout => 'signup'
+    end
   end
 
 end

@@ -22,18 +22,33 @@
     = include_javascript_folder 'controllers'
     = stylesheet_link_tag 'application'
   
-  %body.application
+  %body.application.signup
     #wrap
-      = render 'shared/header'
-      #main
-        #syndicate
-          = yield :syndicate_navigation
-          = yield :syndicate_items
+      %header
+        - link_to root_url do
+          = image_tag "#{current_community.slug}_signup.png", :alt => "Commonplace #{current_community.name}"
 
-        #main-navigation
-          = yield :tooltip
-          = render 'shared/zones'
-        = render 'shared/information', :items => []
+      #signup-container
+        #login
+          - form_for UserSession.new, :url => user_session_path do |f|
+            .field.email
+              %label Email
+              = f.text_field :email, :size => 20
+            .field.password
+              %label Password
+              = f.password_field :password, :size => 20
+              %p.forgot_password= link_to "forgot password?", new_password_reset_path
+            #submit_wrapper
+              = f.submit "Log in"
+        
+        #register
+          %h3 Sign Up
+          = render 'accounts/form', :user => User.new
+      
+      %ul.syndicate.items
+        %li#title Welcome to West Roxbury's first community website.
+        - @items.take(3).each do |item|
+          %li.item= render item
 
     - if content_for? :modal
       = yield :modal

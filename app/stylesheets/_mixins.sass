@@ -35,6 +35,30 @@
   &:hover 
     border-color: #888
 
+@mixin red-button
+  float: right
+  +box-shadow(#aaa, 0, 2px, 2px, 0, false)
+  text-decoration: none
+  font-weight: bold
+  font-size: 10px
+  +sans
+  display: block
+  background-color: $cpRed
+  margin-top: 4px
+  border: 1px solid $cpDarkRed - #111
+  +border-radius(5px)
+  input[type=submit]  
+    background-color: transparent
+    margin: 0
+    color: white
+    +text-shadow($cpDarkRed, 2px, 1px, 1px)
+    cursor: pointer
+    border: 1px solid $cpRed + #222
+      bottom: 1px solid $cpDarkRed
+    display: block
+    padding: 3px 8px 4px
+    +border-radius(5px)
+
 @mixin oldStandardBold
   font-family: 'OldStandardTTBold', Times, serif
   font-weight: normal

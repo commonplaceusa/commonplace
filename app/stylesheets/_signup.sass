@@ -1,0 +1,99 @@
+body.signup
+
+  header
+    float: left
+    width: 476px
+    a
+      display: block
+      padding: 40px 25px
+      img
+        width: 367px
+  
+  #signup-container
+    width: 476px
+    float: right
+    
+    #login
+      padding: 10px 15px
+      color: white
+      +clearfix
+      p.forgot_password
+        margin-top: 5px
+        text-align: right
+        width: 100%
+        a
+          color: white
+          +sans
+          font-size: 0.7em
+      form
+        .field
+          +inline-block
+          width: 160px
+          margin-right: 20px
+          vertical-align: top
+          label
+            +sans
+            float: left
+            margin: 5px 0
+            margin-right: 10px
+            font-weight: bold
+            font-size: 0.7em
+            line-height: 13px
+          input
+            width: 150px
+            outline: none
+            padding: 4px
+            margin: 0
+            border: 1px solid #777
+        #submit_wrapper
+          margin-top: 18px
+          float: right
+          display: block
+          +box-shadow( #497daf - #222, 0, 2px, 2px, 0, false)
+          +sans
+          background-color: $cpRed
+          border: 1px solid $cpDarkRed - #111
+          +border-radius(5px)
+          input[type=submit]
+            font-size: 1em
+            font-weight: bold
+            background-color: transparent
+            margin: 0
+            color: white
+            +text-shadow($cpDarkRed, 2px, 1px, 1px)
+            cursor: pointer
+            border: 1px solid $cpRed + #222
+              bottom: 1px solid $cpDarkRed
+            display: block
+            padding: 3px 8px 4px
+            +border-radius(5px)
+      +border-radius(5px)
+      margin: 45px 0
+      background-color: #497daf
+    
+  ul.items
+    float: left
+    width: 476px
+    li#title
+      margin-bottom: 1em
+      background-color: $cpRed
+      +border-radius(5px)
+      padding: 12px
+      color: white
+      +sans
+      font-size: 0.9em
+      font-weight: bold
+    li.item
+      padding: 0 10px
+      border-bottom: none
+      &:hover
+        background-color: white
+      a
+        padding: 20px 0
+        border-bottom: 1px solid #ccc
+      &:last-child
+        a
+          border-bottom: none
+      
+      
+      
