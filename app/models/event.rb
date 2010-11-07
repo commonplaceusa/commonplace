@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
   end
   
   def time
-    help.hours_minutes self.start_time
+    date.strftime("%b %d") 
   end
   
   def subject
