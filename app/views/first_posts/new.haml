@@ -12,3 +12,5 @@
       
     - f.buttons do
       #submit_wrapper= f.commit_button "Submit your post"
+      %li.skip= link_to "skip", posts_path, 'data-remote' => true
+      
