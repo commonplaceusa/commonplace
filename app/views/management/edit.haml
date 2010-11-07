@@ -10,7 +10,11 @@
       = f.input :email
       = f.input :password, :input_html => {:autocomplete => "off"}
       = f.input :password_confirmation, :input_html => {:autocomplete => "off"}
-    = f.inputs :street_address, :zip_code, :for => :location
+    = f.inputs :street_address, :zip_code, :for => current_user.location
+    - f.inputs :name => "Email Options" do
+      = f.input :receive_posts
+      = f.input :receive_events_and_announcements
+      = f.input :receive_digests
       
 
     - f.buttons do
