@@ -56,8 +56,16 @@
         = yield :modal
       - else
         #modal
-  
+        
+    #footer_grad
     %footer
-      = link_to "Find out more about CommonPlace", "http://commonplaceusa.com"
+      .left_text
+        Find out more at #{ link_to "CommonPlaceUSA.com", "http://commonplaceusa.com" }
+      .right_text
+        = link_to "About", "http://commonplaceusa.com"
+        &sdot;
+        = link_to "Terms"
+        &sdot;
+        = link_to "Privacy Policy"
     
       
