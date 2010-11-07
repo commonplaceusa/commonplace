@@ -21,7 +21,7 @@ class EventsController < CommunitiesController
   def create
     @event = Event.new(params[:event])
     if @event.save
-      redirect_to events_url
+      redirect_to events_path
     else
       render :new
     end

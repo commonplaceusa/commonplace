@@ -13,7 +13,7 @@ class SubscriptionsController < CommunitiesController
     @feed = Feed.find params[:feed_id]
     current_user.feeds << @feed
     flash[:message] = "You've subscribed to #{ @feed.name }."
-    redirect_to feed_url(@feed)
+    redirect_to feed_path(@feed)
   end
   
   def destroy
@@ -21,6 +21,6 @@ class SubscriptionsController < CommunitiesController
     current_user.feeds.delete @feed
     current_user.save
     flash[:message] = "You've unsubscribed from #{ @feed.name }."
-    redirect_to feed_url(@feed)
+    redirect_to feed_path(@feed)
   end
 end

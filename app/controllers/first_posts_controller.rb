@@ -9,7 +9,7 @@ class FirstPostsController < CommunitiesController
     @post.user = current_user
     if @post.save
       flash[:message] = "Post Created!"
-      redirect_to posts_url
+      redirect_to posts_path
     else
       render :new
     end

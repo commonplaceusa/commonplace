@@ -19,7 +19,7 @@ class AnnouncementsController < CommunitiesController
   def create
     @announcement = Announcement.new(params[:announcement])
     if @announcement.save
-      redirect_to announcements_url
+      redirect_to announcements_path
     else
       render :new
     end

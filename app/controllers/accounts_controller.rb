@@ -16,7 +16,7 @@ class AccountsController < CommunitiesController
     if @user.save
       @location.locatable = @user
       @location.save
-      redirect_to edit_account_url
+      redirect_to edit_account_path
     else
       render :new
     end
@@ -29,7 +29,7 @@ class AccountsController < CommunitiesController
   def update
     authorize! :update, User
     if current_user.update_attributes(params[:user]) || true
-      redirect_to new_first_post_url
+      redirect_to new_first_post_path
     else
       render :edit
     end

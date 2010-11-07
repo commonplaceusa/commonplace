@@ -17,7 +17,7 @@ class PostsController < CommunitiesController
     if @post.save
       current_user.neighborhood.notifications.create(:notifiable => @post)
       flash[:message] = "Post Created!"
-      redirect_to posts_url
+      redirect_to posts_path
     else
       render :new
     end

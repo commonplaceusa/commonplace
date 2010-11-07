@@ -8,7 +8,7 @@ class MetsController < ApplicationController
       current_user.people << @user
     end
     flash[:message] = "You have met #{@user.name}"
-    redirect_to user_url(@user)
+    redirect_to user_path(@user)
   end
     
 end
