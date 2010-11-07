@@ -3,5 +3,5 @@
   %time= event.time
   .reply-count #{event.replies.size} replies
   .title= event.subject
-  .author= event.feed.name
+  .author= event.owner.name
   %p.body= event.body #truncate event.body, :length => 160

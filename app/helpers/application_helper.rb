@@ -1,4 +1,12 @@
  module ApplicationHelper
+   
+   def creation_feeds_for(user)
+     returning(ActiveSupport::OrderedHash.new) do |collection|
+       user.managable_feeds.to_a.unshift(user).each do |f|
+         collection[f.name] = dom_id(f)
+       end
+     end
+   end
 
    def html_to_json(&block)
      @template_format = :html
