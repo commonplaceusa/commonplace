@@ -17,9 +17,17 @@ $.sammy("body")
             data: c.verb == "get" ? null : c.params,
             dataType: "json",
             success: function(response) {
-              merge(response);
-            },
-
+              if (response.redirect_to) {
+                if (response.redirect_to.match(/^http/)) {
+                  window.location = response.redirect_to;
+                } else {
+                  $.sammy("body").setLocation(response.redirect_to);
+                  $.sammy("body").runRoute("get", response.redirect_to);
+                }
+              } else {
+                merge(response);
+              }
+            }
            });
   })
 

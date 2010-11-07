@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   protected
   
   def set_template_format
-    if request.env['HTTP_X_REQUESTED_WITH'].present?
+    if xhr?
       response.template.template_format = :json
     end
   end
@@ -63,18 +63,18 @@ class ApplicationController < ActionController::Base
     @current_user_session = UserSession.find
     @current_user = current_user_session.user
   end
-  
-  def no_xhr
-    request.env['HTTP_X_REQUESTED_WITH'].nil?
+
+  def xhr?
+    request.env['HTTP_X_REQUESTED_WITH'].present?
   end
 
-  def render_communities_or_zone(action = nil)
-    layout = (no_xhr ? 'communities' : 'zone')
-    if action
-      render action, :layout => layout
-    else 
-      render :layout => layout
+  def redirect_to(options = {}, response_status = {})
+    if xhr?
+      render :json => {"redirect_to" => options}
+    else
+      super(options, response_status)
     end
   end
+  
   
 end
