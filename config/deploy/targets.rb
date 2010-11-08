@@ -7,7 +7,7 @@ task :production do
   set :domain, "westroxbury.commonplaceusa.com westroxbury.ourcommonplace.com"
   set :web_port, "80"
   set :rails_env, "production"
-  set :branch, "origin/pre-launch"
+  set :branch, "origin/master"
   set :deploy_to, "/home/#{user}/#{application}"
 end
 
