@@ -24,8 +24,65 @@ body.signup
     width: 476px
     float: right
     
+    form
+      .field
+        +inline-block
+        width: 170px
+        margin-right: 10px
+        vertical-align: top
+        label
+          +sans
+          float: left
+          margin: 5px 0
+          margin-right: 10px
+          font-weight: bold
+          font-size: 0.7em
+          line-height: 13px
+          +text-shadow(rgba(0, 0, 0, 0.1))
+        input
+          +border-radius(5px)
+          width: 160px
+          outline: none
+          padding: 5px
+          margin: 0
+          border: 1px solid #777
+          +serif
+          font-size: 1em
+        &.submit
+          margin-right: 0
+          width: auto
+          float: right
+          
+      
+        #submit_wrapper
+          margin-top: 23px  
+          +inline-block
+          vertical-align: top
+          +box-shadow( #497daf - #222, 0, 2px, 2px, 0, false)
+          +sans
+          background-color: $cpRed
+          border: 1px solid $cpDarkRed - #111
+          +border-radius(5px)
+          input[type=submit]
+            width: auto
+            +sans
+            font-size: 0.8em
+            font-weight: bold
+            background-color: transparent
+            margin: 0
+            color: white
+            +text-shadow($cpDarkRed, 2px, 1px, 1px)
+            cursor: pointer
+            border: 1px solid $cpRed + #222
+              bottom: 1px solid $cpDarkRed
+            display: block
+            padding: 3px 8px 4px
+            +border-radius(5px)
+      
+    
+    
     #login-container
-      margin: 45px 0
+      margin: 30px 0
       border: 1px solid #3b6085
       background-color: #81a5c8
       padding: 1px 1px 0 1px
@@ -43,84 +100,89 @@ body.signup
           text-align: right
           width: 100%
           a
-            color: white
+            color: rgba(255, 255, 255, 0.9)
             +sans
             font-size: 0.7em
-      form
-        .field
-          +inline-block
-          width: 160px
-          margin-right: 20px
-          vertical-align: top
-          label
-            +sans
-            float: left
-            margin: 5px 0
-            margin-right: 10px
-            font-weight: bold
-            font-size: 0.7em
-            line-height: 13px
-          input
-            width: 150px
-            outline: none
-            padding: 4px
-            margin: 0
-            border: 1px solid #777
-        #submit_wrapper
-          margin-top: 18px          
-          +inline-block
-          vertical-align: top
-          +box-shadow( #497daf - #222, 0, 2px, 2px, 0, false)
-          +sans
-          background-color: $cpRed
-          border: 1px solid $cpDarkRed - #111
-          +border-radius(5px)
-          input[type=submit]
-            font-size: 1em
-            font-weight: bold
-            background-color: transparent
-            margin: 0
-            color: white
-            +text-shadow($cpDarkRed, 2px, 1px, 1px)
-            cursor: pointer
-            border: 1px solid $cpRed + #222
-              bottom: 1px solid $cpDarkRed
-            display: block
-            padding: 3px 8px 4px
-            +border-radius(5px)
+            text-decoration: none
+            &:hover
+              text-decoration: underline
 
-    
+    #register
+      border: 1px solid #ccc
+      padding: 1px
+      margin:
+        bottom: 5px
+        right: 5px
+      +border-radius(5px)
+      +box-shadow(#ccc, 0, 2px, 2px, 0, false)
+      background-color: #efefef
+      h3
+        +border-top-radius(5px)
+        background-color: $cpRed
+        padding: 1em
+        color: rgba(255, 255, 255, 0.9)
+        +serif
+        font-size: 1.1em
+        text-align: center
+      form#new_user
+        padding: 1em
+        width: auto
+        .field
+          margin: 4px 0 0 0 
+          width: 215px
+          input
+            width: 200px
+          &.long
+            width: 430px
+            input
+              width: 420px
+          &.submit
+            // float: right
+            width: auto
+          &.check_box
+            margin-top: 10px
+            label
+              +text-shadow(none)
+              font-size: 0.8em
+              input
+                float: left
+                width: 25px
+          label
+            color: #3B6085
+          a
+            color: #3B6085
+      
   
   #syndicate_container
     float: left
     width: 476px
-    #syndicate_title_container
-      border: 1px solid $cpRed - #222
-      background-color: $cpRed + #222
-      padding: 1px 1px 0 1px
-      +border-radius(5px)
-      +box-shadow(#aaa, 0, 2px, 2px, 0, false)
-      margin-bottom: 5px
-      h3#syndicate_title
-        background-color: $cpRed
-        +border-radius(5px)
-        padding: 12px
-        color: white
-        +serif
-        font-size: 1em
+    border: 1px solid #ccc
+    margin:
+      bottom: 5px
+      right: 5px
+    +border-radius(5px)
+    +box-shadow(#ccc, 0, 2px, 2px, 0, false)
+    h3#syndicate_title
+      background-color: #efefef
+      +border-top-radius(5px)
+      padding: 1em
+      color: #3B6085
+      +serif
+      font-size: 1.1em
+      text-align: center
+      border: 1px solid white
     ul.items
+      +border-radius(5px)
       min-height: 0
       li.item
-        padding: 0 10px
-        border-bottom: none
+        border-bottom: 1px solid #ccc
         &:hover
           background-color: white
         a
-          padding: 20px 0
-          border-bottom: 1px solid #ccc
+          padding: 20px 15px
         &:last-child
-          a
-            border-bottom: none
+          +border-radius(5px)
+          border-bottom: none
       
       
       

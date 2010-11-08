@@ -1,7 +1,34 @@
-- semantic_form_for user, :url => account_path, :html => {:class => "new_entity"} do |f|
-  = f.inputs :first_name, :last_name, :email, :password, :password_confirmation
-  = f.inputs :street_address, :zip_code, :for => user.location
-  - f.inputs do 
-    = f.input :privacy_policy, :as => :boolean
-  - f.buttons do
-    = f.commit_button "Continue"
+- form_for user, :url => account_path, :html => {:class => "new_entity"} do |f|
+  .field.first_name.short
+    %label= 'First Name'.upcase
+    = f.text_field :first_name
+  .field.first_name.short
+    %label= 'Last Name'.upcase
+    = f.text_field :last_name
+  .field.email.short
+    %label= 'Email'.upcase
+    = f.text_field :email
+  .field.email.short
+    %label= 'Confirm Email'.upcase
+    = f.text_field :email
+  .field.password.long
+    %label= 'Password'.upcase
+    = f.text_field :password
+    
+  .field.long.check_box
+    %label
+      = f.check_box :privacy_policy
+      I have read and accept the
+      = link_to 'privacy policy', privacy_path, 'data-remote' => true
+
+  - f.fields_for user.location do |l|
+    .field.street_address.long
+      %label= 'Street Address'.upcase
+      = l.text_field :street_address
+  
+    .field.zip_code.short
+      %label= 'Zip Code'.upcase
+      = l.text_field :zip_code
+  .field.submit
+    #submit_wrapper
+      = f.submit "Sign up and start posting!"
