@@ -104,7 +104,9 @@ $(document).ready(function() {
     });
   });
   $(window).trigger("resize.modal");
+  setTimeout(function(){$(window).trigger("resize.modal");}, 500);
 
+  
 });
   
 function accordionReplies($replies) {
