@@ -27,7 +27,7 @@ body.signup
     form
       .field
         +inline-block
-        width: 170px
+        width: 175px
         margin-right: 10px
         vertical-align: top
         label
@@ -41,7 +41,7 @@ body.signup
           +text-shadow(rgba(0, 0, 0, 0.1))
         input
           +border-radius(5px)
-          width: 160px
+          width: 165px
           outline: none
           padding: 5px
           margin: 0
@@ -49,9 +49,8 @@ body.signup
           +serif
           font-size: 1em
         &.submit
-          margin-right: 0
+          margin: auto
           width: auto
-          float: right
           
       
         #submit_wrapper
@@ -125,10 +124,10 @@ body.signup
         font-size: 1.1em
         text-align: center
       form#new_user
-        padding: 1em
+        padding: 0.5em 1em 1em 1em
         width: auto
         .field
-          margin: 4px 0 0 0 
+          margin: 6px 0 0 0 
           width: 215px
           input
             width: 200px
@@ -137,18 +136,19 @@ body.signup
             input
               width: 420px
           &.submit
-            // float: right
             width: auto
+            margin-left: 10px
           &.check_box
             margin-top: 10px
             label
-              +text-shadow(none)
               font-size: 0.8em
               input
                 float: left
                 width: 25px
           label
+            +text-shadow(none)
             color: #3B6085
+            margin-bottom: 3px
           a
             color: #3B6085
       
