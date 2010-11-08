@@ -1,6 +1,4 @@
-class SiteController < ApplicationController
-
-  def about ; end
+class SiteController < CommunitiesController
   
   def privacy ; end
 
