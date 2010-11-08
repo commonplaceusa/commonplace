@@ -2,40 +2,40 @@
   .field.first_name.short
     %label= 'First Name'.upcase
     = f.text_field :first_name
-    .inline_error= f.error_message_on :first_name
+    = f.error_message_on :first_name
   .field.first_name.short
     %label= 'Last Name'.upcase
     = f.text_field :last_name
-    .inline_error= f.error_message_on :last_name
+    = f.error_message_on :last_name
   .field.email.long
     %label= 'Email'.upcase
     = f.text_field :email
-    .inline_error= f.error_message_on :email
+    = f.error_message_on :email
   .field.email.long
     %label= 'Confirm Email'.upcase
     = f.text_field :email_confirmation
-    .inline_error= f.error_message_on :email_confirmation
+    = f.error_message_on :email_confirmation
   .field.password.long
     %label= 'Password'.upcase
     = f.password_field :password
-    .inline_error= f.error_message_on :password
+    = f.error_message_on :password
     
   .field.long.check_box
     %label
       = f.check_box :privacy_policy
       I have read and accept the #{ link_to 'privacy policy', privacy_path, 'data-remote' => true }.
-    .inline_error= f.error_message_on :privacy_policy
+    = f.error_message_on :privacy_policy
 
   - f.fields_for user.location do |l|
     .field.street_address.long
       %label= 'Street Address'.upcase
       = l.text_field :street_address
-      .inline_error= l.error_message_on :street_address
+      = l.error_message_on :street_address
   
     .field.zip_code.short
       %label= 'Zip Code'.upcase
       = l.text_field :zip_code
-      .inline_error= l.error_message_on :zip_code
+      = l.error_message_on :zip_code
   .field.submit
     #submit_wrapper
       = f.submit "Sign up and start posting!"

@@ -44,6 +44,12 @@ body.signup
         &.submit
           margin: auto
           width: auto
+        .formError
+          +sans
+          margin-top: 5px
+          color: $cpRed
+          font-weight: bold
+          font-size: 0.8em
           
       
         #submit_wrapper
@@ -135,6 +141,8 @@ body.signup
             margin-top: 10px
             label
               font-size: 0.8em
+              display: block
+              width: 100%
               input
                 float: left
                 width: 25px
