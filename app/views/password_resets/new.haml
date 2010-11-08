@@ -1,9 +1,20 @@
-
 - render :layout => "shared/modal" do 
-  %h2 Please enter the email associated with your account
-  - if flash[:error]
-    %p.fail= flash[:error]
-  - form_tag password_resets_path, :method => :post do
-    = label_tag :email, "Email:"
-    = text_field_tag :email
-    = submit_tag "Submit"
+  
+  - form_tag password_resets_path, :method => :post, :class => "new_entity" do
+    %hr.staple
+  
+    %h1 Reset Password
+    %p.subhead Please enter the email associated with your account.
+    
+    - if flash[:error]
+      %p.fail= flash[:error]
+    
+    %fieldset
+      %ol
+        %li
+          = label_tag :email, "Email"
+          = text_field_tag :email
+    %fieldset
+      %ol
+        #submit_wrapper
+          %li= submit_tag "Submit"
