@@ -1,0 +1,53 @@
+#information
+  %h3 YOUR COMMUNITY
+  #information_content
+    = render_map do |map|
+      - map.center :lat => current_community.lat, :lng => current_community.lng
+      - items.each do |item|
+        - if item.respond_to? :location
+          - map.marker item
+
+    .inventories
+      %ul
+        %li
+          %h4
+            YOUR
+            %br
+            INTERESTS
+          %ul
+            %li Arts and Crafts
+            %li Basketball
+          .more.disabled_link Add more (2)
+      
+        %li
+          %h4
+            YOUR
+            %br
+            SUBSCRIPTIONS
+          %ul
+            %li Punjabi Dhaba
+            %li CommonPlace
+            %li West Roxbury Ski Club
+          .more.disabled_link Add more (14)
+      
+        %li
+          %h4
+            YOUR
+            %br
+            EVENTS
+          %ul
+            %li Tree Planting and more...
+            %li Soup Kitchen
+          .more.disabled_link View all (2)
+      
+        %li
+          %h4
+            YOUR
+            %br
+            POSTS
+          %ul
+            %li Anyone have a ladder?
+            %li Pothole alert!
+            %li Ski club meeting Friday
+            %li Giving away my old TV stand
+          .more.disabled_link View all (9)
