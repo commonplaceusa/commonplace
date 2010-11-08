@@ -7,7 +7,7 @@
         #big_calendar.graphic= render 'events/calendar', :event => event
         - unless event.attendees.exists? current_user 
           = button_to "Attend", event_attendance_path(event) , :id => "follow_link", :class => "link_button"
-        = link_to "Message #{ event.owner.name }", new_event_message_path(@event), :id => "message_me", :class => "link_button", 'data-remote' => true
+        -# = link_to "Message #{ event.owner.name }", new_event_message_path(@event), :id => "message_me", :class => "link_button", 'data-remote' => true
         - if event.attendees.exists? current_user 
           = link_to "I'm not attending #{ event.name }", event_attendance_path(event), :id => "unsubscribe", 'data-method' => "delete", 'data-remote' => true
       .body

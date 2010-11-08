@@ -1,14 +1,9 @@
-#information.info_box.user.preview
-  #info_box_top= "Your Neighbor".upcase
-
+#information.info_box.user.management
+  #info_box_top= "Your Civic Profile".upcase
+  
   #info_box_main
     #info_box_main_left
-      = image_tag current_user.avatar_url(:normal), :class => 'graphic normal'
-
-      %div{:id => "message_me", :class => "link_button"}
-        Message #{ current_user.first_name }
-      %div{:id => "follow_link", :class => "link_button"}
-        Have you met?
+      = image_tag current_user.avatar_url(:normal), :class => 'graphic'
     .body
       %h3= current_user.full_name
       %p.user_about= auto_link current_user.about, :all, :target => '_blank'
@@ -17,24 +12,26 @@
           %li
             %span.info_title= "Interests".upcase
             = current_user.interest_list.join(", ")
-
-        - unless current_user.good_list.empty?
-          %li
-            %span.info_title= "Shared goods".upcase
-            = current_user.good_list.join(", ")
-        - unless current_user.skill_list.empty?
+        - unless current_user.skills.empty?
           %li
             %span.info_title= "Shared skills".upcase
             = current_user.skill_list.join(", ")
+        - unless current_user.goods.empty?
+          %li
+            %span.info_title= "Shared goods".upcase
+            = current_user.good_list.join(", ")
         - unless current_user.feeds.empty?
           %li
             %span.info_title= "Feeds".upcase
-            = current_user.feeds.map{ |org| link_to org.name, org, :target => '_blank' }.join(", ")
-        %li
-          %span.info_title= "Address".upcase 
-          = current_user.address
-
+            = current_user.feeds.map{ |f| f.name }.join(", ")
+        - unless current_user.address.blank?
+          %li
+            %span.info_title= "Address".upcase 
+            = current_user.address
+  
     = render_map do |map|
       - map.center current_user
       - map.marker current_user
+    
+  
 

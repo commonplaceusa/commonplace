@@ -7,7 +7,7 @@
         = image_tag feed.avatar_url(:normal), :class => 'graphic'
         - unless feed.subscribers.include? current_user
           = button_to "Subscribe", feed_subscription_path(feed), :id => "follow_link", :class => "link_button"
-        = link_to "Message #{ feed.name }", new_feed_message_path(feed), :id => "message_me", :class => "link_button", 'data-remote' => true
+        -# = link_to "Message #{ feed.name }", new_feed_message_path(feed), :id => "message_me", :class => "link_button", 'data-remote' => true
         - if feed.subscribers.include? current_user
           = link_to "Unsubscribe from #{ feed.name }", feed_subscription_path(feed), 'data-method' => :delete, :id => "unsubscribe", 'data-remote' => true
       .body
