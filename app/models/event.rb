@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
 
   require 'lib/helper'
   
+  attr_accessor :pledge
+  
   acts_as_taggable_on :tags
 
   validates_presence_of :name, :description, :date

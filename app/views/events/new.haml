@@ -2,7 +2,7 @@
 
   - semantic_form_for @event, :html => { :class => "new_entity" } do |f|
     - f.inputs do
-      %h1 Create an event for your feed
+      %h1 Post a community event
       
       - f.inputs do 
         %li
@@ -15,5 +15,12 @@
         = event_select_time('start_time')
         = event_select_time('end_time')
       = f.inputs :street_address, :zip_code, :for => :location
+      %fieldset
+        %ol
+          %li.check_boxes
+            = f.label :pledge,  "I pledge that this is a public, face-to-face event."
+            = f.check_box :pledge,  :label => "I pledge..."
+      
+      
     - f.buttons do
       #submit_wrapper= f.commit_button "Create Event"
