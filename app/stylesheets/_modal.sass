@@ -41,7 +41,11 @@ body
     left: 0
     right: 0
     background-color: black
-    opacity: 0.52
+
+    // opacity: order is important!
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=52)" // ie8
+    filter: alpha(opacity=52) // ie5-7
+    opacity: 0.52 // everyone else
 
 #welcome
   margin-bottom: 20px
