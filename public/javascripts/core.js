@@ -45,7 +45,7 @@ $(function() {
     bh = $b.height();
     
     $m.css({top: (bh - h) / 2,
-            left: (bw - w) / 2,
+            left: (bw - w) / 2
            });
   });
   $(window).trigger('resize.modal');
