@@ -4,13 +4,15 @@
     %hr.staple
   
     %h1 Write Your First Neighborhood Post
-    %p.subhead Take a moment to introduce yourself to your neighbors!
+    
+    %p.subhead Neighborhood posts are sent out to the 500 or so houses right around you. Need to borrow a ladder? Post a request to CommonPlace and find one nearby.  Saw a pothole, lost a cat, have neighborhood news? Post an announcement to CommonPlace to immediately inform your neighbors.
 
-    %p.subhead Neighborhood posts are sent out to all of your neighbors (the 500 or so houses around you).  Need to borrow a ladder? Post a request to CommonPlace and find one nearby.  Offering up piano lessons? Post an offer to CommonPlace to find a student right next door. Having a yard sale or an open house? Post an invitation to CommonPlace and all of your neighbors will know when and where it is. Saw a pothole, lost a cat, witnessed a crime? Post an announcement to CommonPlace to immediately inform your neighbors.
+    %p.subhead Feel free to take a moment to introduce yourself to your neighbors, by writing your first neighborhood post!
+
     - f.inputs do
-      = f.input :subject, :as => :hidden, :input_html => {:value => "#{current_user.name} just joined your neighborhood CommonPlace"}
-      = f.input :body, :input_html => { :rows => 5, :cols => 21 }, :label => false
-      = f.input :category, :as => :radio, :collection => Post::CATEGORIES,  :input_html => { :value => "Announcement" }
+      = f.input :subject
+      = f.input :body, :input_html => { :rows => 5, :cols => 21 }
+      = f.input :category, :as => :radio, :collection => Post::CATEGORIES
       
     - f.buttons do
       #submit_wrapper= f.commit_button "Submit your post"

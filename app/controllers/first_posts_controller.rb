@@ -2,6 +2,7 @@ class FirstPostsController < CommunitiesController
 
   def new
     @post = Post.new
+    @post.category = "Announcement"
   end
 
   def create
