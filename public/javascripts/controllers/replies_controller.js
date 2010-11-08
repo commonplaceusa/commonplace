@@ -1,3 +1,0 @@
-
-$.sammy("body")
-  .post("/replies")
