@@ -1,3 +1,4 @@
 {
-  "#modal" : <%= h2j { yield(:modal) || "<div id=\"modal\"></div>" } %>
+  "#modal" : <%= h2j { yield(:modal) || "<div id=\"modal\"></div>" } %>,
+  "#new_user" : <%= h2j { yield :new_user } %>
 }

@@ -4,6 +4,8 @@ class Location < ActiveRecord::Base
 
   before_save :update_lat_and_lng
 
+  validates_presence_of :street_address, :zip_code
+
   def update_lat_and_lng
     if street_address_changed?
       location = Geokit::Geocoders::GoogleGeocoder.geocode("#{street_address}, #{zip_code}")
