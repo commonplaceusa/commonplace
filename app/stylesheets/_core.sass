@@ -1,5 +1,4 @@
 
-@import compass/layout/sticky-footer
 @import compass/utilities/general/clearfix
 @import compass/utilities/lists/inline-list        
 @import compass/css3/border-radius
@@ -38,7 +37,27 @@ hr.staple
   width: 40px
   margin: 20px auto
 
-+sticky-footer(31px, "#wrap", "#wrap_footer", "footer")
-
 .hide
   display: none
+  
+#footer_grad
+  height: 10px
+  width: 100%
+  +linear-gradient(color-stops(#ddd,  #efefef))
+footer
+  +clearfix
+  +sans
+  font-size: 0.8em
+  width: 972px
+  margin: 1em auto
+  color: #333
+  .left_text
+    float: left
+  .right_text
+    float: right
+  a
+    font-weight: bold
+    color: #333
+    text-decoration: none
+    &:hover
+      text-decoration: underline
