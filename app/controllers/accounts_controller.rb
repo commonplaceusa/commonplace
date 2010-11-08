@@ -16,7 +16,7 @@ class AccountsController < CommunitiesController
     if @user.save
       @location.locatable = @user
       @location.save
-      redirect_to edit_new_account_path
+      redirect_to edit_new_account_url
     else
       render :new
     end

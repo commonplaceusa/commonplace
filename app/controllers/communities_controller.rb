@@ -17,7 +17,7 @@ class CommunitiesController < ApplicationController
   end
 
   def set_default_items
-    @items = []
+    @items = current_user_session ? current_user.wire : current_user.wire.take(3)
   end
 
 end
