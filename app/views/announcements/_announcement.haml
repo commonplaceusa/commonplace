@@ -4,4 +4,4 @@
   .reply-count #{ announcement.replies.size } replies
   .title= announcement.subject
   .author= announcement.owner.name
-  %p.body= announcement.body #truncate announcement.body, :length => 160
+  %p.body= auto_link announcement.body #truncate announcement.body, :length => 160
