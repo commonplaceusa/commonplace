@@ -50,7 +50,7 @@ $(document).ready(function() {
   $('ul#wire').accordion({'header': 'a.item_body', 
                           'active': false,
                           'collapsible': true, 
-                          'autoHeight': false,
+                          'autoHeight': false
                          });
   
   $(".tabs").tabs();
