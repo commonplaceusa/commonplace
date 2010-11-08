@@ -1,15 +1,23 @@
 class CommunitiesController < ApplicationController
+  before_filter :set_default_items
   before_filter :current_community
   before_filter :authorize_current_community
 
+  layout :community_layout
+  
   
   def show
     @items = current_user.wire
-    if current_user_session
-      render :layout => 'communities'
-    else
-      render :layout => 'signup'
-    end
+  end
+
+  protected
+  
+  def community_layout
+    current_user_session ? 'communities' : 'signup'
+  end
+
+  def set_default_items
+    @items = []
   end
 
 end
