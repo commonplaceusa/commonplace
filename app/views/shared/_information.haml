@@ -10,19 +10,24 @@
       %ol.user_info
         - unless current_user.interests.empty?
           %li
-            %span.info_title= "Shared skills".upcase
-            = current_user.skill_list.join(", ")
-        - unless current_user.interests.empty?
-          %li
             %span.info_title= "Interests".upcase
             = current_user.interest_list.join(", ")
+        - unless current_user.skills.empty?
+          %li
+            %span.info_title= "Shared skills".upcase
+            = current_user.skill_list.join(", ")
+        - unless current_user.goods.empty?
+          %li
+            %span.info_title= "Shared goods".upcase
+            = current_user.good_list.join(", ")
         - unless current_user.feeds.empty?
           %li
             %span.info_title= "Feeds".upcase
-            = current_user.feeds.map{ |feed| link_to feed.name, feed, :target => '_blank' }.join(", ")
-        %li
-          %span.info_title= "Address".upcase 
-          = current_user.address
+            = current_user.feeds.map{ |f| f.name }.join(", ")
+        - unless current_user.address.blank?
+          %li
+            %span.info_title= "Address".upcase 
+            = current_user.address
   
     = render_map do |map|
       - map.center current_user

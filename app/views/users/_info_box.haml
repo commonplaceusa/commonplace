@@ -5,28 +5,33 @@
     #info_box_main
       #info_box_main_left
         = image_tag user.avatar_url(:normal), :class => 'graphic'
-        - unless current_user.people.exists?(user)
-          = button_to "Have you met?", user_met_path(user), :id => "follow_link", :class => "link_button"
-        = link_to "Message #{ user.first_name }", new_user_message_path(user), :id => "message_me", :class => "link_button", 'data-remote' => true
+        -# - unless current_user.people.exists?(user)
+        -#   = button_to "Have you met?", user_met_path(user), :id => "follow_link", :class => "link_button"
+        -# = link_to "Message #{ user.first_name }", new_user_message_path(user), :id => "message_me", :class => "link_button", 'data-remote' => true
       .body
         %h3= user.full_name
         %p.user_about= auto_link user.about, :all, :target => '_blank'
         %ol.user_info
           - unless user.interests.empty?
             %li
-              %span.info_title= "Shared skills".upcase
-              = user.skill_list.join(", ")
-          - unless user.interests.empty?
-            %li
               %span.info_title= "Interests".upcase
               = user.interest_list.join(", ")
+          - unless user.skills.empty?
+            %li
+              %span.info_title= "Shared skills".upcase
+              = user.skill_list.join(", ")
+          - unless user.goods.empty?
+            %li
+              %span.info_title= "Shared goods".upcase
+              = user.good_list.join(", ")
           - unless user.feeds.empty?
             %li
               %span.info_title= "Feeds".upcase
-              = user.feeds.map{ |feed| link_to feed.name, feed, :target => '_blank' }.join(", ")
-          %li
-            %span.info_title= "Address".upcase 
-            = user.address
+              = user.feeds.map{ |f| f.name }.join(", ")
+          - unless user.address.blank?
+            %li
+              %span.info_title= "Address".upcase 
+              = user.address
     
       = render_map do |map|
         - map.center user
