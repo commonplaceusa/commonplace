@@ -68,6 +68,7 @@ class Directions
   end
 
   def as_json
+    return {}.as_json if @destination == @origin
     { :origin => @origin,
       :destination => @destination
     }.as_json
