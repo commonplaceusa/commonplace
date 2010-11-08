@@ -11,8 +11,9 @@ class AccountsController < CommunitiesController
     params[:user][:privacy_policy] = params[:user][:privacy_policy].last if params[:user][:privacy_policy].is_a?(Array)
     authorize! :create, User
     @location = Location.new(params[:user].delete(:location))
+    @avatar = Avatar.new
     @neighborhood = current_community.neighborhoods.first
-    @user = @neighborhood.users.build(params[:user].merge(:location => @location))
+    @user = @neighborhood.users.build(params[:user].merge(:location => @location, :avatar => @avatar))
     if @user.save
       redirect_to edit_new_account_url
     else
@@ -30,15 +31,26 @@ class AccountsController < CommunitiesController
 
   def update_new
     authorize! :update, User
+    logger.info(params[:user].inspect)
+    if params[:user][:avatar]
+      @avatar = current_user.avatar
+      @avatar.update_attributes(params[:user][:avatar])
+      logger.info(@avatar.inspect)
+      params[:user].delete(:avatar)
+      crop_avatar = true
+    end
     if current_user.update_attributes(params[:user])
-      redirect_to new_first_post_path
+      if crop_avatar
+        redirect_to edit_avatar_account_path
+      else
+        redirect_to new_first_post_path
+      end
     else
       render :edit
     end
   end
 
   def update
-    
     if params[:user][:location]
       @location = current_user.location
       @location.update_attributes(params[:user][:location])
@@ -49,6 +61,17 @@ class AccountsController < CommunitiesController
     else
       render :edit
     end
+  end
+
+  def edit_avatar
+    @avatar = current_user.avatar
+  end
+
+  def update_avatar
+    @avatar = current_user.avatar
+    @avatar.update_attributes(params[:avatar])
+    @avatar.save
+    redirect_to new_first_post_url
   end
 
 end

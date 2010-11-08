@@ -22,37 +22,16 @@
   %h1 Welcome to the West Roxbury CommonPlace!
   %p.subhead Fill out your personal CommonPlace profile below.
 
-  - semantic_form_for @user, :url => update_new_account_path, :html => {:class => "new_entity after_registration"} do |f|
+  - semantic_form_for @user, :url => update_new_account_path, :html => {:class => "new_entity after_registration", :multipart => true} do |f|
+
+    - f.inputs :for => @user.avatar do |a|
+      = a.input :image, :label => "Avatar"
       
     - f.inputs do
       = f.input :about, :label => "About me", :hint => "Tell your neighbors a little about yourself.", :input_html => { :rows => 3 }
       = f.input :interest_list, :label => "Interests", :hint => "This will help CommonPlace highlight community information that you care about. Ex. Cooking, Sports, Family"
       = f.input :skill_list, :label => "Shared skills", :hint => "List some skills that you want to share with your neighbors. Ex. Teach Piano, Computer Help, etc."
       = f.input :good_list, :label => "Shared goods", :hint => "List some goods that you want to share with your neighbors. Ex. Lawnmower, Ladder, etc."
-      
-      / %li
-      /   %label
-      /     %span.strong About Me
-      /     Tell your neighbors a little about yourself.
-      /   = f.text_area :about, :rows => 3
-      / %li
-      /   %label
-      /     %span.strong Interest list
-      /     This will help CommonPlace highlight community information that you care about. Ex. Cooking, Sports, Family
-      /   = f.text_field :interest_list
-      /   
-      / %li
-      /   %label
-      /     %span.strong Skills list
-      /     List some skills that you want to share with your neighbors. Ex. Teach Piano, Computer Help, etc.
-      /   = f.text_field :skill_list
-      / 
-      / %li
-      /   %label
-      /     %span.strong Good list
-      /     List some goods that you want to share with your neighbors. Ex. Lawnmower, Ladder, etc.
-      /   = f.text_field :good_list
-
     - f.buttons do
       #submit_wrapper= f.commit_button "Continue"
 

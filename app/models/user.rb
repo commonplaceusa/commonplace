@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 
-  before_create :set_default_avatar
   acts_as_authentic do |c|
     c.login_field :email
     c.require_password_confirmation = false
@@ -86,12 +85,6 @@ class User < ActiveRecord::Base
     self.location.street_address
   end
   
-  def set_default_avatar
-    if self.avatar.nil?
-      self.avatar = Avatar.new
-    end
-  end
-
   def after_initialize
     unless self.location
       self.location = Location.new

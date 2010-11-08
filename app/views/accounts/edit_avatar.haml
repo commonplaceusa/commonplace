@@ -1,0 +1,20 @@
+- render :layout => 'shared/modal' do
+
+  - form_for @avatar, :id => "crop_avatar_form", :url => update_avatar_account_path do |f|
+    = image_tag @avatar.image.url(:original), :id => 'avatar_to_crop'
+  
+    = f.hidden_field :x 
+    = f.hidden_field :y
+    = f.hidden_field :w
+    = f.hidden_field :h
+  
+    = f.submit "Crop"
+
+= render 'shared/items', :items => @items
+
+- content_for :syndicate_navigation do
+  %nav
+    - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
+      %span
+        = image_tag 'pin-icon.png'
+        %span POST TO YOUR NEIGHBORS

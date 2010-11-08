@@ -62,7 +62,12 @@ ActionController::Routing::Routes.draw do |map|
     map.resource :user_session
     map.resources :password_resets
     
-    map.resource :account, :member => { :edit_new => :get, :update_new => :put }
+    map.resource :account, :member => { 
+      :edit_new => :get, 
+      :update_new => :put,
+      :edit_avatar => :get,
+      :update_avatar => :put
+    }
     map.resources :mets
     map.resource :management, :controller => 'management'
 

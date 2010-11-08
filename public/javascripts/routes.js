@@ -4,8 +4,9 @@ $.sammy("body")
   .put("/account")
   .get("/account/edit")
   .get("/account/edit_new")
-  .put("/account/update_new")
-
+//  .put("/account/update_new")
+  .get("/account/edit_avatar")
+  .put("/account/update_avatar")
   .get("/announcements")
   .get("/announcements/subscribed")
   .get("/announcements/new")
@@ -21,24 +22,7 @@ $.sammy("body")
   .post("/events/:id/attendance")
   .del("/events/:id/attendance")
 
-  .get("/avatars/:id/edit", function(c) {
-    $.get(c.path, function(r) {
-      merge(r, $('body'));
-      $("#avatar_to_crop").load(function() {
-        $(window).trigger('resize.modal');
-        $('#avatar_to_crop').Jcrop({
-          aspectRatio: 1,
-          onChange: function(args) {
-            $("#avatar_x").val(args.x);
-            $("#avatar_y").val(args.y);
-            $("#avatar_w").val(args.w);
-            $("#avatar_h").val(args.h);
-          }
-        });
-      });
-    }, "json");
-  })
-
+  .get("/avatars/:id/edit")
   .put("/avatars/:id")
 
   .get("/organizations/:organization_id/claim/new")
