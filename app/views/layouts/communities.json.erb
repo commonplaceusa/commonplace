@@ -1,4 +1,9 @@
 {
+  <%- if @updates %>
+    <%- @updates.each_pair do |key,value| %>
+      "<%= key %>"     : <%= h2j { value } %>,
+    <%- end %>
+  <%- end %>
 
   "#syndicate nav"     : <%= h2j { yield :syndicate_navigation } %>,
   "#zones"             : <%= h2j { yield :zones } %>,

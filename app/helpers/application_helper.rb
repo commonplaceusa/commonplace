@@ -22,6 +22,11 @@
      files.map!{ |f| folder + "/" + File.basename(f) }
      javascript_include_tag files
    end
+   
+   def update(key,value)
+     @updates ||= {}
+     @updates[key] = value
+   end
 
    def tab_to(name, options = {}, html_options = {}, &block)
      options, html_options = name, options if block
