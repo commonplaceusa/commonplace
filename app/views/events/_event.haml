@@ -1,6 +1,6 @@
 - link_to event, :class => 'event', 'data-remote' => true do
   .small_calendar.avatar= render 'events/calendar', :event => event
-  %time= event.time
+  %time= event_date event.date.to_time
   .reply-count #{event.replies.size} replies
   .title= event.subject
   .author= event.owner.name

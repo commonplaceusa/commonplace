@@ -32,6 +32,10 @@ class Event < ActiveRecord::Base
     date.strftime("%b %d") 
   end
   
+  def time_until
+    (date - Date.now)
+  end
+  
   def subject
     self.name
   end
