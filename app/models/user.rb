@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   before_create :set_default_avatar
   acts_as_authentic do |c|
     c.login_field :email
+    c.require_password_confirmation = false
   end
   
   belongs_to :neighborhood  
