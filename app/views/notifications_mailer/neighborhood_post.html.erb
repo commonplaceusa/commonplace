@@ -8,7 +8,7 @@
 
 <table id="Table_01" width="600" height="405" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF">
   <tr>
-    <td colspan="7" valign="top"><a href="http://westroxbury.ourcommonplace.com" target="_blank"><img src="http://westroxbury.ourcommonplace.com/images/westroxbury_notification_header.png" alt="CommonPlace West Roxbury" width="600" height="56" border="0" align="top"></a></td>
+    <td colspan="7" valign="top"><a href="http://<%= @post.user.community.slug %>.ourcommonplace.com" target="_blank"><img src="http://<%= @post.user.community.slug %>.ourcommonplace.com/images/<%= @post.user.community.slug %>_notification_header.png" alt="CommonPlace West Roxbury" width="600" height="56" border="0" align="top"></a></td>
   </tr>
   <tr>
     <td width="16" rowspan="16" bgcolor="#ffffff">&nbsp;</td>
@@ -20,7 +20,7 @@
           <a href="#"><font color="#b53f3c"><%= @post.user.full_name %></font></a> just posted a <%= @post.category.downcase %> to your neighborhood board on CommonPlace.</td>
   </tr>
   <tr>
-    <td height="12" colspan="5" bgcolor="#f5f5f5"><img src="http://westroxbury.ourcommonplace.com/images/notification_border.png" width="568" height="12"></td>
+    <td height="12" colspan="5" bgcolor="#f5f5f5"><img src="http://<%= @post.user.community.slug %>.ourcommonplace.com/images/notification_border.png" width="568" height="12"></td>
     </tr>
   <tr>
     <td width="12" rowspan="2" bgcolor="#f5f5f5">&nbsp;</td>
@@ -34,20 +34,20 @@
     </tr>
   <tr>
     <td valign="top" bgcolor="#f5f5f5">
-      <%= image_tag "westroxbury.ourcommonplace.com#{@post.user.avatar_url(:thumb)}", :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top" %>
+      <%= image_tag "#{@post.user.community.slug}.ourcommonplace.com#{@post.user.avatar_url(:thumb)}", :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top" %>
     </td>
   </tr>
   <tr>
     <td colspan="3" valign="top" bgcolor="#f5f5f5">&nbsp;</td>
     <td width="482" valign="top" bgcolor="#f5f5f5" align="left">
-        <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;"><a href="westroxbury.ourcommonplace.com/#/posts/<%= @post.id %>" style="text-decoration:none;"><font color="#FFEEEE">Reply to <%= @post.user.first_name %></font></a></div>
+        <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;"><a href="<%= @post.user.community.slug %>.ourcommonplace.com/#/posts/<%= @post.id %>" style="text-decoration:none;"><font color="#FFEEEE">Reply to <%= @post.user.first_name %></font></a></div>
         <div style="margin-top:10px;">
-        <span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#888888;"><a href="westroxbury.ourcommonplace.com/#/users/<%= @post.user.id %>/messages/new"><font color="#b53f3c">Send <%= @post.user.first_name %> a private message</font></a></span>
+        <span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#888888;"><a href="<%= @post.user.community.slug %>.ourcommonplace.com/#/users/<%= @post.user.id %>/messages/new"><font color="#b53f3c">Send <%= @post.user.first_name %> a private message</font></a></span>
         </div>
       </td>
     </tr>
   <tr>
-    <td height="12" colspan="5" bgcolor="#f5f5f5"><img src="westroxbury.ourcommonplace.com/images/notification_border.png" width="568" height="12"></td>
+    <td height="12" colspan="5" bgcolor="#f5f5f5"><img src="<%= @post.user.community.slug %>.ourcommonplace.com/images/notification_border.png" width="568" height="12"></td>
     </tr>
   <tr>
     <td height="40" colspan="5">&nbsp;</td>
@@ -57,7 +57,7 @@
         </td>
 </tr>
   <tr>
-    <td colspan="5" align="center" style="font-family:Arial, Helvetica, sans-serif;color:#bbbbbb;font-size:11px;">Want to disable this and/or other e-mails? Click <a href="westroxbury.ourcommonplace.com/management/edit"><font color="#b53f3c">here</font></a> to manage your subscriptions.</td>
+    <td colspan="5" align="center" style="font-family:Arial, Helvetica, sans-serif;color:#bbbbbb;font-size:11px;">Want to disable this and/or other e-mails? Click <a href="<%= @post.user.community.slug %>.ourcommonplace.com/management/edit"><font color="#b53f3c">here</font></a> to manage your subscriptions.</td>
     </tr>
   <tr>
     <td height="12" colspan="5">&nbsp;</td>
