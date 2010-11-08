@@ -156,7 +156,7 @@ function merge(html, context) {
   if (html) {
     $.each(html, function(selector, content) {
       if (content) {
-        $(selector).replaceWith(content);
+        $(selector).replaceWith(window.innerShiv(content, false));
       }
     });
   }
