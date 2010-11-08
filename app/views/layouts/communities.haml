@@ -33,7 +33,7 @@
           #main-navigation
             = yield :tooltip
             = render 'shared/zones'
-          = render 'users/info_box', :user => current_user
+          = render 'shared/information', :items => []
     = render 'shared/footer'
 
     - if content_for? :modal
