@@ -28,24 +28,26 @@
             = image_tag "#{current_community.slug}_signup.png", :alt => "Commonplace #{current_community.name}"
 
         #signup-container
-          #login
-            - form_for UserSession.new, :url => user_session_path do |f|
-              .field.email
-                %label Email
-                = f.text_field :email, :size => 20
-              .field.password
-                %label Password
-                = f.password_field :password, :size => 20
-                %p.forgot_password= link_to "forgot password?", new_password_reset_path, 'data-remote' => true
-              #submit_wrapper
-                = f.submit "Log in"
+          #login-container
+            #login
+              - form_for UserSession.new, :url => user_session_path do |f|
+                .field.email
+                  %label Email
+                  = f.text_field :email, :size => 20
+                .field.password
+                  %label Password
+                  = f.password_field :password, :size => 20
+                  %p.forgot_password= link_to "forgot password?", new_password_reset_path, 'data-remote' => true
+                #submit_wrapper
+                  = f.submit "Log in"
       
           #register
             %h3 Sign Up
             = render 'accounts/form', :user => User.new
     
-        #syndicate_container      
-          %h3#syndicate_title Welcome to West Roxbury's first community website.
+        #syndicate_container    
+          #syndicate_title_container
+            %h3#syndicate_title Welcome to West Roxbury's first community website.
           %ul.syndicate.items
             - @items.take(3).each do |item|
               %li.item= render item

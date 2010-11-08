@@ -47,18 +47,28 @@ body.signup
     width: 476px
     float: right
     
-    #login
-      padding: 10px 15px
-      color: white
-      +clearfix
-      p.forgot_password
-        margin-top: 5px
-        text-align: right
-        width: 100%
-        a
-          color: white
-          +sans
-          font-size: 0.7em
+    #login-container
+      margin: 45px 0
+      border: 1px solid #3b6085
+      background-color: #81a5c8
+      padding: 1px 1px 0 1px
+      +border-radius(5px)
+      +box-shadow(#aaa, 0, 2px, 2px, 0, false)
+      
+      #login
+        padding: 10px 15px
+        +border-radius(5px)
+        background-color: #497daf
+        color: white
+        +clearfix
+        p.forgot_password
+          margin-top: 5px
+          text-align: right
+          width: 100%
+          a
+            color: white
+            +sans
+            font-size: 0.7em
       form
         .field
           +inline-block
@@ -101,22 +111,26 @@ body.signup
             display: block
             padding: 3px 8px 4px
             +border-radius(5px)
-      +border-radius(5px)
-      margin: 45px 0
-      background-color: #497daf
+
     
   
   #syndicate_container
     float: left
     width: 476px
-    h3#syndicate_title
-      background-color: $cpRed
+    #syndicate_title_container
+      border: 1px solid $cpRed - #222
+      background-color: $cpRed + #222
+      padding: 1px 1px 0 1px
       +border-radius(5px)
-      padding: 12px
-      color: white
-      +sans
-      font-size: 0.9em
-      font-weight: bold
+      +box-shadow(#aaa, 0, 2px, 2px, 0, false)
+      margin-bottom: 5px
+      h3#syndicate_title
+        background-color: $cpRed
+        +border-radius(5px)
+        padding: 12px
+        color: white
+        +serif
+        font-size: 1em
     ul.items
       min-height: 0
       li.item
