@@ -12,10 +12,8 @@ class AccountsController < CommunitiesController
     authorize! :create, User
     @location = Location.new(params[:user].delete(:location))
     @neighborhood = current_community.neighborhoods.first
-    @user = @neighborhood.users.build(params[:user])
+    @user = @neighborhood.users.build(params[:user].merge(:location => @location))
     if @user.save
-      @location.locatable = @user
-      @location.save
       redirect_to edit_new_account_url
     else
       render :new
