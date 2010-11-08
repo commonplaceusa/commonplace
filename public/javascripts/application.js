@@ -65,7 +65,7 @@ $(document).ready(function() {
     prevText: '&laquo;',
     nextText: '&raquo;',
     showOtherMonths: true,
-    defaultDate: null, 
+    defaultDate: null
   });
   
   $('a[data-nohistory]').live('click', function(e) {
@@ -87,8 +87,7 @@ $(document).ready(function() {
                        function () { this.src = v })
             .animate({opacity: 1}, 500);
         });
-      },
-      
+      }
     });
   });
   $(window).trigger("resize.modal");

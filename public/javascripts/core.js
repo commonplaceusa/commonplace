@@ -169,7 +169,7 @@ function merge(html, context) {
     prevText: '&laquo;',
     nextText: '&raquo;',
     showOtherMonths: true,
-    defaultDate: null, 
+    defaultDate: null
   });
   
   $('#modules').sortable();
