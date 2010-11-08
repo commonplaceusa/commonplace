@@ -1,10 +1,10 @@
 - render :layout => 'shared/modal' do
 
-  - semantic_form_for @post, :url => first_posts_path, :html => { :class => "new_entity" } do |f|
+  - semantic_form_for @post, :url => first_posts_path, :html => { :class => "new_entity after_registration" } do |f|
     %hr.staple
   
     %h1 Write your first post to your neighbors
-    %p.hint This post will be posted to your neighborhood -- the 500 or so houses around you, which you can view #{link_to("here", root_url + "#" + neighborhood_people_path, :target => "_blank")}.
+    %p.subhead This post will be posted to your neighborhood -- the 500 or so houses around you, which you can view #{link_to("here", root_url + "#" + neighborhood_people_path, :target => "_blank")}.
     - f.inputs do
       = f.input :subject, :as => :hidden, :input_html => {:value => "#{current_user.name} just joined your neighborhood CommonPlace"}
       = f.input :body, :input_html => { :rows => 5, :cols => 21 }, :label => false
@@ -12,5 +12,5 @@
       
     - f.buttons do
       #submit_wrapper= f.commit_button "Submit your post"
-      %li.skip= link_to "skip", posts_path, 'data-remote' => true
+    = link_to "Skip this step; I'll post something later", posts_path, 'data-remote' => true, :class => "skip"
       

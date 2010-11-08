@@ -19,16 +19,34 @@
 
 - render :layout => 'shared/modal' do
   %hr.staple
-  %h1 Create your CommonPlace profile
-  %p.hint Before you begin using CommonPlace fill out some information below
+  %h1 Welcome to the West Roxbury CommonPlace!
+  %p.subhead Fill out your personal CommonPlace profile below.
 
-  - semantic_form_for @user, :url => update_new_account_path, :html => {:class => "new_entity"} do |f|
+  - semantic_form_for @user, :url => update_new_account_path, :html => {:class => "new_entity after_registration"} do |f|
       
-    - f.inputs do 
-      = f.input :about, :label => "About Me"
-      = f.input :interest_list
-      = f.input :good_list
-      = f.input :skill_list
+    - f.inputs do
+      %li
+        %label
+          %span.strong About Me
+          Tell your neighbors a little about yourself.
+        = f.text_area :about, :rows => 3
+      %li
+        %label
+          %span.strong Interest list
+          i.e. knitting, hiking ...
+        = f.text_field :interest_list
+      
+      %li
+        %label
+          %span.strong Good list
+          i.e. ladder, kitchen supplies ...
+        = f.text_field :good_list 
+        
+      %li
+        %label
+          %span.strong Skills list
+          i.e. computer help, carptentry ...
+        = f.text_field :skill_list
 
     - f.buttons do
       #submit_wrapper= f.commit_button "Continue"
