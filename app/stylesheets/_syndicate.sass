@@ -95,12 +95,17 @@
     background-color: white
     padding: 0px
     border: none
+    +border-bottom-radius(5px)
 
   .item
     background-color: white
     border-bottom: 1px solid #aaa
     padding: 0px
     overflow: hidden
+    &:last-child
+      +border-bottom-radius(5px)
+      a
+        +border-bottom-radius(5px)
     &:hover
       background-color: $listingHover
     

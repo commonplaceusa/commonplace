@@ -56,16 +56,5 @@
         = yield :modal
       - else
         #modal
-        
-    #footer_grad
-    %footer
-      .left_text
-        Find out more at #{ link_to "CommonPlaceUSA.com", "http://commonplaceusa.com" }
-      .right_text
-        = link_to "About", "http://commonplaceusa.com"
-        &sdot;
-        = link_to "Terms", terms_path, 'data-remote' => true
-        &sdot;
-        = link_to "Privacy Policy", privacy_path, 'data-remote' => true
     
-      
+    = render 'shared/footer'  

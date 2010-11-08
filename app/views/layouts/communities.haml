@@ -22,17 +22,19 @@
     = stylesheet_link_tag 'application'
   
   %body.application
-    #wrap
-      = render 'shared/header'
-      #main
-        #syndicate
-          = yield :syndicate_navigation
-          = yield :syndicate_items
+    #body_color
+      #wrap
+        = render 'shared/header'
+        #main
+          #syndicate
+            = yield :syndicate_navigation
+            = yield :syndicate_items
 
-        #main-navigation
-          = yield :tooltip
-          = render 'shared/zones'
-        = render 'shared/information', :items => []
+          #main-navigation
+            = yield :tooltip
+            = render 'shared/zones'
+          = render 'users/info_box', :user => current_user
+    = render 'shared/footer'
 
     - if content_for? :modal
       = yield :modal

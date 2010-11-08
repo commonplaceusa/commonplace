@@ -3,6 +3,10 @@ ul#wire > li
   margin-bottom: 10px
   background-color: white
   border: 1px solid #bbb
+  &:last-child
+    +border-bottom-radius(5px)
+    a
+      +border-bottom-radius(5px)
   +border-radius(7px)    
   .item_body
     +clearfix

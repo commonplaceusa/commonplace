@@ -1,8 +1,10 @@
+#footer_grad
 %footer
-  %span#footer_copy CommonPlace &copy; 2010
-  %span#nav 
-    = link_to 'About', about_url
-    &middot;
-    = link_to 'Terms', terms_url
-    &middot;
-    = link_to 'Privacy Policy', privacy_url
+  .left_text
+    Find out more at #{ link_to "CommonPlaceUSA.com", "http://commonplaceusa.com", :target => :blank }
+  .right_text
+    = link_to "About", "http://commonplaceusa.com", :target => :blank
+    &sdot;
+    = link_to "Terms", terms_path, 'data-remote' => true
+    &sdot;
+    = link_to "Privacy Policy", privacy_path, 'data-remote' => true
