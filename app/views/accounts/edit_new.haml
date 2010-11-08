@@ -33,20 +33,20 @@
       %li
         %label
           %span.strong Interest list
-          i.e. knitting, hiking ...
+          This will help CommonPlace highlight community information that you care about. Ex. Cooking, Sports, Family
         = f.text_field :interest_list
-      
-      %li
-        %label
-          %span.strong Good list
-          i.e. ladder, kitchen supplies ...
-        = f.text_field :good_list 
         
       %li
         %label
           %span.strong Skills list
-          i.e. computer help, carptentry ...
+          List some skills that you want to share with your neighbors. Ex. Teach Piano, Computer Help, etc.
         = f.text_field :skill_list
+      
+      %li
+        %label
+          %span.strong Good list
+          List some goods that you want to share with your neighbors. Ex. Lawnmower, Ladder, etc.
+        = f.text_field :good_list
 
     - f.buttons do
       #submit_wrapper= f.commit_button "Continue"

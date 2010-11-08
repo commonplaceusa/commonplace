@@ -3,12 +3,14 @@
   - semantic_form_for @post, :url => first_posts_path, :html => { :class => "new_entity after_registration" } do |f|
     %hr.staple
   
-    %h1 Write your first post to your neighbors
-    %p.subhead This post will be posted to your neighborhood -- the 500 or so houses around you, which you can view #{link_to("here", root_url + "#" + neighborhood_people_path, :target => "_blank")}.
+    %h1 Write Your First Neighborhood Post
+    %p.subhead Take a moment to introduce yourself to your neighbors!
+
+    %p.subhead Neighborhood posts are sent out to all of your neighbors (the 500 or so houses around you).  Need to borrow a ladder? Post a request to CommonPlace and find one nearby.  Offering up piano lessons? Post an offer to CommonPlace to find a student right next door. Having a yard sale or an open house? Post an invitation to CommonPlace and all of your neighbors will know when and where it is. Saw a pothole, lost a cat, witnessed a crime? Post an announcement to CommonPlace to immediately inform your neighbors.
     - f.inputs do
       = f.input :subject, :as => :hidden, :input_html => {:value => "#{current_user.name} just joined your neighborhood CommonPlace"}
       = f.input :body, :input_html => { :rows => 5, :cols => 21 }, :label => false
-      = f.input :category, :as => :hidden, :input_html => { :value => "Announcement" }
+      = f.input :category, :as => :radio, :collection => Post::CATEGORIES,  :input_html => { :value => "Announcement" }
       
     - f.buttons do
       #submit_wrapper= f.commit_button "Submit your post"
