@@ -1,7 +1,7 @@
 class SubscriptionsController < CommunitiesController
 
   def index
-    @items = current_user.feeds
+    @items = current_community.feeds
   end
 
   def recommended
