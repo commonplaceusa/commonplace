@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   def wire
     new_record? ?
     (community.announcements + community.events).sort_by(&:created_at).reverse :
-    (subscribed_announcements + feeds.map(&:events).flatten + neighborhood.posts).sort_by(&:created_at).reverse
+    (subscribed_announcements + community.events + neighborhood.posts).sort_by(&:created_at).reverse
   end
 
   def role_symbols
