@@ -17,6 +17,6 @@ class Community < ActiveRecord::Base
   end
 
   def events
-    (users.map(&:direct_events) + feeds.map(&:events)).flatten.sort_by(&:created_at).reverse
+    (users.map{|u|u.direct_events} + feeds.map{|f|f.events.upcoming}).flatten.sort_by(&:start_datetime)
   end
 end

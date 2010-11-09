@@ -69,11 +69,15 @@ class User < ActiveRecord::Base
   end
   
   def wire
-    new_record? ?
-    (community.announcements + community.events).sort_by(&:created_at).reverse :
-    (subscribed_announcements + community.events + neighborhood.posts).sort_by(&:created_at).reverse
+    if new_record?
+      community.announcements + community.events
+    else
+      subscribed_announcements + community.events + neighborhood.posts
+    end.sort_by do |item|
+      ((item.is_a?(Event) ? item.start_datetime : item.created_at) - Time.now).abs
+    end
   end
-
+  
   def role_symbols
     if new_record?
       [:guest]
