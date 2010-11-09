@@ -40,11 +40,7 @@ class AccountsController < CommunitiesController
       crop_avatar = true
     end
     if current_user.update_attributes(params[:user])
-      if crop_avatar
-        redirect_to edit_avatar_account_path
-      else
-        redirect_to new_first_post_path
-      end
+      redirect_to new_first_post_path
     else
       render :edit
     end
