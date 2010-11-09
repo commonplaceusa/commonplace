@@ -2,8 +2,6 @@ class PostsController < CommunitiesController
   helper_method :post
 
   load_and_authorize_resource
-  
-  caches_action :show
 
   def index
     @items = current_user.neighborhood.posts.sort_by(&:created_at).reverse
