@@ -31,7 +31,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
   validates_acceptance_of :privacy_policy
-  validates_confirmation_of :email
+  validates_confirmation_of :email, :on => :create
+  validates_confirmation_of :password, :on => :update
   validates_presence_of :location
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests
