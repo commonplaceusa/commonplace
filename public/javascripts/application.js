@@ -67,12 +67,6 @@ $(document).ready(function() {
   });
   
   $(".tabs").tabs();
-  
-  $('body').click(function(e) {
-    if (e.pageX < (($('body').width() - $('#wrap').width()) / 2)) {
-      $('#filters .selected_nav').click();
-    }
-  });
 
   $('input.date').datepicker({
     prevText: '&laquo;',
