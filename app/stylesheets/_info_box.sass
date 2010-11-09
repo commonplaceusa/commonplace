@@ -1,10 +1,8 @@
 #information.info_box
+  background-color: white
   +border-radius($defaultRadius)
   #info_box_main  
-    +border-radius($defaultRadius)
-    border: 1px solid #aaa
     background-color: white
-    margin: 0 10px 10px 10px
     padding: 12px
     line-height: 120%
     color: black
@@ -117,7 +115,8 @@
   +sans
   font-weight: bold
   padding: 6px
-
+  +border-top-radius($defaultRadius)
+  background-color: #efefef
 .preview
   #follow_link
     margin-top: 10px
