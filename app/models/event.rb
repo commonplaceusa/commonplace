@@ -32,8 +32,8 @@ class Event < ActiveRecord::Base
     date.strftime("%b %d") 
   end
   
-  def time_until
-    (date - Date.now)
+  def start_datetime
+    date.to_time + start_time.hour.hours + start_time.min.minutes
   end
   
   def subject
