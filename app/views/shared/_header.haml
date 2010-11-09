@@ -7,5 +7,6 @@
     %nav
       = tab_to "Home", "/"
       = tab_to "Manage Profile", management_url
-      = tab_to "Create a Feed", new_feed_path, 'data-remote' => true
+      %span{ :class => "disabled_link" } Create a Feed
+      -# = tab_to "Create a Feed", new_feed_path, 'data-remote' => true
       = tab_to "Log Out", "/user_session", :method => :delete
