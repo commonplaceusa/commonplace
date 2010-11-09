@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :location
 
-  named_scope :upcoming, :conditions => ["? < date", Time.now]
+  named_scope :upcoming, :conditions => ["? <= date", Time.now]
   named_scope :past, :conditions => ["date < ?", Time.now]
 
   def search(term)
