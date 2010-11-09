@@ -1,6 +1,12 @@
 - render :layout => 'shared/modal' do
 
-  - form_for @avatar, :id => "crop_avatar_form", :url => update_avatar_account_path do |f|
+  - form_for @avatar, :html => { :id => "crop_avatar_form", :class => "new_entity" }, :url => update_avatar_account_path do |f|
+    %hr.staple
+    
+    %h1 Add your profile picture
+    
+    %p.subhead Upload and crop a profile picture.
+    
     = image_tag @avatar.image.url(:original), :id => 'avatar_to_crop'
   
     = f.hidden_field :x 
@@ -8,7 +14,10 @@
     = f.hidden_field :w
     = f.hidden_field :h
   
-    = f.submit "Crop"
+    %fieldset
+      %ol
+        #submit_wrapper
+          %li= f.submit "Crop"
 
 = render 'shared/items', :items => @items
 

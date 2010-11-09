@@ -10,10 +10,11 @@
       = f.input :email
       = f.input :password, :input_html => {:autocomplete => "off"}
     = f.inputs :street_address, :zip_code, :for => current_user.location
-    - f.inputs :name => "Email Options" do
-      = f.input :receive_posts, :as => :boolean
-      = f.input :receive_events_and_announcements, :as => :boolean
-      = f.input :receive_digests, :as => :boolean
+    %h3.management_field Edit your email notification settings
+    - f.inputs do
+      = f.input :receive_posts, :label => 'Get emails about new neighborhood posts', :as => :boolean
+      = f.input :receive_events_and_announcements, :label => 'Get emails about new events and announcements', :as => :boolean
+      = f.input :receive_digests, :label => 'Receive a weekly email digest', :as => :boolean
       
 
     - f.buttons do
