@@ -57,8 +57,6 @@ ActionController::Routing::Routes.draw do |map|
     
     map.resource :inbox
     map.resources :platform_updates
-    map.resources :conversations
-    
     map.resource :user_session
     map.resources :password_resets
     
@@ -77,7 +75,7 @@ ActionController::Routing::Routes.draw do |map|
         feed.resources :events, :controller => 'feeds/events'
         feed.resources :profile_fields, :controller => 'feeds/profile_fields', :collection => {:order => :post}
       end
-      man.resources :events, :member => [:conversation, :replies, :outreach]
+      man.resources :events, :member => [:replies, :outreach]
       man.resources :invites
       man.resources :email_invites
     end

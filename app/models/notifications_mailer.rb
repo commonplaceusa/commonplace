@@ -25,6 +25,13 @@ class NotificationsMailer < ActionMailer::Base
     from "neighborhood-posts@commonplaceusa.com"
     body :post => post
   end
+  
+  def user_message(user, message)
+    recipients user.email
+    from "messages@commonplaceusa.com"
+    subject "#{message.user.name} just sent you a message on CommonPlace"
+    body :message => message
+  end
 
   def feed_event(feed, event)
     recipients RECIPIENT

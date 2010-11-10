@@ -18,12 +18,12 @@ class User < ActiveRecord::Base
 
   has_many :referrals, :foreign_key => "referee_id"
   
-  has_many :messages
+  has_many :messages, :foreign_key => "recipient_id"
   has_many :mets, :foreign_key => "requester_id"
   
   has_many :people, :through => :mets, :source => "requestee"
   
-  has_many :notifications
+  has_many :notifications, :as => :notified
 
   has_one :location, :as => :locatable
 

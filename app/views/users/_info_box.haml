@@ -7,7 +7,7 @@
         = image_tag user.avatar_url(:normal), :class => 'graphic'
         -# - unless current_user.people.exists?(user)
         -#   = button_to "Have you met?", user_met_path(user), :id => "follow_link", :class => "link_button"
-        -# = link_to "Message #{ user.first_name }", new_user_message_path(user), :id => "message_me", :class => "link_button", 'data-remote' => true
+        = link_to "Message #{ user.first_name }", new_user_message_path(user), :id => "message_me", :class => "link_button", 'data-remote' => true
       .body
         %h3= user.full_name
         %p.user_about= auto_link user.about, :all, :target => '_blank'

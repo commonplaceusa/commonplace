@@ -15,9 +15,6 @@ class Management::EventsController < ManagementController
     end
   end
 
-  def conversation
-  end
-
   def replies
     @reply = @event.replies.new(params[:reply].merge(:user => current_user))
     @reply.official = true

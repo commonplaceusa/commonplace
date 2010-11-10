@@ -3,8 +3,6 @@
   - semantic_form_for [parent,@message], :html => { :class => "new_entity" } do |f|
     %hr.staple
     %h1 Send a message to #{parent.name}
-    = f.inputs :subject, :for => :conversation
-    = f.inputs :body
-
+    = f.inputs :subject, :body
     - f.buttons do
       #submit_wrapper= f.commit_button "Send"

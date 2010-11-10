@@ -57,19 +57,10 @@ end
   
 Factory.define :message do |f|
   f.association :user
-  f.association :conversation
+  f.association :recipient, :factory => :user
+  f.subject { Forgery(:lorem_ipsum).words(2) }
   f.body { Forgery(:lorem_ipsum).sentence }
 end
-
-Factory.define :conversation do |f|
-  f.subject { Forgery(:lorem_ipsum).words(2) }
-end
-
-Factory.define :conversation_membership do |f|
-  f.association :conversation
-  f.association :user
-end
-
 
 Factory.define :referral do |f|
   f.association :event

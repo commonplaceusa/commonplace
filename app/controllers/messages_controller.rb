@@ -3,12 +3,13 @@ class MessagesController < CommunitiesController
 
   def new
     @user = parent
-    @message = Message.new(:conversation => Conversation.new)
+    @message = Message.new
   end
 
   def create
-    @message = parent.messages.build(params[:message])
+    @message = parent.messages.build(params[:message].merge(:user => current_user))
     if @message.save
+      parent.notifications.create(:notifiable => @message)
       flash.now[:message] = "Message sent to #{parent.name}"
     else
       render :new
