@@ -16,7 +16,7 @@ class NotificationsMailer < ActionMailer::Base
   
   def neighborhood_post(neighborhood, post)
     recipients RECIPIENT
-    users = neighborhood.users.reject{|u| u == post.user}
+    users = neighborhood.users.reject{|u| u == post.user}.select(&:receive_posts)
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
