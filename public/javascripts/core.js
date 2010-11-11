@@ -29,7 +29,15 @@ $(function() {
   $('a[data-remote]').live('click', function(e) {
     $.sammy("body").setLocation($(this).attr('href'));
     $.sammy("body").runRoute($(this).attr('data-method') || "get", $(this).attr('href'), {}, this);
-    e.preventDefault()
+  });
+
+  $('div[data-href]').live('click', function(e) {
+    $.sammy("body").setLocation($(this).attr('data-href'));
+    $.sammy("body").runRoute($(this).attr('data-method') || "get", $(this).attr('data-href'), {}, this);
+  });
+
+  $('div[data-href] a').live('click', function(e) {
+    e.stopPropagation();
   });
 
   $('textarea').autoResize({animateDuration: 0, extraSpace: 20, animate: false});

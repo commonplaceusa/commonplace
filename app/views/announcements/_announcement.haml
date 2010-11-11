@@ -1,7 +1,7 @@
-- link_to announcement, :class => 'announcement', 'data-remote' => true do
+%div{'data-href' => announcement_path(announcement), :class => "announcement tooltip", 'data-tooltip' => 'Click to see replies to this announcement and more about the author.'}
   = image_tag announcement.owner.avatar_url(:thumb), :class => 'avatar'
   %time= announcement.time
   .reply-count #{ announcement.replies.size } replies
   .title= announcement.subject
   .author= announcement.owner.name
-  %p.body= announcement.body #truncate announcement.body, :length => 160
+  %p.body= auto_link announcement.body, :all, :target => "_blank" #truncate announcement.body, :length => 160

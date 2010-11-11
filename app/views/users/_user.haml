@@ -1,4 +1,3 @@
-
-- link_to user, :class => 'user', 'data-remote' => true do
+%div{'data-href' => user_path(user), :class => "user tooltip", 'data-tooltip' => 'Click to see more information about your neighbor'}
   = image_tag user.avatar_url(:thumb), :class => "avatar"
   .title= user.name

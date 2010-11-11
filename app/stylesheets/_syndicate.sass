@@ -106,12 +106,12 @@
     &:last-child
       border-bottom: none
       +border-bottom-radius(5px)
-      a
+      > .user, > .post, > .event, > .announcement, > .feed
         +border-bottom-radius(5px)
     &:hover
       background-color: $listingHover
     
-    > a
+    > .user, > .post, > .event, > .announcement, > .feed
       text-decoration: none
       +border-radius(5px)
       padding: 12px 10px
@@ -129,6 +129,8 @@
         color: $titleColor
         font-size: 18px
         margin-bottom: 3px
+        display: block
+        text-decoration: none
         +serif
       .author
         font-size: 11px

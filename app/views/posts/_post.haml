@@ -1,7 +1,7 @@
-- link_to post, :class => 'post tooltip', 'data-tooltip' => 'Click to see replies to this post and more about the author.', 'data-remote' => true do
+%div{'data-href' => post_path(post), :class => "post tooltip", 'data-tooltip' => 'Click to see replies to this post and more about the author.'}
   = image_tag post.owner.avatar_url(:thumb), :class => "avatar"
   %time= post.time
   .reply-count #{ post.replies.size } replies
-  .title= post.subject
+  = link_to post.subject, post, 'data-remote' => true, :class => "title"
   .author= post.owner.name
-  %p.body= post.body # truncate post.body, :length => 160
+  %p.body= auto_link post.body, :all, :target => "_blank" # truncate post.body, :length => 160

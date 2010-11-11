@@ -1,4 +1,4 @@
-- link_to event, :class => 'event', 'data-remote' => true do
+%div{'data-href' => event_path(event), :class => "event tooltip", 'data-tooltip' => 'Click to see replies to this event.'}
   .small_calendar.avatar= render 'events/calendar', :event => event
   %time= event_date event.start_datetime
   .reply-count #{event.replies.size} replies
