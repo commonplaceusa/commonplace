@@ -1,7 +1,7 @@
 class SubscriptionsController < CommunitiesController
 
   def index
-    @items = current_community.feeds
+    @items = current_community.feeds.all(:order => "name ASC")
   end
 
   def recommended
