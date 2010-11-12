@@ -33,6 +33,13 @@ class NotificationsMailer < ActionMailer::Base
     body :message => message
   end
 
+  def post_reply(post, reply)
+    recipients post.user.email
+    from "replies@commonplaceusa.com"
+    subject "#{reply.user.name} just replied to your post on CommonPlace"
+    body :reply => reply, :post => post, :user => post.user
+  end
+
   def feed_event(feed, event)
     recipients RECIPIENT
     users = feed.subscribers
