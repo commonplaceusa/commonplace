@@ -17,7 +17,7 @@
     </tr>
   <tr>
     <td colspan="5" valign="top"  style="color:#656565;height:40px;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;line-height:20px;padding-bottom:25px;"> <div style="margin-bottom:10px;"><name>,</div>    
-          <a href="#"><font color="#b53f3c"><%= @post.user.full_name %></font></a> just posted a <%= @post.category.downcase %> to your neighborhood board on CommonPlace.</td>
+          <a href="#"><font color="#b53f3c"><%= @post.user.full_name %></font></a> just posted <%= with_article(@post.category.downcase) %> to your neighborhood board on CommonPlace.</td>
   </tr>
   <tr>
     <td height="12" colspan="5" bgcolor="#f5f5f5"><img src="http://<%= @post.user.community.slug %>.ourcommonplace.com/images/notification_border.png" width="568" height="12"></td>

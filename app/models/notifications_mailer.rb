@@ -1,7 +1,7 @@
 require 'smtp_api_header.rb'
 
 class NotificationsMailer < ActionMailer::Base
-
+  helper :text
   @queue = :notifications_mailer
   RECIPIENT = "sengrid@example.com"
   def self.perform(notified_type, notifiable_type, 

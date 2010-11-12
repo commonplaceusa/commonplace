@@ -1,5 +1,9 @@
 module TextHelper
-  
+
+  def vowel?(char)
+    !!char.match(/[aeiou]/i)
+  end
+    
   def reply_count(item)
     if item.replies.length == 0
       "no replies yet"
@@ -8,4 +12,7 @@ module TextHelper
     end
   end
   
+  def with_article(noun)
+    [vowel?(noun.slice(0,1)) ? 'an' : 'a', noun].join(" ")
+  end
 end
