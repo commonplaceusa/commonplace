@@ -23,7 +23,7 @@ $.sammy("body")
   .del("/events/:id/attendance")
 
   .get("/avatars/:id/edit")
-  .put("/avatars/:id")
+ //.put("/avatars/:id")
 
   .get("/organizations/:organization_id/claim/new")
   .post("/organizations/:organization_id/claim")
