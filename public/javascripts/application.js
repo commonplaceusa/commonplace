@@ -53,6 +53,10 @@ $(document).ready(function() {
                           'autoHeight': false
                          });
 
+  $('form').live('submit',function(e) {
+    $('input[type=submit]',$(this)).replaceWith('<img src="/images/waiting.gif">');
+  });
+
   $("#avatar_to_crop").load(function() {
     $(window).trigger('resize.modal');
     $('#avatar_to_crop').Jcrop({

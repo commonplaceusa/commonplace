@@ -29,6 +29,7 @@ $(function() {
   $('a[data-remote]').live('click', function(e) {
     $.sammy("body").setLocation($(this).attr('href'));
     $.sammy("body").runRoute($(this).attr('data-method') || "get", $(this).attr('href'), {}, this);
+    e.preventDefault();
   });
 
   $('div[data-href]').live('click', function(e) {
