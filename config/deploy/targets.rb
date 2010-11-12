@@ -18,7 +18,7 @@ task :staging do
   set :web_server, :nginx
   set :domain, "staging.commonplace.co"
   set :web_port, "80"
-  set :rails_env, "production"
+  set :rails_env, "staging"
   set :branch, "origin/master"
   set :deploy_to, "/home/#{user}/staging"
 end

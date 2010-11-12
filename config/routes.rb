@@ -5,7 +5,10 @@ ActionController::Routing::Routes.draw do |map|
     
     admin.resources :addresses, :controller => "administration/addresses"
     admin.resources :feeds, :controller => "administration/feeds"
-    admin.resources :deliveries
+  end
+
+  if RAILS_ENV != 'production'
+    map.resources :deliveries
   end
   
   map.with_options :conditions => { :subdomain => /[A-Za-z]+/ }, :shallow => true do |community|
