@@ -4,4 +4,4 @@
   .reply-count #{event.replies.size} replies
   .title= event.subject
   .author= event.owner.name
-  %p.body= event.body #truncate event.body, :length => 160
+  .body= markdown event.body

@@ -15,4 +15,8 @@ module TextHelper
   def with_article(noun)
     [vowel?(noun.slice(0,1)) ? 'an' : 'a', noun].join(" ")
   end
+
+  def markdown(text)
+    RedCloth.new(text).to_html
+  end
 end
