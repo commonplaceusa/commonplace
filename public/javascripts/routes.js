@@ -15,8 +15,8 @@ $.sammy("body")
   .get("/subscriptions")
   .get("/subscriptions/recommended")
 
-  .before(/\/announcements\/\d+/, function() {
-    accordionReplies($(this.target).siblings(".replies"));
+  .before(/\/announcements\/(\d+)/, function(c) {
+    accordionItem($(".item" + ".announcement_" + c.params.id));
   })
 
   .post("/events/:id/attendance")
@@ -36,8 +36,8 @@ $.sammy("body")
   .get("/events/new")
   .get("/events/:id")
 
-  .before(/\/events\/\d+/, function() {
-    accordionReplies($(this.target).siblings(".replies"));
+  .before(/\/events\/(\d+)/, function(c) {
+    accordionItem($(".item" + ".events_" + c.params.id));
   })
 
   .get("/feeds")
@@ -84,8 +84,8 @@ $.sammy("body")
 
   .get("/posts/:id")
   
-  .before(/\/posts\/\d+/, function() {
-    accordionReplies($(this.target).siblings(".replies"));
+  .before(/\/posts\/(\d+)/, function(c) {
+    accordionItem($(".item" + ".post_" + c.params.id));
   })
 
 

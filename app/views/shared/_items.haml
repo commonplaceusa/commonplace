@@ -1,7 +1,7 @@
 - content_for :syndicate_items do 
   %ul.items
     - items.each do |item|
-      %li.item{ :class => "#{cycle('odd', 'even')} #{item.class.to_s.downcase}" }
+      %li.item{ :class => "#{cycle('odd', 'even')} #{dom_class(item)} #{dom_id(item)}" }
         - if @render_args
           = render *@render_args.call(item)
         - else

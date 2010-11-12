@@ -17,6 +17,7 @@ Sammy.CPLocationProxy.prototype = {
 }
 
 $(function() {
+  $('.item .body').truncate({max_length: 160});
   jQuery.extend({
     put: function(url, data, callback, type) {
       return _ajax_request(url, data, callback, type, 'PUT');
@@ -38,6 +39,11 @@ $(function() {
   });
 
   $('div[data-href] a').live('click', function(e) {
+    if ($(this).attr('data-remote')) {
+      $.sammy("body").setLocation($(this).attr('href'));
+      $.sammy("body").runRoute($(this).attr('data-method') || "get", $(this).attr('href'), {}, this);
+      e.preventDefault();
+    }
     e.stopPropagation();
   });
 
@@ -170,6 +176,7 @@ function merge(html, context) {
       }
     });
   }
+  $('.item .body').truncate({max_length: 160});
   $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   showTooltips();
   $('#tooltip').html($('#tooltip').attr('title'));
@@ -203,7 +210,11 @@ function currentIndex(path) {
   return path.replace(/\/[^\/]*$/,"");
 }
 
-function accordionReplies($replies) {
+function accordionItem($item) {
+  var $replies = $item.children(".replies"),
+      $body = $item.find(".body");
   $("#syndicate .replies").not($replies.get(0)).slideUp();
+  $("#syndicate .body").not($body.get(0)).truncate('truncate');
   $replies.slideDown();
+  $body.truncate('untruncate');
 }
