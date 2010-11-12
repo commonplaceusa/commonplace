@@ -23,10 +23,15 @@ Factory.define :user do |f|
   f.email {|u| "#{u.first_name}.#{u.last_name}@example.com".downcase }
   f.password { Forgery(:basic).password }
   f.password_confirmation {|u| u.password }
-  f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
+  f.association :location
   f.about { Forgery(:lorem_ipsum).paragraphs(1) }
   f.association :avatar
   f.association :neighborhood
+end
+
+Factory.define :location do |f|
+  f.street_address "420 Baker St."
+  f.zip_code "02132"
 end
 
 Factory.define :post do |f|
@@ -40,7 +45,6 @@ Factory.define :event do |f|
   f.date { Time.now + rand(6).week }
   f.start_time { Time.parse("#{rand(24)}:#{rand(60)}") }
   f.association :feed
-  f.address { "#{Forgery(:address).street_address}, #{Forgery(:address).city}, #{Forgery(:address).state}" }
 end
 
 Factory.define :announcement do |f|
