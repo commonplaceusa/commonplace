@@ -12,7 +12,7 @@ Sammy.CPLocationProxy.prototype = {
   },
   setLocation: function(new_location) {
     this._last_location = this.getLocation();
-    if (_gaq) {
+    if (window._gaq) {
       _gaq.push(['_trackPageview', location.pathname + location.hash]);
     }
     return (window.location = "#" + new_location);
