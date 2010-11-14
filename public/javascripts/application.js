@@ -52,10 +52,10 @@ $(document).ready(function() {
                           'collapsible': true, 
                           'autoHeight': false
                          });
-
-  $('form').live('submit',function(e) {
-    $('input[type=submit]',$(this)).replaceWith('<img src="/images/waiting.gif">');
-  });
+// Wait until we have a decent looking waiting gif
+//  $('form').live('submit',function(e) {
+//    $('input[type=submit]',$(this)).replaceWith('<img src="/images/waiting.gif">');
+//  });
 
   $("#avatar_to_crop").load(function() {
     $(window).trigger('resize.modal');
