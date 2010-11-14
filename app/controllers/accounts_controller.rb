@@ -11,8 +11,12 @@ class AccountsController < CommunitiesController
     params[:user][:privacy_policy] = params[:user][:privacy_policy].last if params[:user][:privacy_policy].is_a?(Array)
     authorize! :create, User
     @location = Location.new(params[:user].delete(:location))
+    @location.update_lat_and_lng
     @avatar = Avatar.new
-    @neighborhood = current_community.neighborhoods.first
+    @neighborhood = current_community.neighborhoods.to_a.
+      find(lambda{current_community.neighborhoods.first}) do |n|
+      @location.within?(n.bounds) if n.bounds
+    end
     @user = @neighborhood.users.build(params[:user].merge(:location => @location, :avatar => @avatar))
     if @user.save
       redirect_to edit_new_account_url
