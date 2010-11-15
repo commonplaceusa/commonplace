@@ -1,152 +1,151 @@
 body.signup
   background-color: #efefef
   
-
+  #wrap.signup
+    width: 940px
+  
+  #top_content
+    +clearfix
+    
   header
-    float: left
-    width: 476px
     a
       display: block
-      padding: 54px 15px 55px
+      padding: 54px 0 46px
       img
-        width: 448px
-        height: 47px
+        width: 467px
+        height: 42px
       
   
   #signup-container
-    width: 476px
+    width: 415px
     float: right
-    
+    margin-top: 46px
+    +clearfix
     form
       .field
         +inline-block
-        width: 170px
-        margin-right: 10px
-        vertical-align: top
-        label
-          +sans
-          float: left
-          margin: 5px 0
-          margin-right: 10px
-          font-weight: bold
-          font-size: 0.7em
-          line-height: 13px
-          +text-shadow(rgba(0, 0, 0, 0.1))
-        input
-          +border-radius(5px)
-          width: 165px
-          outline: none
-          padding: 5px
-          margin: 0
-          border: 1px solid #777
-          +serif
-          font-size: 1em
+        width: 160px
+        margin-right: 15px
+        vertical-align: top          
         &.submit
           margin: auto
           width: auto
-        .formError
-          +sans
-          margin-top: 5px
-          color: $cpRed
-          font-weight: bold
-          font-size: 0.8em
-          
-      
-        #submit_wrapper
-          margin-top: 23px  
-          +inline-block
-          vertical-align: top
-          +box-shadow( rgba(0, 0, 0, 0.2), 0, 2px, 2px, 0, false)
-          +sans
-          background-color: $cpRed
-          border: 1px solid $cpDarkRed - #111
-          +border-radius(5px)
-          input[type=submit]
-            width: auto
-            +sans
-            font-size: 0.8em
-            font-weight: bold
-            background-color: transparent
-            margin: 0
-            color: white
-            +text-shadow($cpDarkRed, 2px, 1px, 1px)
-            cursor: pointer
-            border: 1px solid $cpRed + #222
-              bottom: 1px solid $cpDarkRed
-            display: block
-            padding: 3px 8px 4px
-            +border-radius(5px)
-      
-    
-    
-    #login-container
-      margin: 30px 0
-      border: 1px solid #3b6085
-      background-color: #81a5c8
-      padding: 1px 1px 0 1px
-      +border-radius(5px)
-      +box-shadow(#aaa, 0, 2px, 2px, 0, false)
-      width: 466px
-      
-      #login
-        padding: 10px 15px
+      label
+        +sans
+        float: left
+        margin: 5px 0 3px
+        margin-right: 10px
+        font-weight: bold
+        font-size: 0.7em
+        line-height: 13px
+      input
         +border-radius(5px)
-        background-color: #497daf
-        color: white
-        +clearfix
-        p.forgot_password
-          margin-top: 5px
-          text-align: right
-          width: 100%
-          a
-            color: rgba(255, 255, 255, 0.9)
-            +sans
-            font-size: 0.7em
-            text-decoration: none
-            &:hover
-              text-decoration: underline
+        width: 155px
+        outline: none
+        padding: 5px
+        margin: 0
+        border: 1px solid #ddd
+        +serif
+        &[type=text], &[type=password]
+          color: #444
+          +box-shadow(#ccc, 2px, 2px, 4px, 0, inset)
+          padding: 8px 10px
+      .formError
+        +sans
+        margin-top: 5px
+        color: $cpRed
+        font-weight: bold
+        font-size: 0.8em
+      #submit_wrapper
+        margin-top: 7px  
+        +inline-block
+        vertical-align: top
+        +box-shadow( rgba(0, 0, 0, 0.2), 0, 2px, 2px, 0, false)
+        +sans
+        background-color: $cpRed
+        border: 1px solid $cpDarkRed - #111
+        +border-radius(5px)
+        input[type=submit]
+          width: auto
+          +sans
+          font-weight: bold
+          font-size: 0.6em
+          background-color: transparent
+          margin: 0
+          color: white
+          +text-shadow(rgba(0, 0, 0, 0.5), 2px, 1px, 1px)
+          cursor: pointer
+          border: 1px solid $cpRed + #222
+            bottom: 1px solid $cpDarkRed
+          display: block
+          padding: 3px 8px 4px
+          +border-radius(5px)
+      
+      
+    #login
+      margin-bottom: 25px
+      +border-radius(5px)
+      color: #aaa
+      +clearfix
+      form
+        input[type=text], input[type=password]
+          padding: 5px 7px
+          font-size: 0.9em
+          +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+      #submit_wrapper
+        margin-top: 21px
+      p.forgot_password
+        margin-top: 5px
+        text-align: right
+        width: 100%
+        a
+          color: #aaa
+          +sans
+          font-size: 0.7em
+          text-decoration: none
+          &:hover
+            text-decoration: underline
 
     #register
-      border: 1px solid #ccc
-      padding: 1px
-      margin:
-        bottom: 5px
-        right: 5px
-      +border-radius(5px)
-      +box-shadow(#ccc, 0, 2px, 2px, 0, false)
-      background-color: white
       h3
-        +border-top-radius(5px)
-        background-color: #efefef
-        padding: 1em
-        color: #3B6085
+        color: #3B6085 + #222
         +serif
-        font-size: 1.1em
-        text-align: center
+        font-size: 1.4em
+        line-height: 120%
+        margin-bottom: 10px
       form#new_user
-        padding: 0.5em 1em 1em 1em
         width: auto
         .field
           margin: 6px 0 0 0 
           width: 215px
-          input
-            width: 200px
           &.long
-            width: 430px
+            width: auto
             input
-              width: 420px
+              width: 390px
+              font-size: 1.1em
           &.submit
             width: auto
-            margin-left: 10px
+            margin-left: 92px
+            #submit_wrapper
+              input
+                padding: 10px 13px
+                font-size: 0.9em
           &.check_box
-            margin-top: 10px
+            width: auto
+            margin-top: 22px
             label
-              font-size: 0.8em
+              +serif
+              color: #333
+              font-size: 14px
+              font-weight: normal
               display: block
               width: 100%
               input
+                margin-top: 2px
                 float: left
-                width: 25px
+                width: 21px
+              a
+                color: $cpRed - #111
           label
             +text-shadow(none)
             color: #3B6085
@@ -154,14 +153,54 @@ body.signup
           a
             color: #3B6085
       
-  
-  #syndicate_container
-    float: left
-    width: 476px
-    border: 1px solid #ccc
-    margin:
+  #slideshow
+    width: 462px
+    border: 1px solid $cpRed - #222
+    +box-shadow(#aaa, 0px, 3px, 3px, 0px)
+    +border-radius(5px)
+    position: relative
+    ol
+      border: 1px solid $cpRed + #222
+      border-bottom-color: $cpRed - #111
+      background-color: $cpRed
+      padding: 5px
+      +border-radius(5px)
+    .slide
+      +border-radius(3px)
+      width: 450px
+      height: 300px
+      background-image: url('/images/intro_slideshow/neighborhood1.jpg')
+    .overlay
+      +border-bottom-radius(3px)
+      position: absolute
       bottom: 5px
       right: 5px
+      left: 5px
+      background-color: rgba(0, 0, 0, 0.8)
+      color: rgba(255, 255, 255, 0.9)
+      padding: 1em
+      h4
+        +sans
+        font-weight: bold
+        font-size: 1em
+        margin-bottom: 5px
+      p
+        +serif
+        font-size: 0.9em
+        line-height: 130%
+      .navigation
+        float: right
+        font-weight: bold
+        color: rgba(255, 255, 255, 0.8)
+        +sans
+        font-size: 0.7em
+        .prev
+          margin-right: 10px
+    
+  
+  #site_preview
+    border: 1px solid #ccc
+    margin-top: 1em
     +border-radius(5px)
     +box-shadow(#ccc, 0, 2px, 2px, 0, false)
     h3#syndicate_title

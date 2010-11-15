@@ -22,13 +22,9 @@
   
   %body.application.signup
     #body_color
-      #wrap
-        %header
-          - link_to root_url do
-            = image_tag "#{current_community.slug}_signup.png", :alt => "Commonplace #{current_community.name}"
-
-        #signup-container
-          #login-container
+      #wrap.signup
+        #top_content
+          #signup-container
             #login
               - form_for UserSession.new, :url => user_session_path do |f|
                 .field.email
@@ -40,17 +36,40 @@
                   %p.forgot_password= link_to "Forgot your password?", new_password_reset_path, 'data-remote' => true
                 .field.submit
                   #submit_wrapper
-                    = f.submit "Log in"
-      
-          #register
-            %h3 Sign up to share and connect with your neighbors.
-            = render 'accounts/form', :user => User.new
+                    = f.submit "Log in".upcase
     
-        #syndicate_container    
-          %h3#syndicate_title Welcome to West Roxbury's first community website.
-          %ul.syndicate.items
+            #register
+              %h3
+                Sign up to get short updates about what's happening in
+                %em your neighborhood.
+              = render 'accounts/form', :user => User.new
+      
+          %header
+            - link_to root_url do
+              = image_tag "#{current_community.slug}_signup.png", :alt => "Commonplace #{current_community.name}"
+
+    
+          #slideshow
+            %ol
+              .slide
+              .overlay
+                %h4 Welcome to West Roxbury's first Community website
+                %p Sign up to get short updates about what's happening in your neighborhood.
+                .navigation
+                  %span.prev &laquo; PREV
+                  %span.next NEXT &raquo;
+        
+        #site_preview
+          #left_arrow
+          %ul
             - @items.take(3).each do |item|
-              %li.item= render item
+              %li
+                .title= item.subject
+                %p= item.body
+                .bottom
+                  = item.time
+                  = item.owner.name
+          #right_arrow
 
       - if content_for? :modal
         = yield :modal

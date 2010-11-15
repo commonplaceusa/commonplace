@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
     c.require_password_confirmation = false
   end
   
+  attr_accessor :signup_name
+  before_create :fix_signup_name
+  
   belongs_to :neighborhood  
   
   has_many :attendances, :dependent => :destroy
@@ -30,7 +33,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :location, :update_only => true
 
   validates_presence_of :first_name, :last_name
-  validates_acceptance_of :privacy_policy
+  validates_acceptance_of :terms
   validates_confirmation_of :email, :on => :create
   validates_confirmation_of :password, :on => :update
   validates_presence_of :location
@@ -39,6 +42,10 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :goods
 
   has_one :avatar, :as => :owner
+  
+  def fix_signup_name
+    first_name, last_name = signup_name.split(' ')
+  end
 
   def subscribed_announcements
     feeds.map(&:announcements).flatten

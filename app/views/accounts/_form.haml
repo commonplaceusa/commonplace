@@ -1,41 +1,26 @@
 - form_for user, :url => account_path, :html => {:class => "new_entity"} do |f|
-  .field.first_name.short
-    %label= 'First Name'.upcase
-    = f.text_field :first_name
-    = f.error_message_on :first_name
-  .field.first_name.short
-    %label= 'Last Name'.upcase
-    = f.text_field :last_name
-    = f.error_message_on :last_name
+  .field.full_name.long
+    = f.text_field :signup_name, 'data-label' => "Your Full Name"
+    = f.error_message_on :signup_name
   .field.email.long
-    %label= 'Email'.upcase
-    = f.text_field :email
+    = f.text_field :email, 'data-label' => "Your Email Address"
     = f.error_message_on :email
-  .field.email.long
-    %label= 'Confirm Email'.upcase
-    = f.text_field :email_confirmation
-    = f.error_message_on :email_confirmation
   .field.password.long
-    %label= 'Password'.upcase
-    = f.password_field :password
+    = f.password_field :password, 'data-label' => 'Your Password'
     = f.error_message_on :password
     
-  .field.long.check_box
-    %label
-      = f.check_box :privacy_policy
-      I have read and accept the #{ link_to 'privacy policy', privacy_path, 'data-remote' => true }.
-    = f.error_message_on :privacy_policy
-
   - f.fields_for user.location do |l|
     .field.street_address.long
-      %label= 'Street Address'.upcase
-      = l.text_field :street_address
+      = l.text_field :street_address, 'data-label' => 'Your Street Address'
       = l.error_message_on :street_address
   
-    .field.zip_code.short
-      %label= 'Zip Code'.upcase
-      = l.text_field :zip_code
-      = l.error_message_on :zip_code
+  .field.short.check_box
+    %label
+      = f.check_box :terms
+      I agree to the #{ link_to 'Terms of Service', terms_path, 'data-remote' => true }.
+    = f.error_message_on :terms
+
+
   .field.submit
     #submit_wrapper
-      = f.submit "Sign up and start posting!"
+      = f.submit "Sign up!".upcase
