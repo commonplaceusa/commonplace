@@ -61,16 +61,15 @@
         
         #site_preview
           #left_arrow
-          %ul
+          #right_arrow
+          %ol
             - @items.take(3).each do |item|
-              %li
+              %li                
+                #date= DateTime.now.strftime('%B %d, %Y')
                 .title= item.subject
                 %p= item.body
-                .bottom
-                  = item.time
-                  = item.owner.name
-          #right_arrow
-
+                .bottom= "#{ event_date(item.time) } from #{ item.owner.name }"
+                  
       - if content_for? :modal
         = yield :modal
       - else

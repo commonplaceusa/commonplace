@@ -200,31 +200,56 @@ body.signup
   
   #site_preview
     border: 1px solid #ccc
+    padding: 25px
     margin-top: 1em
     +border-radius(5px)
-    +box-shadow(#ccc, 0, 2px, 2px, 0, false)
-    h3#syndicate_title
-      background-color: #efefef
-      +border-top-radius(5px)
-      padding: 1em
-      color: #3B6085
-      +serif
-      font-size: 1.1em
-      text-align: center
-      border: 1px solid white
-    ul.items
-      +border-radius(5px)
-      min-height: 0
-      li.item
-        border-bottom: 1px solid #ccc
-        &:hover
-          background-color: white
-        a
-          padding: 20px 15px
-          cursor: default
+    +box-shadow(#ccc, 0px, 0px, 15px, 0, inset)
+    #left_arrow, #right_arrow
+      height: 32px
+      width: 31px
+      margin: 60px 0
+    #left_arrow
+      float: left
+      background-image: url('/images/icons/arrow-l-hov.png')
+    #right_arrow
+      float: right
+      background-image: url('/images/icons/arrow-r-hov.png')
+
+    ol
+      li
+        +serif
+        +inline-block
+        width: 240px
+        height: 150px
+        padding: 0 15px
+        border-right: 1px dotted #888
         &:last-child
-          +border-radius(5px)
-          border-bottom: none
-      
-      
+          border-right: 0
+        #date
+          +sans
+          color: $cpBlue
+          font-weight: bold
+          font-size: 0.7em
+          display: none
+        &:first-child
+          #date
+            display: block
+            float: left
+        .title
+          font-size: 1.1em
+          color: $cpRed
+          margin-top: 18px
+          margin-bottom: 7px
+        p
+          font-size: 0.9em
+          color: #444
+          line-height: 140%
+          margin-bottom: 10px
+        .bottom
+          color: #888
+          font-size: 0.8em
+          
+          
+          
+          
       
