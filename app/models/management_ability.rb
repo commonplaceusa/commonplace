@@ -9,7 +9,7 @@ class ManagementAbility
       end
       
       can :manage, Event do |action, event|
-        event.feed.user == user
+        event.owner.is_a?(User) ? event.owner == user : event.owner.user == user
       end
       
       can :read, :management

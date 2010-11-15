@@ -3,6 +3,9 @@
   - tab_to [:management], :class => 'level_1' do 
     = image_tag current_user.avatar_url(:thumb), :width => 15, :height => 15
     = "My Profile"
+  - current_user.direct_events.each do |event|
+    = tab_to event.name, [:management, event], :class => "level_2" 
+      
   - current_user.managable_feeds.each do |org|
     - tab_to [:management,org] do 
       = image_tag org.avatar_url(:thumb), :width => 15, :height => 15
