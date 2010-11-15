@@ -1,4 +1,4 @@
-%div{'data-href' => post_path(post), :class => "post tooltip", 'data-tooltip' => 'Click to see replies to this post and more about the author.'}
+%div{'data-href' => post_path(post), :class => "post tooltip", 'data-title' => "Click to see replies and your neighbor's profile."}
   = image_tag post.owner.avatar_url(:thumb), :class => "avatar"
   %time= post.time
   .reply-count #{ post.replies.size } replies

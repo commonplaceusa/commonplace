@@ -29,6 +29,12 @@ $(function() {
       return _ajax_request(url, data, callback, type, 'DELETE');
     }
   });
+  
+  $('.tooltip').live('mouseover',function() {
+    $('#tooltip').html($(this).attr('data-title'));
+  }).live('mouseout', function() {
+    $('#tooltip').html($('#tooltip').attr('title'));
+  });
 
   $('a[data-remote]').live('click', function(e) {
     $.sammy("body").setLocation($(this).attr('href'));
@@ -162,12 +168,6 @@ function setInfoBoxPosition() {
 function showTooltips() {
   $('#tooltip').html(function() {
     return ($('#zones .selected_nav').attr('data-title') || $(this).attr('title'));
-  });
-  
-  $('a.tooltip').mouseover(function() {
-    $('#tooltip').html($(this).attr('data-title'));
-  }).mouseout(function() {
-    $('#tooltip').html($('#tooltip').attr('title'));
   });
 };
 
