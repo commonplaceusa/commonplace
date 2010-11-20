@@ -25,7 +25,8 @@ $(function() {
     fx: 'scrollHorz',
     next: "#right_arrow",
     prev: "#left_arrow",
-    timeout: 0
+    timeout: 0,
+    containerResize: false
   });
 
   $('#slideshow ol').cycle({
@@ -34,6 +35,7 @@ $(function() {
     next: '#slideshow .navigation. .next',
     prev: '#slideshow .navigation. .prev',
     timeout: 6000,
+    containerResize: false
   });
 
   $('form.inline-labels').magicLabels();
