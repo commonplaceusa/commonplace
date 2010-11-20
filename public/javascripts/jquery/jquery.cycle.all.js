@@ -301,6 +301,7 @@ function buildOptions($cont, $slides, els, options, o) {
 	// Cycle 2.50+ requires the sizing info for every slide; this block tries to deal with that.
 	var requeue = false;
 	options.requeueAttempts = options.requeueAttempts || 0;
+  /*
 	$slides.each(function() {
 		// try to get height/width of each slide
 		var $el = $(this);
@@ -330,7 +331,7 @@ function buildOptions($cont, $slides, els, options, o) {
 		}
 		return true;
 	});
-
+  */
 	if (requeue)
 		return false;
 
