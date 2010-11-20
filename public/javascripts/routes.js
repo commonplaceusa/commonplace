@@ -37,7 +37,7 @@ $.sammy("body")
   .get("/events/:id")
 
   .before(/\/events\/(\d+)/, function(c) {
-    accordionItem($(".item" + ".events_" + c.params.id));
+    accordionItem($(".item" + ".event_" + c.params.id));
   })
 
   .get("/feeds")

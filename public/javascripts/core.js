@@ -20,6 +20,23 @@ Sammy.CPLocationProxy.prototype = {
 }
 
 $(function() {
+  $('#site_preview .slides').cycle({ 
+    speed: 1000,
+    fx: 'scrollHorz',
+    next: "#right_arrow",
+    prev: "#left_arrow",
+    timeout: 0
+  });
+
+  $('#slideshow ol').cycle({
+    speed: 3000,
+    fx: 'fade',
+    next: '#slideshow .navigation. .next',
+    prev: '#slideshow .navigation. .prev',
+    timeout: 6000,
+  });
+
+  $('form.inline-labels').magicLabels();
   $('.item .body').truncate({max_length: 160});
   jQuery.extend({
     put: function(url, data, callback, type) {

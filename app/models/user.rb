@@ -5,9 +5,6 @@ class User < ActiveRecord::Base
     c.require_password_confirmation = false
   end
   
-  attr_accessor :signup_name
-  before_create :fix_signup_name
-  
   belongs_to :neighborhood  
   
   has_many :attendances, :dependent => :destroy
@@ -41,12 +38,12 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :interests
   acts_as_taggable_on :goods
 
+  # def validate 
+  #   errors.add(:full_name, "can't be blank") if first_name.blank? || last_name.blank?
+  # end 
+
   has_one :avatar, :as => :owner
   
-  def fix_signup_name
-    first_name, last_name = signup_name.split(' ')
-  end
-
   def subscribed_announcements
     feeds.map(&:announcements).flatten
   end
@@ -64,9 +61,13 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    first_name + " " + last_name
+    first_name && last_name ? first_name.to_s + " " + last_name.to_s : nil
   end
-  
+
+  def full_name=(string)
+    self.first_name, self.last_name = string.split(" ", 2)
+  end
+
   def name
     full_name
   end

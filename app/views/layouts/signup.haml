@@ -42,7 +42,7 @@
               %h3
                 Sign up to get short updates about what's happening in
                 %em your neighborhood.
-              = render 'accounts/form', :user => User.new
+              = render 'accounts/form', :user => current_user
       
           %header
             - link_to root_url do
@@ -51,24 +51,37 @@
     
           #slideshow
             %ol
-              .slide
-              .overlay
-                %h4 Welcome to West Roxbury's first Community website
-                %p Sign up to get short updates about what's happening in your neighborhood.
-                .navigation
-                  %span.prev &laquo; PREV
-                  %span.next NEXT &raquo;
+              %li.slide
+                = image_tag(current_community.slug + '/slideshow/1.jpg', :size => "450x300")
+                .overlay
+                  %h4 Welcome to West Roxbury's first Community website
+                  %p Sign up to get short updates about what's happening in your neighborhood.
+                  .navigation
+                    %span.prev &laquo; PREV
+                    %span.next NEXT &raquo;
+              %li.slide
+                = image_tag(current_community.slug + '/slideshow/2.jpg', :size => "450x300")
+                .overlay
+                  %h4 Lorem ipsum dolor sit amet
+                  %p Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In euismod ultrices facilisis. 
+                  .navigation
+                    %span.prev &laquo; PREV
+                    %span.next NEXT &raquo;
         
         #site_preview
           #left_arrow
           #right_arrow
-          %ol
-            - @items.take(3).each do |item|
-              %li                
-                #date= DateTime.now.strftime('%B %d, %Y')
-                .title= item.subject
-                %p= item.body
-                .bottom= "#{ event_date(item.time) } from #{ item.owner.name }"
+          .slides
+            - @items.take(6).each_slice(3) do |slide|
+              %ol
+                - slide.each do |item|
+                  %li         
+                    #date= DateTime.now.strftime('%B %d, %Y')
+                    .title= item.subject
+                    %p= truncate item.body, :length => 100
+                    %p.bottom= "#{ item.time } from #{ item.owner.name }"
+            %p.please_signup
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem.
                   
       - if content_for? :modal
         = yield :modal

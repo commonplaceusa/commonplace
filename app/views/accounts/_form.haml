@@ -1,16 +1,20 @@
-- form_for user, :url => account_path, :html => {:class => "new_entity"} do |f|
+- form_for user, :url => account_path, :html => {:class => "new_entity inline-labels"} do |f|
   .field.full_name.long
-    = f.text_field :signup_name, 'data-label' => "Your Full Name"
-    = f.error_message_on :signup_name
+    = f.label :full_name, "Your Full Name"
+    = f.text_field :full_name, 'data-label' => "Your Full Name"
+    = f.error_message_on :full_name
   .field.email.long
+    = f.label :email, "Your Email"
     = f.text_field :email, 'data-label' => "Your Email Address"
     = f.error_message_on :email
   .field.password.long
+    = f.label :password, "Your Password"
     = f.password_field :password, 'data-label' => 'Your Password'
     = f.error_message_on :password
     
   - f.fields_for user.location do |l|
     .field.street_address.long
+      = l.label :street_address, "Your Street Address"
       = l.text_field :street_address, 'data-label' => 'Your Street Address'
       = l.error_message_on :street_address
   

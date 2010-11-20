@@ -50,6 +50,8 @@ body.signup
           color: #444
           +box-shadow(#ccc, 2px, 2px, 4px, 0, inset)
           padding: 8px 10px
+        &.labelText
+          color: #888
       .formError
         +sans
         margin-top: 5px
@@ -163,22 +165,26 @@ body.signup
       border: 1px solid $cpRed + #222
       border-bottom-color: $cpRed - #111
       background-color: $cpRed
-      padding: 5px
       +border-radius(5px)
+      height: 310px
+      width: 460px
+      position: relative
     .slide
+      margin: 5px
       +border-radius(3px)
       width: 450px
       height: 300px
-      background-image: url('/images/intro_slideshow/neighborhood1.jpg')
+      +clearfix
+    
     .overlay
       +border-bottom-radius(3px)
-      position: absolute
-      bottom: 5px
-      right: 5px
-      left: 5px
+
       background-color: rgba(0, 0, 0, 0.8)
       color: rgba(255, 255, 255, 0.9)
       padding: 1em
+      position: absolute
+      bottom: 0px
+      
       h4
         +sans
         font-weight: bold
@@ -200,21 +206,24 @@ body.signup
   
   #site_preview
     border: 1px solid #ccc
-    padding: 25px
+    padding: 25px 0px
     margin-top: 1em
     +border-radius(5px)
     +box-shadow(#ccc, 0px, 0px, 15px, 0, inset)
     #left_arrow, #right_arrow
       height: 32px
       width: 31px
-      margin: 60px 0
+      margin: 60px 0px
     #left_arrow
       float: left
+      margin-left: 15px
       background-image: url('/images/icons/arrow-l-hov.png')
     #right_arrow
       float: right
+      margin-right: 15px
       background-image: url('/images/icons/arrow-r-hov.png')
-
+    .slides
+      height: 150px
     ol
       li
         +serif
