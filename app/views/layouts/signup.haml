@@ -56,28 +56,29 @@
                   %h4 Welcome to West Roxbury CommonPlace
                   %p CommonPlace helps you share and connect with the people in your neighborhood.
                   .navigation
-                    %span.prev &laquo; PREV
-                    %span.next NEXT &raquo;
+                    %a.prev{:href=>"#"} &laquo; PREV
+                    %a.prev{:href=>"#"} NEXT &raquo;
               %li.slide
                 = image_tag(current_community.slug + '/slideshow/2.jpg', :size => "450x300")
                 .overlay
                   %h4 Stay in the loop
                   %p Sign up for CommonPlace to receive weekly email bulletins about what's happening in West Roxbury.
                   .navigation
-                    %span.prev &laquo; PREV
-                    %span.next NEXT &raquo;
+                    %a.prev{:href=>"#"} &laquo; PREV
+                    %a.prev{:href=>"#"} NEXT &raquo;
+
               %li.slide
                 = image_tag(current_community.slug + '/slideshow/3.jpg', :size => "450x300")
                 .overlay
                   %h4 Be a great neighbor
                   %p Use CommonPlace to share needs, offers and announcements with your neighbors.
                   .navigation
-                    %span.prev &laquo; PREV
-                    %span.next NEXT &raquo;
+                    %a.prev{:href=>"#"} &laquo; PREV
+                    %a.prev{:href=>"#"} NEXT &raquo;
         
         #site_preview
-          #left_arrow
-          #right_arrow
+          %a#left_arrow{:href=>"#"}
+          %a#right_arrow{:href=>"#"}
           .slides
             - @items.take(6).each_slice(3) do |slide|
               %ol
