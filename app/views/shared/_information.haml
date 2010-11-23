@@ -8,27 +8,22 @@
       %h3= current_user.full_name
       %p.user_about= auto_link current_user.about, :all, :target => '_blank'
       %ol.user_info
-        - unless current_user.interests.empty?
-          %li
-            %span.info_title= "Interests".upcase
-            = current_user.interest_list.join(", ")
-        - unless current_user.skills.empty?
-          %li
-            %span.info_title= "Shared skills".upcase
-            = current_user.skill_list.join(", ")
-        - unless current_user.goods.empty?
-          %li
-            %span.info_title= "Shared goods".upcase
-            = current_user.good_list.join(", ")
-        - unless current_user.feeds.empty?
-          %li
-            %span.info_title= "Feeds".upcase
-            = current_user.feeds.map{ |f| f.name }.join(", ")
-        - unless current_user.address.blank?
-          %li
-            %span.info_title= "Address".upcase 
-            = current_user.address
-  
+        %li
+          %span.info_title= "Interests".upcase
+          %span.user_interests= current_user.interest_list.join(", ")
+        %li
+          %span.info_title= "Shared skills".upcase
+          %span.user_skills= current_user.skill_list.join(", ")
+        %li
+          %span.info_title= "Shared goods".upcase
+          %span.user_goods= current_user.good_list.join(", ")
+        %li
+          %span.info_title= "Feeds".upcase
+          %span.user_feeds= current_user.feeds.map{ |f| f.name }.join(", ")
+        %li
+          %span.info_title= "Address".upcase 
+          %span.user_address= current_user.address
+
     = render_map do |map|
       - map.center current_user
       - map.marker current_user
