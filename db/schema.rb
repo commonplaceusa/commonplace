@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101114094312) do
+ActiveRecord::Schema.define(:version => 20101123171548) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20101114094312) do
     t.decimal  "lat"
     t.decimal  "lng"
     t.string   "slug"
+    t.string   "zip_code"
   end
 
   create_table "events", :force => true do |t|
@@ -98,10 +99,10 @@ ActiveRecord::Schema.define(:version => 20101114094312) do
     t.string   "zip_code"
     t.decimal  "lat"
     t.decimal  "lng"
-    t.integer  "locatable_id",   :null => false
-    t.string   "locatable_type", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "locatable_id"
+    t.string   "locatable_type"
   end
 
   create_table "messages", :force => true do |t|

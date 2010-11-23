@@ -9,11 +9,10 @@ class Location < ActiveRecord::Base
   def update_lat_and_lng
     if street_address_changed?
       location = Geokit::Geocoders::GoogleGeocoder.geocode("#{street_address}, #{zip_code}")
-      if location.success?
+      if location && location.success?
         write_attribute(:lat,location.lat)
         write_attribute(:lng, location.lng)
       end    
-      true  
     end
   end
 

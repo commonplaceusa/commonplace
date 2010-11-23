@@ -9,7 +9,7 @@
     = f.error_message_on :email
   .field.password.long
     = f.label :password, "Your Password"
-    = f.password_field :password, :placeholder => 'At least six characters', :autocomplete => "off"
+    = f.password_field :password, :placeholder => 'At least five characters', :autocomplete => "off"
     = f.error_message_on :password
     
   - f.fields_for user.location do |l|
