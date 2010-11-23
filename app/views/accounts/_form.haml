@@ -20,11 +20,11 @@
   
   .field.short.check_box
     %label
-      = f.check_box :terms
+      = check_box_tag "user[terms]"
       I agree to the #{ link_to 'Terms of Service', terms_path, 'data-remote' => true }.
     = f.error_message_on :terms
 
 
-  .field.submit
+  .buttons.submit
     #submit_wrapper
       = f.submit "Sign up!".upcase

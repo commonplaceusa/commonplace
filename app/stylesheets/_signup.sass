@@ -30,6 +30,18 @@ body.signup
         &.submit
           margin: auto
           width: auto
+        input
+          +border-radius(5px)
+          width: 155px
+          outline: none
+
+        input[type=text], input[type=password]
+          padding: 5px 7px
+          font-size: 0.9em
+          +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+
+          margin: 0
+          border: 1px solid #ddd
       label
         +sans
         float: left
@@ -38,13 +50,7 @@ body.signup
         font-weight: bold
         font-size: 0.7em
         line-height: 13px
-      input
-        +border-radius(5px)
-        width: 155px
-        outline: none
 
-        margin: 0
-        border: 1px solid #ddd
         +serif
         &[type=text], &[type=password]
           color: #444
@@ -70,7 +76,8 @@ body.signup
         border: 1px solid $cpDarkRed - #111
         +border-radius(5px)
         input[type=submit]
-          width: auto
+          float: right
+            
           +sans
           font-weight: bold
           font-size: 0.6em
@@ -82,7 +89,7 @@ body.signup
           border: 1px solid $cpRed + #222
             bottom: 1px solid $cpDarkRed
           display: block
-          padding: 3px 8px 4px
+          padding: 5px 8px
           +border-radius(5px)
       
       
@@ -91,17 +98,14 @@ body.signup
       +border-radius(5px)
       color: #aaa
       +clearfix
-      form
-        input[type=text], input[type=password]
-          padding: 5px 7px
-          font-size: 0.9em
-          +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
       #submit_wrapper
         margin-top: 21px
       p.forgot_password
         margin-top: 5px
         text-align: right
-        width: 100%
+        margin-right: 10px
+          
+
         a
           color: #aaa
           +sans
@@ -109,7 +113,8 @@ body.signup
           text-decoration: none
           &:hover
             text-decoration: underline
-
+      .field
+        float: left
     #register
       h3
         color: #3B6085 + #222
@@ -126,14 +131,8 @@ body.signup
             input
               width: 390px
               font-size: 1.05em
-          &.submit
-            width: auto
-            margin-left: 92px
-            #submit_wrapper
-              input
-                padding: 10px 13px
-                font-size: 0.9em
           &.check_box
+            float: left
             width: auto
             margin-top: 22px
             label
@@ -145,8 +144,8 @@ body.signup
               width: 100%
               input
                 margin-top: 2px
+                margin-right: 5px
                 float: left
-                width: 21px
               a
                 color: $cpRed - #111
           label
@@ -155,7 +154,14 @@ body.signup
             margin-bottom: 3px
           a
             color: #3B6085
-      
+        .buttons.submit
+          margin-right: 10px
+          float: right
+          #submit_wrapper
+          input
+            padding: 10px 13px
+            font-size: 0.9em
+
   #slideshow
     width: 462px
     border: 1px solid $cpRed - #222
