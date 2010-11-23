@@ -38,7 +38,7 @@ $(function() {
     containerResize: false
   });
 
-  $('form.inline-labels').magicLabels();
+
   $('.item .body').truncate({max_length: 160});
   jQuery.extend({
     put: function(url, data, callback, type) {

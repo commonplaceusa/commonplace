@@ -42,16 +42,18 @@ body.signup
         +border-radius(5px)
         width: 155px
         outline: none
-        padding: 5px
+
         margin: 0
         border: 1px solid #ddd
         +serif
         &[type=text], &[type=password]
           color: #444
           +box-shadow(#ccc, 2px, 2px, 4px, 0, inset)
-          padding: 8px 10px
+          padding: 5px 10px
         &.labelText
           color: #888
+          
+
       .formError
         +sans
         margin-top: 5px
@@ -62,7 +64,7 @@ body.signup
         margin-top: 7px  
         +inline-block
         vertical-align: top
-        +box-shadow( rgba(0, 0, 0, 0.2), 0, 2px, 2px, 0, false)
+        +box-shadow( rgba(0, 0, 0, 0.2), 0, 1px, 1px, 0, false)
         +sans
         background-color: $cpRed
         border: 1px solid $cpDarkRed - #111
@@ -114,17 +116,16 @@ body.signup
         +serif
         font-size: 1.4em
         line-height: 120%
-        margin-bottom: 10px
       form#new_user
         width: auto
         .field
-          margin: 6px 0 0 0 
+          margin: 3px 0 0 0 
           width: 215px
           &.long
             width: auto
             input
               width: 390px
-              font-size: 1.1em
+              font-size: 1.05em
           &.submit
             width: auto
             margin-left: 92px
@@ -150,7 +151,7 @@ body.signup
                 color: $cpRed - #111
           label
             +text-shadow(none)
-            color: #3B6085
+            color: #afafaf
             margin-bottom: 3px
           a
             color: #3B6085
@@ -207,7 +208,7 @@ body.signup
   #site_preview
     border: 1px solid #ccc
     padding: 25px 0px
-    margin-top: 1em
+    margin-top: 50px
     +border-radius(5px)
     +box-shadow(#ccc, 0px, 0px, 15px, 0, inset)
     #left_arrow, #right_arrow
