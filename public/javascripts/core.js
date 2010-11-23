@@ -38,6 +38,11 @@ $(function() {
     containerResize: false
   });
 
+  $('.edit_new input:text, .edit_new textarea').keydown(function(e) {
+    var $input = $(e.currentTarget);
+    setTimeout(function(){$('.edit_new .info_box ' + $input.attr('data-update')).html($input.val());}, 10);
+  });
+
 
   $('.item .body').truncate({max_length: 160});
   jQuery.extend({

@@ -25,10 +25,10 @@
     - semantic_form_for @user, :url => update_new_account_path, :html => {:class => "new_entity after_registration", :multipart => true} do |f|
 
       - f.inputs do
-        = f.input :about, :label => "About me".upcase, :hint => "Tell your neighbors a little about yourself.", :input_html => { :rows => 3 }
-        = f.input :interest_list, :label => "Interests".upcase, :hint => "This will help CommonPlace highlight community information that you care about. Ex. Cooking, Sports, Family, etc."
-        = f.input :skill_list, :label => "Shared skills".upcase, :hint => "List some skills that you want to share with your neighbors. Ex. Teach Piano, Computer Help, etc."
-        = f.input :good_list, :label => "Shared goods".upcase, :hint => "List some goods that you want to share with your neighbors. Ex. Lawnmower, Ladder, etc."
+        = f.input :about, :label => "About me".upcase, :hint => "Tell your neighbors a little about yourself.", :input_html => { :rows => 3, 'data-update' => '.user_about'}
+        = f.input :interest_list, :label => "Interests".upcase, :hint => "This will help CommonPlace highlight community information that you care about. Ex. Cooking, Sports, Family, etc.", :input_html => { 'data-update' => '.user_interests'}
+        = f.input :skill_list, :label => "Shared skills".upcase, :hint => "List some skills that you want to share with your neighbors. Ex. Teach Piano, Computer Help, etc.", :input_html => { 'data-update' => '.user_skills'}
+        = f.input :good_list, :label => "Shared goods".upcase, :hint => "List some goods that you want to share with your neighbors. Ex. Lawnmower, Ladder, etc.", :input_html => {'data-update' => '.user_goods'}
       - f.inputs :for => @user.avatar do |a|
         = a.input :image, :label => "Upload a photo".upcase
       - f.buttons do
