@@ -187,8 +187,11 @@ body.signup
     .overlay
       +border-bottom-radius(3px)
 
-      background-color: rgba(0, 0, 0, 0.8)
-      color: rgba(255, 255, 255, 0.9)
+      background-color: rgba(0, 0, 0, 0.9)
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)" // ie8
+      filter: alpha(opacity=90) // ie5-7
+      opacity: 0.9 // everyone else
+      color: white
       padding: 1em
       position: absolute
       bottom: 0px
