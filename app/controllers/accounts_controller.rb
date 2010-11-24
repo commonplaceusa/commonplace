@@ -47,6 +47,7 @@ class AccountsController < CommunitiesController
     if current_user.update_attributes(params[:user])
       redirect_to new_first_post_path
     else
+      @user = current_user
       render :edit_new
     end
   end
