@@ -55,6 +55,8 @@ Rails::Initializer.run do |config|
   config.gem "resque"
 
   config.gem "SystemTimer", :lib => "system_timer"
+  
+  config.gem 'exceptional'
 
   config.action_mailer.default_content_type = "text/html"
   # Only load the plugins named here, in the order given (default is alphabetical).
