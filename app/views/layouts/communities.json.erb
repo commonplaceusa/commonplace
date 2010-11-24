@@ -1,16 +1,1 @@
-{
-  <%- if @updates %>
-    <%- @updates.each_pair do |key,value| %>
-      "<%= key %>"     : <%= h2j { value } %>,
-    <%- end %>
-  <%- end %>
-
-  "#syndicate nav"     : <%= h2j { yield :syndicate_navigation } %>,
-  "#zones"             : <%= h2j { yield :zones } %>,
-  "#tooltip"           : <%= h2j { yield :tooltip } %>,
-  "#information"       : <%= h2j { yield :information } %>,
-  "#modal"             : <%= h2j { yield(:modal) || "<div id=\"modal\"></div>" } %>,
-  "#syndicate .items"  : <%= h2j { yield :syndicate_items } %>,
-  "header.application" : <%= h2j { yield :header } %>
-}
-
+<%= updated_content.to_json %>

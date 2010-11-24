@@ -1,4 +1,4 @@
-- content_for :syndicate_items do 
+- update_content "#syndicate .items" do 
   %ul.items
     - items.each do |item|
       %li.item{ :class => "#{cycle('odd', 'even')} #{dom_class(item)} #{dom_id(item)}" }

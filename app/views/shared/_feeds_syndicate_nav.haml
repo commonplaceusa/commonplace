@@ -1,5 +1,5 @@
 
-- content_for :syndicate_navigation do
+- update_content "#syndicate nav" do
   %nav
 
     - link_to new_announcement_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Make a new announcement to your community.' do

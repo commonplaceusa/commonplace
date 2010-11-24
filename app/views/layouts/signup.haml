@@ -1,6 +1,3 @@
-- unless content_for? :tooltip
-  - render 'shared/tooltip'
-
 !!! 5
 %html
   %head
@@ -95,8 +92,8 @@
 
             
                   
-      - if content_for? :modal
-        = yield :modal
+      - if updated_content["#modal"]
+        = updated_content("#modal")
       - else
         #modal
     

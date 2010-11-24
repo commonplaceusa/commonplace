@@ -21,7 +21,7 @@
 
 = render 'shared/items', :items => @items
 
-- content_for :syndicate_navigation do
+- update_content "#syndicate nav" do
   %nav
     - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
       %span

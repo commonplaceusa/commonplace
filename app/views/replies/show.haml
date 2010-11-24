@@ -1,2 +1,3 @@
 
-- update "##{dom_id(@reply.repliable)}_replies", render('shared/replies', :item => @reply.repliable, :hide => false)
+- update_content "##{dom_id(@reply.repliable)}_replies" do
+  = render('shared/replies', :item => @reply.repliable, :hide => false)

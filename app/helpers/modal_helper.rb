@@ -5,7 +5,7 @@ module ModalHelper
       :close => true
     }.merge(options)
     
-    content_for(:modal) do
+    update_content("#modal") do
       content_tag(:div, :class => "not_empty", :id => "modal") do
         content_tag(:div, :id => "modal-overlay"){} +
         content_tag(:div, :id => "modal-content", :class => options[:class]) do

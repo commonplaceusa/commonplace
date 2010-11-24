@@ -1,11 +1,11 @@
 
-- content_for :information do
+- update_content "#information" do
   = render 'shared/information', :items => current_user.wire
 
-- content_for :zones do
+- update_content "#zones" do
   = render 'shared/zones'
 
-- content_for :syndicate_navigation do
+- update_content "#syndicate nav" do
   %nav
     - if current_user_session
       - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
@@ -36,6 +36,6 @@
   = render 'shared/information', :items => current_user.wire
 = render 'shared/items', :items => current_user.wire
 
-- content_for :header do
+- update_content "header" do
   = render 'shared/header'
   
