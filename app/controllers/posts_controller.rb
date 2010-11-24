@@ -24,15 +24,6 @@ class PostsController < CommunitiesController
   def show
   end
   
-  def destroy
-    if @post.destroy
-      flash[:win] = "Post deleted."
-    else
-      flash[:fail] = "There was an error deleting your post--please try again."
-    end
-    redirect_to root_url
-  end
-  
   protected 
   def post
     @post 
