@@ -26,9 +26,7 @@
       #wrap
         = render 'shared/header'
         #main
-          #syndicate
-            = updated_content["#syndicate nav"]
-            = updated_content["#syndicate .items"]
+          = updated_content["#syndicate"]
 
           #main-navigation
             = updated_content["#tooltip"]
@@ -37,7 +35,7 @@
     = render 'shared/footer'
 
     - if updated_content["#modal"]
-      = updated_content("#modal")
+      = updated_content["#modal"]
     - else
       #modal
     - if RAILS_ENV == "production"

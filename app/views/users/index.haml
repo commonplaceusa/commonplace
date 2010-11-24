@@ -1,3 +1,4 @@
-
-= render 'shared/directory_syndicate_nav'
-= render 'shared/items', :items => @items
+- update_content "#syndicate" do
+  #syndicate
+    = render 'shared/directory_syndicate_nav'
+    = render 'shared/items', :items => @items

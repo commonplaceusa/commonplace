@@ -17,13 +17,14 @@
     - f.buttons do
       #submit_wrapper= f.commit_button "Submit your post"
     = link_to "Skip this step; I'll post something later", posts_path, 'data-remote' => true, :class => "skip"
-      
-= render 'shared/items', :items => @items
 
-- update_content "#syndicate nav" do
-  %nav
-    - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
-      %span
-        = image_tag 'pin-icon.png'
-        %span POST TO YOUR NEIGHBORS
+- update_content "#syndicate" do
+  #syndicate
+    %nav
+      - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
+        %span
+          = image_tag 'pin-icon.png'
+          %span POST TO YOUR NEIGHBORS
+    = render 'shared/items', :items => @items
+  
 

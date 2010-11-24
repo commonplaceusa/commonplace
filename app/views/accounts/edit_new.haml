@@ -5,17 +5,17 @@
 - update_content "#zones" do
   = render 'shared/zones'
 
-- update_content "#syndicate nav" do
-  %nav
-    - if current_user_session
-      - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
-        %span
-          = image_tag 'pin-icon.png'
-          %span POST TO YOUR NEIGHBORS
-
-    - else
-      %p Preview of #{current_community.name}'s Announcement and Event Feed
-
+- update_content "#syndicate" do
+  #syndicate
+    %nav
+      - if current_user_session
+        - link_to new_post_path, 'data-remote' => true, :id => "create-entity", :class => 'tooltip', 'data-title' => 'Write a new post to your neighbors.' do 
+          %span
+            = image_tag 'pin-icon.png'
+            %span POST TO YOUR NEIGHBORS
+      - else
+        %p Preview of #{current_community.name}'s Announcement and Event Feed
+  = render 'shared/items', :items => current_user.wire
 
 - as_modal(:class => "edit_new", :close => false) do
   .edit_account
@@ -34,7 +34,7 @@
       - f.buttons do
         #submit_wrapper= f.commit_button "Continue"
   = render 'shared/information', :items => current_user.wire
-= render 'shared/items', :items => current_user.wire
+
 
 - update_content "header" do
   = render 'shared/header'
