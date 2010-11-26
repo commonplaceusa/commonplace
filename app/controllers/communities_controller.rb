@@ -7,8 +7,8 @@ class CommunitiesController < ApplicationController
   
   def show
     if current_user_session
-      @posts = current_user.neighborhood.posts.take(2)
-      @announcements = current_community.announcements.take(2)
+      @posts = current_user.neighborhood.posts.sort_by(&:created_at).reverse.take(2)
+      @announcements = current_community.announcements.all(:order => 'created_at DESC').take(2)
       @events = current_community.events.take(2)
     else
       @items = current_user.wire
