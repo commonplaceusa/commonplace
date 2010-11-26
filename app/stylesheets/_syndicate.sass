@@ -1,7 +1,70 @@
 @import replies
 
 .application
+  #syndicate.wire
+    border: 0px
+    .section
+      border: 1px solid #aaa
+      +border-radius(5px)
+      margin-bottom: 10px
+      .header
+        position: relative
+        border-bottom: 1px solid #aaa
+        height: 25px
+        padding-left: 10px
+        +border-top-radius(5px)
+        background-color: #eaeaea
+        a
+          display: block
+          padding-top: 7px
+          color: #3b6085
+          text-decoration: none
+          +sans
+          font-size: 11px
+          font-weight: bold
+          &:hover
+            text-decoration: underline
+          
+        a.new
+          padding: 0px
+          position: relative
+          top: -1px
+          right: -1px
+          +border-top-right-radius(5px)
+          position: absolute
+          display: block
+          border: 1px solid #3b6085
+          background-color: #4A7DAF
+          color: white
+          font-weight: bold
+          font-size: 10px
+          +text-shadow(rgba(0, 0, 0, 0.5), 2px, 1px, 1px)
+          .inner-border
+            +border-top-right-radius(5px)
+            border: 1px solid #8aabcc
+              bottom-color: #507599
+            display: block
+            height: 16px
+            padding: 0px 8px
+              top: 7px
+            vertical-align: middle
+            img
+              float: left
+              margin-right: 3px
+      .view-more
+        font-weight: bold
+        display: block
+        text-align: right
+        color: $cpRed
+        font-size: 10px
+        text-decoration: none
+        padding: 5px
+        +sans
+        &:hover
+          text-decoration: underline
+          
   #syndicate
+    min-height: 500px
     background-color: white
     width: 476px
     border: 1px solid #aaa
@@ -92,7 +155,6 @@
       height: 100%
 
   .items
-    min-height: 500px
     background-color: white
     padding: 0px
     border: none

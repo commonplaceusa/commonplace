@@ -1,5 +1,4 @@
 class CommunitiesController < ApplicationController
-  before_filter :set_default_items
   before_filter :current_community
   before_filter :authorize_current_community
 
@@ -7,17 +6,19 @@ class CommunitiesController < ApplicationController
   
   
   def show
-    @items = current_user.wire
+    if current_user_session
+      @posts = current_user.neighborhood.posts.take(2)
+      @announcements = current_community.announcements.take(2)
+      @events = current_community.events.take(2)
+    else
+      @items = current_user.wire
+    end
   end
 
   protected
   
   def community_layout
     current_user_session ? 'communities' : 'signup'
-  end
-
-  def set_default_items
-    @items = current_user_session ? current_user.wire : current_user.wire.take(3)
   end
 
 end
