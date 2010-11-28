@@ -1,3 +1,4 @@
 
 <%- updated_content["#modal"] ||= '<div id="modal"></div>' %>
+<%- updated_content["#tooltip"] or render 'shared/tooltip' %>
 <%= updated_content.to_json %>
