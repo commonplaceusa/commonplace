@@ -110,4 +110,9 @@ class User < ActiveRecord::Base
     real_neighborhood || Neighborhood.new
   end
   
+  def is_same_as(other_user)
+    puts (other_user.email == self.email && other_user.crypted_password == self.crypted_password)
+    (other_user.email == self.email && other_user.crypted_password == self.crypted_password)
+  end
+  
 end
