@@ -7,7 +7,12 @@
 #   Major.create(:name => 'Daley', :city => cities.first)
 
 
-community = Community.create(:name => "Test", :slug => "test")
-Neighborhood.create(:name => "n1", 
-                    :about => "test neighborhood 1", 
-                    :community => community)
+community = Community.create(:name => "Test", :slug => "test", :zip_code => "02132")
+neighborhood = Neighborhood.create(:name => "n1", 
+                                  :about => "test neighborhood 1", 
+                                  :community => community)
+user = User.create(:first_name => "test", :last_name => "dev",
+                   :email => "test@example.com", :location => Location.new(:zip_code => "02132", :street_address => "420 Baker St."),
+                   :password => "password", :neighborhood => neighborhood,
+                   :avatar => Avatar.new)
+
