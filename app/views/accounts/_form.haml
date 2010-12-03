@@ -1,21 +1,21 @@
 - form_for user, :url => account_path, :html => {:class => "new_entity inline-labels"} do |f|
   .field.full_name.long
     = f.label :full_name, "Your Full Name"
-    = f.text_field :full_name, :placeholder => "John Smith"
+    = f.text_field :full_name
     = f.error_message_on :full_name
   .field.email.long
     = f.label :email, "Your Email"
-    = f.text_field :email, :placeholder => "js@example.com"
+    = f.text_field :email
     = f.error_message_on :email
   .field.password.long
-    = f.label :password, "Your Password"
-    = f.password_field :password, :placeholder => 'At least five characters', :autocomplete => "off"
+    = f.label :password, "Create a Password"
+    = f.password_field :password, :autocomplete => "off"
     = f.error_message_on :password
     
   - f.fields_for user.location do |l|
     .field.street_address.long
       = l.label :street_address, "Your Street Address"
-      = l.text_field :street_address, :placeholder => '124 Example Rd.'
+      = l.text_field :street_address
       = l.error_message_on :street_address
   
   .field.short.check_box
