@@ -3,6 +3,7 @@
   - semantic_form_for @announcement, :html => { :class => "new_entity" } do |f|
     %hr.staple
     %h1 Make an announcement from your feed
+    %p.subhead Only Community Feeds can send out announcements to the entire community. If you plan to send out many announcements to the community, consider creating a Community Feed by clicking #{ link_to "here", "disabled" }. To post only to your neighborhood, click here to post to your #{ link_to "neighborhood board", posts_path, 'data-remote' => true }
 
     - f.inputs do
       = f.input :feed, :collection => current_user.managable_feeds
