@@ -21,7 +21,7 @@ class NotificationsMailer < ActionMailer::Base
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
-    subject "#{post.user.full_name} posted a/an #{post.category} to your neighborhood"
+    subject "#{post.user.full_name} posted #{with_article post.category.downcase} to your neighborhood"
     from "neighborhood-posts@commonplaceusa.com"
     body :post => post
   end
