@@ -1,6 +1,10 @@
 %div{'data-href' => post_path(post), :class => "post tooltip", 'data-title' => "Click to see replies and your neighbor's profile."}
   = image_tag post.owner.avatar_url(:thumb), :class => "avatar"
-  %time= post.time+" "+post.deleteLink
+  %time
+    =post.time
+    - if can? :destroy, post
+      = post.deleteLink
+
   .reply-count #{ post.replies.size } replies
   = link_to post.subject, post, 'data-remote' => true, :class => "title"
   .author= post.owner.name
