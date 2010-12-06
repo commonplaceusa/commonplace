@@ -4,6 +4,7 @@
   #syndicate.wire
     border: 0px
     .section
+      position: relative
       border: 1px solid #aaa
       +border-radius(5px)
       margin-bottom: 10px
@@ -52,9 +53,11 @@
               float: left
               margin-right: 3px
       .view-more
+        position: absolute
+        bottom: 0
+        right: 0
         font-weight: bold
         display: block
-        text-align: right
         color: $cpRed
         font-size: 10px
         text-decoration: none
