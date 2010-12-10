@@ -1,4 +1,3 @@
 class AdministrationController < ApplicationController
-  
 
 end

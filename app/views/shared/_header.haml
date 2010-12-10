@@ -1,7 +1,7 @@
 %header.application
   %h1 
     - link_to root_url do
-      = image_tag "#{current_community.slug}.png", :alt => "Commonplace #{current_community.name}"
+      = image_tag current_community.logo.url, :alt => "Commonplace #{current_community.name}"
 
   - if current_user_session
     %nav

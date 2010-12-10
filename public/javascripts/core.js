@@ -17,9 +17,11 @@ Sammy.CPLocationProxy.prototype = {
     }
     return (window.location = "#" + new_location);
   }
-}
+};
 
 $(function() {
+
+  $.polygonInputs();
 
   $('.edit_new input:text, .edit_new textarea').keydown(function(e) {
     var $input = $(e.currentTarget);

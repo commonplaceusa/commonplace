@@ -4,7 +4,9 @@ class Neighborhood < ActiveRecord::Base
 
   has_many :notifications, :as => :notified
 
-  serialize :bounds
+  serialize :bounds, Array
+
+  validates_presence_of :name, :bounds
 
   def posts
     users.map(&:posts).flatten

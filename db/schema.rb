@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101213085222) do
+ActiveRecord::Schema.define(:version => 20101215164529) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -47,13 +47,14 @@ ActiveRecord::Schema.define(:version => 20101213085222) do
   end
 
   create_table "communities", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name",                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
     t.string   "zip_code"
-    t.decimal  "lat"
-    t.decimal  "lng"
+    t.string   "logo_file_name"
+    t.string   "email_header_file_name"
+    t.text     "signup_message"
   end
 
   create_table "events", :force => true do |t|
@@ -127,7 +128,6 @@ ActiveRecord::Schema.define(:version => 20101213085222) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "bounds"
-    t.text     "about"
   end
 
   create_table "notifications", :force => true do |t|
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(:version => 20101213085222) do
     t.boolean  "receive_digests",                  :default => false, :null => false
     t.boolean  "receive_posts",                    :default => true
     t.boolean  "receive_events_and_announcements", :default => true
+    t.boolean  "admin",                            :default => false
   end
 
 end

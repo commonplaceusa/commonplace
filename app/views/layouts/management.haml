@@ -34,7 +34,7 @@
           %p.subhead In a few weeks, the whole town will be on the platform.  Feel free to email Max Novendstern (Max@CommonPlaceUSA.com) anytime with any questions or concerns.
           Thanks,
           %br
-          The West Roxbury CommonPlace Team
+          The #{current_community.name} CommonPlace Team
             
         = button_to "Continue to Management Zone", management_feed_path(@feed), :method => :get, 'data-remote' => false
     - else
