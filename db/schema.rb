@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101123171548) do
+ActiveRecord::Schema.define(:version => 20101213085222) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(:version => 20101123171548) do
     t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "lat"
-    t.decimal  "lng"
     t.string   "slug"
     t.string   "zip_code"
+    t.decimal  "lat"
+    t.decimal  "lng"
   end
 
   create_table "events", :force => true do |t|
@@ -123,11 +123,11 @@ ActiveRecord::Schema.define(:version => 20101123171548) do
 
   create_table "neighborhoods", :force => true do |t|
     t.string   "name",         :null => false
-    t.text     "about",        :null => false
     t.integer  "community_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "bounds"
+    t.text     "about"
   end
 
   create_table "notifications", :force => true do |t|
@@ -214,8 +214,8 @@ ActiveRecord::Schema.define(:version => 20101123171548) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                                               :null => false
-    t.string   "crypted_password",                                    :null => false
-    t.string   "password_salt",                                       :null => false
+    t.string   "crypted_password"
+    t.string   "password_salt"
     t.string   "persistence_token",                                   :null => false
     t.string   "single_access_token",                                 :null => false
     t.string   "perishable_token",                                    :null => false

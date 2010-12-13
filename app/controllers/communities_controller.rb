@@ -11,7 +11,7 @@ class CommunitiesController < ApplicationController
       @announcements = current_community.announcements.all(:order => 'created_at DESC').take(2)
       @events = current_community.events.take(2)
     else
-      @items = current_user.wire
+      redirect_to new_account_url
     end
   end
 

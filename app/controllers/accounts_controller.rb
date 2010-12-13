@@ -1,27 +1,27 @@
 class AccountsController < CommunitiesController
   
   def new
-    unless can? :new, User
+    if can? :create, User
+      render :layout => 'signup'
+    else
       redirect_to root_url
     end
-    @user = User.new
   end
   
   def create
-    params[:user][:terms] = params[:user][:terms].last if params[:user][:terms].is_a?(Array)
     authorize! :create, User
-    @location = Location.new(params[:user].delete(:location).merge(:zip_code => current_community.zip_code))
-    @location.update_lat_and_lng
-    @avatar = Avatar.new
-    @neighborhood = current_community.neighborhoods.to_a.
+    current_user.location = Location.new(params[:user].delete(:location_attributes).merge(:zip_code => current_community.zip_code))
+    current_user.location.update_lat_and_lng
+    current_user.avatar = Avatar.new
+    current_user.neighborhood = current_community.neighborhoods.to_a.
       find(lambda{current_community.neighborhoods.first}) do |n|
-      @location.within?(n.bounds) if n.bounds
+      current_user.location.within?(n.bounds) if n.bounds
     end
-    @user = @neighborhood.users.build(params[:user].merge(:location => @location, :avatar => @avatar))
-    if @user.save
+    current_user.full_name = params[:user][:full_name]
+    current_user.email = params[:user][:email]
+    if current_user.save
       redirect_to edit_new_account_url
     else
-      logger.info(@user.errors.inspect)
       render :new
     end
   end
@@ -31,21 +31,20 @@ class AccountsController < CommunitiesController
   end
 
   def edit_new
-    @user = current_user
+    render :layout => 'signup'
   end
 
   def update_new
     authorize! :update, User
-    logger.info(params[:user].inspect)
     if params[:user][:avatar]
       @avatar = current_user.avatar
       @avatar.update_attributes(params[:user][:avatar])
-      logger.info(@avatar.inspect)
+
       params[:user].delete(:avatar)
       crop_avatar = true
     end
     if current_user.update_attributes(params[:user])
-      redirect_to new_first_post_path
+      redirect_to root_url
     else
       @user = current_user
       render :edit_new

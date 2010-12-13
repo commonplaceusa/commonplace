@@ -7,3 +7,36 @@ en:
   authlogic:
     error_messages:
       no_authentication_details: "Invalid email or password"
+
+
+  accounts:
+
+    new:
+      h1: Sign up to receive community announcements from your neighbors and local organizations in {{community}}. {{learn_more}}
+      learn_more: Learn More.
+
+    edit_new:
+      title: Register a community profile so you <br> can send information to your neighbors                      
+      
+  formtastic:
+    labels:
+      user:
+        full_name: "Full Name:"
+        email: "Email Address:"
+        password: "Create a Password:"
+        about: "Tell your neighbors who you are:"
+        good_list: "List three goods and/or skills to share:"
+
+      location:
+        street_address: "Street Address*:"
+      
+      avatar:
+        image: "Add a Photo:"
+
+    placeholders:
+      user:
+        good_list: "Lawnmower, Bikes, Word Processing"
+
+    hints:
+      location:
+        street_address: "*This helps us place you in the correct {{community}} neighborhood."

@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.login_field :email
     c.require_password_confirmation = false
+    c.validate_email_field=false
+    c.validate_password_field=false
   end
   
   belongs_to :neighborhood  
@@ -29,19 +31,17 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :location, :update_only => true
 
+  validates_uniqueness_of :email
   validates_presence_of :first_name, :last_name
-  validates_acceptance_of :terms
-  validates_confirmation_of :email, :on => :create
-  validates_confirmation_of :password, :on => :update
   validates_presence_of :location
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests
   acts_as_taggable_on :goods
 
-  # def validate 
-  #   errors.add(:full_name, "can't be blank") if first_name.blank? || last_name.blank?
-  # end 
-
+  def validate 
+    errors.add(:full_name, "can't be blank") if first_name.blank? || last_name.blank?
+  end 
+  
   has_one :avatar, :as => :owner
   
   def subscribed_announcements
@@ -65,6 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name=(string)
+    @full_name = string
     self.first_name, self.last_name = string.split(" ", 2)
   end
 

@@ -1,288 +1,215 @@
-body.signup
-  background-color: #efefef
-  
-  #wrap.signup
-    width: 940px
-  
-  #top_content
-    +clearfix
-    
-  header
-    a
-      display: block
-      padding: 54px 0 46px
-      img
-        width: 467px
-        height: 42px
-      
-  
-  #signup-container
-    width: 415px
-    float: right
-    margin-top: 46px
-    +clearfix
+
+body.application.signup.accounts.edit_new
+  #register
+    width: 1000px
     form
-      .field
-        +inline-block
-        width: 160px
-        margin-right: 15px
-        vertical-align: top          
-        &.submit
-          margin: auto
-          width: auto
-        input
-          +border-radius(5px)
-          width: 155px
-          outline: none
-
-        input[type=text], input[type=password]
-          padding: 5px 7px
-          font-size: 0.9em
-          +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
-
-          margin: 0
-          border: 1px solid #ddd
-      label
-        +sans
-        float: left
-        margin: 5px 0 3px
-        margin-right: 10px
-        font-weight: bold
-        font-size: 0.7em
-        line-height: 13px
-
-        +serif
-        &[type=text], &[type=password]
-          color: #444
-          +box-shadow(#ccc, 2px, 2px, 4px, 0, inset)
-          padding: 5px 10px
-        &.labelText
-          color: #888
-          
-
-      .formError
-        +sans
-        margin-top: 5px
-        color: $cpRed
-        font-weight: bold
-        font-size: 0.8em
-      #submit_wrapper
-        margin-top: 7px  
-        +inline-block
-        vertical-align: top
-        +box-shadow( rgba(0, 0, 0, 0.2), 0, 1px, 1px, 0, false)
-        +sans
-        background-color: $cpRed
-        border: 1px solid $cpDarkRed - #111
-        +border-radius(5px)
-        input[type=submit]
-          float: right
-            
-          +sans
-          font-weight: bold
-          font-size: 0.6em
-          background-color: transparent
-          margin: 0
-          color: white
-          +text-shadow(rgba(0, 0, 0, 0.5), 2px, 1px, 1px)
-          cursor: pointer
-          border: 1px solid $cpRed + #222
-            bottom: 1px solid $cpDarkRed
-          display: block
-          padding: 5px 8px
-          +border-radius(5px)
-      
-      
-    #login
-      margin-bottom: 25px
-      +border-radius(5px)
-      color: #aaa
+      background-image: url('/images/step-4-icon.png')
+      background-repeat: no-repeat
+      background-position: 20px 30px
+      padding-left: 50px
       +clearfix
-      #submit_wrapper
-        margin-top: 21px
-      p.forgot_password
-        margin-top: 5px
-        text-align: right
-        margin-right: 10px
-          
-
-        a
-          color: #aaa
-          +sans
-          font-size: 0.7em
-          text-decoration: none
-          &:hover
-            text-decoration: underline
-      .field
-        float: left
-    #register
-      h3
-        color: #3B6085 + #222
-        +serif
-        font-size: 1.4em
-        line-height: 120%
-      form#new_user
-        width: auto
-        .field
-          margin: 3px 0 0 0 
-          width: 215px
-          &.long
-            width: auto
-            input
-              width: 390px
-              font-size: 1.05em
-          &.check_box
-            float: left
-            width: auto
-            margin-top: 22px
-            label
-              +serif
-              color: black
-              font-size: 14px
-              font-weight: normal
-              display: block
-              width: 100%
-              input
-                margin-top: 2px
-                margin-right: 5px
-                float: left
-                width: 20px
-              a
-                color: $cpRed - #111
-          label
-            +text-shadow(none)
-            color: #444
-            margin-bottom: 3px
-          a
-            color: #3B6085
-        .buttons.submit
-          margin-right: 10px
-          float: right
-          #submit_wrapper
-          input
-            padding: 10px 13px
-            font-size: 0.9em
-
-  #slideshow
-    width: 462px
-    border: 1px solid $cpRed - #222
-    +box-shadow(#aaa, 0px, 3px, 3px, 0px)
-    +border-radius(5px)
-    position: relative
-    ol
-      border: 1px solid $cpRed + #222
-      border-bottom-color: $cpRed - #111
-      background-color: $cpRed
-      +border-radius(5px)
-      height: 310px
-      width: 460px
-      position: relative
-    .slide
-      margin: 5px
-      +border-radius(3px)
-      width: 450px
-      height: 300px
-      +clearfix
-    
-    .overlay
-      +border-bottom-radius(3px)
-      left: 0
-      right: 0
-      background-color: black
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)" // ie8
-      filter: alpha(opacity=90) // ie5-7
-      opacity: 0.9 // everyone else
-      color: white
-      padding: 1em
-      position: absolute
-      bottom: 0px
-      
-      h4
-        +sans
-        font-weight: bold
-        font-size: 1em
-        margin-bottom: 5px
-      p
-        +serif
-        font-size: 0.9em
-        line-height: 130%
-      .navigation
-        float: right
-        font-weight: bold
-        color: rgba(255, 255, 255, 0.8)
-        +sans
-        font-size: 0.7em
-        .prev
-          margin-right: 10px
-        .prev, .next
-          color: white
-          text-decoration: none
-    
-  
-  #site_preview
-    border: 1px solid #ccc
-    padding: 25px 0px
-    margin-top: 50px
-    +border-radius(5px)
-    +box-shadow(#ccc, 0px, 0px, 15px, 0, inset)
-    #left_arrow, #right_arrow
-      height: 32px
-      width: 31px
-      margin: 60px 0px
-    #left_arrow
-      float: left
-      margin-left: 15px
-      background-image: url('/images/icons/arrow-l-hov.png')
-    #right_arrow
+    .info_box
       float: right
-      margin-right: 15px
-      background-image: url('/images/icons/arrow-r-hov.png')
-    .slides
-      height: 150px
-    ol
+    fieldset.inputs
       li
-        +serif
-        +inline-block
-        width: 240px
-        height: 150px
-        padding: 0 15px
-        border-right: 1px dotted #888
-        &:last-child
-          border-right: 0
-        #date
-          +sans
-          color: $cpBlue
-          font-weight: bold
-          font-size: 0.7em
-          display: none
-        &:first-child
-          #date
-            display: block
-            float: left
-        .title
-          font-size: 1.1em
-          color: $cpRed
-          margin-top: 18px
-          margin-bottom: 7px
-        p
-          font-size: 0.9em
-          color: #444
-          line-height: 140%
-          margin-bottom: 10px
-        .bottom
-          color: #888
-          font-size: 0.8em
-    .please-signup
-      padding: 30px 60px
-      width: 730px
-      font-size: 22px
-      line-height: 1.2
-      img 
+        padding: 0px 20px
+        width: 400px
+        input, textarea
+          width: 100%
+        textarea
+          height: 70px
+
+    fieldset.buttons
+      text-align: right
+      margin-right: 25px
+
+    .info_box #info_box_top
+      background-color: #b53f3c
+      color: white
+
+
+body.application.signup.accounts.new
+  #register
+    width: 650px
+
+    form
+      fieldset.buttons
         float: right
-      p
-        padding-top: 15px
-        padding-right: 10px
+        position: relative
+        margin-top: -50px
+        margin-right: 30px
+
+body.application.signup
+  background-repeat: repeat-x
+  background-color: #cee7fe
+  background-image: url('/images/clouds.png')
+  footer
+    background-image: url('/images/houses.png')
+    background-repeat: repeat-x
+    height: 250px
+    width: auto
+    margin: 0px
+  header
+    margin: 40px auto 0
+    +clearfix
+    width: 970px
+
+  #logo
+    float: left
+
+  #login
+    float: right
+    width: 410px
+    margin-bottom: 25px
+    +border-radius(5px)
+    color: #aaa
+    +clearfix
+    #submit_wrapper
+      margin-top: 21px
+    p.forgot_password
+      margin-top: 5px
+      text-align: right
+      margin-right: 10px
+        
+
+      a
+        color: #aaa
+        +sans
+        font-size: 0.7em
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+    .field
+      float: left    
+  form
+    .field
+      +inline-block
+      width: 160px
+      margin-right: 15px
+      vertical-align: top          
+      &.submit
+        margin: auto
+        width: auto
+      input
+        +border-radius(5px)
+        width: 155px
+        outline: none
+
+      input[type=text], input[type=password]
+        padding: 5px 7px
+        font-size: 0.9em
+        +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+
+        margin: 0
+        border: 1px solid #ddd
+    label
+      +sans
+      float: left
+      margin: 5px 0 3px
+      margin-right: 10px
+      font-weight: bold
+      font-size: 0.7em
+      line-height: 13px
+
+      +serif
+      &[type=text], &[type=password]
+        color: #444
+        +box-shadow(#ccc, 2px, 2px, 4px, 0, inset)
+        padding: 5px 10px
+      &.labelText
+        color: #888
+        
+
+    .formError
+      +sans
+      margin-top: 5px
+      color: $cpRed
+      font-weight: bold
+      font-size: 0.8em
+    #submit_wrapper
+      margin-top: 7px  
+      +inline-block
+      vertical-align: top
+      +box-shadow( rgba(0, 0, 0, 0.2), 0, 1px, 1px, 0, false)
+      +sans
+      background-color: $cpRed
+      border: 1px solid $cpDarkRed - #111
+      +border-radius(5px)
+      input[type=submit]
+        float: right
           
-          
-          
-      
+        +sans
+        font-weight: bold
+        font-size: 0.6em
+        background-color: transparent
+        margin: 0
+        color: white
+        +text-shadow(rgba(0, 0, 0, 0.5), 2px, 1px, 1px)
+        cursor: pointer
+        border: 1px solid $cpRed + #222
+          bottom: 1px solid $cpDarkRed
+        display: block
+        padding: 5px 8px
+        +border-radius(5px)
+  h1
+    width: 930px
+    color: #3b6085
+    line-height: 1.2
+    font-size: 32px
+    padding: 0 20px
+    margin: auto
+    +serif
+    text-align: center
+    +text-shadow(#bfc8cf, 1px, 1px, 1px)
+    a
+      color: #b53f3c
+      text-decoration: none
+      +text-shadow(#d4dee7, 1px, 1px, 1px)
+  #register
+    +border-radius(12px)
+    background-color: #c5c5c5
+    padding: 10px
+    margin: 60px auto
+    form
+      background-color: #ebebeb
+      +border-radius(5px)
+      +box-shadow($default-box-shadow-color, 0, 0, $default-box-shadow-blur, 0px)
+      padding: 10px
+      fieldset.inputs  
+        li
+          padding-left: 100px
+          list-style-position: outside
+          background-repeat: no-repeat
+          background-position: 20px 5px
+          margin: 20px 0px
+          width: 485px
+
+          label, input, textarea
+            color: #444545
+            display: block
+            float: none
+            font-size: 18px
+            +serif
+            margin: 10px
+            width: 100%
+
+          input, textarea
+            height: 38px
+            +border-radius(5px)
+            +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+          p.inline-errors
+            margin-left: 10px
+            color: #b53f3c
+        li#user_full_name_input
+          background-image:  url('/images/step-1-icon.png')
+        li#user_email_input
+          background-image:  url('/images/step-2-icon.png')
+        li#user_location_attributes_street_address_input
+          background-image:  url('/images/step-3-icon.png')
+          p.inline-hints
+            float: left
+            margin: 30px 0px 0px -90px
+            font-size: 12px
+            font-weight: bold
+            +sans
+            color: #3a3a3a

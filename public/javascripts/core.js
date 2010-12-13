@@ -20,27 +20,10 @@ Sammy.CPLocationProxy.prototype = {
 }
 
 $(function() {
-  $('#site_preview .slides').cycle({ 
-    speed: 1000,
-    fx: 'scrollHorz',
-    next: "#right_arrow",
-    prev: "#left_arrow",
-    timeout: 0,
-    containerResize: false
-  });
-
-  $('#slideshow ol').cycle({
-    speed: 3000,
-    fx: 'fade',
-    next: '#slideshow .navigation. .next',
-    prev: '#slideshow .navigation. .prev',
-    timeout: 6000,
-    containerResize: false
-  });
 
   $('.edit_new input:text, .edit_new textarea').keydown(function(e) {
     var $input = $(e.currentTarget);
-    setTimeout(function(){$('.edit_new .info_box ' + $input.attr('data-update')).html($input.val());}, 10);
+    setTimeout(function(){$('.edit_new .info_box .' + $input.attr('id')).html($input.val());}, 10);
   });
 
 
