@@ -25,7 +25,15 @@ en:
 
     edit_new:
       title: Register a community profile so you <br> can send information to your neighbors                      
-
+    
+    learn_more:
+      title: Sign up to receive community announcements from your neighbors and local organizations in %{community}. %{sign_up}
+      sign_up: Sign up.
+      subtitle: "Use CommonPlace to:"
+      list:
+        - To share announcements with your neighborhood
+        - Receive important information about crime happening in your area
+        - Find organizations and events
   formtastic:
     labels:
       user:

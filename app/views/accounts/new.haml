@@ -8,6 +8,6 @@
       - f.buttons do 
         = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
 
-%h1= t ".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), "#")
+%h1= t ".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), learn_more_account_path)
 
 = updated_content["#register"]

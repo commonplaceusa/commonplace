@@ -75,4 +75,9 @@ class AccountsController < CommunitiesController
     redirect_to new_first_post_url
   end
 
+  def learn_more
+    render :layout => "signup"
+  end
+
+
 end

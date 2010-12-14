@@ -1,0 +1,10 @@
+
+
+%h1= t ".title", :community => current_community.name, :sign_up => link_to(t(".sign_up"), new_account_path)
+
+#register
+  #learn-more
+    %h2= t ".subtitle"
+    %ul
+      - t(".list").each do |text|
+        %li= text
