@@ -62,8 +62,8 @@ en:
     events: View upcoming events in your community.
     announcements: View announcements feeds from your area.
     people: Find neighbors and civic leaders in your community.
-    feeds: ""
-    goods_and_skills: ""
+    feeds: "Subscribe to organizations in your community."
+    goods_and_skills: "Share goods and skills with your neighbors."
 
   syndicate:
     events:
