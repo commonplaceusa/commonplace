@@ -9,12 +9,16 @@ class Post < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
-  validates_presence_of :category, :message => "Please select a category for your post"
+
 
   has_many :notifications, :as => :notified
 
   def self.human_name
     "Neighborhood Post"
+  end
+  
+  def category
+    super || "Announcement"
   end
   
   def time

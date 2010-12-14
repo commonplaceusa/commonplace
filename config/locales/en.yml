@@ -9,15 +9,23 @@ en:
       no_authentication_details: "Invalid email or password"
 
 
-  accounts:
+  communities:
+    say_something:
+      title: "Say something to your neighbors:"
+    community_profiles:
+      title: "View community profiles:"
+    whats_happening:
+      title: "Find out what's happening in town:"
 
+
+  accounts:
     new:
       h1: Sign up to receive community announcements from your neighbors and local organizations in {{community}}. {{learn_more}}
       learn_more: Learn More.
 
     edit_new:
       title: Register a community profile so you <br> can send information to your neighbors                      
-      
+
   formtastic:
     labels:
       user:
@@ -33,10 +41,39 @@ en:
       avatar:
         image: "Add a Photo:"
 
+      post:
+        subject: "Title:"
+        body: "Post:"
+
     placeholders:
       user:
         good_list: "Lawnmower, Bikes, Word Processing"
 
+      post:
+        subject: Have a need, announcement, offer or event?
+        body: Share it with your neighbors!
+
     hints:
       location:
         street_address: "*This helps us place you in the correct {{community}} neighborhood."
+
+  tooltips:
+    posts: View announcements, offers, needs, and requests from your neighbors.
+    events: View upcoming events in your community.
+    announcements: View announcements feeds from your area.
+    people: Find neighbors and civic leaders in your community.
+    feeds: ""
+    goods_and_skills: ""
+
+  syndicate:
+    events:
+      title: Upcoming Events
+    posts:
+      title: Recent Neighborhood Posts
+    announcements:
+      title: Recent Feed Announcements
+    people:
+      title: Neighbors
+    feeds:
+      title: Community Feeds
+    

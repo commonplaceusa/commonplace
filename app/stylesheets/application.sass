@@ -1,11 +1,9 @@
 @import core
 @import zones
 @import syndicate
-@import information
 @import header
 @import small_calendar
 @import info_box
-@import get_started
 @import modal
 @import form
 @import main_navigation
@@ -20,14 +18,71 @@
 
 
 body.application 
-  background-color: #efefef
-  #body_color
-    background-color: white
-    width: 100%
-    padding-bottom: 1em
+  background-repeat: repeat-x
+  background-color: #cee7fe
+  background-image: url('/images/clouds.png')
+
+
+  header
+    margin: 40px auto 0
+    +clearfix
+    width: 970px
+
+  #main
+    width: 980px
+    margin: auto
+
+  footer
+    clear: both
+    background-image: url('/images/houses.png')
+    background-repeat: repeat-x
+    height: 250px
+    width: auto
+    margin: 0px
                               
   #wrap       
     +clearfix                                 
     width: 972px
     margin: auto                                
     color: $baseText
+
+  #say-something, #community-profiles, #whats-happening
+    width: 485px
+    h2
+      font-size: 20px
+      +serif
+      color: #787b7c
+      padding: 15px 5px
+  
+  #say-something
+    form
+      background-color: #b53f3c
+      +border-radius(5px)
+      padding: 15px
+      fieldset.inputs
+        li
+          padding-bottom: 15px
+        label, input, textarea
+          font-size: 14px
+          color: #444545
+        label
+          color: white
+          display: block
+          font-weight: bold
+          padding: 0px 5px 5px
+          +serif
+        input, textarea
+          +serif
+          font-weight: bold
+          width: 440px
+          padding: 5px
+          +border-radius(5px)
+          +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+        textarea
+          height: 60px
+      fieldset.buttons
+        text-align: right
+  #community-profiles
+
+  #whats-happening
+    float: right

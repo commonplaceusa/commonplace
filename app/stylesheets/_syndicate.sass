@@ -1,162 +1,15 @@
 @import replies
 
 .application
-  #syndicate.wire
-    border: 0px
-    .section
-      position: relative
-      border: 1px solid #aaa
-      +border-radius(5px)
-      margin-bottom: 10px
-      .header
-        position: relative
-        border-bottom: 1px solid #aaa
-        height: 25px
-        padding-left: 10px
-        +border-top-radius(5px)
-        background-color: #eaeaea
-        a
-          display: block
-          padding-top: 7px
-          color: #3b6085
-          text-decoration: none
-          +sans
-          font-size: 11px
-          font-weight: bold
-          &:hover
-            text-decoration: underline
-          
-        a.new
-          padding: 0px
-          position: relative
-          top: -1px
-          right: -1px
-          +border-top-right-radius(5px)
-          position: absolute
-          display: block
-          border: 1px solid #3b6085
-          background-color: #4A7DAF
-          color: white
-          font-weight: bold
-          font-size: 10px
-          +text-shadow(rgba(0, 0, 0, 0.5), 2px, 1px, 1px)
-          .inner-border
-            +border-top-right-radius(5px)
-            border: 1px solid #8aabcc
-              bottom-color: #507599
-            display: block
-            height: 16px
-            padding: 0px 8px
-              top: 7px
-            vertical-align: middle
-            img
-              float: left
-              margin-right: 3px
-      .view-more
-        position: absolute
-        bottom: 0
-        right: 0
-        font-weight: bold
-        display: block
-        color: $cpRed
-        font-size: 10px
-        text-decoration: none
-        padding: 5px
-        +sans
-        &:hover
-          text-decoration: underline
-          
+       
   #syndicate
-    min-height: 500px
-    background-color: white
-    width: 476px
-    border: 1px solid #aaa
-    float: left                
-    +border-radius(6px)
-    margin-right: 12px                   
-
-    nav
-      +clearfix
-      background-color: #497daf
-      border: 1px solid #efefef
-        bottom: 0
-      +border-top-radius(5px)
-      padding: 9px 9px 11px 9px
-      p
-        color: white
-  #create-entity
-    margin-right: 5px
-    +text-shadow($cpDarkRed, 2px, 1px, 1px)
-    +box-shadow( #497daf - #222, 0, 2px, 2px, 0, false)
-    text-decoration: none
-    font-weight: bold
-    img
-      display: block
-      margin-right: 5px
-      float: left
-    font-size: 10px
-    +sans
-    display: block
-    color: white
-    float: left
-    
-    border: 1px solid $cpDarkRed - #111
-    +border-radius(5px)
-    > span
-      border: 1px solid $cpRed + #222
-        bottom: 1px solid $cpDarkRed
-      display: block
-      float: left
-      padding: 6px 8px
-      background-color: $cpRed
-      +border-radius(5px)
-      +clearfix
-      span
-        display: block
-        float: left
-        line-height: 15px
-
-  #filters
-    float: left
-    +clearfix
-    &.announcements
-      width: 273px
-    a
-      +box-shadow( #497daf - #222, 0, 2px, 2px, 0, false)
-      text-decoration: none
-      +inline-block      
-      margin: 3px 5px
-      color: $cpRed
-      +sans
-      font-size: 10px
-      font-weight: bold
-      background-color: white
+    h3
+      background-color: #eaeaea
+      padding: 5px
+      color: #3b6085
       border: 1px solid #ccc
-      span
-        padding: 5px 3px
-        display: block
-        +border-radius(5px)
-        border: 1px solid #f8f8f8
-          bottom: 1px solid #ddd
-      +border-radius(5px)
-      +clearfix
-        
-      &.selected_nav, &:hover
-        // color: #c0c0c0 // Mark has this but I don't like it
-        background-color: #ddd
-        span
-          border: 1px solid #e9e9e7
-            bottom: 1px solid #ccc
-        
-            
-    &:before
-      content: " "
-      display: block        
-      border-left: 1px solid white
-      background-color: orange
-      float: left
-      height: 100%
-
+        top: 0px
+      
   .items
     background-color: white
     padding: 0px
@@ -165,17 +18,20 @@
 
   .item
     background-color: white
-    border-bottom: 1px solid #aaa
+    border: 1px solid
+      bottom-color: #ddd
+      left-color: #ccc
+      right-color: #ccc
+      top-width: 0px
+      
     padding: 0px
     overflow: hidden
     &:last-child
       border-bottom: none
-      +border-bottom-radius(5px)
       > .user, > .post, > .event, > .announcement, > .feed
-        +border-bottom-radius(5px)
     &:hover
       background-color: $listingHover
-    
+ 
     > .user, > .post, > .event, > .announcement, > .feed
       text-decoration: none
       +border-radius(5px)
@@ -229,11 +85,8 @@
         font-size: 10px
         clear: left
         +sans
-        
+     
     &.user, &.feed
-      border: none
-      +border-radius(0)
-      margin: 0
       a
         .avatar
           height: 30px

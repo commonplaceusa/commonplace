@@ -1,33 +1,11 @@
 
 - update_content "#syndicate" do
-  #syndicate.wire
-    
-    .section
-      .header
-        = link_to "Recent Neighborhood Posts", posts_path, 'data-remote' => true
-        - link_to new_post_path, 'data-remote' => true, :class => "new" do
-          %span.inner-border
-            = image_tag 'pin-icon.png', :size => "13x13"
-            = "Post to your Neighbors".upcase
-      = render 'shared/items', :items => @posts
-      = link_to "&#x271a; View more posts...".upcase, posts_path, 'data-remote' => true, :class => 'view-more'
+  #syndicate
+    %h3= t "syndicate.posts.title"
+    = render 'shared/items', :items => @posts
 
-    .section
-      .header
-        = link_to "Upcoming Events", events_path, 'data-remote' => true
-        - link_to new_event_path, 'data-remote' => true, :class => "new" do
-          %span.inner-border
-            = image_tag 'pin-icon.png', :size => "13x13"
-            = "Post a Community Event".upcase
-      = render 'shared/items', :items => @events
-      = link_to "&#x271a; View more Events...".upcase, events_path, 'data-remote' => true, :class => 'view-more'
+    %h3= t "syndicate.events.title"
+    = render 'shared/items', :items => @events
 
-    .section
-      .header
-        = link_to "Recent Feed Announcements", announcements_path, 'data-remote' => true
-        - link_to new_feed_path, 'data-remote' => true, :class => "new" do
-          %span.inner-border
-            = image_tag 'pin-icon.png', :size => "13x13"
-            = "Create your own Feed".upcase
-      = render 'shared/items', :items => @announcements
-      = link_to "&#x271a; View more announcements...".upcase, announcements_path, 'data-remote' => true, :class => 'view-more'
+    %h3= t "syndicate.announcements.title"
+    = render 'shared/items', :items => @announcements

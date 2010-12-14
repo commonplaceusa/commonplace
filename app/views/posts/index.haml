@@ -1,4 +1,7 @@
 - update_content "#syndicate" do
   #syndicate
-    = render 'shared/neighborhood_syndicate_nav'
+    %h3= t "syndicate.posts.title"
     = render 'shared/items', :items => @items
+
+- update_content "#say-something form" do
+  = render 'form', :post => Post.new

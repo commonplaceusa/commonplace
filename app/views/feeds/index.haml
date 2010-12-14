@@ -1,4 +1,4 @@
 - update_content "#syndicate" do
   #syndicate
-    = render 'shared/directory_syndicate_nav'
+    %h3= t "syndicate.feeds.title"
     = render 'shared/items', :items => @items

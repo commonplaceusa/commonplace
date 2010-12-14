@@ -193,7 +193,7 @@ function merge(html, context) {
   showTooltips();
   $('#tooltip').html($('#tooltip').attr('title'));
   renderMaps();
-  setInfoBoxPosition();
+//  setInfoBoxPosition();
   $('input.date').datepicker({
     prevText: '&laquo;',
     nextText: '&raquo;',

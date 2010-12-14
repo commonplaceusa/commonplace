@@ -1,56 +1,25 @@
 .application                                                
   #zones
-    +border-bottom-radius(5px)
-    +clearfix
-    background-color: #4A7EB0
+    background-color: #3b6085
     border-bottom: 1px solid #507599
+    padding: 5px
     a 
-      width: 119px
-      +sans
+      margin: 5px
+      width: 65px
+      height: 65px
       +inline-block
-      
-      margin: 12px 0px
-      text-align: center
-      font-size: 9px
-      font-weight: normal
-      color: white
-      text-decoration: none
-      line-height: 130%
-
-      .text_container
-        border: 1px solid transparent
-        width: 90px
-        margin: auto
-        +border-radius(4px)
-        p
-          +border-radius(4px)
-          padding: 1px 2px
-          border: 1px solid transparent
-
-      .img_container
-        width: 80px
-        height: 58px
-        margin: 0px auto 10px
-        
-      &.neighborhood.zone .img_container
-        background-image: url("/images/neighborhood-zone.png")
-      &.announcement.zone .img_container
-        background-image: url("/images/announcement-zone.png")
-      &.event.zone .img_container
-        background-image: url("/images/event-zone.png")
-      &.directory.zone .img_container
-        background-image: url("/images/directory-zone.png")
-              
       &:hover, &.selected_nav
-        color: white
-        .img_container
-          background-position: 0px 58px
-
-        .text_container
-          border: #8c3431 1px solid
-          p
-            background-color: #b53f3c
-            border: #c95855 1px solid
-              bottom: #9a2b27 1px solid
-
+        background-position: 0px 65px
+      &.posts
+        background-image: url("/images/posts.png")
+      &.announcements
+        background-image: url("/images/announcements.png")
+      &.events
+        background-image: url("/images/events.png")
+      &.people
+        background-image: url("/images/people.png")
+      &.feeds
+        background-image: url("/images/feeds.png")
+      &.goods-and-skills
+        background-image: url("/images/goods-and-skills.png")
 

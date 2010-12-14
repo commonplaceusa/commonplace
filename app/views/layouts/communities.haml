@@ -21,23 +21,28 @@
 
     = stylesheet_link_tag 'application'
   
-  %body.application
-    #body_color
-      #wrap
-        = render 'shared/header'
-        #main
-          = updated_content["#syndicate"]
-
-          #main-navigation
-            = updated_content["#tooltip"]
-            = render 'shared/zones'
-          = render 'shared/information', :items => []
-    = render 'shared/footer'
+  %body{:class => "application #{params[:controller]} #{params[:action]}"}
+    
+    = render 'shared/header'
+    #main
+      #whats-happening
+        %h2= t "communities.whats_happening.title"
+        = updated_content["#tooltip"]
+        = render 'shared/zones'
+        = updated_content["#syndicate"]
+      #say-something
+        %h2= t "communities.say_something.title"
+        = render 'posts/form', :post => Post.new
+      #community-profiles
+        %h2= t "communities.community_profiles.title"
+        = render 'shared/information', :items => []
+    %footer
 
     - if updated_content["#modal"]
       = updated_content["#modal"]
     - else
       #modal
+
     - if RAILS_ENV == "production"
       %script
         var _gaq = _gaq || [];

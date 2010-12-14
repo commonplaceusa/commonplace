@@ -36,7 +36,7 @@ $.sammy("body")
 $(document).ready(function() {
   $.sammy("body").run("/");
   
-  window.onscroll = setInfoBoxPosition;
+//  window.onscroll = setInfoBoxPosition;
   
   $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   $('header nav .disabled_link').attr('title', "Coming soon!").tipsy({gravity: 's'});

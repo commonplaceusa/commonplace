@@ -1,0 +1,7 @@
+
+- semantic_form_for post do |f|
+  - f.inputs do
+    = f.input :subject, :input_html => {:placeholder => t("formtastic.placeholders.post.subject")}
+    = f.input :body, :input_html => {:placeholder => t("formtastic.placeholders.post.body")}
+  - f.buttons do
+    = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}

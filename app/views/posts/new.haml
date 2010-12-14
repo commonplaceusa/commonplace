@@ -1,14 +1,3 @@
-- render :layout => 'shared/modal' do
 
-  - semantic_form_for post, :html => { :class => "new_entity" } do |f|
-    %hr.staple
-  
-    %h1 Write a post to your neighbors
-    %p.subhead This post will be emailed and posted to your neighborhood -- the 500 or so houses around you, which you can view #{link_to "here", neighborhood_people_path, :target => "_blank"}.
-    - f.inputs do
-      = f.input :subject
-      = f.input :body, :input_html => { :rows => 5, :cols => 21 }
-      = f.input :category, :as => :radio, :collection => Post::CATEGORIES, :label => "Category"
-      
-    - f.buttons do
-      #submit_wrapper= f.commit_button "Submit your post"
+- update_content "#new_post" do
+  = render 'form', :post => post
