@@ -54,7 +54,7 @@ $(document).ready(function() {
                          });
 
   $('form').live('submit',function(e) {
-    $('input[type=submit]',$(this)).parent().replaceWith('<img style="float: right"src="/images/loading.gif">');
+    $('input[type=image]',$(this)).replaceWith('<img style="float: right"src="/images/loading.gif">');
   });
   
   $("#avatar_to_crop").load(function() {
