@@ -26,8 +26,8 @@
             = f.text_field :good_list
         = f.submit 'Submit'
   
-    %h3= current_user.neighborhood.name
-    %p= current_user.neighborhood.about
+    %h3= current_neighborhood.name
+    %p= current_neighborhood.about
 
     = render_map do |map|
       - map.center current_user

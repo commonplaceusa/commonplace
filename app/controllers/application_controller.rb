@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :current_community
+  helper_method :current_neighborhood
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
@@ -19,6 +20,13 @@ class ApplicationController < ActionController::Base
     store_location
     redirect_to root_url
   end
+  
+  def set_neighborhood
+    if current_user.admin?
+      session[:neighborhood_id] = params[:neighborhood_id] 
+    end
+    redirect_to root_url
+  end
  
   protected
   
@@ -30,6 +38,12 @@ class ApplicationController < ActionController::Base
 
   def current_community
     @current_community ||= Community.find_by_slug(current_subdomain)
+  end
+
+  def current_neighborhood
+    @current_neighborhood ||= 
+      session[:neighborhood_id] ? Neighborhood.find(session[:neighborhood_id]) :
+      current_user.neighborhood
   end
 
   def authorize_current_community

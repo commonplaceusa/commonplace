@@ -22,7 +22,7 @@
     = stylesheet_link_tag 'application'
   
   %body{:class => "application #{params[:controller]} #{params[:action]}"}
-    
+    = render 'shared/admin_bar'
     = render 'shared/header'
     #main
       #whats-happening

@@ -13,8 +13,10 @@ ActionController::Routing::Routes.draw do |map|
     map.resources :deliveries
   end
   
+  map.set_neighborhood("set_neighborhood/:neighborhood_id", 
+                       :controller => "application", :action => "set_neighborhood", :method => :post)
+  
   map.with_options :conditions => { :subdomain => /[A-Za-z]+/ }, :shallow => true do |community|
-    
     community.resources :avatars, :only => [:edit, :update]
     
     community.root :controller => "communities", :action => "show"
