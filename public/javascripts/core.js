@@ -20,7 +20,7 @@ Sammy.CPLocationProxy.prototype = {
 };
 
 $(function() {
-
+  $('input[placeholder], textarea[placeholder]').placeholder();
   $.polygonInputs();
 
   $('.edit_new input:text, .edit_new textarea').keydown(function(e) {
