@@ -1,3 +1,67 @@
+body.application.signup.accounts.edit_interests
+  #register
+    width: 1000px
+    form
+      background-image: url('/images/step-5-icon.png')
+      background-repeat: no-repeat
+      background-position: 20px 30px
+      padding: 25px
+      +clearfix
+      h2
+        margin: 15px 55px 50px
+        font-size: 16px
+        font-weight: bold
+        +serif
+      fieldset.inputs
+        float: left
+        height: 260px
+        legend 
+          label
+            display: block
+            color: #3b6085
+            margin: 0px
+            padding-bottom: 10px
+        input
+          display: none
+        fieldset li 
+          +inline-block
+          margin-bottom: 15px
+          label
+            +border-radius(5px)
+            background-color: #b53f3c
+            margin: 3px
+            padding: 5px
+            display: none
+            +serif
+            font-size: 10px
+            color: white
+            font-weight: normal
+
+      fieldset.inputs, #interest_list_toggles
+        background-color: white
+        width: 240px
+        padding: 15px
+        +border-radius(7px)
+      
+      #interest_list_toggles
+        float: right
+        width: 660px
+        padding: 5px
+        td
+          color: #b53f3c
+          font-weight: bold
+          background-color: #f2f2f2
+          height: 60px
+          border: 5px white solid
+          text-align: center
+          vertical-align: middle
+          &:hover, &.checked
+            color: white
+            background-color: #3b6085
+      fieldset.buttons
+        margin-top: 30px
+        float: right
+
 body.application.signup.accounts.learn_more
   #register
     width: 590px
@@ -37,14 +101,19 @@ body.application.signup.accounts.edit_new
           width: 100%
         textarea
           height: 70px
+        label
+          margin: 10px
 
     fieldset.buttons
+      margin-top: 20px
       text-align: right
-      margin-right: 25px
+      width: 435px
+    .info_box
+      width: 450px
+      #info_box_top
+        background-color: #b53f3c
+        color: white
 
-    .info_box #info_box_top
-      background-color: #b53f3c
-      color: white
 
 
 body.application.signup.accounts.new
@@ -52,6 +121,15 @@ body.application.signup.accounts.new
     width: 650px
 
     form
+      fieldset.inputs
+        li
+          padding-left: 100px
+          list-style-position: outside
+          background-repeat: no-repeat
+          background-position: 20px 5px
+          margin: 20px 0px
+          width: 485px
+
       fieldset.buttons
         float: right
         position: relative
@@ -184,12 +262,7 @@ body.application.signup
       padding: 10px
       fieldset.inputs  
         li
-          padding-left: 100px
-          list-style-position: outside
-          background-repeat: no-repeat
-          background-position: 20px 5px
-          margin: 20px 0px
-          width: 485px
+
 
           label, input, textarea
             color: #444545

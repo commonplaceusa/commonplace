@@ -1,0 +1,15 @@
+
+%h1= t ".title"
+
+#register
+  - semantic_form_for current_user, :url => update_interests_account_url do |f|
+    %h2= t ".subtitle"
+    - f.inputs do
+      = f.input :interest_list, :collection => t(".starter_interests"), :as => :check_boxes
+    %table#interest_list_toggles
+      - t(".starter_interests").each_slice(4) do |row|
+        %tr
+          - row.each do |interest|
+            %td{'data-selected' => 'false', 'data-value' => interest}<>= interest
+    - f.buttons do 
+      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}

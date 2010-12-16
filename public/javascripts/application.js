@@ -37,7 +37,26 @@ $(document).ready(function() {
   $.sammy("body").run("/");
   
 //  window.onscroll = setInfoBoxPosition;
-  
+  $("#user_interest_list_input input:checkbox").each(function() {
+    if ($(this).is(':checked')) {
+      $("#interest_list_toggles td[data-value=" + $(this).val() + "]").addClass('checked');
+      $(this).parent().show();
+    }
+  });
+  $(".edit_interests #interest_list_toggles td").click(function() {
+    var $checkbox = $("#user_interest_list_input input:checkbox[value=" + 
+                     $(this).attr('data-value') + ']');
+    if ($checkbox.is(':checked')) {
+      $checkbox.removeAttr('checked');
+      $(this).removeClass('checked');
+    } else {
+      $checkbox.attr('checked','checked');
+      $(this).addClass('checked');
+    }
+
+    $checkbox.parent().toggle();
+  });
+    
   $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
   $('header nav .disabled_link').attr('title', "Coming soon!").tipsy({gravity: 's'});
   showTooltips();

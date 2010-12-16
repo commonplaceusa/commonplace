@@ -39,15 +39,14 @@ class AccountsController < CommunitiesController
     if params[:user][:avatar]
       @avatar = current_user.avatar
       @avatar.update_attributes(params[:user][:avatar])
-
       params[:user].delete(:avatar)
       crop_avatar = true
     end
     if current_user.update_attributes(params[:user])
-      redirect_to root_url
+      redirect_to edit_interests_account_path
     else
       @user = current_user
-      render :edit_new
+      render :edit_new, :layout => 'signup'
     end
   end
 
@@ -79,5 +78,13 @@ class AccountsController < CommunitiesController
     render :layout => "signup"
   end
 
+  def edit_interests
+    render :layout => 'signup'
+  end
 
+  def update_interests
+    current_user.interest_list = params[:user][:interest_list]
+    current_user.save
+    redirect_to root_url
+  end
 end

@@ -34,6 +34,29 @@ en:
         - To share announcements with your neighborhood
         - Receive important information about crime happening in your area
         - Find organizations and events
+
+    edit_interests:
+      title: Community leaders use West Roxbury CommonPlace <br> to send out information about what's happening in town.
+      subtitle: "Tell us what interests you in the community:"
+      starter_interests:
+        - Patch Local News
+        - Library
+        - Police
+        - Gardening
+        - Parks
+        - Indoor Sports
+        - Local Politics
+        - School
+        - Pets
+        - Arts & Crafts
+        - Biking
+        - Running
+        - Music
+        - Video Games
+        - Games
+        - Outdoor Sports
+
+
   formtastic:
     labels:
       user:
@@ -42,7 +65,7 @@ en:
         password: "Create a Password:"
         about: "Tell your neighbors who you are:"
         good_list: "List three goods and/or skills to share:"
-
+        interests: "My Interests:"
       location:
         street_address: "Street Address*:"
       
