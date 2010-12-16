@@ -35,7 +35,7 @@ $.sammy("body")
 
 $(document).ready(function() {
   $.sammy("body").run("/");
-  
+  $.preLoadImages("/images/loading.gif");
 //  window.onscroll = setInfoBoxPosition;
   $("#user_interest_list_input input:checkbox").each(function() {
     if ($(this).is(':checked')) {
