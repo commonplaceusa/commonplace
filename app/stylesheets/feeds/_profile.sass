@@ -1,0 +1,130 @@
+
+body.application.feeds.profile
+  +serif
+  #main
+    background-color: #f5f5f5
+    +border-radius(15px)
+    +box-shadow($default-box-shadow-color, 0, 0, $default-box-shadow-blur, 0, inset)
+    border: 10px solid #c5c5c5
+    padding: 25px
+    width: 900px
+
+    h1
+      font-size: 40px
+      margin-bottom: 25px
+    h2
+      color: #3b6085
+      font-weight: bold
+    h3
+      font-weight: bold
+      background-color: #385f84
+      color: white
+      +border-top-radius(7px)
+      padding: 5px
+    #column-1, #column-3
+      width: 225px
+
+    #column-2
+      width: 400px
+      margin: 0px 25px
+
+    #column-1,#column-2,#column-3
+      +inline-block
+      vertical-align: top
+
+    img#feed-avatar
+      border: 7.5px #c4c4c4 solid
+      +border-radius(7px)
+
+    #contact-info 
+      margin-top: 25px
+      
+      dl
+        border: 1px solid #d0d0d0
+          bottom-width: 0px
+        dt, dd
+          border: 1px solid white
+            bottom-color: #d0d0d0
+          +inline-block
+          font-size: 10px
+          padding: 5px 0
+        dt
+          +sans
+          width: 58px
+          padding-left: 4px
+          border-right-width: 0px
+        dd
+          border-left-width: 0px
+          width: 159px
+      a.edit
+        border: 1px solid #d0d0d0
+          top-width: 0px
+        +border-bottom-radius(4px)
+        padding: 5px 5px      
+
+    #post
+      background-color: #dadada
+      +border-radius(5px)
+      padding: 15px
+
+      h2
+        margin-bottom: 10px
+        nav
+          border: 3px solid #c5c5c5
+          +border-radius(4px)
+          +inline-block
+          background-color: #fff
+          color: #525252
+          padding: 3px
+          font-size: 12px
+          vertical-align: baseline
+
+          a
+            display: block
+            &:first-child
+              border-bottom: 1px solid #d0d0d0
+              padding-bottom: 4px
+              margin-bottom: 2px
+
+    #recent-posts
+      margin-top: 25px
+      h2
+        margin-bottom: 10px
+      ul.items
+        border: 0px
+        background-color: transparent
+        li
+          border: 1px solid #d0d0d0
+          margin-bottom: 5px
+          background-color: #f7f7f7
+          +border-radius(3px)
+            
+
+    #about
+      padding: 15px
+        bottom: 5px
+      line-height: 1.6
+      border: 1px solid #d0d0d0
+      +border-radius(4px)
+      background-color: #f8f8f8
+      p
+        font-size: 12px
+      a.edit
+        margin-top: 10px
+    #members
+      margin-top: 25px
+      width: 100%
+      ul
+        border: 0px solid #d0d0d0
+          width: 0px 1px
+        li
+          padding: 7px
+          border-bottom: 1px solid #d0d0d0
+          img
+            vertical-align: top
+    a.edit
+      display: block
+      color: #b53f3c
+      text-align: right
+      text-decoration: none
+      font-size: 10px

@@ -8,14 +8,7 @@ en:
     error_messages:
       no_authentication_details: "Invalid email or password"
 
-
-  communities:
-    say_something:
-      title: "Say something to your neighbors:"
-    community_profiles:
-      title: "View community profiles:"
-    whats_happening:
-      title: "Find out what's happening in town:"
+  lorem_ipsum: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....
 
   feeds:
     new:
@@ -23,6 +16,23 @@ en:
       h2: Create Your Own Feed
     edit:
       h2: Edit Your Feed
+
+    profile:
+      contact_info:
+        title: Contact Information
+      recent_posts:
+        title: Recent Posts
+      about:
+        title: About Us
+      members:
+        title: Members (4)
+  communities:
+    say_something:
+      title: "Say something to your neighbors:"
+    community_profiles:
+      title: "View community profiles:"
+    whats_happening:
+      title: "Find out what's happening in town:"
 
   accounts:
     new:

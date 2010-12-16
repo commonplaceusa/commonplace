@@ -43,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
     
     community.resources :invites
     
-    community.resources :feeds do |feed|
+    community.resources :feeds, :member => [:profile] do |feed|
       feed.resource :subscription, :only => [:index, :show, :create, :destroy]
       feed.resource :claim, :member => [:edit_fields]
       feed.resources :announcements, :controller => "feeds/announcements"

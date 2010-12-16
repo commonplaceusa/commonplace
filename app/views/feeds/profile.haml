@@ -1,1 +1,50 @@
-= render 'profile', :feed => @feed, :subscribers => @subscribers
+#main
+  %h1= @feed.name
+
+  #column-1<>
+    = image_tag @feed.avatar.url, :id => 'feed-avatar', :size => "210x210"
+
+    #contact-info
+      %h3= t '.contact_info.title'
+      %dl
+        - if @feed.phone.present?
+          %dt<> Phone:
+          %dd<>= @feed.phone
+        - if @feed.website.present?
+          %dt<> Website:
+          %dd<>= @feed.website
+        - if @feed.address.present?
+          %dt<> Address:
+          %dd<>= @feed.address
+        - if @feed.hours.present?
+          %dt<> Hours:
+          %dd<> @feed.hours
+
+  #column-2<>
+    - if can?(:create, @feed => Announcement)
+      #post
+        %h2 
+          Post an Announcement:
+        - semantic_form_for [@feed, Announcement.new] do |f|
+          = f.inputs :subject, :body
+          - f.buttons do
+            = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}
+    
+    #recent-posts
+      %h2= t '.recent_posts.title'
+      = render 'shared/items', :items => @feed.announcements
+
+  #column-3<>
+    #about
+      %h2= t '.about.title'
+      %p= @feed.about
+
+    #members
+      %h3= t '.members.title'
+      %ul
+        - @feed.subscribers.each do |user|
+          %li
+            = image_tag user.avatar_url, :size => "32x32"
+            = user.name
+        
+      

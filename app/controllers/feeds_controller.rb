@@ -18,7 +18,7 @@ class FeedsController < CommunitiesController
   end
 
   def profile
-    render :layout => 'profile'
+    render :layout => 'application'
   end
 
   def new

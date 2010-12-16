@@ -21,3 +21,4 @@ rerun.txt
 config/config.yml
 public/stylesheets
 development
+development/*
