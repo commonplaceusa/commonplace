@@ -6,7 +6,7 @@
     = render 'shared/information', :items => []
     = f.inputs :password
     - f.inputs :for => current_user.avatar do |a|
-      = a.input :image
+      = a.input :image, :input_html => {:size => 20}
     - f.inputs do 
       = f.input :about
       = f.input :good_list, :input_html => {:placeholder => t('formtastic.placeholders.user.good_list')}
