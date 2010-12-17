@@ -1,8 +1,10 @@
 class AccountsController < CommunitiesController
+
+  layout 'application'
   
   def new
     if can? :create, User
-      render :layout => 'signup'
+      render :layout => 'application'
     else
       redirect_to root_url
     end
@@ -31,7 +33,6 @@ class AccountsController < CommunitiesController
   end
 
   def edit_new
-    render :layout => 'signup'
   end
 
   def update_new
@@ -46,7 +47,7 @@ class AccountsController < CommunitiesController
       redirect_to edit_interests_account_path
     else
       @user = current_user
-      render :edit_new, :layout => 'signup'
+      render :edit_new
     end
   end
 
@@ -75,11 +76,9 @@ class AccountsController < CommunitiesController
   end
 
   def learn_more
-    render :layout => "signup"
   end
 
   def edit_interests
-    render :layout => 'signup'
   end
 
   def update_interests

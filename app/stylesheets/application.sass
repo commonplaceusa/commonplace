@@ -11,7 +11,7 @@
 @import date_picker
 @import contenteditable
 @import profile_fields
-@import signup
+@import accounts
 @import site_info
 @import edit_new
 @import administration
@@ -27,7 +27,23 @@ body.application
     margin: 40px auto 0
     +clearfix
     width: 970px
-
+    nav
+      padding: 8px 0 12px 0 
+      float: right
+      display: inline
+      a, .disabled_link
+        font-size: 11px
+        padding: 5px
+        color: $baseText + #222
+        font-weight: bold
+        vertical-align: bottom
+        +sans
+        text-decoration: none
+      a.selected_nav
+        color: #3b6085
+      a:hover
+        color: #3b6085
+        
   #main
     width: 980px
     margin: auto
@@ -36,7 +52,8 @@ body.application
     clear: both
     background-image: url('/images/houses.png')
     background-repeat: repeat-x
-    height: 250px
+    padding: 220px 10px 10px
+    height: 20px
     width: auto
     margin: 0px
                               

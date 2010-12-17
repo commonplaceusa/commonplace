@@ -20,7 +20,7 @@ en:
 
   accounts:
     new:
-      h1: Sign up to receive community announcements from your neighbors and local organizations in {{community}}. {{learn_more}}
+      h1: Sign up to receive community announcements from your neighbors and local organizations in %{community}. %{learn_more}
       learn_more: Learn More.
 
     edit_new:
@@ -86,7 +86,7 @@ en:
 
     hints:
       location:
-        street_address: "*This helps us place you in the correct {{community}} neighborhood."
+        street_address: "*This helps us place you in the correct %{community} neighborhood."
 
   tooltips:
     posts: View announcements, offers, needs, and requests from your neighbors

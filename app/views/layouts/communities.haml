@@ -1,57 +1,13 @@
-- unless updated_content["#tooltip"]
-  - render 'shared/tooltip'
-
-!!! 5
-%html
-  %head
-    %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
-    %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
-    %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
-    %title= "CommonPlace - #{current_community.name}"
-    
-    / [if IE]
-      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"    
-    
-    %script{ :type => 'text/javascript', :src => 'http://maps.google.com/maps/api/js?sensor=false' }
-    
-    = javascript_include_tag 'jquery-1.4.3', 'jquery-ui'
-    = include_javascript_folder 'jquery'
-
-    = javascript_include_tag 'sammy', 'innershiv', 'core', 'application', 'routes'
-
-    = stylesheet_link_tag 'application'
-  
-  %body{:class => "application #{params[:controller]} #{params[:action]}"}
-    = render 'shared/admin_bar'
-    = render 'shared/header'
-    #main
-      #whats-happening
-        %h2= t "communities.whats_happening.title"
-        = updated_content["#tooltip"]
-        = render 'shared/zones'
-        = updated_content["#syndicate"]
-      #say-something
-        %h2= t "communities.say_something.title"
-        = render 'posts/form', :post => Post.new
-      #community-profiles
-        %h2= t "communities.community_profiles.title"
-        = render 'shared/information', :items => []
-    %footer
-
-    - if updated_content["#modal"]
-      = updated_content["#modal"]
-    - else
-      #modal
-
-    - if RAILS_ENV == "production"
-      %script
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-12888551-3']);
-        _gaq.push(['_trackPageview', location.pathname + location.hash]);
-      
-        (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-      
+- render :layout => 'layouts/application' do
+  #main
+    #whats-happening
+      %h2= t "communities.whats_happening.title"
+      = updated_content["#tooltip"]
+      = render 'shared/zones'
+      = updated_content["#syndicate"]
+    #say-something
+      %h2= t "communities.say_something.title"
+      = render 'posts/form', :post => Post.new
+    #community-profiles
+      %h2= t "communities.community_profiles.title"
+      = render 'shared/information', :items => []

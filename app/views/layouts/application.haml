@@ -1,12 +1,6 @@
-!!! 5
 
+- content_for :content do
+  = yield
 
-%html
-  %head
-    %title CommonPlace
-    = stylesheet_link_tag 'application'
-  %body.application
-    #wrap
-      = render 'shared/header'
-      #main
-        = yield
+- render :layout => 'layouts/application' do
+  = yield :content

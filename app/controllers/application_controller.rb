@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   before_filter :set_template_format
-  
 
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
@@ -30,6 +29,11 @@ class ApplicationController < ActionController::Base
  
   protected
   
+  def translate_with(options = {})
+    @default_translate_options ||= {}
+    @default_translate_options.merge!(options)
+  end
+
   def set_template_format
     if xhr?
       response.template.template_format = :json
@@ -38,6 +42,8 @@ class ApplicationController < ActionController::Base
 
   def current_community
     @current_community ||= Community.find_by_slug(current_subdomain)
+    translate_with :community => @current_community.name
+    @current_community
   end
 
   def current_neighborhood

@@ -1,2 +1,0 @@
-class PlatformUpdatesController < ApplicationController
-end

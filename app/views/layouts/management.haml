@@ -19,7 +19,19 @@
 
   %body
     #wrap
-      = render 'shared/header'
+      %header.application
+        %h1 
+          - link_to root_url do
+            = image_tag current_community.logo.url, :alt => "Commonplace #{current_community.name}"
+
+        - if current_user_session
+          %nav
+            = tab_to "Home", "/"
+            = tab_to "Manage Profile", management_url
+            %span{ :class => "disabled_link" } Create a Feed
+            -# = tab_to "Create a Feed", new_feed_path, 'data-remote' => true
+            = tab_to "Log Out", "/user_session", :method => :delete
+
       = yield :title
       = render 'management/side_nav'
       #feed_main>

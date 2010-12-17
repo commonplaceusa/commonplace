@@ -4,7 +4,7 @@
     - semantic_form_for current_user, :url => account_path do |f|
       = f.inputs :full_name, :email
       - f.inputs :for => :location do |l|
-        = l.input :street_address, :hint => t('formtastic.hints.location.street_address', :community => current_community.name)
+        = l.input :street_address, :hint => t('formtastic.hints.location.street_address')
       - f.buttons do 
         = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
 
