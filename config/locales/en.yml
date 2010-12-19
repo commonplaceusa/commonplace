@@ -26,7 +26,8 @@ en:
       bubble_2: Get crime reports from the police
     edit_new:
       title: Register a community profile so you <br> can send information to your neighbors    
-    
+    edit:
+      title: Change Settings
     learn_more:
       title: Sign up to receive community announcements from your neighbors and local organizations in %{community}. %{sign_up}
       sign_up: Sign up.
@@ -67,6 +68,10 @@ en:
         about: "Tell your neighbors who you are:"
         good_list: "List three goods and/or skills to share:"
         interests: "My Interests:"
+        edit:
+          password: "Change your password:"
+        receive_posts: Get new neighborhood posts in emails
+        receive_events_and_announcements: Get new announcements and events in emails
       location:
         street_address: "Street Address*:"
       

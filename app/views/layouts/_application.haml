@@ -30,6 +30,7 @@
         %nav
           = tab_to "Home", "/"
           %span{ :class => "disabled_link" } Create a Feed
+          = tab_to "Settings", edit_account_path
           = tab_to "Log Out", "/user_session", :method => :delete
       - else
         #login

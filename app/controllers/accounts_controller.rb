@@ -29,7 +29,6 @@ class AccountsController < CommunitiesController
   end
 
   def edit
-    @user = current_user
   end
 
   def edit_new
@@ -52,13 +51,8 @@ class AccountsController < CommunitiesController
   end
 
   def update
-    if params[:user][:location]
-      @location = current_user.location
-      @location.update_attributes(params[:user][:location])
-      params[:user].delete(:location)
-    end
     if current_user.update_attributes(params[:user])
-      redirect_to management_url
+      redirect_to root_url
     else
       render :edit
     end

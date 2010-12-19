@@ -1,0 +1,11 @@
+
+- semantic_form_for current_user, :url => account_path do |f|
+  %h1= t ".title"
+  - f.inputs do
+    = f.input :email
+    = f.input :password
+    = f.input :receive_posts, :as => :boolean
+    = f.input :receive_events_and_announcements, :as => :boolean
+  - f.buttons do
+    = f.commit_button "Update Settings"
+  
