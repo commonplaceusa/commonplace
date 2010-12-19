@@ -22,9 +22,10 @@ en:
     new:
       h1: Sign up to receive community announcements from your neighbors and local organizations in %{community}. %{learn_more}
       learn_more: Learn More.
-
+      bubble_1: Publicize your events to the community
+      bubble_2: Get crime reports from the police
     edit_new:
-      title: Register a community profile so you <br> can send information to your neighbors                      
+      title: Register a community profile so you <br> can send information to your neighbors    
     
     learn_more:
       title: Sign up to receive community announcements from your neighbors and local organizations in %{community}. %{sign_up}
