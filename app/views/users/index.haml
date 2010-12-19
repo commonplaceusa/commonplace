@@ -1,4 +1,7 @@
 - update_content "#syndicate" do
   #syndicate
-    %h3= t "syndicate.people.title"
-    = render 'shared/items', :items => @items
+    %h3 Your Neighbors
+    = render 'shared/items', :items => @neighbors
+    %h3 Community Members
+    = render 'shared/items', :items => @users
+    
