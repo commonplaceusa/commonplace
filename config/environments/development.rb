@@ -15,9 +15,4 @@ config.action_controller.perform_caching             = false
 
 
 
-config.gem "factory_girl"
-config.gem "forgery"
-
-config.gem "capistrano"
-config.gem "capistrano-ext", :lib => false
 config.action_mailer.default_url_options = { :host => "localhost:3000" }
