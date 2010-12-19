@@ -12,13 +12,13 @@ gem 'formtastic'
 gem 'paperclip'
 gem "acts-as-taggable-on"
 gem "RedCloth"
-gem "acts-as-list"#, :lib => "acts_as_list"
-gem "glebm-geokit"#, :lib => "geokit"
+gem "acts-as-list", :require =>"acts_as_list"
+gem "glebm-geokit", :require => "geokit"
 gem "cancan"
 gem "friendly_id"
 gem "tlsmail"
 gem "resque"
-gem "SystemTimer"#, :lib => "system_timer"
+gem "SystemTimer", :require => "system_timer"
 gem 'exceptional'
 
 group :development do 
