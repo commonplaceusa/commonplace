@@ -20,6 +20,7 @@ gem "tlsmail"
 gem "resque"
 gem "SystemTimer", :require => "system_timer"
 gem 'exceptional'
+gem 'aasm'
 
 group :development do 
   gem "factory_girl"

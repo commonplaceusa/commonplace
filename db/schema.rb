@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101215164529) do
+ActiveRecord::Schema.define(:version => 20101220002818) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -232,6 +232,7 @@ ActiveRecord::Schema.define(:version => 20101215164529) do
     t.boolean  "receive_posts",                    :default => true
     t.boolean  "receive_events_and_announcements", :default => true
     t.boolean  "admin",                            :default => false
+    t.string   "state"
   end
 
 end
