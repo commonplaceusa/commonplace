@@ -4,8 +4,6 @@ class SiteController < CommunitiesController
 
   def terms ; end
   
-  def contact 
-    render :layout => false
-  end
+  def contact ; end
 
 end

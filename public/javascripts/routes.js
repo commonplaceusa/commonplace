@@ -131,6 +131,7 @@ $.sammy("body")
   .get('/dmca')
   .get('/privacy')
   .get('/terms')
+  .get('/contact')
 
   .post("/feeds/:id/subscription")
   .del("/feeds/:id/subscription")
