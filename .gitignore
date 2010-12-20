@@ -20,3 +20,4 @@ coverage.data
 rerun.txt
 config/config.yml
 public/stylesheets
+development
