@@ -96,9 +96,5 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def is_user_logged_in?
-    return !(self.current_user.id == nil)
-  end
-  
   
 end

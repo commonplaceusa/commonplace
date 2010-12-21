@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101221001930) do
+ActiveRecord::Schema.define(:version => 20101220002818) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -68,13 +68,6 @@ ActiveRecord::Schema.define(:version => 20101221001930) do
     t.time     "start_time"
     t.time     "end_time"
     t.string   "owner_type"
-  end
-
-  create_table "feedbacks", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "contents",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "feeds", :force => true do |t|

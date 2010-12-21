@@ -58,7 +58,6 @@ ActionController::Routing::Routes.draw do |map|
     map.about 'about', :controller => 'site', :action => 'about'
     map.privacy 'privacy', :controller => 'site', :action => 'privacy'
     map.terms 'terms', :controller => 'site', :action => 'terms'
-    map.contact 'contact', :controller => 'site', :action => 'contact'
     map.dmca 'dmca', :controller => 'site', :action => 'dmca'
     map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
     map.login 'get-started', :controller => 'user_sessions', :action => 'new'
