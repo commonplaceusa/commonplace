@@ -1,7 +1,15 @@
 - render :layout => 'shared/info_modal' do
 
-  .info.terms
+  .info.feedback
     :textile
       h1. Contact Us
+    %form{:name => "feedback", :method => "post", :action => "" }
+      %fieldset{:class => "inputs"}
+        %ul
+          %li{:class => "string required"}
+            %label{:for => "feedback[contents]"}
+              Message:
+            %textarea{:name => "feedback[contents]"}
+          %li
+            %input{:class => "commit", :id => "user_submit", :name => "commit", :src => "/images/buttons/continue.png", :type => "image", :value => "Submit"}
 
-       Form goes here.
