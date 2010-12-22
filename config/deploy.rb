@@ -16,4 +16,5 @@ load "#{lib_path}/targets.rb"
 
  # Add RVM's lib directory to the load path.
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+puts File.expand_path('./lib', ENV['rvm_path'])
 require "rvm/capistrano" 

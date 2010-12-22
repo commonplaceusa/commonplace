@@ -51,6 +51,7 @@ GEM
     highline (1.6.1)
     i18n (0.5.0)
     json (1.4.6)
+    kgio (2.0.0)
     mongrel (1.1.5)
       cgi_multipart_eof_fix (>= 2.4)
       daemons (>= 1.0.3)
@@ -103,6 +104,9 @@ GEM
     subdomain-fu (0.5.4)
     tilt (1.1)
     tlsmail (0.0.1)
+    unicorn (3.1.0)
+      kgio (~> 2.0.0)
+      rack
     vegas (0.1.8)
       rack (>= 1.0.0)
 
@@ -139,3 +143,4 @@ DEPENDENCIES
   rspec-rails
   subdomain-fu
   tlsmail
+  unicorn
