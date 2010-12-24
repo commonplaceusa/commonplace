@@ -21,24 +21,27 @@ gem "resque"
 gem "SystemTimer", :require => "system_timer"
 gem 'exceptional'
 gem 'aasm'
+
 group :production do
 gem 'unicorn'
 end
 
-group :development do 
+group :development, :test do
   gem "factory_girl"
+  gem "ZenTest"
   gem "forgery"
-  
+  gem "rspec-rails", "~> 1.3"
+  gem "rspec", "~> 1.3"
+  gem "autotest-rails"
+end
+
+group :development do 
   gem "capistrano"
   gem "capistrano-ext"#, :lib => false
   gem 'mongrel'
 end
 
 group :test do
-  gem "rspec"#, :lib => false, :version => ">= 1.2.0"
-  gem "rspec-rails"#, :lib => false, :version => ">= 1.2.0"
-  gem "factory_girl"
-  gem "forgery"
   gem "rr"
   gem "database_cleaner"
 end

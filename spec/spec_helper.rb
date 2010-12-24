@@ -1,33 +1,15 @@
-require 'rubygems'
-require 'spork'
+ENV["RAILS_ENV"] ||= 'test'
 
-Spork.prefork do
-  # Loading more in this block will cause your tests to run faster. However, 
-  # if you change any configuration or code from libraries loaded here, you'll
-  # need to restart spork for it take effect.
-  ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
-  require 'spec/autorun'
-  require 'spec/rails'
-  
-  require 'authlogic/test_case'
+require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
-  require "email_spec"
-  require 'rr'
 
-  # Uncomment the next line to use webrat's matchers
-  #require 'webrat/integrations/rspec-rails'
+require 'spec/rails'
 
-  # Requires supporting files with custom matchers and macros, etc,
-  # in ./support/ and its subdirectories.
-  Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
-
-  Spec::Runner.configure do |config|
-    config.mock_with RR::Adapters::Rspec
-    config.include(EmailSpec::Helpers)
-    config.include(EmailSpec::Matchers)
-    config.use_transactional_fixtures = true
-  end
+require 'rr'
+Spec::Runner.configure do |config|
+  config.mock_with RR::Adapters::Rspec
+end
 
   def current_user
   @current_user ||= User.new
@@ -57,11 +39,11 @@ Spork.prefork do
     stub(Geokit::Geocoders::GoogleGeocoder).geocode { location }
   end
   
-end
+#end
 
-Spork.each_run do
+#Spork.each_run do
   # This code will be run each time you run your specs.
-end
+#end
 
 # --- Instructions ---
 # - Sort through your spec_helper file. Place as much environment loading 
