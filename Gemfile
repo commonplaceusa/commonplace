@@ -21,6 +21,7 @@ gem "resque"
 gem "SystemTimer", :require => "system_timer"
 gem 'exceptional'
 gem 'aasm'
+gem 'tmail'
 
 group :production do
 gem 'unicorn'

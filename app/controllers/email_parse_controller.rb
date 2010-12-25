@@ -1,6 +1,6 @@
 class EmailParseController < ApplicationController
   def parse
-    from = params[:from]
+    from = TMail::Address.parse(params[:from]).spec
     user = User.find_by_email(from)
     to = params[:to]
     id = to.match(/post-(\d+)/)[1].to_i
