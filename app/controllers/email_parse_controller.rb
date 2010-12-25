@@ -2,7 +2,7 @@ class EmailParseController < ApplicationController
   def parse
     user = User.find_by_email(params[:from])
     to = params[:to]
-    id = to.match(/post-(\d+)/).to_i
+    id = to.match(/post-(\d+)/)[1].to_i
     #post = Post.find(params[:to].match(/post-(\d+)/)[1].to_i)
     post = Post.find(id)
     if user && post
