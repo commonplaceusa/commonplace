@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :current_community
   helper_method :current_neighborhood
-    # Temporarily removed the below line to test e-mail parsing.
-  #protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  #Temporarily removed the below line to test e-mail parsing.
+  protect_from_forgery :except => :parse # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
