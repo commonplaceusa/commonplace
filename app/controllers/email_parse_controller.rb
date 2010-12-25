@@ -9,7 +9,7 @@ class EmailParseController < ApplicationController
       text = params[:text]
       
       # Check for key phrases
-      phrases = ['-- \n','--\n','-----Original Message-----','________________________________','From: ','Sent from my ',TMail::Address.parse(params[:to]).spec]
+      phrases = ['-- \n','--\n','-----Original Message-----','________________________________','From: ','Sent from my ',TMail::Address.parse(params[:to]).spec,"#{TMail::Address.parse(params[:to]).spec.match(/post-(\d+)/)[1]}-replies"]
       
       index = text.length + 1
       
