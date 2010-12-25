@@ -3,6 +3,15 @@ namespace :deploy do
   end
   task :stop do
   end
+  
+  desc "Display staging logs"
+  task :tail_staging_logs, :roles => :app do
+    run "tail -f #{shared_path}/logs/staging.log" do |channel, stream, data|
+      puts  # for an extra line break before the host name
+      puts "#{channel[:host]}: #{data}" 
+      break if stream == :err    
+    end
+  end
 
   desc "Restart the application"    
   task :restart, :roles => :app, :except => { :no_release => true } do
