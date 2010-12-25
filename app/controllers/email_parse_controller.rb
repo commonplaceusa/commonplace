@@ -3,7 +3,7 @@ class EmailParseController < ApplicationController
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     post = Post.find(TMail::Address.parse(params[:to]).spec.match(/post-(\d+)/)[1].to_i)
     if user && post
-      RAILS_DEFAULT_LOGGER.error("\n Original data: #{params[:text].inspect} \n")
+      #RAILS_DEFAULT_LOGGER.error("\n Original data: #{params[:text].inspect} \n")
       # Strip any replies from the text
       
       text = params[:text]
@@ -27,11 +27,9 @@ class EmailParseController < ApplicationController
       
       text = text[0,text.rindex("\n")]
       
-      RAILS_DEFAULT_LOGGER.error("\n Result: #{text.inspect} \n Result: #{text} \n")
-      
-      #Reply.create(:body => text,
-      #             :repliable => post,
-      #             :user => user)
+      Reply.create(:body => text,
+                   :repliable => post,
+                   :user => user)
     end
     
     render :nothing => true
