@@ -27,7 +27,7 @@ class EmailParseController < ApplicationController
       
       text = text[0,text.rindex("\n")]
       
-      RAILS_DEFAULT_LOGGER.error("\n Result: #{text.inspect} \n Result: #{text} \n"}
+      RAILS_DEFAULT_LOGGER.error("\n Result: #{text.inspect} \n Result: #{text} \n")
       
       #Reply.create(:body => text,
       #             :repliable => post,
