@@ -38,7 +38,7 @@ class NotificationsMailer < ActionMailer::Base
   def post_reply(post, reply)
     recipients post.user.email
     #from "replies@commonplaceusa.com"
-    from "post-#{post.id}-replies@commonplaceusa.com"
+    from "#{post.long_id}@replies.commonplaceusa.com"
     subject "#{reply.user.name} just replied to your post on CommonPlace"
     body :reply => reply, :post => post, :user => post.user
   end

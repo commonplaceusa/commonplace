@@ -4,7 +4,7 @@ class EmailParseController < ApplicationController
     # Strip any replies from the text
     
     # Check for key phrases
-    phrases = ['-- \n','--\n','-----Original Message-----','________________________________','From: ','Sent from my ',TMail::Address.parse(to).spec,"#{TMail::Address.parse(to).spec.match(/post-(\d+)/)[1]}-replies"]
+    phrases = ['-- \n','--\n','-----Original Message-----','________________________________','From: ','Sent from my ',TMail::Address.parse(to).spec,TMail::Address.parse(to).spec.match(/[A-Za-z0-9]*/)[0]]
     
     index = text.length + 1
     
@@ -30,7 +30,7 @@ class EmailParseController < ApplicationController
   
   def parse
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
-    post = Post.find(TMail::Address.parse(params[:to]).spec.match(/post-(\d+)/)[1].to_i)
+    post = Post.find_by_long_id(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
     if user && post
       text = EmailParseController.strip(params[:text],params[:to])
       
