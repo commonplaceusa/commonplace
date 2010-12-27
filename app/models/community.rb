@@ -9,7 +9,8 @@ class Community < ActiveRecord::Base
 
   has_attached_file(:logo,
                     :url => "/system/community/:id/logo.:extension",
-                    :path => ":rails_root/public/system/community/:id/logo.:extension")
+                    :path => ":rails_root/public/system/community/:id/logo.:extension",
+                    :default_url => "/images/logo.png")
 
   has_attached_file(:email_header,
                     :url => "/system/community/:id/email_header.:extension",
