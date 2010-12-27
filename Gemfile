@@ -23,6 +23,23 @@ gem 'exceptional'
 gem 'aasm'
 gem 'tmail'
 
+gem 'httparty'
+gem 'json'
+gem 'simple_uuid'
+gem 'outside-in'
+
+gem 'redis'
+gem 'redis-namespace'
+gem 'yajl-ruby'
+gem 'json'
+gem 'resque'
+gem 'resque-scheduler'
+
+group 'cli' do
+  gem 'text-reform'
+  gem 'thor'
+end
+
 group :production do
 gem 'unicorn'
 end

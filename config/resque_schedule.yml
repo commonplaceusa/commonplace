@@ -1,0 +1,6 @@
+import_announcements_from_outside_dot_in:
+    cron: "0 * * * *"
+    class: AnnouncementImporterController
+    args: 
+    queue: outside-data
+    description: "This job imports relevant posts from outside.in as Announcements"
