@@ -86,10 +86,10 @@
       p.user_about
         font-size: 0.9em
         padding-bottom: 10px
-        border-bottom: 1px solid $lightGray
       ol.user_info
         padding-top: 5px
-        border-top: 1px solid white
+        border-top: 1px solid $lightGray
+
         li
           color: #525252
           line-height: 110%
@@ -101,7 +101,13 @@
             font-size: 0.8em
             +sans
             color: $mediumGray
-
+            +inline-block
+            width: 100px
+            vertical-align: top
+          .user_good_list, .user_feeds, .user_address, .user_interest_list
+            +inline-block
+            width: 160px
+            
   div[data-map]
     border: 1px solid $lightGray
     margin-top: 10px

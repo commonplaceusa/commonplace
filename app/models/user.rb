@@ -88,7 +88,8 @@ class User < ActiveRecord::Base
     transitions :to => :four, :from => [:oneA, :oneB, :twoA, :three, :four]
   end
 
-#  after_save :check_state
+  # after_save :check_state
+  
 
   acts_as_authentic do |c|
     c.login_field :email

@@ -1,0 +1,31 @@
+
+.inline-form.editable
+
+  [data-field][contenteditable]
+    border: 1px solid orange
+    padding: 3px
+    +border-radius(5px)
+    +inline-block
+
+    &.user_about
+      display: block
+
+  .edit
+    display: none
+
+  .show
+    display: block
+
+.inline-form
+  position: relative
+  .edit, .show
+    color: $cpBlue
+    position: absolute
+    top: 2px
+    right: 5px
+    span
+      &:hover
+        text-decoration: underline
+  .edit
+  .show
+    display: none

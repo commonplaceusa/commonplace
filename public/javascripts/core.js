@@ -232,3 +232,45 @@ function accordionItem($item) {
   $replies.slideDown();
   $body.truncate('untruncate');
 }
+function initInlineForm() {
+  $(".inline-form").bind("edit.inline-form", function() {
+    $("[data-field]", $(this)).attr('contenteditable', true);
+    $(this).addClass("editable");
+  });
+  $(".inline-form").bind("save.inline-form", function() {
+    var data = {};
+    $("[data-field]", $(this)).each(function() {
+      data[$(this).attr('data-field')] = $(this).html();
+    });
+    $.ajax({
+      type: $(this).attr('data-form-method'),
+      url: $(this).attr('data-form-url'),
+      data: data,
+      success: function(response) {
+        $('#information').replaceWith(response.content);
+        initInlineForm();
+        renderMaps();
+      },
+      dataType: "json"
+    });
+  });
+  $(".inline-form").bind("revert.inline-form", function() {
+    $("[data-field]", $(this)).removeAttr('contenteditable');
+    $(this).removeClass("editable");
+  });
+
+  $('.inline-form .inline-edit').click(function(e) {
+    $(this).trigger('edit.inline-form');
+    e.stopPropagation();
+  });
+
+  $('.inline-form .inline-save').click(function(e) {
+    $(this).trigger('save.inline-form');
+    e.stopPropagation();
+  });
+
+  $('.inline-form .inline-cancel').click(function(e) {
+    $(this).trigger('revert.inline-form');
+    e.stopPropagation();
+  });
+}

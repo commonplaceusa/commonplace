@@ -1,6 +1,8 @@
 class AccountsController < CommunitiesController
 
   layout 'application'
+
+  protect_from_forgery :except => :update
   
   def new
     if can? :create, User
@@ -52,11 +54,7 @@ class AccountsController < CommunitiesController
   end
 
   def update
-    if current_user.update_attributes(params[:user])
-      redirect_to root_url
-    else
-      render :edit
-    end
+    current_user.update_attributes(params[:user])
   end
 
   def edit_avatar

@@ -37,6 +37,9 @@ $(document).ready(function() {
   $.sammy("body").run("/");
   $.preLoadImages("/images/loading.gif");
 //  window.onscroll = setInfoBoxPosition;
+  
+  initInlineForm();
+
   $("#user_interest_list_input input:checkbox").each(function() {
     if ($(this).is(':checked')) {
       $("#interest_list_toggles td[data-value=" + $(this).val() + "]").addClass('checked');

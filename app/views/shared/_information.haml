@@ -1,19 +1,27 @@
-#information.info_box.user
-  #info_box_top= "Your Civic Profile".upcase
-  
+#information.info_box.user.inline-form{'data-form-url'=>"/account", 'data-form-method'=>"put"}
+  %span.edit
+    %span.inline-edit edit
+  %span.show
+    %span.inline-save save
+    &sdot;
+    %span.inline-cancel cancel
+
+  #info_box_top
+    = "Your Civic Profile".upcase
+
   #info_box_main
     #info_box_main_left
       = image_tag current_user.avatar_url(:normal), :class => 'graphic user_avatar'
     .body
       %h3= current_user.full_name
-      %p.user_about= auto_link current_user.about, :all, :target => '_blank'
+      %p.user_about{'data-field'=>"user[about]"}= auto_link current_user.about, :all, :target => '_blank'
       %ol.user_info
         %li
           %span.info_title= "Interests".upcase
-          %span.user_interest_list= current_user.interest_list.join(", ")
+          %span.user_interest_list{'data-field'=>"user[interest_list]"}= current_user.interest_list.join(", ")
         %li
           %span.info_title= "Goods & Skills".upcase
-          %span.user_good_list= current_user.good_list.join(", ")
+          %span.user_good_list{'data-field'=>"user[good_list]"}= current_user.good_list.join(", ")
         %li
           %span.info_title= "Feeds".upcase
           %span.user_feeds= current_user.feeds.map{ |f| f.name }.join(", ")
