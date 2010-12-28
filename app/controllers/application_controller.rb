@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :current_community
   helper_method :current_neighborhood
+  helper_method 'xhr?'
   #Temporarily removed the below line to test e-mail parsing.
   protect_from_forgery :except => :parse # See ActionController::RequestForgeryProtection for details
 
@@ -57,7 +58,7 @@ class ApplicationController < ActionController::Base
     if @current_community
       authorize! :read, @current_community
     else
-      raise "Requires community subdomain"
+      raise CanCan::AccessDenied
     end
   end
 

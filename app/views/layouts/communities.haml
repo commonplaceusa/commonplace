@@ -10,4 +10,4 @@
       = render 'posts/form', :post => Post.new
     #community-profiles
       %h2= t "communities.community_profiles.title"
-      = render 'shared/information', :items => []
+      = updated_content["#information"] || render('shared/information', :items => [])

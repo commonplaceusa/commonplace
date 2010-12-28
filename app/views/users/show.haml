@@ -1,3 +1,9 @@
 = render 'info_box', :user => @user
 
 = render 'shared/tooltip'
+
+- unless xhr?
+  - update_content "#syndicate" do
+    #syndicate
+      = render 'shared/items', :items => [@user]
+  

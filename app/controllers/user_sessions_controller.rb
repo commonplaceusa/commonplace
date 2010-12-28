@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       reload_current_user!
     end
-    redirect_to root_url
+    redirect_back_or_default root_url
   end
 
   def destroy
