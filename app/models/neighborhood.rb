@@ -10,7 +10,7 @@ class Neighborhood < ActiveRecord::Base
 
   def posts
     #users.map(&:posts).flatten
-    Post.find_by_neighborhood_id(self.id)
+    posts = Post.find_all_by_neighborhood_id(self.id)
   end
 
 end

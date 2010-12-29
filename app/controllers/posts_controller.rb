@@ -12,6 +12,7 @@ class PostsController < CommunitiesController
 
   def create
     @post.user = current_user
+    @post.neighborhood_id = current_neighborhood.id
     if @post.save
       current_neighborhood.notifications.create(:notifiable => @post)
       flash[:message] = "Post Created!"
