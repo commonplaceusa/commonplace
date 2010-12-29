@@ -9,7 +9,8 @@ class Neighborhood < ActiveRecord::Base
   validates_presence_of :name, :bounds
 
   def posts
-    users.map(&:posts).flatten
+    #users.map(&:posts).flatten
+    Post.find_by_neighborhood_id(self.id)
   end
 
 end

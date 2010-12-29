@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101220002818) do
+ActiveRecord::Schema.define(:version => 20101229214718) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20101220002818) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "private",    :default => false, :null => false
+    t.string   "type"
+    t.string   "url"
   end
 
   create_table "attendances", :force => true do |t|
@@ -68,6 +70,13 @@ ActiveRecord::Schema.define(:version => 20101220002818) do
     t.time     "start_time"
     t.time     "end_time"
     t.string   "owner_type"
+  end
+
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "contents",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "feeds", :force => true do |t|
@@ -140,12 +149,13 @@ ActiveRecord::Schema.define(:version => 20101220002818) do
   end
 
   create_table "posts", :force => true do |t|
-    t.text     "body",       :null => false
-    t.integer  "user_id",    :null => false
+    t.text     "body",            :null => false
+    t.integer  "user_id",         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subject"
     t.string   "category"
+    t.integer  "neighborhood_id"
   end
 
   create_table "profile_fields", :force => true do |t|

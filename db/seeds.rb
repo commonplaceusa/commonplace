@@ -17,4 +17,9 @@ user = User.create!(:first_name => "test", :last_name => "dev",
                     :avatar => Avatar.new)
 user.admin = true
 user.save!
+post = Post.create(:body => "This is a test post",
+                    :user => user,
+                    :subject => "Subject",
+                    :neighborhood_id => neighborhood.id)
+post.save
 
