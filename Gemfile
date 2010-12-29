@@ -35,6 +35,8 @@ gem 'json'
 gem 'resque'
 gem 'resque-scheduler'
 
+gem 'god'
+
 group 'cli' do
   gem 'text-reform'
   gem 'thor'
