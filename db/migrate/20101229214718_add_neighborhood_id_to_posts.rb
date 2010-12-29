@@ -7,5 +7,6 @@ class AddNeighborhoodIdToPosts < ActiveRecord::Migration
   end
 
   def self.down
+    remove_column :posts, :neighborhood_id
   end
 end
