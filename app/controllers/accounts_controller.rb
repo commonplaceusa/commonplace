@@ -43,7 +43,7 @@ class AccountsController < CommunitiesController
       crop_avatar = true
     end
     if current_user.update_attributes(params[:user])
-      redirect_to edit_interests_account_path
+      redirect_to root_url
     else
       @user = current_user
       render :edit_new

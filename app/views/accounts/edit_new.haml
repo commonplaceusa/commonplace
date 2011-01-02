@@ -10,6 +10,7 @@
     - f.inputs do 
       = f.input :about
       = f.input :good_list, :input_html => {:placeholder => t('formtastic.placeholders.user.good_list')}
+      = f.input :interest_list, :label => "What are your interests:"
 
     - f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
