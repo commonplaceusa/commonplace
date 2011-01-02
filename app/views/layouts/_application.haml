@@ -24,8 +24,10 @@
     - if current_user_session
       = render 'shared/admin_bar'
     %header
-      - link_to root_url do
-        = image_tag current_community.logo.url, :alt => "Commonplace #{current_community.name}"
+      - link_to root_url, :id => "logo" do
+        = image_tag "logo-pin.png"
+        CommonPlace 
+        %span.community= current_community.name
       - if current_user_session
         %nav
           = tab_to "Home", "/"
