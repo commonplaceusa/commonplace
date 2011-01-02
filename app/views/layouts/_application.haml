@@ -54,6 +54,8 @@
       .left_text
         Find out more at #{ link_to "CommonPlaceUSA.com", "http://commonplaceusa.com", :target => :blank }
       .right_text
+        = mail_to "pete@commonplaceusa.com", "Questions?  Email Pete@CommonPlaceUSA.com"
+        &sdot;
         = link_to "About", "http://commonplaceusa.com", :target => :blank
         &sdot;
         = link_to "Terms", terms_path, 'data-remote' => true
