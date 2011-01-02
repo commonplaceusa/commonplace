@@ -2,7 +2,7 @@ class CommunitiesController < ApplicationController
   before_filter :current_community
   before_filter :authorize_current_community
 
-  layout :community_layout
+  layout 'communities'
   
   def show
     if current_user_session
@@ -14,9 +14,4 @@ class CommunitiesController < ApplicationController
     end
   end
 
-  protected
-  
-  def community_layout
-    current_user_session ? 'communities' : 'signup'
-  end
 end
