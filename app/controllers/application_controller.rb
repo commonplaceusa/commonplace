@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
   def current_neighborhood
     @current_neighborhood ||= 
-      session[:neighborhood_id] ? Neighborhood.find(session[:neighborhood_id]) :
+      (current_user.admin? && session[:neighborhood_id]) ? Neighborhood.find(session[:neighborhood_id]) :
       current_user.neighborhood
   end
 
