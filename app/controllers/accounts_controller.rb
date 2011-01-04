@@ -42,9 +42,10 @@ class AccountsController < CommunitiesController
       params[:user].delete(:avatar)
       crop_avatar = true
     end
-    if current_user.update_attributes(params[:user])
+    if current_user.update_attributes(params[:user]) && current_user.password.present?
       redirect_to root_url
     else
+      current_user.errors.add("password", "Please create a password")
       @user = current_user
       render :edit_new
     end
