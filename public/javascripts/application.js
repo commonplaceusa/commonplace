@@ -38,6 +38,12 @@ $(document).ready(function() {
   $.preLoadImages("/images/loading.gif");
 //  window.onscroll = setInfoBoxPosition;
   
+  $('.inline-form input[type=file]').filestyle({
+    image: "/images/upload.gif",
+    imagewidth: 100,
+    imageheight: 22
+  });
+
   initInlineForm();
 
   $("#user_interest_list_input input:checkbox").each(function() {

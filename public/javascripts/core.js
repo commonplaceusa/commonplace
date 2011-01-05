@@ -259,6 +259,17 @@ function initInlineForm() {
     $(this).removeClass("editable");
   });
 
+  $('.inline-form').bind('image.inline-form', function() {
+    $("form", $(this)).ajaxSubmit({
+      beforeSubmit: function(a,f,o) {
+        o.dataType = 'json';
+      },
+      success: function(response){
+        $("img.user_avatar").attr('src', response.avatar_url);
+      }
+    });
+  });
+
   $('.inline-form .inline-edit').click(function(e) {
     $(this).trigger('edit.inline-form');
     e.stopPropagation();
@@ -273,4 +284,11 @@ function initInlineForm() {
     $(this).trigger('revert.inline-form');
     e.stopPropagation();
   });
+
+  $('.inline-form input[type=file]').filestyle({
+    image: "/images/upload.gif",
+    imagewidth: 100,
+    imageheight: 22
+  });
+
 }

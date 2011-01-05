@@ -41,6 +41,11 @@ class AccountsController < CommunitiesController
     end
   end
 
+  def avatar
+    current_user.avatar.update_attributes(params[:avatar])
+    render :json => {"avatar_url" => current_user.avatar_url(:normal)}
+  end
+
   def edit_new
   end
 

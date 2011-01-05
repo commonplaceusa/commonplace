@@ -8,10 +8,12 @@
 
   #info_box_top
     = "Your Civic Profile".upcase
-
+ 
   #info_box_main
     #info_box_main_left
       = image_tag current_user.avatar_url(:normal), :class => 'graphic user_avatar'
+      - form_tag "/account/avatar.json", :multipart => true, :method => "post" do
+        %input{:type => 'file', :name => "avatar[image]"}
     .body
       %h3= current_user.full_name
       %p.user_about{'data-field'=>"user[about]"}= auto_link current_user.about, :all, :target => '_blank'

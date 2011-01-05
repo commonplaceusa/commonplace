@@ -75,7 +75,8 @@ ActionController::Routing::Routes.draw do |map|
       :learn_more => :get,
       :edit_interests => :get,
       :update_interests => :put,
-      :settings => :put
+      :settings => :put,
+      :avatar => :post
     }
     map.resources :mets
     map.resource :management, :controller => 'management'
