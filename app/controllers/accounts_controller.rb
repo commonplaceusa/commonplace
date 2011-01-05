@@ -33,6 +33,14 @@ class AccountsController < CommunitiesController
   def edit
   end
 
+  def settings
+    if current_user.update_attributes(params[:user])
+      redirect_to root_url
+    else
+      render :edit
+    end
+  end
+
   def edit_new
   end
 
