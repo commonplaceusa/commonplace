@@ -36,7 +36,7 @@ $.sammy("body")
 $(document).ready(function() {
   $.sammy("body").run("/");
   $.preLoadImages("/images/loading.gif");
-//  window.onscroll = setInfoBoxPosition;
+  window.onscroll = setInfoBoxPosition;
   
   $('.inline-form input[type=file]').filestyle({
     image: "/images/upload.gif",
