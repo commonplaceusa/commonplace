@@ -1,10 +1,11 @@
 #information.info_box.user.inline-form{'data-form-url'=>"/account", 'data-form-method'=>"put"}
-  %span.edit
-    %span.inline-edit edit
-  %span.show
-    %span.inline-save save
-    &sdot;
-    %span.inline-cancel cancel
+  - if current_page?(:controller => :communities, :action => :show)
+    %span.edit
+      %span.inline-edit edit
+    %span.show
+      %span.inline-save save
+      &sdot;
+      %span.inline-cancel cancel
 
   #info_box_top
     = "Your Civic Profile".upcase
@@ -12,8 +13,9 @@
   #info_box_main
     #info_box_main_left
       = image_tag current_user.avatar_url(:normal), :class => 'graphic user_avatar'
-      - form_tag "/account/avatar.json", :multipart => true, :method => "post" do
-        %input{:type => 'file', :name => "avatar[image]"}
+      - if current_page?(:controller => :communities, :action => :show)
+        - form_tag "/account/avatar.json", :multipart => true, :method => "post" do
+          %input{:type => 'file', :name => "avatar[image]"}
     .body
       %h3= current_user.full_name
       %p.user_about{'data-field'=>"user[about]"}= auto_link current_user.about, :all, :target => '_blank'
