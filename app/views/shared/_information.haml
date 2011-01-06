@@ -27,13 +27,13 @@
         %li
           %span.info_title= "Feeds".upcase
           %span.user_feeds= current_user.feeds.map{ |f| f.name }.join(", ")
-        %li
-          %span.info_title= "Address".upcase 
-          %span.user_address= current_user.address
+    -#     %li
+    -#       %span.info_title= "Address".upcase 
+    -#       %span.user_address= current_user.address
 
-    = render_map do |map|
-      - map.center current_user
-      - map.marker current_user
+    -# = render_map do |map|
+    -#   - map.center current_user
+    -#   - map.marker current_user
     
   
 
