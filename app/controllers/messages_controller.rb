@@ -1,7 +1,9 @@
 class MessagesController < CommunitiesController
   helper_method :parent
+  
 
   def new
+    authorize! :create, Reply
     @user = parent
     @message = Message.new
   end

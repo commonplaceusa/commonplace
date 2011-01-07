@@ -2,8 +2,14 @@ require 'smtp_api_header.rb'
 
 class NotificationsMailer < ActionMailer::Base
   helper :text
+  helper_method :url
   include TextHelper
   @queue = :notifications_mailer
+
+  def url(path = "")
+    "http://" + @community.slug + ".ourcommonplace.com" + path
+  end
+
   RECIPIENT = "sengrid@example.com"
   def self.perform(notified_type, notifiable_type, 
                    notified_id, notifiable_id)
@@ -17,18 +23,20 @@ class NotificationsMailer < ActionMailer::Base
   
   def neighborhood_post(neighborhood, post)
     recipients RECIPIENT
+    @community = neighborhood.community
     users = neighborhood.users.reject{|u| u == post.user}.select(&:receive_posts)
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
-    subject "#{post.user.full_name} posted #{with_article post.category.downcase} to your neighborhood"
+    subject "#{post.user.full_name} posted to your neighborhood"
     #from "neighborhood-posts@commonplaceusa.com"
     from "post-#{post.id}@commonplaceusa.com"
     body :post => post
   end
   
   def user_message(user, message)
+    @community = user.community
     recipients user.email
     from "messages@commonplaceusa.com"
     subject "#{message.user.name} just sent you a message on CommonPlace"
@@ -36,6 +44,7 @@ class NotificationsMailer < ActionMailer::Base
   end
 
   def post_reply(post, reply)
+    @community = post.user.community
     recipients post.user.email
     #from "replies@commonplaceusa.com"
     from "#{post.long_id}@replies.commonplaceusa.com"
@@ -44,6 +53,7 @@ class NotificationsMailer < ActionMailer::Base
   end
 
   def feed_event(feed, event)
+    @community = feed.community
     recipients RECIPIENT
     users = feed.subscribers
     header = SmtpApiHeader.new
@@ -57,6 +67,7 @@ class NotificationsMailer < ActionMailer::Base
   end
 
   def feed_announcement(feed, announcement)
+    @community = feed.community
     recipients RECIPIENT
     users = feed.subscribers
     header = SmtpApiHeader.new
