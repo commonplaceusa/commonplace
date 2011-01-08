@@ -1,0 +1,3 @@
+class RSSAnnouncement < Announcement
+
+end
