@@ -11,7 +11,7 @@ gem 'haml'
 gem 'formtastic'
 gem 'paperclip'
 gem "acts-as-taggable-on"
-gem "RedCloth"
+gem "BlueCloth", :require => "bluecloth"
 gem "acts-as-list", :require =>"acts_as_list"
 gem "glebm-geokit", :require => "geokit"
 gem "cancan"

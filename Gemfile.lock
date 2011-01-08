@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    BlueCloth (1.0.1)
     RedCloth (4.2.3)
     SystemTimer (1.2.1)
     ZenTest (4.4.2)
@@ -142,7 +143,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth
+  BlueCloth
   SystemTimer
   ZenTest
   aasm
