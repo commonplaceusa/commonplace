@@ -27,6 +27,8 @@ gem 'httparty'
 gem 'json'
 gem 'simple_uuid'
 gem 'outside-in'
+gem 'mcbean'
+gem 'eventfulapi'
 
 gem 'redis'
 gem 'redis-namespace'
