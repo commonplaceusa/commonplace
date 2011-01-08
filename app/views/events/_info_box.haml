@@ -12,7 +12,7 @@
           = link_to "I'm not attending #{ event.name }", event_attendance_path(event), :id => "unsubscribe", 'data-method' => "delete", 'data-remote' => true
       .body
         %h3= event.name
-        %p.user_about= auto_link event.description, :all, :target => '_blank'
+        .user_about= markdown event.description
         %ol.user_info            
           %li
             %span.info_title= "Starts".upcase
