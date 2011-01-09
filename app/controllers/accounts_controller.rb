@@ -31,6 +31,11 @@ class AccountsController < CommunitiesController
   end
 
   def edit
+    if can? :edit, @current_user
+      render :layout => 'application'
+    else
+      redirect_to root_url
+    end
   end
 
   def settings
