@@ -1,19 +1,63 @@
 
 body.application.accounts.new
+  h1
+    width: 800px
+    color: #3b6085
+    line-height: 1.2
+    font-size: 25px
+    padding: 0 20px
+    margin: auto
+    text-align: center
+    +text-shadow(#bfc8cf, 1px, 1px, 1px)
+
+    a
+      color: #b53f3c
+      text-decoration: none
+      +text-shadow(#d4dee7, 1px, 1px, 1px)
+
+
   #main
     position: relative
-  #register
-    width: 650px
-
+    
     form
+      margin: 50px auto 70px
+      +lightbox
+      width: 560px
+
       fieldset.inputs
         li
           padding-left: 100px
           list-style-position: outside
           background-repeat: no-repeat
-          background-position: 20px 5px
+          background-position: 20px 0px
           margin: 20px 0px
+          height: 60px
           width: 485px
+
+          label
+            display: block
+
+          input
+            +border-radius(5px)
+            +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+            padding: 0px 7px
+            font-size: 25px
+            width: 430px
+            +serif
+
+        li#user_full_name_input
+          background-image:  url('/images/step-1-icon.png')
+        li#user_email_input
+          background-image:  url('/images/step-2-icon.png')
+        li#user_location_attributes_street_address_input
+          background-image:  url('/images/step-3-icon.png')
+          p.inline-hints
+            float: left
+            margin: 30px 0px 0px -90px
+            font-size: 12px
+            font-weight: bold
+            +sans
+            color: #3a3a3a
 
       fieldset.buttons
         float: right

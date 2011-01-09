@@ -1,16 +1,15 @@
 
-- update_content "#register" do
-  #register
+%h1= t ".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), learn_more_account_path)
+
+= update_content "#main" do
+  #main
+
     - semantic_form_for current_user, :url => account_path do |f|
       = f.inputs :full_name, :email
       - f.inputs :for => :location do |l|
         = l.input :street_address, :hint => t('formtastic.hints.location.street_address')
       - f.buttons do 
         = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
-
-%h1= t ".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), learn_more_account_path)
-
-= updated_content["#register"]
 
 %p#bubble-1= t ".bubble_1"
 %p#bubble-2= t ".bubble_2"
