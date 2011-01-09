@@ -1,25 +1,40 @@
 
 body.application.accounts.edit_new, body.application.accounts.update_new
+  h1 
+    margin: 20px auto
+    font-size: 28px
   #register
-    width: 1000px
+    +lightbox
+    margin: 20px auto
+    width: 960px
     form
       background-image: url('/images/step-4-icon.png')
       background-repeat: no-repeat
-      background-position: 20px 30px
+      background-position: 00px 30px
       padding-left: 50px
       +clearfix
     .info_box
       float: right
     fieldset.inputs
       li
+        margin: 20px 0
         padding: 0px 20px
-        width: 400px
-        input, textarea
-          width: 100%
+        width: 390px
+        input[type=text], input[type=password], textarea
+          +border-radius(5px)
+          +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+          font-size: 18px
+          padding: 5px
+          width: 400px
+          margin: 10px 0
+        input[type=file]
+          font-size: 20px
+          width: 400px
+          margin: 10px 0
         textarea
           height: 70px
         label
-          margin: 10px
+          display: block
 
     fieldset.buttons
       margin-top: 20px
