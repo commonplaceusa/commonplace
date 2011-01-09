@@ -112,46 +112,46 @@ body.application.accounts
       color: #b53f3c
       text-decoration: none
       +text-shadow(#d4dee7, 1px, 1px, 1px)
-  #register
-    +border-radius(12px)
-    background-color: #c5c5c5
-    padding: 10px
-    margin: 60px auto
-    form, #learn-more
-      background-color: #ebebeb
-      +border-radius(5px)
-      +box-shadow($default-box-shadow-color, 0, 0, $default-box-shadow-blur, 0px)
-      padding: 10px
-      fieldset.inputs  
-        li
+      #register
+        +border-radius(12px)
+        background-color: #c5c5c5
+        padding: 10px
+        margin: 60px auto
+        form
+          background-color: #ebebeb
+          +border-radius(5px)
+          +box-shadow($default-box-shadow-color, 0, 0, $default-box-shadow-blur, 0px)
+          padding: 10px
+          fieldset.inputs  
+            li
 
 
-          label, input, textarea
-            color: #444545
-            display: block
-            float: none
-            font-size: 18px
-            +serif
-            margin: 10px
-            width: 100%
+              label, input, textarea
+                color: #444545
+                display: block
+                float: none
+                font-size: 18px
+                +serif
+                margin: 10px
+                width: 100%
 
-          input, textarea
-            height: 38px
-            +border-radius(5px)
-            +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
-          p.inline-errors
-            margin-left: 10px
-            color: #b53f3c
-        li#user_full_name_input
-          background-image:  url('/images/step-1-icon.png')
-        li#user_email_input
-          background-image:  url('/images/step-2-icon.png')
-        li#user_location_attributes_street_address_input
-          background-image:  url('/images/step-3-icon.png')
-          p.inline-hints
-            float: left
-            margin: 30px 0px 0px -90px
-            font-size: 12px
-            font-weight: bold
-            +sans
-            color: #3a3a3a
+              input, textarea
+                height: 38px
+                +border-radius(5px)
+                +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+              p.inline-errors
+                margin-left: 10px
+                color: #b53f3c
+            li#user_full_name_input
+              background-image:  url('/images/step-1-icon.png')
+            li#user_email_input
+              background-image:  url('/images/step-2-icon.png')
+            li#user_location_attributes_street_address_input
+              background-image:  url('/images/step-3-icon.png')
+              p.inline-hints
+                float: left
+                margin: 30px 0px 0px -90px
+                font-size: 12px
+                font-weight: bold
+                +sans
+                color: #3a3a3a
