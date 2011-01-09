@@ -16,7 +16,10 @@ class RSSImporter
           
           # Pull the values from the Item object, using arbitrary tag names (accessors)
           subject = i.send(subject_tag)
-          body    = i.send(body_tag)
+          # Convert the body to Markdown
+          mccbean = McBean.fragment i.send(body_tag)
+          body = mccbean.to_markdown
+          
           feed_id = feed.id
           url     = i.send(story_url_tag)
           
