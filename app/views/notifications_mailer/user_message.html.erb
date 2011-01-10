@@ -1,69 +1,108 @@
 <html> 
-<head> 
-<title>Private Message</title> 
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-</head>
-<body bgcolor="#eeeeee" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-
-<table id="Table_01" width="600" height="405" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF">
-  <tr>
-    <td colspan="7" valign="top"><a href="http://<%= @message.user.community.slug %>.ourcommonplace.com" target="_blank"><img src="http://<%= @message.user.community.slug %>.ourcommonplace.com/images/<%= @message.user.community.slug %>_notification_header.png" alt="CommonPlace <%= @message.user.community.name %>" width="600" height="56" border="0" align="top"></a></td>
-  </tr>
-  <tr>
-    <td width="16" rowspan="16" bgcolor="#ffffff">&nbsp;</td>
-    <td colspan="5" height="10" style="border-top:2px solid #eeeeee;">&nbsp;</td>
-    <td width="16" rowspan="16" bgcolor="#ffffff">&nbsp;</td>
-    </tr>
-  <tr>
-    <td colspan="5" valign="top"  style="color:#656565;height:40px;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;line-height:20px;padding-bottom:25px;"> <div style="margin-bottom:10px;">Hi <%= @message.recipient.first_name %>,</div>
-        Your neighbor, <a href="http://<%= @message.user.community.slug %>.ourcommonplace.com/#/users/<%= @message.user.id %>"><font color="#b53f3c"><%= @message.user.name %></font></a> just sent you a message through CommonPlace.<a href="#"><font color="#b53f3c"><em></em></font></a></td> 
-  </tr> 
-    <td height="12" colspan="5" bgcolor="#f5f5f5"><img src="http://<%= @message.user.community.slug %>.ourcommonplace.com/images/notification_border.png" width="568" height="12"></td>
-    </tr>
-<tr> 
-  <td width="12" rowspan="2" bgcolor="#f5f5f5">&nbsp;</td> 
-    <td width="0" height="0" bgcolor="#f5f5f5"></td> 
-    <td width="12" rowspan="2" bgcolor="#f5f5f5">&nbsp;</td> 
-    <td width="482" rowspan="2" valign="top" bgcolor="#f5f5f5" style="font-family:Georgia, 'Times New Roman', Times, serif;"><span style="font-size:18px; color: #3B6085;"><%= @message.subject %></span> 
-      <div style="font-size:14px; margin-top:5px; line-height:18px; color: #363636;">
-        <%= markdown @message.body %>
-    </div></td> 
-    <td width="12" rowspan="3" valign="top" bgcolor="#f5f5f5">&nbsp;</td> 
-    </tr> 
-<tr> 
-  <td valign="top" bgcolor="#f5f5f5"> 
-      <img src="http://<%= @message.user.community.slug %>.ourcommonplace.com<%= @message.user.avatar_url(:thumb) %>" width="49" height="48" vspace="0" border="0" align="top">
-  </tr> 
-<tr> 
-  <td colspan="3" valign="top" bgcolor="#f5f5f5">&nbsp;</td> 
-  <td width="482" valign="top" bgcolor="#f5f5f5" align="left"> 
-        <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;"><a href="http://<%= @message.user.community.slug %>.ourcommonplace.com/#/users/<%= @message.user.id %>" style="text-decoration:none;"><font color="#FFEEEE">Reply to <%= @message.user.first_name %></font></a></div> 
-  </td> 
-</tr> 
-<tr> 
-  <td height="12" colspan="5" bgcolor="#f5f5f5"><img src="http://<%= @message.user.community.slug %>.ourcommonplace.com/images/notification_border.png" width="568" height="12"></td>
-</tr> 
-<tr> 
-  <td height="40" colspan="5">&nbsp;</td> 
-</tr> 
-<tr> 
-  <td colspan="5" align="right" style=""> 
+  <head> 
+    <title>Private Message</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  </head>
+  <body bgcolor="#eeeeee" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    
+    <table id="Table_01" width="600" height="405" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF">
+      <tr>
+        <td colspan="7" valign="top">
+          <% link_to url, :target => "_blank" do %>
+          <%= image_tag url("/images/#{@community.slug}_notification_header.png"), :width => 600, :height => 56, :border => 0, :align => "top" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td width="16" rowspan="16" bgcolor="#ffffff">&nbsp;</td>
+        <td colspan="5" height="10" style="border-top:2px solid #eeeeee;">&nbsp;</td>
+        <td width="16" rowspan="16" bgcolor="#ffffff">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="5" valign="top"  style="color:#656565;height:40px;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;line-height:20px;padding-bottom:25px;">
+          <div style="margin-bottom:10px;">Hi <%= @message.recipient.first_name %>,</div>
+          Your neighbor, 
+          <% link_to url(user_path(@message.user)) do %>
+          <font color="#b53f3c">
+            <%= @message.user.name %>
+          </font>
+          <% end %>
+          </a> just sent you a message through CommonPlace.
+          <a href="#">
+            <font color="#b53f3c">
+              <em></em>
+            </font>
+          </a>
         </td> 
-</tr>
-  <tr>
-    <td colspan="5" align="center" style="font-family:Arial, Helvetica, sans-serif;color:#bbbbbb;font-size:11px;">Want to disable this and/or other e-mails? Click <a href="http://<%= @message.user.community.slug %>.ourcommonplace.com/management/edit"><font color="#b53f3c">here</font></a> to manage your subscriptions.</td>
-    </tr>
-  <tr>
-    <td height="12" colspan="5">&nbsp;</td>
-    </tr>
-  <tr>
-    <td colspan="5" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#3b6085;"><a href="http://www.ourcommonplace.com"><font color="#3b6085"><strong>www.OurCommonPlace.com</strong></font></a><br/>
-        &copy; 2010 CommonPlace.</td>
-    </tr>
-  <tr>
-    <td height="12" colspan="5">&nbsp;</td>
-    </tr>
-</table>
-<!-- End Save for Web Slices -->
-</body>
+      </tr> 
+      <tr>
+        <td height="12" colspan="5" bgcolor="#f5f5f5">
+          <%= image_tag url('/images/notification_border.png'), :width => 568, :height => 12 %>
+        </td>
+      </tr>
+      <tr> 
+        <td width="12" rowspan="2" bgcolor="#f5f5f5">&nbsp;</td> 
+        <td width="0" height="0" bgcolor="#f5f5f5"></td> 
+        <td width="12" rowspan="2" bgcolor="#f5f5f5">&nbsp;</td> 
+        <td width="482" rowspan="2" valign="top" bgcolor="#f5f5f5" style="font-family:Georgia, 'Times New Roman', Times, serif;">
+          <span style="font-size:18px; color: #3B6085;">
+            <%= @message.subject %>
+          </span> 
+          <div style="font-size:14px; margin-top:5px; line-height:18px; color: #363636;">
+            <%= markdown @message.body %>
+          </div>
+        </td> 
+        <td width="12" rowspan="3" valign="top" bgcolor="#f5f5f5">&nbsp;</td> 
+      </tr> 
+      <tr> 
+        <td valign="top" bgcolor="#f5f5f5"> 
+          <%= image_tag url(@message.user.avatar_url(:thumb)), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top" %>
+        </td>
+      </tr> 
+      <tr> 
+        <td colspan="3" valign="top" bgcolor="#f5f5f5">&nbsp;</td> 
+        <td width="482" valign="top" bgcolor="#f5f5f5" align="left"> 
+          <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;">
+            <% link_to url(user_path(@message.user)), :style => "text-decoration:none;" do %>
+              <font color="#FFEEEE">Reply to <%= @message.user.first_name %></font>
+            <% end %>
+          </div> 
+        </td> 
+      </tr> 
+      <tr> 
+        <td height="12" colspan="5" bgcolor="#f5f5f5">
+          <%= image_tag url("/images/notification_border.png"), :width => 586, :height => 12 %>
+        </td>
+      </tr> 
+      <tr> 
+        <td height="40" colspan="5">&nbsp;</td> 
+      </tr> 
+      <tr> 
+        <td colspan="5" align="right" style=""> 
+        </td> 
+      </tr>
+      <tr>
+        <td colspan="5" align="center" style="font-family:Arial, Helvetica, sans-serif;color:#bbbbbb;font-size:11px;">
+          Want to disable this and/or other e-mails? Click 
+          <% link_to url("/account/edit") do %>
+            <font color="#b53f3c">here</font>
+          <% end %>
+          to manage your subscriptions.
+        </td>
+      </tr>
+      <tr>
+        <td height="12" colspan="5">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="5" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#3b6085;">
+          <a href="http://www.ourcommonplace.com"><font color="#3b6085">
+              <strong>www.OurCommonPlace.com</strong></font></a><br/>
+          &copy; 2010 CommonPlace.</td>
+      </tr>
+      <tr>
+        <td height="12" colspan="5">&nbsp;</td>
+      </tr>
+    </table>
+    <!-- End Save for Web Slices -->
+  </body>
 </html>
