@@ -1,12 +1,10 @@
 @import core
-@import zones
 @import syndicate
 @import header
 @import small_calendar
 @import info_box
 @import modal
 @import form
-@import main_navigation
 @import modal_form
 @import date_picker
 @import contenteditable
@@ -17,7 +15,8 @@
 @import administration
 @import admin_bar
 @import inline_form
-
+@import say_something
+@import whats_happening
 body.application 
   background-repeat: repeat-x
   background-color: #cee7fe
@@ -170,41 +169,6 @@ body.application
 
   #say-something, #community-profiles, #whats-happening
     width: 485px
-    h2
-      font-size: 20px
-      +serif
-      color: #787b7c
-      padding: 15px 5px
-  
-  #say-something
-    form
-      background-color: #b53f3c
-      +border-radius(5px)
-      padding: 15px
-      fieldset.inputs
-        li
-          padding-bottom: 15px
-        label, input, textarea
-          font-size: 14px
-          color: #444545
-        label
-          color: white
-          display: block
-          font-weight: bold
-          padding: 0px 5px 5px
-          +serif
-        input, textarea
-          +serif
-          font-weight: bold
-          width: 440px
-          padding: 5px
-          +border-radius(5px)
-          +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
-        textarea
-          height: 60px
-      fieldset.buttons
-        text-align: right
-  #community-profiles
 
-  #whats-happening
-    float: right
+  #community-profiles
+    margin-top: 10px

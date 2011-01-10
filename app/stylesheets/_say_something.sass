@@ -1,0 +1,67 @@
+#say-something
+  background-color: #b53f3c
+  +border-radius(5px)
+  border: 1px solid #8c3431
+  h2
+    background-color: #792e2e
+    +border-top-radius(3px)
+    border: 1px solid #c95855
+      bottom: 0px
+    text-align: center
+    color: #fff
+    font-size: 14px
+    padding: 5px
+
+  nav
+    float: left
+    margin-left: -125px
+    a
+      margin-bottom: 8px
+      display: block
+      padding: 5px 20px 5px 5px
+      height: 40px
+      font-size: 11px
+      line-height: 13px
+      width: 85px
+      background-color: #a63b38
+      color: #fff
+      +border-radius(4px)
+      text-decoration: none
+      background-image: url('/images/say-something-unselected.png')
+      background-position: 95px
+      background-repeat: no-repeat
+      &:hover, &.current
+        background-image: url('/images/say-something-selected.png')
+        background-color: #792e2e
+        
+  form
+    padding: 15px 12px 15px 135px
+    +clearfix
+    display: block
+    border: 1px solid #c95855
+      top: 0px
+    +border-bottom-radius(3px)
+      
+    legend
+      width: 175px
+      font-size: 14px
+      color: white
+
+    fieldset.inputs li
+      margin-bottom: 15px
+
+    label
+      display: block
+      color: #fff
+      padding-bottom: 5px
+      font-size: 14px
+    input[type=text], textarea
+      width: 330px
+      font-size: 18px
+      padding: 3px
+      +border-radius(5px)
+      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+    textarea
+      height: 130px
+    fieldset.buttons
+      float: right

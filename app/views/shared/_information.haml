@@ -1,7 +1,7 @@
 #information.info_box.user.inline-form{'data-form-url'=>"/account", 'data-form-method'=>"put"}
 
   #info_box_top
-    = "Your Civic Profile".upcase
+    = "Your Civic Profile"
     - unless current_page?(:controller => :accounts, :action => :edit_new) || current_page?(:controller => :accounts, :action => :update_new)
       %span.edit
         %span.inline-edit edit

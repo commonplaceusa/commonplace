@@ -1,13 +1,12 @@
 - render :layout => 'layouts/application' do
   #main
     #whats-happening
-      %h2= t "communities.whats_happening.title"
-      = updated_content["#tooltip"]
+      %h2
+        = updated_content["#tooltip"]
       = render 'shared/zones'
       = updated_content["#syndicate"]
     #say-something
       %h2= t "communities.say_something.title"
       = render 'posts/form', :post => Post.new
     #community-profiles
-      %h2= t "communities.community_profiles.title"
       = updated_content["#information"] || render('shared/information', :items => [])

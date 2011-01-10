@@ -1,12 +1,23 @@
 %nav#zones
-  = tab_to "", :posts, :class => 'posts zone tooltip', 'data-title' => t('tooltips.posts'),  'data-remote' => true
+  - tab_to :posts, :class => 'posts zone tooltip', 'data-title' => t('tooltips.posts'),  'data-remote' => true do
+    %div
+    %span Neighborhood Posts
 
-  = tab_to "", :events, :class => 'events zone tooltip', 'data-title' => t('tooltips.events'), 'data-remote' => true
+  - tab_to :events, :class => 'events zone tooltip', 'data-title' => t('tooltips.events'), 'data-remote' => true do
+    %div
+    %span Events
 
-  = tab_to "", :announcements, :class => 'announcements zone tooltip', 'data-title' => t('tooltips.announcements'), 'data-remote' => true
+  - tab_to :announcements, :class => 'announcements zone tooltip', 'data-title' => t('tooltips.announcements'), 'data-remote' => true do
+    %div
+    %span Announcements
 
-  = tab_to "", :users, :class => 'people zone tooltip', 'data-title' => t('tooltips.people'), 'data-remote' => true
+  - tab_to :feeds, :class => 'feeds zone tooltip', 'data-title' => t('tooltips.feeds'), 'data-remote' => true do
+    %div
+    %span Community Feeds
 
-  = tab_to "", :feeds, :class => 'feeds zone tooltip', 'data-title' => t('tooltips.feeds'), 'data-remote' => true
+  - tab_to :users, :class => 'people zone tooltip', 'data-title' => t('tooltips.people'), 'data-remote' => true do
+    %div
+    %span Directory
 
-  = tab_to "", "disabled", :class => 'goods-and-skills zone tooltip', 'data-title' => t('tooltips.goods_and_skills'), 'data-remote' => true
+
+

@@ -1,7 +1,15 @@
 
 - semantic_form_for post do |f|
+  %nav
+    = link_to "Create a Neighborhood Post", new_post_path, :class => "current"
+    = link_to "Create a Community Event", "#disabled", :class => "disabled_link"
+    = link_to "Create a Community Feed", "#disabled", :class => "disabled_link"
+    = link_to "Invite People", "#disabled", :class => "disabled_link"
+
   - f.inputs do
-    = f.input :subject, :input_html => {:placeholder => t("formtastic.placeholders.post.subject")}
-    = f.input :body, :input_html => {:placeholder => t("formtastic.placeholders.post.body")}
+    = f.input :subject
+    = f.input :body
   - f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}
+  %legend
+    Have an announcement, need, offer, or question?
