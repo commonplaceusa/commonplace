@@ -81,7 +81,7 @@ $(document).ready(function() {
                           'autoHeight': false
                          });
 
-  $('form').live('submit',function(e) {
+  $('body:not(.edit_new, .update_new) form').live('submit',function(e) {
     $('input[type=image]',$(this)).replaceWith('<img style="float: right"src="/images/loading.gif">');
   });
   

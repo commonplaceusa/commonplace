@@ -2,7 +2,7 @@
 %h1= t '.title'
 
 #register
-  - semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true} do |f|
+  - semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
     = render 'shared/information', :items => []
     = f.inputs :password
     - f.inputs :for => current_user.avatar do |a|
