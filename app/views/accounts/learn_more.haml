@@ -16,7 +16,7 @@
         %li= text.match("COMMUNITY") ? text.sub!(/COMMUNITY/, current_community.name) : text
     %p= t ".p6", :community_link => link_to(root_url, root_url) 
      
-    %p= t ".p7", :community_email => mail_to("announcement-"+current_community.slug+"@ourcommonplace.com", "announcement-"+current_community.slug+"@ourcommonplace.com")
+    //%p= t ".p7", :community_email => mail_to("announcement-"+current_community.slug+"@ourcommonplace.com", "announcement-"+current_community.slug+"@ourcommonplace.com")
     .img_wrapper
       -link_to new_account_path do
         =image_tag "sign-up-now-btn.png", :width => 193, :height => 49
