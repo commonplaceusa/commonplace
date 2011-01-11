@@ -4,7 +4,7 @@ class PostsController < CommunitiesController
   load_and_authorize_resource
 
   def index
-    @items = current_user.neighborhood.posts.sort_by(&:created_at).reverse
+    @items = current_neighborhood.posts.sort_by(&:created_at).reverse
   end
 
   def new
