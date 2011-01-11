@@ -21,7 +21,8 @@ class Post < ActiveRecord::Base
     # Return the base-64 encoded post ID, replacing any tailing = characters with their quantity
     require 'base64'
     long_id = Base64.b64encode(self.id.to_s)
-    m = long_id.match(/[A-Za-z0-9]*(=+)/)
+     m = long_id.match(/[A-Za-z0-9]*(=*)/)
+    
     if m[1]
       long_id = long_id.gsub(m[1],m[1].length.to_s)
     end
