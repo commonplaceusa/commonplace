@@ -87,8 +87,8 @@ en:
         image: "Add a Photo:"
 
       post:
-        subject: "Title:"
-        body: "Post:"
+        subject: "Subject"
+        body: "Post"
 
     placeholders:
       user:
