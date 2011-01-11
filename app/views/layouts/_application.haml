@@ -26,8 +26,7 @@
       = render 'shared/admin_bar'
     %header
       - link_to root_url, :id => "logo" do
-        = image_tag "logo-pin.png"
-        CommonPlace 
+        = image_tag "logo.png"
         %span.community= current_community.name
       - if current_user_session
         %nav
