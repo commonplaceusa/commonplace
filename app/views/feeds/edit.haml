@@ -1,7 +1,9 @@
-- render :layout => 'shared/modal' do
 
-  %hr.staple
-    
-  %h1 Step 1 of 3: Fill out your #{@feed.category}'s information
-  %p.subhead Feel free to add to or edit any information listed here.
-  = render 'form'
+
+= update_content "#new_feed" do
+  - semantic_form_for @feed do |f|
+    %h2= t ".h2"
+    = f.inputs :name, :avatar, :about
+    = f.inputs :address, :phone, :hours, :website
+    - f.buttons do
+      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}

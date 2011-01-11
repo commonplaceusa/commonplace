@@ -1,0 +1,53 @@
+
+body.application.feeds.new, body.application.feeds.edit
+
+  h1
+    width: 660px
+    color: #3b6085
+    line-height: 1.2
+    font-size: 25px
+    padding: 0 20px
+    margin: 5px auto 20px
+    text-align: center
+    +text-shadow(#bfc8cf, 1px, 1px, 1px)
+
+
+  form.formtastic.feed
+    +lightbox
+    width: 780px
+    margin: auto
+
+    h2
+      color: #3b6085
+      font-size: 24px
+      margin: 20px 0px 15px 15px
+
+    fieldset.inputs
+      +inline-block
+      width: 340px
+      margin: 0px 20px 0px 15px
+      vertical-align: top
+
+      li
+        margin: 10px 0px
+        label
+          display: block
+          padding: 10px 0px
+        input[type=text], textarea
+          +border-radius(5px)
+          +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+          padding: 0px 7px
+          font-size: 22px
+          width: 100%
+          +serif
+
+        textarea
+          height: 80px
+        
+        p.inline-errors
+          color: #b7403c
+
+    fieldset.buttons
+      margin-right: 28px
+      li
+        float: right

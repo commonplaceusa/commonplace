@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
   end
 
   def xhr?
-    request.env['HTTP_X_REQUESTED_WITH'].present?
+    request.env['HTTP_X_REQUESTED_WITH'].present? || params[:xhr]
   end
 
   def redirect_to(options = {}, response_status = {})

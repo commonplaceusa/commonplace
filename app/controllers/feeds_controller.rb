@@ -22,26 +22,28 @@ class FeedsController < CommunitiesController
   end
 
   def new
+    render :layout => 'application'
   end
 
   def create
     @feed = current_community.feeds.new(params[:feed])
     @feed.user = current_user
     if @feed.save
-      redirect_to management_feed_url(@feed)
+      redirect_to feed_url(@feed)
     else
-      render :new
+      render :new, :layout => 'application'
     end
   end
 
   def edit
+    render :layout => 'application'
   end
 
   def update
     if @feed.update_attributes(params[:feed])
-      redirect_to feed_profile_fields_url(@feed)
+      redirect_to feed_url(@feed)
     else
-      render :edit
+      render :edit, :layout => 'application'
     end
   end
   

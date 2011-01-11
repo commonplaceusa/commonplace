@@ -29,13 +29,4 @@ class Feed < ActiveRecord::Base
 
   accepts_nested_attributes_for :profile_fields
 
-  def avatar_url(style = :default)
-    avatar.image.url(style)
-  end
-
-  def set_default_avatar
-    if self.avatar.nil?
-      self.avatar = Avatar.new
-    end
-  end
 end

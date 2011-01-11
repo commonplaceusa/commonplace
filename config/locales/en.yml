@@ -17,6 +17,12 @@ en:
     whats_happening:
       title: "Find out what's happening in town:"
 
+  feeds:
+    new:
+      h1: Create a feed so you can send announcements and events instantly to everyone in the community.
+      h2: Create Your Own Feed
+    edit:
+      h2: Edit Your Feed
 
   accounts:
     new:
@@ -89,6 +95,15 @@ en:
       post:
         subject: "Subject"
         body: "Post"
+
+      feed:
+        name: "Feed Name:"
+        avatar: "Add a photo of your organization:"
+        about: "Tell us about your organization:"
+        phone: "Phone Number:"
+        address: "Your Address:"
+        hours: "Your hours of operation:"
+        website: "Your website:"
 
     placeholders:
       user:

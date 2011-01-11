@@ -12,23 +12,37 @@ $.sammy("body")
     }, 0);
   })
   .defaultCallback(function(c) {
-    $.ajax({type: c.verb,
-            url: c.path,
-            data: c.verb == "get" ? null : c.params,
-            dataType: "json",
-            success: function(response) {
-              if (response.redirect_to) {
-                if (response.redirect_to.match(/^http/)) {
-                  window.location = response.redirect_to;
-                } else {
-                  $.sammy("body").setLocation(response.redirect_to);
-                  $.sammy("body").runRoute("get", response.redirect_to);
-                }
-              } else {
-                merge(response);
-              }
-            }
-           });
+    success = function(response) {
+      if (response.redirect_to) {
+        if (response.redirect_to.match(/^http/)) {
+          window.location = response.redirect_to;
+        } else {
+          $.sammy("body").setLocation(response.redirect_to);
+          $.sammy("body").runRoute("get", response.redirect_to);
+        }
+      } else {
+        merge(response);
+      }
+    };
+
+    if (c.verb == "get") {
+      $.ajax({type: c.verb,
+              url: c.path,
+              data: null,
+              dataType: "json",
+              success: success
+             });
+    } else {
+      $(c.target).append("<input name='xhr' value='true' type='hidden'>");
+      $(c.target).ajaxSubmit({
+        beforeSubmit: function(a,f,o) {
+          o.dataType = 'json';
+          o.type = c.verb;
+          o.data = {xhr: 1};
+        },
+        success: success
+      });
+    }
   })
 
   .setLocationProxy(new Sammy.CPLocationProxy($.sammy('body')));
