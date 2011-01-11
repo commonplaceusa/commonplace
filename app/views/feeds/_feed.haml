@@ -1,3 +1,3 @@
 %div{'data-href' => feed_path(feed), :class => "feed tooltip", 'data-title' => 'Click to see more information about this feed'}
-  = image_tag feed.avatar_url(:thumb), :class => "avatar"
+  = image_tag feed.avatar.url(:thumb), :class => "avatar"
   .title= feed.name

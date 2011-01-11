@@ -16,7 +16,16 @@ class Feed < ActiveRecord::Base
   has_many :subscriptions, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions, :source => :user
 
-  has_one :avatar, :as => :owner, :dependent => :destroy
+  has_attached_file(:avatar,                    
+                    :styles => { 
+                      :thumb => "100x100^", 
+                      :normal => "120x120^",
+                      :large => "200x200^"
+                    },
+                    :default_url => "/avatars/missing.png", 
+                    :url => "/system/feeds/:id/avatar/:style.:extension",
+                    :path => ":rails_root/public/system/feeds/:id/avatar/:style.:extension")
+
 
   accepts_nested_attributes_for :profile_fields
 
@@ -28,9 +37,5 @@ class Feed < ActiveRecord::Base
     if self.avatar.nil?
       self.avatar = Avatar.new
     end
-  end
-
-  def after_initialize
-    set_default_avatar
   end
 end
