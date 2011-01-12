@@ -3,5 +3,5 @@
   %time= rss_announcement.time
   .reply-count #{ rss_announcement.replies.size } replies
   .title= rss_announcement.subject
-  .author= rss_announcement.owner.name
+  .author= link_to(rss_announcement.owner.name,rss_announcement.owner.profile_link)
   .body= markdown auto_link(rss_announcement.body, :all, :target => "_blank")

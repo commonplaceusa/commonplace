@@ -31,4 +31,8 @@ class RSSFeed < Feed
     
   end
   
+  def profile_link
+    return "/feeds/" + self.id.to_s
+  end
+  
 end
