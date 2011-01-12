@@ -49,7 +49,6 @@ $.sammy("body")
       $("#edit_profile_fields #modules").append(response.form);
     });
   })
-  .get("/feeds/new")
   .post("/feeds")
   .put("/feeds/:id")
   .get("/feeds/:id/edit")

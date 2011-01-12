@@ -29,7 +29,7 @@ class FeedsController < CommunitiesController
     @feed = current_community.feeds.new(params[:feed])
     @feed.user = current_user
     if @feed.save
-      redirect_to feed_url(@feed)
+      redirect_to profile_feed_url(@feed)
     else
       render :new, :layout => 'application'
     end
@@ -41,7 +41,7 @@ class FeedsController < CommunitiesController
 
   def update
     if @feed.update_attributes(params[:feed])
-      redirect_to feed_url(@feed)
+      redirect_to profile_feed_url(@feed)
     else
       render :edit, :layout => 'application'
     end
