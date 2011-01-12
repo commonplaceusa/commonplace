@@ -79,18 +79,6 @@ ActionController::Routing::Routes.draw do |map|
       :avatar => :post
     }
     map.resources :mets
-    map.resource :management, :controller => 'management'
-
-    map.namespace :management do |man|
-      man.resources :feeds, :member => [:outreach]do |feed|
-        feed.resources :announcements, :controller => 'feeds/announcements'
-        feed.resources :events, :controller => 'feeds/events'
-        feed.resources :profile_fields, :controller => 'feeds/profile_fields', :collection => {:order => :post}
-      end
-      man.resources :events, :member => [:replies, :outreach]
-      man.resources :invites
-      man.resources :email_invites
-    end
 
   end
   

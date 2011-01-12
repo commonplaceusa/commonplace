@@ -1,8 +1,0 @@
-#management_main
-  %h1 Click an feed to manage it:
-  
-  %nav#my_feeds
-    - @feeds.each do |org|
-      = render 'management/button', :feed => org
-      
-  %h2= link_to 'Or click here to create a feed!', new_management_path
