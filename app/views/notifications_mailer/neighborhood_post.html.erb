@@ -9,7 +9,7 @@
 <% content_for :body, markdown(@post.body) %>
 
 <% content_for :avatar, 
-   image_tag(url(@post.user.avatar_url(:thumb)), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") 
+   image_tag(url(@post.user.avatar.url(:thumb)), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") 
 %>
 
 <% content_for :reply_with do %>

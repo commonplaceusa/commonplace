@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110111190559) do
+ActiveRecord::Schema.define(:version => 20110112024129) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(:version => 20110111190559) do
     t.boolean  "receive_events_and_announcements", :default => true
     t.boolean  "admin",                            :default => false
     t.string   "state"
+    t.string   "avatar_file_name"
   end
 
 end

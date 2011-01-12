@@ -4,7 +4,7 @@
     
     #info_box_main
       #info_box_main_left
-        = image_tag user.avatar_url(:normal), :class => 'graphic'
+        = image_tag user.avatar.url(:normal), :class => 'graphic'
         -# - unless current_user.people.exists?(user)
         -#   = button_to "Have you met?", user_met_path(user), :id => "follow_link", :class => "link_button"
         = link_to "Message #{ user.first_name }", new_user_message_path(user), :id => "message_me", :class => "link_button tooltip", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ user.first_name }"

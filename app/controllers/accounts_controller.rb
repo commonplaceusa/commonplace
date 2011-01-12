@@ -16,7 +16,7 @@ class AccountsController < CommunitiesController
     authorize! :create, User
     current_user.location = Location.new(params[:user].delete(:location_attributes).merge(:zip_code => current_community.zip_code))
     current_user.location.update_lat_and_lng
-    current_user.avatar = Avatar.new
+
     current_user.neighborhood = current_community.neighborhoods.to_a.
       find(lambda{current_community.neighborhoods.first}) do |n|
       current_user.location.within?(n.bounds) if n.bounds
@@ -47,8 +47,8 @@ class AccountsController < CommunitiesController
   end
 
   def avatar
-    current_user.avatar.update_attributes(params[:avatar])
-    render :json => {"avatar_url" => current_user.avatar_url(:normal)}
+    current_user.update_attributes(params[:user])
+    render :json => {"avatar_url" => current_user.avatar.url(:normal)}
   end
 
   def edit_new
@@ -56,12 +56,6 @@ class AccountsController < CommunitiesController
 
   def update_new
     authorize! :update, User
-    if params[:user][:avatar]
-      @avatar = current_user.avatar
-      @avatar.update_attributes(params[:user][:avatar])
-      params[:user].delete(:avatar)
-      crop_avatar = true
-    end
     if current_user.update_attributes(params[:user]) && current_user.password.present?
       redirect_to root_url
     else

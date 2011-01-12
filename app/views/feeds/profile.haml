@@ -44,7 +44,7 @@
       %ul
         - @feed.subscribers.each do |user|
           %li
-            = image_tag user.avatar_url, :size => "32x32"
+            = image_tag user.avatar.url, :size => "32x32"
             = user.name
         
       

@@ -99,8 +99,8 @@ en:
       location:
         street_address: "Street Address*:"
       
-      avatar:
-        image: "Add a Photo:"
+      avatar: "Add a Photo:"
+
 
       post:
         subject: "Subject"

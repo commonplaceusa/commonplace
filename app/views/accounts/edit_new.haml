@@ -4,11 +4,9 @@
 #register
   - semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
     = render 'shared/information', :items => []
-    = f.inputs :password
-    - f.inputs :for => current_user.avatar do |a|
-      = a.input :image, :input_html => {:size => 20}
+    = f.inputs :password, :avatar, :about
+
     - f.inputs do 
-      = f.input :about
       = f.input :good_list, :input_html => {:placeholder => t('formtastic.placeholders.user.good_list')}
       = f.input :interest_list, :label => "What are your interests:"
 

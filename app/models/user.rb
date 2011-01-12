@@ -129,11 +129,22 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :interests
   acts_as_taggable_on :goods
 
+
+  has_attached_file(:avatar,                    
+                    :styles => { 
+                      :thumb => "100x100^", 
+                      :normal => "120x120^",
+                      :large => "200x200^"
+                    },
+                    :default_url => "/avatars/missing.png", 
+                    :url => "/system/users/:id/avatar/:style.:extension",
+                    :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
+
+
   def validate 
     errors.add(:full_name, "can't be blank") if first_name.blank? || last_name.blank?
   end 
   
-  has_one :avatar, :as => :owner
   
   def subscribed_announcements
     feeds.map(&:announcements).flatten
@@ -141,10 +152,6 @@ class User < ActiveRecord::Base
 
   def suggested_events
     []
-  end
-
-  def avatar_url(style = :default)
-    avatar.image.url(style)
   end
 
   def search(term)
