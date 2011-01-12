@@ -22,7 +22,6 @@ Factory.define :user do |f|
   f.interest_list { Array.new((0..4).random){Forgery(:basic).color}.join(',')}
   f.email {|u| "#{u.first_name}.#{u.last_name}@example.com".downcase }
   f.password { Forgery(:basic).password }
-  f.password_confirmation {|u| u.password }
   f.association :location
   f.about { Forgery(:lorem_ipsum).paragraphs(1) }
   f.association :avatar
