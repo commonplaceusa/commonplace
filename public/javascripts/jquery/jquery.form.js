@@ -367,7 +367,8 @@ $.fn.ajaxSubmit = function(options) {
 						// account for browsers injecting pre around json response
 						var pre = doc.getElementsByTagName('pre')[0];
 						if (pre) {
-							xhr.responseText = pre.innerHTML;
+						  xhr.responseText = pre.innerHTML;
+                        
 						}
 					}			  
 				}
@@ -375,6 +376,10 @@ $.fn.ajaxSubmit = function(options) {
 					xhr.responseXML = toXml(xhr.responseText);
 				}
 				data = $.httpData(xhr, s.dataType);
+                                $.each(data, function(key,value) {
+                                  data[key] = $('<div/>').html(value).text()
+                                });
+
 			}
 			catch(e){
 				log('error caught:',e);
