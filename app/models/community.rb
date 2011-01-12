@@ -24,6 +24,10 @@ class Community < ActiveRecord::Base
     find(:first, :conditions => ["LOWER(name) = ?", name.downcase])
   end
 
+  def self.find_by_slug(slug)
+    find(:first, :conditions => ["LOWER(slug) = ?", slug.downcase])
+  end
+
   def users
     neighborhoods.map(&:users).flatten
   end
