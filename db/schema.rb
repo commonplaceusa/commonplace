@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(:version => 20110112024129) do
   end
 
   create_table "announcements", :force => true do |t|
-    t.string   "subject",                                :null => false
-    t.text     "body",                                   :null => false
-    t.integer  "feed_id",                                :null => false
+    t.string   "subject",                       :null => false
+    t.text     "body",                          :null => false
+    t.integer  "feed_id",                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "private",    :default => false,          :null => false
-    t.string   "type",       :default => "Announcement"
+    t.boolean  "private",    :default => false, :null => false
+    t.string   "type"
     t.string   "url"
   end
 
@@ -59,6 +59,19 @@ ActiveRecord::Schema.define(:version => 20110112024129) do
     t.text     "signup_message"
   end
 
+  create_table "conversation_memberships", :force => true do |t|
+    t.integer  "user_id",         :null => false
+    t.integer  "conversation_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "conversations", :force => true do |t|
+    t.string   "subject",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.string   "name",            :null => false
     t.text     "description",     :null => false
@@ -71,6 +84,13 @@ ActiveRecord::Schema.define(:version => 20110112024129) do
     t.time     "end_time"
     t.string   "owner_type"
     t.string   "source_feed_id"
+  end
+
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "contents",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "feeds", :force => true do |t|
@@ -101,6 +121,15 @@ ActiveRecord::Schema.define(:version => 20110112024129) do
     t.text     "body"
     t.string   "inviter_type"
     t.integer  "invitee_id"
+  end
+
+  create_table "links", :force => true do |t|
+    t.integer  "linkable_id",   :null => false
+    t.string   "linkable_type", :null => false
+    t.integer  "linker_id",     :null => false
+    t.string   "linker_type",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "locations", :force => true do |t|
@@ -147,6 +176,29 @@ ActiveRecord::Schema.define(:version => 20110112024129) do
     t.string   "notified_type"
   end
 
+  create_table "organizations", :force => true do |t|
+    t.string   "name",                :null => false
+    t.string   "address"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.text     "about"
+    t.string   "phone"
+    t.string   "website"
+    t.integer  "community_id"
+    t.string   "category"
+  end
+
+  create_table "platform_updates", :force => true do |t|
+    t.string   "subject",    :null => false
+    t.text     "body",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", :force => true do |t|
     t.text     "body",            :null => false
     t.integer  "user_id",         :null => false
@@ -182,6 +234,13 @@ ActiveRecord::Schema.define(:version => 20110112024129) do
     t.datetime "updated_at"
     t.string   "repliable_type"
     t.boolean  "official",       :default => false, :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.integer  "user_id",         :null => false
+    t.integer  "organization_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "slugs", :force => true do |t|
