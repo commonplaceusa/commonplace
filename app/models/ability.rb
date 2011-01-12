@@ -25,13 +25,12 @@ class Ability
       can :read, User
       can :read, Announcement
       can :read, Event
-      can :read, Community
       can :read, Feed
       can :create, Feed
       can :manage, Feed, :user_id => user.id
       can :read, ActsAsTaggableOn::Tag
     end
-
+      can :read, Community
   end
 
   
