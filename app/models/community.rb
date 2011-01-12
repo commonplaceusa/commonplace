@@ -1,6 +1,6 @@
 class Community < ActiveRecord::Base
   has_many :feeds
-  has_many :neighborhoods
+  has_many :neighborhoods, :order => :created_at
   has_many :announcements, :through => :feeds
   
   validates_presence_of :name, :slug, :zip_code
