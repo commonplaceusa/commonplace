@@ -1,4 +1,5 @@
 class PasswordResetsController < CommunitiesController
+  layout 'application'
 
   def new
     @email = ""
@@ -26,7 +27,7 @@ class PasswordResetsController < CommunitiesController
   def update
     if @user = User.find_using_perishable_token(params[:id])
       @user.password = params[:user][:password]
-      if @user.save!
+      if @user.save
         redirect_to root_url
       else
         render :edit

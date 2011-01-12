@@ -1,9 +1,10 @@
 
-- render :layout => 'shared/modal' do
+
+- semantic_form_for @user, :url => password_reset_path, :method => :put do |f|
   %h2 Enter a new password
-  - semantic_form_for @user, :url => password_reset_path, :method => :put do |f|
-    - f.inputs do
-      = f.input :password
-      = f.commit_button 'Update'
+  - f.inputs do
+    = f.input :password
+  - f.buttons do
+    = f.commit_button 'Update'
 
 

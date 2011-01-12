@@ -65,11 +65,6 @@ $.sammy("body")
 
   .get("/neighborhood/people")
 
-  .get("/password_resets/new")
-  .post("/password_resets")
-  .get("/password_resets/:id/edit")
-
-
   .post("/posts")
 
   .post("/first_posts")
