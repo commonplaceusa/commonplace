@@ -62,95 +62,39 @@ body.application
         color: #3b6085
       a:hover
         color: #3b6085
-    #login
+      
+    #new_user_session
       float: right
-      width: 430px
-      margin-bottom: 25px
-      +border-radius(5px)
-      color: #aaa
-      +clearfix
-      .field
+      width: 440px
+      .inputs, .buttons
         +inline-block
-        width: 160px
-        margin-right: 15px
-        vertical-align: top          
-      .buttons
-        width: 55px
-        +inline-block
-        vertical-align: bottom
-        margin-bottom: 2px
-      #submit_wrapper
-        margin-top: 21px
-      p.forgot_password
-        text-align: right
-        padding: 5px 20px 10px 
-        font-size: 12px
-      &.submit
-        margin: auto
-        width: auto
-      input
-        +border-radius(5px)
-        width: 155px
-        outline: none
-
-      input[type=text], input[type=password]
-        padding: 5px 7px
-        font-size: 0.9em
-        +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
-
-        margin: 0
-        border: 1px solid #ddd
-      label
-        +sans
-        float: left
-        margin: 5px 0 3px
-        margin-right: 10px
-        font-weight: bold
-        font-size: 0.7em
-        line-height: 13px
-    
-        +serif
-        &[type=text], &[type=password]
-          color: #444
-          +box-shadow(#ccc, 2px, 2px, 4px, 0, inset)
-          padding: 5px 10px
-        &.labelText
-          color: #888
+        li 
+          margin: 0 2px
+          +inline-block
           
-    
-      .formError
-        +sans
-        margin-top: 5px
-        color: $cpRed
-        font-weight: bold
-        font-size: 0.8em
-      #submit_wrapper
-        width: auto
+          label
+            display: block
+            padding: 4px 0
+          input[type=text], input[type=password]
+            +border-radius(5px)
+            width: 155px
+            outline: none
+            padding: 5px 7px
+            font-size: 0.9em
+            +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+            margin: 0
+            border: 1px solid #ddd          
+      .buttons
+        padding-top: 25px
+      p.forgot_password
         float: right
-        margin-top: 7px  
-        +inline-block
-        vertical-align: top
-        +box-shadow( rgba(0, 0, 0, 0.2), 0, 1px, 1px, 0, false)
-        +sans
-        background-color: $cpRed
-        border: 1px solid $cpDarkRed - #111
-        +border-radius(5px)
-        input[type=submit]
-          float: right
-          width: auto
-          +sans
-          font-weight: bold
-          font-size: 0.6em
-          background-color: transparent
-          margin: 0
-          color: white
-          +text-shadow(rgba(0, 0, 0, 0.5), 2px, 1px, 1px)
-          cursor: pointer
-          border: 1px solid $cpRed + #222
-            bottom: 1px solid $cpDarkRed
-          display: block
-          padding: 5px 8px
-          +border-radius(5px)
+        margin-right: 22px
+        padding: 4px
+        font-size: 12px
+      p.errors
+        margin-left: 2px
+        color: #b7403c
+        font-size: 13px
   #main
     width: 980px
     margin: auto

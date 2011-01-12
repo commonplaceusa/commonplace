@@ -146,4 +146,5 @@ en:
       title: Neighbors
     feeds:
       title: Community Feeds
-    
+  error_messages:
+    no_authentication_details: "Invalid email or password"

@@ -10,8 +10,13 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       reload_current_user!
+      redirect_back_or_default root_url
+    else
+      @user_session_errors = true
+      params[:controller] = "accounts"
+      params[:action] = "new"
+      render 'accounts/new'
     end
-    redirect_back_or_default root_url
   end
 
   def destroy
