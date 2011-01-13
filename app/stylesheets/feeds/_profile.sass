@@ -2,6 +2,7 @@
 body.application.feeds.profile
   +serif
   #main
+    color: #454545
     background-color: #f5f5f5
     +border-radius(15px)
     +box-shadow($default-box-shadow-color, 0, 0, $default-box-shadow-blur, 0, inset)
@@ -14,9 +15,8 @@ body.application.feeds.profile
       margin-bottom: 25px
     h2
       color: #3b6085
-      font-weight: bold
     h3
-      font-weight: bold
+      font-size: 14px
       background-color: #385f84
       color: white
       +border-top-radius(7px)
@@ -46,29 +46,38 @@ body.application.feeds.profile
           border: 1px solid white
             bottom-color: #d0d0d0
           +inline-block
-          font-size: 10px
+          font-size: 12px
           padding: 5px 0
         dt
           +sans
+          color: #3b6085
           width: 58px
           padding-left: 4px
           border-right-width: 0px
         dd
           border-left-width: 0px
           width: 159px
+        dd:last-child
+          +border-radius(0px, 7px)
+
       a.edit
         border: 1px solid #d0d0d0
           top-width: 0px
         +border-bottom-radius(4px)
-        padding: 5px 5px      
-
+        padding: 5px 5px 
+    #post_tabs_container
+      
+    
     #post
       background-color: #dadada
       +border-radius(5px)
       padding: 15px
 
       h2
-        margin-bottom: 10px
+        font-size: 20px
+   
+        width: 100px
+        float: left
         nav
           border: 3px solid #c5c5c5
           +border-radius(4px)
@@ -85,7 +94,40 @@ body.application.feeds.profile
               border-bottom: 1px solid #d0d0d0
               padding-bottom: 4px
               margin-bottom: 2px
-
+      #post_tabs
+        li
+          display: inline
+          float: left
+          margin: 0
+          padding: 5px
+          border: 1px solid #d0d0d0
+          +border-radius(5px)
+      .clear
+        clear: both
+    label
+      display: block
+      margin: 10px 0px
+    #announcement_body
+      border: 1px solid #9f9f9f
+      +border-radius(5px)
+      +box-shadow(#ddd, 2px, 2px, 1px, 0px, inset)
+      padding: 5px
+      margin-bottom: 10px
+      height: 60px 
+      width: 360px 
+      
+    #announcement_subject
+      border: 1px solid #9f9f9f
+      +border-radius(5px)
+      +box-shadow(#ddd, 2px, 2px, 1px, 0px, inset)
+      padding: 5px
+      height: 30px 
+      width: 360px
+    #announcement_submit
+      float: left
+    .commit
+      float: right
+      margin-right: 3px
     #recent-posts
       margin-top: 25px
       h2
@@ -98,7 +140,8 @@ body.application.feeds.profile
           margin-bottom: 5px
           background-color: #f7f7f7
           +border-radius(3px)
-            
+          time
+            color: #3b6085
 
     #about
       padding: 15px
@@ -127,4 +170,4 @@ body.application.feeds.profile
       color: #b53f3c
       text-align: right
       text-decoration: none
-      font-size: 10px
+      font-size: 12px

@@ -18,26 +18,31 @@
           %dd<>= @feed.address
         - if @feed.hours.present?
           %dt<> Hours:
-          %dd<> @feed.hours
-
+          %dd<>= @feed.hours
+      =link_to "Edit", "#", :class=>"edit" 
   #column-2<>
     - if can?(:create, @feed => Announcement)
       #post
-        %h2 
-          Post an Announcement:
+        %h2= t '.post.title' 
+        #post_tabs_container
+          %ul#post_tabs
+            -t('.post_tabs').each do |text|
+              %li= link_to text, '#', :class => 'post_tab'
+        .clear
         - semantic_form_for [@feed, Announcement.new] do |f|
           = f.inputs :subject, :body
           - f.buttons do
             = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}
-    
+
     #recent-posts
       %h2= t '.recent_posts.title'
       = render 'shared/items', :items => @feed.announcements
-
+	 
   #column-3<>
     #about
       %h2= t '.about.title'
       %p= @feed.about
+      =link_to "Edit", "#", :class=>"edit"
 
     #members
       %h3= t '.members.title'

@@ -26,6 +26,11 @@ en:
         title: About Us
       members:
         title: Members (4)
+      post:
+        title: Post an&#58;
+      post_tabs:
+        - Annoucment
+        - Event
   communities:
     say_something:
       title: "Say something to your neighbors:"
@@ -146,5 +151,4 @@ en:
       title: Neighbors
     feeds:
       title: Community Feeds
-  error_messages:
-    no_authentication_details: "Invalid email or password"
+    
