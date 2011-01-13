@@ -19,6 +19,10 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  def show
+    redirect_to root_url
+  end
+
   def destroy
     authorize! :destroy, UserSession
     current_user_session.destroy
