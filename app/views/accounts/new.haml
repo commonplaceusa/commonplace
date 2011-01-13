@@ -3,10 +3,11 @@
 
 = update_content "#main" do
   #main
-    - semantic_form_for current_user, :url => account_path, :html => {'data-remote' => true} do |f|
-      = f.inputs :full_name, :email
-      - f.inputs :for => :location do |l|
-        = l.input :street_address, :hint => t('formtastic.hints.location.street_address', :community => current_community.name)
+    - semantic_form_for @user, :url => account_path, :html => {'data-remote' => true} do |f|
+      - f.inputs do
+        = f.input :full_name
+        = f.input :email
+        = f.input :address, :hint => t("formtastic.hints.user.address", :community => current_community.name)
       - f.buttons do 
         = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
 

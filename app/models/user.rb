@@ -118,13 +118,8 @@ class User < ActiveRecord::Base
   
   has_many :notifications, :as => :notified
 
-  has_one :location, :as => :locatable
-
-  accepts_nested_attributes_for :location, :update_only => true
-
   validates_uniqueness_of :email
-  validates_presence_of :first_name, :last_name
-  validates_presence_of :location
+  validates_presence_of :first_name, :last_name, :address, :neighborhood
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests
   acts_as_taggable_on :goods
@@ -172,7 +167,7 @@ class User < ActiveRecord::Base
   end
   
   def community
-    neighborhood.community
+    neighborhood && neighborhood.community
   end
   
   def wire
@@ -193,16 +188,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def address
-    self.location.street_address
-  end
-  
-  def after_initialize
-    unless self.location
-      self.location = Location.new
-    end
-  end
-  
   alias_method :real_neighborhood, :neighborhood
 
   def neighborhood

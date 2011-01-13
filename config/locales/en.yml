@@ -97,6 +97,7 @@ en:
         about: "Tell your neighbors who you are:"
         good_list: "List three goods and/or skills to share:"
         interests: "My Interests:"
+        address: "Street Address"
         edit:
           password: "Change your password:"
         receive_posts: Get new neighborhood posts in emails
@@ -129,8 +130,8 @@ en:
         body: Share it with your neighbors!
 
     hints:
-      location:
-        street_address: "*This helps us place you in the correct %{community} neighborhood."
+      user:
+        address: "*This helps us place you in the correct %{community} neighborhood."
 
   tooltips:
     posts: View announcements, offers, needs, and requests from your neighbors

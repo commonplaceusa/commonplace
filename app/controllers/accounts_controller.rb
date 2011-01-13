@@ -6,6 +6,7 @@ class AccountsController < CommunitiesController
   
   def new
     if can? :create, User
+      @user = User.new
       render :layout => 'application'
     else
       redirect_to root_url
@@ -14,16 +15,20 @@ class AccountsController < CommunitiesController
   
   def create
     authorize! :create, User
-    current_user.location = Location.new(params[:user].delete(:location_attributes).merge(:zip_code => current_community.zip_code))
-    current_user.location.update_lat_and_lng
+    @user = User.new(params[:user])
 
-    current_user.neighborhood = current_community.neighborhoods.to_a.
-      find(lambda{current_community.neighborhoods.first}) do |n|
-      current_user.location.within?(n.bounds) if n.bounds
+    position = LatLng.from_address(@user.address, 
+                                   current_community.zip_code)
+    if position
+      @user.neighborhood = current_community.neighborhoods.to_a.
+        find(lambda{current_community.neighborhoods.first}) do |n|
+        position.within?(n.bounds) if n.bounds
+      end
+    else
+      @user.neighborhood = current_community.neighborhoods.first
     end
-    current_user.full_name = params[:user][:full_name]
-    current_user.email = params[:user][:email]
-    if current_user.save
+    
+    if @user.save
       redirect_to edit_new_account_url
     else
       render :new
