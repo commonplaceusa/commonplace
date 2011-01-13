@@ -308,6 +308,7 @@ ActiveRecord::Schema.define(:version => 20110116021129) do
     t.string   "avatar_file_name"
     t.integer  "facebook_uid",                     :limit => 8
     t.string   "address"
+    t.integer  "facebook_uid",                     :limit => 8
   end
 
 end
