@@ -12,6 +12,7 @@ class UserSessionsController < ApplicationController
       reload_current_user!
       redirect_back_or_default root_url
     else
+      @user = User.new
       @user_session_errors = true
       params[:controller] = "accounts"
       params[:action] = "new"
