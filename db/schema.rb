@@ -224,28 +224,29 @@ ActiveRecord::Schema.define(:version => 20110114092950) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                               :null => false
+    t.string   "email",                                                            :null => false
     t.string   "crypted_password"
     t.string   "password_salt"
-    t.string   "persistence_token",                                   :null => false
-    t.string   "single_access_token",                                 :null => false
-    t.string   "perishable_token",                                    :null => false
+    t.string   "persistence_token",                                                :null => false
+    t.string   "single_access_token",                                              :null => false
+    t.string   "perishable_token",                                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name",                                          :null => false
-    t.string   "last_name",                                           :null => false
+    t.string   "first_name",                                                       :null => false
+    t.string   "last_name",                                                        :null => false
     t.text     "about"
-    t.integer  "neighborhood_id",                                     :null => false
+    t.integer  "neighborhood_id",                                                  :null => false
     t.string   "cached_skill_list"
     t.string   "cached_interest_list"
     t.string   "cached_good_list"
-    t.boolean  "receive_digests",                  :default => false, :null => false
-    t.boolean  "receive_posts",                    :default => true
-    t.boolean  "receive_events_and_announcements", :default => true
-    t.boolean  "admin",                            :default => false
+    t.boolean  "receive_digests",                               :default => false, :null => false
+    t.boolean  "receive_posts",                                 :default => true
+    t.boolean  "receive_events_and_announcements",              :default => true
+    t.boolean  "admin",                                         :default => false
     t.string   "state"
     t.string   "avatar_file_name"
     t.string   "address"
+    t.integer  "facebook_uid",                     :limit => 8
   end
 
 end
