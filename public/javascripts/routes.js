@@ -40,7 +40,6 @@ $.sammy("body")
     accordionItem($(".item" + ".event_" + c.params.id));
   })
 
-  .get("/feeds")
   .get("/feeds/business")
   .get("/feeds/municipal")
   .get("/management/feeds/:feed_id/profile_fields/new", function() {
@@ -49,10 +48,8 @@ $.sammy("body")
       $("#edit_profile_fields #modules").append(response.form);
     });
   })
-  .post("/feeds")
-  .put("/feeds/:id")
-  .get("/feeds/:id/edit")
-  .get("/feeds/:id")
+
+
   .get("/feeds/:feed_id/announcements/new")
 
   .post("/feeds/:feed_id/announcements")
