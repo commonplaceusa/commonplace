@@ -97,13 +97,12 @@ en:
         about: "Tell your neighbors who you are:"
         good_list: "List three goods and/or skills to share:"
         interests: "My Interests:"
-        address: "Street Address"
+        address: "Street Address*:"
         edit:
           password: "Change your password:"
         receive_posts: Get new neighborhood posts in emails
         receive_events_and_announcements: Get new announcements and events in emails
-      location:
-        street_address: "Street Address*:"
+
       
       avatar: "Add a Photo:"
 
