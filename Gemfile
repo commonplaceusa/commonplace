@@ -39,6 +39,7 @@ gem 'resque'
 gem 'resque-scheduler'
 
 gem 'twitter'
+gem 'facebooker'
 
 gem 'god'
 
