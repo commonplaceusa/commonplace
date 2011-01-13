@@ -38,7 +38,6 @@ gem 'resque'
 gem 'resque-scheduler'
 
 gem 'facebooker'
-
 gem 'god'
 
 group 'cli' do
