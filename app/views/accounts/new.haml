@@ -3,8 +3,7 @@
 
 = update_content "#main" do
   #main
-
-    - semantic_form_for current_user, :url => account_path do |f|
+    - semantic_form_for current_user, :url => account_path, :html => {'data-remote' => true} do |f|
       = f.inputs :full_name, :email
       - f.inputs :for => :location do |l|
         = l.input :street_address, :hint => t('formtastic.hints.location.street_address', :community => current_community.name)

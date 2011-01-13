@@ -376,11 +376,7 @@ $.fn.ajaxSubmit = function(options) {
 					xhr.responseXML = toXml(xhr.responseText);
 				}
 				data = $.httpData(xhr, s.dataType);
-                                $.each(data, function(key,value) {
-                                  data[key] = $('<div/>').html(value).text()
-                                });
-
-			}
+              		}
 			catch(e){
 				log('error caught:',e);
 				ok = false;
