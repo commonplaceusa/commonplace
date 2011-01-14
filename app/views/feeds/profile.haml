@@ -25,6 +25,7 @@
       #post
         %h2= t '.post.title' 
         #post_tabs_container
+
           %ul#post_tabs
             -t('.post_tabs').each do |text|
               %li= link_to text, '#', :class => 'post_tab'
@@ -32,7 +33,7 @@
         - semantic_form_for [@feed, Announcement.new] do |f|
           = f.inputs :subject, :body
           - f.buttons do
-            = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}
+            = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/red-post-now-button.png"}
 
     #recent-posts
       %h2= t '.recent_posts.title'
