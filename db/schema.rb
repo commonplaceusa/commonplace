@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110116021129) do
+ActiveRecord::Schema.define(:version => 20110114054438) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -112,9 +112,12 @@ ActiveRecord::Schema.define(:version => 20110116021129) do
     t.string   "avatar_file_name"
     t.string   "address"
     t.string   "hours"
+<<<<<<< HEAD
     t.string   "slug"
     t.integer  "owner_id"
     t.string   "twitter_name"
+=======
+>>>>>>> d209f88... Loaded initial data from Facebook to landing page
   end
 
   create_table "invites", :force => true do |t|
@@ -307,13 +310,17 @@ ActiveRecord::Schema.define(:version => 20110116021129) do
     t.string   "state"
     t.string   "avatar_file_name"
 <<<<<<< HEAD
+<<<<<<< HEAD
     t.integer  "facebook_uid",                     :limit => 8
     t.string   "address"
 =======
 >>>>>>> Loaded initial data from Facebook to landing page
     t.integer  "facebook_uid",                     :limit => 8
     t.string   "address"
+=======
+>>>>>>> d209f88... Loaded initial data from Facebook to landing page
     t.integer  "facebook_uid",                     :limit => 8
+    t.string   "address"
   end
 
 end
