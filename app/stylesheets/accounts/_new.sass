@@ -30,12 +30,7 @@ body.application.accounts.new, body.application.accounts.create
             width: 430px
             +serif
 
-        li#user_full_name_input
-          background-image:  url('/images/step-1-icon.png')
-        li#user_email_input
-          background-image:  url('/images/step-2-icon.png')
         li#user_address_input
-          background-image:  url('/images/step-3-icon.png')
           p.inline-hints
             float: left
             margin: 30px 0px -50px -90px
@@ -65,3 +60,16 @@ body.application.accounts.new, body.application.accounts.create
     left: -17px
   #bubble-2
     right: 0
+
+  li#user_full_name_input
+    background-image:  url('/images/step-1-icon.png')
+  li#user_email_input
+    background-image:  url('/images/step-2-icon.png')
+  li#user_address_input
+    background-image:  url('/images/step-3-icon.png')
+
+  &.short
+    li#user_password_input
+      background-image:  url('/images/step-3-icon.png')
+    li#user_address_input
+      background-image:  url('/images/step-4-icon-large.png')

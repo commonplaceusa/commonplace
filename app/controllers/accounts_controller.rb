@@ -7,11 +7,17 @@ class AccountsController < CommunitiesController
   def new
     if can? :create, User
       @user = User.new
-      render :layout => 'application'
+      if params[:short]
+        params[:action] = "new short"
+        render :short, :layout => 'application'
+      else
+        render :layout => 'application'
+      end
     else
       redirect_to root_url
     end
   end
+
   
   def create
     authorize! :create, User
@@ -29,9 +35,13 @@ class AccountsController < CommunitiesController
     end
     
     if @user.save
-      redirect_to edit_new_account_url
+      if params[:short]
+        redirect_to new_feed_path
+      else
+        redirect_to edit_new_account_url
+      end
     else
-      render :new
+      render params[:short] ? :short : :new
     end
   end
 
