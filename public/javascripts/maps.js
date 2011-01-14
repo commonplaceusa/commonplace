@@ -2,29 +2,36 @@
 function renderMaps() {
   if (window.google) {
     $('div[data-map]').each(function() {
-      var args = $.parseJSON($(this).attr('data-map'));
+      var $this = $(this);
+      var args = $.parseJSON($this.attr('data-map'));
       if (args && args.center) {
-        var map = new google.maps.Map(this, {
-          zoom: 15,
-          center: jsonToLatLng(args.center),
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          navigationControl: true,
-          mapTypeControl: false,
-          scaleControl: true
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({address:args.center}, function (results) {
+          var map = new google.maps.Map($this.get(0), {
+            zoom: 15,
+            center: results[0].geometry.location,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            navigationControl: true,
+            mapTypeControl: false,
+            scaleControl: true
+          });
+          
+          $this.data('map', map);
+          $.each(args.markers, function() {renderMarker(this,map,geocoder)});
+          $.each(args.polygons, function() {renderPolygon(this,map)});
+          $.each(args.directions, function() {renderDirections(this,map)});
         });
-        $(this).data('map', map);
-        $.each(args.markers, function() {renderMarker(this,map)});
-        $.each(args.polygons, function() {renderPolygon(this,map)});
-        $.each(args.directions, function() {renderDirections(this,map)});
       }
     });
   }
 }
 
-function renderMarker(args,map) {
-  new google.maps.Marker({
-    position: jsonToLatLng(args.position),
-    map: map
+function renderMarker(args,map,geocoder) {
+  geocoder.geocode({address:args.position}, function(results) {
+    new google.maps.Marker({
+      position: results[0].geometry.location,
+      map: map
+    });
   });
 }
 
@@ -51,8 +58,8 @@ function renderDirections(args,map) {
     suppressMarkers: true
   }),
   directionsRequest = {
-    origin: jsonToLatLng(args.origin),
-    destination: jsonToLatLng(args.destination),
+    origin: args.origin,
+    destination: args.destination,
     travelMode: google.maps.DirectionsTravelMode.WALKING
   };
   directionsDisplay.setMap(map);

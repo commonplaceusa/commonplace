@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110113184940) do
+ActiveRecord::Schema.define(:version => 20110114092950) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20110113184940) do
     t.time     "end_time"
     t.string   "owner_type"
     t.string   "source_feed_id"
+    t.string   "address"
   end
 
   create_table "feeds", :force => true do |t|
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20110113184940) do
     t.string   "avatar_file_name"
     t.string   "address"
     t.string   "hours"
+    t.string   "slug"
   end
 
   create_table "invites", :force => true do |t|

@@ -7,9 +7,7 @@ class Mapifier
   end
   
   def center(options)
-    @center = options.is_a?(Hash) ? options :
-      {:lat => options.location.lat, :lng => options.location.lng}
-    
+    @center = options.address
   end
 
   def marker(options = {})
@@ -37,12 +35,13 @@ class Mapifier
   def to_json
     as_json.to_json
   end
+
+
 end
 
 class Marker
   def initialize(options)
-    @position = options.is_a?(Hash) ? options :
-      {:lat => options.location.lat, :lng => options.location.lng}
+    @position = options.address
   end
   
   def as_json
@@ -58,13 +57,11 @@ class Directions
   end
 
   def destination(options)
-    @destination = options.is_a?(Hash) ? options :
-      {:lat => options.location.lat, :lng => options.location.lng}
+    @destination = options.address
   end
   
   def origin(options)
-    @origin = options.is_a?(Hash) ? options :
-      {:lat => options.location.lat, :lng => options.location.lng}
+    @origin = options.address
   end
 
   def as_json

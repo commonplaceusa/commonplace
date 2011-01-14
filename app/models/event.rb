@@ -18,10 +18,6 @@ class Event < ActiveRecord::Base
 
   has_many :invites, :as => :inviter
 
-  has_one :location, :as => :locatable
-
-  accepts_nested_attributes_for :location
-
   named_scope :upcoming, :conditions => ["? <= date", Time.now.beginning_of_day]
   named_scope :past, :conditions => ["date < ?", Time.now]
 
@@ -45,9 +41,4 @@ class Event < ActiveRecord::Base
     self.description
   end
   
-  def address
-    self.location.street_address
-  end
-
-
 end
