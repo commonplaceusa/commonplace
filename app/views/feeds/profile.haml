@@ -38,6 +38,7 @@
     #recent-posts
       %h2= t '.recent_posts.title'
       = render 'shared/items', :items => @feed.announcements
+      = render 'shared/items', :items => @feed.events
 	 
   #column-3<>
     #about
