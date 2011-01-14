@@ -1,9 +1,13 @@
-- render :layout => 'shared/modal' do
+= update_content "#say-something" do
+  #say-something
+    %h2= t ".title"
+    %nav
+      = link_to t("posts.new.link"), new_post_path, 'data-remote' => true
+      = link_to t("events.new.link"), new_event_path, :class => "current", 'data-remote' => true
+      = link_to t("announcements.new.link"), new_announcement_path, 'data-remote' => true
+      = link_to t("invites.new.link"), new_invites_path, 'data-remote'=> true
 
-  - semantic_form_for @event, :html => { :class => "new_entity" } do |f|
-    - f.inputs do
-      %h1 Post a community event
-      
+    - semantic_form_for @event, :html => {'data-remote' => true} do |f|
       - f.inputs do 
         %li
           %label{:for => "event_feed", :class => "select required"}
@@ -13,14 +17,13 @@
         = f.input :description, :input_html => { :rows => 5, :cols => 21}
         = f.input :date, :as => :string, :input_html => {:class => 'date'}
         = event_select_time('start_time')
-        = event_select_time('end_time')
-      = f.inputs :street_address, :zip_code, :for => :location
+        = f.input :address
       %fieldset
         %ol
           %li.check_boxes
             = f.label :pledge,  "I pledge that this is a public, face-to-face event."
             = f.check_box :pledge,  :label => "I pledge..."
-      
-      
-    - f.buttons do
-      #submit_wrapper= f.commit_button "Create Event"
+        
+        
+      - f.buttons do
+        = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}

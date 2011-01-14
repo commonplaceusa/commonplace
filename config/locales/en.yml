@@ -13,7 +13,7 @@ en:
   feeds:
     new:
       link: Create a Community Feed
-
+      
       h1: Create a feed so you can send announcements and events instantly to everyone in the community.
       h2: Create Your Own Feed
     edit:
@@ -38,10 +38,17 @@ en:
     new:
       title: Say something to your Neighbors
       link: Create a Neighborhood Post
+  
+  announcements:
+    new:
+      title: Send an announcement to your whole community
+      link: Send an announcement from your feed
+      
 
   events:
     new:
       link: Create a Community Event
+      title: Post an event to your community
 
   invites:
     new:

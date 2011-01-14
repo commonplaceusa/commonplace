@@ -1,13 +1,30 @@
-- render :layout => 'shared/modal' do
+= update_content "#say-something" do
+  #say-something
+    %h2= t ".title"
+    %nav
+      = link_to t("posts.new.link"), new_post_path, 'data-remote' => true
+      = link_to t("events.new.link"), new_event_path, 'data-remote' => true
+      = link_to t("announcements.new.link"), new_announcement_path, 'data-remote' => true, :class => "current"
+      = link_to t("invites.new.link"), new_invites_path, 'data-remote' => true
 
-  - semantic_form_for @announcement, :html => { :class => "new_entity" } do |f|
-    %hr.staple
-    %h1 Make an announcement from your feed
-    %p.subhead Only Community Feeds can send out announcements to the entire community. If you plan to send out many announcements to the community, consider creating a Community Feed by clicking #{ link_to "here", "disabled" }. To post only to your neighborhood, click here to post to your #{ link_to "neighborhood board", posts_path, 'data-remote' => true }
+    - if current_user.managable_feeds.empty?
+      .information
+        %p Only community feeds can send out announcements to the entire community. If you are a community organization or plan to send out many announcements and events to the community, consider creating a Community Feed: 
 
-    - f.inputs do
-      = f.input :feed, :collection => current_user.managable_feeds
-      = f.input :subject
-      = f.input :body, :input_html => { :rows => 5, :cols => 21 }
-    - f.buttons do
-      #submit_wrapper= f.commit_button "Send Announcment"
+        = link_to image_tag('create-a-feed.png'), new_feed_path, :class => 'create-a-feed'
+        
+        %p To post only to your neighborhood, #{ link_to 'click here to post to your neighborhood board right now.', new_post_path, 'data-remote' => true }
+
+    - else
+
+      - semantic_form_for @announcement, :html => {'data-remote' => true} do |f|
+        - f.inputs do
+          - if current_user.managable_feeds.count == 1
+
+          - else
+
+
+          = f.input :subject
+          = f.input :body, :input_html => { :rows => 5, :cols => 21 }
+        - f.buttons do
+          = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}

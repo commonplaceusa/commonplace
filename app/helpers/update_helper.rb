@@ -10,5 +10,7 @@ module UpdateHelper
     @_updated_content || Hash.new
   end
 
-
+  def updated_content_or(key, &default)
+    updated_content.has_key?(key) ? updated_content[key] : capture(&default)
+  end
 end
