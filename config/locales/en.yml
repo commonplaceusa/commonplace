@@ -102,7 +102,10 @@ en:
           password: "Change your password:"
         receive_posts: Get new neighborhood posts in emails
         receive_events_and_announcements: Get new announcements and events in emails
-
+      
+      user_session:
+        email: "EMAIL"
+        password: "PASSWORD"
       
       avatar: "Add a Photo:"
 
