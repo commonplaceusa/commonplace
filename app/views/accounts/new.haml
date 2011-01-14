@@ -3,6 +3,13 @@
 
 = update_content "#main" do
   #main
+    #create-a-feed
+      %h3 Are you a community leader or shop owner?
+      %p Create a feed to send events and announce-<br>ments to the whole community.
+      - link_to new_account_path(:short => true) do
+        = image_tag 'create-a-feed.png'
+
+
     - semantic_form_for @user, :url => account_path, :html => {'data-remote' => true} do |f|
       - f.inputs do
         = f.input :full_name
