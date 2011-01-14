@@ -43,7 +43,7 @@ Factory.define :event do |f|
   f.description { Forgery(:lorem_ipsum).paragraph }
   f.date { Time.now + rand(6).week }
   f.start_time { Time.parse("#{rand(24)}:#{rand(60)}") }
-  f.association :feed
+  f.association :owner
 end
 
 Factory.define :announcement do |f|

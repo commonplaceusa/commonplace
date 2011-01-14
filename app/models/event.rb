@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   acts_as_taggable_on :tags
 
   validates_presence_of :name, :description, :date
-  validates_uniqueness_of :source_feed_id, :if => Proc.new { |event| event.owner_type == "Feed" }
+  validates_uniqueness_of :source_feed_id, :if => Proc.new { |event| event.owner_type == "Feed" && event.source_feed_id }
 
   has_many :referrals
   has_many :replies, :as => :repliable
@@ -49,9 +49,5 @@ class Event < ActiveRecord::Base
     self.location.street_address
   end
 
-  def after_initialize
-    unless self.location
-      self.location = Location.new
-    end
-  end  
+
 end
