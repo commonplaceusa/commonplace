@@ -49,7 +49,7 @@
       - link_to root_url, :id => "logo" do
         = image_tag "logo.png"
         %span.community= current_community.name
-
+      %div{:style => "clear: both;"}
     = yield
 
     %footer
