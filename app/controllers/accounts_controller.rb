@@ -36,7 +36,7 @@ class AccountsController < CommunitiesController
     
     if @user.save
       if params[:short]
-        redirect_to new_feed_path
+        redirect_to new_feed_url
       else
         redirect_to edit_new_account_url
       end
