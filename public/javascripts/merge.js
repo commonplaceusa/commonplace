@@ -43,10 +43,20 @@ function merge(content) {
 
   $('.edit_new input:text, .edit_new textarea').keydown(function(e) {
     var $input = $(e.currentTarget);
-    setTimeout(function(){$('.edit_new .info_box .' + $input.attr('id')).html($input.val());}, 10);
+    setTimeout(function(){
+      $('.edit_new .info_box .' + $input.attr('id')).html($input.val());
+    }, 10);
   });
 
-
+  $('form.formtastic.feed input:text, form.formtastic.feed textarea').keydown(function(e) {
+    var $input = $(e.currentTarget);
+    setTimeout(function() {
+      $input.closest('form.feed')
+        .find('.info_box')
+        .find('.' + $input.attr('id'))
+        .html($input.val());
+    }, 10);
+  });
 }
 
 $(function() {

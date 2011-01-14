@@ -3,9 +3,16 @@
 
 = update_content "#new_feed" do
   - semantic_form_for @feed do |f|
-    %h2= t ".h2"
-    = f.inputs :name, :avatar, :about
-    = f.inputs :address, :phone, :hours, :website
+
+    = render 'info_box', :feed => @feed
+
+    - f.inputs do
+      = f.input :name
+      = f.input :about
+      = f.input :avatar, :input_html => {:size => 20}
+      = f.input :tag_list
+      = f.input :address
+      = f.input :website
     - f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
 

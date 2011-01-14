@@ -6,25 +6,22 @@
       #info_box_main_left
         = image_tag feed.avatar.url(:normal), :class => 'graphic'
         - unless feed.subscribers.include? current_user
-          = button_to "Subscribe", feed_subscription_path(feed), :id => "follow_link", :class => "link_button tooltip", 'data-title' => "Subscribe to receive updates from #{ feed.name }"
+          = link_to "Subscribe", feed_subscription_path(feed), :id => "follow_link", :class => "link_button tooltip", 'data-title' => "Subscribe to receive updates from #{ feed.name }"
         -# = link_to "Message #{ feed.name }", new_feed_message_path(feed), :id => "message_me", :class => "link_button tooltip", 'data-remote' => true, 'data-title' => "Click to contact #{ feed.name }"
         - if feed.subscribers.include? current_user
           = link_to "Unsubscribe from #{ feed.name }", feed_subscription_path(feed), 'data-method' => :delete, :id => "unsubscribe", 'data-remote' => true
       .body
-        %h3= feed.name
-        %p.user_about= auto_link feed.about, :all, :target => :blank
-        %ol.user_info
-          - unless feed.tag_list.empty?
-            %li
-              %span.info_title= "Tags".upcase
-              = feed.tag_list.join(", ")
-          - unless feed.website.blank?
-            %li
-              %span.info_title= "Website".upcase
-              = auto_link feed.website, :html => { :target => '_blank' }
-          - unless feed.phone.blank?
-            %li
-              %span.info_title= "Phone".upcase
-              = feed.phone
+        %h3.feed_name= feed.name
+        %p.feed_about= auto_link feed.about, :all, :target => :blank
+        %ol.feed_info
+          %li
+            %span.info_title= "Tags".upcase
+            %span.feed_tag_list= feed.tag_list.join(", ")
+          %li
+            %span.info_title= "Website".upcase
+            %span.feed_website= auto_link feed.website, :html => { :target => '_blank' }
+          %li
+            %span.info_title= "Phone".upcase
+            %span.feed_phone= feed.phone
       %div{:style=>"clear:left;"}
 

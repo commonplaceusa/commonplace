@@ -6,7 +6,7 @@
     = render 'shared/information', :items => []
     - f.inputs do 
       = f.input :password
-      //= f.input :avatar, :input_html => {:size => 20}
+      = f.input :avatar, :input_html => {:size => 20}
       = f.input :about
       = f.input :good_list, :input_html => {:placeholder => t('formtastic.placeholders.user.good_list')}
       = f.input :interest_list, :label => "What are your interests:"

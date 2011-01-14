@@ -1,4 +1,5 @@
 #information.info_box
+  width: 485px
   border: 1px solid #ccc
   background-color: white
   +border-radius($defaultRadius)
@@ -85,7 +86,7 @@
           text-decoration: none
           &:hover
             text-decoration: underline
-      p.user_about
+      p.user_about, .feed_about
         font-size: 0.9em
         padding-bottom: 10px
       ol.user_info
@@ -106,7 +107,7 @@
             +inline-block
             width: 100px
             vertical-align: top
-          .user_good_list, .user_feeds, .user_address, .user_interest_list
+          .user_good_list, .user_feeds, .user_address, .user_interest_list, .feed_tag_list, .feed_address
             +inline-block
             width: 160px
             
