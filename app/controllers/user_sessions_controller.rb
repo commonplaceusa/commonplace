@@ -8,6 +8,7 @@ class UserSessionsController < ApplicationController
   def create
     authorize! :create, UserSession
     @user_session = UserSession.new(params[:user_session])
+    @user_session.remember_me = true
     if @user_session.save
       reload_current_user!
       redirect_back_or_default root_url
