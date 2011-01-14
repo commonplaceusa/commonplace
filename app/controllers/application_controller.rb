@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
+  include FeedsHelper
   helper_method :current_community
   helper_method :current_neighborhood
   helper_method 'xhr?'
