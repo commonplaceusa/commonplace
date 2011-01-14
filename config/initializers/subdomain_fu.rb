@@ -1,5 +1,5 @@
 SubdomainFu.tld_sizes = { 
-  :development => 0,
+  :development => 1,
   :test => 0,
   :production => 1,
   :staging => 1
