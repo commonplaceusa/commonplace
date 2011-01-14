@@ -19,11 +19,7 @@
 
       - semantic_form_for @announcement, :html => {'data-remote' => true} do |f|
         - f.inputs do
-          - if current_user.managable_feeds.count == 1
-
-          - else
-
-
+          = f.input :feed, :collection => current_user.managable_feeds
           = f.input :subject
           = f.input :body, :input_html => { :rows => 5, :cols => 21 }
         - f.buttons do

@@ -147,6 +147,9 @@ en:
         hours: "Your hours of operation:"
         website: "Your website:"
 
+      announcement:
+        feed: "Send announcement from:"
+
     placeholders:
       user:
         good_list: "Lawnmower, Bikes, Word Processing"
