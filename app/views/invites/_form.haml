@@ -1,5 +1,11 @@
 
-- form_for invite do |f|
-  = f.label :email, "Enter your friends email:"
-  = f.text_field :email
-  = f.submit
+- form_tag "/invites" do |f|
+  %fieldset.inputs
+    %ol
+      %li.text.required
+        = f.label_tag :emails
+        = f.text_area :emails
+  %fieldset.buttons
+    %ol
+      %li.commit
+        = f.submit "Invite"

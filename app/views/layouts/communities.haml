@@ -6,7 +6,12 @@
       = render 'shared/zones'
       = updated_content["#syndicate"]
     #say-something
-      %h2= t "communities.say_something.title"
+      %h2= t "posts.new.title"
+      %nav
+        = link_to t("posts.new.link"), new_post_path, :class => "current", 'data-remote' => true
+        = link_to t("events.new.link"), "#disabled", :class => "disabled_link"
+        = link_to t("feeds.new.link"), new_feed_url
+        = link_to t("invites.new.link"), new_invites_path, 'data-remote'=> true
       = render 'posts/form', :post => Post.new
     #community-profiles
       = updated_content["#information"] || render('shared/information', :items => [])

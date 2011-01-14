@@ -46,7 +46,12 @@ function ajaj(method, path, data) {
     dataType: "json",
      success: function(response) {
        if (response.redirect_to) {
-         window.location = response.redirect_to;
+         if (response.redirect_to.match(/^https?:/)) {
+           window.location = response.redirect_to;
+         } else {
+           window.location.hash = response.redirect_to;
+           ajaj("get", response.redirect_to, null);
+         }
        } else {
          merge(response);
        }

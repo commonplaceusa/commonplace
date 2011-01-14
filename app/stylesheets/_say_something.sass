@@ -2,6 +2,7 @@
   background-color: #b53f3c
   +border-radius(5px)
   border: 1px solid #8c3431
+  +clearfix
   h2
     background-color: #792e2e
     +border-top-radius(3px)
@@ -14,7 +15,7 @@
 
   nav
     float: left
-    margin-left: -125px
+    margin: 20px -130px 20px 15px
     a
       margin-bottom: 8px
       display: block
@@ -55,13 +56,17 @@
       color: #fff
       padding-bottom: 5px
       font-size: 14px
+
     input[type=text], textarea
       width: 330px
       font-size: 18px
       padding: 3px
       +border-radius(5px)
       +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
-    textarea
-      height: 130px
+
     fieldset.buttons
       float: right
+    
+    &#new_post
+      textarea
+        height: 130px

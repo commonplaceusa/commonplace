@@ -18,6 +18,7 @@ gem "cancan"
 gem "friendly_id"
 gem "tlsmail"
 gem "resque"
+gem 'resque_mailer'
 gem "SystemTimer", :require => "system_timer"
 gem 'exceptional'
 gem 'aasm'

@@ -12,6 +12,8 @@ en:
 
   feeds:
     new:
+      link: Create a Community Feed
+
       h1: Create a feed so you can send announcements and events instantly to everyone in the community.
       h2: Create Your Own Feed
     edit:
@@ -31,6 +33,21 @@ en:
       post_tabs:
         - Annoucment
         - Event
+
+  posts:
+    new:
+      title: Say something to your Neighbors
+      link: Create a Neighborhood Post
+
+  events:
+    new:
+      link: Create a Community Event
+
+  invites:
+    new:
+      title: Invite Your Neighbors to CommonPlace
+      link: Invite Your Neighbors to CommonPlace
+
   communities:
     say_something:
       title: "Say something to your neighbors:"
@@ -154,4 +171,3 @@ en:
       title: Neighbors
     feeds:
       title: Community Feeds
-    

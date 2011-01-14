@@ -91,7 +91,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to(options = {}, response_status = {})
-    if xhr?
+    if xhr? 
       render :json => {"redirect_to" => options}
     else
       super(options, response_status)

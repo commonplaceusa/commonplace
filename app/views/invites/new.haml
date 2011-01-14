@@ -1,0 +1,23 @@
+
+= update_content "#say-something" do
+  #say-something
+    %h2= t ".title"
+    %nav
+      = link_to t("posts.new.link"), new_post_path, 'data-remote' => true
+      = link_to t("events.new.link"), "#disabled", :class => "disabled_link"
+      = link_to t("feeds.new.link"), new_feed_url
+      = link_to t("invites.new.link"), new_invites_path, 'data-remote' => true, :class => "current"
+
+    - form_tag "/invites", 'data-remote' => true do
+      %fieldset.inputs
+        %ol
+          %li.text
+            = label_tag :message
+            = text_area_tag :message
+          %li.text
+            = label_tag :emails
+            = text_area_tag :emails, "", :rows => 6
+      %fieldset.buttons
+        %ol
+          %li.commit
+            = submit_tag "Invite"

@@ -1,11 +1,5 @@
 
 - semantic_form_for post, :html=>{'data-remote' => true} do |f|
-  %nav
-    = link_to "Create a Neighborhood Post", new_post_path, :class => "current", 'data-remote' => true
-    = link_to "Create a Community Event", "#disabled", :class => "disabled_link"
-    = link_to "Create a Community Feed", "#disabled", :class => "disabled_link"
-    = link_to "Invite People", "#disabled", :class => "disabled_link"
-
   - f.inputs do
     = f.input :subject
     = f.input :body
