@@ -44,6 +44,11 @@ class AccountsController < CommunitiesController
       render params[:short] ? :short : :new
     end
   end
+  
+  def create_from_facebook
+    authorize! :create, User
+    puts params.inspect
+  end
 
   def edit
     if can? :edit, current_user

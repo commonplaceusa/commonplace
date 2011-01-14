@@ -13,17 +13,17 @@ development:
   api_key: "179741908724938"
   secret_key: "4d1d96dc9b402ca6779f77bc9e88b89a"
   canvas_page_name:
-  callback_url: http://test.localhost:3000/
+  callback_url: http://test.commonplace.co/account/new
   pretty_errors: true
   set_asset_host_to_callback_url: false
   tunnel:
-    public_host_username: 
-    public_host: 
+    public_host_username: deploy
+    public_host: staging.commonplaceusa.com
     public_port: 4007
     local_port: 3000
     server_alive_interval: 0
 
-test:
+staging:
   api_key: 
   secret_key: 
   canvas_page_name: 
