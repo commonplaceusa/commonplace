@@ -25,13 +25,15 @@
     - if current_user_session
       = render 'shared/admin_bar'
     %header
-      - link_to root_url, :id => "logo" do
-        = image_tag "logo.png"
-        %span.community= current_community.name
       - if current_user_session
         %nav
           = tab_to "Home", "/"
-          -# %span{ :class => "disabled_link" } Create a Feed
+          .user-feeds
+            %h4 Feeds 
+            %ul
+              - current_user.managable_feeds.each do |feed|
+                %li= link_to feed.name, profile_feed_path(feed)
+              %li= link_to 'Create a feed', new_feed_path
           = tab_to "Settings", edit_account_path
           = tab_to "Log Out", "/user_session", :method => :delete
       - else
@@ -44,7 +46,10 @@
           - if @user_session_errors
             %p.errors= t('authlogic.error_messages.no_authentication_details')
 
-    
+      - link_to root_url, :id => "logo" do
+        = image_tag "logo.png"
+        %span.community= current_community.name
+
     = yield
 
     %footer
