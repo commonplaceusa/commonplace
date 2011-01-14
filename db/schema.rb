@@ -112,9 +112,12 @@ ActiveRecord::Schema.define(:version => 20110116021129) do
     t.string   "avatar_file_name"
     t.string   "address"
     t.string   "hours"
+<<<<<<< HEAD
     t.string   "slug"
     t.integer  "owner_id"
     t.string   "twitter_name"
+=======
+>>>>>>> Loaded initial data from Facebook to landing page
   end
 
   create_table "invites", :force => true do |t|
@@ -306,9 +309,13 @@ ActiveRecord::Schema.define(:version => 20110116021129) do
     t.boolean  "admin",                                         :default => false
     t.string   "state"
     t.string   "avatar_file_name"
+<<<<<<< HEAD
     t.integer  "facebook_uid",                     :limit => 8
     t.string   "address"
+=======
+>>>>>>> Loaded initial data from Facebook to landing page
     t.integer  "facebook_uid",                     :limit => 8
+    t.string   "address"
   end
 
 end
