@@ -36,6 +36,10 @@
             = f.inputs :subject, :body
             - f.buttons do
               = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/red-post-now-button.png"}
+          - semantic_form_for [@feed, Event.new] do |f|
+            = f.inputs :name, :date, :start_time, :end_time, :address, :description, :tags
+            - f.buttons do
+              = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/red-post-now-button.png"}
 
     #recent-posts
       %h2= t '.recent_posts.title'

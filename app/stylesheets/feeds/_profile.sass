@@ -2,6 +2,17 @@
 body.application.feeds.profile
   +serif
   #main
+    li 
+      li
+        display: inline
+        float: left
+        padding: 0
+        margin-right: 10px
+        width: auto 
+        label
+          width: auto !important
+          text-align: left
+
     color: #454545
     background-color: #f5f5f5
     +border-radius(15px)
@@ -9,6 +20,8 @@ body.application.feeds.profile
     border: 10px solid #c5c5c5
     padding: 25px
     width: 900px
+    .inactive
+      z-index: 0 !important
     h1
       font-size: 40px
       margin-bottom: 25px
@@ -110,8 +123,7 @@ body.application.feeds.profile
             right: 1px solid #999
           +border-radius(5px 5px 0px 0px)
           background: #dadada
-        .inactive
-          border-bottom: 1px solid #999 !important
+      
         a
           text-decoration: none
           color: #3b6085
@@ -127,7 +139,7 @@ body.application.feeds.profile
     label
       display: block
       margin: 10px 0px
-    #announcement_body
+    #announcement_body, #event_description, #event_tag_ids
       border: 1px solid #9f9f9f
       +border-radius(5px)
       +box-shadow(#ddd, 2px, 2px, 1px, 0px, inset)
@@ -135,8 +147,8 @@ body.application.feeds.profile
       margin-bottom: 10px
       height: 60px 
       width: 357px 
-      
-    #announcement_subject
+    
+    #announcement_subject, #event_name, #event_address
       border: 1px solid #9f9f9f
       +border-radius(5px)
       +box-shadow(#ddd, 2px, 2px, 1px, 0px, inset)
@@ -145,8 +157,19 @@ body.application.feeds.profile
       width: 357px
     #announcement_submit
       float: left
-    #new_announcement
+    #new_announcement, #new_event
       padding: 5px
+
+    #event_start_time_input
+    ol
+      li
+        display: inline
+        padding: 0
+        li
+          display: inline
+          label
+            margin: 1px 0
+            padding: 0 
     .commit
       float: right
       margin-right: 0px
