@@ -3,5 +3,10 @@
   = render 'form', :feed => @feed, :event => Event.new
   
 
-= update_content "#recent-posts .items" do
-  = render 'shared/items', :items => @feed.wire
+= update_content "#recent-posts" do
+  #recent-posts
+    %h2= t 'feeds.profile.recent_posts.title'
+    - if @feed.announcements.empty? && @feed.events.empty?
+      .no-recent-posts No Recent Posts
+    - else 
+      = render 'shared/items', :items => @feed.wire
