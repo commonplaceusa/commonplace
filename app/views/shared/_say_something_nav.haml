@@ -1,0 +1,5 @@
+%nav
+  = link_to t("posts.new.link"), new_post_path, 'data-remote' => true, :class => current == :post ? "current" : ""
+  = link_to t("events.new.link"), new_event_path, 'data-remote' => true, :class => current == :event ? "current" : ""
+  = link_to t("announcements.new.link"), new_announcement_path, 'data-remote' => true, :class => current == :announcement ? "current" : ""
+  = link_to t("invites.new.link"), new_invites_path, 'data-remote'=> true, :class => current == :invites ? "current" : ""
