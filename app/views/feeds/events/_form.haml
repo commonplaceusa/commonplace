@@ -2,8 +2,9 @@
   %h2
     = t("feeds.profile.post.title")
     %nav
-      = link_to "Event", new_feed_event_path(feed), 'data-remote' => true
-      = link_to "Announcement", new_feed_announcement_path(feed), 'data-remote' => true
+      %ul
+        %li= link_to "Event", new_feed_event_path(feed), 'data-remote' => true
+        %li= link_to "Announcement", new_feed_announcement_path(feed), 'data-remote' => true
 
   - f.inputs do
     = f.input :name
