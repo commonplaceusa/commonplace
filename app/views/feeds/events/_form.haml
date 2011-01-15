@@ -1,0 +1,16 @@
+- semantic_form_for [feed, event], :html => {:id => "post-to-feed", 'data-remote' => true} do |f|
+  %h2
+    = t("feeds.profile.post.title")
+    %nav
+      = link_to "Event", new_feed_event_path(feed), 'data-remote' => true
+      = link_to "Announcement", new_feed_announcement_path(feed), 'data-remote' => true
+
+  - f.inputs do
+    = f.input :name
+    = f.input :description, :input => {:rows => 3}
+    = f.input :date, :as => :string, :input_html => {:class => 'date'}
+    = event_select_time('start_time')
+    = f.input :address
+    = f.input :tag_list
+  - f.buttons do
+    = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/red-post-now-button.png"}

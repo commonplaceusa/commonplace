@@ -1,16 +1,16 @@
-class Feeds::AnnouncementsController < ApplicationController
-
+class Feeds::EventsController < ApplicationController
+  
   layout :choose_layout
 
   def new
     @feed = Feed.find(params[:feed_id])
-    @announcement = Announcement.new
+    @event = Event.new
   end
 
   def create
     @feed = Feed.find(params[:feed_id])
-    @announcement = @feed.announcements.build(params[:announcement])
-    if @announcement.save
+    @event = @feed.events.build(params[:event])
+    if @event.save
       render :create
     else
       render :new
@@ -21,4 +21,5 @@ class Feeds::AnnouncementsController < ApplicationController
   def choose_layout
     xhr? ? 'application' : '/feeds/profile.haml' 
   end
+
 end

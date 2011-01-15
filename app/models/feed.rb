@@ -32,6 +32,16 @@ class Feed < ActiveRecord::Base
 
   accepts_nested_attributes_for :profile_fields
 
+  def wire
+    (self.announcements + self.events).sort_by do |item|
+      time = case item
+             when Event then item.start_datetime
+             when Announcement then item.created_at
+             end 
+      (time - Time.now).abs
+    end
+  end
+
   private
 
   def generate_slug

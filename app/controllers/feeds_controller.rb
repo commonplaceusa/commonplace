@@ -16,7 +16,7 @@ class FeedsController < CommunitiesController
     when String
       params[:action] = "profile"
       @feed = Feed.find_by_slug_and_community_id(params[:id],current_community.id)
-      render :profile, :layout => 'application'
+      render :profile, :layout => false
     when Integer
       @feed = Feed.find(params[:id])
       if current_user.feeds.include?(@feed) && !flash.now[:message]
@@ -24,9 +24,12 @@ class FeedsController < CommunitiesController
       end
     end
   end
+  
+  def import
+  end
 
   def profile
-    render :layout => 'application'
+    render :layout => false
   end
 
   def new

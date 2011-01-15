@@ -1,10 +1,2 @@
-- render :layout => "shared/modal" do
-  %hr.staple
-  %h1 Step 3 of 3: Send your first announcement
-  %p.subhead On CommonPlace, #{@feed.category.downcase.pluralize} can send announcements to everyone in the community and anyone in town is able to reply to them. Here's your chance to send your first announcement:
-  - semantic_form_for [@feed, @announcement], :html => {:class => "new_entity"} do |f|
-    - f.inputs do 
-      = f.input :subject, :input_html => {:value => "We, #{@feed.name}, just joined #{current_community.name}'s CommonPlace"}
-      = f.input :body, :input_html => {:value => "Perhaps introduce yourself or even ask a question for your neighbors to reply to."}
-    - f.buttons do 
-      #submit_wrapper= f.commit_button "Post your first announcement"
+= update_content "#post-to-feed" do
+  = render 'form', :feed => @feed, :announcement => @announcement

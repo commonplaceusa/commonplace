@@ -1,0 +1,10 @@
+= update_content "#post-to-feed" do
+  - semantic_form_for @feed, :html => {:id => "post-to-feed"} do |f|
+    %h2
+      = t("feeds.profile.post.title")
+      %nav
+        = link_to "Announcement", new_feed_announcement_path(@feed), 'data-remote' => true
+        = link_to "Event", new_feed_event_path(@feed), 'data-remote' => true
+    = f.inputs :feed_url
+    = f.buttons :commit => "Save"
+  

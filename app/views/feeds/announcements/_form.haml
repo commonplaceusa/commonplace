@@ -1,0 +1,11 @@
+- semantic_form_for [feed, announcement], :html => {:id => "post-to-feed", 'data-remote' => true} do |f|
+  = link_to "Import from rss or Twitter", import_feed_path(feed), 'data-remote' => true, :class => 'import'
+  %h2
+    = t("feeds.profile.post.title")
+    %nav
+      = link_to "Announcement", new_feed_announcement_path(feed), 'data-remote' => true
+      = link_to "Event", new_feed_event_path(feed), 'data-remote' => true
+        
+  = f.inputs :subject, :body
+  - f.buttons do
+    = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/red-post-now-button.png"}

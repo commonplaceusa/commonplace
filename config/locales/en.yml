@@ -27,9 +27,11 @@ en:
       about:
         title: About Us
       members:
-        title: Members (4)
+        title: Members (%{count})
+      post:
+        title: Post an&#58;
       post_tabs:
-        - Post Annoucment
+        - Post Announcement
         - Post Event
         - Import Feed
 
@@ -145,7 +147,12 @@ en:
         address: "Your Address:"
         hours: "Your hours of operation:"
         website: "Your website:"
-
+        feed_url: "Your RSS Feed:"
+        show:
+          phone: "Phone:"
+          website: "Website:"
+          address: "Address:"
+          hours: "Hours:"
       announcement:
         feed: "Send announcement from:"
 

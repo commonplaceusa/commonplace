@@ -1,18 +1,9 @@
 
-body.application.feeds.profile
+body.application.feeds.profile, body.feeds_announcements.new, body.feeds_events.new
   +serif
   #main
-    li 
-      li
-        display: inline
-        float: left
-        padding: 0
-        margin-right: 10px
-        width: auto 
-        label
-          width: auto !important
-          text-align: left
-
+    width: 900px
+    min-height: 600px
     color: #454545
     background-color: #f5f5f5
     +border-radius(15px)
@@ -25,6 +16,11 @@ body.application.feeds.profile
     h1
       font-size: 40px
       margin-bottom: 25px
+      a.edit
+        text-align: left
+        display: inline
+        vertical-align: top
+
     h2
       color: #3b6085
     h3
@@ -47,9 +43,9 @@ body.application.feeds.profile
     img#feed-avatar
       border: 7.5px #c4c4c4 solid
       +border-radius(7px)
+      margin-bottom: 25px
 
     #contact-info 
-      margin-top: 25px
       
       dl
         border: 1px solid #d0d0d0
@@ -77,106 +73,85 @@ body.application.feeds.profile
           top-width: 0px
         +border-bottom-radius(4px)
         padding: 5px 5px 
-    #post_tabs_container
-      
-    
-    #post
-      background-color: #c4c4c4
+
+    #post-to-feed
+      background-color: #dadada
       +border-radius(5px)
       padding: 10px
-      
-      h2
-        font-size: 20px
+      margin-bottom: 25px
+      a.import
+        display: block
+        float: right
         width: 100px
-        float: left
-        margin-left: 5px
+        margin-top: 6px
+        font-size: 12px
+        line-height: 1.2
+        text-align: right
+      h2
+        font-size: 18px
+        padding-top: 10px
+
         nav
           border: 3px solid #c5c5c5
-          +border-radius(4px)
+          +border-radius(3px)
+          width: 137px
           +inline-block
-          background-color: #fff
-          color: #525252
-          padding: 3px
-          font-size: 12px
-          vertical-align: baseline
-
+          vertical-align: top
+          position: absolute
+          margin-top: -4px
           a
-            display: block
+            background-color: #fff
+            font-size: 14px
+            padding: 4px
+            display: none
+            text-decoration: none
+            color: #525252
+            border-top: 2px solid #c5c5c5
+            &:hover
+              background-color: #eee
             &:first-child
-              border-bottom: 1px solid #d0d0d0
-              padding-bottom: 4px
-              margin-bottom: 2px
-      #post_tabs
-        display: inline-block
-        li
-          display: inline
-          z-index: 10
-          position: relative
-          top: -5px
-          float: left
-          margin: 0
-          padding: 5px
-          border:
-            bottom: none
-            top: 1px solid #999
-            left: 1px solid #999
-            right: 1px solid #999
-          +border-radius(5px 5px 0px 0px)
-          background: #dadada
-      
-        a
-          text-decoration: none
-          color: #3b6085
-      .clear
-        clear: both
-        background: #dadada
-      #form_wrapper
-        border: 1px solid #999
-        +border-radius(0px 5px 5px 5px)
-        position: relative 
-        top: -8px
-        background: #dadada
-    label
-      display: block
-      margin: 10px 0px
-    #announcement_body, #event_description, #event_tag_ids
-      border: 1px solid #9f9f9f
-      +border-radius(5px)
-      +box-shadow(#ddd, 2px, 2px, 1px, 0px, inset)
-      padding: 5px
-      margin-bottom: 10px
-      height: 60px 
-      width: 357px 
-    
-    #announcement_subject, #event_name, #event_address
-      border: 1px solid #9f9f9f
-      +border-radius(5px)
-      +box-shadow(#ddd, 2px, 2px, 1px, 0px, inset)
-      padding: 5px
-      height: 30px 
-      width: 357px
-    #announcement_submit
-      float: left
-    #new_announcement, #new_event
-      padding: 5px
+              display: block
+              position: relative
+              background-image: url('/images/feed-post-dropdown-arrow.png')
+              background-repeat: no-repeat
+              background-position: 115px 
+              border-top: 0px
+          &:hover
+            a
+              display: block
+    form.formtastic
+      label
+        display: block
+        margin: 10px 0px
+      textarea
 
-    #event_start_time_input
-    ol
-      li
-        display: inline
-        padding: 0
-        li
-          display: inline
-          label
-            margin: 1px 0
-            padding: 0 
-    .commit
-      float: right
-      margin-right: 0px
+        border: 1px solid #9f9f9f
+        +border-radius(5px)
+        +box-shadow(#ddd, 2px, 2px, 1px, 0px, inset)
+        padding: 5px
+        margin-bottom: 10px
+        height: 60px 
+        width: 357px 
+      input[type=text]
+        border: 1px solid #9f9f9f
+        +border-radius(5px)
+        +box-shadow(#ddd, 2px, 2px, 1px, 0px, inset)
+        padding: 5px
+        height: 30px 
+        width: 357px
+      fieldset.buttons
+        text-align: right
+        margin: 10px
+
     #recent-posts
-      margin-top: 25px
       h2
         margin-bottom: 10px
+      .no-recent-posts
+        text-align: center
+        border: 1px solid #d0d0d0
+        padding: 40px
+        +border-radius(3px)
+        background-color: #f7f7f7
       ul.items
         border: 0px
         background-color: transparent
@@ -187,36 +162,45 @@ body.application.feeds.profile
           +border-radius(3px)
           time
             color: #3b6085
-      .month
-        background: #F00
-      .date
-        font-family: "Rockwell"
+
     #about
       padding: 15px
-        bottom: 5px
+        bottom: 10px
       line-height: 1.6
       border: 1px solid #d0d0d0
       +border-radius(4px)
       background-color: #f8f8f8
+      margin-bottom: 25px
       p
         font-size: 12px
       a.edit
         margin-top: 10px
+
     #members
-      margin-top: 25px
-      width: 100%
+      border: 1px solid #d0d0d0
+
       ul
-        border: 0px solid #d0d0d0
-          width: 0px 1px
+        text-align: left
         li
           padding: 7px
           border-bottom: 1px solid #d0d0d0
           img
             vertical-align: top
+      text-align: center
+      a.subscribe
+        color: #fff
+        background-color: #b43e3b
+        padding: 8px
+        +border-radius(5px)
+        text-align: center
+        +inline-block
+        margin: 5px 
+        text-decoration: none
     a.edit
       display: block
       color: #b53f3c
       text-align: right
       text-decoration: none
       font-size: 12px
-
+      &:hover
+        text-decoration: underline
