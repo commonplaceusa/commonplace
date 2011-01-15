@@ -2,4 +2,5 @@
 <%- updated_content["#modal"] ||= '<div id="modal"></div>' %>
 <%- updated_content["#tooltip"] or render 'shared/tooltip' %>
 <%- updated_content["#zones"] ||= render 'shared/zones' %>
+<%- updated_content["#deliveries"] = render 'shared/deliveries' %>
 <%= updated_content.to_json %>
