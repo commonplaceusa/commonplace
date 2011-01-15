@@ -3,13 +3,13 @@
   #main
     %h1
       = @feed.name
-      = link_to 'Edit', edit_feed_path(@feed), :class => 'edit'
+      - if can?(:edit, @feed)
+        = link_to 'Edit', edit_feed_path(@feed), :class => 'edit'
     
-
 
     #column-1<>
       = image_tag @feed.avatar.url, :id => 'feed-avatar', :size => "210x210"
-      - if [:phone, :website, :address, :hours].any?
+      - if [:phone, :website, :address, :hours].any? {|method| @feed.send(method).present?}
         %h3= t 'feeds.profile.contact_info.title'
         #contact-info
           %dl
@@ -19,7 +19,7 @@
                 %dd<>= @feed.send(method)
 
     #column-2<>
-      - if can?(:create, @feed => Announcement)
+      - if can?(:edit, @feed)
         = updated_content_or("#post-to-feed") do
           = render 'feeds/announcements/form', :feed => @feed, :announcement => Announcement.new
 
