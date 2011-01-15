@@ -8,7 +8,7 @@ function merge(content) {
    }
    $('input[placeholder], textarea[placeholder]').placeholder();
 
-   $('.item .body').truncate({max_length: 160});
+   $('.item .post .body, .item .announcement .body, .item .event .body').truncate({max_length: 160});
    $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
    showTooltips();
    $('#tooltip').html($('#tooltip').attr('title'));
