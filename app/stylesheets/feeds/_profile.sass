@@ -9,7 +9,6 @@ body.application.feeds.profile
     border: 10px solid #c5c5c5
     padding: 25px
     width: 900px
-
     h1
       font-size: 40px
       margin-bottom: 25px
@@ -105,13 +104,14 @@ body.application.feeds.profile
           margin: 0
           padding: 5px
           border:
-            bottom: none !important
+            bottom: none
             top: 1px solid #999
             left: 1px solid #999
             right: 1px solid #999
           +border-radius(5px 5px 0px 0px)
           background: #dadada
-          
+        .inactive
+          border-bottom: 1px solid #999 !important
         a
           text-decoration: none
           color: #3b6085
@@ -196,3 +196,4 @@ body.application.feeds.profile
       text-align: right
       text-decoration: none
       font-size: 12px
+
