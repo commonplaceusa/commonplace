@@ -28,11 +28,10 @@ en:
         title: About Us
       members:
         title: Members (4)
-      post:
-        title: Post an&#58;
       post_tabs:
-        - Annoucment
-        - Event
+        - Post Annoucment
+        - Post Event
+        - Import Feed
 
   posts:
     new:

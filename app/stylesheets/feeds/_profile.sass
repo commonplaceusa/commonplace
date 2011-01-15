@@ -72,7 +72,7 @@ body.application.feeds.profile
       background-color: #c4c4c4
       +border-radius(5px)
       padding: 10px
-
+      
       h2
         font-size: 20px
         width: 100px
@@ -95,6 +95,7 @@ body.application.feeds.profile
               padding-bottom: 4px
               margin-bottom: 2px
       #post_tabs
+        display: inline-block
         li
           display: inline
           z-index: 10
@@ -103,17 +104,25 @@ body.application.feeds.profile
           float: left
           margin: 0
           padding: 5px
-
           border:
             bottom: none !important
-            top: 1px solid #c5c5c5
+            top: 1px solid #999
+            left: 1px solid #999
+            right: 1px solid #999
           +border-radius(5px 5px 0px 0px)
           background: #dadada
+          
         a
           text-decoration: none
           color: #3b6085
       .clear
         clear: both
+        background: #dadada
+      #form_wrapper
+        border: 1px solid #999
+        +border-radius(0px 5px 5px 5px)
+        position: relative 
+        top: -8px
         background: #dadada
     label
       display: block
@@ -137,12 +146,7 @@ body.application.feeds.profile
     #announcement_submit
       float: left
     #new_announcement
-      background: #dadada
       padding: 5px
-      border: 1px solid #c5c5c5
-      +border-radius(5px)
-      position: relative
-      top: -6px
     .commit
       float: right
       margin-right: 0px
