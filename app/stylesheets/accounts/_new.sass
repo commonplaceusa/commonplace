@@ -1,14 +1,15 @@
 
 body.application.accounts.new, body.application.accounts.create
-  
+  z-index: -1
+  position: relative
   h1
 
   #main
-    width: 1000px
+    width: 610px
     position: relative
     #create-a-feed
       position: absolute
-      right: -20px
+      right: -225px
       top: 30px
       width: 175px
       background-color: #b53f3c
@@ -33,6 +34,7 @@ body.application.accounts.new, body.application.accounts.create
       margin: 50px auto 70px
       +lightbox
       width: 560px
+      z-index: 0
 
       fieldset.inputs
         li
