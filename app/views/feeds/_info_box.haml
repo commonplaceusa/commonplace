@@ -29,4 +29,9 @@
 
   .clear
 
+  - if feed.address.present?
+    = render_map do |map|
+      - map.center feed
+      - map.marker feed
+
 
