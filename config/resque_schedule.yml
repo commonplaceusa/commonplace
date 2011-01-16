@@ -10,3 +10,10 @@ import_events_from_eventful:
     args: 
     queue: outside-data
     description: "This job imports events from Eventful into each community as Events"
+import_twitter_posts:
+    cron: "0 * * * *"
+    class: TwitterImporter
+    args: 
+    queue: outside-data
+    description: "This job imports posts from Twitter as TwitterAnnouncements"
+    

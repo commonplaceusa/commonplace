@@ -1,0 +1,2 @@
+class TwitterAnnouncement < Announcement
+end

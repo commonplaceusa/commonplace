@@ -38,6 +38,8 @@ gem 'json'
 gem 'resque'
 gem 'resque-scheduler'
 
+gem 'twitter'
+
 gem 'god'
 
 group 'cli' do
