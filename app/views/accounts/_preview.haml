@@ -1,0 +1,19 @@
+
+#preview.info_box
+
+  %h2 Your Civic Profile
+
+  = image_tag current_user.avatar.url(:normal), :width => 120, :class => "avatar"
+
+  %h3= current_user.full_name
+
+  .info{'data-track' => "user[about]"}= current_user.about.present? ? current_user.about : t("users.preview.about")
+  %table
+    %tr
+      %th INTERESTS
+      %td{'data-track' => "user[interest_list]"}= current_user.interest_list.present? ? current_user.interest_list : t("users.preview.interest_list")
+    %tr
+      %th GOODS & SKILLS
+      %td{'data-track' => "user[good_list]"}= current_user.good_list.present? ? current_user.good_list : t("users.preview.good_list")
+
+  .clear

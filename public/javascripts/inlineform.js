@@ -34,7 +34,7 @@ function initInlineForm() {
         o.dataType = 'json';
       },
       success: function(response){
-        $("img.user_avatar").attr('src', response.avatar_url);
+        $("img.avatar").attr('src', response.avatar_url);
       }
     });
   });

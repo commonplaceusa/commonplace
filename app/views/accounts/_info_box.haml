@@ -1,0 +1,27 @@
+
+#information.info_box.user.inline-form{'data-form-url'=>"/account", 'data-form-method'=>"put"}
+  .edit
+    %span.inline-edit edit
+  .show
+    %span.inline-save save
+    &sdot;
+    %span.inline-cancel cancel
+  %h2 Your Civic Profile
+
+  = image_tag current_user.avatar.url(:normal), :width => 120, :class => "avatar"
+  - form_tag "/account/avatar.json", :multipart => true, :method => "post", :id => "avatar-form" do
+    %input{:type => 'file', :name => "user[avatar]"}
+  %h3= current_user.full_name
+  .info{'data-field' => "user[about]"}= markdown current_user.about
+  %table
+    %tr
+      %th INTERESTS
+      %td{'data-field' => "user[interest_list]"}= current_user.interest_list
+    %tr
+      %th GOODS & SKILLS
+      %td{'data-field' => "user[good_list]"}= current_user.good_list
+    %tr
+      %th SUBSCRIPTIONS
+      %td= current_user.feed_list
+
+  .clear

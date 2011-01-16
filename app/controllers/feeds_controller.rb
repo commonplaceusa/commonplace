@@ -13,15 +13,15 @@ class FeedsController < CommunitiesController
 
   def show
     case params[:id]
-    when String
-      params[:action] = "profile"
-      @feed = Feed.find_by_slug_and_community_id(params[:id],current_community.id)
-      render :profile, :layout => false
-    when Integer
+    when /\d+/
       @feed = Feed.find(params[:id])
       if current_user.feeds.include?(@feed) && !flash.now[:message]
         flash.now[:message] = "You are subscribed to #{@feed.name}"
       end
+    else
+      params[:action] = "profile"
+      @feed = Feed.find_by_slug_and_community_id(params[:id],current_community.id)
+      render :profile, :layout => false
     end
   end
   

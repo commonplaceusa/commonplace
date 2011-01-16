@@ -1,5 +1,7 @@
 = render 'shared/tooltip'
-= render 'users/info_box', :user => @post.user
+
+- update_content "#information" do
+  = render 'users/info_box', :user => @post.user
 
 - unless xhr?
   - update_content "#syndicate" do

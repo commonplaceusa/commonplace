@@ -33,6 +33,21 @@ en:
         - Post Announcement
         - Post Event
         - Import Feed
+    preview:
+      name: "Enter your feed's name"
+      about: "Go ahead and describe your feed. Don't be afraid to use some detail. There's space."
+      tag_list: "list, some, relevant, tags"
+      website: "http://www.yourfeed.com"
+      hours: "9:00AM - 1:00PM"
+      phone: "867-5309"
+      address: "0 Bleecker Street"
+    
+  users:
+    preview:
+      about: "Go ahead and describe yourself to your neighbors"
+      interest_list: "Reading, Community Engagement, Bicycling"
+      good_list: "Lawnmower, Bikes, Word Processing"
+
 
   posts:
     new:
@@ -158,10 +173,6 @@ en:
           hours: "Hours:"
       announcement:
         feed: "Send announcement from:"
-
-    placeholders:
-      user:
-        good_list: "Lawnmower, Bikes, Word Processing"
 
       post:
         subject: Have a need, announcement, offer or event?

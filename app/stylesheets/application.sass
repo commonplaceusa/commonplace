@@ -1,6 +1,5 @@
 @import core
 @import syndicate
-
 @import small_calendar
 @import info_box
 @import modal
@@ -19,6 +18,10 @@
 @import whats_happening
 @import feeds
 @import password_resets
+
+.clear
+  clear: both
+
 body.application 
   background-repeat: repeat-x
   background-color: #cee7fe
@@ -175,11 +178,15 @@ body.application
     margin: auto                                
     color: $baseText
 
-  #say-something, #community-profiles, #whats-happening
+  #say-something
     width: 485px
-
   #community-profiles
+    width: 487px
     margin-top: 10px
+
+  #whats-happening
+    width: 485px
+  
 
 input.placeholder, textarea.placeholder
   color: #aaa

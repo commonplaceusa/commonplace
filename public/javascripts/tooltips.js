@@ -9,7 +9,7 @@ function showTooltips() {
 
 $(function() {
   
-  $('.tooltip')
+  $('.tooltip, [data-title]')
     .live('mouseover',function() {
       $('#tooltip').html($(this).attr('data-title'));
     })

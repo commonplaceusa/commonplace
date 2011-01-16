@@ -16,26 +16,31 @@
   .show
     display: block
 
-#info_box_top
-  position: relative
+
 .inline-form
   position: relative
   .edit, .show
-    color: $cpBlue
     position: absolute
-    top: 5px
-    right: 5px
+    width: 480px
+    margin-top: 3px
+    color: $cpBlue
+    text-align: right
     span
       &:hover
         text-decoration: underline
   .edit
   .show
     display: none
-  #info_box_main_left
-    position: relative
-    form 
-      input.file
-        display: none
+    position: absolute
+    
+  form#avatar-form
+    width: 120px
+    text-align: center
+    clear: both
+    float: left
+    padding-left: 15px
+    input.file
+      display: none
         
         
         

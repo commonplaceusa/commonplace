@@ -1,4 +1,6 @@
-= render "info_box", :event => @event
+
+- update_content "#information" do
+  = render "info_box", :event => @event
 
 = render 'shared/tooltip'
 

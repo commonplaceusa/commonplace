@@ -1,4 +1,6 @@
-= render 'feeds/info_box', :feed => @announcement.feed
+
+- update_content "#information" do
+  = render 'feeds/info_box', :feed => @announcement.feed
 
 = render 'shared/tooltip'
 

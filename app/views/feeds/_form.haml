@@ -1,7 +1,7 @@
 
 - semantic_form_for feed do |f|
 
-  = render 'info_box', :feed => feed
+  = render 'preview', :feed => feed
 
   - f.inputs do
     = f.input :name
@@ -9,10 +9,10 @@
     = f.input :avatar, :input_html => {:size => 20}
     = f.input :tag_list
   - f.inputs :contact_information, :id => 'contact-info' do
-    = f.input :address
     = f.input :website
     = f.input :hours
     = f.input :phone
+    = f.input :address
   - f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
 

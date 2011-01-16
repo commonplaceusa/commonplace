@@ -11,4 +11,5 @@
         = render 'shared/say_something_nav', :current => :post
         = render 'posts/form', :post => Post.new
     #community-profiles
-      = updated_content["#information"] || render('shared/information', :items => [])
+      = updated_content_or "#information" do 
+        = render 'accounts/info_box'

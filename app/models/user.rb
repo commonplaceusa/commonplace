@@ -188,6 +188,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def feed_list
+    feeds.map(&:name).join(", ")
+  end
+
+
   alias_method :real_neighborhood, :neighborhood
 
   def neighborhood

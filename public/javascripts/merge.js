@@ -45,19 +45,20 @@ function merge(content) {
 
   initInlineForm();
 
-  $('.edit_new input:text, .edit_new textarea').keydown(function(e) {
+  $('form.formtastic.user input:text, form.formtastic.user textarea').keydown(function(e) {
     var $input = $(e.currentTarget);
     setTimeout(function(){
-      $('.edit_new .info_box .' + $input.attr('id')).html($input.val());
+      $("#preview")
+        .find("[data-track='" + $input.attr('name') + "']")
+        .html($input.val());
     }, 10);
   });
 
   $('form.formtastic.feed input:text, form.formtastic.feed textarea').keydown(function(e) {
     var $input = $(e.currentTarget);
     setTimeout(function() {
-      $input.closest('form.feed')
-        .find('.info_box')
-        .find('.' + $input.attr('id'))
+      $("#preview")
+        .find("[data-track='" + $input.attr('name') + "']")
         .html($input.val());
     }, 10);
   });
