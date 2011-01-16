@@ -15,9 +15,8 @@ en:
       link: Create a Community Feed
       
       h1: Create a feed so you can send announcements and events instantly to everyone in the community.
-      h2: Create Your Own Feed
     edit:
-      h2: Edit Your Feed
+      h1: Edit Your Feed
 
     profile:
       contact_info:
@@ -114,6 +113,9 @@ en:
 
 
   formtastic:
+    titles:
+      contact_information: "Contact Information:"
+
     labels:
       user:
         full_name: "Full Name:"

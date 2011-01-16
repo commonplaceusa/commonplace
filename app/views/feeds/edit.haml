@@ -1,9 +1,5 @@
 
+%h1= t ".h1"
 
-= update_content "#new_feed" do
-  - semantic_form_for @feed do |f|
-    %h2= t ".h2"
-    = f.inputs :name, :avatar, :about
-    = f.inputs :address, :phone, :hours, :website
-    - f.buttons do
-      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
+= update_content "form.feed" do
+  = render 'form', :feed => @feed

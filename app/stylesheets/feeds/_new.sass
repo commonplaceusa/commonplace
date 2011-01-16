@@ -19,21 +19,22 @@ body.application.feeds.new, body.application.feeds.edit, body.application.feeds.
     
     .info_box
       float: right
+      zoom: 90%
 
     fieldset.inputs
-      width: 340px
+      width: 400px
       margin: 0px 20px 0px 15px
 
       li
-        margin: 10px 0px
+        margin-bottom: 10px
         label
           display: block
-          padding: 10px 0px
+          padding-bottom: 10px
         input[type=text], textarea
           +border-radius(5px)
           +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
           padding: 0px 7px
-          font-size: 22px
+          font-size: 18px
           width: 100%
           +serif
 
@@ -43,8 +44,19 @@ body.application.feeds.new, body.application.feeds.edit, body.application.feeds.
         p.inline-errors
           color: #b7403c
 
-    fieldset.buttons
-      margin-right: 28px
+    fieldset#contact-info
       li
-        float: right
+        margin: 10px 0px
+        width: 180px
+        +inline-block
+        vertical-align: bottom
+        input
+          width: 180px
+          font-size: 18px
+      #feed_website_input, #feed_phone_input
+        margin-left: 35px
+        
+    fieldset.buttons
+      li
+        text-align: right
 

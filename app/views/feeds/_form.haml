@@ -1,11 +1,18 @@
-- semantic_form_for @feed, :html => { :class => 'new_entity', :multipart => true } do |f|
+
+- semantic_form_for feed do |f|
+
+  = render 'info_box', :feed => feed
 
   - f.inputs do
     = f.input :name
-    = f.input :about, :hint => "This is the official summary of your feed on CommonPlace.", :input_html => {:rows => 2}
-    = f.input :phone
+    = f.input :about
+    = f.input :avatar, :input_html => {:size => 20}
+    = f.input :tag_list
+  - f.inputs :contact_information, :id => 'contact-info' do
+    = f.input :address
     = f.input :website
-  - f.inputs do
-    = f.input :tag_list, :hint => "Examples: cooking, families, tacos, plumbing, etc."
+    = f.input :hours
+    = f.input :phone
   - f.buttons do
-    #submit_wrapper= f.commit_button "Continue"
+    = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
+
