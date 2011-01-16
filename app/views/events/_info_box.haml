@@ -25,12 +25,12 @@
 
   .clear
 
-
-  = render_map do |map|
-    - map.center event
-    - map.marker current_user
-    - map.marker event
-    - map.directions do |dir|
-      - dir.origin current_user
-      - dir.destination event
+  - if event.address.present?
+    = render_map do |map|
+      - map.center event
+      - map.marker current_user
+      - map.marker event
+      - map.directions do |dir|
+        - dir.origin current_user
+        - dir.destination event
   
