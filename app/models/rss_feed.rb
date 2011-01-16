@@ -1,4 +1,5 @@
 class RSSFeed < Feed
+  
   validates_uniqueness_of :feed_url
   
   after_create :find_avatar
@@ -32,7 +33,7 @@ class RSSFeed < Feed
   end
   
   def profile_link
-    return "/feeds/" + self.id.to_s
+    return "/feeds/" + self.owner_id
   end
   
 end

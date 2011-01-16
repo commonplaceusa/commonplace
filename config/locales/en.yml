@@ -150,6 +150,7 @@ en:
         hours: "Your hours of operation:"
         website: "Your website:"
         feed_url: "Your RSS Feed:"
+        twitter_name: "Your Twitter Username:"
         show:
           phone: "Phone:"
           website: "Website:"

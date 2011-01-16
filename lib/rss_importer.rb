@@ -9,7 +9,7 @@ class RSSImporter
     
     
     Community.find(:all).each do |community|
-      community.feeds.find_all_by_type("RSSFeed").each do |feed|
+      community.feeds.find(:all, :conditions => ["feed_url != ?", "" ]).each do |feed|
         rss = RSS::Parser.parse(open(feed.feed_url).read, false)
         rss.items.each { |i|
           # Determine if the item has been added yet
