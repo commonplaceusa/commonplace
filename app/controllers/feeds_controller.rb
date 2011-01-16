@@ -26,6 +26,7 @@ class FeedsController < CommunitiesController
   end
   
   def import
+    render :layout => xhr? ? 'application' : "/feeds/profile"
   end
 
   def profile
