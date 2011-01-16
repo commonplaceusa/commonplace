@@ -4,14 +4,24 @@ if (window.location.hash.slice(1) != "") {
   window.location.hash = "";
 }
 
+function absToRelPath(href) {
+  var match = href.match(/\/\/[^\/]*(\/.*)/);
+  if (match && match[1]) {
+    return match[1];
+  } else {
+    return "";
+  }
+} 
+
 $(function() {
 
   $.preLoadImages("/images/loading.gif");
 
   $('a[data-remote]').live('click', function(e) {
     e.preventDefault();
-    ajaj("get", $(this).attr('href'), null);
-    window.location.hash = $(this).attr('href');
+    var path = absToRelPath($(this).get(0).href);
+    ajaj("get", path, null);
+    window.location.hash = path;
   });
   
   $('div[data-href]').live('click', function(e) {
@@ -24,8 +34,9 @@ $(function() {
     e.stopPropagation();
     if ($(this).attr('data-remote')) {
       e.preventDefault();
-      ajaj("get", $(this).attr('href'), null);
-      window.location.hash = $(this).attr('href');
+      var path = absToRelPath($(this).get(0).href);
+      ajaj("get", path, null);
+      window.location.hash = path;
     }
   });
 
