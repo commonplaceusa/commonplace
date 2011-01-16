@@ -4,22 +4,16 @@ if (window.location.hash.slice(1) != "") {
   window.location.hash = "";
 }
 
-function absToRelPath(href) {
-  var match = href.match(/\/\/[^\/]*(\/.*)/);
-  if (match && match[1]) {
-    return match[1];
-  } else {
-    return "";
-  }
-} 
-
 $(function() {
+  
+  HOST_HREF_REGEX = new RegExp("^" + window.location.protocol + "//" + window.location.host);
+
 
   $.preLoadImages("/images/loading.gif");
 
   $('a[data-remote]').live('click', function(e) {
     e.preventDefault();
-    var path = absToRelPath($(this).get(0).href);
+    var path = $(this).attr('href').replace(HOST_HREF_REGEX, "");
     ajaj("get", path, null);
     window.location.hash = path;
   });
@@ -34,7 +28,7 @@ $(function() {
     e.stopPropagation();
     if ($(this).attr('data-remote')) {
       e.preventDefault();
-      var path = absToRelPath($(this).get(0).href);
+      var path = $(this).attr('href').replace(HOST_HREF_REGEX, "");
       ajaj("get", path, null);
       window.location.hash = path;
     }

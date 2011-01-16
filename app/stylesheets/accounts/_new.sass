@@ -4,16 +4,17 @@ body.application.accounts.new, body.application.accounts.create
   h1
 
   #main
+    width: 1000px
+    position: relative
     #create-a-feed
-      position: relative
-      left: 25px
-      margin-top: 30px
-      float: right
+      position: absolute
+      right: -20px
+      top: 30px
       width: 175px
       background-color: #b53f3c
       color: white
       padding: 20px 0px 20px 30px
-
+      z-index: -1
       +border-radius(15px)
       border: 10px solid #922f2c
       +box-shadow($default-box-shadow-color, 0, 0, $default-box-shadow-blur, 0, inset)
@@ -29,7 +30,6 @@ body.application.accounts.new, body.application.accounts.create
     
     form
       position: relative
-      z-index: 1
       margin: 50px auto 70px
       +lightbox
       width: 560px

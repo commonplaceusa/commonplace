@@ -9,8 +9,8 @@
       - link_to new_account_path(:short => true) do
         = image_tag 'create-a-feed.png'
 
-
     - semantic_form_for @user, :url => account_path, :html => {'data-remote' => true} do |f|
+
       - f.inputs do
         = f.input :full_name
         = f.input :email

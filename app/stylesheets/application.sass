@@ -66,16 +66,16 @@ body.application
       a:hover
         color: #3b6085
       div.user-feeds
-        +inline-block
-        vertical-align: top        
+        display: inline
         position: relative
         padding-top: 5px
-        top: -5px
-        
+        height: 22px
+        vertical-align: top
         h4
           font-size: 11px
           color: $baseText + #222
           font-weight: bold
+          height: 14px
           +sans
           display: inline
           vertical-align: top
@@ -86,8 +86,9 @@ body.application
           background-position: 42px
           border: 1px solid transparent
         ul 
-          margin-top: 1px
           display: none
+          top: 25px
+          left: 0px
           position: absolute
           z-index: 1
           width: 150px 
