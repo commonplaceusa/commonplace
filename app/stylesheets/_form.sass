@@ -24,11 +24,20 @@ div#submit_post
 
 form#new_user
   li
-    height: 57px
+    height: 65px
 
 form.user
+  .inline-errors
+    font-size: 0.7em
+    display: block
+    line-height: 120%
+    width: 430px
+    font-weight: normal
+    font-family: Rockwell, Georgia, Helvetica, Sans-serif
+    color: #cc0000
   label
     color: #3a3a3a
+
 
 form.standard_form
 
@@ -111,10 +120,30 @@ form.formtastic fieldset ol li.date
           width: $labelWidth
           margin-left: 0px
 
+#say-something 
+  form.formtastic
+    color: white
+    .inputs
+      input, textarea
+        border: 1px solid $inputBorders
+
+
+    p.inline-hints
+      text-align: right
+      padding: 3px
+      margin-right: 25px
+      font-size: 11px
+      color: $mediumGray
+
+    .buttons
+      .skip
+        float: right
+        margin: 10px
+
 form.formtastic
-  color: white
+  color: $cpGrey
   .inputs
-    input, textarea
+    input, textarea       
       border: 1px solid $inputBorders
 
 

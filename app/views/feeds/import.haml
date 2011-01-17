@@ -6,6 +6,8 @@
         %ul
           %li= link_to "Announcement", new_feed_announcement_path(@feed), 'data-remote' => true
           %li= link_to "Event", new_feed_event_path(@feed), 'data-remote' => true
-    = f.inputs :name, :feed_url, :twitter_name
+    - f.inputs do
+      = f.input :feed_url
+      = f.input :twitter_name
     = f.buttons :commit => "Save"
   

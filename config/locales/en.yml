@@ -169,8 +169,8 @@ en:
         address: "Your Address:"
         hours: "Your hours of operation:"
         website: "Your website:"
-        feed_url: "Your RSS Feed:"
-        twitter_name: "Your Twitter Username:"
+        feed_url: "Enter an RSS feed and we'll send out announcements when you update it:"
+        twitter_name: "Enter your Twitter username and we'll syndicate your tweets on CommonPlace"
         show:
           phone: "Phone:"
           website: "Website:"
