@@ -156,9 +156,6 @@ en:
       user_session:
         email: "EMAIL"
         password: "PASSWORD"
-      
-      avatar: "Add a Photo:"
-
 
       post:
         subject: "Subject"
@@ -184,7 +181,10 @@ en:
       post:
         subject: Have a need, announcement, offer or event?
         body: Share it with your neighbors!
-
+        
+      event: 
+        name: "Event name:"
+        description: "Event description:"
     hints:
       user:
         address: "*This helps us place you in the correct %{community} neighborhood."
