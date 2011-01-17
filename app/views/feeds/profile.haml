@@ -9,11 +9,11 @@
 
     #column-1<>
       = image_tag @feed.avatar.url, :id => 'feed-avatar', :size => "210x210"
-      - if [:phone, :website, :address, :hours].any? {|method| @feed.send(method).present?}
+      - if [:phone, :website, :address].any? {|method| @feed.send(method).present?}
         %h3= t 'feeds.profile.contact_info.title'
         #contact-info
           %dl
-            - [:phone, :website, :address, :hours].each do |method|
+            - [:phone, :website, :address].each do |method|
               - if @feed.send(method).present?
                 %dt<>= t("formtastic.labels.feed.show.#{method}")
                 %dd<>= @feed.send(method)

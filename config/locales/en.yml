@@ -44,7 +44,7 @@ en:
     preview:
       name: "Enter your feed's name"
       about: "Go ahead and describe your feed. Don't be afraid to use some detail. There's space."
-      tag_list: "list, some, relevant, tags"
+      tag_list: "music, politics, food"
       website: "http://www.yourfeed.com"
       hours: "9:00AM - 1:00PM"
       phone: "867-5309"
@@ -167,11 +167,10 @@ en:
       feed:
         name: "Feed Name:"
         avatar: "Add a photo of your organization:"
-        about: "Tell us about your organization:"
+        about: "Describe your feed:"
         phone: "Phone Number:"
-        address: "Your Address:"
-        hours: "Your hours of operation:"
-        website: "Your website:"
+        address: "Street Address:"
+        website: "Website:"
         feed_url: "Enter an RSS feed and we'll send out announcements when you update it:"
         twitter_name: "Enter your Twitter username and we'll syndicate your tweets on CommonPlace"
         show:
