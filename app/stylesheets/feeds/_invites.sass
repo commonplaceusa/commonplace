@@ -1,0 +1,53 @@
+
+body.application.feeds_invites.new
+
+  h1
+    width: 660px
+    color: #3b6085
+    line-height: 1.2
+    font-size: 30px
+    padding: 0 20px
+    margin: 5px auto 20px
+    text-align: center
+    +text-shadow(#bfc8cf, 1px, 1px, 1px)
+
+  h2
+    color: #444545
+    line-height: 1.4
+    font-size: 18px
+
+  #new_feed_invites
+    padding: 50px 80px
+    +lightbox
+    width: 650px
+    margin: auto
+  
+
+    fieldset.inputs
+      padding: 15px 0px
+
+      li.emails
+        background-color: #3b6085
+        padding: 10px 25px 30px
+        +border-radius(5px)
+
+        label
+          display: block
+          padding: 10px 0
+          color: #fff
+          font-size: 16px
+        textarea
+          width: 100%
+          +border-radius(4px)
+          margin-bottom: 15px
+        a
+          color: #b53f3c
+          background-color: #fff
+          +border-radius(4px)
+          font-size: 10px
+          padding: 3px
+          text-decoration: none
+          font-weight: bold
+
+    fieldset.buttons
+      text-align: right

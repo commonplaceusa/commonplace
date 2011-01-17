@@ -9,4 +9,12 @@ class InviteMailer < ActionMailer::Base
     subject "#{@user.name} invited you to join #{@community.name} CommonPlace"
   end
 
+  def feed_invite(feed_id, email)
+    @feed = Feed.find(feed_id)
+    @community = @feed.community
+    recipients email
+    from "invites@commonplaceusa.com"
+    subject "#{@feed.name} invited you to join #{@community.name} CommonPlace"
+  end
+
 end

@@ -1,0 +1,17 @@
+
+%h1= t ".h1"
+
+- form_tag feed_invites_path(@feed), :id => "new_feed_invites", :class => "invites formtastic" do
+
+  %h2= t ".h2", :community => current_community.name
+  %fieldset.inputs
+    %ol
+      %li.text.emails
+        = label_tag :emails, t(".emails_label")
+        = text_area_tag :emails, "", :rows => 5
+        %a{ :href => "#", :onclick => "showPlaxoABChooser('emails', '/plaxo-importer.html'); return false"}
+          &#x271a; Import emails from my address book
+  %fieldset.buttons
+    %ol
+      %li.commit
+        = submit_tag "Invite"

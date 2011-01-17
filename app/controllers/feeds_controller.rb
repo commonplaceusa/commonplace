@@ -41,7 +41,7 @@ class FeedsController < CommunitiesController
     @feed = current_community.feeds.new(params[:feed])
     @feed.user = current_user
     if @feed.save
-      redirect_to feed_profile_url(@feed)
+      redirect_to new_feed_invites_url(@feed)
     else
       render :new, :layout => 'application'
     end

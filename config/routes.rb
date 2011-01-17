@@ -48,6 +48,7 @@ ActionController::Routing::Routes.draw do |map|
       feed.resource :claim, :member => [:edit_fields]
       feed.resources :announcements, :controller => "feeds/announcements"
       feed.resources :events, :controller => "feeds/events"
+      feed.resource :invites, :controller => "feeds/invites"
       feed.resources :profile_fields, :collection => {"order" => :put}
       feed.resources :messages, :only => [:create, :new], :requirements => {:messagable => "Feed"}
     end
