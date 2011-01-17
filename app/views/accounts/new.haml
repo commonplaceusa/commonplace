@@ -13,6 +13,7 @@
         = f.input :full_name
         = f.input :email
         = f.input :address, :hint => t("formtastic.hints.user.address", :community => current_community.name)
+        = f.input :facebook_uid, :as => :hidden
       - f.buttons do 
         = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
 %br
@@ -31,6 +32,7 @@
     if(user != null) {
       $('#user_full_name').val(user.name);
       $('#user_email').val(user.email);
+      $('#user_facebook_uid').val(user.id);
     }
   }
   FB.api('/me', function(user) { facebookUserLoggedIn(user); });
