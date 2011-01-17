@@ -14,5 +14,8 @@
             = text_area_tag :emails, "", :rows => 6
       %fieldset.buttons
         %ol
+          %li.plaxo
+            %a{ :href => "#", :onclick => "showPlaxoABChooser('emails', '/plaxo-importer.html'); return false"}
+              &#x271a; Import emails from my address book
           %li.commit
             = submit_tag "Invite"

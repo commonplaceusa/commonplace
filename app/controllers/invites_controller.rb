@@ -1,4 +1,4 @@
-class InvitesController < ApplicationController
+class InvitesController < CommunitiesController
 
   def new
   end
