@@ -9,6 +9,9 @@
       - link_to new_account_path(:short => true) do
         = image_tag 'create-a-feed.png'
     - semantic_form_for @user, :url => account_path, :html => {'data-remote' => true}, :id => 'registration_form' do |f|
+      %h3
+        Fill out the form to get started or
+        %fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'facebookUserLoggedIn();', :perms => 'email,user_hometown,user_address'}
       - f.inputs do
         = f.input :full_name
         = f.input :email
@@ -16,9 +19,7 @@
         = f.input :facebook_uid, :as => :hidden
       - f.buttons do 
         = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
-%br
-%br
-%br
+
 #fb-root
 %script{:type => "text/javascript",
         :src  => "http://connect.facebook.net/en_US/all.js"}
@@ -37,7 +38,6 @@
     }
   }
   FB.api('/me', function(user) { facebookUserLoggedIn(user); });
-%fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'facebookUserLoggedIn();', :perms => 'email,user_hometown,user_address'}
 
 %p#bubble-1= t ".bubble_1"
 %p#bubble-2= t ".bubble_2"
