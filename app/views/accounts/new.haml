@@ -8,11 +8,6 @@
       %p Create a feed to send events and announce-<br>ments to the whole community.
       - link_to new_account_path(:short => true) do
         = image_tag 'create-a-feed.png'
-<<<<<<< HEAD
-=======
-
-
->>>>>>> d209f885738278ee1104d286f67940eb682ea8e8
     - semantic_form_for @user, :url => account_path, :html => {'data-remote' => true}, :id => 'registration_form' do |f|
       - f.inputs do
         = f.input :full_name
