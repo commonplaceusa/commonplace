@@ -37,11 +37,6 @@ function merge(content) {
     $("#deliveries ul").slideToggle();
   });
 
-  $('.inline-form input[type=file]').filestyle({
-    image: "/images/upload.gif",
-    imagewidth: 100,
-    imageheight: 22
-  });
 
   initInlineForm();
 

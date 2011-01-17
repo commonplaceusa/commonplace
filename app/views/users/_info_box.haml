@@ -4,8 +4,9 @@
   
   = image_tag user.avatar.url(:normal), :width => 120, :class => "avatar"
   
-  - link_to new_user_message_path(user), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ user.first_name }" do 
-    %span Message #{ user.first_name }
+  - if user != current_user
+    - link_to new_user_message_path(user), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ user.first_name }" do 
+      %span Message #{ user.first_name }
 
 
   %h3= user.full_name

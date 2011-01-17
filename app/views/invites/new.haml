@@ -3,7 +3,7 @@
   #say-something
     %h2= t ".title"
     = render 'shared/say_something_nav', :current => :invites
-    - form_tag "/invites", 'data-remote' => true do
+    - form_tag "/invites", 'data-remote' => true, :class => "formtastic" do
       %fieldset.inputs
         %ol
           %li.text

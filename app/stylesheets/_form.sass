@@ -30,6 +30,7 @@ form.standard_form
     font-size: 1em
     width: 250px
     +serif
+    
   
   textarea
     height: 4em
@@ -105,6 +106,12 @@ form.formtastic fieldset ol li.date
           margin-left: 0px
 
 form.formtastic
+  color: white
+  .inputs
+    input, textarea
+      border: 1px solid $inputBorders
+
+
   p.inline-hints
     text-align: right
     padding: 3px
