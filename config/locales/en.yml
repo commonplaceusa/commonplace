@@ -11,6 +11,9 @@ en:
   lorem_ipsum: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....
 
   feeds:
+    account:
+      h1: Welcome! Feeds make it easy for you to send events and announcement to the people who live in Falls Church. But before you can create a feed, you need to register a personal profile on CommonPlace.
+
     invites:
       new:
         h1: Finally, invite some people to receive your announcements and events.
@@ -19,7 +22,7 @@ en:
     new:
       link: Create a Community Feed
       
-      h1: Create a feed so you can send announcements and events instantly to everyone in the community.
+      h1: Fill out your feed profile so that people on CommonPlace can get in touch with you.
     edit:
       h1: Edit Your Feed
 
