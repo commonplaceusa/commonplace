@@ -2,7 +2,7 @@ class Feed < ActiveRecord::Base
   
   acts_as_taggable_on :tags
 
-  validates_presence_of :name, :community
+  validates_presence_of :name, :community, :about
 
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
 
