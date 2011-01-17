@@ -29,9 +29,7 @@
   });
   function facebookUserLoggedIn(user)
   {
-    alert('Logged in');
     if(user != null) {
-      alert('Found user with name '+user.name);
       $('#user_full_name').val(user.name);
       $('#user_email').val(user.email);
       $('#user_facebook_uid').val(user.id);
