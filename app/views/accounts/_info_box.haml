@@ -9,7 +9,7 @@
   %h2 Your Civic Profile
 
   = image_tag current_user.avatar.url(:normal), :width => 120, :class => "avatar"
-  - form_tag "/account/avatar.json", :multipart => true, :method => "post", :id => "avatar-form" do
+  - form_tag "/account/avatar", :multipart => true, :method => "post", :id => "avatar-form" do
     #hidden_input
       %button{:id=>"upload_file_button"}
         %a{:href=>"javascript: void(0)"}
