@@ -29,15 +29,19 @@ function initInlineForm() {
   });
 
   $('.inline-form').bind('image.inline-form', function() {
-    $("form", $(this)).ajaxSubmit({
-      beforeSubmit: function(a,f,o) {
-        o.dataType = 'json';
-      },
+    var $this = $(this)
+    $("#avatar-form", $this).ajaxSubmit({
       success: function(response){
-        $("img.avatar").attr('src', response.avatar_url);
+        $('img.avatar', $this).attr('src',
+                                    $('img.avatar', $this).attr('src') + "1234");
       }
     });
   });
+
+   $("#avatar-form #file_uploader").change(function() {
+     $(this).trigger("image.inline-form");
+   });
+
 
   $('.inline-form .inline-edit').click(function(e) {
     $(this).trigger('edit.inline-form');
@@ -52,12 +56,6 @@ function initInlineForm() {
   $('.inline-form .inline-cancel').click(function(e) {
     $(this).trigger('revert.inline-form');
     e.stopPropagation();
-  });
-
-  $('.inline-form input[type=file]').filestyle({
-    image: "/images/upload.gif",
-    imagewidth: 100,
-    imageheight: 22
   });
 
 }

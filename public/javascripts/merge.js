@@ -27,7 +27,7 @@ function merge(content) {
 
    $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
 
-   $("#edit_avatar input").change(function() {
+   $("#avatar-form  #file-uploader").change(function() {
      $(this).parent("form").submit();
    });
 
