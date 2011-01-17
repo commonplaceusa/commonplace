@@ -38,7 +38,10 @@ gem 'json'
 gem 'resque'
 gem 'resque-scheduler'
 
+<<<<<<< HEAD
 gem 'twitter'
+=======
+>>>>>>> d209f885738278ee1104d286f67940eb682ea8e8
 gem 'facebooker'
 gem 'god'
 
