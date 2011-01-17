@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110114054438) do
+ActiveRecord::Schema.define(:version => 20110117073853) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20110114054438) do
     t.string   "image_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar_remote_url"
   end
 
   create_table "communities", :force => true do |t|
@@ -113,11 +114,17 @@ ActiveRecord::Schema.define(:version => 20110114054438) do
     t.string   "address"
     t.string   "hours"
 <<<<<<< HEAD
+<<<<<<< HEAD
     t.string   "slug"
     t.integer  "owner_id"
     t.string   "twitter_name"
 =======
 >>>>>>> d209f88... Loaded initial data from Facebook to landing page
+=======
+    t.string   "slug"
+    t.integer  "owner_id"
+    t.string   "twitter_name"
+>>>>>>> 4aeb53b... Laid the foundation for Facebook Connect integration. Pulling data and Facebook UID is now functional.
   end
 
   create_table "invites", :force => true do |t|
@@ -311,6 +318,7 @@ ActiveRecord::Schema.define(:version => 20110114054438) do
     t.string   "avatar_file_name"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     t.integer  "facebook_uid",                     :limit => 8
     t.string   "address"
 =======
@@ -319,6 +327,8 @@ ActiveRecord::Schema.define(:version => 20110114054438) do
     t.string   "address"
 =======
 >>>>>>> d209f88... Loaded initial data from Facebook to landing page
+=======
+>>>>>>> 4aeb53b... Laid the foundation for Facebook Connect integration. Pulling data and Facebook UID is now functional.
     t.integer  "facebook_uid",                     :limit => 8
     t.string   "address"
   end

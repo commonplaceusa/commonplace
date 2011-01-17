@@ -72,10 +72,17 @@ class AccountsController < CommunitiesController
   end
 
   def edit_new
+    if current_user.facebook_uid
+      current_user.avatar = Avatar.create(:avatar_remote_url => "http://graph.facebook.com/" + current_user.facebook_uid.to_s + "/picture/")
+      current_user.save!
+    end
   end
 
   def update_new
     authorize! :update, User
+    if current_user.facebook_uid.present?
+      current_user.password = "FACEBOOK_OVERRIDE"
+    end
     if current_user.update_attributes(params[:user]) && current_user.password.present?
       redirect_to root_url
     else
