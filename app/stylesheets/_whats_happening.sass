@@ -2,26 +2,27 @@
   float: right
 
   h2
-    background-color: #3b6085
-    border: 1px solid #2f4d6b
-      bottom: 0px
+    background-color: #EFEFEF
+    border: 1px solid #ccc
     +border-top-radius(5px)
     padding: 1px
 
     #tooltip                          
       +serif
-      color: #eeeef0
+      color: $cpDarkBlue
       font-size: 14px
       text-align: center
-      background-color: #2f4d6b
+      background-color: #EFEFEF
       +border-top-radius(5px)
       padding: 5px
 
   #zones
-    border: 1px solid #2f4d6b
+    border:
       top: 0px
+      left: 1px solid #ccc
+      right: 1px solid #ccc
     padding: 8px 4px
-    background-color: #3a5f84
+    background-color: white
 
     a 
       width: 95px
@@ -50,4 +51,5 @@
         background-image: url("/images/goods-and-skills.png")
       
       span
-        color: #fff
+        color: $cpGrey
+        cursor: pointer
