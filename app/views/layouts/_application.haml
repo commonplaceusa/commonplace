@@ -20,7 +20,8 @@
     = javascript_include_tag 'innershiv', 'app', 'inlineform', 'maps', 'tooltips', 'merge', 'syndicate', 'modal', 'infobox', 'merge'
 
     %script{:type => "text/javascript", :src  => "http://connect.facebook.net/en_US/all.js"}
-    = javascript_include_tag 'feed_profile', 'facebook_connect'
+    = javascript_include_tag 'feed_profile'
+    = javascript_include_tag "facebook_connect_#{Rails.env}"
     <script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
     <script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
     <script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
