@@ -8,8 +8,12 @@ function accordionReplies($replies) {
 function accordionItem($item) {
   var $replies = $item.children(".replies"),
       $body = $item.find(".body");
-  $("#syndicate .replies").not($replies.get(0)).slideUp();
-  $("#syndicate .body").not($body.get(0)).truncate('truncate');
+  if ($replies.get(0)) {
+    $("#syndicate .replies").not($replies.get(0)).slideUp();
+  }
+  if ($body.get(0)) {
+    $("#syndicate .body").not($body.get(0)).truncate('truncate');
+  }
   $replies.slideDown();
   $body.truncate('untruncate');
 }
