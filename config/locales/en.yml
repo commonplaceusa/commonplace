@@ -190,7 +190,7 @@ en:
         address: "*This helps us place you in the correct %{community} neighborhood."
 
   tooltips:
-    posts: View announcements, offers, needs, and requests from your neighbors
+    posts: View announcements, offers, and needs from your neighbors
     events: View upcoming events in your community
     announcements: View community announcements from organizations in your area
     people: Find neighbors and civic leaders in your community
