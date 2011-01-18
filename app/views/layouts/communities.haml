@@ -6,13 +6,13 @@
       = render 'shared/zones'
       = updated_content_or("#syndicate") do
         #syndicate
-          %h3= link_to t("syndicate.posts.title"), :posts
+          %h3= link_to t("syndicate.posts.title"), :posts, 'data-remote' => true
           = render 'shared/items', :items => posts
 
-          %h3= link_to t("syndicate.events.title"), :events
+          %h3= link_to t("syndicate.events.title"), :events, 'data-remote' => true
           = render 'shared/items', :items => events
 
-          %h3= link_to t("syndicate.announcements.title"), :events
+          %h3= link_to t("syndicate.announcements.title"), :announcements, 'data-remote' => true
           = render 'shared/items', :items => announcements
 
     = updated_content_or("#say-something") do
