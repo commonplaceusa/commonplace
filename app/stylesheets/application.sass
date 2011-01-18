@@ -120,11 +120,7 @@ body.application
 
     #new_user_session
       float: right
-      text-align: right
-      width: 415px
-      /* 
-        TODO: Finish Facebook Connect
-        width: 500px
+      width: 530px
       .inputs, .buttons
         +inline-block
         li 
@@ -149,17 +145,17 @@ body.application
             +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
             margin: 0
             border: 1px solid #ddd  
-      #facebook_login
-        position: relative
-        top: 10px
-        color: $cpBlue
-
         
       .buttons
         padding-top: 25px
+        .oauth2
+          submit
+            vertical-align: middle
+            padding-bottom: 2px
       .forgot-password
         float: right
         padding: 4px
+        margin-right: 115px
         font-size: 12px
         color: #3b6085
       p.errors

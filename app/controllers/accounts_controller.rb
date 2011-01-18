@@ -21,35 +21,20 @@ class AccountsController < CommunitiesController
   
   def create
     authorize! :create, User
-    @user = User.new(params[:user])
-
-    position = LatLng.from_address(@user.address, 
-                                   current_community.zip_code)
-    if position
-      @user.neighborhood = current_community.neighborhoods.to_a.
-        find(lambda{current_community.neighborhoods.first}) do |n|
-        position.within?(n.bounds) if n.bounds
-      end
-    else
-      @user.neighborhood = current_community.neighborhoods.first
-    end
+    params[:user] ||= {}
+    @user = User.new(params[:user].merge(:community => current_community))
     
-    puts params
-    
-    if @user.save
-      if params[:short]
-        redirect_to new_feed_url
+    @user.save do |result|
+      if result
+        if params[:short]
+          redirect_to new_feed_url
+        else
+          redirect_to edit_new_account_url
+        end
       else
-        redirect_to edit_new_account_url
+        render params[:short] ? :short : :new
       end
-    else
-      render params[:short] ? :short : :new
     end
-  end
-  
-  def create_from_facebook
-    authorize! :create, User
-    puts params.inspect
   end
 
   def edit
@@ -74,10 +59,6 @@ class AccountsController < CommunitiesController
   end
 
   def edit_new
-    if current_user.facebook_uid
-      current_user.avatar = Avatar.create(:avatar_remote_url => "http://graph.facebook.com/" + current_user.facebook_uid.to_s + "/picture/")
-      current_user.save!
-    end
   end
 
   def update_new

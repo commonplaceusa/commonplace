@@ -21,6 +21,9 @@ GEM
     addressable (2.2.2)
     authlogic (2.1.6)
       activesupport
+    authlogic_oauth2 (1.1.2)
+      authlogic
+      oauth2
     autotest-rails (4.1.0)
       ZenTest
     babosa (0.2.0)
@@ -96,6 +99,9 @@ GEM
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     nokogiri (1.4.4)
+    oauth2 (0.1.1)
+      faraday (~> 0.5.0)
+      multi_json (~> 0.0.4)
     outside-in (1.0.0)
     paperclip (2.3.8)
       activerecord
@@ -170,6 +176,7 @@ DEPENDENCIES
   acts-as-list
   acts-as-taggable-on
   authlogic
+  authlogic_oauth2
   autotest-rails
   cancan
   capistrano
@@ -190,6 +197,7 @@ DEPENDENCIES
   mcbean
   mongrel
   nested_layouts
+  oauth2
   outside-in
   paperclip
   pg

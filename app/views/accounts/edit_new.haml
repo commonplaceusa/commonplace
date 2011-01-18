@@ -7,8 +7,10 @@
     = render 'preview'
 
     - f.inputs do 
-      - if !current_user.facebook_uid
+      - if current_user.facebook_uid.blank?
         = f.input :password
+      - if current_user.address.blank?
+        = f.input :address, :hint => t("formtastic.hints.user.address", :community => current_community.name)
       = f.input :avatar, :input_html => {:size => 20}
       = f.input :about
       = f.input :good_list
