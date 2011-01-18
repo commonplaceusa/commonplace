@@ -28,7 +28,6 @@ class UserSessionsController < ApplicationController
       params[:controller] = "accounts"
       params[:action] = "new"
       render 'accounts/new'
-      puts "No session"
     end
   end
 
