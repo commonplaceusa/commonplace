@@ -1,5 +1,5 @@
 
-- semantic_form_for feed do |f|
+- semantic_form_for feed, :html => {:multipart => true} do |f|
 
   = render 'preview', :feed => feed
 
