@@ -4,11 +4,7 @@
   
   = image_tag feed.avatar.url(:normal), :width => 120, :class => "avatar"
 
-  - unless current_user.feeds.include? feed
-    - form_tag feed_subscription_path(feed), :class => 'new_subscription' do
-      %button 
-        %span Subscribe to #{ feed.name }
-
+  = render 'subscriptions/form', :feed => feed, :user => current_user
     
   - link_to new_feed_message_path(feed), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ feed.name }" do 
     %span Message #{ feed.name }

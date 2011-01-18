@@ -5,5 +5,10 @@ $(document).ready(function(){
 	}, function(){
 		$('#post-to-feed h2 nav li:last-child').hide();	
 	})
+
+  $("body").bind("create.subscription", function(e, params) {
+    $(params.selector).hide("puff", function() { $(this).remove(); });
+  });
+
 });
 	

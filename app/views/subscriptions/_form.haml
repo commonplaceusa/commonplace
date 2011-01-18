@@ -1,0 +1,6 @@
+
+- unless user.feeds.include? feed
+  - form_tag feed_subscription_path(feed), 'data-remote' => true, :class => 'new_subscription', :id => "#{dom_id(feed)}_subscription" do
+    %button 
+      %span Subscribe to #{ feed.name }
+
