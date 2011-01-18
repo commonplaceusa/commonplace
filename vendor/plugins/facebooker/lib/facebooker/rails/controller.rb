@@ -122,7 +122,7 @@ module Facebooker
       end
 
       def fb_cookie_prefix
-        Facebooker.api_key+"_"
+        "fbs_"+Facebooker.api_key
       end
 
       def fb_cookie_names
@@ -132,16 +132,20 @@ module Facebooker
       def secure_with_cookies!
           parsed = {}
 
-          fb_cookie_names.each { |key| parsed[key[fb_cookie_prefix.size,key.size]] = cookies[key] }
-
+          fb_cookie_names.each { |key|
+            params = CGI.parse(cookies[key])
+            params.keys.each do |pkey|
+              parsed[pkey] = params[pkey]
+            end
+          }
+          puts parsed.inspect
           #returning gracefully if the cookies aren't set or have expired
-          return unless parsed['session_key'] && parsed['user'] && parsed['expires'] && parsed['ss'] 
+          return unless parsed['session_key'] && parsed['uid'] && parsed['expires'] && parsed['secret'] 
           return unless (Time.at(parsed['expires'].to_s.to_f) > Time.now) || (parsed['expires'] == "0")      
           #if we have the unexpired cookies, we'll throw an exception if the sig doesn't verify
-          verify_signature(parsed,cookies[Facebooker.api_key], true)
-
+        #  verify_signature(parsed,cookies[Facebooker.api_key], true)
           @facebook_session = new_facebook_session
-          @facebook_session.secure_with!(parsed['session_key'],parsed['user'],parsed['expires'],parsed['ss'])
+          @facebook_session.secure_with!(parsed['session_key'].to_s,parsed['uid'].to_s,parsed['expires'].to_s,parsed['secret'].to_s)
           @facebook_session
       end
     

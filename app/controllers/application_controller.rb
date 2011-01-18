@@ -13,10 +13,10 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  before_filter :set_template_format
+  before_filter :set_template_format, :set_facebook_session
 
   filter_parameter_logging :password, :password_confirmation
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :facebook_session
 
   rescue_from CanCan::AccessDenied do |exception|
     store_location
@@ -98,6 +98,15 @@ class ApplicationController < ActionController::Base
       super(options, response_status)
     end
   end
+  
+  #def facebook_session
+  #  puts CGI.parse(cookies['fbs_179741908724938']).keys
+  #  nil
+  #end
+  
+  #def set_facebook_session
+  #  #puts cookies
+  #end
   
   
 end
