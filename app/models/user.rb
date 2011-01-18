@@ -50,8 +50,6 @@ class User < ActiveRecord::Base
       self.full_name = user_data['name']
       self.facebook_uid = user_data['id']
       self.email = user_data['email']
-      puts user_data['address']
-      self.address = user_data['address']['street']
     end
   end
   
@@ -227,9 +225,5 @@ class User < ActiveRecord::Base
       end
     end
   end 
-  
-  def do_not_reply_on_index
-    return true
-  end
   
 end
