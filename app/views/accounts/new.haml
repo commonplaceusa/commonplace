@@ -21,22 +21,8 @@
         = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
 
 #fb-root
-%script{:type => "text/javascript",
-        :src  => "http://connect.facebook.net/en_US/all.js"}
 :javascript
-  FB.init({
-    appId:#{Facebooker.api_key}, cookie:true, 
-    status:true, xfbml:true 
-  });
-  function facebookUserLoggedIn(user)
-  {
-    if(user != null) {
-      $('#user_full_name').val(user.name);
-      $('#user_email').val(user.email);
-      $('#user_facebook_uid').val(user.id);
-      $('#user_address').val(user.address.street);
-    }
-  }
+  // Attempt a query; maybe the user has already authenticated?
   FB.api('/me', function(user) { facebookUserLoggedIn(user); });
 
 %p#bubble-1= t ".bubble_1"
