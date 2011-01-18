@@ -99,14 +99,4 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  #def facebook_session
-  #  puts CGI.parse(cookies['fbs_179741908724938']).keys
-  #  nil
-  #end
-  
-  #def set_facebook_session
-  #  #puts cookies
-  #end
-  
-  
 end
