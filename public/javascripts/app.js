@@ -41,6 +41,85 @@ $(function() {
     ajaj("post", $(this).attr('action'), $(this).serialize());
   });
 
+  $("body").bind("redirect_to", function(e, url) {
+    if (url.match(/^https?:/)) {
+      window.location = url;
+    } else {
+      window.location.hash = url;
+      ajaj("get", url, null);
+    }
+  });
+
+  // TODO: remove legacy support for update_content
+  // migration to trigger
+  $.each(
+    ["#say-something","#tooltip", "#main", "#new_feed", 
+     "#post-to-feed", "#recent-posts", "#zones", "#deliveries"],
+    function(i, selector) {
+      $("body").bind(selector, function(event, content) {
+        if (content) {
+          $(selector).replaceWith(window.innerShiv(content, false));
+        }             
+      });
+    });
+  
+
+  $("body").bind("#deliveries", function(e, content) {
+    $("#deliveries").replaceWith(window.innerShiv(content, false));
+
+    $("#deliveries").click(function() {
+      $("#deliveries ul").slideToggle();
+    });
+  });  
+
+  $("body").bind("always", function(e) {
+    $('input[placeholder], textarea[placeholder]').placeholder();
+    
+    showTooltips();
+    
+    $('input.date').datepicker({
+      prevText: '&laquo;',
+      nextText: '&raquo;',
+      showOtherMonths: true,
+      defaultDate: null
+    });
+    
+    
+    
+    $('#tooltip').html($('#tooltip').attr('title'));
+    
+    
+    $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
+    
+    
+    $.polygonInputs();
+    
+    $('form.formtastic.user input:text, form.formtastic.user textarea').keydown(function(e) {
+      var $input = $(e.currentTarget);
+        setTimeout(function(){
+          $("#preview")
+            .find("[data-track='" + $input.attr('name') + "']")
+            .html($input.val());
+        }, 10);
+    });
+    
+    $('form.formtastic.feed input:text, form.formtastic.feed textarea').keydown(function(e) {
+      var $input = $(e.currentTarget);
+        setTimeout(function() {
+          $("#preview")
+            .find("[data-track='" + $input.attr('name') + "']")
+            .html($input.val());
+        }, 10);
+    });
+  });
+
+
+  $("body")
+    .trigger("always")
+  
+
+
+
 });
 
 function ajaj(method, path, data) {
@@ -49,17 +128,13 @@ function ajaj(method, path, data) {
     url: path,
     data: data,
     dataType: "json",
-     success: function(response) {
-       if (response.redirect_to) {
-         if (response.redirect_to.match(/^https?:/)) {
-           window.location = response.redirect_to;
-         } else {
-           window.location.hash = response.redirect_to;
-           ajaj("get", response.redirect_to, null);
-         }
-       } else {
-         merge(response);
-       }
-     }
+    success: function(response) {
+      if (response) {
+        $.each(response, function(event, params) {
+          $("body").trigger(event, params);
+          $("body").trigger("always");
+        });
+      }
+    }
   });
 }

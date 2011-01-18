@@ -26,4 +26,20 @@ $(function() {
   $(".item").live('click', function(e) {
     accordionItem($(this));
   });
+
+
+  $("body").bind("#syndicate", function(e, content) {
+    if (content) {
+      $("#syndicate").replaceWith(window.innerShiv(content, false));
+    }
+    $('.item .post .body, .item .announcement .body, .item .event .body').truncate({max_length: 160});    
+    showTooltips();
+  });
+
+  $("body").bind("show.replies", function(e, params) {
+    $(params.selector).replaceWith(window.innerShiv(params.content,false));
+  });
+
+  $("body").trigger("#syndicate");
+
 });

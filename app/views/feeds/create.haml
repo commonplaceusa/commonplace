@@ -1,7 +1,0 @@
-
-= update_content "#post-to-feed" do
-  = render 'form', :feed => @feed, :announcement => Announcement.new
-  
-
-= update_content "#recent-posts .items" do
-  = render 'shared/items', :items => @feed.wire

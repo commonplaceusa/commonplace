@@ -19,4 +19,15 @@ $(function() {
   $("#modal-close").live('click', function(e) {
     $("#modal").html("");
   });
+
+  $("body").bind("#modal", function(e, content) {
+    if (content) {
+      $("#modal").replaceWith(window.innerShiv(content, false));
+    }
+   $(window).trigger('resize.modal');
+   setTimeout(function(){$(window).trigger("resize.modal");}, 500);
+  });
+
+  $("body").trigger("#modal");
+  
 });
