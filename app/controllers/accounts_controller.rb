@@ -34,6 +34,8 @@ class AccountsController < CommunitiesController
       @user.neighborhood = current_community.neighborhoods.first
     end
     
+    puts params
+    
     if @user.save
       if params[:short]
         redirect_to new_feed_url
