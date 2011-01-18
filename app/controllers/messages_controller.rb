@@ -9,12 +9,18 @@ class MessagesController < CommunitiesController
   end
 
   def create
-    @message = parent.messages.build(params[:message].merge(:user => current_user))
-    if @message.save
-      parent.notifications.create(:notifiable => @message)
-      flash.now[:message] = "Message sent to #{parent.name}"
+    if parent.is_a? User
+      @message = parent.messages.build(params[:message].merge(:user => current_user))    
+      if @message.save
+        parent.notifications.create(:notifiable => @message)
+        flash.now[:message] = "Message sent to #{parent.name}"                          else
+        render :new
+      end
     else
-      render :new
+      NotificationsMailer.send("deliver_#{parent.class.name.downcase}_message",
+                               parent.id, current_user.id,
+                               params[:message][:subject], params[:message][:body])
+       flash.now[:message] = "Message sent to #{parent.name}"
     end
   end
 

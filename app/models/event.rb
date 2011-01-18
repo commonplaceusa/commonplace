@@ -40,5 +40,12 @@ class Event < ActiveRecord::Base
   def body
     self.description
   end
+
+  def user
+    case owner
+      when User then owner
+      when Feed then owner.user
+    end
+  end
   
 end
