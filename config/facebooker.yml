@@ -38,10 +38,11 @@ staging:
     server_alive_interval: 0
 
 production:
-  api_key: 
-  secret_key: 
+  api: new
+  api_key: 2b90c5e869096ae94acb2942f9bd1a25
+  secret_key: b8b9afc14ccece219793682ab07a8e3a
   canvas_page_name: 
-  callback_url: 
+  callback_url: http://fallschurch.commonplaceusa.com/account/new
   set_asset_host_to_callback_url: true   
   tunnel:
     public_host_username: 
