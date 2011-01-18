@@ -21,6 +21,8 @@ function facebookUserLoggedIn(user)
     $('#user_full_name').val(user.name);
     $('#user_email').val(user.email);
     $('#user_facebook_uid').val(user.id);
-    $('#user_address').val(user.address.street);
+    if (user.address) {
+      $('#user_address').val(user.address.street);
+    }
   });
 }
