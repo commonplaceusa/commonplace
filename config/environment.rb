@@ -22,8 +22,11 @@ Rails::Initializer.run do |config|
 
  # config.gem "facebooker"
 
+<<<<<<< HEAD
   config.gem "facebooker"
 
+=======
+>>>>>>> af6f3ca5dfc3181635330734e50feaff69869292
   config.action_mailer.default_content_type = "text/html"
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

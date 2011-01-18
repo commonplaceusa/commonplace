@@ -113,18 +113,9 @@ ActiveRecord::Schema.define(:version => 20110117073853) do
     t.string   "avatar_file_name"
     t.string   "address"
     t.string   "hours"
-<<<<<<< HEAD
-<<<<<<< HEAD
     t.string   "slug"
     t.integer  "owner_id"
     t.string   "twitter_name"
-=======
->>>>>>> d209f88... Loaded initial data from Facebook to landing page
-=======
-    t.string   "slug"
-    t.integer  "owner_id"
-    t.string   "twitter_name"
->>>>>>> 4aeb53b... Laid the foundation for Facebook Connect integration. Pulling data and Facebook UID is now functional.
   end
 
   create_table "invites", :force => true do |t|
@@ -316,19 +307,6 @@ ActiveRecord::Schema.define(:version => 20110117073853) do
     t.boolean  "admin",                                         :default => false
     t.string   "state"
     t.string   "avatar_file_name"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    t.integer  "facebook_uid",                     :limit => 8
-    t.string   "address"
-=======
->>>>>>> Loaded initial data from Facebook to landing page
-    t.integer  "facebook_uid",                     :limit => 8
-    t.string   "address"
-=======
->>>>>>> d209f88... Loaded initial data from Facebook to landing page
-=======
->>>>>>> 4aeb53b... Laid the foundation for Facebook Connect integration. Pulling data and Facebook UID is now functional.
     t.integer  "facebook_uid",                     :limit => 8
     t.string   "address"
   end
