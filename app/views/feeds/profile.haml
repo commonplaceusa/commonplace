@@ -43,6 +43,6 @@
             %li
               = image_tag user.avatar.url, :size => "32x32"
               = user.name
-        = link_to "Subscribe!", "#", :class => "subscribe"
+        = render 'subscriptions/form', :feed => @feed, :user => current_user
         
       
