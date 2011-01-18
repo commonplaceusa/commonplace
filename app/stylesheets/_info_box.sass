@@ -17,14 +17,13 @@
     +border-top-radius(4px)
     margin-bottom: 20px
 
-  .avatar, .message_me
+  .avatar, .message_me, .new_subscription
     clear: both
     float: left
     margin-left: 15px
     width: 120px
-
-  .avatar
     margin-bottom: 10px
+
   #hidden_input
     display: block
     width: 140px
@@ -69,13 +68,35 @@
     +border-radius(4px)
     text-decoration: none
     color: #fff
-    border: 1px solid #355371
+    border: 1px solid #82312f
+    font-size: 14px
     span
       +border-radius(3px)
-      padding: 6px 0
+      padding: 6px 3px
       display: block
-      background-color: #3b6085
-      border: 1px solid #6c88a4
+      background-color: #b53f3c
+      border: 1px solid #c86f6d
+        bottom-color: #984341
+
+  .new_subscription
+    button
+      width: 100%
+      display: block
+      text-align: center
+      +border-radius(4px)
+      text-decoration: none
+      color: #fff
+      border: 1px solid #355371
+      padding: 0px
+      span
+        +serif
+        line-height: 1
+        font-size: 14px
+        +border-radius(3px)
+        padding: 6px 3px
+        display: block
+        background-color: #3b6085
+        border: 1px solid #6c88a4
         bottom-color: #425d7d
 
   h3, .info, table
@@ -144,3 +165,4 @@
       +oldStandardBold
       font-size: 40px
       padding: 25px
+
