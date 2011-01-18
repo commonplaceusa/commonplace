@@ -1,7 +1,13 @@
 class Community < ActiveRecord::Base
   has_many :feeds
   has_many :neighborhoods, :order => :created_at
-  has_many :announcements, :through => :feeds
+  has_many(:announcements, 
+           :through => :feeds, 
+           :order => "announcements.created_at DESC",
+           :include => [:feed, :replies])
+
+  has_many :users, :order => "last_name, first_name"
+
   validates_presence_of :name, :slug, :zip_code
   
   accepts_nested_attributes_for :neighborhoods
@@ -26,11 +32,7 @@ class Community < ActiveRecord::Base
   def self.find_by_slug(slug)
     find(:first, :conditions => ["LOWER(slug) = ?", slug.downcase])
   end
-
-  def users
-    neighborhoods.map(&:users).flatten
-  end
-
+  
   def events
     (users.map{|u|u.direct_events.upcoming} + feeds.map{|f|f.events.upcoming}).flatten.sort_by(&:start_datetime)
   end
