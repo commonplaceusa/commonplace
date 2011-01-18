@@ -17,11 +17,11 @@ class CommunitiesController < ApplicationController
 
 
   def posts
-    @posts ||= current_neighborhood.posts.sort_by(&:created_at).reverse.take(3)
+    @posts ||= current_neighborhood.posts.all(:limit => 3)
   end
   
   def announcements
-    @announcements ||= current_community.announcements.all(:order => 'created_at DESC').take(3)
+    @announcements ||= current_community.announcements.all(:limit => 3)
   end
 
   def events
