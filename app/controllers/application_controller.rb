@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  before_filter :set_template_format
+  before_filter :set_template_format, :set_facebook_session
 
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :facebook_session
