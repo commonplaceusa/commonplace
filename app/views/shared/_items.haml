@@ -5,5 +5,5 @@
         = render *@render_args.call(item)
       - else
         = render item
-        - if item.respond_to?(:replies)
+        - if item.is_a?(Event) || item.is_a?(Announcement) || item.is_a?(Post)
           = render 'shared/replies', :item => item, :hide => true
