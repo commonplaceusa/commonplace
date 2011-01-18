@@ -1,3 +1,4 @@
 
-- update_content "##{dom_id(@reply.repliable)}_replies" do
+- trigger 'show.replies', :selector => "##{dom_id(@reply.repliable)}_replies" do
   = render('shared/replies', :item => @reply.repliable, :hide => false)
+

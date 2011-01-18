@@ -2,7 +2,7 @@
    
    def creation_feeds_for(user)
      ActiveSupport::OrderedHash.new.tap do |collection|
-       user.managable_feeds.to_a.unshift(user).each do |f|
+       ([ user ] + user.managable_feeds.to_a).each do |f|
          collection[f.name] = dom_id(f)
        end
      end

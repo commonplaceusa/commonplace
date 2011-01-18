@@ -4,7 +4,17 @@
       %h2
         = updated_content["#tooltip"]
       = render 'shared/zones'
-      = updated_content["#syndicate"]
+      = updated_content_or("#syndicate") do
+        #syndicate
+          %h3= link_to t("syndicate.posts.title"), :posts
+          = render 'shared/items', :items => posts
+
+          %h3= link_to t("syndicate.events.title"), :events
+          = render 'shared/items', :items => events
+
+          %h3= link_to t("syndicate.announcements.title"), :events
+          = render 'shared/items', :items => announcements
+
     = updated_content_or("#say-something") do
       #say-something
         %h2= t "posts.new.title"

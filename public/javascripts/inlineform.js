@@ -14,10 +14,7 @@ function initInlineForm() {
       url: $(this).attr('data-form-url'),
       data: data,
       success: function(response) {
-        $('#information').replaceWith(response.content);
-        initInlineForm();
-        renderMaps();
-        setInfoBoxPosition();
+        $("body").trigger("#information", response.content)
       },
       dataType: "json"
     });
@@ -33,19 +30,13 @@ function initInlineForm() {
     $("#avatar-form", $this).ajaxSubmit({
       success: function(response){
         $('img.avatar', $this).attr('src',
-                                    $('img.avatar', $this).attr('src') + "1234");
+                                    $('img.avatar', $this).attr('src') + "a");
       }
     });
   });
 
-   $("#avatar-form #file_uploader").change(function() {
-     $(this).trigger("image.inline-form");
-   });
-
-
   $('.inline-form .inline-edit').click(function(e) {
     $(this).trigger('edit.inline-form');
-    e.stopPropagation();
   });
 
   $('.inline-form .inline-save').click(function(e) {

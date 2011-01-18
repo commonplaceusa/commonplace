@@ -3,4 +3,5 @@
 <%- updated_content["#tooltip"] or render 'shared/tooltip' %>
 <%- updated_content["#zones"] ||= render 'shared/zones' %>
 <%- updated_content["#deliveries"] = render 'shared/deliveries' %>
-<%= updated_content.to_json %>
+<%= updated_content.merge(triggers).to_json %>
+

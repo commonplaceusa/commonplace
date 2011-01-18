@@ -1,11 +1,1 @@
 
-- update_content "#syndicate" do
-  #syndicate
-    %h3= link_to t("syndicate.posts.title"), :posts
-    = render 'shared/items', :items => @posts
-
-    %h3= link_to t("syndicate.events.title"), :events
-    = render 'shared/items', :items => @events
-
-    %h3= link_to t("syndicate.announcements.title"), :events
-    = render 'shared/items', :items => @announcements
