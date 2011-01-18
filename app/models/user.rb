@@ -35,6 +35,24 @@ class User < ActiveRecord::Base
     end
   end
   
+  belongs_to :community
+  belongs_to :neighborhood  
+  
+  before_validation :place_in_neighborhood
+  
+  validates_presence_of :address, :on => :create, :unless => :authenticating_with_oauth2?
+  validates_presence_of :address, :on => :update
+  
+  def after_oauth2_authentication
+    json = oauth2_access.get('/me')
+    
+    if user_data = JSON.parse(json)
+      self.full_name = user_data['name']
+      self.facebook_uid = user_data['id']
+      self.email = user_data['email']
+    end
+  end
+  
   include AASM
   
   aasm_column :state
@@ -98,7 +116,7 @@ class User < ActiveRecord::Base
     c.validate_password_field=false
   end
   
-  belongs_to :neighborhood  
+
   
   has_many :attendances, :dependent => :destroy
   has_many :events, :through => :attendances
@@ -119,7 +137,7 @@ class User < ActiveRecord::Base
   has_many :notifications, :as => :notified
 
   validates_uniqueness_of :email
-  validates_presence_of :first_name, :last_name, :address, :neighborhood
+  validates_presence_of :first_name, :last_name, :neighborhood
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests
   acts_as_taggable_on :goods
@@ -166,10 +184,6 @@ class User < ActiveRecord::Base
     full_name
   end
   
-  def community
-    neighborhood && neighborhood.community
-  end
-  
   def wire
     if new_record?
       community.announcements + community.events
@@ -193,17 +207,23 @@ class User < ActiveRecord::Base
   end
 
 
-  alias_method :real_neighborhood, :neighborhood
-
-  def neighborhood
-    real_neighborhood || Neighborhood.new
-  end
-  
   def is_same_as(other_user)
     puts (other_user.email == self.email && other_user.crypted_password == self.crypted_password)
     (other_user.email == self.email && other_user.crypted_password == self.crypted_password)
   end
-  
-  
+    
+  def place_in_neighborhood
+    if self.neighborhood.blank? || self.address_changed?
+      position = LatLng.from_address(address, community.zip_code)
+      if position
+        self.neighborhood = community.neighborhoods.to_a.
+          find(lambda{community.neighborhoods.first}) do |n|
+          position.within?(n.bounds) if n.bounds
+        end
+      else
+        self.neighborhood = community.neighborhoods.first
+      end
+    end
+  end 
   
 end

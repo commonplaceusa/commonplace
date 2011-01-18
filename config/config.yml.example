@@ -1,2 +1,6 @@
 sendgrid_user_name: user_name
 sendgrid_password: password
+outside_in_key: key
+outside_in_secret: secret
+facebook_api_key: key
+facebook_secret_key: secret
