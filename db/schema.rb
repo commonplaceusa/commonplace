@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118080708) do
+ActiveRecord::Schema.define(:version => 20110118164820) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20110118080708) do
     t.string   "owner_type"
     t.string   "source_feed_id"
     t.string   "address"
+    t.string   "venue"
   end
 
   create_table "feeds", :force => true do |t|

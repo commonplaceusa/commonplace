@@ -13,7 +13,9 @@
         = f.input :date, :as => :string, :input_html => {:class => 'date'}
         = event_select_time('start_time')
         = event_select_time('end_time')
+        = f.input :venue
         = f.input :address
+        = f.input :tag_list
       %fieldset
         %ol
           %li.check_boxes
