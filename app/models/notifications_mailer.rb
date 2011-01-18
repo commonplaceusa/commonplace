@@ -42,6 +42,26 @@ class NotificationsMailer < ActionMailer::Base
     body :message => message
   end
 
+  def feed_message(feed_id, user_id, message_subject, message)
+    @feed = Feed.find(feed_id)
+    @user = User.find(user_id)
+    @community = @user.community
+    recipients @feed.user.email
+    from "CommonPlace <messages@commonplaceusa.com>"
+    subject "#{@user.name} just sent #{@feed.name} a message on CommonPlace"
+    body :message_subject => message_subject, :message => message
+  end
+
+  def event_message(event_id, user_id, message_subject, message)
+    @event = Event.find(event_id)
+    @user = User.find(user_id)
+    @community = @user.community
+    recipients @event.user.email
+    from "CommonPlace <messages@commonplaceusa.com>"
+    subject "#{@user.name} just sent #{@event.name} a message on CommonPlace"
+    body :message_subject => message_subject, :message => message
+  end
+
   def post_reply(post, reply)
     @community = post.user.community
     users = (post.replies.map(&:user) + [post.user]).uniq.reject {|u| u == reply.user}
