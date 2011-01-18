@@ -24,11 +24,12 @@ development:
     server_alive_interval: 0
 
 staging:
-  api_key: 
-  secret_key: 
+  api: new
+  api_key: "102571013152856"
+  secret_key: "564f8a9b86a0121d6808de00affb62ef"
   canvas_page_name: 
-  callback_url:
-  set_asset_host_to_callback_url: true
+  callback_url: http://staging.commonplaceusa.com/account/new
+  set_asset_host_to_callback_url: false
   tunnel:
     public_host_username: 
     public_host: 
