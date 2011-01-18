@@ -5,5 +5,5 @@
         = render *@render_args.call(item)
       - else
         = render item
-        - if item.respond_to?(:replies)
+        - if item.respond_to?(:replies) && !item.respond_to?(:do_not_reply_on_index)
           = render 'shared/replies', :item => item, :hide => true
