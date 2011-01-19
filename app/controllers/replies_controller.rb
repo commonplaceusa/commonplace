@@ -4,7 +4,8 @@ class RepliesController < CommunitiesController
     authorize! :create, Reply
     @reply = current_user.replies.build(params[:reply])
     if @reply.save
-      @reply.repliable.notifications.create(:notifiable => @reply) if @reply.repliable.is_a?(Post)
+      NotificationsMailer.send("deliver_#{@reply.repliable.class.name.downcase}_reply",
+                               @reply.id) if @reply.repliable.is_a?(Post)
       render :show
     else
       render :new

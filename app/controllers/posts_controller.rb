@@ -14,7 +14,7 @@ class PostsController < CommunitiesController
     @post.user = current_user
     @post.neighborhood_id = current_neighborhood.id
     if @post.save
-      current_neighborhood.notifications.create(:notifiable => @post)
+      NotificationsMailer.deliver_neighborhood_post(post.id)
       flash[:message] = "Post Created!"
       redirect_to posts_path
     else

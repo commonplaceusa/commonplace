@@ -4,7 +4,9 @@ class NotificationsMailer < ActionMailer::Base
   helper :text
   helper_method :url
   include TextHelper
-  @queue = :notifications_mailer
+
+  include Resque::Mailer
+  @queue = :notifications
 
   def url(path = "")
     "http://" + @community.slug + ".ourcommonplace.com" + path
@@ -17,29 +19,32 @@ class NotificationsMailer < ActionMailer::Base
     notified = notified_type.constantize.find(notified_id.to_i)
     notifiable = notifiable_type.constantize.find(notifiable_id.to_i)
     method = [notified_type, notifiable_type].join("_").downcase
-    self.send("deliver_#{method}", notified, notifiable)
+    self.send("deliver_#{method}!", notified, notifiable)
   end
 
   
-  def neighborhood_post(neighborhood, post)
+  def neighborhood_post(post_id)
     recipients RECIPIENT
-    @community = neighborhood.community
-    users = neighborhood.users.reject{|u| u == post.user}.select(&:receive_posts)
+    @post = Post.find(post_id)
+    @neighborhood = @post.neighborhood
+    @community = @neighborhood.community
+    users = @neighborhood.users.reject{|u| u == @post.user}.select(&:receive_posts)
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
-    subject "#{post.user.full_name} posted to your neighborhood"
-    from "CommonPlace <#{post.long_id}@replies.commonplaceusa.com>"
-    body :post => post
+    subject "#{@post.user.full_name} posted to your neighborhood"
+    from "CommonPlace <#{@post.long_id}@replies.commonplaceusa.com>"
   end
   
-  def user_message(user, message)
-    @community = user.community
-    recipients user.email
+  def user_message(messengee_id, messenger_id, message_subject, message)
+    @messengee = User.find(messengee_id)
+    @messenger = User.find(messenger_id)
+    @community = @messenger.community
+    recipients @messengee.email
     from "CommonPlace <messages@commonplaceusa.com>"
-    subject "#{message.user.name} just sent you a message on CommonPlace"
-    body :message => message
+    subject "#{@messenger.name} just sent you a message on CommonPlace"
+    body :message_subject => message, :message => message
   end
 
   def feed_message(feed_id, user_id, message_subject, message)
@@ -62,17 +67,18 @@ class NotificationsMailer < ActionMailer::Base
     body :message_subject => message_subject, :message => message
   end
 
-  def post_reply(post, reply)
-    @community = post.user.community
-    users = (post.replies.map(&:user) + [post.user]).uniq.reject {|u| u == reply.user}
+  def post_reply(reply_id)
+    @reply = Reply.find(reply_id)
+    @post = @reply.repliable
+    @community = @post.user.community
+    users = (@post.replies.map(&:user) + [@post.user]).uniq.reject {|u| u == @reply.user}
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
-    recipients post.user.email
-    from "CommonPlace <#{post.long_id}@replies.commonplaceusa.com>"
-    subject "#{reply.user.name} just replied to a post on CommonPlace"
-    body :reply => reply, :post => post
+    recipients @post.user.email
+    from "CommonPlace <#{@post.long_id}@replies.commonplaceusa.com>"
+    subject "#{@reply.user.name} just replied to a post on CommonPlace"
   end
 
   def feed_event(feed, event)

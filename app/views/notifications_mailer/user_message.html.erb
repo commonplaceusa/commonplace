@@ -1,27 +1,27 @@
 
 <% content_for :greeting do %>
-  <div style="margin-bottom:10px;">Hi <%= @message.recipient.first_name %>,</div>
+  <div style="margin-bottom:10px;">Hi <%= @messengee.first_name %>,</div>
   Your neighbor, 
-  <% link_to url(user_path(@message.user)) do %>
+  <% link_to url(user_path(@messenger)) do %>
     <font color="#b53f3c">
-      <%= @message.user.name %>
+      <%= @messenger.name %>
     </font>
   <% end %>
   just sent you a message through CommonPlace.
 <% end %>
 
-<% content_for :subject, @message.subject %>
+<% content_for :subject, @message_subject %>
 
-<% content_for :body, markdown(@message.body) %>
+<% content_for :body, markdown(@message) %>
 
 <% content_for :avatar, 
-   image_tag(url(@message.user.avatar.url(:thumb)), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") %>
+   image_tag(url(@messenger.avatar.url(:thumb)), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") %>
 
 
 <% content_for :reply_with do %>
   <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;">
-    <% link_to url(user_path(@message.user)), :style => "text-decoration:none;" do %>
-      <font color="#FFEEEE">Reply to <%= @message.user.first_name %></font>
+    <% link_to url(user_path(@messenger)), :style => "text-decoration:none;" do %>
+      <font color="#FFEEEE">Reply to <%= @messenger.first_name %></font>
     <% end %>
   </div> 
 <% end %>
