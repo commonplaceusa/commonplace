@@ -12,11 +12,12 @@
       - if [:phone, :website, :address].any? {|method| @feed.send(method).present?}
         %h3= t 'feeds.profile.contact_info.title'
         #contact-info
-          %dl
+          %table
             - [:phone, :website, :address].each do |method|
               - if @feed.send(method).present?
-                %dt<>= t("formtastic.labels.feed.show.#{method}")
-                %dd<>= @feed.send(method)
+                %tr
+                  %th<>= t("formtastic.labels.feed.show.#{method}")
+                  %td<>= @feed.send(method)
 
     #column-2<>
       - if can?(:edit, @feed)
