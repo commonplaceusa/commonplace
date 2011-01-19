@@ -101,4 +101,5 @@ class AccountsController < CommunitiesController
     current_user.save
     redirect_to root_url
   end
+  
 end

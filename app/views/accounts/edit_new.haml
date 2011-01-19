@@ -18,3 +18,6 @@
 
     - f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
+
+- unless current_user.facebook_uid.blank?
+  = render 'facebook_wall_post'
