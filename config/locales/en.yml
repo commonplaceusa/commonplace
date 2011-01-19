@@ -89,7 +89,7 @@ en:
   accounts:
     new:
       h1: Sign up to receive community announcements from your neighbors and local organizations in %{community}. %{learn_more}
-      learn_more: Learn More.
+      learn_more: Click here to learn more.
       bubble_1: Publicize your events to the community
       bubble_2: Get crime reports from the police
     edit_new:
@@ -189,7 +189,7 @@ en:
         description: "Event description:"
     hints:
       user:
-        address: "*This helps us place you in the correct %{community} neighborhood."
+
 
   tooltips:
     posts: View announcements, offers, and needs from your neighbors

@@ -1,8 +1,14 @@
 
 body.application.accounts.new, body.application.accounts.create
-
+  background-image: url('/images/clouds.png')
+  background-repeat: repeat-x
   position: relative
   h1
+    a
+      text-decoration: none
+      font-size: 24px
+      color: #b53f3c
+  
   header
     position: relative
 
@@ -14,9 +20,9 @@ body.application.accounts.new, body.application.accounts.create
     position: relative
     #create-a-feed
       position: absolute
-      right: -225px
+      right: -175px
       top: 30px
-      width: 175px
+      width: 130px
       background-color: #b53f3c
       color: white
       padding: 20px 0px 20px 30px
@@ -44,16 +50,30 @@ body.application.accounts.new, body.application.accounts.create
         text-align: center
         font-size: 20px
         color: #525252
-        #facebook-register
-          vertical-align: text-top
+      #facebook-register
+        vertical-align: text-bottom
+        position: relative
+     
+        right: 39px
+        float: right
+        margin-bottom: 10px
+       
+      .cleared
+        height: 1px 
+        clear: both 
+      #or
+        text-align: right
+        padding-right: 40px
+        margin-bottom: 5px
 
       fieldset.inputs
+        
         li
-          padding-left: 100px
+      
           list-style-position: outside
           background-repeat: no-repeat
           background-position: 20px 0px
-          margin: 20px 0px
+          margin: 20px auto
           width: 485px
 
           label
@@ -62,9 +82,9 @@ body.application.accounts.new, body.application.accounts.create
           input
             +border-radius(5px)
             +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
-            padding: 0px 7px
+            padding: 0px 5px
             font-size: 22px
-            width: 430px
+            width: 473px
             +serif
 
         li#user_address_input
@@ -75,11 +95,11 @@ body.application.accounts.new, body.application.accounts.create
             font-weight: bold
             +sans
             color: #3a3a3a
-
+ 
       fieldset.buttons
-        margin-right: 12px
-        li
-          float: right
+        margin-right: 37px
+        float: right
+        width: 100px
   #bubble-1, #bubble-2
     display: none
 
@@ -97,14 +117,6 @@ body.application.accounts.new, body.application.accounts.create
     left: -17px
   #bubble-2
     right: 0
-
-  li#user_full_name_input
-    background-image:  url('/images/step-1-icon.png')
-  li#user_email_input
-    background-image:  url('/images/step-2-icon.png')
-  li#user_address_input
-    background-image:  url('/images/step-3-icon.png')
-
 
   &.short
 
