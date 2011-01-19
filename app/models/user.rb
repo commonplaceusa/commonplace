@@ -177,7 +177,10 @@ class User < ActiveRecord::Base
 
   def full_name=(string)
     @full_name = string
-    self.first_name, self.last_name = string.split(" ", 2)
+    first, last = string.split(" ", 2)
+    self.first_name = first.capitalize
+    self.last_name = last.capitalize
+    self.full_name
   end
 
   def name
