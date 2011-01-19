@@ -15,13 +15,14 @@
         = f.input :full_name
         = f.input :email
         = f.input :address
-
-      - f.buttons do 
-        = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
-      .cleared
-
-      = f.submit "true", :type => 'image', :src => '/images/buttons/facebook-sign-up.png', :name => "register_with_oauth2", :id => "facebook-register"
-      .cleared
+      #fb-wrapper
+        - f.buttons do 
+          = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
+  
+        .cleared
+      
+        = f.submit "true", :type => 'image', :src => '/images/buttons/facebook-sign-up.png', :name => "register_with_oauth2", :id => "facebook-register"
+        .cleared
 
 %p#bubble-1= t ".bubble_1"
 %p#bubble-2= t ".bubble_2"
