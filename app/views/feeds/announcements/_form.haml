@@ -7,6 +7,8 @@
         %li= link_to "Announcement", new_feed_announcement_path(feed), 'data-remote' => true
         %li= link_to "Event", new_feed_event_path(feed), 'data-remote' => true
         
-  = f.inputs :subject, :body
+  - f.inputs do
+    = f.input :subject
+    = f.input :body, :input_html => {:rows => 10}
   - f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/red-post-now-button.png"}
