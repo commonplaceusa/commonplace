@@ -1,5 +1,7 @@
 class InviteMailer < ActionMailer::Base
   include Resque::Mailer
+
+  @queue = :invites
   
   def user_invite(user_id, email, message)
     @user = User.find(user_id)
