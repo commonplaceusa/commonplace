@@ -47,26 +47,31 @@ body.application.feeds.profile, body.feeds_announcements.new, body.feeds_events.
 
     #contact-info 
       
-      dl
+      table
         border: 1px solid #d0d0d0
-          bottom-width: 0px
-        dt, dd
+        width: 100%
+        +border-bottom-radius(7px)
+        th, td
           border: 1px solid white
-            bottom-color: #d0d0d0
-          +inline-block
+            bottom-color:  #d0d0d0
+
           font-size: 12px
           padding: 5px 0
-        dt
+        th
           +sans
           color: #3b6085
-          width: 58px
-          padding-left: 4px
+          padding: 4px
           border-right-width: 0px
-        dd
+        td
           border-left-width: 0px
-          width: 159px
-        dd:last-child
-          +border-radius(0px, 7px)
+
+        tr:last-child
+          th 
+            border-bottom-width: 0px
+            +border-bottom-left-radius(5px)
+          td
+            border-bottom-width: 0px
+            +border-bottom-right-radius(5px)
 
       a.edit
         border: 1px solid #d0d0d0
