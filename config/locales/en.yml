@@ -179,8 +179,8 @@ en:
         feed: "Send announcement from:"
 
       post:
-        subject: Have a need, announcement, offer or event?
-        body: Share it with your neighbors!
+        subject: Title
+        body: Body
         
       event: 
         name: "Event name:"
