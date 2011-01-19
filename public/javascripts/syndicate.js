@@ -20,16 +20,14 @@ function accordionItem($item) {
 
 $(function() {
   
-  $('ul#wire').accordion({
-    'header': 'a.item_body', 
-    'active': false,
-    'collapsible': true, 
-    'autoHeight': false
-  });
-
   $(".item").live('click', function(e) {
     accordionItem($(this));
   });
+  
+  $("body.posts.show, body.events.show, body.announcements.show")
+    .find("#syndicate .items li.item:first-child").each(function(){
+      accordionItem($(this));
+    });
 
 
   $("body").bind("#syndicate", function(e, content) {
