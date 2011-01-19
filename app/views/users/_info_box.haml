@@ -12,14 +12,17 @@
   %h3= user.full_name
   .info= markdown user.about
   %table
-    %tr
-      %th INTERESTS
-      %td= user.interest_list
-    %tr
-      %th GOODS & SKILLS
-      %td= user.good_list
-    %tr
-      %th SUBSCRIPTIONS
-      %td= user.feed_list
+    - if user.interest_list.present?
+      %tr
+        %th INTERESTS
+        %td= user.interest_list
+    - if user.good_list.present?
+      %tr
+        %th GOODS & SKILLS
+        %td= user.good_list
+    - if user.feed_list.present?
+      %tr
+        %th SUBSCRIPTIONS
+        %td= user.feed_list
 
   .clear

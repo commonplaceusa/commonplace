@@ -10,21 +10,26 @@
   %h3= event.name
   .info= markdown event.description
   %table
-    %tr
-      %th TAGS
-      %td= event.tag_list
-    %tr
-      %th STARTS
-      %td= event.start_time
-    %tr
-      %th ENDS
-      %td= event.end_time
-    %tr
-      %th VENUE
-      %td= event.venue
-    %tr
-      %th ADDRESS
-      %td= event.address
+    - if event.tag_list.present?
+      %tr
+        %th TAGS
+        %td= event.tag_list
+    - if event.start_time.present?
+      %tr
+        %th STARTS
+        %td= event.start_time
+    - if event.end_time.present?
+      %tr
+        %th ENDS
+        %td= event.end_time
+    - if event.venue.present?
+      %tr
+        %th VENUE
+        %td= event.venue
+    - if event.address.present?
+      %tr
+        %th ADDRESS
+        %td= event.address
 
   .clear
 
