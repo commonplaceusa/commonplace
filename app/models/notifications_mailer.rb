@@ -81,18 +81,48 @@ class NotificationsMailer < ActionMailer::Base
     subject "#{@reply.user.name} just replied to a post on CommonPlace"
   end
 
-  def feed_event(feed, event)
-    @community = feed.community
-    recipients RECIPIENT
-    users = feed.subscribers
+
+  def post_reply(reply_id)
+    @reply = Reply.find(reply_id)
+    @post = @reply.repliable
+    @community = @post.user.community
+    users = (@post.replies.map(&:user) + [@post.user]).uniq.reject {|u| u == @reply.user}
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
-    users feed.subscribers.map(&:email)
-    subject "#{feed.name} posted a new event"
-    from "events@commonplaceusa.com"
-    body :feed => feed, :event => event
+    recipients @post.user.email
+    from "CommonPlace <#{@post.long_id}@replies.commonplaceusa.com>"
+    subject "#{@reply.user.name} just replied to a post on CommonPlace"
+  end
+
+
+  def event_reply(reply_id)
+    @reply = Reply.find(reply_id)
+    @event = @reply.repliable
+    @community = @event.user.community
+    users = (@event.replies.map(&:user) + [@event.user]).uniq.reject {|u| u == @reply.user}
+    header = SmtpApiHeader.new
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
+    recipients @event.user.email
+    from "CommonPlace <events@replies.commonplaceusa.com>"
+    subject "#{@reply.user.name} just replied to an event on CommonPlace"
+  end
+
+def announcement_reply(reply_id)
+    @reply = Reply.find(reply_id)
+    @announcement = @reply.repliable
+    @community = @announcement.feed.user.community
+    users = (@announcement.replies.map(&:user) + [@announcement.feed.user]).uniq.reject {|u| u == @reply.user}
+    header = SmtpApiHeader.new
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
+    recipients @announcement.feed.user.email
+    from "CommonPlace <announcements@replies.commonplaceusa.com>"
+    subject "#{@reply.user.name} just replied to an announcement on CommonPlace"
   end
 
   def feed_announcement(feed, announcement)

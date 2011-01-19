@@ -6,16 +6,16 @@
       <%= @reply.user.full_name %>
   </font>
   </a> 
-  just posted a new reply to a post: 
-  <% link_to url(post_path(@post)) do %>
+  just posted a new reply to an event: 
+  <% link_to url(event_path(@event)) do %>
     <font color="#b53f3c">
-      <em><%= @post.subject %></em>
+      <em><%= @event.name %></em>
     </font>
   <% end %>
 
 <% end %>
 
-<% content_for :subject, @post.subject %>
+<% content_for :subject, @event.name %>
 
 <% content_for :body, markdown(@reply.body) %>
 
@@ -24,7 +24,7 @@
 
 <% content_for :reply_with do %>
   <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;">
-    <% link_to url(post_path(@post)), :style => "text-decoration:none;" do %>
+    <% link_to url(event_path(@event)), :style => "text-decoration:none;" do %>
       <font color="#FFEEEE">
         Reply to <%= @reply.user.first_name %>
       </font>
