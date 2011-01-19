@@ -13,18 +13,22 @@
   .info= markdown feed.about
   
   %table
-    %tr
-      %th TAGS
-      %td= feed.tag_list
-    %tr
-      %th WEBSITE
-      %td= link_to feed.website, feed.website, :target => '_blank'
-    %tr
-      %th PHONE
-      %td= feed.phone
-    %tr
-      %th ADDRESS
-      %td= feed.address
+    - if feed.tag_list.present?
+      %tr
+        %th TAGS
+        %td= feed.tag_list
+    - if feed.website.present?
+      %tr
+        %th WEBSITE
+        %td= link_to feed.website, feed.website, :target => '_blank'
+    - if feed.phone.present?
+      %tr
+        %th PHONE
+        %td= feed.phone
+    - if feed.address.present?
+      %tr
+        %th ADDRESS
+        %td= feed.address
 
   .clear
 
