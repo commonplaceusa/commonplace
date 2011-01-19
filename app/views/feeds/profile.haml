@@ -13,11 +13,18 @@
         %h3= t 'feeds.profile.contact_info.title'
         #contact-info
           %table
-            - [:phone, :website, :address].each do |method|
-              - if @feed.send(method).present?
-                %tr
-                  %th<>= t("formtastic.labels.feed.show.#{method}")
-                  %td<>= @feed.send(method)
+            - if @feed.phone.present?
+              %tr
+                %th= t("formtastic.labels.feed.show.phone")
+                %td= @feed.phone
+            - if @feed.website.present?
+              %tr
+                %th= t("formtastic.labels.feed.show.website")
+                %td= link_to truncate(@feed.website, :length => 25), @feed.website
+            - if @feed.address.present?
+              %tr
+                %th= t("formtastic.labels.feed.show.address")
+                %td= @feed.address
 
     #column-2<>
       - if can?(:edit, @feed)
