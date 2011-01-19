@@ -133,6 +133,8 @@ en:
         - Video Games
         - Games
         - Outdoor Sports
+    facebook_wall_post:
+        wall_post_content: I just started using CommonPlace, and you should too!
 
 
   formtastic:
