@@ -1,11 +1,11 @@
 
 <% content_for :greeting do %>
   <div style="margin-bottom:10px;">Hi <name>,</div>    
-  <a href="#">
+  <% link_to url(user_path(@reply.user)) do %>
     <font color="#b53f3c">
       <%= @reply.user.full_name %>
-  </font>
-  </a> 
+    </font>
+  <% end %>
   just posted a new reply to an announcement: 
   <% link_to url(announcement_path(@announcement)) do %>
     <font color="#b53f3c">

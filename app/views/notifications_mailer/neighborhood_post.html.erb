@@ -1,7 +1,10 @@
 
 <% content_for :greeting do %>
   <div style="margin-bottom:10px;">Hi <name>,</div>
-  <a href="#"><font color="#b53f3c"><%= @post.user.full_name %></font></a> just posted to your neighborhood board on CommonPlace.
+  <% link_to url(user_path(@post.user)) do %>
+    <font color="#b53f3c"><%= @post.user.full_name %></font>
+  <% end %>
+  just posted to your neighborhood board on CommonPlace.
 <% end %>
 
 <% content_for :subject, @post.subject %>

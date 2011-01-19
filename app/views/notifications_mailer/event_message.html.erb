@@ -20,7 +20,7 @@
 
 <% content_for :reply_with do %>
   <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;">
-    <% link_to url(user_path(@user)), :style => "text-decoration:none;" do %>
+    <% link_to url(new_user_message_path(@user)), :style => "text-decoration:none;" do %>
       <font color="#FFEEEE">Reply to <%= @user.first_name %></font>
     <% end %>
   </div> 
