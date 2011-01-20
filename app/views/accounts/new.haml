@@ -13,14 +13,14 @@
         Fill out the form to get started
       %h4
         Or connect with
-        = f.submit "Facebook", :type => 'image', :name => "register_with_oauth2", :id => "facebook-register"
+        = f.submit "Facebook", :type => 'submit', :name => "register_with_oauth2", :id => "facebook-register"
       - f.inputs do
         = f.input :full_name
         = f.input :email
         = f.input :address
       #fb-wrapper
         - f.buttons do 
-          = f.commit_button :button_html => {:type => "submit", :src => "/images/buttons/sign-up.png"}
+          = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
   
      
       
