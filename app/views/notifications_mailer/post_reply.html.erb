@@ -1,13 +1,13 @@
 
 <% content_for :greeting do %>
   <div style="margin-bottom:10px;">Hi <name>,</div>    
-  <% link_to url(user_path(@reply.user)) do %>
+  <% link_to user_url(@reply.user, :subdomain => @community.slug) do %>
     <font color="#b53f3c">
       <%= @reply.user.full_name %>
     </font>
   <% end %>
   just posted a new reply to a post: 
-  <% link_to url(post_path(@post)) do %>
+  <% link_to post_url(@post, :subdomain => @community.slug) do %>
     <font color="#b53f3c">
       <em><%= @post.subject %></em>
     </font>
@@ -20,11 +20,11 @@
 <% content_for :body, markdown(@reply.body) %>
 
 <% content_for :avatar, 
-   image_tag(url(@reply.user.avatar.url(:thumb)), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") %>
+   image_tag(root_url(:subdomain => @community.slug) + @reply.user.avatar.url(:thumb), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") %>
 
 <% content_for :reply_with do %>
   <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;">
-    <% link_to url(post_path(@post)), :style => "text-decoration:none;" do %>
+    <% link_to post_url(@post, :subdomain => @community.slug), :style => "text-decoration:none;" do %>
       <font color="#FFEEEE">
         Reply to <%= @reply.user.first_name %>
       </font>
@@ -32,7 +32,7 @@
   </div>
   <div style="margin-top:10px;">
     <span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#888888;">
-      <% link_to url(new_user_message_path(@reply.user)) do %>
+      <% link_to new_user_message_url(@reply.user, :subdomain => @community.slug) do %>
         <font color="#b53f3c">
           Send <%= @reply.user.first_name %> a private message
         </font>

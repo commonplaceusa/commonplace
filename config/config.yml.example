@@ -4,3 +4,4 @@ outside_in_key: key
 outside_in_secret: secret
 facebook_api_key: key
 facebook_secret_key: secret
+host: smackaho.st:3000

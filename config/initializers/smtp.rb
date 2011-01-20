@@ -7,3 +7,7 @@ ActionMailer::Base.smtp_settings = {
   :user_name => CONFIG["sendgrid_user_name"],
   :password => CONFIG["sendgrid_password"]
 }
+
+ActionMailer::Base.default_url_options = {
+  :host => CONFIG['host']
+}
