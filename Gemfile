@@ -8,8 +8,8 @@ gem 'aasm'
 gem 'authlogic'
 gem 'oauth2'
 gem 'authlogic_oauth2'
-gem 'compass'
-gem 'haml'
+gem 'compass', "0.11.beta.1"
+gem 'haml', "3.1.0.alpha.147"
 gem 'formtastic'
 gem 'paperclip'
 gem "acts-as-taggable-on"
