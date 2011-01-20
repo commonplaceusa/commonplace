@@ -14,6 +14,7 @@ class TwitterImporter
             o.body = body
             o.feed_id = feed.id
             o.url = "http://twitter.com/" + tweet.user.screen_name + "/statuses/" + tweet.id_str
+            o.created_at = tweet.created_at
             o.save()
           end
         end
