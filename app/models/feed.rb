@@ -11,7 +11,7 @@ class Feed < ActiveRecord::Base
   belongs_to :community
   belongs_to :user
 
-  has_many :events, :dependent => :destroy, :as => :owner
+  has_many :events, :dependent => :destroy, :as => :owner, :include => :replies
 
   has_many :announcements, :dependent => :destroy
   

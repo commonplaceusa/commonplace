@@ -8,6 +8,8 @@ class Community < ActiveRecord::Base
 
   has_many :users, :order => "last_name, first_name"
 
+  has_many :feed_events, :through => :feeds, :source => :events
+  has_many :user_events, :through => :users, :source => :direct_events
   validates_presence_of :name, :slug, :zip_code
   
   accepts_nested_attributes_for :neighborhoods
@@ -34,6 +36,6 @@ class Community < ActiveRecord::Base
   end
   
   def events
-    (users.map{|u|u.direct_events.upcoming} + feeds.map{|f|f.events.upcoming}).flatten.sort_by(&:start_datetime)
+    (user_events.upcoming + feed_events.upcoming).sort_by(&:start_datetime)
   end
 end
