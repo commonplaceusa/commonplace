@@ -1,7 +1,6 @@
 
 if (window.location.hash.slice(1) != "") {
-  window.location.pathname = window.location.hash.slice(1);
-  window.location.hash = "";
+  window.location = (window.location.hash.slice(1));
 }
 
 $(function() {
