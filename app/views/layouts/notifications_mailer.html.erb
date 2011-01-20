@@ -7,7 +7,7 @@
       <tr>
         <td colspan="7" valign="top">
           <% link_to url, :target => "_blank" do %>
-          <%= image_tag url("/images/#{@community.slug}_notification_header.png"), :width => 600, :height => 56, :border => 0, :align => "top" %>
+          <%= image_tag root_url(:subdomain => @community.slug) + "/images/#{@community.slug}_notification_header.png", :width => 600, :height => 56, :border => 0, :align => "top" %>
           <% end %>
         </td>
       </tr>
@@ -26,7 +26,7 @@
       </tr>
       <tr>
         <td height="12" colspan="5" bgcolor="#f5f5f5">
-          <%= image_tag url('/images/notification_border.png'), :width => 568, :height => 12 %>
+          <%= image_tag root_url(:subdomain => @community.slug) + '/images/notification_border.png', :width => 568, :height => 12 %>
         </td>
       </tr>
       <tr>
@@ -67,7 +67,7 @@
 
       <tr>
         <td height="12" colspan="5" bgcolor="#f5f5f5">
-          <%= image_tag url("/images/notification_border.png"), :width => 586, :height => 12 %>
+          <%= image_tag root_url(:subdomain => @community.slug) + "/images/notification_border.png", :width => 586, :height => 12 %>
         </td>
       </tr>
       <tr>
@@ -80,7 +80,7 @@
       <tr>
         <td colspan="5" align="center" style="font-family:Arial, Helvetica, sans-serif;color:#bbbbbb;font-size:11px;">
           Want to disable this and/or other e-mails? Click 
-          <% link_to url("/account/edit") do %>
+          <% link_to edit_account_url(:subdomain => @community.slug) do %>
             <font color="#b53f3c">here</font>
           <% end %>
           to manage your subscriptions.

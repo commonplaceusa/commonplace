@@ -2,7 +2,7 @@
 <% content_for :greeting do %>
   <div style="margin-bottom:10px;">Hi <%= @feed.user.name %>,</div>
   Your neighbor, 
-  <% link_to url(user_path(@user)) do %>
+  <% link_to user_url(@user, :subdomain => @community.slug) do %>
     <font color="#b53f3c">
       <%= @user.name %>
     </font>
@@ -15,12 +15,12 @@
 <% content_for :body, markdown(@body) %>
 
 <% content_for :avatar, 
-   image_tag(url(@user.avatar.url(:thumb)), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") %>
+   image_tag(root_url(:subdomain => @community.slug) + @user.avatar.url(:thumb), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") %>
 
 
 <% content_for :reply_with do %>
   <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;">
-    <% link_to url(new_user_message_path(@user)), :style => "text-decoration:none;" do %>
+    <% link_to new_user_message_url(@user, :subdomain => @community.slug), :style => "text-decoration:none;" do %>
       <font color="#FFEEEE">Reply to <%= @user.first_name %></font>
     <% end %>
   </div> 
