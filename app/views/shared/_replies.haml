@@ -1,4 +1,4 @@
-%div{:id => "#{dom_id(item)}_replies", :class => ["replies",hide ? "hide": nil].join(" ")}
+%div{:id => "#{dom_id(item)}_replies", :class => "replies"}
   = image_tag 'reply-arrow-top.png', :class => "reply-arrow"
   - if can? :read, Reply
     %ul
