@@ -2,8 +2,8 @@
   = image_tag Feed.find(twitter_announcement.feed_id).avatar.url, :class => 'avatar'
   %time= twitter_announcement.time
   .reply-count #{ twitter_announcement.replies.size } replies
-  .title= twitter_announcement.subject
-  .author= link_to(twitter_announcement.owner.name,twitter_announcement.url)
+  .title #{ link_to(twitter_announcement.feed.name,twitter_announcement.feed) }'s Recent Tweet
+  .author #{ link_to(twitter_announcement.subject,twitter_announcement.url) } on Twitter
   .body= markdown auto_link(twitter_announcement.body, :all, :target => "_blank")
 
 = render 'shared/replies', :item => twitter_announcement
