@@ -1,4 +1,9 @@
 - update_content "#syndicate" do
   #syndicate
-    %h3= t "syndicate.feeds.title"
+    %h3
+      %nav
+        - ('A'..'Z').each do |letter|
+          = link_to letter, feeds_path(:letter => letter), :class => letter == params[:letter] ? "current" : "", 'data-remote' => true
+      = link_to t("syndicate.feeds.title"), :feeds, 'data-remote' => true, :class => params[:letter].present? ? "" : "current"
+
     = render 'shared/items', :items => @items

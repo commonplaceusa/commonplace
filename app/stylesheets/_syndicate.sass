@@ -14,9 +14,18 @@
         right: 1px solid #CCC
       font: 
         size: 13px
-      a      
+
+      a
+        color: #3b6085
+        font-size: 13px
         text-decoration: none
-        color: $postColorDark
+        &.current
+          color: $postColorDark
+          text-decoration: underline
+        &:hover
+          text-decoration: underline
+      nav
+        float: right
     .items:last-child li:last-child
       +border-bottom-radius(5px)
 
