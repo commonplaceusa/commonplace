@@ -1,6 +1,6 @@
 class EventsController < CommunitiesController
   before_filter :owner
-  load_and_authorize_resource :except => [:index, :new]
+  load_and_authorize_resource :except => [:index]
   
   def index
     @items = current_community.events
