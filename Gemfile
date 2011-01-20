@@ -32,6 +32,7 @@ gem 'simple_uuid'
 gem 'outside-in'
 gem 'mcbean'
 gem 'eventfulapi'
+gem 'rmeetup'
 
 gem 'redis'
 gem 'redis-namespace'
