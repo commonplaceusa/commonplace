@@ -7,11 +7,11 @@
       %fieldset.inputs
         %ol
           %li.text
-            = label_tag :message
-            = text_area_tag :message
-          %li.text
-            = label_tag :emails
+            = label_tag :emails, t("formtastic.labels.invites.emails", :community => current_community.name)
             = text_area_tag :emails, "", :rows => 6
+          %li.text
+            = label_tag :message, t("formtastic.labels.invites.message")
+            = text_area_tag :message
       %fieldset.buttons
         %ol
           %li.plaxo
