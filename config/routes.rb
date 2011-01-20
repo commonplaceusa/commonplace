@@ -63,7 +63,7 @@ ActionController::Routing::Routes.draw do |map|
     map.dmca 'dmca', :controller => 'site', :action => 'dmca'
     map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
     map.login 'get-started', :controller => 'user_sessions', :action => 'new'
-    
+    map.faq 'faq', :controller => 'site', :action => 'faq'
     map.resource :inbox
     map.resources :platform_updates
     map.resource :user_session
