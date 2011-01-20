@@ -18,6 +18,7 @@ $(function() {
 
   $("#modal-close").live('click', function(e) {
     $("#modal").html("");
+    e.preventDefault();
   });
 
   $("body").bind("#modal", function(e, content) {
