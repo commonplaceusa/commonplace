@@ -24,7 +24,6 @@
     <script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
     = stylesheet_link_tag 'application'
     
-    = yield :head
 
   %body{:class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]}"}
     - if current_user_session
