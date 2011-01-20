@@ -1,0 +1,56 @@
+en:
+  formtastic:
+    titles:
+      contact_information: "Contact Information:"
+
+    labels:
+      user:
+        full_name: "Full Name:"
+        email: "Email Address:"
+        password: "Create a Password:"
+        about: "Tell your neighbors who you are:"
+        good_list: "List three goods and/or skills to share:"
+        interests: "My Interests:"
+        address: "Street Address*:"
+        edit:
+          password: "Change your password:"
+        receive_posts: Get new neighborhood posts in emails
+        receive_events_and_announcements: Get new announcements and events in emails
+      invites:
+        emails: Add comma-separated emails to invite other residents of %{community} to CommonPlace
+        message: Optional message
+      
+      user_session:
+        email: "EMAIL"
+        password: "PASSWORD"
+
+      post:
+        subject: "Subject"
+        body: "Post"
+
+      feed:
+        name: "Feed Name:"
+        avatar: "Add a photo of your organization:"
+        about: "Describe your feed:"
+        phone: "Phone Number:"
+        address: "Street Address:"
+        website: "Website:"
+        feed_url: "Enter an RSS feed and we'll send out announcements when you update it:"
+        twitter_name: "Enter your Twitter username and we'll syndicate your tweets on CommonPlace"
+        show:
+          phone: "Phone:"
+          website: "Website:"
+          address: "Address:"
+          hours: "Hours:"
+      announcement:
+        feed: "Send announcement from:"
+
+      post:
+        subject: Title
+        body: Body
+        
+      event: 
+        name: "Event name:"
+        description: "Event description:"
+
+    hints:

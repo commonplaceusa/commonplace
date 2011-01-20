@@ -1,0 +1,12 @@
+en:
+  syndicate:
+    events:
+      title: Upcoming Events
+    posts:
+      title: Recent Neighborhood Posts
+    announcements:
+      title: Recent Feed Announcements
+    people:
+      title: Your Neighbors
+    feeds:
+      title: Community Feeds

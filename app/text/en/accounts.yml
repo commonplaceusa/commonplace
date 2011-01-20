@@ -1,0 +1,50 @@
+en:
+  accounts:
+    new:
+      h1: Sign up to receive community announcements from your neighbors and local organizations in %{community}. %{learn_more}
+      learn_more: Click here to learn more.
+      bubble_1: Publicize your events to the community
+      bubble_2: Get crime reports from the police
+    edit_new:
+      title: Register a community profile so you <br> can send information to your neighbors    
+    edit:
+      title: Change Settings
+    learn_more:
+      title: Join CommonPlace to receive important community announcements <br> from your neighbors and local organizations in %{community}. %{sign_up}
+      sign_up: SIGN ME UP <span id="small_arrows">>></span>
+      p1: CommonPlace brings your neighborhoods and civic leaders in %{community} together into one "community network" online.
+      p2: Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and mayor.
+      p3: Whenever something's interesting to you, you can hit "reply" and start a community conversation.
+      p4: All these community conversations, events and announcements can always be viewed at <a href="www.%{community}.OurCommonPlace.com">www.%{community}.OurCommonPlace.com</a>
+      p5: And of course, whenever YOU have a need or announcement, CommonPlace makes it really easy to share it with the people around you.
+      p6: To post, simply go to&#58; %{community_link}
+      p7: Or email it in at&#58; %{community_email}
+      list:
+        - Ask to borrow a ladder or power drill
+        - Publicize a tag sale or block party
+        - Find people and organizations with shared interests or hobbies around you
+        - Ask about how to fix a pot hole
+        - Organize a service project for COMMUNITY
+
+    edit_interests:
+      title: Community leaders use West Roxbury CommonPlace <br> to send out information about what's happening in town.
+      subtitle: "Tell us what interests you in the community:"
+      starter_interests:
+        - Patch Local News
+        - Library
+        - Police
+        - Gardening
+        - Parks
+        - Indoor Sports
+        - Local Politics
+        - School
+        - Pets
+        - Arts & Crafts
+        - Biking
+        - Running
+        - Music
+        - Video Games
+        - Games
+        - Outdoor Sports
+    facebook_wall_post:
+        wall_post_content: I just joined CommonPlace so I can connect with my neighbors. You should sign up too!
