@@ -1,1 +1,1 @@
- Resque::Mailer.excluded_environments = [:development, :test, :cucumber]
+ Resque::Mailer.excluded_environments = [:development, :test, :staging]
