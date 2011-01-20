@@ -1,0 +1,9 @@
+en:
+
+  communities:
+    say_something:
+      title: "Say something to your neighbors:"
+    community_profiles:
+      title: "View community profiles:"
+    whats_happening:
+      title: "Find out what's happening in town:"
