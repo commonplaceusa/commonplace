@@ -70,7 +70,7 @@ en:
 
   events:
     new:
-      link: Create a Community Event
+      link: Post a Community Event
       title: Post an event to your community
 
   invites:
