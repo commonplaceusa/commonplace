@@ -11,6 +11,9 @@
 
       %h3
         Fill out the form to get started
+      %h4
+        Or connect with
+        = f.submit "Facebook", :type => 'submit', :name => "register_with_oauth2", :id => "facebook-register"
       - f.inputs do
         = f.input :full_name
         = f.input :email
@@ -19,10 +22,10 @@
         - f.buttons do 
           = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
   
-        .cleared
+     
       
-        = f.submit "true", :type => 'image', :src => '/images/buttons/facebook-sign-up.png', :name => "register_with_oauth2", :id => "facebook-register"
-        .cleared
+        
+       
 
 %p#bubble-1= t ".bubble_1"
 %p#bubble-2= t ".bubble_2"
