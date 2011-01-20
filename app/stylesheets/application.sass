@@ -187,13 +187,18 @@ body.application
 
   #say-something
     width: 485px
+    +single-box-shadow(#000, 0px, 2px, 7px, -2px)
   #community-profiles
     width: 487px
     margin-top: 10px
-
+    +border-radius(5px)
   #whats-happening
     width: 485px
-  
+    +single-box-shadow(#666, 0px, 2px, 7px, -2px)
+    +border-bottom-radius(5px)
+
+  #information
+    +single-box-shadow(#666, 0px, 2px, 7px, -2px)
 
 input.placeholder, textarea.placeholder
   color: #aaa
