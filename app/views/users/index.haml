@@ -9,4 +9,8 @@
       = link_to t("syndicate.people.title"), :feeds, 'data-remote' => true, :class => params[:letter].present? ? "" : "current"
     = render 'shared/items', :items => @neighbors
 
+    - if params[:letter].blank?
+      %h3 Community Members
+      = render 'shared/items', :items => @community_members
+        
     

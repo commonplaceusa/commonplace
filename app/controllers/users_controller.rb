@@ -6,6 +6,7 @@ class UsersController < CommunitiesController
       @neighbors = current_community.users.all(:conditions => ["last_name ILIKE ?", params[:letter].slice(0,1) + "%"])
     else
       @neighbors = current_neighborhood.users.sort_by(&:last_name)
+      @community_members = current_community.users.sort_by(&:last_name) - @neighbors
     end
   end
 
