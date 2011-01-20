@@ -1,7 +1,12 @@
 - update_content "#syndicate" do
   #syndicate
-    %h3 Your Neighbors
+    %h3 
+      %nav
+        - ('A'..'Z').each do |letter|
+
+          = link_to letter, users_path(:letter => letter), :class => letter == params[:letter] ? "current" : "", 'data-remote' => true
+
+      = link_to t("syndicate.people.title"), :feeds, 'data-remote' => true, :class => params[:letter].present? ? "" : "current"
     = render 'shared/items', :items => @neighbors
-    %h3 Community Members
-    = render 'shared/items', :items => @users
+
     
