@@ -5,3 +5,5 @@
   .title= event.subject
   .author= event.owner.name
   .body= markdown event.body
+
+= render 'shared/replies', :item => event

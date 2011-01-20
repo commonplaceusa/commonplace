@@ -5,3 +5,5 @@
   .title= announcement.subject
   .author= announcement.owner.name
   .body= markdown auto_link(announcement.body, :all, :target => "_blank")
+
+= render 'shared/replies', :item => announcement

@@ -5,3 +5,5 @@
   .title= rss_announcement.subject
   .author= link_to(rss_announcement.owner.name,rss_announcement.owner.profile_link)
   .body= markdown auto_link(rss_announcement.body, :all, :target => "_blank")
+
+= render 'shared/replies', :item => item
