@@ -1,0 +1,2 @@
+class MeetupEvent < Event
+end

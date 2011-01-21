@@ -1,0 +1,9 @@
+%div{'data-href' => event_path(meetup_event), :class => "event tooltip", 'data-title' => 'Click to see replies and learn more.'}
+  .small_calendar.avatar= render 'events/calendar', :event => meetup_event
+  %time= event_date meetup_event.start_datetime
+  .reply-count #{meetup_event.replies.size} replies
+  .title #{meetup_event.host_group_name}: #{meetup_event.subject}
+  .author= link_to(meetup_event.owner.name,meetup_event.owner.website)
+  .body= markdown meetup_event.body
+
+= render 'shared/replies', :item => meetup_event
