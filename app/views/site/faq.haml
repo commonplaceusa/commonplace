@@ -1,0 +1,125 @@
+%h1= t ".h1"
+#main
+  #sections_picker
+    %h2 Quick links
+    %ul
+      %li= link_to "Top of the page", "#content"
+      %li= link_to "About CommonPlace","#1"
+      %li= link_to "Using CommonPlace","#2"
+      %li= link_to "How to's...", "#3" 
+      %li= link_to "Ask your question", "#4"
+  #content
+    %h2= t".h2section"
+    %p= t".p1"
+    %ul
+      %li
+        = link_to "About CommonPlace", "#1"
+        %ul
+          %li= link_to "What is CommonPlace?", "#1_1"
+          %li= link_to "Who is CommonPlace?", "#1_2"
+          %li= link_to "Why is CommonPlace?", "#1_3"
+      %li
+        = link_to "Using CommonPlace", "#2"
+        %ul
+          %li= link_to "Where can I find my neighbors?","#2_1"
+          %li= link_to "Where do I invite friends to CommonPlace?", "#2_2"
+          %li= link_to "What are feeds?","#2_3"
+      %li
+        = link_to "How to's...", "#3"
+        %ul
+          %li= link_to "How do I post an announcement", "#3_1"
+          %li= link_to "How do I create a feed?", "#3_2" 
+          %li= link_to "How do I post an event?", "#3_3" 
+          %li= link_to "How do I report a bug?", "#3_4"  
+      %li
+        = link_to "Ask your question", "#4"
+        %ul
+          %li= link_to "Question form", "#4"
+
+
+
+
+
+    #1
+      %h2{ :class => "section_head"} About Commonplace
+      #1_1
+        %h3{ :class => "item_head"} What is CommonPlace?
+        .answer
+          %p 
+            CommonPlace is a new online social network connecting you with your neighbors and civic leaders
+      #1_2
+        %h3{ :class => "item_head"} Who is CommonPlace?
+        .answer
+          %p 
+            CommonPlace is stellar team made up of ambitious young entrepreneurs, developers, and designers.  Did I mention we're all good looking and single?
+      #1_3
+        %h3{:class => "item_head"} Why is CommonPlace?
+        .answer
+          %p 
+            Other social networks connect you with your friends, but CommonPlace connects you with your neighbors and government.  This environment adds a layer of transparency to the government and creates a stronger community through online interaction.
+
+
+
+
+
+ 
+    #2
+      %h2{ :class => "section_head"} Using Commonplace
+      #2_1
+        %h3{ :class => "item_head"} Where can I find my neighbors?
+        .answer
+          %p 
+            Your neighbors are listed in your directory.  You can find your directory on your home page in the top right corner, next to the community feeds icon.
+      #2_2
+        %h3{ :class => "item_head"} Where do I invite my friends and neighbors to CommonPlace?
+        .answer
+          %p 
+            You can invite your friends and neighbors to CommonPlace via email.  Your homepage has a tab for inviting your neighbors to CommonPlace.
+      #2_3
+        %h3{:class => "item_head"} What are feeds?
+        .answer
+          %p 
+            Feeds are streams of events and information from other users, civic leaders and/or local businesses.  When you subscribe to a feed you get updated when they post a new announcement or event.
+
+
+
+    
+    #3
+      %h2{ :class => "section_head"} How to's...
+      #3_1
+        %h3{ :class => "item_head"} How do I post an announcement?
+        .answer
+          %p 
+            There is a tab on your homepage that reads "Post a Neighborhood Announcement."  After filling out the required fields you just have to click "Post now" and you're done!
+      #3_2
+        %h3{ :class => "item_head"} How do I create a feed?
+        .answer
+          %p 
+            You need to click the "Create a feed" link in the site navigation under feeds.  After that you follow the on-page instructions and fill out the required information.
+      #3_3
+        %h3{:class => "item_head"} How do I create an event?
+        .answer
+          %p 
+            There is a tab on your homepage that reads "Post a Community Event."  After filling out the required fields you just have to click "Post now" and you're done!
+      #3_4
+        %h3{:class => "item_head"} How do I report a bug?
+        .answer
+          %p 
+            Bugs can be reported below or emailed to 
+            = mail_to("pete@commonplace.com")
+
+
+
+    #4
+      %h2{ :class => "section_head"} Question form
+      %form
+        %label{ :for => "email" } Your Email Address:
+        %br
+        %input{ :type => "text", :name=> "email" }
+        %br
+        %label{ :for => "message" } Your Message:
+        %br
+        %textarea{ :name=>"message"}
+        %br
+        %input{ :type => "submit",  :value=>"Submit", :name=>"submit"}
+        .cleared
