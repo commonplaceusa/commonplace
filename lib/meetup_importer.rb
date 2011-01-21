@@ -9,17 +9,17 @@ class MeetupImporter
       results = RMeetup::Client.fetch(:events,{:zip => community.zip_code, :text_format => "html"})
       results.each do |event|
         e = MeetupEvent.new
-        e.host_group_name = event.group_name
-        e.name            = event.name
+        e.host_group_name = event.group_name.toutf8
+        e.name            = event.name.toutf8
         e.date            = event.time.strftime('%Y-%m-%d')
         e.start_time      = event.time
-        e.address         = event.venue_address1 + " " + event.venue_address2 + ", " + event.venue_city + " " + event.venue_state + " " + event.venue_zip
-        e.venue           = event.venue_name
+        e.address         = event.venue_address1.toutf8 + " " + event.venue_address2.toutf8 + ", " + event.venue_city.toutf8 + " " + event.venue_state.toutf8 + " " + event.venue_zip.toutf8
+        e.venue           = event.venue_name.toutf8
         e.owner_id = Feed.find_or_create_by_name_and_website_and_community_id("Meetup", event.event_url, community).id
         e.owner_type = "Feed"
         e.source_feed_id = event.id
         # Convert from HTML to Markdown
-        mccbean = McBean.fragment event.description
+        mccbean = McBean.fragment event.description.toutf8
         e.description = mccbean.to_markdown
         
         # Save away!
