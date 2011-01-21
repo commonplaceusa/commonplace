@@ -16,4 +16,10 @@ import_twitter_posts:
     args: 
     queue: outside-data
     description: "This job imports posts from Twitter as TwitterAnnouncements"
+import_meetup_events:
+    cron: "0 * * * *"
+    class: MeetupImporter
+    args: 
+    queue: outside-data
+    description: "This job imports events from Meetup"
     
