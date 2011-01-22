@@ -6,7 +6,7 @@
 
           = link_to letter, users_path(:letter => letter), :class => letter == params[:letter] ? "current" : "", 'data-remote' => true
 
-      = link_to t("syndicate.people.title"), :feeds, 'data-remote' => true, :class => params[:letter].present? ? "" : "current"
+      = link_to t("syndicate.people.title"), :users, 'data-remote' => true, :class => params[:letter].present? ? "" : "current"
     = render 'shared/items', :items => @neighbors
 
     - if params[:letter].blank?
