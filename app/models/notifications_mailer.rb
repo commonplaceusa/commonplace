@@ -13,15 +13,6 @@ class NotificationsMailer < ActionMailer::Base
   end
 
   RECIPIENT = "sengrid@example.com"
-  def self.perform(notified_type, notifiable_type, 
-                   notified_id, notifiable_id)
-    
-    notified = notified_type.constantize.find(notified_id.to_i)
-    notifiable = notifiable_type.constantize.find(notifiable_id.to_i)
-    method = [notified_type, notifiable_type].join("_").downcase
-    self.send("deliver_#{method}!", notified, notifiable)
-  end
-
   
   def neighborhood_post(post_id)
     recipients RECIPIENT
