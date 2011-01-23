@@ -1,0 +1,5 @@
+- @messages.each do |message|
+  .message
+    %h3.subject= message.subject
+    %p.date= message.created_at
+    %p.body= message.body
