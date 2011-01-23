@@ -15,6 +15,15 @@ class MessagesController < CommunitiesController
     flash.now[:message] = "Message sent to #{parent.name}"
   end
   
+  def admin_quick_view
+    # User must be an administrator
+    unless current_user.admin
+      redirect_to root_url
+    end
+    @messages = Message.find(:all).sort { |x, y| x.created_at <=> y.created_at }
+    render :layout => false
+  end
+  
 
   protected
   def parent
