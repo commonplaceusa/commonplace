@@ -19,9 +19,10 @@ class MessagesController < CommunitiesController
     # User must be an administrator
     unless current_user.admin
       redirect_to root_url
+    else
+      @messages = Message.find(:all).sort { |x, y| x.created_at <=> y.created_at }
+      render :layout => false
     end
-    @messages = Message.find(:all).sort { |x, y| x.created_at <=> y.created_at }
-    render :layout => false
   end
   
 
