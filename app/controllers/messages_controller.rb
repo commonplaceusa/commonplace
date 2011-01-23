@@ -9,6 +9,12 @@ class MessagesController < CommunitiesController
   end
 
   def create
+    if parent.is_a? User
+      @message = Message.new(:user => current_user, :recipient => parent,
+                             :subject => params[:message][:subject],
+                             :body => params[:message][:body])
+      @message.save
+    end
     NotificationsMailer.send("deliver_#{parent.class.name.downcase}_message",
                              parent.id, current_user.id,
                              params[:message][:subject], params[:message][:body])
