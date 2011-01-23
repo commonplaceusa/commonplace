@@ -17,6 +17,10 @@ class AccountsController < CommunitiesController
       redirect_to root_url
     end
   end
+  
+  def show
+    redirect_to edit_account_url
+  end
 
   
   def create
