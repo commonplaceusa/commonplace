@@ -52,12 +52,11 @@ class Feed < ActiveRecord::Base
     string.strip!
     string.downcase!
     string.gsub!(' ', '-')
-    test_string = string
-    i = 1
-    while Feed.exists?(:slug => test_string, :community_id => self.community.id)
-      test_string = "#{string}-#{i}"
-      i += 1
+
+    if Feed.exists?(:slug => string, :community_id => self.community_id)
+      self.slug = nil
+    else
+      self.slug = string
     end
-    self.slug = test_string
   end
 end
