@@ -1,0 +1,8 @@
+%div{'data-href' => announcement_path(outside_announcement), :class => "announcement tooltip", 'data-title' => "Click to see replies and this community feed's profile"}
+  = image_tag outside_announcement.owner.avatar.url, :class => 'avatar'
+  %time= outside_announcement.time
+  .reply-count #{ outside_announcement.replies.size } replies
+  .title= outside_announcement.subject
+  .body= markdown auto_link(outside_announcement.body, :all, :target => "_blank")
+
+= render 'shared/replies', :item => outside_announcement
