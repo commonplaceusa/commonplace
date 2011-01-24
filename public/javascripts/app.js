@@ -33,6 +33,10 @@ $(function() {
     }
   });
 
+  $('div[data-href] input').live('click', function(e) {
+    e.stopPropagation();
+  });
+
   $('form[data-remote]').live('submit', function(e) {
     $('input[type=image]',$(this))
       .replaceWith('<img style="float: right"src="/images/loading.gif">');

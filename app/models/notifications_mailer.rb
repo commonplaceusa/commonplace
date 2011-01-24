@@ -14,10 +14,10 @@ class NotificationsMailer < ActionMailer::Base
 
   RECIPIENT = "sengrid@example.com"
   
-  def neighborhood_post(post_id)
+  def neighborhood_post(neighborhood_id, post_id)
     recipients RECIPIENT
     @post = Post.find(post_id)
-    @neighborhood = @post.neighborhood
+    @neighborhood = Neighborhood.find(neighborhood_id)
     @community = @neighborhood.community
     users = @neighborhood.users.reject{|u| u == @post.user}.select(&:receive_posts)
     header = SmtpApiHeader.new

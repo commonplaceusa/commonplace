@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   require "lib/helper"
   
   belongs_to :user
-  belongs_to :neighborhood
+  belongs_to :area, :polymorphic => true
   has_many :replies, :as => :repliable
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
   validates_presence_of :user
