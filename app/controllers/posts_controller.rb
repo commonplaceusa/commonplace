@@ -12,7 +12,7 @@ class PostsController < CommunitiesController
 
   def create
     @post.user = current_user
-    @post.neighborhood_id = current_neighborhood.id
+    @post.area = current_neighborhood
     if @post.save
       NotificationsMailer.deliver_neighborhood_post(current_neighborhood.id,
                                                     post.id)
