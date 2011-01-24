@@ -15,8 +15,7 @@ class MeetupImporter
         e.start_time      = event.time
         e.address         = event.venue_address1.toutf8 + " " + event.venue_address2.toutf8 + ", " + event.venue_city.toutf8 + " " + event.venue_state.toutf8 + " " + event.venue_zip.toutf8
         e.venue           = event.venue_name.toutf8
-        e.owner_id = Feed.find_or_create_by_name_and_website_and_community_id("Meetup", event.event_url, community).id
-        e.owner_type = "Feed"
+        e.owner = Feed.find_or_create_by_name_and_website_and_community_id("Meetup", event.event_url, community.id)
         e.source_feed_id = event.id
         # Convert from HTML to Markdown
         mccbean = McBean.fragment event.description.toutf8

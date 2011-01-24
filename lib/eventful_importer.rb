@@ -42,8 +42,7 @@ class EventfulImporter
 
       e.location = Location.new(:zip_code => event['postal_code'], :street_address => event['venue_address'])
 
-      e.owner_id = Feed.find_or_create_by_name_and_website_and_community_id("Eventful", "http://www.eventful.com/", community).id
-      e.owner_type = "Feed"
+      e.owner = Feed.find_or_create_by_name_and_website_and_community_id("Eventful", "http://www.eventful.com/", community.id)
       e.source_feed_id = event['id']
       e.save
     rescue TypeError => e
