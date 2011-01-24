@@ -10,7 +10,7 @@ class AnnouncementImporter
         o = OutsideAnnouncement.new()
         o.subject = story.title
         o.body = story.summary
-        o.feed_id = Feed.find_or_create_by_name_and_website_and_community_id(story.feed_title, story.feed_url, community).id
+        o.feed = Feed.find_or_create_by_name_and_website_and_community_id(story.feed_title, story.feed_url, community.id)
         o.url = story.story_url
         o.save()
       end
