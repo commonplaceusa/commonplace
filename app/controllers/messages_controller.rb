@@ -26,7 +26,7 @@ class MessagesController < CommunitiesController
     unless current_user.admin
       redirect_to root_url
     else
-      @messages = Message.find(:all).sort { |x, y| x.created_at <=> y.created_at }
+      @messages = Message.find(:all).sort { |x, y| y.created_at <=> x.created_at }
       render :layout => false
     end
   end
