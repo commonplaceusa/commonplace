@@ -11,7 +11,7 @@ en:
       title: Change Settings
     learn_more:
       title: Join CommonPlace to receive important community announcements <br> from your neighbors and local organizations in %{community}. %{sign_up}
-      sign_up: SIGN ME UP <span id="small_arrows">>></span>
+      sign_up: Sign up. 
       p1: CommonPlace brings your neighborhoods and civic leaders in %{community} together into one "community network" online.
       p2: Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and mayor.
       p3: Whenever something's interesting to you, you can hit "reply" and start a community conversation.
