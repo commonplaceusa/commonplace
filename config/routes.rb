@@ -21,8 +21,8 @@ ActionController::Routing::Routes.draw do |map|
     
     community.root :controller => "communities", :action => "show"
 
-    community.resources :posts
-    community.resources :first_posts, :only => [:create,:new]
+    community.resources :posts, :member => {"uplift" => :put}
+
     
     community.resources :announcements, :collection => {"subscribed" => :get}
     community.resources :subscriptions, :collection => {"recommended" => :get}

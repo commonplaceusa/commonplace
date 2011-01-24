@@ -4,6 +4,10 @@
     =post.time
     - if can? :destroy, post
       = post.deleteLink
+    - if can?(:uplift, post) && post.area.is_a?(Neighborhood)
+      - form_for post, :url => uplift_post_url(post) do |f|
+        = f.submit "Uplift"
+
 
   .reply-count #{ post.replies.size } replies
   = link_to post.subject, post, 'data-remote' => true, :class => "title"

@@ -14,7 +14,8 @@ class PostsController < CommunitiesController
     @post.user = current_user
     @post.neighborhood_id = current_neighborhood.id
     if @post.save
-      NotificationsMailer.deliver_neighborhood_post(post.id)
+      NotificationsMailer.deliver_neighborhood_post(current_neighborhood.id,
+                                                    post.id)
       flash[:message] = "Post Created!"
       redirect_to posts_path
     else
@@ -35,6 +36,19 @@ class PostsController < CommunitiesController
   end
 
   def show
+  end
+
+  def uplift
+    if can?(:uplift, @post) && @post.area.is_a?(Neighborhood)
+      original_neighborhood = @post.area
+      @post.area = current_community
+      @post.save
+      current_community.neighborhoods.reject {|n| n == original_neighborhood }.
+        each do |n|
+        NotificationsMailer.deliver_neighborhood_post(n.id,@post.id)
+      end
+    end
+    redirect_to root_url
   end
   
   protected 

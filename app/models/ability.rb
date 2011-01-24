@@ -30,6 +30,11 @@ class Ability
       can :create, Feed
       can :manage, Feed, :user_id => user.id
       can :read, ActsAsTaggableOn::Tag
+
+      if user.admin?
+        can :uplift, Post
+      end
+      
     end
       can :read, Community
   end
