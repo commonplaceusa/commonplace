@@ -5,6 +5,3 @@
     %p.from from #{message.user.name if message.user}
     %p.date= message.created_at
     %p.body= message.body
-    
-:javascript
-  setTimeout(function() { window.location = window.location; }, 60*1000);
