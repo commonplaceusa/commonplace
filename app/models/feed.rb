@@ -33,6 +33,14 @@ class Feed < ActiveRecord::Base
 
   accepts_nested_attributes_for :profile_fields
 
+  def website=(string)
+    if string && !(string =~ /^https?:\/\//)
+      super("http://" + string)
+    else
+      super(string)
+    end
+  end
+  
   def wire
     (self.announcements + self.events).sort_by do |item|
       time = case item
