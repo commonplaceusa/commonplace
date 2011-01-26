@@ -23,7 +23,7 @@ class Post < ActiveRecord::Base
     long_id = Base64.b64encode(self.id.to_s)
      m = long_id.match(/[A-Za-z0-9]*(=*)/)
     
-    if m[1]
+    if m[1].present?
       long_id = long_id.gsub(m[1],m[1].length.to_s)
     end
     long_id.gsub("\n","")
