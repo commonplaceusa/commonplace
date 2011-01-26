@@ -48,4 +48,30 @@ class Event < ActiveRecord::Base
     end
   end
   
+  def long_id
+    # Return the base-64 encoded post ID, replacing any tailing = characters with their quantity
+    require 'base64'
+    long_id = Base64.b64encode(self.id.to_s)
+     m = long_id.match(/[A-Za-z0-9]*(=*)/)
+    
+    if m[1]
+      long_id = long_id.gsub(m[1],m[1].length.to_s)
+    end
+    long_id.gsub("\n","")
+  end
+  
+  def self.find_by_long_id(long_id)
+    # Decode the base-64 encoding done in Post.long_id, and get the post
+    require 'base64'
+    # Reconstruct the equal signs at the end
+    num = long_id[long_id.length-1,long_id.length-1]
+    long_id = long_id[0,long_id.length-1]
+    num.to_i.times do |i|
+      long_id += "="
+    end
+    # Find the post
+    event_id = Base64.decode64(long_id)
+    Event.find(event_id)
+  end
+  
 end

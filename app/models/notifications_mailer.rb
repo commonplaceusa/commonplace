@@ -25,7 +25,7 @@ class NotificationsMailer < ActionMailer::Base
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     subject "#{@post.user.full_name} just posted a message to your neighborhood"
-    from "CommonPlace <#{@post.long_id}@replies.commonplaceusa.com>"
+    from "CommonPlace <#{@post.long_id}@messages.#{@community.slug}.commonplaceusa.com>"
   end
   
   def user_message(messengee_id, messenger_id, message_subject, message)
@@ -33,7 +33,7 @@ class NotificationsMailer < ActionMailer::Base
     @messenger = User.find(messenger_id)
     @community = @messenger.community
     recipients @messengee.email
-    from "CommonPlace <messages@commonplaceusa.com>"
+    from "CommonPlace <#{message.long_id}@messages.#{community.slug}.commonplaceusa.com>"
     subject "#{@messenger.name} just sent you a message on CommonPlace"
     body :message_subject => message, :message => message
   end
@@ -43,7 +43,7 @@ class NotificationsMailer < ActionMailer::Base
     @user = User.find(user_id)
     @community = @user.community
     recipients @feed.user.email
-    from "CommonPlace <messages@commonplaceusa.com>"
+    from "CommonPlace <#{message.long_id}@messages.#{community.slug}.commonplaceusa.com>"
     subject "#{@user.name} just sent #{@feed.name} a message on CommonPlace"
     body :message_subject => message_subject, :message => message
   end
@@ -53,7 +53,7 @@ class NotificationsMailer < ActionMailer::Base
     @user = User.find(user_id)
     @community = @user.community
     recipients @event.user.email
-    from "CommonPlace <messages@commonplaceusa.com>"
+    from "CommonPlace <#{message.long_id}@messages.#{community.slug}.commonplaceusa.com>"
     subject "#{@user.name} just sent #{@event.name} a message on CommonPlace"
     body :message_subject => message_subject, :message => message
   end
@@ -83,7 +83,7 @@ class NotificationsMailer < ActionMailer::Base
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     recipients @post.user.email
-    from "CommonPlace <#{@post.long_id}@replies.commonplaceusa.com>"
+    from "CommonPlace <#{@post.long_id}@messages.#{@community.slug}.commonplaceusa.com>"
     subject "#{@reply.user.name} just replied to a post on CommonPlace"
   end
 
@@ -98,7 +98,7 @@ class NotificationsMailer < ActionMailer::Base
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     recipients @event.user.email
-    from "CommonPlace <events@replies.commonplaceusa.com>"
+    from "CommonPlace <#{@event.long_id}@events.#{@community.slug}.commonplaceusa.com>"
     subject "#{@reply.user.name} just replied to an event on CommonPlace"
   end
 
@@ -112,7 +112,7 @@ def announcement_reply(reply_id)
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     recipients @announcement.feed.user.email
-    from "CommonPlace <announcements@replies.commonplaceusa.com>"
+    from "CommonPlace <#{@announcement.long_id}@announcements.#{@community.slug}.commonplaceusa.com>"
     subject "#{@reply.user.name} just replied to an announcement on CommonPlace"
   end
 
@@ -125,7 +125,7 @@ def announcement_reply(reply_id)
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     subject "#{feed.name} posted a new announcement"
-    from "announcements@commonplaceusa.com"
+    from "CommonPlace <#{@announcement.long_id}@announcements.#{@community.slug}.commonplaceusa.com>"
     body :feed => feed, :announcement => announcement
   end
 end
