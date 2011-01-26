@@ -23,3 +23,5 @@ post = Post.create(:body => "This is a test post",
                     :area => neighborhood)
 post.save
 
+event = Event.create(:name => "Test Event", :description => "Event for testing", :owner => User.find(:first), :date => Time.now)
+event.save
