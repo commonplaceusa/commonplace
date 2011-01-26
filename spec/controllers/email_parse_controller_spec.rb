@@ -28,23 +28,23 @@ describe EmailParseController do
                                                        :user => @user,
                                                        :repliable => @post))
     end
-    it "should create a reply to a post when the email is to message-id@.*" do
-      get :posts, :text => @text, :from => "test@example.com", :to => "MjA1@messages.test.commonplaceusa.com"
-      Reply.should have_received.create(hash_including(:body => @text,
-                                                       :user => @user,
-                                                       :repliable => @post))
-    end
+ #   it "should create a reply to a post when the email is to message-id@.*" do
+ #     get :posts, :text => @text, :from => "test@example.com", :to => "MjA1@messages.test.commonplaceusa.com"
+ #     Reply.should have_received.create(hash_including(:body => @text,
+ #                                                      :user => @user,
+ #                                                      :repliable => @message))
+ #   end
     it "should create a reply to a post when the email is to event-id@.*" do
-      get :posts, :text => @text, :from => "test@example.com", :to => "MjA1@events.test.commonplaceusa.com"
+      get :events, :text => @text, :from => "test@example.com", :to => "MjA1@events.test.commonplaceusa.com"
       Reply.should have_received.create(hash_including(:body => @text,
                                                        :user => @user,
-                                                       :repliable => @post))
+                                                       :repliable => @event))
     end
     it "should create a reply to a post when the email is to announcement-id@.*" do
-      get :posts, :text => @text, :from => "test@example.com", :to => "MjA1@announcements.test.commonplaceusa.com"
+      get :announcements, :text => @text, :from => "test@example.com", :to => "MjA1@announcements.test.commonplaceusa.com"
       Reply.should have_received.create(hash_including(:body => @text,
                                                        :user => @user,
-                                                       :repliable => @post))
+                                                       :repliable => @announcement))
     end
   end
 end

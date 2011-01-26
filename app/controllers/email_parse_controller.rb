@@ -1,5 +1,7 @@
 class EmailParseController < ApplicationController
   
+  protect_from_forgery :only => []
+  
   def EmailParseController.strip(text,to)
     # Strip any replies from the text
     
