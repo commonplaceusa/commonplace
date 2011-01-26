@@ -11,6 +11,7 @@ class TwitterImporter
         twitter_announcement.subject = "Recent Posts from " + feed.name
         twitter_announcement.body = " "
         twitter_announcement.feed_id = feed.id
+        twitter_announcement.url = 'http://www.twitter.com/' + feed.twitter_name + '/'
         
         twitter_announcement.save
         
