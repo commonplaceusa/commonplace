@@ -28,9 +28,56 @@ class EmailParseController < ApplicationController
     end
   end
   
-  def parse
+  def messages
+    user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    post = Message.find_by_long_id(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
+    if user && post
+      text = EmailParseController.strip(params[:text],params[:to])
+      
+      message = Message.new(:user => user, :recipient => post.user,
+                             :subject => post.subject,
+                             :body => text)
+      message.save
+      
+      #Reply.create(:body => text,
+      #             :repliable => post,
+      #             :user => user)
+    end
+    
+    render :nothing => true
+  end
+  
+  def posts
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     post = Post.find_by_long_id(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
+    if user && post
+      text = EmailParseController.strip(params[:text],params[:to])
+      
+      Reply.create(:body => text,
+                   :repliable => post,
+                   :user => user)
+    end
+    
+    render :nothing => true
+  end
+  
+  def events
+    user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    post = Event.find_by_long_id(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
+    if user && post
+      text = EmailParseController.strip(params[:text],params[:to])
+      
+      Reply.create(:body => text,
+                   :repliable => post,
+                   :user => user)
+    end
+    
+    render :nothing => true
+  end
+  
+  def announcements
+    user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    post = Announcement.find_by_long_id(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
     if user && post
       text = EmailParseController.strip(params[:text],params[:to])
       
