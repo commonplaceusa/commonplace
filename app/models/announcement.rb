@@ -23,6 +23,8 @@ class Announcement < ActiveRecord::Base
     
     if m[1].present?
       long_id = long_id.gsub(m[1],m[1].length.to_s)
+    else
+      long_id = long_id + "0"
     end
     long_id.gsub("\n","")
   end
