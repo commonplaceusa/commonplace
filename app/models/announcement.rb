@@ -17,7 +17,7 @@ class Announcement < ActiveRecord::Base
   end
   
   def long_id
-    IDEncoder.from_long_id(self.id)
+    IDEncoder.to_long_id(self.id)
   end
   
   def self.find_by_long_id(long_id)
