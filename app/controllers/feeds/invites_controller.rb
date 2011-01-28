@@ -6,7 +6,7 @@ class Feeds::InvitesController < ApplicationController
 
   def create
     @feed = Feed.find(params[:feed_id])
-    params[:emails].split(",").each do |email|
+    params[:emails].split(/,|\r\n|\n/).each do |email|
       unless User.exists?(:email => email)
         Invite.create(:email => email, :inviter => @feed)
         # TODO: Get pretty Invites
