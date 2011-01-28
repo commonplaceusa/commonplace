@@ -35,7 +35,7 @@ class NotificationsMailer < ActionMailer::Base
     recipients @messengee.email
     from "CommonPlace <#{message.long_id}@messages.#{community.slug}.commonplaceusa.com>"
     subject "#{@messenger.name} just sent you a message on CommonPlace"
-    body :message_subject => message, :message => message
+    body :message_subject => message_subject, :message => message
   end
 
   def feed_message(feed_id, user_id, message_subject, message)
