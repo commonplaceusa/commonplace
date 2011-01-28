@@ -4,7 +4,7 @@ class InvitesController < CommunitiesController
   end
 
   def create
-    params[:emails].split(",").each do |email|
+    params[:emails].split(/,|\r\n|\n/).each do |email|
       unless User.exists?(:email => email)
         Invite.create(:email => email, :inviter => current_user, :body => params[:message])
         # TODO: Get pretty Invites
