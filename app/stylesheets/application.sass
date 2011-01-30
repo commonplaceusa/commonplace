@@ -117,15 +117,60 @@ body.application
             background-color: white
           ul
             display: block
-
-    #new_user_session
+    #user_sign_in
       float: right
-      width: 530px
+      margin-top: 10px
+      position: relative
+      width: 235px
+      li
+        display: inline
+        margin: 0 5px
+        color: #545454
+        width: 100px
+      #sign_in_button
+        display: block
+        background: url(/images/nav-down-arrow.png) no-repeat 95% 40% #fff
+        width: 65px
+        padding: 0px 5px
+        height: 20px
+        line-height: 18px
+        position: relative
+        float: right
+        margin-top: -3px
+        z-index: 100
+      #sign_in_form
+        position: absolute
+        right: -1px
+        top: -1px
+        
+    .remove_border
+      border:
+        top: 1px solid #ccc
+        bottom: none !important
+        left: 1px solid #ccc
+        right:  1px solid #ccc
+      +border-radius(5px 5px 0px 0px)
+    .border
+      border: 1px solid #ccc
+      +border-radius(5px) 
+    #new_user_session
+      position: absolute
+      right: 1px
+      top: 18px
+      z-index: 90
+      width: 200px
+      background: #fff
+      border: 1px solid #ccc
+      +border-radius(5px 0px 5px 5px)
+      display: none
       .inputs, .buttons
         +inline-block
         li 
-          margin: 0 2px
-          +inline-block
+          margin: 0
+          display: block
+          width: 180px
+          padding:  2px 10px
+          text-align: right
           
           label
             display: block
@@ -138,7 +183,7 @@ body.application
               
           input[type=text], input[type=password]
             +border-radius(5px)
-            width: 155px
+            width: 165px
             outline: none
             padding: 5px 7px
             font-size: 0.9em
@@ -147,20 +192,25 @@ body.application
             border: 1px solid #ddd  
         
       .buttons
-        padding-top: 25px
-        .oauth2
+        margin-top: 3px
+        .commit:first-child
+          float: right
+          width: 60px
+        li:last-child
+          padding-top: 5px
+        .commit
           submit
             vertical-align: middle
             padding-bottom: 2px
       .forgot-password
-        float: right
-        padding: 4px
-        margin-right: 115px
+        text-align: right
+        display: block
+        padding: 0 10px 10px
         font-size: 12px
         color: #3b6085
       p.errors
-        text-align: left
-        margin-left: 5px
+        text-align: right
+        padding: 0 10px 10px
         color: #b7403c
         font-size: 13px
       #fb-login
