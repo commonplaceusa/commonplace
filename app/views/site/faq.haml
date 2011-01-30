@@ -1,6 +1,8 @@
 = javascript_include_tag 'faq'
 
 %h1= t ".h1"
+#notice
+  = flash[:warning] || flash[:notice]
 #main
   #sections_picker
     %h2 Quick links
@@ -114,14 +116,14 @@
 
     #4
       %h2{ :class => "section_head"} Question form
-      %form
+      -form_remote_tag :url => "/site/faq_parse", :loading => "$('.submit_button').hide();", :success => "$('#notice').html('Success!<br />Your question has been successfully submitted.');$('html, body').animate({scrollTop:0}, 'slow');" do -
         %label{ :for => "email" } Your Email Address:
         %br
-        %input{ :type => "text", :name=> "email" }
+        =text_field_tag :email_address
         %br
         %label{ :for => "message" } Your Message:
         %br
-        %textarea{ :name=>"message"}
+        =text_area_tag :message
         %br
-        %input{ :type => "submit",  :value=>"Submit", :name=>"submit"}
-        .cleared
+        =submit_tag "Submit", :class => "submit_button"
+      .cleared

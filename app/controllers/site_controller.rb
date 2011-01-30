@@ -7,4 +7,9 @@ class SiteController < CommunitiesController
   def faq
     render :layout => 'application'
   end
+  
+  def faq_parse
+    render :nothing => true
+    QuestionMailer.deliver_faq(params[:email],params[:message])
+  end
 end
