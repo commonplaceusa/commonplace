@@ -3985,4 +3985,273 @@ bash-3.2$ cap staging deploy
     servers: ["69.164.215.169"]
     [69.164.215.169] executing command
     command finished
-bash-3.2$ 
+bash-3.2$ git add .
+bash-3.2$ git c[Kstatus
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   typescript
+#
+bash-3.2$ git commit -a [K[K[K[K[K[K[K[K[K[Kch[K[Kbranch
+  facebook_application
+  facebook_connect
+* master
+bash-3.2$ git commit -a -m ''
+Aborting commit due to empty commit message.
+bash-3.2$ git commit -a -m ''R'e'-'c'o'm'm'i't't'i'n'g'
+[master 9441f7f] Re-committing
+ 1 files changed, 190 insertions(+), 0 deletions(-)
+bash-3.2$ git push
+Counting objects: 5, done.
+Delta compression using up to 2 threads.
+Compressing objects:  33% (1/3)   Compressing objects:  66% (2/3)   Compressing objects: 100% (3/3)   Compressing objects: 100% (3/3), done.
+Writing objects:  33% (1/3)   Writing objects:  66% (2/3)   Writing objects: 100% (3/3)   Writing objects: 100% (3/3), 1.89 KiB, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To git@github.com:maxtilford/commonplace.git
+   3404e8c..9441f7f  master -> master
+bash-3.2$ git [K[K[K[Kcap staging deploy
+/Users/jasonberlinsky/.rvm/lib
+  * executing `staging'
+  * executing `deploy'
+  * executing `deploy:update'
+ ** transaction: start
+  * executing `deploy:update_code'
+  * executing "cd /home/deploy/staging/current; git fetch origin; git reset --hard origin/master; git submodule update --init"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+ ** [out :: 69.164.215.169] remote: Counting objects: 5, done.[K
+ ** [out :: 69.164.215.169] remote: Compressing objects:  33% (1/3)   [K
+ ** [out :: 69.164.215.169] remote: Compressing objects:  66% (2/3)   [Kremote: Compressing objects: 100% (3/3)   [Kremote: Compressing objects: 100% (3/3), done.[K
+ ** [out :: 69.164.215.169] remote: Total 3 (delta 2), reused 0 (delta 0)[K
+ ** [out :: 69.164.215.169] Unpacking objects:  33% (1/3)   Unpacking objects:  66% (2/3)
+ ** [out :: 69.164.215.169] Unpacking objects: 100% (3/3)   Unpacking objects: 100% (3/3), done.
+ ** [out :: 69.164.215.169] From github.com:maxtilford/commonplace
+ ** [out :: 69.164.215.169] 3404e8c..9441f7f  master     -> origin/master
+ ** [out :: 69.164.215.169] HEAD is now at 9441f7f Re-committing
+    command finished
+    triggering after callbacks for `deploy:update_code'
+  * executing `gems:install'
+  * executing "cd /home/deploy/staging/current && bundle install --path vendor --without test development"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+ ** [out :: 69.164.215.169] Using rake (0.8.7)
+ ** [out :: 69.164.215.169] Using BlueCloth (1.0.1)
+ ** [out :: 69.164.215.169] Using RedCloth (4.2.3)
+ ** [out :: 69.164.215.169] Using SystemTimer (1.2.1)
+ ** [out :: 69.164.215.169] Using aasm (2.2.0)
+ ** [out :: 69.164.215.169] Using activesupport (2.3.9)
+ ** [out :: 69.164.215.169] Using rack (1.1.0)
+ ** [out :: 69.164.215.169] Using actionpack (2.3.9)
+ ** [out :: 69.164.215.169] Using actionmailer (2.3.9)
+ ** [out :: 69.164.215.169] Using activerecord (2.3.9)
+ ** [out :: 69.164.215.169] Using activeresource (2.3.9)
+ ** [out :: 69.164.215.169] Using acts-as-list (0.1.2)
+ ** [out :: 69.164.215.169] Using acts-as-taggable-on (2.0.6)
+ ** [out :: 69.164.215.169] Using addressable (2.2.3)
+ ** [out :: 69.164.215.169] Using authlogic (2.1.6)
+ ** [out :: 69.164.215.169] Using multipart-post (1.1.0)
+ ** [out :: 69.164.215.169] Using faraday (0.5.4)
+ ** [out :: 69.164.215.169] Using multi_json (0.0.5)
+ ** [out :: 69.164.215.169] Using oauth2 (0.1.1)
+ ** [out :: 69.164.215.169] Using authlogic_oauth2 (1.1.2)
+ ** [out :: 69.164.215.169] Using babosa (0.2.1)
+ ** [out :: 69.164.215.169] Using cancan (1.5.1)
+ ** [out :: 69.164.215.169] Using chunky_png (0.10.5)
+ ** [out :: 69.164.215.169] Using sass (3.1.0.alpha.218)
+ ** [out :: 69.164.215.169] Using compass (0.11.beta.1)
+ ** [out :: 69.164.215.169] Using crack (0.1.8)
+ ** [out :: 69.164.215.169] Using creole (0.3.8)
+ ** [out :: 69.164.215.169] Using mime-types (1.16)
+ ** [out :: 69.164.215.169] Using eventfulapi (2.2.1)
+ ** [out :: 69.164.215.169] Using exceptional (2.0.32)
+ ** [out :: 69.164.215.169] Using faraday_middleware (0.3.1)
+ ** [out :: 69.164.215.169] Using i18n (0.5.0)
+ ** [out :: 69.164.215.169] Using formtastic (1.2.3)
+ ** [out :: 69.164.215.169] Using friendly_id (3.2.0)
+ ** [out :: 69.164.215.169] Using glebm-geokit (1.5.2)
+ ** [out :: 69.164.215.169] Using god (0.11.0)
+ ** [out :: 69.164.215.169] Using haml (3.1.0.alpha.147)
+ ** [out :: 69.164.215.169] Using hashie (0.4.0)
+ ** [out :: 69.164.215.169] Using httparty (0.7.3)
+ ** [out :: 69.164.215.169] Using json (1.4.6)
+ ** [out :: 69.164.215.169] Using kgio (2.1.1)
+ ** [out :: 69.164.215.169] Using nokogiri (1.4.4)
+ ** [out :: 69.164.215.169] Using loofah (1.0.0)
+ ** [out :: 69.164.215.169] Using rdiscount (1.6.5)
+ ** [out :: 69.164.215.169] Using mcbean (0.4.0)
+ ** [out :: 69.164.215.169] Using multi_xml (0.2.0)
+ ** [out :: 69.164.215.169] Using nested_layouts (0.1.3)
+ ** [out :: 69.164.215.169] Using outside-in (1.0.0)
+ ** [out :: 69.164.215.169] Using paperclip (2.3.8)
+ ** [out :: 69.164.215.169] Using pg (0.10.1)
+ ** [out :: 69.164.215.169] Using rMeetup (1.0)
+ ** [out :: 69.164.215.169] Using rails (2.3.9)
+ ** [out :: 69.164.215.169] Using redis (2.1.1)
+ ** [out :: 69.164.215.169] Using redis-namespace (0.10.0)
+ ** [out :: 69.164.215.169] Using tilt (1.2.2)
+ ** [out :: 69.164.215.169] Using sinatra (1.1.2)
+ ** [out :: 69.164.215.169] Using vegas (0.1.8)
+ ** [out :: 69.164.215.169] Using resque (1.8.2)
+ ** [out :: 69.164.215.169] Using tzinfo (0.3.24)
+ ** [out :: 69.164.215.169] Using rufus-scheduler (2.0.8)
+ ** [out :: 69.164.215.169] Using resque-scheduler (1.9.8)
+ ** [out :: 69.164.215.169] Using resque_mailer (1.0.1)
+ ** [out :: 69.164.215.169] Using simple_oauth (0.1.3)
+ ** [out :: 69.164.215.169] Using simple_uuid (0.1.2)
+ ** [out :: 69.164.215.169] Using subdomain-fu (0.5.4)
+ ** [out :: 69.164.215.169] Using text-hyphen (1.0.0)
+ ** [out :: 69.164.215.169] Using text-reform (0.2.0)
+ ** [out :: 69.164.215.169] Using thor (0.14.6)
+ ** [out :: 69.164.215.169] Using tlsmail (0.0.1)
+ ** [out :: 69.164.215.169] Using tmail (1.2.7.1)
+ ** [out :: 69.164.215.169] Using twitter (1.1.1)
+ ** [out :: 69.164.215.169] Using unicorn (3.3.1)
+ ** [out :: 69.164.215.169] Using yajl-ruby (0.7.9)
+ ** [out :: 69.164.215.169] Using bundler (1.0.7)
+ ** [out :: 69.164.215.169] [32mYour bundle is complete! It was installed into ./vendor[0m
+    command finished
+  * executing `symlinks:make'
+  * executing "mkdir -p /home/deploy/staging/current/tmp"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+    command finished
+  * executing "cd /home/deploy/staging/current &&\\\n      rm -rf /home/deploy/staging/current/config/database.yml &&        ln -s /home/deploy/staging/shared/config/database.yml /home/deploy/staging/current/config/database.yml && rm -rf /home/deploy/staging/current/config/config.yml &&        ln -s /home/deploy/staging/shared/config/config.yml /home/deploy/staging/current/config/config.yml && rm -rf /home/deploy/staging/current/config/unicorn.rb &&        ln -s /home/deploy/staging/shared/config/unicorn.rb /home/deploy/staging/current/config/unicorn.rb && rm -rf /home/deploy/staging/current/public/system &&        ln -s /home/deploy/staging/shared/system /home/deploy/staging/current/public/system && rm -rf /home/deploy/staging/current/log &&        ln -s /home/deploy/staging/shared/logs /home/deploy/staging/current/log"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+    command finished
+  * executing `deploy:symlink'
+ ** transaction: commit
+  * executing `deploy:restart'
+    triggering before callbacks for `deploy:restart'
+  * executing `sass:update'
+  * executing "cd /home/deploy/staging/current && /usr/local/rvm/gems/ree-1.8.7-2010.02/bin/rake sass:update RAILS_ENV=staging"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+ ** [out :: 69.164.215.169] (in /home/deploy/staging/current)
+ ** [out :: 69.164.215.169] Exceptional::Config.load - no configuration file
+    command finished
+  * executing "kill -USR2 `cat /home/deploy/staging/shared/pids/unicorn.pid`"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+    command finished
+bash-3.2$ It wa[K[K[K[K[Kssh deploy[K[K[K[Kploy@staging.commonplaceusa.com
+Last login: Sat Jan 29 22:08:06 2011 from 67-194-18-211.wireless.umnet.umich.edu
+[[ -s /usr/local/lib/rvm ]]
+]0;deploy@li130-169:~[?1034h[deploy@li130-169 ~]$ cd staging/current/
+]0;deploy@li130-169:~/staging/current[deploy@li130-169 current]$ cd log/
+]0;deploy@li130-169:~/staging/current/log[deploy@li130-169 log]$ ls
+exceptional.log  production.log  staging.log  unicorn.stderr.log  unicorn.stdout.log
+]0;deploy@li130-169:~/staging/current/log[deploy@li130-169 log]$ tail -f staging.log 
+** SubdomainFu: initialized properly
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET standard_conforming_strings = on[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+** SubdomainFu: initialized properly
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET standard_conforming_strings = on[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+** SubdomainFu: initialized properly
+** SubdomainFu: initialized properly
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET standard_conforming_strings = on[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+
+
+Processing SiteController#faq (for 67.194.18.211 at 2011-01-29 22:09:07) [GET]
+  Parameters: {"action"=>"faq", "controller"=>"site"}
+  [4;36;1mCommunity Load (5.9ms)[0m   [0;1mSELECT * FROM "communities" WHERE (LOWER(slug) = 'staging') LIMIT 1[0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '467') LIMIT 1[0m
+Rendering template within layouts/application
+Rendering site/faq
+
+ActionView::TemplateError (undefined method `-@' for #<String:0xc01b510>) on line #120 of app/views/site/faq.haml:
+117:     #4
+118:       %h2{ :class => "section_head"} Question form
+119:       -form_remote_tag :url => "/site/faq_parse", :loading => "$('.submit_button').hide();", :success => "$('#notice').html('Success!<br />Your question has been successfully submitted.');$('html, body').animate({scrollTop:0}, 'slow');" do -
+120:         %label{ :for => "email" } Your Email Address:
+121:         %br
+122:         =text_field_tag :email_address
+123:         %br
+
+    app/views/site/faq.haml:120:in `_run_haml_app47views47site47faq46haml'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/rails/./lib/haml/helpers/action_view_mods.rb:202:in `call'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/rails/./lib/haml/helpers/action_view_mods.rb:202:in `form_tag'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/lib/haml/helpers.rb:589:in `call'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/lib/haml/helpers.rb:589:in `haml_bind_proc'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/lib/haml/helpers.rb:343:in `call'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/lib/haml/helpers.rb:343:in `capture_haml'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/lib/haml/helpers.rb:567:in `with_haml_buffer'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/lib/haml/helpers.rb:339:in `capture_haml'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/rails/./lib/haml/helpers/action_view_mods.rb:88:in `capture'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/helpers/form_tag_helper.rb:469:in `form_tag_in_block'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/helpers/form_tag_helper.rb:39:in `form_tag_without_haml'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/rails/./lib/haml/helpers/action_view_mods.rb:208:in `form_tag'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/helpers/prototype_helper.rb:339:in `form_remote_tag'
+    app/views/site/faq.haml:119:in `_run_haml_app47views47site47faq46haml'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/renderable.rb:34:in `send'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/renderable.rb:34:in `render'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/base.rb:306:in `with_template'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/renderable.rb:30:in `render'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/template.rb:205:in `render_template'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/base.rb:265:in `render_without_haml'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/rails/./lib/haml/helpers/action_view_mods.rb:13:in `render'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/base.rb:348:in `_render_with_layout'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_view/base.rb:262:in `render_without_haml'
+    development/ruby/1.8/gems/haml-3.1.0.alpha.147/rails/./lib/haml/helpers/action_view_mods.rb:13:in `render'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/base.rb:1250:in `render_for_file'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/base.rb:978:in `render_without_benchmark'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/benchmarking.rb:51:in `render'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/benchmarking.rb:51:in `render'
+    app/controllers/site_controller.rb:8:in `faq'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/base.rb:1331:in `send'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/base.rb:1331:in `perform_action_without_filters'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/filters.rb:617:in `call_filters'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/flash.rb:151:in `perform_action'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/base.rb:532:in `send'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/base.rb:532:in `process_without_filters'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/filters.rb:606:in `process_without_compass'
+    development/ruby/1.8/gems/compass-0.11.beta.1/lib/compass/app_integration/rails/actionpack2/action_controller.rb:7:in `process'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/base.rb:391:in `process'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/base.rb:386:in `call'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/routing/route_set.rb:438:in `call'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/dispatcher.rb:87:in `dispatch'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/dispatcher.rb:121:in `_call'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/dispatcher.rb:130:in `build_middleware_stack'
+    development/ruby/1.8/gems/activerecord-2.3.9/lib/active_record/query_cache.rb:29:in `call'
+    development/ruby/1.8/gems/activerecord-2.3.9/lib/active_record/query_cache.rb:29:in `call'
+    development/ruby/1.8/gems/activerecord-2.3.9/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    development/ruby/1.8/gems/activerecord-2.3.9/lib/active_record/query_cache.rb:9:in `cache'
+    development/ruby/1.8/gems/activerecord-2.3.9/lib/active_record/query_cache.rb:28:in `call'
+    development/ruby/1.8/gems/activerecord-2.3.9/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    development/ruby/1.8/gems/sass-3.1.0.alpha.218/rails/./lib/sass/plugin/rack.rb:54:in `call'
+    development/ruby/1.8/gems/authlogic_oauth2-1.1.2/lib/oauth2_callback_filter.rb:10:in `call'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/string_coercion.rb:25:in `call'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/params_parser.rb:15:in `call'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/session/cookie_store.rb:100:in `call'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/failsafe.rb:26:in `call'
+    development/ruby/1.8/gems/actionpack-2.3.9/lib/action_controller/dispatcher.rb:106:in `call'
+    development/ruby/1.8/gems/rails-2.3.9/lib/rails/rack/static.rb:31:in `call'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:532:in `process_client'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:607:in `worker_loop'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:605:in `each'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:605:in `worker_loop'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:496:in `spawn_missing_workers'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:493:in `fork'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:493:in `spawn_missing_workers'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:489:in `each'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:489:in `spawn_missing_workers'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:503:in `maintain_worker_count'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn/http_server.rb:161:in `start'
+    development/ruby/1.8/gems/unicorn-3.3.1/lib/unicorn.rb:13:in `run'
+    development/ruby/1.8/gems/unicorn-3.3.1/bin/unicorn_rails:208
+    development/ruby/1.8/bin/unicorn_rails:19:in `load'
+    development/ruby/1.8/bin/unicorn_rails:19
+
+Rendering /home/deploy/staging/current/public/500.html (500 Internal Server Error)
+^C
+]0;deploy@li130-169:~/staging/current/log[deploy@li130-169 log]$ script[K[K[K[K[K[K
