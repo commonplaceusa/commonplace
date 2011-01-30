@@ -116,7 +116,7 @@
 
     #4
       %h2{ :class => "section_head"} Question form
-      -form_remote_tag :url => "/site/faq_parse", :loading => "$('.submit_button').hide();", :success => "$('#notice').html('Success!<br />Your question has been successfully submitted.');$('html, body').animate({scrollTop:0}, 'slow');" do -
+      -form_remote_tag :url => "/site/faq_parse", :loading => "$('.submit_button').hide();", :success => "$('#notice').html('Success!<br />Your question has been successfully submitted.');$('html, body').animate({scrollTop:0}, 'slow');" do 
         %label{ :for => "email" } Your Email Address:
         %br
         =text_field_tag :email_address
