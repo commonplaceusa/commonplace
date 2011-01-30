@@ -1,5 +1,5 @@
-# Don't care if the mailer can't send
-config.action_mailer.delivery_method = :test
+
+config.action_mailer.delivery_method = :smtp
 
 config.cache_classes = true
 
