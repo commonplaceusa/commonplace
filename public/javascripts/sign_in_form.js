@@ -1,4 +1,4 @@
-$(document).ready(function(){
+
 	$('#sign_in_button').click(function(){
     	if($('#sign_in_button').hasClass('border')){
         	$('#sign_in_button').removeClass('border').addClass('remove_border');
@@ -10,7 +10,7 @@ $(document).ready(function(){
         	});
     	}
 	});
-});
+
 
 function drop_login_form()
 {
