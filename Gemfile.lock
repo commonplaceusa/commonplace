@@ -128,6 +128,8 @@ GEM
       redis-namespace
       sinatra (>= 0.9.2)
       vegas (>= 0.1.2)
+    resque-exceptional (0.1.0)
+      resque (>= 1.8.0)
     resque-scheduler (1.9.8)
       redis (>= 2.0.1)
       resque (>= 1.8.0)
@@ -210,6 +212,7 @@ DEPENDENCIES
   redis
   redis-namespace
   resque
+  resque-exceptional
   resque-scheduler
   resque_mailer
   rr
