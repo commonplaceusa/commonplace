@@ -3796,3 +3796,193 @@ ActionView::MissingTemplate (Missing template site/faq_parse.erb in view path ap
   development/ruby/1.8/gems/rails-2.3.9/lib/commands/server.rb:111
 
 Rendering rescues/layout (internal_server_error)
+^CExiting
+bash-3.2$ git add .
+git bash-3.2$ git commit -a -m 'Hooked up FAQ page. Need to test on staging'
+git [master 3404e8c] Hooked up FAQ page. Need to test on staging
+ 25 files changed, 5184 insertions(+), 783 deletions(-)
+ create mode 100644 app/models/question_mailer.rb
+ create mode 100644 app/views/question_mailer/faq.html.erb
+ rewrite public/javascripts/jquery-ui.js (98%)
+ create mode 100644 public/javascripts/jquery.js
+ create mode 100644 public/javascripts/jrails.js
+ create mode 100644 typescript
+ create mode 100644 vendor/plugins/jrails/CHANGELOG
+ create mode 100644 vendor/plugins/jrails/LICENSE
+ create mode 100644 vendor/plugins/jrails/README.rdoc
+ create mode 100644 vendor/plugins/jrails/Rakefile
+ create mode 100644 vendor/plugins/jrails/VERSION.yml
+ create mode 100755 vendor/plugins/jrails/bin/jrails
+ create mode 100644 vendor/plugins/jrails/init.rb
+ create mode 100644 vendor/plugins/jrails/install.rb
+ create mode 100644 vendor/plugins/jrails/javascripts/jquery-ui.js
+ create mode 100644 vendor/plugins/jrails/javascripts/jquery.js
+ create mode 100644 vendor/plugins/jrails/javascripts/jrails.js
+ create mode 100644 vendor/plugins/jrails/javascripts/sources/jrails.js
+ create mode 100644 vendor/plugins/jrails/jrails.gemspec
+ create mode 100644 vendor/plugins/jrails/lib/jquery_selector_assertions.rb
+ create mode 100644 vendor/plugins/jrails/lib/jrails.rb
+ create mode 100644 vendor/plugins/jrails/rails/init.rb
+ create mode 100644 vendor/plugins/jrails/tasks/jrails.rake
+bash-3.2$ git push
+cap staCounting objects: 52, done.
+Delta compression using up to 2 threads.
+Compressing objects:   3% (1/31)   Compressing objects:   6% (2/31)   Compressing objects:   9% (3/31)   Compressing objects:  12% (4/31)   Compressing objects:  16% (5/31)   Compressing objects:  19% (6/31)   Compressing objects:  22% (7/31)   Compressing objects:  25% (8/31)   Compressing objects:  29% (9/31)   Compressing objects:  32% (10/31)   Compressing objects:  35% (11/31)   Compressing objects:  38% (12/31)   Compressing objects:  41% (13/31)   Compressing objects:  45% (14/31)   Compressing objects:  48% (15/31)   Compressing objects:  51% (16/31)   Compressing objects:  54% (17/31)   Compressing objects:  58% (18/31)   Compressing objects:  61% (19/31)   Compressing objects:  64% (20/31)   Compressing objects:  67% (21/31)   Compressing objects:  70% (22/31)   Compressing objects:  74% (23/31)   Compressing objects:  77% (24/31)   Compressing objects:  80% (25/31)   Compressing objects:  83% (26/31)   Compressing objects:  87% (27/31)   Compressing objects:  90% (28/31)   Compressing objects:  93% (29/31)   Compressing objects:  96% (30/31)   Compressing objects: 100% (31/31)   Compressing objects: 100% (31/31), done.
+Writing objects:   2% (1/41)   Writing objects:   4% (2/41)   Writing objects:   7% (3/41)   Writing objects:   9% (4/41)   Writing objects:  12% (5/41)   Writing objects:  14% (6/41)   Writing objects:  17% (7/41)   Writing objects:  19% (8/41)   Writing objects:  21% (9/41)   Writing objects:  24% (10/41)   Writing objects:  26% (11/41)   Writing objects:  29% (12/41)   Writing objects:  31% (13/41)   Writing objects:  34% (14/41)   Writing objects:  36% (15/41)   Writing objects:  39% (16/41)   Writing objects:  41% (17/41)   Writing objects:  43% (18/41)   Writing objects:  46% (19/41)   Writing objects:  48% (20/41)   Writing objects:  51% (21/41)   Writing objects:  53% (22/41)   Writing objects:  56% (23/41)   Writing objects:  58% (24/41)   Writing objects:  60% (25/41)   Writing objects:  63% (26/41)   Writing objects:  65% (27/41)   Writing objects:  68% (28/41)   Writing objects:  70% (29/41)   Writing objects:  73% (30/41)   Writing objects:  75% (31/41)   Writing objects:  78% (32/41)   Writing objects:  80% (33/41)   Writing objects:  82% (34/41)   Writing objects:  85% (35/41)   Writing objects:  87% (36/41)   Writing objects:  90% (37/41)   Writing objects:  92% (38/41)   Writing objects:  95% (39/41)   Writing objects:  97% (40/41)   Writing objects: 100% (41/41)   Writing objects: 100% (41/41), 75.11 KiB, done.
+Total 41 (delta 8), reused 1 (delta 0)
+gingTo git@github.com:maxtilford/commonplace.git
+   991d002..3404e8c  master -> master
+bash-3.2$ cap staging deploy
+/Users/jasonberlinsky/.rvm/lib
+  * executing `staging'
+  * executing `deploy'
+  * executing `deploy:update'
+ ** transaction: start
+  * executing `deploy:update_code'
+  * executing "cd /home/deploy/staging/current; git fetch origin; git reset --hard origin/master; git submodule update --init"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+ ** [out :: 69.164.215.169] remote: Counting objects: 52, done.[K
+ ** [out :: 69.164.215.169] remote: Compressing objects:   3% (1/31)   [Kremote: Compressing objects:   6% (2/31)   [Kremote: Compressing objects:   9% (3/31)   [K
+ ** [out :: 69.164.215.169] remote: Compressing objects:  12% (4/31)   [K
+ ** [out :: 69.164.215.169] remote: Compressing objects:  16% (5/31)   [Kremote: Compressing objects:  19% (6/31)   [K
+ ** [out :: 69.164.215.169] remote: Compressing objects:  22% (7/31)   [K
+ ** [out :: 69.164.215.169] remote: Compressing objects:  25% (8/31)   [Kremote: Compressing objects:  29% (9/31)   [Kremote: Compressing objects:  32% (10/31)   [K
+ ** [out :: 69.164.215.169] remote: Compressing objects:  35% (11/31)   [Kremote: Compressing objects:  38% (12/31)   [Kremote: Compressing objects:  41% (13/31)   [Kremote: Compressing objects:  45% (14/31)   [Kremote: Compressing objects:  48% (15/31)   [Kremote: Compressing objects:  51% (16/31)   [Kremote: Compressing objects:  54% (17/31)   [Kremote: Compressing objects:  58% (18/31)   [Kremote: Compressing objects:  61% (19/31)   [Kremote: Compressing objects:  64% (20/31)   [Kremote: Compressing objects:  67% (21/31)   [Kremote: Compressing objects:  70% (22/31)   [Kremote: Compressing objects:  74% (23/31)   [Kremote: Compressing objects:  77% (24/31)   [Kremote: Compressing objects:  80% (25/31)   [K
+ ** [out :: 69.164.215.169] remote: Compressing objects:  83% (26/31)   [Kremote: Compressing objects:  87% (27/31)   [Kremote: Compressing objects:  90% (28/31)   [Kremote: Compressing objects:  93% (29/31)   [Kremote: Compressing objects:  96% (30/31)   [Kremote: Compressing objects: 100% (31/31)   [Kremote: Compressing objects: 100% (31/31), done.[K
+ ** [out :: 69.164.215.169] Unpacking objects:   2% (1/41)
+ ** [out :: 69.164.215.169] Unpacking objects:   4% (2/41)
+ ** [out :: 69.164.215.169] Unpacking objects:   7% (3/41)
+ ** [out :: 69.164.215.169] Unpacking objects:   9% (4/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  12% (5/41)   Unpacking objects:  14% (6/41)   Unpacking objects:  17% (7/41)   Unpacking objects:  19% (8/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  21% (9/41)   Unpacking objects:  24% (10/41)   Unpacking objects:  26% (11/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  29% (12/41)   Unpacking objects:  31% (13/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  34% (14/41)
+ ** [out :: 69.164.215.169] remote: Total 41 (delta 8), reused 1 (delta 0)[K
+ ** [out :: 69.164.215.169] Unpacking objects:  36% (15/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  39% (16/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  41% (17/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  43% (18/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  46% (19/41)   Unpacking objects:  48% (20/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  51% (21/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  53% (22/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  56% (23/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  58% (24/41)   Unpacking objects:  60% (25/41)   Unpacking objects:  63% (26/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  65% (27/41)   Unpacking objects:  68% (28/41)   Unpacking objects:  70% (29/41)   Unpacking objects:  73% (30/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  75% (31/41)   Unpacking objects:  78% (32/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  80% (33/41)   Unpacking objects:  82% (34/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  85% (35/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  87% (36/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  90% (37/41)   Unpacking objects:  92% (38/41)
+ ** [out :: 69.164.215.169] Unpacking objects:  95% (39/41)   Unpacking objects:  97% (40/41)
+ ** [out :: 69.164.215.169] Unpacking objects: 100% (41/41)   Unpacking objects: 100% (41/41), done.
+ ** [out :: 69.164.215.169] From github.com:maxtilford/commonplace
+ ** [out :: 69.164.215.169] 991d002..3404e8c  master     -> origin/master
+ ** [out :: 69.164.215.169] HEAD is now at 3404e8c Hooked up FAQ page. Need to test on staging
+    command finished
+    triggering after callbacks for `deploy:update_code'
+  * executing `gems:install'
+  * executing "cd /home/deploy/staging/current && bundle install --path vendor --without test development"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+ ** [out :: 69.164.215.169] Using rake (0.8.7)
+ ** [out :: 69.164.215.169] Using BlueCloth (1.0.1)
+ ** [out :: 69.164.215.169] Using RedCloth (4.2.3)
+ ** [out :: 69.164.215.169] Using SystemTimer (1.2.1)
+ ** [out :: 69.164.215.169] Using aasm (2.2.0)
+ ** [out :: 69.164.215.169] Using activesupport (2.3.9)
+ ** [out :: 69.164.215.169] Using rack (1.1.0)
+ ** [out :: 69.164.215.169] Using actionpack (2.3.9)
+ ** [out :: 69.164.215.169] Using actionmailer (2.3.9)
+ ** [out :: 69.164.215.169] Using activerecord (2.3.9)
+ ** [out :: 69.164.215.169] Using activeresource (2.3.9)
+ ** [out :: 69.164.215.169] Using acts-as-list (0.1.2)
+ ** [out :: 69.164.215.169] Using acts-as-taggable-on (2.0.6)
+ ** [out :: 69.164.215.169] Using addressable (2.2.3)
+ ** [out :: 69.164.215.169] Using authlogic (2.1.6)
+ ** [out :: 69.164.215.169] Using multipart-post (1.1.0)
+ ** [out :: 69.164.215.169] Using faraday (0.5.4)
+ ** [out :: 69.164.215.169] Using multi_json (0.0.5)
+ ** [out :: 69.164.215.169] Using oauth2 (0.1.1)
+ ** [out :: 69.164.215.169] Using authlogic_oauth2 (1.1.2)
+ ** [out :: 69.164.215.169] Using babosa (0.2.1)
+ ** [out :: 69.164.215.169] Using cancan (1.5.1)
+ ** [out :: 69.164.215.169] Using chunky_png (0.10.5)
+ ** [out :: 69.164.215.169] Using sass (3.1.0.alpha.218)
+ ** [out :: 69.164.215.169] Using compass (0.11.beta.1)
+ ** [out :: 69.164.215.169] Using crack (0.1.8)
+ ** [out :: 69.164.215.169] Using creole (0.3.8)
+ ** [out :: 69.164.215.169] Using mime-types (1.16)
+ ** [out :: 69.164.215.169] Using eventfulapi (2.2.1)
+ ** [out :: 69.164.215.169] Using exceptional (2.0.32)
+ ** [out :: 69.164.215.169] Using faraday_middleware (0.3.1)
+ ** [out :: 69.164.215.169] Using i18n (0.5.0)
+ ** [out :: 69.164.215.169] Using formtastic (1.2.3)
+ ** [out :: 69.164.215.169] Using friendly_id (3.2.0)
+ ** [out :: 69.164.215.169] Using glebm-geokit (1.5.2)
+ ** [out :: 69.164.215.169] Using god (0.11.0)
+ ** [out :: 69.164.215.169] Using haml (3.1.0.alpha.147)
+ ** [out :: 69.164.215.169] Using hashie (0.4.0)
+ ** [out :: 69.164.215.169] Using httparty (0.7.3)
+ ** [out :: 69.164.215.169] Using json (1.4.6)
+ ** [out :: 69.164.215.169] Using kgio (2.1.1)
+ ** [out :: 69.164.215.169] Using nokogiri (1.4.4)
+ ** [out :: 69.164.215.169] Using loofah (1.0.0)
+ ** [out :: 69.164.215.169] Using rdiscount (1.6.5)
+ ** [out :: 69.164.215.169] Using mcbean (0.4.0)
+ ** [out :: 69.164.215.169] Using multi_xml (0.2.0)
+ ** [out :: 69.164.215.169] Using nested_layouts (0.1.3)
+ ** [out :: 69.164.215.169] Using outside-in (1.0.0)
+ ** [out :: 69.164.215.169] Using paperclip (2.3.8)
+ ** [out :: 69.164.215.169] Using pg (0.10.1)
+ ** [out :: 69.164.215.169] Using rMeetup (1.0)
+ ** [out :: 69.164.215.169] Using rails (2.3.9)
+ ** [out :: 69.164.215.169] Using redis (2.1.1)
+ ** [out :: 69.164.215.169] Using redis-namespace (0.10.0)
+ ** [out :: 69.164.215.169] Using tilt (1.2.2)
+ ** [out :: 69.164.215.169] Using sinatra (1.1.2)
+ ** [out :: 69.164.215.169] Using vegas (0.1.8)
+ ** [out :: 69.164.215.169] Using resque (1.8.2)
+ ** [out :: 69.164.215.169] Using tzinfo (0.3.24)
+ ** [out :: 69.164.215.169] Using rufus-scheduler (2.0.8)
+ ** [out :: 69.164.215.169] Using resque-scheduler (1.9.8)
+ ** [out :: 69.164.215.169] Using resque_mailer (1.0.1)
+ ** [out :: 69.164.215.169] Using simple_oauth (0.1.3)
+ ** [out :: 69.164.215.169] Using simple_uuid (0.1.2)
+ ** [out :: 69.164.215.169] Using subdomain-fu (0.5.4)
+ ** [out :: 69.164.215.169] Using text-hyphen (1.0.0)
+ ** [out :: 69.164.215.169] Using text-reform (0.2.0)
+ ** [out :: 69.164.215.169] Using thor (0.14.6)
+ ** [out :: 69.164.215.169] Using tlsmail (0.0.1)
+ ** [out :: 69.164.215.169] Using tmail (1.2.7.1)
+ ** [out :: 69.164.215.169] Using twitter (1.1.1)
+ ** [out :: 69.164.215.169] Using unicorn (3.3.1)
+ ** [out :: 69.164.215.169] Using yajl-ruby (0.7.9)
+ ** [out :: 69.164.215.169] Using bundler (1.0.7)
+ ** [out :: 69.164.215.169] [32mYour bundle is complete! It was installed into ./vendor[0m
+    command finished
+  * executing `symlinks:make'
+  * executing "mkdir -p /home/deploy/staging/current/tmp"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+    command finished
+  * executing "cd /home/deploy/staging/current &&\\\n      rm -rf /home/deploy/staging/current/config/database.yml &&        ln -s /home/deploy/staging/shared/config/database.yml /home/deploy/staging/current/config/database.yml && rm -rf /home/deploy/staging/current/config/config.yml &&        ln -s /home/deploy/staging/shared/config/config.yml /home/deploy/staging/current/config/config.yml && rm -rf /home/deploy/staging/current/config/unicorn.rb &&        ln -s /home/deploy/staging/shared/config/unicorn.rb /home/deploy/staging/current/config/unicorn.rb && rm -rf /home/deploy/staging/current/public/system &&        ln -s /home/deploy/staging/shared/system /home/deploy/staging/current/public/system && rm -rf /home/deploy/staging/current/log &&        ln -s /home/deploy/staging/shared/logs /home/deploy/staging/current/log"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+    command finished
+  * executing `deploy:symlink'
+ ** transaction: commit
+  * executing `deploy:restart'
+    triggering before callbacks for `deploy:restart'
+  * executing `sass:update'
+  * executing "cd /home/deploy/staging/current && /usr/local/rvm/gems/ree-1.8.7-2010.02/bin/rake sass:update RAILS_ENV=staging"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+ ** [out :: 69.164.215.169] (in /home/deploy/staging/current)
+ ** [out :: 69.164.215.169] Exceptional::Config.load - no configuration file
+    command finished
+  * executing "kill -USR2 `cat /home/deploy/staging/shared/pids/unicorn.pid`"
+    servers: ["69.164.215.169"]
+    [69.164.215.169] executing command
+    command finished
+bash-3.2$ 
