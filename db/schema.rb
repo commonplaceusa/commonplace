@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
   end
 
   create_table "announcements", :force => true do |t|
-    t.string   "subject",                       :null => false
-    t.text     "body",                          :null => false
-    t.integer  "feed_id",                       :null => false
+    t.string   "subject",                                :null => false
+    t.text     "body",                                   :null => false
+    t.integer  "feed_id",                                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "private",    :default => false, :null => false
-    t.string   "type"
+    t.boolean  "private",    :default => false,          :null => false
+    t.string   "type",       :default => "Announcement"
     t.string   "url"
   end
 
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
     t.string   "source_feed_id"
     t.string   "address"
     t.string   "venue"
-    t.string   "host_group_name"
     t.string   "type"
+    t.string   "host_group_name"
   end
 
   create_table "feedbacks", :force => true do |t|
@@ -117,7 +117,6 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
     t.string   "address"
     t.string   "hours"
     t.string   "slug"
-    t.integer  "owner_id"
     t.string   "twitter_name"
   end
 
@@ -320,8 +319,8 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
     t.boolean  "admin",                                         :default => false
     t.string   "state"
     t.string   "avatar_file_name"
-    t.integer  "facebook_uid",                     :limit => 8
     t.string   "address"
+    t.integer  "facebook_uid",                     :limit => 8
     t.string   "oauth2_token"
     t.integer  "community_id"
   end
