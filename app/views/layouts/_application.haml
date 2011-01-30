@@ -27,7 +27,7 @@
     = stylesheet_link_tag 'application'
 
 
-  %body{:class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]}"}
+  %body{:onLoad=>"sign_in_click()", :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]}"}
     - if current_user_session
       = render 'shared/admin_bar'
     %header
