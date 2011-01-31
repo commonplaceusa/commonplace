@@ -15,7 +15,7 @@ en:
       p1: CommonPlace brings your neighborhoods and civic leaders in %{community} together into one "community network" online.
       p2: Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and mayor.
       p3: Whenever something's interesting to you, you can hit "reply" and start a community conversation.
-      p4: All these community conversations, events and announcements can always be viewed at <a href="www.%{community}.OurCommonPlace.com">www.%{community}.OurCommonPlace.com</a>
+      p4: All these community conversations, events and announcements can always be viewed at %{link}.
       p5: And of course, whenever YOU have a need or announcement, CommonPlace makes it really easy to share it with the people around you.
       p6: To post, simply go to&#58; %{community_link}
       p7: Or email it in at&#58; %{community_email}
@@ -24,7 +24,7 @@ en:
         - Publicize a tag sale or block party
         - Find people and organizations with shared interests or hobbies around you
         - Ask about how to fix a pot hole
-        - Organize a service project for COMMUNITY
+        - Organize a service project for %{community}
 
     edit_interests:
       title: Community leaders use West Roxbury CommonPlace <br> to send out information about what's happening in town.
