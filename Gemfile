@@ -27,6 +27,8 @@ gem 'exceptional'
 gem 'aasm'
 gem 'tmail'
 
+gem 'mail_style'
+
 gem 'httparty'
 gem 'json'
 gem 'simple_uuid'
@@ -56,6 +58,7 @@ gem 'unicorn'
 end
 
 group :development, :test do
+  gem 'sanitize_email'
   gem 'factory_girl'
   gem 'ZenTest'
   gem 'forgery'
@@ -66,7 +69,7 @@ end
 
 group :development do 
   gem 'capistrano'
-  gem 'capistrano-ext'#, :lib => false
+  gem 'capistrano-ext'
   gem 'mongrel'
 end
 
