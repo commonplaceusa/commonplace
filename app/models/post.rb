@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
 
+  attr_accessor :post_to_facebook
 
   has_many :notifications, :as => :notified
 
