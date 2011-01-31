@@ -9,9 +9,9 @@ class QuestionMailer < ActionMailer::Base
   include Resque::Mailer
   @queue = :notifications
   
-  def faq(from, body)
+  def faq(from, question)
     @from = from
-    @body = body
+    @question_text = question
     recipients "jason@jasonberlinsky.com"
     header = SmtpApiHeader.new
     @headers['X-SMTPAPI'] = header.asJSON
