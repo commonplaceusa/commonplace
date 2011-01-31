@@ -125,7 +125,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions, :dependent => :destroy
   has_many :feeds, :through => :subscriptions
   has_many :managable_feeds, :class_name => "Feed"
-  has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies
+  has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies, :dependent => :destroy
 
   has_many :referrals, :foreign_key => "referee_id"
   

@@ -1,0 +1,7 @@
+
+- semantic_form_for current_user, :url => account_path, :html => {:method => :delete} do |f|
+  %p If you delete your account everything will be removed, including your posts and replies. If you're absolutely sure you want to remove your account, press the following button.
+
+  - f.buttons do
+    = f.commit_button "Fully remove my account from CommonPlace"
+  

@@ -6,7 +6,6 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :addresses, :controller => "administration/addresses"
     admin.resources :feeds, :controller => "administration/feeds"
     admin.resources :communities, :controller => "administration/communities"
-
   end
 
   if RAILS_ENV != 'production'
@@ -78,7 +77,8 @@ ActionController::Routing::Routes.draw do |map|
       :edit_interests => :get,
       :update_interests => :put,
       :settings => :put,
-      :avatar => :post
+      :avatar => :post,
+      :delete => :get
     }
     map.resources :mets
 

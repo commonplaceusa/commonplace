@@ -7,5 +7,7 @@
     = f.input :receive_posts, :as => :boolean
     = f.input :receive_events_and_announcements, :as => :boolean
   - f.buttons do
+    %li.delete
+      = link_to "Delete my CommonPlace account", delete_account_path
     = f.commit_button "Update Settings"
   
