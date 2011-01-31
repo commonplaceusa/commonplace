@@ -43,6 +43,7 @@ GEM
       sass (>= 3.1.0.alpha.50)
     crack (0.1.8)
     creole (0.3.8)
+    css_parser (1.1.4)
     daemons (1.1.0)
     database_cleaner (0.6.0)
     eventfulapi (2.2.1)
@@ -77,6 +78,10 @@ GEM
     kgio (2.1.1)
     loofah (1.0.0)
       nokogiri (>= 1.3.3)
+    mail_style (0.1.6)
+      actionmailer (>= 1.2.3)
+      css_parser (>= 1.0.0)
+      nokogiri (>= 1.0.0)
     mcbean (0.4.0)
       RedCloth (>= 4.2.0)
       creole (>= 0.3.7)
@@ -142,6 +147,8 @@ GEM
       rspec (= 1.3.1)
     rufus-scheduler (2.0.8)
       tzinfo (>= 0.3.23)
+    sanitize_email (0.3.7)
+      actionmailer
     sass (3.1.0.alpha.218)
     simple_oauth (0.1.3)
     simple_uuid (0.1.2)
@@ -200,6 +207,7 @@ DEPENDENCIES
   haml (= 3.1.0.alpha.147)
   httparty
   json
+  mail_style
   mcbean
   mongrel
   nested_layouts
@@ -218,6 +226,7 @@ DEPENDENCIES
   rr
   rspec (~> 1.3)
   rspec-rails (~> 1.3)
+  sanitize_email
   simple_uuid
   subdomain-fu
   text-reform
