@@ -9,8 +9,8 @@ class QuestionMailer < ActionMailer::Base
   include Resque::Mailer
   @queue = :notifications
   
-  def faq(from, question)
-    @from = from
+  def faq(sender, question)
+    @question_sender = sender
     @question_text = question
     recipients "jason@jasonberlinsky.com"
     header = SmtpApiHeader.new
