@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   
   def current_user
     return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.user || User.new(:neighborhood_id => 1, :avatar => Avatar.new)
+    @current_user = current_user_session && current_user_session.user || User.new(:neighborhood_id => 1)
   end
 
   def reload_current_user!
