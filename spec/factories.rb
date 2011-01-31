@@ -12,8 +12,6 @@ Factory.define :neighborhood do |f|
   f.association :community 
 end
 
-Factory.define :avatar do |f|
-end
 
 Factory.define :user do |f|
   f.first_name { Forgery(:name).first_name }
@@ -22,15 +20,8 @@ Factory.define :user do |f|
   f.interest_list { Array.new((0..4).random){Forgery(:basic).color}.join(',')}
   f.email {|u| "#{u.first_name}.#{u.last_name}@example.com".downcase }
   f.password { Forgery(:basic).password }
-  f.association :location
   f.about { Forgery(:lorem_ipsum).paragraphs(1) }
-  f.association :avatar
   f.association :neighborhood
-end
-
-Factory.define :location do |f|
-  f.street_address "420 Baker St."
-  f.zip_code "02132"
 end
 
 Factory.define :post do |f|
@@ -54,7 +45,6 @@ end
 
 Factory.define :feed do |f|
   f.name { Forgery(:name).company_name }
-  f.association :avatar
   f.after_build {|o| o.profile_fields = [] }
 end
   
