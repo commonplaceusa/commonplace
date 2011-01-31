@@ -10,6 +10,8 @@ class QuestionMailer < ActionMailer::Base
   @queue = :notifications
   
   def faq(from, body)
+    @from = from
+    @body = body
     recipients "jason@jasonberlinsky.com"
     header = SmtpApiHeader.new
     @headers['X-SMTPAPI'] = header.asJSON
