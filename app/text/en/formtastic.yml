@@ -24,10 +24,6 @@ en:
         email: "EMAIL"
         password: "PASSWORD"
 
-      post:
-        subject: "Subject"
-        body: "Post"
-
       feed:
         name: "Feed Name:"
         avatar: "Add a photo of your organization:"
@@ -48,7 +44,7 @@ en:
       post:
         subject: Title
         body: Body
-        
+        post_to_facebook: "Post to your facebook wall as well?"        
       event: 
         name: "Event name:"
         description: "Event description:"
