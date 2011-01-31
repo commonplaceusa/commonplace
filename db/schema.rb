@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110125193859) do
+ActiveRecord::Schema.define(:version => 20110131072200) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -38,17 +38,6 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
     t.datetime "updated_at"
   end
 
-  create_table "avatars", :force => true do |t|
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.string   "image_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "avatar_remote_url"
-  end
-
   create_table "communities", :force => true do |t|
     t.string   "name",                   :null => false
     t.datetime "created_at"
@@ -58,19 +47,6 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
     t.string   "logo_file_name"
     t.string   "email_header_file_name"
     t.text     "signup_message"
-  end
-
-  create_table "conversation_memberships", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "conversation_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "conversations", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "events", :force => true do |t|
@@ -89,13 +65,6 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
     t.string   "venue"
     t.string   "type"
     t.string   "host_group_name"
-  end
-
-  create_table "feedbacks", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "contents",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "feeds", :force => true do |t|
@@ -130,26 +99,6 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
     t.integer  "invitee_id"
   end
 
-  create_table "links", :force => true do |t|
-    t.integer  "linkable_id",   :null => false
-    t.string   "linkable_type", :null => false
-    t.integer  "linker_id",     :null => false
-    t.string   "linker_type",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "locations", :force => true do |t|
-    t.string   "street_address"
-    t.string   "zip_code"
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "locatable_id"
-    t.string   "locatable_type"
-  end
-
   create_table "messages", :force => true do |t|
     t.integer  "user_id",      :null => false
     t.text     "body",         :null => false
@@ -181,29 +130,6 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
     t.datetime "updated_at"
     t.integer  "notified_id"
     t.string   "notified_type"
-  end
-
-  create_table "organizations", :force => true do |t|
-    t.string   "name",                :null => false
-    t.string   "address"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.text     "about"
-    t.string   "phone"
-    t.string   "website"
-    t.integer  "community_id"
-    t.string   "category"
-  end
-
-  create_table "platform_updates", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.text     "body",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "posts", :force => true do |t|
@@ -242,13 +168,6 @@ ActiveRecord::Schema.define(:version => 20110125193859) do
     t.datetime "updated_at"
     t.string   "repliable_type"
     t.boolean  "official",       :default => false, :null => false
-  end
-
-  create_table "roles", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "organization_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "slugs", :force => true do |t|
