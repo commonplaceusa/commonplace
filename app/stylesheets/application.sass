@@ -121,27 +121,20 @@ body.application
       float: right
       margin-top: 10px
       position: relative
-      width: 235px
-      li
-        display: inline
+      li 
         margin: 0 5px
+        +inline-block
         color: #545454
-        width: 100px
       #sign_in_button
-        display: block
         background: url(/images/nav-down-arrow.png) no-repeat 95% 40% #fff
-        width: 65px
-        padding: 0px 5px
-        height: 20px
+        padding: 0px 20px 3px 5px
         line-height: 18px
         position: relative
-        float: right
-        margin-top: -3px
         z-index: 100
       #sign_in_form
         position: absolute
         right: -1px
-        top: -1px
+        top: 3px
         
     .remove_border
       border:
