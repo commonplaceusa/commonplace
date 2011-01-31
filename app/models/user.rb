@@ -154,6 +154,18 @@ class User < ActiveRecord::Base
                     :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
 
 
+  def client
+    OAuth2::Client.new(CONFIG['facebook_api_key'], CONFIG['facebook_secret_key'], :site => 'https://graph.facebook.com')
+  end
+  
+  def access_token
+    OAuth2::AccessToken.new(client,self.oauth2_token)
+  end
+  
+  def facebook_profile_data
+    JSON.parse(access_token.get("/me"))
+  end
+
   def validate 
     errors.add(:full_name, "can't be blank") if first_name.blank? || last_name.blank?
   end 
