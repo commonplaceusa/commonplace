@@ -22,6 +22,13 @@ class AccountsController < CommunitiesController
     redirect_to edit_account_url
   end
 
+  def delete
+  end
+
+  def destroy
+    current_user.destroy
+    redirect_to root_url
+  end
   
   def create
     authorize! :create, User
