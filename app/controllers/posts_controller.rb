@@ -14,6 +14,12 @@ class PostsController < CommunitiesController
     @post.user = current_user
     @post.area = current_neighborhood
     if @post.save
+      puts @post.inspect
+      post_params = params[:post]
+      if (post_params[:post_to_facebook] == "1")
+        #current_user.access_token.post("/" + current_user.facebook_uid.to_s + "/feed/", :message => "Test")
+      end
+      
       NotificationsMailer.deliver_neighborhood_post(current_neighborhood.id,
                                                     post.id)
       flash[:message] = "Post Created!"
