@@ -46,4 +46,17 @@ class Community < ActiveRecord::Base
   def events
     (user_events.upcoming + feed_events.upcoming).sort_by(&:start_datetime)
   end
+
+  def neighborhood_for(address)
+    default = self.neighborhoods.first
+    if position = LatLng.from_address(address, self.zip_code)
+      self.neighborhoods.to_a.find(lambda { default }) do |n|
+        n.contains?(position)
+      end
+    else
+      default
+    end
+  end
+    
+
 end
