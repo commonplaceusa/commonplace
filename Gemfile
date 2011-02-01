@@ -76,6 +76,7 @@ end
 group :test do
   gem 'spork'
   gem 'rr'
+  gem 'rspec-rr'
   gem 'database_cleaner'
 end
 
