@@ -20,4 +20,8 @@ WHERE (posts.area_type = 'Neighborhood' AND
 
   validates_presence_of :name, :bounds
 
+  def contains?(position)
+    position.within? self.bounds
+  end
+
 end
