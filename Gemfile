@@ -74,6 +74,7 @@ group :development do
 end
 
 group :test do
+  gem 'spork'
   gem 'rr'
   gem 'database_cleaner'
 end
