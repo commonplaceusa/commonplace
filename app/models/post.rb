@@ -39,12 +39,10 @@ class Post < ActiveRecord::Base
     self.user
   end
   
-  def user_may_delete(current_user)
-    return current_user.is_same_as(self.user)
-  end
+
   
   def deleteLink
-    if self.user_may_delete(UserSession.find.user)
+    if UserSession.find.user.admin? || self.user == UserSession.find.user
       "<a href='/posts/destroy/#{self.id}'><img src='/images/delete.png' /></a>"
     else
       ""

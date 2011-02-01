@@ -31,7 +31,6 @@ class PostsController < CommunitiesController
   
   def destroy
     if can? :destroy, @post
-   # if (@post.user_may_delete(current_user))
       if @post.destroy
         flash[:message] = "Post Deleted!"
         redirect_to posts_path
