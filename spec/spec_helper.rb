@@ -10,7 +10,7 @@ Spork.prefork do
   require 'spec'
   require 'spec/rails'
   require 'rr'  
-  
+  require 'spec/rr'
   Spec::Runner.configure do |config|
     config.mock_with RR::Adapters::Rspec
   end
