@@ -11,11 +11,4 @@
         %p To post only to your neighborhood, #{ link_to 'click here to post to your neighborhood board right now.', new_post_path, 'data-remote' => true }
 
     - else
-
-      - semantic_form_for @announcement, :html => {'data-remote' => true} do |f|
-        - f.inputs do
-          = f.input :feed, :collection => current_user.managable_feeds
-          = f.input :subject
-          = f.input :body, :input_html => { :rows => 5, :cols => 21 }
-        - f.buttons do
-          = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}
+      = render 'form', :announcement => @announcement
