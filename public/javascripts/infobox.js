@@ -9,9 +9,18 @@ function setInfoBoxPosition() {
   }
 }
 
-$(function(){
-  window.onscroll = setInfoBoxPosition;
 
+$(function(){
+  var didscroll = false;  
+  $(window).scroll(function() { didscroll = true; });
+
+  setInterval(function() {
+    if (didscroll) {
+      didscroll = false;
+      setInfoBoxPosition();
+    }
+  }, 100); 
+    
 
   $("body").bind("#information", function(e, content) {
     if (content) {
