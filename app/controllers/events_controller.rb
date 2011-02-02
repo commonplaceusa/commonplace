@@ -28,8 +28,17 @@ class EventsController < CommunitiesController
     end
   end
   
+  def edit ; end
+
   def update
+    if @event.update_attributes(params[:event].merge(:owner => @owner))
+      redirect_to event_url(@event)
+    else
+      render :edit
+    end
   end
+
+
   def show
     if current_user.events.include?(@event) && !flash.now[:message]
       flash.now[:message] = "You are attending #{@event.name}"

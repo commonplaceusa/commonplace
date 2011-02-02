@@ -1,0 +1,23 @@
+- semantic_form_for event, :html => {'data-remote' => true} do |f|
+  - f.inputs do 
+    %li
+      %label{:for => "event_feed", :class => "select required"}
+        Post as:
+      = f.select :owner, options_for_select(creation_feeds_for(current_user), dom_id(f.object.owner || current_user))
+    = f.input :name
+    = f.input :description, :input_html => { :rows => 5, :cols => 21}
+    = f.input :date, :as => :string, :input_html => {:class => 'date'}
+    = event_select_time('start_time')
+    = event_select_time('end_time')
+    = f.input :venue
+    = f.input :address
+    = f.input :tag_list
+  %fieldset
+    %ol
+      %li.check_boxes
+        = f.label :pledge,  "I pledge that this is a public, face-to-face event."
+        = f.check_box :pledge,  :label => "I pledge..."
+    
+    
+  - f.buttons do
+    = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}
