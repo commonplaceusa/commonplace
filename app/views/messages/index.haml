@@ -1,0 +1,6 @@
+
+- update_content "#syndicate" do
+  #syndicate
+    %h3= t "syndicate.messages.title"
+    = render 'shared/items', :items => current_user.inbox
+

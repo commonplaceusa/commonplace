@@ -1,6 +1,11 @@
 class MessagesController < CommunitiesController
   helper_method :parent
+
+  def index ; end
   
+  def show
+    @message = Message.find(params[:id])
+  end
 
   def new
     authorize! :create, Reply
