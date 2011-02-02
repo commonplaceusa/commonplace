@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     community.resources :announcements, :collection => {"subscribed" => :get}
     community.resources :subscriptions, :collection => {"recommended" => :get}
     community.resources :replies
-    community.resources :messages
+    community.resources :messages, :collection => {"admin_quick_view" => :get}
     
     community.resources :tags
 

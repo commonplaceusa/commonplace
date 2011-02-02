@@ -1,8 +1,8 @@
 - @messages.each do |message|
   .message
     %h3.subject= message.subject
-    %p.to to #{message.recipient.name if message.recipient}
-    %p.from from #{message.user.name if message.user}
+    %p.to to #{message.messagable.name}
+    %p.from from #{message.user.name}
     %p.date= message.created_at
     %p.body= message.body
     
