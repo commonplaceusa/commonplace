@@ -4,21 +4,17 @@ class MessagesController < CommunitiesController
 
   def new
     authorize! :create, Reply
-    @user = parent
-    @message = Message.new
+    @message = Message.new(:messagable => parent)
   end
 
   def create
-    if parent.is_a? User
-      @message = Message.new(:user => current_user, :recipient => parent,
-                             :subject => params[:message][:subject],
-                             :body => params[:message][:body])
-      @message.save
+    @message = current_user.messages.build(params[:message])
+    if @message.save
+      flash.now[:message] = "Message sent to #{@message.messagable.name}"
+      NotificationsMailer.deliver_message(@message.id)
+    else
+      render :new
     end
-    NotificationsMailer.send("deliver_#{parent.class.name.downcase}_message",
-                             parent.id, current_user.id,
-                             params[:message][:subject], params[:message][:body])
-    flash.now[:message] = "Message sent to #{parent.name}"
   end
   
   def admin_quick_view

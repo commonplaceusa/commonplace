@@ -30,34 +30,13 @@ class NotificationsMailer < ActionMailer::Base
     from "CommonPlace <#{@post.long_id}@posts.#{@community.slug}.commonplaceusa.com>"
   end
   
-  def user_message(messengee_id, messenger_id, message_subject, message)
-    @messengee = User.find(messengee_id)
-    @messenger = User.find(messenger_id)
-    @community = @messenger.community
-    recipients @messengee.email
-    from "CommonPlace <#{message.long_id}@messages.#{community.slug}.commonplaceusa.com>"
-    subject "#{@messenger.name} just sent you a message on CommonPlace"
-    body :message_subject => message_subject, :message => message
-  end
-
-  def feed_message(feed_id, user_id, message_subject, message)
-    @feed = Feed.find(feed_id)
-    @user = User.find(user_id)
-    @community = @user.community
-    recipients @feed.user.email
-    from "CommonPlace <#{message.long_id}@messages.#{community.slug}.commonplaceusa.com>"
-    subject "#{@user.name} just sent #{@feed.name} a message on CommonPlace"
-    body :message_subject => message_subject, :message => message
-  end
-
-  def event_message(event_id, user_id, message_subject, message)
-    @event = Event.find(event_id)
-    @user = User.find(user_id)
-    @community = @user.community
-    recipients @event.user.email
-    from "CommonPlace <#{message.long_id}@messages.#{community.slug}.commonplaceusa.com>"
-    subject "#{@user.name} just sent #{@event.name} a message on CommonPlace"
-    body :message_subject => message_subject, :message => message
+  def message(message_id)
+    @message = Message.find(message_id)
+    @user = @message.messagable.is_a?(User) ? @message.messagable : @message.messagable.user
+    @community = @message.user.community
+    recipients @user.email
+    from "CommonPlace <#{@message.long_id}@messages.#{@community.slug}.commonplaceusa.com>"
+    subject "#{@message.user.name} just sent you a message on CommonPlace"
   end
 
   def post_reply(reply_id)

@@ -1,0 +1,29 @@
+
+<% content_for :greeting do %>
+  <div style="margin-bottom:10px;">Hi <%= @user.first_name %>,</div>
+  Your neighbor, 
+  <% link_to user_url(@message.user, :subdomain => @community.slug) do %>
+    <font color="#b53f3c">
+      <%= @message.user.name %>
+    </font>
+  <% end %>
+  just sent 
+  <%= @message.messagable.is_a?(User) ? "you" : @message.messagable.name %>
+  a message through CommonPlace.
+<% end %>
+
+<% content_for :subject, @message.subject %>
+
+<% content_for :body, markdown(@message.body) %>
+
+<% content_for :avatar, 
+   image_tag(root_url(:subdomain => @community.slug) + @message.user.avatar.url(:thumb), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") %>
+
+
+<% content_for :reply_with do %>
+  <div style="font-family:Arial, Helvetica, sans-serif;color:#4a7eb0;font-size:11px;font-weight:bold;background-color:#b53f3c;padding:5px 8px;display:inline-block;border:1px solid #923532;text-align:center;text-transform:none!important;margin-top:10px;">
+    <% link_to new_user_message_url(@message.user, :subdomain => @community.slug), :style => "text-decoration:none;" do %>
+      <font color="#FFEEEE">Reply to <%= @message.user.first_name %></font>
+    <% end %>
+  </div> 
+<% end %>

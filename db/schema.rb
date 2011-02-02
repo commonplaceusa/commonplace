@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110131072200) do
+ActiveRecord::Schema.define(:version => 20110201222144) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -100,12 +100,13 @@ ActiveRecord::Schema.define(:version => 20110131072200) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "user_id",      :null => false
-    t.text     "body",         :null => false
+    t.integer  "user_id",         :null => false
+    t.text     "body",            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subject"
-    t.integer  "recipient_id"
+    t.integer  "messagable_id"
+    t.string   "messagable_type"
   end
 
   create_table "mets", :force => true do |t|

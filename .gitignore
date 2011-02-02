@@ -22,3 +22,5 @@ config/config.yml
 public/stylesheets
 development
 development/*
+log/exceptional.log
+log/sendmail.log
