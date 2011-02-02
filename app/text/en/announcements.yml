@@ -3,3 +3,6 @@ en:
     new:
       title: Send an announcement to your whole community
       link: Create a Community Announcement
+
+    edit:
+      title: Edit your announcement
