@@ -30,10 +30,12 @@ class Ability
       can :create, Feed
       can :manage, Feed, :user_id => user.id
       can :read, ActsAsTaggableOn::Tag
-
+      
       can :manage, Event do |e|
         e.user == user
       end
+
+      can :manage, Announcement, :feed => {:user_id => user.id}
 
       if user.admin?
         can :uplift, Post

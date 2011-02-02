@@ -24,4 +24,15 @@ class AnnouncementsController < CommunitiesController
       render :new
     end
   end
+
+  def edit ; end
+  
+  def update
+    if @announcement.update_attributes(params[:announcement])
+      redirect_to announcement_url(@announcement)
+    else
+      render :edit
+    end
+  end
+  
 end
