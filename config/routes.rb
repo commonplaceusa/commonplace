@@ -26,9 +26,10 @@ ActionController::Routing::Routes.draw do |map|
     community.resources :announcements, :collection => {"subscribed" => :get}
     community.resources :subscriptions, :collection => {"recommended" => :get}
     community.resources :replies
+    community.resources :messages
     
     community.resources :tags
-    
+
     community.resources :events, :collection => {"your" => :get, "suggested" => :get} do |event|
       event.resource :attendance
       event.resources :referrals

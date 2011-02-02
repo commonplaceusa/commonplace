@@ -1,0 +1,8 @@
+- update_content "#information" do
+  = render 'users/info_box', :user => @message.user
+
+- unless xhr?
+  - update_content "#syndicate" do
+    #syndicate
+      %h3= t "syndicate.messages.title"
+      = render 'shared/items', :items => current_user.inbox

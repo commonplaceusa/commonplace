@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe MessagesController do
-  
-  let(:messagable) { mock_model(User) }
-  
+
   describe "#create" do
     before :each do
       current_community
