@@ -39,6 +39,9 @@ class User < ActiveRecord::Base
 
   has_many :referrals, :foreign_key => "referee_id"
   has_many :messages
+
+  has_many :received_messages, :as => :messagable, :class_name => "Message"
+
   has_many :mets, :foreign_key => "requester_id"
   
   has_many :people, :through => :mets, :source => "requestee"
@@ -59,6 +62,10 @@ class User < ActiveRecord::Base
                     :default_url => "/avatars/missing.png", 
                     :url => "/system/users/:id/avatar/:style.:extension",
                     :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
+
+  def inbox
+    (self.received_messages + self.messages).sort_by &:updated_at
+  end
 
 
   def client
