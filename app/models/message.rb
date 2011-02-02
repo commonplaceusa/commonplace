@@ -2,8 +2,10 @@ class Message < ActiveRecord::Base
   include IDEncoder
   
   belongs_to :user
-  belongs_to :recipient, :class_name => "User"
-  validates_presence_of :subject, :body
+  belongs_to :messagable, :polymorphic => true
+  validates_presence_of :subject, :body, :user, :messagable
+
+  has_many :replies, :as => :repliable
   
   def long_id
     IDEncoder.to_long_id(self.id)

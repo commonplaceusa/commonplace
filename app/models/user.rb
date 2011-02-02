@@ -38,8 +38,7 @@ class User < ActiveRecord::Base
   has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies, :dependent => :destroy
 
   has_many :referrals, :foreign_key => "referee_id"
-  
-  has_many :messages, :foreign_key => "recipient_id"
+  has_many :messages
   has_many :mets, :foreign_key => "requester_id"
   
   has_many :people, :through => :mets, :source => "requestee"
