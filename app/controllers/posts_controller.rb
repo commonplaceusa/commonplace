@@ -17,7 +17,14 @@ class PostsController < CommunitiesController
       puts @post.inspect
       post_params = params[:post]
       if (post_params[:post_to_facebook] == "1")
-        #current_user.access_token.post("/" + current_user.facebook_uid.to_s + "/feed/", :message => "Test")
+      #  current_user.access_token.post(
+      #    "/" + current_user.facebook_uid.to_s + "/feed/", 
+      #    :message => "I just posted to my community on CommonPlace!", 
+      #    :picture => root_url(:subdomain => current_community.slug) + "images/logo-pin.png",
+      #    :link => post_url(@post, :subdomain => current_community.slug),
+      #    :name => "CommonPlace " + current_community.name,
+      #    :caption => "CommonPlace for " + current_community.name,
+      #    :description => "DESCRIPTION")
       end
       
       NotificationsMailer.deliver_neighborhood_post(current_neighborhood.id,
