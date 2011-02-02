@@ -1,6 +1,6 @@
 
 <% content_for :greeting do %>
-  <div style="margin-bottom:10px;">Hi <name>,</div>    
+  <div style="margin-bottom:10px;">Hi <%= @recipient.first_name %>,</div>    
   <% link_to user_url(@reply.user, :subdomain => @community.slug) do %>
     <font color="#b53f3c">
       <%= @reply.user.full_name %>

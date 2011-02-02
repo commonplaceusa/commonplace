@@ -43,12 +43,12 @@ class NotificationsMailer < ActionMailer::Base
     @reply = Reply.find(reply_id)
     @message = @reply.repliable
     @community = @message.user.community
-    users = (@message.replies.map(&:user) + [@message.user]).uniq.reject {|u| u == @reply.user}
-    header = SmtpApiHeader.new
-    header.addTo(users.map(&:email))
-    header.addSubVal('<name>', users.map(&:name))
-    @headers['X-SMTPAPI'] = header.asJSON
-    recipients @message.user.email
+    @recipient = if @message.user == @reply.user
+                   @message.messagable.is_a?(User) ? @message.messagable : @message.messagable.user
+                 else
+                   @message.user
+                 end
+    recipients @recipient.email
     from "CommonPlace <#{@message.long_id}@messages.ourcommonplace.com>"
     subject "#{@reply.user.name} just replied to a message on CommonPlace"
   end
