@@ -43,6 +43,7 @@ gem 'yajl-ruby'
 gem 'json'
 gem 'resque'
 gem 'resque-scheduler'
+gem 'sanitize_email'
 
 gem 'twitter'
 
@@ -58,7 +59,6 @@ gem 'unicorn'
 end
 
 group :development, :test do
-  gem 'sanitize_email'
   gem 'factory_girl'
   gem 'ZenTest'
   gem 'forgery'
