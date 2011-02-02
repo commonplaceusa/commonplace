@@ -132,7 +132,7 @@ describe User do
     end
     
     it "orders messages most recently updated first" do
-      user.inbox.should == user.inbox.sort {|m,n| m.updated_at <=> n.updated_at }
+      user.inbox.should == user.inbox.sort {|m,n| n.updated_at <=> m.updated_at }
     end
 
   end
