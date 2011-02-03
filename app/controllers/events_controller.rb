@@ -39,12 +39,19 @@ class EventsController < CommunitiesController
   end
 
 
+
   def show
     if current_user.events.include?(@event) && !flash.now[:message]
       flash.now[:message] = "You are attending #{@event.name}"
     end
   end
-  
+
+  def destroy
+    @event.destroy
+    redirect_to events_url
+  end
+
+  protected
   def owner
     if params[:event] && params[:event][:owner]
       owner_class, owner_id = params[:event].delete(:owner).try(:split, "_")

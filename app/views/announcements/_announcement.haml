@@ -2,7 +2,11 @@
   = image_tag announcement.owner.avatar.url(:thumb), :class => 'avatar'
   %time
     = announcement.time
+    - if can? :destroy, announcement
+      &sdot;
+      = link_to 'delete', announcement, :method => :delete
     - if can? :update, announcement
+      &sdot;
       = link_to "edit", [:edit, announcement], 'data-remote' => true
   .reply-count #{ announcement.replies.size } replies
   .title= announcement.subject

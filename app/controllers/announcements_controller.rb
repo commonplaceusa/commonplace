@@ -34,5 +34,10 @@ class AnnouncementsController < CommunitiesController
       render :edit
     end
   end
+
+  def destroy
+    @announcement.destroy
+    redirect_to announcements_url
+  end
   
 end
