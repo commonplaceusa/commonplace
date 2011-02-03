@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   end
 
   def validate 
-    errors.add(:full_name, "can't be blank") if first_name.blank? || last_name.blank?
+    errors.add(:full_name, "We need your first and last names.") if first_name.blank? || last_name.blank?
   end 
   
   def subscribed_announcements
@@ -102,8 +102,8 @@ class User < ActiveRecord::Base
 
   def full_name=(string)
     self.first_name, self.last_name = (string.present? ? string.split(" ", 2) : ["",""])
-    self.first_name.capitalize!
-    self.last_name.capitalize!
+    self.first_name.try(:capitalize!)
+    self.last_name.try(:capitalize!)
     self.full_name
   end
 
