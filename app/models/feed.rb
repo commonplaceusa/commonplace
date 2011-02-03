@@ -34,7 +34,7 @@ class Feed < ActiveRecord::Base
   accepts_nested_attributes_for :profile_fields
 
   def website=(string)
-    if string && !(string =~ /^https?:\/\//)
+    if string.present? && !(string =~ /^https?:\/\//)
       super("http://" + string)
     else
       super(string)
