@@ -48,7 +48,7 @@ gem 'sanitize_email'
 gem 'twitter'
 
 gem 'god'
-
+gem 'metric_fu'
 group 'cli' do
   gem 'text-reform'
   gem 'thor'
@@ -71,7 +71,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
   gem 'mongrel'
-  gem 'metric_fu'
+
 end
 
 group :test do
