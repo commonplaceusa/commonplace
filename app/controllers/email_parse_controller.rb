@@ -36,9 +36,10 @@ class EmailParseController < ApplicationController
     if user && post
       text = EmailParseController.strip(params[:text],params[:to])
       
-      Reply.create(:body => text,
+      reply = Reply.create(:body => text,
                    :repliable => post,
                    :user => user)
+      NotificationsMailer.deliver_message_reply(reply.id)
     end
     
     render :nothing => true
@@ -50,9 +51,10 @@ class EmailParseController < ApplicationController
     if user && post
       text = EmailParseController.strip(params[:text],params[:to])
       
-      Reply.create(:body => text,
+      reply = Reply.create(:body => text,
                    :repliable => post,
                    :user => user)
+      NotificationsMailer.deliver_post_reply(reply.id)
     end
     
     render :nothing => true
@@ -64,9 +66,10 @@ class EmailParseController < ApplicationController
     if user && post
       text = EmailParseController.strip(params[:text],params[:to])
       
-      Reply.create(:body => text,
+      reply = Reply.create(:body => text,
                    :repliable => post,
                    :user => user)
+      NotificationsMailer.deliver_event_reply(reply.id)
     end
     
     render :nothing => true
@@ -78,9 +81,10 @@ class EmailParseController < ApplicationController
     if user && post
       text = EmailParseController.strip(params[:text],params[:to])
       
-      Reply.create(:body => text,
+      reply = Reply.create(:body => text,
                    :repliable => post,
                    :user => user)
+      NotificationsMailer.deliver_announcement_reply(reply.id)
     end
     
     render :nothing => true
