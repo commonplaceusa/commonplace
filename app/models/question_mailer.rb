@@ -1,5 +1,3 @@
-require 'smtp_api_header.rb'
-
 class QuestionMailer < ActionMailer::Base
   
   helper :text
