@@ -13,6 +13,8 @@ Spork.prefork do
   require 'spec/rr'
   Spec::Runner.configure do |config|
     config.mock_with RR::Adapters::Rspec
+    config.use_transactional_fixtures = false
+    config.use_instantiated_fixtures = false
   end
   
   def current_user

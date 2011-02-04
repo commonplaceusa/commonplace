@@ -63,21 +63,6 @@ class NotificationsMailer < ActionMailer::Base
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     recipients @post.user.email
-    from "CommonPlace <#{@post.long_id}@posts.ourcommonplace.com>"
-    subject "#{@reply.user.name} just replied to a post on CommonPlace"
-  end
-
-
-  def post_reply(reply_id)
-    @reply = Reply.find(reply_id)
-    @post = @reply.repliable
-    @community = @post.user.community
-    users = (@post.replies.map(&:user) + [@post.user]).uniq.reject {|u| u == @reply.user}
-    header = SmtpApiHeader.new
-    header.addTo(users.map(&:email))
-    header.addSubVal('<name>', users.map(&:name))
-    @headers['X-SMTPAPI'] = header.asJSON
-    recipients @post.user.email
     from "CommonPlace <#{@post.long_id}@posts.#{@community.slug}.ourcommonplace.com>"
     subject "#{@reply.user.name} just replied to a post on CommonPlace"
   end
