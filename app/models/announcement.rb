@@ -8,7 +8,7 @@ class Announcement < ActiveRecord::Base
   validates_presence_of :subject, :body, :feed, :unless => Proc.new { |announcement| announcement.type.to_s == 'TwitterAnnouncement'}
   
   def time
-    help.post_date(self.created_at)
+    Helper.help.post_date(self.created_at)
   end 
   
   def owner
