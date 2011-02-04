@@ -31,7 +31,7 @@ class Post < ActiveRecord::Base
   end
   
   def time
-    help.post_date(self.created_at)
+    Helper.help.post_date(self.created_at)
   end
   
   def owner
