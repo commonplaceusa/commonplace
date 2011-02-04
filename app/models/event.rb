@@ -1,6 +1,4 @@
 class Event < ActiveRecord::Base
-
-  require 'lib/helper'
   include IDEncoder
   
   attr_accessor :pledge

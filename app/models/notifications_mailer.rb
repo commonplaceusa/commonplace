@@ -1,5 +1,3 @@
-require 'smtp_api_header.rb'
-
 class NotificationsMailer < ActionMailer::Base
   helper :text
   helper_method :url
