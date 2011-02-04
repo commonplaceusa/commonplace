@@ -1,6 +1,5 @@
 class Announcement < ActiveRecord::Base
   
-  require "lib/helper"
   include IDEncoder
 
   has_many :replies, :as => :repliable
