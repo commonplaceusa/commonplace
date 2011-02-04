@@ -36,14 +36,9 @@ class EmailParseController < ApplicationController
     if user && post
       text = EmailParseController.strip(params[:text],params[:to])
       
-      message = Message.new(:user => user, :recipient => post.user,
-                             :subject => post.subject,
-                             :body => text)
-      message.save
-      
-      #Reply.create(:body => text,
-      #             :repliable => post,
-      #             :user => user)
+      Reply.create(:body => text,
+                   :repliable => post,
+                   :user => user)
     end
     
     render :nothing => true
