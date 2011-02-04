@@ -8,11 +8,11 @@ class PasswordsMailer < ActionMailer::Base
     recipients @user.email
     from "passwords@commonplaceusa.com"
     subject "CommonPlace password reset"
-    body <<END
-<p>Follow this link to reset your password: #{edit_password_reset_url(@user.perishable_token, :host => "#{@user.community.slug}.ourcommonplace.com") }</p>
+    body "
+<p>Follow this link to reset your password: #{edit_password_reset_url(@user.perishable_token, :host => '#{@user.community.slug}.ourcommonplace.com') }</p>
 <br>
 --
-#{ @user.community.name }'s CommonPlace: #{@user.community.slug + ".ourcommonplace.com"}
-END
+#{ @user.community.name }'s CommonPlace: #{@user.community.slug + '.ourcommonplace.com'}
+"
   end
 end
