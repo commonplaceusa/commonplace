@@ -71,6 +71,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
   gem 'mongrel'
+  gem 'metric_fu'
 end
 
 group :test do
