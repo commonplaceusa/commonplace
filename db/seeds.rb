@@ -14,7 +14,7 @@ neighborhood = Neighborhood.create!(:name => "n1",
 user = User.create!(:first_name => "test", :last_name => "dev",
                     :email => "test@example.com", :address => "420 Baker St.",
                     :password => "password", :neighborhood => neighborhood,
-                    :avatar => Avatar.new, :community => community)
+                     :community => community)
 user.admin = true
 user.save!
 post = Post.create(:body => "This is a test post",
