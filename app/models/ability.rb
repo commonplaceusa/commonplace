@@ -34,9 +34,9 @@ class Ability
       can :manage, Event do |e|
         e.user == user
       end
-
+      
       can :manage, Announcement, :feed => {:user_id => user.id}
-
+      can :create, Announcement
       if user.admin?
         can :uplift, Post
       end
