@@ -1,4 +1,4 @@
-%div{:id => "#{dom_id(item)}_replies", :class => "replies"}
+%div{:id => "#{dom_id(item)}_replies", :class => "replies", :style => "display: #{item.replies.empty? ? "none" : "block"}"}
   = image_tag 'reply-arrow-top.png', :class => "reply-arrow"
   - if can? :read, Reply
     %ul
