@@ -17,7 +17,7 @@ class FeedsController < CommunitiesController
 
   def show
     case params[:id]
-    when /\d+/
+    when /^\d+/
       @feed = Feed.find(params[:id])
       if current_user.feeds.include?(@feed) && !flash.now[:message]
         flash.now[:message] = "You are subscribed to #{@feed.name}"
