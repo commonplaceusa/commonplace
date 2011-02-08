@@ -1,8 +1,21 @@
-- update_content "#information" do
-  = render 'users/info_box', :user => @message.user
 
-- unless xhr?
-  - update_content "#syndicate" do
-    #syndicate
-      %h3= t "syndicate.messages.title"
-      = render 'shared/items', :items => current_user.inbox
+#main
+  = link_to t(".to_index"), messages_path, :class => "back"
+  %h2= @message.subject
+
+  %ul.conversation 
+    - ([@message] + @message.replies).each do |message|
+      %li 
+        = image_tag message.user.avatar.url, :size => "75x75", :class => "avatar"
+        %time.sent_at= message.created_at.to_s(:month_day_year)
+        
+        %h3= message.user.name
+        %p= message.body
+
+    = render 'replies/form', :reply => current_user.replies.new(:repliable => @message)
+        
+        
+
+  
+
+  

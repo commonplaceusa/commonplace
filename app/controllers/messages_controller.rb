@@ -1,6 +1,8 @@
 class MessagesController < CommunitiesController
   helper_method :parent
-
+  
+  layout 'application'
+  
   def index ; end
   
   def show
@@ -10,6 +12,7 @@ class MessagesController < CommunitiesController
   def new
     authorize! :create, Reply
     @message = Message.new(:messagable => parent)
+    render :layout => 'communities'
   end
 
   def create
@@ -18,7 +21,7 @@ class MessagesController < CommunitiesController
       flash.now[:message] = "Message sent to #{@message.messagable.name}"
       NotificationsMailer.deliver_message(@message.id)
     else
-      render :new
+      render :new, :layout => 'communities'
     end
   end
   

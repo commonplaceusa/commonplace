@@ -5,7 +5,11 @@ class RepliesController < CommunitiesController
     @reply = current_user.replies.build(params[:reply])
     if @reply.save
       NotificationsMailer.send("deliver_#{@reply.repliable.class.name.downcase}_reply", @reply.id)
-      render :show
+      if @reply.repliable.is_a? Message
+        redirect_to messages_url
+      else
+        render :show
+      end
     else
       render :new
     end

@@ -34,6 +34,7 @@
       - if current_user_session
         %nav
           = tab_to "Home", "/"
+          = tab_to "Inbox", messages_url
           .user-feeds
             %h4 Feeds 
             %ul

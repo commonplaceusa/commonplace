@@ -1,6 +1,16 @@
 
-- update_content "#syndicate" do
-  #syndicate
-    %h3= t "syndicate.messages.title"
-    = render 'shared/items', :items => current_user.inbox
+#main
+  %h2= t ".h2"
+  %ul.inbox
+    - current_user.inbox.each do |message|
+      %li.message
+        - link_to message do
+          .information
+            = image_tag other_participant(message).avatar.url, :size => "50x50"
+            .name
+              = other_participant(message).name
+            %time.last_activity= message.updated_at.to_s(:month_day_at_time)
+
+          %p.subject= truncate message.subject, :length => 50
+          %p.most_recent_text= truncate message.most_recent_body, :length => 50
 

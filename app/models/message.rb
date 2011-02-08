@@ -15,4 +15,13 @@ class Message < ActiveRecord::Base
     Message.find(IDEncoder.from_long_id(long_id))
   end
 
+  
+  def most_recent_body
+    if replies.empty?
+      self.body
+    else
+      replies.last.body
+    end
+  end
+  
 end

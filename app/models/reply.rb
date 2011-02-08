@@ -1,6 +1,6 @@
 class Reply < ActiveRecord::Base
   
-  belongs_to :repliable, :polymorphic => true
+  belongs_to :repliable, :polymorphic => true, :touch => true
   belongs_to :user
   
   validates_presence_of :repliable
