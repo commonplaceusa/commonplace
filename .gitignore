@@ -24,3 +24,4 @@ development
 development/*
 log/exceptional.log
 log/sendmail.log
+config/exceptional.yml
