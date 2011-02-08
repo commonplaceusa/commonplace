@@ -18,6 +18,15 @@ class AccountsController < CommunitiesController
     end
   end
   
+  def new_from_facebook
+    if can? :create, User
+      @user = User.new
+      @user.send_to_facebook
+    else
+      redirect_to root_url
+    end
+  end
+  
   def show
     redirect_to edit_account_url
   end
