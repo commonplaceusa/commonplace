@@ -1,0 +1,38 @@
+body.messages.index 
+  
+  #main
+    
+    ul.inbox
+      > li
+        border-bottom: 1px solid #e4e4e4
+        a
+          &:hover
+            background-color: $listingHover
+          padding: 10px
+          display: block
+          text-decoration: none
+          border-bottom: 1px solid #547496 
+          +clearfix
+          .information
+            width: 250px
+            float: left
+            
+            .name
+              color: #b65951
+              font-size: 18px
+              margin-bottom: 5px
+
+            .last_activity
+              color: #d5d6d6
+              font-size: 14px
+            
+            img
+              float: left
+              margin-right: 10px
+
+          p
+            color: #67769e
+            margin-top: 5px
+              
+            &.subject
+              font-weight: bold

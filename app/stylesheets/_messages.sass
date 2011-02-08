@@ -1,0 +1,23 @@
+@import messages/index, messages/show
+
+body.messages.index, body.messages.show
+
+  #main
+    border: #d5d6d6
+    width: 700px
+    +border-radius(5px)
+    border: 1px solid #d5d6d6
+    
+
+    h2
+      background-color: #f2f2f2
+      color: #67769e
+      text-align: center
+      padding: 3px
+      border-bottom: 1px solid #d5d6d6
+      +border-radius(5px)
+
+    ul.inbox, ul.conversation
+      background-color: #fff
+      +border-bottom-radius(4px)
+      +min-height(500px)
