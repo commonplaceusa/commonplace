@@ -7,9 +7,7 @@ class CommunitiesController < ApplicationController
   layout 'communities'
   
   def show
-    if current_user_session
-     
-    else
+    if current_user_session.new_session?
       redirect_to new_account_url
     end
   end
