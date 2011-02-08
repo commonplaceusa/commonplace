@@ -9,16 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110201222144) do
-
-  create_table "addresses", :force => true do |t|
-    t.string   "name"
-    t.string   "primary"
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20110208185254) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                                :null => false
@@ -124,15 +115,6 @@ ActiveRecord::Schema.define(:version => 20110201222144) do
     t.text     "bounds"
   end
 
-  create_table "notifications", :force => true do |t|
-    t.integer  "notifiable_id",   :null => false
-    t.string   "notifiable_type", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "notified_id"
-    t.string   "notified_type"
-  end
-
   create_table "posts", :force => true do |t|
     t.text     "body",       :null => false
     t.integer  "user_id",    :null => false
@@ -142,15 +124,6 @@ ActiveRecord::Schema.define(:version => 20110201222144) do
     t.string   "category"
     t.integer  "area_id"
     t.string   "area_type"
-  end
-
-  create_table "profile_fields", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.text     "body",       :null => false
-    t.integer  "feed_id",    :null => false
-    t.integer  "position",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "referrals", :force => true do |t|
@@ -170,18 +143,6 @@ ActiveRecord::Schema.define(:version => 20110201222144) do
     t.string   "repliable_type"
     t.boolean  "official",       :default => false, :null => false
   end
-
-  create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-
-  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
-  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id",    :null => false

@@ -15,8 +15,6 @@ class Feed < ActiveRecord::Base
   has_many :events, :dependent => :destroy, :as => :owner, :include => :replies
 
   has_many :announcements, :dependent => :destroy
-  
-  has_many :profile_fields, :order => "position"
 
   has_many :subscriptions, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions, :source => :user
@@ -30,8 +28,6 @@ class Feed < ActiveRecord::Base
                     :default_url => "/avatars/missing.png", 
                     :url => "/system/feeds/:id/avatar/:style.:extension",
                     :path => ":rails_root/public/system/feeds/:id/avatar/:style.:extension")
-
-  accepts_nested_attributes_for :profile_fields
 
   def website=(string)
     if string.present? && !(string =~ /^https?:\/\//)

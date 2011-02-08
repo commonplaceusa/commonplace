@@ -49,8 +49,6 @@ class User < ActiveRecord::Base
   has_many :mets, :foreign_key => "requester_id"
   
   has_many :people, :through => :mets, :source => "requestee"
-  
-  has_many :notifications, :as => :notified
 
   acts_as_taggable_on :skills
   acts_as_taggable_on :interests

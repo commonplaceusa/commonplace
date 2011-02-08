@@ -12,8 +12,6 @@ class Post < ActiveRecord::Base
 
   attr_accessor :post_to_facebook
 
-  has_many :notifications, :as => :notified
-
   def self.human_name
     "Neighborhood Post"
   end
