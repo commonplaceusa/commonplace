@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
       self.email = user_data['email']
     end
   end
+  
+  def send_to_facebook
+    redirect_to_oauth2
+  end
 
   acts_as_authentic do |c|
     c.login_field :email
