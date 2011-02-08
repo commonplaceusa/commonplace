@@ -1,8 +1,0 @@
-- render :layout => 'shared/modal' do
-  %hr.staple
-    
-  - form_tag feed_claim_path(@feed) do
-    = label_tag "Enter your claim code:"
-    = text_field_tag :code
-    = submit_tag "Submit"
-  %p If you do not have a code, please email Max Novendstern at Max@CommonPlaceUSA.com
