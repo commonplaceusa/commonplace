@@ -15,6 +15,11 @@ Spork.prefork do
     config.mock_with RR::Adapters::Rspec
     config.use_transactional_fixtures = false
     config.use_instantiated_fixtures = false
+    
+    config.before(:each, :type => :controller) do
+      stub(Community).find_by_slug { current_community }
+    end
+
   end
   
   def current_user
@@ -30,11 +35,7 @@ Spork.prefork do
   end
   
   def current_community
-    unless @current_community
-      @current_community = mock_model(Community)
-      stub(Community).find_by_slug { @current_community }
-    end
-    @current_community
+    @current_community ||= mock_model(Community, :name => Forgery(:basic).text)
   end
   
   def login
