@@ -1,13 +1,15 @@
 %div{'data-href' => announcement_path(announcement), :class => "announcement tooltip", 'data-title' => "Click to see replies and this community feed's profile"}
   = image_tag announcement.owner.avatar.url(:thumb), :class => 'avatar'
-  %time
-    = announcement.time
+  .controls
     - if can? :destroy, announcement
       &sdot;
       = link_to 'delete', announcement, :method => :delete
     - if can? :update, announcement
       &sdot;
       = link_to "edit", [:edit, announcement], 'data-remote' => true
+  %time
+    = announcement.time
+
   .reply-count #{ announcement.replies.size } replies
   .title= announcement.subject
   .author= announcement.owner.name

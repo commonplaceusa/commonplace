@@ -1,13 +1,15 @@
 %div{'data-href' => event_path(event), :class => "event tooltip", 'data-title' => 'Click to see replies and learn more.'}
   .small_calendar.avatar= render 'events/calendar', :event => event
-  %time
-    = event_date event.start_datetime
+  .controls
     - if can? :destroy, event
       &sdot;
       = link_to 'delete', event, :method => :delete
     - if can? :update, event
       &sdot;
       = link_to 'edit', [:edit, event], 'data-remote' => true
+  %time
+    = event_date event.start_datetime
+
 
   .reply-count #{event.replies.size} replies
   .title= event.subject
