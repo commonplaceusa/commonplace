@@ -5,7 +5,6 @@ describe MessagesController do
   describe "#create" do
     
     before :each do
-      current_community
       current_user
       @message = mock_model(Message, 
                             :messagable => stub!.name { "Messagable Name" })

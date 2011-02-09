@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe AccountsController do
-  before(:each) { current_community }
 
   describe "#new" do
 
