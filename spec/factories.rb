@@ -45,7 +45,7 @@ end
 
 Factory.define :feed do |f|
   f.name { Forgery(:name).company_name }
-  f.after_build {|o| o.profile_fields = [] }
+  f.about { Forgery(:basic).text }
 end
   
 Factory.define :message do |f|
