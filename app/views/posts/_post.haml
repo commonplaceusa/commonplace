@@ -1,12 +1,18 @@
 %div{'data-href' => post_path(post), :class => "post tooltip", 'data-title' => "Click to see replies and your neighbor's profile."}
   = image_tag post.owner.avatar.url(:thumb), :class => "avatar"
+  .controls
+    - if can? :destroy, post
+      &sdot;
+      = link_to 'delete', post, :method => :delete
+    - if can? :update, post
+      &sdot;
+      = link_to 'edit', [:edit, post], 'data-remote' => true
+    - if can?(:uplift, post) && post.area.is_a?(Neighborhood)
+      &sdot;
+      = link_to 'uplift', uplift_post_url(post), :method => :post
   %time
     =post.time
-    - if can? :destroy, post
-      = post.deleteLink
-    - if can?(:uplift, post) && post.area.is_a?(Neighborhood)
-      - form_for post, :url => uplift_post_url(post) do |f|
-        = f.submit "Uplift"
+    
 
 
   .reply-count #{ post.replies.size } replies
