@@ -119,7 +119,12 @@ $(function() {
 
   $("body")
     .trigger("always")
+
   
+  $("body").bind("replace-with", function(e, params) {
+    $(params.selector).replaceWith(params.content);
+  });
+
 
 
 
