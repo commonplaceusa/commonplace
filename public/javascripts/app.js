@@ -33,7 +33,7 @@ $(function() {
     }
   });
 
-  $('div[data-href] input').live('click', function(e) {
+  $('div[data-href] input, div[data-href] button').live('click', function(e) {
     e.stopPropagation();
   });
 
