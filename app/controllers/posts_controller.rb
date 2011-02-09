@@ -35,6 +35,16 @@ class PostsController < CommunitiesController
       render :new
     end
   end
+
+  def edit ; end
+
+  def update
+    if @post.update_attributes(params[:post])
+      redirect_to post_url(@post)
+    else
+      render :edit
+    end
+  end
   
   def destroy
     if can? :destroy, @post
