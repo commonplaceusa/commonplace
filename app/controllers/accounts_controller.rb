@@ -9,9 +9,9 @@ class AccountsController < CommunitiesController
       @user = User.new
       if params[:short]
         params[:action] = "new short"
-        render :short, :layout => 'application'
+        render :short
       else
-        render :layout => 'application'
+        render
       end
     else
       redirect_to root_url
@@ -83,15 +83,13 @@ class AccountsController < CommunitiesController
 
   def update_new
     authorize! :update, User
-    if current_user.facebook_uid.present?
-      current_user.password = "FACEBOOK_OVERRIDE"
-    end
-    if current_user.update_attributes(params[:user]) && current_user.password.present?
-      redirect_to root_url
-    else
-      current_user.errors.add("password", "Please create a password")
-      @user = current_user
-      render :edit_new
+    current_user.attributes = params[:user]
+    current_user.save do |result|
+      if result
+        redirect_to root_url
+      else
+        render :edit_new
+      end
     end
   end
 

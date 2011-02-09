@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates_presence_of :community
   validates_presence_of :address, :on => :create, :unless => :authenticating_with_oauth2?
   validates_presence_of :address, :on => :update
+
+  validates_presence_of :password, :on => :update, :unless => :authenticating_with_oauth2?
   
   validates_uniqueness_of :email
   validates_presence_of :first_name, :last_name, :neighborhood

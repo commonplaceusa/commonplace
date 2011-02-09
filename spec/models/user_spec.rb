@@ -34,11 +34,20 @@ describe User do
     end
 
     context "on update" do
+      before(:each) { stub(@user).new_record? { false } }
+
       it "requires an address" do
-        stub(@user).new_record? { false }
         @user.valid?
         @user.should have_at_least(1).errors_on(:address)
       end
+
+      context "without an associated facebook account" do
+        it "requires a password" do
+          @user.valid?
+          @user.should have_at_least(1).errors_on(:password)
+        end
+      end
+
     end
     
     context "on create" do
