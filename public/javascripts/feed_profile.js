@@ -7,7 +7,7 @@ $(document).ready(function(){
 	})
 
   $("body").bind("create.subscription", function(e, params) {
-    $(params.selector).hide("puff", function() { $(this).remove(); });
+    $(params.selector).replaceWith(params.content);
   });
 
 });
