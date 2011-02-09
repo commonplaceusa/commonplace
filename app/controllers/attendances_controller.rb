@@ -6,7 +6,6 @@ class AttendancesController < CommunitiesController
       @event.attendees << current_user
     end
     flash[:message] = "You are attending #{@event.name}"
-    redirect_to event_path(@event)
   end
 
   def destroy

@@ -7,6 +7,10 @@
   - link_to new_event_message_path(event), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ event.name }" do 
     %span Message #{ event.name }
 
+  - unless current_user.attendances.include? event
+    - form_tag event_attendance_path(event), 'data-remote' => true, :class => "new_attendance new_#{dom_id event}_attendance" do
+      %button 
+        %span Are you attending?
   %h3= event.name
   .info= markdown event.description
   %table
