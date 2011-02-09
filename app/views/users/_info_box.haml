@@ -8,6 +8,10 @@
     - link_to new_user_message_path(user), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ user.first_name }" do 
       %span Message #{ user.first_name }
 
+    - unless current_user.people.include? user
+      - form_tag user_met_path(user), 'data-remote' => true, :class => "new_met new_#{dom_id user}_met" do
+        %button 
+          %span Have you met?
 
   %h3= user.full_name
   .info= markdown user.about

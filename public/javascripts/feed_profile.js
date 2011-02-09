@@ -6,9 +6,5 @@ $(document).ready(function(){
 		$('#post-to-feed h2 nav li:last-child').hide();	
 	})
 
-  $("body").bind("create.subscription", function(e, params) {
-    $(params.selector).replaceWith(params.content);
-  });
-
 });
 	

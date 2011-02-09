@@ -81,7 +81,7 @@ ActionController::Routing::Routes.draw do |map|
       :avatar => :post,
       :delete => :get
     }
-    map.resources :mets
+
 
   end
   
