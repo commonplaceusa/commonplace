@@ -1,5 +1,5 @@
 class FeedsController < CommunitiesController
-  before_filter :load, :except => [:index,:show]
+  before_filter :load, :except => [:index]
   authorize_resource
   
   def index
@@ -16,16 +16,12 @@ class FeedsController < CommunitiesController
   end
 
   def show
-    case params[:id]
-    when /^\d+/
-      @feed = Feed.find(params[:id])
+    if params[:action] == "profile"
+      render :profile, :layout => false
+    else
       if current_user.feeds.include?(@feed) && !flash.now[:message]
         flash.now[:message] = "You are subscribed to #{@feed.name}"
       end
-    else
-      params[:action] = "profile"
-      @feed = Feed.find_by_slug_and_community_id(params[:id],current_community.id)
-      render :profile, :layout => false
     end
   end
   
@@ -66,8 +62,12 @@ class FeedsController < CommunitiesController
   protected
   def load
     @feed = 
-      if params[:id]
-        Feed.find(params[:id], :scope => current_community)
+      case params[:id]
+      when /^\d+$/
+        Feed.find(params[:id])
+      when /[^\d]/
+        params[:action] = "profile"
+        Feed.find_by_slug_and_community_id(params[:id], current_community.id)
       else
         Feed.new
       end
