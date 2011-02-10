@@ -1,5 +1,6 @@
 
 body.application.accounts.new, body.application.accounts.create
+  background-image: url('/images/clouds.png')
   background-repeat: repeat-x
   position: relative
   h1
@@ -73,32 +74,27 @@ body.application.accounts.new, body.application.accounts.create
         margin: 0 auto
         text-align: right
       fieldset.inputs
-        margin-top: 10px
+        
         li
       
           list-style-position: outside
           background-repeat: no-repeat
           background-position: 20px 0px
-          margin: 5px auto
-          width: 360px
-          padding: 0 0px 0 70px
-          height: 67px
+          margin: 20px auto
+          width: 400px
 
           label
             display: block
             margin: 5px 0
-            color: #898989
           input
             +border-radius(5px)
             +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
-            border: 1px solid #ccc
             padding: 0px 5px
             font-size: 22px
-            width: 348px
+            width: 388px
             +serif
 
         li#user_address_input
-          background: url('/images/step-3-icon.png') no-repeat
           p.inline-hints
             float: left
             margin: 30px 0px -50px -90px
@@ -106,28 +102,11 @@ body.application.accounts.new, body.application.accounts.create
             font-weight: bold
             +sans
             color: #3a3a3a
-        li#user_full_name_input
-          background: url('/images/step-1-icon.png') no-repeat
-        li#user_email_input
-          background: url('/images/step-2-icon.png') no-repeat
 
       fieldset.buttons
         margin-left: auto
         margin-right: 0
-
-
-  #who_is_info_bubble
-    margin: 0 auto
-    padding: 10px
-    width: 530px
-    background: #e1f0f7 url('/images/small-blue-down-arrow.png') no-repeat 520px 18px
-    +border-radius(5px)
-    cursor: pointer
-    h3
-      color: #3B6085
-      text-align: center
-      font-size: 24px
-      
+  
   #bubble-1, #bubble-2
     display: none
     background-image: url('/images/speech-bubble.png')
