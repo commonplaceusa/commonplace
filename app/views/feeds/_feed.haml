@@ -3,7 +3,6 @@
   .title= feed.name
 
   - unless current_user.feeds.include? feed
-    - form_tag feed_subscription_path(feed), 'data-remote' => true, :class => "new_subscription new_#{dom_id(feed)}_subscription" do
-      %button 
-        %span Subscribe
+    - link_to feed_subscription_path(feed), 'data-remote' => true, 'data-method' => 'post', :class => "new_subscription new_#{dom_id feed}_subscription" do
+      %span Subscribe
 

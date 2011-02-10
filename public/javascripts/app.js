@@ -12,9 +12,12 @@ $(function() {
 
   $('a[data-remote]').live('click', function(e) {
     e.preventDefault();
-    var path = $(this).attr('href').replace(HOST_HREF_REGEX, "");
-    ajaj("get", path, null);
-    window.location.hash = path;
+    var path = $(this).attr('href').replace(HOST_HREF_REGEX, ""),
+    method = $(this).attr('data-method') || "get";
+    ajaj(method, path, null);
+    if (method == "get") {
+      window.location.hash = path;
+    }
   });
   
   $('div[data-href]').live('click', function(e) {
@@ -25,12 +28,6 @@ $(function() {
   
   $('div[data-href] a').live('click', function(e) {
     e.stopPropagation();
-    if ($(this).attr('data-remote')) {
-      e.preventDefault();
-      var path = $(this).attr('href').replace(HOST_HREF_REGEX, "");
-      ajaj("get", path, null);
-      window.location.hash = path;
-    }
   });
 
   $('div[data-href] input, div[data-href] button').live('click', function(e) {
