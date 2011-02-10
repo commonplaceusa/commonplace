@@ -8,9 +8,8 @@
     %span Message #{ event.name }
 
   - unless current_user.attendances.include? event
-    - form_tag event_attendance_path(event), 'data-remote' => true, :class => "new_attendance new_#{dom_id event}_attendance" do
-      %button 
-        %span Are you attending?
+    - link_to event_attendance_path(event), 'data-remote' => true, 'data-method' => 'post', :class => "new_attendance new_#{dom_id event}_attendance" do
+      %span Are you attending?
   %h3= event.name
   .info= markdown event.description
   %table
