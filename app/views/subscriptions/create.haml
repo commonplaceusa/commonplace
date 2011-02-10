@@ -1,2 +1,5 @@
 
-- trigger 'replace-with', :selector => ".new_#{dom_id(@feed)}_subscription", :content => ""
+- trigger 'replace-with', :selector => ".new_#{dom_id(@feed)}_subscription" do
+  %span.subscribed
+    %span
+      Subscribed

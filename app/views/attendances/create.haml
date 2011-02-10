@@ -1,2 +1,4 @@
 
-- trigger 'replace-with', :selector => ".new_#{dom_id(@event)}_attendance", :content => ""
+- trigger 'replace-with', :selector => ".new_#{dom_id(@event)}_attendance" do
+  %span.attended
+    %span You're Attending
