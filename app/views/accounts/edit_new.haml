@@ -7,7 +7,7 @@
     = render 'preview'
 
     - f.inputs do 
-      - if current_user.facebook_uid.blank?
+      - unless current_user.facebook_user?
         = f.input :password
       - if current_user.address.blank?
         = f.input :address
