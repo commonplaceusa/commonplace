@@ -1,7 +1,7 @@
 #preview.info_box
   %h2 Community Feed
   
-  = image_tag feed.avatar.url(:normal), :width => 120, :class => "avatar"
+  = image_tag feed.avatar_url(:normal), :width => 120, :class => "avatar"
   
   %h3{'data-track' => 'feed[name]'}= feed.name.present? ? feed.name : t("feeds.preview.name")
   .info{'data-track' => 'feed[about]'}= feed.about.present? ? feed.about : t("feeds.preview.about") 

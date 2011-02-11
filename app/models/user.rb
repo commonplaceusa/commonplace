@@ -143,4 +143,20 @@ class User < ActiveRecord::Base
     end
   end
   
+  def is_facebook_user
+    facebook_uid.present?
+  end
+  
+  def facebook_avatar_url
+    "http://graph.facebook.com/" + self.facebook_uid + "/picture/"
+  end
+  
+  def avatar_url(options = "")
+    if is_facebook_user
+      facebook_avatar_url
+    else
+      self.avatar.url(options)
+    end
+  end
+  
 end

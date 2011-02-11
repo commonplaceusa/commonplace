@@ -1,5 +1,5 @@
 %div{'data-href' => announcement_path(twitter_announcement), :class => "announcement tooltip", 'data-title' => "Click to see replies and this community feed's profile"}
-  = image_tag Feed.find(twitter_announcement.feed_id).avatar.url, :class => 'avatar'
+  = image_tag Feed.find(twitter_announcement.feed_id).avatar_url, :class => 'avatar'
   %time= twitter_announcement.time
   .reply-count #{ twitter_announcement.replies.size } replies
   .title= twitter_announcement.subject

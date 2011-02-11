@@ -2,7 +2,7 @@
 #information.info_box.feed
   %h2 Community Feed
   
-  = image_tag feed.avatar.url(:normal), :width => 120, :class => "avatar"
+  = image_tag feed.avatar_url(:normal), :width => 120, :class => "avatar"
 
   = render 'subscriptions/form', :feed => feed, :user => current_user
     

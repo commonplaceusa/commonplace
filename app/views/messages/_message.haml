@@ -1,5 +1,5 @@
 %div{'data-href' => message_path(message), :class => "message"}
-  = image_tag message.user.avatar.url(:thumb), :class => "avatar"
+  = image_tag message.user.avatar_url(:thumb), :class => "avatar"
   %time
     = message.updated_at
   .reply-count #{ message.replies.size } replies

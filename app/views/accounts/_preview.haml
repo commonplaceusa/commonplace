@@ -3,7 +3,7 @@
 
   %h2 Your Civic Profile
 
-  = image_tag current_user.avatar.url(:normal), :width => 120, :class => "avatar"
+  = image_tag current_user.avatar_url(:normal), :width => 120, :class => "avatar"
 
   %h3= current_user.full_name
 

@@ -6,7 +6,7 @@
   %ul.conversation 
     - ([@message] + @message.replies).each do |message|
       %li 
-        = image_tag message.user.avatar.url, :size => "75x75", :class => "avatar"
+        = image_tag message.user.avatar_url, :size => "75x75", :class => "avatar"
         %time.sent_at= message.created_at.to_s(:month_day_year)
         
         %h3= message.user.name
