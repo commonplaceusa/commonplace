@@ -1,0 +1,11 @@
+rails --version '>= 2.3.8'
+authlogic
+formtastic
+paperclip
+acts-as-taggable-on
+declarative_authorization
+validatable
+haml
+RedCloth
+acts-as-list
+glebm-geokit

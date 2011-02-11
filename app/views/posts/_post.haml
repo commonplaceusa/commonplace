@@ -1,5 +1,5 @@
 %div{'data-href' => post_path(post), :class => "post tooltip", 'data-title' => "Click to see replies and your neighbor's profile."}
-  = image_tag post.owner.avatar.url(:thumb), :class => "avatar"
+  = image_tag post.owner.avatar_url(:thumb), :class => "avatar"
   .controls
     - if can? :destroy, post
       &sdot;

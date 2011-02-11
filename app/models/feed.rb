@@ -63,4 +63,8 @@ class Feed < ActiveRecord::Base
       self.slug = string
     end
   end
+  
+  def avatar_url(options = "")
+      self.avatar.url(options)
+  end
 end
