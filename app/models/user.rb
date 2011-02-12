@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
+
+  acts_as_authentic do |c|
+    c.login_field :email
+    c.require_password_confirmation = false
+    c.validate_email_field=false
+    c.validate_password_field=false
+  end
   
   belongs_to :community
   belongs_to :neighborhood  
@@ -31,12 +38,7 @@ class User < ActiveRecord::Base
     redirect_to_oauth2
   end
 
-  acts_as_authentic do |c|
-    c.login_field :email
-    c.require_password_confirmation = false
-    c.validate_email_field=false
-    c.validate_password_field=false
-  end
+
   
   has_many :attendances, :dependent => :destroy
   has_many :events, :through => :attendances
