@@ -8,7 +8,7 @@
           .information
             = image_tag other_participant(message).avatar_url, :size => "50x50"
             .name
-              = other_participant(message).name
+              = (message.user_id == current_user.id) ? "To: #{other_participant(message).name}" : "#{other_participant(message).name}"
             %time.last_activity= message.updated_at.to_s(:month_day_at_time)
 
           %p.subject= truncate message.subject, :length => 50
