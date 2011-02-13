@@ -37,6 +37,11 @@ class Feed < ActiveRecord::Base
     end
   end
   
+  def avatar_url(options = "")
+    self.avatar.url(options)
+  end
+
+
   def wire
     (self.announcements + self.events).sort_by do |item|
       time = case item
@@ -64,7 +69,4 @@ class Feed < ActiveRecord::Base
     end
   end
   
-  def avatar_url(options = "")
-      self.avatar.url(options)
-  end
 end
