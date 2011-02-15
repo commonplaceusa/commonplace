@@ -157,11 +157,11 @@ class User < ActiveRecord::Base
     "http://graph.facebook.com/" + self.facebook_uid.to_s + "/picture/"
   end
   
-  def avatar_url(options = "")
+  def avatar_url(style_name = nil)
     if is_facebook_user
       facebook_avatar_url
     else
-      self.avatar.url(options)
+      self.avatar.url(style_name || self.avatar.default_style)
     end
   end
   
