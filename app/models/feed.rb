@@ -37,8 +37,8 @@ class Feed < ActiveRecord::Base
     end
   end
   
-  def avatar_url(options = "")
-    self.avatar.url(options)
+  def avatar_url(style_name = nil)
+    self.avatar.url(style_name || self.avatar.default_style)
   end
 
 
