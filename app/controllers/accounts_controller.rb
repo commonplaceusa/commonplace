@@ -69,6 +69,7 @@ class AccountsController < CommunitiesController
     if current_user.update_attributes(params[:user])
       redirect_to root_url
     else
+      params[:action] = 'edit'
       render :edit
     end
   end
