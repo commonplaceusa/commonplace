@@ -15,12 +15,16 @@ class User < ActiveRecord::Base
   validates_presence_of :address, :on => :create, :unless => :authenticating_with_oauth2?
   validates_presence_of :address, :on => :update
 
-  validates_presence_of :password, :on => :update, :unless => :facebook_user?
+  validates_presence_of :password, :on => :update, :if => :validate_password?
 
   def facebook_user?
     authenticating_with_oauth2? || facebook_uid
   end
-  
+
+  def validate_password?
+    !facebook_user? && crypted_password.blank?
+  end
+  validates_presence_of :email
   validates_uniqueness_of :email
   validates_presence_of :first_name, :last_name, :neighborhood
   
