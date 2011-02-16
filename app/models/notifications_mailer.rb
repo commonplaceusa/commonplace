@@ -24,8 +24,11 @@ class NotificationsMailer < ActionMailer::Base
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
+    @headers['Reply-To'] = "CommonPlace <#{@post.long_id}@posts.#{@community.slug}.ourcommonplace.com>"
+    headers 'X-SMTPAPI' => @headers['X-SMTPAPI'],
+            "Reply-To" => @headers['Reply-To']
     subject "#{@post.user.full_name} just posted a message to your neighborhood"
-    from "CommonPlace <#{@post.long_id}@posts.#{@community.slug}.ourcommonplace.com>"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
   end
   
   def message(message_id)
