@@ -1,6 +1,5 @@
 
 body.application.accounts.new, body.application.accounts.create
-  background-image: url('/images/clouds.png')
   background-repeat: repeat-x
   position: relative
   h1
@@ -74,27 +73,32 @@ body.application.accounts.new, body.application.accounts.create
         margin: 0 auto
         text-align: right
       fieldset.inputs
-        
+        margin-top: 10px
         li
       
           list-style-position: outside
           background-repeat: no-repeat
           background-position: 20px 0px
-          margin: 20px auto
-          width: 400px
+          margin: 5px auto
+          width: 360px
+          padding: 0 0px 0 50px
+          min-height: 60px
 
           label
             display: block
             margin: 5px 0
+            color: #898989
           input
             +border-radius(5px)
             +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+            border: 1px solid #ccc
             padding: 0px 5px
             font-size: 22px
-            width: 388px
+            width: 348px
             +serif
-
+         
         li#user_address_input
+          background: url('/images/step-3-icon-small.png') 0px 14px no-repeat
           p.inline-hints
             float: left
             margin: 30px 0px -50px -90px
@@ -102,11 +106,55 @@ body.application.accounts.new, body.application.accounts.create
             font-weight: bold
             +sans
             color: #3a3a3a
+            width: 360px
+        li#user_full_name_input
+          background: url('/images/step-1-icon-small.png') no-repeat  0px 14px
+        li#user_email_input
+          background: url('/images/step-2-icon-small.png') no-repeat  0px 14px
+        
 
       fieldset.buttons
         margin-left: auto
         margin-right: 0
-  
+        #user_submit
+          height: 35px
+          width: 90px 
+
+
+
+  #who_is_info_bubble
+    margin: 0 auto 60px
+    width: 550px
+    background: #bdd7e7 url('/images/blue-arrow-down.png') no-repeat 515px 15px
+    +border-radius(5px)
+    cursor: pointer
+    h3
+      color: #3B6085
+      text-align: center
+      font-size: 18px
+      padding: 10px 0
+  #who_is_info
+    display: none
+    background: #e1f0f7
+    padding: 10px 30px
+    +border-radius(0px 0px 5px 5px)
+    cursor: default
+    font-weight: normal
+    color: #5b5e5f
+    font-size: 14px
+    line-height: 18px
+    p
+      float: right
+      width: 420px
+    .red, a
+      color: #b53f3c
+      text-decoration: none
+    .bold
+      font-weight: bold
+    .cleared
+      clear: both
+    
+      
   #bubble-1, #bubble-2
     display: none
     background-image: url('/images/speech-bubble.png')

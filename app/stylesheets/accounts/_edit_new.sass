@@ -1,50 +1,119 @@
 
 body.application.accounts.edit_new, body.application.accounts.update_new
+  #save
+    height: 15px
+    width: 120px
+    text-align: center
+    padding: 3px 0 6px
+    margin: 0 auto
+    color: white
+    background: #808080
+    border: 1px solid #666666
+    +border-radius(5px)
+    +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
+    cursor: pointer
+  #webcam
+    margin: 10px auto
+    width: 320px
   h1 
     margin: 20px auto
     font-size: 28px
   #register
     +lightbox
     margin: 20px auto
-    width: 960px
+    width: 840px
+    position: relative
+    #tool_tip
+      background: white
+      +border-radius(5px)
+      position: absolute
+      z-index: 10
+      left: 10px
+      top: 20px
+      margin: 20px
+      padding: 10px 20px
+      width: 360px  
+      h2
+        color: $cpBlue
+        font-size: 20px
+      p
+        font-size: 16px
+        padding: 5px 0
+        color: $cpGrey
+        a
+          color: $cpRed
+          text-decoration: none   
     form
-      background-image: url('/images/step-4-icon.png')
-      background-repeat: no-repeat
-      background-position: 00px 30px
-      padding-left: 50px
+      padding-left: 440px
+      padding-right: 20px
       +clearfix
     .info_box
       float: right
     fieldset.inputs
+      #user_avatar_input
+        position: relative
       li
         margin: 20px 0
         padding: 0px 20px
-        width: 390px
+        width: 380px
         input[type=text], input[type=password], textarea
+          border: 1px solid #ccc
           +border-radius(5px)
           +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
           font-size: 22px
           +serif
           padding: 0 5px
-          width: 400px
-          margin: 10px 0
-        input[type=file]
-          font-size: 20px
-          width: 400px
-          margin: 10px 0
+          width: 360px
+          margin: 5px 0
+        #file_input_fix
+          position: absolute
+          top: 20px
+          left: 19px
+          width: 360px
+        #browse_button
+          position: absolute
+          top: 5px
+          left: 173px
+          padding: 5px
+          height: 17px
+          width: 70px
+          color: white
+          background: #808080
+          border: 1px solid #666666
+          +border-radius(0 5px 5px 0)
+          +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
+          cursor: pointer
+        #take_a_photo
+          position: absolute
+          top: 25px
+          right: 23px
+          padding: 5px
+          height: 17px
+          color: white
+          background: #808080
+          border: 1px solid #666666
+          +border-radius(5px)
+          +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
+          width: 100px
+          text-align: center
+          cursor: pointer
+        #user_avatar
+          cursor: pointer
         textarea
           height: 70px
         label
           display: block
         .inline-hints
-          width: 400px
+          width: 360px
           margin: 5px 0
           padding: 0px
           text-align: left
+        #file_style_fix
+          width: 180px
     fieldset.buttons
       margin-top: 20px
       text-align: right
-      width: 435px
+      width: 390px
     .info_box
       width: 450px
       #info_box_top
