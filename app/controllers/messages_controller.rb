@@ -2,11 +2,12 @@ class MessagesController < CommunitiesController
   helper_method :parent
   
   layout 'application'
-  
+    
   def index ; end
   
   def show
     @message = Message.find(params[:id])
+    authorize! :show, @message
   end
 
   def new
