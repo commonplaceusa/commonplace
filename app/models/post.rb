@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :area, :polymorphic => true
-  has_many :replies, :as => :repliable
+  has_many :replies, :as => :repliable, :order => :created_at
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
   validates_presence_of :user
   validates_presence_of :subject, :message => "Please enter a subject for your post"

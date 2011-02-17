@@ -5,7 +5,7 @@ class Message < ActiveRecord::Base
   belongs_to :messagable, :polymorphic => true
   validates_presence_of :subject, :body, :user, :messagable
 
-  has_many :replies, :as => :repliable
+  has_many :replies, :as => :repliable, :order => :created_at
   
   def long_id
     IDEncoder.to_long_id(self.id)
