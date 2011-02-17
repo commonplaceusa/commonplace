@@ -4,4 +4,5 @@
     Neighborhood:
     - current_community.neighborhoods.each do |neighborhood|
       = button_to "#{neighborhood.name}: #{neighborhood.users.count}u/#{neighborhood.posts.count}p", set_neighborhood_path(neighborhood), :title => "users/posts", :class => current_neighborhood == neighborhood ? "current" : ""
+    Total Users: #{current_community.users.count}
 
