@@ -78,6 +78,7 @@ ActionController::Routing::Routes.draw do |map|
       :edit_interests => :get,
       :update_interests => :put,
       :settings => :put,
+      :take_photo => :post,
       :avatar => :post,
       :delete => :get,
       :create => [:get, :post]

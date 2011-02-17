@@ -69,7 +69,6 @@ class AccountsController < CommunitiesController
     if current_user.update_attributes(params[:user])
       redirect_to root_url
     else
-      params[:action] = 'edit'
       render :edit
     end
   end
@@ -82,20 +81,39 @@ class AccountsController < CommunitiesController
   def edit_new
   end
 
+  def add_feeds
+    @feeds = current_community.feeds
+  end
+
   def update_new
     authorize! :update, User
     current_user.attributes = params[:user]
     current_user.save do |result|
       if result
-        redirect_to root_url
+        redirect_to :action => "add_feeds"
       else
         render :edit_new
       end
     end
   end
+  
+  def subscribe_to_feeds
+    
+    
+    render :nothing => true
+  end
 
   def update
     current_user.update_attributes(params[:user])
+  end
+  
+  def take_photo
+    File.open("#{RAILS_ROOT}/tmp/#{current_user.id}_upload.jpg", 'w') do |f|
+      f.write request.raw_post
+    end
+    current_user.avatar = File.new("#{RAILS_ROOT}/tmp/#{current_user.id}_upload.jpg")
+    current_user.save
+    render :nothing => true
   end
 
   def edit_avatar

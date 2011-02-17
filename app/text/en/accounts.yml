@@ -5,8 +5,14 @@ en:
       learn_more: Click here to learn more.
       bubble_1: Publicize your events to the community
       bubble_2: Get crime reports from the police
+      who_is_bubble: Who's bringing CommonPlace to %{community}?
     edit_new:
-      title: Register a community profile so you <br> can send information to your neighbors    
+      title: Register a community profile so you <br> can send information to your neighbors
+      p1: CommonPlace makes it easy for you to share needs, announcements and events with people who live in %{Community}.
+      p2: To post to your neighborhood, simply go to site or email your message in at %{community_email}
+      p3: But first take a moment to fill out your commmunity profile.    
+    add_feeds:
+      p1: Community leaders use CommonPlace to share important community annoucements.  Subscribe to some local community announcement feeds in order to get notified when they send new updates.
     edit:
       title: Change Settings
     learn_more:

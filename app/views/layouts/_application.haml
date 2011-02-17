@@ -41,6 +41,8 @@
       "/javascripts/infobox.js",
       "/javascripts/feed_profile.js",
       "/javascripts/sign_in_form.js",
+      "/javascripts/who_is_bubble_shower.js",
+      "/javascripts/file_upload_fix.js",
       "http://www.plaxo.com/css/m/js/util.js",
       "http://www.plaxo.com/css/m/js/basic.js",
       "http://www.plaxo.com/css/m/js/abc_launcher.js",
@@ -52,9 +54,6 @@
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
       = stylesheet_link_tag 'ie'
     %script{:src => "http://maps.google.com/maps/api/js?sensor=false", :type => "text/javascript"}
-
-
-
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]}"}
     = render 'shared/admin_bar'

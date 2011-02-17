@@ -2,18 +2,10 @@
 
 = update_content "#main" do
   #main
-    #create-a-feed
-      %h3 Are you a community leader or shop owner?
-      %p Create a feed to send events and announce-<br>ments to the whole community.
-      - link_to new_account_path(:short => true) do
-        = image_tag 'create-a-feed.png'
     - semantic_form_for @user, :url => account_path, :id => 'registration_form' do |f|
       = f.submit "Sign Up", :id => "invisible-button-to-prevent-accidental-facebook-registration-on-pressing-enter"
       %h3
-        Fill out the form to get started
-      %h4
-        Or connect with
-        = f.submit "Facebook", :type => 'submit', :name => "register_with_oauth2", :id => "facebook-register"
+        Fill out the form to get started:
       - f.inputs do
         = f.input :full_name
         = f.input :email
@@ -24,8 +16,17 @@
   
      
       
-        
-       
+#who_is_info_bubble
+  %h3= t ".who_is_bubble", :community=> current_community.name
+  #who_is_info
+    %p
+      %span{:class => "bold"} Peter Davis
+      is sponsoring CommonPlace in Falls Church.  He's a George Mason alum and loves Falls Church neighborhoods.  You can        email him directly at
+      =mail_to("petehappens@gmail.com", "petehappens@gmail.com")
+      or call him at
+      %span{:class => "red"} (374) 453-3135
+    =image_tag('pete-davis.png')     
+    %br{:class => "cleared"}   
 
 %p#bubble-1= t ".bubble_1"
 %p#bubble-2= t ".bubble_2"

@@ -1,20 +1,21 @@
-
-%h1= t '.title'
-
 #register
+  #tool_tip
+    %h2
+      Thanks for signing up!
+    %p= t ".p1" , :Community => current_community.name 
+    %p= t ".p2" , :community_email => mail_to("myneighbors@ourcommonplace.com", "myneighbors@ourcommonplace.com")
+    %p= t ".p3"
+    
   - semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
-
-    = render 'preview'
 
     - f.inputs do 
       - unless current_user.facebook_user?
         = f.input :password
       - if current_user.address.blank?
         = f.input :address
-      = f.input :avatar, :input_html => {:size => 20}
+      = f.input :avatar, :input_html => {:size => 25}
       = f.input :about
-      = f.input :good_list
-      = f.input :interest_list, :label => "What are your interests:"
+      = f.input :interest_list
 
     - f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
