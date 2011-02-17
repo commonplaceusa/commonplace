@@ -13,7 +13,7 @@ class Ability
       can :create, UserSession
     else
       can :read, Message do |m|
-        m.user == user || m.repliable == user
+        m.user == user || m.messagable == user
       end
       can :create, Announcement
       can :create, Event
