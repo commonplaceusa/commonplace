@@ -35,8 +35,9 @@ class NotificationsMailer < ActionMailer::Base
     @message = Message.find(message_id)
     @user = @message.messagable.is_a?(User) ? @message.messagable : @message.messagable.user
     @community = @message.user.community
+    headers "Reply-To" => "CommonPlace <#{@message.long_id}@messages.#{@community.slug}.ourcommonplace.com>"
     recipients @user.email
-    from "CommonPlace <#{@message.long_id}@messages.#{@community.slug}.ourcommonplace.com>"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
     subject "#{@message.user.name} just sent you a message on CommonPlace"
   end
 
