@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   validates_uniqueness_of :source_feed_id, :if => Proc.new { |event| event.owner_type == "Feed" && event.source_feed_id }
 
   has_many :referrals
-  has_many :replies, :as => :repliable
+  has_many :replies, :as => :repliable, :order => :created_at
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
   has_many :attendances
   has_many :attendees, :through => :attendances, :source => :user
