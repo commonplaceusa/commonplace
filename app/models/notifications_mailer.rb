@@ -51,7 +51,8 @@ class NotificationsMailer < ActionMailer::Base
                    @message.user
                  end
     recipients @recipient.email
-    from "CommonPlace <#{@message.long_id}@messages.ourcommonplace.com>"
+    headers "Reply-To" => "CommonPlace <#{@message.long_id}@messages.ourcommonplace.com>"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
     subject "#{@reply.user.name} just replied to a message on CommonPlace"
   end
 
@@ -65,7 +66,8 @@ class NotificationsMailer < ActionMailer::Base
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     recipients @post.user.email
-    from "CommonPlace <#{@post.long_id}@posts.#{@community.slug}.ourcommonplace.com>"
+    headers "Reply-To" => "CommonPlace <#{@post.long_id}@posts.#{@community.slug}.ourcommonplace.com>"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
     subject "#{@reply.user.name} just replied to a post on CommonPlace"
   end
 
@@ -80,7 +82,8 @@ class NotificationsMailer < ActionMailer::Base
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     recipients @event.user.email
-    from "CommonPlace <#{@event.long_id}@events.#{@community.slug}.ourcommonplace.com>"
+    headers "Reply-To" => "CommonPlace <#{@event.long_id}@events.#{@community.slug}.ourcommonplace.com>"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
     subject "#{@reply.user.name} just replied to an event on CommonPlace"
   end
 
@@ -94,7 +97,8 @@ def announcement_reply(reply_id)
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     recipients @announcement.feed.user.email
-    from "CommonPlace <#{@announcement.long_id}@announcements.#{@community.slug}.ourcommonplace.com>"
+    headers "Reply-To" => "CommonPlace <#{@announcement.long_id}@announcements.#{@community.slug}.ourcommonplace.com>"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
     subject "#{@reply.user.name} just replied to an announcement on CommonPlace"
   end
 
@@ -107,7 +111,8 @@ def announcement_reply(reply_id)
     header.addSubVal('<name>', users.map(&:name))
     @headers['X-SMTPAPI'] = header.asJSON
     subject "#{feed.name} posted a new announcement"
-    from "CommonPlace <#{@announcement.long_id}@announcements.#{@community.slug}.ourcommonplace.com>"
+    headers "Reply-To" => "CommonPlace <#{@announcement.long_id}@announcements.#{@community.slug}.ourcommonplace.com>"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
     body :feed => feed, :announcement => announcement
   end
 end
