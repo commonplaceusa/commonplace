@@ -12,6 +12,9 @@ class Ability
       can :create, User
       can :create, UserSession
     else
+      can :read, Message do |m|
+        m.user == user || m.repliable == user
+      end
       can :create, Announcement
       can :create, Event
       can :update, User
