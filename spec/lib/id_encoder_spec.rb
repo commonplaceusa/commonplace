@@ -7,7 +7,7 @@ describe IDEncoder do
     end
 
     it "should successfully handle Base64 encoding and decoding" do
-      (1..100).each do |n|
+      (1..2).each do |n|
         IDEncoder.from_long_id(IDEncoder.to_long_id(n)).to_i.should == n
       end
     end
