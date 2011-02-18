@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(:version => 20110218231034) do
     t.string   "subject"
     t.integer  "messagable_id"
     t.string   "messagable_type"
-    t.boolean  "archived"
   end
 
   create_table "mets", :force => true do |t|
