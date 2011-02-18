@@ -26,6 +26,14 @@ class MessagesController < CommunitiesController
     end
   end
   
+  def archive
+    message = Message.find(params[:id])
+    authorize! :show, message
+    message.archived = true
+    message.save
+    redirect_to :action => 'index'
+  end
+  
   def admin_quick_view
     # User must be an administrator
     unless current_user.admin

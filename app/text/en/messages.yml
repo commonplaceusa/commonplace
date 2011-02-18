@@ -4,3 +4,4 @@ en:
       h2: Your Inbox
     show:
       to_index: "&laquo; Back to inbox"
+      archive: "Archive"

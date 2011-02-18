@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
                     :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
 
   def inbox
-    (self.received_messages + self.messages).sort {|m,n| n.updated_at <=> m.updated_at }
+    (self.received_messages + self.messages).sort {|m,n| n.updated_at <=> m.updated_at }.select {|m| !m.archived }
   end
 
 
