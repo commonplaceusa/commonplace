@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110208185254) do
+ActiveRecord::Schema.define(:version => 20110218063923) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                       :null => false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20110208185254) do
     t.string   "slug"
     t.integer  "owner_id"
     t.string   "twitter_name"
+    t.boolean  "is_news"
   end
 
   create_table "invites", :force => true do |t|

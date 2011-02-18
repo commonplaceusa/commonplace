@@ -27,6 +27,7 @@ en:
       feed:
         name: "Feed Name:"
         avatar: "Add a photo of your organization:"
+        is_news: "This is a Newspaper or News Service"
         about: "Describe your feed:"
         phone: "Phone Number:"
         address: "Street Address:"
