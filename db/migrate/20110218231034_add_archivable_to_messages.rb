@@ -1,6 +1,6 @@
 class AddArchivableToMessages < ActiveRecord::Migration
   def self.up
-    add_column :messages, :archived, :boolean, :default => :false
+    add_column :messages, :archived, :boolean
   end
 
   def self.down
