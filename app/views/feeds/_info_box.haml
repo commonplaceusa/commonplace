@@ -10,7 +10,10 @@
     %span Message #{ feed.name }
     
   %h3= feed.name
-  .info= markdown feed.about
+  .info
+    = markdown feed.about
+    %br
+    = link_to("View Community Feed Page",feed_profile_path(feed))
   
   %table
     - if feed.tag_list.present?
