@@ -10,24 +10,53 @@
     %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
     %title= "CommonPlace - #{current_community.name}"
 
+    %script{:type => 'text/javascript', :src => "/javascripts/head.min.js"}
+      
+    %script{:type => 'text/javascript'}
+      head.js("/javascripts/jquery-1.4.3.js", 
+      "/javascripts/jquery-ui.js",
+      "/javascripts/jquery/jquery.autoresize.min.js",
+      "/javascripts/jquery/jquery.cycle.all.js",
+      "/javascripts/jquery/jquery.form.js",
+      "/javascripts/jquery/jquery.goodlabel.js",
+      "/javascripts/jquery/jquery.Jcrop.min.js",
+      "/javascripts/jquery/jquery.localscroll-1.2.7-min.js",
+      "/javascripts/jquery/jquery.log.js",
+      "/javascripts/jquery/jquery.magicLabels.clean.js",
+      "/javascripts/jquery/jquery.placeholder.js",
+      "/javascripts/jquery/jquery.preLoadImages.js",
+      "/javascripts/jquery/jquery.polygon-input.js",
+      "/javascripts/jquery/jquery.scrollTo.js",
+      "/javascripts/jquery/jquery.scrollup.js",
+      "/javascripts/jquery/jquery.simplemodal-1.3.5.js",
+      "/javascripts/jquery/jquery.textTruncate.js",
+      "/javascripts/jquery/jquery.tipsy.js",
+      "/javascripts/jquery/jquery.truncate.js",
+      "http://maps.google.com/maps/api/js?sensor=false",
+      "/javascripts/innershiv.js",
+      "/javascripts/app.js",
+      "/javascripts/inlineform.js",
+      "/javascripts/maps.js",
+      "/javascripts/tooltips.js",
+      "/javascripts/syndicate.js",
+      "/javascripts/modal.js",
+      "/javascripts/infobox.js",
+      "/javascripts/feed_profile.js",
+      "/javascripts/sign_in_form.js",
+      "http://www.plaxo.com/css/m/js/util.js",
+      "http://www.plaxo.com/css/m/js/basic.js",
+      "http://www.plaxo.com/css/m/js/abc_launcher.js",
+      "http://js.getexceptional.com/exceptional.js", function () {
+      Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
+      });
+
     / [if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
-    %script{ :type => 'text/javascript', :src => 'http://maps.google.com/maps/api/js?sensor=false' }
 
-    = javascript_include_tag 'jquery-1.4.3', 'jquery-ui'
-    = include_javascript_folder 'jquery'
-
-    = javascript_include_tag 'innershiv', 'app', 'inlineform', 'maps', 'tooltips', 'syndicate', 'modal', 'infobox', 'feed_profile', 'sign_in_form'
-
-    <script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
-    <script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
-    <script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
-    <script type="text/javascript" src="http://js.getexceptional.com/exceptional.js"></script>
-    <script type="text/javascript">Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');</script>
     = stylesheet_link_tag 'application'
 
 
-  %body{:onLoad=>"sign_in_click()", :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]}"}
+  %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]}"}
     = render 'shared/admin_bar'
     
     = render 'layouts/header', :user_session => current_user_session

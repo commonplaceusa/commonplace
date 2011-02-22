@@ -17,3 +17,7 @@ function drop_login_form()
 	$('#sign_in_button').removeClass('border').addClass('remove_border');
 	$('#new_user_session').show(); 
 }
+
+$(function() {
+  sign_in_click();
+});
