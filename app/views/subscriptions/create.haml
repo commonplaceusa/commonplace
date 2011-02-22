@@ -1,5 +1,6 @@
+- update_content "#information" do
+  = render 'feeds/info_box', :feed => @feed
 
-- trigger 'replace-with', :selector => ".new_#{dom_id(@feed)}_subscription" do
-  %span.subscribed
-    %span
-      Subscribed
+- trigger 'replace-with', :selector => ".item.#{ dom_id(@feed) } div" do
+  = render 'feeds/feed', :feed => @feed
+  

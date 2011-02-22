@@ -4,10 +4,23 @@
   
   = image_tag feed.avatar_url(:normal), :width => 120, :class => "avatar"
 
-  = render 'subscriptions/form', :feed => feed, :user => current_user
+  .actions
+    - link_to new_feed_message_path(feed), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ feed.name }" do 
+      %span Message #{ feed.name }
+
+    - if current_user.feeds.include? feed
+      %span.subscribed
+        %span
+          Subscribed
+
+      - link_to feed_subscription_path(feed), 'data-remote' => true, 'data-method' => 'delete', :class => 'unsubscribe' do
+        Unsubscribe
+
+    - else
+      - link_to feed_subscription_path(feed), 'data-remote' => true, 'data-method' => 'post', :class => "new_subscription new_#{dom_id feed}_subscription" do
+        %span Subscribe to #{ feed.name }
+
     
-  - link_to new_feed_message_path(feed), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ feed.name }" do 
-    %span Message #{ feed.name }
     
   %h3= feed.name
   .info

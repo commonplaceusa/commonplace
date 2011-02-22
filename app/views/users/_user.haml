@@ -2,6 +2,11 @@
   = image_tag user.avatar_url(:thumb), :class => "avatar"
   .title= user.name
 
-  - unless current_user.people.include?(user) || current_user == user
-    - link_to user_met_path(user), 'data-remote' => true, 'data-method' => 'post', :class => "new_met new_#{dom_id user}_met" do
-      %span Have you met?
+  - if user != current_user
+    - if current_user.people.include?(user)
+      %span.met
+        %span
+          You've Met
+    - else
+      - link_to user_met_path(user), 'data-remote' => true, 'data-method' => 'post', :class => "new_met new_#{dom_id user}_met" do
+        %span Have you met?

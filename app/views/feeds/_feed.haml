@@ -2,7 +2,11 @@
   = image_tag feed.avatar_url(:thumb), :class => "avatar"
   .title= feed.name
 
-  - unless current_user.feeds.include? feed
+  - if current_user.feeds.include? feed
+    %span.subscribed
+      %span
+        Subscribed
+  - else
     - link_to feed_subscription_path(feed), 'data-remote' => true, 'data-method' => 'post', :class => "new_subscription new_#{dom_id feed}_subscription" do
       %span Subscribe
 

@@ -17,13 +17,27 @@
     +border-top-radius(4px)
     margin-bottom: 20px
 
-  .avatar, .message_me, .new_subscription, .new_met, .new_attendance, .subscribed, .attended, .met
-    clear: both
+  .actions, .avatar
     float: left
     margin-left: 15px
     width: 120px
+    clear: both    
+
+  .avatar
+    margin-bottom: 10px
+
+  .message_me, .new_subscription, .new_met, .new_attendance, .subscribed, .attended, .met
+    width: 100%
     display: block
     margin-bottom: 10px
+
+
+  .unsubscribe
+    display: block
+    font-size: 12px
+    color: #666
+    text-decoration: none
+    text-align: center
 
   #hidden_input
     display: block
