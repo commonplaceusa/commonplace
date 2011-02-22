@@ -12,7 +12,7 @@ class AttendancesController < CommunitiesController
     @event = Event.find(params[:event_id])
     @event.attendees.delete(current_user)
     flash[:message] = "You are no longer attending #{@event.name}"
-    redirect_to event_path(@event)
+    render :create
   end
 
 end

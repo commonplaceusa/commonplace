@@ -1,4 +1,3 @@
 
-- trigger 'replace-with', :selector => ".new_#{dom_id(@event)}_attendance" do
-  %span.attended
-    %span You're Attending
+- update_content "#information" do
+  = render 'events/info_box', :event => @event

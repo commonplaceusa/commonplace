@@ -37,7 +37,7 @@ ActionController::Routing::Routes.draw do |map|
     end
     
     community.resources :users do |user|
-      user.resource :met, :only => [:create]
+      user.resource :met, :only => [:create, :destroy]
       user.resources :messages, :only => [:create, :new], :requirements => {:messagable => "User"}
     end
     

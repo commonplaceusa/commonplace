@@ -20,6 +20,6 @@ class SubscriptionsController < CommunitiesController
     current_user.feeds.delete @feed
     current_user.save
     flash[:message] = "You've unsubscribed from #{ @feed.name }."
-    redirect_to feed_path(@feed)
+    render :create
   end
 end

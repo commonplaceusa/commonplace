@@ -4,13 +4,22 @@
   
   = image_tag user.avatar_url(:normal), :width => 120, :class => "avatar"
   
-  - if user != current_user
-    - link_to new_user_message_path(user), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ user.first_name }" do 
-      %span Message #{ user.first_name }
+  .actions 
+    - if user != current_user
+      - link_to new_user_message_path(user), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ user.first_name }" do 
+        %span Message #{ user.first_name }
 
-    - unless current_user.people.include? user
-      - link_to user_met_path(user), 'data-remote' => true, 'data-method' => 'post', :class => "new_met new_#{dom_id user}_met" do 
-        %span Have you met?
+      - if current_user.people.include? user
+        %span.subscribed
+          %span
+            You've Met
+
+        - link_to user_met_path(user), 'data-remote' => true, 'data-method' => 'delete', :class => 'unsubscribe' do
+          Undo met
+          
+      - else
+        - link_to user_met_path(user), 'data-remote' => true, 'data-method' => 'post', :class => "new_met new_#{dom_id user}_met" do 
+          %span Have you met?
 
   %h3= user.full_name
   .info= markdown user.about
