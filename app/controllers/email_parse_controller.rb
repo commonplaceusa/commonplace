@@ -16,6 +16,25 @@ class EmailParseController < ApplicationController
     render :nothing => true
   end
   
+  def unpublished
+    user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    if user
+    # lists my unpublished posts
+      
+    end
+  end
+  
+  def posts_new
+    user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    if user
+      # Create an unpublished post
+      # Published 10 minutes in the future
+      # Send confirmation with a link to unpublished posts
+    else
+      # Send an email explaining that the sender's email was not found, they should sign up, or use the email they signed up with
+    end
+  end
+  
   def posts
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     post = Post.find_by_long_id(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
