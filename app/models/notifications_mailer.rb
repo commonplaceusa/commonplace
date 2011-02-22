@@ -17,8 +17,6 @@ class NotificationsMailer < ActionMailer::Base
     @post = Post.find(post_id)
     @neighborhood = Neighborhood.find(neighborhood_id)
     @community = @neighborhood.community
-    puts @post.inspect
-    puts @community.inspect
     users = @neighborhood.users.reject{|u| u == @post.user}.select(&:receive_posts)
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
@@ -28,6 +26,23 @@ class NotificationsMailer < ActionMailer::Base
     headers 'X-SMTPAPI' => @headers['X-SMTPAPI'],
             "Reply-To" => @headers['Reply-To']
     subject "#{@post.user.full_name} just posted a message to your neighborhood"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
+  end
+  
+  def neighborhood_post_confirmation(neighborhood_id, post_id)
+    recipients RECIPIENT
+    @post = Post.find(post_id)
+    @neighborhood = Neighborhood.find(neighborhood_id)
+    @community = @neighborhood.community
+    users = @neighborhood.users.reject{|u| u == @post.user}.select(&:receive_posts)
+    header = SmtpApiHeader.new
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
+    @headers['Reply-To'] = "CommonPlace <#{@post.long_id}@posts.#{@community.slug}.ourcommonplace.com>"
+    headers 'X-SMTPAPI' => @headers['X-SMTPAPI'],
+            "Reply-To" => @headers['Reply-To']
+    subject "You just e-mailed a message to your neighborhood"
     from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
   end
   
