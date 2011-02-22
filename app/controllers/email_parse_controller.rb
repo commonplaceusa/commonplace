@@ -27,7 +27,7 @@ class EmailParseController < ApplicationController
   def posts_new
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     if user
-      # Create an unpublished post
+      Post.create(:body => params[:text], user => user, subject => params[:subject], area => user.neighborhood, :published => false)
       # Published 10 minutes in the future
       # Send confirmation with a link to unpublished posts
     else
