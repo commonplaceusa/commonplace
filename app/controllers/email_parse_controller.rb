@@ -32,6 +32,7 @@ class EmailParseController < ApplicationController
       NotificationsMailer.deliver_neighborhood_post_confirmation(user.neighborhood.id,p.id)
     else
       # Send an email explaining that the sender's email was not found, they should sign up, or use the email they signed up with
+      NotificationsMailer.deliver_neighborhood_post_failure
     end
   end
   
