@@ -27,9 +27,9 @@ class EmailParseController < ApplicationController
   def posts_new
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     if user
-      Post.create(:body => params[:text], user => user, subject => params[:subject], area => user.neighborhood, :published => false)
+      p = Post.create(:body => params[:text], user => user, subject => params[:subject], area => user.neighborhood, :published => false)
       # Published 10 minutes in the future
-      # Send confirmation with a link to unpublished posts
+      NotificationsMailer.deliver_neighborhood_post_confirmation(user.neighborhood.id,p.id)
     else
       # Send an email explaining that the sender's email was not found, they should sign up, or use the email they signed up with
     end
