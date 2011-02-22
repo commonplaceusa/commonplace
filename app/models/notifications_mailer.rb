@@ -34,7 +34,7 @@ class NotificationsMailer < ActionMailer::Base
     @post = Post.find(post_id)
     @neighborhood = Neighborhood.find(neighborhood_id)
     @community = @neighborhood.community
-    users = @neighborhood.users.reject{|u| u == @post.user}.select(&:receive_posts)
+    users = [@post.user]
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
@@ -45,6 +45,20 @@ class NotificationsMailer < ActionMailer::Base
     subject "You just e-mailed a message to your neighborhood"
     from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
   end
+  
+  def neighborhood_post_failure
+    recipients RECIPIENT
+    users = [@post.user]
+    header = SmtpApiHeader.new
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
+    @headers['Reply-To'] = "CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
+    headers 'X-SMTPAPI' => @headers['X-SMTPAPI'],
+            "Reply-To" => @headers['Reply-To']
+    subject "Failed to Post Message"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
+  end  
   
   def message(message_id)
     @message = Message.find(message_id)
