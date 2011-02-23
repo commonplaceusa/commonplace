@@ -1,8 +1,6 @@
 - render :layout => 'layouts/application' do
   #main
     #whats-happening
-      %h2
-        = updated_content["#tooltip"]
       = render 'shared/zones'
       = updated_content_or("#syndicate") do
         #syndicate

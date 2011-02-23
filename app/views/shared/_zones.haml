@@ -1,23 +1,21 @@
 %nav#zones
-  - tab_to :posts, :class => 'posts zone tooltip', 'data-title' => t('tooltips.posts'),  'data-remote' => true do
-    %div
-    %span Neighborhood Posts
-
-  - tab_to :events, :class => 'events zone tooltip', 'data-title' => t('tooltips.events'), 'data-remote' => true do
-    %div
-    %span Events
-
-  - tab_to :announcements, :class => 'announcements zone tooltip', 'data-title' => t('tooltips.announcements'), 'data-remote' => true do
-    %div
-    %span Announcements
-
-  - tab_to :feeds, :class => 'feeds zone tooltip', 'data-title' => t('tooltips.feeds'), 'data-remote' => true do
-    %div
-    %span Community Feeds
-
-  - tab_to :users, :class => 'people zone tooltip', 'data-title' => t('tooltips.people'), 'data-remote' => true do
-    %div
-    %span Directory
+  %table
+    %tr
+      %td.first
+        - tab_to :posts, :class => 'posts zone tooltip', 'data-title' => t('tooltips.posts'),  'data-remote' => true do
+          Neighborhood Posts
+      %td
+        - tab_to :events, :class => 'events zone tooltip', 'data-title' => t('tooltips.events'), 'data-remote' => true do
+          Community Events
+      %td
+        - tab_to :announcements, :class => 'announcements zone tooltip', 'data-title' => t('tooltips.announcements'), 'data-remote' => true do
+          Community Announcements
+      %td
+        - tab_to :feeds, :class => 'feeds zone tooltip', 'data-title' => t('tooltips.feeds'), 'data-remote' => true do
+          Community Feeds
+      %td.last
+        - tab_to :users, :class => 'people zone tooltip', 'data-title' => t('tooltips.people'), 'data-remote' => true do
+          Directory
 
 
 

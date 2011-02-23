@@ -1,55 +1,35 @@
 #whats-happening
   float: right
 
-  h2
-    background-color: #EFEFEF
-    border: 1px solid #ccc
-    +border-top-radius(5px)
-    padding: 1px
-
-    #tooltip                          
-      +serif
-      color: $cpDarkBlue
-      font-size: 14px
-      text-align: center
-      background-color: #EFEFEF
-      +border-top-radius(5px)
-      padding: 5px
-
   #zones
-    border:
-      top: 0px
-      left: 1px solid #ccc
-      right: 1px solid #ccc
-    padding: 8px 4px
-    background-color: white
-
+    border: 1px solid #203c57
+    +border-top-radius(4px)
+    td
+      &.first
+        a
+          +border-top-left-radius(3px)
+          border-left-width: 0px
+      &.last
+        a 
+          +border-top-right-radius(3px)
+          border-right-width: 0px
     a 
-      width: 95px
-      +inline-block
+      display: block
+      height: 30px
+      padding: 10px 8px
       text-align: center
-      vertical-align: top
       font-size: 12px
+
       text-decoration: none
-      div
-        margin: 5px auto
-        width: 65px
-        height: 65px
-      &:hover div, &.selected_nav div
-        background-position: 0px 66px
-      &.posts div
-        background-image: url("/images/posts.png")
-      &.announcements div
-        background-image: url("/images/announcements.png")
-      &.events div
-        background-image: url("/images/events.png")
-      &.people div
-        background-image: url("/images/people.png")
-      &.feeds div
-        background-image: url("/images/feeds.png")
-      &.goods-and-skills div
-        background-image: url("/images/goods-and-skills.png")
-      
-      span
-        color: $cpGrey
-        cursor: pointer
+      background-color: #37597c
+      color: #c3ced8
+
+      border-right: 1px solid #16385a
+      border-left: 1px solid #4b6a89
+
+
+
+
+      &:hover, &.selected_nav
+        background-color: #2f4f70
+        color: #fff
