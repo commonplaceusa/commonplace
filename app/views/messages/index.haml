@@ -6,7 +6,7 @@
       %li.message
         - link_to message do
           .information
-            = image_tag other_participant(message).avatar_url, :size => "50x50"
+            = image_tag other_participant(message).avatar_url(:thumb), :size => "50x50"
             .name
               = (message.user_id == current_user.id) ? "To: #{other_participant(message).name}" : "#{other_participant(message).name}"
             %time.last_activity= message.updated_at.to_s(:month_day_at_time)
