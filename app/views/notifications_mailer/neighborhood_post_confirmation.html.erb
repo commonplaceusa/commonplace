@@ -1,10 +1,6 @@
 
 <% content_for :greeting do %>
-  <div style="margin-bottom:10px;">Hi <name>,</div>
-  <% link_to user_url(@post.user, :subdomain => @community.slug) do %>
-    <font color="#b53f3c">You</font>
-  <% end %>
-  just posted to your neighborhood board on CommonPlace via e-mail!. This post will remain unpublished for 10 minutes.
+  <div style="margin-bottom:10px;">Hi. You just posted to your neighborhood board on CommonPlace via e-mail!. This post will remain unpublished for 10 minutes.</div>
 <% end %>
 
 <% content_for :subject, @post.subject %>
