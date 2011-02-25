@@ -2,13 +2,21 @@ en:
   syndicate:
     events:
       title: Upcoming Events
+      link: Community Events
     posts:
       title: Recent Neighborhood Posts
+      link: Neighborhood Posts
     announcements:
       title: Recent Feed Announcements
+      link: Community Announcements
     people:
       title: Your Neighbors
+    users:
+      link: Directory
     feeds:
       title: Community Feeds
+      link: Community Feeds
     messages:
       title: Your Inbox
+
+  

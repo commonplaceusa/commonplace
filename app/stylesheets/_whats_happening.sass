@@ -5,31 +5,32 @@
     border: 1px solid #203c57
     +border-top-radius(4px)
     td
-      &.first
-        a
-          +border-top-left-radius(3px)
-          border-left-width: 0px
-      &.last
-        a 
-          +border-top-right-radius(3px)
-          border-right-width: 0px
-    a 
-      display: block
-      height: 30px
-      padding: 10px 8px
-      text-align: center
-      font-size: 12px
-
-      text-decoration: none
       background-color: #37597c
-      color: #c3ced8
-
       border-right: 1px solid #16385a
       border-left: 1px solid #4b6a89
-
-
-
+      padding: 15px 8px
+      &:first-child
+        +border-top-left-radius(3px)
+        border-left-width: 0px
+      &:last-child
+        +border-top-right-radius(3px)
+        border-right-width: 0px
 
       &:hover, &.selected_nav
         background-color: #2f4f70
         color: #fff
+    a 
+      display: block
+      text-align: center
+      font-size: 12px
+
+      text-decoration: none
+
+      color: #c3ced8
+
+
+
+
+
+
+
