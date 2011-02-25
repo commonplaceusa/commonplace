@@ -3,7 +3,7 @@ class EventsController < CommunitiesController
   load_and_authorize_resource :except => [:index]
   
   def index
-    @items = current_community.events.sort_by(&:updated_at).reverse
+    @items = current_community.events
   end
 
   def your
