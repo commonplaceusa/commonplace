@@ -17,10 +17,13 @@ class EmailParseController < ApplicationController
   end
   
   def unpublished
-    user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
-    if user
-    # lists my unpublished posts
-      
+    @user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    if @user
+      # lists my unpublished posts
+      @posts = @user.posts.reject {|k,v| k.published == true}
+      if @posts.count >= 1
+        NotificationsMailer.deliver_unpublished_posts_report
+      end
     end
   end
   
@@ -28,10 +31,8 @@ class EmailParseController < ApplicationController
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     if user
       p = Post.create(:body => params[:text], user => user, subject => params[:subject], area => user.neighborhood, :published => false)
-      # Published 10 minutes in the future
       NotificationsMailer.deliver_neighborhood_post_confirmation(user.neighborhood.id,p.id)
     else
-      # Send an email explaining that the sender's email was not found, they should sign up, or use the email they signed up with
       NotificationsMailer.deliver_neighborhood_post_failure
     end
   end

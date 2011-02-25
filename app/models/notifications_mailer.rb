@@ -60,6 +60,21 @@ class NotificationsMailer < ActionMailer::Base
     from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
   end  
   
+  def unpublished_posts_report
+    recipients RECIPIENT
+    users = [@user]
+    header = SmtpApiHeader.new
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
+    @headers['Reply-To'] = "CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
+    headers 'X-SMTPAPI' => @headers['X-SMTPAPI'],
+            "Reply-To" => @headers['Reply-To']
+    subject "Unpublished Posts"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
+  end
+    
+  
   def message(message_id)
     @message = Message.find(message_id)
     @user = @message.messagable.is_a?(User) ? @message.messagable : @message.messagable.user
