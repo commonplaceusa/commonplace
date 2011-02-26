@@ -16,8 +16,9 @@
     = updated_content_or("#say-something") do
       #say-something
         %h2= t "posts.new.title"
-        = render 'shared/say_something_nav', :current => :post
-        = render 'posts/form', :post => Post.new
+        .wrap
+          = render 'shared/say_something_nav', :current => :post
+          = render 'posts/form', :post => Post.new
     #community-profiles
       = updated_content_or "#information" do 
         = render 'accounts/info_box'

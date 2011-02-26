@@ -6,6 +6,7 @@
 - update_content "#say-something" do
   #say-something
     %h2= t "posts.new.title"
-    = render 'shared/say_something_nav', :current => :post
-    = render 'form', :post => Post.new
+    .wrap
+      = render 'shared/say_something_nav', :current => :post
+      = render 'form', :post => Post.new
 

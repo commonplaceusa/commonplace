@@ -1,7 +1,7 @@
 en:
   events:
     new:
-      link: Post a Community Event
+      link: Post an <br>Event
       title: Post an event to your community
     edit: 
       title: Edit your Event
