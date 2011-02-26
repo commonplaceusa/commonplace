@@ -7,33 +7,63 @@
     background-color: #792e2e
     +border-top-radius(3px)
     border: 1px solid #c95855
-      bottom: 0px
+      bottom-width: 0px
     text-align: center
     color: #fff
     font-size: 14px
     padding: 5px
-
+    margin-bottom: 0px
+  .wrap
+    +clearfix
+    padding: 15px
+    +border-bottom-radius(3px)
+    border: 1px solid #c95855 
+      top-width: 0px
+      
   nav
+    width: 145px
+    margin-right: 15px
     float: left
-    margin: 20px -130px 20px 15px
     a
-      margin-bottom: 8px
       display: block
-      padding: 5px 20px 5px 5px
-      height: 40px
-      font-size: 11px
-      line-height: 13px
-      width: 85px
-      background-color: #a63b38
-      color: #fff
-      +border-radius(4px)
+      margin-bottom: 8px
+
+
+      color: #262626
       text-decoration: none
-      background-image: url('/images/say-something-unselected.png')
-      background-position: 95px
+      font-size: 12px
+      background-color: #f5f5f5
+      +border-radius(4px)
+      +text-shadow(#fff, 1px, 1px, 0px)
+      +single-box-shadow(#666, 0px, 2px, 7px, -2px)
+      border: 1px solid #772221
       background-repeat: no-repeat
+      background-position: 6px center, 400px center, top left
+      vertical-align: middle
+      height: 34px
+      padding: 8px 20px 8px 35px
+      line-height: 1.4
+
+      &.post
+        +background-image(url("/images/icons/new-post.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#fafafa, #f0f0f0, #dadada))
+      &.event
+        +background-image(url("/images/icons/new-event.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#fafafa, #f0f0f0, #dadada))
+      &.announcement
+        +background-image(url("/images/icons/new-announcement.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#fafafa, #f0f0f0, #dadada))
+
       &:hover, &.current
-        background-image: url('/images/say-something-selected.png')
-        background-color: #792e2e
+        color: #b53f3c
+        background-color: #d7d7d7
+        background-position: 6px center, 132px center, top left
+
+        &.post
+          +background-image(url("/images/icons/new-post.png"), url("/images/post-nav-hover-arrow.png") ,linear-gradient(#c4c4c4, #d5d5d5, #dcdcdc))
+        &.event
+          +background-image(url("/images/icons/new-event.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#c4c4c4, #d5d5d5, #dcdcdc))
+        &.announcement
+          +background-image(url("/images/icons/new-announcement.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#c4c4c4, #d5d5d5, #dcdcdc))
+
+
   .information
     p
       line-height: 1.3
@@ -46,16 +76,14 @@
       display: block
 
   form, .information
-    padding: 15px 12px 15px 135px
-    +clearfix
     display: block
-    border: 1px solid #c95855
-      top: 0px
+    width: 290px
+    float: right
     +border-bottom-radius(3px)
       
     legend
-      width: 175px
-      font-size: 14px
+      font-size: 12px
+      line-height: 1.4
       color: white
 
     fieldset.inputs li
@@ -68,19 +96,19 @@
       font-size: 14px
 
     input[type=text], textarea
-      width: 330px
+      width: 290px
       font-size: 18px
-      padding: 3px
       +border-radius(5px)
       +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
-
+    textarea
+      width: 287px
     #event_start_time_input
       float: left
       margin-right: 40px
 
     fieldset.buttons
       float: right
-      li 
+      li
         display: inline
       li.plaxo
         a
@@ -97,4 +125,4 @@
     
     &#new_post
       textarea
-        height: 130px
+        height: 100px

@@ -1,5 +1,6 @@
 = update_content "#say-something" do
   #say-something
     %h2= t ".title"
-    = render 'shared/say_something_nav', :current => :event
-    = render 'form', :event => @event
+    .wrap
+      = render 'shared/say_something_nav', :current => :event
+      = render 'form', :event => @event
