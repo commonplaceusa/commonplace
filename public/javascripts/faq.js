@@ -7,7 +7,7 @@ $(document).ready(function(){
         main = $('#main').offset().left;
         main += $('#main').width();
         main -= sidebar.width();
-        main += 45;
+        main += 80;
       if(ypos <= 3772){
         if (ypos+40 >= top) {
             sidebar.css({position: "fixed", left: main, top: "30px"});
@@ -25,7 +25,7 @@ $(document).ready(function(){
         main = $('#main').offset().left;
         main += $('#main').width();
         main -= sidebar.width();
-        main += 45;
+        main += 80;
       if(ypos <= 3772){
         if (ypos+40 >= top) {
             sidebar.css({position: "fixed", left: main, top: "30px"});
