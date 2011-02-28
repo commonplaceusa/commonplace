@@ -48,11 +48,12 @@
       "http://js.getexceptional.com/exceptional.js", function () {
       Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
       });
-
+    = stylesheet_link_tag 'application'
     / [if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     %script{:src => "http://maps.google.com/maps/api/js?sensor=false", :type => "text/javascript"}
-    = stylesheet_link_tag 'application'
+      = stylesheet_link_tag 'ie'
+
 
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]}"}
