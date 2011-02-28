@@ -35,7 +35,6 @@ $(function() {
       $("#syndicate").replaceWith(window.innerShiv(content, false));
     }
     $('.item .post .body, .item .announcement .body, .item .event .body').truncate({max_length: 160});    
-    showTooltips();
   });
 
   $("body").bind("show.replies", function(e, params) {

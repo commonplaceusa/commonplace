@@ -37,7 +37,6 @@ $(function(){
 
     initInlineForm();
 
-    showTooltips();
   });
 
   $("body").trigger("#information");
