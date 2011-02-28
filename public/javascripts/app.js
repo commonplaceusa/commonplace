@@ -75,7 +75,6 @@ $(function() {
   $("body").bind("always", function(e) {
     $('input[placeholder], textarea[placeholder]').placeholder();
     
-    showTooltips();
     
     $('input.date').datepicker({
       prevText: '&laquo;',
