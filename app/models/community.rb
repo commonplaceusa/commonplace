@@ -29,7 +29,12 @@ class Community < ActiveRecord::Base
 
   has_attached_file(:email_header,
                     :url => "/system/community/:id/email_header.:extension",
-                    :path => ":rails_root/public/system/community/:id/email_headero.:extension")
+                    :path => ":rails_root/public/system/community/:id/email_header.:extension")
+
+  has_attached_file(:organizer_avatar,
+                    :url => "/system/community/:id/organizer_avatar.:extension",
+                    :path => ":rails_root/public/system/community/:id/organizer_avatar.:extension",
+                    :default_url => "/avatars/missing.png")
 
   def posts
     neighborhoods.map(&:posts).flatten

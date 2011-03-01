@@ -15,18 +15,15 @@
           = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
   
      
+- if current_community.organizer_about?
       
-#who_is_info_bubble
-  %h3= t ".who_is_bubble", :community=> current_community.name
-  #who_is_info
-    %p
-      %span{:class => "bold"} Peter Davis
-      is sponsoring CommonPlace in Falls Church.  He's a George Mason alum and loves Falls Church neighborhoods.  You can        email him directly at
-      =mail_to("petehappens@gmail.com", "petehappens@gmail.com")
-      or call him at
-      %span{:class => "red"} (374) 453-3135
-    =image_tag('pete-davis.png')     
-    %br{:class => "cleared"}   
+  #who_is_info_bubble
+    %h3= t ".who_is_bubble", :community=> current_community.name
+    #who_is_info
+      %p
+        = current_community.organizer_about
+      =image_tag(current_community.organizer_avatar.url, :size => "50x50")
+      %br{:class => "cleared"}   
 
 %p#bubble-1= t ".bubble_1"
 %p#bubble-2= t ".bubble_2"
