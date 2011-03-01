@@ -3,7 +3,9 @@
     %h2
       Thanks for signing up!
     %p= t ".p1" , :Community => current_community.name 
-    %p= t ".p2" , :community_email => mail_to("myneighbors@ourcommonplace.com", "myneighbors@ourcommonplace.com")
+    / 
+      Email in is not yet implemented
+      %p= t ".p2" , :community_email => mail_to("myneighbors@ourcommonplace.com", "myneighbors@ourcommonplace.com")
     %p= t ".p3"
     
   - semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
