@@ -69,7 +69,7 @@
       #1_4
         %h3{:class => "item_head"}= t ".q1_4"
         .answer
-          %p= t ".a1_4_1", :community => current_community.name, :organizer => "Pete Davis", :organizer_firstname => "Pete", :organizer_email => link_to("Pete@CommonPlaceUSA.com", "pete@commonplaceusa.com")
+          %p= t ".a1_4_1", :community => current_community.name, :organizer => current_community.organizer_name, :organizer_firstname => current_community.organizer_name.split(' ').first, :organizer_email => current_community.organizer_email
           %p= t ".a1_4_2", :starter_site => link_to("CommonPlaceUSA.com" , "http://CommonPlaceUSA.com/")
       #1_5
         %h3{:class=>"item_head"}=t ".q1_5"
