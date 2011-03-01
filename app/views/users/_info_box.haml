@@ -35,6 +35,6 @@
     - if user.feed_list.present?
       %tr
         %th SUBSCRIPTIONS
-        %td= user.feed_list
+        %td= truncate user.feed_list, :length => 100
 
   .clear

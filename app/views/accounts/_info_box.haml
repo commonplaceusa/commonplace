@@ -26,6 +26,6 @@
       %td{'data-field' => "user[good_list]"}= current_user.good_list
     %tr
       %th SUBSCRIPTIONS
-      %td= current_user.feed_list
+      %td= truncate current_user.feed_list, :length => 100
 
   .clear
