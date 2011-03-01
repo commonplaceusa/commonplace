@@ -4,6 +4,9 @@ $(document).ready(function(){
   $('#user_avatar_input').append(style_fix)
   //    .append(take_photo_button)
       .css("min-height", "54px");
+  $('#user_avatar').change(function() {
+    $("#file_input_fix input").val($(this).val().replace(/^.*\\/,""));
+  });
 
   $('#user_avatar').css("opacity", 0);
   $('#user_avatar').css("z-index", 2); 
