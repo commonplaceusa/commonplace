@@ -90,7 +90,11 @@ class AccountsController < CommunitiesController
     current_user.attributes = params[:user]
     current_user.save do |result|
       if result
-        redirect_to :action => "add_feeds"
+        if current_community.feeds.present?
+          redirect_to :action => "add_feeds"
+        else
+          redirect_to root_url
+        end
       else
         render :edit_new
       end
