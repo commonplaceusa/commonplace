@@ -102,9 +102,8 @@ class AccountsController < CommunitiesController
   end
   
   def subscribe_to_feeds
-    
-    
-    render :nothing => true
+    current_user.feed_ids = params[:feed_ids]
+    redirect_to root_url
   end
 
   def update
