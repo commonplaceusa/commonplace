@@ -9,7 +9,7 @@
       - f.inputs do
         = f.input :full_name
         = f.input :email
-        = f.input :address, :label => t('formtastic.labels.user.address')
+        = f.input :address
       #fb-wrapper
         - f.buttons do 
           = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
