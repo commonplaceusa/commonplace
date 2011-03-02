@@ -4,12 +4,14 @@
   #feeds_wrapper
     %h2
       Subscribe to a community feed:
-    #feeds_container
-      -@feeds.each do |feed|
-        .feed
-          =image_tag(feed.avatar_url)
-          .unchecked
-          %h3= feed.name
-          %input{:class=>"feedId", :value=> "#{feed.id}", :type=>"hidden"}
-    #continue_button{:onClick=>"post_feed_ids()"}
+    - form_tag "/account/subscribe_to_feeds" do
+      #feeds_container
+        -@feeds.each do |feed|
+          .feed
+            =image_tag(feed.avatar_url)
+            .unchecked
+            %h3= feed.name
+            %input{:class =>"feedId", :name => "feed_ids[]", :value => feed.id.to_s, :type =>"checkbox"}
+      %input{:type => "image", :src => "/images/buttons/continue.png"}
+
     %br{:class=>"cleared"}

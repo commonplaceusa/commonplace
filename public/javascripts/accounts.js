@@ -29,16 +29,13 @@ $(document).ready(function(){
     $("#file_input_fix input").val($(this).val().replace(/^.*\\/,""));
   });
   
-
   
-  //Changes css of clicked 
+  // accounts/add_feeds
   $('.unchecked').click(function(){
-    if($(this).hasClass('checked')){
-      $(this).removeClass('checked');
-    }
-    else{
-      $(this).addClass('checked');
-    }
+    $(this).toggleClass('checked');
+    var $checkbox = $(this).siblings("input:checkbox");
+    $checkbox.attr("checked", 
+                   $checkbox.is(":checked") ? false : "checked");
   });
 });
 
@@ -71,21 +68,4 @@ function load_modal(){
         onLoad: function() {}
 	});
 	
-}
-
-function post_feed_ids(){
-	var feedIds = new Array();
-	var id;	
-	$('.checked').parent('.feed').each(function(i){
-	id = $(this).children('.feedId').val()	
-	feedIds.push({index: i, feed: id});	
-	});
-	$.ajax({
-		type: "POST",
-		url: "/accounts/subscribe_to_feeds",
-		data: feedIds,
-		success: function(){
-			window.location = "http://"+document.domain+"/";
-		}
-	});
 }
