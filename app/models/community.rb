@@ -11,6 +11,8 @@ class Community < ActiveRecord::Base
   has_many :feed_events, :through => :feeds, :source => :events
   has_many :user_events, :through => :users, :source => :direct_events
 
+  has_many :groups
+
   has_many(:community_posts, 
            :order => "created_at DESC", 
            :include => {:replies => :user},
