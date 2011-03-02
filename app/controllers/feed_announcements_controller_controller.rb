@@ -1,2 +1,0 @@
-class FeedAnnouncementsControllerController < AnnouncementsController
-end
