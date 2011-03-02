@@ -1,2 +1,0 @@
-class FeedAnnouncement < Announcement
-end
