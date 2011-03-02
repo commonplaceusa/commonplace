@@ -45,11 +45,19 @@ class User < ActiveRecord::Base
 
   
   has_many :attendances, :dependent => :destroy
+
   has_many :events, :through => :attendances
+
   has_many :posts, :dependent => :destroy
+
   has_many :replies, :dependent => :destroy
+
   has_many :subscriptions, :dependent => :destroy
   has_many :feeds, :through => :subscriptions
+  
+  has_many :memberships, :dependent => :destroy
+  has_many :groups, :through => :memberships
+
   has_many :managable_feeds, :class_name => "Feed"
   has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies, :dependent => :destroy
 
