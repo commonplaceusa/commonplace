@@ -20,6 +20,7 @@
             %li= link_to feed.name, feed_profile_path(feed)
           %li= link_to 'Create a feed', new_feed_path
       = tab_to "Settings", edit_account_path
+      = tab_to "FAQ", "/faq"
       = tab_to "Log Out", "/user_session", :method => :delete
 
   - link_to root_url, :id => "logo" do
