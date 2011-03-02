@@ -1,0 +1,2 @@
+class FeedAnnouncementsControllerController < AnnouncementsController
+end

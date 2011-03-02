@@ -1,0 +1,2 @@
+class FeedAnnouncement < Announcement
+end
