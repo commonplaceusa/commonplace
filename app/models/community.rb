@@ -14,7 +14,7 @@ class Community < ActiveRecord::Base
   has_many :groups
 
   has_many(:posts, 
-           :order => :updated_at,
+           :order => "posts.updated_at DESC",
            :include => {:replies => :user})
   
   
