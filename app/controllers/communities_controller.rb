@@ -15,7 +15,7 @@ class CommunitiesController < ApplicationController
 
 
   def posts
-    @posts ||= current_neighborhood.posts.sort_by(&:created_at).reverse.take(3)
+    @posts ||= current_community.posts.sort_by(&:created_at).reverse.take(3)
   end
   
   def announcements

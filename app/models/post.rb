@@ -1,12 +1,15 @@
 class Post < ActiveRecord::Base
   CATEGORIES = %w{Request Offer Invitation Announcement Question}  
   include IDEncoder
+
+  delegate :neighborhood, :to => :user
   
   belongs_to :user
-  belongs_to :area, :polymorphic => true
+  belongs_to :community
+
   has_many :replies, :as => :repliable, :order => :created_at
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
-  validates_presence_of :user
+  validates_presence_of :user, :community
   validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
 
@@ -35,8 +38,6 @@ class Post < ActiveRecord::Base
   def owner
     self.user
   end
-  
-
   
   def deleteLink
     if UserSession.find.user.admin? || self.user == UserSession.find.user

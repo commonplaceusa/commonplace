@@ -13,11 +13,9 @@ class Community < ActiveRecord::Base
 
   has_many :groups
 
-  has_many(:community_posts, 
-           :order => "created_at DESC", 
-           :include => {:replies => :user},
-           :as => :area,
-           :class_name => "Post")
+  has_many(:posts, 
+           :order => :updated_at,
+           :include => {:replies => :user})
   
   
   validates_presence_of :name, :slug, :zip_code
@@ -37,10 +35,6 @@ class Community < ActiveRecord::Base
                     :url => "/system/community/:id/organizer_avatar.:extension",
                     :path => ":rails_root/public/system/community/:id/organizer_avatar.:extension",
                     :default_url => "/avatars/missing.png")
-
-  def posts
-    neighborhoods.map(&:posts).flatten
-  end
 
   def self.find_by_name(name)
     find(:first, :conditions => ["LOWER(name) = ?", name.downcase])
