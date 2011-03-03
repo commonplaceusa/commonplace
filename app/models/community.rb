@@ -15,7 +15,7 @@ class Community < ActiveRecord::Base
 
   has_many(:posts, 
            :order => "posts.updated_at DESC",
-           :include => {:replies => :user})
+           :include => [:user, {:replies => :user}])
   
   
   validates_presence_of :name, :slug, :zip_code
