@@ -7,9 +7,6 @@
     - if can? :update, post
       &sdot;
       = link_to 'edit', [:edit, post], 'data-remote' => true
-    - if can?(:uplift, post) && post.area.is_a?(Neighborhood)
-      &sdot;
-      = link_to 'uplift', uplift_post_url(post), 'data-remote' => true, 'data-method' => 'put'
   %time
     =post.time
     
