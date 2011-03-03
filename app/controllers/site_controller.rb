@@ -1,12 +1,12 @@
 class SiteController < CommunitiesController
+
+  layout 'application'
   
   def privacy ; end
 
   def terms ; end
   
-  def faq
-    render :layout => 'application'
-  end
+  def faq ; end
   
   def faq_parse
     render :nothing => true
