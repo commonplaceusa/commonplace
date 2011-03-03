@@ -70,11 +70,6 @@ class User < ActiveRecord::Base
   
   has_many :people, :through => :mets, :source => "requestee"
 
-  acts_as_taggable_on :skills
-  acts_as_taggable_on :interests
-  acts_as_taggable_on :goods
-
-
   has_attached_file(:avatar,                    
                     :styles => { 
                       :thumb => "100x100^", 

@@ -11,9 +11,9 @@
   %table
     %tr
       %th INTERESTS
-      %td{'data-track' => "user[interest_list]"}= current_user.interest_list.present? ? current_user.interest_list : t("users.preview.interest_list")
+      %td{'data-track' => "user[interest_list]"}= current_user.interest_list? ? current_user.interest_list : t("users.preview.interest_list")
     %tr
       %th GOODS & SKILLS
-      %td{'data-track' => "user[good_list]"}= current_user.good_list.present? ? current_user.good_list : t("users.preview.good_list")
+      %td{'data-track' => "user[offer_list]"}= current_user.offer_list? ? current_user.offer_list : t("users.preview.offer_list")
 
   .clear
