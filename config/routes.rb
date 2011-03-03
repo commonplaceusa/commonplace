@@ -80,6 +80,8 @@ ActionController::Routing::Routes.draw do |map|
       :settings => :put,
       :add_feeds => :get,
       :subscribe_to_feeds => :post,
+      :add_groups => :get,
+      :subscribe_to_groups => :post,
       :take_photo => :post,
       :avatar => :post,
       :delete => :get,

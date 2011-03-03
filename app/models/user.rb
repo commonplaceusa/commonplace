@@ -155,6 +155,10 @@ class User < ActiveRecord::Base
     feeds.map(&:name).join(", ")
   end
 
+  def group_list
+    groups.map(&:name).join(", ")
+  end
+
   def place_in_neighborhood
     if self.community.present? && self.neighborhood.blank? || self.address_changed?
       self.neighborhood = self.community.neighborhood_for(self.address)
