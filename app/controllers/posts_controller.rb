@@ -61,9 +61,9 @@ class PostsController < CommunitiesController
   end
 
   def uplift
-    if can?(:uplift, @post) && @post.area.is_a?(Neighborhood)
-      original_neighborhood = @post.area
-      @post.area = current_community
+    if can?(:uplift, @post)
+      original_neighborhood = @post.neighborhood
+      @post.sent_to_community = true
       @post.save
       current_community.neighborhoods.reject {|n| n == original_neighborhood }.
         each do |n|

@@ -7,6 +7,15 @@
     - if can? :update, post
       &sdot;
       = link_to 'edit', [:edit, post], 'data-remote' => true
+    - if can? :uplift, post
+      &sdot;
+      - if post.sent_to_community?
+        sent
+      - else
+        = link_to 'send to commmunity', uplift_post_url(post), 'data-remote' => true, 'data-method' => 'put'
+      
+      &sdot;
+      = post.neighborhood.name
   %time
     =post.time
     
