@@ -27,5 +27,8 @@
     %tr
       %th SUBSCRIPTIONS
       %td= truncate current_user.feed_list, :length => 100
+    %tr
+      %th GROUPS
+      %td= truncate current_user.group_list, :length => 100
 
   .clear

@@ -81,28 +81,43 @@ class AccountsController < CommunitiesController
   def edit_new
   end
 
-  def add_feeds
-    @feeds = current_community.feeds
-  end
-
   def update_new
     authorize! :update, User
     current_user.attributes = params[:user]
     current_user.save do |result|
       if result
-        if current_community.feeds.present?
-          redirect_to :action => "add_feeds"
-        else
-          redirect_to root_url
-        end
+        redirect_to :action => "add_feeds"
       else
         render :edit_new
       end
     end
   end
+
+  def add_feeds
+    @feeds = current_community.feeds
+    if @feeds.present?
+      render
+    else
+      redirect_to :action => "add_groups"
+    end
+  end
   
   def subscribe_to_feeds
     current_user.feed_ids = params[:feed_ids]
+    redirect_to :action => "add_groups"
+  end
+
+  def add_groups
+    @groups = current_community.groups
+    if @groups.present?
+      render
+    else
+      redirect_to root_url
+    end
+  end
+
+  def subscribe_to_groups
+    current_user.group_ids = params[:group_ids]
     redirect_to root_url
   end
 

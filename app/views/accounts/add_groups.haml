@@ -1,0 +1,17 @@
+#groups_box
+  #tool_tip
+    %p= t ".p1"
+  #groups_wrapper
+    %h2
+      Subscribe to a community group:
+    - form_tag "/account/subscribe_to_groups" do
+      #groups_container
+        - @groups.each do |group|
+          .group
+            =image_tag(group.avatar_url)
+            .unchecked
+            %h3= group.name
+            %input{:class =>"groupId", :name => "group_ids[]", :value => group.id.to_s, :type =>"checkbox"}
+      %input{:type => "image", :src => "/images/buttons/continue.png"}
+
+    %br{:class=>"cleared"}
