@@ -77,8 +77,8 @@ describe AccountsController do
         put :update_new
       end
       
-      it "redirects to root" do
-        response.should redirect_to "/"
+      it "redirects to add_feeds" do
+        response.should redirect_to "/account/add_feeds"
       end
     end
 
