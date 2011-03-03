@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110303021537) do
+ActiveRecord::Schema.define(:version => 20110303072220) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                                :null => false
@@ -213,9 +213,7 @@ ActiveRecord::Schema.define(:version => 20110303021537) do
     t.string   "last_name",                                                        :null => false
     t.text     "about"
     t.integer  "neighborhood_id",                                                  :null => false
-    t.string   "cached_skill_list"
-    t.string   "cached_interest_list"
-    t.string   "cached_good_list"
+    t.string   "interest_list"
     t.boolean  "receive_digests",                               :default => false, :null => false
     t.boolean  "receive_posts",                                 :default => true
     t.boolean  "receive_events_and_announcements",              :default => true
@@ -226,6 +224,7 @@ ActiveRecord::Schema.define(:version => 20110303021537) do
     t.integer  "facebook_uid",                     :limit => 8
     t.string   "oauth2_token"
     t.integer  "community_id"
+    t.string   "offer_list"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
