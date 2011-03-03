@@ -4,7 +4,7 @@ class PostsController < CommunitiesController
   load_and_authorize_resource
 
   def index
-    @items = current_community.posts.sort_by(&:updated_at).reverse
+    @items = current_community.posts(:all, :limit => 30)
   end
 
   def new
