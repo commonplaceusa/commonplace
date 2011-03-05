@@ -1,7 +1,26 @@
 require 'spec_helper'
 
 describe EmailParseController do
-  
+
+  describe ".strip_email_body" do
+    before = 
+    after = "\n> > Hi Peter, 
+> CommonPlace Team just replied to a message: jojo > > jojo > But laso check this out. "
+    ["^-- \n", "^--\n", "-----Original\ Message-----", "_" * 32, "On Mar 5, 2011, at 10:51 AM, Falls Church CommonPlace wrote:", "From: Max Tilford", "Sent from my iPhone"].each do |separator|
+
+      it "strips by #{separator.chomp}" do
+        result = EmailParseController.strip_email_body("
+Hey -- testing a reply!
+#{separator}
+> > > Reply to CommonPlace 
+> or reply to this email to message CommonPlace. > > Want to disable this and/or other e-mails? Click here to manage your subscriptions
+")
+        result.should match "Hey -- testing a reply"
+        result.should_not match "Hi Peter"
+      end
+    end
+  end
+
   let(:user) { mock_model(User, :email => "test@example.com") }
   let(:reply) { mock_model(Reply) }
 
