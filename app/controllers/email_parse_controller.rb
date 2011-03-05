@@ -66,7 +66,7 @@ class EmailParseController < ApplicationController
     # Strip any replies from the text
     
     # Check for key phrases
-    phrases = ['\n\n', '-- \n','--\n','-----Original Message-----','________________________________','From: ','Sent from my ',TMail::Address.parse(to).spec,TMail::Address.parse(to).spec.match(/[A-Za-z0-9]*/)[0]]
+    phrases = ["\n\n", "-- \n","--\n","-----Original Message-----","________________________________","From: ","Sent from my ",TMail::Address.parse(to).spec,TMail::Address.parse(to).spec.match(/[A-Za-z0-9]*/)[0]]
     
     index = text.length + 1
     
