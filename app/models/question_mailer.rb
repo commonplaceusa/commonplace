@@ -10,7 +10,7 @@ class QuestionMailer < ActionMailer::Base
   def faq(sender, question)
     @question_sender = sender
     @question_text = question
-    recipients "jason@jasonberlinsky.com"
+    recipients "petehappens@gmail.com"
     header = SmtpApiHeader.new
     @headers['X-SMTPAPI'] = header.asJSON
     subject "New Question for you!"
