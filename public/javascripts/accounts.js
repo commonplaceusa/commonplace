@@ -31,9 +31,9 @@ $(document).ready(function(){
   
   
   // accounts/add_feeds
-  $('.unchecked').click(function(){
-    $(this).toggleClass('checked');
-    var $checkbox = $(this).siblings("input:checkbox");
+  $('.add_groups .group, .add_feeds .feed').click(function(){
+    $('div', this).toggleClass('checked');
+    var $checkbox = $("input:checkbox", this);
     $checkbox.attr("checked", 
                    $checkbox.is(":checked") ? false : "checked");
   });
