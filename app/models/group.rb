@@ -2,6 +2,8 @@ class Group < ActiveRecord::Base
   
   validates_presence_of :name, :slug, :about, :community
 
+  before_validation_on_create :generate_slug, :unless => :slug?
+
   belongs_to :community
 
   has_attached_file(:avatar,                    
@@ -18,5 +20,21 @@ class Group < ActiveRecord::Base
     self.avatar.url(style_name || self.avatar.default_style)
   end
 
+  private
+
+  def generate_slug
+    string = self.name.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n, '').to_s
+    string.gsub!(/[']+/, '')
+    string.gsub!(/\W+/, ' ')
+    string.strip!
+    string.downcase!
+    string.gsub!(' ', '-')
+
+    if Feed.exists?(:slug => string, :community_id => self.community_id)
+      self.slug = nil
+    else
+      self.slug = string
+    end
+  end
   
 end
