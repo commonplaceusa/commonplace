@@ -2,14 +2,13 @@ class Community < ActiveRecord::Base
   has_many :feeds
   has_many :neighborhoods, :order => :created_at
   has_many(:announcements, 
-           :through => :feeds, 
            :order => "announcements.created_at DESC",
            :include => [:feed, :replies])
+  has_many(:events, 
+           :order => "events.date ASC",
+           :include => [:owner, :replies])
 
   has_many :users, :order => "last_name, first_name"
-
-  has_many :feed_events, :through => :feeds, :source => :events
-  has_many :user_events, :through => :users, :source => :direct_events
 
   has_many :groups
 
@@ -44,10 +43,6 @@ class Community < ActiveRecord::Base
     find(:first, :conditions => ["LOWER(slug) = ?", slug.downcase])
   end
   
-  def events
-    (user_events.upcoming + feed_events.upcoming).sort_by(&:start_datetime)
-  end
-
   def neighborhood_for(address)
     default = self.neighborhoods.first
     if position = LatLng.from_address(address, self.zip_code)

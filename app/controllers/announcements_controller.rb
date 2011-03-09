@@ -17,7 +17,7 @@ class AnnouncementsController < CommunitiesController
   end
 
   def create
-    @announcement = Announcement.new(params[:announcement])
+    @announcement = Announcement.new(params[:announcement].merge(:community => current_community))
     if @announcement.save
       redirect_to announcements_path
     else

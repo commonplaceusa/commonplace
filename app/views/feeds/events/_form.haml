@@ -10,8 +10,8 @@
     = f.input :name
     = f.input :description, :input => {:rows => 3}
     = f.input :date, :as => :string, :input_html => {:class => 'date'}
-    = event_select_time('start_time')
-    = event_select_time('end_time') 
+    = event_select_time('start_time', event)
+    = event_select_time('end_time', event) 
     = f.input :venue
     = f.input :address
     = f.input :tag_list

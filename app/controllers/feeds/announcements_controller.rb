@@ -9,7 +9,7 @@ class Feeds::AnnouncementsController < ApplicationController
 
   def create
     @feed = Feed.find(params[:feed_id])
-    @announcement = @feed.announcements.build(params[:announcement])
+    @announcement = @feed.announcements.build(params[:announcement].merge(:community => current_community))
     if @announcement.save
       render :create
     else

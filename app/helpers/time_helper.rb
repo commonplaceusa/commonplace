@@ -45,10 +45,10 @@ module TimeHelper
     }.flatten
   end
   
-  def event_select_time(edge)
+  def event_select_time(edge, event)
     content_tag(:li, :class => 'select required', :id => "event_#{edge}_input") do 
       content_tag(:label, :for => "event_#{edge}") { edge.humanize } +
-        select('event', edge, options_for_select(drop_down_times, @event.read_attribute(edge).to_s))
+        select('event', edge, options_for_select(drop_down_times, event.read_attribute(edge).to_s))
     end
   end
   

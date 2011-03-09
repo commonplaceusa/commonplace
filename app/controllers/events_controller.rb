@@ -3,7 +3,7 @@ class EventsController < CommunitiesController
   load_and_authorize_resource :except => [:index]
   
   def index
-    @items = current_community.events
+    @items = current_community.events.upcoming
   end
 
   def your
@@ -20,7 +20,7 @@ class EventsController < CommunitiesController
   end
 
   def create
-    @event = Event.new(params[:event].merge(:owner => @owner))
+    @event = Event.new(params[:event].merge(:owner => @owner, :community => current_community))
     if @event.save
       redirect_to events_path
     else
