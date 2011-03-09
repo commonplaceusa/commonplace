@@ -23,6 +23,6 @@ class CommunitiesController < ApplicationController
   end
 
   def events
-    @events ||= current_community.events.take(3)
+    @events ||= current_community.events.upcoming.take(3)
   end
 end

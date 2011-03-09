@@ -9,7 +9,7 @@ class Feeds::EventsController < ApplicationController
 
   def create
     @feed = Feed.find(params[:feed_id])
-    @event = @feed.events.build(params[:event])
+    @event = @feed.events.build(params[:event].merge(:community => current_community))
     if @event.save
       render :create
     else
