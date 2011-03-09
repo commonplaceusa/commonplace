@@ -16,6 +16,27 @@ class EmailParseController < ApplicationController
     render :nothing => true
   end
   
+  def unpublished
+    @user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    if @user
+      # lists my unpublished posts
+      @posts = @user.posts.reject {|k,v| k.published == true}
+      if @posts.count >= 1
+        NotificationsMailer.deliver_unpublished_posts_report
+      end
+    end
+  end
+  
+  def posts_new
+    user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    if user
+      p = Post.create(:body => params[:text], user => user, subject => params[:subject], area => user.neighborhood, :published => false)
+      NotificationsMailer.deliver_neighborhood_post_confirmation(user.neighborhood.id,p.id)
+    else
+      NotificationsMailer.deliver_neighborhood_post_failure
+    end
+  end
+  
   def posts
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     post = Post.find_by_long_id(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
