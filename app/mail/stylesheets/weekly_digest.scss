@@ -118,7 +118,7 @@ table.announcement { width: $main-width ; border-top: 1px solid #3b6085 ; paddin
     border-spacing: 5px ; 
     .avatar { width: 60px ; }
     .name, .name a { color: #3b6085 ; font-size: 18px ; font-family: $serifs ; }
-    .subscribe { width: 75px ; }
+    .subscribe { width: 85px ; }
     .message { width: 130px ; }
     .subscribe a { @include red-button ; text-align: center ; font-family: $serifs ; }
     .message a { @include blue-button ; text-align: center ; font-family: $serifs ; }
