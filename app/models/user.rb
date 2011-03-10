@@ -42,7 +42,9 @@ class User < ActiveRecord::Base
     redirect_to_oauth2
   end
 
-
+  def self.find_by_email(email)
+    find(:first, :conditions => ["LOWER(users.email) = ?", email.downcase])
+  end
   
   has_many :attendances, :dependent => :destroy
 
