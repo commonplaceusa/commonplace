@@ -23,27 +23,28 @@
 $main-width: 610px ;
 $serifs: Rockwell, Georgia, Times, serif ;
 $sans-serifs: Helvetica, sans ;
+$body-serifs: Georgia, Times, serif ;
 
 body { text-align: center ; background-color: #ffffff ; }
 
-p { color: #656565 ; font-size: 18px ; line-height: 1.8 ; font-family: $serifs ; line-height: 1.8 ; }
+p { color: #656565 ; font-size: 18px ; line-height: 1.8 ; font-family: $body-serifs ; line-height: 1.8 ; }
 
 #body { width: 650px ; text-align: left ; border-spacing: 20px ; background-color: #ffffff ; }
 
 #header {
     table { width: $main-width ; }
-    #logo { width: 225px ; }
+    #logo { width: 225px ; border-width: 0px ; }
     #community_name { 
-        color: #b53f3c; font-family: $serifs ; font-size: 22px ; font-weight: bold ; text-align: left ; vertical-align: bottom ; padding-bottom: 5px ;  
-        #week_of { text-align: right ; color: #3b6085 ; font-family: $serifs ; font-size: 14px ; font-weight: bold ; }
+        color: #b53f3c; font-family: $serifs ; font-size: 22px ; font-weight: bold ; text-align: left ; vertical-align: bottom ; padding-bottom: 4px ;  
     }
+    #week_of { text-align: right ; color: #3b6085 ; font-family: $serifs ; font-size: 14px ; font-weight: bold ; vertical-align: bottom ; padding-bottom: 4px ;}
 }
 a { @include colored-a(#b53f3c) ; }
 
 #intro h1 { font-size: 20px ; color: #464646 ; font-family: $serifs ; }
 #intro p { font-family: $sans-serifs; font-size: 13px ; }
 
-h2 { color: #3b6085 ; font-size: 25px ; font-family: $serifs ; margin-bottom: 0px ; padding-top: 20px ; border-top: 1px dashed #b0b0b0 ; }
+h2 { color: #3b6085 ; font-size: 25px ; font-family: $serifs ; margin-bottom: 0px ; padding-top: 20px ; border-top: 1px dashed #b0b0b0 ; font-weight: normal ; }
 
 
 p.h2-sub { color: #666666 ; font-size: 13px ; margin-top: 0px ; font-family: $serifs ; }
@@ -72,7 +73,10 @@ p.action strong { color: #3b6085; }
 }
 
 
-table.event .date-time { vertical-align: top ; width: 60px ; }
+table.event .date-time { 
+    vertical-align: top ; width: 60px ; 
+    .time { font-size: 12px ; font-family: $serifs ; color: #3b6085 ; padding-top: 5px ; text-align: center ; }
+}
 
 table.event, table.announcement {
     width: $main-width ; 
@@ -83,8 +87,8 @@ table.event, table.announcement {
     .body p, p.body { padding-bottom: 5px ; }
 
     .posted-at { vertical-align: top ; text-align: right ; color: #3b6085 ; }
-    .name, .name a { color: #252525 ; font-weight: bold ; font-size: 16px ; text-decoation: none ; }
-    .posted-by { color: #af412f ; }
+    .name, .name a { color: #252525 ; font-size: 20px ; text-decoration: none ; }
+    .posted-by { color: #af412f ; font-family: $serifs ; }
     .reply { border-top: 1px solid #dadada ; width: 540px ; }
     .reply p { line-height: 1.2 ; margin-top: 5px ; margin-bottom: 5px ; }
     .reply p.body { font-size: 15px ; margin-top: 0px ; }
@@ -98,7 +102,7 @@ table.event, table.announcement {
 .event-reply, .announcement-reply {
     margin-left: 410px ; 
     margin-top: 10px ; 
-    a { @include red-button ; font-size: 13px ; }
+    a { @include red-button ; font-size: 13px ; font-family: $serifs ; text-align: center ; }
 }
 
 .more-replies a { 
@@ -113,10 +117,11 @@ table.announcement { width: $main-width ; border-top: 1px solid #3b6085 ; paddin
 .announcements-feed {
     border-spacing: 5px ; 
     
-    .name { color: #3b6085 ; font-size: 18px ; }
-
-    .subscribe a { @include red-button ; }
-    .message a { @include blue-button ; }
+    .name, .name a { color: #3b6085 ; font-size: 18px ; font-family: $serifs ; }
+    .subscribe { width: 75px ; }
+    .message { width: 130px ; }
+    .subscribe a { @include red-button ; text-align: center ; font-family: $serifs ; }
+    .message a { @include blue-button ; text-align: center ; font-family: $serifs ; }
 
 }
 

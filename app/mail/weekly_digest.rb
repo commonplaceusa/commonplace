@@ -26,7 +26,7 @@ class WeeklyDigest < MailBase
   end
 
   def week_of
-    start_date.strftime("%B %d")
+    start_date.strftime("%B %e, %Y")
   end
 
   def events
@@ -39,6 +39,10 @@ class WeeklyDigest < MailBase
         :date => {
           :short_month => event.date.strftime("%b"),
           :day => event.date.strftime("%d")
+        },
+        :time => {
+          :start => event.start_time.try(:strftime,"%l:%M%P") || "?",
+          :end => event.end_time.try(:strftime,"%l:%M%P") || "?"
         },
         :url => url("/events/#{event.id}"),
         :num_more_replies => event.replies.count > 2 ? event.replies.count - 2 : nil,

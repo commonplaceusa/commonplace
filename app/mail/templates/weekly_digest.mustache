@@ -29,15 +29,16 @@
 
       <tr>
         <td id="intro">
-          <h1>The {{community_name}} CommonPlace Weekly Digest</h1>
+          <h1>The {{community_name}} CommonPlace Weekly Bulletin</h1>
           <p>Every week, the {{community_name}} CommonPlace compiles all the
             community information posted to {{community_name}}'s CommonPlace
             web platform into a simple weekly bulletin. Remember, if you ever
             want to add something to this bulletin &ndash;
-            <a><span>an upcoming event or community announcement</span></a>
+            an <a href="{{new_event_url}}"><span>upcoming event</span></a> or
+            <a href="{{new_announcement_url}}">community announcement</span></a>
             &ndash; just logon to
-            <a href="{{root_url}}"><span>{{community_name}}</span></a> to
-            submit it to CommonPlace.</p>
+            <a href="{{root_url}}"><span>{{community_name}}</span></a>
+            to submit it to CommonPlace.</p>
         </td>
       </tr>
 
@@ -60,17 +61,20 @@
               <tr>
                 <td class="date-time" rowspan="4">
                   {{#date}}
-                  <div class="calendar">
-                    <div class="short-month">{{short_month}}</div>
-                    <div class="day">{{day}}</div>
-                  </div>
+                    <div class="calendar">
+                      <div class="short-month">{{short_month}}</div>
+                      <div class="day">{{day}}</div>
+                    </div>
                   {{/date}}
+                  {{#time}}
+                    <span class="time">{{start}}</span> -
+                    <span class="time">{{end}}</span>
+                  {{/time}}
                 </td>
                 <td class="name">
                   <a href="{{url}}">{{name}}</a>
                 </td>
                 <td class="posted-at">
-                  {{posted_at}}
                 </td>
               </tr>
               <tr>
@@ -124,11 +128,11 @@
               <br>
               <a href="{{new_event_url}}"><span>Post it</span></a> to
               CommonPlace's event board and it will be in a future weekly
-              community digest!
+              community bulletin!
             </p>
 
             <p class="action">
-              <strong>Want to see more events in your daily digests?</strong>
+              <strong>Want to see more events in your daily bulletins?</strong>
               <br>
               <a href="{{subscribe_url}}"><span>Subscribe</span></a> to more
               community feeds and groups to see their events sooner.
@@ -147,7 +151,7 @@
 
           {{^feeds_with_announcements}}
             <p class="none">There weren't any announcements this week --
-              <a href="{{new_announcement_url}}"><span>post</span></a> to fill up next week's Announcement digest.</p>
+              <a href="{{new_announcement_url}}"><span>post</span></a> to fill up next week's Announcement bulletin.</p>
           {{/feeds_with_announcements}}
 
           {{#feeds_with_announcements}}
@@ -156,7 +160,7 @@
                 <td class="avatar" rowspan="2">
                   <a href="{{url}}"><img src="{{avatar_url}}" width="50" height="50"></a>
                 </td>
-                <td class="name" colspan="2">
+                <td class="name" colspan="3">
                   <a href="{{url}}">{{name}}</a>
                 </td>
               </tr>
@@ -166,6 +170,8 @@
                 </td>
                 <td class="message">
                   <a href="{{message_url}}"><span>Send a Message</span></a>
+                </td>
+                <td>
                 </td>
               </tr>
             </table>
@@ -222,11 +228,11 @@
                 community?</strong>
               <br>
               <a href="{{new_announcement_url}}"><span>Post it</span></a> to
-              CommonPlace and it will be in next week's weekly digest.
+              CommonPlace and it will be in next week's weekly bulletin.
             </p>
 
             <p class="action">
-              <strong>Want to see more announcements in your daily digest?</strong>
+              <strong>Want to see more announcements in your daily bulletin?</strong>
               <br>
               <a href="{{subscribe_url}}"><span>Subscribe</span></a> to more
               community feeds and groups to see their announcements sooner.
