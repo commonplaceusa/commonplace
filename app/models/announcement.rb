@@ -8,6 +8,13 @@ class Announcement < ActiveRecord::Base
   belongs_to :community
 
   validates_presence_of :subject, :body, :feed, :unless => Proc.new { |announcement| announcement.type.to_s == 'TwitterAnnouncement'}
+
+  named_scope :between, lambda { |start_date, end_date| 
+    { :conditions => 
+      ["? <= created_at AND created_at < ?", start_date, end_date] } 
+  }
+
+
   
   def time
     Helper.help.post_date(self.created_at)

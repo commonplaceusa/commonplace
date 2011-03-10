@@ -28,6 +28,10 @@ gem 'tmail'
 
 gem 'mail_style'
 
+gem 'mail'
+gem 'mustache'
+gem 'premailer'
+
 gem 'httparty'
 gem 'json'
 gem 'simple_uuid'
