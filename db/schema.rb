@@ -141,14 +141,15 @@ ActiveRecord::Schema.define(:version => 20110309192552) do
   end
 
   create_table "posts", :force => true do |t|
-    t.text     "body",              :null => false
-    t.integer  "user_id",           :null => false
+    t.text     "body",                                :null => false
+    t.integer  "user_id",                             :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subject"
     t.string   "category"
     t.integer  "community_id"
     t.boolean  "sent_to_community"
+    t.boolean  "published",         :default => true
   end
 
   create_table "referrals", :force => true do |t|
