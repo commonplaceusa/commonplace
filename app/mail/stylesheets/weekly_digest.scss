@@ -33,7 +33,7 @@ p { color: #656565 ; font-size: 18px ; line-height: 1.8 ; font-family: $body-ser
 
 #header {
     table { width: $main-width ; border-spacing: 0px ; }
-    #logo { width: 225px ; border-width: 0px ; }
+    #logo { width: 225px ; img { border-width: 0px ; } }
     #community_name { 
         color: #b53f3c; font-family: $serifs ; font-size: 22px ; font-weight: bold ; text-align: left ; vertical-align: bottom ;  line-height: 32px ;
     }
@@ -116,7 +116,7 @@ table.announcement { width: $main-width ; border-top: 1px solid #3b6085 ; paddin
 
 .announcements-feed {
     border-spacing: 5px ; 
-    
+    .avatar { width: 60px ; }
     .name, .name a { color: #3b6085 ; font-size: 18px ; font-family: $serifs ; }
     .subscribe { width: 75px ; }
     .message { width: 130px ; }
