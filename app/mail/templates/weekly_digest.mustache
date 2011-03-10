@@ -1,0 +1,294 @@
+<html>
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+  <body>
+
+    <table id="body">
+
+      <tr>
+        <td id="header">
+
+          <table>
+            <tr>
+              <td id="logo">
+                <img src="{{logo_url}}" alt="CommonPlace">
+              </td>
+              <td id="community_name">
+                {{community_name}}
+              </td>
+              <td id="week_of">
+                Week of {{week_of}}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="intro">
+          <h1>The {{community_name}} CommonPlace Weekly Digest</h1>
+          <p>Every week, the {{community_name}} CommonPlace compiles all the
+            community information posted to {{community_name}}'s CommonPlace
+            web platform into a simple weekly bulletin. Remember, if you ever
+            want to add something to this bulletin &ndash;
+            <a><span>an upcoming event or community announcement</span></a>
+            &ndash; just logon to
+            <a href="{{root_url}}"><span>{{community_name}}</span></a> to
+            submit it to CommonPlace.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="community-events">
+          <h2>Upcoming Community Events</h2>
+          <p class="h2-sub">
+            Events in the next two weeks in your community
+          </p>
+
+          {{^events}}
+            <p class="none">There aren't any upcoming events this week
+              -- get out there and organize some community events and
+              <a href="{{new_event_url}}"><span>post them to CommonPlace</span></a>.</p>
+          {{/events}}
+
+          {{#events}}
+
+            <table class="event">
+              <tr>
+                <td class="date-time" rowspan="4">
+                  {{#date}}
+                  <div class="calendar">
+                    <div class="short-month">{{short_month}}</div>
+                    <div class="day">{{day}}</div>
+                  </div>
+                  {{/date}}
+                </td>
+                <td class="name">
+                  <a href="{{url}}">{{name}}</a>
+                </td>
+                <td class="posted-at">
+                  {{posted_at}}
+                </td>
+              </tr>
+              <tr>
+                <td class="posted-by" colspan="2">
+                  {{posted_by}}
+                </td>
+              </tr>
+              <tr>
+                <td class="body" colspan="2">
+                 <p>{{body}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="replies" colspan="2">
+                  {{#replies}}
+                    <table class="reply" rowspacing="5" colspacing="5">
+                      <tr>
+                        <td class="avatar">
+                          <img src="{{user_avatar_url}}" width="20" height="20">
+                        </td>
+                        <td class="body">
+                          <p class="posted-by">{{posted_by}}</p>
+                          <p class="body">{{body}}</p>
+                        </td>
+                        <td class="posted-at">{{posted_at}}</td>
+                      </tr>
+                    </table>
+                  {{/replies}}
+
+                  {{#num_more_replies}}
+                    <div class="more-replies">
+                      <a href="{{url}}">
+                        <span>[ + {{num_more_replies}} more replies... ]</span>
+                      </a>
+                    </div>
+                  {{/num_more_replies}}
+
+                  <div class="event-reply">
+                    <a href="{{url}}"><span>Reply to this Event</span></a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+          {{/events}}
+
+
+          <div class="footer">
+            <p class="action">
+              <strong>Have an event to publicize?</strong>
+              <br>
+              <a href="{{new_event_url}}"><span>Post it</span></a> to
+              CommonPlace's event board and it will be in a future weekly
+              community digest!
+            </p>
+
+            <p class="action">
+              <strong>Want to see more events in your daily digests?</strong>
+              <br>
+              <a href="{{subscribe_url}}"><span>Subscribe</span></a> to more
+              community feeds and groups to see their events sooner.
+            </p>
+
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="community-announcements">
+          <h2>Recent Community Announcements</h2>
+          <p class="h2-sub">
+            Announcements posted to CommonPlace this week
+          </p>
+
+          {{^feeds_with_announcements}}
+            <p class="none">There weren't any announcements this week --
+              <a href="{{new_announcement_url}}"><span>post</span></a> to fill up next week's Announcement digest.</p>
+          {{/feeds_with_announcements}}
+
+          {{#feeds_with_announcements}}
+            <table class="announcements-feed">
+              <tr>
+                <td class="avatar" rowspan="2">
+                  <a href="{{url}}"><img src="{{avatar_url}}" width="50" height="50"></a>
+                </td>
+                <td class="name" colspan="2">
+                  <a href="{{url}}">{{name}}</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="subscribe">
+                  <a href="{{subscribe_url}}"><span>Subscribe</span></a>
+                </td>
+                <td class="message">
+                  <a href="{{message_url}}"><span>Send a Message</span></a>
+                </td>
+              </tr>
+            </table>
+            {{#announcements}}
+              <table class="announcement">
+                <tr>
+                  <td class="name">
+                    <a href="{{url}}">{{subject}}</a>
+                  </td>
+                  <td class="posted-at">
+                    {{posted_at}}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="posted-by" colspan="2">
+                    {{posted_by}}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="body" colspan="2">
+                    <p>{{body}}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="replies" colspan="2">
+                    {{#replies}}
+                      <table class="reply">
+                        <tr>
+                          <td class="avatar"><img src="{{user_avatar_url}}" width="20" height="20"></td>
+                          <td class="body">
+                            <p class="posted-by">{{posted_by}}</p>
+                            <p class="body">{{body}}</p>
+                          </td>
+                          <td class="posted-at">{{posted_at}}</td>
+                        </tr>
+                      </table>
+                    {{/replies}}
+                    {{#num_more_replies}}
+                      <div class="more-replies">
+                        [ + {{num_more_replies}} more replies... ]
+                    </div>
+                    {{/num_more_replies}}
+                    <div class="announcement-reply">
+                      <a href="{{url}}"><span>Reply to this Announcement</span></a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            {{/announcements}}
+          {{/feeds_with_announcements}}
+          <div class="footer">
+            <p class="action">
+              <strong>Have an announcement you want to publicize to the whole
+                community?</strong>
+              <br>
+              <a href="{{new_announcement_url}}"><span>Post it</span></a> to
+              CommonPlace and it will be in next week's weekly digest.
+            </p>
+
+            <p class="action">
+              <strong>Want to see more announcements in your daily digest?</strong>
+              <br>
+              <a href="{{subscribe_url}}"><span>Subscribe</span></a> to more
+              community feeds and groups to see their announcements sooner.
+            </p>
+
+            <p class="action">
+              <strong>Are you a community organization or business leader?</strong>
+              <br>
+              <a href="{{new_feed_url}}"><span>Create a community feed</span></a>
+              to send your organization's announcements to the community.
+            </p>
+
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="footer">
+          <p class="action">
+            <strong>Know anyone in your neighborhood <em>not</em> on
+              CommonPlace?</strong>
+            <br>
+            <a href="{{new_invites_url}}"><span>Invite</span></a> more neighbors to
+            your community!
+          </p>
+
+          <table id="posting">
+            <tr>
+              <td></td>
+              <td class="link">
+                <a href="{{new_post_url}}"><span>
+                    Post to Your <br> Neighborhood
+                </span></a>
+              </td>
+
+              <td class="link">
+                <a href="{{new_announcement_url}}"><span>
+                    Post an Announcement to <br> the Whole Community
+                </span></a>
+              </td>
+
+              <td class="link">
+                <a href="{{new_event_url}}"><span>
+                    Post an Event to <br> the Events Board
+                </span></a>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+
+          <p id="settings">
+            Want to change your email settings? Click
+            <a href="{{settings_url}}"><span>here</span></a>
+            to manage your subscriptions.
+          </p>
+
+          <a href="{{starter_site_url}}"><span>OurCommonPlace.com</span></a>
+          <p>&copy; 2010-2011 CommonPlace.</p>
+        </td>
+      </tr>
+
+    </table>
+  </body>
+</html>
+ 

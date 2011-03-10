@@ -19,6 +19,9 @@ class Event < ActiveRecord::Base
   has_many :invites, :as => :inviter
 
   named_scope :upcoming, :conditions => ["? <= date", Time.now.beginning_of_day]
+  named_scope :between, lambda { |start_date, end_date| 
+    { :conditions => ["? <= date AND date < ?", start_date, end_date] } 
+  }
   named_scope :past, :conditions => ["date < ?", Time.now]
 
   def search(term)

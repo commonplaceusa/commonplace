@@ -1,7 +1,7 @@
 class Community < ActiveRecord::Base
   has_many :feeds
   has_many :neighborhoods, :order => :created_at
-  has_many(:announcements, 
+  has_many(:announcements,
            :order => "announcements.created_at DESC",
            :include => [:feed, :replies])
   has_many(:events, 
