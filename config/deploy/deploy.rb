@@ -8,7 +8,7 @@ namespace :deploy do
   task :symlink do
   end
  
-  task :update_code, :except => { :no_release => true } do
+  task :update_code do
     commands = ["cd #{current_path}",
                 "git fetch origin",
                 "git reset --hard #{branch}",
@@ -18,7 +18,7 @@ namespace :deploy do
   
   namespace :rollback do
     desc "Rollback a single commit."
-    task :code, :except => { :no_release => true } do
+    task :code do
       set :branch, "HEAD^"
       deploy.default
     end
