@@ -30,7 +30,8 @@ class EmailParseController < ApplicationController
   def posts_new
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     if user
-      p = Post.create(:body => params[:text], user => user, subject => params[:subject], area => user.neighborhood, :published => false)
+      p = Post.create!(:body => params[:text], :user => user, :subject => params[:subject], :community => user.community, :published => false)
+      puts p.inspect
       NotificationsMailer.deliver_neighborhood_post_confirmation(user.neighborhood.id,p.id)
     else
       NotificationsMailer.deliver_neighborhood_post_failure
