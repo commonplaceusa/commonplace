@@ -37,7 +37,7 @@ p { color: #656565 ; font-size: 18px ; line-height: 1.8 ; font-family: $body-ser
     #community_name { 
         color: #b53f3c; font-family: $serifs ; font-size: 22px ; font-weight: bold ; text-align: left ; vertical-align: bottom ;  line-height: 32px ;
     }
-    #week_of { text-align: right ; color: #3b6085 ; font-family: $serifs ; font-size: 14px ; font-weight: bold ; vertical-align: bottom ; line-height: 32px ; }
+    #header-text { text-align: right ; color: #3b6085 ; font-family: $serifs ; font-size: 14px ; font-weight: bold ; vertical-align: bottom ; line-height: 32px ; }
 }
 a { @include colored-a(#b53f3c) ; }
 

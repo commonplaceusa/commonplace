@@ -1,31 +1,16 @@
 <html>
+
   <head>
     <style>
       {{styles}}
     </style>
   </head>
+
   <body>
 
     <table id="body">
 
-      <tr>
-        <td id="header">
-
-          <table>
-            <tr>
-              <td id="logo">
-                <img src="{{logo_url}}" alt="CommonPlace">
-              </td>
-              <td id="community_name">
-                {{community_name}}
-              </td>
-              <td id="week_of">
-                Week of {{week_of}}
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
+      {{< header }}
 
       <tr>
         <td id="intro">
@@ -285,18 +270,12 @@
             </tr>
           </table>
 
-          <p id="settings">
-            Want to change your email settings? Click
-            <a href="{{settings_url}}"><span>here</span></a>
-            to manage your subscriptions.
-          </p>
+          {{< settings}}
 
-          <a href="{{starter_site_url}}"><span>OurCommonPlace.com</span></a>
-          <p>&copy; 2010-2011 CommonPlace.</p>
+          {{< legal}}
         </td>
       </tr>
 
     </table>
   </body>
 </html>
- 
