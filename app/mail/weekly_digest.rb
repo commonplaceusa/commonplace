@@ -25,8 +25,8 @@ class WeeklyDigest < MailBase
     community.name
   end
 
-  def week_of
-    start_date.strftime("%B %e, %Y")
+  def header_text
+    start_date.strftime("Week of %B %e, %Y")
   end
 
   def events
