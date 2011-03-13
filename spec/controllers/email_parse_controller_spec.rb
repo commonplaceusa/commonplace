@@ -22,7 +22,8 @@ Hey -- testing a reply!
   end
 
   let(:community) { mock_model(Community, :id => 1, :slug => "test") }
-  let(:user) { mock_model(User, :email => "test@example.com", :community => community) }
+  let(:user) { mock_model(User, :email => "test@example.com", :community => community, :neighborhood => neighborhood) }
+  let (:neighborhood) { mock_model(Neighborhood) }
   let(:reply) { mock_model(Reply) }
 
   before :each do 
@@ -103,10 +104,11 @@ Hey -- testing a reply!
   
   describe "#posts_new" do
     #let(:test_community) { mock_model(Community, :slug => "test") }
-    
+    let(:new_post) { mock_model(Post) } 
     before :each do
       stub(NotificationsMailer).deliver_neighborhood_post_confirmation
-      puts user.email
+      stub(Post).create! { new_post }
+  
       post(:posts_new,
             :from => user.email,
             :text => @reply_text,
@@ -114,11 +116,11 @@ Hey -- testing a reply!
     end
     
     it "creates a new post" do
-      Post.should have_received.create(hash_including(:user => user))
+      Post.should have_received.create!(hash_including(:user => user))
     end
     
     it "sends a confirmation to the user" do
-      NotificationMailer.should have_received.deliver_neighborhood_post_reply(user.neighborhood.id,p.id)
+      NotificationsMailer.should have_received.deliver_neighborhood_post_confirmation(user.neighborhood.id, new_post.id)
     end
   
   end
