@@ -11,19 +11,13 @@ p.h2-sub { color: #666666 ; font-size: 13px ; margin-top: 0px ; font-family: $se
 p.action { line-height: 1.2 ; font-size: 12px ; }
 p.action strong { color: #3b6085; }
 
-#footer {
-    text-align: center ;
+#posting {
+    width: $main-width ; border-spacing: 10px ; 
+    td.link { width: 155px ; background-color: #b53f3c ; text-align: center ; border: 1px solid #82312f ; padding: 5px }
     
-    #posting {
-        width: $main-width ; border-spacing: 10px ; 
-        td.link { width: 155px ; background-color: #b53f3c ; text-align: center ; border: 1px solid #82312f ; padding: 5px }
-        
-        td a { @include colored-a(#fff) ; text-decoration: none ; font-family: $serifs ; font-size: 11px ; width: 155px ; }
-    }
-    
-    #settings { font-family: $sans-serifs; font-size: 12px ; }
-    
+    td a { @include colored-a(#fff) ; text-decoration: none ; font-family: $serifs ; font-size: 11px ; width: 155px ; }
 }
+
 
 .calendar {
     width: 50px ; text-align: center ;
