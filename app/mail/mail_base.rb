@@ -36,9 +36,12 @@ class MailBase < Mustache
     style_file = self.class.ancestors.map { |klass| 
       File.join(File.dirname(__FILE__), "stylesheets/#{MailBase.underscore(klass.name)}.scss") 
     }.find {|filename| File.exist?(filename) }
-    puts style_file.inspect
+
     Sass::Engine.for_file(style_file, :syntax => :scss).render if style_file
-    
+  end
+
+  def markdown(text = "")
+    BlueCloth.new(text).to_html
   end
 
 end

@@ -1,0 +1,26 @@
+@import "mail_base" ;
+
+#post { 
+    background-color: #f5f5f5 ; 
+   
+    table { 
+        border-spacing: 10px ; 
+        td { vertical-align: top ; }
+    } ;
+
+    .subject { color: #3b608e ; font-size: 22px ; }
+
+    .body { 
+        p { line-height: 1.2 ;  font-size: 16px ; margin: 0 0 5px ; }
+    }
+
+    .reply {
+        a { @include red-button ; }
+    }
+
+    .reply-by-email { vertical-align: middle ; p { font-size: 14px ; } }
+
+    .message {
+
+    }
+}

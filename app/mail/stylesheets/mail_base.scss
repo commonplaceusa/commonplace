@@ -41,3 +41,7 @@ p { color: #656565 ; font-size: 18px ; line-height: 1.8 ; font-family: $body-ser
     #header-text { text-align: right ; color: #3b6085 ; font-family: $serifs ; font-size: 14px ; font-weight: bold ; vertical-align: bottom ; line-height: 32px ; }
 }
 a { @include colored-a(#b53f3c) ; }
+
+#settings { font-family: $sans-serifs; font-size: 12px ; }
+
+#footer { text-align: center ; }
