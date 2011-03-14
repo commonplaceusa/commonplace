@@ -33,9 +33,12 @@ class MailBase < Mustache
   end
 
   def styles
-    Sass::Engine.for_file(File.join(File.dirname(__FILE__), "stylesheets/#{MailBase.underscore(self.class.name)}.scss"),
-                     :syntax => :scss).render
+    style_file = self.class.ancestors.map { |klass| 
+      File.join(File.dirname(__FILE__), "stylesheets/#{MailBase.underscore(klass.name)}.scss") 
+    }.find {|filename| File.exist?(filename) }
+    puts style_file.inspect
+    Sass::Engine.for_file(style_file, :syntax => :scss).render if style_file
+    
   end
-
 
 end
