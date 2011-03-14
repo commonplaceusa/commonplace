@@ -1,0 +1,43 @@
+
+@mixin colored-a($color) {
+    color: $color ;
+    span { color: $color ; }
+}
+
+@mixin button($border-color, $bg-color, $fg-color) {
+    @include colored-a($fg-color) ;
+    text-decoration: none ;
+    display: block ; 
+    border: 1px solid $border-color ; 
+    background-color: $bg-color ; 
+    span {
+        text-decoration: none ;
+        display: block ; 
+        padding: 3px 5px ; 
+    }
+}
+
+@mixin red-button { @include button(#82312f, #b53f3c, #ffffff) ; }
+@mixin blue-button { @include button(#2e4359, #3b6085, #ffffff) ; }
+
+$main-width: 610px ;
+$serifs: Rockwell, Georgia, Times, serif ;
+$sans-serifs: Helvetica, sans ;
+$body-serifs: Georgia, Times, serif ;
+
+
+body { text-align: center ; background-color: #ffffff ; }
+
+p { color: #656565 ; font-size: 18px ; line-height: 1.8 ; font-family: $body-serifs ; line-height: 1.8 ; }
+
+#body { width: 650px ; text-align: left ; border-spacing: 20px ; background-color: #ffffff ; }
+
+#header {
+    table { width: $main-width ; border-spacing: 0px ; }
+    #logo { width: 225px ; img { border-width: 0px ; } }
+    #community_name { 
+        color: #b53f3c; font-family: $serifs ; font-size: 22px ; font-weight: bold ; text-align: left ; vertical-align: bottom ;  line-height: 32px ;
+    }
+    #header-text { text-align: right ; color: #3b6085 ; font-family: $serifs ; font-size: 14px ; font-weight: bold ; vertical-align: bottom ; line-height: 32px ; }
+}
+a { @include colored-a(#b53f3c) ; }

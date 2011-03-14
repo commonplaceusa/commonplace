@@ -33,7 +33,7 @@ class MailBase < Mustache
   end
 
   def styles
-    Sass::Engine.new(IO.read(File.dirname(__FILE__) + "/stylesheets/#{MailBase.underscore(self.class.name)}.scss"),
+    Sass::Engine.for_file(File.join(File.dirname(__FILE__), "stylesheets/#{MailBase.underscore(self.class.name)}.scss"),
                      :syntax => :scss).render
   end
 
