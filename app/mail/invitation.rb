@@ -26,7 +26,7 @@ class Invitation < MailBase
   end
 
   def short_inviter_name
-    inviter.respond_to?(:first_name) ? inviter.first_name : inviter.name
+    inviter.first_name
   end
   
   
