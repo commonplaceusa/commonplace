@@ -1,0 +1,70 @@
+<html>
+
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+
+  <body>
+    <table id="body">
+
+      {{< header}}
+
+      <tr>
+        <td id="intro">
+          <p>Hi {{user_name}},<br>
+            {{replier_name}} just replied to
+            <a href="{{post_url}}"><span>{{post_subject}}</span></a>
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="post">
+          <table>
+            <tr>
+              <td class="avatar" rowspan="4">
+                <img src="{{replier_avatar_url}}" width="50" height="50">
+              </td>
+
+              <td class="subject" colspan="2">
+                {{repliable_subject}}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="body" colspan="2">
+                {{{reply_body}}}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="reply">
+                <a href="{{repliable_url}}"><span>Reply to {{short_replier_name}}</span></a>
+              </td>
+              <td class="reply-by-email">
+                <p>Or just reply to this email.</p>
+              </td>
+            </tr>
+            {{^repliable_is_a_message?}}
+              <tr>
+                <td class="message" colspan="2">
+                  <a href="{{new_message_url}}"><span>Send {{short_replier_name}} a private message</span></a>
+                </td>
+              </tr>
+            {{/repliable_is_a_message?}}
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< settings }}
+
+          {{< legal }}
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
