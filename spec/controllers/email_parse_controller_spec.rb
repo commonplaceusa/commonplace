@@ -21,7 +21,9 @@ Hey -- testing a reply!
     end
   end
 
-  let(:user) { mock_model(User, :email => "test@example.com") }
+  let(:community) { mock_model(Community, :id => 1, :slug => "test") }
+  let(:user) { mock_model(User, :email => "test@example.com", :community => community, :neighborhood => neighborhood) }
+  let (:neighborhood) { mock_model(Neighborhood) }
   let(:reply) { mock_model(Reply) }
 
   before :each do 
@@ -98,6 +100,29 @@ Hey -- testing a reply!
       NotificationsMailer.should have_received.deliver_post_reply(reply.id)
     end
 
+  end
+  
+  describe "#posts_new" do
+    #let(:test_community) { mock_model(Community, :slug => "test") }
+    let(:new_post) { mock_model(Post) } 
+    before :each do
+      stub(NotificationsMailer).deliver_neighborhood_post_confirmation
+      stub(Post).create! { new_post }
+  
+      post(:posts_new,
+            :from => user.email,
+            :text => @reply_text,
+            :subject => @reply_text)
+    end
+    
+    it "creates a new post" do
+      Post.should have_received.create!(hash_including(:user => user))
+    end
+    
+    it "sends a confirmation to the user" do
+      NotificationsMailer.should have_received.deliver_neighborhood_post_confirmation(user.neighborhood.id, new_post.id)
+    end
+  
   end
 
 
