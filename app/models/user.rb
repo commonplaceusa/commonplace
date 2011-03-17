@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies, :dependent => :destroy
 
   has_many :referrals, :foreign_key => "referee_id"
-  has_many :messages
+  has_many :messages, :dependent => :destroy
 
   has_many :received_messages, :as => :messagable, :class_name => "Message"
 
