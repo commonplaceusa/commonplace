@@ -41,7 +41,8 @@ Hey -- testing a reply!
       post(:messages,
            :from => user.email,
            :to => "#{message.long_id}@messages.test.ourcommonplace.com",
-           :text => @reply_text)
+           :text => @reply_text,
+           :envelope => {:from => "test@example.com"})
     end
 
     it "creates a reply to the message by the user" do
@@ -64,7 +65,8 @@ Hey -- testing a reply!
       post(:events,
            :from => user.email,
            :to => "#{event.long_id}@events.test.ourcommonplace.com",
-           :text => @reply_text)
+           :text => @reply_text,
+           :envelope => {:from => "test@example.com"})
     end
 
     it "creates a reply to the event by the user" do
@@ -88,7 +90,8 @@ Hey -- testing a reply!
       post(:posts,
            :from => user.email,
            :to => "#{test_post.long_id}@posts.test.ourcommonplace.com",
-           :text => @reply_text)
+           :text => @reply_text,
+           :envelope => {:from => "test@example.com"})
     end
 
     it "creates a reply to the post by the user" do
@@ -112,7 +115,8 @@ Hey -- testing a reply!
       post(:posts_new,
             :from => user.email,
             :text => @reply_text,
-            :subject => @reply_text)
+            :subject => @reply_text,
+            :envelope => {:from => "test@example.com"})
     end
     
     it "creates a new post" do
@@ -135,7 +139,8 @@ Hey -- testing a reply!
       post(:announcements,
            :from => user.email,
            :to => "#{announcement.long_id}@announcements.test.ourcommonplace.com",
-           :text => @reply_text)
+           :text => @reply_text,
+           :envelope => {:from => "test@example.com"})
     end
 
     it "creates a reply to the announcement by the user" do
