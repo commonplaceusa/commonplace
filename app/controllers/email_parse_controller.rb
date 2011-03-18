@@ -1,6 +1,13 @@
 class EmailParseController < ApplicationController
   
   protect_from_forgery :only => []
+  
+  before_filter :validate_email
+  
+  def validate_email
+    params[:envelope][:from].present? && !params[:envelope][:from].include?("<>") && !params[:envelope][:from].include?("< >")
+  end
+  
   def messages
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     post = Message.find_by_long_id(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
