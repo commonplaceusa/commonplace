@@ -5,7 +5,7 @@
     border: 1px solid #203c57
     +border-top-radius(4px)
     td
-      background-color: #37597c
+      +linear_gradient(color-stops(#4a7496, #406483))
       border-right: 1px solid #16385a
       border-left: 1px solid #4b6a89
       &:first-child
@@ -18,6 +18,10 @@
       &:hover, &.selected_nav
         background-color: #2f4f70
         color: #fff
+        a
+          color: white
+      &.selected_nav
+        +linear_gradient(color-stops(#3d6585, #385c7a), bottom)
     a 
       display: block
       text-align: center
