@@ -2,19 +2,23 @@
 #learn-more
   %h1= t ".title", :sign_up => link_to(t(".sign_up"), new_account_path)
   #content
-    %p= t ".p1", :community=>current_community.name
-    %p= t ".p2"
+    .p_wrapper
+      %p= t ".p1", :community=>current_community.name
+      %p= t ".p2"
     .img_wrapper
       =image_tag "example-email.png", :width => 603, :height => 357
-    %p= t ".p3"
-    %p= t ".p4", :link => link_to(root_url, root_url)
+    .p_wrapper
+      %p= t ".p3"
+      %p= t ".p4", :link => link_to(root_url, root_url)
     .img_wrapper
       =image_tag "example-platform.png", :width => 611, :height => 551
-    %p= t ".p5"
+    .p_wrapper  
+      %p= t ".p5"
     %ul
       - t(".list", :community => current_community.name).each do |text|
         %li= text.sub(/%{community}/, current_community.name)
-    %p= t ".p6", :community_link => link_to(root_url, root_url) 
+    .p_wrapper
+      %p= t ".p6", :community_link => link_to(root_url, root_url) 
      
     //%p= t ".p7", :community_email => mail_to("announcement-"+current_community.slug+"@ourcommonplace.com", "announcement-"+current_community.slug+"@ourcommonplace.com")
     .img_wrapper
