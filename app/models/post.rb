@@ -15,6 +15,11 @@ class Post < ActiveRecord::Base
 
   attr_accessor :post_to_facebook
 
+  named_scope :between, lambda { |start_date, end_date| 
+    { :conditions => 
+      ["? <= created_at AND created_at < ?", start_date, end_date] } 
+  }
+
   def self.human_name
     "Neighborhood Post"
   end
