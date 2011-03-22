@@ -1,0 +1,145 @@
+<html>
+
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+
+  <body>
+
+    <table id="body">
+
+      {{< header }}
+
+      <tr>
+        <td id="intro">
+          <h1>Your {{community_name}} CommonPlace Daily Digest</h1>
+          <p>Below is all the information that was posted to
+            {{community_name}}'s CommonPlace today -- posts from your
+            neighbors, upcoming events, and announcements from groups
+            and community feeds that you care about. If you ever want
+            to add what you see in your daily bulletin, you can
+            <a href="{{settings_url}}"><span>adjust your email
+              notification settings</span></a> or
+              <a href="{{feeds_url}}"><span>subscribe to more community
+                feeds</span></a>.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="posts">
+          <h3>Neighborhood Posts</h3>
+          <p class="subhead">Here are posts from your neighbors today:</p>
+
+          {{#posts}}
+            <hr class="post">
+            <table class="post">
+              <tr>
+                <td class="avatar" rowspan="6">
+                  <img src="{{user_avatar_url}}" width="50" height="50">
+                </td>
+                <td class="title">
+                  <a href="{{url}}"><span>{{subject}}</span></a>
+                </td>
+                <td class="posted-at">{{posted_at}}</td>
+              </tr>
+
+              <tr>
+                <td class="author" colspan="2">{{user_name}}</td>
+              </tr>
+
+              <tr>
+                <td class="body" colspan="2">{{{body}}}</td>
+              </tr>
+
+              <tr>
+                <td class="replies" colspan="2">
+                  {{#replies}}
+                    <hr class="reply">
+                    <table class="reply">
+                      <tr>
+                        <td class="avatar" rowspan="2">
+                          <img src="{{user_avatar_url}}" width="20" height="20">
+                        </td>
+                        <td class="author">{{user_name}}</td>
+                        <td class="posted-at">{{posted_at}}</td>
+                      </tr>
+                      <tr>
+                        <td class="body" colspan="2"><p>{{body}}</p></td>
+                      </tr>
+                    </table>
+                  {{/replies}}
+                  <hr class="reply">
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="actions">
+                  {{#num_more_replies}}
+                    <div class="more-replies">
+                      <a href="{{url}}">
+                        [ + {{num_more_replies}} more replies... ]
+                      </a>
+                    </div>
+                  {{/num_more_replies}}
+                  <a href="{{url}}" class="reply-button"><span>
+                    Write a Reply to {{user_short_name}}
+                  </span></a>
+                </td>
+              </tr>
+            </table>
+          {{/posts}}
+          <hr class="post">
+          <div class="action-section">
+            <h4>Have something you want to post to your neighbors?</h4>
+            <p>A request, announcement, offer, question, invitation? Lost a cat?
+              Need to borrow a ladder?
+              <a href="{{new_post_url}}"><span>Click here</span></a> to post.</p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td id="footer">
+
+          <div class="action-section">
+            <h4>Know anyone in your neighborhood <em>not</em> on
+            CommonPlace?</h4>
+            <p><a href="{{new_invites_url}}"><span>Invite</span></a> more
+            neighbors to your community!</p>
+          </div>
+
+          <table id="footer-buttons">
+            <tr>
+              <td></td>
+              <td class="link">
+                <a href="{{new_post_url}}"><span>
+                    Post to Your <br> Neighborhood
+                </span></a>
+              </td>
+
+              <td class="link">
+                <a href="{{new_announcement_url}}"><span>
+                    Post an Announcement to <br> the Whole Community
+                </span></a>
+              </td>
+
+              <td class="link">
+                <a href="{{new_event_url}}"><span>
+                    Post an Event to <br> the Events Board
+                </span></a>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+
+
+          {{< settings}}
+
+          {{< legal}}
+        </td>
+      </tr>
+
+    </table>
+  </body>
+</html>

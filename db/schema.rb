@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331174735) do
+ActiveRecord::Schema.define(:version => 20110331213831) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                                  :null => false
@@ -228,8 +228,6 @@ ActiveRecord::Schema.define(:version => 20110331174735) do
     t.text     "about"
     t.integer  "neighborhood_id",                                                  :null => false
     t.string   "interest_list"
-    t.boolean  "receive_digests",                               :default => false, :null => false
-    t.boolean  "receive_posts",                                 :default => true
     t.boolean  "receive_events_and_announcements",              :default => true
     t.boolean  "admin",                                         :default => false
     t.string   "state"
@@ -240,6 +238,7 @@ ActiveRecord::Schema.define(:version => 20110331174735) do
     t.integer  "community_id"
     t.string   "offer_list"
     t.boolean  "receive_weekly_digest",                         :default => true
+    t.string   "post_receive_method"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

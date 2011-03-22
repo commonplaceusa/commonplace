@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+  def self.post_receive_options
+    ["Live", "Daily", "Never"]
+  end
+
   acts_as_authentic do |c|
     c.login_field :email
     c.require_password_confirmation = false
@@ -84,6 +88,10 @@ class User < ActiveRecord::Base
                     :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
 
   named_scope :receives_weekly_bulletin, :conditions => {:receive_weekly_digest => true}
+
+  named_scope :receives_daily_digest, :conditions => {:post_receive_method => "Daily"}
+
+  named_scope :receives_posts_live, :conditions => {:post_receive_method => "Live"}
 
 
   def inbox

@@ -5,6 +5,13 @@ send_weekly_bulletin:
   queue: weekly_bulletin
   description: "Sends weekly bulletin to all users that want it."
 
+send_daily_digest:
+  cron: "00 17 * * *"
+  class: DailyDigestJob
+  args:
+  queue: daily_digest
+  description: "Sends daily digest"
+
 # import_announcements_from_outside_dot_in:
 #     cron: "0 * * * *"
 #     class: AnnouncementImporter
