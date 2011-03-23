@@ -1,8 +1,7 @@
 require 'mustache'
-
 require 'premailer'
 require 'sass'
-
+require 'config'
 class MailBase < Mustache
   include MailUrls
 
@@ -42,6 +41,37 @@ class MailBase < Mustache
 
   def markdown(text = "")
     BlueCloth.new(text).to_html
+  end
+
+  def from
+    "CommonPlace <notifications@#{community.slug}.ourcommonplace.com>"
+  end
+
+  def reply_to
+    nil
+  end
+
+  def to 
+    user.email
+  end
+
+  def subject
+    "Notification from CommonPlace"
+  end
+
+  def deliver?
+    true
+  end
+
+  def deliver
+    if deliver?
+      mail = Mail.deliver(:to => self.to,
+                          :from => self.from,
+                          :reply_to => self.reply_to,
+                          :subject => self.subject,
+                          :content_type => "text/html",
+                          :body => self.render)
+    end
   end
 
 end

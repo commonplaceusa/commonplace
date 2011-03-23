@@ -1,8 +1,13 @@
 class Invitation < MailBase
 
-  def initialize(inviter, message = nil)
+  def initialize(email, inviter, message = nil)
+    @to = email
     @inviter = inviter
     @message = message
+  end
+
+  def to
+    @to
   end
 
   def inviter
