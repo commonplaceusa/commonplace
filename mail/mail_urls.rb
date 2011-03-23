@@ -44,5 +44,8 @@ module MailUrls
     url("/account/edit")
   end
 
+  def faq_url
+    url("/faq")
+  end
 
 end
