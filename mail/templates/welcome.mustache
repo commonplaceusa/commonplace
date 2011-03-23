@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+  <body>
+    <table id="body">
+
+      {{< header }}
+
+      <tr>
+        <td>
+          <p>Hi {{short_user_name}}</p>
+
+
+          <p>We are happy to hear you have joined your neighbors on {{community_name}}'s CommonPlace, a new web platform for local community engagement here in {{community_name}}.  {{community_name}}'s CommonPlace is like an online bulletin for people who live in {{community_name}}, designed to make it really easy for you to share requests, offers and other information with your neighbors and to stay up-to-date with what's happening in {{community_name}}.</p>
+
+          <p>Here are some platform features that you might be interested in using to get connected with your community:</p>
+
+          <ul>
+            <li>
+              <h3>Neighborhood Posts:</h3>
+              <p>Need to borrow a ladder?  Lost a cat?  Looking for a babysitter or an electrician recommendation?  See a downed wire in the neighborhood?  Click "Post to Your Neighborhood" in the red box on the top left of the mainpage to post a message to all your neighbors.  Have a ladder?  Found the cat?  Up for babysitting?  Click on any neighborhood post and a reply box will appear for you to reply directly to your neighbor.</p>
+            </li>
+
+            <li>
+              <h3>Community Announcements:</h3>
+              <p>Want to get the word out to everyone in the community about your upcoming canned food drive?  Want to let every parent in town know that you do SAT tutoring or piano lessons?  Click "Publicize a Community Announcement" to get the word out to the community.  Interested in staying in the loop with what's going on in {{community_name}}?  Click on "Community Announcements" to see all the updates that people, businesses, and organizations are sending out to the community.  Like with neighborhood posts, click on any announcement and a reply box will appear for you to reply directly to the person or organization that posted the announcement.</p>
+            </li>
+
+            <li>
+              <h3>Community Events:</h3>
+              <p>Click on "Community Events" to see everything going on in {{community_name}} in the coming weeks.  Add your own event to the CommonPlace events board anytime by clicking "Post an Event."  Like announcements and neighborhood posts, you can click on any event and reply to it to get in touch with the event coordinator.</p>
+            </li>
+
+            <li>
+              <h3>Community Feeds:</h3>
+              <p>Any organization, business, city service or cause in {{community_name}} can create a "Community Feed" on CommonPlace.  This allows them to send out announcements and events to the community from their organization.  Subscribe to community feeds to be emailed directly when that organization posts an announcement or an event.  If you are the leader of an organization or business in town and want to stream your announcements and events through CommonPlace, consider creating a community feed.</p>
+            </li>
+
+            <li>
+              <h3>Directory:</h3>
+              <p>On {{community_name}}'s CommonPlace, you can see a directory of everyone in town that has signed up for CommonPlace.  Click on any name to see their civic profile and click "Message" in their profile to send a neighbor a private message.</p>
+            </li>
+
+          </ul>
+
+          <p>If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  If you are interested in helping out with signing your neighbors up with CommonPlace, email us at {{organizer_email}}. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for neighbors in {{community_name}} to connect, so make sure to tell your neighbors to sign up at {{community_name}}.OurCommonPlace.com.</p>
+
+          <p>Thanks again for joining {{community_name}}'s CommonPlace and thanks for being a great neighbor!</p>
+
+          <p>Cheers, <br> The {{community_name}} CommonPlace</p>
+
+        </td>
+
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< legal }}
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>
