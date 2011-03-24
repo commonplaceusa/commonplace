@@ -74,4 +74,8 @@ class MailBase < Mustache
     end
   end
 
+  @queue = :notifications
+  def self.perform(*args)
+    new(*args).deliver
+  end
 end

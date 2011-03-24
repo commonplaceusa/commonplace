@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309192552) do
+ActiveRecord::Schema.define(:version => 20110324011132) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                         :null => false
@@ -289,6 +289,7 @@ ActiveRecord::Schema.define(:version => 20110309192552) do
     t.string   "oauth2_token"
     t.integer  "community_id"
     t.boolean  "facebook_app"
+    t.boolean  "receive_weekly_digest",                         :default => true
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

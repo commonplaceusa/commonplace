@@ -1,7 +1,7 @@
 class WeeklyDigest < MailBase
   
-  def initialize(user, start_date)
-    @user = user
+  def initialize(user_id, start_date)
+    @user = User.find(user_id)
     @start_date = start_date
   end
 
@@ -27,6 +27,11 @@ class WeeklyDigest < MailBase
 
   def header_text
     start_date.strftime("Week of %B %e, %Y")
+  end
+  
+
+  def deliver?
+    events.present? || feeds_with_announcements.present?
   end
 
   def events
