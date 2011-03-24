@@ -16,6 +16,7 @@ en:
           password: "Change your password:"
         receive_posts: Get new neighborhood posts in emails
         receive_events_and_announcements: Get new announcements and events in emails
+        receive_weekly_digest: Get a weekly bulletin
       invites:
         emails: Add comma-separated emails to invite other residents of %{community} to CommonPlace
         message: Optional message
