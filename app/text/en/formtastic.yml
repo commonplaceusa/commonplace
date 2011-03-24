@@ -10,7 +10,7 @@ en:
         password: "Create a Password:"
         about: "Tell your neighbors a bit about yourself so you have something to talk about:"
         interest_list: "Add some interests:"
-        address: 'Street Address<a href="/faq" target="_blank">*</a>:'
+        address: 'Street Address*:'
         avatar: "Add a photo:"
         edit:
           password: "Change your password:"
@@ -51,3 +51,5 @@ en:
         description: "Event description:"
 
     hints:
+      user:
+        address: "*This is only used to place you into the correct neighborhood. It will not be shared with anyone. <a target=\"_blank\" href=\"/faq\">Learn more</a>."
