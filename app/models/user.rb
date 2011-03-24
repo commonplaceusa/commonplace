@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   def self.find_by_email(email)
     find(:first, :conditions => ["LOWER(users.email) = ?", email.downcase])
   end
-  
+
   has_many :attendances, :dependent => :destroy
 
   has_many :events, :through => :attendances
@@ -81,6 +81,9 @@ class User < ActiveRecord::Base
                     :default_url => "/avatars/missing.png", 
                     :url => "/system/users/:id/avatar/:style.:extension",
                     :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
+
+  named_scope :receives_weekly_bulletin, :conditions => {:receive_weekly_digest => true}
+
 
   def inbox
     (self.received_messages + self.messages).sort {|m,n| n.updated_at <=> m.updated_at }.select {|m| !m.archived }
