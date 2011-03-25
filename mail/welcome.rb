@@ -1,7 +1,7 @@
 class Welcome < MailBase
 
-  def initialize(user)
-    @user = user
+  def initialize(user_id)
+    @user = User.find(user_id)
     @community = user.community
   end
 
@@ -26,7 +26,7 @@ class Welcome < MailBase
   end
 
   def subject
-    "Welcome to CommonPlace"
+    "Welcome to #{community_name}'s CommonPlace"
   end
     
 end
