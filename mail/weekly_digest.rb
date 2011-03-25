@@ -1,16 +1,16 @@
 class WeeklyDigest < MailBase
   
-  def initialize(user_id, start_date)
+  def initialize(user_id, today)
     @user = User.find(user_id)
-    @start_date = start_date
+    @end_date = Date.parse(today)
   end
 
   def start_date
-    @start_date
+    end_date.advance(:week => -1)
   end
   
   def end_date
-    start_date.advance(:weeks => 1)
+    @end_date
   end
 
   def user 
@@ -29,6 +29,9 @@ class WeeklyDigest < MailBase
     start_date.strftime("Week of %B %e, %Y")
   end
   
+  def subject
+    "The #{community_name} CommonPlace Weekly Bulletin"
+  end
 
   def deliver?
     events.present? || feeds_with_announcements.present?
