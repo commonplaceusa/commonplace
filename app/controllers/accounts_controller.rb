@@ -46,6 +46,7 @@ class AccountsController < CommunitiesController
     
     @user.save do |result|
       if result
+        Resque.enqueue(Welcome, @user.id)
         if params[:short]
           redirect_to new_feed_url
         else
