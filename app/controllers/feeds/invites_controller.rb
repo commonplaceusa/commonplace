@@ -8,9 +8,7 @@ class Feeds::InvitesController < ApplicationController
     @feed = Feed.find(params[:feed_id])
     params[:emails].split(/,|\r\n|\n/).each do |email|
       unless User.exists?(:email => email)
-        Invite.create(:email => email, :inviter => @feed)
-        # TODO: Get pretty Invites
-        # InviteMailer.deliver_feed_invite(@feed.id,email)
+        Resque.enqueue(FeedInvitation, email, @feed.id)
       end
     end
     redirect_to feed_profile_path(@feed)

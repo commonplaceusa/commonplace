@@ -1,9 +1,13 @@
 class Invitation < MailBase
 
-  def initialize(email, inviter, message = nil)
+  def initialize(email, inviter_id, message = nil)
     @to = email
-    @inviter = inviter
+    @inviter = User.find(inviter_id)
     @message = message
+  end
+
+  def subject
+    "#{inviter_name} invites you to #{community_name}'s CommonPlace"
   end
 
   def to
@@ -33,6 +37,5 @@ class Invitation < MailBase
   def short_inviter_name
     inviter.first_name
   end
-  
-  
+
 end
