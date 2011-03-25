@@ -1,11 +1,13 @@
 class FeedInvitation < Invitation
 
-  def initialize(feed, message = nil)
-    @feed = feed
-    super(feed.user, message)
+  def initialize(email, feed_id, message = nil)
+    @to = email
+    @feed = Feed.find(feed_id)
+    @inviter = @feed.user
+    @message = message
   end
 
-  def feed 
+  def feed
     @feed
   end
 
