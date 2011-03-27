@@ -26,6 +26,8 @@ gem 'exceptional'
 gem 'aasm'
 gem 'tmail'
 
+gem 'rmagick'
+
 gem 'mail_style'
 
 gem 'mail'
