@@ -46,9 +46,44 @@ class NotificationsMailer < ActionMailer::Base
     from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
   end
   
-  def neighborhood_post_failure
+  def feed_announcement_confirmation(feed_id, announcement_id)
     recipients RECIPIENT
+    @pannouncement = Announcement.find(announcement_id)
+    @feed = Feed.find(feed_id)
+    @community = @feed.community
     users = [@post.user]
+    header = SmtpApiHeader.new
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
+    @headers['Reply-To'] = "CommonPlace <#{@announcement.long_id}@posts.#{@community.slug}.ourcommonplace.com>"
+    headers 'X-SMTPAPI' => @headers['X-SMTPAPI'],
+            "Reply-To" => @headers['Reply-To']
+    subject "You just e-mailed an announcement to your feed"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
+  end
+  
+  def feed_announcement_failure(feed_id, community_id)
+    @announcement = Feed.find(feed_id)
+    @community = Community.find(community_id)
+    recipients RECIPIENT
+    users = [@feed.owner]
+    header = SmtpApiHeader.new
+    header.addTo(users.map(&:email))
+    header.addSubVal('<name>', users.map(&:name))
+    @headers['X-SMTPAPI'] = header.asJSON
+    @headers['Reply-To'] = "CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
+    headers 'X-SMTPAPI' => @headers['X-SMTPAPI'],
+            "Reply-To" => @headers['Reply-To']
+    subject "Failed to Post Message"
+    from "#{@community.name} CommonPlace <notifications@#{@community.slug}.ourcommonplace.com>"
+  end
+  
+  def neighborhood_post_failure(user_id, community_id)
+    @aser = User.find(user_id)
+    @community = Community.find(community_id)
+    recipients RECIPIENT
+    users = [@user]
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))

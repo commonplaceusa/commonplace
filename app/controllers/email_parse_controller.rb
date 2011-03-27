@@ -40,7 +40,7 @@ class EmailParseController < ApplicationController
       p = Post.create!(:body => params[:text], :user => user, :subject => params[:subject], :community => user.community, :published => false)
       NotificationsMailer.deliver_neighborhood_post_confirmation(user.neighborhood.id,p.id)
     else
-      NotificationsMailer.deliver_neighborhood_post_failure
+      NotificationsMailer.deliver_neighborhood_post_failure(user.id,user.neighborhood.id)
     end
   end
   
@@ -73,6 +73,21 @@ class EmailParseController < ApplicationController
     
     render :nothing => true
   end
+  
+  def feed_announcements
+    user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    feed = Feed.find_by_slug(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
+    if user && feed && feed.owner_id == user.id
+      text = EmailParseController.strip_email_body(params[:text])
+      announcement = Announcement.create!(:subject => params[:subject], :body => text, :private => false, :feed => feed, :community => feed.community)
+      NotificationsMailer.deliver_feed_announcement_confirmation(feed.id,announcement.id)
+    else
+      NotificationsMailer.deliver_feed_announcement_failure(feed.id,feed.community.id)
+    end
+    
+    render :nothing => true
+  end
+    
   
   def announcements
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
