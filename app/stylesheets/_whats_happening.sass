@@ -1,19 +1,22 @@
 #whats-happening
   float: right
-
+  width: 486px
   #zones
+    width: 486px
     td
+      float: left
       background: #AC322F
       border: 2px solid #982524
       +border-radius(5px)
-      display: inline-block
-      margin: 0 0 0 1
+      display: block
+      margin: 0 3px 0 0
       max-width: 95px
-      min-width: 69px
+      min-width: 70px
       position: relative
-      &:first-child
+      &.selected_nav
         background: #E0E0E0
         border: 2px solid #bdbdbd
+        +box-shadow(#bcd4eb, 2px, 2px, 0px)
         #border_hack
           position: absolute
           bottom: 3px
@@ -24,9 +27,11 @@
         a
           color: #1b334a 
           +text-shadow(#fff, 1px, 1px, 0px)
-      &.selected_nav
-        background: #E0E0E0
-        border: 2px solid #bdbdbd
+      &.selected_nav:last-child
+        #border_hack
+          width: 70px
+      &:last-child
+        +box-shadow(#bcd4eb, 2px, 2px, 0px)
     a 
       display: block
       text-align: center
