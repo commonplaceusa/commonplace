@@ -2,33 +2,39 @@
   float: right
 
   #zones
-    border: 1px solid #203c57
-    +border-top-radius(4px)
     td
-      +linear_gradient(color-stops(#4a7496, #406483))
-      border-right: 1px solid #16385a
-      border-left: 1px solid #4b6a89
+      background: #AC322F
+      border: 2px solid #982524
+      +border-radius(5px)
+      display: inline-block
+      margin: 0 0 0 1
+      max-width: 95px
+      min-width: 69px
+      position: relative
       &:first-child
-        +border-top-left-radius(3px)
-        border-left-width: 0px
-      &:last-child
-        +border-top-right-radius(3px)
-        border-right-width: 0px
-
-      &:hover, &.selected_nav
-        background-color: #2f4f70
-        color: #fff
+        background: #E0E0E0
+        border: 2px solid #bdbdbd
+        #border_hack
+          position: absolute
+          bottom: 3px
+          height: 6px
+          width: 95px
+          background: #E0E0E0
+          z-index: 2
         a
-          color: white
+          color: #1b334a 
+          +text-shadow(#fff, 1px, 1px, 0px)
       &.selected_nav
-        +linear_gradient(color-stops(#3d6585, #385c7a), bottom)
+        background: #E0E0E0
+        border: 2px solid #bdbdbd
     a 
       display: block
       text-align: center
       font-size: 12px
-      padding: 15px 8px
+      padding: 5px 0 
+      height: 32px
       text-decoration: none
-      color: #c3ced8
+      color: #fff
 
 
 

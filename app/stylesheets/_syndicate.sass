@@ -3,20 +3,28 @@
 .application
        
   #syndicate
+    border-bottom: 2px solid #ededed
+    h3:first-child
+      position: relative
+      top: -10px
+      margin-bottom: -10px
+      z-index: 1
+      border-top: 2px solid #BCBCBC
     h3
-      background-color: #EFEFEF
+      background-color: #E0E0E0
       padding:  7px 12px
-      color: $postColorDark
-      border: 1px solid #ccc
-        top: 1px solid #DDD
-        bottom: 1px solid #DDD
-        left: 1px solid #CCC
-        right: 1px solid #CCC
+      color: #717171
+      border: 
+        top: 1px solid #BCBCBC
+        bottom: 1px solid #BCBCBC
+        left: 2px solid #BCBCBC
+        right: 2px solid #BCBCBC
       font: 
         size: 13px
 
       a
-        color: #3b6085
+        color: #717171
+        +text-shadow(#fff, 1px, 1px, 0px)
         font-size: 13px
         text-decoration: none
         &.current
@@ -38,10 +46,10 @@
   .item
     cursor: pointer
     background-color: white
-    border: 1px solid
+    border: 2px solid
       bottom-color: #ddd
-      left-color: #ccc
-      right-color: #ccc
+      left-color: #BCBCBC
+      right-color: #BCBCBC
       top-width: 0px
       
     padding: 0px
