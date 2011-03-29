@@ -129,30 +129,30 @@ Hey -- testing a reply!
   
   end
   
-  describe "#feed_announcements" do
-    let(:new_announcement) { mock_model(Announcement) }
-    let(:feed) { mock_model(Feed, :slug => "test", :owner_id => user.id, :community_id => community.id) }
-    before :each do
-      stub(NotificationsMailer).deliver_feed_announcement_confirmation
-      stub(Announcement).create! { new_announcement }
-      stub(Feed).find_by_slug( feed.slug ) { feed }
-      
-      post(:feed_announcements,
-            :to => "#{feed.slug}@feeds.test.ourcommonplace.com",
-            :from => user.email,
-            :text => @reply_text,
-            :subject => @reply_text,
-            :envelope => { :from => "test@example.com"})
-    end
-    
-    it "posts a new announcement to a feed" do
-      Announcement.should have_received.create!(hash_including(:user => user))
-    end
-    
-    it "sends confirmation to the user" do
-      NotificationsMailer.should have_received.deliver_feed_announcement_confirmation(feed.id, new_announcement.id)
-    end
-  end
+#  describe "#feed_announcements" do
+#    let(:new_announcement) { mock_model(Announcement) }
+#    let(:feed) { mock_model(Feed, :slug => "test", :owner_id => user.id, :community_id => community.id) }
+#    before :each do
+#      stub(NotificationsMailer).deliver_feed_announcement_confirmation
+#      stub(Announcement).create! { new_announcement }
+#      stub(Feed).find_by_slug( feed.slug ) { feed }
+#      
+#      post(:feed_announcements,
+#            :to => "#{feed.slug}@feeds.test.ourcommonplace.com",
+#            :from => user.email,
+#            :text => @reply_text,
+#            :subject => @reply_text,
+#            :envelope => { :from => "test@example.com"})
+#    end
+#    
+#    it "posts a new announcement to a feed" do
+#      Announcement.should have_received.create!(hash_including(:user => user))
+#    end
+#    
+#    it "sends confirmation to the user" do
+#      NotificationsMailer.should have_received.deliver_feed_announcement_confirmation(feed.id, new_announcement.id)
+#    end
+#  end
 
 
   describe "#announcements" do
