@@ -135,7 +135,7 @@ Hey -- testing a reply!
     before :each do
       stub(NotificationsMailer).deliver_feed_announcement_confirmation
       stub(Announcement).create! { new_announcement }
-      stub(Feed).find_by_slug( feed.stub) { feed }
+      stub(Feed).find_by_slug( feed.slug ) { feed }
       
       post(:feed_announcements,
             :to => "#{feed.slug}@feeds.test.ourcommonplace.com",
