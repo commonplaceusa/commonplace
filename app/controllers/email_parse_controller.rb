@@ -94,7 +94,9 @@ class EmailParseController < ApplicationController
     text.split(%r{(^-- \n) # match standard signature
                  |(^--\n) # match non-stantard signature
                  |(^-----Original\ Message-----) # Outlook
+                 |(^----- Original\ Message -----) # Outlook
                  |(^________________________________) # Outlook
+                 |(-*\ ?Original\ Message\ ?-*) # Generic
                  |(^On.*wrote:) # OS X Mail.app
                  |(^From:\ ) # Outlook and some others
                  |(^Sent\ from) # iPhone, Blackberry
