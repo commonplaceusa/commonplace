@@ -2,6 +2,7 @@
   background-color: #ac322f
   +border-radius(5px)
   border: 1px solid #8f2927
+  +box-shadow(#8f2927 0px -2px 1px  0px inset, #bcd4eb 3px 3px 0px)
   +clearfix
   h2
     background-color: #8f2927
@@ -28,7 +29,7 @@
       display: block
       margin-bottom: 8px
 
-
+      line-height: 14px
       color: #27415f
       text-decoration: none
       font-size: 12px
@@ -41,29 +42,28 @@
       vertical-align: middle
       height: 34px
       padding: 8px 20px 8px 35px
-      line-height: 1.4
 
       &.post
-        +background-image(url("/images/icons/new-post.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dfdfdf, #e1e1e1))
+        +background-image(url("/images/icons/neighborhood-post.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dfdfdf, #e1e1e1))
         +box-shadow(0px 2px 0px 0px #efefef inset, 0px -2px 0px 0px #bcbcbc inset, 0px 1px 1px 0px #86221f)
       &.event
-        +background-image(url("/images/icons/new-event.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dfdfdf, #e1e1e1))
+        +background-image(url("/images/icons/events-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dfdfdf, #e1e1e1))
         +box-shadow(0px 2px 0px 0px #efefef inset, 0px -2px 0px 0px #bcbcbc inset,  0px 1px 1px 0px #86221f)
       &.announcement
-        +background-image(url("/images/icons/new-announcement.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dfdfdf, #e1e1e1))
+        +background-image(url("/images/icons/announcements-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dfdfdf, #e1e1e1))
         +box-shadow(0px 2px 0px 0px #efefef inset, 0px -2px 0px 0px #bcbcbc inset,  0px 1px 1px 0px #86221f)
 
       &:hover
         color: #27415f
         background-color: #d7d7d7
         background-position: 6px center, 132px center, top left
-
+        line-height: 14px
         &.post
-          +background-image(url("/images/icons/new-post.png"), url("/images/post-nav-hover-arrow.png") ,linear-gradient(#dadada, #dfdfdf))
+          +background-image(url("/images/icons/neighborhood-post.png"), url("/images/post-nav-hover-arrow.png") ,linear-gradient(#dadada, #dfdfdf))
         &.event
-          +background-image(url("/images/icons/new-event.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dadada, #dfdfdf))
+          +background-image(url("/images/icons/events-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dadada, #dfdfdf))
         &.announcement
-          +background-image(url("/images/icons/new-announcement.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dadada, #dfdfdf))
+          +background-image(url("/images/icons/announcements-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dadada, #dfdfdf))
 
       &:active
         color: #27415f
@@ -75,15 +75,16 @@
         cursor: default
         border-color: #25445e
         background-color: #2c4b69
-        +text-shadow(#fff, 0px, 0px, 0px)
+        line-height: 14px
+        +text-shadow(#333, 1px, 1px, 0px)
         background-position: 6px center, 132px center, top left
         +box-shadow(0px 2px 0px 0px #355778 inset, 0px -2px 0px 0px #27455f inset,  0px 1px 1px 0px #86221f)
         &.post
-          +background-image(url("/images/icons/new-post.png"), url("/images/post-nav-hover-arrow.png") ,linear-gradient(#2e4b66, #2c4b69))
+          +background-image(url("/images/icons/neighborhood-post-selected.png"), url("/images/left-arrow.png") ,linear-gradient(#2e4b66, #2c4b69))
         &.event
-          +background-image(url("/images/icons/new-event.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#2e4b66, #2c4b69))
+          +background-image(url("/images/icons/events-icon-selected.png"), url("/images/left-arrow.png"), linear-gradient(#2e4b66, #2c4b69))
         &.announcement
-          +background-image(url("/images/icons/new-announcement.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#2e4b66, #2c4b69))
+          +background-image(url("/images/icons/announcements-icon-selected.png"), url("/images/left-arrow.png"), linear-gradient(#2e4b66, #2c4b69))
         
 
   .information
