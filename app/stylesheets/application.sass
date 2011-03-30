@@ -24,8 +24,10 @@
   clear: both
 
 body.application
+  background-image: url('/images/neighborhood-bg.png')
+  background-position: 0 95%
+  background-repeat: repeat-x
   background-color: #cee7fe
-  background-attachment: fixed
   +serif
   header
     background: #1b334a
@@ -144,6 +146,7 @@ body.application
       +border-radius(5px) 
 
 body.application.new.accounts
+  background-image: none
   background-color: #cee7fe
   background-attachment: fixed
   +serif
@@ -345,24 +348,56 @@ body.application.new.accounts
         font-family: Rockwell, Georgia, serif
         font-size: 11px
         +text-shadow(#454545, 1px, 1px, 0px)
-        
-body.application
-  #main
-    width: 980px
-    margin: auto
-
   footer
     clear: both
     background-image: url('/images/houses.png')
     background-repeat: repeat-x
     background-position: center bottom
+    background-color: transparent 
+    border: none
     padding: 200px 10px 10px
     height: 20px
     width: auto
     margin: 0px
-    color: #ADD794
+    color: #ADD794 !important
+    .left_text
+      color: #ADD794 !important
+    .right_text
+      color: #ADD794 !important
     a
-      color: #BFF4A0
+      color: #BFF4A0 !important
+        
+body.application
+  #main
+    width: 980px
+    margin: auto
+  footer
+    background: #1b334a
+    height: 30px
+    border-top: 4px solid #fff
+    padding: 20px 10px 0px
+    width: auto
+    margin: 20px 0 0 0
+    clear: both
+    color: #fff
+    #cont
+      +serif
+      width: 980px
+      margin: 0 auto
+      font-size: 12px
+      color: #3b6085
+      a
+        color: #3b6085+#222
+        font-weight: normal
+      .right_text
+        font-size: 30px
+        line-height: 12px
+        a
+          display: inline-block
+          vertical-align: middle
+          margin-top: -8px
+          margin-left: 3px
+          font-size: 12px
                               
   #wrap       
     +clearfix                                 
