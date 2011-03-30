@@ -7,24 +7,27 @@
       %li{:id=>"sign_in_button", :class=>"border"} Sign in
       %li{:id=>"sign_in_form"}
         = render 'user_sessions/form', :user_session => user_session
+    - link_to root_url, :id => "logo" do
+      = image_tag "logo.png"
+      %span.community= current_community.name
 
   - else
+    #nav_wrapper  
+      %nav
+        = tab_to "Home", "/"
+        = tab_to "Inbox", messages_url
+        .user-feeds
+          %h4 Feeds 
+          %ul
+            - current_user.managable_feeds.each do |feed|
+              %li= link_to feed.name, feed_profile_path(feed)
+            %li= link_to 'Create a feed', new_feed_path
+        = tab_to "Settings", edit_account_path
+        = tab_to "FAQ", "/faq"
+        = tab_to "Logout", "/user_session", :method => :delete
 
-    %nav
-      = tab_to "Home", "/"
-      = tab_to "Inbox", messages_url
-      .user-feeds
-        %h4 Feeds 
-        %ul
-          - current_user.managable_feeds.each do |feed|
-            %li= link_to feed.name, feed_profile_path(feed)
-          %li= link_to 'Create a feed', new_feed_path
-      = tab_to "Settings", edit_account_path
-      = tab_to "FAQ", "/faq"
-      = tab_to "Log Out", "/user_session", :method => :delete
-
-  - link_to root_url, :id => "logo" do
-    = image_tag "logo.png"
-    %span.community= current_community.name
-
+      - link_to root_url, :id => "logo" do
+        = image_tag "logo2.png"
+        %span.community= current_community.name
+    
   .clear

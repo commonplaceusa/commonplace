@@ -23,7 +23,127 @@
 .clear
   clear: both
 
-body.application 
+body.application
+  background-color: #cee7fe
+  background-attachment: fixed
+  +serif
+  header
+    background: #1b334a
+    height: 31px
+    padding: 15px 0px
+    border-bottom: 4px solid #fff
+    margin: 0 0 20px 0
+    #nav_wrapper
+      width: 976px
+      margin: 0 auto
+      #logo
+        margin-top: 10px
+        text-decoration: none
+        text-align: left
+        color: #444545
+        font-size: 30px
+        line-height: 30px
+        span
+          color: #b7430c
+          font-size: 25px
+          position: relative
+          bottom: 3px
+          +text-shadow(#000, -1px, 1px, 0px)
+        img
+          vertical-align: bottom
+      nav
+        padding: 14px 0 12px 0 
+        float: right
+        display: inline
+        a, .disabled_link
+          vertical-align: top
+          font-size: 12px
+          letter-spacing: .5px
+          padding: 3px 10px
+          color: #cee7fe
+          font-weight: normal
+          +serif
+          text-decoration: none
+          +text-shadow(#000, 1px, 1px, 0px)
+        a.selected_nav
+          color: #fff
+          background: #2e4b67
+          +border-radius(5px)
+          cursor: default
+        a:hover
+          color: #fff
+          background: #2e4b67
+          +border-radius(5px)
+        div.user-feeds
+          display: inline
+          position: relative
+          padding-top: 13px
+          height: 22px
+          vertical-align: top
+          h4
+            font-size: 12px
+            color: #cee7fe
+            font-weight: normal
+            height: 20px
+            width: 66px
+            +serif
+            display: inline
+            vertical-align: top
+            padding: 3px 10px
+          ul 
+            display: none
+            top: 30px
+            right: 4px
+            position: absolute
+            z-index: 1
+            width: 148px 
+            background-color: white
+            color: #3b6085 !important
+            border: 1px solid #3b6085 
+            +border-bottom-radius(5px)
+            +border-top-left-radius(5px)
+            li
+              &:first-child
+                +border-top-left-radius(5px)
+              &:last-child
+                +border-bottom-radius(5px)
+                border-bottom: 0px
+              &:hover
+                background-color: #eee
+                a
+                  color: #3B6085
+                  +text-shadow()
+                  background: #eee
+              padding: 5px 5px 3px
+              border-bottom: 1px solid #3b6085 
+              a
+                display: block
+                color: #3B6085
+                +text-shadow()
+          &:hover
+            h4
+              +border-top-radius(5px)
+              padding: 1px 9px
+              border: 1px solid #3b6085 
+                bottom-color: #fff
+              color: #3b6085
+              position: relative
+              z-index: 4
+              background-color: white
+            ul
+              display: block
+    .remove_border
+      border:
+        top: 1px solid #ccc
+        bottom: none !important
+        left: 1px solid #ccc
+        right:  1px solid #ccc
+      +border-radius(5px 5px 0px 0px)
+    .border
+      border: 1px solid #ccc
+      +border-radius(5px) 
+
+body.application.new.accounts
   background-color: #cee7fe
   background-attachment: fixed
   +serif
@@ -31,6 +151,8 @@ body.application
   header
     margin: 20px auto 30px
     width: 970px
+    background: none
+    border: none
 
     #logo
       margin-top: 10px
@@ -224,6 +346,7 @@ body.application
         font-size: 11px
         +text-shadow(#454545, 1px, 1px, 0px)
         
+body.application
   #main
     width: 980px
     margin: auto
