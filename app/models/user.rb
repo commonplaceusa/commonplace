@@ -74,9 +74,9 @@ class User < ActiveRecord::Base
 
   has_attached_file(:avatar,                    
                     :styles => { 
-                      :thumb => "100x100!", 
-                      :normal => "120x120!",
-                      :large => "200x200!"
+                      :thumb => "100x100#", 
+                      :normal => "120x120#",
+                      :large => "200x200#"
                     },
                     :default_url => "/avatars/missing.png", 
                     :url => "/system/users/:id/avatar/:style.:extension",
