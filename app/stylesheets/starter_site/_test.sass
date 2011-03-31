@@ -1,0 +1,197 @@
+@import "compass/css3/text-shadow"
+
+/* Fix IE. Hide from IE Mac \*/
+* html ul li
+  float: left
+* html ul li a
+  height: 1% 
+/* End */
+
+body
+  font-family: "Rockwell",Georgia,Times,serif
+  background: #1b334a
+  color: #fff
+  #alert
+    color: #fff
+    position: absolute
+    top: 8px
+    left: 280px
+    width: 360px
+    font-size: 1.2em
+    text-align: center
+  
+  a:visited, a:active, a:link
+    color: #8EA0B6
+    text-decoration: none !important
+    cursor: pointer
+  a:hover
+    color: #fff
+    text-decoration: none !important
+    cursor: pointer
+  nav
+    border-bottom: 5px solid #D0EBFF
+    height: 50px
+    margin-top: 20px
+    display: block
+    background: none
+  #logo
+    background: none
+  #menu
+    float: right
+    position: relative
+    margin-top: 20px
+    background: none
+    ul
+      position: absolute
+      right: 0
+    li
+      list-style: none
+      display: inline
+      float: left
+      margin-top: -10px
+      a
+        padding: 20px 5px
+        color: #fff
+        &:hover
+          color: #bbb
+  h1
+    text-indent: -9999px
+  h2
+    margin-left: 20px
+    font-size: 35px
+    font-weight: bold
+    line-height: 36px
+  #header
+    position: relative
+    padding-top: 30px
+    height: 282px
+    border-bottom: 5px solid #2c4b68
+    background: #fff url('/images/starter_site/skyline-bg.png') repeat-x
+    h2
+      color: #000
+  #banner_menu
+    background: #fff
+    opacity: .9
+    color: #000
+    position: relative
+    height: 220px
+    text-align: left
+    +border-radius(6px)
+    li.selected 
+      a
+        color: #fff !important
+        background: #ac322f
+        +text-shadow(#545454, 1px, 1px, 1px)
+    li
+      list-style-type: none
+      a
+        color: #000
+        +text-shadow(#fff, 1px, 1px, 1px)
+      ul
+        display: none
+      &:hover ul, .hover ul
+        display: none
+
+  .rounded
+    display: block
+    margin: 10px
+    padding: 5px 10px
+    +border-radius(5px)
+
+      
+  .bubbles
+    list-style: none
+    li
+      display: none
+      float: left
+      height: 112px
+      width: 130px
+      background: url('/images/starter_site/bubble.png') no-repeat
+      padding: 15px
+      margin: 30px
+      color: #800
+      text-align: center
+      .vert
+        position: relative
+        p
+          position: absolute
+      
+      
+  #main
+    font-family: "Rockwell",Georgia,Times,serif
+    padding: 20px 0
+    #nominate
+      background: #ac322f
+      height: 400px
+      +border-radius(5px)
+      h3
+        font-size: 28px
+        line-height: 30px
+        color: #062834
+      input, textarea
+        width: 400px
+        margin: 0px auto
+      label
+        float: left
+        text-align: left
+        font-size: 13px
+        padding: 10px 0px 3px 0px
+    #nominate-padding
+      margin: 20px
+    #leading
+      color: #fff
+      font-size: 22px
+      line-height: 29px
+    #heart
+      margin: 50px 0px 30px 0px
+      font-size: 2.5em
+      h3
+        +text-shadow(#000, 2px, 2px, 0px)
+    .border
+      clear: both
+      background: url('/images/starter_site/border.jpg') repeat-x
+      height: 30px
+    .items
+      padding: 30px 0px 20px
+    .bottom
+      border-top: 1px solid #304962
+      border-bottom: none !important
+    .rotate
+      background: url('/images/starter_site/bubble2.png') no-repeat
+      p
+        display: block
+        height: 145px
+        width: 263px
+        color: #555
+        padding: 10px
+        margin: 0 10px 40px
+        font-style: italic
+        line-height: 26px
+        font-size: 16px
+        letter-spacing: .5px
+      img
+        float: left
+        padding: 5px 20px
+      h4
+        font-size: 18px
+        line-height: 16px
+        +text-shadow(#122334, 2px, 2px, 0px)
+        font-weight: normal
+      h5
+        color: #83a1be
+        font-size: 13px
+        padding-top: 5px
+        font-weight: normal
+        line-height: 18px
+        +text-shadow(#122334, 2px, 2px, 0px)
+  
+
+#footer
+  background: #0c1c2c
+  color: #899baf
+  border-top: 5px solid #304a63
+  height: 60px
+  p
+    padding: 20px 10px
+    font-size: 0.8em
+      
