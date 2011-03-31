@@ -1,0 +1,67 @@
+a
+  text-decoration: none
+  color: $cpDarkBlue
+  &:hover
+    text-decoration: underline
+
+strong, .strong
+  font-weight: bold
+em
+  font-style: oblique
+
+#notice
+  padding: 10px
+  +sans
+  background-color: $lightGray
+  margin-bottom: 1em
+  +border-radius(7px)
+  
+#main
+  width: 970px
+  margin: 10px auto
+  +museo
+
+header
+  display: block
+  margin: 1.5em
+  text-align: right
+  +clearfix
+  
+header img
+  float: left
+
+header nav
+  float: right
+  margin-top: 1em
+  a
+    font-size: 18px
+    margin-left: 20px
+    +headline_font
+    &:hover
+      text-decoration: none
+      color: $cpRed
+      padding-bottom: 2px
+      border-bottom: 2px solid $cpRed
+    &.selected_nav
+      color: $cpRed
+      padding-bottom: 2px
+      border-bottom: 2px solid $cpRed
+    
+footer
+  +sans
+  display: block
+  font-weight: bold
+  margin-top: 2em
+  margin-left: 2em
+  font-size: 13px
+  color: #aaa
+  img
+    width: 25px
+    height: 25px
+  a
+    color: #777
+  p
+    +inline-block
+    vertical-align: top
+    padding: 7px
+    

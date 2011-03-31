@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
     map.resources :deliveries
   end
   
+
   map.set_neighborhood("set_neighborhood/:neighborhood_id", 
                        :controller => "application", :action => "set_neighborhood", :method => :post)
   
@@ -91,6 +92,11 @@ ActionController::Routing::Routes.draw do |map|
 
   end
   
+  map.with_options :conditions => {:subdomain => nil } do |starter_site|
+    starter_site.root :controller => "site"
+    starter_site.resources :requests
+  end
+
   
   # The priority is based upon order of creation: first created -> highest priority.
 

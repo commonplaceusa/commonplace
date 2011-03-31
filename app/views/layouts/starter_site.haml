@@ -1,0 +1,127 @@
+!!! 5
+%html
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %link{ :href => '/favicon.png', :rel => "icon", :type => "image/png" }
+    %link{ :href=> 'http://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
+    %title CommonPlace
+    / %script{ :type => 'text/javascript', :src => 'http://code.jquery.com/jquery-1.4.2.min.js' }
+    
+    %script{ :type => 'text/javascript', :src => 'http://code.jquery.com/jquery-1.4.2.js' }
+  
+    / [if IE]
+      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"        
+    = javascript_include_tag 'starter_site/application', 'starter_site/easing', 'starter_site/bubbles', 'starter_site/tabs', 'starter_site/slideshow', 'starter_site/scroll'
+    = stylesheet_link_tag 'starter_site'
+    /[if lt IE 9]
+      = stylesheet_link_tag 'ie.css'
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12807510-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+  
+  %body
+
+    %nav
+      .container-12
+        #logo.grid-8
+          %a
+            %img{:src=>"images/starter_site/logo1.png"}
+          #alert
+          -if flash[:notice].present?
+            =flash[:notice]
+      .clear
+    
+    #header
+      .container-12
+        #banner_menu.grid-3
+          %ol
+            %li.selected
+              %a.rounded{:href=>"#"}
+                1. Share
+                %br
+                Neighborhood Needs
+              %ul
+                %li
+                  .vert
+                    %p{:style=>"top: 10px;"}="Can I borrow a ladder?"
+                %li
+                  .vert
+                    %p{:style=>"top: 15px;"}="My cat ran away!"
+                %li
+                  .vert
+                    %p{:style=>"top: 10px;"}="Anyone know a great babysitter?"
+            %li
+              %a.rounded{:href=>"#"}
+                2. Organize local
+                %br
+                Community Events
+              %ul
+                %li
+                  .vert
+                    %p{:style=>"top: 10px;"}="Music festival this Saturday"
+                %li
+                  .vert
+                    %p{:style=>"top: 10px;"}="Neighborhood block party!"
+                %li
+                  .vert
+                    %p{:style=>"top: 2px;"}="School Board meeting Wednesday night"
+            %li
+              %a.rounded{:href=>"#"}
+                3. Find new people
+                %br
+                in your area
+              %ul
+                %li
+                  .vert
+                    %p{:style=>"top: 10px;"}="Parenting tips from local moms"
+                %li
+                  .vert
+                    %p{:style=>"top: 2px;"}="Discuss local community issues"
+                %li
+                  .vert
+                    %p{:style=>"top: 2px;"}="Welcome new neighbors to the block"
+            %li
+              %a.rounded{:href=>"#"}
+                4. Build a better
+                %br
+                Community
+              %ul
+                %li
+                  .vert
+                    %p{:style=>"top: 2px;"}="Mobilize resources in your town"
+                %li
+                  .vert
+                    %p{:style=>"top: 2px;"}="Build exciting community projects"
+                %li
+                  .vert
+                    %p{:style=>"top: 10px;"}="Found new clubs and organizations"
+        #picture.grid-9
+          %h2
+            CommonPlace helps you
+            %br
+            share and connect with your neighbors.
+          #box
+            %ul.bubbles
+              %li
+                .vert
+                  %p{:style=>"top: 10px;"}="Can I borrow a ladder?"
+              %li
+                .vert
+                  %p{:style=>"top: 15px;"}="My cat ran away!"
+              %li
+                .vert
+                  %p{:style=>"top: 10px;"}="Anyone know a great babysitter?"
+      .clear
+      
+    #main= yield
+    #footer
+      .container-12
+        %p="Copyright 2011 CommonPlace."

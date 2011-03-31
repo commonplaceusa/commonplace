@@ -1,0 +1,66 @@
+#form_container
+  margin: auto
+  padding: 2em
+  background-color: $lightGray
+  border: 1px solid silver
+  +border-radius(7px)
+  width: 700px
+  h2
+    margin-bottom: 1em
+    font-size: 1.5em
+
+form.formtastic
+
+  input[type=text], textarea, input[type=password]
+    width: $inputBoxWidth
+    font-size: 1em
+    +serif
+  
+  input#post_title, textarea#post_body
+    width: 500px
+    
+  textarea
+    height: 12em
+  
+  input[type=submit]
+    left: $labelWidth + 10px
+    position: relative
+    margin-top: 10px
+  
+  #toggle
+    left: $labelWidth + 45px
+    position: relative
+  
+  label
+    width: $labelWidth
+    padding: 4px 10px 0 0 
+    display: inline-block
+    font-size: 0.9em
+    font-weight: normal
+    font-family: Arial, Helvetica, sans-serif
+    color: #555
+    text-align: right
+    position: relative
+    top: 0px
+    float: left
+
+  p.inline-errors
+    font-size: 0.7em
+    display: inline
+    line-height: 120%
+    margin-left: 10px
+    font-weight: normal
+    +sans
+    color: #cc0000
+  
+  li.boolean
+    left: $labelWidth + 10px
+    label
+      text-align: left
+  
+  fieldset ol
+    li
+      display: block
+      position: relative
+      margin-bottom: 7px
+  
