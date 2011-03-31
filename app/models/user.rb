@@ -51,6 +51,7 @@ class User < ActiveRecord::Base
   has_many :events, :through => :attendances
 
   has_many :posts, :dependent => :destroy
+  has_many :announcements, :dependent => :destroy, :as => :owner, :include => :replies
 
   has_many :replies, :dependent => :destroy
 

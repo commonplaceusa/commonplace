@@ -1,4 +1,5 @@
 class AnnouncementsController < CommunitiesController
+  before_filter :owner
   load_and_authorize_resource
 
   def index
@@ -17,7 +18,7 @@ class AnnouncementsController < CommunitiesController
   end
 
   def create
-    @announcement = Announcement.new(params[:announcement].merge(:community => current_community))
+    @announcement = Announcement.new(params[:announcement].merge(:community => current_community, :owner => @owner))
     if @announcement.save
       redirect_to announcements_path
     else
@@ -40,4 +41,11 @@ class AnnouncementsController < CommunitiesController
     redirect_to announcements_url
   end
   
+  protected 
+  def owner
+    if params[:announcement] && params[:announcement][:owner]
+      owner_class, owner_id = params[:announcement].delete(:owner).try(:split, "_")
+      @owner = owner_class.capitalize.constantize.find(owner_id.to_i)
+    end
+  end
 end

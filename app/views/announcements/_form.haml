@@ -1,6 +1,9 @@
 - semantic_form_for announcement, :html => {'data-remote' => true} do |f|
   - f.inputs do
-    = f.input :feed, :collection => current_user.managable_feeds
+    %li
+      %label{:for => "announcement_owner", :class => "select required"}
+        Post as:
+      = f.select :owner, options_for_select(creation_feeds_for(current_user), dom_id(f.object.owner || current_user))
     = f.input :subject
     = f.input :body, :input_html => { :rows => 5, :cols => 21 }
   - f.buttons do

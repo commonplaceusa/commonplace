@@ -1,6 +1,10 @@
 
 - update_content "#information" do
-  = render 'feeds/info_box', :feed => @announcement.feed
+  - case @announcement.owner
+  - when Feed
+    = render 'feeds/info_box', :feed => @announcement.owner
+  - when User
+    = render 'users/info_box', :user => @announcement.owner
 
 = render 'shared/tooltip'
 

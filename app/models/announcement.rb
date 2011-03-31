@@ -4,7 +4,7 @@ class Announcement < ActiveRecord::Base
 
   has_many :replies, :as => :repliable, :order => :created_at
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
-  belongs_to :feed
+  belongs_to :owner, :polymorphic => true
   belongs_to :community
 
   validates_presence_of :subject, :body, :feed, :unless => Proc.new { |announcement| announcement.type.to_s == 'TwitterAnnouncement'}
@@ -20,8 +20,8 @@ class Announcement < ActiveRecord::Base
     Helper.help.post_date(self.created_at)
   end 
   
-  def owner
-    self.feed
+  def feed
+    self.owner
   end
   
   def long_id
