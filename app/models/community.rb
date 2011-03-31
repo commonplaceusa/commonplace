@@ -3,7 +3,7 @@ class Community < ActiveRecord::Base
   has_many :neighborhoods, :order => :created_at
   has_many(:announcements,
            :order => "announcements.created_at DESC",
-           :include => [:feed, :replies])
+           :include => [:owner, :replies])
   has_many(:events, 
            :order => "events.date ASC",
            :include => [:owner, :replies])

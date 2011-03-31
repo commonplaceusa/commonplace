@@ -9,18 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110324140903) do
+ActiveRecord::Schema.define(:version => 20110331174735) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                                  :null => false
     t.text     "body",                                     :null => false
-    t.integer  "feed_id",                                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "private",      :default => false,          :null => false
     t.string   "type",         :default => "Announcement"
     t.string   "url"
     t.integer  "community_id"
+    t.string   "owner_type"
+    t.integer  "owner_id"
   end
 
   create_table "attendances", :force => true do |t|
