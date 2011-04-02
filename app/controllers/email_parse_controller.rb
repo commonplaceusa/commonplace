@@ -8,6 +8,33 @@ class EmailParseController < ApplicationController
     params[:envelope][:from].present? && !params[:envelope][:from].include?("<>") && !params[:envelope][:from].include?("< >")
   end
   
+  def to
+    TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0]
+  end
+  
+  def process
+    if Feed.find_by_slug(to)
+      feed_announcements
+    elsif Neighborhood.find_by_name(to)
+      posts_new
+    elsif to == "announce"
+      announcement_new
+    else
+      type = to.match(/\+/)[1]
+      puts type
+      sleep(10)
+      if type == "message"
+        messages
+      elsif type == "post"
+        posts
+      elsif type == "event"
+        events
+      elsif type == "announcement"
+        announcements
+      end
+    end
+  end
+  
   def messages
     user = User.find_by_email(TMail::Address.parse(params[:from]).spec)
     post = Message.find_by_long_id(TMail::Address.parse(params[:to]).spec.match(/[A-Za-z0-9]*/)[0])
@@ -102,6 +129,10 @@ class EmailParseController < ApplicationController
     end
     
     render :nothing => true
+  end
+  
+  def announcement_new
+    
   end
 
 

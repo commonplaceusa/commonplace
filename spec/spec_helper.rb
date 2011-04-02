@@ -11,6 +11,7 @@ Spork.prefork do
   require 'spec/rails'
   require 'rr'  
   require 'spec/rr'
+  Rails.logger.level = Logger::ERROR
   Spec::Runner.configure do |config|
     config.mock_with RR::Adapters::Rspec
     config.use_transactional_fixtures = false
@@ -61,7 +62,6 @@ Spork.prefork do
 end
 
 Spork.each_run do
-
   
 end
 
