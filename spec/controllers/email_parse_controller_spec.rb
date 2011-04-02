@@ -38,9 +38,9 @@ Hey -- testing a reply!
     before :each do 
       stub(Message).find_by_long_id(message.long_id) { message }
       stub(NotificationsMailer).deliver_message_reply
-      post(:messages,
+      post(:process,
            :from => user.email,
-           :to => "#{message.long_id}@messages.test.ourcommonplace.com",
+           :to => "#{message.long_id}+message@ourcommonplace.com",
            :text => @reply_text,
            :envelope => {:from => "test@example.com"})
     end
@@ -62,9 +62,9 @@ Hey -- testing a reply!
     before :each do 
       stub(Event).find_by_long_id(event.long_id) { event }
       stub(NotificationsMailer).deliver_event_reply
-      post(:events,
+      post(:process,
            :from => user.email,
-           :to => "#{event.long_id}@events.test.ourcommonplace.com",
+           :to => "#{event.long_id}+event@ourcommonplace.com",
            :text => @reply_text,
            :envelope => {:from => "test@example.com"})
     end
@@ -87,9 +87,9 @@ Hey -- testing a reply!
     before :each do 
       stub(Post).find_by_long_id(test_post.long_id) { test_post }
       stub(NotificationsMailer).deliver_post_reply
-      post(:posts,
+      post(:process,
            :from => user.email,
-           :to => "#{test_post.long_id}@posts.test.ourcommonplace.com",
+           :to => "#{test_post.long_id}+post@ourcommonplace.com",
            :text => @reply_text,
            :envelope => {:from => "test@example.com"})
     end
@@ -114,6 +114,7 @@ Hey -- testing a reply!
   
       post(:posts_new,
             :from => user.email,
+            :to => "#{@neighborhood.name}@ourcommonplace.com",
             :text => @reply_text,
             :subject => @reply_text,
             :envelope => {:from => "test@example.com"})
@@ -163,7 +164,7 @@ Hey -- testing a reply!
       stub(NotificationsMailer).deliver_announcement_reply
       post(:announcements,
            :from => user.email,
-           :to => "#{announcement.long_id}@announcements.test.ourcommonplace.com",
+           :to => "#{announcement.long_id}+announcement@ourcommonplace.com",
            :text => @reply_text,
            :envelope => {:from => "test@example.com"})
     end
