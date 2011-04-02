@@ -8,7 +8,7 @@ class GroupPostsControllerController < ApplicationController
   
   def create
     @group_post.user = current_user
-    @group_post.group = current_group
+    @group_post.group = params[:group_post]
     if @group_post.save
       #NotificationsMailer.deliver_neighborhood_post(current_neighborhood.id,
       #                                              post.id)
@@ -20,7 +20,7 @@ class GroupPostsControllerController < ApplicationController
   end
   
   def index
-    @items = current_community.posts(:all, :limit => 30)
+    @items = current_community.groups.map(&:posts).flatten
   end
   
 end
