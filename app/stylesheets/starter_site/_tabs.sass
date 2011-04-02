@@ -1,3 +1,4 @@
+@import "compass/css3/opacity"
 .tabs
   list-style: none
   margin: 0 !important
@@ -47,6 +48,21 @@
       margin: 0px 0px 10px 0px
   #init
     display: block 
+  #slides_wrapper
+    position: relative
+    display: block !important
+  .slide_info
+    background: #000
+    width: 420px
+    height: 20px
+    padding: 5px 0px
+    position: absolute
+    left: 0px
+    bottom: 0px
+    z-index: 4
+    color: white
+    text-align: center
+    +opacity(.8)
   #slides
     display: block !important
     height: 248px
