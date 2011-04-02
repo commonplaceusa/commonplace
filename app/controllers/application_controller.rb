@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include FeedsHelper
   helper_method :current_community
   helper_method :current_neighborhood
+  helper_method 'logged_in?'
   helper_method 'xhr?'
   #Temporarily removed the below line to test e-mail parsing.
   protect_from_forgery :except => :parse # See ActionController::RequestForgeryProtection for details
@@ -70,6 +71,10 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
+  end
+
+  def logged_in?
+    ! current_user.new_record?
   end
 
   def current_user_session
