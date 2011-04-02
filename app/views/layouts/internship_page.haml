@@ -31,10 +31,10 @@
 
     %nav
       .container-12
-        #logo.grid-8
+        #logo.grid-4
           %a{:href=>"/"}
             %img{:src=>"images/starter_site/logo1.png"}
-          #alert
+        #alert
           -if flash[:notice].present?
             =flash[:notice]
       .clear
