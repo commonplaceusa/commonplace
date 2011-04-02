@@ -69,7 +69,13 @@
         color: #27415f
         background-color: #d7d7d7
         background-position: 6px center, 132px center, top left
-        +box-shadow(0px -1px 0px 0px #efefef inset, 0px 1px 0px 0px #bcbcbc inset)
+        +box-shadow(0px -2px 0px 0px #efefef inset, 0px 2px 0px 0px #bcbcbc inset)
+        &.post
+          +background-image(url("/images/icons/neighborhood-post.png"), url("/images/post-nav-hover-arrow.png") ,linear-gradient(#d3d3d3, #e3e3e3))
+        &.event
+          +background-image(url("/images/icons/events-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#d3d3d3, #e3e3e3))
+        &.announcement
+          +background-image(url("/images/icons/announcements-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#d3d3d3, #e3e3e3))
       &.current
         color: #fff
         cursor: default
