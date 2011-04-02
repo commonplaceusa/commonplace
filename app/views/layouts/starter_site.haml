@@ -31,12 +31,14 @@
 
     %nav
       .container-12
-        #logo.grid-8
-          %a
+        #logo.grid-4
+          %a{:href=>"/"}
             %img{:src=>"images/starter_site/logo1.png"}
+        %a{:href=>"/interns"}
           #alert
-          -if flash[:notice].present?
-            =flash[:notice]
+            Want to be a CommonPlace Community Organizing Intern
+            %br
+            This Summer?
       .clear
     
     #header
