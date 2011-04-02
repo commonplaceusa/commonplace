@@ -1,7 +1,10 @@
+nav
+  border: none !important
+  border-bottom: none !important
 #main_body
   margin: 20px auto
-  padding: 10px
-  width: 940px
+  padding: 20px
+  width: 920px
   background: white
   border: 1px solid #ccc
   color: #000
@@ -15,10 +18,11 @@
     margin-bottom: 30px
   p
     margin: 10px 0px
+    line-height: 20px
   a 
-    color: #aaa
+    color: #1b334a
   a:hover
-    color: #bbb
+    color: #062834
   ul
     list-style: disc
     margin: 0px 0px 20px 30px
@@ -29,4 +33,32 @@
       margin-bottom: 20px
     input[type="text"], textarea
       width: 200px
+      +border-radius(3px)
+      padding: 5px
+      border: 1px solid #7f7f7f
+      +serif
+      +box-shadow(#545454, 0px, 0px, 2px, 0px, inset)
+    label
+      text-align: left
+    input[type="submit"]
+      width: 120px !important
+      height: 30px
+      margin-left: 80px
+      border: 1px solid #ccc
+      +border-radius(5px)
+      +linear-gradient(color_stops(#e6e6e6, #ebebeb))
+      padding-bottom: 1px
+      box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
+      -moz-box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
+      -webkit-box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
+      font-family: "Rockwell",Georgia,Times,serif
+      +text-shadow(#ffffff, 1px, 1px 0px)
+    input[type="submit"]:active
+      box-shadow: inset 0px -1px 0px #fff, inset 0px 1px 0px #c7c7c7
+      -moz-box-shadow: inset 0px -1px 0px #fff, inset 0px 1px 0px #c7c7c7
+      -webkit-box-shadow: inset 0px -1px 0px #fff, inset 0px 1px 0px #c7c7c7
+      font-family: "Rockwell",Georgia,Times,serif
+      +text-shadow(#ffffff, 1px, 1px 0px)
+      +linear-gradient(color_stops(#ebebeb, #e6e6e6))
+      
       
