@@ -1,0 +1,42 @@
+!!! 5
+%html
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %link{ :href => '/favicon.png', :rel => "icon", :type => "image/png" }
+    %link{ :href=> 'http://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
+    %title CommonPlace
+    / %script{ :type => 'text/javascript', :src => 'http://code.jquery.com/jquery-1.4.2.min.js' }
+    
+    %script{ :type => 'text/javascript', :src => 'http://code.jquery.com/jquery-1.4.2.js' }
+  
+    / [if IE]
+      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"        
+    = javascript_include_tag 'starter_site/application', 'starter_site/easing', 'starter_site/bubbles', 'starter_site/tabs', 'starter_site/slideshow', 'starter_site/scroll'
+    = stylesheet_link_tag 'internship'
+    /[if lt IE 9]
+      = stylesheet_link_tag 'ie.css'
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12807510-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    
+  
+  %body
+
+    %nav
+      .container-12
+        #logo.grid-8
+          %a
+            %img{:src=>"images/starter_site/logo1.png"}
+          #alert
+          -if flash[:notice].present?
+            =flash[:notice]
+      .clear
+      
+    #main_body= yield
