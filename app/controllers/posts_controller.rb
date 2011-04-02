@@ -14,7 +14,6 @@ class PostsController < CommunitiesController
     @post.user = current_user
     @post.community = current_user.community
     if @post.save
-      puts @post.inspect
       post_params = params[:post]
       if (post_params[:post_to_facebook] == "1")
       #  current_user.access_token.post(

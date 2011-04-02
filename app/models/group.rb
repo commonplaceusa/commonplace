@@ -5,6 +5,8 @@ class Group < ActiveRecord::Base
   before_validation_on_create :generate_slug, :unless => :slug?
 
   belongs_to :community
+  
+  has_many :group_posts
 
   has_attached_file(:avatar,                    
                     :styles => { 
