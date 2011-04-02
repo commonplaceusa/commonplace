@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(:version => 20110409180957) do
     t.integer  "kind"
   end
 
+  create_table "group_posts", :force => true do |t|
+    t.string   "subject"
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.string   "slug"

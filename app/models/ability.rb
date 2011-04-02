@@ -22,6 +22,9 @@ class Ability
       can :create, Post
       can :destroy, Post, :user_id => user.id
       can :update, Post, :user_id => user.id
+      can :create, GroupPost
+      can :destroy, GroupPost, :user_id => user.id
+      can :update, GroupPost, :user_id => user.id
       can :destroy, UserSession
       can :read, Reply
       can :create, Reply
