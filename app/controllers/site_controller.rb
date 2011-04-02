@@ -6,6 +6,11 @@ class SiteController < ApplicationController
     @request = Request.new
     render :layout => 'starter_site'
   end
+  
+  def interns
+    @internship = Internship.new
+    render :layout => 'internship_page'
+  end
 
   def privacy ; end
 

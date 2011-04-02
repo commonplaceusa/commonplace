@@ -1,0 +1,33 @@
+<p>
+  <b>Name:</b>
+  <%=h @internship.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @internship.email %>
+</p>
+
+<p>
+  <b>Phone number:</b>
+  <%=h @internship.phone_number %>
+</p>
+
+<p>
+  <b>College:</b>
+  <%=h @internship.college %>
+</p>
+
+<p>
+  <b>Graduation year:</b>
+  <%=h @internship.graduation_year %>
+</p>
+
+<p>
+  <b>Essay:</b>
+  <%=h @internship.essay %>
+</p>
+
+
+<%= link_to 'Edit', edit_internship_path(@internship) %> |
+<%= link_to 'Back', internships_path %>

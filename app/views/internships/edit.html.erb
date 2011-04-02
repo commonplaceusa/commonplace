@@ -1,0 +1,36 @@
+<h1>Editing internship</h1>
+
+<% form_for(@internship) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number %>
+  </p>
+  <p>
+    <%= f.label :college %><br />
+    <%= f.text_field :college %>
+  </p>
+  <p>
+    <%= f.label :graduation_year %><br />
+    <%= f.text_field :graduation_year %>
+  </p>
+  <p>
+    <%= f.label :essay %><br />
+    <%= f.text_area :essay %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @internship %> |
+<%= link_to 'Back', internships_path %>

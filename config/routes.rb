@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :internships
+
 
   map.with_options :conditions => { :subdomain => "admin" } do |admin|
     admin.root :controller => "administration", :action => "show"
@@ -95,6 +97,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :conditions => {:subdomain => nil } do |starter_site|
     starter_site.root :controller => "site"
     starter_site.resources :requests
+    starter_site.connect 'interns', :controller => "site", :action => 'interns'
   end
 
   

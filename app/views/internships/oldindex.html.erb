@@ -1,0 +1,30 @@
+<h1>Listing internships</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone number</th>
+    <th>College</th>
+    <th>Graduation year</th>
+    <th>Essay</th>
+  </tr>
+
+<% @internships.each do |internship| %>
+  <tr>
+    <td><%=h internship.name %></td>
+    <td><%=h internship.email %></td>
+    <td><%=h internship.phone_number %></td>
+    <td><%=h internship.college %></td>
+    <td><%=h internship.graduation_year %></td>
+    <td><%=h internship.essay %></td>
+    <td><%= link_to 'Show', internship %></td>
+    <td><%= link_to 'Edit', edit_internship_path(internship) %></td>
+    <td><%= link_to 'Destroy', internship, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New internship', new_internship_path %>

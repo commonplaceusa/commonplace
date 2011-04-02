@@ -1,0 +1,30 @@
+
+%h1="A Summer Community Organizing Fellowship"
+%h2="Work With a Social Start-up in DC"
+
+%p="CommonPlace is a community organizing and digital media start-up based out of Harvard University and Washington, DC."
+%p="CommonPlace builds web platforms that help neighbors and community leaders connect and share with the people who live in their town. Our mission is to rethink 21st century civic technology, and to revitalize the spirit of local community in America."
+%p="We are offering a PAID “Community Organizing Fellowship” to motivated college students interested in LEADING a CommonPlace organizing campaign in ten American towns this summer. Community Organizing Fellows will work daily with an energetic team of community organizers, web developers and civic leaders, helping to set up the CommonPlace platform in a given town and consulting with our team to develop the CommonPlace expansion strategy and improve our technology."
+%p="Community Organizing Fellows will get a first-hand look at how digital technology and social entrepreneurship can play a part in making the world a better place. "
+%p
+  If you would like to learn more, please send a statement of interest to 
+  =mail_to "Organizing@CommonPlaceUSA.com"
+  or fill out our form below.
+%p="Make sure you include:"
+%ul
+  %li="Your full name"
+  %li="Your email"
+  %li="Your phone number"
+  %li="Name of your college"
+  %li="Your graduation year"
+  %li="Two to Three paragraphs on why you would make an excellent Community Organizing Fellow"
+%ul{:id=>"form"}
+  - semantic_form_for @internship do |f|
+    = f.error_messages
+    = f.input :name
+    = f.input :email
+    = f.input :phone_number 
+    = f.input :college
+    = f.input :graduation_year
+    = f.input :essay 
+    = f.submit 'Create' 
