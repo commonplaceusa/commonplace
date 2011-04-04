@@ -16,6 +16,7 @@
       %nav
         = tab_to "Home", "/"
         = tab_to "Inbox", messages_url
+        = tab_to "Invite", "/invites/new"
         .user-feeds
           %h4 Feeds 
           %ul
@@ -25,7 +26,6 @@
         = tab_to "Settings", edit_account_path
         = tab_to "FAQ", "/faq"
         = tab_to "Logout", "/user_session", :method => :delete
-
       - link_to root_url, :id => "logo" do
         = image_tag "logo2.png"
         %span.community= current_community.name
