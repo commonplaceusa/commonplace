@@ -25,5 +25,14 @@
       =image_tag(current_community.organizer_avatar.url, :size => "50x50")
       %br{:class => "cleared"}   
 
-%p#bubble-1= t ".bubble_1"
-%p#bubble-2= t ".bubble_2"
+- if current_community.feeds.present?
+
+  #local_organizations_info_bubble
+    %h3 Which local organizations are on #{current_community.name}'s CommonPlace?
+    #local_organizations_info
+      - current_community.feeds.take(5).each do |feed|
+        %p
+          = feed.name
+        = image_tag(feed.avatar_url, :size => "50x50")
+        %br{:class => "cleared"}   
+      

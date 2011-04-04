@@ -11,6 +11,18 @@ $(document).ready(function(){
     }
     	$('#who_is_info').slideToggle();
   });
+
+  //Does the who is bubble stuff
+  $('#local_organizations_info_bubble h3').click(function(){
+    var re = new RegExp(/blue-arrow-down/)
+    if($('#local_organizations_info_bubble').css("background-image").match(re)){
+      $('#local_organizations_info_bubble').css("background-image","url(/images/blue-arrow-up.png)")
+    }
+    else{
+      $('#local_organizations_info_bubble').css("background-image","") 
+    }
+    	$('#local_organizations_info').slideToggle();
+  });
   
   //Tool tips for main page:
 //  $('#user_address').tipsy({delayIn: 1000, delayOut: 1000, fade: true, gravity: 'n', trigger: 'focus', live: true, offset: -20 ,fallback: "We need your address so we can place you in a neighborhood within Falls Church!"});
