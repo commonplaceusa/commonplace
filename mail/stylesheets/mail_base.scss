@@ -30,7 +30,7 @@ $body-serifs: Georgia, Times, serif ;
 
 body { text-align: center ; background-color: #ffffff ; }
 
-p { color: #656565 ; font-size: 18px ; line-height: 1.8 ; font-family: $body-serifs ; line-height: 1.8 ; }
+p { color: #656565 ; font-size: 14px ; line-height: 1.8 ; font-family: $body-serifs ; line-height: 1.8 ; }
 
 #body { width: 650px ; text-align: left ; border-spacing: 20px ; background-color: #ffffff ; }
 
@@ -43,6 +43,9 @@ p { color: #656565 ; font-size: 18px ; line-height: 1.8 ; font-family: $body-ser
     #header-text { text-align: right ; color: #3b6085 ; font-family: $serifs ; font-size: 14px ; font-weight: bold ; vertical-align: bottom ; line-height: 32px ; }
 }
 a { @include colored-a(#b53f3c) ; }
+
+#intro h1 { font-size: 20px ; color: #464646 ; font-family: $serifs ; }
+#intro p { font-family: $sans-serifs; font-size: 13px ; }
 
 #settings { font-family: $sans-serifs; font-size: 12px ; }
 
