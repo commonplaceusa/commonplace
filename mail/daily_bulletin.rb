@@ -1,19 +1,15 @@
 class DailyBulletin < MailBase
 
   def initialize(user_id, date)
-    @user, @date = User.find(user_id), Date.parse(date)
-  end
-
-  def beginning_of_day
-    @date.beginning_of_day
-  end
-
-  def end_of_day
-    @date.end_of_day
+    @user, @date = User.find(user_id), DateTime.parse(date)
   end
 
   def user 
     @user
+  end
+  
+  def short_user_name
+    @user.first_name
   end
 
   def subject
@@ -37,7 +33,7 @@ class DailyBulletin < MailBase
   end
   
   def posts
-    community.posts.between(Time.now.advance(:days => -1), Time.now).map do |post|
+    @posts ||= community.posts.between(@date.advance(:days => -1), @date).map do |post|
       {
         :subject => post.subject,
         :url => url("/posts/#{post.id}"),

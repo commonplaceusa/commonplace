@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
 
   named_scope :between, lambda { |start_date, end_date| 
     { :conditions => 
-      ["? <= created_at AND created_at < ?", start_date, end_date] } 
+      ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
   }
 
   def self.human_name
