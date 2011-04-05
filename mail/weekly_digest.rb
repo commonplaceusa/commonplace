@@ -16,6 +16,10 @@ class WeeklyDigest < MailBase
   def user 
     @user
   end
+
+  def short_user_name
+    @user.first_name
+  end
   
   def community
     user.community
@@ -54,6 +58,8 @@ class WeeklyDigest < MailBase
         },
         :url => url("/events/#{event.id}"),
         :num_more_replies => event.replies.count > 2 ? event.replies.count - 2 : nil,
+        :venue => event.venue,
+        :address => event.address,
         :replies => event.replies.take(2).map do |reply| 
           { :user_avatar_url => url(reply.user.avatar_url(:thumb)),
             :posted_by => reply.user.name,

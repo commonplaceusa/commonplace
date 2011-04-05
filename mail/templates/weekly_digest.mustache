@@ -15,13 +15,14 @@
       <tr>
         <td id="intro">
           <h1>The {{community_name}} CommonPlace Weekly Bulletin</h1>
-          <p>Every week, the {{community_name}} CommonPlace compiles all the
+          <p>Hi {{short_user_name}}, <br>
+            Every week, the {{community_name}} CommonPlace compiles all the
             community information posted to {{community_name}}'s CommonPlace
             web platform into a simple weekly bulletin. Remember, if you ever
             want to add something to this bulletin &ndash;
             an <a href="{{new_event_url}}"><span>upcoming event</span></a> or
             <a href="{{new_announcement_url}}">community announcement</span></a>
-            &ndash; just logon to
+            &ndash; just log on to
             <a href="{{root_url}}"><span>{{community_name}}'s CommonPlace</span></a>
             to submit it.</p>
         </td>
@@ -69,7 +70,9 @@
               </tr>
               <tr>
                 <td class="body" colspan="2">
-                 <p>{{body}}</p>
+                  <p>{{body}}</p>
+                  <p><span class="event-field">Venue:</span> {{venue}}<br>
+                  <span class="event-field">Address:</span> {{address}}</p>
                 </td>
               </tr>
               <tr>
@@ -117,7 +120,7 @@
             </p>
 
             <p class="action">
-              <strong>Want to see more events in your daily bulletins?</strong>
+              <strong>Want to see more events in your daily digests?</strong>
               <br>
               <a href="{{subscribe_url}}"><span>Subscribe</span></a> to more
               community feeds and groups to see their events sooner.
@@ -219,7 +222,7 @@
             </p>
 
             <p class="action">
-              <strong>Want to see more announcements in your daily bulletin?</strong>
+              <strong>Want to see more announcements in your daily digests?</strong>
               <br>
               <a href="{{subscribe_url}}"><span>Subscribe</span></a> to more
               community feeds and groups to see their announcements sooner.

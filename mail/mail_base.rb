@@ -44,7 +44,7 @@ class MailBase < Mustache
   end
 
   def from
-    "CommonPlace <notifications@#{community.slug}.ourcommonplace.com>"
+    "#{community.name} CommonPlace <notifications@#{community.slug}.ourcommonplace.com>"
   end
 
   def reply_to
