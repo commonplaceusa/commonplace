@@ -32,6 +32,7 @@ en:
         about: "Describe your feed:"
         phone: "Phone Number:"
         address: "Street Address:"
+        kind: "Is your community feed for:"
         website: "Website:"
         feed_url: "Enter an RSS feed and we'll send out announcements when you update it:"
         twitter_name: "Enter your Twitter username and we'll syndicate your tweets on CommonPlace"

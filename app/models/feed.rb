@@ -52,6 +52,20 @@ class Feed < ActiveRecord::Base
     end
   end
 
+  def is_news
+    self.kind == 4
+  end
+  
+  def self.kinds
+    feed_kinds = ActiveSupport::OrderedHash.new
+    feed_kinds["A community group"] = 1
+    feed_kinds["A business"] = 2
+    feed_kinds["A municipal entity"] = 3
+    feed_kinds["A newspaper, news service, or news blog"] = 4
+    feed_kinds["Other"] = 5
+    feed_kinds
+  end
+
   private
 
   def generate_slug
@@ -68,5 +82,4 @@ class Feed < ActiveRecord::Base
       self.slug = string
     end
   end
-  
 end
