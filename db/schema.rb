@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110402060302) do
+ActiveRecord::Schema.define(:version => 20110405005451) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                                  :null => false
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20110402060302) do
     t.string   "hours"
     t.string   "slug"
     t.string   "twitter_name"
-    t.boolean  "is_news"
+    t.integer  "kind"
   end
 
   create_table "groups", :force => true do |t|
