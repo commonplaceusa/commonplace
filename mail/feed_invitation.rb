@@ -4,7 +4,7 @@ class FeedInvitation < Invitation
     @to = email
     @feed = Feed.find(feed_id)
     @inviter = @feed.user
-    @message = message
+    @message = message.present? ? message : nil
   end
 
   def feed

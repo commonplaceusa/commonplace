@@ -3,7 +3,7 @@ class Invitation < MailBase
   def initialize(email, inviter_id, message = nil)
     @to = email
     @inviter = User.find(inviter_id)
-    @message = message
+    @message = message.present? ? message : nil
   end
 
   def subject
