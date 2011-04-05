@@ -30,7 +30,7 @@
   #local_organizations_info_bubble
     %h3 Which local organizations are on #{current_community.name}'s CommonPlace?
     #local_organizations_info
-      - current_community.feeds.take(5).each do |feed|
+      - current_community.feeds.each do |feed|
         %p
           = feed.name
         = image_tag(feed.avatar_url, :size => "50x50")
