@@ -4,7 +4,7 @@ class DailyDigestJob
 
   def self.perform
     User.receives_daily_digest.each do |user|
-      Resque.enqueue(DailyBulletin, user.di, Date.today)
+      Resque.enqueue(DailyBulletin, user.id, DateTime.now.utc.to_s(:db))
     end
   end
 

@@ -24,7 +24,7 @@ table.post {
     .posted-at { text-align: right ; color: #3b6085 ; }
     .author { color: #af142f ; font-family: $serifs}
     .body {
-        padding-bottom: 20px ;
+        padding-bottom: 10px ;
         p { color: #656565 ; font-size: 16px ; font-family: $body-serifs ; line-height: 1.4 ; }
     }
 
@@ -32,7 +32,7 @@ table.post {
         hr.reply { border-top: 1px solid #d0d0d0 ; border-bottom: 0px ; }
         .reply {
             width: 100% ;
-            border-spacing: 0px 10px ;
+            border-spacing: 0px 5px ;
             .avatar { width: 35px ; }
             .author { }
             .posted-at { text-align: right ; }

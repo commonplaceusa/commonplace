@@ -6,7 +6,7 @@ class WeeklyDigest < MailBase
   end
 
   def start_date
-    end_date.advance(:week => -1)
+    end_date.advance(:weeks => -1)
   end
   
   def end_date
@@ -58,8 +58,8 @@ class WeeklyDigest < MailBase
         },
         :url => url("/events/#{event.id}"),
         :num_more_replies => event.replies.count > 2 ? event.replies.count - 2 : nil,
-        :venue => event.venue,
-        :address => event.address,
+        :venue => event.venue.present? ? event.venue : "--",
+        :address => event.address.present? ? event.address : "--",
         :replies => event.replies.take(2).map do |reply| 
           { :user_avatar_url => url(reply.user.avatar_url(:thumb)),
             :posted_by => reply.user.name,
