@@ -18,18 +18,14 @@
 - if current_community.organizer_about?
       
   #who_is_info_bubble
-    %h3= t ".who_is_bubble", :community=> current_community.name
+    %h3.toggle= t ".who_is_bubble", :community=> current_community.name
     #who_is_info
       %p
         = current_community.organizer_about
       =image_tag(current_community.organizer_avatar.url, :size => "50x50")
       %br{:class => "cleared"}   
 
-- if current_community.feeds.present?
-
-  #local_organizations_info_bubble
-    %h3 Which local organizations are on #{current_community.name}'s CommonPlace?
-    #local_organizations_info
+      %h3 Which local organizations are on #{current_community.name}'s CommonPlace?
       - current_community.feeds.each do |feed|
         %p
           = feed.name
