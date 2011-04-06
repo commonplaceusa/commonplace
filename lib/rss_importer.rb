@@ -8,34 +8,23 @@ class RSSImporter
     story_url_tag   = CONFIG['rss_story_url_tag'] || 'link'
     
     
-    Community.find(:all).each do |community|
-      community.feeds.find(:all, :conditions => ["feed_url != ?", "" ]).each do |feed|
-        rss = RSS::Parser.parse(open(feed.feed_url).read, false)
-        rss.items.each { |i|
-          # Determine if the item has been added yet
+    Feed.find(:all, :conditions => ["feed_url != ?", "" ]).each do |feed|
+      RSS::Parser.parse(open(feed.feed_url).read, false).items.each do |item|
+        
+        # If the item hasn't been added yet
+        unless RSSAnnouncement.exists?(:url => item.send(story_url_tag))
+            
+          # Pull the values from the Item object, using arbitrary tag names 
+          RSSAnnouncement.create(:owner => feed,
+                                 :subject => item.send(subject_tag),
+                                 :url => item.send(story_url_tag),
+                                 :community_id => feed.community_id,
+                                 :body => McBean.fragment(item.send(body_tag)).to_markdown)
           
-          # Pull the values from the Item object, using arbitrary tag names (accessors)
-          subject = i.send(subject_tag)
-          # Convert the body to Markdown
-          mccbean = McBean.fragment i.send(body_tag)
-          body = mccbean.to_markdown
-          
-          feed_id = feed.id
-          url     = i.send(story_url_tag)
-          
-          if !RSSAnnouncement.find_by_subject_and_body_and_feed_id(subject,body,feed_id)
-            o = RSSAnnouncement.new()
-            o.subject = subject
-            o.body = body
-            o.feed_id = feed_id
-            o.url = url
-            o.save()
-          end
-          
-        }
+        end
       end
+      
     end
     
   end
-  
 end

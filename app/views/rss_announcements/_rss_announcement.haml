@@ -1,9 +1,11 @@
 %div{'data-href' => announcement_path(rss_announcement), :class => "announcement tooltip", 'data-title' => "Click to see replies and this community feed's profile"}
-  = image_tag rss_announcement.owner.avatar_file_name, :class => 'avatar'
+  = image_tag rss_announcement.owner.avatar_url, :class => 'avatar'
   %time= rss_announcement.time
   .reply-count #{ rss_announcement.replies.size } replies
   .title= rss_announcement.subject
-  .author= link_to(rss_announcement.owner.name,rss_announcement.owner.profile_link)
-  .body= markdown auto_link(rss_announcement.body, :all, :target => "_blank")
+  .author= link_to rss_announcement.owner.name, rss_announcement.owner
+  .body
+    = markdown rss_announcement.body
+    = link_to 'more', rss_announcement.url
 
-= render 'shared/replies', :item => item
+= render 'shared/replies', :item => rss_announcement
