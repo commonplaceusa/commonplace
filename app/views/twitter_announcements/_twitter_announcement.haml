@@ -1,13 +1,10 @@
 %div{'data-href' => announcement_path(twitter_announcement), :class => "announcement tooltip", 'data-title' => "Click to see replies and this community feed's profile"}
-  = image_tag Feed.find(twitter_announcement.feed_id).avatar_url, :class => 'avatar'
+  = image_tag twitter_announcement.owner.avatar_url, :class => 'avatar'
   %time= twitter_announcement.time
   .reply-count #{ twitter_announcement.replies.size } replies
   .title= twitter_announcement.subject
-  .author #{twitter_announcement.feed.name}'s recent tweets from #{link_to(twitter_announcement.feed.twitter_name,twitter_announcement.url)}
+  .author= twitter_announcement.owner.name 
   .body
-    %ul
-      -twitter_announcement.tweets.each do |tweet|
-        %li= markdown auto_link(tweet.body, :all, :target => "_blank")
-      
+    %p= auto_link(twitter_announcement.body, :all, :target => "_blank")
 
 = render 'shared/replies', :item => twitter_announcement
