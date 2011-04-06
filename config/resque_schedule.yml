@@ -12,27 +12,16 @@ send_daily_digest:
   queue: daily_digest
   description: "Sends daily digest"
 
-# import_announcements_from_outside_dot_in:
-#     cron: "0 * * * *"
-#     class: AnnouncementImporter
-#     args: 
-#     queue: outside-data
-#     description: "This job imports relevant posts from outside.in as Announcements"
-# import_events_from_eventful:
-#     cron: "0 * * * *"
-#     class: EventfulImporter
-#     args: 
-#     queue: outside-data
-#     description: "This job imports events from Eventful into each community as Events"
+import_feeds_rss:
+  cron: "0 * * * *"
+  class: RSSImporter
+  args:
+  queue: rss_importer
+  description: "Imports feed announcements from rss"
+
 import_twitter_posts:
-  cron: "0 0 * * *"
+  cron: "0 * * * *"
   class: TwitterImporter
   args: 
   queue: outside-data
   description: "This job imports posts from Twitter as TwitterAnnouncements daily at midnight"
-# import_meetup_events:
-#     cron: "0 * * * *"
-#     class: MeetupImporter
-#     args: 
-#     queue: outside-data
-#     description: "This job imports events from Meetup"
