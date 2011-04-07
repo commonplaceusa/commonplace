@@ -1,5 +1,3 @@
-require 'rubygems'
-require 'jammit'
 
 lib_path = File.expand_path(File.join(File.dirname(__FILE__), "deploy"))
 # basics
