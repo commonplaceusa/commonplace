@@ -26,6 +26,41 @@
                 %th= t("formtastic.labels.feed.show.address")
                 %td= @feed.address
 
+      - if @feed.twitter_name
+
+        #twitter-feed
+          <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+          :javascript
+            new TWTR.Widget({
+              version: 2,
+              type: 'profile',
+              rpp: 4,
+              interval: 6000,
+              width: 'auto',
+              height: 200,
+              theme: {
+                shell: {
+                  background: '#dadada',
+                  color: '#454545'
+                },
+                tweets: {
+                  background: '#fff',
+                  color: '#454545',
+                  links: '255'
+                }
+              },
+              features: {
+                scrollbar: false,
+                loop: false,
+                live: true,
+                hashtags: false,
+                timestamp: false,
+                avatars: false,
+                behavior: 'all'
+              }
+            }).render().setUser("#{@feed.twitter_name}").start();
+
+
     #column-2<>
       - if can?(:edit, @feed)
         = updated_content_or("#post-to-feed") do
