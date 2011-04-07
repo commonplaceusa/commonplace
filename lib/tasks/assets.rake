@@ -1,8 +1,8 @@
-require 'jammit'
+
 namespace :assets do
   desc 'runs Jammit for javascripts and stylesheets'
-  task :update => :environmentdo
+  task :update => :environment do
     Sass::Plugin.update_stylesheets
-    Jammit.package!
+    `bundle exec jammit --force config/assets.yml`
   end
 end

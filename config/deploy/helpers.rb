@@ -39,7 +39,7 @@ namespace :assets do
   desc 'runs Jammit for javascripts and stylesheets'
   task :update, :roles => :app do
     run("cd #{current_path} && #{bin_path}/rake sass:update RAILS_ENV=#{rails_env}")
-    Jammit.package!
+    run("cd #{current_path} && bundle exec jammit --force config/assets.yml")
   end
   before 'deploy:restart', 'assets:update'
 end
