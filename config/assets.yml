@@ -18,7 +18,7 @@ javascripts:
   application:
       - public/javascripts/jquery-1.4.3.js
       - public/javascripts/jquery-ui.js
-      - public/javascripts/jquery.*.js
+      - public/javascripts/jquery/jquery.*.js
       - public/javascripts/innershiv.js
       - public/javascripts/app.js
       - public/javascripts/inlineform.js
