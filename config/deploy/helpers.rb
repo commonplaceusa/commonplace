@@ -35,7 +35,6 @@ namespace :sass do
   # Generate all the stylesheets manually (from their Sass templates) before each restart.
 end
 
-require 'jammit'
 namespace :assets do
   desc 'runs Jammit for javascripts and stylesheets'
   task :update, :roles => :app do
