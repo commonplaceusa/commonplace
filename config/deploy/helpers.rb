@@ -33,7 +33,16 @@ namespace :sass do
   end
 
   # Generate all the stylesheets manually (from their Sass templates) before each restart.
-  before 'deploy:restart', 'sass:update'
+end
+
+require 'jammit'
+namespace :assets do
+  desc 'runs Jammit for javascripts and stylesheets'
+  task :update, :roles => :app do
+    run("cd #{current_path} && #{bin_path}/rake sass:update RAILS_ENV=#{rails_env}")
+    Jammit.package!
+  end
+  before 'deploy:restart', 'assets:update'
 end
 
 namespace :resque do
