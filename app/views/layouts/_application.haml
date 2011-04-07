@@ -18,13 +18,13 @@
     = javascript_include_tag "http://www.plaxo.com/css/m/js/abc_launcher.js"
     = javascript_include_tag "http://js.getexceptional.com/exceptional.js"
     %script{:type => 'text/javascript'}
-      function () {
+      $(function () {
       Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
       });
     = include_stylesheets :application
     / [if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
-      = include_stylesheets :ie
+    = include_stylesheets :ie
     %script{:src => "http://maps.google.com/maps/api/js?sensor=false", :type => "text/javascript"}
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}

@@ -2,6 +2,7 @@ log/cucumber.log
 log/development.log
 log/test.log
 log/production.log
+log/staging.log
 tmp/**/*
 tmp/*
 doc/api
@@ -20,6 +21,7 @@ coverage.data
 rerun.txt
 config/config.yml
 public/stylesheets
+public/assets
 development
 development/*
 log/exceptional.log
