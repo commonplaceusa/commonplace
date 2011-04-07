@@ -28,6 +28,8 @@ gem 'tmail'
 
 gem 'rmagick'
 
+gem 'jammit'
+
 gem 'mail_style'
 
 gem 'mail'

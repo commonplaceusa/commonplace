@@ -1,0 +1,46 @@
+embed_assets: on
+
+stylesheets:
+  administration:
+    - public/stylesheets/administration.css
+  application:
+    - public/stylesheets/application.css
+  ie:
+    - public/stylesheets/ie.css
+  internship:
+    - public/stylesheets/internship.css
+  management:
+    - public/stylesheets/management.css
+  starter_site:
+    - public/stylesheets/starter_site.css
+
+javascripts:
+  application:
+      - public/javascripts/jquery-1.4.3.js
+      - public/javascripts/jquery-ui.js
+      - public/javascripts/jquery.*.js
+      - public/javascripts/innershiv.js
+      - public/javascripts/app.js
+      - public/javascripts/inlineform.js
+      - public/javascripts/maps.js
+      - public/javascripts/syndicate.js
+      - public/javascripts/modal.js
+      - public/javascripts/infobox.js
+      - public/javascripts/feed_profile.js
+      - public/javascripts/sign_in_form.js
+      - public/javascripts/accounts.js
+  jquery:
+    - public/javascripts/jquery-1.4.3.js
+    - public/javascripts/jquery-ui.js
+  map:
+    - public/javascripts/jquery/jquery.polygon-input.js
+    - public/javascripts/maps.js
+  faq:
+    - public/javascripts/faq.js
+  starter_site:
+    - public/javascripts/starter_site/application.js
+    - public/javascripts/starter_site/easing.js
+    - public/javascripts/starter_site/bubbles.js
+    - public/javascripts/starter_site/tabs.js
+    - public/javascripts/starter_site/slideshow.js
+    - public/javascripts/starter_site/scroll.js

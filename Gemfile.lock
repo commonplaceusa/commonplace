@@ -2,6 +2,10 @@ GEM
   remote: http://rubygems.org/
   specs:
     BlueCloth (1.0.1)
+    POpen4 (0.1.4)
+      Platform (>= 0.4.0)
+      open4
+    Platform (0.4.0)
     RedCloth (4.2.3)
     Saikuro (1.1.0)
     SystemTimer (1.2.1)
@@ -49,6 +53,7 @@ GEM
       main
       ruby_parser (~> 2.0.4)
       sexp_processor (~> 3.0.3)
+    closure-compiler (1.1.1)
     colored (1.2)
     compass (0.11.beta.1)
       chunky_png (~> 0.10.3)
@@ -98,6 +103,9 @@ GEM
     httparty (0.7.3)
       crack (= 0.1.8)
     i18n (0.5.0)
+    jammit (0.6.0)
+      closure-compiler (>= 0.1.0)
+      yui-compressor (>= 0.9.1)
     json (1.4.6)
     json_pure (1.5.1)
     kgio (2.1.1)
@@ -154,6 +162,7 @@ GEM
     oauth2 (0.1.1)
       faraday (~> 0.5.0)
       multi_json (~> 0.0.4)
+    open4 (1.0.1)
     outside-in (1.0.0)
     paperclip (2.3.8)
       activerecord
@@ -253,6 +262,8 @@ GEM
     vegas (0.1.8)
       rack (>= 1.0.0)
     yajl-ruby (0.7.9)
+    yui-compressor (0.9.6)
+      POpen4 (>= 0.1.4)
 
 PLATFORMS
   ruby
@@ -281,6 +292,7 @@ DEPENDENCIES
   god
   haml (= 3.1.0.alpha.147)
   httparty
+  jammit
   json
   mail
   mail_style
