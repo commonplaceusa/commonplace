@@ -1,4 +1,4 @@
-class InvitesController < CommunitiesController
+class InvitesController < ApplicationController
   def new
     authorize!(:read, Post)
   end
@@ -11,7 +11,7 @@ class InvitesController < CommunitiesController
                        email, current_user.id, params[:message] || nil)
       end
     end
-    redirect_to new_post_path
+    redirect_to new_post_url
   end
 
 
