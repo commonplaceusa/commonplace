@@ -1,22 +1,21 @@
 
-= update_content "#say-something" do
-  #say-something
-    %h2= t ".title"
-    .wrap
-      = render 'shared/say_something_nav', :current => :invites
-      - form_tag "/invites", 'data-remote' => true, :class => "formtastic", :id => "new_invites" do
-        %fieldset.inputs
-          %ol
-            %li.text
-              = label_tag :emails, t("formtastic.labels.invites.emails", :community => current_community.name)
-              = text_area_tag :emails, "", :rows => 6
-            %li.text
-              = label_tag :message, t("formtastic.labels.invites.message")
-              = text_area_tag :message
-        %fieldset.buttons
-          %ol
-            %li.plaxo
-              %a{ :href => "#", :onclick => "showPlaxoABChooser('emails', '/plaxo-importer.html'); return false"}
-                &#x271a; Import emails from my address book
-            %li.commit
-              = submit_tag "Invite"
+%h1= t ".h1", :community => current_community.name
+
+- form_tag invites_path, :id => "new_invites", :class => "invites formtastic" do
+
+  %h2= t ".h2", :community => current_community.name
+  %fieldset.inputs
+    %ol
+      %li.text.emails
+        = label_tag :emails, t(".emails_label")
+        = text_area_tag :emails, "", :rows => 5
+        %a{ :href => "#", :onclick => "showPlaxoABChooser('emails', '/plaxo-importer.html'); return false"}
+          &#x271a; Import emails from my address book
+
+      %li.text.message
+        = label_tag :message, t(".message_label", :community => current_community.name)
+        = text_area_tag :message, "", :rows => 3
+  %fieldset.buttons
+    %ol
+      %li.commit
+        = submit_tag "Invite"
