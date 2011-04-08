@@ -12,7 +12,7 @@
 
   .reply-count #{ announcement.replies.size } replies
   .title= announcement.subject
-  .author= announcement.owner.name
+  .author= link_to(announcement.owner.name,announcement.owner)
   .body= markdown auto_link(announcement.body, :all, :target => "_blank")
 
 = render 'shared/replies', :item => announcement
