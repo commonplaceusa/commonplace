@@ -25,7 +25,7 @@
 
 <p>
   <b>Essay:</b>
-  <%=h @internship.essay %>
+  <%= @internship.essay.gsub(/\n/,'<br />') %>
 </p>
 
 
