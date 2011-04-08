@@ -41,8 +41,8 @@ class Ability
       
       can :manage, Announcement do |a|
         case a.owner
-        when Feed then a.owner.user_id = user.id
-        when User then a.owner.id = user.id
+        when Feed then a.owner.user_id == user.id
+        when User then a.owner.id == user.id
         else false
         end
       end

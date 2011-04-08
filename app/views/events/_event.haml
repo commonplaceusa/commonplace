@@ -15,7 +15,7 @@
   .title= event.subject
   .author
     - if event.owner.is_a? Feed
-      = link_to(event.owner.name,'/feeds/' + event.owner.slug)
+      = link_to(event.owner.name, feed_profile_path(event.owner))
     - else
       = event.owner.name
   .body= markdown event.body

@@ -4,6 +4,8 @@ class Feed < ActiveRecord::Base
 
   validates_presence_of :name, :community
   validates_presence_of :about, :if => lambda { |f| f.user_id }
+  
+  validates_attachment_presence :avatar
 
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
 
