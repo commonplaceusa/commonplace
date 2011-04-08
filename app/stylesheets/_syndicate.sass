@@ -70,7 +70,7 @@
       +clearfix
       display: block
       color: $baseText
-      .title, .author, .body                          
+      .title, .author, .body                 
         margin-left: 62px
       .body
         font-family: Georgia, Times, 'Times New Roman', serif
@@ -87,6 +87,11 @@
         text-decoration: none
         font-family: Georgia, Times, 'Times New Roman', serif
       .author
+        a
+          text-decoration: none
+          color: $subtitle
+          &:hover
+            text-decoration: underline
         font-size: 13px
         color: $subtitle
         line-height: 1.2
