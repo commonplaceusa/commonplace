@@ -1,5 +1,5 @@
 
-body.application.feeds_invites.new
+body.application.feeds_invites.new, body.application.invites.new
 
   h1
     width: 660px
@@ -16,7 +16,7 @@ body.application.feeds_invites.new
     line-height: 1.4
     font-size: 18px
 
-  #new_feed_invites
+  #new_feed_invites, #new_invites
     padding: 50px 80px
     +lightbox
     width: 650px
@@ -25,11 +25,13 @@ body.application.feeds_invites.new
 
     fieldset.inputs
       padding: 15px 0px
-
-      li.emails
+      ol
         background-color: #3b6085
         padding: 10px 25px 30px
         +border-radius(5px)
+
+      li
+        margin-bottom: 15px
 
         label
           display: block
