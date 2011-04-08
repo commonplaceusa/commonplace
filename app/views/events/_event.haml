@@ -13,7 +13,11 @@
 
   .reply-count #{event.replies.size} replies
   .title= event.subject
-  .author= link_to(event.owner.name,event.owner)
+  .author
+    - if event.owner.is_a? Feed
+      = link_to(event.owner.name,'/feeds/' + event.owner.slug)
+    - else
+      = event.owner.name
   .body= markdown event.body
 
 = render 'shared/replies', :item => event

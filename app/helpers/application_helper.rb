@@ -55,4 +55,5 @@
      ivar = "@content_for_#{name}"
      instance_variable_get(ivar).present?
    end
+
 end
