@@ -1,7 +1,7 @@
 en:
   invites:
     new:
-      h1: Invite People in Town to %{community}'s CommonPlace
+      h1: Invite People in Town <br> to %{community}'s CommonPlace
       h2: The more people in town that are on %{community}'s CommonPlace, the better a network it is for everyone!
       message_label: Feel free to attach a personal message to the invite to encourage people to sign up.  Feel free to share stories about how %{community}'s CommonPlace has helped you out.
       emails_label: Type in email addresses, separated by commas.
