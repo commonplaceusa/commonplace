@@ -128,13 +128,12 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    first_name && middle_name && last_name ? first_name.to_s + " " + middle_name + " " + last_name.to_s : nil
+    first_name && last_name ? first_name.to_s + " " + last_name.to_s : nil
   end
 
   def full_name=(string)
-    self.first_name, self.middle_name, self.last_name = (string.present? ? string.split(" ", 3) : ["",""])
+    self.first_name, self.last_name = (string.present? ? string.split(" ", 2) : ["",""])
     self.first_name.try(:capitalize!)
-    self.middle_name.try(:capitalize!)
     self.last_name.try(:capitalize!)
     self.full_name
   end

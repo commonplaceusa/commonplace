@@ -2,6 +2,7 @@ require 'mustache'
 require 'premailer'
 require 'sass'
 require 'config'
+
 class MailBase < Mustache
   include MailUrls
 
