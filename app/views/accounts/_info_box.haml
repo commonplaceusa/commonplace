@@ -15,7 +15,7 @@
         %a{:href=>"javascript: void(0)"}
           Upload Image
       %input{:type => 'file', :name => "user[avatar]", :id=>"file_uploader"}
-  %h3= current_user.full_name
+  %h3{'data-field' => "user[full_name]"}= current_user.full_name
   .info{'data-field' => "user[about]"}= markdown current_user.about
   %table
     %tr
