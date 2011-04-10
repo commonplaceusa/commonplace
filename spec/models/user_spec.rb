@@ -76,10 +76,31 @@ describe User do
       @user.full_name.should == "Bob Joe"
     end
 
+    it "is composed of first, middle and last names" do
+      @user.first_name = "Bob"
+      @user.middle_name = "Robert"
+      @user.last_name = "Joe"
+      @user.full_name.should == "Bob Robert Joe"
+    end
+
     it "capitalizes the first name and last name" do
       @user.full_name = "billy joel"
       @user.first_name.should == "Billy"
       @user.last_name.should == "Joel"
+    end
+
+    it "capitalizes first, middle and last names" do
+      @user.full_name = "jason ross berlinsky"
+      @user.first_name.should == "Jason"
+      @user.last_name.should == "Berlinsky"
+      @user.middle_name.should == "Ross"
+    end
+
+    it "comprehensively handles a complex middle name" do
+      @user.full_name = "jason r w berlinsky"
+      @user.first_name.should == "Jason"
+      @user.last_name.should == "Berlinsky"
+      @user.middle_name.should == "R W"
     end
     
     it "handles =(nil) gracefully" do

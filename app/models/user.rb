@@ -128,13 +128,34 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    first_name && middle_name && last_name ? first_name.to_s + " " + middle_name + " " + last_name.to_s : nil
+    if first_name && middle_name && last_name
+      first_name.to_s + " " + middle_name.to_s + " " + last_name.to_s
+    elsif first_name && last_name
+      first_name.to_s + " " + last_name.to_s
+    else
+      nil
+    end
   end
 
   def full_name=(string)
-    self.first_name, self.middle_name, self.last_name = (string.present? ? string.split(" ", 3) : ["",""])
+    if string.present?
+      if string.count(" ") == 1
+        self.first_name, self.last_name = (string.present? ? string.split(" ", 2) : ["",""])
+      elsif string.count(" ") >= 2
+        name = string.split(" ", string.count(" ")+1)
+        self.first_name = name[0]
+        self.middle_name = name[1..name.length-2].join(" ")
+        self.last_name = name[name.length-1]
+#        self.first_name, self.middle_name, self.last_name = (string.present? ? string.split(" ", string.count(" ")+1) : ["","",""])
+      else
+        self.first_name, self.last_name, self.middle_name = ["","",""]
+      end
+    else
+      self.first_name, self.middle_name, self.last_name = ["","",""]
+    end
+
     self.first_name.try(:capitalize!)
-    self.middle_name.try(:capitalize!)
+    self.middle_name = self.middle_name.split.each { |w| w.capitalize! }.join(" ") if self.middle_name
     self.last_name.try(:capitalize!)
     self.full_name
   end
