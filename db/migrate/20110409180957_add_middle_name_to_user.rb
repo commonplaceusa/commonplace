@@ -3,8 +3,7 @@ class AddMiddleNameToUser < ActiveRecord::Migration
     add_column :users, :middle_name, :string
     User.find(:all).each do |user|
       if user.last_name.include? " "
-	middle = user.last_name.split " "
-	user.middle_name = middle[1..middle.length-2].join " "
+        user.full_name = user.first_name.to_s + " " + user.last_name.to_s
 	user.save
       end
     end
