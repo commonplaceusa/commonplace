@@ -96,6 +96,19 @@ describe User do
       @user.middle_name.should == "Ross"
     end
 
+    it "successfully handles changing away from a middle-named name" do
+      @user.first_name = "Max"
+      @user.middle_name = "Forrest"
+      @user.last_name = "Tilford"
+      @user.full_name.should == "Max Forrest Tilford"
+
+      @user.full_name = "Billy Joel"
+      @user.first_name.should == "Billy"
+      @user.middle_name.should == nil
+      @user.last_name.should == "Joel"
+      @user.full_name.should == "Billy Joel"
+    end
+
     it "comprehensively handles a complex middle name" do
       @user.full_name = "jason r w berlinsky"
       @user.first_name.should == "Jason"
