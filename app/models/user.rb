@@ -141,6 +141,7 @@ class User < ActiveRecord::Base
     if string.present?
       if string.count(" ") == 1
         self.first_name, self.last_name = (string.present? ? string.split(" ", 2) : ["",""])
+        self.middle_name = nil
       elsif string.count(" ") >= 2
         name = string.split(" ", string.count(" ")+1)
         self.first_name = name[0]

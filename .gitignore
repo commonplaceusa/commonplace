@@ -1,3 +1,4 @@
+.vimrc
 log/cucumber.log
 log/development.log
 log/test.log
