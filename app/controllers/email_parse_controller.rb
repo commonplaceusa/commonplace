@@ -115,6 +115,7 @@ class EmailParseController < ApplicationController
                  |(^On.*wrote:) # OS X Mail.app
                  |(^From:\ ) # Outlook and some others
                  |(^Sent\ from) # iPhone, Blackberry
+                 |(^In\ a\ message\ dated.*,)
                  }x).first
   end
   

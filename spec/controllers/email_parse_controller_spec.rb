@@ -6,7 +6,7 @@ describe EmailParseController do
     before = 
     after = "\n> > Hi Peter, 
 > CommonPlace Team just replied to a message: jojo > > jojo > But laso check this out. "
-    ["^-- \n", "^--\n", "-----Original\ Message-----", "--- Original Message---", "_" * 32, "On Mar 5, 2011, at 10:51 AM, Falls Church CommonPlace wrote:", "From: Max Tilford", "Sent from my iPhone"].each do |separator|
+    ["^-- \n", "^--\n", "-----Original\ Message-----", "--- Original Message---", "_" * 32, "On Mar 5, 2011, at 10:51 AM, Falls Church CommonPlace wrote:", "From: Max Tilford", "Sent from my iPhone", "4/10/2011 3:16:02 P.M. Eastern Daylight Time,\n notifications@fallschurch.ourcommonplace.com writes:"].each do |separator|
 
       it "strips by #{separator.chomp}" do
         result = EmailParseController.strip_email_body("
