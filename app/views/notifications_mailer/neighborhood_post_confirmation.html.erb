@@ -1,13 +1,18 @@
 
 <% content_for :greeting do %>
-  <div style="margin-bottom:10px;">Hi. You just posted to your neighborhood board on CommonPlace via e-mail!. This post will remain unpublished for 10 minutes.</div>
+  <div style="margin-bottom:10px;">Hi <%= @user.first_name %>,</div>
 <% end %>
 
-<% content_for :subject, @post.subject %>
+<% content_for :subject do %>
+  The neighborhood post that you recently emailed in to <%= @community.slug %> was successfully posted. You can view it at <%= link_to @post %>.
 
-<% content_for :body, markdown(@post.body) %>
+<% end %>
 
-<% content_for :avatar, 
-   image_tag(root_url(:subdomain => @community.slug) + @post.user.avatar_url(:thumb), :width => 49, :height => 48, :vspace => 0, :border => 0, :align => "top") 
-%>
+<% content_for :signature do %>
+  Thanks for being a great neighbor,
+<% end %>
+
+<% content_for :byline do %>
+  <%= @community.slug %> CommonPlace
+<% end %>
 

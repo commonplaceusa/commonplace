@@ -34,7 +34,8 @@ class NotificationsMailer < ActionMailer::Base
     @post = Post.find(post_id)
     @neighborhood = Neighborhood.find(neighborhood_id)
     @community = @neighborhood.community
-    users = [@post.user]
+    @user = @post.user
+    users = [@user]
     header = SmtpApiHeader.new
     header.addTo(users.map(&:email))
     header.addSubVal('<name>', users.map(&:name))
@@ -166,7 +167,7 @@ class NotificationsMailer < ActionMailer::Base
     subject "#{@reply.user.name} just replied to an event on CommonPlace"
   end
 
-def announcement_reply(reply_id)
+  def announcement_reply(reply_id)
     @reply = Reply.find(reply_id)
     @announcement = @reply.repliable
     @community = @announcement.feed.user.community
