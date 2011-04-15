@@ -8,7 +8,7 @@
     .replies
       - message.replies.each do |reply|
         .reply
-          %h2.subject= reply.subject
+          %h5.subject= reply.subject
           %p.date= reply.created_at
           %p.body= reply.body
     
