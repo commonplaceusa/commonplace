@@ -5,6 +5,12 @@
     %p.from from #{message.user.name}
     %p.date= message.created_at
     %p.body= message.body
+    .replies
+      - message.replies.each do |reply|
+        .reply
+          %h2.subject= reply.subject
+          %p.date= reply.created_at
+          %p.body= reply.body
     
 :javascript
   window.setTimeout(function() { window.location.href=window.location.href; }, 60*1000);
