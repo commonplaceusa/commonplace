@@ -1,9 +1,0 @@
-Mail.defaults do 
-  delivery_method(:smtp,
-                  :address=> "smtp.gmail.com",
-                  :user_name=> "example@gmail.com",
-                  :password=> "drossap",
-                  :port=> "587",
-                  :authentication => "plain",
-                  :enable_starttls_auto => true)
-end

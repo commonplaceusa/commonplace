@@ -1,7 +1,11 @@
 require 'mustache'
 require 'premailer'
 require 'sass'
-require 'config'
+
+Mail.defaults do
+  delivery_method(CONFIG['mail']['delivery_method'].intern,
+                  CONFIG['mail']['delivery_options'].symbolize_keys)
+end
 
 class MailBase < Mustache
   include MailUrls
