@@ -1,50 +1,34 @@
 class EmailParseController < ApplicationController
   
   protect_from_forgery :only => []
-
-  def feed
-    if (feed = Feed.find_by_slug(to)) && feed.user_id == user.id
-
-    end
-  ensure
-    render :nothing => true
-  end
-
-  def reply
-    if repliable = Repliable.find(to)
-
-    end
-  ensure
-    render :nothing => true
-  end
-
-  def neighborhood
-    if to == "myneighbors"
-
-    end
-  ensure
-    render :nothing => true
-  end
+  before_filter :check_user
 
   def parse
     case to
       
-    when "neighborhood"
-      Post.create(:body => body_text, :user => user, :subject => params[:subject], :community => user.community, :published => false)
+    when /neighborhood/i
+      post = Post.create(:body => body_text, :user => user, :subject => params[:subject], :community => user.community, :published => false)
       
+      Resque.enqueue(PostConfirmation, post.id) if post
+
     when /reply\+([a-zA-Z_0-9]+)/
       Reply.create(:body => body_text, :repliable => Repliable.find($1), :user => user)
 
     else
 
       if feed = user.community.feeds.find_by_slug(to)
-
+        
         if feed.user_id == user.id
-          Announcement.create(:body => body_text, :owner => feed, :subject => params[:subject], :community => feed.community)
+          announcement = Announcement.create(:body => body_text, :owner => feed, :subject => params[:subject], :community => feed.community)
+
+          Resque.enqueue(AnnouncementConfirmation, announcement.id) if announcement
+
+        else
+          Resque.enqueue(NoFeedPermission, user.id, feed.id)
         end
 
       else
-
+        Resque.enqueue(UnknownAddress, user.id)
       end
       
     end
@@ -68,6 +52,16 @@ class EmailParseController < ApplicationController
   end
   
   protected 
+
+  def check_user
+    if @user.nil?
+      Resque.enqueue(UnknownUser)
+      render :nothing => true
+      false
+    else
+      true
+    end
+  end
   
   def user
     @user ||= User.find_by_email(TMail::Address.parse(params[:from]).spec)
