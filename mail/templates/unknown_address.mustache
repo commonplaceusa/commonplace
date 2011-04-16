@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+
+  <body>
+
+    <table id="body">
+      {{< header}}
+
+      <tr>
+        <td>
+          <p>Hi, <br>
+            You recently emailed into {{community_name}}'s CommonPlace.  We were not able to post it because the email address  you emailed in to is not a recognized @OurCommonPlace.com email address.</p>
+
+            <p>If you want to email a neighborhood post into CommonPlace, email: Neighborhood@OurCommonPlace.com</p>
+
+            <p>If you want to email an announcement into CommonPlace through your Community Feed, email [FeedName]@OurCommonPlace.com</p>
+
+            <p>If you want to email a group post into CommonPlace, email: [GroupName]@OurCommonPlace.com</p>
+
+            <p>If you are still having trouble emailing into {{community_name}}'s CommonPlace or have any questions, email {{organizer_email}} and we will quickly work out the problem.</p>
+
+            <p>Thanks for being a great neighbor,<br>
+              {{community_name}} CommonPlace</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< legal}}
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

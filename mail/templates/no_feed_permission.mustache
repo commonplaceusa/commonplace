@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+
+  <body>
+    <table id="body">
+      {{< header}}
+
+      <tr>
+        <td>
+
+          <p>Hi, <br>
+            You recently emailed an announcement into {{community_name}}'s CommonPlace to be posted through the community feed: {{feed_name}}.  We were not able to post it because the email address from which you emailed is not the registered administrative email address for the community feed: {{feed_name}}.</p>
+
+          <p>Only the user who created that feed can email in announcements to be posted to CommonPlace through that feed.  If you are the user who created {{feed_name}}, it is possible that your announcement did not go through because you originally registered for CommonPlace with a different email address.</p>
+
+          <p>If you are the creator of {{feed_name}} and are still having trouble emailing into CommonPlace, email us at {{organizer_email}} and we will quickly work out the problem.</p>
+
+          <p>Thanks for being a great neighbor, <br>
+            {{community_name}} CommonPlace</p>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< legal}}
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

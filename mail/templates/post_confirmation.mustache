@@ -1,0 +1,32 @@
+<html>
+
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+
+  <body>
+    <table id="body">
+      {{< header}}
+
+      <tr>
+        <td>
+          <p>Hi {{short_poster_name}},<br>
+            Thanks for posting to {{community_name}}'s CommonPlace!
+            To view and edit your post on CommonPlace,
+            go to <a href="{{post_url}}"><span>{{post_url}}</span></a>.</p>
+
+            <p>Thanks for being a great neighbor,<br>
+              {{community_name}}'s CommonPlace Team</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< legal}}
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
