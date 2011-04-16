@@ -5,3 +5,12 @@ outside_in_secret: secret
 facebook_api_key: key
 facebook_secret_key: secret
 host: smackaho.st:3000
+mail:
+  delivery_method: 'smtp'
+  delivery_options:
+    address: 'smtp.gmail.com'
+    user_name: 'foogle@gmail.com'
+    password: 'secret_password'
+    port: "587"
+    authentication: "plain"
+    enable_starttls_auto: true
