@@ -11,6 +11,8 @@ class PostsController < CommunitiesController
   end
 
   def create
+    @post.subject = Sanitize.clean(params[:post][:subject],Sanitize::Config::RELAXED)
+    @post.body = Sanitize.clean(params[:post][:body],Sanitize::Config::RELAXED)
     @post.user = current_user
     @post.community = current_user.community
     if @post.save
@@ -25,6 +27,7 @@ class PostsController < CommunitiesController
       #    :caption => "CommonPlace for " + current_community.name,
       #    :description => "DESCRIPTION")
       end
+
       current_neighborhood.users.receives_posts_live.each do |user|
         Resque.enqueue(PostNotification, post.id, user.id) if @post.user != user
       end
