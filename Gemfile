@@ -31,6 +31,8 @@ gem 'rmagick'
 
 gem 'jammit'
 
+gem 'sanitize'
+
 gem 'mail_style'
 
 gem 'mail'

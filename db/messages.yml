@@ -1,0 +1,79 @@
+--- 
+- !ruby/object:Message 
+  attributes: 
+    created_at: 2011-02-02 03:34:17.133337
+    body: You should end up in your inbox if you click reply.
+    messagable_type: User
+    updated_at: 2011-02-02 03:34:17.133337
+    archived: 
+    messagable_id: "457"
+    subject: Inboxes?
+    id: "73"
+    user_id: "462"
+  attributes_cache: {}
+
+- !ruby/object:Message 
+  attributes: 
+    created_at: 2011-02-02 03:36:19.565916
+    body: It didn't -- normal message back thing
+    messagable_type: User
+    updated_at: 2011-02-02 03:36:19.565916
+    archived: 
+    messagable_id: "462"
+    subject: Ack
+    id: "74"
+    user_id: "439"
+  attributes_cache: {}
+
+- !ruby/object:Message 
+  attributes: 
+    created_at: 2011-02-17 17:36:51.066038
+    body: Hi
+    messagable_type: User
+    updated_at: 2011-02-17 17:36:51.066038
+    archived: 
+    messagable_id: "467"
+    subject: Test Message
+    id: "75"
+    user_id: "470"
+  attributes_cache: {}
+
+- !ruby/object:Message 
+  attributes: 
+    created_at: 2011-02-17 17:40:39.072419
+    body: Should be dancin
+    messagable_type: User
+    updated_at: 2011-02-17 17:40:39.072419
+    archived: 
+    messagable_id: "467"
+    subject: You
+    id: "76"
+    user_id: "470"
+  attributes_cache: {}
+
+- !ruby/object:Message 
+  attributes: 
+    created_at: 2011-02-17 17:40:49.61594
+    body: Should be dancin
+    messagable_type: User
+    updated_at: 2011-02-17 17:40:49.61594
+    archived: 
+    messagable_id: "467"
+    subject: You
+    id: "77"
+    user_id: "470"
+  attributes_cache: {}
+
+- !ruby/object:Message 
+  attributes: 
+    created_at: 2011-02-17 17:43:56.433009
+    body: Aas
+    messagable_type: User
+    updated_at: 2011-02-17 17:43:56.433009
+    archived: 
+    messagable_id: "467"
+    subject: Test
+    id: "78"
+    user_id: "470"
+  attributes_cache: {}
+
