@@ -3,7 +3,6 @@ require 'spec_helper'
 describe EmailParseController do
 
   describe ".strip_email_body" do
-    before = 
     after = "\n> > Hi Peter, 
 > CommonPlace Team just replied to a message: jojo > > jojo > But laso check this out. "
     ["^-- \n", "^--\n", "-----Original\ Message-----", "--- Original Message---", "_" * 32, "On Mar 5, 2011, at 10:51 AM, Falls Church CommonPlace wrote:", "From: Max Tilford", "Sent from my iPhone", "4/10/2011 3:16:02 P.M. Eastern Daylight Time,\n nnotifications@fallschurch.ourcommonplace.com writes:"].each do |separator|

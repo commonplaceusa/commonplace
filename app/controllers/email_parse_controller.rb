@@ -54,7 +54,7 @@ class EmailParseController < ApplicationController
   protected 
 
   def check_user
-    if @user.nil?
+    if user.nil?
       Resque.enqueue(UnknownUser)
       render :nothing => true
       false
