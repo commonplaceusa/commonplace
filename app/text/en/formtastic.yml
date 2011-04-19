@@ -27,6 +27,7 @@ en:
 
       feed:
         name: "Feed Name:"
+        slug: "CommonPlace Address:"
         avatar: "Add a photo of your organization:"
         is_news: "This is a Newspaper or News Service"
         about: "Describe your feed:"
@@ -55,3 +56,5 @@ en:
     hints:
       user:
         address: "*We will not share this information with anyone."
+      feed:
+        slug: "You will be able post announcements to your feeds by emailing {CommonPlace Address}@ourcommonplace.com"
