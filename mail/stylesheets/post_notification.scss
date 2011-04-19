@@ -15,10 +15,11 @@
     }
 
     .reply {
+        vertical-align: top ;
         a { @include red-button ; }
     }
 
-    .reply-by-email { vertical-align: middle ; p { font-size: 14px ; } }
+    .reply-by-email { vertical-align: top ; p { font-size: 14px ; margin: 0 ; } }
 
     .message {
 

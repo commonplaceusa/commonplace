@@ -1,7 +1,11 @@
 class ReplyNotification < MailBase
   
-  def initialize(reply, user)
-    @reply, @user = reply, user
+  def initialize(reply_id, user_id)
+    @reply, @user = Reply.find(reply_id), User.find(user_id)
+  end
+
+  def subject
+    "#{replier_name} just replied to message on CommonPlace"
   end
 
   def community
@@ -42,6 +46,10 @@ class ReplyNotification < MailBase
 
   def repliable_subject
     repliable.subject
+  end
+  
+  def new_message_url
+    url("/users/#{replier.id}/messages/new")
   end
 
   def repliable_url

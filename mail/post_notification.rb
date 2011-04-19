@@ -1,7 +1,11 @@
 class PostNotification < MailBase
   
-  def initialize(post, user)
-    @post, @user = post, user
+  def initialize(post_id, user_id)
+    @post, @user = Post.find(post_id), User.find(user_id)
+  end
+
+  def subject
+    "#{poster_name} just posted a message to your neighborhood"
   end
 
   def post
