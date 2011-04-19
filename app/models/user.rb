@@ -59,9 +59,11 @@ class User < ActiveRecord::Base
 
   has_many :replies, :dependent => :destroy
 
+
   has_many :subscriptions, :dependent => :destroy
+  accepts_nested_attributes_for :subscriptions
   has_many :feeds, :through => :subscriptions
-  
+
   has_many :memberships, :dependent => :destroy
   has_many :groups, :through => :memberships
 

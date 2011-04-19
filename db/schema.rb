@@ -195,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20110409180957) do
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.integer  "feed_id",    :null => false
+    t.string   "receive_method", :default => "Daily"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
