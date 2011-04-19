@@ -1,0 +1,63 @@
+<html>
+
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+
+  <body>
+    <table id="body">
+
+      {{< header}}
+
+      <tr>
+        <td id="intro">
+          <p>Hi {{user_name}},<br>
+            {{sender_name}} just posted to your neighborhood board on CommonPlace.
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="post">
+          <table>
+            <tr>
+              <td class="avatar" rowspan="4">
+                <img src="{{sender_avatar_url}}" width="50" height="50">
+              </td>
+
+              <td class="subject" colspan="2">
+                {{message_subject}}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="body" colspan="2">
+                {{{message_body}}}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="reply">
+                <a href="{{message_url}}"><span>Reply to {{short_sender_name}}</span></a>
+              </td>
+              <td class="reply-by-email">
+                <p>Or just reply to this email.</p>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< settings }}
+
+          {{< legal }}
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -26,10 +26,9 @@ class PostsController < CommunitiesController
       #    :caption => "CommonPlace for " + current_community.name,
       #    :description => "DESCRIPTION")
       end
-      
-      NotificationsMailer.deliver_neighborhood_post(current_neighborhood.id,
-                                                    post.id)
-      flash[:message] = "Post Created!"
+      current_neighborhood.users.receives_posts_live.each do |user|
+        Resque.enqueue(PostNotification, post.id, user.id) if @post.user != user
+      end
       redirect_to posts_path
     else
       render :new
@@ -67,7 +66,9 @@ class PostsController < CommunitiesController
       @post.save
       current_community.neighborhoods.reject {|n| n == original_neighborhood }.
         each do |n|
-        NotificationsMailer.deliver_neighborhood_post(n.id,@post.id)
+        n.users.receives_posts_live.each do |user|
+          Resque.enqueue(PostNotification, @post.id, user.id)
+        end
       end
     end
     redirect_to root_url

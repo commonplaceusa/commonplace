@@ -4,7 +4,10 @@ class RepliesController < CommunitiesController
     authorize! :create, Reply
     @reply = current_user.replies.build(params[:reply])
     if @reply.save
-      NotificationsMailer.send("deliver_#{@reply.repliable.class.name.downcase}_reply", @reply.id)
+      (@reply.repliable.replies.map(&:user) + [@post.user]).uniq do |user|
+        Resque.enqueue(ReplyNotification, @reply.id, user.id) if user != reply.current_user
+      end
+
       if @reply.repliable.is_a? Message
         redirect_to messages_url
       else
