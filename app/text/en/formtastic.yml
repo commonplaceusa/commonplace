@@ -10,7 +10,7 @@ en:
         password: "Create a Password:"
         about: "Tell your neighbors a bit about yourself to get the neighborhood conversation going:"
         interest_list: "Add some interests:"
-        address: 'Street Address*:'
+        address: "Street Address (to verify that you live in %{community})*:"
         avatar: "Add a photo:"
         edit:
           password: "Change your password:"
@@ -54,4 +54,4 @@ en:
 
     hints:
       user:
-        address: "*We use your address to place you in the correct neighborhood. We won't share it with anyone."
+        address: "*We will not share this information with anyone."
