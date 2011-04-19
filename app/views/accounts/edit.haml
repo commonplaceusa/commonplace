@@ -8,7 +8,7 @@
     = f.input :post_receive_method, :as => :radio, :collection => User.post_receive_options, :label => "Neighborhood Posts:"
     - f.semantic_fields_for :subscriptions do |sf|
       - sf.inputs do
-        = sf.input :receive_method, :as => :radio, :collection => Subscription.receive_methods
+        = sf.input :receive_method, :as => :radio, :collection => Subscription.receive_methods, :label => "#{sf.object.feed.name}:"
   - f.buttons do
     %li.delete
       = link_to "Delete my CommonPlace account", delete_account_path
