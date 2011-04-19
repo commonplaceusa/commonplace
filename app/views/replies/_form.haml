@@ -3,6 +3,6 @@
   = image_tag reply.user.avatar_url(:thumb), :class => "avatar"
   = f.hidden_field :repliable_id
   = f.hidden_field :repliable_type
-  = f.text_area :body, "data-label" => "Reply here!", :rows => 1
+  = f.text_area :body, "data-label" => "Reply here!", :rows => 1, :content => "Test"
   #submit_wrapper
     = f.submit "Reply"
