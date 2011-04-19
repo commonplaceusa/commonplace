@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   before_filter :set_template_format
+	before_filter :set_process_name_from_request
+	after_filter :unset_process_name_from_request
 
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :facebook_session
@@ -24,6 +26,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
   
+	def set_process_name_from_request
+		$0 = request.path[0,16] 
+	end   
+
+	def unset_process_name_from_request
+		$0 = request.path[0,15] + "*"
+	end  
+
   def set_neighborhood
     if current_user.admin?
       session[:neighborhood_id] = params[:neighborhood_id] 
