@@ -4,6 +4,10 @@ module MailUrls
     "http://#{community.slug}.ourcommonplace.com" + path
   end
 
+  def asset_url(path)
+    "http://assets.ourcommonplace.com" + path
+  end
+
   def subscribe_url
     url("/feeds")
   end
@@ -37,7 +41,7 @@ module MailUrls
   end
 
   def logo_url
-    url("/images/logo.png")
+    asset_url("/images/logo.png")
   end
 
   def settings_url
