@@ -16,6 +16,10 @@ class MessageNotification < PostNotification
     message.user
   end
 
+  def reply_to
+    "reply+message_#{message.id}@ourcommonplace.com"
+  end
+
   def community
     user.community
   end

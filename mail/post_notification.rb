@@ -8,6 +8,10 @@ class PostNotification < MailBase
     "#{poster_name} just posted a message to your neighborhood"
   end
 
+  def reply_to
+    "reply+post_#{post.id}@ourcommonplace.com"
+  end
+
   def post
     @post
   end

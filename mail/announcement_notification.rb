@@ -12,6 +12,10 @@ class AnnouncementNotification < PostNotification
     @announcement
   end
 
+  def reply_to
+    "reply+announcement_#{announcement.id}@ourcommonplace.com"
+  end
+
   def user
     @user
   end
