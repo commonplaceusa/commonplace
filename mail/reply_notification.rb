@@ -27,6 +27,10 @@ class ReplyNotification < MailBase
   def user
     @user
   end
+  
+  def reply_to
+    "reply+#{repliable.class.name.downcase}_#{repliable.id}@ourcommonplace.com"
+  end
 
   def user_name
     user.name
