@@ -54,8 +54,8 @@ class EmailParseController < ApplicationController
   protected 
 
   def check_user
-    if user.nil?
-      Resque.enqueue(UnknownUser)
+    if user.nil?<
+      Resque.enqueue(UnknownUser, from)
       render :nothing => true
       false
     else
@@ -64,7 +64,7 @@ class EmailParseController < ApplicationController
   end
   
   def user
-    @user ||= User.find_by_email(TMail::Address.parse(params[:from]).spec)
+    @user ||= User.find_by_email(from)
   end
 
   def body_text
@@ -74,4 +74,9 @@ class EmailParseController < ApplicationController
   def to
     @to ||= TMail::Address.parse(params[:to]).spec.slice(/^[^@]*/)
   end
+
+  def from
+    @from ||= TMail::Address.parse(params[:from]).spec
+  end
+  
 end
