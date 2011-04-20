@@ -1,9 +1,10 @@
 #groups_box
   #tool_tip
+    %h2 Get connected with neighbors who share your interests!
     %p= t ".p1"
   #groups_wrapper
     %h2
-      Subscribe to a community group:
+      Subscribe to some groups:
     - form_tag "/account/subscribe_to_groups" do
       #groups_container
         - @groups.each do |group|
