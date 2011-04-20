@@ -1,12 +1,13 @@
 #feeds_box
   #tool_tip
+    %h2 Stay in the loop!
     %p= t ".p1"
   #feeds_wrapper
     %h2
-      Subscribe to a community feed:
+      Subscribe to some community feeds:
     - form_tag "/account/subscribe_to_feeds" do
       #feeds_container
-        -@feeds.each do |feed|
+        - @feeds.each do |feed|
           .feed
             =image_tag(feed.avatar_url)
             .unchecked
