@@ -249,6 +249,7 @@ body.application.logged_out
       float: right
       margin-top: 10px
       position: relative
+
       li 
         margin: 0 5px
         +inline-block
@@ -260,21 +261,16 @@ body.application.logged_out
         position: relative
         z-index: 100
         cursor: pointer
+        border: 1px solid #ccc
+        +border-radius(5px) 
+        &.open
+          border-bottom: 0px
+          +border-radius(5px 5px 0px 0px)
       #sign_in_form
         position: absolute
         right: -1px
         top: 3px
-        
-    .remove_border
-      border:
-        top: 1px solid #ccc
-        bottom: none !important
-        left: 1px solid #ccc
-        right:  1px solid #ccc
-      +border-radius(5px 5px 0px 0px)
-    .border
-      border: 1px solid #ccc
-      +border-radius(5px) 
+    
     #new_user_session
       position: absolute
       right: 1px
@@ -284,7 +280,7 @@ body.application.logged_out
       background: #fff
       border: 1px solid #ccc
       +border-radius(5px 0px 5px 5px)
-
+      display: none
       .inputs, .buttons
         +inline-block
         li 
