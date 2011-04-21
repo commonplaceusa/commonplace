@@ -13,7 +13,7 @@ class AnnouncementConfirmation < MailBase
   end
 
   def user
-    owner
+    owner.user
   end
 
   def short_poster_name
