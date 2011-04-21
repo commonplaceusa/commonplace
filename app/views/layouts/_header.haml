@@ -4,7 +4,7 @@
 
     %ul{:id=>"user_sign_in"}
       %li Have an Account?
-      %li{:id=>"sign_in_button", :class=>"border"} Sign in
+      %li{:id=>"sign_in_button", :class=>"remove_border"} Sign in
       %li{:id=>"sign_in_form"}
         = render 'user_sessions/form', :user_session => user_session
     - link_to root_url, :id => "logo" do
