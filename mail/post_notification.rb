@@ -57,7 +57,7 @@ class PostNotification < MailBase
   end
 
   def poster_avatar_url
-    poster.avatar_url
+    asset_url(poster.avatar_url(:thumb))
   end
 
   def poster_url
