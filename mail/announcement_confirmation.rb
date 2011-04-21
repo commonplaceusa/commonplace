@@ -12,6 +12,10 @@ class AnnouncementConfirmation < MailBase
     @announcement.owner
   end
 
+  def user
+    owner
+  end
+
   def short_poster_name
     @announcement.owner.user.first_name
   end
