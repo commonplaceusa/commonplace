@@ -2,6 +2,7 @@ source :gemcutter
 
 gem 'rails', '2.3.9'
 gem 'pg'
+gem 'rollout'
 gem 'subdomain-fu'
 gem 'nested_layouts'
 gem 'aasm'
