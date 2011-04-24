@@ -5,7 +5,7 @@ describe EmailParseController do
   describe ".strip_email_body" do
     after = "\n> > Hi Peter, 
 > CommonPlace Team just replied to a message: jojo > > jojo > But laso check this out. "
-    ["^-- \n", "^--\n", "-----Original\ Message-----", "--- Original Message---", "_" * 32, "On Mar 5, 2011, at 10:51 AM, Falls Church CommonPlace wrote:", "From: Max Tilford", "Sent from my iPhone", "4/10/2011 3:16:02 P.M. Eastern Daylight Time,\n nnotifications@fallschurch.ourcommonplace.com writes:","I will be out of the office starting 04/22/2011 and will not return until 04/28/2011."].each do |separator|
+    ["^-- \n", "^--\n", "-----Original\ Message-----", "--- Original Message---", "_" * 32, "On Mar 5, 2011, at 10:51 AM, Falls Church CommonPlace wrote:", "From: Max Tilford", "Sent from my iPhone", "4/10/2011 3:16:02 P.M. Eastern Daylight Time,\n nnotifications@fallschurch.ourcommonplace.com writes:"].each do |separator|
 
       it "strips by #{separator.chomp}" do
         result = EmailParseController.strip_email_body("
@@ -89,6 +89,26 @@ Hey -- testing a reply!
     
     it "posts a new announcement to a feed" do
       Announcement.should have_received.create(hash_including(:owner => feed))
+    end
+  end
+
+  describe "autoresponder" do
+    let(:new_announcement) { mock_model(Announcement) }
+    let(:feed) { mock_model(Feed, :slug => "test", :user_id => user.id, :community_id => community.id) }
+    before :each do
+      stub(Announcement).create { new_announcement }
+      stub(Feed).find_by_slug( feed.slug ) { feed }
+      @body = "Lorem Ipsum dolor sit amet."
+      post(:parse,
+          :to => "#{feed.slug}@ourcommonplace.com",
+          :from => user.email,
+          :text => @body,
+          :subject => @body,
+          :envelope => {})
+    end
+
+    it "rejects a message without an envelope" do
+      Announcement.should have_not_received.create(hash_including(:owner => feed))
     end
   end
   

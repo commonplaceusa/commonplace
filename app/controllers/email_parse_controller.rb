@@ -1,7 +1,7 @@
 class EmailParseController < ApplicationController
   
   protect_from_forgery :only => []
-  before_filter :check_user
+  before_filter :check_user, :check_envelope
 
   def parse
     case to
@@ -48,7 +48,6 @@ class EmailParseController < ApplicationController
                  |(^From:\ ) # Outlook and some others
                  |(^Sent\ from) # iPhone, Blackberry
                  |(^In\ a\ message\ dated.*,)
-                 |(out of the office) # Autoresponder
                  }x).first
   end
   
@@ -62,6 +61,10 @@ class EmailParseController < ApplicationController
     else
       true
     end
+  end
+
+  def check_envelope
+    params[:envelope][:from].present?
   end
   
   def user
