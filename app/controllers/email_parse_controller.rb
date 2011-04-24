@@ -48,6 +48,7 @@ class EmailParseController < ApplicationController
                  |(^From:\ ) # Outlook and some others
                  |(^Sent\ from) # iPhone, Blackberry
                  |(^In\ a\ message\ dated.*,)
+                 |(out of the office) # Autoresponder
                  }x).first
   end
   
