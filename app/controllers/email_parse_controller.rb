@@ -1,7 +1,8 @@
 class EmailParseController < ApplicationController
   
   protect_from_forgery :only => []
-  before_filter :check_user, :check_envelope
+  before_filter :check_envelope, :check_user
+
 
   def parse
     case to
@@ -64,7 +65,10 @@ class EmailParseController < ApplicationController
   end
 
   def check_envelope
-    params[:envelope][:from].present?
+    if params[:envelope][:from].blank? # If this is an auto-response
+      render :nothing => true
+      return false
+    end
   end
   
   def user
