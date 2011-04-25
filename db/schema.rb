@@ -9,6 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20110409180957) do
 
   create_table "announcements", :force => true do |t|
@@ -91,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20110409180957) do
 
   create_table "group_posts", :force => true do |t|
     t.string   "subject"
-    t.string   "body"
+    t.text     "body"
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at"

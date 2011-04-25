@@ -52,6 +52,11 @@
       &.announcement
         +background-image(url("/images/icons/announcements-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dfdfdf, #e1e1e1))
         +box-shadow(0px 2px 0px 0px #efefef inset, 0px -2px 0px 0px #bcbcbc inset,  0px 1px 1px 0px #86221f)
+      &.group_post
+        padding-top: 4px
+        padding-bottom: 12px 
+        +background-image(url("/images/icons/discuss-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dfdfdf, #e1e1e1))
+        +box-shadow(0px 2px 0px 0px #efefef inset, 0px -2px 0px 0px #bcbcbc inset,  0px 1px 1px 0px #86221f)
 
       &:hover
         color: #27415f
@@ -64,6 +69,8 @@
           +background-image(url("/images/icons/events-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dadada, #dfdfdf))
         &.announcement
           +background-image(url("/images/icons/announcements-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dadada, #dfdfdf))
+        &.group_post
+          +background-image(url("/images/icons/discuss-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#dadada, #dfdfdf))
 
       &:active
         color: #27415f
@@ -76,6 +83,8 @@
           +background-image(url("/images/icons/events-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#d3d3d3, #e3e3e3))
         &.announcement
           +background-image(url("/images/icons/announcements-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#d3d3d3, #e3e3e3))
+        &.group_post
+          +background-image(url("/images/icons/discuss-icon.png"), url("/images/post-nav-hover-arrow.png"), linear-gradient(#d3d3d3, #e3e3e3))
       &.current
         color: #fff
         cursor: default
@@ -91,6 +100,8 @@
           +background-image(url("/images/icons/events-icon-selected.png"), url("/images/left-arrow.png"), linear-gradient(#2e4b66, #2c4b69))
         &.announcement
           +background-image(url("/images/icons/announcements-icon-selected.png"), url("/images/left-arrow.png"), linear-gradient(#2e4b66, #2c4b69))
+        &.group_post
+          +background-image(url("/images/icons/discuss-icon-selected.png"), url("/images/left-arrow.png"), linear-gradient(#2e4b66, #2c4b69))
         
 
   .information

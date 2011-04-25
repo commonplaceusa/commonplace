@@ -18,7 +18,7 @@ class Group < ActiveRecord::Base
                     :url => "/system/groups/:id/avatar/:style.:extension",
                     :path => ":rails_root/public/system/groups/:id/avatar/:style.:extension")
 
-  def avatar_url(style = style_name = nil)
+  def avatar_url(style_name = nil)
     self.avatar.url(style_name || self.avatar.default_style)
   end
 

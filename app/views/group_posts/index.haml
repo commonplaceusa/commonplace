@@ -1,0 +1,11 @@
+- update_content "#syndicate" do
+  #syndicate
+    %h3= t "syndicate.group_posts.title"
+    = render 'shared/items', :items => @items
+
+- update_content "#say-something" do
+  #say-something
+    %h2= t "group_posts.new.title"
+    .wrap
+      = render 'shared/say_something_nav', :current => :group_post
+      = render 'form', :group_post => GroupPost.new
