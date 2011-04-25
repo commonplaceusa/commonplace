@@ -29,6 +29,7 @@ class Ability
       can :read, Reply
       can :create, Reply
       can :read, Post
+      can :read, GroupPost
       can :read, User
       can :read, Announcement
       can :read, Event

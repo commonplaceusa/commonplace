@@ -1,4 +1,19 @@
 class GroupPost < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
+
+  has_many :replies, :as => :repliable, :order => :created_at
+  has_many :repliers, :through => :replies, :uniq => true, :source => :user
+
+  validates_presence_of :subject, :message => "Please enter a subject for your post"
+  validates_presence_of :body, :message => "Please enter some text for your post"
+
+  def owner
+    self.user
+  end
+
+  def time
+    Helper.help.post_date(self.created_at)
+  end
+
 end

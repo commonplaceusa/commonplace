@@ -59,11 +59,11 @@
     overflow: hidden
     &:last-child
       border-bottom: none
-      > .user, > .post, > .event, > .announcement, > .feed, > .message
+      > .user, > .post, > .event, > .announcement, > .feed, > .message, > .group, > .group_post
     &:hover
       background-color: $listingHover
  
-    > .user, > .post, > .event, > .announcement, > .feed, > .message
+    > .user, > .post, > .event, > .announcement, > .feed, > .message, > .group, > .group_post
       text-decoration: none
       +border-radius(5px)
       padding: 12px 10px
@@ -98,6 +98,14 @@
         margin-bottom: 5px
         font-family: Rockwell, Helvetica, Arial, Verdana, sans-serif
         font-weight: normal
+      .to 
+        margin-top: 5px
+        clear: right
+        float: right
+        color: $subtitle
+        font-size: 13px
+        img
+          vertical-align: middle
 
       time, .controls
         float: right
@@ -122,7 +130,7 @@
         clear: left
         font-family: Rockwell, Helvetica, Arial, Verdana, sans-serif
      
-    &.user, &.feed
+    &.user, &.feed, &.group
       a
         .avatar
           height: 30px

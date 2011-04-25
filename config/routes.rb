@@ -24,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :conditions => { :subdomain => /[A-Za-z]+/ }, :shallow => true do |community|
     
     community.resources :groups
+    community.resources :group_posts
     community.resources :posts
     
     community.resources :avatars, :only => [:edit, :update]

@@ -1,0 +1,11 @@
+
+= link_to t("syndicate.people.title"), :users, 'data-remote' => true, :class => current_page?(:users) ? "current" : ""
+
+&sdot;
+
+= link_to t("syndicate.feeds.title"), :feeds, 'data-remote' => true, :class => current_page?(:feeds) ? "current" : ""
+
+- if $rollout.active?(:group_posts, current_user)
+  &sdot;
+
+  = link_to t("syndicate.groups.title"), :groups, 'data-remote' => true, :class => current_page?(:groups) ? "current" : ""

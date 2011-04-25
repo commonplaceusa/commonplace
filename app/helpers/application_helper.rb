@@ -8,6 +8,10 @@
      end
    end
 
+   def creation_groups_for(community)
+     ActiveSupport::OrderedHash[community.groups.map {|g| [g.name, g.id]}]
+   end
+
    def html_to_json(&block)
      @template_format = :html
      result = block.call

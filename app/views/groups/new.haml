@@ -1,0 +1,6 @@
+= update_content "#say-something" do
+  #say-something
+    %h2= t ".title"
+    .wrap
+      = render 'shared/say_something_nav', :current => :group_post
+      = render 'form', :group_post => group_post
