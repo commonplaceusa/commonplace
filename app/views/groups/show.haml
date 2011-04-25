@@ -1,0 +1,9 @@
+
+- update_content "#information" do
+  = render 'info_box', :group => @group
+
+
+- unless xhr?
+  - update_content "#syndicate" do
+    #syndicate
+      = render 'shared/items', :items => [@group]

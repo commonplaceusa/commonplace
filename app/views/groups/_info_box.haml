@@ -1,0 +1,19 @@
+
+#information.info_box.group
+  %h2 Community Group
+  
+  = image_tag group.avatar_url(:normal), :width => 120, :class => "avatar"
+
+
+
+    
+    
+  %h3= group.name
+  .info
+    = markdown group.about
+    %br
+  
+  .clear
+
+
+
