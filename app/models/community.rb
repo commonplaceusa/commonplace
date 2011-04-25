@@ -53,6 +53,15 @@ class Community < ActiveRecord::Base
       default
     end
   end
-    
+
+  def add_default_groups
+    I18n.t("default_groups").each do |group|
+      Group.create(:community => self,
+                   :name => group['name'],
+                   :about => group['about'].gsub("%{community_name}", self.name),
+                   :avatar_url => group['avatar'])
+    end
+    nil
+  end
 
 end

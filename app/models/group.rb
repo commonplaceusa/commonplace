@@ -7,19 +7,13 @@ class Group < ActiveRecord::Base
   belongs_to :community
   
   has_many :group_posts
-
-  has_attached_file(:avatar,                    
-                    :styles => { 
-                      :thumb => "100x100^", 
-                      :normal => "120x120^",
-                      :large => "200x200^"
-                    },
-                    :default_url => "/avatars/missing.png", 
-                    :url => "/system/groups/:id/avatar/:style.:extension",
-                    :path => ":rails_root/public/system/groups/:id/avatar/:style.:extension")
+  
+  def avatar_url=(url)
+    self.avatar_file_name = url
+  end
 
   def avatar_url(style_name = nil)
-    self.avatar.url(style_name || self.avatar.default_style)
+    self.avatar_file_name
   end
 
   private
