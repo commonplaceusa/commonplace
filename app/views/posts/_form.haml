@@ -9,6 +9,7 @@
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png", :class => "wymupdate"}
   %legend
     Have an announcement, need, offer, or question?
-    
-:javascript
-  jQuery(document).ready(function() { $('.wymeditor').wymeditor() })
+
+- if $rollout.active?(:wysiwyg_textarea, current_user)
+  :javascript
+    jQuery(document).ready(function() { $('.wymeditor').wymeditor() })
