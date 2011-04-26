@@ -35,7 +35,9 @@ $(function() {
   });
 
   $('form[data-remote]').live('submit', function(e) {
-    $('input[type=image]',$(this))
+    $('input[type=image]', $(this))
+      .replaceWith('<img style="float: right"src="/images/loading.gif">');
+    $('#submit_wrapper', $(this))
       .replaceWith('<img style="float: right"src="/images/loading.gif">');
     e.preventDefault();
     ajaj("post", $(this).attr('action'), $(this).serialize());
