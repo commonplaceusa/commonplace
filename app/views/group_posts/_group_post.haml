@@ -1,5 +1,5 @@
 %div{'data-href' => group_post_path(group_post), :class => "group_post tooltip", 'data-title' => "Click to see replies and your neighbor's profile."}
-  = image_tag group_post.owner.avatar_url(:thumb), :class => "avatar"
+
   .controls
     - if can? :destroy, group_post
       &sdot;
@@ -10,15 +10,12 @@
   %time
     = group_post.time
     
-  .to
-    = group_post.group.name 
-    = image_tag group_post.group.avatar_url(:thumb), :size => "25x25"
-
+  = image_tag group_post.group.avatar_url(:thumb), :size => "98x98", :class => "avatar"
 
   .reply-count #{ group_post.replies.size } replies
   = link_to group_post.subject, group_post, 'data-remote' => true, :class => "title"
   .author
-    = group_post.owner.name
+    #{group_post.owner.name} to #{group_post.group.name}
 
   .body= markdown auto_link(group_post.body, :all, :target => "_blank")
 
