@@ -12,6 +12,7 @@
       = sf.input :receive_method, :as => :radio, :collection => Subscription.receive_methods, :label => "#{sf.object.feed.name}:"
 
   - if $rollout.active?(:group_posts, current_user)
+
     - f.semantic_fields_for :memberships do |mf|
       - mf.inputs do
         = mf.input :receive_method, :as => :radio, :collection => Membership.receive_methods, :label => "#{mf.object.group.name}:"

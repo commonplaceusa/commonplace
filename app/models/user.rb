@@ -66,6 +66,7 @@ class User < ActiveRecord::Base
   has_many :feeds, :through => :subscriptions
 
   has_many :memberships, :dependent => :destroy
+  accepts_nested_attributes_for :memberships
   has_many :groups, :through => :memberships
 
   has_many :managable_feeds, :class_name => "Feed"
