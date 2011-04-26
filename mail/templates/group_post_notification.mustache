@@ -1,0 +1,63 @@
+<html>
+
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+
+  <body>
+    <table id="body">
+
+      {{< header}}
+
+      <tr>
+        <td id="intro">
+          <p>Hi {{user_name}},<br>
+            {{subject}}.
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="post">
+          <table>
+            <tr>
+              <td class="avatar" rowspan="4">
+                <img src="{{group_avatar_url}}" width="50" height="50">
+              </td>
+
+              <td class="subject" colspan="2">
+                {{post_subject}}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="body" colspan="2">
+                {{{post_body}}}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="reply">
+                <a href="{{post_url}}"><span>Reply to {{short_poster_name}}</span></a>
+              </td>
+              <td class="reply-by-email">
+                <p>Or just reply to this email.</p>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< settings }}
+
+          {{< legal }}
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
