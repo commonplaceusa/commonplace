@@ -1,58 +1,93 @@
+require 'subdomain'
 Commonplace::Application.routes.draw do
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  # Global routes
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  root :to => "site#index"
+  
+  match 'about' => 'site#about'
+  match 'privacy' => 'site#privacy'
+  match 'terms' => 'site#terms'
+  match 'dmca' => 'site#dmca'
+  match 'logout' => 'user_sessions#destroy'
+  match 'login' => 'user_sessions#new'
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resource :user_session
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  resources :password_resets
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
 
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
+  # Blog and Starter Site routes
+  resources :internships
+  resources :requests
+  match 'interns', :to => "site#interns"
 
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  # Community routes 
 
-  # See how all your routes lay out with "rake routes"
+  constraints(Subdomain) do
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+    root :to => "communities#show"
+    
+    resource :invites
+
+    # Post-like things
+    resources :group_posts, :announcements
+    resources :posts do
+      member do
+        put :uplift
+      end
+    end
+    
+
+    resources :events do
+      resource :attendance, :only => [:create, :new]
+      resource :messages, :only => [:create, :new] # FixME deal with :requirements => {:messageable => "Event"}
+    end
+
+    resources :replies
+
+
+    # User/Group-like things
+    resources :groups, :only => [:index, :show]
+    
+    resources :users, :only => [:index, :show] do
+      resource :met, :only => [:create, :destroy]
+      resources :messages, :only => [:new, :create]
+    end
+
+    resources :feeds do
+      member do
+        get :import
+        get :profile
+      end
+
+      resource :subscription, :only => [:create, :destroy]
+      resources :announcements, :controller => 'feeds/announcements'
+      resources :events, :controller => 'feeds/events'
+      resource :invites, :controller => 'feeds/invites'
+      
+      resources :messages, :only => [:new, :create]
+        
+    end
+
+
+    # Account
+    resource :inbox, :only => [:get]
+    resources :messages do
+      collection do
+        get :admin_quick_view
+      end
+    end
+
+    resources :avatars, :only => [:edit, :update]
+
+    resource :account do
+      member do 
+        get :edit_new, :edit_avatar, :learn_more, :edit_interests, :add_feeds, :add_groups, :delete
+        put :update_new, :update_avatar, :update_interests, :settings
+        post :subscribe_to_feeds, :subscribe_to_groups, :avatar
+      end
+    end
+  end
 end
