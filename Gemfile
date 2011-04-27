@@ -1,92 +1,31 @@
-source :gemcutter
+source 'http://rubygems.org'
 
-gem 'rails', '2.3.9'
+gem 'rails', '3.0.7'
+
+# Bundle edge Rails instead:
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
+
 gem 'pg'
-gem 'rollout'
-gem 'subdomain-fu'
-gem 'nested_layouts'
-gem 'aasm'
-gem 'authlogic'
-gem 'oauth2'
-gem 'authlogic_oauth2'
-gem 'compass', '0.11.beta.1'
-gem 'haml', '3.1.0.alpha.147'
-gem 'formtastic'
-gem 'paperclip'
-gem 'acts-as-taggable-on'
-gem 'BlueCloth', :require => 'bluecloth'
-gem 'acts-as-list', :require =>'acts_as_list'
-gem 'glebm-geokit', :require => 'geokit'
-gem 'cancan'
-gem 'tlsmail'
-gem 'resque'
-gem 'resque_mailer'
-gem 'resque-exceptional'
-gem 'SystemTimer', :require => 'system_timer'
-gem 'exceptional'
-gem 'aasm'
-gem 'tmail'
 
-gem 'rmagick'
+# Use unicorn as the web server
+# gem 'unicorn'
 
-gem 'jammit'
+# Deploy with Capistrano
+# gem 'capistrano'
 
-gem 'sanitize'
+# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
+# gem 'ruby-debug'
+# gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'mail_style'
+# Bundle the extra gems:
+# gem 'bj'
+# gem 'nokogiri'
+# gem 'sqlite3-ruby', :require => 'sqlite3'
+# gem 'aws-s3', :require => 'aws/s3'
 
-gem 'mail'
-gem 'mustache'
-gem 'premailer'
-
-gem 'httparty'
-gem 'json'
-gem 'simple_uuid'
-gem 'outside-in'
-gem 'mcbean'
-gem 'eventfulapi'
-gem 'rMeetup'
-
-gem 'redis'
-gem 'redis-namespace'
-gem 'yajl-ruby'
-gem 'json'
-gem 'resque'
-gem 'resque-scheduler'
-gem 'sanitize_email'
-
-gem 'twitter'
-
-gem 'god'
-gem 'metric_fu'
-group 'cli' do
-  gem 'text-reform'
-  gem 'thor'
-end
-
-group :production do
-gem 'unicorn'
-end
-
-group :development, :test do
-  gem 'factory_girl'
-  gem 'ZenTest'
-  gem 'forgery'
-  gem 'rspec-rails', '~> 1.3'
-  gem 'rspec', '~> 1.3'
-  gem 'autotest-rails'
-end
-
-group :development do 
-  gem 'capistrano'
-  gem 'capistrano-ext'
-  gem 'mongrel'
-end
-
-group :test do
-  gem 'spork'
-  gem 'rr'
-  gem 'rspec-rr'
-  gem 'database_cleaner'
-end
-
+# Bundle gems for the local environment. Make sure to
+# put test-only gems in this group so their generators
+# and rake tasks are available in development mode:
+# group :development, :test do
+#   gem 'webrat'
+# end
