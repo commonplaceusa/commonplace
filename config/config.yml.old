@@ -1,0 +1,15 @@
+sendgrid_user_name: user_name
+sendgrid_password: password
+host: smackaho.st:3000
+facebook_api_key: 166599506721177
+facebook_secret_key: c8d2600db47a04ac81b2e8490bf784e1
+mail:
+  delivery_method: 'smtp'
+  delivery_options:
+    address: 'smtp.gmail.com'
+    user_name: 'maxtilford@gmail.com'
+    password: 'applemoose364'
+    port: "587"
+    authentication: "plain"
+    enable_starttls_auto: true
+  
