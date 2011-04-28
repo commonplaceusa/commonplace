@@ -8,3 +8,7 @@
     = f.input :body, :input_html => { :rows => 5, :cols => 21 }
   - f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png"}
+
+- if $rollout.active?(:wysiwyg_textarea, current_user)
+  :javascript
+    jQuery(document).ready(function() { $('#announcement_body').wymeditor({basePath: "/javascripts/jquery/"}); })

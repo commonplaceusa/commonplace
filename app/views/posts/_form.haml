@@ -2,14 +2,10 @@
 - semantic_form_for post, :html=>{'data-remote' => true} do |f|
   - f.inputs do
     = f.input :subject
-    = f.input :body, :input_html => {:class => "wymeditor"}
+    = f.input :body
     - if current_user.facebook_uid
       = f.input :post_to_facebook, :as => :boolean
   - f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/post-now.png", :class => "wymupdate"}
   %legend
     Have an announcement, need, offer, or question?
-
-- if $rollout.active?(:wysiwyg_textarea, current_user)
-  :javascript
-    jQuery(document).ready(function() { $('#post_body').wymeditor({basePath: "/javascripts/jquery/"}); })
