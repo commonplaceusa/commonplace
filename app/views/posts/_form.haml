@@ -12,4 +12,4 @@
 
 - if $rollout.active?(:wysiwyg_textarea, current_user)
   :javascript
-    jQuery(document).ready(function() { $('.wymeditor').wymeditor({basePath: "/javascripts/jquery/"}); })
+    jQuery(document).ready(function() { $('#post_body').wymeditor({basePath: "/javascripts/jquery/"}); })
