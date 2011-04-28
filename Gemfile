@@ -2,30 +2,71 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Infrastructure
+gem 'god'
+gem 'unicorn'
+gem 'text-reform'
+gem 'thor'
 
+# Database
+gem 'redis'
+gem 'redis-namespace'
 gem 'pg'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+# Authentication/Authorization
+gem 'authlogic'
+gem 'oauth2'
+gem 'authlogic_oauth2'
+gem 'cancan'
 
-# Deploy with Capistrano
-# gem 'capistrano'
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# Views/Stylesheets
+gem 'compass', '0.11.beta.1'
+gem 'haml', '3.1.0.alpha.147'
+gem 'formtastic'
+gem 'jammit'
+gem 'sanitize'
+gem 'mail'
+gem 'mustache'
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+# Formats
+gem 'premailer'
+gem 'httparty'
+gem 'json'
+gem 'mcbean'
+gem 'BlueCloth', :require => 'bluecloth'
 
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+# ActiveRecord
+gem 'paperclip'
+gem 'rmagick'
+gem 'acts-as-list', :require =>'acts_as_list'
+gem 'glebm-geokit', :require => 'geokit'
+gem 'simple_uuid'
+
+# Jobs
+gem 'resque'
+gem 'resque_mailer'
+gem 'resque-exceptional'
+gem 'resque-scheduler'
+
+# Features/Monitoring
+gem 'exceptional'
+gem 'rollout'
+
+group :development, :test do
+  gem 'metric_fu'
+  gem 'factory_girl'
+  gem 'ZenTest'
+  gem 'forgery'
+  gem 'rspec-rails', "~> 2.4"
+  gem 'autotest-rails'
+  gem 'spork'
+  gem 'rr'
+  gem 'rspec-rr'
+  gem 'database_cleaner'
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'mongrel'
+end
+
+
