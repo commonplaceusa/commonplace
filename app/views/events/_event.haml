@@ -9,7 +9,8 @@
       = link_to 'edit', [:edit, event], 'data-remote' => true
     - if $rollout.active?(:facebook_like, current_user)
       .social{:style => "width:52px;height:21px;overflow:hidden;"}
-        %fb:like{:layout => "button_count", :show_faces => "false", :width => "50", :height => "10", :href => request.protocol + request.host + url_for(event)}
+        %a{:href=>"#", :onclick => "share('#{request.url.chop + url_for(event)}', '#{event.subject}','#{event.body}','#{current_community.name}')"}
+        Share this event!
   %time
     = event_date event.start_datetime
 

@@ -29,6 +29,7 @@ javascripts:
       - public/javascripts/feed_profile.js
       - public/javascripts/sign_in_form.js
       - public/javascripts/accounts.js
+      - public/javascripts/sharing.js
   jquery:
     - public/javascripts/jquery-1.4.3.js
     - public/javascripts/jquery-ui.js
