@@ -21,6 +21,12 @@
     %script{:type => 'text/javascript'}
       $(function () {
       Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
+      FB.init({
+      = "appId  : #{$FacebookConfig['app_id']},"
+      status : true,
+      cookie : true,
+      xfbml  : true
+      });
       });
     = include_stylesheets :application
     / [if IE]
@@ -67,3 +73,4 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+  #fb-root

@@ -1,0 +1,8 @@
+development:
+  app_id: "179741908724938"
+
+staging:
+  app_id: "102571013152856"
+
+production:
+  app_id: ""
