@@ -10,7 +10,7 @@
     - if $rollout.active?(:facebook_like, current_user)
       .social{:style => "width:52px;height:21px;overflow:hidden;"}
         %a{:href=>"#", :onclick => "share('#{request.url.chop + url_for(event)}', '#{event.subject}','#{event.body}','#{event.owner.full_name}','#{current_community.name}')"}
-        Share this event!
+          Share this event!
   %time
     = event_date event.start_datetime
 
