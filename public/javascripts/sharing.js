@@ -1,6 +1,6 @@
-function share(url, name, description, community)
+function share(url, name, description, name, community)
 {
-  var header = "CommonPlace - Find Events in " + community;
+  var header = name + " Posted an Event to " + community + "'s CommonPlace";
   FB.login(function(response) {
       if (response.session)
       {
