@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source :gemcutter
 
 gem 'rails', '3.0.7'
 
@@ -9,6 +9,7 @@ gem 'text-reform'
 gem 'thor'
 
 # Database
+gem 'SystemTimer', :require => 'system_timer'
 gem 'redis'
 gem 'redis-namespace'
 gem 'pg'
@@ -16,13 +17,14 @@ gem 'pg'
 # Authentication/Authorization
 gem 'authlogic'
 gem 'oauth2'
-gem 'authlogic_oauth2'
+gem 'robdimarco_authlogic_oauth2'
 gem 'cancan'
 
 
 # Views/Stylesheets
-gem 'compass', '0.11.beta.1'
-gem 'haml', '3.1.0.alpha.147'
+gem 'compass', '~> 0'
+gem 'haml', '~> 3.1'
+gem 'sass', '~> 3.1'
 gem 'formtastic'
 gem 'jammit'
 gem 'sanitize'

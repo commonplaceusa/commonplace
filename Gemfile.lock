@@ -8,6 +8,7 @@ GEM
     Platform (0.4.0)
     RedCloth (4.2.3)
     Saikuro (1.1.0)
+    SystemTimer (1.2.1)
     ZenTest (4.4.2)
     abstract (1.0.0)
     actionmailer (3.0.7)
@@ -42,9 +43,6 @@ GEM
     arrayfields (4.7.4)
     authlogic (2.1.6)
       activesupport
-    authlogic_oauth2 (1.1.2)
-      authlogic
-      oauth2
     autotest-rails (4.1.0)
       ZenTest
     builder (2.1.2)
@@ -60,7 +58,7 @@ GEM
     cgi_multipart_eof_fix (2.5.0)
     chronic (0.2.3)
       hoe (>= 1.2.1)
-    chunky_png (0.10.5)
+    chunky_png (1.1.1)
     churn (0.0.13)
       chronic (>= 0.2.3)
       hirb
@@ -70,9 +68,10 @@ GEM
       sexp_processor (~> 3.0.3)
     closure-compiler (1.1.1)
     colored (1.2)
-    compass (0.11.beta.1)
-      chunky_png (~> 0.10.3)
-      sass (>= 3.1.0.alpha.50)
+    compass (0.11.1)
+      chunky_png (~> 1.1)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
     crack (0.1.8)
     creole (0.3.8)
     css_parser (1.1.4)
@@ -101,10 +100,11 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
+    fssm (0.2.7)
     gem_plugin (0.2.3)
     glebm-geokit (1.5.2)
     god (0.11.0)
-    haml (3.1.0.alpha.147)
+    haml (3.1.1)
     highline (1.6.1)
     hirb (0.3.6)
     hoe (2.9.0)
@@ -224,6 +224,9 @@ GEM
       rufus-scheduler
     resque_mailer (1.0.1)
     rmagick (2.13.1)
+    robdimarco_authlogic_oauth2 (1.1.4)
+      authlogic
+      oauth2
     rollout (0.3.0)
     roodi (2.1.0)
       ruby_parser
@@ -252,7 +255,7 @@ GEM
       tzinfo (>= 0.3.23)
     sanitize (2.0.1)
       nokogiri (~> 1.4.4)
-    sass (3.1.0.alpha.218)
+    sass (3.1.1)
     sexp_processor (3.0.5)
     simple_uuid (0.1.2)
     sinatra (1.1.2)
@@ -280,15 +283,15 @@ PLATFORMS
 
 DEPENDENCIES
   BlueCloth
+  SystemTimer
   ZenTest
   acts-as-list
   authlogic
-  authlogic_oauth2
   autotest-rails
   cancan
   capistrano
   capistrano-ext
-  compass (= 0.11.beta.1)
+  compass (~> 0)
   database_cleaner
   exceptional
   factory_girl
@@ -296,7 +299,7 @@ DEPENDENCIES
   formtastic
   glebm-geokit
   god
-  haml (= 3.1.0.alpha.147)
+  haml (~> 3.1)
   httparty
   jammit
   json
@@ -317,11 +320,13 @@ DEPENDENCIES
   resque-scheduler
   resque_mailer
   rmagick
+  robdimarco_authlogic_oauth2
   rollout
   rr
   rspec-rails (~> 2.4)
   rspec-rr
   sanitize
+  sass (~> 3.1)
   simple_uuid
   spork
   text-reform
