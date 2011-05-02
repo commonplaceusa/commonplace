@@ -9,7 +9,6 @@ GEM
     RedCloth (4.2.3)
     Saikuro (1.1.0)
     SystemTimer (1.2.1)
-    ZenTest (4.4.2)
     abstract (1.0.0)
     actionmailer (3.0.7)
       actionpack (= 3.0.7)
@@ -43,8 +42,8 @@ GEM
     arrayfields (4.7.4)
     authlogic (2.1.6)
       activesupport
-    autotest-rails (4.1.0)
-      ZenTest
+    autotest-rails-pure (4.1.2)
+    autotest-standalone (4.5.5)
     builder (2.1.2)
     cancan (1.5.1)
     capistrano (2.5.19)
@@ -285,10 +284,10 @@ PLATFORMS
 DEPENDENCIES
   BlueCloth
   SystemTimer
-  ZenTest
   acts-as-list
   authlogic
-  autotest-rails
+  autotest-rails-pure
+  autotest-standalone
   cancan
   capistrano
   capistrano-ext

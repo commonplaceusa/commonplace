@@ -56,7 +56,7 @@
       #modal
 
 
-  - if RAILS_ENV == "production"
+  - if Rails.env.production?
     %script
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-12888551-3']);
