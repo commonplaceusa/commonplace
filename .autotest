@@ -1,4 +1,7 @@
+require 'autotest/bundler'
+require 'autotest/notify'
 Autotest.add_hook(:initialize) {|at|
+  at.options[:quiet] = true
 %w{.git .swp .DS_Store ._* tmp rakefile .txt}.each do |exception| 
   at.add_exception(exception) 
 end
