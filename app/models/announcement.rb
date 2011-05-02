@@ -1,6 +1,5 @@
 class Announcement < ActiveRecord::Base
-  
-  include IDEncoder
+
 
   has_many :replies, :as => :repliable, :order => :created_at
   has_many :repliers, :through => :replies, :uniq => true, :source => :user

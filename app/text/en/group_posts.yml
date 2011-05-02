@@ -2,5 +2,5 @@ en:
 
   group_posts:
     new: 
-      link: Post to a Discussion Group
+      link_html: Post to a Discussion Group
       title: Post to a Discussion Group

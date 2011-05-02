@@ -37,7 +37,6 @@ class Ability
       can :profile, Feed
       can :create, Feed
       can :manage, Feed, :user_id => user.id
-      can :read, ActsAsTaggableOn::Tag
       
       can :manage, Event do |e|
         e.user == user

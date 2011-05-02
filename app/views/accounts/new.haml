@@ -1,8 +1,8 @@
-%h1= t ".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), learn_more_account_path)
+%h1= t(".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), learn_more_account_path)).html_safe
 
 = update_content "#main" do
   #main
-    - semantic_form_for @user, :url => account_path, :id => 'registration_form' do |f|
+    = semantic_form_for @user, :url => account_path, :id => 'registration_form' do |f|
       = f.submit "Sign Up", :id => "invisible-button-to-prevent-accidental-facebook-registration-on-pressing-enter"
       %h3
         Fill out the form to get started:

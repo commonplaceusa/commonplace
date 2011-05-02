@@ -162,6 +162,7 @@ GEM
     net-ssh (2.1.0)
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
+    newrelic_rpm (2.14.1)
     nokogiri (1.4.4)
     oauth2 (0.1.1)
       faraday (~> 0.5.0)
@@ -222,7 +223,6 @@ GEM
       redis (>= 2.0.1)
       resque (>= 1.8.0)
       rufus-scheduler
-    resque_mailer (1.0.1)
     rmagick (2.13.1)
     robdimarco_authlogic_oauth2 (1.1.4)
       authlogic
@@ -245,6 +245,7 @@ GEM
       railties (~> 3.0)
       rspec (~> 2.5.0)
     rspec-rr (0.1.0)
+    ruby-prof (0.10.6)
     ruby-progressbar (0.0.9)
     ruby2ruby (1.2.5)
       ruby_parser (~> 2.0)
@@ -308,6 +309,7 @@ DEPENDENCIES
   metric_fu
   mongrel
   mustache
+  newrelic_rpm
   oauth2
   paperclip
   pg
@@ -318,13 +320,13 @@ DEPENDENCIES
   resque
   resque-exceptional
   resque-scheduler
-  resque_mailer
   rmagick
   robdimarco_authlogic_oauth2
   rollout
   rr
   rspec-rails (~> 2.4)
   rspec-rr
+  ruby-prof
   sanitize
   sass (~> 3.1)
   simple_uuid
