@@ -7,7 +7,7 @@ en:
       bubble_2: Get crime reports from the police
       who_is_bubble: Who's bringing CommonPlace to %{community}?
     edit_new:
-      title: Register a community profile so you <br> can send information to your neighbors
+
       p1: CommonPlace makes it easy for you to share needs, announcements and events with people who live in %{Community}.
       p2: To post to your neighborhood, simply go to site or email your message in at %{community_email}
       p3: But first take a moment to fill out your commmunity profile.    
@@ -21,7 +21,7 @@ en:
     edit:
       title: Change Settings
     learn_more:
-      title: Join CommonPlace to receive important community announcements <br> from your neighbors and local organizations in %{community}. %{sign_up}
+      title_html: Join CommonPlace to receive important community announcements <br> from your neighbors and local organizations in %{community}. %{sign_up}
       sign_up: Sign up. 
       p1: CommonPlace brings your neighborhoods and civic leaders in %{community} together into one "community network" online.
       p2: Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and mayor.

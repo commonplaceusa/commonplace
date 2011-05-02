@@ -47,7 +47,6 @@ gem 'simple_uuid'
 
 # Jobs
 gem 'resque'
-gem 'resque_mailer'
 gem 'resque-exceptional'
 gem 'resque-scheduler'
 
@@ -69,6 +68,8 @@ group :development, :test do
   gem 'capistrano'
   gem 'capistrano-ext'
   gem 'mongrel'
+  gem 'ruby-prof'
+  gem 'newrelic_rpm'
 end
 
 

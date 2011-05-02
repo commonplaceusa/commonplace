@@ -1,15 +1,15 @@
 %nav
 
-  - link_to  new_post_path, 'data-remote' => true, :class => "post #{current == :post ? "current" : ""}" do
-    = t("posts.new.link")
+  = link_to  new_post_path, 'data-remote' => true, :class => "post #{current == :post ? "current" : ""}" do
+    = t("posts.new.link_html")
 
 
-  - link_to new_announcement_path, 'data-remote' => true, :class => "announcement #{current == :announcement ? "current" : ""}" do
-    = t("announcements.new.link")
+  = link_to new_announcement_path, 'data-remote' => true, :class => "announcement #{current == :announcement ? "current" : ""}" do
+    = t("announcements.new.link_html")
   
-  - link_to new_event_path, 'data-remote' => true, :class => "event #{current == :event ? "current" : ""}" do
-    = t("events.new.link")
+  = link_to new_event_path, 'data-remote' => true, :class => "event #{current == :event ? "current" : ""}" do
+    = t("events.new.link_html")
 
   - if $rollout.active?(:group_posts, current_user)
-    - link_to new_group_post_path, 'data-remote' => true, :class => "group_post #{current == :group_post ? "current" : ""}" do
-      = t("group_posts.new.link")
+    = link_to new_group_post_path, 'data-remote' => true, :class => "group_post #{current == :group_post ? "current" : ""}" do
+      = t("group_posts.new.link_html")

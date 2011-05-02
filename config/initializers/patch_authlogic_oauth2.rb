@@ -3,9 +3,10 @@ module AuthlogicOauth2
   module Session
 
     module Methods
-      include Oauth2Process
+     def oauth2_client_id
+        is_auth_session? ? self.class.oauth2_client_id : session_class.oauth2_client_id
+      end
 
-      private
       def build_callback_url
         oauth2_controller.url_for :controller => oauth2_controller.controller_name, :action => oauth2_controller.action_name
       end

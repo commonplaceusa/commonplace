@@ -90,11 +90,11 @@ END
   end
 
   def to
-    @to ||= TMail::Address.parse(params[:to]).spec.slice(/^[^@]*/)
+    @to ||= Mail::Address.new(params[:to]).address.slice(/^[^@]*/)
   end
 
   def from
-    @from ||= TMail::Address.parse(params[:from]).spec
+    @from ||= Mail::Address.new(params[:from]).address
   end
   
 end
