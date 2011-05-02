@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   CATEGORIES = %w{Request Offer Invitation Announcement Question}  
-  include IDEncoder
+
 
   delegate :neighborhood, :to => :user
   
@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
 
   attr_accessor :post_to_facebook
 
-  named_scope :between, lambda { |start_date, end_date| 
+  scope :between, lambda { |start_date, end_date| 
     { :conditions => 
       ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
   }

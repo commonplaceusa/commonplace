@@ -20,7 +20,7 @@ describe MessagesController do
       
       it "sets a flash.now message with the messagable's name" do
         post :create
-        response.flash[:message].should match("Messagable Name")
+        request.flash[:message].should match("Messagable Name")
       end
     end
   end

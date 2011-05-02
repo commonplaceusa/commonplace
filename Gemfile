@@ -11,7 +11,7 @@ gem 'thor'
 # Database
 gem 'SystemTimer', :require => 'system_timer'
 gem 'redis'
-gem 'redis-namespace'
+gem 'redis-namespace', :require => false
 gem 'pg'
 
 # Authentication/Authorization
@@ -57,10 +57,8 @@ gem 'rollout'
 group :development, :test do
   gem 'metric_fu'
   gem 'factory_girl'
-  gem 'ZenTest'
   gem 'forgery'
   gem 'rspec-rails', "~> 2.4"
-  gem 'autotest-rails'
   gem 'spork'
   gem 'rr'
   gem 'rspec-rr'
@@ -70,6 +68,8 @@ group :development, :test do
   gem 'mongrel'
   gem 'ruby-prof'
   gem 'newrelic_rpm'
+  gem 'autotest-standalone'
+  gem 'autotest-rails-pure'
 end
 
 
