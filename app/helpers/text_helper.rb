@@ -17,6 +17,6 @@ module TextHelper
   end
 
   def markdown(text)
-    BlueCloth.new(text || "").to_html
+    BlueCloth.new(text || "").to_html.html_safe
   end
 end

@@ -1,8 +1,8 @@
 class Event < ActiveRecord::Base
-  include IDEncoder
+
   
   attr_accessor :pledge
-  
+
   validates_presence_of :name, :description, :date
   validates_uniqueness_of :source_feed_id, :if => Proc.new { |event| event.owner_type == "Feed" && event.source_feed_id }
 

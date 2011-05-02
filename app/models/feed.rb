@@ -1,5 +1,5 @@
 class Feed < ActiveRecord::Base
-  
+
   validates_presence_of :name, :community
   validates_presence_of :about, :if => lambda { |f| f.user_id }
   
