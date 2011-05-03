@@ -12,7 +12,7 @@
 
     - f.inputs do 
       = f.input :password
-      - if $rollout.active(:facebook_like, current_user)
+      - if $rollout.active?(:facebook_like, current_user)
         %li
           = check_box_tag 'register_with_oauth2'
           = label_tag "register_with_oauth2", "Or register with Facebook Connect"
