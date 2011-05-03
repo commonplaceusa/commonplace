@@ -11,8 +11,12 @@
   - semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
 
     - f.inputs do 
-      - unless current_user.facebook_user?
-        = f.input :password
+      = f.input :password
+      - if $rollout.active(:facebook_like, current_user)
+        %li
+          = check_box_tag 'register_with_oauth2'
+          = label_tag "register_with_oauth2", "Or register with Facebook Connect"
+
       - if current_user.address.blank?
         = f.input :address
       = f.input :avatar, :input_html => {:size => 25}
@@ -22,5 +26,3 @@
     - f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
 
-- unless current_user.facebook_uid.blank?
-  = render 'facebook_wall_post'
