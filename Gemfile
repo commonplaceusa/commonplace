@@ -59,9 +59,12 @@ group :development, :test do
   gem 'factory_girl'
   gem 'forgery'
   gem 'rspec-rails', "~> 2.4"
+  gem 'fuubar'
   gem 'spork'
   gem 'rr'
   gem 'rspec-rr'
+  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'launchy'
   gem 'database_cleaner'
   gem 'capistrano'
   gem 'capistrano-ext'
