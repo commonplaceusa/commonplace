@@ -13,9 +13,15 @@ class EmailParseController < ApplicationController
       Resque.enqueue(PostConfirmation, post.id) if post
 
     when /reply\+([a-zA-Z_0-9]+)/
-      Reply.create(:body => body_text, :repliable => Repliable.find($1), :user => user)
-
-    else
+      if reply = Reply.create(:body => body_text, :repliable => Repliable.find($1), :user => user)
+        (reply.repliable.replies.map(&:user) + [reply.repliable.user]).uniq.each do |user|
+          if user != reply.user
+            logger.info("Enqueue ReplyNotification #{reply.id} #{user.id}")
+            Resque.enqueue(ReplyNotification, reply.id, user.id)
+          end
+        end
+      end
+      else
 
       if feed = user.community.feeds.find_by_slug(to)
         
