@@ -36,6 +36,7 @@ Hey -- testing a reply!
     before :each do 
       @reply_text = "reply text"
       stub(Reply).create { reply }
+      stub(reply).repliable { fake_post }
       repliable_id = [fake_post.class.name.underscore, fake_post.id.to_s].join("_")
       stub(Repliable).find(repliable_id) { fake_post }
       post(:parse,
