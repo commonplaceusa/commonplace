@@ -114,13 +114,6 @@ end
     end
   end
   
-  Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].
-    each {|f| require f}
-   
-  # Requires supporting ruby files with custom matchers and macros, etc,
-  # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-  
   
   RSpec.configure do |config|
     
@@ -173,4 +166,11 @@ end
 
 end
 
-Spork.each_run do end
+Spork.each_run do 
+
+  # Requires supporting ruby files with custom matchers and macros, etc,
+  # in spec/support/ and its subdirectories.
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  
+
+end
