@@ -3,8 +3,6 @@ class Event < ActiveRecord::Base
   
   attr_accessor :pledge
   
-  acts_as_taggable_on :tags
-
   validates_presence_of :name, :description, :date
   validates_uniqueness_of :source_feed_id, :if => Proc.new { |event| event.owner_type == "Feed" && event.source_feed_id }
 
@@ -23,6 +21,14 @@ class Event < ActiveRecord::Base
     { :conditions => ["? <= date AND date < ?", start_date, end_date] } 
   }
   named_scope :past, :conditions => ["date < ?", Time.now.utc]
+
+  def tag_list
+    self.cached_tag_list
+  end
+
+  def tag_list=(string)
+    self.cached_tag_list= string
+  end
 
   def search(term)
     Event.all
