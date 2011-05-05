@@ -19,9 +19,3 @@ import_feeds_rss:
   queue: rss_importer
   description: "Imports feed announcements from rss"
 
-import_twitter_posts:
-  cron: "0 * * * *"
-  class: TwitterImporter
-  args: 
-  queue: outside-data
-  description: "This job imports posts from Twitter as TwitterAnnouncements daily at midnight"
