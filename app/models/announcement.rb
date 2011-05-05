@@ -13,22 +13,8 @@ class Announcement < ActiveRecord::Base
       ["? <= created_at AND created_at < ?", start_date, end_date] } 
   }
 
-
-  
-  def time
-    Helper.help.post_date(self.created_at)
-  end 
-  
   def feed
     self.owner
-  end
-  
-  def long_id
-    IDEncoder.to_long_id(self.id)
-  end
-  
-  def self.find_by_long_id(long_id)
-    Announcement.find(IDEncoder.from_long_id(long_id))
   end
 
 end
