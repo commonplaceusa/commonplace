@@ -13,11 +13,9 @@
       z-index: 1
       border-top: 2px solid #BCBCBC
     h3
-      color: #717171
       +text-shadow(#fff, 1px, 1px, 0px)
       background-color: #E0E0E0
       padding:  7px 12px
-      color: #717171
       border: 
         top: 1px solid #BCBCBC
         bottom: 1px solid #BCBCBC
@@ -27,15 +25,17 @@
         size: 13px
 
       a
-        color: #717171
+        color: #515151
         +text-shadow(#fff, 1px, 1px, 0px)
-        font-size: 13px
+        font-size: 14px
         text-decoration: none
+        text-decoration: underline
         &.current
           color: $postColorDark
-          text-decoration: underline
+
         &:hover
-          text-decoration: underline
+          color: $postColorDark
+
       nav
         float: right
     .items:last-child li:last-child
