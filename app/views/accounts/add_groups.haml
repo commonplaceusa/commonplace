@@ -9,6 +9,7 @@
       #groups_container
         - @groups.each do |group|
           .group
+            = image_tag(group.avatar_url)
             .unchecked
             %h3= group.name
             %p= group.about
