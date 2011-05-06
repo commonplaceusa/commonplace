@@ -1,7 +1,5 @@
 class Feed < ActiveRecord::Base
   
-  acts_as_taggable_on :tags
-
   validates_presence_of :name, :community
   validates_presence_of :about, :if => lambda { |f| f.user_id }
   
@@ -30,6 +28,14 @@ class Feed < ActiveRecord::Base
                     :default_url => "/avatars/missing.png", 
                     :url => "/system/feeds/:id/avatar/:style.:extension",
                     :path => ":rails_root/public/system/feeds/:id/avatar/:style.:extension")
+
+  def tag_list
+    self.cached_tag_list
+  end
+
+  def tag_list=(string)
+    self.cached_tag_list = string
+  end
 
   def website=(string)
     if string.present? && !(string =~ /^https?:\/\//)
