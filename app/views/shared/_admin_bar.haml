@@ -1,9 +1,7 @@
 - if current_user.admin?
   #admin_bar
-    = render 'shared/deliveries'
-    Neighborhood:
     - current_community.neighborhoods.each do |neighborhood|
-      = button_to "#{neighborhood.name}: #{neighborhood.users.count}u/#{neighborhood.users.map{|u|u.posts.count}.inject(0,&:+)}", set_neighborhood_path(neighborhood), :class => current_neighborhood == neighborhood ? "current" : ""
+      #{neighborhood.name}: #{neighborhood.users.count}u/#{neighborhood.users.map{|u|u.posts.count}.inject(0,&:+)}&nbsp;&nbsp;
     Total Users: #{current_community.users.count}
     Total Posts: #{current_community.posts.count}
 
