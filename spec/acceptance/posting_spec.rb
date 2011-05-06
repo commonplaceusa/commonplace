@@ -7,15 +7,8 @@ feature "Create a post", %q{
 } do
 
   background do
-    community = Factory(:community, :slug => "testing", :zip_code => "02321")
-    neighborhood = Neighborhood.create(:community_id => community.id, :name => "foo", :bounds => [[0,0]])
-    user = User.create!(:first_name => "test", :last_name => "dev",
-                        :email => "test@example.com", :address => "420 Baker St.",
-                        :password => "password", :neighborhood_id => neighborhood.id,
-                        :community_id => community.id)
-
-    Capybara.app_host = "http://testing.smackaho.st:#{Capybara.server_port}"
-
+    community = create_community
+    user = create_user(community)
     login_as(user)
   end
 
