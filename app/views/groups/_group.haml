@@ -1,3 +1,12 @@
 %div{'data-href' => group_path(group), :class => "group tooltip", 'data-title' => 'Click to see more information about this group'}
   = image_tag group.avatar_url(:thumb), :class => "avatar"
   .title= group.name
+
+
+  - if current_user.groups.include? group
+    %span.subscribed
+      %span
+        Subscribed
+  - else
+    - link_to group_membership_path(group), 'data-remote' => true, 'data-method' => 'post', :class => "new_subscription new_#{dom_id group}_subscription" do
+      %span Subscribe

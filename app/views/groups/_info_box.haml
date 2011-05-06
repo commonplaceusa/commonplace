@@ -4,6 +4,18 @@
   
   = image_tag group.avatar_url(:normal), :width => 120, :class => "avatar"
 
+  .actions
+    - if current_user.groups.include? group
+      %span.subscribed
+        %span
+          Subscribed
+
+      - link_to group_membership_path(group), 'data-remote' => true, 'data-method' => 'delete', :class => 'unsubscribe' do
+        Unsubscribe
+
+    - else
+      - link_to group_membership_path(group), 'data-remote' => true, 'data-method' => 'post', :class => "new_subscription new_#{dom_id group}_subscription" do
+        %span Subscribe to #{ group.name }
 
 
     
