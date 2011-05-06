@@ -26,10 +26,11 @@ class User < ActiveRecord::Base
   def facebook_user?
     authenticating_with_oauth2? || facebook_uid
   end
-
+  
   def validate_password?
     !facebook_user? && crypted_password.blank?
   end
+
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_presence_of :first_name, :last_name
