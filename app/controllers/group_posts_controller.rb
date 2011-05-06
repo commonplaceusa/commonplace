@@ -9,6 +9,9 @@ class GroupPostsController < CommunitiesController
   def create
     @group_post.user = current_user
     if @group_post.save
+      @group_post.group.live_subscribers.each do |user|
+        Resque.enqueue(GroupPostNotification, @group_post.id, user.id)
+      end
       redirect_to group_posts_path
     else
       render :new

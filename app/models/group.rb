@@ -7,13 +7,19 @@ class Group < ActiveRecord::Base
   belongs_to :community
   
   has_many :group_posts
-  
+
+  has_many :memberships
+  has_many :subscribers, :through => :memberships, :source => :user
   def avatar_url=(url)
     self.avatar_file_name = url
   end
 
   def avatar_url(style_name = nil)
     self.avatar_file_name
+  end
+
+  def live_subscribers
+    self.memberships.all(:conditions => "memberships.receive_method = 'Live'").map &:user
   end
 
   private
