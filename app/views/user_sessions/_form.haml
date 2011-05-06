@@ -1,6 +1,6 @@
-- semantic_form_for :user_session, :url => user_session_path do |f|
+= semantic_form_for :user_session, :url => user_session_path do |f|
   = f.inputs :email, :password
-  - f.buttons do
+  = f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/login.png"}
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/facebook-login.png", :name => "login_with_oauth2", :value => "true"}
       
