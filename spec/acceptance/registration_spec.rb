@@ -7,9 +7,7 @@ feature "Registration", %q{
 } do
 
   background do
-    community =Factory(:community, :slug => "testing", :zip_code => "02321")
-    Neighborhood.create(:community_id => community.id, :name => "foo", :bounds => [[0,0]])
-    Capybara.app_host = "http://testing.smackaho.st:#{Capybara.server_port}"
+    create_community
     visit "/"
   end
 
