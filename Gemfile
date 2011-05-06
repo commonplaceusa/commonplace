@@ -17,7 +17,7 @@ gem 'pg'
 # Authentication/Authorization
 gem 'authlogic'
 gem 'oauth2'
-gem 'robdimarco_authlogic_oauth2'
+gem 'robdimarco_authlogic_oauth2', :require => 'authlogic_oauth2'
 gem 'cancan'
 
 

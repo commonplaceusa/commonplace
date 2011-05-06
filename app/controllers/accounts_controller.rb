@@ -56,6 +56,7 @@ class AccountsController < CommunitiesController
         render params[:short] ? :short : :new
       end
     end
+
   end
 
   def edit
