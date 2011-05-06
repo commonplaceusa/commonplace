@@ -5,7 +5,7 @@ class AddReceiveMethodToMemberships < ActiveRecord::Migration
     Membership.reset_column_information
 
     Membership.find_each do |membership|
-      membership.receive_method = "Daily"
+      membership.receive_method = "Live"
       membership.save!
     end
 
