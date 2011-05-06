@@ -9,8 +9,6 @@ stylesheets:
     - public/stylesheets/ie.css
   internship:
     - public/stylesheets/internship.css
-  management:
-    - public/stylesheets/management.css
   starter_site:
     - public/stylesheets/starter_site.css
 
