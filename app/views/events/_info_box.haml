@@ -6,7 +6,7 @@
 
   .actions
     - link_to new_event_message_path(event), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ event.name }" do 
-      %span Message #{ event.name }
+      %span Message #{ event.owner.name }
 
     - if event.attendees.include? current_user
       %span.attended
