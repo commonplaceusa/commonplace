@@ -120,38 +120,20 @@ end
     config.before(:each, :type => :controller) do
       stub(Community).find_by_slug { current_community }
     end
+    DatabaseCleaner.strategy = :truncation
+    config.use_transactional_fixtures = false
+    config.before :each do
+      DatabaseCleaner.start
+    end
+    config.after :each do
+      DatabaseCleaner.clean
+    end
     
     config.mock_with :rr
-    #config.include RSpec::Rails::Mocks
     
-    config.use_transactional_fixtures = false
-    config.use_instantiated_fixtures = false
+
+
   end
-  
-  # def current_user
-  #   unless @current_user
-  #     @current_user = mock_model(User)
-  #     stub(UserSession).find.stub!.user { @current_user }
-  #   end
-  #   @current_user
-  # end
-  
-  # def current_user_session
-  #   @current_user_session ||= stub(UserSession.new).user { stub(current_user).role_symbols { [:user] } }
-  # end
-  
-  # def current_community
-  #   @current_community ||= s#mock_model(Community, :name => Forgery(:basic).text)
-  # end
-  
-  # def login
-  #   stub(UserSession).find { current_user_session }
-  # end
-  
-  # def logout
-  #   stub(current_user).role_symbols { [:guest] }
-  #   stub(UserSession).find { current_user_session }
-  # end
 
   def mock_geocoder
     location = Object.new
