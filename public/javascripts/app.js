@@ -12,9 +12,11 @@ $(function() {
 
   $('a[data-remote]').live('click', function(e) {
     e.preventDefault();
+    e.stopPropagation();
     var path = $(this).attr('href').replace(HOST_HREF_REGEX, ""),
     method = $(this).attr('data-method') || "get";
     ajaj(method, path, null);
+
     if (method == "get") {
       window.location.hash = path;
     }
@@ -27,7 +29,7 @@ $(function() {
   });
   
   $('div[data-href] a').live('click', function(e) {
-    e.stopPropagation();
+
   });
 
   $('div[data-href] input, div[data-href] button').live('click', function(e) {
