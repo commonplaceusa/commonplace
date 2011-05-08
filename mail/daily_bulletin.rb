@@ -56,6 +56,10 @@ class DailyBulletin < MailBase
     end
   end
 
+  def announcements?
+    !announcements.empty?
+  end
+
   def announcements
     @announcements ||= user.daily_subscribed_announcements.select {|a|
       @date.advance(:days => -1) < a.created_at && a.created_at < @date 
