@@ -168,6 +168,104 @@
         </td>
       </tr>
       {{/announcements?}}
+
+      {{#events?}}
+      <tr>
+        <td id="community-events">
+          <h2>Upcoming Community Events</h2>
+          <p class="h2-sub">
+            Events in the next week in your community
+          </p>
+
+          {{#events}}
+
+            <table class="event">
+              <tr>
+                <td class="date-time" rowspan="4">
+                  {{#date}}
+                    <div class="calendar">
+                      <div class="short-month">{{short_month}}</div>
+                      <div class="day">{{day}}</div>
+                    </div>
+                  {{/date}}
+                  {{#time}}
+                    <span class="time">{{start}}</span> -
+                    <span class="time">{{end}}</span>
+                  {{/time}}
+                </td>
+                <td class="name">
+                  <a href="{{url}}">{{name}}</a>
+                </td>
+                <td class="posted-at">
+                </td>
+              </tr>
+              <tr>
+                <td class="posted-by" colspan="2">
+                  {{posted_by}}
+                </td>
+              </tr>
+              <tr>
+                <td class="body" colspan="2">
+                  <p>{{body}}</p>
+                  <p><span class="event-field">Venue:</span> {{venue}}
+                  <span class="event-field">Address:</span> {{address}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="replies" colspan="2">
+                  {{#replies}}
+                    <table class="reply" rowspacing="5" colspacing="5">
+                      <tr>
+                        <td class="avatar">
+                          <img src="{{user_avatar_url}}" width="20" height="20">
+                        </td>
+                        <td class="body">
+                          <p class="posted-by">{{posted_by}}</p>
+                          <p class="body">{{body}}</p>
+                        </td>
+                        <td class="posted-at">{{posted_at}}</td>
+                      </tr>
+                    </table>
+                  {{/replies}}
+
+                  {{#num_more_replies}}
+                    <div class="more-replies">
+                      <a href="{{url}}">
+                        <span>[ + {{num_more_replies}} more replies... ]</span>
+                      </a>
+                    </div>
+                  {{/num_more_replies}}
+
+                  <div class="event-reply">
+                    <a href="{{url}}"><span>Reply to this Event</span></a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+          {{/events}}
+
+
+          <div class="footer">
+            <p class="action">
+              <strong>Have an event to publicize?</strong>
+              <br>
+              <a href="{{new_event_url}}"><span>Post it</span></a> to
+              CommonPlace's event board and it will be in a future weekly
+              community bulletin!
+            </p>
+
+            <p class="action">
+              <strong>Want to see more events in your daily digests?</strong>
+              <br>
+              <a href="{{subscribe_url}}"><span>Subscribe</span></a> to more
+              community feeds and groups to see their events sooner.
+            </p>
+
+          </div>
+        </td>
+      </tr>
+      {{/events?}}
       <tr>
         <td id="footer">
 
