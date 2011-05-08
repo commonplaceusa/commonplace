@@ -100,6 +100,73 @@
           </div>
         </td>
       </tr>
+
+      <tr>
+        <td id="announcements">
+          <h3>Community Announcements</h3>
+          <p class="subhead">Here are announcements from your subscriptions today:</p>
+
+          {{#announcements}}
+            <hr class="post">
+            <table class="post">
+              <tr>
+                <td class="avatar" rowspan="6">
+                  <img src="{{owner_avatar_url}}" width="50" height="50">
+                </td>
+                <td class="title">
+                  <a href="{{url}}"><span>{{subject}}</span></a>
+                </td>
+                <td class="posted-at">{{posted_at}}</td>
+              </tr>
+
+              <tr>
+                <td class="author" colspan="2">{{owner_name}}</td>
+              </tr>
+
+              <tr>
+                <td class="body" colspan="2">{{{body}}}</td>
+              </tr>
+
+              <tr>
+                <td class="replies" colspan="2">
+                  {{#replies}}
+                    <hr class="reply">
+                    <table class="reply">
+                      <tr>
+                        <td class="avatar" rowspan="2">
+                          <img src="{{user_avatar_url}}" width="20" height="20">
+                        </td>
+                        <td class="author">{{user_name}}</td>
+                        <td class="posted-at">{{posted_at}}</td>
+                      </tr>
+                      <tr>
+                        <td class="body" colspan="2"><p>{{body}}</p></td>
+                      </tr>
+                    </table>
+                  {{/replies}}
+                  <hr class="reply">
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="actions">
+                  {{#num_more_replies}}
+                    <div class="more-replies">
+                      <a href="{{url}}">
+                        [ + {{num_more_replies}} more replies... ]
+                      </a>
+                    </div>
+                  {{/num_more_replies}}
+                  <a href="{{url}}" class="reply-button"><span>
+                    Write a Reply to {{owner_name}}
+                  </span></a>
+                </td>
+              </tr>
+            </table>
+          {{/announcements}}
+        </td>
+      </tr>
+
       <tr>
         <td id="footer">
 
