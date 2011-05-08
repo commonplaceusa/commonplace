@@ -7,11 +7,6 @@ class EmailParseController < ApplicationController
   def parse
     case to
       
-    when /neighborhood/i
-      post = Post.create(:body => body_text, :user => user, :subject => params[:subject], :community => user.community, :published => false)
-      
-      Resque.enqueue(PostConfirmation, post.id) if post
-
     when /reply\+([a-zA-Z_0-9]+)/
       if reply = Reply.create(:body => body_text, :repliable => Repliable.find($1), :user => user)
         (reply.repliable.replies.map(&:user) + [reply.repliable.user]).uniq.each do |user|
@@ -21,10 +16,18 @@ class EmailParseController < ApplicationController
           end
         end
       end
-      else
+    else
 
-      if feed = user.community.feeds.find_by_slug(to)
+      if to.downcase == user.community.slug.downcase
+        post = Post.create(:body => body_text, :user => user, :subject => params[:subject], :community => user.community)
+
+        Resque.enqueue(PostConfirmation, post.id) if post
+
+        user.neighborhood.users.receives_posts_live.each do |u|
+          Resque.enqueue(PostNotification, post.id, u.id) if post.user != user
+        end
         
+      elsif feed = user.community.feeds.find_by_slug(to)
         if feed.user_id == user.id
           announcement = Announcement.create(:body => body_text, :owner => feed, :subject => params[:subject], :community => feed.community)
 
