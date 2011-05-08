@@ -20,6 +20,12 @@ class AnnouncementsController < CommunitiesController
   def create
     @announcement = Announcement.new(params[:announcement].merge(:community => current_community, :owner => @owner))
     if @announcement.save
+      if @announcement.owner.is_a?(Feed)
+        @announcement.owner.live_subscribers.each do |user|
+          Resque.enqueue(AnnouncementNotification, @announcement.id, user.id)
+        end
+      end
+      end
       redirect_to announcements_path
     else
       render :new
