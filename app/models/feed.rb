@@ -19,6 +19,10 @@ class Feed < ActiveRecord::Base
   has_many :subscriptions, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions, :source => :user
 
+  def live_subscribers
+    self.subscriptions.all(:conditions => "receive_method = 'Live'").map &:user
+  end
+
   has_attached_file(:avatar,                    
                     :styles => { 
                       :thumb => "100x100^", 
