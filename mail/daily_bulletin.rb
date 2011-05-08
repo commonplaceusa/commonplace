@@ -56,4 +56,29 @@ class DailyBulletin < MailBase
     end
   end
 
+  def announcements
+    @announcements ||= user.daily_subscribed_announcements.select {|a|
+      @date.advance(:days => -1) < a.created_at && a.created_at < @date 
+    }.map do |announcement|
+      {
+        :subject => announcement.subject,
+        :url => url("/announcements/#{announcement.id}"),
+        :owner_name => announcement.owner.name,
+        :owner_avatar_url => url(announcement.owner.avatar_url),
+        :owner_url => url("/feeds/#{announcement.owner.id}"),
+        :posted_at => announcement.created_at.strftime("%I:%M%P %b %d"),
+        :body => markdown(announcement.body),
+        :num_more_replies => announcement.replies.count > 2 ? announcement.replies.count - 2 : nil,
+        :replies => announcement.replies.take(2).map do |reply| 
+          {
+            :user_name => reply.user.name,
+            :posted_at => reply.created_at.strftime("%I:%M%P %b %d"),
+            :body => reply.body,
+            :user_avatar_url => url(reply.user.avatar_url)
+          }
+        end
+      }
+    end
+  end
+  
 end

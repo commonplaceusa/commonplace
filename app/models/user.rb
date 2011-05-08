@@ -119,8 +119,9 @@ class User < ActiveRecord::Base
     errors.add(:full_name, "We need your first and last names.") if first_name.blank? || last_name.blank?
   end 
   
-  def subscribed_announcements
-    feeds.map(&:announcements).flatten
+  def daily_subscribed_announcements
+    self.subscriptions.all(:conditions => "receive_method = 'Daily'").
+      map(&:feed).map(&:announcements).flatten
   end
 
   def suggested_events
