@@ -53,32 +53,30 @@ Hey -- testing a reply!
 
   end
   
-  describe "myneighbors@ourcommonplace.com" do
+  describe "{{community.slug}}@ourcommonplace.com" do
 
     let(:new_post) { mock_model(Post) } 
-    before :each do
-      stub(Post).create { new_post }
+    
+    it "creates a new post" do
+      mock(Post).create(hash_including(:user => user)) { new_post }
       @body = "Lorem Ipsum dolor sit amet."
       post(:parse,
            :from => user.email,
-           :to => "neighborhood@ourcommonplace.com",
+           :to => "#{community.slug}@ourcommonplace.com",
            :text => @body,
            :subject => @body,
            :envelope => {:from => "test@example.com"})
     end
-    
-    it "creates a new post" do
-      Post.should have_received.create(hash_including(:user => user))
-    end
 
   end
   
-  describe "feed_slug@feeds.ourcommonplace.com" do
+  describe "feed_slug@ourcommonplace.com" do
     let(:new_announcement) { mock_model(Announcement) }
-    let(:feed) { mock_model(Feed, :slug => "test", :user_id => user.id, :community_id => community.id) }
-    before :each do
-      stub(Announcement).create { new_announcement }
-      stub(Feed).find_by_slug( feed.slug ) { feed }
+    let(:feed) { mock_model(Feed, :slug => "testfeed", :user_id => user.id, :community_id => community.id) }
+
+    it "posts a new announcement to a feed" do
+      mock(Announcement).create(hash_including(:owner => feed)) { new_announcement }
+      stub(community).feeds.stub!.find_by_slug( feed.slug ) { feed }
       @body = "Lorem Ipsum dolor sit amet."
       post(:parse,
            :to => "#{feed.slug}@ourcommonplace.com",
@@ -86,10 +84,7 @@ Hey -- testing a reply!
            :text => @body,
            :subject => @body,
            :envelope => { :from => "test@example.com"})
-    end
-    
-    it "posts a new announcement to a feed" do
-      Announcement.should have_received.create(hash_including(:owner => feed))
+
     end
   end
 
