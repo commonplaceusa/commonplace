@@ -25,7 +25,6 @@ class AnnouncementsController < CommunitiesController
           Resque.enqueue(AnnouncementNotification, @announcement.id, user.id)
         end
       end
-      end
       redirect_to announcements_path
     else
       render :new

@@ -84,5 +84,38 @@ class DailyBulletin < MailBase
       }
     end
   end
+
+  def events?
+    !events.empty?
+  end
+
+  def events
+    @events ||= community.events.between(@date, @date.advance(:weeks => 1)).map do|event|
+      { :name => event.name,
+        :posted_at => event.created_at.strftime("%I:%M%P %b %d"),
+        :posted_by => event.owner.name,
+        :body => event.description,
+        :date => {
+          :short_month => event.date.strftime("%b"),
+          :day => event.date.strftime("%d")
+        },
+        :time => {
+          :start => event.start_time.try(:strftime,"%l:%M%P") || "?",
+          :end => event.end_time.try(:strftime,"%l:%M%P") || "?"
+        },
+        :url => url("/events/#{event.id}"),
+        :num_more_replies => event.replies.count > 2 ? event.replies.count - 2 : nil,
+        :venue => event.venue.present? ? event.venue : "--",
+        :address => event.address.present? ? event.address : "--",
+        :replies => event.replies.take(2).map do |reply| 
+          { :user_avatar_url => url(reply.user.avatar_url(:thumb)),
+            :posted_by => reply.user.name,
+            :body => reply.body,
+            :posted_at => reply.created_at.strftime("%I:%M%P %b %d")
+          }
+        end
+      }
+    end
+  end
   
 end
