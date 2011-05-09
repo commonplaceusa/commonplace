@@ -1,1 +1,1 @@
-require "#{RAILS_ROOT}/lib/mapifier.rb"
+require "#{Rails.root}/lib/mapifier.rb"

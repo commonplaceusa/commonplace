@@ -92,8 +92,8 @@ describe User do
     it "capitalizes first, middle and last names" do
       @user.full_name = "jason ross berlinsky"
       @user.first_name.should == "Jason"
-      @user.last_name.should == "Berlinsky"
       @user.middle_name.should == "Ross"
+      @user.last_name.should == "Berlinsky"
     end
 
     it "successfully handles changing away from a middle-named name" do
@@ -104,7 +104,7 @@ describe User do
 
       @user.full_name = "Billy Joel"
       @user.first_name.should == "Billy"
-      @user.middle_name.should == nil
+      @user.middle_name.should be_empty
       @user.last_name.should == "Joel"
       @user.full_name.should == "Billy Joel"
     end

@@ -2,24 +2,24 @@ en:
   syndicate:
     events:
       title: Upcoming Events
-      link: Community<br> Events
+      link_html: Community<br> Events
     posts:
       title: Recent Neighborhood Posts
-      link: Neighborhood <br>Posts
+      link_html: Neighborhood <br>Posts
     announcements:
       title: Recent Community Announcements
-      link: Community<br> Announcements
+      link_html: Community<br> Announcements
     people:
       title: Your Neighbors
     users:
-      link: Directory
+      link_html: Directory
     groups:
       title: Discussion Groups
     feeds:
       title: Community Feeds
-      link: Community <br>Feeds
+      link_html: Community <br>Feeds
     group_posts:
-      link: Group <br>Posts
+      link_html: Group <br>Posts
       title: Discussion Group Posts
     messages:
       title: Your Inbox

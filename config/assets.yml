@@ -9,8 +9,6 @@ stylesheets:
     - public/stylesheets/ie.css
   internship:
     - public/stylesheets/internship.css
-  management:
-    - public/stylesheets/management.css
   starter_site:
     - public/stylesheets/starter_site.css
 
@@ -23,7 +21,6 @@ javascripts:
       - public/javascripts/app.js
       - public/javascripts/inlineform.js
       - public/javascripts/maps.js
-      - public/javascripts/syndicate.js
       - public/javascripts/modal.js
       - public/javascripts/infobox.js
       - public/javascripts/feed_profile.js

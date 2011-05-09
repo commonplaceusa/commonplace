@@ -12,8 +12,4 @@ class GroupPost < ActiveRecord::Base
     self.user
   end
 
-  def time
-    Helper.help.post_date(self.created_at)
-  end
-
 end

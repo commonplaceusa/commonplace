@@ -11,7 +11,7 @@
       .social{:style=>"width:52px;height:21px;overflow:hidden;"}
         %fb:like{:layout => "button_count", :show_faces => "false", :width => "50", :height => "10", :href => request.protocol + request.host + url_for(announcement)}
   %time
-    = announcement.time
+    = post_date announcement.created_at
 
   .reply-count #{ announcement.replies.size } replies
   .title= announcement.subject

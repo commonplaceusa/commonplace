@@ -8,21 +8,21 @@
       %p= t ".p2" , :community_email => mail_to("myneighbors@ourcommonplace.com", "myneighbors@ourcommonplace.com")
     %p= t ".p3"
     
-  - semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
+  = semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
 
-    - f.inputs do 
+    = f.inputs do 
       = f.input :password
       - if $rollout.active?(:facebook_like, current_user)
         %li
           = check_box_tag 'register_with_oauth2'
           = label_tag "register_with_oauth2", "Or register with Facebook Connect"
 
-      - if current_user.address.blank?
+      = if current_user.address.blank?
         = f.input :address
       = f.input :avatar, :input_html => {:size => 25}
       = f.input :about
       = f.input :interest_list
 
-    - f.buttons do
+    = f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
 

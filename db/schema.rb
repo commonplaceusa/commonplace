@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20110426205322) do
   end
 
   create_table "memberships", :force => true do |t|
+    t.string   "receive_method", :default => "Live"
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at"
