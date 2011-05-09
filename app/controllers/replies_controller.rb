@@ -14,10 +14,10 @@ class RepliesController < CommunitiesController
       if @reply.repliable.is_a? Message
         redirect_to message_url(@reply.repliable)
       else
-        render :show
+        render :show, :layout => false
       end
     else
-      render :new
+      render :new, :layout => false
     end
   end
   

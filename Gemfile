@@ -1,92 +1,78 @@
 source :gemcutter
 
-gem 'rails', '2.3.9'
+gem 'rails', '3.0.7'
+
+# Infrastructure
+gem 'god'
+gem 'unicorn'
+gem 'text-reform'
+gem 'thor'
+
+# Database
+gem 'SystemTimer', :require => 'system_timer'
+gem 'redis'
+gem 'redis-namespace', :require => false
 gem 'pg'
-gem 'rollout'
-gem 'subdomain-fu'
-gem 'nested_layouts'
-gem 'aasm'
+
+# Authentication/Authorization
 gem 'authlogic'
 gem 'oauth2'
-gem 'authlogic_oauth2'
-gem 'compass', '0.11.beta.1'
-gem 'haml', '3.1.0.alpha.147'
-gem 'formtastic'
-gem 'paperclip'
-gem 'acts-as-taggable-on'
-gem 'BlueCloth', :require => 'bluecloth'
-gem 'acts-as-list', :require =>'acts_as_list'
-gem 'glebm-geokit', :require => 'geokit'
+gem 'robdimarco_authlogic_oauth2', :require => 'authlogic_oauth2'
 gem 'cancan'
-gem 'tlsmail'
-gem 'resque'
-gem 'resque_mailer'
-gem 'resque-exceptional'
-gem 'SystemTimer', :require => 'system_timer'
-gem 'exceptional'
-gem 'aasm'
-gem 'tmail'
 
-gem 'rmagick'
 
+# Views/Stylesheets
+gem 'compass', '~> 0'
+gem 'haml', '~> 3.1'
+gem 'sass', '~> 3.1'
+gem 'formtastic'
 gem 'jammit'
-
 gem 'sanitize'
-
-gem 'mail_style'
-
 gem 'mail'
 gem 'mustache'
-gem 'premailer'
 
+# Formats
+gem 'premailer'
 gem 'httparty'
 gem 'json'
-gem 'simple_uuid'
-gem 'outside-in'
 gem 'mcbean'
-gem 'eventfulapi'
-gem 'rMeetup'
+gem 'BlueCloth', :require => 'bluecloth'
 
-gem 'redis'
-gem 'redis-namespace'
-gem 'yajl-ruby'
-gem 'json'
+# ActiveRecord
+gem 'paperclip'
+gem 'rmagick'
+gem 'acts-as-list', :require =>'acts_as_list'
+gem 'glebm-geokit', :require => 'geokit'
+gem 'simple_uuid'
+
+# Jobs
 gem 'resque'
+gem 'resque-exceptional'
 gem 'resque-scheduler'
-gem 'sanitize_email'
 
-gem 'twitter'
-
-gem 'god'
-gem 'metric_fu'
-group 'cli' do
-  gem 'text-reform'
-  gem 'thor'
-end
-
-group :production do
-gem 'unicorn'
-end
+# Features/Monitoring
+gem 'exceptional'
+gem 'rollout'
 
 group :development, :test do
+  gem 'metric_fu'
   gem 'factory_girl'
-  gem 'ZenTest'
   gem 'forgery'
-  gem 'rspec-rails', '~> 1.3'
-  gem 'rspec', '~> 1.3'
-  gem 'autotest-rails'
-end
-
-group :development do 
-  gem 'capistrano'
-  gem 'capistrano-ext'
-  gem 'mongrel'
-end
-
-group :test do
+  gem 'rspec-rails', "~> 2.4"
+  gem 'fuubar'
   gem 'spork'
   gem 'rr'
   gem 'rspec-rr'
+  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'launchy'
   gem 'database_cleaner'
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'mongrel'
+  gem 'ruby-prof'
+  gem 'newrelic_rpm'
+  gem 'autotest-standalone'
+  gem 'autotest-rails-pure'
 end
+
 

@@ -1,6 +1,4 @@
-- update_content "#information" do
-  = render 'groups/info_box', :group => @group
+= render 'groups/info_box', :group => @group
 
-- trigger 'replace-with', :selector => ".item.#{ dom_id(@group) } div" do
-  = render 'groups/group', :group => @group
+= render 'groups/group', :group => @group
   

@@ -1,6 +1,5 @@
-- update_content "#information" do
-  = render 'feeds/info_box', :feed => @feed
+= render 'feeds/info_box', :feed => @feed
 
-- trigger 'replace-with', :selector => ".item.#{ dom_id(@feed) } div" do
-  = render 'feeds/feed', :feed => @feed
+
+= render 'feeds/feed', :feed => @feed
   

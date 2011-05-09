@@ -1,6 +1,5 @@
 class Post < ActiveRecord::Base
   CATEGORIES = %w{Request Offer Invitation Announcement Question}  
-  include IDEncoder
 
   delegate :neighborhood, :to => :user
   
@@ -15,7 +14,7 @@ class Post < ActiveRecord::Base
 
   attr_accessor :post_to_facebook
 
-  named_scope :between, lambda { |start_date, end_date| 
+  scope :between, lambda { |start_date, end_date| 
     { :conditions => 
       ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
   }
@@ -24,33 +23,12 @@ class Post < ActiveRecord::Base
     "Neighborhood Post"
   end
   
-  def long_id
-    IDEncoder.to_long_id(self.id)
-  end
-  
-  def self.find_by_long_id(long_id)
-    Post.find(IDEncoder.from_long_id(long_id))
-  end
-  
   def category
     super || "Announcement"
-  end
-  
-  def time
-    Helper.help.post_date(self.created_at)
   end
   
   def owner
     self.user
   end
-  
-  def deleteLink
-    if UserSession.find.user.admin? || self.user == UserSession.find.user
-      "<a href='/posts/destroy/#{self.id}'><img src='/images/delete.png' /></a>"
-    else
-      ""
-    end
-  end
-    
-  
+
 end

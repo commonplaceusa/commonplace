@@ -13,6 +13,7 @@ class SubscriptionsController < CommunitiesController
     @feed = Feed.find params[:feed_id]
     current_user.feeds << @feed
     flash[:message] = "You've subscribed to #{ @feed.name }."
+    render :create, :layout => false
   end
   
   def destroy
@@ -20,6 +21,6 @@ class SubscriptionsController < CommunitiesController
     current_user.feeds.delete @feed
     current_user.save
     flash[:message] = "You've unsubscribed from #{ @feed.name }."
-    render :create
+    render :create, :layout => false
   end
 end

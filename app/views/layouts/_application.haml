@@ -1,6 +1,3 @@
-- unless updated_content["#tooltip"]
-  - render 'shared/tooltip'
-
 !!! 5
 %html
   %head
@@ -22,7 +19,7 @@
       $(function () {
       Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
       FB.init({
-      = "appId  : #{$FacebookConfig['app_id']},"
+      = "appId  : #{($FacebookConfig || {})['app_id']},"
       status : true,
       cookie : true,
       xfbml  : true
@@ -62,7 +59,7 @@
       #modal
 
 
-  - if RAILS_ENV == "production"
+  - if Rails.env.production?
     %script
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-12888551-3']);

@@ -1,156 +1,98 @@
-ActionController::Routing::Routes.draw do |map|
-  
-  Jammit::Routes.draw(map)
-  
-  map.resources :internships
+require 'subdomain'
+Commonplace::Application.routes.draw do
 
+  # Community routes 
 
-  map.with_options :conditions => { :subdomain => "admin" } do |admin|
-    admin.root :controller => "administration", :action => "show"
+  constraints(Subdomain) do
+
+    root :to => "communities#show"
     
-    admin.resources :addresses, :controller => "administration/addresses"
-    admin.resources :feeds, :controller => "administration/feeds"
-    admin.resources :communities, :controller => "administration/communities"
+    resource :invites
+
+    # Post-like things
+    resources :group_posts, :announcements
+    resources :posts do
+      member do
+        put :uplift
+      end
+    end
+    
+
+    resources :events do
+      resource :attendance, :only => [:create, :new]
+      resource :messages, :only => [:create, :new] # FixME deal with :requirements => {:messageable => "Event"}
+    end
+
+    resources :replies
+
+
+    # User/Group-like things
+    resources :groups, :only => [:index, :show] do
+      resource :membership, :only => [:create, :destroy]
+    end
+    
+    resources :users, :only => [:index, :show] do
+      resource :met, :only => [:create, :destroy]
+      resources :messages, :only => [:new, :create]
+    end
+
+    resources :feeds do
+      member do
+        get :import
+        get :profile
+      end
+
+      resource :subscription, :only => [:create, :destroy]
+      resources :announcements, :controller => 'feeds/announcements'
+      resources :events, :controller => 'feeds/events'
+      resource :invites, :controller => 'feeds/invites'
+      
+      resources :messages, :only => [:new, :create]
+        
+    end
+
+
+    # Account
+    resource :inbox, :only => [:get]
+    resources :messages do
+      collection do
+        get :admin_quick_view
+      end
+    end
+
+    resources :avatars, :only => [:edit, :update]
+
+    resource :account do
+      member do 
+        get :edit_new, :edit_avatar, :learn_more, :edit_interests, :add_feeds, :add_groups, :delete
+        put :update_new, :update_avatar, :update_interests, :settings
+        post :subscribe_to_feeds, :subscribe_to_groups, :avatar
+      end
+    end
+
   end
 
-  if RAILS_ENV != 'production'
-    map.resources :deliveries
-  end
+  # Global routes
+
+  root :to => "site#index"
   
+  match 'about' => 'site#about'
+  match 'privacy' => 'site#privacy'
+  match 'terms' => 'site#terms'
+  match 'dmca' => 'site#dmca'
+  match 'logout' => 'user_sessions#destroy'
+  match 'login' => 'user_sessions#new'
+  match 'faq' => 'site#faq'
+  match 'email_parse/parse' => 'email_parse#parse', :via => :post
 
-  map.set_neighborhood("set_neighborhood/:neighborhood_id", 
-                       :controller => "application", :action => "set_neighborhood", :method => :post)
-  
-  map.with_options :conditions => { :subdomain => /[A-Za-z]+/ }, :shallow => true do |community|
-    
-    community.resources :groups do |group|
-      group.resource :membership, :only => [:index, :show, :create, :destroy]
-    end
-    community.resources :group_posts
-    community.resources :posts
-    
-    community.resources :avatars, :only => [:edit, :update]
-    
-    community.root :controller => "communities", :action => "show"
+  resource :user_session
 
-    community.resources :posts, :member => {"uplift" => :put}
-
-    
-    community.resources :announcements, :collection => {"subscribed" => :get}
-    community.resources :subscriptions, :collection => {"recommended" => :get}
-    community.resources :replies
-    community.resources :messages, :collection => {"admin_quick_view" => :get}
-    
-    community.resources :tags
-
-    community.resources :events, :collection => {"your" => :get, "suggested" => :get} do |event|
-      event.resource :attendance
-      event.resources :referrals
-      event.resources :messages, :only => [:create, :new], :requirements => {:messagable => "Event"}
-    end
-    
-    community.resources :users do |user|
-      user.resource :met, :only => [:create, :destroy]
-      user.resources :messages, :only => [:create, :new], :requirements => {:messagable => "User"}
-    end
-    
-    community.resource :invites
-    
-    community.resources :feeds, :member => [:profile, :import] do |feed|
-      feed.resource :subscription, :only => [:index, :show, :create, :destroy]
-      feed.resource :claim, :member => [:edit_fields]
-      feed.resources :announcements, :controller => "feeds/announcements"
-      feed.resources :events, :controller => "feeds/events"
-      feed.resource :invites, :controller => "feeds/invites"
-      feed.resources :profile_fields, :collection => {"order" => :put}
-      feed.resources :messages, :only => [:create, :new], :requirements => {:messagable => "Feed"}
-    end
-
-    community.namespace :neighborhood do |neighborhood|
-      neighborhood.resources :people, :only => :index
-    end
-
-    map.about 'about', :controller => 'site', :action => 'about'
-    map.privacy 'privacy', :controller => 'site', :action => 'privacy'
-    map.terms 'terms', :controller => 'site', :action => 'terms'
-    map.dmca 'dmca', :controller => 'site', :action => 'dmca'
-    map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
-    map.login 'get-started', :controller => 'user_sessions', :action => 'new'
-    map.faq 'faq', :controller => 'site', :action => 'faq'
-    map.resource :inbox
-    map.resources :platform_updates
-    map.resource :user_session
-    map.resources :password_resets
-    
-    map.resource :account, :member => { 
-      :edit_new => :get, 
-      :update_new => :put,
-      :edit_avatar => :get,
-      :update_avatar => :put,
-      :learn_more => :get,
-      :edit_interests => :get,
-      :update_interests => :put,
-      :settings => :put,
-      :add_feeds => :get,
-      :subscribe_to_feeds => :post,
-      :add_groups => :get,
-      :subscribe_to_groups => :post,
-      :take_photo => :post,
-      :avatar => :post,
-      :delete => :get,
-      :create => [:get, :post]
-    }
+  resources :password_resets
 
 
-  end
-  
-  map.with_options :conditions => {:subdomain => nil } do |starter_site|
-    starter_site.root :controller => "site"
-    starter_site.resources :requests
-    starter_site.connect 'interns', :controller => "site", :action => 'interns'
-  end
+  # Blog and Starter Site routes
+  resources :internships
+  resources :requests
+  match 'interns', :to => "site#interns"
 
-  
-  # The priority is based upon order of creation: first created -> highest priority.
-
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
-
-  # See how all your routes lay out with "rake routes"
-
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
-  
 end

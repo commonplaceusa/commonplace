@@ -1,13 +1,13 @@
 %nav#zones
   - if $rollout.active?(:group_posts, current_user)
     - [:posts, :events, :announcements, :group_posts, :users].each do |zone|
-      - link_to zone, 'data-remote' => true, :class => current_page?(zone) ? "selected_nav #{zone}" : zone.to_s do
-        = t("syndicate.#{zone}.link")
+      = link_to zone, 'data-remote' => true, :class => current_page?(zone) ? "selected_nav #{zone}" : zone.to_s do
+        = t("syndicate.#{zone}.link_html")
         #border_hack
   - else
     - [:posts, :events, :announcements, :feeds, :users].each do |zone|
-      - link_to zone, 'data-remote' => true, :class => current_page?(zone) ? "selected_nav #{zone}" : zone.to_s do
-        = t("syndicate.#{zone}.link")
+      = link_to zone, 'data-remote' => true, :class => current_page?(zone) ? "selected_nav #{zone}" : zone.to_s do
+        = t("syndicate.#{zone}.link_html")
         #border_hack
 
 
