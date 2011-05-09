@@ -27,7 +27,9 @@ Commonplace::Application.routes.draw do
 
 
     # User/Group-like things
-    resources :groups, :only => [:index, :show]
+    resources :groups, :only => [:index, :show] do
+      resource :membership, :only => [:create, :destroy]
+    end
     
     resources :users, :only => [:index, :show] do
       resource :met, :only => [:create, :destroy]

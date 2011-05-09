@@ -32,4 +32,40 @@ $(function() {
           });
   }, $.noop);
 
+
+  $('a.new_subscription').live('click', function(e) {
+    e.preventDefault();
+    var that = this;
+    $.post($(that).attr('href'), function(response) {
+      if (response) {
+        var $response = $(window.innerShiv(response,false));
+        $("#information").replaceWith($response.filter("#information"));
+        var $newitem = $response.filter('div.item_div');
+        console.log($newitem);
+        $("#" + $newitem.attr('id')).replaceWith($newitem);
+      }
+    });
+  });
+
+
+
+  $('a.unsubscribe').live('click', function(e) {
+    e.preventDefault();
+    var that = this;
+    $.ajax({
+      type: "DELETE",
+      url: $(that).attr('href'),
+      success: function(response) {
+        if (response) {
+          var $response = $(window.innerShiv(response,false));
+          $("#information").replaceWith($response.filter("#information"));
+          var $newitem = $response.filter('div.item_div');
+          console.log($newitem);
+          $("#" + $newitem.attr('id')).replaceWith($newitem);
+        }
+
+      }
+    });
+  });
+
 });
