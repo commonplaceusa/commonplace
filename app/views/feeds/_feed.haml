@@ -5,8 +5,8 @@
   - if current_user.feeds.include? feed
     %span.subscribed
       %span
-        Subscribed
+        You're Subscribed
   - else
     - link_to feed_subscription_path(feed), 'data-remote' => true, 'data-method' => 'post', :class => "new_subscription new_#{dom_id feed}_subscription" do
-      %span Subscribe
+      %span Subscribe?
 
