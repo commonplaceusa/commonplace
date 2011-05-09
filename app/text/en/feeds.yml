@@ -23,7 +23,7 @@ en:
       about:
         title: About Us
       members:
-        title: Members (%{count})
+        title: Subscribers (%{count})
       post:
         title: Post an&#58;
       post_tabs:
