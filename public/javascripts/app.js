@@ -30,7 +30,7 @@ $(function() {
            function(response) {
              if (response) {
                var $replies = $(that).closest("div.replies");
-               $replies.replaceWith($(window.innerShiv(response,false)).find($replies.attr('id')));
+               $replies.replaceWith($(window.innerShiv(response,false)).filter("#" + $replies.attr('id')));
              }
            });
   });
