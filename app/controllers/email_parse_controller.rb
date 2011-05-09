@@ -1,7 +1,7 @@
 class EmailParseController < ApplicationController
   
   protect_from_forgery :only => []
-  before_filter :check_envelope, :check_user
+  before_filter :check_user
 
 
   def parse
@@ -16,6 +16,14 @@ class EmailParseController < ApplicationController
           end
         end
       end
+    when 'notifications'
+      logger.info(<<END
+Email to notifications@ourcommonplace.com
+subject #{subject}
+body: #{body}
+from: #{from}
+END
+)
     else
 
       if to.downcase == user.community.slug.downcase
@@ -73,13 +81,6 @@ class EmailParseController < ApplicationController
     end
   end
 
-  def check_envelope
-    if params[:envelope][:from].blank? # If this is an auto-response
-      render :nothing => true
-      return false
-    end
-  end
-  
   def user
     @user ||= User.find_by_email(from)
   end
