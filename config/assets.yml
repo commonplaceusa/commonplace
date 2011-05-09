@@ -21,7 +21,6 @@ javascripts:
       - public/javascripts/app.js
       - public/javascripts/inlineform.js
       - public/javascripts/maps.js
-      - public/javascripts/syndicate.js
       - public/javascripts/modal.js
       - public/javascripts/infobox.js
       - public/javascripts/feed_profile.js
