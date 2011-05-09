@@ -62,11 +62,6 @@
 
 
     #column-2<>
-      - if can?(:edit, @feed)
-        = updated_content_or("#post-to-feed") do
-          = render 'feeds/announcements/form', :feed => @feed, :announcement => Announcement.new
-
-
       #recent-posts
         %h2= t 'feeds.profile.recent_posts.title'
         - if @feed.announcements.empty? && @feed.events.empty?
