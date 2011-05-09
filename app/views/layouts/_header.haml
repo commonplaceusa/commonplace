@@ -18,7 +18,11 @@
         = tab_to "Inbox", messages_url
         = tab_to "Invite", "/invites/new"
         .user-feeds
-          %h4 Feeds 
+          %h4
+            - if current_user.managable_feeds.count > 0
+              Feeds 
+            - else
+              Register a Community Feed
           %ul
             - current_user.managable_feeds.each do |feed|
               %li= link_to feed.name, feed_profile_path(feed)
