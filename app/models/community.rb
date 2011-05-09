@@ -36,11 +36,11 @@ class Community < ActiveRecord::Base
                     :default_url => "/avatars/missing.png")
 
   def self.find_by_name(name)
-    find(:first, :conditions => ["LOWER(name) = ?", name.downcase])
+    where("LOWER(name) = ?", name.downcase).first
   end
 
   def self.find_by_slug(slug)
-    find(:first, :conditions => ["LOWER(slug) = ?", slug.downcase])
+    where("LOWER(slug) = ?", slug.downcase).first
   end
   
   def neighborhood_for(address)

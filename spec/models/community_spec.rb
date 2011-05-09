@@ -5,7 +5,7 @@ describe Community do
   describe "when asked for a neighborhood for an address" do
     
     let(:community) { 
-      mock_model(Community, :neighborhoods => neighborhoods)
+      mock_model(Community, :neighborhoods => neighborhoods, :zip_code => "02139")
     }
 
     let(:neighborhoods) { 

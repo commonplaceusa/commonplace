@@ -1,5 +1,5 @@
 class Feed < ActiveRecord::Base
-  
+
   validates_presence_of :name, :community
   validates_presence_of :about, :if => lambda { |f| f.user_id }
   
@@ -7,7 +7,10 @@ class Feed < ActiveRecord::Base
 
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
 
-  before_create :generate_slug
+  before_validation(:on => :create) do
+    self.generate_slug unless self.slug?
+    true
+  end
 
   belongs_to :community
   belongs_to :user
@@ -25,9 +28,9 @@ class Feed < ActiveRecord::Base
 
   has_attached_file(:avatar,                    
                     :styles => { 
-                      :thumb => "100x100^", 
-                      :normal => "120x120^",
-                      :large => "200x200^"
+                      :thumb => "100x100#", 
+                      :normal => "120x120#",
+                      :large => "200x200#"
                     },
                     :default_url => "/avatars/missing.png", 
                     :url => "/system/feeds/:id/avatar/:style.:extension",

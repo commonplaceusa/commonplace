@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  include IDEncoder
+
   
   belongs_to :user
   belongs_to :messagable, :polymorphic => true
