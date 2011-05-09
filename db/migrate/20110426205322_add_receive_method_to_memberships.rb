@@ -1,6 +1,6 @@
 class AddReceiveMethodToMemberships < ActiveRecord::Migration
   def self.up
-    add_column :memberships, :receive_method, :string, :default => "Daily"
+    add_column :memberships, :receive_method, :string, :default => "Live"
 
     Membership.reset_column_information
 
