@@ -7,27 +7,54 @@ $(function() {
     $.get($(this).attr('href'),
           function(response) {
             if (response) {
-              $("#say-something").replaceWith($(response).find("#say-something"));
+              $("#say-something").replaceWith($(window.innerShiv(response,false)).find("#say-something"));
             }
           });
   });
 
-  $("#whats-happening nav#zones a").live('click', function(e) {
+  $("#whats-happening nav#zones a, #syndicate h3 a").live('click', function(e) {
     e.preventDefault();
     $.get($(this).attr('href'),
           function(response) {
             if (response) {
-              $('#whats-happening').replaceWith($(response).find("#whats-happening"));
-              $("#say-something").replaceWith($(response).find("#say-something"));
+              $('#whats-happening').replaceWith($(window.innerShiv(response,false)).find("#whats-happening"));
+              $("#say-something").replaceWith($(window.innerShiv(response,false)).find("#say-something"));
             }
           });
+  });
+
+  $("#syndicate form.new_reply").live("submit", function(e) {
+    e.preventDefault();
+    var that = this;
+    $.post($(that).attr("action"), $(that).serialize(), 
+           function(response) {
+             if (response) {
+               var $replies = $(that).closest("div.replies");
+               $replies.replaceWith($(window.innerShiv(response,false)).find($replies.attr('id')));
+             }
+           });
+  });
+
+  $('form.formtastic.feed input:text, form.formtastic.feed textarea').keydown(function(e) {
+    var $input = $(e.currentTarget);
+    setTimeout(function() {
+      $("#preview")
+        .find("[data-track='" + $input.attr('name') + "']")
+        .html($input.val());
+    }, 10);
+  });
+
+  $("#syndicate .replies a.all-replies").live("click", function(e) {
+    e.preventDefault();
+    $(this).hide();
+    $(this).siblings("ul").children("li").show();
   });
 
   $("#whats-happening li.item").hoverIntent(function(){
     $.get($(this).find('div').first().data('href'),
           function(response) {
             if (response) {
-              $('#community-profiles').replaceWith($(response).find("#community-profiles"));
+              $('#community-profiles').replaceWith($(window.innerShiv(response,false)).find("#community-profiles"));
             }
           });
   }, $.noop);
