@@ -87,24 +87,4 @@ Hey -- testing a reply!
 
     end
   end
-
-  describe "autoresponder" do
-    let(:new_announcement) { mock_model(Announcement) }
-    let(:feed) { mock_model(Feed, :slug => "test", :user_id => user.id, :community_id => community.id) }
-    before :each do
-      stub(Feed).find_by_slug( feed.slug ) { feed }
-      @body = "Lorem Ipsum dolor sit amet."
-    end
-
-    it "rejects a message without an envelope" do
-      dont_allow(Post).create
-      post(:parse,
-           :to => "neighborhood@ourcommonplace.com",
-           :from => user.email,
-           :text => @body,
-           :subject => @body,
-           :envelope => {})
-    end
-  end
-  
 end
