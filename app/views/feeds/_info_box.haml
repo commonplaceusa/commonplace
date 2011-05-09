@@ -11,7 +11,7 @@
     - if current_user.feeds.include? feed
       %span.subscribed
         %span
-          Subscribed
+          You're Subscribed
 
       - link_to feed_subscription_path(feed), 'data-remote' => true, 'data-method' => 'delete', :class => 'unsubscribe' do
         Unsubscribe
