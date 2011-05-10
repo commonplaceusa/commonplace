@@ -71,6 +71,10 @@ END
   
   protected 
 
+  def current_community
+    user.try(:community)
+  end
+
   def check_user
     if user.nil?
       Resque.enqueue(UnknownUser, from)
