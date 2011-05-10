@@ -8,7 +8,7 @@
       &sdot;
       = link_to 'edit', [:edit, group_post], 'data-remote' => true
   %time
-    = group_post.time
+    = post_date group_post.created_at
     
   = image_tag group_post.group.avatar_url(:thumb), :size => "98x98", :class => "avatar"
 

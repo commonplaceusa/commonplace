@@ -75,7 +75,11 @@ class MailBase < Mustache
                           :reply_to => self.reply_to,
                           :subject => self.subject,
                           :content_type => "text/html",
-                          :body => self.render)
+                          :body => self.render,
+                          :headers => {
+                            "Precedence" => "list",
+                            "Auto-Submitted" => "auto-generated"
+                          })
     end
   end
 

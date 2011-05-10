@@ -1,13 +1,29 @@
+require 'autotest/bundler'
+require 'autotest/notify'
+
 Autotest.add_hook(:initialize) {|at|
+
+  at.options[:quiet] = true
+
 %w{.git .swp .DS_Store ._* tmp rakefile .txt}.each do |exception| 
   at.add_exception(exception) 
 end
-  #  at.clear_mappings         # take out the default (test/test*rb)
+
   at.add_mapping(%r{^lib/.*\.rb$}) {|f, _|
     Dir['spec/**/*.rb']
   }
-  at.add_mapping(%r{^config/authorization\_rules\.rb$}) {|f, _|
-    Dir['spec/**/*.rb']
+
+  at.add_mapping(%r%^spec/acceptance/.*_spec.rb$%, true) { |filename, _|
+    filename
   }
+
+  at.add_mapping(%r%^app/(models|controllers|helpers|lib)/.*rb$%, true) {
+    at.files_matching %r%^spec/acceptance/.*_spec.rb$%
+  }
+
+  at.add_mapping(%r%^app/views/(.*)$%, true) {
+    at.files_matching %r%^spec/acceptance/.*_spec.rb$%
+  }
+
   nil
 }

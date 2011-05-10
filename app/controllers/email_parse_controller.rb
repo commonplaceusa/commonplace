@@ -1,17 +1,12 @@
 class EmailParseController < ApplicationController
   
   protect_from_forgery :only => []
-  before_filter :check_envelope, :check_user
+  before_filter :check_user
 
 
   def parse
     case to
       
-    when /neighborhood/i
-      post = Post.create(:body => body_text, :user => user, :subject => params[:subject], :community => user.community, :published => false)
-      
-      Resque.enqueue(PostConfirmation, post.id) if post
-
     when /reply\+([a-zA-Z_0-9]+)/
       if reply = Reply.create(:body => body_text, :repliable => Repliable.find($1), :user => user)
         (reply.repliable.replies.map(&:user) + [reply.repliable.user]).uniq.each do |user|
@@ -21,10 +16,26 @@ class EmailParseController < ApplicationController
           end
         end
       end
-      else
+    when 'notifications'
+      logger.info(<<END
+Email to notifications@ourcommonplace.com
+subject #{subject}
+body: #{body}
+from: #{from}
+END
+)
+    else
 
-      if feed = user.community.feeds.find_by_slug(to)
+      if to.downcase == user.community.slug.downcase
+        post = Post.create(:body => body_text, :user => user, :subject => params[:subject], :community => user.community)
+
+        Resque.enqueue(PostConfirmation, post.id) if post
+
+        user.neighborhood.users.receives_posts_live.each do |u|
+          Resque.enqueue(PostNotification, post.id, u.id) if post.user != user
+        end
         
+      elsif feed = user.community.feeds.find_by_slug(to)
         if feed.user_id == user.id
           announcement = Announcement.create(:body => body_text, :owner => feed, :subject => params[:subject], :community => feed.community)
 
@@ -70,13 +81,6 @@ class EmailParseController < ApplicationController
     end
   end
 
-  def check_envelope
-    if params[:envelope][:from].blank? # If this is an auto-response
-      render :nothing => true
-      return false
-    end
-  end
-  
   def user
     @user ||= User.find_by_email(from)
   end
@@ -86,11 +90,11 @@ class EmailParseController < ApplicationController
   end
 
   def to
-    @to ||= TMail::Address.parse(params[:to]).spec.slice(/^[^@]*/)
+    @to ||= Mail::Address.new(params[:to]).address.slice(/^[^@]*/)
   end
 
   def from
-    @from ||= TMail::Address.parse(params[:from]).spec
+    @from ||= Mail::Address.new(params[:from]).address
   end
   
 end

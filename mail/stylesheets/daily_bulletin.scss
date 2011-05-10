@@ -55,6 +55,46 @@ table.post {
     }
 }
 
+.calendar {
+    width: 50px ; text-align: center ;
+    .short-month { border: 1px solid #b55f58 ; border-bottom-width: 0px ; background-color: #b35750 ; color: #ecd5d4 }
+    .day { border: 1px solid #cfcfcf ; border-top-width: 0px ; background-color: #f2f2f2 ; height: 30px ; line-height: 30px ; color: #666666 ; }
+}
+
+
+table.event .date-time { 
+    vertical-align: top ; width: 60px ; 
+    .time { font-size: 12px ; font-family: $serifs ; color: #3b6085 ; padding-top: 5px ; text-align: center ; }
+}
+
+table.event, table.announcement {
+    width: $main-width ; 
+    border-top: 1px solid #3b6085 ; 
+    padding: 10px 0px; 
+
+    .event-field { color: #b53f3c ; font-family: $serifs ; }
+    
+    .body p, p.body { padding-bottom: 5px ; }
+
+    .posted-at { vertical-align: top ; text-align: right ; color: #3b6085 ; }
+    .name, .name a { color: #252525 ; font-size: 20px ; text-decoration: none ; }
+    .posted-by { color: #af412f ; font-family: $serifs ; }
+    .reply { border-top: 1px solid #dadada ; width: 540px ; }
+    .reply p { line-height: 1.2 ; margin-top: 5px ; margin-bottom: 5px ; }
+    .reply p.body { margin-top: 0px ; }
+    .reply .avatar { 
+        vertical-align: top ; width: 35px ; 
+        img { margin-top: 5px ; } 
+    }
+    .reply .posted-at { padding-top: 5px ; }
+}
+
+.event-reply, .announcement-reply {
+    margin-left: 410px ; 
+    margin-top: 10px ; 
+    a { @include red-button ; font-size: 13px ; font-family: $serifs ; text-align: center ; }
+}
+
 .action-section {
     h4 { color: #3b6085 ; font-size: 18px ; font-family: $serifs ; margin-bottom: 5px ; }
     p { font-family: $body-serifs ; color: #676767 ; font-size: 14px ; line-height: 1.2 ; }

@@ -1,5 +1,5 @@
 
-- form_for reply, :html => {'data-remote' => true} do |f|
+= form_for reply, :html => {'data-remote' => true} do |f|
   = image_tag reply.user.avatar_url(:thumb), :class => "avatar"
   = f.hidden_field :repliable_id
   = f.hidden_field :repliable_type

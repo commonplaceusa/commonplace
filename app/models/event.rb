@@ -1,8 +1,8 @@
 class Event < ActiveRecord::Base
-  include IDEncoder
+
   
   attr_accessor :pledge
-  
+
   validates_presence_of :name, :description, :date
   validates_uniqueness_of :source_feed_id, :if => Proc.new { |event| event.owner_type == "Feed" && event.source_feed_id }
 
@@ -16,11 +16,11 @@ class Event < ActiveRecord::Base
 
   has_many :invites, :as => :inviter
 
-  named_scope :upcoming, lambda { { :conditions => ["? <= date", Time.now.beginning_of_day.utc] } }
-  named_scope :between, lambda { |start_date, end_date| 
+  scope :upcoming, lambda { { :conditions => ["? <= date", Time.now.beginning_of_day.utc] } }
+  scope :between, lambda { |start_date, end_date| 
     { :conditions => ["? <= date AND date < ?", start_date, end_date] } 
   }
-  named_scope :past, :conditions => ["date < ?", Time.now.utc]
+  scope :past, :conditions => ["date < ?", Time.now.utc]
 
   def tag_list
     self.cached_tag_list
