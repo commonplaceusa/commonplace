@@ -2,7 +2,7 @@
 %div{:id => "#{dom_id(item)}_replies", :class => "replies"}
   = image_tag 'reply-arrow-top.png', :class => "reply-arrow"
   - if item.replies.size > 3
-    = link_to "Show earlier replies", "/replies", :class => "all-replies"
+    = link_to "Show #{item.replies.size - 3} earlier replies", "/replies", :class => "all-replies"
   %ul
     - item.replies.first(item.replies.size - 3 < 0 ? 0 : 3).each do |reply|
       %li.reply.tooltip{'data-title' => "Click to view #{reply.user.name}'s profile.", :style => "display: none"}
