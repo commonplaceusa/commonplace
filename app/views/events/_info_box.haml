@@ -5,7 +5,7 @@
   #big_calendar.avatar= render 'events/calendar', :event => event
 
   .actions
-    - link_to new_event_message_path(event), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ event.name }" do 
+    - link_to "/events/#{event.to_param}/messages/new", :class => "message_me" do 
       %span Message #{ event.owner.name }
 
     - if event.attendees.include? current_user
