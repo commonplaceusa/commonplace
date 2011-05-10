@@ -6,7 +6,7 @@
   
   .actions 
     - if user != current_user
-      = link_to new_user_message_path(user), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ user.first_name }" do 
+      = link_to "/users/#{user.to_param}/messages/new", :class => "message_me" do 
         %span Message #{ user.first_name }
 
       - if current_user.people.include? user

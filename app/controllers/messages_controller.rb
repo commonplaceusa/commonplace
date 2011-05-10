@@ -13,7 +13,7 @@ class MessagesController < CommunitiesController
   def new
     authorize! :create, Reply
     @message = Message.new(:messagable => parent)
-    render :layout => 'communities'
+    render :layout => false
   end
 
   def create
@@ -21,8 +21,9 @@ class MessagesController < CommunitiesController
     if @message.save
       flash.now[:message] = "Message sent to #{@message.messagable.name}"
       Resque.enqueue(MessageNotification, @message.id, @message.messagable_id)
+      render :create, :layout => false
     else
-      render :new, :layout => 'communities'
+      render :new, :layout => false
     end
   end
   
@@ -47,6 +48,6 @@ class MessagesController < CommunitiesController
 
   protected
   def parent
-    @parent ||= params[:messagable].constantize.find(params[(params[:messagable].downcase + "_id").intern])
+    @parent ||= params[:messagable_type].singularize.camelize.constantize.find(params[:messagable_id])
   end
 end
