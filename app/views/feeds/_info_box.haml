@@ -5,7 +5,7 @@
   = image_tag feed.avatar_url(:normal), :width => 120, :class => "avatar"
 
   .actions
-    - link_to new_feed_message_path(feed), :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ feed.name }" do 
+    - link_to "/feeds/#{feed.to_param}/messages/new", :class => "message_me", 'data-remote' => true, 'data-title' => "Click to send a private message to #{ feed.name }" do 
       %span Message #{ feed.name }
 
     - if current_user.feeds.include? feed

@@ -19,6 +19,15 @@ $(function() {
             if (response) {
               $('#whats-happening').replaceWith($(window.innerShiv(response,false)).find("#whats-happening"));
               $("#say-something").replaceWith($(window.innerShiv(response,false)).find("#say-something"));
+              $("#whats-happening li.item").hoverIntent(function(){
+                $.get($(this).find('div').first().data('href'),
+                      function(response) {
+                        if (response) {
+                          $('#community-profiles').replaceWith($(window.innerShiv(response,false)).find("#community-profiles"));
+                          setInfoBoxPosition();
+                        }
+                      });
+              }, $.noop);
             }
           });
   });
@@ -96,4 +105,32 @@ $(function() {
     });
   });
 
+  $('a.message_me').live('click', function(e) {
+    e.preventDefault();
+    var that = this;
+    $.get($(that).attr('href'),
+          function(response) {
+            if (response) {
+              $("#modal").replaceWith(
+                $(window.innerShiv(response,false)).filter("#modal")
+              );
+              $(window).trigger('resize.modal');
+            }
+          });
+
+  });
+
+  $('form.message').live('submit',
+                         function(e) {
+                           e.preventDefault();
+                           var that = this;
+                           $.post($(that).attr('action'), $(that).serialize(),
+                                  function(response) {
+                                    if (response) {
+                                      $("#modal").replaceWith(window.innerShiv(response,false));
+                                    }
+                                    $(window).trigger('resize.modal');
+                                  });
+                         });
+  
 });

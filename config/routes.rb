@@ -17,10 +17,12 @@ Commonplace::Application.routes.draw do
       end
     end
     
+    match ":messagable_type/:messagable_id/messages/new" => "messages#new"
+
+    resources :messages, :only => :create
 
     resources :events do
       resource :attendance, :only => [:create, :new]
-      resource :messages, :only => [:create, :new] # FixME deal with :requirements => {:messageable => "Event"}
     end
 
     resources :replies
@@ -33,7 +35,6 @@ Commonplace::Application.routes.draw do
     
     resources :users, :only => [:index, :show] do
       resource :met, :only => [:create, :destroy]
-      resources :messages, :only => [:new, :create]
     end
 
     resources :feeds do
@@ -46,9 +47,6 @@ Commonplace::Application.routes.draw do
       resources :announcements, :controller => 'feeds/announcements'
       resources :events, :controller => 'feeds/events'
       resource :invites, :controller => 'feeds/invites'
-      
-      resources :messages, :only => [:new, :create]
-        
     end
 
 
