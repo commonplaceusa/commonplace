@@ -20,7 +20,7 @@ Hey -- testing a reply!
     end
   end
 
-  let(:community) { mock_model(Community, :id => 1, :slug => "test") }
+  let(:community) { mock_model(Community, :id => 1, :slug => "test", :time_zone => "Eastern Time (US & Canada)") }
   let(:user) { mock_model(User, :email => "test@example.com", :community => community, :neighborhood => neighborhood) }
 
   let (:neighborhood) { mock_model(Neighborhood) }
