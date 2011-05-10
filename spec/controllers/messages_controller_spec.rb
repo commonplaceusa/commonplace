@@ -5,7 +5,7 @@ describe MessagesController do
   describe "#create" do
     
     before :each do
-      stub(Community).find_by_slug { mock_model(Community, :name => "test") }
+      stub(Community).find_by_slug { mock_model(Community, :name => "test", :time_zone => "Eastern Time (US & Canada)") }
       stub(UserSession).find.stub!.user { mock_model(User, :admin? => false) }
       @message = mock_model(Message, 
                             :messagable => stub!.name { "Messagable Name" })
