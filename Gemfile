@@ -17,7 +17,7 @@ gem 'pg'
 # Authentication/Authorization
 gem 'authlogic'
 gem 'oauth2'
-gem 'robdimarco_authlogic_oauth2', :require => 'authlogic_oauth2'
+gem 'authlogic_oauth2', :git => "git://github.com/commonplaceusa/authlogic_oauth2.git"
 gem 'cancan'
 
 
