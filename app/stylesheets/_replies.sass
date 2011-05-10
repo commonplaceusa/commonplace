@@ -1,15 +1,25 @@
 
 
 .item
-  &.message .replies
+  &.message div.replies
     display: block
-  .replies
-    display: none
+  div.replies
     background-color: #efefef               
     margin: 10px
     padding: 10px
     +pie-clearfix
     position: relative
+
+    .all-replies
+      display: block
+      font-size: 12px
+      color: black
+      padding: 2px 0
+      text-align: center
+      margin: 0px 0px 10px 30px
+      &:hover
+        background-color: #fafafa
+        
     
     img.avatar
       float: left
@@ -25,8 +35,8 @@
       margin-top: 5px
       textarea
         padding: 5px
-        max-width: 383px
-        width: 383px
+        max-width: 323px
+        width: 323px
         border: 1px solid $mediumGray
         outline: none
         margin: 0
@@ -41,7 +51,7 @@
         +sans
         display: block
         background-color: $cpRed
-        margin-top: 4px
+        margin-top: 1px
         border: 1px solid $cpDarkRed - #111
         +border-radius(5px)
         input[type=submit]  

@@ -3,4 +3,4 @@ en:
   posts:
     new:
       title: Say something to your neighbors
-      link: Post to Your Neighborhood
+      link_html: Post to Your Neighborhood

@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :receive_method
+  attr_accessible :receive_method, :feed_id
   belongs_to :user
   belongs_to :feed
 

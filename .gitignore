@@ -30,3 +30,5 @@ log/sendmail.log
 config/exceptional.yml
 .sass-cache
 *.swp
+
+log/*.log

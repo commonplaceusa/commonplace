@@ -1,148 +1,98 @@
-
-if (window.location.hash.slice(1) != "") {
-  window.location = window.location.hash.slice(1);
-}
-
 $(function() {
   
-  HOST_HREF_REGEX = new RegExp("^" + window.location.protocol + "//" + window.location.host);
-
-
   $.preLoadImages("/images/loading.gif");
 
-  $('a[data-remote]').live('click', function(e) {
+  $("#say-something nav a").live('click', function(e) {
     e.preventDefault();
-    e.stopPropagation();
-    var path = $(this).attr('href').replace(HOST_HREF_REGEX, ""),
-    method = $(this).attr('data-method') || "get";
-    ajaj(method, path, null);
-
-    if (method == "get") {
-      window.location.hash = path;
-    }
+    $.get($(this).attr('href'),
+          function(response) {
+            if (response) {
+              $("#say-something").replaceWith($(window.innerShiv(response,false)).find("#say-something"));
+            }
+          });
   });
-  
-  $('div[data-href]').live('click', function(e) {
+
+  $("#whats-happening nav#zones a, #syndicate h3 a").live('click', function(e) {
     e.preventDefault();
-    ajaj("get", $(this).attr('data-href'), null);
-    window.location.hash = $(this).attr('data-href');
-  });
-  
-  $('div[data-href] a').live('click', function(e) {
-
-  });
-
-  $('div[data-href] input, div[data-href] button').live('click', function(e) {
-    e.stopPropagation();
+    $.get($(this).attr('href'),
+          function(response) {
+            if (response) {
+              $('#whats-happening').replaceWith($(window.innerShiv(response,false)).find("#whats-happening"));
+              $("#say-something").replaceWith($(window.innerShiv(response,false)).find("#say-something"));
+            }
+          });
   });
 
-  $('form[data-remote]').live('submit', function(e) {
-    $('input[type=image]', $(this))
-      .replaceWith('<img style="float: right"src="/images/loading.gif">');
-    $('#submit_wrapper', $(this))
-      .replaceWith('<img style="float: right"src="/images/loading.gif">');
+  $("#syndicate form.new_reply").live("submit", function(e) {
     e.preventDefault();
-    ajaj("post", $(this).attr('action'), $(this).serialize());
+    var that = this;
+    $.post($(that).attr("action"), $(that).serialize(), 
+           function(response) {
+             if (response) {
+               var $replies = $(that).closest("div.replies");
+               $replies.replaceWith($(window.innerShiv(response,false)).filter("#" + $replies.attr('id')));
+             }
+           });
   });
 
-  $("body").bind("redirect_to", function(e, url) {
-    if (url.match(/^https?:/)) {
-      window.location = url;
-    } else {
-      window.location.hash = url;
-      ajaj("get", url, null);
-    }
+  $('form.formtastic.feed input:text, form.formtastic.feed textarea').keydown(function(e) {
+    var $input = $(e.currentTarget);
+    setTimeout(function() {
+      $("#preview")
+        .find("[data-track='" + $input.attr('name') + "']")
+        .html($input.val());
+    }, 10);
   });
 
-  // TODO: remove legacy support for update_content
-  // migration to trigger
-  $.each(
-    ["#say-something","#tooltip", "#main", "#new_feed", 
-     "#post-to-feed", "#recent-posts", "#zones", "#deliveries"],
-    function(i, selector) {
-      $("body").bind(selector, function(event, content) {
-        if (content) {
-          $(selector).replaceWith(window.innerShiv(content, false));
-        }             
-      });
-    });
-  
+  $("#syndicate .replies a.all-replies").live("click", function(e) {
+    e.preventDefault();
+    $(this).hide();
+    $(this).siblings("ul").children("li").show();
+  });
 
-  $("body").bind("#deliveries", function(e, content) {
-    $("#deliveries").replaceWith(window.innerShiv(content, false));
+  $("#whats-happening li.item").hoverIntent(function(){
+    $.get($(this).find('div').first().data('href'),
+          function(response) {
+            if (response) {
+              $('#community-profiles').replaceWith($(window.innerShiv(response,false)).find("#community-profiles"));
+            }
+          });
+  }, $.noop);
 
-    $("#deliveries").click(function() {
-      $("#deliveries ul").slideToggle();
-    });
-  });  
 
-  $("body").bind("always", function(e) {
-    $('input[placeholder], textarea[placeholder]').placeholder();
-    
-    
-    $('input.date').datepicker({
-      prevText: '&laquo;',
-      nextText: '&raquo;',
-      showOtherMonths: true,
-      defaultDate: null
-    });
-    
-    
-    
-    $('#tooltip').html($('#tooltip').attr('title'));
-    
-    
-    $('.disabled_link, a[href=disabled]').attr('title', "Coming soon!").tipsy({gravity: 'n'});
-    
-    
-    $.polygonInputs();
-    
-    $('form.formtastic.user input:text, form.formtastic.user textarea').keydown(function(e) {
-      var $input = $(e.currentTarget);
-        setTimeout(function(){
-          $("#preview")
-            .find("[data-track='" + $input.attr('name') + "']")
-            .html($input.val());
-        }, 10);
-    });
-    
-    $('form.formtastic.feed input:text, form.formtastic.feed textarea').keydown(function(e) {
-      var $input = $(e.currentTarget);
-        setTimeout(function() {
-          $("#preview")
-            .find("[data-track='" + $input.attr('name') + "']")
-            .html($input.val());
-        }, 10);
+  $('a.new_subscription').live('click', function(e) {
+    e.preventDefault();
+    var that = this;
+    $.post($(that).attr('href'), function(response) {
+      if (response) {
+        var $response = $(window.innerShiv(response,false));
+        $("#information").replaceWith($response.filter("#information"));
+        var $newitem = $response.filter('div.item_div');
+        console.log($newitem);
+        $("#" + $newitem.attr('id')).replaceWith($newitem);
+      }
     });
   });
 
 
-  $("body")
-    .trigger("always")
 
-  
-  $("body").bind("replace-with", function(e, params) {
-    $(params.selector).replaceWith(params.content);
+  $('a.unsubscribe').live('click', function(e) {
+    e.preventDefault();
+    var that = this;
+    $.ajax({
+      type: "DELETE",
+      url: $(that).attr('href'),
+      success: function(response) {
+        if (response) {
+          var $response = $(window.innerShiv(response,false));
+          $("#information").replaceWith($response.filter("#information"));
+          var $newitem = $response.filter('div.item_div');
+          console.log($newitem);
+          $("#" + $newitem.attr('id')).replaceWith($newitem);
+        }
+
+      }
+    });
   });
-
-
-
 
 });
-
-function ajaj(method, path, data) {
-  $.ajax({
-    type: method,
-    url: path,
-    data: data,
-    dataType: "json",
-    success: function(response) {
-      if (response) {
-        $.each(response, function(event, params) {
-          $("body").trigger(event, params);
-          $("body").trigger("always");
-        });
-      }
-    }
-  });
-}

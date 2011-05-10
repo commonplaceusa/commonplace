@@ -1,22 +1,22 @@
 require 'spec_helper'
 
 describe AccountsController do
-
+  before :each do
+    stub(Community).find_by_slug { mock_model(Community, :name => "test") }
+  end
   describe "#new" do
 
     context "given :short is true" do
-      before(:each) { get :new, :short => true }
-
       it "renders short.haml" do
+        get :new, :short => true 
         response.should render_template('short')
       end
       
     end
 
     context "given :short is false" do
-      before(:each) { get :new }
-
       it "renders new.haml" do
+        get :new 
         response.should render_template('new')
       end
     end
@@ -26,8 +26,8 @@ describe AccountsController do
   describe "#create" do
     let(:user) { mock_model(User) }
     before :each do 
-      user
-      stub(current_user).new_record? { true } 
+      stub(UserSession).find.stub!.user { user}
+      stub(user).new_record? { true } 
       stub(User).new { user }
     end
 
@@ -50,10 +50,13 @@ describe AccountsController do
     end
 
     context "when user save is not successful" do
-      before(:each) { stub(user).save.yields(false) }
+      before(:each) { 
+        stub(user).save.yields(false) 
+      }
       context "and :short is true" do
 
         it "renders short.haml" do
+
           post :create, :short => true
           response.should render_template("short") 
         end
@@ -70,10 +73,11 @@ describe AccountsController do
   end
 
   describe "#update_new" do
-    
+    let(:user) { mock_model(User) }
     context "when user is saved" do
       before(:each) do 
-        stub(current_user).save.yields(true)
+        stub(user).save.yields(true)
+        stub(UserSession).find.stub!.user { user}
         put :update_new
       end
       
@@ -84,7 +88,8 @@ describe AccountsController do
 
     context "when user is not saved" do
       before(:each) do
-        stub(current_user).save.yields(false)
+        stub(UserSession).find.stub!.user { user}
+        stub(user).save.yields(false)
         put :update_new
       end
 

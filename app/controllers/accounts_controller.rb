@@ -56,6 +56,7 @@ class AccountsController < CommunitiesController
         render params[:short] ? :short : :new
       end
     end
+
   end
 
   def edit
@@ -127,10 +128,10 @@ class AccountsController < CommunitiesController
   end
   
   def take_photo
-    File.open("#{RAILS_ROOT}/tmp/#{current_user.id}_upload.jpg", 'w') do |f|
+    File.open("#{ Rails.root }/tmp/#{current_user.id}_upload.jpg", 'w') do |f|
       f.write request.raw_post
     end
-    current_user.avatar = File.new("#{RAILS_ROOT}/tmp/#{current_user.id}_upload.jpg")
+    current_user.avatar = File.new("#{Rails.root}/tmp/#{current_user.id}_upload.jpg")
     current_user.save
     render :nothing => true
   end

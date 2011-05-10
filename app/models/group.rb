@@ -2,7 +2,11 @@ class Group < ActiveRecord::Base
   
   validates_presence_of :name, :slug, :about, :community
 
-  before_validation_on_create :generate_slug, :unless => :slug?
+  before_validation(:on => :create) do
+    self.generate_slug unless self.slug?
+    true
+  end
+
 
   belongs_to :community
   

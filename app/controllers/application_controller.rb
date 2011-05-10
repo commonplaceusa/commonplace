@@ -1,47 +1,30 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
+  protect_from_forgery
+  helper :all
   include FeedsHelper
   helper_method :current_community
   helper_method :current_neighborhood
   helper_method 'logged_in?'
   helper_method 'xhr?'
-  #Temporarily removed the below line to test e-mail parsing.
-  protect_from_forgery :except => :parse # See ActionController::RequestForgeryProtection for details
-
-  # Scrub sensitive parameters from your log
-  filter_parameter_logging :password
-  
-  before_filter :set_template_format
-	before_filter :set_process_name_from_request
-	after_filter :unset_process_name_from_request
-
-  filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :facebook_session
+
+  before_filter :set_process_name_from_request
+  after_filter :unset_process_name_from_request
 
   rescue_from CanCan::AccessDenied do |exception|
     store_location
     redirect_to root_url
   end
-  
-	def set_process_name_from_request
-		$0 = request.path[0,16] 
-	end   
 
-	def unset_process_name_from_request
-		$0 = request.path[0,15] + "*"
-	end  
-
-  def set_neighborhood
-    if current_user.admin?
-      session[:neighborhood_id] = params[:neighborhood_id] 
-    end
-    redirect_to root_url
-  end
- 
   protected
+
+  def set_process_name_from_request
+    $0 = request.path[0,16] 
+  end   
+  
+  def unset_process_name_from_request
+    $0 = request.path[0,15] + "*"
+  end  
   
   def translate_with(options = {})
     @default_translate_options ||= {}
@@ -55,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_community
-    @current_community ||= Community.find_by_slug(current_subdomain)
+    @current_community ||= Community.find_by_slug(request.subdomain)
     translate_with :community => @current_community.name
     @current_community
   end
@@ -113,5 +96,5 @@ class ApplicationController < ActionController::Base
       super(options, response_status)
     end
   end
-  
+
 end
