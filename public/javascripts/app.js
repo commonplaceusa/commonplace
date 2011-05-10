@@ -55,6 +55,7 @@ $(function() {
           function(response) {
             if (response) {
               $('#community-profiles').replaceWith($(window.innerShiv(response,false)).find("#community-profiles"));
+              setInfoBoxPosition();
             }
           });
   }, $.noop);
