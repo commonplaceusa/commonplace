@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user, :facebook_session
 
   before_filter :set_process_name_from_request
+  before_filter :set_community_time_zone
   after_filter :unset_process_name_from_request
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -95,6 +96,10 @@ class ApplicationController < ActionController::Base
     else
       super(options, response_status)
     end
+  end
+  
+  def set_community_time_zone
+    Time.zone = current_community.time_zone
   end
 
 end
