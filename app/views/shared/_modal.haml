@@ -1,10 +1,10 @@
-- update_content "#modal" do
-  #modal.not_empty
-    #modal-overlay  
-    #modal-content
-      = image_tag 'modal-close.png', :id => "modal-close"
 
-      = yield
+#modal.not_empty
+  #modal-overlay  
+  #modal-content
+    = image_tag 'modal-close.png', :id => "modal-close"
+
+    = yield
 
 
 
