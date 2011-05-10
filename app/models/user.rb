@@ -21,16 +21,19 @@ class User < ActiveRecord::Base
 
   validates_presence_of :password, :on => :update, :if => :validate_password?
 
+  validate :validate_first_and_last_names
+
   def facebook_user?
     authenticating_with_oauth2? || facebook_uid
   end
-
+  
   def validate_password?
     !facebook_user? && crypted_password.blank?
   end
+
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_presence_of :first_name, :last_name, :neighborhood
+  validates_presence_of :first_name, :last_name
   
   def after_oauth2_authentication
     json = oauth2_access.get('/me')
@@ -47,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_email(email)
-    find(:first, :conditions => ["LOWER(users.email) = ?", email.downcase])
+    where("LOWER(users.email) = ?", email.downcase).first
   end
 
   has_many :attendances, :dependent => :destroy
@@ -91,11 +94,11 @@ class User < ActiveRecord::Base
                     :url => "/system/users/:id/avatar/:style.:extension",
                     :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
 
-  named_scope :receives_weekly_bulletin, :conditions => {:receive_weekly_digest => true}
+  scope :receives_weekly_bulletin, :conditions => {:receive_weekly_digest => true}
 
-  named_scope :receives_daily_digest, :conditions => {:post_receive_method => "Daily"}
+  scope :receives_daily_digest, :conditions => {:post_receive_method => "Daily"}
 
-  named_scope :receives_posts_live, :conditions => {:post_receive_method => "Live"}
+  scope :receives_posts_live, :conditions => {:post_receive_method => "Live"}
 
 
   def inbox
@@ -115,12 +118,13 @@ class User < ActiveRecord::Base
     JSON.parse(access_token.get("/me"))
   end
 
-  def validate 
+  def validate_first_and_last_names
     errors.add(:full_name, "We need your first and last names.") if first_name.blank? || last_name.blank?
   end 
   
-  def subscribed_announcements
-    feeds.map(&:announcements).flatten
+  def daily_subscribed_announcements
+    self.subscriptions.all(:conditions => "receive_method = 'Daily'").
+      map(&:feed).map(&:announcements).flatten
   end
 
   def suggested_events
@@ -132,36 +136,14 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    if first_name && middle_name && last_name
-      first_name.to_s + " " + middle_name.to_s + " " + last_name.to_s
-    elsif first_name && last_name
-      first_name.to_s + " " + last_name.to_s
-    else
-      nil
-    end
+    [first_name,middle_name,last_name].select(&:present?).join(" ")
   end
 
   def full_name=(string)
-    if string.present?
-      if string.count(" ") == 1
-        self.first_name, self.last_name = (string.present? ? string.split(" ", 2) : ["",""])
-        self.middle_name = nil
-      elsif string.count(" ") >= 2
-        name = string.split(" ", string.count(" ")+1)
-        self.first_name = name[0]
-        self.middle_name = name[1..name.length-2].join(" ")
-        self.last_name = name[name.length-1]
-#        self.first_name, self.middle_name, self.last_name = (string.present? ? string.split(" ", string.count(" ")+1) : ["","",""])
-      else
-        self.first_name, self.last_name, self.middle_name = ["","",""]
-      end
-    else
-      self.first_name, self.middle_name, self.last_name = ["","",""]
-    end
-
-    self.first_name.try(:capitalize!)
-    self.middle_name = self.middle_name.split.each { |w| w.capitalize! }.join(" ") if self.middle_name
-    self.last_name.try(:capitalize!)
+    split_name = string.to_s.split(" ")
+    self.first_name = split_name.shift.to_s.capitalize
+    self.last_name = split_name.pop.to_s.capitalize
+    self.middle_name = split_name.map(&:capitalize).join(" ")
     self.full_name
   end
 

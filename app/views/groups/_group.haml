@@ -1,4 +1,4 @@
-%div{'data-href' => group_path(group), :class => "group tooltip", 'data-title' => 'Click to see more information about this group'}
+%div{'data-href' => group_path(group), :class => "item_div group tooltip", :id => "#{dom_id(group)}_item"}
   = image_tag group.avatar_url(:thumb), :class => "avatar"
   .title= group.name
 

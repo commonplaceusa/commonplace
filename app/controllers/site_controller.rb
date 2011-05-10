@@ -20,6 +20,6 @@ class SiteController < ApplicationController
   
   def faq_parse
     render :nothing => true
-    QuestionMailer.deliver_faq(params[:email_address],params[:message])
+    Resque.enqueue(AdminQuestion, params[:email_address], params[:message])
   end
 end

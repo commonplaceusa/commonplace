@@ -2,7 +2,7 @@ en:
   announcements:
     new:
       title: Send an announcement to your whole community
-      link: Publicize an Announcement
+      link_html: Publicize an Announcement
 
     edit:
       title: Edit your announcement
