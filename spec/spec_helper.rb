@@ -122,10 +122,10 @@ end
     end
     DatabaseCleaner.strategy = :truncation
     config.use_transactional_fixtures = false
-    config.before :each do
+
+    config.around :each, :type => :request do |example|
       DatabaseCleaner.start
-    end
-    config.after :each do
+      example.run
       DatabaseCleaner.clean
     end
     
