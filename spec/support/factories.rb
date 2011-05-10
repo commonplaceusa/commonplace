@@ -1,5 +1,6 @@
 Factory.define :community do |f|
   f.name { Forgery(:address).city }
+  f.time_zone { "Eastern Time (US & Canada)" }
 end
 
 Factory.define :neighborhood do |f|
