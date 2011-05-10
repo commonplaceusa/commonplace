@@ -99,11 +99,11 @@ class ApplicationController < ActionController::Base
   end
   
   def set_community_time_zone
-    if Community.find_by_slug(request.subdomain) and current_community.present?
-      Time.zone = current_community.time_zone || "Eastern Time (US & Canada)"
-    else
-      Time.zone = "Eastern Time (US & Canada)"
-    end
+    Time.zone = if current_community 
+                  current_community.time_zone
+                else
+                  "Eastern Time (US & Canada)"
+                end
   end
 
 end
