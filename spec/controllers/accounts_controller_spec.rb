@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AccountsController do
   before :each do
-    stub(Community).find_by_slug { mock_model(Community, :name => "test") }
+    stub(Community).find_by_slug { mock_model(Community, :name => "test", :time_zone => "Eastern Time (US & Canada)") }
   end
   describe "#new" do
 
