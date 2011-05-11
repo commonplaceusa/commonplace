@@ -15,7 +15,7 @@ module Commonplace
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
-    config.autoload_paths += %W( #{config.root}/mail )
+    config.autoload_paths += %W( #{config.root}/mail #{config.root}/lib #{config.root}/**/ )
 
     config.action_mailer.default_content_type = "text/html"
 
