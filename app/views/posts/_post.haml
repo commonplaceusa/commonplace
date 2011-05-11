@@ -25,5 +25,9 @@
   = link_to post.subject, post, 'data-remote' => true, :class => "title"
   .author= post.owner.name
   .body= markdown auto_link(post.body, :all, :target => "_blank")
+  - if post.replies.empty?
+    = link_to "Reply to this post", "/replies", :class => "show-reply-form"
+
+
 
 = render 'shared/replies', :item => post

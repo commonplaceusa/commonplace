@@ -18,5 +18,6 @@
     #{group_post.owner.name} to #{group_post.group.name}
 
   .body= markdown auto_link(group_post.body, :all, :target => "_blank")
-
+  - if post.replies.empty?
+    = link_to "Reply to this post", "/replies", :class => "show-reply-form"
 = render 'shared/replies', :item => group_post
