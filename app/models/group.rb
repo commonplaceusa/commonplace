@@ -19,7 +19,7 @@ class Group < ActiveRecord::Base
   end
 
   def avatar_url(style_name = nil)
-    self.avatar_file_name
+    self.avatar_file_name || "/avatars/missing.png"
   end
 
   def live_subscribers
