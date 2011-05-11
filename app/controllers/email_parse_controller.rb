@@ -1,3 +1,5 @@
+require 'iconv'
+
 class EmailParseController < ApplicationController
   
   protect_from_forgery :only => []
@@ -90,7 +92,15 @@ END
   end
 
   def body_text
-    @body_text ||= EmailParseController.strip_email_body(params[:text])
+    @body_text ||= 
+      EmailParseController.strip_email_body(case params[:charsets][:text]
+                                            when "UTF-8"
+                                              params[:text]
+                                            when "iso-8859-1"
+                                              Iconv.conv("UTF-8","ISO-8859-1",params[:text])
+                                            else
+                                              raise "Unknown Encoding: #{params[:charsets][:text]}"
+                                            end)
   end
 
   def to
