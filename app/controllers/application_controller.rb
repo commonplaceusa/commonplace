@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
   def current_community
     if request.subdomain.present? && (@current_community ||= Community.find_by_slug(request.subdomain))
       translate_with :community => @current_community.name
+      Time.zone = @current_community.time_zone
     else
       raise ActiveRecord::RecordNotFound unless @current_community
     end
