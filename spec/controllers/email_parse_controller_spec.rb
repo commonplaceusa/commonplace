@@ -26,6 +26,7 @@ Hey -- testing a reply!
   let (:neighborhood) { mock_model(Neighborhood) }
 
   before :each do 
+    request.host = "test.example.com"
     stub(User).find_by_email(user.email) { user }
   end
 

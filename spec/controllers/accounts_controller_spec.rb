@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe AccountsController do
   before :each do
-    stub(Community).find_by_slug { mock_model(Community, :name => "test", :time_zone => "Eastern Time (US & Canada)") }
+    stub(Community).find_by_slug { mock_model(Community, :name => "test", :slug => "test",  :time_zone => "Eastern Time (US & Canada)") }
+    request.host = "test.example.com"
   end
   describe "#new" do
 
@@ -37,14 +38,14 @@ describe AccountsController do
       context "and :short is true" do
         it "redirects to edit new" do
           post :create, :short => true
-          response.should redirect_to 'http://test.host/feeds/new'
+          response.should redirect_to 'http://test.example.com/feeds/new'
         end
       end
 
       context "and :short is false" do
         it "redirects to edit new" do
           post :create
-          response.should redirect_to 'http://test.host/account/edit_new'
+          response.should redirect_to 'http://test.example.com/account/edit_new'
         end
       end
     end
