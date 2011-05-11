@@ -44,7 +44,8 @@ Hey -- testing a reply!
            :from => user.email,
            :to => "reply+#{repliable_id}@ourcommonplace.com",
            :text => @reply_text,
-           :envelope => {:from => "test@example.com"})
+           :envelope => {:from => "test@example.com"},
+           :charsets => {:text => "UTF-8"})
     end
 
     it "creates a reply to the post by the user" do
@@ -66,7 +67,8 @@ Hey -- testing a reply!
            :to => "#{community.slug}@ourcommonplace.com",
            :text => @body,
            :subject => @body,
-           :envelope => {:from => "test@example.com"})
+           :envelope => {:from => "test@example.com"},
+           :charsets => {:text => "UTF-8"})
     end
 
   end
@@ -84,7 +86,8 @@ Hey -- testing a reply!
            :from => user.email,
            :text => @body,
            :subject => @body,
-           :envelope => { :from => "test@example.com"})
+           :envelope => { :from => "test@example.com"},
+           :charsets => {:text => "UTF-8"})
 
     end
   end
