@@ -17,7 +17,7 @@ class PasswordReset < MailBase
   end
 
   def reset_url
-    url("/password_resets/#{user.perishable_token}")
+    url("/password_resets/#{user.perishable_token}/edit")
   end
 
   def community_name
