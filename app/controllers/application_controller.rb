@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   def subdomain_redirect
     if request.subdomain.present? && request.subdomains.first == "www"
-      redirect_to "#{request.scheme}://#{request.subdomains(-1).drop(1).join(".")}#{request.port ? ":#{request.port}" : nil}#{request.fullpath}"
+      redirect_to "#{request.scheme}://#{(request.subdomains.drop(1)+[request.domain]).join(".")}#{request.port ? ":#{request.port}" : nil}#{request.fullpath}"
     end
   end
 
