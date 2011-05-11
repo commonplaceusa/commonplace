@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
       translate_with :community => @current_community.name
       Time.zone = @current_community.time_zone
     else
-      logger.info(request.subdomain)
+      logger.info("URL: #{request.url}")
       raise ActiveRecord::RecordNotFound unless @current_community
     end
     @current_community 
