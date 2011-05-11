@@ -1,8 +1,7 @@
 
 #main
-  = link_to t(".to_index"), messages_path, :class => "back"
+  = link_to "&laquo; #{t(".to_index")}".html_safe, messages_path, :class => "back"
   %h2= @message.subject
-  = link_to t(".archive"), url_for(:action => :archive, :id => @message.id), :class => "archive"
 
   %ul.conversation 
     - ([@message] + @message.replies).each do |message|
