@@ -3,5 +3,5 @@ en:
     index:
       h2: Your Inbox
     show:
-      to_index: "&laquo; Back to inbox"
+      to_index: "Back to inbox"
       archive: "Archive"
