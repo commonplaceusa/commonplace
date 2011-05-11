@@ -21,5 +21,6 @@
     - else
       = announcement.owner.name
   .body= markdown auto_link(announcement.body, :all, :target => "_blank")
-
+  - if post.replies.empty?
+    = link_to "Reply to this announcement", "/replies", :class => "show-reply-form"
 = render 'shared/replies', :item => announcement

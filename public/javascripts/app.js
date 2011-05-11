@@ -59,6 +59,12 @@ $(function() {
     $(this).siblings("ul").children("li").show();
   });
 
+  $("#syndicate .item a.show-reply-form").live("click", function(e) {
+    e.preventDefault();
+    $(this).hide();
+    $(this).parent().siblings("div.replies").show();
+  });
+
   $("#whats-happening li.item").hoverIntent(function(){
     $.get($(this).find('div').first().data('href'),
           function(response) {

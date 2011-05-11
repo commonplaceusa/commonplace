@@ -23,5 +23,6 @@
     - else
       = event.owner.name
   .body= markdown event.body
-
+  - if event.replies.empty?
+    = link_to "Reply to this event", "/replies", :class => "show-reply-form"
 = render 'shared/replies', :item => event
