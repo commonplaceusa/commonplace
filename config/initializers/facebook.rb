@@ -1,1 +1,1 @@
-$FacebookConfig = YAML.load_file("config/facebook.yml")[Rails.env]
+$FacebookConfig = YAML.load_file("#{Rails.root}/config/facebook.yml")[Rails.env]
