@@ -7,6 +7,7 @@ gem 'god'
 gem 'unicorn'
 gem 'text-reform'
 gem 'thor'
+gem 'xpath'
 
 # Database
 gem 'SystemTimer', :require => 'system_timer'
