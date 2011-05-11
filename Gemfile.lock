@@ -376,3 +376,4 @@ DEPENDENCIES
   text-reform
   thor
   unicorn
+  xpath
