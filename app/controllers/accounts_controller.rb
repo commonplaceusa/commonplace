@@ -125,6 +125,7 @@ class AccountsController < CommunitiesController
 
   def update
     current_user.update_attributes(params[:user])
+    render :layout => false
   end
   
   def take_photo

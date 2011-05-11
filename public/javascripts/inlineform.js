@@ -14,9 +14,8 @@ function initInlineForm() {
       url: $(this).attr('data-form-url'),
       data: data,
       success: function(response) {
-        $("body").trigger("#information", response.content)
-      },
-      dataType: "json"
+        $("#information").replaceWith(window.innerShiv(response,false));
+      }
     });
   });
 
