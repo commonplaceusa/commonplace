@@ -18,5 +18,7 @@ module TextHelper
 
   def markdown(text)
     BlueCloth.new(text || "").to_html.html_safe
+  rescue
+    "<p>#{text}</p>".html_safe
   end
 end
