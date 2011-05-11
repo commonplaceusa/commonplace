@@ -17,4 +17,12 @@ class Announcement < ActiveRecord::Base
     self.owner
   end
 
+  def user
+    if owner.is_a? Feed
+      owner.user
+    else
+      owner
+    end
+  end
+
 end
