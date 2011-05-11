@@ -7,9 +7,8 @@ class ApplicationController < ActionController::Base
   helper_method 'logged_in?'
   helper_method 'xhr?'
   helper_method :current_user_session, :current_user, :facebook_session
-
-  before_filter :set_process_name_from_request
-  before_filter :set_community_time_zone
+  
+  before_filter :subdomain_redirect, :set_process_name_from_request
   after_filter :unset_process_name_from_request
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -38,10 +37,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def subdomain_redirect
+    if request.subdomain.present? && request.subdomains.first == "www"
+      redirect_to "#{request.scheme}://#{request.subdomains(-1).drop(1).join(".")}#{request.port ? ":#{request.port}" : nil}#{request.fullpath}"
+    end
+  end
+
   def current_community
-    @current_community ||= Community.find_by_slug(request.subdomain)
-    translate_with :community => @current_community.name
-    @current_community
+    if request.subdomain.present? && (@current_community ||= Community.find_by_slug(request.subdomain))
+      translate_with :community => @current_community.name
+    else
+      raise ActiveRecord::RecordNotFound unless @current_community
+    end
+    @current_community 
   end
 
   def current_neighborhood
@@ -98,12 +106,4 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def set_community_time_zone
-    Time.zone = if current_community 
-                  current_community.time_zone
-                else
-                  "Eastern Time (US & Canada)"
-                end
-  end
-
 end
