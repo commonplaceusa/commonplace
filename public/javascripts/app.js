@@ -84,7 +84,6 @@ $(function() {
         var $response = $(window.innerShiv(response,false));
         $("#information").replaceWith($response.filter("#information"));
         var $newitem = $response.filter('div.item_div');
-        console.log($newitem);
         $("#" + $newitem.attr('id')).replaceWith($newitem);
       }
     });
@@ -103,7 +102,6 @@ $(function() {
           var $response = $(window.innerShiv(response,false));
           $("#information").replaceWith($response.filter("#information"));
           var $newitem = $response.filter('div.item_div');
-          console.log($newitem);
           $("#" + $newitem.attr('id')).replaceWith($newitem);
         }
 
