@@ -26,7 +26,7 @@
                 %th= t("formtastic.labels.feed.show.address")
                 %td= @feed.address
 
-      - if @feed.twitter_name
+      - if @feed.twitter_name?
 
         #twitter-feed
           <script src="http://widgets.twimg.com/j/2/widget.js"></script>
