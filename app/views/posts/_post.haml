@@ -12,7 +12,7 @@
       - if post.sent_to_community?
         sent
       - else
-        = link_to 'send to commmunity', uplift_post_url(post), 'data-remote' => true, 'data-method' => 'put'
+        = button_to 'send to commmunity', uplift_post_url(post), :method => :put
       
       &sdot;
       = post.neighborhood.name
