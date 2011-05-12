@@ -94,9 +94,9 @@ END
   def body_text
     @body_text ||= 
       EmailParseController.strip_email_body(case JSON.parse(params[:charsets])['text']
-                                            when "UTF-8"
+                                            when /UTF-8/i
                                               params[:text]
-                                            when "iso-8859-1"
+                                            when /iso-8859-1/i
                                               Iconv.conv("UTF-8","ISO-8859-1",params[:text])
                                             else
                                               raise "Unknown Encoding: #{params[:charsets]}"
