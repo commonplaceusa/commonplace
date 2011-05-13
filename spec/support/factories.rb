@@ -1,15 +1,11 @@
 Factory.define :community do |f|
   f.name { Forgery(:address).city }
   f.time_zone { "Eastern Time (US & Canada)" }
+  f.zip_code { "02132" }
 end
 
 Factory.define :neighborhood do |f|
   f.name { Forgery(:address).street_name }
-  f.north_bound { rand(180) - 90 }
-  f.south_bound {|n| n.north_bound - rand(5)}
-  f.east_bound { rand(360) - 180 }
-  f.west_bound {|n| n.east_bound - rand(5)}
-  f.about Forgery(:lorem_ipsum).paragraphs(1)
   f.association :community 
 end
 
@@ -17,12 +13,8 @@ end
 Factory.define :user do |f|
   f.first_name { Forgery(:name).first_name }
   f.last_name { Forgery(:name).last_name }
-  f.skill_list { Array.new((0..4).random){Forgery(:personal).language}.join(',')}
-  f.interest_list { Array.new((0..4).random){Forgery(:basic).color}.join(',')}
   f.email {|u| "#{u.first_name}.#{u.last_name}@example.com".downcase }
   f.password { Forgery(:basic).password }
-  f.about { Forgery(:lorem_ipsum).paragraphs(1) }
-  f.association :neighborhood
 end
 
 Factory.define :post do |f|

@@ -132,6 +132,7 @@ GEM
       rspec (~> 2.0)
       rspec-instafail (~> 0.1.4)
     gem_plugin (0.2.3)
+    geocoder (1.0.0)
     glebm-geokit (1.5.2)
     god (0.11.0)
     haml (3.1.1)
@@ -340,6 +341,7 @@ DEPENDENCIES
   forgery
   formtastic
   fuubar
+  geocoder
   glebm-geokit
   god
   haml (~> 3.1)

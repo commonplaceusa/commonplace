@@ -7,7 +7,16 @@ feature "Registration", %q{
 } do
 
   background do
-    create_community
+    community = Factory :community, :slug => "testing"
+    
+    neighborhood = Factory(:neighborhood, :community => community, 
+                           :coordinates => Forgery(:latlng).random)
+
+    stub_geocoder("100 Example Way", 
+                  :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
+
+    Capybara.app_host = "http://testing.smackaho.st:#{Capybara.server_port}"
+
     visit "/"
   end
 
@@ -18,15 +27,11 @@ feature "Registration", %q{
   end
 
   scenario "register" do
-    mock.proxy(User).new(anything).times(any_times) do |u|
-      mock(u).place_in_neighborhood.times(any_times) { u.neighborhood = u.community.neighborhoods.first }
-      u
-     end
 
     within "form#new_user" do
       fill_in "user[full_name]", :with => "Bill Cosby"
       fill_in "user[email]", :with => "bcosby@example.com"
-      fill_in "user[address]", :with => "52 Hangar Way, 02413"
+      fill_in "user[address]", :with => "100 Example Way"
       click_button "Create User"
     end
   

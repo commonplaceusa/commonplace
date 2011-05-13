@@ -7,8 +7,18 @@ feature "Logging in", %q{
 } do
 
   background do
-    community = create_community
-    create_user(community)
+    community = Factory :community, :slug => "testing"
+    neighborhood = Factory(:neighborhood, :community => community, 
+            :coordinates => Forgery(:latlng).random)
+
+    stub_geocoder("100 Example Way", 
+                  :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
+
+    Factory(:user, :email => "test@example.com", :password => "password",
+            :neighborhood => neighborhood, :community => community,
+            :address => "100 Example Way")
+    
+    Capybara.app_host = "http://testing.smackaho.st:#{Capybara.server_port}"
   end
 
 
