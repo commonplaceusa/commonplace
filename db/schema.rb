@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510034428) do
+ActiveRecord::Schema.define(:version => 20110510204754) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                                  :null => false
@@ -163,6 +163,8 @@ ActiveRecord::Schema.define(:version => 20110510034428) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "bounds"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
   end
 
   create_table "posts", :force => true do |t|
@@ -265,6 +267,8 @@ ActiveRecord::Schema.define(:version => 20110510034428) do
     t.boolean  "receive_weekly_digest",                         :default => true
     t.string   "post_receive_method",                           :default => "Live"
     t.string   "middle_name"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
