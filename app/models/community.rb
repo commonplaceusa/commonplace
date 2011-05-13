@@ -59,7 +59,8 @@ class Community < ActiveRecord::Base
       Group.create(:community => self,
                    :name => group['name'],
                    :about => group['about'].gsub("%{community_name}", self.name),
-                   :avatar_url => group['avatar'])
+                   :avatar_url => group['avatar'],
+                   :slug => group['slug'])
     end
     nil
   end
