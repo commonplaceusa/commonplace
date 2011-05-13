@@ -8,10 +8,8 @@ Spork.prefork do
   require 'capybara/rspec'
   require 'capybara/rails'
   require 'rr_patch'
+
   RSpec.configure do |config|
-
-
-    
     DatabaseCleaner.strategy = :truncation
 
     config.use_transactional_fixtures = false
@@ -23,12 +21,11 @@ Spork.prefork do
     end
     
     config.mock_with :rr
-    
+
     config.before :all do 
-      any_instance_of(User) do |user|
-          stub(user).geocode { true }
-      end
+      stub(Geocoder).search
     end
+
   end
 
 end
