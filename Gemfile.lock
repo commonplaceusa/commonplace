@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/commonplaceusa/authlogic_oauth2.git
-  revision: b0c52e5f7fed838fd3d5c25d7d5a9aec704011c5
+  revision: f3a72e177dc5269337bb95d557f7d260e3f9af7f
   specs:
-    authlogic_oauth2 (1.1.5)
+    authlogic_oauth2 (1.1.6)
       authlogic
       oauth2
 
@@ -327,7 +327,7 @@ DEPENDENCIES
   SystemTimer
   acts-as-list
   authlogic
-  authlogic_oauth2!
+  authlogic_oauth2 (>= 1.1.6)!
   autotest-rails-pure
   autotest-standalone
   cancan
