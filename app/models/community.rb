@@ -17,7 +17,7 @@ class Community < ActiveRecord::Base
            :include => [:user, {:replies => :user}])
   
   
-  validates_presence_of :name, :slug, :zip_code
+  validates_presence_of :name, :slug
   
   accepts_nested_attributes_for :neighborhoods
 
