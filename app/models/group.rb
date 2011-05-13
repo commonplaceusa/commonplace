@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   validates_presence_of :name, :slug, :about, :community
 
   before_validation(:on => :create) do
-    self.generate_slug unless self.slug?
+    generate_slug unless self.slug?
     true
   end
 
