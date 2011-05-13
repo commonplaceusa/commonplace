@@ -10,18 +10,24 @@ class User < ActiveRecord::Base
     c.validate_email_field=false
     c.validate_password_field=false
   end
-  
+
+  geocoded_by :address
+
   belongs_to :community
   belongs_to :neighborhood  
   
-  before_validation :place_in_neighborhood
+  before_validation :geocode, :if => :address_changed?
+  before_validation :place_in_neighborhood, :if => :address_changed?
+
   validates_presence_of :community
   validates_presence_of :address, :on => :create, :unless => :authenticating_with_oauth2?
   validates_presence_of :address, :on => :update
 
   validates_presence_of :password, :on => :update, :if => :validate_password?
-
+    
   validate :validate_first_and_last_names
+
+  validates_presence_of :neighborhood
 
   def facebook_user?
     authenticating_with_oauth2? || facebook_uid
@@ -178,8 +184,10 @@ class User < ActiveRecord::Base
   end
 
   def place_in_neighborhood
-    if self.community.present? && self.neighborhood.blank? || self.address_changed?
-      self.neighborhood = self.community.neighborhood_for(self.address)
+    self.neighborhood = self.community.neighborhoods.near(self.to_coordinates, 15).first
+    unless self.neighborhood
+      errors.add :address, I18n.t('activerecord.errors.models.user.address',
+                                  :community => self.community.name)
     end
   end
   

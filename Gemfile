@@ -45,6 +45,7 @@ gem 'rmagick'
 gem 'acts-as-list', :require =>'acts_as_list'
 gem 'glebm-geokit', :require => 'geokit'
 gem 'simple_uuid'
+gem 'geocoder'
 
 # Jobs
 gem 'resque'
