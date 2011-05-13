@@ -5,7 +5,9 @@ class Neighborhood < ActiveRecord::Base
 
   serialize :bounds, Array
 
-  validates_presence_of :name, :bounds
+  def coordinates
+    [latitude,longitude]
+  end
 
   def contains?(position)
     position.within? self.bounds
