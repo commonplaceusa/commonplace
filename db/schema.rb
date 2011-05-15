@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513171458) do
+ActiveRecord::Schema.define(:version => 20110515163926) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                                  :null => false
@@ -269,6 +269,7 @@ ActiveRecord::Schema.define(:version => 20110513171458) do
     t.string   "middle_name"
     t.decimal  "latitude"
     t.decimal  "longitude"
+    t.string   "referral_source"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
