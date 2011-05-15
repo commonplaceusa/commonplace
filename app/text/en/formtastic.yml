@@ -11,7 +11,7 @@ en:
         about: "Tell your neighbors a bit about yourself to get the neighborhood conversation going:"
         interest_list: "Add some interests:"
         referral_source: "How did you find out about CommonPlace?"
-        address: "Street Address (to verify that you live in %{community})*:"
+        address: "Street Address*"
         avatar: "Add a photo:"
         edit:
           password: "Change your password:"
@@ -56,6 +56,6 @@ en:
 
     hints:
       user:
-        address: "*We will not share this information with anyone."
+        address: "*This verifies that you live in %{community}. We will not share this information with anyone."
       feed:
         slug: "You will be able post announcements to your feeds by emailing {CommonPlace Address}@ourcommonplace.com"
