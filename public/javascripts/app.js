@@ -8,6 +8,12 @@ $(function() {
           function(response) {
             if (response) {
               $("#say-something").replaceWith($(window.innerShiv(response,false)).find("#say-something"));
+              $('input.date').datepicker({
+                prevText: '&laquo;',
+                nextText: '&raquo;',
+                showOtherMonths: true,
+                defaultDate: null
+              });
             }
           });
   });
@@ -19,6 +25,12 @@ $(function() {
             if (response) {
               $('#whats-happening').replaceWith($(window.innerShiv(response,false)).find("#whats-happening"));
               $("#say-something").replaceWith($(window.innerShiv(response,false)).find("#say-something"));
+              $('input.date').datepicker({
+                prevText: '&laquo;',
+                nextText: '&raquo;',
+                showOtherMonths: true,
+                defaultDate: null
+              });
               $("#whats-happening li.item").hoverIntent(function(){
                 $.get($(this).find('div').first().data('href'),
                       function(response) {
