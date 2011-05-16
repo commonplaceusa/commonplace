@@ -10,6 +10,8 @@
     = f.input :avatar, :input_html => {:size => 20}
     = f.input :tag_list
     = f.input :kind, :as => :radio, :collection => Feed.kinds.to_hash
+    = f.input :feed_url, :label => "Pull Announcements from an RSS feed:", :as => :string
+    = f.input :twitter_name, :label => "Add your tweets to your feed's page:"
   - f.inputs :contact_information, :id => 'contact-info' do
     = f.input :website
     = f.input :phone
