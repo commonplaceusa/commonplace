@@ -11,7 +11,7 @@ en:
         about: "Tell your neighbors a bit about yourself to get the neighborhood conversation going:"
         interest_list: "Add some interests:"
         referral_source: "How did you find out about CommonPlace?"
-        address: "Street Address*"
+        address: "Street Address*:"
         avatar: "Add a photo:"
         edit:
           password: "Change your password:"
