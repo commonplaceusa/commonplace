@@ -23,7 +23,7 @@
       = updated_content_or "#information" do 
         = render 'accounts/info_box'
 %script{:type => "text/javascript"}
-
+  $(function() {
   var community = new CommonPlace.Community({ id: #{current_community.id} });
 
   community.users.refresh(#{Serializer::serialize(User.where(:community_id => current_community.id).to_a).to_json.html_safe});
@@ -42,7 +42,7 @@
   
   var account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
 
-  $(function() {
+
 
   CommonPlace.app = new CommonPlace.MainPage({community: community, account: account, el: $("#main")});
 
