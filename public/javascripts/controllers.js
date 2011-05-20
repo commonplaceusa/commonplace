@@ -64,56 +64,72 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
 
   posts: function() {
     this.postIndex = this.postIndex ||
-      new CommonPlace.Index({collection: this.community.posts,
-                             el: $("#whats-happening"),
-                             itemView: CommonPlace.PostItem,
-                             subnav: "<a href=\"/posts\" class=\"current\">Neighborhood Posts</a>",
-                             zone: "posts"
-                            });
+      new CommonPlace.Index({
+        collection: this.community.posts,
+        el: $("#whats-happening"),
+        itemView: CommonPlace.PostItem,
+        subnav: [{url: "/posts", current: true, last: true, name: "Neighborhood Posts"}],
+        zone: "posts"
+      });
     this.postIndex.render();
   },
   announcements: function(){
     this.announcementIndex = this.announcementIndex ||
-      new CommonPlace.Index({collection: this.community.announcements,
-                             el: $("#whats-happening"),
-                             itemView: CommonPlace.AnnouncementItem,
-                             subnav: "<a href=\"/announcements\" class=\"current\">Community Announcements</a> &sdot; <a href=\"/feeds\">Community Feeds</a>",
-                             zone: "announcements"
-                            });
+      new CommonPlace.Index({
+        collection: this.community.announcements,
+        el: $("#whats-happening"),
+        itemView: CommonPlace.AnnouncementItem,
+        subnav: [{url:"/announcements", name:"Community Announcements", current: true},
+                 {url:"/feeds", name: "Community Feeds", last:true}],
+        zone: "announcements"
+      });
 
 
     this.announcementIndex.render();
   },
   events: function(){
     this.eventIndex = this.eventIndex ||
-      new CommonPlace.Index({collection: this.community.events,
-                             el:$("#whats-happening"),
-                             itemView: CommonPlace.EventItem,
-                             subnav: "<a href=\"/events\" class=\"current\">Upcoming Events</a>",
-                             zone: "events"
-                            });
+      new CommonPlace.Index({
+        collection: this.community.events,
+        el:$("#whats-happening"),
+        itemView: CommonPlace.EventItem,
+        subnav: [{url: "/events", name:"Upcoming Events", current: true, last: true}],
+        zone: "events"
+      });
     this.eventIndex.render();
   },
 
   group_posts: function(){
     this.group_postIndex = this.group_postIndex ||
-      new CommonPlace.Index({collection: this.community.group_posts,
-                             el: $("#whats-happening"),
-                             itemView: CommonPlace.GroupPostItem,
-                             subnav: "<a href=\"/group_posts\" class=\"current\">Group Posts</a> &sdot; <a href=\"/groups\">Discussion Groups</a>",
-                             zone: "group_posts"
-                            });
+      new CommonPlace.Index({
+        collection: this.community.group_posts,
+        el: $("#whats-happening"),
+        itemView: CommonPlace.GroupPostItem,
+        subnav: [{url: "/group_posts", name: "Group Posts", current: true},
+                 {url: "/groups", name: "Discussion Groups", last: true}],
+        zone: "group_posts"
+      });
     this.group_postIndex.render();
+  },
+
+  directorySubnav: function(current_url) {
+    return _([{url: "/users", name: "Your Neighbors"},
+              {url: "/feeds", name: "Community Feeds"},
+              {url: "/groups", name: "Discussion Groups", last: true}]).map(
+                function(nav) {
+                  return _.extend(nav, {current: current_url == nav.url})
+                });
   },
 
   groups: function(){
     this.groupIndex = this.groupIndex ||
-      new CommonPlace.Index({collection: this.community.groups,
-                             el: $("#whats-happening"),
-                             itemView: CommonPlace.GroupItem,
-                             subnav: "<a href=\"/users\">Your Neighbors</a> &sdot; <a href=\"/feeds\">Community Feeds</a> &sdot; <a href=\"/groups\" class=\"current\">Discussion Groups</a>",
-                             zone: "users"
-                            });
+      new CommonPlace.Index({
+        collection: this.community.groups,
+        el: $("#whats-happening"),
+        itemView: CommonPlace.GroupItem,
+        subnav: this.directorySubnav("/groups"),
+        zone: "users"
+      });
     this.groupIndex.render();
   },
   feeds: function(){
@@ -121,7 +137,7 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
       new CommonPlace.Index({collection: this.community.feeds,
                              el: $("#whats-happening"),
                              itemView: CommonPlace.FeedItem,
-                             subnav: "<a href=\"/users\">Your Neighbors</a> &sdot; <a href=\"/feeds\" class=\"current\">Community Feeds</a> &sdot; <a href=\"/groups\">Discussion Groups</a>",
+                             subnav: this.directorySubnav("/feeds"),
                              zone: "users"
                             });
     this.feedIndex.render();
@@ -131,11 +147,13 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
       new CommonPlace.Index({collection: this.community.users,
                              el: $("#whats-happening"),
                              itemView: CommonPlace.UserItem,
-                             subnav: "<a href=\"/users\" class=\"current\">Your Neighbors</a> &sdot; <a href=\"/feeds\">Community Feeds</a> &sdot; <a href=\"/groups\">Discussion Groups</a>",
+                             subnav: this.directorySubnav("/users"),
                              zone: "users"
                             });
     this.userIndex.render();
   }
+
+    
   
 });
 
