@@ -3,7 +3,6 @@
 = update_content "#main" do
   #main
     = semantic_form_for @user, :url => account_path do |f|
-      = f.submit "Sign Up", :id => "invisible-button-to-prevent-accidental-facebook-registration-on-pressing-enter"
       %h3
         Fill out the form to get started:
       = f.inputs do
