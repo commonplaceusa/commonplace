@@ -58,9 +58,14 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
     "/users": "users",
     "/feeds": "feeds",
     "/groups": "groups",
-    "/": "wire"
+    "/": "wire",
+    "": "wire"
   },
-
+  
+  wire: function() {
+    (new CommonPlace.Wire({model: this.community,
+                           el: $("#whats-happening")})).render();
+  },
 
   posts: function() {
     this.postIndex = this.postIndex ||
