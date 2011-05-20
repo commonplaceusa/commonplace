@@ -1,0 +1,40 @@
+<div id="information" class="info_box user">
+  <h2>Your Neighbor</h2>
+
+  <img src="{{avatar_url}}" width="120" class="avatar">
+
+  <div class="actions">
+    <a href="{{url}}/messages/new" class="message_me">
+      <span>Message {{first_name}}</span>
+    </a>
+  </div>
+
+
+  <h3>{{name}}</h3>
+
+  <div class="info">{{{about}}}</div>
+
+  <table>
+    {{#interests}}
+      <tr>
+        <th>INTERESTS</th>
+        <td>{{interests}}</td>
+      </tr>
+    {{/interests}}
+    {{#offers}}
+      <tr>
+        <th>GOODS & SKILLS</th>
+        <td>{{offers}}</td>
+      </tr>
+    {{/offers}}
+    {{#subscriptions}}
+      <tr>
+        <th>SUBSCRIPTIONS</th>
+        <td>{{subscriptions}}</td>
+      </tr>
+    {{/subscriptions}}
+  </table>
+
+  <div class="clear"></div>
+
+</div>

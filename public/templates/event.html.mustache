@@ -1,0 +1,24 @@
+<div class="event">
+
+  <div class="small_calendar avatar">
+    <div class="month">{{abbrev_month}}</div>
+    <div class="date">{{day_of_month}}</div>
+  </div>
+
+
+  <div class="reply-count">{{reply_count}} replies</div>
+
+  <div class="title">{{title}}</div>
+
+  <div class="author">{{owner_name}}</div>
+
+  <div class="body">{{{body}}}</div>
+
+  {{^replies}}
+    <a href="/events/{{id}}/replies/new" class="show-reply-form">
+      Reply to this event
+    </a>
+  {{/replies}}
+</div>
+
+{{> replies}}
