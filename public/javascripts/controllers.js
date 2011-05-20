@@ -63,8 +63,10 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
   },
   
   wire: function() {
-    (new CommonPlace.Wire({model: this.community,
-                           el: $("#whats-happening")})).render();
+    if (window.location.pathname =="/") {
+      (new CommonPlace.Wire({model: this.community,
+                             el: $("#whats-happening")})).render();
+    }
   },
 
   posts: function() {
