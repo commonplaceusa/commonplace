@@ -107,7 +107,8 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
     "click a.show-reply-form": "showReplyForm",
     "mouseenter": "showInfo",
     "submit form": "submitReply",
-    "click a.all-replies" : "showAllReplies"
+    "click a.all-replies" : "showAllReplies",
+    "hover div.replies ul li a": "replyHover"
   },
 
   replies: function() {
@@ -159,6 +160,10 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
                self.$("div.replies").replaceWith($(window.innerShiv(response, false)));
              }
            });
+  },
+
+  replyHover: function(e) {
+    window.location.hash = $(e.currentTarget).attr('href') + "/info";
   }
 
 });
