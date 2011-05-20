@@ -1,0 +1,13 @@
+<div class="feed item_div" id="feed_{{id}}_item">
+
+  <img src="{{avatar_url}}" class="avatar">
+
+  <div class="title">{{name}}</div>
+
+  {{#isSubscribed}}
+    <span class="subscribed"><span>You're Subscribed</span></span>
+  {{/isSubscribed}}
+  {{^isSubscribed}}
+    <a href="{{url}}/subscription" data-remote="true" data-method="post" class="new_subscription new_feed_{{id}}_subscription"><span>Subscribe?</span></a>
+  {{/isSubscribed}}
+</div>
