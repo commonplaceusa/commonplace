@@ -15,10 +15,12 @@
     = javascript_include_tag "http://www.plaxo.com/css/m/js/abc_launcher.js"
     = javascript_include_tag "http://js.getexceptional.com/exceptional.js"
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
-    %script{:type => 'text/javascript'}
-      $(function () {
-      Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
-      });
+
+    - if Rails.env.production?
+      %script{:type => 'text/javascript'}
+        $(function () {
+        Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
+        });
     = include_stylesheets :application
     / [if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
