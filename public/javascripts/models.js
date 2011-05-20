@@ -43,7 +43,7 @@ CommonPlace.Posts = Backbone.Collection.extend({
   
   model: CommonPlace.Post,
 
-  comparator: function(model) { return - model.get("published_at") ; },
+  comparator: function(model) { return - Date.parse(model.get("published_at")) ; },
 
   initialize: function(models, options) {
     this.community = options.community;
@@ -78,7 +78,7 @@ CommonPlace.Events = Backbone.Collection.extend({
     return this;
   },
 
-  comparator: function(model) { return (new Date(Date.parse(model.get("occurs_on")))); },
+  comparator: function(model) { return Date.parse(model.get("occurs_on")); },
 
   url: function() {
     return "/api/communities/" + this.community.id + "/events"
@@ -133,7 +133,7 @@ CommonPlace.Announcements = Backbone.Collection.extend({
     return "/api/communities/" + this.community.id + "/announcements";
   },
 
-  comparator: function(model) { return - model.get("published_at") ; }
+  comparator: function(model) { return - Date.parse(model.get("published_at")) ; }
 });
 
 CommonPlace.Group = Backbone.Model.extend({});
@@ -179,6 +179,6 @@ CommonPlace.GroupPosts = Backbone.Collection.extend({
     return "/api/communities/" + this.community.id + "/group_posts";
   },
 
-  comparator: function(model) { return - model.get("published_at") ; }
+  comparator: function(model) { return - Date.parse(model.get("published_at")) ; }
 
 });
