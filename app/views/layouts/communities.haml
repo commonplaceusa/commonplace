@@ -28,7 +28,7 @@
 
   community.users.refresh(#{Serializer::serialize(User.where(:community_id => current_community.id).to_a).to_json.html_safe});
 
-  community.posts.refresh(#{Serializer::serialize(Post.where(:community_id => current_community.id).includes(:user, :replies => :user).to_a).to_json.html_safe});
+  community.posts.refresh(#{Serializer::serialize(Post.where(:community_id => current_community.id).limit(50).includes(:user, :replies => :user).to_a).to_json.html_safe});
 
   community.events.refresh(#{Serializer::serialize(Event.where(:community_id => current_community.id).upcoming.includes(:owner, :replies => :user).to_a).to_json.html_safe});
 
