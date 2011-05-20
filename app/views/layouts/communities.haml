@@ -40,11 +40,11 @@
 
   community.groups.refresh(#{Serializer::serialize(Group.where(:community_id => current_community.id).to_a).to_json.html_safe});
   
-  var account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
+  CommonPlace.account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
 
 
 
-  CommonPlace.app = new CommonPlace.MainPage({community: community, account: account, el: $("#main")});
+  CommonPlace.app = new CommonPlace.MainPage({community: community, account: CommonPlace.account, el: $("#main")});
 
   Backbone.history.start();
   });
