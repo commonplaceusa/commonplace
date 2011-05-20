@@ -4,7 +4,7 @@ CommonPlace.render = function(name, params) {
   return Mustache.to_html(
     CommonPlace.templates[name],
     _.extend({auth_token: CommonPlace.auth_token,
-              account_avatar_url: window.account.get('avatar_url')},
+              account_avatar_url: CommonPlace.account.get('avatar_url')},
              params),
     CommonPlace.templates);
 };
@@ -51,7 +51,7 @@ CommonPlace.GroupInfo = CommonPlace.Info.extend({
       avatar_url: this.model.get('avatar_url'),
       name: this.model.get('name'),
       about: this.model.get('about'),
-      isSubscribed: _.include(window.account.get('group_subscriptions'), this.model.get('id'))
+      isSubscribed: _.include(CommonPlace.account.get('group_subscriptions'), this.model.get('id'))
     };
   }
 });
@@ -77,7 +77,7 @@ CommonPlace.FeedInfo = CommonPlace.Info.extend({
       website: this.model.get('website'),
       phone: this.model.get('phone'),
       address: this.model.get('address'),
-      isSubscribed: _.include(window.account.get('feed_subscriptions'), this.model.get('id'))
+      isSubscribed: _.include(CommonPlace.account.get('feed_subscriptions'), this.model.get('id'))
     };
   }
 });
@@ -281,7 +281,7 @@ CommonPlace.FeedItem = CommonPlace.Item.extend({
       id: this.model.get('id'),
       avatar_url: this.model.get('avatar_url'),
       name: this.model.get('name'),
-      isSubscribed: _.include(window.account.get('feed_subscriptions'), this.model.get('id'))
+      isSubscribed: _.include(CommonPlace.account.get('feed_subscriptions'), this.model.get('id'))
     };
   }
 });
@@ -300,7 +300,7 @@ CommonPlace.GroupItem = CommonPlace.Item.extend({
       url: this.model.get('url'),
       avatar_url: this.model.get('avatar_url'),
       name: this.model.get('name'),
-      isSubscribed: _.include(window.account.get('group_subscriptions'), this.model.get('id'))
+      isSubscribed: _.include(CommonPlace.account.get('group_subscriptions'), this.model.get('id'))
     };
   }
 });
