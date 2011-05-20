@@ -23,12 +23,14 @@
       %script{:type => 'text/javascript'}
         $(function () {
         Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
+        if (FB) {
         FB.init({
         = "appId  : #{($FacebookConfig || {})['app_id']},"
         status : true,
         cookie : true,
         xfbml  : true
         });
+        }
         });
     = include_stylesheets :application
     / [if IE]
