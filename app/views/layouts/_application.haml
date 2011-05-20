@@ -16,7 +16,7 @@
     = javascript_include_tag "http://js.getexceptional.com/exceptional.js"
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
     %script{:type => "text/javascript"}
-      CommonPlace = CommonPlace || {};
+      CommonPlace = window.CommonPlace || {};
       CommonPlace.auth_token = "#{form_authenticity_token}";
 
     - if Rails.env.production?
