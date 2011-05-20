@@ -1,5 +1,7 @@
 embed_assets: on
-
+template_extension: html.mustache
+template_function: Mustache.template
+template_namespace: CommonPlace.templates
 stylesheets:
   administration:
     - public/stylesheets/administration.css
@@ -14,13 +16,18 @@ stylesheets:
 
 javascripts:
   application:
+      - public/templates/*.html.mustache
       - public/javascripts/jquery-1.4.3.js
       - public/javascripts/jquery-ui.js
       - public/javascripts/jquery/jquery.*.js
       - public/javascripts/jquery/underscore.js
+      - public/javascripts/jquery/mustache.js
       - public/javascripts/jquery/json2.js
       - public/javascripts/jquery/backbone.js
       - public/javascripts/innershiv.js
+      - public/javascripts/models.js
+      - public/javascripts/views.js
+      - public/javascripts/controllers.js
       - public/javascripts/app.js
       - public/javascripts/inlineform.js
       - public/javascripts/maps.js
@@ -45,3 +52,4 @@ javascripts:
     - public/javascripts/starter_site/tabs.js
     - public/javascripts/starter_site/slideshow.js
     - public/javascripts/starter_site/scroll.js
+
