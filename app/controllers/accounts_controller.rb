@@ -45,16 +45,12 @@ class AccountsController < CommunitiesController
     password = ""
     if params[:user][:facebook_session].present?
       j = ActiveSupport::JSON.decode(params[:user][:facebook_session])
-      puts "Converted to #{j.inspect}"
       password = j["uid"]
-      puts "Extracted #{password}"
       params[:user].delete("facebook_session")
     end
-    puts "Setting password to #{password} 1"
     @user = User.new(params[:user].merge(:community => current_community))
     if @user.save
       unless password == ""
-        puts "Setting password to #{password}"
         @user.password = password
         @user.save!
       end
