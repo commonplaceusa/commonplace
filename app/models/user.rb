@@ -31,14 +31,13 @@ class User < ActiveRecord::Base
   validate :validate_first_and_last_names
 
   validates_presence_of :neighborhood
-  validates_uniqueness_of :facebook_uid
+  validates_uniqueness_of :facebook_uid, :allow_nil => true
 
   def facebook_user?
     authenticating_with_oauth2? || facebook_uid
   end
   
   def validate_password?
-    puts "Asking if we need to validate password: #{self.facebook_user?}"
     if facebook_user?
       return false
     end
