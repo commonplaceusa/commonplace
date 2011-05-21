@@ -10,8 +10,6 @@ class UserSessionsController < ApplicationController
     if params[:user_session][:facebook_uid].present?
       facebook_uid = params[:user_session][:facebook_uid]
     end
-    puts params.inspect
-    puts facebook_uid
 
     current_user_session.remember_me = true
     if current_user_session.save
