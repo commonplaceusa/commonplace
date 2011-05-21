@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
     c.require_password_confirmation = false
     c.validate_email_field=false
     c.validate_password_field=false
+    c.ignore_blank_passwords = true
+    c.merge_validates_length_of_email_field_options({:allow_nil => true})
+    c.merge_validates_format_of_email_field_options({:allow_nil => true})
   end
 
   geocoded_by :address
@@ -28,13 +31,18 @@ class User < ActiveRecord::Base
   validate :validate_first_and_last_names
 
   validates_presence_of :neighborhood
+  validates_uniqueness_of :facebook_uid
 
   def facebook_user?
     authenticating_with_oauth2? || facebook_uid
   end
   
   def validate_password?
-    !facebook_user? && crypted_password.blank?
+    puts "Asking if we need to validate password: #{self.facebook_user?}"
+    if facebook_user?
+      return false
+    end
+    return true
   end
 
   validates_presence_of :email
@@ -206,5 +214,6 @@ class User < ActiveRecord::Base
       self.avatar.url(style_name || self.avatar.default_style)
     end
   end
+
   
 end
