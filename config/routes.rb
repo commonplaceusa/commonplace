@@ -62,7 +62,7 @@ Commonplace::Application.routes.draw do
 
     resource :account do
       member do 
-        get :edit_new, :edit_avatar, :learn_more, :edit_interests, :add_feeds, :add_groups, :delete
+        get :edit_new, :edit_avatar, :learn_more, :edit_interests, :add_feeds, :add_groups, :delete, :facebook_invite
         put :update_new, :update_avatar, :update_interests, :settings
         post :subscribe_to_feeds, :subscribe_to_groups, :avatar
       end

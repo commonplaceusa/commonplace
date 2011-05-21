@@ -15,16 +15,27 @@
     = javascript_include_tag "http://www.plaxo.com/css/m/js/abc_launcher.js"
     = javascript_include_tag "http://js.getexceptional.com/exceptional.js"
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
-    %script{:type => 'text/javascript'}
-      $(function () {
-      Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
-      FB.init({
-      = "appId  : #{($FacebookConfig || {})['app_id']},"
-      status : true,
-      cookie : true,
-      xfbml  : true
+    :javascript
+      function facebook_invite()
+      {
+        FB.ui({
+          method: 'apprequests',
+          message: 'Invitation Text Here',
+          data: 'tracking_data'
+        });
+      }
+      $(document).ready(function () {
+        Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
+        FB.init({
+          appId : "#{($FacebookConfig || {})['app_id']}",
+          status : true,
+          cookie : true,
+          xfbml  : true
+        });
       });
-      });
+    - if params[:first].present? and current_user.is_facebook_user
+      :javascript
+        $(function() { facebook_invite(); });
     = include_stylesheets :application
     / [if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
