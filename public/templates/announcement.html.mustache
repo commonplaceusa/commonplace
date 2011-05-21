@@ -1,0 +1,24 @@
+<div class="announcement">
+
+  <img src="{{avatar_url}}" class="avatar">
+
+  <div class="published">{{published_at}}</div>
+
+  <div class="reply-count">{{reply_count}} replies</div>
+
+  <a href="{{url}}" class="title">{{title}}</a>
+
+  <div class="author">{{author}}</div>
+
+  <div class="body">{{{body}}}</div>
+
+
+  {{^replies}}
+    <a href="/announcements/{{id}}/replies/new" class="show-reply-form">
+      Reply to this announcement
+    </a>
+  {{/replies}}
+</div>
+
+{{> replies }}
+

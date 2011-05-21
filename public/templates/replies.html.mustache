@@ -1,0 +1,45 @@
+
+<div class="replies" {{^replies}} style="display: none;" {{/replies}}>
+
+  <img src="/images/reply-arrow-top.png" class="reply-arrow">
+
+  {{#hasHiddenReplies}}
+    <a href="/replies" class="all-replies">
+    Show older replies
+    </a>
+  {{/hasHiddenReplies}}
+
+  <ul>
+    {{#replies}}
+      <li class="reply" {{#isHidden}} style="display:none;" {{/isHidden}}>
+        <a href="{{author_url}}">
+        <img src="{{avatar_url}}" class="avatar">
+        <div class="body">
+          <p>
+            <span class="author">{{author}}</span>
+            {{body}}
+          </p>
+          <time>{{published_at}}</time>
+        </div>
+        </a>
+      </li>
+    {{/replies}}
+  </ul>
+
+  <form action="/replies" class="new_reply" id="new_reply" method="post">
+
+    <div style="margin:0;padding:0;display:inline;">
+      <input name="authenticity_token" type="hidden" value="{{authenticity_token}}">
+    </div>
+    <img src="{{account_avatar_url}}" class="avatar">
+
+      <textarea cols="40" content="Test" data-label="Reply here!" id="reply_body" name="reply[body]" rows="1"></textarea>
+      <input id="reply_repliable_id" name="reply[repliable_id]" type="hidden" value="{{repliable_id}}">
+
+      <input id="reply_repliable_type" name="reply[repliable_type]" type="hidden" value="{{repliable_type}}">
+
+      <div id="submit_wrapper"><input id="reply_submit" name="commit" type="submit" value="Reply"></div>
+  </form>
+
+</div>
+

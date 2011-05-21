@@ -1,0 +1,33 @@
+
+<div id="information" class="info_box group">
+
+  <h2>Community Group</h2>
+
+  <img src="{{avatar_url}}" class="avatar" width="120">
+
+  <div class="actions">
+    {{#isSubscribed}}
+      <span class="subscribed"><span>Subscribed</span></span>
+
+      <a href="{{url}}/membership" data-remote="true" "data-method="delete" class="unsubscribe">Unsubscribe</a>
+    {{/isSubscribed}}
+    {{^isSubscribed}}
+      <a href="{{url}}/membership" data-remote="true" data-method="post" class="new_subscription new_group_{{id}}_subscription">
+        <span>Subscribe to {{name}}</span>
+      </a>
+    {{/isSubscribed}}
+  </div>
+
+  <h3>{{name}}</h3>
+
+  <div class="info">
+    <p>{{{about}}}</p>
+  </div>
+
+  <div class="clear"></div>
+
+</div>
+
+
+
+

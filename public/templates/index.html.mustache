@@ -1,0 +1,13 @@
+
+{{> index_nav}}
+
+<div id="syndicate">
+  <h3>
+    {{#subnav}}
+      <a href="{{url}}" class="{{#current}}current{{/current}}">{{name}}</a>
+      {{^last}}&sdot;{{/last}}
+    {{/subnav}}
+  </h3>
+  <ul class="items">
+  </ul>
+</div>

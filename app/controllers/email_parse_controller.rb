@@ -64,10 +64,10 @@ END
                  |(^----- Original\ Message -----) # Outlook
                  |(^________________________________) # Outlook
                  |(-*\ ?Original\ Message\ ?-*) # Generic
-                 |(^On.*wrote:) # OS X Mail.app
-                 |(^From:\ ) # Outlook and some others
-                 |(^Sent\ from) # iPhone, Blackberry
-                 |(^In\ a\ message\ dated.*,)
+                 |(On.*wrote:) # OS X Mail.app
+                 |(From:\ ) # Outlook and some others
+                 |(Sent\ from) # iPhone, Blackberry
+                 |(In\ a\ message\ dated.*,)
                  }x).first
   end
   
@@ -93,18 +93,11 @@ END
 
   def body_text
     @body_text ||= 
-      EmailParseController.strip_email_body(case JSON.parse(params[:charsets])['text']
-                                            when /UTF-8/i
-                                              params[:text]
-                                            when /iso-8859-1/i
-                                              Iconv.conv("UTF-8","ISO-8859-1",params[:text])
-                                            else
-                                              raise "Unknown Encoding: #{params[:charsets]}"
-                                            end)
+      EmailParseController.strip_email_body(params['stripped-text'])
   end
 
   def to
-    @to ||= Mail::Address.new(params[:to]).address.slice(/^[^@]*/)
+    @to ||= Mail::Address.new(params[:recipient]).address.slice(/^[^@]*/)
   end
 
   def from

@@ -1,0 +1,53 @@
+<div id="information" class="info_box event">
+  <h2>Community Event</h2>
+
+  <div id="big_calendar" class="avatar">
+    <div class="month">{{abbrev_month}}</div>
+    <div class="date">{{day_of_month}}</div>
+  </div>
+
+  <div class="actions">
+    <a href="{{url}}/messages/new" class="message_me">
+      <span>Message {{author}}</span>
+    </a>
+  </div>
+
+  <h3>{{title}}</h3>
+
+  <div class="info">
+    {{description}}
+  </div>
+
+  <table>
+    {{#tags}}
+      <tr>
+        <th>TAGS</th>
+        <td>{{tags}}</td>
+      </tr>
+    {{/tags}}
+    {{#starts_at}}
+      <tr>
+        <th>STARTS</th>
+        <td>{{starts_at}}</td>
+      </tr>
+    {{/starts_at}}
+    {{#ends_at}}
+      <tr>
+        <th>ENDS</th>
+        <td>{{ends_at}}</td>
+      </tr>
+    {{/ends_at}}
+    {{#venue}}
+      <tr>
+        <th>VENUE</th>
+        <td>{{venue}}</td>
+      </tr>
+    {{/venue}}
+    {{#address}}
+      <tr>
+        <th>ADDRESS</th>
+        <td>{{address}}</td>
+      </tr>
+    {{/address}}
+  </table>
+</div>
