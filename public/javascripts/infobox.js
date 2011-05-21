@@ -9,36 +9,3 @@ function setInfoBoxPosition() {
   }
 }
 
-
-$(function(){
-  var didscroll = false;  
-  $(window).scroll(function() { didscroll = true; });
-
-  setInterval(function() {
-    if (didscroll) {
-      didscroll = false;
-      setInfoBoxPosition();
-    }
-  }, 100); 
-    
-
-  $("body").bind("#information", function(e, content) {
-    if (content) {
-      $("#information").replaceWith(window.innerShiv(content, false));
-    }
-    
-    renderMaps();    
-    
-    setInfoBoxPosition();    
-    
-    $("#file_uploader").change(function() {
-      $(this).trigger('image.inline-form');
-    });
-
-    initInlineForm();
-
-  });
-
-  $("body").trigger("#information");
-
-});
