@@ -42,8 +42,8 @@ Hey -- testing a reply!
       stub(Repliable).find(repliable_id) { fake_post }
       post(:parse,
            :from => user.email,
-           :to => "reply+#{repliable_id}@ourcommonplace.com",
-           :text => @reply_text,
+           :recipient => "reply+#{repliable_id}@ourcommonplace.com",
+           'stripped-text' => @reply_text,
            :envelope => {:from => "test@example.com"},
            :charsets => '{"text":"UTF-8"}')
     end
@@ -64,8 +64,8 @@ Hey -- testing a reply!
       @body = "Lorem Ipsum dolor sit amet."
       post(:parse,
            :from => user.email,
-           :to => "#{community.slug}@ourcommonplace.com",
-           :text => @body,
+           :recipient => "#{community.slug}@ourcommonplace.com",
+           'stripped-text' => @body,
            :subject => @body,
            :envelope => {:from => "test@example.com"},
            :charsets => '{"text" : "UTF-8"}')
@@ -82,9 +82,9 @@ Hey -- testing a reply!
       stub(community).feeds.stub!.find_by_slug( feed.slug ) { feed }
       @body = "Lorem Ipsum dolor sit amet."
       post(:parse,
-           :to => "#{feed.slug}@ourcommonplace.com",
+           :recipient => "#{feed.slug}@ourcommonplace.com",
            :from => user.email,
-           :text => @body,
+           'stripped-text' => @body,
            :subject => @body,
            :envelope => { :from => "test@example.com"},
            :charsets => '{"text" : "UTF-8"}')
