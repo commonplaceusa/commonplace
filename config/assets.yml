@@ -17,7 +17,7 @@ stylesheets:
 javascripts:
   application:
       - public/templates/*.html.mustache
-      - public/javascripts/jquery-1.4.3.js
+      - public/javascripts/jquery-1.6.1.js
       - public/javascripts/jquery-ui.js
       - public/javascripts/jquery/jquery.*.js
       - public/javascripts/jquery/underscore.js
