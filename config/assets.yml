@@ -31,10 +31,7 @@ javascripts:
       - public/javascripts/app.js
       - public/javascripts/inlineform.js
       - public/javascripts/maps.js
-      - public/javascripts/modal.js
       - public/javascripts/infobox.js
-      - public/javascripts/feed_profile.js
-      - public/javascripts/sign_in_form.js
       - public/javascripts/accounts.js
       - public/javascripts/sharing.js
   jquery:
