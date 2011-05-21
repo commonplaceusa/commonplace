@@ -32,7 +32,6 @@
 = update_content "#main" do
   #main
     = semantic_form_for @user, :url => account_path do |f|
-      = f.submit "Sign Up", :id => "invisible-button-to-prevent-accidental-facebook-registration-on-pressing-enter"
       %h3
         Fill out the form to get started, or 
         %fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'facebookUserLoggedIn();', :perms => 'email,user_hometown,publish_stream,offline_access'}

@@ -1,0 +1,65 @@
+<div id="information" class="info_box feed">
+  <h2>Community Feed</h2>
+
+  <img src="{{avatar_url}}" class="avatar">
+
+  <div class="actions">
+    <a href="{{url}}/messages/new" class="message_me" data-remote="true">
+      <span>Message {{name}}</span>
+    </a>
+
+    {{#isSubscribed}}
+      <span class="subscribed">
+        <span>You're Subscribed</span>
+      </span>
+
+      <a href="{{url}}/subscription" data-remote="true" data-method="delete" class="unsubscribe">Unsubscribe</a>
+
+    {{/isSubscribed}}
+    {{^isSubscribed}}
+      <a href="{{url}}/subscription" data-remote="true" data-method="post" class="new_subscription new_feed_{{id}}_subscription">
+        <span>Subscribe to {{name}}</span>
+      </a>
+    {{/isSubscribed}}
+  </div>
+
+  <h3>{{name}}</h3>
+
+  <div class="info">
+
+    <p>{{{about}}
+    <br>
+    <a href="{{url}}/profile">View Community Feed Page</a></p>
+  </div>
+
+  <table>
+    {{#tags}}
+      <tr>
+        <th>TAGS</th>
+        <td>{{tags}}</td>
+      </tr>
+    {{/tags}}
+    {{#website}}
+      <tr>
+        <th>WEBSITE</th>
+        <td><a href="{{website}}">{{website}}</a></td>
+      </tr>
+    {{/website}}
+    {{#phone}}
+      <tr>
+        <th>PHONE</th>
+        <td>{{phone}}</td>
+      </tr>
+    {{/phone}}
+    {{#address}}
+      <tr>
+        <th>ADDRESS</th>
+        <td>{{address}}</td>
+      </tr>
+    {{/address}}
+
+  </table>
+
+  <div class="clear"></div>
+
+</div>

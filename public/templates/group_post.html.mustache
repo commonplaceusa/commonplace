@@ -1,0 +1,22 @@
+<div class="group_post">
+
+  <img src="{{avatar_url}}" class="avatar">
+
+  <div class="published">{{published_at}}</div>
+
+  <div class="reply-count">{{reply_count}} replies</div>
+
+  <a href="{{url}}" class="title">{{title}}</a>
+
+  <div class="author">{{author}}</div>
+
+  <div class="body">{{{body}}}</div>
+
+  {{^replies}}
+    <a href="/group_posts/{{id}}/replies/new" class="show-reply-form">
+      Reply to this post
+    </a>
+  {{/replies}}
+</div>
+
+{{> replies }}
