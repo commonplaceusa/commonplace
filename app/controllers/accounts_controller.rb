@@ -42,21 +42,31 @@ class AccountsController < CommunitiesController
   def create
     authorize! :create, User
     params[:user] ||= {}
-    @user = User.new(params[:user].merge(:community => current_community))
-    
-    @user.save do |result|
-      if result
-        Resque.enqueue(Welcome, @user.id)
-        if params[:short]
-          redirect_to new_feed_url
-        else
-          redirect_to edit_new_account_url
-        end
-      else
-        render params[:short] ? :short : :new
-      end
+    password = ""
+    if params[:user][:facebook_session].present?
+      j = ActiveSupport::JSON.decode(params[:user][:facebook_session])
+      puts "Converted to #{j.inspect}"
+      password = j["uid"]
+      puts "Extracted #{password}"
+      params[:user].delete("facebook_session")
     end
-
+    puts "Setting password to #{password} 1"
+    @user = User.new(params[:user].merge(:community => current_community))
+    if @user.save
+      unless password == ""
+        puts "Setting password to #{password}"
+        @user.password = password
+        @user.save!
+      end
+      Resque.enqueue(Welcome, @user.id)
+      if params[:short]
+        redirect_to new_feed_url
+      else
+        redirect_to edit_new_account_url
+      end
+    else
+      render params[:short] ? :short : :new
+    end
   end
 
   def edit
@@ -86,12 +96,10 @@ class AccountsController < CommunitiesController
   def update_new
     authorize! :update, User
     current_user.attributes = params[:user]
-    current_user.save do |result|
-      if result
-        redirect_to :action => "add_feeds"
-      else
-        render :edit_new
-      end
+    if current_user.save
+      redirect_to :action => "add_feeds"
+    else
+      render :edit_new
     end
   end
 
@@ -120,7 +128,7 @@ class AccountsController < CommunitiesController
 
   def subscribe_to_groups
     current_user.group_ids = params[:group_ids]
-    redirect_to root_url
+    redirect_to "/?first=1"
   end
 
   def update

@@ -11,11 +11,8 @@
   = semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
 
     = f.inputs do 
-      = f.input :password
-      - if $rollout.active?(:facebook_like, current_user)
-        %li
-          = check_box_tag 'register_with_oauth2'
-          = label_tag "register_with_oauth2", "Or register with Facebook Connect"
+      - unless current_user.is_facebook_user
+        = f.input :password
 
       = if current_user.address.blank?
         = f.input :address

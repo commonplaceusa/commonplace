@@ -8,5 +8,4 @@ class UsersController < CommunitiesController
   def show
   end
 
-
 end

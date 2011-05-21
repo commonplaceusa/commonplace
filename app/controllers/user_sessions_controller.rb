@@ -7,16 +7,32 @@ class UserSessionsController < ApplicationController
 
   def create
     authorize! :create, UserSession
+    if params[:user_session][:facebook_uid].present?
+      facebook_uid = params[:user_session][:facebook_uid]
+    end
+    puts params.inspect
+    puts facebook_uid
+
     current_user_session.remember_me = true
-    current_user_session.save do |result|
-      if result
-        reload_current_user!
-        redirect_back_or_default root_url
-      else
-        @user = User.new
-        params[:controller] = "accounts"
-        params[:action] = "new"
-        render 'accounts/new'
+    if current_user_session.save
+      respond_to do |wants|
+        wants.html {
+          reload_current_user!
+          redirect_back_or_default root_url
+        }
+        wants.js {
+          render :action => "redirect"
+        }
+      end
+    else
+      @user = User.new
+      params[:controller] = "accounts"
+      params[:action] = "new"
+      respond_to do |wants|
+        wants.html {
+          render 'accounts/new'
+        }
+        wants.js
       end
     end
   end
@@ -30,6 +46,5 @@ class UserSessionsController < ApplicationController
     current_user_session.destroy
     redirect_to root_url
   end
-
 
 end
