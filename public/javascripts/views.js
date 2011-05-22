@@ -122,7 +122,7 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
         .each(function(r) { r.isHidden = true; });
     }
 
-    _(replies).each(function(r) { r.published_at = prettyDate(r.published_at); });
+    _(replies).each(function(r) { r.published_at = CommonPlace.formatDate(r.published_at); });
 
     return {
       repliable_type: this.repliable_type,
@@ -174,7 +174,7 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
 
   view: function() {
     return {
-      published_at: prettyDate(this.model.get('published_at')),
+      published_at: CommonPlace.formatDate(this.model.get('published_at')),
       avatar_url: this.model.get("avatar_url"),
       reply_count: _(this.model.get('replies')).size(),
       url: this.model.get('url'),
@@ -199,7 +199,7 @@ CommonPlace.EventItem = CommonPlace.PostLikeItem.extend({
       abbrev_month: this.model.get("abbrev_month"),
       day_of_month: this.model.get("day_of_month"),
       author_url: this.model.get('author_url'),
-      published_at: prettyDate(this.model.get('published_at')),
+      published_at: CommonPlace.formatDate(this.model.get('published_at')),
       reply_count: _(this.model.get('replies')).size(),
       url: this.model.get('url'),
       title: this.model.get('title'),
@@ -221,7 +221,7 @@ CommonPlace.AnnouncementItem = CommonPlace.PostLikeItem.extend({
     return {
       author_url: this.model.get('author_url'),
       avatar_url: this.model.get('avatar_url'),
-      published_at: prettyDate(this.model.get('published_at')),
+      published_at: CommonPlace.formatDate(this.model.get('published_at')),
       reply_count: _(this.model.get('replies')).size(),
       url: this.model.get('url'),
       title: this.model.get('title'),
@@ -243,7 +243,7 @@ CommonPlace.GroupPostItem = CommonPlace.PostLikeItem.extend({
       author_url: this.model.get('author_url'),
       avatar_url: this.model.get('avatar_url'),
       group_url: this.model.get('group_url'),
-      published_at: prettyDate(this.model.get('published_at')),
+      published_at: CommonPlace.formatDate(this.model.get('published_at')),
       reply_count: _(this.model.get('replies')).size(),
       url: this.model.get('url'),
       title: this.model.get('title'),
