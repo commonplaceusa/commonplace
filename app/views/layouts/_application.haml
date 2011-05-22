@@ -39,7 +39,7 @@
           });
         }
       });
-    - if params[:first].present? and current_user.is_facebook_user
+    - if params[:first].present? and current_user.is_facebook_user and $rollout.active?(:facebook_like, current_user)
       :javascript
         $(function() { facebook_invite(); });
 

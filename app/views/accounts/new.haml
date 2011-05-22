@@ -10,17 +10,20 @@
     {
       FB.api('/me', function(response) {
         $("#user_full_name").val(response.name);
-        $("#user_email").val(response.email);
+        $("#user_email")
+          .attr("readonly", "true")
+          .val(response.email);
         $("<input />").attr("type","hidden")
           .attr("id", "user_facebook_uid")
           .attr("name", "user[facebook_uid]")
           .val(response.id)
           .appendTo("#new_user");
-        $("<input />").attr("type","hidden")
+        /*$("<input />").attr("type","hidden")
           .attr("id", "user_facebook_session")
           .attr("name", "user[facebook_session]")
           .val(JSON.stringify(session))
-          .appendTo("#new_user");
+          .appendTo("#new_user");*/
+        $("#user_address").focus();
       });
     }
   }
@@ -28,6 +31,18 @@
   {
     return session.uid;
   }
+  $(document).ready(function() {
+    FB.Event.subscribe('auth.login', function(response) {
+      if (response.session)
+      {
+        $("<input />").attr("type","hidden")
+          .attr("id", "user_facebook_session")
+          .attr("name", "user[facebook_session]")
+          .val(JSON.stringify(response.session))
+          .appendTo("#new_user");
+      }
+    })
+  })
 
 = update_content "#main" do
   #main
