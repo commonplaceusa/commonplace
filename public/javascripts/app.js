@@ -4,41 +4,24 @@ Mustache.template = function(templateString) {
   return templateString;
 };
 
-CommonPlace.time_formats = [
-  [60, 'just now', 1], // 60
-  [120, '1 minute ago', '1 minute from now'], // 60*2
-  [3600, 'minutes', 60], // 60*60, 60
-  [7200, '1 hour ago', '1 hour from now'], // 60*60*2
-  [86400, 'hours', 3600], // 60*60*24, 60*60
-  [172800, 'yesterday', 'tomorrow'], // 60*60*24*2
-  [604800, 'days', 86400], // 60*60*24*7, 60*60*24
-  [1209600, 'last week', 'next week'], // 60*60*24*7*4*2
-  [2419200, 'weeks', 604800], // 60*60*24*7*4, 60*60*24*7
-  [4838400, 'last month', 'next month'], // 60*60*24*7*4*2
-  [29030400, 'months', 2419200], // 60*60*24*7*4*12, 60*60*24*7*4
-  [58060800, 'last year', 'next year'], // 60*60*24*7*4*12*2
-  [2903040000, 'years', 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
-  [5806080000, 'last century', 'next century'], // 60*60*24*7*4*12*100*2
-  [58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
-];
-
-CommonPlace.formatDate = function(date_str) {
-  var time = ('' + date_str).replace(/-/g,"/").replace(/[TZ]/g," ");
-  var seconds = (new Date - new Date(time)) / 1000 + (new Date).getTimezoneOffset() * 60;
-  var token = 'ago', list_choice = 1;
-  if (seconds < 0) {
-    seconds = Math.abs(seconds);
-    token = 'from now';
-    list_choice = 2;
-  }
-  var i = 0, format;
-  while (format = CommonPlace.time_formats[i++]) if (seconds < format[0]) {
-    if (typeof format[2] == 'string')
-      return format[list_choice];
-    else
-      return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
-  }
-  return time;
+CommonPlace.timeAgoInWords = function(date_str) {
+  var m = date_str.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z/);
+  var time = Date.UTC(m[1],m[2] - 1,m[3],m[4],m[5],m[6]);
+  var diff_in_seconds = (time - Date.now()) / 1000;
+  var diff_in_minutes = Math.abs(Math.floor((diff_in_seconds / 60)));
+  var add_token = function (in_words) { return diff_in_seconds > 0 ? "in " + in_words : in_words + " ago"; };
+  if (diff_in_minutes == 0) { return add_token('less than a minute'); }
+  if (diff_in_minutes == 1) { return add_token('a minute'); }
+  if (diff_in_minutes < 45) { return add_token(diff_in_minutes + ' minutes'); }
+  if (diff_in_minutes < 90) { return add_token('about 1 hour'); }
+  if (diff_in_minutes < 1440) { return add_token('about ' + Math.floor(diff_in_minutes / 60) + ' hours'); }
+  if (diff_in_minutes < 2880) { return add_token('1 day'); }
+  if (diff_in_minutes < 43200) { return add_token(Math.floor(diff_in_minutes / 1440) + ' days'); }
+  if (diff_in_minutes < 86400) { return add_token('about 1 month'); }
+  if (diff_in_minutes < 525960) { return add_token(Math.floor(diff_in_minutes / 43200) + ' months'); }
+  if (diff_in_minutes < 1051199) { return add_token('about 1 year'); }
+  
+  return add_token('over ' + Math.floor(diff_in_minutes / 525960) + ' years');
 };
 
 
