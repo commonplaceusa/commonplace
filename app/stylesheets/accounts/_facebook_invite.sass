@@ -1,3 +1,4 @@
+@import say_something
 body.application.accounts.facebook_invite
   #groups_box
     +lightbox
@@ -84,8 +85,18 @@ body.application.accounts.facebook_invite
       margin: 5px 0
       color: #898989
       margin-top: 10px
+    #step  
+      height: 50px
+      padding: 10px 0px 0px 50px
     #step_one
-      background: url('/images/step-1-icon-small.png') no-repeat  0px 14px
+      @extend #step
+      background: url('/images/step-1-icon-small.png') no-repeat  0px 0px
+    #step_two
+      @extend #step
+      background: url('/images/step-2-icon-small.png') no-repeat  0px 0px
+    #step_three
+      @extend #step
+      background: url('/images/step-3-icon-small.png') no-repeat  0px 0px
     #continue_button
       background: url('/images/buttons/continue.png') no-repeat
       height: 36px
