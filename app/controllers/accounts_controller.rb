@@ -164,4 +164,7 @@ class AccountsController < CommunitiesController
     redirect_to root_url
   end
   
+  def facebook_invite
+  end
+  
 end

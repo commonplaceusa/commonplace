@@ -16,7 +16,12 @@
 
       = if current_user.address.blank?
         = f.input :address
-      = f.input :avatar, :input_html => {:size => 25}
+      - unless current_user.is_facebook_user
+        = f.input :avatar, :input_html => {:size => 25}
+      - else
+        #facebook_avatar
+          = "We got your picture from Facebook:"
+          %img{:src => current_user.avatar_url, :width => "100px", :height => "100px", :style => "vertical-align:middle;"}
       = f.input :about
       = f.input :interest_list
       = f.input :referral_source
