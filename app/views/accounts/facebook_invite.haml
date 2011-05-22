@@ -7,7 +7,29 @@
       Subscribe to some groups:
       %ul
         %li
-          #step_one Hi
+          #step_one Invite neighbors by Facebook:
+        %li
+          #step_two Invite neighbors by email:
+          - form_tag invites_path, :id => "new_invites", :class => "invites formtastic" do
+
+            %h2= t ".h2", :community => current_community.name
+            %fieldset.inputs
+              %ol
+                %li.text.emails
+                  = label_tag :emails, t(".emails_label")
+                  = text_area_tag :emails, "", :rows => 5
+                  %a{ :href => "#", :onclick => "showPlaxoABChooser('emails', '/plaxo-importer.html'); return false"}
+                    &#x271a; Import emails from my address book
+
+                %li.text.message
+                  = label_tag :message, t(".message_label", :community => current_community.name)
+                  = text_area_tag :message, "", :rows => 3
+            %fieldset.buttons
+              %ol
+                %li.commit
+                  = submit_tag "Invite"
+        %li
+          #step_three Invite neighbors by hand:
 
     %br{:class=>"cleared"}
 
