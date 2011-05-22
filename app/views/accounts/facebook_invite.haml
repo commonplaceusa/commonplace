@@ -1,29 +1,14 @@
-%h1 Invite your Friends!
+#groups_box
+  #tool_tip
+    %h2 Invite your Neighbors!
+    %p Improve CommonPlace by inviting people you know.
+  #groups_wrapper
+    %h2
+      Subscribe to some groups:
+      %ul
+        %li
+          #step_one Hi
+
+    %br{:class=>"cleared"}
 
 #fb-root
-
-:javascript
-  function invite_friends()
-  {
-    FB.ui({
-      method: 'apprequests',
-      message: 'Invitation to use CommonPlace :)',
-      data: 'tracking_data'
-    });
-  }
-  $(function () {
-    FB.login(function(response) {
-      if (response.session)
-      {
-        invite_friends();
-      }
-    });
-  });
--# Old-style (FBML) invitations
-/
-  #fb-root{:style => "text-align: center;", :width => "755px"}
-    %fb:serverFbml
-      %script{:type => "text/fbml"}
-        %fb:request-form{:action => "", :method => "POST", :invite => "true", :type => "CommonPlace", :content => "This is an invitation :)"}
-          %fb:multi-friend-selector{:showborder => "false", :actiontext => "Invite your friends to use CommonPlace"}
-
