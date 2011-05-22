@@ -36,7 +36,7 @@ module Serializer
         "id" => o.id,
         "published_at" => o.created_at.utc,
         "url" => "/events/#{o.id}",
-        "occurs_on" => o.date,
+        "occurs_on" => o.date.to_time.utc,
         "title" => o.name,
         "author" => o.owner.name,
         "body" => o.description,
