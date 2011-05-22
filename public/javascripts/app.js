@@ -5,8 +5,7 @@ Mustache.template = function(templateString) {
 };
 
 CommonPlace.timeAgoInWords = function(date_str) {
-  var m = date_str.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z/);
-  var time = Date.UTC(m[1],m[2] - 1,m[3],m[4],m[5],m[6]);
+  var time = CommonPlace.parseDate(date_str);
   var diff_in_seconds = (time - Date.now()) / 1000;
   var diff_in_minutes = Math.abs(Math.floor((diff_in_seconds / 60)));
   var add_token = function (in_words) { return diff_in_seconds > 0 ? "in " + in_words : in_words + " ago"; };
@@ -22,6 +21,11 @@ CommonPlace.timeAgoInWords = function(date_str) {
   if (diff_in_minutes < 1051199) { return add_token('about 1 year'); }
   
   return add_token('over ' + Math.floor(diff_in_minutes / 525960) + ' years');
+};
+
+CommonPlace.parseDate = function(date_str) {
+  var m = date_str.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z/);
+  return Date.UTC(m[1],m[2] - 1,m[3],m[4],m[5],m[6]);
 };
 
 
