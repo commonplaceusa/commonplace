@@ -14,7 +14,7 @@
     = javascript_include_tag "http://www.plaxo.com/css/m/js/basic.js"
     = javascript_include_tag "http://www.plaxo.com/css/m/js/abc_launcher.js"
     = javascript_include_tag "http://js.getexceptional.com/exceptional.js"
-    = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
+    -#= javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
     %script{:type => "text/javascript"}
       CommonPlace = window.CommonPlace || {};
       CommonPlace.auth_token = "#{form_authenticity_token}"
@@ -29,19 +29,10 @@
       }
       $(document).ready(function () {
         Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
-        if (FB)
-        {
-          FB.init({
-            appId : "#{($FacebookConfig || {})['app_id']}",
-            status : true,
-            cookie : true,
-            xfbml  : true
-          });
-        }
       });
     - if params[:first].present? and current_user.is_facebook_user
       :javascript
-        $(function() { facebook_invite(); });
+        $(document).ready(function() { facebook_invite(); });
 
     = include_stylesheets :application
     / [if IE]
@@ -50,6 +41,24 @@
     %script{:src => "http://maps.google.com/maps/api/js?sensor=false", :type => "text/javascript"}
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
+    #fb-root
+    %script
+      window.fbAsyncInit = function() {
+      FB.init({
+      appId : "#{($FacebookConfig || {})['app_id']}",
+      status : true,
+      cookie : true,
+      xfbml  : true
+      });
+      - if params[:first].present? and current_user.is_facebook_user and false
+        facebook_invite();
+      };
+      (function() {
+      var e = document.createElement('script');
+      e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+      e.async = true;
+      document.getElementById('fb-root').appendChild(e);
+      }());
     = render 'shared/admin_bar'
     
     = render 'layouts/header', :user_session => current_user_session
@@ -88,4 +97,5 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-  #fb-root
+
+#fb-root

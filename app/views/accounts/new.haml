@@ -1,6 +1,15 @@
 %h1= t(".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), learn_more_account_path)).html_safe
 
 :javascript
+  $(document).ready(function() {
+    FB.init({
+      appId  : "#{($FacebookConfig || {})['app_id']}",
+      status : true,
+      cookie : true,
+      xfbml  : true
+    });
+    console.log("FBINIT");
+  });
   function facebookUserLoggedIn()
   {
     session = FB.getSession()
@@ -10,17 +19,20 @@
     {
       FB.api('/me', function(response) {
         $("#user_full_name").val(response.name);
-        $("#user_email").val(response.email);
+        $("#user_email")
+          .attr("readonly", "true")
+          .val(response.email);
         $("<input />").attr("type","hidden")
           .attr("id", "user_facebook_uid")
           .attr("name", "user[facebook_uid]")
           .val(response.id)
           .appendTo("#new_user");
-        $("<input />").attr("type","hidden")
+        /*$("<input />").attr("type","hidden")
           .attr("id", "user_facebook_session")
           .attr("name", "user[facebook_session]")
           .val(JSON.stringify(session))
-          .appendTo("#new_user");
+          .appendTo("#new_user");*/
+        $("#user_address").focus();
       });
     }
   }
@@ -28,6 +40,18 @@
   {
     return session.uid;
   }
+  $(document).ready(function() {
+    FB.Event.subscribe('auth.login', function(response) {
+      if (response.session)
+      {
+        $("<input />").attr("type","hidden")
+          .attr("id", "user_facebook_session")
+          .attr("name", "user[facebook_session]")
+          .val(JSON.stringify(response.session))
+          .appendTo("#new_user");
+      }
+    })
+  })
 
 = update_content "#main" do
   #main
@@ -44,7 +68,7 @@
           
           = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
   
-     
+#fb-root     
 - if current_community.organizer_about?
       
   #who_is_info_bubble
