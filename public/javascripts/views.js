@@ -122,7 +122,7 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
         .each(function(r) { r.isHidden = true; });
     }
 
-    _(replies).each(function(r) { r.published_at = CommonPlace.timeAgoInWords(r.published_at); });
+    _(replies).each(function(r) { r.published = CommonPlace.timeAgoInWords(r.published_at); });
 
     return {
       repliable_type: this.repliable_type,
