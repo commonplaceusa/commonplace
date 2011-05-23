@@ -20,6 +20,10 @@ class UnknownAddress < MailBase
     community.name
   end
 
+  def community_slug
+    community.slug
+  end
+
   def organizer_email
     community.organizer_email
   end
