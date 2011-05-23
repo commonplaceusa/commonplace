@@ -12,7 +12,6 @@
         .val(session.uid);
       field.appendTo("#new_user_session");
       FB.api("/me", function(response) {
-        console.log(response);
         $("#user_session_email").val(response.email);
         $("#user_session_password").val(facebook_pass(session));
         $("#new_user_session").submit();
