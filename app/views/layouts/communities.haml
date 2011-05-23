@@ -34,7 +34,7 @@
 
   community.announcements.refresh(#{Serializer::serialize(Announcement.where(:community_id => current_community.id).includes(:owner, :replies => :user).to_a).to_json.html_safe});
 
-  community.group_posts.refresh(#{Serializer::serialize(GroupPost.includes(:group, :user, :replies => :user).where(:groups  => {:community_id => 1}).to_a).to_json.html_safe});
+  community.group_posts.refresh(#{Serializer::serialize(GroupPost.includes(:group, :user, :replies => :user).where(:groups  => {:community_id => current_community.id}).to_a).to_json.html_safe});
 
   community.feeds.refresh(#{Serializer::serialize(Feed.where(:community_id => current_community.id).to_a).to_json.html_safe});
 
