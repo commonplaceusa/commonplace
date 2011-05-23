@@ -59,14 +59,28 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
     "/feeds": "feeds",
     "/groups": "groups",
     "/": "wire",
-    "": "wire"
+    "": "routeFromPathName",
+    "/posts/:id": "showPost",
+    "/announcements/:id": "showAnnouncement",
+    "/group_posts/:id": "showGroupPost",
+    "/events/:id": "showEvent",
+    "/users/:id": "showUser",
+    "/feeds/:id": "showFeed",
+    "/groups/:id": "showGroup"
+  },
+
+  routeFromPathName: function() {
+    if (window.location.pathname == "/") {
+      this.wire();
+    } else {
+      window.location.hash = window.location.pathname;
+    }
   },
   
   wire: function() {
-    if (window.location.pathname =="/") {
-      (new CommonPlace.Wire({model: this.community,
-                             el: $("#whats-happening")})).render();
-    }
+    (new CommonPlace.Wire({model: this.community,
+                           el: $("#whats-happening")})).render();
+    
   },
 
   posts: function() {
@@ -80,6 +94,31 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
       });
     this.postIndex.render();
   },
+  
+  showPost: function(id) { this.posts(); 
+                           $.scrollTo($("#post-" + id + "-item"));
+                         },
+  showAnnouncement: function(id) { this.announcements();
+                                   $.scrollTo($("#announcement-" + id + "-item"));
+                                 },
+  showGroupPost: function(id) { this.group_posts();
+                                $.scrollTo($("#group_post-" + id + "-item")); 
+                              },
+  showEvent: function(id) { this.events();
+                            $.scrollTo($("#event-" + id + "-item"));
+                          },
+  showUser: function(id) { this.users();
+                           $.scrollTo($("#user-" + id + "-item"));
+                         },
+  showFeed: function(id) { this.feeds();
+                           $.scrollTo($("#feed_" + id + "_item"));
+                         },
+  showGroup: function(id) { this.groups();
+                            $.scrollTo($("#group_" + id + "_item"));
+                          },
+
+  
+
   announcements: function(){
     this.announcementIndex = this.announcementIndex ||
       new CommonPlace.Index({

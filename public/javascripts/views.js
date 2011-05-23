@@ -21,7 +21,7 @@ CommonPlace.MainPage = Backbone.View.extend({
 
   }
 
-})
+});
 
 CommonPlace.Info = Backbone.View.extend({
   tagName: "div",
@@ -180,7 +180,8 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: this.model.get('body')
+      body: this.model.get('body'),
+      id: this.model.get('id')
     };
   },
 
@@ -196,6 +197,7 @@ CommonPlace.EventItem = CommonPlace.PostLikeItem.extend({
 
   view: function() {
     return {
+      id: this.model.get('id'),
       occurs_in: CommonPlace.timeAgoInWords(this.model.get('occurs_on')),
       abbrev_month: this.model.get("abbrev_month"),
       day_of_month: this.model.get("day_of_month"),
@@ -220,6 +222,7 @@ CommonPlace.AnnouncementItem = CommonPlace.PostLikeItem.extend({
   
   view: function() {
     return {
+      id: this.model.get('id'),
       author_url: this.model.get('author_url'),
       avatar_url: this.model.get('avatar_url'),
       published_at: CommonPlace.timeAgoInWords(this.model.get('published_at')),
@@ -241,6 +244,7 @@ CommonPlace.GroupPostItem = CommonPlace.PostLikeItem.extend({
 
   view: function() {
     return {
+      id: this.model.get('id'),
       author_url: this.model.get('author_url'),
       avatar_url: this.model.get('avatar_url'),
       group_url: this.model.get('group_url'),
