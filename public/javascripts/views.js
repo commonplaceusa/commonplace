@@ -241,7 +241,7 @@ CommonPlace.AnnouncementItem = CommonPlace.PostLikeItem.extend({
 
 CommonPlace.GroupPostItem = CommonPlace.PostLikeItem.extend({
   template: "group_post",
-
+  repliable_type: "GroupPost",
   view: function() {
     return {
       id: this.model.get('id'),
