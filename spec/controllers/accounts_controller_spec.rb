@@ -33,7 +33,7 @@ describe AccountsController do
     end
 
     context "when user save is succesful" do
-      before(:each) { stub(user).save.yields(true) }
+      before(:each) { stub(user).save { true } }
       
       context "and :short is true" do
         it "redirects to edit new" do
@@ -52,7 +52,7 @@ describe AccountsController do
 
     context "when user save is not successful" do
       before(:each) { 
-        stub(user).save.yields(false) 
+        stub(user).save { false }
       }
       context "and :short is true" do
 
@@ -77,7 +77,7 @@ describe AccountsController do
     let(:user) { mock_model(User) }
     context "when user is saved" do
       before(:each) do 
-        stub(user).save.yields(true)
+        stub(user).save { true }
         stub(UserSession).find.stub!.user { user}
         put :update_new
       end
@@ -90,7 +90,7 @@ describe AccountsController do
     context "when user is not saved" do
       before(:each) do
         stub(UserSession).find.stub!.user { user}
-        stub(user).save.yields(false)
+        stub(user).save { false }
         put :update_new
       end
 
