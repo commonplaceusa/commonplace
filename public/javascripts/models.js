@@ -25,6 +25,8 @@ CommonPlace.Users = Backbone.Collection.extend({
     return this;
   },
 
+  comparator: function(user) { return user.get('last_name') + user.get('first_name'); },
+
   url: function() {
     return "/api/communities/" + this.community.id + "/users";
   }
@@ -90,11 +92,13 @@ CommonPlace.Feed = Backbone.Model.extend({});
 
 CommonPlace.Feeds = Backbone.Collection.extend({
   model: CommonPlace.Feed,
-
+  
   initialize: function(models, options) {
     this.community = options.community;
     return this;
   },
+
+  comparator: function(feed) { return feed.get('name'); },
 
   url: function() {
     return "/api/communities/" + this.community.id + "/feeds";
@@ -145,6 +149,8 @@ CommonPlace.Groups = Backbone.Collection.extend({
     this.community = options.community;
     return this;
   },
+
+  comparator: function(group) { return group.get('name'); },
 
   url: function() {
     return "/api/communities/" + this.community.id + "/groups";
