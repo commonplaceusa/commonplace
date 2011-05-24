@@ -38,7 +38,9 @@ CommonPlace.Post = Backbone.Model.extend({
     this.community = this.collection.community;
     this.user = this.community.users.get(this.get('user_id'));
     this.replies = new CommonPlace.Replies(this.get('replies'), {repliable: this});
-  }
+  },
+
+  url: function() { return "/api/posts/" + this.id; }
     
 });
 
@@ -69,8 +71,9 @@ CommonPlace.Event = Backbone.Model.extend({
     this.set({"day_of_month": date.getDate(),
               "abbrev_month": this.monthAbbrevs[date.getMonth()]});
     this.replies = new CommonPlace.Replies(this.get('replies'), {repliable: this});
+  },
 
-  }
+  url: function() { return "/events/" + this.id; }
 
 });
 
@@ -122,7 +125,9 @@ CommonPlace.Announcement = Backbone.Model.extend({
   feed: function() {
     this._feed = this._feed || this.community.feeds.get(this.get('feed_id'));
     return this._feed;
-  }
+  },
+
+  url: function() { return "/api/announcements/" + this.id; }
 
 });
 
@@ -170,7 +175,9 @@ CommonPlace.GroupPost = Backbone.Model.extend({
     this._group = this._group ||
       this.community.groups.get(this.get('group_id'));
     return this._group;
-  }
+  },
+
+    url: function() { return "/api/group_posts/" + this.id; }
 
 });
 
