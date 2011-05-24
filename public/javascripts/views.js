@@ -108,9 +108,10 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
     "mouseenter": "showInfo",
     "submit form": "submitReply",
     "click a.all-replies" : "showAllReplies",
-    "hover div.replies ul li a": "replyHover"
+    "hover div.replies ul li a": "replyHover",
+    "click .toggle-actions": "toggleActions"
   },
-
+  toggleActions: function() { this.$(".actions").toggle(); },
   replies: function() {
     var repliesView = this.model.replies.toJSON(),
         numHiddenReplies = _(repliesView).size() - 3;
@@ -147,15 +148,10 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
   },
 
   submitReply: function(e) {
+    var self = this
     e.preventDefault();
-    var self = this,
-        $form = $(e.currentTarget);
-    $.post($form.attr("action"), $form.serialize(), 
-           function(response) {
-             if (response) {
-               self.$("div.replies").replaceWith($(window.innerShiv(response, false)));
-             }
-           });
+    this.model.replies.create({body: $("textarea[name='reply[body]']", e.currentTarget).val()},
+                              {success: function() {self.render(); }});
   },
 
   replyHover: function(e) {
@@ -168,17 +164,12 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
   template: "post",
   repliable_type: "Post",
 
-  events: {
-    "click .toggle-actions": "toggleActions"
-  },
-
-  toggleActions: function() { this.$(".actions").toggle(); },
   
   view: function() {
     return {
       published_at: CommonPlace.timeAgoInWords(this.model.get('published_at')),
       avatar_url: this.model.get("avatar_url"),
-      reply_count: _(this.model.get('replies')).size(),
+      reply_count: this.model.replies.size(),
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
