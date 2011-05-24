@@ -112,23 +112,19 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
   },
 
   replies: function() {
-    var replies = this.model.get('replies');
-    var hasHiddenReplies = false;
+    var repliesView = this.model.replies.toJSON(),
+        numHiddenReplies = _(repliesView).size() - 3;
 
-    if (_(replies).size() > 3) {
-      hasHiddenReplies = true;
-      _(replies).chain()
-        .first(_(replies).size() - 3)
-        .each(function(r) { r.isHidden = true; });
-    }
-
-    _(replies).each(function(r) { r.published = CommonPlace.timeAgoInWords(r.published_at); });
+    _(repliesView).each(function(reply, index) { 
+      reply.published = CommonPlace.timeAgoInWords(reply.published_at); 
+      reply.isHidden = index < numHiddenReplies;
+    });
 
     return {
       repliable_type: this.repliable_type,
       repliable_id: this.model.id,
-      hasHiddenReplies: hasHiddenReplies,
-      replies: replies,
+      hasHiddenReplies: numHiddenReplies > 0,
+      replies: repliesView
     };
   },
 
