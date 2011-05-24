@@ -37,6 +37,7 @@ CommonPlace.Post = Backbone.Model.extend({
   initialize: function(attrs, options) {
     this.community = this.collection.community;
     this.user = this.community.users.get(this.get('user_id'));
+    this.replies = new CommonPlace.Replies(this.get('replies'), {repliable: this});
   }
     
 });
@@ -67,8 +68,9 @@ CommonPlace.Event = Backbone.Model.extend({
     var date = new Date(CommonPlace.parseDate(this.get("occurs_on")));
     this.set({"day_of_month": date.getDate(),
               "abbrev_month": this.monthAbbrevs[date.getMonth()]});
-  }
+    this.replies = new CommonPlace.Replies(this.get('replies'), {repliable: this});
 
+  }
 
 });
 
@@ -109,6 +111,7 @@ CommonPlace.Announcement = Backbone.Model.extend({
 
   initialize: function(attrs, options) {
     this.community = this.collection.community;
+    this.replies = new CommonPlace.Replies(this.get('replies'), {repliable: this});
   },
 
   user: function() {
@@ -119,9 +122,7 @@ CommonPlace.Announcement = Backbone.Model.extend({
   feed: function() {
     this._feed = this._feed || this.community.feeds.get(this.get('feed_id'));
     return this._feed;
-  },
-
-
+  }
 
 });
 
@@ -162,6 +163,7 @@ CommonPlace.GroupPost = Backbone.Model.extend({
 
   initialize: function(attrs, options) {
     this.community = this.collection.community;
+    this.replies = new CommonPlace.Replies(this.get('replies'), {repliable: this});
   },
 
   group: function() {
@@ -169,7 +171,6 @@ CommonPlace.GroupPost = Backbone.Model.extend({
       this.community.groups.get(this.get('group_id'));
     return this._group;
   }
-
 
 });
 
@@ -186,5 +187,21 @@ CommonPlace.GroupPosts = Backbone.Collection.extend({
   },
 
   comparator: function(model) { return - CommonPlace.parseDate(model.get("published_at")) ; }
+
+});
+
+CommonPlace.Reply = Backbone.Model.extend({});
+
+CommonPlace.Replies = Backbone.Collection.extend({
+
+  model: CommonPlace.Reply,
+  
+  initialize: function(models, options) {
+    this.repliable = options.repliable;
+  },
+
+  url: function() { return this.repliable.url() + "/replies" },
+
+  comparator: function(reply) { return CommonPlace.parseDate(reply.get("published_at")); }
 
 });
