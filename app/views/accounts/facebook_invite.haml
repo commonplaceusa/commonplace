@@ -1,36 +1,68 @@
+%script
+  = "var slug = '#{current_community.slug}';"
+:javascript
+  function invite_friends()
+  {
+    FB.login(function(response) {
+      FB.ui({
+        method: 'apprequests',
+        message: 'Invitation to use CommonPlace :)',
+        data: slug
+      });
+    });
+  }
+      $(function () {
+        FB.login(function(response) {
+          if (response.session)
+          {
+            invite_friends();
+          }
+        });
+      });
+
 #groups_box
   #tool_tip
     %h2 Invite your Neighbors!
     %p Improve CommonPlace by inviting people you know.
   #groups_wrapper
+    #fb-root
     %h2
-      Subscribe to some groups:
       %ul
         %li
           #step_one Invite neighbors by Facebook:
+          %img{:src => "/images/fb-btn.png", :width => "90%", :onclick => "invite_friends();"}
         %li
           #step_two Invite neighbors by email:
-          - form_tag invites_path, :id => "new_invites", :class => "invites formtastic" do
 
-            %h2= t ".h2", :community => current_community.name
-            %fieldset.inputs
-              %ol
-                %li.text.emails
-                  = label_tag :emails, t(".emails_label")
-                  = text_area_tag :emails, "", :rows => 5
-                  %a{ :href => "#", :onclick => "showPlaxoABChooser('emails', '/plaxo-importer.html'); return false"}
-                    &#x271a; Import emails from my address book
-
-                %li.text.message
-                  = label_tag :message, t(".message_label", :community => current_community.name)
-                  = text_area_tag :message, "", :rows => 3
-            %fieldset.buttons
-              %ol
-                %li.commit
-                  = submit_tag "Invite"
+          - semantic_form_for @invitation do |f|
+            - f.inputs do
+              = f.input :email, :label => ""
+              = f.input :body, :label => ""
+            - f.buttons do
+              = f.submit "Invite"
         %li
           #step_three Invite neighbors by hand:
+          %table
+            %tr
+              %td
+                %img{:src => "/images/doc-icon.png"}
+              %td
+                %img{:src => "/images/doc-icon.png"}
+              %td
+                %img{:src => "/images/doc-icon.png"}
+              %td
+                %img{:src => "/images/doc-icon.png"}
+            %tr
+              %td{:style => "text-align: center;"} Description
+              %td{:style => "text-align: center;"} Description
+              %td{:style => "text-align: center;"} Description
+              %td{:style => "text-align: center;"} Description
+            %tr
+              %td
+                %br
+            %tr
+              %td{:colspan => "2.5"}
+              %td
+                %img{:src => "/images/download-btn.png", :width => "111%", :height => "100%", :onclick => "void();"}
 
     %br{:class=>"cleared"}
-
-#fb-root
