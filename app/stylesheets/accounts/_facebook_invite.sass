@@ -6,8 +6,8 @@ body.application.accounts.facebook_invite
     margin: 20px auto
     position: relative
     #groups_wrapper
-      width: 385px
-      margin-left: 450px
+      width: 400px
+      margin-left: 300px
     #tool_tip
       background: white
       +border-radius(5px)
@@ -17,7 +17,7 @@ body.application.accounts.facebook_invite
       top: 20px
       margin: 20px
       padding: 10px 20px
-      width: 360px  
+      width: 240px  
       h2
         color: $cpBlue
         font-size: 20px
@@ -90,18 +90,21 @@ body.application.accounts.facebook_invite
       padding: 10px 0px 0px 50px
     #step_one
       @extend #step
-      background: url('/images/step-1-icon-small.png') no-repeat  0px 0px
+      background: url('/images/step-1-icon-small.png') no-repeat 0px 0px
     #step_two
       @extend #step
-      background: url('/images/step-2-icon-small.png') no-repeat  0px 0px
+      background: url('/images/step-2-icon-small.png') no-repeat 0px 0px
     #step_three
       @extend #step
-      background: url('/images/step-3-icon-small.png') no-repeat  0px 0px
+      background: url('/images/step-3-icon-small.png') no-repeat 0px 0px
     #continue_button
       background: url('/images/buttons/continue.png') no-repeat
       height: 36px
       width: 116px
-      cursor: pointer 
+      cursor: pointer
       float: right
     .cleared
       clear: both
+  form
+    label
+      display: none

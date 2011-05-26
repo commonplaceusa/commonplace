@@ -165,6 +165,9 @@ class AccountsController < CommunitiesController
   end
   
   def facebook_invite
+    @invitation = Invite.new
+    @invitation.email = "Email address"
+    @invitation.body = "Write something nice about CommonPlace!"
   end
   
 end
