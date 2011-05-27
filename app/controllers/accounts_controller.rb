@@ -164,4 +164,10 @@ class AccountsController < CommunitiesController
     redirect_to root_url
   end
   
+  def facebook_invite
+    @invitation = Invite.new
+    @invitation.email = "Email address"
+    @invitation.body = "Write something nice about CommonPlace!"
+  end
+  
 end
