@@ -21,7 +21,7 @@ Commonplace::Application.routes.draw do
     
     match ":messagable_type/:messagable_id/messages/new" => "messages#new"
     
-    match "/facebook_canvas/index" => "facebook_canvas#index"
+    match "/facebook_canvas/" => "facebook_canvas#index"
 
     resources :messages, :only => :create
 
