@@ -1,4 +1,5 @@
 require 'net/http'
+require 'json'
 require 'url'
 
 class FacebookCanvasController < ApplicationController
@@ -10,7 +11,7 @@ class FacebookCanvasController < ApplicationController
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)
     }
-    @data = res.body
+    @data = JSON.parse(res.body)
     render :layout => nil
   end
 
