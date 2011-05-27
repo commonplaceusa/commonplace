@@ -30,7 +30,7 @@
       $(document).ready(function () {
         Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
       });
-    - if params[:first].present? and current_user.is_facebook_user
+    - if params[:first].present? and current_user.is_facebook_user and $rollout.active?(:facebook_like, current_user)
       :javascript
         $(document).ready(function() { facebook_invite(); });
 
@@ -97,5 +97,8 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+<<<<<<< HEAD
 
 #fb-root
+=======
+>>>>>>> revamped_invitations
