@@ -1,0 +1,104 @@
+$darkRed: #ad312f ;
+$darkBlue: #1b334a ;
+
+#main { position: relative ; }
+#tour-shadow { position: fixed ;
+               top: 0 ; left: 0 ; bottom: 0 ; right: 0 ;
+               background-color: black ; opacity: 0.5 ;
+               z-index: 1000; }
+
+#tour { background-color: white ; position: absolute;
+        z-index: 1001; left: 2; top: 0; }
+
+#tour.welcome { 
+    background-image: url("/images/tour/welcome-bg.png");
+    background-color: transparent; 
+    width: 530px; height: 400px;
+    padding: 65px 75px 100px ;
+    left: 150px; top: 20px;
+
+    .welcome-to { 
+        background: url("/images/tour/welcome-to.png") no-repeat center ;
+        height: 36px;
+    }
+
+    .community-name { 
+        margin-top: 10px ; color: $darkBlue ; font-size: 50px ;
+        font-family: Rockwell, Georgia, Times, serif ;
+        text-shadow: 1px 1px 1px #fff , 3px 3px 0 $darkRed ;
+        font-weight: bold ; text-align: center ;
+    }
+
+    .thanks { 
+        margin-top: 20px ; background-color: #eee ; color: $darkRed ;
+        text-align: center ; padding: 15px ; font-weight: bold ;
+    }
+
+    h3 {
+        color: $darkBlue ; text-align: center ;
+        font-weight: bold ; margin-top: 16px ;
+    }
+
+    ul  {
+        margin-top: 10px ; padding: 0px 50px ;
+
+        li {
+            list-style: none ; 
+            background: url('/images/tour/star-icon.png') no-repeat left center ;
+            color: #474747 ; padding: 10px 0px 10px 30px; font-size: 14px ;
+        }
+        
+    }
+    
+    a.wire-tour {
+        display: block ; margin: 30px auto 0px ; height: 56px ; 
+        width: 243px ; background-image: url('/images/tour/tour-button.png') ;
+    }
+
+    a.end-tour { display: block ; color: #a5a5a5 ; text-align: center ; text-decoration: underline ; }
+}
+
+#tour.wire {
+    top: 0px; left: 0px; width: 390px;
+    padding: 50px 140px 50px 50px;
+    background: transparent url('/images/tour/small-tour-bg.png') no-repeat;
+    height: 236px; font-size: 13px; line-height: 1.2;
+
+    a.profile-tour { display: block ; margin: 20px auto ; 
+                     background: url('/images/tour/next-button.png') no-repeat ;
+                     height: 36px ; width: 123px ;
+                     }
+}
+
+#tour.profile {
+    top: 270px ; left: 490px ; 
+    width: 390px ; height: 236px ; padding: 50px 50px 50px 60px ;
+    background: transparent url('/images/tour/reverse-small-tour-bg.png') no-repeat;
+    p { font-size: 15px; line-height: 1.2; }
+
+    a.post-tour { display: block ; margin: 20px auto ; 
+                  background: url('/images/tour/next-button.png') no-repeat ;
+                  height: 36px ; width: 123px ;
+                }
+}
+
+#tour.post {
+    top: 0px ; left: 490px ;
+    background: url('/images/tour/large-tour-bg.png') no-repeat ;
+    width: 370px; height: 415px ; 
+    padding: 25px 50px 70px 65px ;
+
+    p { font-size: 14px; line-height: 1.2; margin-top: 15px ;}
+    ul { padding: 0 40px ; margin-top: 20px ; }
+    ul li { 
+        font-size: 13px ; color: #666 ; 
+        margin-top: 20px ;
+        padding-left: 40px ; 
+        background: no-repeat left top ;
+        &.post { background-image: url('/images/tour/neighborhood-post-icon.png') ; }
+        &.event{ background-image: url('/images/tour/events-icon.png') ; }
+        &.announcement { background-image: url('/images/tour/announcement-icon.png') ; }
+        &.group { background-image: url('/images/tour/discussion-icon.png') ; }
+    }
+    a.end-tour { display: block; margin-top: 5px ; color: $darkRed ; font-weight: bold ; font-size: 16px ; text-decoration: underline ; }
+}

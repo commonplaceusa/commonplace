@@ -1,5 +1,4 @@
 class Account
-  
   def initialize(user)
     @user = user
   end
@@ -28,6 +27,10 @@ class Account
 
   def accounts
     [@user] + @user.feeds
+  end
+
+  def short_name
+    @user.first_name
   end
 
 end
