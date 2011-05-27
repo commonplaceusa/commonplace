@@ -301,6 +301,7 @@ GEM
       rack (~> 1.1)
       tilt (~> 1.2)
     spork (0.8.4)
+    ssl_requirement (0.1.0)
     text-hyphen (1.0.0)
     text-reform (0.2.0)
       text-hyphen (~> 1.0.0)
@@ -375,6 +376,7 @@ DEPENDENCIES
   sass (~> 3.1)
   simple_uuid
   spork
+  ssl_requirement
   text-reform
   thor
   unicorn
