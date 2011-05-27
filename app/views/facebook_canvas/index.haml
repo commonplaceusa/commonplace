@@ -6,10 +6,7 @@
   cookie : true,
   xfbml  : true
   });
-  = "FB.api('/#{@request_id}/', function(response) {"
-  console.log(response);
-  });
+  s = FB.getSession()
+  = "FB.api('/#{@request_id}?access_token=#{@application_token}', 'GET', {access_token: '#{@application_token}'}, function(r) { console.log(r.data); });"
 -# TODO: Change this from staging to production!
--#= link_to(image_tag("http://staging.commonplaceusa.com/images/join-commonplace.png"),"http://www.commonplaceusa.com/")
-= @data.inspect
-Data above!
+-#= link_to(image_tag("http://staging.commonplaceusa.com/images/join-commonplace.png"),"http://www.commonplaceusa.com/", :target => "_top")

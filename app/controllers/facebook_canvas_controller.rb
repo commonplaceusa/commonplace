@@ -6,12 +6,8 @@ class FacebookCanvasController < ApplicationController
   
   def index
     @request_id = params[:request_ids]
-    url = URI.parse("http://graph.facebook.com/" + @request_id + "/")
-    req = Net::HTTP::Get.new(url.path)
-    res = Net::HTTP.start(url.host, url.port) {|http|
-      http.request(req)
-    }
-    @data = JSON.parse(res.body)
+    url = "https://graph.facebook.com/oauth/access_token?&client_id=179741908724938&client_secret=4d1d96dc9b402ca6779f77bc9e88b89a&grant_type=client_credentials"
+    @application_token = JSON.parse(open(url).read)
     render :layout => nil
   end
 
