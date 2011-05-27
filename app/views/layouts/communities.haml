@@ -22,7 +22,31 @@
     #community-profiles
       = updated_content_or "#information" do 
         = render 'accounts/info_box'
-%script{:type => "text/javascript"}
+:javascript
+  $("#syndicate form.new_reply").submit(function(e) {
+    e.preventDefault();
+    var that = this;
+    $.post($(that).attr("action"), $(that).serialize(), 
+      function(response) {
+        if (response) {
+       var $replies = $(that).closest("div.replies");
+       $replies.replaceWith($(window.innerShiv(response,false)).filter("#" + $replies.attr('id')));
+      }
+    });
+  });
+
+  $("#syndicate .replies a.all-replies").click(function(e) {
+    e.preventDefault();
+    $(this).hide();
+    $(this).siblings("ul").children("li").show();
+  });
+
+  $("#syndicate .item a.show-reply-form").click(function(e) {
+    e.preventDefault();
+    $(this).hide();
+  $(this).parent().siblings("div.replies").show();
+  });
+
   $(function() {
   var community = new CommonPlace.Community({ id: #{current_community.id} });
 
