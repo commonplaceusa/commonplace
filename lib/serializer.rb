@@ -116,8 +116,8 @@ module Serializer
         "feed_subscriptions" => o.feed_subscriptions,
         "group_subscriptions" => o.group_subscriptions,
         "is_admin" => o.is_admin,
-        "accounts" => o.accounts.map {|a| {:name => a.name, :uid => "#{a.class.name.underscore}_#{a.id}"} }
-      }
+        "accounts" => o.accounts.map {|a| {:name => a.name, :uid => "#{a.class.name.underscore}_#{a.id}"} },
+        "short_name" => o.short_name }
       end
 
     as_json
