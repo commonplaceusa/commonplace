@@ -1,6 +1,5 @@
-require 'net/http'
 require 'json'
-require 'url'
+require 'open-uri'
 
 class FacebookCanvasController < ApplicationController
   
