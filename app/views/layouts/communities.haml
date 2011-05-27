@@ -48,7 +48,10 @@
   });
 
   $(function() {
-  CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id} });
+
+  CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
+  name: "#{current_community.name}"});
+
 
   CommonPlace.community.users.refresh(#{Serializer::serialize(User.where(:community_id => current_community.id).to_a).to_json.html_safe});
 
