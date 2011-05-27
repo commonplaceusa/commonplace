@@ -59,3 +59,9 @@ en:
         - Outdoor Sports
     facebook_wall_post:
         wall_post_content: I just joined CommonPlace so I can connect with my neighbors. You should sign up too!
+      
+    facebook_invite:
+        h2: Use CommonPlace to send your announcements and events to everyone on the %{community} CommonPlace network. The more email addresses you add, the more widely your announcements and events (and everyone else's!) will be sent.
+        emails_label: "Invite people to join CommonPlace!"
+        neighbors_name_label: "Neighbor's Name"
+        email_label: "Email address"

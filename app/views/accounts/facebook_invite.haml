@@ -1,29 +1,68 @@
-%h1 Invite your Friends!
-
-#fb-root
-
+%script
+  = "var slug = '#{current_community.slug}';"
 :javascript
   function invite_friends()
   {
-    FB.ui({
-      method: 'apprequests',
-      message: 'Invitation to use CommonPlace :)',
-      data: 'tracking_data'
+    FB.login(function(response) {
+      FB.ui({
+        method: 'apprequests',
+        message: 'Invitation to use CommonPlace :)',
+        data: slug,
+        display: 'iframe'
+      });
     });
   }
-  $(function () {
-    FB.login(function(response) {
-      if (response.session)
-      {
-        invite_friends();
-      }
-    });
-  });
--# Old-style (FBML) invitations
-/
-  #fb-root{:style => "text-align: center;", :width => "755px"}
-    %fb:serverFbml
-      %script{:type => "text/fbml"}
-        %fb:request-form{:action => "", :method => "POST", :invite => "true", :type => "CommonPlace", :content => "This is an invitation :)"}
-          %fb:multi-friend-selector{:showborder => "false", :actiontext => "Invite your friends to use CommonPlace"}
+      $(function () {
+        FB.login(function(response) {
+          if (response.session)
+          {
+            invite_friends();
+          }
+        });
+      });
 
+#groups_box
+  #tool_tip
+    %p Find your neighbors on Facebook and invite them to join you on CommonPlace!
+  #groups_wrapper
+    %h2
+      %ul
+        %li
+          #step_one Invite neighbors by Facebook:
+          #fb-root
+          %img{:src => "/images/fb-btn.png", :width => "90%", :onclick => "invite_friends();"}
+        %li
+          #step_two Invite neighbors by email:
+
+          - semantic_form_for @invitation do |f|
+            - f.inputs do
+              = f.input :email, :label => ""
+              = f.input :body, :label => ""
+            - f.buttons do
+              = f.submit "Invite"
+        %li
+          #step_three Invite neighbors by hand:
+          %table
+            %tr
+              %td
+                %img{:src => "/images/doc-icon.png"}
+              %td
+                %img{:src => "/images/doc-icon.png"}
+              %td
+                %img{:src => "/images/doc-icon.png"}
+              %td
+                %img{:src => "/images/doc-icon.png"}
+            %tr
+              %td{:style => "text-align: center;"} Description
+              %td{:style => "text-align: center;"} Description
+              %td{:style => "text-align: center;"} Description
+              %td{:style => "text-align: center;"} Description
+            %tr
+              %td
+                %br
+            %tr
+              %td{:colspan => "2.5"}
+              %td
+                %img{:src => "/images/download-btn.png", :width => "111%", :height => "100%", :onclick => "void();"}
+
+    %br{:class=>"cleared"}

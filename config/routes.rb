@@ -1,6 +1,8 @@
 require 'subdomain'
 Commonplace::Application.routes.draw do
 
+  get "facebook_canvas/index"
+
   # Community routes 
 
   constraints(Subdomain) do
@@ -18,6 +20,8 @@ Commonplace::Application.routes.draw do
     end
     
     match ":messagable_type/:messagable_id/messages/new" => "messages#new"
+    
+    match "/facebook_canvas/index" => "facebook_canvas#index"
 
     resources :messages, :only => :create
 
