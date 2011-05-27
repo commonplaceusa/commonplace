@@ -7,7 +7,8 @@
       FB.ui({
         method: 'apprequests',
         message: 'Invitation to use CommonPlace :)',
-        data: slug
+        data: slug,
+        display: 'iframe'
       });
     });
   }
@@ -22,14 +23,13 @@
 
 #groups_box
   #tool_tip
-    %h2 Invite your Neighbors!
-    %p Improve CommonPlace by inviting people you know.
+    %p Find your neighbors on Facebook and invite them to join you on CommonPlace!
   #groups_wrapper
-    #fb-root
     %h2
       %ul
         %li
           #step_one Invite neighbors by Facebook:
+          #fb-root
           %img{:src => "/images/fb-btn.png", :width => "90%", :onclick => "invite_friends();"}
         %li
           #step_two Invite neighbors by email:

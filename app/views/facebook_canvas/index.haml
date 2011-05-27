@@ -1,0 +1,12 @@
+= javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
+%script
+  FB.init({
+  appId : "#{($FacebookConfig || {})['app_id']}",
+  status : true,
+  cookie : true,
+  xfbml  : true
+  });
+  = "FB.api('/#{@request_id}/', function(response) {"
+  console.log(response);
+  });
+= link_to(image_tag("join-commonplace.png"),"http://www.commonplaceusa.com/")
