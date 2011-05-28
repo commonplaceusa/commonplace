@@ -12,8 +12,8 @@
         .val(session.uid);
       field.appendTo("#new_user_session");
       FB.api("/me", function(response) {
-        $("#user_session_email").val(response.email);
-        $("#user_session_password").val(facebook_pass(session));
+        $("#user_session_email").attr("readonly", "true").val(response.email);
+        $("#user_session_password").attr("readonly","true").val(facebook_pass(session));
         $("#new_user_session").submit();
       });
     }
