@@ -15,7 +15,7 @@ Commonplace::Application.routes.draw do
     resources :group_posts, :announcements
     resources :posts do
       member do
-        put :uplift
+        post :notify_all
       end
     end
     

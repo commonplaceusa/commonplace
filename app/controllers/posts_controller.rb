@@ -61,7 +61,7 @@ class PostsController < CommunitiesController
   def show
   end
 
-  def uplift
+  def notify_all
     if can?(:uplift, @post)
       original_neighborhood = @post.neighborhood
       @post.sent_to_community = true

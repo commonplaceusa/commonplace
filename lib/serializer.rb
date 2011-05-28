@@ -114,7 +114,8 @@ module Serializer
         "id" => o.id,
         "avatar_url" => o.avatar_url(:normal),
         "feed_subscriptions" => o.feed_subscriptions,
-        "group_subscriptions" => o.group_subscriptions }
+        "group_subscriptions" => o.group_subscriptions,
+        "is_admin" => o.is_admin }
       end
 
     as_json

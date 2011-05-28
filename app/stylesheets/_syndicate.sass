@@ -129,7 +129,27 @@
         font-size: 10px
         clear: left
         font-family: Rockwell, Helvetica, Arial, Verdana, sans-serif
-     
+      .actions-dropdown
+        position: relative
+        float: right
+        padding: 0px 0px 5px 5px
+        .toggle-actions
+          background-image: url('/images/nav-down-arrow.png')
+          background-repeat: no-repeat
+          background-position: 1px right
+          width: 15px
+          height: 12px
+          
+      .actions
+        width: 120px
+        padding: 5px
+        right: 0px
+        background-color: #ddd
+        +border-radius(3px)
+        +border-top-right-radius(0px)
+        display: none
+        position: absolute
+
     &.user, &.feed, &.group
       a
         .avatar
