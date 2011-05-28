@@ -124,7 +124,7 @@ class AccountsController < CommunitiesController
 
   def subscribe_to_groups
     current_user.group_ids = params[:group_ids]
-    redirect_to "/?first=1"
+    redirect_to :action => "facebook_invite"
   end
 
   def update
