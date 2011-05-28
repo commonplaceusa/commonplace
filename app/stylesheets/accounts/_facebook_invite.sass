@@ -73,11 +73,6 @@ body.application.accounts.facebook_invite
           background: url('/images/check-off.png')
         .checked
           background: url('/images/check-on.png')
-    ul
-      input[type=image]
-        float: right
-      input[type=checkbox]
-        display: none
     li
       list-style-position: outside
       background-repeat: no-repeat
@@ -85,7 +80,7 @@ body.application.accounts.facebook_invite
       margin: 5px auto
       width: 360px
       padding: 0 0px 0 50px
-      min-height: 60px
+      //min-height: 60px
       display: block
       margin: 5px 0
       color: #898989
@@ -111,11 +106,23 @@ body.application.accounts.facebook_invite
     .cleared
       clear: both
   label
-    color: #fff
-    font-family: "Rockwell",Georgia,Times,serif
-    width: 200px
+    display: none
   input[type="text"]
     height: 20px
+    padding: 5px
+    border: 1px solid #982c28
+    +border-radius(5px)
+    +box-shadow(#545454, 1px, 1px, 8px, 0px, inset)
+  input[type="email"]
+    height: 20px
+    padding: 5px
+    border: 1px solid #982c28
+    +border-radius(5px)
+    +box-shadow(#545454, 1px, 1px, 8px, 0px, inset)
+  textarea
+    height: 50px
+    margin-left: 2px
+    width: 90%
     padding: 5px
     border: 1px solid #982c28
     +border-radius(5px)
@@ -132,8 +139,10 @@ body.application.accounts.facebook_invite
     -webkit-box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
     font-family: "Rockwell",Georgia,Times,serif
     +text-shadow(#ffffff, 1px, 1px 0px)
+  #invite_email_input
+    height: 25px
   .buttons
     position: relative
     ol
       position: absolute
-      left: 230px
+      left: 50px
