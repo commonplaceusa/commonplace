@@ -172,6 +172,12 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
   template: "post",
   repliable_type: "Post",
 
+  events: {
+    "click .toggle-actions": "toggleActions"
+  },
+
+  toggleActions: function() { this.$(".actions").toggle(); },
+  
   view: function() {
     return {
       published_at: CommonPlace.timeAgoInWords(this.model.get('published_at')),
@@ -181,7 +187,9 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
       title: this.model.get('title'),
       author: this.model.get('author'),
       body: this.model.get('body'),
-      id: this.model.get('id')
+      id: this.model.get('id'),
+      is_admin: CommonPlace.account.get("is_admin"),
+      any_available_actions: CommonPlace.account.get("is_admin")
     };
   },
 
@@ -345,7 +353,7 @@ CommonPlace.Index = Backbone.View.extend({
     self.collection.each(function(item) {
       self.$("ul.items")
         .append((new self.options.itemView({model: item})).render().el);
-1    });
+    });
   }
 });
 

@@ -22,4 +22,8 @@ class Account
     @user.id
   end
 
+  def is_admin
+    @user.admin?
+  end
+
 end

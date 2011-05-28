@@ -1,8 +1,21 @@
 <div class="post" id="post-{{id}}-item">
 
   <img src="{{avatar_url}}" class="avatar">
+  {{#any_available_actions}}
+    <div class="actions-dropdown">
+      <div class="toggle-actions"></div>
+      <div class="actions">
+        {{#is_admin}}
+          <form action="{{url}}/notify_all" method="post" class="send-notifications">
+            <input type="submit" value="Send to everyone">
+          </form>
+        {{/is_admin}}
+      </div>
+    </div>
+  {{/any_available_actions}}
 
   <div class="published">{{published_at}}</div>
+
 
   <div class="reply-count">{{reply_count}} replies</div>
 
