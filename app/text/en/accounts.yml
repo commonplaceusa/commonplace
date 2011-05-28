@@ -65,3 +65,12 @@ en:
         emails_label: "Invite people to join CommonPlace!"
         neighbors_name_label: "Neighbor's Name"
         email_label: "Email address"
+        tool_tip: "Find your neighbors on Facebook and invite them to join you on CommonPlace!"
+        step_one: "Invite neighbors by Facebook:"
+        step_two: "Invite neighbors by email:"
+        step_three: "Invite neighbors by hand:"
+        invitation: "I just joined CommonPlace so I can connect with my neighbors. You should sign up too!"
+        file_descriptions:
+          - "Info Sheet"
+        file_names:
+          - "info"
