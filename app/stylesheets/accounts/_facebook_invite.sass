@@ -110,6 +110,30 @@ body.application.accounts.facebook_invite
       float: right
     .cleared
       clear: both
-  form
-    label
-      display: none
+  label
+    color: #fff
+    font-family: "Rockwell",Georgia,Times,serif
+    width: 200px
+  input[type="text"]
+    height: 20px
+    padding: 5px
+    border: 1px solid #982c28
+    +border-radius(5px)
+    +box-shadow(#545454, 1px, 1px, 8px, 0px, inset)
+  input[type="submit"]
+    width: 90px !important
+    height: 30px
+    border: 1px solid #ccc
+    +border-radius(5px)
+    +linear-gradient(color_stops(#e6e6e6, #ebebeb))
+    padding-bottom: 1px
+    box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
+    -mox-box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
+    -webkit-box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
+    font-family: "Rockwell",Georgia,Times,serif
+    +text-shadow(#ffffff, 1px, 1px 0px)
+  .buttons
+    position: relative
+    ol
+      position: absolute
+      left: 230px
