@@ -38,4 +38,12 @@ class Invitation < MailBase
     inviter.first_name
   end
 
+  def organizer_name
+    community.organizer_name
+  end
+  
+  def organizer_email
+    community.organizer_email
+  end
+
 end
