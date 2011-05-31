@@ -8,7 +8,7 @@ class Feed < ActiveRecord::Base
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
 
   before_validation(:on => :create) do
-    self.generate_slug unless self.slug?
+    generate_slug unless self.slug?
     true
   end
 
