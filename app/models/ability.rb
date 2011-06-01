@@ -52,6 +52,7 @@ class Ability
 
       if user.admin?
         can :uplift, Post
+        can :destroy, Post
       end
       
     end
