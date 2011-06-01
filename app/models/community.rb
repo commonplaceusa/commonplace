@@ -65,4 +65,13 @@ class Community < ActiveRecord::Base
     nil
   end
 
+  # Convenience accessors for some mapped values
+  def group_posts
+    self.groups.map(&:group_posts).flatten
+  end
+
+  def private_messages
+    self.users.map(&:messages).flatten
+  end
+
 end
