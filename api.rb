@@ -37,7 +37,7 @@ class API < Sinatra::Base
   # Authorization: User is in community
   [Post, GroupPost, Announcement, Event].each do |repliable_class|
     
-    post "/posts/#{repliable_class.name.pluralize.underscore}/:id/replies" do |id|
+    post "/#{repliable_class.name.pluralize.underscore}/:id/replies" do |id|
       reply = Reply.create!(:repliable => repliable_class.find(id),
                             :user => current_account,
                             :body => request_body['body'])
