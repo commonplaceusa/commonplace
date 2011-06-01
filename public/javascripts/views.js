@@ -393,7 +393,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
   id: "say-something",
   
   events: {
-    "click nav a": "navigate",
+    "click div.nav a, nav a": "navigate",
     "submit form.post": "submitPost"
   },
   
