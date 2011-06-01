@@ -1,4 +1,4 @@
-body.application.accounts.edit
+body.application.accounts.edit, body.application.accounts.profile
 
   h1
     font-size: 20px
@@ -9,7 +9,7 @@ body.application.accounts.edit
   form.formtastic.user
     margin: auto
     +lightbox
-    width: 600px
+    width: 480px
     margin-top: 50px
     margin-bottom: 70px
 
@@ -24,7 +24,8 @@ body.application.accounts.edit
         +serif
         margin: 10px
         width: 100%
-
+      input[type=file]
+        border: none
       input, textarea
         height: 38px
         +border-radius(5px)
@@ -77,6 +78,7 @@ body.application.accounts.edit
                 padding: 0 5px 
   fieldset.buttons
     text-align: right
+
     input
       padding: 10px
     li.delete
