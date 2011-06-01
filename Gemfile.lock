@@ -135,6 +135,7 @@ GEM
     geocoder (1.0.0)
     glebm-geokit (1.5.2)
     god (0.11.0)
+    googlecharts (1.6.7)
     haml (3.1.1)
     highline (1.6.1)
     hirb (0.3.6)
@@ -345,6 +346,7 @@ DEPENDENCIES
   geocoder
   glebm-geokit
   god
+  googlecharts
   haml (~> 3.1)
   httparty
   jammit

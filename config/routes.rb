@@ -3,6 +3,8 @@ Commonplace::Application.routes.draw do
 
   get "facebook_canvas/index"
 
+  match "/admin/overview" => "admin#overview"
+
   # Community routes 
 
   constraints(Subdomain) do
