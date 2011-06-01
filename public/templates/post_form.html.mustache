@@ -1,0 +1,49 @@
+
+<h2>Say something to your neighbors</h2>
+
+  <div class="wrap">
+
+  {{> say_something_nav }}
+
+  <form  action="posts" class="formtastic post"  id="new_post" method="post">
+
+    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="{{auth_token}}"></div>
+
+<fieldset class="inputs">
+<ol>
+
+<li class="string required" id="post_subject_input">
+
+            <label for="post_subject">Title</label>
+              <input id="post_subject" maxlength="255" name="title" size="25" type="text">
+
+          </li>
+
+          <li class="text required" id="post_body_input">
+
+      <label for="post_body">Body</label>
+      <textarea id="post_body" name="body" rows="5"></textarea>
+
+    </li>
+
+  </ol>
+</fieldset>
+
+<fieldset class="buttons">
+
+  <ol>
+
+    <li class="commit">
+      <input class="wymupdate create" id="post_submit" name="commit" src="/images/buttons/post-now.png" type="image" value="Create Post">
+    </li>
+
+  </ol>
+
+</fieldset>
+
+<legend>
+  Have an announcement, need, offer, or question?
+</legend>
+
+</form>
+</div>

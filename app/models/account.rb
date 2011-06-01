@@ -26,4 +26,8 @@ class Account
     @user.admin?
   end
 
+  def accounts
+    [@user] + @user.feeds
+  end
+
 end
