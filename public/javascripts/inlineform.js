@@ -25,7 +25,7 @@ function initInlineForm() {
   });
 
   $('.inline-form').bind('image.inline-form', function() {
-    var $this = $(this)
+    var $this = $(this);
     $("#avatar-form", $this).ajaxSubmit({
       success: function(response){
         $('img.avatar', $this).attr('src',
