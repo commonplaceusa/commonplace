@@ -6,7 +6,7 @@ Mustache.template = function(templateString) {
 
 CommonPlace.timeAgoInWords = function(date_str) {
   var time = CommonPlace.parseDate(date_str);
-  var diff_in_seconds = (time - Date.now()) / 1000;
+  var diff_in_seconds = (time - (new Date)) / 1000;
   var diff_in_minutes = Math.abs(Math.floor((diff_in_seconds / 60)));
   var add_token = function (in_words) { return diff_in_seconds > 0 ? "in " + in_words : in_words + " ago"; };
   if (diff_in_minutes === 0) { return add_token('less than a minute'); }
