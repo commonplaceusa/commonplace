@@ -409,8 +409,10 @@ CommonPlace.SaySomething = Backbone.View.extend({
   },
 
   submitPost: function(e) {
+    
     e.preventDefault();
     var $form = this.$("form");
+    $("input.create", $form).replaceWith("<img src=\"/images/loading.gif\">");
     CommonPlace.community.posts.create({ 
       title: $("input#post_subject",$form).val(),
       body: $("textarea#post_body",$form).val() 
