@@ -1,0 +1,21 @@
+<h2>Post To a Discussion Group</h2>
+
+<div class="wrap">
+
+  {{> say_something_nav }}
+
+  <form accept-charset="UTF-8" action="/group_posts" class="formtastic group_post" data-remote="true" id="new_group_post" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="{{auth_token}}"></div>
+  <fieldset class="inputs"><ol><li class="select optional" id="group_post_group_input"><label for="group_post_group_id">Group</label>
+  <select id="group_post_group_id" name="group_post[group_id]">
+    {{#groups}}
+      <option value="{{id}}" selected="{{selected}}">{{name}}</option>
+    {{/groups}}
+  </select>
+  </li>
+  <li class="string required" id="group_post_subject_input"><label for="group_post_subject">Subject</label><input id="group_post_subject" maxlength="255" name="group_post[subject]" size="25" type="text"></li>
+  <li class="text required" id="group_post_body_input"><label for="group_post_body">Body</label><textarea id="group_post_body" name="group_post[body]" rows="5"></textarea></li>
+  </ol></fieldset><fieldset class="buttons"><ol><li class="commit"><input class="create" id="group_post_submit" name="commit" src="/images/buttons/post-now-btn.png" type="image" value="Create Group post"></li>
+</ol></fieldset></form>
+
+
+</div>

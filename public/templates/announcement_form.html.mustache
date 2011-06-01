@@ -1,0 +1,23 @@
+<h2>Send and announcement to your whole community</h2>
+
+<div class="wrap">
+ {{> say_something_nav}}
+
+
+ <form accept-charset="UTF-8" action="/announcements" class="formtastic announcement" data-remote="true" id="new_announcement" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="{{auth_token}}"></div>
+ <fieldset class="inputs"><ol><li>
+   <label class="select required" for="announcement_owner">
+     Post as:
+  </label>
+  <select id="announcement_owner" name="announcement[owner]">
+    {{#owners}}
+      <option value="{{value}}" selected="{{selected}}">{{name}}</option>
+    {{/owners}}
+
+  </select>
+ </li>
+ <li class="string required" id="announcement_subject_input"><label for="announcement_subject">Subject</label><input id="announcement_subject" maxlength="255" name="announcement[subject]" size="25" type="text"></li>
+ <li class="text required" id="announcement_body_input"><label for="announcement_body">Body</label><textarea cols="21" id="announcement_body" name="announcement[body]" rows="5"></textarea></li>
+ </ol></fieldset><fieldset class="buttons"><ol><li class="commit"><input class="create" id="announcement_submit" name="commit" src="/images/buttons/post-now.png" type="image" value="Create Announcement"></li>
+ </ol></fieldset></form>
+</div>

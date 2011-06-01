@@ -15,9 +15,11 @@ CommonPlace.MainPage = Backbone.View.extend({
     this.community = this.options.community;
     this.account = this.options.account;
     this.controllers = {
+      saySomething: new CommonPlace.SaySomethingController({}),
       whatsHappening: new CommonPlace.WhatsHappeningController({community: this.community}),
       profiles: new CommonPlace.ProfileController({community: this.community})
-    }
+
+    };
 
   }
 
@@ -31,6 +33,24 @@ CommonPlace.Info = Backbone.View.extend({
                                     this.model.toJSON()));
     setInfoBoxPosition();
     return this;
+  }
+});
+
+CommonPlace.EventInfo = CommonPlace.Info.extend({
+  template: "eventinfo",
+
+  render: function() {
+    this.el.html(CommonPlace.render(this.template,
+                                    this.view()));
+    setInfoBoxPosition();
+    return this;
+  },
+
+  view: function() {
+    var params = this.model.toJSON() || {};
+    params.abbrev_month = this.model.abbrev_month_name();
+    params.day_of_month = this.model.day_of_month();
+    return params;
   }
 });
 
@@ -194,8 +214,8 @@ CommonPlace.EventItem = CommonPlace.PostLikeItem.extend({
     return {
       id: this.model.get('id'),
       occurs_in: CommonPlace.timeAgoInWords(this.model.get('occurs_on')),
-      abbrev_month: this.model.get("abbrev_month"),
-      day_of_month: this.model.get("day_of_month"),
+      abbrev_month: this.model.abbrev_month_name(),
+      day_of_month: this.model.day_of_month(),
       author_url: this.model.get('author_url'),
       published_at: CommonPlace.timeAgoInWords(this.model.get('published_at')),
       reply_count: _(this.model.get('replies')).size(),
@@ -378,31 +398,87 @@ CommonPlace.SaySomething = Backbone.View.extend({
   id: "say-something",
   
   events: {
-    "click nav a": "navigate"
+    "click nav a": "navigate",
+    "submit form.post": "submitPost"
   },
   
   navigate: function(e) {
     e.preventDefault();
-    var self = this,
-        $link = $(e.currentTarget);
+    window.location.hash = $(e.currentTarget).attr('href');
+  },
+
+  render: function() {
+    var view = this[this.template]();
+    view[this.template] = true ;
+    $(this.el).html(CommonPlace.render(this.template, view));
+  },
+
+  submitPost: function(e) {
+    e.preventDefault();
+    var $form = this.$("form");
+    CommonPlace.community.posts.create({ 
+      title: $("input#post_subject",$form).val(),
+      body: $("textarea#post_body",$form).val() 
+    }, { success: function() {
+      window.location.hash = "/posts";
+      Backbone.history.checkUrl();
+      window.location.hash = "/posts/new";
+      Backbone.history.checkUrl();
+    } });
+  },
+
+  submitAnnouncement: function(e) {
+    e.preventDefault();
+    var $form = this.$("form"),
+    owner_match = $("select#announcement_owner", $form).val().match(/([a-z_]+)_(\d+)/);
     
-    self.$("nav a").removeClass("current")
-      .filter("." + $link.attr('class')).addClass("current");
+    CommonPlace.community.announcements.create({
+      title: $("input#announcement_subject", $form).val(),
+      body: $("textarea#announcement_body", $form).val(),
+      style: "publicity",
+      feed: owner_match[1] == "feed" ? owner_match[2] : null
+    }, { success: function() {
+      window.location.hash = "/announcements";
+      Backbone.history.checkUrl();
+      window.location.hash = "/announcements/new";
+      Backbone.history.checkUrl();
+    } });
+  },
 
+  post_form: function() { return ({});},
 
-    $.get($link.attr('href'),
-          function(response) {
-            if (response) {
-              self.$("form").replaceWith($(window.innerShiv(response,false)).find("#say-something form"));
-              self.$("h2").replaceWith($(window.innerShiv(response, false)).find("#say-something h2"));
-      
-              $('input.date').datepicker({
-                prevText: '&laquo;',
-                nextText: '&raquo;',
-                showOtherMonths: true,
-                defaultDate: null
-              });
-            }
-          });    
+  event_form: function() { 
+    var view = { 
+      owners: _(CommonPlace.account.get('accounts')).map(
+        function(a) {
+          return { name: a.name, value: a.uid };
+        })
+    };
+    view.owners[0].selected = "selected";
+    return view;
+  },
+
+  announcement_form: function() { 
+    var view = { 
+      owners: _(CommonPlace.account.get('accounts')).map(
+        function(a) {
+          return { name: a.name, value: a.uid };
+        })
+    };
+    view.owners[0].selected = "selected";
+    return view;
+  },
+
+  group_post_form: function() {
+    var view = { 
+      groups: CommonPlace.community.groups.map(function(g) {
+        return { id: g.id, name: g.get('name') };
+      })
+    };
+    view.groups[0].selected = "selected";
+    return view;
   }
+  
 });
+
+

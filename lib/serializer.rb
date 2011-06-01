@@ -115,7 +115,9 @@ module Serializer
         "avatar_url" => o.avatar_url(:normal),
         "feed_subscriptions" => o.feed_subscriptions,
         "group_subscriptions" => o.group_subscriptions,
-        "is_admin" => o.is_admin }
+        "is_admin" => o.is_admin,
+        "accounts" => o.accounts.map {|a| {:name => a.name, :uid => "#{a.class.name.underscore}_#{a.id}"} }
+      }
       end
 
     as_json
