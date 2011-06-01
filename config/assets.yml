@@ -2,6 +2,8 @@ embed_assets: on
 template_extension: html.mustache
 template_function: Mustache.template
 template_namespace: CommonPlace.templates
+javascript_compressor: closure
+
 stylesheets:
   administration:
     - public/stylesheets/administration.css
@@ -15,9 +17,12 @@ stylesheets:
   starter_site:
     - public/stylesheets/starter_site.css
 
+
 javascripts:
+  templates:
+    - public/templates/*.html.mustache    
   application:
-      - public/templates/*.html.mustache
+
       - public/javascripts/jquery-1.6.1.js
       - public/javascripts/jquery-ui.js
       - public/javascripts/jquery/jquery.*.js
