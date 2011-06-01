@@ -1,5 +1,44 @@
 var CommonPlace = CommonPlace || {};
 
+CommonPlace.SaySomethingController = Backbone.Controller.extend({
+  
+  initialize: function(options) {
+    this.view = new CommonPlace.SaySomething({el: $("#say-something")});
+    this.newPost();
+  },
+
+  routes: {
+    "/posts/new" : "newPost",
+    "/events/new" : "newEvent",
+    "/announcements/new" : "newAnnouncement",
+    "/group_posts/new" : "newGroupPost"
+  },
+
+  newPost : function() { 
+    this.view.template = "post_form";
+    this.view.model = new CommonPlace.Post({},{collection: CommonPlace.community.posts });
+    this.view.render();
+  },
+  
+  newEvent : function() {
+    this.view.template = "event_form";
+    this.view.model = new CommonPlace.Event({},{collection: CommonPlace.community.events });
+    this.view.render();
+  },
+  
+  newAnnouncement : function() { 
+    this.view.template = "announcement_form";
+    this.view.model = new CommonPlace.Announcement({}, {collection: CommonPlace.community.announcements });
+    this.view.render();
+  },
+
+  newGroupPost : function() { 
+    this.view.template = "group_post_form";
+    this.view.model = new CommonPlace.GroupPost({}, {collection: CommonPlace.community.group_posts});
+    this.view.render();
+  }
+
+});
 CommonPlace.ProfileController = Backbone.Controller.extend({
   initialize: function(options) {
     this.community = options.community;
@@ -14,7 +53,9 @@ CommonPlace.ProfileController = Backbone.Controller.extend({
   },
 
   event: function(id) {
-    this.renderProfile(this.community.events.get(id), "eventinfo");
+    var view = new CommonPlace.EventInfo({el: $("#community-profiles"),
+                                          model: this.community.events.get(id)});
+    view.render();
   },
 
   user: function(id) {
@@ -44,7 +85,6 @@ CommonPlace.ProfileController = Backbone.Controller.extend({
 CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
   initialize: function(options) {
     this.community = options.community;
-    new CommonPlace.SaySomething({el: $("#say-something")});
     new CommonPlace.Index({el: $("#whats-happening")});
     return this;
   },
@@ -117,8 +157,6 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
                             $.scrollTo($("#group_" + id + "_item"));
                           },
 
-  
-
   announcements: function(){
     this.announcementIndex = this.announcementIndex ||
       new CommonPlace.Index({
@@ -129,10 +167,9 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
                  {url:"/feeds", name: "Community Feeds", last:true}],
         zone: "announcements"
       });
-
-
     this.announcementIndex.render();
   },
+
   events: function(){
     this.eventIndex = this.eventIndex ||
       new CommonPlace.Index({
@@ -178,6 +215,7 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
       });
     this.groupIndex.render();
   },
+
   feeds: function(){
     this.feedIndex = this.feedIndex ||
       new CommonPlace.Index({collection: this.community.feeds,

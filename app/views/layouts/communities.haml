@@ -48,27 +48,27 @@
   });
 
   $(function() {
-  var community = new CommonPlace.Community({ id: #{current_community.id} });
+  CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id} });
 
-  community.users.refresh(#{Serializer::serialize(User.where(:community_id => current_community.id).to_a).to_json.html_safe});
+  CommonPlace.community.users.refresh(#{Serializer::serialize(User.where(:community_id => current_community.id).to_a).to_json.html_safe});
 
-  community.posts.refresh(#{Serializer::serialize(Post.where(:community_id => current_community.id).limit(40).order("created_at DESC").includes(:user, :replies => :user).to_a).to_json.html_safe});
+  CommonPlace.community.posts.refresh(#{Serializer::serialize(Post.where(:community_id => current_community.id).limit(40).order("created_at DESC").includes(:user, :replies => :user).to_a).to_json.html_safe});
 
-  community.events.refresh(#{Serializer::serialize(Event.where(:community_id => current_community.id).upcoming.includes(:owner, :replies => :user).to_a).to_json.html_safe});
+  CommonPlace.community.events.refresh(#{Serializer::serialize(Event.where(:community_id => current_community.id).upcoming.includes(:owner, :replies => :user).to_a).to_json.html_safe});
 
-  community.announcements.refresh(#{Serializer::serialize(Announcement.where(:community_id => current_community.id).includes(:owner, :replies => :user).to_a).to_json.html_safe});
+  CommonPlace.community.announcements.refresh(#{Serializer::serialize(Announcement.where(:community_id => current_community.id).includes(:owner, :replies => :user).to_a).to_json.html_safe});
 
-  community.group_posts.refresh(#{Serializer::serialize(GroupPost.includes(:group, :user, :replies => :user).where(:groups  => {:community_id => current_community.id}).to_a).to_json.html_safe});
+  CommonPlace.community.group_posts.refresh(#{Serializer::serialize(GroupPost.includes(:group, :user, :replies => :user).where(:groups  => {:community_id => current_community.id}).to_a).to_json.html_safe});
 
-  community.feeds.refresh(#{Serializer::serialize(Feed.where(:community_id => current_community.id).to_a).to_json.html_safe});
+  CommonPlace.community.feeds.refresh(#{Serializer::serialize(Feed.where(:community_id => current_community.id).to_a).to_json.html_safe});
 
-  community.groups.refresh(#{Serializer::serialize(Group.where(:community_id => current_community.id).to_a).to_json.html_safe});
+  CommonPlace.community.groups.refresh(#{Serializer::serialize(Group.where(:community_id => current_community.id).to_a).to_json.html_safe});
   
   CommonPlace.account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
 
 
 
-  CommonPlace.app = new CommonPlace.MainPage({community: community, account: CommonPlace.account, el: $("#main")});
+  CommonPlace.app = new CommonPlace.MainPage({community: CommonPlace.community, account: CommonPlace.account, el: $("#main")});
 
   Backbone.history.start();
   });
