@@ -1,0 +1,14 @@
+
+= semantic_form_for current_user, :url => account_path, :html => {:multipart => true } do |f|
+
+  %h1 Update your profile
+  
+  = f.inputs do 
+    = f.input :full_name
+    = f.input :avatar
+    = f.input :about
+    = f.input :interest_list
+    = f.input :offer_list
+
+  = f.buttons do
+    = f.commit_button "Update Profile"

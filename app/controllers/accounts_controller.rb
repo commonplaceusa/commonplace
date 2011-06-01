@@ -129,7 +129,7 @@ class AccountsController < CommunitiesController
 
   def update
     current_user.update_attributes(params[:user])
-    render :layout => false
+    redirect_to root_url
   end
   
   def take_photo
@@ -166,6 +166,10 @@ class AccountsController < CommunitiesController
   
   def facebook_invite
     @invitation = Invite.new
+  end
+
+  def profile
+    authorize! :update, User
   end
   
 end
