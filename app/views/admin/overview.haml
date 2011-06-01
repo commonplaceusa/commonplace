@@ -1,0 +1,49 @@
+%table{:border => "1"}
+  - @communities.each do |community|
+    - if community.id % 3 == 0 or community.id == 1
+      %tr
+    %td
+      %h2= community.name
+      .totals
+        Total Users:
+        = community.users.count
+        %br
+        %img{:src => Gchart.pie(:data => [community.posts.count, community.c(Event), community.c(Announcement), community.group_posts.count, community.private_messages.count], :title => "Overall Posts by Type", :labels => ["Neighborhood", "Event", "Announcement", "Group", "Private Message"], :size => "400x200")}
+        %br
+        Total Neighborhood Posts:
+        = community.posts.count
+        %br
+        Total Event Posts:
+        = community.c(Event)
+        %br
+        Total Announcements:
+        = community.c(Announcement)
+        %br
+        Total Group Posts:
+        = community.group_posts.count
+        %br
+        Total Private Messages
+        = community.private_messages.count
+      .registrations
+        %img{:src => Gchart.pie(:data => [community.completed_registrations.count, community.incomplete_registrations.count], :title => "Overall Registration Status", :labels => ["Complete", "Incomplete"], :size => "300x200")}
+        %br
+        Completed Registrations: 
+        = community.completed_registrations.count
+        %br
+        Incomplete Registrations:
+        = community.incomplete_registrations.count
+      .today
+        Today's Neighborhood Posts:
+        %br
+        Today's Event Posts:
+        %br
+        Today's Announcements:
+        %br
+        Today's Group Posts:
+        %br
+        Today's Private Messages:
+
+
+
+
+

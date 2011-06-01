@@ -32,6 +32,7 @@ gem 'jammit'
 gem 'sanitize'
 gem 'mail'
 gem 'mustache'
+gem 'googlecharts'
 
 # Formats
 gem 'premailer'
