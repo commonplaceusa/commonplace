@@ -13,7 +13,17 @@ CommonPlace.Community = Backbone.Model.extend({
   }
 });
 
-CommonPlace.Account = Backbone.Model.extend({});
+CommonPlace.Account = Backbone.Model.extend({
+  
+  can_delete: function(model) {
+    return this.get('is_admin') ;
+  },
+
+  can_notify_all: function(post) {
+    return this.get('is_admin') ;
+  }
+
+});
 
 CommonPlace.User = Backbone.Model.extend({});
 
