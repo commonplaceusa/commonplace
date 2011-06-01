@@ -1,53 +1,11 @@
 = render :layout => 'layouts/application' do
   #main
     #whats-happening
-      = render 'shared/zones'
-      = updated_content_or("#syndicate") do
-        #syndicate
-          %h3= link_to t("syndicate.posts.title"), :posts, 'data-remote' => true
-          = render 'shared/items', :items => posts
-
-          %h3= link_to t("syndicate.events.title"), :events, 'data-remote' => true
-          = render 'shared/items', :items => events
-
-          %h3= link_to t("syndicate.announcements.title"), :announcements, 'data-remote' => true
-          = render 'shared/items', :items => announcements
-
-    = updated_content_or("#say-something") do
-      #say-something
-        %h2= t "posts.new.title"
-        .wrap
-          = render 'shared/say_something_nav', :current => :post
-          = render 'posts/form', :post => Post.new
+    #say-something
     #community-profiles
-      = updated_content_or "#information" do 
-        = render 'accounts/info_box'
+      = render 'accounts/info_box'
+
 :javascript
-  $("#syndicate form.new_reply").submit(function(e) {
-    e.preventDefault();
-    var that = this;
-    $.post($(that).attr("action"), $(that).serialize(), 
-      function(response) {
-        if (response) {
-       var $replies = $(that).closest("div.replies");
-       $replies.replaceWith($(window.innerShiv(response,false)).filter("#" + $replies.attr('id')));
-      }
-    });
-  });
-
-  $("#syndicate .replies a.all-replies").click(function(e) {
-    e.preventDefault();
-    $(this).hide();
-    $(this).siblings("ul").children("li").show();
-  });
-
-  $("#syndicate .item a.show-reply-form").click(function(e) {
-    e.preventDefault();
-    $(this).hide();
-  $(this).parent().siblings("div.replies").show();
-  });
-
-  $(function() {
 
   CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
   name: "#{current_community.name}"});
@@ -74,4 +32,4 @@
   CommonPlace.app = new CommonPlace.MainPage({community: CommonPlace.community, account: CommonPlace.account, el: $("#main")});
 
   Backbone.history.start();
-  });
+
