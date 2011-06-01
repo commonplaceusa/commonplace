@@ -17,7 +17,7 @@ $(document).ready(function(){
         }
       }
       else{
-        sidebar.css({position: "absolute", top: "3637px", left:""})
+        sidebar.css({position: "absolute", top: "3637px", left:""});
       } 
     });
     $(window).scroll(function (event) {
@@ -35,7 +35,7 @@ $(document).ready(function(){
         }
       }
       else{
-        sidebar.css({position: "absolute", top: "3637px", left:""})
+        sidebar.css({position: "absolute", top: "3637px", left:""});
       }
     });
  

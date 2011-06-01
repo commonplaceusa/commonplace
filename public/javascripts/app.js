@@ -9,7 +9,7 @@ CommonPlace.timeAgoInWords = function(date_str) {
   var diff_in_seconds = (time - Date.now()) / 1000;
   var diff_in_minutes = Math.abs(Math.floor((diff_in_seconds / 60)));
   var add_token = function (in_words) { return diff_in_seconds > 0 ? "in " + in_words : in_words + " ago"; };
-  if (diff_in_minutes == 0) { return add_token('less than a minute'); }
+  if (diff_in_minutes === 0) { return add_token('less than a minute'); }
   if (diff_in_minutes == 1) { return add_token('a minute'); }
   if (diff_in_minutes < 45) { return add_token(diff_in_minutes + ' minutes'); }
   if (diff_in_minutes < 90) { return add_token('about 1 hour'); }
@@ -36,9 +36,7 @@ $(function() {
   $('form.formtastic.feed input:text, form.formtastic.feed textarea').keydown(function(e) {
     var $input = $(e.currentTarget);
     setTimeout(function() {
-      $("#preview")
-        .find("[data-track='" + $input.attr('name') + "']")
-        .html($input.val());
+      $("#preview").find("[data-track='" + $input.attr('name') + "']").html($input.val());
     }, 10);
   });
 
@@ -79,9 +77,7 @@ $(function() {
     $.get($(that).attr('href'),
           function(response) {
             if (response) {
-              $("#modal").replaceWith(
-                $(window.innerShiv(response,false)).filter("#modal")
-              );
+              $("#modal").replaceWith($(window.innerShiv(response,false)).filter("#modal"));
               $(window).trigger('resize.modal');
             }
           });
@@ -109,7 +105,7 @@ $(function() {
 
 
   $(window).bind('resize.modal', function () {
-    var $m = $("#modal-content")
+    var $m = $("#modal-content");
     if ($m.get(0)) {
       var w = $m.width(),
       h = $m.height(),
@@ -117,9 +113,7 @@ $(function() {
       bw = $b.width(),
       bh = $b.height();
       
-      $m.css({top: (bh - h) / 2,
-              left: (bw - w) / 2 - 20
-             });
+      $m.css({top: (bh - h) / 2, left: (bw - w) / 2 - 20});
     }
   });
 
@@ -176,18 +170,17 @@ $(function() {
     $('#post-to-feed h2 nav li:last-child').show();
   }, function(){
     $('#post-to-feed h2 nav li:last-child').hide();	
-  })
+  });
 
 
   // Accounts
   //Does the who is bubble stuff
   $('#who_is_info_bubble h3').click(function(){
-    var re = new RegExp(/blue-arrow-down/)
-    if($('#who_is_info_bubble h3.toggle').css("background-image").match(re)){
-      $('#who_is_info_bubble h3.toggle').css("background-image","url(/images/blue-arrow-up.png)")
-    }
-    else{
-      $('#who_is_info_bubble h3.toggle').css("background-image","") 
+    var re = new RegExp(/blue-arrow-down/);
+    if($('#who_is_info_bubble h3.toggle').css("background-image").match(re)) {
+      $('#who_is_info_bubble h3.toggle').css("background-image","url(/images/blue-arrow-up.png)");
+    } else  {
+      $('#who_is_info_bubble h3.toggle').css("background-image","");
     }
     	$('#who_is_info').slideToggle();
   });
@@ -198,16 +191,14 @@ $(function() {
   //Style fix for the photoupload stuff
   var style_fix = '<div id="file_input_fix"><input type="text" name="file_fix" id="file_style_fix"></input><div id="browse_button">Browse...</div></div>';
   var take_photo_button = '<div id="take_a_photo" onClick="load_modal();">Take a photo</div>';
-	$('#user_avatar_input').append(style_fix)
-  // .append(take_photo_button)
-    .css("min-height", "54px");
+  $('#user_avatar_input').append(style_fix).css("min-height", "54px");
   
-	$('#user_avatar').css("opacity", 0);
-	$('#user_avatar').css("z-index", 2); 
-	$('#user_avatar').css("position", "absolute")
-	$('#user_avatar').css("top", "25px")
-	$('#user_avatar').css("height", "30px");
-
+  $('#user_avatar').css("opacity", 0);
+  $('#user_avatar').css("z-index", 2); 
+  $('#user_avatar').css("position", "absolute");
+  $('#user_avatar').css("top", "25px");
+  $('#user_avatar').css("height", "30px");
+  
   $('#user_avatar').change(function() {
     $("#file_input_fix input").val($(this).val().replace(/^.*\\/,""));
   });

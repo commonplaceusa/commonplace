@@ -17,8 +17,7 @@ CommonPlace.Tour = Backbone.View.extend({
   },
 
   render: function() {
-    $(this.el).append("<div id='tour-shadow'></div>")
-      .append("<div id='tour'></div>");
+    $(this.el).append("<div id='tour-shadow'></div>").append("<div id='tour'></div>");
     this.welcome();
     return this;
   },
@@ -32,8 +31,7 @@ CommonPlace.Tour = Backbone.View.extend({
 
   wire: function() {
     this.cleanUp();
-    this.$("#tour").html(CommonPlace.render("wire_tour"))
-      .attr('class','wire');
+    this.$("#tour").html(CommonPlace.render("wire_tour")).attr('class','wire');
     this.removeShadows("#whats-happening #syndicate");
     this.removeShadows("#whats-happening #zones a:last-child");
     this.raise("#whats-happening");
@@ -42,16 +40,14 @@ CommonPlace.Tour = Backbone.View.extend({
 
   profile: function() {
     this.cleanUp();
-    this.$("#tour").html(CommonPlace.render("profile_tour"))
-      .attr('class','profile');
+    this.$("#tour").html(CommonPlace.render("profile_tour")).attr('class','profile');
     this.raise("#community-profiles");
     $.scrollTo(250, 700);
   },
 
   post: function() {
     this.cleanUp();
-    this.$("#tour").html(CommonPlace.render("post_tour"))
-      .attr('class','post');
+    this.$("#tour").html(CommonPlace.render("post_tour")).attr('class','post');
     this.removeShadows("#say-something");
     this.raise("#say-something");
     $.scrollTo(0, 700);
@@ -60,7 +56,7 @@ CommonPlace.Tour = Backbone.View.extend({
 
 
   end: function() {
-    this.cleanUp()
+    this.cleanUp();
     $("#tour-shadow").remove();
     $("#tour").remove();
   },
@@ -73,7 +69,7 @@ CommonPlace.Tour = Backbone.View.extend({
   },
   
   removeShadows: function(el) {
-    var shadowVal = "0 0 0 transparent"
+    var shadowVal = "0 0 0 transparent";
     $(el).css({"-moz-box-shadow": shadowVal, "-webkit-box-shadow": shadowVal,
                "-o-box-shadow": shadowVal, "box-shadow": shadowVal});
     this.changedElements.push(el);
