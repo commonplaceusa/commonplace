@@ -65,13 +65,13 @@ CommonPlace.ProfileController = Backbone.Controller.extend({
   feed: function(id) {
     var view = new CommonPlace.FeedInfo({el: $("#community-profiles"),
                                           model: this.community.feeds.get(id)});
-    view.render()
+    view.render();
   },
 
   group: function(id) {
     var view = new CommonPlace.GroupInfo({el: $("#community-profiles"),
                                           model: this.community.groups.get(id)});
-    view.render()
+    view.render();      
   },
 
   renderProfile: function(model, template) {
@@ -200,7 +200,7 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
               {url: "/feeds", name: "Community Feeds"},
               {url: "/groups", name: "Discussion Groups", last: true}]).map(
                 function(nav) {
-                  return _.extend(nav, {current: current_url == nav.url})
+                  return _.extend(nav, {current: current_url == nav.url});
                 });
   },
 
