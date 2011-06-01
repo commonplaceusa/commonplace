@@ -65,4 +65,27 @@ class Community < ActiveRecord::Base
     nil
   end
 
+  # Convenience accessors for some mapped values
+  def group_posts
+    self.groups.map(&:group_posts).flatten
+  end
+
+  def private_messages
+    self.users.map(&:messages).flatten
+  end
+
+  def completed_registrations
+    # A registration is complete if the user has updated their data after the initial creation (incl. setting a password)
+    User.where("created_at < updated_at")
+  end
+
+  def incomplete_registrations
+    User.where("created_at >= updated_at")
+  end
+
+  def c(model)
+    count = 0
+    model.all.select { |o| o.owner.community_id == self.id }.each { |o| count += 1 }
+    count
+  end
 end
