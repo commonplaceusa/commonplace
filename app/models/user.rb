@@ -191,7 +191,7 @@ class User < ActiveRecord::Base
   end
 
   def place_in_neighborhood
-    self.neighborhood = self.community.neighborhoods.near(self.to_coordinates, 15).first
+    self.neighborhood = self.community.neighborhoods.near(self.to_coordinates, 15).first || self.community.neighborhoods.first
     unless self.neighborhood
       errors.add :address, I18n.t('activerecord.errors.models.user.address',
                                   :community => self.community.name)
