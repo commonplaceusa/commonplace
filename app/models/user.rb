@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
   validates_presence_of :address, :on => :create, :unless => :authenticating_with_oauth2?
   validates_presence_of :address, :on => :update
 
-  validates_presence_of :password, :on => :update, :if => :validate_password?
     
   validate :validate_first_and_last_names
 
@@ -163,7 +162,7 @@ class User < ActiveRecord::Base
   def name
     full_name
   end
-  
+
   def wire
     if new_record?
       community.announcements + community.events

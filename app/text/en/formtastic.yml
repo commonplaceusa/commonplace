@@ -10,6 +10,7 @@ en:
         password: "Create a Password:"
         about: "Tell your neighbors a bit about yourself:"
         interest_list: "Add some interests:"
+        offer_list: "Anything you want to offer to your neighbors:"
         referral_source: "How did you find out about CommonPlace?"
         address: "Street Address*:"
         avatar: "Add a photo:"
