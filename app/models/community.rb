@@ -76,11 +76,11 @@ class Community < ActiveRecord::Base
 
   def completed_registrations
     # A registration is complete if the user has updated their data after the initial creation (incl. setting a password)
-    User.where("created_at < updated_at")
+    User.where("created_at < updated_at AND community_id = ?", self.id)
   end
 
   def incomplete_registrations
-    User.where("created_at >= updated_at")
+    User.where("created_at >= updated_at AND community_id = ?", self.id)
   end
 
   def c(model)

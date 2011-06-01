@@ -1,6 +1,15 @@
 %table{:border => "1"}
+  %tr
+    %td{:colspan => "3"}
+      %h2 Totals
+      .totals
+        Total Users: 
+        = User.all.count
+        %br
+        %img{:src => Gchart.pie(:data => [Post.all.count, Event.all.count, Announcement.all.count, GroupPost.all.count, Message.all.count], :title => "Overall Posts by Type", :labels => ["Neighborhood", "Event", "Announcement", "Group", "Private Message"], :size => "400x200")}
+        
   - @communities.each do |community|
-    - if community.id % 3 == 0 or community.id == 1
+    - if community.id % 4 == 0 or community.id == 1
       %tr
     %td
       %h2= community.name
@@ -42,8 +51,3 @@
         Today's Group Posts:
         %br
         Today's Private Messages:
-
-
-
-
-
