@@ -126,7 +126,7 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
   events: {
     "click a.show-reply-form": "showReplyForm",
     "mouseenter": "showInfo",
-    "submit form": "submitReply",
+    "submit form.new_reply": "submitReply",
     "click a.all-replies" : "showAllReplies",
     "hover div.replies ul li a": "replyHover",
     "click .toggle-actions": "toggleActions"
@@ -195,8 +195,10 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
       author: this.model.get('author'),
       body: this.model.get('body'),
       id: this.model.get('id'),
-      is_admin: CommonPlace.account.get("is_admin"),
-      any_available_actions: CommonPlace.account.get("is_admin")
+      any_available_actions: CommonPlace.account.can_notify_all(this.model) || 
+        CommonPlace.account.can_delete(this.model),
+      can_notify_all: CommonPlace.account.can_notify_all(this.model),
+      can_delete: CommonPlace.account.can_delete(this.model)
     };
   },
 
