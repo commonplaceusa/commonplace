@@ -5,7 +5,8 @@
 
   {{> say_something_nav }}
 
-  <form accept-charset="UTF-8" action="/events" class="formtastic event" data-remote="true" id="new_event" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="{{auth_token}}"></div>
+  <form accept-charset="UTF-8" action="/events" class="formtastic event" data-remote="true" id="new_event" method="post"><div style="margin:0;padding:0;display:inline">
+    <input name="authenticity_token" type="hidden" value="{{auth_token}}"></div>
   <fieldset class="inputs"><ol><li>
 
     <label class="select required" for="event_feed">

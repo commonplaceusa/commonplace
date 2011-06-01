@@ -4,7 +4,9 @@
 
   {{> say_something_nav }}
 
-  <form accept-charset="UTF-8" action="/group_posts" class="formtastic group_post" data-remote="true" id="new_group_post" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="{{auth_token}}"></div>
+  <form accept-charset="UTF-8" action="/group_posts" class="formtastic group_post" data-remote="true" id="new_group_post" method="post"><div style="margin:0;padding:0;display:inline">
+    
+    <input name="authenticity_token" type="hidden" value="{{auth_token}}"></div>
   <fieldset class="inputs"><ol><li class="select optional" id="group_post_group_input"><label for="group_post_group_id">Group</label>
   <select id="group_post_group_id" name="group_post[group_id]">
     {{#groups}}
