@@ -1,5 +1,6 @@
-:javascript
-  mpmetrics.track('Password entry');
+- if Rails.env.production?
+  :javascript
+    mpmetrics.track('Password entry');
 #register
   #tool_tip
     %h2
