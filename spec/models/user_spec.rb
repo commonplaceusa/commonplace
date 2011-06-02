@@ -41,30 +41,12 @@ describe User do
         @user.should have_at_least(1).errors_on(:address)
       end
 
-      context "without an associated facebook account" do
-        it "requires a password" do
-          @user.valid?
-          @user.should have_at_least(1).errors_on(:password)
-        end
-      end
-
     end
     
     context "on create" do
-      context "without an associated facebook account" do
-        it "requires an address" do 
-          @user.valid?
-          @user.should have_at_least(1).errors_on(:address)
-        end
-      end
-      
-      context "with an associated facebook account" do
-        it "does not require an address" do
-          stub(@user).authenticating_with_oauth2? { true }
-          stub(@user).validate_by_oauth2
-          @user.valid?
-          @user.should have(0).errors_on(:address)
-        end
+      it "requires an address" do 
+        @user.valid?
+        @user.should have_at_least(1).errors_on(:address)
       end
     end
   end
@@ -126,27 +108,6 @@ describe User do
       @user.full_name = ""
       @user.first_name.should == ""
       @user.last_name.should == ""
-    end
-  end
-
-  describe "#after_oauth2_authentication" do
-    before :each do 
-      stub(@user).oauth2_access.stub!.get("/me") do
-        '{"name": "Max Planck", "id": 42, "email": "moogle@example.com"}'
-      end
-      @user.after_oauth2_authentication
-    end
-    
-    it "sets facebook full_name" do
-      @user.full_name.should == "Max Planck"
-    end
-    
-    it "sets facebook_uid" do
-      @user.facebook_uid.should == 42
-    end
-    
-    it "sets facebook email" do
-      @user.email.should == "moogle@example.com"
     end
   end
 

@@ -7,6 +7,8 @@ feature "Create a post", %q{
 } do
 
   background do
+    pending "moving away from subdomains"
+    
     community = Factory :community, :slug => "testing"
     neighborhood = Factory(:neighborhood, :community => community, 
             :coordinates => Forgery(:latlng).random)
