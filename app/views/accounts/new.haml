@@ -1,5 +1,9 @@
 %h1= t(".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), learn_more_account_path)).html_safe
 
+- if Rails.env.production?
+  :javascript
+    mpmetrics.track('Community Registration Page');
+
 :javascript
   $(document).ready(function() {
     FB.init({
@@ -8,7 +12,7 @@
       cookie : true,
       xfbml  : true
     });
-    mpmetrics.track('Community Registration Page');
+
   });
   function facebookUserLoggedIn()
   {
