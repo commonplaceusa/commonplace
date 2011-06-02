@@ -15,7 +15,7 @@ feature "Logging in", %q{
                   :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
 
     Factory(:user, :email => "test@example.com", :password => "password",
-            :neighborhood => neighborhood, :community => community,
+            :neighborhood_id => neighborhood.id, :community_id => community.id,
             :address => "100 Example Way")
     
     Capybara.app_host = "http://testing.smackaho.st:#{Capybara.server_port}"
