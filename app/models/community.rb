@@ -71,7 +71,7 @@ class Community < ActiveRecord::Base
   end
 
   def group_posts_today
-    group_posts.select { |post| post.created_at > Date.today and post.created_at < DateTime.now }
+    group_posts.select { |post| post.created_at > DateTime.now.at_beginning_of_day and post.created_at < DateTime.now }
   end
 
   def private_messages
@@ -79,7 +79,7 @@ class Community < ActiveRecord::Base
   end
 
   def private_messages_today
-    private_messages.select { |message| message.created_at > Date.today and message.created_at < DateTime.now }
+    private_messages.select { |message| message.created_at > DateTime.now.at_beginning_of_day and message.created_at < DateTime.now }
   end
 
   def completed_registrations
