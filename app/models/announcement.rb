@@ -12,7 +12,7 @@ class Announcement < ActiveRecord::Base
     { :conditions => 
       ["? <= created_at AND created_at < ?", start_date, end_date] } 
   }
-  scope :today, :conditions => ["created_at between ? and ?", Date.today, DateTime.now]
+  scope :today, :conditions => ["created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
 
   def feed
     self.owner
