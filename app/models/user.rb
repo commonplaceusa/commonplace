@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
   has_many :referrals, :foreign_key => "referee_id"
   has_many :messages, :dependent => :destroy
 
-  has_many :received_messages, :as => :messagable, :class_name => "Message"
+  has_many :received_messages, :as => :messagable, :class_name => "Message", :dependent => :destroy
 
   has_many :mets, :foreign_key => "requester_id"
   
