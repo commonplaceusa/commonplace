@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
     { :conditions => ["? <= date AND date < ?", start_date, end_date] } 
   }
   scope :past, :conditions => ["date < ?", Time.now.utc]
-  scope :today, :conditions => ["created_at between ? and ?", Date.today, DateTime.now]
+  scope :today, :conditions => ["created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
 
   def tag_list
     self.cached_tag_list
