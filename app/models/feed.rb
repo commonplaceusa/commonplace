@@ -60,7 +60,7 @@ class Feed < ActiveRecord::Base
   def wire
     (self.announcements + self.events).sort_by do |item|
       time = case item
-             when Event then item.start_datetime
+             when Event then item.created_at
              when Announcement then item.created_at
              end 
       (time - Time.now).abs
