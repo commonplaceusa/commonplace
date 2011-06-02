@@ -70,8 +70,16 @@ class Community < ActiveRecord::Base
     self.groups.map(&:group_posts).flatten
   end
 
+  def group_posts_today
+    group_posts.select { |post| post.created_at > Date.today and post.created_at < DateTime.now }
+  end
+
   def private_messages
     self.users.map(&:messages).flatten
+  end
+
+  def private_messages_today
+    private_messages.select { |message| message.created_at > Date.today and message.created_at < DateTime.now }
   end
 
   def completed_registrations
@@ -84,8 +92,14 @@ class Community < ActiveRecord::Base
   end
 
   def c(model)
-    count = 0
-    model.all.select { |o| o.owner.community_id == self.id }.each { |o| count += 1 }
-    count
+    #count = 0
+    #model.all.select { |o| o.owner.community_id == self.id }.each { |o| count += 1 }
+    #count
+    model.find(:all, :conditions => {:community_id => self.id }).count
   end
+
+  def c_today(model)
+    model.find(:all, :conditions => ["created_at between ? and ? AND community_id = ?", Date.today, DateTime.now, self.id]).count
+  end
+
 end

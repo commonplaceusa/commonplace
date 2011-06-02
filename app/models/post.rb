@@ -19,6 +19,8 @@ class Post < ActiveRecord::Base
       ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
   }
 
+  scope :today, where("posts.created_at between ? and ?", Date.today, Time.now)
+
   def self.human_name
     "Neighborhood Post"
   end

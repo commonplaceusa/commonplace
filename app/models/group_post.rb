@@ -8,6 +8,8 @@ class GroupPost < ActiveRecord::Base
   validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
 
+  scope :today, where("group_posts.created_at between ? and ?", Date.today, Time.now)
+
   def owner
     self.user
   end
