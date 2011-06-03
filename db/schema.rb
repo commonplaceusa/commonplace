@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110515163926) do
+ActiveRecord::Schema.define(:version => 20110603203135) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                                  :null => false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20110515163926) do
     t.string   "organizer_avatar_file_name"
     t.text     "organizer_about"
     t.string   "time_zone",                  :default => "Eastern Time (US & Canada)"
+    t.integer  "households",                 :default => 0
   end
 
   create_table "events", :force => true do |t|
@@ -270,6 +271,7 @@ ActiveRecord::Schema.define(:version => 20110515163926) do
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.string   "referral_source"
+    t.datetime "last_login_at"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
