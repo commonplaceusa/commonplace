@@ -408,6 +408,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
     var view = this[this.template]();
     view[this.template] = true ;
     $(this.el).html(CommonPlace.render(this.template, view));
+    $("input.date").datepicker();
   },
 
   submitPost: function(e) {
