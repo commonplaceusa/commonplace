@@ -1,5 +1,5 @@
 = javascript_include_tag "jquery-1.6.1", "highcharts"
-.community{:width => "100%", :border => "1"}
+.community{:width => "100%", :style => "border:1px solid black;"}
   %h2 Totals
   .totals
     Total Users: 
@@ -45,15 +45,9 @@
     %br
     Today's Private Messages:
     = Message.today.count
-  .emails
-    Emails Opened Today: 
-    = @emails_opened_today
-    %br
-    Emails Opened Overall: 
-    = @emails_opened
 %br
 - @communities.select{|c| c.users.count > 0 and c.households != nil and c.households > 0}.each do |community|
-  .community{:width => "50%", :border => "1"}
+  .community{:width => "50%", :style => "border: 1px solid black;"}
     %h2= community.name
     .users
       Total Users:
@@ -179,7 +173,7 @@
     pointStart: new Date() - 60*60*24*30,
     type: 'area',
     data: [
-    - community.since_30_days_ago(community.events).each do |i|
+    - community.since_30_days_ago(community.events, true).each do |i|
       = "#{i},"
     ]}]}));
 
@@ -197,7 +191,7 @@
     pointStart: new Date() - 60*60*24*30,
     type: 'area',
     data: [
-    - community.since_30_days_ago(community.announcements).each do |i|
+    - community.since_30_days_ago(community.announcements, true).each do |i|
       = "#{i},"
     ]}]}));
 
