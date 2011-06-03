@@ -61,34 +61,14 @@ class API < Sinatra::Base
   #
   # Authorization: User is in community
   post "/communities/:id/posts" do |community_id|
-    post = if request_body.key?('groups')
-             GroupPost.new(:user => current_account,
-                           :subject => request_body['title'],
-                           :body => request_body['body'],
-                           :group => Group.find(request_body['groups'].first))
-           elsif request_body['style'] == "event"
-             Event.new(:owner => request_body['feed'] ? Feed.find(request_body['feed']) : current_account,
-                       :description => request_body['body'],
-                       :name => request_body['title'],
-                       :date => request_body['occurs'],
-                       :start_time => request_body['start_time'],
-                       :end_time => request_body['end_time'],
-                       :venue => request_body['venue'],
-                       :address => request_body['address'],
-                       :tags => request_body['tags'],
-                       :community_id => community_id)
-           elsif request_body['style'] == 'publicity'
-             Announcement.new(:owner => request_body['feed'] ? Feed.find(request_body['feed']) : current_account,
-                              :subject => request_body['title'],
-                              :body => request_body['body'],
-                              :community_id => community_id)
-           else 
-             Post.new(:user => current_account,
-                      :community_id => community_id,
-                      :subject => request_body['title'],
-                      :body => request_body['body'])
-           end
+    post = Post.new(:user => current_account,
+                    :community_id => community_id,
+                    :subject => request_body['title'],
+                    :body => request_body['body'])
     if post.save
+      current_account.neighborhood.users.receives_posts_live.each do |user|
+        Resque.enqueue(PostNotification, post.id, user.id) if post.user != user
+      end
       serialize(post)
     else
       [400, "errors"]
