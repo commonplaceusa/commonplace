@@ -110,10 +110,14 @@ class Community < ActiveRecord::Base
     registrations.reverse
   end
 
-  def since_30_days_ago(set)
+  def since_30_days_ago(set,polymorphic=false)
     items = []
     for i in (1..30)
-      items.push(set.up_to(i.days.ago).to_a.count)
+      if polymorphic
+        items.push(set.up_to(i.days.ago).to_a.count)
+      else
+        items.push(set.up_to(i.days.ago).count)
+      end
     end
     items.reverse
   end
