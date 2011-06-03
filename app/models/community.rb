@@ -110,4 +110,12 @@ class Community < ActiveRecord::Base
     registrations.reverse
   end
 
+  def since_30_days_ago(set)
+    items = []
+    for i in (1..30)
+      items.push(set.up_to(i.days.ago).to_a.count)
+    end
+    items.reverse
+  end
+
 end
