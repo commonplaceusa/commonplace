@@ -129,7 +129,7 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
         collection: this.community.posts,
         el: $("#whats-happening"),
         itemView: CommonPlace.PostItem,
-        subnav: [{url: "/posts", current: true, last: true, name: "Neighborhood Posts"}],
+        subnav: [{url: "#/posts", current: true, last: true, name: "Neighborhood Posts"}],
         zone: "posts"
       });
     this.postIndex.render();
@@ -164,8 +164,8 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
         collection: this.community.announcements,
         el: $("#whats-happening"),
         itemView: CommonPlace.AnnouncementItem,
-        subnav: [{url:"/announcements", name:"Community Announcements", current: true},
-                 {url:"/feeds", name: "Community Feeds", last:true}],
+        subnav: [{url:"#/announcements", name:"Community Announcements", current: true},
+                 {url:"#/feeds", name: "Community Feeds", last:true}],
         zone: "announcements"
       });
     this.announcementIndex.render();
@@ -177,7 +177,7 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
         collection: this.community.events,
         el:$("#whats-happening"),
         itemView: CommonPlace.EventItem,
-        subnav: [{url: "/events", name:"Upcoming Events", current: true, last: true}],
+        subnav: [{url: "#/events", name:"Upcoming Events", current: true, last: true}],
         zone: "events"
       });
     this.eventIndex.render();
@@ -189,17 +189,17 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
         collection: this.community.group_posts,
         el: $("#whats-happening"),
         itemView: CommonPlace.GroupPostItem,
-        subnav: [{url: "/group_posts", name: "Group Posts", current: true},
-                 {url: "/groups", name: "Discussion Groups", last: true}],
+        subnav: [{url: "#/group_posts", name: "Group Posts", current: true},
+                 {url: "#/groups", name: "Discussion Groups", last: true}],
         zone: "group_posts"
       });
     this.group_postIndex.render();
   },
 
   directorySubnav: function(current_url) {
-    return _([{url: "/users", name: "Your Neighbors"},
-              {url: "/feeds", name: "Community Feeds"},
-              {url: "/groups", name: "Discussion Groups", last: true}]).map(
+    return _([{url: "#/users", name: "Your Neighbors"},
+              {url: "#/feeds", name: "Community Feeds"},
+              {url: "#/groups", name: "Discussion Groups", last: true}]).map(
                 function(nav) {
                   return _.extend(nav, {current: current_url == nav.url});
                 });
@@ -211,7 +211,7 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
         collection: this.community.groups,
         el: $("#whats-happening"),
         itemView: CommonPlace.GroupItem,
-        subnav: this.directorySubnav("/groups"),
+        subnav: this.directorySubnav("#/groups"),
         zone: "users"
       });
     this.groupIndex.render();
@@ -222,7 +222,7 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
       new CommonPlace.Index({collection: this.community.feeds,
                              el: $("#whats-happening"),
                              itemView: CommonPlace.FeedItem,
-                             subnav: this.directorySubnav("/feeds"),
+                             subnav: this.directorySubnav("#/feeds"),
                              zone: "users"
                             });
     this.feedIndex.render();
@@ -232,7 +232,7 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
       new CommonPlace.Index({collection: this.community.users,
                              el: $("#whats-happening"),
                              itemView: CommonPlace.UserItem,
-                             subnav: this.directorySubnav("/users"),
+                             subnav: this.directorySubnav("#/users"),
                              zone: "users"
                             });
     this.userIndex.render();
