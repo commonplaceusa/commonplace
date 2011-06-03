@@ -6,6 +6,8 @@ class Message < ActiveRecord::Base
   validates_presence_of :subject, :body, :user, :messagable
 
   has_many :replies, :as => :repliable, :order => :created_at
+
+  scope :today, :conditions => ["created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
   
   def long_id
     IDEncoder.to_long_id(self.id)
