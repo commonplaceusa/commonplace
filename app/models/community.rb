@@ -102,4 +102,12 @@ class Community < ActiveRecord::Base
     model.find(:all, :conditions => ["created_at between ? and ? AND community_id = ?", Date.today, DateTime.now, self.id]).count
   end
 
+  def registrations_since_30_days_ago
+    registrations = []
+    for i in (1..30)
+      registrations.push(self.users.up_to(i.days.ago).count)
+    end
+    registrations.reverse
+  end
+
 end

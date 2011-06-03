@@ -32,6 +32,14 @@ class User < ActiveRecord::Base
   validates_presence_of :neighborhood
   validates_uniqueness_of :facebook_uid, :allow_nil => true
 
+  scope :between, lambda { |start_date, end_date| 
+    { :conditions => 
+      ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
+  }
+
+  scope :up_to, lambda { |end_date| { :conditions => ["created_at <= ?", end_date.utc] } }
+
+  scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }
   def facebook_user?
     authenticating_with_oauth2? || facebook_uid
   end
@@ -213,5 +221,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def value_adding?
+    (self.posts.count >= 1 || self.announcements.count >= 1 || self.events.count >= 1)
+  end
   
 end

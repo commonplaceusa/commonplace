@@ -1,6 +1,7 @@
+= javascript_include_tag "jquery-1.6.1", "highcharts"
 %table{:border => "1"}
   %tr
-    %td{:colspan => "3"}
+    %td{:colspan => "2"}
       %h2 Totals
       .totals
         Total Users: 
@@ -52,17 +53,21 @@
         %br
         Emails Opened Overall: 
         = @emails_opened
-  %tr
+  %tr{:width => "100%"}
   - @communities.each do |community|
-    - if community.id % 3 == 0
-      %tr
-    %td
+    - if community.id % 2 == 0
+      %tr{:width => "100%"}
+    %td{:width => "50%"}
       %h2= community.name
-      .totals
+      .users
         Total Users:
         = community.users.count
-        %br
-        %img{:src => Gchart.pie(:data => [community.posts.count, community.c(Event), community.c(Announcement), community.group_posts.count, community.private_messages.count], :title => "Overall Posts by Type", :labels => ["Neighborhood", "Event", "Announcement", "Group", "Private Message"], :size => "400x200")}
+        %div[community, :user_growth]
+        Percentage of Field: 
+        - if community.households == nil
+          - community.households = community.users.count
+        = 100*(community.users.count / community.households)
+      .data
         %br
         %img{:src => Gchart.bar(:data => [[community.posts.count - community.posts.today.count, community.events.to_a.count-community.events.today.to_a.count, community.announcements.to_a.count-community.announcements.today.to_a.count, community.group_posts.count-community.group_posts_today.count],[community.posts.today.count,community.events.today.to_a.count, community.announcements.today.to_a.count, community.group_posts_today.count]], :bar_colors => ['FF0000','00FF00'], :labels => ['P', 'E', 'A', 'GP'], :title => "Usage Overview", :size => "400x200")}
         %br
@@ -82,7 +87,7 @@
         = community.private_messages.count
         %br
       .registrations
-        %img{:src => Gchart.pie(:data => [community.completed_registrations.count, community.incomplete_registrations.count], :title => "Overall Registration Status", :labels => ["Complete", "Incomplete"], :size => "300x200")}
+        -#%img{:src => Gchart.pie(:data => [community.completed_registrations.count, community.incomplete_registrations.count], :title => "Overall Registration Status", :labels => ["Complete", "Incomplete"], :size => "300x200")}
         %br
         Completed Registrations: 
         = community.completed_registrations.count
@@ -104,6 +109,44 @@
         %br
         Today's Private Messages:
         = community.private_messages_today.count
+      .engagement
+        Users on Main Page: 
+        ?
+        %br
+        Retention Percentage of Last Week: 
+        = 100*((community.users.logged_in_since(7.days.ago).count) / community.users.count)
+        %br
+        Retention Percentage of Last Month:
+        = 100*((community.users.logged_in_since(30.days.ago).count) / community.users.count)
+        %br
+        Value-Adding User Percentage:
+        = 100*((community.users.select { |u| u.value_adding? }.count) / community.users.count)
       .breakdown
         %br
         %img{:src => Gchart.pie(:data => [Post.all.count, Event.all.count, Announcement.all.count, GroupPost.all.count, Message.all.count], :title => "Overall Posts by Type", :labels => ["Neighborhood", "Event", "Announcement", "Group", "Private Message"], :size => "400x200")}
+
+%script
+  var charts = [];
+  $(document).ready(function() {
+  - @communities.each do |community|
+    charts.push(new Highcharts.Chart({
+    chart: {
+    = "renderTo: 'user_growth_community_#{community.id}',"
+    zoomType: 'x'
+    },
+    title: { text: 'Users over Time' },
+    xAxis: { type: 'datetime' },
+    yAxis: { title: { text: 'Registered Users' } },
+    series: [{
+    name: "Registrations",
+    pointInterval: 3600000 * 24,
+    pointStart: new Date() - 60*60*24*30,
+    type: 'area',
+    data: [
+    - community.registrations_since_30_days_ago.each do |i|
+      = "#{i},"
+    ]
+    }]
+    }));
+  });
+
