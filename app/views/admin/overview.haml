@@ -64,9 +64,7 @@
         = community.users.count
         %div[community, :user_growth]
         Percentage of Field: 
-        - if community.households == nil
-          - community.households = community.users.count
-        = 100*(community.users.count / community.households)
+        = 100*(community.users.count / community.households.to_i)
       .data
         %br
         %img{:src => Gchart.bar(:data => [[community.posts.count - community.posts.today.count, community.events.to_a.count-community.events.today.to_a.count, community.announcements.to_a.count-community.announcements.today.to_a.count, community.group_posts.count-community.group_posts_today.count],[community.posts.today.count,community.events.today.to_a.count, community.announcements.today.to_a.count, community.group_posts_today.count]], :bar_colors => ['FF0000','00FF00'], :labels => ['P', 'E', 'A', 'GP'], :title => "Usage Overview", :size => "400x200")}
