@@ -137,6 +137,7 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
   
   showPost: function(id) { this.posts(); 
                            $.scrollTo($("#post-" + id + "-item"));
+                           $("#post-" + id + "-item" + " a.show-reply-form").click();
                          },
   showAnnouncement: function(id) { this.announcements();
                                    $.scrollTo($("#announcement-" + id + "-item"));
