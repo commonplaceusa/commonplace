@@ -126,7 +126,7 @@
 %script
   var charts = [];
   $(document).ready(function() {
-  - @communities.each do |community|
+  - @communities.select{|c| c.users.count > 0 and c.households != nil and c.households > 0}.each do |community|
     charts.push(new Highcharts.Chart({
     chart: {
     = "renderTo: 'user_growth_community_#{community.id}',"
