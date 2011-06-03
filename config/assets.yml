@@ -41,7 +41,7 @@ javascripts:
       - public/javascripts/accounts.js
       - public/javascripts/sharing.js
       - public/javascripts/tour.js
-      - public/javascripts/gaAddon.js
+      - public/javascripts/gaAddons.js
   jquery:
     - public/javascripts/jquery-1.6.1.js
     - public/javascripts/jquery-ui.js
