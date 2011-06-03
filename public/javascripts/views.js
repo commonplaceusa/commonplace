@@ -337,19 +337,10 @@ CommonPlace.Index = Backbone.View.extend({
   
   id: "whats-happening",
   
-  events: {
-    "click #zones a, #syndicate h3 a" : "send"
-  },
-
   changeZone: function(newZone) {
     this.$('#zones a').removeClass('selected_nav').
       filter('.' + newZone).
       addClass('selected_nav');
-  },
-  
-  send: function(e) {
-    e.preventDefault();
-    window.location.hash = $(e.currentTarget).attr('href');
   },
 
   render: function() {
@@ -395,15 +386,9 @@ CommonPlace.SaySomething = Backbone.View.extend({
   id: "say-something",
   
   events: {
-    "click div.nav a, nav a": "navigate",
     "submit form.post": "submitPost"
   },
   
-  navigate: function(e) {
-    e.preventDefault();
-    window.location.hash = $(e.currentTarget).attr('href');
-  },
-
   render: function() {
     var view = this[this.template]();
     view[this.template] = true ;
