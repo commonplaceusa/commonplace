@@ -18,6 +18,7 @@ class Post < ActiveRecord::Base
     { :conditions => 
       ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
   }
+  scope :up_to, lambda { |end_date| { :conditions => ["posts.created_at <= ?", end_date.utc] } }
 
   scope :today, :conditions => ["posts.created_at between ? and ?", DateTime.now.at_beginning_of_day, Time.now]
 
