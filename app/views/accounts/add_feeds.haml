@@ -8,7 +8,7 @@
   #feeds_wrapper
     %h2
       Subscribe to some community feeds:
-    - form_tag "/account/subscribe_to_feeds" do
+    - form_tag "/account/subscribe_to_feeds", :id => "add_groups" do
       #feeds_container
         - @feeds.each do |feed|
           .feed

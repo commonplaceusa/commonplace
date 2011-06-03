@@ -8,7 +8,7 @@
   #groups_wrapper
     %h2
       Subscribe to some groups:
-    - form_tag "/account/subscribe_to_groups" do
+    - form_tag "/account/subscribe_to_groups", :id => "add_groups" do
       #groups_container
         - @groups.each do |group|
           .group
