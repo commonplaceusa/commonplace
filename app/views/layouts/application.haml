@@ -77,6 +77,22 @@
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-12888551-3']);
       _gaq.push(['_trackPageview', location.pathname + location.hash]);
+      _gaq.push(['_formAnalysis', {
+        onBounce: true,
+        minFields: 3
+      }]);
+      _gaq.push(['_setXDomain', {
+          domainName: 'commonplaceusa.com'
+      }]);
+      _gaq.push(['_trackLoadTime', {
+          onBounce: true,
+          method: 'event',
+          category: 'loadTime'
+      }]);
+      _gaq.push(['_trackRealBounce', {
+        category: 'NoBounce',
+        delay: 30
+      }]);
 
       (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
