@@ -78,7 +78,8 @@ class MailBase < Mustache
                           :body => self.render,
                           :headers => {
                             "Precedence" => "list",
-                            "Auto-Submitted" => "auto-generated"
+                            "Auto-Submitted" => "auto-generated",
+                            "X-Campaign-Id" => community.slug
                           })
     end
   end
