@@ -85,7 +85,8 @@ CommonPlace.Event = Backbone.Model.extend({
   url: function() { return "/events/" + this.id; },
   
   date: function() {
-    return new Date(CommonPlace.parseDate(this.get("occurs_on")));
+    var m = this.get("occurs_on").match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z/);
+    return new Date(m[1],m[2] - 1, m[3]);
   },
 
   abbrev_month_name: function() {
