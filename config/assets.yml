@@ -9,6 +9,7 @@ stylesheets:
     - public/stylesheets/administration.css
   application:
     - public/stylesheets/application.css
+    - public/stylesheets/post_box.css
     - public/stylesheets/tour.css
   ie:
     - public/stylesheets/ie.css
