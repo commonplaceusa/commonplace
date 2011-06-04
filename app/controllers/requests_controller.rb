@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
 
   def index
     @requests = Request.all
+    render :layout => nil
   end
 
   def new
