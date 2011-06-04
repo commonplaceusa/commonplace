@@ -352,6 +352,7 @@ DEPENDENCIES
   god
   googlecharts
   haml (~> 3.1)
+  hoe (= 2.9.0)
   httparty
   jammit
   json
@@ -362,6 +363,7 @@ DEPENDENCIES
   mongrel
   mustache
   newrelic_rpm
+  nokogiri (= 1.4.4)
   oauth2
   paperclip
   pg
