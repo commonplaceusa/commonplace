@@ -1,4 +1,4 @@
-= javascript_include_tag "jquery-1.6.1", "highcharts"
+= javascript_include_tag "jquery-1.6.1", "highcharts", "date"
 .community{:width => "100%", :style => "border:1px solid black;"}
   %h2 Totals
   .totals
@@ -118,6 +118,7 @@
       %img{:src => Gchart.pie(:data => [Post.all.count, Event.all.count, Announcement.all.count, GroupPost.all.count, Message.all.count], :title => "Overall Posts by Type", :labels => ["Neighborhood", "Event", "Announcement", "Group", "Private Message"], :size => "400x200")}
 
 %script
+  = "days = #{@days};"
   var charts = [];
   $(document).ready(function() {
   - @communities.select{|c| c.users.count > 0 and c.households != nil and c.households > 0}.each do |community|
@@ -132,10 +133,10 @@
     series: [{
     name: "Registrations",
     pointInterval: 3600000 * 24,
-    pointStart: new Date() - 60*60*24*30,
+    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
     type: 'area',
     data: [
-    - community.registrations_since_30_days_ago.each do |i|
+    - community.registrations_since_n_days_ago(@days).each do |i|
       = "#{i},"
     ]
     }]
@@ -152,10 +153,10 @@
     series: [{
     name: "Neighborhood Posts",
     pointInterval: 3600000 * 24,
-    pointStart: new Date() - 60*60*24*30,
+    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
     type: 'area',
     data: [
-    - community.since_30_days_ago(community.posts).each do |i|
+    - community.since_n_days_ago(@days,community.posts).each do |i|
       = "#{i},"
     ]}]}));
 
@@ -170,10 +171,10 @@
     series: [{
     name: "Events",
     pointInterval: 3600000 * 24,
-    pointStart: new Date() - 60*60*24*30,
+    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
     type: 'area',
     data: [
-    - community.since_30_days_ago(community.events, true).each do |i|
+    - community.since_n_days_ago(@days,community.events, true).each do |i|
       = "#{i},"
     ]}]}));
 
@@ -187,11 +188,11 @@
     yAxis: { title: { text: 'Announcements' } },
     series: [{
     name: "Announcements",
-    pointInterval: 3600000 * 24,
-    pointStart: new Date() - 60*60*24*30,
+    pointInterval: 60*60*24*1000,
+    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
     type: 'area',
     data: [
-    - community.since_30_days_ago(community.announcements, true).each do |i|
+    - community.since_n_days_ago(@days,community.announcements, true).each do |i|
       = "#{i},"
     ]}]}));
 
