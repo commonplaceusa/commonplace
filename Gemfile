@@ -8,6 +8,8 @@ gem 'unicorn'
 gem 'text-reform'
 gem 'thor'
 gem 'xpath'
+gem 'nokogiri', '1.4.4'
+gem 'hoe', '2.9.0'
 
 # Database
 gem 'SystemTimer', :require => 'system_timer'
