@@ -13,7 +13,7 @@ class Group < ActiveRecord::Base
   has_many :group_posts
 
   has_many :memberships
-  has_many :subscribers, :through => :memberships, :source => :user
+  has_many :subscribers, :through => :memberships, :source => :user, :uniq => true
   def avatar_url=(url)
     self.avatar_file_name = url
   end
