@@ -1,0 +1,12 @@
+%table
+  %tr
+    %th Community Name
+    %th Name
+    %th E-mail
+    %th Sponsoring Organization
+  - @requests.each do |request|
+    %tr
+      %td= request.community_name
+      %td= request.name
+      %td= request.email
+      %td= request.sponsor_organization
