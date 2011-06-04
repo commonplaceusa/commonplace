@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   validate :validate_first_and_last_names
 
   validates_presence_of :neighborhood
-  validates_uniqueness_of :facebook_uid, :allow_nil => true
+  validates_uniqueness_of :facebook_uid, :allow_nil => true 
 
   scope :between, lambda { |start_date, end_date| 
     { :conditions => 
@@ -88,11 +88,11 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions, :dependent => :destroy
   accepts_nested_attributes_for :subscriptions
-  has_many :feeds, :through => :subscriptions
+  has_many :feeds, :through => :subscriptions, :uniq => true
 
   has_many :memberships, :dependent => :destroy
   accepts_nested_attributes_for :memberships
-  has_many :groups, :through => :memberships
+  has_many :groups, :through => :memberships, :uniq => true
 
   has_many :managable_feeds, :class_name => "Feed"
   has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies, :dependent => :destroy

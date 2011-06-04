@@ -24,7 +24,7 @@ class Feed < ActiveRecord::Base
   has_many :announcements, :dependent => :destroy, :as => :owner, :include => :replies
 
   has_many :subscriptions, :dependent => :destroy
-  has_many :subscribers, :through => :subscriptions, :source => :user
+  has_many :subscribers, :through => :subscriptions, :source => :user, :uniq => true
 
   def live_subscribers
     self.subscriptions.all(:conditions => "receive_method = 'Live'").map &:user
