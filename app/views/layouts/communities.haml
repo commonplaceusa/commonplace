@@ -34,7 +34,8 @@
   CommonPlace.app = new CommonPlace.MainPageController({community: CommonPlace.community, account: CommonPlace.account});
   CommonPlace.app.runNotifier();
   Backbone.history.start();
-  window.location.hash = window.location.pathname;
+
+  window.location.hash = "/#{params[:backbone_route]}"
   Backbone.history.loadUrl();
   if (oldhash != "" && oldhash != "/") { window.location.hash = oldhash; }
 
@@ -42,6 +43,3 @@
   - current_user.toggle!(:seen_tour)
   :javascript
     (new CommonPlace.Tour({el: $("#main")})).render();
-  
-  
-    

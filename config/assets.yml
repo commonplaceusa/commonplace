@@ -10,6 +10,7 @@ stylesheets:
   application:
     - public/stylesheets/application.css
     - public/stylesheets/post_box.css
+    - public/stylesheets/login.css
     - public/stylesheets/tour.css
     - public/stylesheets/feeds/delete.css
     - public/stylesheets/feeds/edit_owner.css

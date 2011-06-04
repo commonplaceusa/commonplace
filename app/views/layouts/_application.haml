@@ -57,20 +57,7 @@
 
     = yield
 
-    %footer
-      #cont
-        .left_text
-          Find out more at #{ link_to "CommonPlaceUSA.com", "http://commonplaceusa.com", :target => :blank }
-        .right_text
-          = mail_to current_community.organizer_email, "Questions?  Email #{current_community.organizer_email}"
-          &sdot;
-          = link_to "FAQ", "/faq"
-          &sdot;
-          = link_to "About", "http://commonplaceusa.com", :target => :blank
-          &sdot;
-          = link_to "Terms", terms_path
-          &sdot;
-          = link_to "Privacy Policy", privacy_path
+    = render "layouts/footer"
 
     - if updated_content["#modal"]
       = updated_content["#modal"]
