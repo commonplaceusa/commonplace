@@ -34,6 +34,9 @@ gem 'mail'
 gem 'mustache'
 gem 'googlecharts'
 
+# Error Pages
+gem 'goalie'
+
 # Formats
 gem 'premailer'
 gem 'httparty'

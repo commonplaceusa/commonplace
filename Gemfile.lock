@@ -134,6 +134,9 @@ GEM
     gem_plugin (0.2.3)
     geocoder (1.0.0)
     glebm-geokit (1.5.2)
+    goalie (0.0.4)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     god (0.11.0)
     googlecharts (1.6.7)
     haml (3.1.1)
@@ -345,6 +348,7 @@ DEPENDENCIES
   fuubar
   geocoder
   glebm-geokit
+  goalie
   god
   googlecharts
   haml (~> 3.1)
