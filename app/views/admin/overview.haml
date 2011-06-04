@@ -46,7 +46,7 @@
     Today's Private Messages:
     = Message.today.count
 %br
-- @communities.select{|c| c.users.count > 0 and c.households != nil and c.households > 0}.each do |community|
+- @communities.select{|c| c.users.count > 0 and c.households != nil and c.households > 1}.each do |community|
   .community{:width => "50%", :style => "border: 1px solid black;"}
     %h2= community.name
     .users
