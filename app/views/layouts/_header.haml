@@ -7,16 +7,19 @@
       %li{:id=>"sign_in_button", :class=>"remove_border"} Sign in
       %li{:id=>"sign_in_form"}
         = render 'user_sessions/form', :user_session => user_session
-    = link_to root_url, :id => "logo" do
-      = image_tag "logo.png"
-      %span.community= current_community.name
-
+    - if params[:community]
+      = link_to "/#{params[:community]}", :id => "logo" do
+        = image_tag "logo.png"
+        %span.community= current_community.name
+    - else
+      = link_to "/", :id => "logo" do
+        = image_tag "logo.png"
   - else
     #nav_wrapper  
       %nav
-        = tab_to "Home", "/"
-        = tab_to "Inbox", messages_url
-        = tab_to "Invite", "/invites/new"
+        = tab_to "Home", "/#{current_community.slug}"
+        = tab_to "Inbox", "/messages"
+        = tab_to "Invite", "/#{current_community.slug}invites/new"
         .user-feeds
           %h4
             - if current_user.managable_feeds.count > 0
@@ -25,12 +28,12 @@
               Register a Community Feed
           %ul
             - current_user.managable_feeds.each do |feed|
-              %li= link_to feed.name, feed_profile_path(feed)
-            %li= link_to 'Create a feed', new_feed_path
-        = tab_to "Settings", edit_account_path
-        = tab_to "FAQ", "/faq"
+              %li= link_to feed.name, "/feeds/#{feed.id}"
+            %li= link_to 'Create a feed', "/feeds/new"
+        = tab_to "Settings", "/account"
+        = tab_to "FAQ", "/#{current_community.slug}/faq"
         = tab_to "Logout", "/logout", :method => :delete
-      = link_to root_url, :id => "logo" do
+      = link_to "/", :id => "logo" do
         = image_tag "logo2.png"
         %span.community= current_community.name
     
