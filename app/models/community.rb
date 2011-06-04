@@ -102,17 +102,17 @@ class Community < ActiveRecord::Base
     model.find(:all, :conditions => ["created_at between ? and ? AND community_id = ?", Date.today, DateTime.now, self.id]).count
   end
 
-  def registrations_since_30_days_ago
+  def registrations_since_n_days_ago(days)
     registrations = []
-    for i in (1..30)
+    for i in (1..days)
       registrations.push(self.users.up_to(i.days.ago).count)
     end
     registrations.reverse
   end
 
-  def since_30_days_ago(set,polymorphic=false)
+  def since_n_days_ago(days,set,polymorphic=false)
     items = []
-    for i in (1..30)
+    for i in (1..days)
       if polymorphic
         items.push(set.up_to(i.days.ago).to_a.count)
       else
