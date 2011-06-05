@@ -24,6 +24,8 @@ class Event < ActiveRecord::Base
   scope :today, :conditions => ["created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
   scope :up_to, lambda { |end_date| { :conditions => ["created_at <= ?", end_date.utc] } }
 
+  scope :created_on, lambda { |date| { :conditions => ["created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
+
   def tag_list
     self.cached_tag_list
   end
