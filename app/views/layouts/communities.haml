@@ -35,3 +35,10 @@
   
   Backbone.history.start();
   window.location.hash = oldhash.slice(1);
+
+- unless current_user.seen_tour?
+  - current_user.toggle!(:seen_tour)
+  :javascript
+    (new CommonPlace.Tour({el: $("#main")})).render();
+  
+  
