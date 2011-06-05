@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
 
   scope :between, lambda { |start_date, end_date| 
     { :conditions => 
-      ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
+      ["posts.created_at between ? and ?", start_date.utc, end_date.utc] } 
   }
   scope :up_to, lambda { |end_date| { :conditions => ["posts.created_at <= ?", end_date.utc] } }
 
