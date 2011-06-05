@@ -397,8 +397,8 @@ CommonPlace.SaySomething = Backbone.View.extend({
   },
 
   submitPost: function(e) {
-    
     e.preventDefault();
+    var self = this;
     var $form = this.$("form");
     $("input.create", $form).replaceWith("<img src=\"/images/loading.gif\">");
     CommonPlace.community.posts.create({ 
@@ -409,7 +409,9 @@ CommonPlace.SaySomething = Backbone.View.extend({
       Backbone.history.checkUrl();
       window.location.hash = "/posts/new";
       Backbone.history.checkUrl();
-    } });
+    },
+         error: function() { self.render(); }
+       });
   },
 
   submitAnnouncement: function(e) {
