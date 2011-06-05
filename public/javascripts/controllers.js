@@ -99,7 +99,6 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
     "/feeds": "feeds",
     "/groups": "groups",
     "/": "wire",
-    "": "routeFromPathName",
     "/posts/:id": "showPost",
     "/announcements/:id": "showAnnouncement",
     "/group_posts/:id": "showGroupPost",
@@ -109,14 +108,6 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
     "/groups/:id": "showGroup"
   },
 
-  routeFromPathName: function() {
-    if (window.location.pathname == "/") {
-      this.wire();
-    } else {
-      window.location.hash = window.location.pathname;
-    }
-  },
-  
   wire: function() {
     (new CommonPlace.Wire({model: this.community,
                            el: $("#whats-happening")})).render();
