@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
       ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
   }
 
+  scope :today, { :conditions => ["created_at between ? and ?", DateTime.now.utc.beginning_of_day, DateTime.now.utc.end_of_day] }
+
   scope :up_to, lambda { |end_date| { :conditions => ["created_at <= ?", end_date.utc] } }
 
   scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }

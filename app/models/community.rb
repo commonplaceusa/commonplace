@@ -121,5 +121,13 @@ class Community < ActiveRecord::Base
     end
     items.reverse
   end
+  
+  def private_messages_since_n_days_ago(day)
+    items = []
+    for i in (1..day)
+      items.push(self.private_messages.select { |m| m.created_at >= day.days.ago.beginning_of_day and m.created_at <= day.days.ago.end_of_day } )
+    end
+    items.reverse
+  end
 
 end

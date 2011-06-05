@@ -58,7 +58,7 @@
         %td{:colspan => "3"}
           %hr
       %tr
-        %td
+        %td{:valign => "top"}
           Total Users:
           = community.users.count
           %br
@@ -66,39 +66,51 @@
           = "#{(100*community.users.count) / community.households.to_i}%"
           %br
           User Gains Today:
-          ?
+          = community.users.today.count
           %div[community, :user_growth]{:style => "width: 250px;"}
-        %td
+        %td{:valign => "top"}
           %table{:border => "1"}
             %tr
               %td
                 Total Neighborhood Posts: 
                 = community.posts.count
                 %br
+                Neighborhood Posts This Week:
+                = community.posts.between(7.days.ago, 0.days.ago).count
+                %br
                 Average Per Day:
-                ?
+                = community.posts.between(7.days.ago, 0.days.ago).count / 7.0
                 %div[community, :neighborhood_post_growth]{:style => "width: 250px;"}
               %td
                 Total Events:
                 = community.events.to_a.count
                 %br
+                Events This Week:
+                = community.events.between(7.days.ago, 0.days.ago).to_a.count
+                %br
                 Average Per Day:
-                ?
+                = community.events.between(7.days.ago, 0.days.ago).to_a.count / 7.0
                 %span[community, :event_growth]{:style => "width: 250px;"}
             %tr
               %td
                 Total Announcements:
                 = community.announcements.to_a.count
                 %br
+                Announcements This Week:
+                = community.announcements.between(7.days.ago,0.days.ago).to_a.count
+                %br
                 Average Per Day:
-                ?
+                = community.announcements.between(7.days.ago,0.days.ago).to_a.count / 7.0
                 %span[community, :announcement_growth]{:style => "width: 250px;"}
               %td
                 Total Private Messages:
                 = community.private_messages.count
                 %br
+                Private Messages This Week:
+                = community.private_messages.select { |m| m.created_at < 0.days.ago and m.created_at > 7.days.ago }.count
+                %br
                 Average Per Day:
-                ?
+                = community.private_messages.select { |m| m.created_at < 0.days.ago and m.created_at > 7.days.ago }.count / 7.0
                 %span[community, :private_message_growth]{:style => "width: 250px;"}
           /
             .registrations
@@ -123,14 +135,14 @@
             %br
             Today's Private Messages:
             = community.private_messages_today.count
-        %td
+        %td{:valign => "top"}
           Users on Main Page: 
           ?
           %br
-          Retention Percentage of Past Week: 
+          Retention of Past Week: 
           = "#{((100*community.users.logged_in_since(7.days.ago).count) / community.users.count)}%"
           %br
-          Retention Percentage of Past Month:
+          Retention of Past Month:
           = "#{((100*community.users.logged_in_since(30.days.ago).count) / community.users.count)}%"
           %br
           Value-Adding User Percentage:
@@ -216,6 +228,24 @@
     type: 'area',
     data: [
     - community.since_n_days_ago(@days,community.announcements, true).each do |i|
+      = "#{i},"
+    ]}]}));
+
+    charts.push(new Highcharts.Chart({
+    chart: {
+    = "renderTo: 'private_messages_growth_community_#{community.id}',"
+    zoomType: 'x'
+    },
+    title: { text: 'Private Messages over Time' },
+    xAxis: { type: 'datetime' },
+    yAxis: { title: { text: 'Announcements' } },
+    series: [{
+    name: "New Messages",
+    pointInterval: 60*60*24*1000,
+    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
+    type: 'area',
+    data: [
+    - community.private_messages_since_n_days_ago(@days).each do |i|
       = "#{i},"
     ]}]}));
 
