@@ -13,6 +13,9 @@ class Announcement < ActiveRecord::Base
       ["? <= created_at AND created_at < ?", start_date, end_date] } 
   }
   scope :up_to, lambda { |end_date| { :conditions => ["created_at <= ?", end_date.utc] } }
+
+  scope :created_on, lambda { |date| { :conditions => ["created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
+
   scope :today, :conditions => ["created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
 
   def feed

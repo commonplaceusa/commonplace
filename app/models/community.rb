@@ -114,9 +114,9 @@ class Community < ActiveRecord::Base
     items = []
     for i in (1..days)
       if polymorphic
-        items.push(set.up_to(i.days.ago).to_a.count)
+        items.push(set.created_on(i.days.ago).to_a.count)
       else
-        items.push(set.up_to(i.days.ago).count)
+        items.push(set.created_on(i.days.ago).count)
       end
     end
     items.reverse
