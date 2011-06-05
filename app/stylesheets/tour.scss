@@ -1,10 +1,12 @@
+@import "core" ;
+
 $darkRed: #ad312f ;
 $darkBlue: #1b334a ;
 
 #main { position: relative ; }
 #tour-shadow { position: fixed ;
                top: 0 ; left: 0 ; bottom: 0 ; right: 0 ;
-               background-color: black ; opacity: 0.5 ;
+               background-color: black ; @include opacity(0.5) ;
                z-index: 1000; }
 
 #tour { background-color: white ; position: absolute;
