@@ -20,6 +20,8 @@ class Post < ActiveRecord::Base
   }
   scope :up_to, lambda { |end_date| { :conditions => ["posts.created_at <= ?", end_date.utc] } }
 
+  scope :created_on, lambda { |date| { :conditions => ["posts.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
+
   scope :today, :conditions => ["posts.created_at between ? and ?", DateTime.now.at_beginning_of_day, Time.now]
 
   def self.human_name
