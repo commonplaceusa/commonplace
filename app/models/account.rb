@@ -26,7 +26,7 @@ class Account
   end
 
   def accounts
-    [@user] + @user.feeds
+    [@user] + @user.managable_feeds
   end
 
   def short_name
