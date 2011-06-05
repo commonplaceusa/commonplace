@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603203135) do
+ActiveRecord::Schema.define(:version => 20110605115152) do
 
   create_table "announcements", :force => true do |t|
     t.string   "subject",                                  :null => false
@@ -133,11 +133,11 @@ ActiveRecord::Schema.define(:version => 20110603203135) do
   end
 
   create_table "memberships", :force => true do |t|
+    t.string   "receive_method", :default => "Live"
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "receive_method", :default => "Live"
   end
 
   create_table "messages", :force => true do |t|
@@ -210,9 +210,9 @@ ActiveRecord::Schema.define(:version => 20110603203135) do
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id",                             :null => false
     t.integer  "feed_id",                             :null => false
+    t.string   "receive_method", :default => "Daily"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "receive_method", :default => "Daily"
   end
 
   create_table "taggings", :force => true do |t|
@@ -272,6 +272,7 @@ ActiveRecord::Schema.define(:version => 20110603203135) do
     t.decimal  "longitude"
     t.string   "referral_source"
     t.datetime "last_login_at"
+    t.boolean  "seen_tour"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
