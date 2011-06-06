@@ -36,4 +36,8 @@ class Post < ActiveRecord::Base
     self.user
   end
 
+  def last_activity
+    ([self.created_at] + self.replies.map(&:created_at)).max
+  end
+
 end
