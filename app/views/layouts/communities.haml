@@ -28,14 +28,15 @@
   CommonPlace.account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
 
 
-  var oldhash = window.location.hash;
+  var oldhash = window.location.hash.slice(1);
   window.location.hash = "/";
 
   CommonPlace.app = new CommonPlace.MainPage({community: CommonPlace.community, account: CommonPlace.account, el: $("#main")});
   
   Backbone.history.start();
-  window.location.hash = oldhash.slice(1);
-
+  window.location.hash = window.location.pathname;
+  Backbone.history.loadUrl();
+  window.location.hash = oldhash;
 - unless current_user.seen_tour?
   - current_user.toggle!(:seen_tour)
   :javascript
