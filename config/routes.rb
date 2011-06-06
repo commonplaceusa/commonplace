@@ -47,6 +47,8 @@ Commonplace::Application.routes.draw do
       member do
         get :profile
         get :delete
+        get :edit_owner
+        put :update_owner
       end
 
       resource :subscription, :only => [:create, :destroy]
