@@ -36,7 +36,8 @@
   Backbone.history.start();
   window.location.hash = window.location.pathname;
   Backbone.history.loadUrl();
-  window.location.hash = oldhash;
+  if (oldhash != "" && oldhash != "/") { window.location.hash = oldhash; }
+
 - unless current_user.seen_tour?
   - current_user.toggle!(:seen_tour)
   :javascript
