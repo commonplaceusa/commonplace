@@ -19,6 +19,8 @@
   = f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
     - if f.object.persisted?
+      %li.owner
+        = link_to "Change Owner", edit_owner_feed_url(f.object)
       %li.delete
         = link_to "Delete", delete_feed_url(f.object)
 
