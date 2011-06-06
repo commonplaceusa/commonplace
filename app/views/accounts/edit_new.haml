@@ -27,8 +27,9 @@
           %img{:src => current_user.avatar_url, :width => "100px", :height => "100px", :style => "vertical-align:middle;"}
       = f.input :about
       = f.input :interest_list
+      = f.input :offer_list
       = f.input :referral_source
-
+      
     = f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
 
