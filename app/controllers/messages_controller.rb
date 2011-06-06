@@ -13,7 +13,7 @@ class MessagesController < CommunitiesController
   def new
     authorize! :create, Reply
     @message = Message.new(:messagable => parent)
-    render :layout => false
+    render :layout => 'communities'
   end
 
   def create
