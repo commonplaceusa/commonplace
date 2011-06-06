@@ -59,7 +59,8 @@ CommonPlace.Posts = Backbone.Collection.extend({
   
   model: CommonPlace.Post,
 
-  comparator: function(model) { return - CommonPlace.parseDate(model.get("published_at")) ; },
+  comparator: function(model) { return - CommonPlace.parseDate(model.get("last_activity"));
+CommonPlace.parseDate(model.get("published_at")) ; },
 
   initialize: function(models, options) {
     this.community = options.community;
