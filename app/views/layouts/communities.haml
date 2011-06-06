@@ -4,7 +4,7 @@
     #say-something
     #community-profiles
       = render 'accounts/info_box'
-
+    = yield :modal
 :javascript
 
   CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
@@ -42,3 +42,4 @@
     (new CommonPlace.Tour({el: $("#main")})).render();
   
   
+    
