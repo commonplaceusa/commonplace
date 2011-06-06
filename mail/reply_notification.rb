@@ -71,6 +71,14 @@ class ReplyNotification < MailBase
   def repliable_is_a_message?
     repliable.is_a? Message
   end
-
   
+  def subject_line
+    post_type = case repliable_of
+                when Message then "a private message"
+                when Post then "a post"
+                when Event then "an event"
+                when Announcement then "an announcement"
+                end
+    "#{replier_name} just replied to #{post_type} on CommonPlace."
+  end
 end
