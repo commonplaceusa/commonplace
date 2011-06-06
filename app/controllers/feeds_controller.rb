@@ -35,6 +35,25 @@ class FeedsController < CommunitiesController
     end
     redirect_to root_url
   end
+
+  def edit_owner
+    render :layout => 'application'
+  end
+
+  def update_owner
+    if can?(:update, @feed) 
+      if user = User.find_by_email(params[:email])
+        @feed.user = user
+        @feed.save
+        redirect_to root_url
+      else
+        @error = true
+        render :edit_owner, :layout => 'application'
+      end
+    else
+      redirect_to root_url
+    end
+  end
       
 
   def profile
