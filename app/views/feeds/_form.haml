@@ -1,9 +1,9 @@
 
-- semantic_form_for feed, :html => {:multipart => true} do |f|
+= semantic_form_for feed, :html => {:multipart => true} do |f|
 
   = render 'preview', :feed => feed
 
-  - f.inputs do
+  = f.inputs do
     = f.input :name
     = f.input :slug, :hint => t("formtastic.hints.feed.slug", :community_slug => current_community.slug)
     = f.input :about
@@ -12,10 +12,14 @@
     = f.input :kind, :as => :radio, :collection => Feed.kinds.to_hash
     = f.input :feed_url, :label => "To pull Announcements from an RSS feed, type in your RSS URL here:", :as => :string
     = f.input :twitter_name, :label => "To add your tweets to your feed's page, type your twitter handle here:"
-  - f.inputs :contact_information, :id => 'contact-info' do
+  = f.inputs :contact_information, :id => 'contact-info' do
     = f.input :website
     = f.input :phone
     = f.input :address
-  - f.buttons do
+  = f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
+    - if f.object.persisted?
+      %li.delete
+        = link_to "Delete", delete_feed_url(f.object)
+
 

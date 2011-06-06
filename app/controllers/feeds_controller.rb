@@ -25,9 +25,17 @@ class FeedsController < CommunitiesController
     end
   end
   
-  def import
-    render :layout => xhr? ? 'application' : "/feeds/profile"
+  def delete
+    render :layout => 'application'
   end
+
+  def destroy
+    if can?(:destroy, @feed)
+      @feed.destroy
+    end
+    redirect_to root_url
+  end
+      
 
   def profile
     render :layout => false

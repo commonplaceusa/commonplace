@@ -1,0 +1,8 @@
+
+
+- semantic_form_for @feed, :url => feed_path(@feed), :html => {:method => :delete} do |f|
+  %p If you delete your feed everything will be removed, including your feed's announcements and events. If you're absolutely sure you want to remove your feed, press the following button.
+
+  - f.buttons do
+    = f.commit_button "Fully remove my feed from CommonPlace"
+  
