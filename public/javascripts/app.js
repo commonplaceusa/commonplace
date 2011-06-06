@@ -77,7 +77,7 @@ $(function() {
     $.get($(that).attr('href'),
           function(response) {
             if (response) {
-              $("#modal").replaceWith($(window.innerShiv(response,false)).filter("#modal"));
+              $("#modal").replaceWith($(window.innerShiv(response,false)).find("#modal"));
               $(window).trigger('resize.modal');
             }
           });

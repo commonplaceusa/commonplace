@@ -1,11 +1,12 @@
-- render :layout => 'shared/modal' do
+- content_for :modal do
+  - render :layout => 'shared/modal' do
 
-  - semantic_form_for @message, :html => { :class => "new_entity", 'data-remote' => true } do |f|
-    %hr.staple
-    %h1 Send a message to #{(@message.messagable ||parent).name}
-    - f.inputs do
-      = f.input :messagable_id, :as => :hidden
-      = f.input :messagable_type, :as => :hidden
-    = f.inputs :subject, :body
-    - f.buttons do
-      #submit_wrapper= f.commit_button "Send"
+    - semantic_form_for @message, :html => { :class => "new_entity", 'data-remote' => true } do |f|
+      %hr.staple
+      %h1 Send a message to #{(@message.messagable ||parent).name}
+      - f.inputs do
+        = f.input :messagable_id, :as => :hidden
+        = f.input :messagable_type, :as => :hidden
+      = f.inputs :subject, :body
+      - f.buttons do
+        #submit_wrapper= f.commit_button "Send"
