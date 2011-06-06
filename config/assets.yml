@@ -11,6 +11,7 @@ stylesheets:
     - public/stylesheets/application.css
     - public/stylesheets/post_box.css
     - public/stylesheets/tour.css
+    - public/stylesheets/feeds/delete.css
   ie:
     - public/stylesheets/ie.css
   internship:

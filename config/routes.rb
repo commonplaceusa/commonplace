@@ -45,8 +45,8 @@ Commonplace::Application.routes.draw do
 
     resources :feeds do
       member do
-        get :import
         get :profile
+        get :delete
       end
 
       resource :subscription, :only => [:create, :destroy]
