@@ -8,13 +8,16 @@ class RSSImporter
       RSS::Parser.parse(open(feed.feed_url).read, false).items.each do |item|
         
         unless RSSAnnouncement.exists?(:url => item.link)
-          RSSAnnouncement.create(:owner => feed,
-                                 :subject => item.title,
-                                 :url => item.link,
-                                 :community_id => feed.community_id,
-                                 :body => McBean.fragment(item.description).to_markdown,
-                                 :created_at => item.date.to_datetime,
-                                 :updated_at => item.date.to_datetime)
+          begin
+            RSSAnnouncement.create(:owner => feed,
+                                   :subject => item.title,
+                                   :url => item.link,
+                                   :community_id => feed.community_id,
+                                   :body => McBean.fragment(item.description).to_markdown,
+                                   :created_at => item.date.to_datetime,
+                                   :updated_at => item.date.to_datetime)
+          rescue
+          end
 
         end
       end
