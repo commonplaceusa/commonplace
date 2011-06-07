@@ -3,12 +3,13 @@ class RSSImporter
   
   def self.perform
     RSSAnnouncement.record_timestamps = false    
-    Feed.find(:all, :conditions => ["feed_url != ?", "" ]).each do |feed|
 
-      RSS::Parser.parse(open(feed.feed_url).read, false).items.each do |item|
-        
-        unless RSSAnnouncement.exists?(:url => item.link)
-          begin
+    Feed.find(:all, :conditions => ["feed_url != ?", "" ]).each do |feed|
+      begin
+        RSS::Parser.parse(open(feed.feed_url).read, false).items.each do |item|
+          
+          unless RSSAnnouncement.exists?(:url => item.link)
+            
             RSSAnnouncement.create(:owner => feed,
                                    :subject => item.title,
                                    :url => item.link,
@@ -16,13 +17,12 @@ class RSSImporter
                                    :body => McBean.fragment(item.description).to_markdown,
                                    :created_at => item.date.to_datetime,
                                    :updated_at => item.date.to_datetime)
-          rescue
+            
           end
-
         end
+      rescue
       end
     end
     RSSAnnouncement.record_timestamps = true
-    
   end
 end
