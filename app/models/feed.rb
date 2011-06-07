@@ -8,7 +8,11 @@ class Feed < ActiveRecord::Base
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
 
   before_validation(:on => :create) do
-    generate_slug unless self.slug?
+    if self.slug?
+      sanitize_slug
+    else
+      generate_slug
+    end
     true
   end
 
@@ -83,14 +87,25 @@ class Feed < ActiveRecord::Base
 
   private
 
-  def generate_slug
-    string = self.name.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n, '').to_s
+  def sanitize_slug
+    string = self.slug.split("@").first
     string.gsub!(/[']+/, '')
+    string.gsub!(/\W+/, ' ')
     string.gsub!(/\W+/, ' ')
     string.strip!
     string.downcase!
     string.gsub!(' ', '-')
+    self.slug = string
+  end
 
+  def generate_slug
+    string = self.name.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n, '').to_s
+    string.gsub!(/[']+/, '')
+    string.gsub!(/\W+/, ' ')
+    string.gsub!(/\W+/, ' ')
+    string.strip!
+    string.downcase!
+    string.gsub!(' ', '-')
     if Feed.exists?(:slug => string, :community_id => self.community_id)
       self.slug = nil
     else
