@@ -231,23 +231,24 @@
       = "#{i},"
     ]}]}));
 
-    charts.push(new Highcharts.Chart({
-    chart: {
-    = "renderTo: 'private_messages_growth_community_#{community.id}',"
-    zoomType: 'x'
-    },
-    title: { text: 'Private Messages over Time' },
-    xAxis: { type: 'datetime' },
-    yAxis: { title: { text: 'Announcements' } },
-    series: [{
-    name: "New Messages",
-    pointInterval: 60*60*24*1000,
-    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
-    type: 'area',
-    data: [
-    - community.private_messages_since_n_days_ago(@days).each do |i|
-      = "#{i},"
-    ]}]}));
+    /
+      charts.push(new Highcharts.Chart({
+      chart: {
+      = "renderTo: 'private_messages_growth_community_#{community.id}',"
+      zoomType: 'x'
+      },
+      title: { text: 'Private Messages over Time' },
+      xAxis: { type: 'datetime' },
+      yAxis: { title: { text: 'Announcements' } },
+      series: [{
+      name: "New Messages",
+      pointInterval: 60*60*24*1000,
+      = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
+      type: 'area',
+      data: [
+      - community.private_messages_since_n_days_ago(@days).each do |i|
+        = "#{i},"
+      ]}]}));
 
 
 
