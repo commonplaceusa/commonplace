@@ -77,6 +77,7 @@ class Feed < ActiveRecord::Base
   
   def self.kinds
     feed_kinds = ActiveSupport::OrderedHash.new
+    feed_kinds["A non-profit"] = 0
     feed_kinds["A community group"] = 1
     feed_kinds["A business"] = 2
     feed_kinds["A municipal entity"] = 3
