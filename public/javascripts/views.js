@@ -65,7 +65,7 @@ CommonPlace.GroupInfo = CommonPlace.Info.extend({
   initialize: function(options) {
     var self = this ;
     CommonPlace.account.bind("change:group_subscriptions",
-                             function() { self.render() });
+                             function() { self.render(); });
   },
 
   render: function() {
@@ -385,7 +385,7 @@ CommonPlace.GroupItem = CommonPlace.Item.extend({
   initialize: function(options) {
     var self = this;
     CommonPlace.account.bind("change:group_subscriptions",
-                             function() { self.render() });
+                             function() { self.render(); });
   },
 
   infoUrl: function() {

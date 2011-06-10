@@ -26,23 +26,23 @@ CommonPlace.Account = Backbone.Model.extend({
 
   subscribeToFeed: function(id) {
     var self = this;
-    $.post("/api/account/subscriptions/feeds", {id: id}, function() {self.fetch()});
+    $.post("/api/account/subscriptions/feeds", {id: id}, function() {self.fetch();});
   },
   
   unsubscribeFromFeed: function(id) {
     var self = this;
-    $.del("/api/account/subscriptions/feeds/" + id, function() {self.fetch()});
+    $.del("/api/account/subscriptions/feeds/" + id, function() {self.fetch();});
   },
 
   subscribeToGroup: function(id) {
     var self = this;
-    $.post("/api/account/subscriptions/groups", {id: id}, function(){ self.fetch() });
+    $.post("/api/account/subscriptions/groups", {id: id}, function(){ self.fetch(); });
   },
 
   unsubscribeFromGroup: function(id) {
     var self = this;
-    $.del("/api/account/subscriptions/groups/" + id, function() {self.fetch()});
-  },
+    $.del("/api/account/subscriptions/groups/" + id, function() {self.fetch();});
+  }
 
 });
 
@@ -80,8 +80,8 @@ CommonPlace.Posts = Backbone.Collection.extend({
   
   model: CommonPlace.Post,
 
-  comparator: function(model) { return - CommonPlace.parseDate(model.get("last_activity"));
-CommonPlace.parseDate(model.get("published_at")) ; },
+  comparator: function(model) { return - CommonPlace.parseDate(model.get("last_activity")); },
+
 
   initialize: function(models, options) {
     this.community = options.community;
