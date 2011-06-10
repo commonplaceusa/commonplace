@@ -26,22 +26,26 @@ CommonPlace.Account = Backbone.Model.extend({
 
   subscribeToFeed: function(id) {
     var self = this;
-    $.post("/api/account/subscriptions/feeds", {id: id}, function() {self.fetch();});
+    $.post("/api/account/subscriptions/feeds", {id: id}, 
+           function() { self.fetch(); humane("You're subscribed"); });
   },
   
   unsubscribeFromFeed: function(id) {
     var self = this;
-    $.del("/api/account/subscriptions/feeds/" + id, function() {self.fetch();});
+    $.del("/api/account/subscriptions/feeds/" + id, 
+          function() { self.fetch(); humane("You're unsubscribed"); });
   },
 
   subscribeToGroup: function(id) {
     var self = this;
-    $.post("/api/account/subscriptions/groups", {id: id}, function(){ self.fetch(); });
+    $.post("/api/account/subscriptions/groups", {id: id}, 
+           function(){ self.fetch(); humane("You're subscribed"); });
   },
 
   unsubscribeFromGroup: function(id) {
     var self = this;
-    $.del("/api/account/subscriptions/groups/" + id, function() {self.fetch();});
+    $.del("/api/account/subscriptions/groups/" + id, 
+          function() { self.fetch(); humane("You're unsubscribed"); });
   }
 
 });
