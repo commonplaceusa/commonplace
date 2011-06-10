@@ -18,9 +18,7 @@ CommonPlace.MainPage = Backbone.View.extend({
       saySomething: new CommonPlace.SaySomethingController({}),
       whatsHappening: new CommonPlace.WhatsHappeningController({community: this.community}),
       profiles: new CommonPlace.ProfileController({community: this.community})
-
     };
-
   }
 
 });
