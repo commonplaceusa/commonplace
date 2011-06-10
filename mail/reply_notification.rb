@@ -73,7 +73,7 @@ class ReplyNotification < MailBase
   end
   
   def subject_line
-    post_type = case repliable_of
+    post_type = case repliable
                 when Message then "a private message"
                 when Post then "a post"
                 when Event then "an event"
