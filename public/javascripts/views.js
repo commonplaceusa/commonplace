@@ -57,6 +57,17 @@ CommonPlace.EventInfo = CommonPlace.Info.extend({
 CommonPlace.GroupInfo = CommonPlace.Info.extend({
   template: "groupinfo",
 
+  events: {
+    "click a.new_subscription": "subscribe",
+    "click a.unsubscribe": "unsubscribe"
+  },
+
+  initialize: function(options) {
+    var self = this ;
+    CommonPlace.account.bind("change:group_subscriptions",
+                             function() { self.render() });
+  },
+
   render: function() {
     this.el.html(CommonPlace.render(this.template || this.options.template,
                                     this.view()));
@@ -73,11 +84,32 @@ CommonPlace.GroupInfo = CommonPlace.Info.extend({
       about: this.model.get('about'),
       isSubscribed: _.include(CommonPlace.account.get('group_subscriptions'), this.model.get('id'))
     };
+  },
+
+  subscribe: function(e) {
+    e.preventDefault();
+    CommonPlace.account.subscribeToGroup(this.model.id);
+  },
+  
+  unsubscribe: function(e) {
+    e.preventDefault();
+    CommonPlace.account.unsubscribeFromGroup(this.model.id);
   }
 });
 
 CommonPlace.FeedInfo = CommonPlace.Info.extend({
   template: "feedinfo",
+
+  events: {
+    "click a.new_subscription": "subscribe",
+    "click a.unsubscribe": "unsubscribe"
+  },
+
+  initialize: function(options) {
+    var self = this;
+    CommonPlace.account.bind("change:feed_subscriptions",
+                             function() { self.render(); });
+  },
 
   render: function() {
     this.el.html(CommonPlace.render(this.template || this.options.template,
@@ -99,6 +131,16 @@ CommonPlace.FeedInfo = CommonPlace.Info.extend({
       address: this.model.get('address'),
       isSubscribed: _.include(CommonPlace.account.get('feed_subscriptions'), this.model.get('id'))
     };
+  },
+
+  subscribe: function(e) {
+    e.preventDefault();
+    CommonPlace.account.subscribeToFeed(this.model.id);
+  },
+  
+  unsubscribe: function(e) {
+    e.preventDefault();
+    CommonPlace.account.unsubscribeFromFeed(this.model.id);
   }
 });
 
@@ -299,8 +341,19 @@ CommonPlace.FeedItem = CommonPlace.Item.extend({
   template: "feed",
   className: "feed item",
 
+  events: { 
+    "mouseenter": "showInfo",
+    "click a.new_subscription": "subscribe"
+  },
+
   infoUrl: function() {
     return this.model.get('url') + "/info";
+  },
+  
+  initialize: function(options) {
+    var self = this;
+    CommonPlace.account.bind("change:feed_subscriptions", 
+                             function() { self.render(); });
   },
 
   view: function() {
@@ -310,12 +363,28 @@ CommonPlace.FeedItem = CommonPlace.Item.extend({
       name: this.model.get('name'),
       isSubscribed: _.include(CommonPlace.account.get('feed_subscriptions'), this.model.get('id'))
     };
+  },
+
+  subscribe: function(e) {
+    e.preventDefault();
+    CommonPlace.account.subscribeToFeed(this.model.id);
   }
 });
 
 CommonPlace.GroupItem = CommonPlace.Item.extend({
   template: "group",
   className: "group item",
+
+  events: {
+    "mouseenter": "showInfo",
+    "click a.new_subscription": "subscribe"
+  },
+
+  initialize: function(options) {
+    var self = this;
+    CommonPlace.account.bind("change:group_subscriptions",
+                             function() { self.render() });
+  },
 
   infoUrl: function() {
     return this.model.get('url') + "/info";
@@ -329,7 +398,13 @@ CommonPlace.GroupItem = CommonPlace.Item.extend({
       name: this.model.get('name'),
       isSubscribed: _.include(CommonPlace.account.get('group_subscriptions'), this.model.get('id'))
     };
+  },
+
+  subscribe: function(e) {
+    e.preventDefault();
+    CommonPlace.account.subscribeToGroup(this.model.id);
   }
+
 });
 
 CommonPlace.Index = Backbone.View.extend({
