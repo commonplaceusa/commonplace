@@ -259,7 +259,7 @@ CommonPlace.EventItem = CommonPlace.PostLikeItem.extend({
   view: function() {
     return {
       id: this.model.get('id'),
-      occurs_in: CommonPlace.timeAgoInWords(this.model.get('occurs_on')),
+      occurs_in: CommonPlace.timeAgoInWords(this.model.get('occurs_at')),
       abbrev_month: this.model.abbrev_month_name(),
       day_of_month: this.model.day_of_month(),
       author_url: this.model.get('author_url'),

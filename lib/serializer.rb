@@ -38,6 +38,7 @@ module Serializer
         "published_at" => o.created_at.utc,
         "url" => "/events/#{o.id}",
         "occurs_on" => o.date.to_time.utc,
+        "occurs_at" => o.occurs_at.utc.strftime.gsub("+00:00","Z"),
         "title" => o.name,
         "author" => o.owner.name,
         "body" => o.description,
