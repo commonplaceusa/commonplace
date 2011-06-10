@@ -212,8 +212,10 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
   submitReply: function(e) {
     var self = this;
     e.preventDefault();
+    this.$("input[type=submit]").replaceWith("<img src=\"/images/loading.gif\">");
     this.model.replies.create({body: $("textarea[name='reply[body]']", e.currentTarget).val()},
-                              {success: function() {self.render(); }});
+                              {success: function() {self.render(); },
+                               error: function() {self.render(); } });
   },
 
   replyHover: function(e) {
