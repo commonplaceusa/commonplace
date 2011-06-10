@@ -45,7 +45,7 @@
         humaneEl.id = 'humane';
         humaneEl.className = 'humane';
         doc.body.appendChild(humaneEl);
-        if(useFilter) humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = 0; // reset value so hover states work
+      //if(useFilter) humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = 0; // reset value so hover states work
         isSetup = true;
     }
 
