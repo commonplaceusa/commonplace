@@ -13,7 +13,6 @@ stylesheets:
     - public/stylesheets/tour.css
     - public/stylesheets/feeds/delete.css
     - public/stylesheets/feeds/edit_owner.css
-    - public/stylesheets/notifier.css
   ie:
     - public/stylesheets/ie.css
   internship:
