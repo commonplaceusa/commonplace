@@ -1,5 +1,28 @@
 var CommonPlace = CommonPlace || {};
 
+function _ajax_request(url, data, callback, type, method) {
+  if (jQuery.isFunction(data)) {
+    callback = data;
+    data = {};
+  }
+  return jQuery.ajax({
+    type: method,
+    url: url,
+    data: data,
+    success: callback,
+    dataType: type
+  });
+}
+
+jQuery.extend({
+  put: function(url, data, callback, type) {
+    return _ajax_request(url, data, callback, type, 'PUT');
+  },
+  del: function(url, data, callback, type) {
+    return _ajax_request(url, data, callback, type, 'DELETE');
+  }
+});
+
 Mustache.template = function(templateString) {
   return templateString;
 };
@@ -38,37 +61,6 @@ $(function() {
     setTimeout(function() {
       $("#preview").find("[data-track='" + $input.attr('name') + "']").html($input.val());
     }, 10);
-  });
-
-  $('a.new_subscription').live('click', function(e) {
-    e.preventDefault();
-    var that = this;
-    $.post($(that).attr('href'), function(response) {
-      if (response) {
-        var $response = $(window.innerShiv(response,false));
-        $("#information").replaceWith($response.filter("#information"));
-        var $newitem = $response.filter('div.item_div');
-        $("#" + $newitem.attr('id')).replaceWith($newitem);
-      }
-    });
-  });
-
-  $('a.unsubscribe').live('click', function(e) {
-    e.preventDefault();
-    var that = this;
-    $.ajax({
-      type: "DELETE",
-      url: $(that).attr('href'),
-      success: function(response) {
-        if (response) {
-          var $response = $(window.innerShiv(response,false));
-          $("#information").replaceWith($response.filter("#information"));
-          var $newitem = $response.filter('div.item_div');
-          $("#" + $newitem.attr('id')).replaceWith($newitem);
-        }
-
-      }
-    });
   });
 
   $('a.message_me').live('click', function(e) {
