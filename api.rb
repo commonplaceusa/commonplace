@@ -75,4 +75,52 @@ class API < Sinatra::Base
     end
   end
 
+  # GET /account
+  # { id: Integer
+  # , avatar_url: String
+  # , subscribed_feeds: [Integer]
+  # , subscribed_groups: [Integer]
+  # , is_admin: Boolean
+  # , accounts: [{name: String, uid: String}]
+  # , short_name: String }
+  #
+  # Authorization: Account exists
+  get "/account" do 
+    serialize Account.new(current_account)
+  end
+
+  # POST /account/subscriptions/feeds
+  # { id: Integer }
+  # Authorization: Account community is Feed community
+  post "/account/subscriptions/feeds" do
+    current_account.feeds << Feed.find(params[:id])
+    [200, ""]
+  end
+
+  # DELETE /subscriptions/feeds/:id
+  # { }
+  # Authorization: Account exists
+  delete "/account/subscriptions/feeds/:id" do |id|
+    current_account.feeds.delete(Feed.find(id))
+    [200, ""]
+  end
+
+  # POST /account/subscriptions/groups
+  # { id: Integer }
+  # Authorization: Account community is Feed community
+  post "/account/subscriptions/groups" do 
+    current_account.groups << Group.find(params[:id])
+    [200, ""]
+  end
+
+  # DELETE /account/subscriptions/groups/:id
+  # { }
+  # Authorization: Account exists
+  delete "/account/subscriptions/groups/:id" do |id|
+    current_account.groups.delete(Group.find(id))
+    [200, ""]
+  end
+
+  
+
 end
