@@ -16,6 +16,8 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     "/announcements/new" : "newAnnouncement",
     "/group_posts/new" : "newGroupPost",
 
+    "/users/:id/messages/new" : "newMessage",
+
     "/events/:id/info": "event",
     "/users/:id/info": "user",
     "/groups/:id/info": "group",
@@ -38,7 +40,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     "/events/:id": "showEvent",
     "/users/:id": "showUser",
     "/feeds/:id": "showFeed",
-    "/groups/:id": "showGroup"
+    "/groups/:id": "showGroup",
 
   },
 
@@ -64,6 +66,10 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     this.view.template = "group_post_form";
     this.view.model = new CommonPlace.GroupPost({}, {collection: CommonPlace.community.group_posts});
     this.view.render();
+  },
+
+  newMessage: function(person_id) {
+    new CommonPlace.NewMessage({person_id: person_id}).render();
   },
 
   event: function(id) {
