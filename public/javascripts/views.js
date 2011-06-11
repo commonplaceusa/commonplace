@@ -14,13 +14,7 @@ CommonPlace.MainPage = Backbone.View.extend({
   initialize: function(options) {
     this.community = this.options.community;
     this.account = this.options.account;
-    this.controllers = {
-      saySomething: new CommonPlace.SaySomethingController({}),
-      whatsHappening: new CommonPlace.WhatsHappeningController({community: this.community}),
-      profiles: new CommonPlace.ProfileController({community: this.community})
-
-    };
-
+    new CommonPlace.MainPageController({community: this.community});
   }
 
 });
