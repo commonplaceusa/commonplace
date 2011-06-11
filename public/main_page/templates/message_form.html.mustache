@@ -1,0 +1,32 @@
+<form accept-charset="UTF-8" action="/messages" class="new_entity formtastic message" data-remote="true" id="new_message" method="post">
+  <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓">
+    <input name="authenticity_token" type="hidden" value="X3HjlzXCNZLbRAV+a3zdB7rlE2/nYB9QGnsDGteB1mU=">
+  </div>
+
+  <hr class="staple">
+
+  <h1>Send a message to Test Dev</h1>
+
+  <fieldset class="inputs">
+    <ol>
+      <li class="string required" id="message_subject_input">
+        <label for="message_subject">Subject</label>
+        <input id="message_subject" maxlength="255" name="message[subject]" size="25" type="text">
+      </li>
+      <li class="text required" id="message_body_input">
+        <label for="message_body">Body</label>
+        <textarea id="message_body" name="message[body]" rows="5"></textarea>
+      </li>
+    </ol>
+  </fieldset>
+
+  <fieldset class="buttons">
+    <ol>
+      <div id="submit_wrapper">
+        <li class="commit">
+          <input class="create" id="message_submit" name="commit" type="submit" value="Send">
+        </li>
+      </div>
+    </ol>
+  </fieldset>
+</form>

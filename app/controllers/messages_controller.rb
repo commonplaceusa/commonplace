@@ -11,8 +11,6 @@ class MessagesController < CommunitiesController
   end
 
   def new
-    authorize! :create, Reply
-    @message = Message.new(:messagable => parent)
     render :layout => 'communities'
   end
 
