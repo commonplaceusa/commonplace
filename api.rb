@@ -74,6 +74,24 @@ class API < Sinatra::Base
       [400, "errors"]
     end
   end
+  
+  # POST /people/:id/messages
+  # { subject: String
+  # , body: String }
+  #
+  # Authorization: Account community is person community
+  post "/people/:id/messages" do |id|
+    message = Message.new(:subject => request_body['subject'],
+                          :body => request_body['body'],
+                          :messagable => User.find(id),
+                          :user => current_account)
+    if message.save
+      Resque.enqueue(MessageNotification, message.id, id)
+      [200, ""]
+    else
+      [400, "errors"]
+    end
+  end
 
   # GET /account
   # { id: Integer
