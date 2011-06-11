@@ -31,7 +31,7 @@
   var oldhash = window.location.hash.slice(1);
   window.location.hash = "/";
 
-  CommonPlace.app = new CommonPlace.MainPage({community: CommonPlace.community, account: CommonPlace.account, el: $("#main")});
+  CommonPlace.app = new CommonPlace.MainPageController({community: CommonPlace.community, account: CommonPlace.account});
   
   Backbone.history.start();
   window.location.hash = window.location.pathname;
