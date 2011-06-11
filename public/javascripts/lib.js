@@ -74,33 +74,6 @@ $(function() {
     }, 10);
   });
 
-  $('a.message_me').live('click', function(e) {
-    e.preventDefault();
-    var that = this;
-    $.get($(that).attr('href'),
-          function(response) {
-            if (response) {
-              $("#modal").replaceWith($(window.innerShiv(response,false)).find("#modal"));
-              $(window).trigger('resize.modal');
-            }
-          });
-
-  });
-
-  $('form.message').live('submit',
-                         function(e) {
-                           e.preventDefault();
-                           var that = this;
-                           $.post($(that).attr('action'), $(that).serialize(),
-                                  function(response) {
-                                    if (response) {
-                                      $("#modal").replaceWith(window.innerShiv(response,false));
-                                    }
-                                    $(window).trigger('resize.modal');
-                                  });
-                         });
-
-
   $('#sign_in_button').click(function() {
     $(this).addClass("open");
     $("form.user_session").slideDown(300);
