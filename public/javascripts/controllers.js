@@ -1,9 +1,12 @@
 var CommonPlace = CommonPlace || {};
 
-CommonPlace.SaySomethingController = Backbone.Controller.extend({
+CommonPlace.MainPageController = Backbone.Controller.extend({
   
   initialize: function(options) {
     this.view = new CommonPlace.SaySomething({el: $("#say-something")});
+    this.community = options.community;
+    this.profile = new CommonPlace.Info({el: $("#community-profiles")});
+    new CommonPlace.Index({el: $("#whats-happening")});
     this.newPost();
   },
 
@@ -11,7 +14,32 @@ CommonPlace.SaySomethingController = Backbone.Controller.extend({
     "/posts/new" : "newPost",
     "/events/new" : "newEvent",
     "/announcements/new" : "newAnnouncement",
-    "/group_posts/new" : "newGroupPost"
+    "/group_posts/new" : "newGroupPost",
+
+    "/events/:id/info": "event",
+    "/users/:id/info": "user",
+    "/groups/:id/info": "group",
+    "/feeds/:id/info": "feed",
+
+    "/events": "events",
+    "/announcements": "announcements",
+    "/posts": "posts",
+    "/group_posts" : "group_posts",
+
+    "/users": "users",
+    "/feeds": "feeds",
+    "/groups": "groups",
+
+    "/": "wire",
+
+    "/posts/:id": "showPost",
+    "/announcements/:id": "showAnnouncement",
+    "/group_posts/:id": "showGroupPost",
+    "/events/:id": "showEvent",
+    "/users/:id": "showUser",
+    "/feeds/:id": "showFeed",
+    "/groups/:id": "showGroup"
+
   },
 
   newPost : function() { 
@@ -36,20 +64,6 @@ CommonPlace.SaySomethingController = Backbone.Controller.extend({
     this.view.template = "group_post_form";
     this.view.model = new CommonPlace.GroupPost({}, {collection: CommonPlace.community.group_posts});
     this.view.render();
-  }
-
-});
-CommonPlace.ProfileController = Backbone.Controller.extend({
-  initialize: function(options) {
-    this.community = options.community;
-    this.profile = new CommonPlace.Info({el: $("#community-profiles")});
-  },
-  
-  routes: {
-    "/events/:id/info": "event",
-    "/users/:id/info": "user",
-    "/groups/:id/info": "group",
-    "/feeds/:id/info": "feed"
   },
 
   event: function(id) {
@@ -78,36 +92,8 @@ CommonPlace.ProfileController = Backbone.Controller.extend({
     this.profile.model = model;
     this.profile.template = template;
     this.profile.render();
-  }
+  },
   
-});
-
-CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
-  initialize: function(options) {
-    this.community = options.community;
-    new CommonPlace.Index({el: $("#whats-happening")});
-    return this;
-  },
-
-  routes: {
-    "/events": "events",
-    "/announcements": "announcements",
-    "/posts": "posts",
-    "/group_posts" : "group_posts",
-
-    "/users": "users",
-    "/feeds": "feeds",
-    "/groups": "groups",
-    "/": "wire",
-    "/posts/:id": "showPost",
-    "/announcements/:id": "showAnnouncement",
-    "/group_posts/:id": "showGroupPost",
-    "/events/:id": "showEvent",
-    "/users/:id": "showUser",
-    "/feeds/:id": "showFeed",
-    "/groups/:id": "showGroup"
-  },
-
   wire: function() {
     (new CommonPlace.Wire({model: this.community,
                            el: $("#whats-happening")})).render();
@@ -228,8 +214,6 @@ CommonPlace.WhatsHappeningController = Backbone.Controller.extend({
                             });
     this.userIndex.render();
   }
-
-    
   
 });
 
