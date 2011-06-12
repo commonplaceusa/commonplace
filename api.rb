@@ -48,16 +48,7 @@ class API < Sinatra::Base
 
   # POST /communities/:id/posts
   # { title: String 
-  # , body: Text
-  # , style: one_of('publicity', 'event', nil)
-  # , feed: Integer 
-  # , groups: [Integer] 
-  # , occurs: Date
-  # , starts: Time
-  # , ends: Time
-  # , venue: String
-  # , address: String
-  # , tags: String }
+  # , body: Text }
   #
   # Authorization: User is in community
   post "/communities/:id/posts" do |community_id|
@@ -74,6 +65,79 @@ class API < Sinatra::Base
       [400, "errors"]
     end
   end
+
+  # POST /events
+  # { title: String
+  # , about: String
+  # , date: DateString
+  # , start: TimeString
+  # , end: TimeString
+  # , venue: String
+  # , address: String
+  # , tags: String
+  # , feed: Integer }
+  #
+  post "/events" do
+    event = Event.new(:owner => request_body['feed'].present? ? Feed.find(request_body['feed']) : current_account,
+                      :name => request_body['title'],
+                      :description => request_body['about'],
+                      :date => request_body['date'],
+                      :start_time => request_body['start'],
+                      :end_time => request_body['end'],
+                      :venue => request_body['venue'],
+                      :address => request_body['address'],
+                      :tag_list => request_body['tags'],
+                      :community => current_account.community)
+    if event.save
+      serialize(event)
+    else
+      [400, "errors"]
+    end
+  end
+
+  # POST /announcements
+  # { title: String
+  # , body: String
+  # , feed: Integer }
+  #
+  post "/announcements" do
+    announcement = Announcement.new(:owner => request_body['feed'].present? ? Feed.find(request_body['feed']) : current_account,
+                                    :subject => request_body['title'],
+                                    :body => request_body['body'],
+                                    :community => current_account.community)
+
+    if announcement.save
+      if announcement.owner.is_a?(Feed)
+        announcement.owner.live_subscribers.each do |user|
+          Resque.enqueue(AnnouncementNotification, announcement.id, user.id)
+        end
+      end
+      serialize(announcement)
+    else
+      [400, "errors"]
+    end
+  end
+  
+  # POST "/group_posts"
+  # { title: String
+  # , body: String
+  # , group: Integer }
+  #
+  post "/group_posts" do
+    group_post = GroupPost.new(:group => Group.find(request_body['group']),
+                               :subject => request_body['title'],
+                               :body => request_body['body'],
+                               :user => current_account)
+    if group_post.save
+      group_post.group.live_subscribers.each do |user|
+        Resque.enqueue(GroupPostNotification, group_post.id, user.id)
+      end
+      serialize(group_post)
+    else
+      [400, "errors"]
+    end
+  end
+  
   
   # POST /people/:id/messages
   # { subject: String

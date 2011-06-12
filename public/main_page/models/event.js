@@ -11,7 +11,7 @@ CommonPlace.Event = Backbone.Model.extend({
     this.replies = new CommonPlace.Replies(this.get('replies'), {repliable: this});
   },
 
-  url: function() { return "api/events/" + this.id; },
+  url: function() { return this.id ? "api/events/" + this.id : "/api/events"; },
   
   date: function() {
     var m = this.get("occurs_on").match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z/);

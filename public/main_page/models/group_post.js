@@ -14,7 +14,7 @@ CommonPlace.GroupPost = Backbone.Model.extend({
     return this._group;
   },
 
-    url: function() { return "/api/group_posts/" + this.id; }
+  url: function() { return this.id ? "/api/group_posts/" + this.id : "/api/group_posts" ; }
 
 });
 

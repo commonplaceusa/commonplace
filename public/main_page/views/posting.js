@@ -4,7 +4,10 @@ CommonPlace.SaySomething = Backbone.View.extend({
   id: "say-something",
   
   events: {
-    "submit form.post": "submitPost"
+    "submit form.post": "submitPost",
+    "submit form.announcement": "submitAnnouncement",
+    "submit form.event": "submitEvent",
+    "submit form.group_post": "submitGroupPost"
   },
   
   render: function() {
@@ -17,11 +20,10 @@ CommonPlace.SaySomething = Backbone.View.extend({
   submitPost: function(e) {
     e.preventDefault();
     var self = this;
-    var $form = this.$("form");
-    $("input.create", $form).replaceWith("<img src=\"/images/loading.gif\">");
+    this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
     CommonPlace.community.posts.create({ 
-      title: $("input#post_subject",$form).val(),
-      body: $("textarea#post_body",$form).val() 
+      title: this.$("input#post_subject").val(),
+      body: this.$("textarea#post_body").val() 
     }, { success: function() {
       window.location.hash = "/posts";
       Backbone.history.checkUrl();
@@ -34,18 +36,54 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitAnnouncement: function(e) {
     e.preventDefault();
-    var $form = this.$("form"),
-    owner_match = $("select#announcement_owner", $form).val().match(/([a-z_]+)_(\d+)/);
+    this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+    owner_match = this.$("select#announcement_owner").val().match(/([a-z_]+)_(\d+)/);
     
     CommonPlace.community.announcements.create({
-      title: $("input#announcement_subject", $form).val(),
-      body: $("textarea#announcement_body", $form).val(),
-      style: "publicity",
+      title: this.$("input#announcement_subject").val(),
+      body: this.$("textarea#announcement_body").val(),
       feed: owner_match[1] == "feed" ? owner_match[2] : null
     }, { success: function() {
       window.location.hash = "/announcements";
       Backbone.history.checkUrl();
       window.location.hash = "/announcements/new";
+      Backbone.history.checkUrl();
+    } });
+  },
+
+  submitEvent: function(e) {
+    e.preventDefault();
+    this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+    owner_match = this.$("select#event_owner").val().match(/([a-z_]+)_(\d+)/);
+    CommonPlace.community.events.create({
+      title: this.$("input#event_name").val(),
+      about: this.$("textarea#event_description").val(),
+      date: this.$("input#event_date").val(),
+      start: this.$("select#event_start_time").val(),
+      end: this.$("select#event_end_time").val(),
+      venue: this.$("input#event_venue").val(),
+      address: this.$("input#event_address").val(),
+      tags: this.$("input#event_tag_list").val(),
+      feed: owner_match[1] == "feed" ? owner_match[2] : null
+    }, { success: function() {
+      window.location.hash = "/events";
+      Backbone.history.checkUrl();
+      window.location.hash = "/events/new";
+      Backbone.history.checkUrl();
+    } });
+  },
+
+  submitGroupPost: function(e) {
+    e.preventDefault();
+    this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+    CommonPlace.community.group_posts.create({
+      title: this.$("input#group_post_subject").val(),
+      body: this.$("textarea#group_post_body").val(),
+      group: this.$("select#group_post_group_id").val(),
+    }, { success: function() {
+      window.location.hash = "/group_posts";
+      Backbone.history.checkUrl();
+      window.location.hash = "/group_posts/new";
       Backbone.history.checkUrl();
     } });
   },
