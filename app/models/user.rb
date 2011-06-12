@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
     ["Live", "Daily", "Never"]
   end
 
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :reprocess_avatar, :if => :cropping?
+
   acts_as_authentic do |c|
     c.login_field :email
     c.require_password_confirmation = false
@@ -56,6 +59,10 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_presence_of :first_name, :last_name
+
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
   
   def after_oauth2_authentication
     json = oauth2_access.get('/me')
@@ -110,11 +117,19 @@ class User < ActiveRecord::Base
                     :styles => { 
                       :thumb => "100x100#", 
                       :normal => "120x120#",
-                      :large => "200x200#"
+                      :large => "200x200#",
+                      :croppable => "600x600>"
                     },
                     :default_url => "/avatars/missing.png", 
                     :url => "/system/users/:id/avatar/:style.:extension",
-                    :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
+                    :path => ":rails_root/public/system/users/:id/avatar/:style.:extension",
+                    :processors => [:cropper])
+
+
+  def avatar_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
+  end
 
   scope :receives_weekly_bulletin, :conditions => {:receive_weekly_digest => true}
 
@@ -225,6 +240,11 @@ class User < ActiveRecord::Base
 
   def value_adding?
     (self.posts.count >= 1 || self.announcements.count >= 1 || self.events.count >= 1)
+  end
+
+  private
+  def reprocess_avatar
+    avatar.reprocess!
   end
   
 end
