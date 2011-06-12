@@ -11,7 +11,11 @@ class MessagesController < CommunitiesController
   end
 
   def new
-    render :layout => 'communities'
+    if logged_in?
+      render :layout => 'communities'
+    else
+      redirect_to :controller => :accounts, :action => :new
+    end
   end
 
   def create
