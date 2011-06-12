@@ -3,6 +3,7 @@ template_extension: html.mustache
 template_function: Mustache.template
 template_namespace: CommonPlace.templates
 javascript_compressor: closure
+compressor_options:
   compilation_level: "ADVANCED_OPTIMIZATIONS"
 
 stylesheets:
