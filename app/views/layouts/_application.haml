@@ -12,27 +12,7 @@
     = include_javascripts :application
     = include_javascripts :templates
     -#= javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
-    %script{:type => "text/javascript"}
-      CommonPlace = window.CommonPlace || {};
-      CommonPlace.auth_token = "#{form_authenticity_token}"
-    :javascript
-      function facebook_invite()
-      {
-        FB.ui({
-          method: 'apprequests',
-          message: 'Invitation Text Here',
-          data: 'tracking_data'
-        });
-      }
-    - if Rails.env.production?
-      :javascript
-        $(document).ready(function () {
-          Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
-        });
-    - if params[:first].present? and current_user.is_facebook_user and $rollout.active?(:facebook_like, current_user)
-      :javascript
-        $(document).ready(function() { facebook_invite(); });
-
+    
     = include_stylesheets :application
     / [if IE]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
@@ -97,7 +77,26 @@
     - else
       #modal
 
-
+  %script{:type => "text/javascript"}
+    CommonPlace = window.CommonPlace || {};
+    CommonPlace.auth_token = "#{form_authenticity_token}"
+  :javascript
+    function facebook_invite()
+    {
+      FB.ui({
+        method: 'apprequests',
+        message: 'Invitation Text Here',
+        data: 'tracking_data'
+      });
+    }
+  - if Rails.env.production?
+    :javascript
+      $(document).ready(function () {
+        Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
+      });
+  - if params[:first].present? and current_user.is_facebook_user and $rollout.active?(:facebook_like, current_user)
+    :javascript
+      $(document).ready(function() { facebook_invite(); });
   - if Rails.env.production?
     :javascript
       var _gaq = _gaq || [];
