@@ -74,13 +74,14 @@
         %h2= t 'feeds.profile.about.title'
         %p= @feed.about
 
-      %h3= t 'feeds.profile.members.title', :count => @feed.subscribers.count
-      #members
-        %ul
-          - @feed.subscribers.each do |user|
-            %li
-              = image_tag user.avatar_url, :size => "32x32"
-              = user.name
-        = render 'subscriptions/form', :feed => @feed, :user => current_user
+      - unless @feed.subscribers.empty?
+        %h3= t 'feeds.profile.members.title', :count => @feed.subscribers.count
+        #members
+          %ul
+            - @feed.subscribers.each do |user|
+              %li
+                = image_tag user.avatar_url, :size => "32x32"
+                = user.name
+
         
       
