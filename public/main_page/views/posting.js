@@ -79,7 +79,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
     CommonPlace.community.group_posts.create({
       title: this.$("input#group_post_subject").val(),
       body: this.$("textarea#group_post_body").val(),
-      group: this.$("select#group_post_group_id").val(),
+      group: this.$("select#group_post_group_id").val()
     }, { success: function() {
       window.location.hash = "/group_posts";
       Backbone.history.checkUrl();
