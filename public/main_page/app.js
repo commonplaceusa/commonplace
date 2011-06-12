@@ -40,7 +40,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     "/events/:id": "showEvent",
     "/users/:id": "showUser",
     "/feeds/:id": "showFeed",
-    "/groups/:id": "showGroup",
+    "/groups/:id": "showGroup"
 
   },
 
