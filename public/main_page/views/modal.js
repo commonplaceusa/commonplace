@@ -13,7 +13,7 @@ CommonPlace.NewMessage = Backbone.View.extend({
     $(this.el).append('<div id="modal-overlay"></div>');
     $(this.el).append('<div id="modal-content"></div>');
     this.$("#modal-content").append('<img src="/images/modal-close.png" id="modal-close">');
-    this.$("#modal-content").append(CommonPlace.render("message_form"));
+    this.$("#modal-content").append(CommonPlace.render("message_form", {user_name: CommonPlace.community.users.get(this.options.person_id).get('name')}));
     $("#main").append(this.el);
     $(window).trigger('resize.modal');
     return this;
