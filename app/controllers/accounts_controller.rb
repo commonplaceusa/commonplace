@@ -93,6 +93,20 @@ class AccountsController < CommunitiesController
     authorize! :update, User
     current_user.attributes = params[:user]
     if current_user.save
+      if params[:user][:avatar].blank?
+        redirect_to :action => "add_feeds"
+      else
+        redirect_to :action => "crop"
+      end
+    else
+      render :edit_new
+    end
+  end
+
+  def update_crop
+    authorize! :update, User
+    current_user.attributes = params[:user]
+    if current_user.save
       redirect_to :action => "add_feeds"
     else
       render :edit_new
