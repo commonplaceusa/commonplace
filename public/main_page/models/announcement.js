@@ -17,7 +17,7 @@ CommonPlace.Announcement = Backbone.Model.extend({
     return this._feed;
   },
 
-  url: function() { return this.isNew() ? "/api/communities/" + this.community.id + "/announcements" : "/api/announcements/" + this.id; }
+  url: function() { return this.isNew() ? "/api/announcements" : "/api/announcements/" + this.id; }
 
 });
 
