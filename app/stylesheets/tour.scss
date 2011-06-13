@@ -55,9 +55,10 @@ $darkBlue: #1b334a ;
     a.wire-tour {
         display: block ; margin: 30px auto 0px ; height: 56px ; 
         width: 243px ; background-image: url('/images/tour/tour-button.png') ;
+        cursor: pointer;
     }
 
-    a.end-tour { display: block ; color: #a5a5a5 ; text-align: center ; text-decoration: underline ; }
+    a.end-tour { display: block ; color: #a5a5a5 ; text-align: center ; text-decoration: underline ; cursor: pointer; }
 }
 
 #tour.wire {
@@ -68,7 +69,7 @@ $darkBlue: #1b334a ;
 
     a.profile-tour { display: block ; margin: 20px auto ; 
                      background: url('/images/tour/next-button.png') no-repeat ;
-                     height: 36px ; width: 123px ;
+                     height: 36px ; width: 123px ; cursor: pointer ;
                      }
 }
 
@@ -80,7 +81,7 @@ $darkBlue: #1b334a ;
 
     a.post-tour { display: block ; margin: 20px auto ; 
                   background: url('/images/tour/next-button.png') no-repeat ;
-                  height: 36px ; width: 123px ;
+                  height: 36px ; width: 123px ; cursor: pointer ;
                 }
 }
 
@@ -102,5 +103,5 @@ $darkBlue: #1b334a ;
         &.announcement { background-image: url('/images/tour/announcement-icon.png') ; }
         &.group { background-image: url('/images/tour/discussion-icon.png') ; }
     }
-    a.end-tour { display: block; margin-top: 5px ; color: $darkRed ; font-weight: bold ; font-size: 16px ; text-decoration: underline ; }
+    a.end-tour { display: block; margin-top: 5px ; color: $darkRed ; font-weight: bold ; font-size: 16px ; text-decoration: underline ; cursor: pointer ; }
 }
