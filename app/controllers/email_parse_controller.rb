@@ -3,7 +3,7 @@ require 'iconv'
 class EmailParseController < ApplicationController
   
   protect_from_forgery :only => []
-  before_filter :check_user
+  before_filter :check_user, :filter_out_of_office
 
 
   def parse
@@ -73,6 +73,17 @@ END
   
   protected 
 
+  def out_of_office_regexp
+    %r{(out\ of\ office)
+      |(out\ of\ the\ office)}xi
+  end
+  def filter_out_of_office
+    if params['stripped-text'].match(out_of_office_regexp)
+      render :nothing => true
+      return false
+    end
+  end
+      
   def current_community
     user.try(:community)
   end
