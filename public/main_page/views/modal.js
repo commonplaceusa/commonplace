@@ -26,6 +26,7 @@ CommonPlace.NewMessage = Backbone.View.extend({
                             body: this.$("form textarea#message_body").val() }),
            function() {});
     this.remove();
+    _.delay(function(){CommonPlace.app.notify("Your message has been sent.");},200);
   }
 
 });
