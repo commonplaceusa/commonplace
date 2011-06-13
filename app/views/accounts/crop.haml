@@ -1,49 +1,36 @@
 - if Rails.env.production?
   :javascript
     mpmetrics.track('Cropping Avatar');
-%script
-  = "var large_width = #{current_user.avatar_geometry(:normal).width};"
-  = "var croppable_width = #{current_user.avatar_geometry(:croppable).width};"
+
 :javascript
+  var original_width = #{current_user.avatar_geometry(:original).width};
+  var original_height = #{current_user.avatar_geometry(:original).height};
+  var croppable_width = #{current_user.avatar_geometry(:croppable).width};
+  var croppable_height = #{current_user.avatar_geometry(:croppable).height};
+  var maxsize = croppable_width > croppable_height ? croppable_height : croppable_width;
   $(function() {
     $('#cropbox').Jcrop({
       onChange: update_crop,
       onSelect: update_crop,
-      setSelect: [0, 0, large_width, large_width],
+      setSelect: [0, 0, croppable_width, croppable_height],
       aspectRatio: 1.0,
-      maxSize: [large_width, large_width]
+      maxSize: [maxsize, maxsize]
       //boxWidth: 976,
       //boxHeight: 539
     });
   });
   function update_crop(coords) {
     console.log(coords);
-    var ratio = large_width / croppable_width;
-    //var ratio = 1;
-    //$("#crop_x").val(Math.round(coords.x * ratio));
-    $("#crop_x").val(Math.round(coords.x * ratio));
-    //$("#crop_y").val(Math.round(coords.y * ratio));
-    $("#crop_y").val(Math.round(coords.y * ratio));
-    //$("#crop_w").val(Math.round(coords.w * ratio));
-    $("#crop_w").val(Math.round(coords.w * ratio));
-    //$("#crop_h").val(Math.round(coords.h * ratio));
-    $("#crop_h").val(Math.round(coords.h * ratio));
+    var wratio = original_width / croppable_width;
+    var hratio = original_height / croppable_height;
+    var ratio = 1;
+    $("#crop_x").val(Math.round(coords.x * wratio));
+    $("#crop_y").val(Math.round(coords.y * hratio));
+    $("#crop_w").val(Math.round(coords.w * wratio));
+    $("#crop_h").val(Math.round(coords.h * hratio));
     console.log("New image is " + $("#crop_w").val() + " x " + $("#crop_h").val())
   }
   
-/
-  #register
-    #tool_tip
-      %h2
-        Please crop your avatar
-      #preview{:style => "width:100px; height:100px; overflow:hidden"}
-        = image_tag current_user.avatar.url(:croppable), :id => "preview"
-
-    - form_for current_user do |f|
-      - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
-        = f.hidden_field attribute, :id => attribute
-      = f.submit "Crop"
-      = image_tag current_user.avatar.url(:croppable), :id => "cropbox"
 %h1
   Please crop your avatar
   = image_tag current_user.avatar.url(:croppable), :id => "cropbox", :align => "center"
