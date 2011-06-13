@@ -115,15 +115,15 @@ class User < ActiveRecord::Base
 
   has_attached_file(:avatar,                    
                     :styles => { 
-                      :thumb => "100x100#", 
-                      :normal => "120x120#",
-                      :large => "200x200#",
+                      :thumb => {:geometry => "100x100", :processors => [:cropper]},
+                      :normal => {:geometry => "120x120", :processors => [:cropper]},
+                      :large => {:geometry => "200x200", :processors => [:cropper]},
                       :croppable => "600x600>"
                     },
                     :default_url => "/avatars/missing.png", 
                     :url => "/system/users/:id/avatar/:style.:extension",
-                    :path => ":rails_root/public/system/users/:id/avatar/:style.:extension",
-                    :processors => [:cropper])
+                    :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
+  
 
 
   def avatar_geometry(style = :original)
