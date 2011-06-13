@@ -8,6 +8,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     this.profile = new CommonPlace.Info({el: $("#community-profiles")});
     new CommonPlace.Index({el: $("#whats-happening")});
     this.newPost();
+    this.notifications = [];
   },
 
   routes: {
@@ -219,6 +220,30 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
                              zone: "users"
                             });
     this.userIndex.render();
+  },
+
+  runNotifier: function() {
+    if (CommonPlace.app.notifications && CommonPlace.app.notifications.length > 0 && !CommonPlace.app.notificationInProgress) {
+      CommonPlace.app.notificationInProgress = true
+      
+      var notification = CommonPlace.app.notifications.shift();
+      $notification = $('<div style="display:none;" class="notification ' + notification.classes + '">' + notification.message + '</div>');
+      $notification.appendTo($("#main")).show('slide', {}, 500, function() { 
+        _.delay(function() {
+          $(".notification").hide('slide', {}, 800, 
+                                  function() { 
+                                    $(".notification").remove() ;
+                                    CommonPlace.app.notificationInProgress = false ;
+                                  });
+        }, 1000);
+      });
+    }
+    _.defer(CommonPlace.app.runNotifier);
+  },
+
+  notify: function(message, classes) {
+    CommonPlace.app.notifications || (CommonPlace.app.notifications = []);
+    CommonPlace.app.notifications.push({message: message, classes: classes});
   }
   
 });

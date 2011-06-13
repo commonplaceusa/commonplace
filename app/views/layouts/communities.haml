@@ -32,7 +32,7 @@
   window.location.hash = "/";
 
   CommonPlace.app = new CommonPlace.MainPageController({community: CommonPlace.community, account: CommonPlace.account});
-  
+  CommonPlace.app.runNotifier();
   Backbone.history.start();
   window.location.hash = window.location.pathname;
   Backbone.history.loadUrl();
