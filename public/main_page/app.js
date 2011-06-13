@@ -12,6 +12,8 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   routes: {
+    "/tour": "tour",
+    
     "/posts/new" : "newPost",
     "/events/new" : "newEvent",
     "/announcements/new" : "newAnnouncement",
@@ -244,7 +246,9 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   notify: function(message, classes) {
     CommonPlace.app.notifications || (CommonPlace.app.notifications = []);
     CommonPlace.app.notifications.push({message: message, classes: classes});
-  }
+  },
+
+  tour: function() { (new CommonPlace.Tour({el: $("#main")})).render(); }
   
 });
 
