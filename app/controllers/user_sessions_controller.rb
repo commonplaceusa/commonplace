@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
       respond_to do |wants|
         wants.html {
           reload_current_user!
-          redirect_back_or_default root_url
+          redirect_back_or_default "/"
         }
         wants.js {
           render :action => "redirect"
@@ -28,7 +28,7 @@ class UserSessionsController < ApplicationController
       params[:action] = "new"
       respond_to do |wants|
         wants.html {
-          render 'accounts/new'
+          render :new
         }
         wants.js
       end
@@ -41,8 +41,8 @@ class UserSessionsController < ApplicationController
 
   def destroy
     authorize! :destroy, UserSession
+    redirect_to login_url(current_community)
     current_user_session.destroy
-    redirect_to root_url
   end
 
 end

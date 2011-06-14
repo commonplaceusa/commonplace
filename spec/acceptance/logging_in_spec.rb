@@ -7,7 +7,7 @@ feature "Logging in", %q{
 } do
 
   background do
-    community = Factory :community, :slug => "testing"
+    community = @community = Factory(:community, :slug => "testing")
     neighborhood = Factory(:neighborhood, :community => community, 
             :coordinates => Forgery(:latlng).random)
 
@@ -18,12 +18,12 @@ feature "Logging in", %q{
             :neighborhood_id => neighborhood.id, :community_id => community.id,
             :address => "100 Example Way")
     
-    Capybara.app_host = "http://testing.smackaho.st:#{Capybara.server_port}"
+    Capybara.app_host = "http://localhost:#{Capybara.server_port}"
   end
 
 
   scenario "logging in from the landing page" do
-    visit '/account/new'
+    visit "/#{@community.slug}"
     find("#sign_in_button").click
 
     find("form.user_session").should be_visible

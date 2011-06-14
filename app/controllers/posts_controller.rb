@@ -5,6 +5,7 @@ class PostsController < CommunitiesController
 
   def index
     @items = current_community.posts.limit(15)
+    render "communities/show"
   end
 
   def new

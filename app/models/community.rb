@@ -130,4 +130,7 @@ class Community < ActiveRecord::Base
     items.reverse
   end
 
+  def to_param
+    slug
+  end
 end
