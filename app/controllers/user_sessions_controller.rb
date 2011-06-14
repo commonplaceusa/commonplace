@@ -24,7 +24,6 @@ class UserSessionsController < ApplicationController
       end
     else
       @user = User.new
-      params[:controller] = "accounts"
       params[:action] = "new"
       respond_to do |wants|
         wants.html {
