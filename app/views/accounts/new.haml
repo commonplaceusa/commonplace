@@ -1,8 +1,8 @@
 %h1= t(".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), "/#{current_community.slug}/learn_more")).html_safe
 
 - if Rails.env.production?
-  :javascript
-    mpmetrics.track('Community Registration Page');
+  %script
+    = "mpmetrics.track('Community Registration Page', {'community': '#{current_community.slug}'});"
 
 :javascript
   $(document).ready(function() {
