@@ -1,5 +1,13 @@
 class AdminController < ApplicationController
 
+  before_filter :verify_admin
+
+  def verify_admin
+    unless current_user.admin
+      redirect_to root_url
+    end
+  end
+
   def overview
     @days = 14
     date = @days.days.ago
@@ -13,4 +21,24 @@ class AdminController < ApplicationController
     @emails_opened = 1
     render :layout => nil
   end
+
+  def clipboard
+    if params[:registrants].present?
+      entries = params[:registrants].split("\n")
+      email_addresses_registered = []
+      entries.each do |e|
+        entry = e.split(';')
+        name = entry[0]
+        email = entry[1]
+        address = entry[2]
+        user = User.new(:full_name => name, :email => email, :address => address, :community => current_community)
+        if user.save_without_session_maintenance
+          email_addresses_registered << email
+          Resque.enqueue(ClipboardWelcome, user.id)
+        end
+      end
+      flash[:notice] = "Registered #{email_addresses_registered.count} users: #{email_addresses_registered.join(', ')}"
+    end
+  end
+
 end
