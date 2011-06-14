@@ -1,6 +1,7 @@
 - if Rails.env.production?
-  :javascript
-    mpmetrics.track('Add feeds');
+  %script
+    = "mpmetrics.track('Add feeds', {'community': '#{current_community.slug}'});"
+
 #feeds_box
   #tool_tip
     %h2 Stay in the loop!
