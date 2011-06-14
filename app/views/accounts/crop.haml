@@ -33,12 +33,10 @@
   
 %h1
   Please crop your avatar
+  %br
   = image_tag current_user.avatar.url(:croppable), :id => "cropbox", :align => "center"
   %br
-  #preview{:style => "width:100px; height:100px; overflow:hidden"}
-    = image_tag current_user.avatar.url(:croppable), :id => "preview"
 
-  -#- form_for current_user do |f|
   = semantic_form_for current_user, :url => update_crop_account_path, :method => :put do |f|
     - f.inputs do
       - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
