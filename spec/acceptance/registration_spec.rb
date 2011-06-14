@@ -14,6 +14,7 @@ feature "Registration", %q{
 
     stub_geocoder("100 Example Way", 
                   :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
+    Capybara.app_host = "http://localhost:#{Capybara.server_port}"
 
     visit "/#{community.slug}"
   end
