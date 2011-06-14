@@ -73,30 +73,4 @@ describe AccountsController do
     
   end
 
-  describe "#update_new" do
-    let(:user) { mock_model(User) }
-    context "when user is saved" do
-      before(:each) do 
-        stub(user).save { true }
-        stub(UserSession).find.stub!.user { user}
-        put :update_new
-      end
-      
-      it "redirects to add_feeds" do
-        response.should redirect_to "/account/add_feeds"
-      end
-    end
-
-    context "when user is not saved" do
-      before(:each) do
-        stub(UserSession).find.stub!.user { user}
-        stub(user).save { false }
-        put :update_new
-      end
-
-      it "renders edit_new" do
-        response.should render_template "edit_new"
-      end
-    end
-  end
 end
