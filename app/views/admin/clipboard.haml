@@ -1,0 +1,21 @@
+#bulk-register
+  - if flash[:notice].present?
+    #notice= flash[:notice]
+  #instructions
+    %p
+      Please enter the details for your new users, one per line, in the following format: 
+      %br
+      %br
+      FIRST_NAME LAST_NAME;EMAIL_ADDRESS;STREET_ADDRESS
+      %br
+      %br
+      So, if you have two users, your entry would look something like:
+      %br
+      %br
+      John Doe;johndoe@aol.com;123 Anywhere Street
+      %br
+      Jane Public;janegirl93@yahoo.com;1955 Broadway
+  = form_tag '/admin/clipboard'
+  = text_area_tag 'registrants', nil, :size => "120x20"
+  %br
+  = submit_tag

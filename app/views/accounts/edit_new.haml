@@ -4,7 +4,7 @@
 #register
   #tool_tip
     %h2
-      Thanks for signing up!
+      = "Thanks for signing up, #{current_user.first_name}!"
     %p= t ".p1" , :Community => current_community.name 
     / 
       Email in is not yet implemented

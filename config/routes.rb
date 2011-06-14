@@ -4,6 +4,7 @@ Commonplace::Application.routes.draw do
   get "facebook_canvas/index"
 
   match "/admin/overview" => "admin#overview"
+  match "/admin/clipboard" => "admin#clipboard"
 
   # Community routes 
 
