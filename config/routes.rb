@@ -82,16 +82,12 @@ Commonplace::Application.routes.draw do
       end
     end
     
-    match ":messagable_type/:messagable_id/messages/new" => "messages#new"
-    
     match "/facebook_canvas/" => "facebook_canvas#index"
 
     resources :events, :only => [:create]  
 
     resources :replies
-    
-    match ":messagable_type/:messagable_id/messages/new" => "messages#new"
-    
+
     # Account
     resource :account do
       member do 
@@ -131,7 +127,7 @@ Commonplace::Application.routes.draw do
 
     
     root :to => "communities#show"
-    match "(*backbone_route)", :to => "communities#show", :via => :get, :as => :community
-    
   end
+
+    match "(*backbone_route)", :to => "communities#show", :via => :get, :as => :community
 end

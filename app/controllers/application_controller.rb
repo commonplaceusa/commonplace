@@ -44,13 +44,16 @@ class ApplicationController < ActionController::Base
   end
 
   def current_community
-    if @current_community = params[:community] && Community.find_by_slug(params[:community]) || current_user.community
+    if @current_community = params[:community] ? Community.find_by_slug(params[:community]) : current_user.community
       params[:community] = @current_community.slug
       translate_with :community => @current_community.name
       Time.zone = @current_community.time_zone
     else
       logger.info("URL: #{request.url}")
-      raise ActiveRecord::RecordNotFound unless @current_community
+      unless @current_community
+        store_location
+        redirect_to login_url
+      end
     end
     @current_community 
   end
