@@ -1,15 +1,15 @@
 
 #learn-more
-  %h1= t ".title_html", :sign_up => link_to(t(".sign_up"), new_account_path)
+  %h1= t ".title_html", :sign_up => link_to(t(".sign_up"), "/#{current_community.slug}")
   #content
     .p_wrapper
-      %p= t ".p1", :community=>current_community.name
+      %p= t ".p1", :community=> current_community.name
       %p= t ".p2"
     .img_wrapper
       =image_tag "example-email.png", :width => 603, :height => 357
     .p_wrapper
       %p= t ".p3"
-      %p= t(".p4", :link => link_to(root_url, root_url)).html_safe
+      %p= t(".p4", :link => link_to(community_url(current_community), community_url(current_community))).html_safe
     .img_wrapper
       =image_tag "example-platform.png", :width => 611, :height => 551
     .p_wrapper  
@@ -18,10 +18,10 @@
       - t(".list", :community => current_community.name).each do |text|
         %li= text.sub(/%{community}/, current_community.name)
     .p_wrapper
-      %p= t(".p6", :community_link => link_to(root_url, root_url)).html_safe
+      %p= t(".p6", :community_link => link_to(community_url(current_community), community_url(current_community))).html_safe
      
     //%p= t ".p7", :community_email => mail_to("announcement-"+current_community.slug+"@ourcommonplace.com", "announcement-"+current_community.slug+"@ourcommonplace.com")
     .img_wrapper
-      -link_to new_account_path do
+      -link_to community_url(current_community) do
         =image_tag "sign-up-now-btn.png", :width => 193, :height => 49
       

@@ -1,4 +1,4 @@
-%h1= t(".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), learn_more_account_path)).html_safe
+%h1= t(".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), "/#{current_community.slug}/learn_more")).html_safe
 
 - if Rails.env.production?
   :javascript
@@ -12,8 +12,8 @@
       cookie : true,
       xfbml  : true
     });
-
   });
+
   function facebookUserLoggedIn()
   {
     session = FB.getSession()
@@ -59,7 +59,7 @@
 
 = update_content "#main" do
   #main
-    = semantic_form_for @user, :url => account_path do |f|
+    = semantic_form_for @user, :url => create_account_path(current_community) do |f|
       %h3
         Fill out the form to get started
       -#  , or 
@@ -70,12 +70,11 @@
         = f.input :address, :hint => t("formtastic.hints.user.address", :community => current_community.name)
       #fb-wrapper
         = f.buttons do 
-          
           = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
-  
-#fb-root     
+
+#fb-root
 - if current_community.organizer_about?
-      
+
   #who_is_info_bubble
     %h3.toggle= t ".who_is_bubble", :community=> current_community.name
     #who_is_info
@@ -89,5 +88,4 @@
         %p
           = feed.name
         = image_tag(feed.avatar_url(:thumb), :size => "50x50")
-        %br{:class => "cleared"}   
-      
+        %br{:class => "cleared"}

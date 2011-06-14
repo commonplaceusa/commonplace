@@ -44,7 +44,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_community
-    if request.subdomain.present? && (@current_community ||= Community.find_by_slug(request.subdomain))
+    if @current_community = params[:community] && Community.find_by_slug(params[:community]) || current_user.community
+      params[:community] = @current_community.slug
       translate_with :community => @current_community.name
       Time.zone = @current_community.time_zone
     else

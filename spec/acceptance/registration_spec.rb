@@ -7,7 +7,7 @@ feature "Registration", %q{
 } do
 
   background do
-    community = Factory :community, :slug => "testing"
+    @community = community = Factory(:community, :slug => "testing")
     
     neighborhood = Factory(:neighborhood, :community => community, 
                            :coordinates => Forgery(:latlng).random)
@@ -15,15 +15,13 @@ feature "Registration", %q{
     stub_geocoder("100 Example Way", 
                   :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
 
-    Capybara.app_host = "http://testing.smackaho.st:#{Capybara.server_port}"
-
-    visit "/"
+    visit "/#{community.slug}"
   end
 
   scenario "landing page includes important actions" do
     page.should have_content("Sign in")
     page.should have_selector("form#new_user")
-    page.should have_link("Click here to learn more.", :href => "/account/learn_more")
+    page.should have_link("Click here to learn more.", :href => "/#{@community.slug}/learn_more")
   end
 
   scenario "register" do
