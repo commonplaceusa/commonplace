@@ -8,7 +8,11 @@ class CommunitiesController < ApplicationController
   
   def show
     if current_user_session.new_session?
-      redirect_to new_account_url
+      @user = User.new
+      params[:controller], params[:action] = "accounts", "new"
+      render 'accounts/new', :layout => 'application'
+    else
+      render 'show'
     end
   end
 
