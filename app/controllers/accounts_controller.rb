@@ -185,5 +185,11 @@ class AccountsController < CommunitiesController
   def profile
     authorize! :update, User
   end
+
+  private
+
+  def single_access_allowed?
+    true
+  end
   
 end

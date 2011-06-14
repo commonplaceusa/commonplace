@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method 'xhr?'
   helper_method :current_user_session, :current_user, :facebook_session
   
-  before_filter :subdomain_redirect, :set_process_name_from_request
+  before_filter :subdomain_redirect, :set_process_name_from_request, :login_with_single_access_token
   after_filter :unset_process_name_from_request
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -106,6 +106,14 @@ class ApplicationController < ActionController::Base
     else
       super(options, response_status)
     end
+  end
+
+  private
+
+  def login_with_single_access_token
+    return if params[:token].nil?
+    user = User.find_by_single_access_token(params[:token])
+    UserSession.create(user) if user.present?
   end
   
 end
