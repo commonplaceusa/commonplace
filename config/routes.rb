@@ -59,7 +59,15 @@ Commonplace::Application.routes.draw do
   end
 
     
+  resource :account do
+    member do 
+      get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :facebook_invite, :profile, :crop
+      put :update_new, :update_avatar, :update_interests, :settings, :update_crop
+      post :subscribe_to_feeds, :subscribe_to_groups, :avatar
+    end
+  end
 
+  resource :invites
 
   constraints LoggedInConstraint.new(true) do
 
@@ -88,30 +96,15 @@ Commonplace::Application.routes.draw do
 
     resources :replies
 
-    # Account
-    resource :account do
-      member do 
-        get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :facebook_invite, :profile, :learn_more
-        put :update_new, :update_avatar, :update_interests, :settings
-        post :subscribe_to_feeds, :subscribe_to_groups, :avatar
-      end
-    end
-
     resources :avatars, :only => [:edit, :update]
     resource :inbox, :only => [:get]
+
     resources :messages do
       collection do
         get :admin_quick_view
       end
     end
 
-    resource :account do
-      member do 
-        get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :facebook_invite, :profile, :crop
-        put :update_new, :update_avatar, :update_interests, :settings, :update_crop
-        post :subscribe_to_feeds, :subscribe_to_groups, :avatar
-      end
-    end
     
     root :to => "communities#show"
   end
