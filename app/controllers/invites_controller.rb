@@ -11,7 +11,7 @@ class InvitesController < ApplicationController
                        email, current_user.id, params[:message] || nil)
       end
     end
-    redirect_to new_post_url
+    redirect_to root_url
   end
 
 
