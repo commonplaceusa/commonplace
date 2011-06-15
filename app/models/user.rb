@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
                       :thumb => {:geometry => "100x100", :processors => [:cropper]},
                       :normal => {:geometry => "120x120", :processors => [:cropper]},
                       :large => {:geometry => "200x200", :processors => [:cropper]},
-                      :croppable => "600x600>"
+                      :croppable => "400x400>"
                     },
                     :default_url => "/avatars/missing.png", 
                     :url => "/system/users/:id/avatar/:style.:extension",
