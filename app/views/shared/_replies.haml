@@ -1,26 +1,13 @@
 %div{:id => "#{dom_id(item)}_replies", :class => "replies", :style => "display: #{ item.replies.empty? ? 'none' : 'block'};"}
   = image_tag 'reply-arrow-top.png', :class => "reply-arrow"
-  - if item.replies.size > 3
-    = link_to "Show #{item.replies.size - 3} earlier replies", "/replies", :class => "all-replies"
   %ul
-    - item.replies.first(item.replies.size - 3 < 0 ? 0 : item.replies.size - 3).each do |reply|
-      %li.reply.tooltip{'data-title' => "Click to view #{reply.user.name}'s profile.", :style => "display: none"}
-        - link_to "/users/#{reply.user.id}", 'data-remote' => true, :class => 'tooltip' do
-          = image_tag reply.user.avatar_url(:thumb), :class => "avatar"
-          .body
-            %p
-              %span.author= reply.user.name
-              = reply.body
-            %time #{time_ago_in_words(reply.created_at, include_seconds = true)} ago
-
-    - item.replies.last(3).each do |reply|
+    - item.replies.each do |reply|
       %li.reply.tooltip{'data-title' => "Click to view #{reply.user.name}'s profile."}
-        - link_to "/users/#{reply.user.id}", 'data-remote' => true, :class => 'tooltip' do
-          = image_tag reply.user.avatar_url(:thumb), :class => "avatar"
-          .body
-            %p
-              %span.author= reply.user.name
-              = reply.body
-            %time #{time_ago_in_words(reply.created_at, include_seconds = true)} ago
+        = image_tag reply.user.avatar_url(:thumb), :class => "avatar"
+        .body
+          %p
+            %span.author= reply.user.name
+            = reply.body
+          %time #{time_ago_in_words(reply.created_at, include_seconds = true)} ago
 
   = render 'replies/form', :reply => item.replies.new(:user => current_user)
