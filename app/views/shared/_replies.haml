@@ -5,7 +5,7 @@
   %ul
     - item.replies.first(item.replies.size - 3 < 0 ? 0 : item.replies.size - 3).each do |reply|
       %li.reply.tooltip{'data-title' => "Click to view #{reply.user.name}'s profile.", :style => "display: none"}
-        - link_to "/users/#{reply.user.id}, 'data-remote' => true, :class => 'tooltip' do
+        - link_to "/users/#{reply.user.id}", 'data-remote' => true, :class => 'tooltip' do
           = image_tag reply.user.avatar_url(:thumb), :class => "avatar"
           .body
             %p
