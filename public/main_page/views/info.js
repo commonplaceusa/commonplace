@@ -15,8 +15,10 @@ CommonPlace.Info = Backbone.View.extend({
   tagName: "div",
   id: "community-profiles",
   render: function() {
+    var params = this.model.toJSON();
+    if (params.about) { params.about = window.linkify(params.about) ; }
     this.el.html(CommonPlace.render(this.template || this.options.template,
-                                    this.model.toJSON()));
+                                    params));
     setInfoBoxPosition();
     return this;
   }
@@ -36,6 +38,7 @@ CommonPlace.EventInfo = CommonPlace.Info.extend({
     var params = this.model.toJSON() || {};
     params.abbrev_month = this.model.abbrev_month_name();
     params.day_of_month = this.model.day_of_month();
+    params.about = window.linkify(params.about);
     return params;
   }
 });
@@ -67,7 +70,7 @@ CommonPlace.GroupInfo = CommonPlace.Info.extend({
       url: this.model.get('url'),
       avatar_url: this.model.get('avatar_url'),
       name: this.model.get('name'),
-      about: this.model.get('about'),
+      about: window.linkify(this.model.get('about')),
       isSubscribed: _.include(CommonPlace.account.get('group_subscriptions'), this.model.get('id'))
     };
   },
@@ -110,7 +113,7 @@ CommonPlace.FeedInfo = CommonPlace.Info.extend({
       url: this.model.get('url'),
       avatar_url: this.model.get('avatar_url'),
       name: this.model.get('name'),
-      about: this.model.get('about'),
+      about: window.linkify(this.model.get('about')),
       tags: this.model.get('tags'),
       website: this.model.get('website'),
       phone: this.model.get('phone'),
