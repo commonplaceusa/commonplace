@@ -15,7 +15,8 @@
       John Doe;johndoe@aol.com;123 Anywhere Street
       %br
       Jane Public;janegirl93@yahoo.com;1955 Broadway
-  = form_tag '/admin/clipboard'
-  = text_area_tag 'registrants', nil, :size => "120x20"
-  %br
-  = submit_tag
+  = form_tag '/admin/clipboard' do
+    = text_area_tag 'registrants', nil, :size => "120x20"
+    = hidden_field_tag "community", current_community.slug
+    %br
+    = submit_tag
