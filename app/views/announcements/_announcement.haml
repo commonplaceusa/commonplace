@@ -1,15 +1,5 @@
-%div{'data-href' => announcement_path(announcement), :class => "announcement tooltip", 'data-title' => "Click to see replies and this community feed's profile"}
+%div{:class => "announcement tooltip", 'data-title' => "Click to see replies and this community feed's profile"}
   = image_tag announcement.owner.avatar_url(:thumb), :class => 'avatar'
-  .controls
-    - if can? :destroy, announcement
-      &sdot;
-      = link_to 'delete', announcement, :method => :delete
-    - if can? :update, announcement
-      &sdot;
-      = link_to "edit", [:edit, announcement], 'data-remote' => true
-    - if $rollout.active?(:facebook_like, current_user)
-      .social{:style=>"width:52px;height:21px;overflow:hidden;"}
-        %fb:like{:layout => "button_count", :show_faces => "false", :width => "50", :height => "10", :href => request.protocol + request.host + url_for(announcement)}
   %time
     = post_date announcement.created_at
 
@@ -21,6 +11,6 @@
     - else
       = announcement.owner.name
   .body= markdown auto_link(announcement.body, :all, :target => "_blank")
-  - if announcement.replies.empty?
-    = link_to "Reply to this announcement", "/replies", :class => "show-reply-form"
+
+
 = render 'shared/replies', :item => announcement
