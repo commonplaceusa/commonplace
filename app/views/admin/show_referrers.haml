@@ -1,0 +1,14 @@
+#referral_sources
+  %h1 Referral Sources
+  %table
+    %tr
+      %th Name
+      %th Timestamp
+      %th Referral Source
+    - @referred_users.each do |user|
+      %tr
+        %td= user.full_name
+        %td
+          = user.created_at.getlocal.to_date
+          = user.created_at.getlocal
+        %td= user.referral_source
