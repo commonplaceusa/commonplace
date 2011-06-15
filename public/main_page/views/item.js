@@ -25,7 +25,7 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
     "mouseenter": "showInfo",
     "submit form.new_reply": "submitReply",
     "click a.all-replies" : "showAllReplies",
-    "hover div.replies ul li a": "replyHover",
+    "hover div.replies ul li": "replyHover",
     "click .toggle-actions": "toggleActions"
   },
   toggleActions: function() { this.$(".actions").toggle(); },
@@ -36,6 +36,7 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
     _(repliesView).each(function(reply, index) { 
       reply.published = CommonPlace.timeAgoInWords(reply.published_at); 
       reply.isHidden = index < numHiddenReplies;
+      reply.body = window.linkify(reply.body);
     });
 
     return {
@@ -74,7 +75,7 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
   },
 
   replyHover: function(e) {
-    window.location.hash = $(e.currentTarget).attr('href') + "/info";
+    window.location.hash = $(e.currentTarget).attr('data-url') + "/info";
   }
 
 });
