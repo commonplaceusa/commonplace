@@ -38,7 +38,6 @@ CommonPlace.EventInfo = CommonPlace.Info.extend({
     var params = this.model.toJSON() || {};
     params.abbrev_month = this.model.abbrev_month_name();
     params.day_of_month = this.model.day_of_month();
-    params.about = window.linkify(params.about);
     return params;
   }
 });
