@@ -11,17 +11,15 @@
 
   <ul>
     {{#replies}}
-      <li class="reply" {{#isHidden}} style="display:none;" {{/isHidden}}>
-        <a href="{{author_url}}">
+      <li class="reply" {{#isHidden}} style="display:none;" {{/isHidden}} data-url="{{author_url}}">
         <img src="{{avatar_url}}" class="avatar">
         <div class="body">
           <p>
             <span class="author">{{author}}</span>
-            {{body}}
+            {{{body}}}
           </p>
           <time>{{published}}</time>
         </div>
-        </a>
       </li>
     {{/replies}}
   </ul>
