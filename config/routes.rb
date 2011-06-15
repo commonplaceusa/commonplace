@@ -14,6 +14,7 @@ Commonplace::Application.routes.draw do
   match 'email_parse/parse' => 'email_parse#parse', :via => :post
   match "/admin/overview" => "admin#overview"
   match "/admin/clipboard" => "admin#clipboard"
+  match "/admin/show_referrers" => "admin#show_referrers"
 
   # Blog and Starter Site routes
   resources :internships, :only => [:new, :create]
