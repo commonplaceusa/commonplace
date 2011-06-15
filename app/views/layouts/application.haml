@@ -9,8 +9,8 @@
 
     %script{:type => 'text/javascript', :src => "/javascripts/head.min.js"}
       
-      = include_javascripts :application
-      = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
+    = include_javascripts :application
+    = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
     = javascript_include_tag "http://js.getexceptional.com/exceptional.js"
     %script{:type => 'text/javascript'}
       $(document).ready(function () {
