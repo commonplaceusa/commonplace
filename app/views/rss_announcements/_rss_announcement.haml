@@ -1,4 +1,4 @@
-%div{'data-href' => announcement_path(rss_announcement), :class => "announcement tooltip", 'data-title' => "Click to see replies and this community feed's profile"}
+%div{:class => "announcement tooltip", 'data-title' => "Click to see replies and this community feed's profile"}
   = image_tag rss_announcement.owner.avatar_url, :class => 'avatar'
   %time= post_date rss_announcement.created_at
   .reply-count #{ rss_announcement.replies.size } replies
