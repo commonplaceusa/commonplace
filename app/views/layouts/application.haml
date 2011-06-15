@@ -7,7 +7,7 @@
     %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
     %title= "CommonPlace #{ params[:community] && current_community.name}"
 
-    %script{:type => 'text/javascript', :src => "/javascripts/head.min.js"}
+    <script type='text/javascript' src="/javascripts/head.min.js"></script>
       
     = include_javascripts :application
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
