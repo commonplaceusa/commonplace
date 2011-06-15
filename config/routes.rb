@@ -46,6 +46,29 @@ Commonplace::Application.routes.draw do
 
   end
 
+  resources :feeds, :only => [:new, :create, :edit, :update] do
+    member do
+      get :import
+      get :profile
+      get :delete
+      get :edit_owner
+      put :update_owner
+    end
+    resource :subscription, :only => [:create, :destroy]
+    resource :invites, :controller => 'feeds/invites', :only => [:new, :create]
+  end
+
+    
+  resource :account do
+    member do 
+      get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :facebook_invite, :profile, :crop
+      put :update_new, :update_avatar, :update_interests, :settings, :update_crop
+      post :subscribe_to_feeds, :subscribe_to_groups, :avatar
+    end
+  end
+
+  resource :invites
+
   constraints LoggedInConstraint.new(true) do
 
     match 'logout' => 'user_sessions#destroy'
@@ -56,30 +79,14 @@ Commonplace::Application.routes.draw do
       resource :membership, :only => [:create, :destroy]
     end
     
-    resources :users, :only => [:index, :show] do
-      resource :met, :only => [:create, :destroy]
-    end
-
-    resources :feeds do
+    # Post-like things
+    resources :group_posts, :only => [:create]
+    
+    resources :announcements, :only => [:create]
+    
+    resources :posts, :only => [:destroy] do
       member do
-        get :profile
-        get :delete
-        get :edit_owner
-        put :update_owner
-      end
-
-      resource :invites
-
-
-      # Post-like things
-      resources :group_posts, :only => [:create]
-
-      resources :announcements, :only => [:create]
-
-      resources :posts, :only => [:destroy] do
-        member do
-          post :notify_all
-        end
+        post :notify_all
       end
     end
     
@@ -89,40 +96,12 @@ Commonplace::Application.routes.draw do
 
     resources :replies
 
-    # Account
-    resource :account do
-      member do 
-        get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :facebook_invite, :profile, :learn_more
-        put :update_new, :update_avatar, :update_interests, :settings
-        post :subscribe_to_feeds, :subscribe_to_groups, :avatar
-      end
-    end
-
     resources :avatars, :only => [:edit, :update]
     resource :inbox, :only => [:get]
+
     resources :messages do
       collection do
         get :admin_quick_view
-      end
-    end
-
-    resource :account do
-      member do 
-        get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :facebook_invite, :profile, :crop
-        put :update_new, :update_avatar, :update_interests, :settings, :update_crop
-        post :subscribe_to_feeds, :subscribe_to_groups, :avatar
-      end
-    end
-    resources :groups, :only => [] do
-      resource :membership, :only => [:create, :destroy]
-    end
-    
-    resources :feeds do
-      member do
-        get :import
-        get :profile
-        resource :subscription, :only => [:create, :destroy]
-        resource :invites, :controller => 'feeds/invites', :only => [:new, :create]
       end
     end
 
@@ -130,5 +109,5 @@ Commonplace::Application.routes.draw do
     root :to => "communities#show"
   end
 
-    match "(*backbone_route)", :to => "communities#show", :via => :get, :as => :community
+  match "(*backbone_route)", :to => "communities#show", :via => :get, :as => :community
 end

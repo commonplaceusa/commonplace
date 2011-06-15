@@ -19,7 +19,7 @@
       %nav
         = tab_to "Home", "/#{current_community.slug}"
         = tab_to "Inbox", "/messages"
-        = tab_to "Invite", "/#{current_community.slug}invites/new"
+        = tab_to "Invite", "/invites/new"
         .user-feeds
           %h4
             - if current_user.managable_feeds.count > 0
@@ -28,7 +28,7 @@
               Register a Community Feed
           %ul
             - current_user.managable_feeds.each do |feed|
-              %li= link_to feed.name, "/feeds/#{feed.id}"
+              %li= link_to feed.name, "/feeds/#{feed.id}/profile"
             %li= link_to 'Create a feed', "/feeds/new"
         = tab_to "Settings", "/account"
         = tab_to "FAQ", "/#{current_community.slug}/faq"
