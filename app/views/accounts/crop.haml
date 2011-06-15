@@ -12,11 +12,9 @@
     $('#cropbox').Jcrop({
       onChange: update_crop,
       onSelect: update_crop,
-      setSelect: [0, 0, croppable_width, croppable_height],
       aspectRatio: 1.0,
-      maxSize: [maxsize, maxsize]
-      //boxWidth: 976,
-      //boxHeight: 539
+      maxSize: [maxsize, maxsize],
+      boxWidth: 600
     });
   });
   function update_crop(coords) {
@@ -30,12 +28,11 @@
     $("#crop_h").val(Math.round(coords.h * hratio));
     console.log("New image is " + $("#crop_w").val() + " x " + $("#crop_h").val())
   }
-  
-%h1
-  Please crop your avatar
-  %br
+
+#register  
+  %h1
+    Please crop your avatar
   = image_tag current_user.avatar.url(:croppable), :id => "cropbox", :align => "center"
-  %br
 
   = semantic_form_for current_user, :url => update_crop_account_path, :method => :put do |f|
     - f.inputs do

@@ -18,12 +18,20 @@ body.application.accounts.crop
   h1 
     margin: 20px auto
     font-size: 28px
+    width: 400px
+
   #register
     +lightbox
     margin: 20px auto
     width: 840px
     min-height: 600px
     position: relative
+
+    #cropbox
+      display: block
+      margin: auto
+    .jcrop-holder
+      margin: auto
     #tool_tip
       background: white
       +border-radius(5px)
@@ -37,6 +45,7 @@ body.application.accounts.crop
       h2
         color: $cpBlue
         font-size: 20px
+
       p
         font-size: 16px
         padding: 5px 0
