@@ -1,5 +1,5 @@
 %li.reply.tooltip{'data-title' => "Click to view #{reply.user.name}'s profile."}
-  - link_to reply.user, 'data-remote' => true, :class => 'tooltip' do
+  - link_to "/users/#{reply.user.id}", 'data-remote' => true, :class => 'tooltip' do
     = image_tag reply.user.avatar_url(:thumb), :class => "avatar"
     .body
       %p
