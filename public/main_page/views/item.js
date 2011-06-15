@@ -92,7 +92,7 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: this.model.get('body'),
+      body: window.linkify(this.model.get('body')),
       id: this.model.get('id'),
       any_available_actions: CommonPlace.account.can_notify_all(this.model) || 
         CommonPlace.account.can_delete(this.model),
@@ -123,7 +123,7 @@ CommonPlace.EventItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: this.model.get('body')
+      body: window.linkify(this.model.get('body'))
     };
   },
 
@@ -146,7 +146,7 @@ CommonPlace.AnnouncementItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: this.model.get('body')
+      body: window.linkify(this.model.get('body'))
     };
   },
 
@@ -169,7 +169,7 @@ CommonPlace.GroupPostItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: this.model.get('body')
+      body: window.linkify(this.model.get('body'))
     };
   },
 
