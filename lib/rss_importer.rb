@@ -3,7 +3,7 @@ class RSSImporter
   require 'htmlentities'
   
   def self.strip_feedflare(html)
-    HTMLEntities.new.decode(html.gsub(/<div class=\"feedflare\">(.*)<\/div>/, ""))
+    HTMLEntities.new.decode(html.gsub(/<div class=\"feedflare\">(.*)<\/div>/m, ""))
   end
 
   def self.perform
