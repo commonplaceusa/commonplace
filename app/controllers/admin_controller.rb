@@ -41,4 +41,8 @@ class AdminController < ApplicationController
     end
   end
 
+  def show_referrers
+    @referred_users = User.all.select{ |u| u.referral_source.present? }
+  end
+
 end
