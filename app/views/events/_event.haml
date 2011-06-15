@@ -1,16 +1,5 @@
-%div{'data-href' => event_path(event), :class => "event tooltip", 'data-title' => 'Click to see replies and learn more.'}
+%div{:class => "event tooltip", 'data-title' => 'Click to see replies and learn more.'}
   .small_calendar.avatar= render 'events/calendar', :event => event
-  .controls
-    - if can? :destroy, event
-      &sdot;
-      = link_to 'delete', event, :method => :delete
-    - if can? :update, event
-      &sdot;
-      = link_to 'edit', [:edit, event], 'data-remote' => true
-    - if $rollout.active?(:facebook_like, current_user)
-      .social{:style => "width:52px;height:21px;overflow:hidden;"}
-        %a{:href=>"#", :onclick => "share('#{request.url.chop + url_for(event)}', '#{event.subject}','#{event.body}','#{event.owner.name}','#{current_community.name}')"}
-          Share this event!
   %time
     = event_date event.start_datetime
 
@@ -23,6 +12,5 @@
     - else
       = event.owner.name
   .body= markdown event.body
-  - if event.replies.empty?
-    = link_to "Reply to this event", "/replies", :class => "show-reply-form"
+
 = render 'shared/replies', :item => event
