@@ -1,4 +1,4 @@
-class PasswordResetsController < CommunitiesController
+class PasswordResetsController < ApplicationController
   layout 'application'
 
   def new
