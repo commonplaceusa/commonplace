@@ -46,6 +46,21 @@ Commonplace::Application.routes.draw do
 
   end
 
+  resources :feeds, :only => [:new, :create, :edit, :update] do
+    member do
+      get :import
+      get :profile
+      get :delete
+      get :edit_owner
+      put :update_owner
+    end
+    resource :subscription, :only => [:create, :destroy]
+    resource :invites, :controller => 'feeds/invites', :only => [:new, :create]
+  end
+
+    
+
+
   constraints LoggedInConstraint.new(true) do
 
     match 'logout' => 'user_sessions#destroy'
@@ -56,30 +71,14 @@ Commonplace::Application.routes.draw do
       resource :membership, :only => [:create, :destroy]
     end
     
-    resources :users, :only => [:index, :show] do
-      resource :met, :only => [:create, :destroy]
-    end
-
-    resources :feeds do
+    # Post-like things
+    resources :group_posts, :only => [:create]
+    
+    resources :announcements, :only => [:create]
+    
+    resources :posts, :only => [:destroy] do
       member do
-        get :profile
-        get :delete
-        get :edit_owner
-        put :update_owner
-      end
-
-      resource :invites
-
-
-      # Post-like things
-      resources :group_posts, :only => [:create]
-
-      resources :announcements, :only => [:create]
-
-      resources :posts, :only => [:destroy] do
-        member do
-          post :notify_all
-        end
+        post :notify_all
       end
     end
     
@@ -113,22 +112,9 @@ Commonplace::Application.routes.draw do
         post :subscribe_to_feeds, :subscribe_to_groups, :avatar
       end
     end
-    resources :groups, :only => [] do
-      resource :membership, :only => [:create, :destroy]
-    end
-    
-    resources :feeds do
-      member do
-        get :import
-        get :profile
-        resource :subscription, :only => [:create, :destroy]
-        resource :invites, :controller => 'feeds/invites', :only => [:new, :create]
-      end
-    end
-
     
     root :to => "communities#show"
   end
 
-    match "(*backbone_route)", :to => "communities#show", :via => :get, :as => :community
+  match "(*backbone_route)", :to => "communities#show", :via => :get, :as => :community
 end
