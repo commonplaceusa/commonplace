@@ -19,7 +19,7 @@ class RSSImporter
                                    :subject => item.title,
                                    :url => item.link,
                                    :community_id => feed.community_id,
-                                   :body => McBean.fragment(item.description).to_markdown,
+                                   :body => McBean.fragment(description).to_markdown,
                                    :created_at => item.date.to_datetime,
                                    :updated_at => item.date.to_datetime)
             
