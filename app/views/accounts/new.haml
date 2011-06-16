@@ -7,12 +7,16 @@
 :javascript
   function facebookUserLoggedIn()
   {
+    - if Rails.env.production
+      mpmetrics.track('Attempted Facebook Connect', {'community': '#{current_community.slug}'});
     session = FB.getSession()
     if (!session.uid || session.uid == '')
       alert("We could not log you into Facebook. Please try again.");
     else
     {
       FB.api('/me', function(response) {
+        - if Rails.env.production?
+          mpmetrics.track('Connected with Facebook', {'community': '#{current_community.slug}'});
         $("#user_full_name").val(response.name);
         $("#user_email")
           .attr("readonly", "true")
