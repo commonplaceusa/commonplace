@@ -103,8 +103,12 @@ END
   end
 
   def body_text
-    @body_text ||= 
-      EmailParseController.strip_email_body(params['stripped-text'])
+    @body_text ||=
+      if personalized_filters.has_key?(from)
+        personalized_filters[from].call(params['body-html'])
+      else
+        EmailParseController.strip_email_body(params['stripped-text'])
+      end
   end
 
   def to
@@ -113,6 +117,19 @@ END
 
   def from
     @from ||= Mail::Address.new(params[:from]).address
+  end
+
+  def personalized_filters
+    {
+      "dwayne.patterson@raleighnc.gov" => lambda do |text| 
+        text.match(/<div class=Section1>(.*?)<div>/m)[1].
+          gsub(/<.*?>/m,"").
+          gsub("&nbsp;","").
+          gsub("&#8217;", "'").
+          gsub(/\n\n\n*/,"\n\n")
+      end
+    }
+      
   end
   
 end
