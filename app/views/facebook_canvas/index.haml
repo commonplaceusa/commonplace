@@ -1,26 +1,22 @@
--#= include_javascripts :application
--#= javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
-:javascript
-  window.fbAsyncInit = function() {
-    console.log("Window loaded");
-    FB.init({appId: '#{$FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
-    console.log("Initialized Facebook");
-  };
-  (function() {
-    var e = document.createElement('script'); e.async = true;
-    e.src = document.location.protocol +
-      '//connect.facebook.net/en_US/all.js';
-    document.getElementById('fb-root').appendChild(e);
-  }());
-  
--# TODO: Change this from staging to production!
-= link_to(image_tag("http://staging.ourcommonplace.com/images/join-commonplace.png"),"http://www.ourcommonplace.com/", :target => "_top", :id => "join")
-#fb-root
-
+= include_javascripts :application
+= javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
+-#= javascript_include_tag "http://static.ak.fbcdn.net/connect/en_US/core.debug.js"
 %script
+  console.log("Got to Facebook");
+  $(document).ready(function() {
+  console.log("Window is ready");
+  FB.init({
+  appId : "#{($FacebookConfig || {})['app_id']}",
+  status : true,
+  cookie : true,
+  xfbml  : true
+  });
+  console.log("Initialized");
   s = FB.getSession();
   console.log(s);
   = "FB.api('/#{@request_id}?access_token=#{@application_token}', 'GET', {access_token: '#{@application_token}'}, function(r) { $('#join').attr('href','http://' + r.data + '.ourcommonplace.com/'); });"
-  //});
+  });
   console.log("Queried API");
-
+-# TODO: Change this from staging to production!
+= link_to(image_tag("http://staging.ourcommonplace.com/images/join-commonplace.png"),"http://www.ourcommonplace.com/", :target => "_top", :id => "join")
+#fb-root
