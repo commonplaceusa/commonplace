@@ -1,6 +1,6 @@
 development:
   app_id: "179741908724938"
-  app_secret: "7b685eda4296ea2c252d8bb721a4b372"
+  app_secret: ""
 
 staging:
   app_id: "***REMOVED***"
@@ -8,4 +8,4 @@ staging:
 
 production:
   app_id: "170191166378346"
-  app_secret: "4d1d96dc9b402ca6779f77bc9e88b89a"
+  app_secret: "7b685eda4296ea2c252d8bb721a4b372"
