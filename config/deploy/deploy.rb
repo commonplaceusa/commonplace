@@ -7,12 +7,13 @@ namespace :deploy do
  
   task :symlink do
   end
- 
+
   task :update_code do
     commands = ["cd #{current_path}",
                 "git fetch origin",
                 "git reset --hard #{branch}",
-                "git submodule update --init"]
+                "git submodule update --init",
+                "bundle exec rake cache:clear RAILS_ENV=#{stage}"]
     run commands.join("; ")
   end
   
