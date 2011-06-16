@@ -23,17 +23,6 @@
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
     #fb-root
-    :javascript
-      FB.init({
-        appId : "#{($FacebookConfig || {})['app_id']}",
-        status : true,
-        cookie : true,
-        xfbml  : true
-      });
-      function facebook_pass(session)
-      {
-      return session.uid;
-      }
     - if Rails.env.production?
       %script
         var mp_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://'); document.write(unescape('%3Cscript src="' + mp_protocol + 'api.mixpanel.com/site_media/js/api/mixpanel.js" type="text/javascript"%3E%3C/script%3E')); </script> <script type='text/javascript'> try {  var mpmetrics = new MixpanelLib('811a15fe46de2d4df84c6ee51112e7ab'); } catch(err) { null_fn = function () {}; var mpmetrics = {  track: null_fn,  track_funnel: null_fn,  register: null_fn,  register_once: null_fn, register_funnel: null_fn }; }
@@ -100,4 +89,14 @@
 
        var _dashboard_project_id = "e6a70fade40ed51da8bdfc4402bf786284b18908";
       (function() {function async_load(){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 'true'; s.src = (document.location.protocol == 'https:' ? "https:" : "http:") + '//dtn4rpwzrtdnb.cloudfront.net/dashboard.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);} if (window.attachEvent) window.attachEvent('onload', async_load); else window.addEventListener('load', async_load, false); })();
-
+  :javascript
+    FB.init({
+      appId : "#{($FacebookConfig || {})['app_id']}",
+      status : true,
+      cookie : true,
+      xfbml  : true
+    });
+    function facebook_pass(session)
+    {
+      return session.uid;
+    }
