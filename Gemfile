@@ -23,6 +23,7 @@ gem 'oauth2'
 gem 'authlogic_oauth2', ">= 1.1.6", :git => "git://github.com/commonplaceusa/authlogic_oauth2.git"
 gem 'cancan'
 gem 'ssl_requirement'
+gem 'ezcrypto'
 
 
 # Views/Stylesheets

@@ -42,35 +42,22 @@
             - f.buttons do
               = f.submit "Invite"
             %br
-        %li
+      /
+        %li{:style => "height: 200px"}
           #step_three
             =t(".step_three")
-          %table
-            %tr
-              %td
-                %a{:href => "/pdfs/#{t('.file_names')[0]}/#{current_community.slug}.pdf"}
-                  %img{:src => "/images/doc-icon.png"}
-              /
-                %td
-                  %img{:src => "/images/doc-icon.png"}
-                %td
-                  %img{:src => "/images/doc-icon.png"}
-                %td
-                  %img{:src => "/images/doc-icon.png"}
-            %tr
-              %td{:style => "text-align: center;"}
-                =t(".file_descriptions")[0]
-              /
-                %td{:style => "text-align: center;"} Description
-                %td{:style => "text-align: center;"} Description
-                %td{:style => "text-align: center;"} Description
-            %tr
-              %td
-                %br
-            /
+            %table
               %tr
-                %td{:colspan => "2.5"}
                 %td
-                  %img{:src => "/images/download-btn.png", :width => "111%", :height => "100%", :onclick => "void();"}
+                  %a{:href => "/pdfs/#{t('.file_names')[0]}/#{current_community.slug}.pdf"}
+                    %img{:src => "/images/doc-icon.png"}
+              %tr
+                %td{:style => "text-align: center;"}
+                  =t(".file_descriptions")[0]
+      %li{:style => "text-align: right"}
+        %a{:href => root_url}
+          %img{:src => "/images/buttons/continue.png"}
 
     %br{:class=>"cleared"}
+    %br
+    

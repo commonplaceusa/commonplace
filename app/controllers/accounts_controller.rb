@@ -45,9 +45,15 @@ class AccountsController < CommunitiesController
     password = ""
     if params[:user][:facebook_session].present?
       j = ActiveSupport::JSON.decode(params[:user][:facebook_session])
-      password = j["uid"]
+      params[:user][:facebook_uid] = j["uid"]
       params[:user].delete("facebook_session")
     end
+    if params[:user][:facebook_uid].present?
+      password = params[:user][:facebook_uid]
+      # Permute it!
+      password = $CryptoKey.encrypt(password)
+    end
+    
     @user = User.new(params[:user].merge(:community => current_community))
     if @user.save
       unless password == ""
@@ -138,7 +144,11 @@ class AccountsController < CommunitiesController
 
   def subscribe_to_groups
     current_user.group_ids = params[:group_ids]
-    redirect_to root_url
+    if current_user.facebook_user?
+      redirect_to :action => "facebook_invite"
+    else
+      redirect_to root_url
+    end
   end
 
   def update

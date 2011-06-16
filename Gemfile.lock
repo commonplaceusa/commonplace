@@ -106,6 +106,7 @@ GEM
       abstract (>= 1.0.0)
     exceptional (2.0.32)
       rack
+    ezcrypto (0.7.2)
     factory_girl (1.3.3)
     faraday (0.6.1)
       addressable (~> 2.2.4)
@@ -339,6 +340,7 @@ DEPENDENCIES
   compass (~> 0)
   database_cleaner
   exceptional
+  ezcrypto
   factory_girl
   forgery
   formtastic
