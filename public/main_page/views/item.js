@@ -1,5 +1,4 @@
 CommonPlace.renderBody = function(text) {
-  console.log(text);
   return (new Showdown.converter()).makeHtml(window.linkify(text));
 };
 
