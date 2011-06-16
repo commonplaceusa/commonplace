@@ -13,7 +13,7 @@ namespace :deploy do
                 "git fetch origin",
                 "git reset --hard #{branch}",
                 "git submodule update --init",
-                "bundle exec rake cache:clear RAILS_ENV=#{stage}"]
+                "bundle exec rake cache:clear"]
     run commands.join("; ")
   end
   
