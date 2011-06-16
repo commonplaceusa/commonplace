@@ -21,16 +21,12 @@
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
     #fb-root
     %script
-      window.fbAsyncInit = function() {
       FB.init({
       appId : "#{($FacebookConfig || {})['app_id']}",
       status : true,
       cookie : true,
       xfbml  : true
       });
-      - if params[:first].present? and current_user.is_facebook_user and false
-        facebook_invite();
-      };
       function facebook_pass(session)
       {
       return session.uid;
