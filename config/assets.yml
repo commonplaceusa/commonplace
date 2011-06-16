@@ -24,6 +24,7 @@ stylesheets:
 
 javascripts:
   application:
+    - public/javascripts/showdown.js
     - public/javascripts/jquery-1.6.1.js
     - public/javascripts/jquery-ui.js
     - public/javascripts/jquery/jquery.*.js
