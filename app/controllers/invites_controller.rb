@@ -5,6 +5,9 @@ class InvitesController < ApplicationController
 
   def create
     authorize!(:read, Post)
+    unless params[:emails].present?
+      params[:emails] = params[:invite][:email]
+    end
     params[:emails].split(/,|\r\n|\n/).each do |email|
       unless User.exists?(:email => email)
         Resque.enqueue(Invitation, 
