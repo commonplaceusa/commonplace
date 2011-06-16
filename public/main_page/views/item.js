@@ -1,4 +1,5 @@
 CommonPlace.renderBody = function(text) {
+  console.log(text);
   return (new Showdown.converter()).makeHtml(window.linkify(text));
 };
 
@@ -128,7 +129,7 @@ CommonPlace.EventItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: CommonPlace.render(this.model.get('body'))
+      body: CommonPlace.renderBody(this.model.get('body'))
     };
   },
 
