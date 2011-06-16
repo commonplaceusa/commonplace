@@ -97,7 +97,7 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: CommonPlace.renderBody(this.model.get('body'));
+      body: CommonPlace.renderBody(this.model.get('body')),
       id: this.model.get('id'),
       any_available_actions: CommonPlace.account.can_notify_all(this.model) || 
         CommonPlace.account.can_delete(this.model),
