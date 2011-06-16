@@ -14,6 +14,7 @@
     = javascript_include_tag "https://js.getexceptional.com/exceptional.js"
     %script{:type => 'text/javascript'}
       $(document).ready(function () {
+      Exceptional.setHost('exceptional-api.heroku.com');
       Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
       });
     = include_stylesheets :application
