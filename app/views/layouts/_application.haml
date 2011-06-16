@@ -1,21 +1,21 @@
 !!! 5
-%html{:xmlns => "http://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
+%html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
   %head
-    %link{ :href=> 'http://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
+    %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
     %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
     %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
     %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
     %title= "CommonPlace - #{current_community.name}"
 
     %script{:type => 'text/javascript', :src => "/javascripts/head.min.js"}
-    = javascript_include_tag "http://js.getexceptional.com/exceptional.js"      
+    = javascript_include_tag "https://js.getexceptional.com/exceptional.js"      
     = include_javascripts :application
     = include_javascripts :templates
-    = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
+    = javascript_include_tag "https://connect.facebook.net/en_US/all.js#xfbml=1"
     
     = include_stylesheets :application
     / [if IE]
-      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
+      = javascript_include_tag "https://html5shiv.googlecode.com/svn/trunk/html5.js"
       = include_stylesheets :ie
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
