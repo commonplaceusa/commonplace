@@ -227,7 +227,7 @@ class User < ActiveRecord::Base
   end
   
   def facebook_avatar_url
-    "http://graph.facebook.com/" + self.facebook_uid.to_s + "/picture/?type=large"
+    "https://graph.facebook.com/" + self.facebook_uid.to_s + "/picture/?type=large"
   end
   
   def avatar_url(style_name = nil)
