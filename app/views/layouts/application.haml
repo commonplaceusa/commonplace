@@ -24,14 +24,12 @@
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
     #fb-root
     :javascript
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId : "#{($FacebookConfig || {})['app_id']}",
-          status : true,
-          cookie : true,
-          xfbml  : true
-        });
-      };
+      FB.init({
+        appId : "#{($FacebookConfig || {})['app_id']}",
+        status : true,
+        cookie : true,
+        xfbml  : true
+      });
       function facebook_pass(session)
       {
       return session.uid;
