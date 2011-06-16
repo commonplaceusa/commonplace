@@ -1,8 +1,11 @@
 development:
   app_id: "179741908724938"
+  app_secret: "7b685eda4296ea2c252d8bb721a4b372"
 
 staging:
   app_id: "102571013152856"
+  app_secret: "564f8a9b86a0121d6808de00affb62ef"
 
 production:
   app_id: "170191166378346"
+  app_secret: "4d1d96dc9b402ca6779f77bc9e88b89a"
