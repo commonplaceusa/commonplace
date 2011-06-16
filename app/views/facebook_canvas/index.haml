@@ -9,8 +9,8 @@
   xfbml  : true
   });
   s = FB.getSession()
-  = "FB.api('/#{@request_id}?access_token=#{@application_token}', 'GET', {access_token: '#{@application_token}'}, function(r) { $('#join').attr('href','http://' + r.data + '.commonplaceusa.com/'); });"
+  = "FB.api('/#{@request_id}?access_token=#{@application_token}', 'GET', {access_token: '#{@application_token}'}, function(r) { $('#join').attr('href','http://' + r.data + '.ourcommonplace.com/'); });"
   });
 -# TODO: Change this from staging to production!
-= link_to(image_tag("http://staging.commonplaceusa.com/images/join-commonplace.png"),"http://www.commonplaceusa.com/", :target => "_top", :id => "join")
+= link_to(image_tag("http://staging.ourcommonplace.com/images/join-commonplace.png"),"http://www.ourcommonplace.com/", :target => "_top", :id => "join")
 #fb-root
