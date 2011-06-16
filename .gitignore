@@ -9,6 +9,7 @@ tmp/*
 doc/api
 doc/app
 config/database.yml
+config/crypto.yml
 **/**/#*
 **/**/.#*
 *~x
