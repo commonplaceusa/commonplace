@@ -3,7 +3,7 @@
 = javascript_include_tag "http://static.ak.fbcdn.net/connect/en_US/core.debug.js"
 %script
   console.log("Got to Facebook");
-  $(document).ready(function() {
+  //$(document).ready(function() {
   console.log("Window is ready");
   FB.init({
   appId : "#{($FacebookConfig || {})['app_id']}",
@@ -15,7 +15,7 @@
   s = FB.getSession();
   console.log(s);
   = "FB.api('/#{@request_id}?access_token=#{@application_token}', 'GET', {access_token: '#{@application_token}'}, function(r) { $('#join').attr('href','http://' + r.data + '.ourcommonplace.com/'); });"
-  });
+  //});
   console.log("Queried API");
 -# TODO: Change this from staging to production!
 = link_to(image_tag("http://staging.ourcommonplace.com/images/join-commonplace.png"),"http://www.ourcommonplace.com/", :target => "_top", :id => "join")
