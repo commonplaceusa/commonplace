@@ -7,7 +7,7 @@
 :javascript
   function facebookUserLoggedIn()
   {
-    - if Rails.env.production
+    if (CommonPlace.env == "production")
       mpmetrics.track('Attempted Facebook Connect', {'community': '#{current_community.slug}'});
     session = FB.getSession()
     if (!session.uid || session.uid == '')
@@ -15,8 +15,11 @@
     else
     {
       FB.api('/me', function(response) {
-        - if Rails.env.production?
+        if (CommonPlace.env == "production")
+        {
+          mpmetrics.identify(response.email);
           mpmetrics.track('Connected with Facebook', {'community': '#{current_community.slug}'});
+        }
         $("#user_full_name").val(response.name);
         $("#user_email")
           .attr("readonly", "true")
