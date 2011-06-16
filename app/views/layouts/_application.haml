@@ -66,6 +66,7 @@
   - if Rails.env.production?
     :javascript
       $(document).ready(function () {
+        Exceptional.setHost('exceptional-api.heroku.com');
         Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
       });
   - if params[:first].present? and current_user.is_facebook_user and $rollout.active?(:facebook_like, current_user)
