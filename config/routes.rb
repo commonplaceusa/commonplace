@@ -8,6 +8,7 @@ Commonplace::Application.routes.draw do
         })
 
   get "facebook_canvas/index"
+  match "/facebook_canvas/" => "facebook_canvas#index"
 
   # Global routes
 
@@ -89,8 +90,6 @@ Commonplace::Application.routes.draw do
         post :notify_all
       end
     end
-    
-    match "/facebook_canvas/" => "facebook_canvas#index"
 
     resources :events, :only => [:create]  
 
