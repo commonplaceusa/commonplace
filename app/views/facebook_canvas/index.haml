@@ -1,7 +1,8 @@
-= include_javascripts :application
+-#= include_javascripts :application
 -#= javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
 = javascript_include_tag "http://static.ak.fbcdn.net/connect/en_US/core.debug.js"
 %script
+  console.log("Got to Facebook");
   $(document).ready(function() {
   console.log("Window is ready");
   FB.init({
