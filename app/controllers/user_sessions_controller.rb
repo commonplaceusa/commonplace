@@ -1,4 +1,12 @@
 class UserSessionsController < ApplicationController
+
+  before_filter :obfuscate_facebook_passcode
+
+  def obfuscate_facebook_passcode
+    if params[:user_session].present? and params[:user_session][:facebook_uid].present?
+      params[:user_session][:password] = $CryptoKey.encrypt(params[:user_session][:facebook_uid])
+    end
+  end
   
   def new
     authorize! :new, UserSession

@@ -40,10 +40,6 @@
       });
     }
   }
-  function facebook_pass(session)
-  {
-    return session.uid;
-  }
   $(document).ready(function() {
     FB.Event.subscribe('auth.login', function(response) {
       if (response.session)
