@@ -5,15 +5,6 @@
     = "mpmetrics.track('Community Registration Page', {'community': '#{current_community.slug}'});"
 
 :javascript
-  $(document).ready(function() {
-    FB.init({
-      appId  : "#{($FacebookConfig || {})['app_id']}",
-      status : true,
-      cookie : true,
-      xfbml  : true
-    });
-  });
-
   function facebookUserLoggedIn()
   {
     session = FB.getSession()
