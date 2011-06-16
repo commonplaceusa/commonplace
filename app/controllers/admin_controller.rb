@@ -31,7 +31,7 @@ class AdminController < ApplicationController
         name = entry[0]
         email = entry[1]
         address = entry[2]
-        user = User.new(:full_name => name, :email => email, :address => address, :community => current_community)
+        user = User.new(:full_name => name, :email => email, :address => address, :community => Community.find(params[:clipboard_community]))
         if user.save_without_session_maintenance
           email_addresses_registered << email
           Resque.enqueue(ClipboardWelcome, user.id)
