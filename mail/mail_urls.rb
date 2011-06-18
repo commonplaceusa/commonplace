@@ -1,11 +1,19 @@
 module MailUrls
 
   def url(path)
-    "http://#{community.slug}.ourcommonplace.com" + path
+    if Rails.env.development?
+      "http://localhost:3000" + path
+    else
+      "http://ourcommonplace.com" + path
+    end
   end
 
   def asset_url(path)
-    "http://assets.ourcommonplace.com" + path
+    if Rails.env.development?
+      "http://localhost:3000" + path
+    else
+      "http://ourcommonplace.com" + path
+    end
   end
 
   def subscribe_url
@@ -37,7 +45,7 @@ module MailUrls
   end
 
   def root_url
-    url("")
+    url("/" + community.slug)
   end
 
   def logo_url
