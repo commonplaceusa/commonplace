@@ -1,543 +1,312 @@
 <html>
+
   <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>{{community_name}} CommonPlace Daily Bulletin</title>
-    <link href='http://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css' rel="stylesheet" type="text/css">
     <style>
-{{styles}}
+      {{styles}}
     </style>
   </head>
-  <body marginheight="0" topmargin="0" marginwidth="0" leftmargin="0" bgcolor="#cee7fe">
-    <table cellspacing="0" cellpadding="0" border="11" align="center" width="621" bgcolor="#f7f3e6" style="border-width:11px; border-color:#ffffff; border-style:solid; background-color:#fafafa;">
-      <tbody>
-        <tr>
-          <td valign="top" border="0" style="border: none; ">
 
-            <!-- Header Block -->
-            <table cellspacing="0" cellpadding="0" border="0" align="center" style="padding-bottom: 10px;">
-              <tbody>
+  <body>
 
-                <tr bgcolor="#1b334a">
+    <table id="body">
 
-                  <td width="" align="left" valign="middle" bgcolor="#1b334a" style="padding: 15px 8px 10px 10px; margin: 0px;">
+      {{< header }}
 
-                    <h1 style="margin: 0; font-size: 42px; color:#33384f;">
+      <tr>
+        <td id="intro">
+          <h1>Your {{community_name}} CommonPlace Daily Digest</h1>
+          <p>Hi {{short_user_name}}, <br>
+            Below is all the information that was posted to
+            {{community_name}}'s CommonPlace today -- posts from your
+            neighbors, upcoming events, and announcements from groups
+            and community feeds that you care about. If you ever want
+            to add what you see in your daily bulletin, you can
+            <a href="{{settings_url}}"><span>adjust your email
+              notification settings</span></a> or
+              <a href="{{feeds_url}}"><span>subscribe to more community
+                feeds</span></a>.</p>
+        </td>
+      </tr>
 
-                      <img src="{{logo_url}}" alt="CommonPlace" width="221" height="38" align="top">
+      <tr>
+        <td id="posts">
+          <h3>Neighborhood Posts</h3>
+          <p class="subhead">Here are posts from your neighbors today:</p>
 
-                    </h1>
-                  </td>
-                  <td width="366" align="left" valign="middle">
-                    <h3 style="margin-top: 19px; padding-bottom: 0; font-size: 22px; font-family: Rockwell, Helvetica, Arial; text-align:left;font-weight: normal; color: #ac322f; margin-bottom: 8px;">{{community_name}}</h3>
-                  </td>
-                </tr>
-              </tbody>
+          {{#posts}}
+            <hr class="post">
+            <table class="post">
+              <tr>
+                <td class="avatar" rowspan="6">
+                  <img src="{{user_avatar_url}}" width="50" height="50">
+                </td>
+                <td class="title">
+                  <a href="{{url}}"><span>{{subject}}</span></a>
+                </td>
+                <td class="posted-at">{{posted_at}}</td>
+              </tr>
+
+              <tr>
+                <td class="author" colspan="2">{{user_name}}</td>
+              </tr>
+
+              <tr>
+                <td class="body" colspan="2">{{{body}}}</td>
+              </tr>
+
+              <tr>
+                <td class="replies" colspan="2">
+                  {{#replies}}
+                    <hr class="reply">
+                    <table class="reply">
+                      <tr>
+                        <td class="avatar" rowspan="2">
+                          <img src="{{user_avatar_url}}" width="20" height="20">
+                        </td>
+                        <td class="author">{{user_name}}</td>
+                        <td class="posted-at">{{posted_at}}</td>
+                      </tr>
+                      <tr>
+                        <td class="body" colspan="2"><p>{{body}}</p></td>
+                      </tr>
+                    </table>
+                  {{/replies}}
+                  <hr class="reply">
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="actions">
+                  {{#num_more_replies}}
+                    <div class="more-replies">
+                      <a href="{{url}}">
+                        [ + {{num_more_replies}} more replies... ]
+                      </a>
+                    </div>
+                  {{/num_more_replies}}
+                  <a href="{{url}}" class="reply-button"><span>
+                    Write a Reply to {{user_short_name}}
+                  </span></a>
+                </td>
+              </tr>
+            </table>
+          {{/posts}}
+          <hr class="post">
+          <div class="action-section">
+            <h4>Have something you want to post to your neighbors?</h4>
+            <p>A request, announcement, offer, question, invitation? Lost a cat?
+              Need to borrow a ladder?
+              <a href="{{new_post_url}}"><span>Click here</span></a> to post.</p>
+          </div>
+        </td>
+      </tr>
+
+      {{#announcements?}}
+      <tr>
+        <td id="announcements">
+          <h3>Community Announcements</h3>
+          <p class="subhead">Here are announcements from your subscriptions today:</p>
+
+          {{#announcements}}
+            <hr class="post">
+            <table class="post">
+              <tr>
+                <td class="avatar" rowspan="6">
+                  <img src="{{owner_avatar_url}}" width="50" height="50">
+                </td>
+                <td class="title">
+                  <a href="{{url}}"><span>{{subject}}</span></a>
+                </td>
+                <td class="posted-at">{{posted_at}}</td>
+              </tr>
+
+              <tr>
+                <td class="author" colspan="2">{{owner_name}}</td>
+              </tr>
+
+              <tr>
+                <td class="body" colspan="2">{{{body}}}</td>
+              </tr>
+
+              <tr>
+                <td class="replies" colspan="2">
+                  {{#replies}}
+                    <hr class="reply">
+                    <table class="reply">
+                      <tr>
+                        <td class="avatar" rowspan="2">
+                          <img src="{{user_avatar_url}}" width="20" height="20">
+                        </td>
+                        <td class="author">{{user_name}}</td>
+                        <td class="posted-at">{{posted_at}}</td>
+                      </tr>
+                      <tr>
+                        <td class="body" colspan="2"><p>{{body}}</p></td>
+                      </tr>
+                    </table>
+                  {{/replies}}
+                  <hr class="reply">
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="actions">
+                  {{#num_more_replies}}
+                    <div class="more-replies">
+                      <a href="{{url}}">
+                        [ + {{num_more_replies}} more replies... ]
+                      </a>
+                    </div>
+                  {{/num_more_replies}}
+                  <a href="{{url}}" class="reply-button"><span>
+                    Write a Reply to {{owner_name}}
+                  </span></a>
+                </td>
+              </tr>
+            </table>
+          {{/announcements}}
+        </td>
+      </tr>
+      {{/announcements?}}
+
+      {{#events?}}
+      <tr>
+        <td id="community-events">
+          <h2>Upcoming Community Events</h2>
+          <p class="h2-sub">
+            Events in the next week in your community
+          </p>
+
+          {{#events}}
+
+            <table class="event">
+              <tr>
+                <td class="date-time" rowspan="4">
+                  {{#date}}
+                    <div class="calendar">
+                      <div class="short-month">{{short_month}}</div>
+                      <div class="day">{{day}}</div>
+                    </div>
+                  {{/date}}
+                  {{#time}}
+                    <span class="time">{{start}}</span> -
+                    <span class="time">{{end}}</span>
+                  {{/time}}
+                </td>
+                <td class="name">
+                  <a href="{{url}}">{{name}}</a>
+                </td>
+                <td class="posted-at">
+                </td>
+              </tr>
+              <tr>
+                <td class="posted-by" colspan="2">
+                  {{posted_by}}
+                </td>
+              </tr>
+              <tr>
+                <td class="body" colspan="2">
+                  <p>{{body}}</p>
+                  <p><span class="event-field">Venue:</span> {{venue}}
+                  <span class="event-field">Address:</span> {{address}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="replies" colspan="2">
+                  {{#replies}}
+                    <table class="reply" rowspacing="5" colspacing="5">
+                      <tr>
+                        <td class="avatar">
+                          <img src="{{user_avatar_url}}" width="20" height="20">
+                        </td>
+                        <td class="body">
+                          <p class="posted-by">{{posted_by}}</p>
+                          <p class="body">{{body}}</p>
+                        </td>
+                        <td class="posted-at">{{posted_at}}</td>
+                      </tr>
+                    </table>
+                  {{/replies}}
+
+                  {{#num_more_replies}}
+                    <div class="more-replies">
+                      <a href="{{url}}">
+                        <span>[ + {{num_more_replies}} more replies... ]</span>
+                      </a>
+                    </div>
+                  {{/num_more_replies}}
+
+                  <div class="event-reply">
+                    <a href="{{url}}"><span>Reply to this Event</span></a>
+                  </div>
+                </td>
+              </tr>
             </table>
 
-            <table cellspacing="0" cellpadding="0" border="0" align="center" style="padding-left: 10px; padding-right: 10px;" id="header">
-              <tbody>
-                <tr>
-                  <td valign="top" style="padding-top: 10px; padding-bottom: 19px;">
-                    <table cellspacing="0" cellpadding="0" border="0" align="center">
-                      <tbody>
-                        <!--- H2 header --->
-                        <tr>
-                          <td valign="top">
+          {{/events}}
 
-                            <h2 style="margin: 0; padding-bottom: 5px; font-size: 24px; font-family: Rockwell, Helvetica, Arial;font-weight: normal; color: #ac322f;">{{community_name}} CommonPlace Daily Bulletin</h2>
 
-                            <h3 class="date">{{header_text}}</h3>
-
-                          </td>
-                        </tr>
-
-                        <!--- Recent Neighborhood Posts ---->
-
-                        {{#posts_present}}
-
-                          <tr>
-                            <td valign="top" style="padding-top: 10px; padding-bottom: 10px;">
-                              <table cellspacing="0" cellpadding="0" border="0" align="center">
-                                <tbody>
-                                  <tr>
-                                    <td valign="top" class="section-header">
-
-
-                                      <h2>Recent Neighborhood Posts</h2>
-
-                                      <p class="sub-head">Posts on CommonPlace today</p>
-                                    </td>
-                                  </tr>
-
-                                  {{#posts}}
-                                    <tr>
-                                      <td valign="top">
-                                        <table class="post"
-                                          bgcolor="#fafafa" cellspacing="0" width="100%" cellpadding="0" border="0" align="left">
-
-                                          <tbody>
-
-                                            <!--- Helpful Diagram
-                                            +--------+---------------------+
-                                            | Avatar | Author              |
-                                            |        |---------------------|
-                                            |        | Title               |
-                                            |        |---------------------|
-                                            |        | Body                |
-                                            |        |---------------------|
-                                            |        | Replies (sub-table) |
-                                            |        |---------------------|
-                                            |        | Reply Button        |
-                                            +--------+---------------------+
-                                            -->
-
-                                            <tr>
-
-                                              <td class="avatar" rowspan="5" align="left" valign="top">
-                                                <img src="{{avatar_url}}" width="50" height="50" />
-                                              </td>
-
-                                              <td width="335" valign="top" class="author">
-                                                <div>{{author}}</div>
-                                              </td>
-
-
-                                            </tr>
-
-                                            <tr>
-                                              <td valign="top"  class="title">
-                                                <span>{{title}}</span>
-                                              </td>
-                                            </tr>
-
-                                            <tr>
-                                              <td class="body" valign="top">
-                                                <p>{{body}}</p>
-                                              </td>
-                                            </tr>
-
-                                            <tr>
-                                              <td class="replies">
-                                                <!--
-                                                +--------+--------+------+
-                                                | Avatar | Author | Time |
-                                                |        +--------+------+
-                                                |        | Body          |
-                                                +--------+---------------+
-                                                -->
-                                                {{#replies}}
-                                                  <div class="reply-separator"></div>
-                                                  <table class="reply">
-                                                    <tr>
-                                                      <td class="avatar" rowspan="2">
-                                                        <img src="{{avatar_url}}" width="25" height="25">
-                                                      </td>
-                                                      <td class="author">
-                                                        {{author}}
-                                                      </td>
-
-                                                      <td class="time">
-                                                        {{published_at}}
-                                                      </td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td class="body" colspan="2">
-                                                        <p>{{body}}</p>
-                                                      </td>
-                                                    </tr>
-                                                  </table>
-                                                {{/replies}}
-                                              </td>
-                                            </tr>
-
-
-                                            <tr>
-                                              <td class="respond">
-                                                <div class="reply-separator"></div>
-                                                <a href="{{url}}"><img alt="Reply" src="{{reply_button_url}}"></a>
-                                              </td>
-                                            </tr>
-
-                                          </tbody>
-                                        </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td><div class="post-separator"></div></td>
-                                    </tr>
-                                  {{/posts}}
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-
-                        {{/posts_present}}
-                        <!--- Recent Community Announcements ---->
-                        {{#announcements_present}}
-                          <tr>
-                            <td valign="top" style="padding-top: 10px; padding-bottom: 10px;">
-                              <table cellspacing="0" cellpadding="0" border="0" align="center">
-                                <tbody>
-                                  <tr>
-                                    <td valign="top" class="section-header">
-
-
-                                      <h2>Recent Community Announcements</h2>
-
-                                      <p class="sub-head">Announcements on CommonPlace today</p>
-                                    </td>
-                                  </tr>
-
-                                  {{#announcements}}
-                                    <tr>
-                                      <td valign="top">
-                                        <table class="post"
-                                          bgcolor="#fafafa" cellspacing="0" width="100%" cellpadding="0" border="0" align="left">
-
-                                          <tbody>
-
-                                            <!--- Helpful Diagram
-                                            +--------+---------------------+
-                                            | Avatar | Author              |
-                                            |        |---------------------|
-                                            |        | Title               |
-                                            |        |---------------------|
-                                            |        | Body                |
-                                            |        |---------------------|
-                                            |        | Subscribe           |
-                                            |        |---------------------|
-                                            |        | Replies (sub-table) |
-                                            |        |---------------------|
-                                            |        | Reply Button        |
-                                            +--------+---------------------+
-                                            -->
-
-                                            <tr>
-
-                                              <td class="avatar" rowspan="6" align="left" valign="top">
-                                                <img src="{{avatar_url}}" width="50" height="50" />
-                                              </td>
-
-                                              <td width="335" valign="top" class="author">
-                                                <div>{{author}}</div>
-                                              </td>
-
-
-                                            </tr>
-
-                                            <tr>
-                                              <td valign="top"  class="title">
-                                                <span>{{title}}</span>
-                                              </td>
-                                            </tr>
-
-                                            <tr>
-                                              <td class="body" valign="top">
-                                                <p>{{body}}</p>
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td class="subscribe">
-                                                {{#feed_id}}
-                                                  <div>
-                                                    <a href="{{author_url}}">
-                                                      <span>Subscribe to {{author}}
-                                                      </span>
-                                                    </a>
-                                                  </div>
-                                                {{/feed_id}}
-                                              </td>
-                                            </tr>
-
-                                            <tr>
-                                              <td class="replies">
-                                                <!--
-                                                +--------+--------+------+
-                                                | Avatar | Author | Time |
-                                                |        +--------+------+
-                                                |        | Body          |
-                                                +--------+---------------+
-                                                -->
-                                                {{#replies}}
-                                                  <div class="reply-separator"></div>
-                                                  <table class="reply">
-                                                    <tr>
-                                                      <td class="avatar" rowspan="2">
-                                                        <img src="{{avatar_url}}" width="25" height="25">
-                                                      </td>
-                                                      <td class="author">
-                                                        {{author}}
-                                                      </td>
-
-                                                      <td class="time">
-                                                        {{published_at}}
-                                                      </td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td class="body" colspan="2">
-                                                        <p>{{body}}</p>
-                                                      </td>
-                                                    </tr>
-                                                  </table>
-                                                {{/replies}}
-                                              </td>
-                                            </tr>
-
-
-                                            <tr>
-                                              <td class="respond">
-                                                <div class="reply-separator"></div>
-                                                <a href="{{url}}"><img alt="Reply" src="{{reply_button_url}}"></a>
-                                              </td>
-                                            </tr>
-
-                                          </tbody>
-                                        </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td><div class="post-separator"></div></td>
-                                    </tr>
-                                  {{/announcements}}
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-
-                        {{/announcements_present}}
-                        <!--- Upcomming Community Events---->
-
-                        {{#events_present}}
-                          <tr>
-                            <td valign="top" style="padding-top: 10px; padding-bottom: 10px;">
-                              <table cellspacing="0" cellpadding="0" border="0" align="center">
-                                <tbody>
-                                  <tr>
-                                    <td valign="top" class="section-header">
-
-
-                                      <h2>Upcoming Community Events</h2>
-
-                                      <p class="sub-head">Events happening in the next week in your community.</p>
-                                    </td>
-                                  </tr>
-
-                                  {{#events}}
-                                    <tr>
-                                      <td valign="top">
-                                        <table class="post event"
-                                          bgcolor="#fafafa" cellspacing="0" width="100%" cellpadding="0" border="0" align="left">
-
-                                          <tbody>
-
-                                            <!--- Helpful Diagram
-                                            +--------+---------------------+
-                                            | Avatar | Author              |
-                                            |        |---------------------|
-                                            |        | Title               |
-                                            |        |---------------------|
-                                            |        | Body                |
-                                            |        |---------------------|
-                                            |        | Replies (sub-table) |
-                                            |        |---------------------|
-                                            |        | Reply Button        |
-                                            +--------+---------------------+
-                                            -->
-
-                                            <tr>
-
-                                              <td class="avatar" rowspan="5" align="left" valign="top">
-                                                <div class="calendar">
-                                                  <div class="short-month">{{short_month}}</div>
-                                                  <div class="day">{{day}}</div>
-                                                </div>
-
-                                                <span class="time">{{starts_at}}</span>
-                                                -
-                                                <span class="time">{{ends_at}}</span>
-                                              </td>
-
-                                              <td width="335" valign="top" class="author">
-                                                <div>{{author}}</div>
-                                              </td>
-
-
-                                            </tr>
-
-                                            <tr>
-                                              <td valign="top"  class="title">
-                                                <span>{{title}}</span>
-                                              </td>
-                                            </tr>
-
-                                            <tr>
-                                              <td class="body" valign="top">
-                                                <p>{{body}}</p>
-                                              </td>
-                                            </tr>
-
-                                            <tr>
-                                              <td class="replies">
-                                                <!--
-                                                +--------+--------+------+
-                                                | Avatar | Author | Time |
-                                                |        +--------+------+
-                                                |        | Body          |
-                                                +--------+---------------+
-                                                -->
-                                                {{#replies}}
-                                                  <div class="reply-separator"></div>
-                                                  <table class="reply">
-                                                    <tr>
-                                                      <td class="avatar" rowspan="2">
-                                                        <img src="{{avatar_url}}" width="25" height="25">
-                                                      </td>
-                                                      <td class="author">
-                                                        {{author}}
-                                                      </td>
-
-                                                      <td class="time">
-                                                        {{published_at}}
-                                                      </td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td class="body" colspan="2">
-                                                        <p>{{body}}</p>
-                                                      </td>
-                                                    </tr>
-                                                  </table>
-                                                {{/replies}}
-                                              </td>
-                                            </tr>
-
-
-                                            <tr>
-                                              <td class="respond">
-                                                <div class="reply-separator"></div>
-                                                <a href="{{url}}"><img alt="Reply" src="{{reply_button_url}}"></a>
-                                              </td>
-                                            </tr>
-
-                                          </tbody>
-                                        </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td><div class="post-separator"></div></td>
-                                    </tr>
-                                  {{/events}}
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                        {{/events_present}}
-                      </tbody>
-                    </table>
-                  </td>
-
-                  <!--- sidebar -->
-
-                  <td id="sidebar"
-                    valign="top" style="border-left: 1px; border-left-style: solid; border-left-color: #ddd;">
-                    <table cellspacing="0" cellpadding="0" border="0" align="center" width="175" style="border-left: 15px solid #fafafa;">
-                      <tbody>
-                        <tr>
-                          <td valign="top" style="padding:0px;">
-                            <table cellspacing="0" cellpadding="0" border="0" align="center" width="165" style="font-family: Helvetica, Arial, sans-serif;">
-                              <tbody>
-                                <tr>
-                                  <td valign="top" style="padding-bottom:23px">
-                                    <table cellspacing="0" cellpadding="0" border="0" align="center" width="165">
-                                      <tbody>
-                                        <tr>
-                                          <td valign="top" width="122" style="padding: 0; text-align:left;">
-
-
-                                            <h4>Invite your Neighbors!</h4>
-                                            <p>Know anyone in {{community_name}} <em>not</em> on CommonPlace?</p>
-                                            <a href="{{new_invites_url}}">
-                                              <img alt="Invite Them Now" src="{{invite_them_now_button_url}}">
-                                            </a>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td valign="top" style="padding-bottom:23px">
-                                    <table cellspacing="0" cellpadding="0" border="0" align="center" width="165">
-                                      <tbody>
-                                        <tr>
-                                          <td valign="top" width="122" style="padding: 0; text-align:left;">
-
-                                            <h4>Post to a Discussion Group</h4>
-
-                                            <p>Lorem ipsum dolor sit amet. Consecetetuir adipiscing elit.</p>
-
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td valign="top" style="padding-bottom:23px">
-                                    <table cellspacing="0" cellpadding="0" border="0" align="center" width="165">
-                                      <tbody>
-                                        <tr>
-                                          <td valign="top" width="122" style="padding: 0; text-align:left;">
-                                            <h4>Post to Your Neighborhood</h4>
-                                            <p>Lorem ipsum dolor sit amet. Consecetetuir adipiscing elit.</p>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--/content-->
-          </td>
-        </tr>
-
-        <!--- footer --->
-        <tr>
-
-          <td id="footer">
-            <div class="posting-links">
-              <a href="{{new_post_url}}">Post to Your Neighborhood</a>
-
-              <span class="separator">&middot;</span>
-
-              <a href="{{new_announcement_url}}">Post an Announcement</a>
-
-              <span class="separator">&middot;</span>
-
-              <a href="{{new_event_url}}">Post an Event</a>
-            </div>
-
-            <div class="settings">
-              <p>Want to change your email settings? Click <a href="{{settings_url}}">here</a> to manage your subscriptions.</p>
-            </div>
-
-            <div class="legal">
-              <a href="{{root_url}}">OURCOMMONPLACE.COM</a>
+          <div class="footer">
+            <p class="action">
+              <strong>Have an event to publicize?</strong>
               <br>
-              &copy; 2011 CommonPlace.
-          </td>
+              <a href="{{new_event_url}}"><span>Post it</span></a> to
+              CommonPlace's event board and it will be in a future weekly
+              community bulletin!
+            </p>
 
-        </tr>
-      </tbody>
+            <p class="action">
+              <strong>Want to see more events in your daily digests?</strong>
+              <br>
+              <a href="{{subscribe_url}}"><span>Subscribe</span></a> to more
+              community feeds and groups to see their events sooner.
+            </p>
+
+          </div>
+        </td>
+      </tr>
+      {{/events?}}
+      <tr>
+        <td id="footer">
+
+          <div class="action-section">
+            <h4>Know anyone in your neighborhood <em>not</em> on
+            CommonPlace?</h4>
+            <p><a href="{{new_invites_url}}"><span>Invite</span></a> more
+            neighbors to your community!</p>
+          </div>
+
+          <table id="footer-buttons">
+            <tr>
+              <td></td>
+              <td class="link">
+                <a href="{{new_post_url}}"><span>
+                    Post to Your <br> Neighborhood
+                </span></a>
+              </td>
+
+              <td class="link">
+                <a href="{{new_announcement_url}}"><span>
+                    Post an Announcement to <br> the Whole Community
+                </span></a>
+              </td>
+
+              <td class="link">
+                <a href="{{new_event_url}}"><span>
+                    Post an Event to <br> the Events Board
+                </span></a>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+
+
+          {{< settings}}
+
+          {{< legal}}
+        </td>
+      </tr>
+
     </table>
-    <!--/container-->
   </body>
 </html>
