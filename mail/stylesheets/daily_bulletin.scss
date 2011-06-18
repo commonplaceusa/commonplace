@@ -1,167 +1,113 @@
+@import "mail_base" ; 
 
-body { margin: 20px 0px; background-color: #cee7fe ; }
-
-p {
-    padding: 0;
-    margin: 0;
-}
-
-
-h1, h2, h3, h4, h5 {
-    font-family: Rockwell, Helvetica, Arial, sans-serif;
-}
-p {
-    font-family: Georgia, Times New Roman, Times, serif;
-    line-height: 1.4 ;
-}
-td {
-    vertical-align:top;
-}
-ul, ol {
-    margin: 0;
-    padding: 0
-}
-a {
-    color:#ac322f;
-    text-decoration:none;
+#header table { 
+    border-bottom: 1px solid #d0d0d0 ; 
+    td { padding-bottom: 10px ; } 
 }
 
-#header {
-    .date { 
-        margin:0; color:#ffffff; font-size: 12px; font-weight: bold; text-transform: uppercase; background-color: #2e4b67; padding: 5px 10px ;
+
+h3 { font-family: $serifs ; color: #3b6085 ; font-size: 26px ; margin: 20px 0px 5px ; }
+
+p.subhead { margin-top: 0px ; }
+
+hr.post { border: 1px solid #b6085 ; } 
+
+table.post { 
+    width: 610px ; 
+    margin-bottom: 40px ;
+    td { vertical-align: top ; }
+    .avatar { width: 60px ; }
+    .title { 
+        font-size: 20px ;
+        a { @include colored-a(#252525) ; }
     }
-}
-
-.section-header {
-    h2 { margin: 10px 0 0 0; 
-         font-size: 18px; font-family: Rockwell, Helvetica, Arial;font-weight: normal; color: #1b334a; padding-bottom: 0px ;
-       }
-    p.sub-head { text-align:justify; font-size: 16px; color: #524e47; 
-                 border-bottom: 2px solid #cfcfcf ; padding-bottom: 10px ; 
-                 line-height: 15px ; }
-               
-}
-
-.post {
-    margin-top: 20px ; 
-    padding:0px; font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: #524E47;background-color:#fafafa;
-    .avatar {
-        padding:0px 10px 0px 0px; width: 50px ; height: 50px ;
-        img { border: 1px solid #cfcfcf ; }
-    }
-    .author div { font-family: Rockwell, Helvetica, Arial; font-size: 16px; color: #a6352c; padding-bottom: 8px ; line-height: 15px ; }
-
-    .title { span { font-family: Georgia, Times New Roman, Times, serif; font-size: 18px; color: #444; padding-bottom: 5px ; }
-             padding-bottom: 3px ; }
-    
+    .posted-at { text-align: right ; color: #3b6085 ; }
+    .author { color: #af142f ; font-family: $serifs}
     .body {
-        p { font-size: 15px ; line-height: 18px ; margin-bottom: 5px ; }
+        padding-bottom: 10px ;
+        p { color: #656565 ; font-size: 16px ; font-family: $body-serifs ; line-height: 1.4 ; }
     }
 
-    .subscribe {
-        div { margin-top: 5px; padding-bottom: 5px ; }
-        span { color: #304a6a ; font-size: 16px ; text-decoration: none ;
-               font-family: Georgia, Times New Roman, Times, serif; 
-               font-weight: bold ; }
-    }
-
-    &.event {
-        .avatar {
-            
-            .calendar {
-                width: 50px ; text-align: center ;
-                .short-month { 
-                    border: 1px solid #b55f58 ; border-bottom-width: 0px ; 
-                    background-color: #a6352c ; color: #ecd5d4 ;
-                    padding: 2px 0px 3px ;
-                }
-                .day { border: 1px solid #cfcfcf ; border-top-width: 0px ; 
-                       background-color: #f2f2f2 ;
-                       font-size: 18px; 
-                       line-height: 30px ; color: #1d443c ; 
-                       font-family:  Rockwell, Georgia, Times New Roman, serif ;
-                     }
-            }
-            
-            
-            .time { font-size: 12px ; 
-                    font-family:  Rockwell, Georgia, Times New Roman, serif ;    
-                    color: #b1b1b1 ; padding-top: 5px ; 
-                    text-align: center ; }
-            
+    .replies { 
+        hr.reply { border-top: 1px solid #d0d0d0 ; border-bottom: 0px ; }
+        .reply {
+            width: 100% ;
+            border-spacing: 0px 5px ;
+            .avatar { width: 35px ; }
+            .author { }
+            .posted-at { text-align: right ; }
+            .body { line-height: 1.4 ; font-size: 16px ; padding-bottom: 5px ; font-family: $body-serifs ; }
         }
+    }
+
+    .actions { 
+        .more-replies { 
+            a { text-decoration: none ; }
+            padding-bottom: 5px ;
+        }
+
+        text-align: right ; 
+        .reply-button { 
+            float: right ;
+            @include red-button ; 
+        }
+        
+    }
+}
+
+.calendar {
+    width: 50px ; text-align: center ;
+    .short-month { border: 1px solid #b55f58 ; border-bottom-width: 0px ; background-color: #b35750 ; color: #ecd5d4 }
+    .day { border: 1px solid #cfcfcf ; border-top-width: 0px ; background-color: #f2f2f2 ; height: 30px ; line-height: 30px ; color: #666666 ; }
+}
+
+
+table.event .date-time { 
+    vertical-align: top ; width: 60px ; 
+    .time { font-size: 12px ; font-family: $serifs ; color: #3b6085 ; padding-top: 5px ; text-align: center ; }
+}
+
+table.event, table.announcement {
+    width: $main-width ; 
+    border-top: 1px solid #3b6085 ; 
+    padding: 10px 0px; 
+
+    .event-field { color: #b53f3c ; font-family: $serifs ; }
+    
+    .body p, p.body { padding-bottom: 5px ; }
+
+    .posted-at { vertical-align: top ; text-align: right ; color: #3b6085 ; }
+    .name, .name a { color: #252525 ; font-size: 20px ; text-decoration: none ; }
+    .posted-by { color: #af412f ; font-family: $serifs ; }
+    .reply { border-top: 1px solid #dadada ; width: 540px ; }
+    .reply p { line-height: 1.2 ; margin-top: 5px ; margin-bottom: 5px ; }
+    .reply p.body { margin-top: 0px ; }
+    .reply .avatar { 
+        vertical-align: top ; width: 35px ; 
+        img { margin-top: 5px ; } 
+    }
+    .reply .posted-at { padding-top: 5px ; }
+}
+
+.event-reply, .announcement-reply {
+    margin-left: 410px ; 
+    margin-top: 10px ; 
+    a { @include red-button ; font-size: 13px ; font-family: $serifs ; text-align: center ; }
+}
+
+.action-section {
+    h4 { color: #3b6085 ; font-size: 18px ; font-family: $serifs ; margin-bottom: 5px ; }
+    p { font-family: $body-serifs ; color: #676767 ; font-size: 14px ; line-height: 1.2 ; }
+}
+
+#footer { 
+    padding-top: 40px ; 
+    
+    #footer-buttons {
+        width: $main-width ; border-spacing: 10px ; 
+        td.link { width: 155px ; background-color: #b53f3c ; text-align: center ; border: 1px solid #82312f ; padding: 5px }
+        
+        td a { @include colored-a(#fff) ; text-decoration: none ; font-family: $serifs ; font-size: 11px ; width: 155px ; }
     }
     
-    .respond a { padding-top: 10px ; display: block ; }
-
-}
-
-.post-separator {
-    margin-top: 10px ; border-bottom: 1px solid #cfcfcf ; padding-bottom: 10px ;
-}
-
-.reply-separator {
-    margin-top: 0px ; border-bottom: 1px solid #cfcfcf ; padding-bottom: 10px ;
-}
-
-.reply {
-    width: 100%;
-    margin: 15px 0 0px;
-    .avatar { width: 30px ; padding: 0 ;}
-    .author { font-family: Rockwell, Helvetica, Arial; font-size: 14px; color: #a6352c; line-height: 15px ; }
-    .time { text-align: right ; color: #999 ; font-size: 12px ; font-family: Georgia, Times New Roman, Times, serif ; }
-}
-
-#sidebar {
-    h4 {
-        margin: 0; text-align:left; font-size: 13px; font-family:Rockwell, Georgia, Helvetica; color: #1b334a;
-        border-bottom: 1px solid #ddd ;
-        padding-bottom: 5px ;
-    }
-
-    p {
-        margin-top: 10px ;
-        padding-bottom: 5px ;
-        color: #666 ; 
-        font-size: 14px ;
-        text-align: left ;
-    }
-}
-
-
-#footer {
-    border: 0px ;
-    background-color: #f2f2f2 ;
-    .posting-links {
-        margin-top: 10px ;
-        text-align: center ; 
-        a { color: #a24841; font-size: 14px ; font-family: Rockwell, Georgia, Helvetica ; font-weight: bold ; }
-        .separator { color: #888 ; font-size: 18px ; }
-     }
-
-    .settings {
-        margin-top: 20px ;
-        padding-bottom: 20px ;
-        text-align: center ; 
-        p {
-            color: #666 ; 
-            font-size: 12px ;
-        }
-    }
-
-    .legal {
-        padding: 10px 0 ;
-        color: #fafafa;
-        font-family: Rockwell, Georgia, Helvetica ;
-        font-weight: bold;
-        font-size: 12px ;
-        background-color: #304a6a ;
-        text-align: center ;
-        a {        
-            color: #fafafa;
-            font-family: Rockwell, Georgia, Helvetica ;
-            font-weight: bold;
-            font-size: 12px ;
-        }
-    }
 }
