@@ -1,27 +1,115 @@
-@import "mail_base" ;
 
-#post { 
-    background-color: #f5f5f5 ; 
-   
-    table { 
-        border-spacing: 10px ; 
-        td { vertical-align: top ; }
-    } ;
+body { margin: 20px 0px; background-color: #cee7fe ; }
 
-    .subject { color: #3b608e ; font-size: 22px ; }
+p {
+    padding: 0;
+    margin: 0;
+}
 
-    .body { 
-        p { line-height: 1.2 ;  font-size: 16px ; margin: 0 0 5px ; }
+
+h1, h2, h3, h4, h5 {
+    font-family: Rockwell, Helvetica, Arial, sans-serif;
+}
+p {
+    font-family: Georgia, Times New Roman, Times, serif;
+    line-height: 1.4 ;
+}
+td {
+    vertical-align:top;
+}
+ul, ol {
+    margin: 0;
+    padding: 0
+}
+
+a {
+    color:#ac322f;
+    text-decoration:none;
+}
+
+#intro {
+    border: 0 ;
+    border-left: 10px solid #fff ;
+    border-right: 10px solid #fff ;
+    background-color: #fff ; 
+    p { font-size: 17px; color: #666 ; 
+        margin-top: 5px ;
+        padding-bottom: 30px ; 
+        line-height: 15px ; 
+        font-family: Rockwell, Georgia, Times New Roman, serif ;
+      }
+    a span { color: #ac322f; text-decoration: none ; font-weight: bold ; }
+}
+
+#content {
+    border: 0 ;
+    table { border: #eee 1px solid ; background-color: #f5f5f5 ; margin: 0 10px 10px ;}
+    
+    
+    
+    .title {
+        div { margin: 8px 15px; }
+        font-family: Georgia, Times New Roman, serif ;
+        font-size: 20px ;
+        color: #252525 ;
+    }
+    
+    .body {
+        p {
+            font-family: Georgia, Times New Roman, serif ;
+            font-size: 14px ;
+            color: #252525 ;
+        }
+        div { padding: 0 20px 20px  ; }
+    }
+    
+    .respond {
+        div { padding: 0 20px 20px ; }
+        img { vertical-align: middle ; }
+        a span { font-weight: bold ; }
+    }
+}
+
+#footer {
+    background-color: #304a6a ;
+    border: 0px ;
+
+    .invite p {
+        padding-top: 15px ;
+        color: #d0e7ff ;
+        font-family: Rockwell, Georgia, Times New Roman, serif ;
+        text-align: center ;
+        font-size: 14px ;
+        a span { color: #fafafa ; }
+    }
+    .settings {
+        padding: 5px 0 15px ;
+        color: #8299b4 ;
+        font-family: Rockwell, Georgia, Times New Roman, serif ;
+        text-align: center ;
+        font-size: 12px ;
+        a span { color: #d0e7ff ; }
+    }
+}
+
+.legal {
+    padding: 10px 0 ;
+    color: #fafafa;
+    font-family: Rockwell, Georgia, Helvetica ;
+    font-weight: bold;
+    font-size: 12px ;
+    
+    text-align: center ;
+    a span {        
+        color: #a6352c ;
+        font-family: Rockwell, Georgia, Helvetica ;
+        font-weight: bold;
+        font-size: 12px ;
     }
 
-    .reply {
-        vertical-align: top ;
-        a { @include red-button ; }
-    }
-
-    .reply-by-email { vertical-align: top ; p { font-size: 14px ; margin: 0 ; } }
-
-    .message {
-
+    span.copy {
+        color: #304a6a ;
+        font-family: Rockwell, Georgia, Helvetica ;
+        font-weight: bold;
     }
 }
