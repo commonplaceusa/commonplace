@@ -62,9 +62,9 @@
       #modal
 
 
-  - if Rails.env.production? and current_community.present? and current_community.slug.present?
+  - if Rails.env.production?
     :javascript
-      var _sf_async_config={uid:25400,domain:"#{current_community.slug}.ourcommonplace.com"};
+      var _sf_async_config={uid:25400,domain:"ourcommonplace.com"};
       (function(){
         function loadChartbeat() {
           window._sf_endpt=(new Date()).getTime();
