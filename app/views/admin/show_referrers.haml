@@ -3,12 +3,15 @@
   %table
     %tr
       %th Name
+      %th Community
       %th Timestamp
       %th Referral Source
     - @referred_users.each do |user|
       %tr
         %td= user.full_name
+        %td= user.community.name
         %td
           = user.created_at.getlocal.to_date
           = user.created_at.getlocal
         %td= user.referral_source
+
