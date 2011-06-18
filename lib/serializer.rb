@@ -1,4 +1,5 @@
 module Serializer
+
   def self.serialize(o)
     as_json = 
       case o
@@ -43,8 +44,8 @@ module Serializer
         "body" => o.description,
         "author_url" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
         "tags" => o.tag_list,
-        "starts_at" => o.start_time.try(:strftime, "%l:%M%P"),
-        "ends_at" => o.end_time.try(:strftime, "%l:%M%P"),
+        "starts_at" => o.start_time.try(:strftime, "%I:%M%P"),
+        "ends_at" => o.end_time.try(:strftime, "%I:%M%P"),
         "venue" => o.venue,
         "address" => o.address,
         "user_id" => o.owner_type == "User" ? o.owner_id : nil,
