@@ -1,68 +1,112 @@
 <html>
-
   <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>{{community_name}} CommonPlace Daily Bulletin</title>
+    <link href='http://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css' rel="stylesheet" type="text/css">
     <style>
-      {{styles}}
+{{styles}}
     </style>
   </head>
+  <body marginheight="0" topmargin="0" marginwidth="0" leftmargin="0" bgcolor="#cee7fe">
+    <table cellspacing="0" cellpadding="0" border="11" align="center" width="621"  style="border-width:11px; border-color:#ffffff; border-style:solid; background-color:#fff;">
+      <tbody>
+        <tr>
+          <td valign="top" border="0" style="border: none; ">
 
-  <body>
-    <table id="body">
+            <!-- Header Block -->
+            <table cellspacing="0" cellpadding="0" border="0" align="center" style="padding-bottom: 10px;">
+              <tbody>
 
-      {{< header}}
+                <tr bgcolor="#1b334a">
 
-      <tr>
-        <td id="intro">
-          <p>Hi {{user_name}},<br>
-            {{poster_name}} just posted to your neighborhood board on CommonPlace.
-          </p>
-        </td>
-      </tr>
+                  <td width="" align="left" valign="middle" bgcolor="#1b334a" style="padding: 15px 8px 10px 10px; margin: 0px;">
 
-      <tr>
-        <td id="post">
-          <table>
-            <tr>
-              <td class="avatar" rowspan="4">
-                <img src="{{poster_avatar_url}}" width="50" height="50">
-              </td>
+                    <h1 style="margin: 0; font-size: 42px; color:#33384f;">
 
-              <td class="subject" colspan="2">
-                {{post_subject}}
-              </td>
-            </tr>
+                      <img src="{{logo_url}}" alt="CommonPlace" width="219" height="36" align="top">
 
-            <tr>
-              <td class="body" colspan="2">
-                {{{post_body}}}
-              </td>
-            </tr>
+                    </h1>
+                  </td>
+                  <td width="366" align="left" valign="middle">
+                    <h3 style="margin-top: 14px; padding-bottom: 0; font-size: 24px; font-family: Rockwell, Helvetica, Arial; text-align:left;font-weight: normal; color: #ac322f; margin-bottom: 8px;">{{community_name}}</h3>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
 
-            <tr>
-              <td class="reply">
-                <a href="{{post_url}}"><span>Reply to {{short_poster_name}}</span></a>
-              </td>
-              <td class="reply-by-email">
-                <p>Or just reply to this email.</p>
-              </td>
-            </tr>
+        <tr>
+          <td id="intro">
+            <p>Hi {{user_name}},<br>
+              <br>
+              <a href="{{author_url}}"><span>{{author_name}}</span></a>
+                just posted to your neighborhood board on CommonPlace.
+            </p>
+          </td>
+        </tr>
 
-            <tr>
-              <td class="message" colspan="2">
-                <a href="{{new_message_url}}"><span>Send {{short_poster_name}} a private message</span></a>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
+        <tr>
+          <td id="content">
+            <table>
+              <tr>
+                <td class="title">
+                  <div>{{title}}</div>
+                </td>
+              </tr>
 
-      <tr>
-        <td id="footer">
-          {{< settings }}
+              <tr>
+                <td class="body">
+                  <div>{{{post_body}}}</div>
+                </td>
+              </tr>
 
-          {{< legal }}
-        </td>
-      </tr>
+              <tr>
+                <td class="respond">
+                  <div>
+                    <a href="{{post_url}}"><img alt="Reply Now" src="{{reply_button_url}}"></a>
+                    &nbsp;
+                    or
+                    <a href="{{new_message_url}}"><span>Send a Private Message</span></a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+
+
+      </tbody>
     </table>
+    <!--- footer --->
+    <table cellspacing="0" cellpadding="0" align="center" width="621">
+      <tbody>
+        <tr>
+
+          <td id="footer">
+            <div class="invite">
+              <p>Improve {{community_name}} CommonPlace: Click <a href="{{new_invites_url}}"><span>HERE</span></a> to invite more neighbors.</p>
+            </div>
+
+            <div class="settings">
+              <p>Click <a href="{{settings_url}}"><span>here</span></a> to manage your subscriptions.</p>
+            </div>
+          </td>
+
+        </tr>
+
+        <tr>
+          <td>
+            <div class="legal">
+              <a href="{{root_url}}"><span>OurCommonPlace.com</span></a>
+              <br>
+              <span class="copy">&copy; 2011 CommonPlace.</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/container-->
   </body>
 </html>
