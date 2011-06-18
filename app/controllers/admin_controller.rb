@@ -42,7 +42,7 @@ class AdminController < ApplicationController
   end
 
   def show_referrers
-    @referred_users = User.all.select{ |u| u.referral_source.present? }
+    @referred_users = User.all.select{ |u| u.referral_source.present? }.sort{ |a,b| a.community_id <=> b.community_id }
   end
 
 end
