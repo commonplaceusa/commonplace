@@ -1,6 +1,9 @@
 !!! 5
 %html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
   %head
+    - if Rails.env.production?
+      :javascript
+        var _sf_startpt=(new Date()).getTime()
     %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
     %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
     %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
@@ -49,6 +52,25 @@
       = updated_content["#modal"]
     - else
       #modal
+
+  - if Rails.env.production? and current_community.present? and current_community.slug.present?
+  :javascript
+    var _sf_async_config={uid:25400,domain:"#{current_community.slug}.ourcommonplace.com"};
+    (function(){
+      function loadChartbeat() {
+        window._sf_endpt=(new Date()).getTime();
+        var e = document.createElement('script');
+        e.setAttribute('language', 'javascript');
+        e.setAttribute('type', 'text/javascript');
+        e.setAttribute('src',
+          (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+          "js/chartbeat.js");
+        document.body.appendChild(e);
+      }
+      var oldonload = window.onload;
+      window.onload = (typeof window.onload != 'function') ?
+        loadChartbeat : function() { oldonload(); loadChartbeat(); };
+    })();
 
   %script{:type => "text/javascript"}
     CommonPlace = window.CommonPlace || {};
