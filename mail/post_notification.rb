@@ -4,20 +4,12 @@ class PostNotification < MailBase
     @post, @user = Post.find(post_id), User.find(user_id)
   end
 
-  def logo_url
-    asset_url("/images/logo2.png")
-  end
-
   def subject
-    "#{author_name} just posted a message to your neighborhood"
+    "#{poster_name} just posted a message to your neighborhood"
   end
 
   def reply_to
     "reply+post_#{post.id}@ourcommonplace.com"
-  end
-
-  def reply_button_url
-    asset_url("/images/mail/reply-now-button.png")
   end
 
   def post
@@ -28,7 +20,7 @@ class PostNotification < MailBase
     @user
   end
 
-  def author
+  def poster
     @post.user
   end
 
@@ -40,12 +32,12 @@ class PostNotification < MailBase
     community.name
   end
 
-  def author_name
-    author.name
+  def poster_name
+    poster.name
   end
 
-  def short_author_name
-    author.first_name
+  def short_poster_name
+    poster.first_name
   end
 
   def post_url
@@ -53,19 +45,23 @@ class PostNotification < MailBase
   end
 
   def new_message_url
-    url("/users/#{author.id}/messages/new")
+    url("/users/#{poster.id}/messages/new")
   end
 
-  def title
+  def post_subject
     post.subject
   end
 
   def post_body
-    markdown(post.body) rescue "<p>#{post.body}</p>"
+    markdown(post.body)
   end
 
-  def author_url
-    url("/users/#{author.id}")
+  def poster_avatar_url
+    asset_url(poster.avatar_url(:thumb))
+  end
+
+  def poster_url
+    url("/users/#{poster.id}")
   end
 
   def user_name
