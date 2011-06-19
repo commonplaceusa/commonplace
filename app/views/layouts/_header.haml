@@ -19,7 +19,7 @@
       %nav
         = tab_to "Home", "/#{current_community.slug}"
         = tab_to "Inbox", "/messages"
-        = tab_to "Invite", "/account/facebook_invite"
+        = tab_to "Invite", "/invites/new"
         .user-feeds
           %h4
             - if current_user.managable_feeds.count > 0
