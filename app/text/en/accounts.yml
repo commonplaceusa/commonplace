@@ -69,7 +69,7 @@ en:
         step_one: "Invite neighbors by Facebook:"
         step_two: "Invite neighbors by email:"
         step_three: "Invite neighbors by hand:"
-        invitation: "I just joined CommonPlace so I can connect with my neighbors. You should sign up too!"
+        invitation: "I just joined %{community}\'s CommonPlace so I can connect and share with my neighbors in %{community}.  You should sign up too!"
         file_descriptions:
           - "Info Sheet"
         file_names:

@@ -5,7 +5,7 @@
   FB.login(function(response) {
   FB.ui({
   method: 'apprequests',
-  = "message: '#{t(".invitation")}',"
+  = "message: '#{t(".invitation", :community => current_community.name)}',"
   data: slug,
   display: 'iframe'
   });
