@@ -11,15 +11,8 @@
   });
   });
   }
-  $(function () {
-  FB.login(function(response) {
-  if (response.session)
-  {
-  invite_friends();
-  }
-  });
-  });
 
+%h1= t(".heading", :community => current_community.name)
 #groups_box
   #tool_tip
     %p Find your neighbors on Facebook and invite them to join you on CommonPlace!
@@ -30,15 +23,15 @@
           #step_one
             =t(".step_one")
           #fb-root
-          %img{:src => "/images/fb-btn.png", :width => "90%", :onclick => "invite_friends();"}
+          %img{:src => "/images/fb-btn.png", :width => "90%", :onclick => "invite_friends();", :onmouseover => "document.body.style.cursor = 'pointer';", :onmouseout => "document.body.style.cursor = 'auto';"}
         %li
           #step_two
             =t(".step_two")
 
           - semantic_form_for @invitation do |f|
             - f.inputs do
-              = f.input :email, :input_html => { :placeholder => "E-mail Address to Invite" }
-              = f.input :body, :input_html => { :placeholder => "Write something nice about CommonPlace!" }
+              = f.input :email, :input_html => { :placeholder => "Enter e-mail addresses to invite, separated by commas" }
+              = f.input :body, :input_html => { :placeholder => "Feel free to write a personal message here" }
             - f.buttons do
               = f.submit "Invite"
             %br
