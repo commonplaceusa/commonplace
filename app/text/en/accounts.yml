@@ -61,6 +61,7 @@ en:
         wall_post_content: I just joined CommonPlace so I can connect with my neighbors. You should sign up too!
       
     facebook_invite:
+        heading:  The more neighbors on The %{community} CommonPlace, the better it is for %{community}.
         h2: Use CommonPlace to send your announcements and events to everyone on the %{community} CommonPlace network. The more email addresses you add, the more widely your announcements and events (and everyone else's!) will be sent.
         emails_label: "Invite people to join CommonPlace!"
         neighbors_name_label: "Neighbor's Name"
@@ -71,6 +72,6 @@ en:
         step_three: "Invite neighbors by hand:"
         invitation: "I just joined %{community}\'s CommonPlace so I can connect and share with my neighbors in %{community}.  You should sign up too!"
         file_descriptions:
-          - "Info Sheet"
+          - "Download Info Sheet"
         file_names:
           - "info"
