@@ -33,7 +33,7 @@ class API < Sinatra::Base
   end
 
   before do 
-    cache_control :public, :must_revalidate, :max_age => 10
+    cache_control :public, :must_revalidate, :max_age => 40
     content_type :json
     authenticate!
     authorize!
