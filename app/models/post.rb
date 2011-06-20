@@ -12,6 +12,8 @@ class Post < ActiveRecord::Base
   validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
 
+  default_scope where(:deleted_at => nil)
+
   attr_accessor :post_to_facebook
 
   scope :between, lambda { |start_date, end_date| 
@@ -23,6 +25,10 @@ class Post < ActiveRecord::Base
   scope :created_on, lambda { |date| { :conditions => ["posts.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
 
   scope :today, :conditions => ["posts.created_at between ? and ?", DateTime.now.at_beginning_of_day, Time.now]
+
+  def self.deleted
+    self.unscoped.where('deleted_at IS NOT NULL')
+  end
 
   def self.human_name
     "Neighborhood Post"

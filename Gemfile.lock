@@ -234,6 +234,8 @@ GEM
     paperclip (2.3.8)
       activerecord
       activesupport
+    permanent_records (2.1.2)
+      activerecord
     pg (0.10.1)
     polyglot (0.3.1)
     premailer (1.6.2)
@@ -396,6 +398,7 @@ DEPENDENCIES
   nokogiri (= 1.4.4)
   oauth2
   paperclip
+  permanent_records
   pg
   premailer
   rails (= 3.0.7)
