@@ -22,6 +22,10 @@ class API < Sinatra::Base
       Serializer::serialize(thing).to_json
     end
 
+    def logger
+      @logger ||= Logger.new(Rails.root.join("log", "api.log"))
+    end
+
   end
 
   before do 
@@ -38,12 +42,22 @@ class API < Sinatra::Base
   [Post, GroupPost, Announcement, Event].each do |repliable_class|
     
     post "/#{repliable_class.name.pluralize.underscore}/:id/replies" do |id|
-      reply = Reply.create!(:repliable => repliable_class.find(id),
-                            :user => current_account,
-                            :body => request_body['body'])
-      Serializer::serialize(reply).to_json
-    end
+      reply = Reply.new(:repliable => repliable_class.find(id),
+                        :user => current_account,
+                        :body => request_body['body'])
 
+      if reply.save
+        (reply.repliable.replies.map(&:user) + [reply.repliable.user]).uniq.each do |user|
+          if user != reply.user
+            logger.info("Enqueue ReplyNotification #{reply.id} #{user.id}")
+            Resque.enqueue(ReplyNotification, reply.id, user.id)
+          end
+        end
+        Serializer::serialize(reply).to_json
+      else
+        [400, "errors"]
+      end
+    end
   end
 
   # POST /communities/:id/posts
