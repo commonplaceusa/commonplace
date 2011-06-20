@@ -37,6 +37,9 @@ gem 'mail'
 gem 'mustache'
 gem 'googlecharts'
 
+# Admin section
+gem 'activeadmin'
+
 # Error Pages
 #gem 'goalie'
 
