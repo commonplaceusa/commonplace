@@ -8,19 +8,19 @@
 :javascript
   CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
   name: "#{current_community.name}"});
-  CommonPlace.community.users.refresh(#{api["/communities/#{current_community.id}/users"].get.html_safe});
+  CommonPlace.community.users.refresh(#{api["/communities/#{current_community.id}/users"].get.html_safe rescue "[]"});
 
-  CommonPlace.community.events.refresh(#{api["/communities/#{current_community.id}/events"].get.html_safe});
+  CommonPlace.community.events.refresh(#{api["/communities/#{current_community.id}/events"].get.html_safe rescue "[]"});
 
-  CommonPlace.community.announcements.refresh(#{api["/communities/#{current_community.id}/announcements"].get.html_safe});
+  CommonPlace.community.announcements.refresh(#{api["/communities/#{current_community.id}/announcements"].get.html_safe rescue "[]"});
 
-  CommonPlace.community.posts.refresh(#{api["/communities/#{current_community.id}/posts"].get.html_safe});
+  CommonPlace.community.posts.refresh(#{api["/communities/#{current_community.id}/posts"].get.html_safe rescue "[]"});
 
-  CommonPlace.community.group_posts.refresh(#{api["/communities/#{current_community.id}/group_posts"].get.html_safe});
+  CommonPlace.community.group_posts.refresh(#{api["/communities/#{current_community.id}/group_posts"].get.html_safe rescue "[]"});
 
-  CommonPlace.community.feeds.refresh(#{api["/communities/#{current_community.id}/feeds"].get.html_safe});
+  CommonPlace.community.feeds.refresh(#{api["/communities/#{current_community.id}/feeds"].get.html_safe rescue "[]"});
 
-  CommonPlace.community.groups.refresh(#{api["/communities/#{current_community.id}/groups"].get.html_safe});
+  CommonPlace.community.groups.refresh(#{api["/communities/#{current_community.id}/groups"].get.html_safe rescue "[]"});
 
   CommonPlace.account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
     
