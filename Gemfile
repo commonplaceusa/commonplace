@@ -10,6 +10,10 @@ gem 'thor'
 gem 'xpath'
 gem 'nokogiri', '1.4.4'
 gem 'hoe', '2.9.0'
+gem 'sinatra'
+gem 'rest-client'
+gem 'rack-cache'
+gem 'rest-client-components'
 
 # Database
 gem 'SystemTimer', :require => 'system_timer'
