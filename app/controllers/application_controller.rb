@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method 'logged_in?'
   helper_method 'xhr?'
   helper_method :current_user_session, :current_user, :facebook_session
+  helper_method :api
   
   before_filter :subdomain_redirect, :set_process_name_from_request, :login_with_single_access_token
   after_filter :unset_process_name_from_request
@@ -18,6 +19,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def api
+    @api ||= (RestClient::Resource).new("#{root_url}/api", :cookies => cookies)
+  end
+  
   def set_process_name_from_request
     $0 = request.path[0,16] 
   end   

@@ -243,6 +243,8 @@ GEM
       hpricot (>= 0.8.3)
       htmlentities (>= 4.0.0)
     rack (1.2.2)
+    rack-cache (1.0.2)
+      rack (>= 0.4)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -289,6 +291,11 @@ GEM
       redis (>= 2.0.1)
       resque (>= 1.8.0)
       rufus-scheduler
+    rest-client (1.6.1)
+      mime-types (>= 1.16)
+    rest-client-components (1.2.0)
+      rack (>= 1.0.1)
+      rest-client (>= 1.6.0, < 1.7.0)
     rmagick (2.13.1)
     rollout (0.3.0)
     roodi (2.1.0)
@@ -401,12 +408,15 @@ DEPENDENCIES
   permanent_records
   pg
   premailer
+  rack-cache
   rails (= 3.0.7)
   redis
   redis-namespace
   resque
   resque-exceptional
   resque-scheduler
+  rest-client
+  rest-client-components
   rmagick
   rollout
   rr
@@ -416,6 +426,7 @@ DEPENDENCIES
   sanitize
   sass (~> 3.1)
   simple_uuid
+  sinatra
   spork
   ssl_requirement
   text-reform

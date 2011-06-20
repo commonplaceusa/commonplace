@@ -6,27 +6,24 @@
       = render 'accounts/info_box'
     = yield :modal
 :javascript
-
   CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
   name: "#{current_community.name}"});
+  CommonPlace.community.users.refresh(#{api["/communities/#{current_community.id}/users"].get.html_safe});
 
+  CommonPlace.community.events.refresh(#{api["/communities/#{current_community.id}/events"].get.html_safe});
 
-  CommonPlace.community.users.refresh(#{Serializer::serialize(User.where(:community_id => current_community.id).to_a).to_json.html_safe});
+  CommonPlace.community.announcements.refresh(#{api["/communities/#{current_community.id}/announcements"].get.html_safe});
 
-  CommonPlace.community.posts.refresh(#{Serializer::serialize(Post.where(:community_id => current_community.id).limit(40).order("created_at DESC").includes(:user, :replies => :user).to_a).to_json.html_safe});
+  CommonPlace.community.posts.refresh(#{api["/communities/#{current_community.id}/posts"].get.html_safe});
 
-  CommonPlace.community.events.refresh(#{Serializer::serialize(Event.where(:community_id => current_community.id).upcoming.includes(:owner, :replies => :user).to_a).to_json.html_safe});
+  CommonPlace.community.group_posts.refresh(#{api["/communities/#{current_community.id}/group_posts"].get.html_safe});
 
-  CommonPlace.community.announcements.refresh(#{Serializer::serialize(Announcement.where(:community_id => current_community.id).includes(:owner, :replies => :user).to_a).to_json.html_safe});
+  CommonPlace.community.feeds.refresh(#{api["/communities/#{current_community.id}/feeds"].get.html_safe});
 
-  CommonPlace.community.group_posts.refresh(#{Serializer::serialize(GroupPost.includes(:group, :user, :replies => :user).where(:groups  => {:community_id => current_community.id}).to_a).to_json.html_safe});
+  CommonPlace.community.groups.refresh(#{api["/communities/#{current_community.id}/groups"].get.html_safe});
 
-  CommonPlace.community.feeds.refresh(#{Serializer::serialize(Feed.where(:community_id => current_community.id).to_a).to_json.html_safe});
-
-  CommonPlace.community.groups.refresh(#{Serializer::serialize(Group.where(:community_id => current_community.id).to_a).to_json.html_safe});
-  
   CommonPlace.account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
-
+    
   CommonPlace.env = '#{Rails.env}';
   var oldhash = window.location.hash.slice(1);
   window.location.hash = "/";
