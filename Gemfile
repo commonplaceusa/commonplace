@@ -16,6 +16,7 @@ gem 'SystemTimer', :require => 'system_timer'
 gem 'redis'
 gem 'redis-namespace', :require => false
 gem 'pg'
+gem 'permanent_records'
 
 # Authentication/Authorization
 gem 'authlogic'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110619234212) do
+ActiveRecord::Schema.define(:version => 20110620055609) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(:version => 20110619234212) do
     t.string   "owner_type"
     t.integer  "owner_id"
     t.string   "tweet_id"
+  end
+
+  create_table "archived_posts", :id => false, :force => true do |t|
+    t.integer  "id",                :null => false
+    t.text     "body",              :null => false
+    t.integer  "user_id",           :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "subject"
+    t.string   "category"
+    t.integer  "community_id"
+    t.boolean  "sent_to_community"
+    t.boolean  "published"
+    t.datetime "deleted_at"
   end
 
   create_table "attendances", :force => true do |t|
@@ -167,11 +181,11 @@ ActiveRecord::Schema.define(:version => 20110619234212) do
   end
 
   create_table "memberships", :force => true do |t|
+    t.string   "receive_method", :default => "Live"
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "receive_method", :default => "Live"
   end
 
   create_table "messages", :force => true do |t|
@@ -212,6 +226,7 @@ ActiveRecord::Schema.define(:version => 20110619234212) do
     t.integer  "community_id"
     t.boolean  "sent_to_community"
     t.boolean  "published",         :default => true
+    t.datetime "deleted_at"
   end
 
   create_table "referrals", :force => true do |t|
@@ -244,9 +259,9 @@ ActiveRecord::Schema.define(:version => 20110619234212) do
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id",                             :null => false
     t.integer  "feed_id",                             :null => false
+    t.string   "receive_method", :default => "Daily"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "receive_method", :default => "Daily"
   end
 
   create_table "taggings", :force => true do |t|
