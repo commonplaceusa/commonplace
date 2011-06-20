@@ -31,6 +31,9 @@ class MailBase < Mustache
       super(*args)
     end
   end
+
+  def community
+  end
   
   def render(*args)
     Premailer.new(super(*args), :with_html_string => true).to_inline_css
@@ -79,7 +82,7 @@ class MailBase < Mustache
                           :headers => {
                             "Precedence" => "list",
                             "Auto-Submitted" => "auto-generated",
-                            "X-Campaign-Id" => community.slug
+                            "X-Campaign-Id" => community ? community.slug : "administrative"
                           })
     end
   end
