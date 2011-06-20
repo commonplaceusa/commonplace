@@ -3,7 +3,11 @@ class API < Sinatra::Base
   helpers do
     
     def current_account
-      @_user ||= User.find_by_id(session['user_credentials_id']) 
+      @_user ||= if request.env["HTTP_AUTHORIZATION"]
+                   User.find_by_single_access_token(request.env["HTTP_AUTHORIZATION"])
+                 else
+                   User.find_by_id(session['user_credentials_id'])
+                 end
     end
 
     def authenticate!

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def api
-    @api ||= (RestClient::Resource).new("#{root_url}/api", :cookies => cookies)
+    @api ||= RestClient::Resource.new("#{root_url}/api", :headers => {:Authorization => current_user.single_access_token})
   end
   
   def set_process_name_from_request
