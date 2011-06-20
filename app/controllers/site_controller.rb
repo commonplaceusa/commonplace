@@ -18,8 +18,8 @@ class SiteController < ApplicationController
   
   def faq ; end
   
-  def faq_parse
-    render :nothing => true
+  def send_faq
     Resque.enqueue(AdminQuestion, params[:email_address], params[:message])
+    redirect_to faq_url
   end
 end
