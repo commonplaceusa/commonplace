@@ -40,6 +40,10 @@ module MailUrls
     url("/feeds/new")
   end
 
+  def new_group_post_url
+    url("/group_posts/new")
+  end
+
   def starter_site_url
     "http://commonplaceusa.com"
   end
