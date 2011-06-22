@@ -57,6 +57,7 @@ class DailyBulletin < MailBase
         }
         post['avatar_url'] = asset_url(post['avatar_url'])
         post['url'] = url(post['url'])
+        post['new_message_url'] = url(post['author_url'] + "/messages/new")
       end
     end
   end
