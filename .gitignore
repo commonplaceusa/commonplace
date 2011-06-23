@@ -4,6 +4,7 @@ log/development.log
 log/test.log
 log/production.log
 log/staging.log
+log/*.log
 tmp/**/*
 tmp/*
 doc/api

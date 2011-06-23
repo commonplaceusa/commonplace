@@ -3,6 +3,11 @@ template_extension: html.mustache
 template_function: Mustache.template
 template_namespace: CommonPlace.templates
 javascript_compressor: closure
+s3_bucket: "commonplace-assets"
+s3_access_key_id: <%= ENV["S3_KEY_ID"] %>
+s3_secret_access_key: <%= ENV["S3_KEY_SECRET"] %>
+s3_permission: public_read
+ssl: true
 
 stylesheets:
   administration:
