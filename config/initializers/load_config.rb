@@ -1,1 +1,1 @@
-CONFIG = Rails.root.join("config", "config.yml").open{ |file| YAML::load(file) }
+# CONFIG = Rails.root.join("config", "config.yml").open{ |file| YAML::load(file) }

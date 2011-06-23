@@ -3,7 +3,7 @@ class MeetupImporter
   require 'rmeetup'
   
   def self.perform
-    RMeetup::Client.api_key = CONFIG['meetup_api_key']
+    RMeetup::Client.api_key = $meetup_api_key
 
     Community.find(:all).each do |community|
       results = RMeetup::Client.fetch(:events,{:zip => community.zip_code, :text_format => "html"})
