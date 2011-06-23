@@ -2,8 +2,8 @@ class AnnouncementImporter
   require 'outside_in'
   
   def self.perform
-    OutsideIn.key = CONFIG['outside_in_key']
-    OutsideIn.secret = CONFIG['outside_in_secret']
+    OutsideIn.key = $OutsideInKey
+    OutsideIn.secret = $OutsideInSecret
     
     Community.find(:all).each do |community|
       OutsideIn::Story.for_zip_code(community.zip_code)[:stories].each do |story|

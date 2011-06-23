@@ -3,8 +3,8 @@ require 'premailer'
 require 'sass'
 
 Mail.defaults do
-  delivery_method(CONFIG['mail']['delivery_method'].intern,
-                  CONFIG['mail']['delivery_options'].symbolize_keys)
+  delivery_method($MailDeliveryMethod.intern,
+                  $MailDeliveryOptions.symbolize_keys)
 end
 
 class MailBase < Mustache

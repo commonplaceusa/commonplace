@@ -51,9 +51,9 @@ class EventfulImporter
   end
 
   def self.perform
-    eventful = Eventful::API.new CONFIG['eventful_application_key'],
-    :user => CONFIG['eventful_username'],
-    :password => CONFIG['eventful_password']
+    eventful = Eventful::API.new $EventfulApplicationKey,
+    :user => $EventfulUsername,
+    :password => $EventfulPassword
 
     Community.find(:all).each do |community|
       results = eventful.call 'events/search',
