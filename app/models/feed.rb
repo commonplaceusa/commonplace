@@ -37,8 +37,14 @@ class Feed < ActiveRecord::Base
                       :large => "200x200#"
                     },
                     :default_url => "/avatars/missing.png", 
-                    :url => "/system/feeds/:id/avatar/:style.:extension",
-                    :path => ":rails_root/public/system/feeds/:id/avatar/:style.:extension")
+                    :storage => :s3,
+                    :bucket => "commonplace-avatars-#{Rails.env}",
+                    :path => "/users/:id/avatar/:style.:extension",
+                    :s3_credentials => {
+                      :access_key_id => ENV['S3_KEY_ID'],
+                      :secret_access_key => ENV['S3_KEY_SECRET']
+                    })
+                    
 
   def tag_list
     self.cached_tag_list

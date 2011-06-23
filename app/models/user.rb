@@ -86,7 +86,6 @@ class User < ActiveRecord::Base
   has_many :attendances, :dependent => :destroy
 
   has_many :events, :through => :attendances
-
   has_many :posts, :dependent => :destroy
   has_many :group_posts, :dependent => :destroy
   has_many :announcements, :dependent => :destroy, :as => :owner, :include => :replies
@@ -121,9 +120,13 @@ class User < ActiveRecord::Base
                       :large => {:geometry => "200x200", :processors => [:cropper]},
                       :croppable => "400x400>"
                     },
-                    :default_url => "/avatars/missing.png", 
-                    :url => "/system/users/:id/avatar/:style.:extension",
-                    :path => ":rails_root/public/system/users/:id/avatar/:style.:extension")
+                    :storage => :s3,
+                    :bucket => "commonplace-avatars-#{Rails.env}",
+                    :path => "/feeds/:id/avatar/:style.:extension",
+                    :s3_credentials => {
+                      :access_key_id => ENV['S3_KEY_ID'],
+                      :secret_access_key => ENV['S3_KEY_SECRET']
+                    })
   
 
 
@@ -143,18 +146,6 @@ class User < ActiveRecord::Base
     (self.received_messages + self.messages).sort {|m,n| n.updated_at <=> m.updated_at }.select {|m| !m.archived }
   end
 
-
-  def client
-    OAuth2::Client.new(CONFIG['facebook_api_key'], CONFIG['facebook_secret_key'], :site => 'https://graph.facebook.com')
-  end
-  
-  def access_token
-    OAuth2::AccessToken.new(client,self.oauth2_token)
-  end
-  
-  def facebook_profile_data
-    JSON.parse(access_token.get("/me"))
-  end
 
   def validate_first_and_last_names
     errors.add(:full_name, "We need your first and last names.") if first_name.blank? || last_name.blank?
