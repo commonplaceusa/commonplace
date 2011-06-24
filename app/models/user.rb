@@ -134,7 +134,7 @@ class User < ActiveRecord::Base
 
   scope :receives_weekly_bulletin, :conditions => {:receive_weekly_digest => true}
 
-  scope :receives_daily_digest, :conditions => {"post_receive_method => "Daily"}
+  scope :receives_daily_digest, :conditions => {:post_receive_method => "Daily"}
 
   scope :receives_posts_live, :conditions => {:post_receive_method => "Live"}
 
