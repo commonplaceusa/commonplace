@@ -3,7 +3,7 @@ class DailyDigestJob
   @queue = :daily_digest
 
   def self.perform
-    User.receives_daily_digest.each do |user|
+    User.where("post_receive_method != 'Never'").find_each do |user|
       Resque.enqueue(DailyBulletin, user.id, DateTime.now.utc.to_s(:db))
     end
   end
