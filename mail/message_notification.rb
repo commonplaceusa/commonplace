@@ -5,7 +5,7 @@ class MessageNotification < PostNotification
   end
 
   def subject
-    "#{sender_name} just sent you a message on CommonPlace"
+    "#{sender_name} just sent you a private message through CommonPlace"
   end
 
   def message
