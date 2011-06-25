@@ -25,7 +25,7 @@ class DailyBulletin < MailBase
   end
 
   def subject
-    "The CommonPlace #{community_name} Daily Bulletin"
+    "The #{community_name} CommonPlace Daily Bulletin"
   end
 
   def header_text
