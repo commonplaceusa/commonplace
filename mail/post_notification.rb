@@ -5,7 +5,7 @@ class PostNotification < MailBase
   end
 
   def subject
-    "#{poster_name} just posted a message to your neighborhood"
+    "#{poster_name} just posted to our neighborhood on CommonPlace"
   end
 
   def reply_to
