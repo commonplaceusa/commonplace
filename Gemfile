@@ -12,7 +12,7 @@ gem 'rest-client'
 gem 'rack-cache'
 gem 'rest-client-components'
 gem 'aws-s3', :require => 'aws/s3'
-gem 'jammit-s3'
+gem 'jammit'
 gem 'thin'
 gem 'dalli'
 

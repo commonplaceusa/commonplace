@@ -917,7 +917,8 @@
       dataType:     'json',
       processData:  false,
       success:      success,
-      error:        error
+      error:        error,
+      cache:        true
     };
 
     // For older servers, emulate JSON by encoding the request into an HTML-form.
