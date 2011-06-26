@@ -12,6 +12,24 @@ class CommunitiesController < ApplicationController
       params[:controller], params[:action] = "accounts", "new"
       render 'accounts/new', :layout => 'application'
     else
+      @events = current_community.events.
+        upcoming.
+        includes(:owner, :replies => :user).
+        first(3).to_a
+
+      @announcements = current_community.announcements.
+        includes(:owner, :replies => :user).
+        first(3).to_a
+
+      @posts = current_community.posts.
+        order("created_at DESC").
+        includes(:user, :replies => :user).
+        first(3).to_a
+
+      @group_posts = GroupPost.includes(:group, :user, :replies => :user).
+        where(:groups  => {:community_id => current_community.id}).
+        first(3).to_a
+
       render 'show'
     end
   end

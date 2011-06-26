@@ -1,5 +1,4 @@
 var CommonPlace = CommonPlace || {};
-
 CommonPlace.MainPageController = Backbone.Controller.extend({
   
   initialize: function(options) {
@@ -76,19 +75,28 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   event: function(id) {
-    var view = new CommonPlace.EventInfo({el: $("#community-profiles"),
-                                          model: this.community.events.get(id)});
+    var event = this.community.events.get(id);
+    if (event) {
+      var view = new CommonPlace.EventInfo({el: $("#community-profiles"),
+                                            model: event});
     view.render();
+    }
   },
 
   user: function(id) {
-    this.renderProfile(this.community.users.get(id), "userinfo");
+    var user = this.community.users.get(id);
+    if (user) {
+      this.renderProfile(user, "userinfo");
+    }
   },
 
   feed: function(id) {
-    var view = new CommonPlace.FeedInfo({el: $("#community-profiles"),
-                                          model: this.community.feeds.get(id)});
-    view.render();
+    var feed = this.community.feeds.get(id);
+    if (feed) {
+      var view = new CommonPlace.FeedInfo({el: $("#community-profiles"),
+                                           model: feed});
+      view.render();
+    }
   },
 
   group: function(id) {
@@ -110,15 +118,18 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   posts: function() {
-    this.postIndex = this.postIndex ||
-      new CommonPlace.Index({
-        collection: this.community.posts,
-        el: $("#whats-happening"),
-        itemView: CommonPlace.PostItem,
-        subnav: [{url: "#/posts", current: true, last: true, name: "Neighborhood Posts"}],
-        zone: "posts"
-      });
-    this.postIndex.render();
+    var self = this;
+    this.community.posts.fetch({success: function(r) {
+      self.postIndex = self.postIndex ||
+        new CommonPlace.Index({
+          collection: self.community.posts,
+          el: $("#whats-happening"),
+          itemView: CommonPlace.PostItem,
+          subnav: [{url: "#/posts", current: true, last: true, name: "Neighborhood Posts"}],
+          zone: "posts"
+        });
+      self.postIndex.render();
+    }});
   },
   
   showPost: function(id) { this.posts(); 
@@ -145,43 +156,52 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
                           },
 
   announcements: function(){
-    this.announcementIndex = this.announcementIndex ||
-      new CommonPlace.Index({
-        collection: this.community.announcements,
-        el: $("#whats-happening"),
-        itemView: CommonPlace.AnnouncementItem,
-        subnav: [{url:"#/announcements", name:"Community Announcements", current: true},
-                 {url:"#/feeds", name: "Community Feeds", last:true}],
-        zone: "announcements"
-      });
-    this.announcementIndex.render();
+    var self = this;
+    this.community.announcements.fetch({success: function() {
+      self.announcementIndex = self.announcementIndex ||
+        new CommonPlace.Index({
+          collection: self.community.announcements,
+          el: $("#whats-happening"),
+          itemView: CommonPlace.AnnouncementItem,
+          subnav: [{url:"#/announcements", name:"Community Announcements", current: true},
+                   {url:"#/feeds", name: "Community Feeds", last:true}],
+          zone: "announcements"
+        });
+      self.announcementIndex.render();
+    }});
   },
 
   events: function(){
-    this.eventIndex = this.eventIndex ||
-      new CommonPlace.Index({
-        collection: this.community.events,
-        el:$("#whats-happening"),
+    var self = this;
+    this.community.events.fetch({success: function() {
+      self.eventIndex = self.eventIndex ||
+        new CommonPlace.Index({
+          collection: self.community.events,
+          el:$("#whats-happening"),
         itemView: CommonPlace.EventItem,
-        subnav: [{url: "#/events", name:"Upcoming Events", current: true, last: true}],
-        zone: "events"
-      });
-    this.eventIndex.render();
+          subnav: [{url: "#/events", name:"Upcoming Events", current: true, last: true}],
+          zone: "events"
+        });
+      self.eventIndex.render();
+    }});
   },
 
   group_posts: function(){
-    this.group_postIndex = this.group_postIndex ||
-      new CommonPlace.Index({
-        collection: this.community.group_posts,
-        el: $("#whats-happening"),
-        itemView: CommonPlace.GroupPostItem,
-        subnav: [{url: "#/group_posts", name: "Group Posts", current: true},
-                 {url: "#/groups", name: "Discussion Groups", last: true}],
-        zone: "group_posts"
-      });
-    this.group_postIndex.render();
+    var self = this;
+    this.community.group_posts.fetch({success: function() {
+      self.group_postIndex = self.group_postIndex ||
+        new CommonPlace.Index({
+          collection: self.community.group_posts,
+          el: $("#whats-happening"),
+          itemView: CommonPlace.GroupPostItem,
+          subnav: [{url: "#/group_posts", name: "Group Posts", current: true},
+                   {url: "#/groups", name: "Discussion Groups", last: true}],
+          zone: "group_posts"
+        });
+      self.group_postIndex.render();
+    }});
   },
-
+  
   directorySubnav: function(current_url) {
     return _([{url: "#/users", name: "Your Neighbors"},
               {url: "#/feeds", name: "Community Feeds"},
@@ -192,36 +212,45 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   groups: function(){
-    this.groupIndex = this.groupIndex ||
-      new CommonPlace.Index({
-        collection: this.community.groups,
-        el: $("#whats-happening"),
-        itemView: CommonPlace.GroupItem,
-        subnav: this.directorySubnav("#/groups"),
-        zone: "users"
-      });
-    this.groupIndex.render();
+    var self = this;
+    this.community.groups.fetch({success: function() {
+      self.groupIndex = self.groupIndex ||
+        new CommonPlace.Index({
+          collection: self.community.groups,
+          el: $("#whats-happening"),
+          itemView: CommonPlace.GroupItem,
+          subnav: self.directorySubnav("#/groups"),
+          zone: "users"
+        });
+      self.groupIndex.render();
+    }});
   },
 
   feeds: function(){
-    this.feedIndex = this.feedIndex ||
-      new CommonPlace.Index({collection: this.community.feeds,
-                             el: $("#whats-happening"),
-                             itemView: CommonPlace.FeedItem,
-                             subnav: this.directorySubnav("#/feeds"),
-                             zone: "users"
-                            });
-    this.feedIndex.render();
+    var self = this;
+    this.community.feeds.fetch({success: function() {
+      self.feedIndex = self.feedIndex ||
+        new CommonPlace.Index({collection: self.community.feeds,
+                               el: $("#whats-happening"),
+                               itemView: CommonPlace.FeedItem,
+                               subnav: self.directorySubnav("#/feeds"),
+                               zone: "users"
+                              });
+      self.feedIndex.render();
+    }});
   },
   users: function(){
-    this.userIndex = this.userIndex ||
-      new CommonPlace.Index({collection: this.community.users,
-                             el: $("#whats-happening"),
-                             itemView: CommonPlace.UserItem,
-                             subnav: this.directorySubnav("#/users"),
-                             zone: "users"
-                            });
-    this.userIndex.render();
+    var self = this;
+    this.community.users.fetch({success: function() {
+      self.userIndex = self.userIndex ||
+        new CommonPlace.Index({collection: self.community.users,
+                               el: $("#whats-happening"),
+                               itemView: CommonPlace.UserItem,
+                               subnav: self.directorySubnav("#/users"),
+                               zone: "users"
+                              });
+      self.userIndex.render();
+    }});
   },
 
   runNotifier: function() {

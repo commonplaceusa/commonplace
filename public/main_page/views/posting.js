@@ -27,9 +27,9 @@ CommonPlace.SaySomething = Backbone.View.extend({
       title: this.$("input#post_subject").val(),
       body: this.$("textarea#post_body").val() 
     }, { success: function() {
-      window.location.hash = "/posts";
-      Backbone.history.checkUrl();
       window.location.hash = "/posts/new";
+      Backbone.history.checkUrl();
+      window.location.hash = "/posts";
       Backbone.history.checkUrl();
     },
          error: function() { self.render(); }
@@ -72,9 +72,9 @@ CommonPlace.SaySomething = Backbone.View.extend({
       tags: this.$("input#event_tag_list").val(),
       feed: owner_match[1] == "feed" ? owner_match[2] : null
     }, { success: function() {
-      window.location.hash = "/events";
-      Backbone.history.checkUrl();
       window.location.hash = "/events/new";
+      Backbone.history.checkUrl();
+      window.location.hash = "/events";
       Backbone.history.checkUrl();
     } });
   },
