@@ -120,9 +120,11 @@ class User < ActiveRecord::Base
                       :large => {:geometry => "200x200", :processors => [:cropper]},
                       :croppable => "400x400>"
                     },
+                    :default_url => "/avatars/missing.png",
                     :storage => :s3,
+                    :s3_protocol => "https",
                     :bucket => "commonplace-avatars-#{Rails.env}",
-                    :path => "/feeds/:id/avatar/:style.:extension",
+                    :path => "/users/:id/avatar/:style.:extension",
                     :s3_credentials => {
                       :access_key_id => ENV['S3_KEY_ID'],
                       :secret_access_key => ENV['S3_KEY_SECRET']
