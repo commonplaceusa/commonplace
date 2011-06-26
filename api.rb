@@ -33,7 +33,7 @@ class API < Sinatra::Base
   end
 
   before do 
-    cache_control :public, :must_revalidate, :max_age => 40
+    cache_control :public, :must_revalidate, :max_age => 0
     content_type :json
     authenticate!
     authorize!
@@ -225,20 +225,20 @@ class API < Sinatra::Base
   get "/communities/:id/posts" do |id|
     community = Community.find(id)
     last_modified(community.posts.unscoped.
-                  order("updated_at DESC").first.try(:updated_at))
+                  order("updated_at DESC").limit(1).first.try(:updated_at))
     serialize(community.posts.includes(:user, :replies).to_a)
   end
 
   get "/communities/:id/events" do |id|
-    community = Community.find(id)
-    last_modified(community.events.order("updated_at DESC").first.try(:updated_at))
-    serialize(community.events.upcoming.includes(:replies).to_a)
+    scope = Event.where("community_id = ?",id)
+    last_modified(scope.order("updated_at DESC").limit(1).first.try(:updated_at))
+    serialize(scope.upcoming.includes(:replies).to_a)
   end
 
   get "/communities/:id/announcements" do |id|
-    community = Community.find(id)
-    last_modified(community.announcements.order("updated_at DESC").first.try(:updated_at))
-    serialize(community.announcements.includes(:replies).to_a)
+    scope = Announcement.where("community_id = ?", id)
+    last_modified(scope.order("updated_at DESC").limit(1).first.try(:updated_at))
+    serialize(scope.includes(:replies).to_a)
   end
 
   get "/communities/:id/group_posts" do |id|
