@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user, :facebook_session
   helper_method :api
   
-  before_filter :subdomain_redirect, :set_process_name_from_request, :login_with_single_access_token
+  before_filter :domain_redirect, :set_process_name_from_request, :login_with_single_access_token
   after_filter :unset_process_name_from_request
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -42,10 +42,39 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def subdomain_redirect
-    if request.subdomain.present? && request.subdomains.first == "www"
-      redirect_to "#{request.scheme}://#{(request.subdomains.drop(1)+[request.domain]).join(".")}#{request.port ? ":#{request.port}" : nil}#{request.fullpath}"
+  def domain_redirect
+    logger.info("\n\n ----- #{ request.request_uri } ----- ")
+    logger.info(" ----- #{ request.host } ----- \n\n")
+    return unless Rails.env.production?
+    return if request.host == "commonplace.herokuapp.com"
+    case request.host
+
+    when %r{^www\.ourcommonplace\.com$}
+      return
+
+    when %r{^assets\.}
+      return
+
+    when %r{^ourcommonplace\.com$}
+      redirect_to "https://www.ourcommonplace.com#{request.request_uri}", :status => 301
+      return
+
+    when %r{^(?:www\.)?([a-zA-Z]+)\.ourcommonplace\.com$}
+      if request.path == "/" || request.path == ""
+        redirect_to "https://www.ourcommonplace.com/#{$1}", :status => 301
+      else
+        redirect_to "https://www.ourcommonplace.com#{request.request_uri}", :status => 301
+      end
+
+    when %r{^(?:www\.)?commonplaceusa.com$}
+      case request.path
+      when %r{^/$}
+        redirect_to "https://www.ourcommonplace.com/about", :status => 301
+      else
+        redirect_to "https://www.ourcommonplace.com#{request.request_uri}", :status => 301
+      end
     end
+    
   end
 
   def current_community
