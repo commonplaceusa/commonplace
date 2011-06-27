@@ -4,7 +4,7 @@ module MailUrls
     if Rails.env.development?
       "http://localhost:3000" + path
     else
-      "http://ourcommonplace.com" + path
+      "https://www.ourcommonplace.com" + path
     end
   end
 
@@ -12,7 +12,7 @@ module MailUrls
     if Rails.env.development?
       "http://localhost:3000" + path
     else
-      "http://ourcommonplace.com" + path
+      "https://www.ourcommonplace.com" + path
     end
   end
 
