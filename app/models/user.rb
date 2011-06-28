@@ -114,21 +114,27 @@ class User < ActiveRecord::Base
   has_many :people, :through => :mets, :source => "requestee"
 
   has_attached_file(:avatar,                    
-                    :styles => { 
-                      :thumb => {:geometry => "100x100", :processors => [:cropper]},
-                      :normal => {:geometry => "120x120", :processors => [:cropper]},
-                      :large => {:geometry => "200x200", :processors => [:cropper]},
-                      :croppable => "400x400>"
-                    },
-                    :default_url => "/avatars/missing.png",
-                    :storage => :s3,
-                    :s3_protocol => "https",
-                    :bucket => "commonplace-avatars-#{Rails.env}",
-                    :path => "/users/:id/avatar/:style.:extension",
-                    :s3_credentials => {
-                      :access_key_id => ENV['S3_KEY_ID'],
-                      :secret_access_key => ENV['S3_KEY_SECRET']
-                    })
+                    {:styles => { 
+                        :thumb => {:geometry => "100x100", :processors => [:cropper]},
+                        :normal => {:geometry => "120x120", :processors => [:cropper]},
+                        :large => {:geometry => "200x200", :processors => [:cropper]},
+                        :croppable => "400x400>"
+                      },
+                      :default_url => "/avatars/missing.png"
+                    }.merge(Rails.env.development? ? 
+                            { :path => ":rails_root/public/system/users/:id/avatar/:style.:extension", 
+                              :storage => :filesystem,
+                              :url => "/system/users/:id/avatar/:style.:extension"
+                            } : { 
+                              :storage => :s3,
+                              :s3_protocol => "https",
+                              :bucket => "commonplace-avatars-#{Rails.env}",
+                              :path => "/users/:id/avatar/:style.:extension",
+                              :s3_credentials => {
+                                :access_key_id => ENV['S3_KEY_ID'],
+                                :secret_access_key => ENV['S3_KEY_SECRET']
+                              }
+                            }))
   
 
 
