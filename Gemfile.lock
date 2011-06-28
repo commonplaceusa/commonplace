@@ -235,7 +235,7 @@ GEM
       activesupport
     permanent_records (2.1.2)
       activerecord
-    pg (0.10.1)
+    pg (0.11.0)
     polyglot (0.3.1)
     premailer (1.6.2)
       css_parser (>= 1.1.3)
