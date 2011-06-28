@@ -1,18 +1,26 @@
 module MailUrls
 
   def url(path)
-    if Rails.env.development?
-      "http://localhost:3000" + path
+    if path.start_with?("http")
+      path
     else
-      "https://www.ourcommonplace.com" + path
+      if Rails.env.development?
+        "http://localhost:3000" + path
+      else
+        "https://www.ourcommonplace.com" + path
+      end
     end
   end
 
   def asset_url(path)
-    if Rails.env.development?
-      "http://localhost:3000" + path
+    if path.start_with?("http")
+      path
     else
-      "https://www.ourcommonplace.com" + path
+      if Rails.env.development?
+        "http://localhost:3000" + path
+      else
+        "https://www.ourcommonplace.com" + path
+      end
     end
   end
 
