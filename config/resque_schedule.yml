@@ -1,5 +1,5 @@
 send_daily_digest:
-  cron: "00 17 * * *"
+  cron: "00 21 * * *"
   class: DailyDigestJob
   args:
   queue: daily_digest
