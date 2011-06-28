@@ -1,6 +1,6 @@
+uri = URI.parse(ENV["REDISTOGO_URL"] || "localhost:6379")
 
-$redis = Redis.new
-$rollout = Rollout.new($redis)
+$rollout = Rollout.new(Redis.new(:host => uri.host, :port => uri.port, :password => uri.password, :thread_safe => true))
 
 $rollout.define_group(:alpha) do |user|
   user.community.slug == "CommonPlace"
