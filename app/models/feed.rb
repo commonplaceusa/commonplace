@@ -31,20 +31,26 @@ class Feed < ActiveRecord::Base
   end
 
   has_attached_file(:avatar,                    
-                    :styles => { 
-                      :thumb => "100x100#", 
-                      :normal => "120x120#",
-                      :large => "200x200#"
-                    },
-                    :default_url => "/avatars/missing.png", 
-                    :storage => :s3,
-                    :s3_protocol => "https",
-                    :bucket => "commonplace-avatars-#{Rails.env}",
-                    :path => "/feeds/:id/avatar/:style.:extension",
-                    :s3_credentials => {
-                      :access_key_id => ENV['S3_KEY_ID'],
-                      :secret_access_key => ENV['S3_KEY_SECRET']
-                    })
+                    { :styles => { 
+                        :thumb => "100x100#", 
+                        :normal => "120x120#",
+                        :large => "200x200#"
+                      },
+                      :default_url => "/avatars/missing.png"
+                    }.merge(Rails.env.development? ?
+                            { :path => ":rails_root/public/system/feeds/:id/avatar/:style.:extension", 
+                              :storage => :filesystem,
+                              :url => "/system/feeds/:id/avatar/:style.:extension"
+                            } : {
+                              :storage => Rails.env.development? ? :filesystem : :s3,
+                              :s3_protocol => "https",
+                              :bucket => "commonplace-avatars-#{Rails.env}",
+                              :path => "/feeds/:id/avatar/:style.:extension",
+                              :s3_credentials => {
+                                :access_key_id => ENV['S3_KEY_ID'],
+                                :secret_access_key => ENV['S3_KEY_SECRET']
+                              }
+                            }))
                     
 
   def tag_list
