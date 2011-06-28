@@ -53,7 +53,7 @@ class PostNotification < MailBase
   end
 
   def post_body
-    markdown(post.body)
+    markdown(post.body) rescue ("<p>" + post.body + "</p>")
   end
 
   def poster_avatar_url
