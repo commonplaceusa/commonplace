@@ -138,6 +138,9 @@ GEM
     flog (2.5.0)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
+    foreman (0.19.0)
+      term-ansicolor (~> 1.0.5)
+      thor (>= 0.13.6)
     forgery (0.3.6)
     formtastic (1.2.3)
       actionpack (>= 2.3.7)
@@ -340,6 +343,8 @@ GEM
       tilt (>= 1.2.2, < 2.0)
     spork (0.8.4)
     ssl_requirement (0.1.0)
+    system_timer (1.2.4)
+    term-ansicolor (1.0.5)
     text-hyphen (1.0.0)
     text-reform (0.2.0)
       text-hyphen (~> 1.0.0)
@@ -385,6 +390,7 @@ DEPENDENCIES
   exceptional
   ezcrypto
   factory_girl
+  foreman
   forgery
   formtastic
   fuubar
@@ -431,6 +437,7 @@ DEPENDENCIES
   sinatra
   spork
   ssl_requirement
+  system_timer
   text-reform
   thin
   thor
