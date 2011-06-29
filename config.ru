@@ -3,8 +3,10 @@
 require ::File.expand_path('../config/environment',  __FILE__)
 require ::File.expand_path('../api',  __FILE__)
 require 'resque/server'
+require 'exceptional'
 
 app = Rack::Builder.new do 
+  use Rack::Exceptional, ENV['exceptional_key']
   use(Rack::Cache,
       :verbose     => true,
       :metastore   => Dalli::Client.new,
