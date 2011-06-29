@@ -1,4 +1,4 @@
-$MailDeliveryMethod = ENV['mail_delivery_method'] || :file
+$MailDeliveryMethod = ENV['mail_delivery_method'].try(:intern) || :file
 
 $MailDeliveryOptions = 
   if $MailDeliveryMethod == :file

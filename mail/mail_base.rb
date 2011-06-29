@@ -4,8 +4,8 @@ require 'sass'
 require 'resque/plugins/resque_heroku_autoscaler'
 
 Mail.defaults do
-  delivery_method($MailDeliveryMethod.intern,
-                  $MailDeliveryOptions.symbolize_keys)
+  delivery_method($MailDeliveryMethod,
+                  $MailDeliveryOptions)
 end
 
 class MailBase < Mustache
