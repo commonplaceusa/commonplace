@@ -52,7 +52,7 @@ class PostsController < CommunitiesController
     if can? :destroy, @post
       if @post.destroy
         flash[:message] = "Post Deleted!"
-        redirect_to posts_path
+        redirect_to root_url
       else
         render :new
       end
