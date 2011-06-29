@@ -15,6 +15,7 @@ gem 'aws-s3', :require => 'aws/s3'
 gem 'jammit'
 gem 'thin'
 gem 'dalli'
+gem 'heroku'
 
 # Database3
 gem 'redis'
@@ -66,6 +67,7 @@ gem 'geocoder'
 gem 'resque'
 gem 'resque-exceptional'
 gem 'resque-scheduler'
+gem 'resque-heroku-autoscaler'
 
 # Features/Monitoring
 gem 'exceptional'

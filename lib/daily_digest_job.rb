@@ -1,4 +1,7 @@
+require 'resque/plugins/resque_heroku_autoscaler'
+
 class DailyDigestJob
+  extend Resque::Plugins::HerokuAutoscaler
   
   @queue = :daily_digest
 
