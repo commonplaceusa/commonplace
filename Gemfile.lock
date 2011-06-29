@@ -157,8 +157,13 @@ GEM
     googlecharts (1.6.7)
     haml (3.1.1)
     has_scope (0.5.0)
+    heroku (2.3.6)
+      launchy (>= 0.3.2)
+      rest-client (~> 1.6.1)
+      term-ansicolor (~> 1.0.5)
     highline (1.6.1)
     hirb (0.3.6)
+    hirefireapp (0.0.1)
     hoe (2.9.0)
       rake (>= 0.8.7)
     hpricot (0.8.4)
@@ -398,6 +403,8 @@ DEPENDENCIES
   glebm-geokit
   googlecharts
   haml (~> 3.1)
+  heroku
+  hirefireapp
   hoe (= 2.9.0)
   httparty
   jammit
