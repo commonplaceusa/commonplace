@@ -1,6 +1,7 @@
 require 'mustache'
 require 'premailer'
 require 'sass'
+require 'resque/plugins/resque_heroku_autoscaler'
 
 Mail.defaults do
   delivery_method($MailDeliveryMethod.intern,
@@ -9,6 +10,7 @@ end
 
 class MailBase < Mustache
   include MailUrls
+  extend Resque::Plugins::HerokuAutoscaler
 
   def self.underscore(classified = name)
     classified = name if classified.to_s.empty?
