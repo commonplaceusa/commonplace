@@ -67,7 +67,7 @@ gem 'geocoder'
 gem 'resque'
 gem 'resque-exceptional'
 gem 'resque-scheduler'
-gem 'resque-heroku-autoscaler'
+gem 'hirefireapp'
 
 # Features/Monitoring
 gem 'exceptional'

@@ -1,9 +1,7 @@
 require 'rss'
 require 'htmlentities'
-require 'resque/plugins/resque_heroku_autoscaler'
 
 class RSSImporter
-  extend Resque::Plugins::HerokuAutoscaler
 
   def self.strip_feedflare(html)
     HTMLEntities.new.decode(html.gsub(/<div class=\"feedflare\">(.*)<\/div>/m, ""))
