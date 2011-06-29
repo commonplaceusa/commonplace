@@ -43,8 +43,6 @@ class ApplicationController < ActionController::Base
   end
 
   def domain_redirect
-    logger.info("\n\n ----- #{ request.request_uri } ----- ")
-    logger.info(" ----- #{ request.host } ----- \n\n")
     return unless Rails.env.production?
     return if request.host == "commonplace.herokuapp.com"
     case request.host
@@ -56,14 +54,14 @@ class ApplicationController < ActionController::Base
       return
 
     when %r{^ourcommonplace\.com$}
-      redirect_to "https://www.ourcommonplace.com#{request.request_uri}", :status => 301
+      redirect_to "https://www.ourcommonplace.com#{request.fullpath}", :status => 301
       return
 
     when %r{^(?:www\.)?([a-zA-Z]+)\.ourcommonplace\.com$}
       if request.path == "/" || request.path == ""
         redirect_to "https://www.ourcommonplace.com/#{$1}", :status => 301
       else
-        redirect_to "https://www.ourcommonplace.com#{request.request_uri}", :status => 301
+        redirect_to "https://www.ourcommonplace.com#{request.fullpath}", :status => 301
       end
 
     when %r{^(?:www\.)?commonplaceusa.com$}
@@ -71,7 +69,7 @@ class ApplicationController < ActionController::Base
       when %r{^/$}
         redirect_to "https://www.ourcommonplace.com/about", :status => 301
       else
-        redirect_to "https://www.ourcommonplace.com#{request.request_uri}", :status => 301
+        redirect_to "https://www.ourcommonplace.com#{request.fullpath}", :status => 301
       end
     end
     
@@ -107,7 +105,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.fullpath
   end
   
   def redirect_back_or_default(default)
