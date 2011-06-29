@@ -1,10 +1,15 @@
-$MailDeliveryMethod = ENV['mail_delivery_method']
+$MailDeliveryMethod = ENV['mail_delivery_method'] || :file
 
-$MailDeliveryOptions = {
-  :address => ENV['mail_address'],
-  :port => ENV['mail_port'],
-  :domain => ENV['domain'],
-  :authentication => ENV['mail_authentication'],
-  :user_name => ENV['mail_username'],
-  :password => ENV['mail_password']
-}
+$MailDeliveryOptions = 
+  if $MailDeliveryMethod == :file
+    {:location => Rails.root.join('tmp','inboxes')}
+  else
+    { 
+    :address => ENV['mail_address'],
+    :port => ENV['mail_port'],
+    :domain => ENV['domain'],
+    :authentication => ENV['mail_authentication'],
+    :user_name => ENV['mail_username'],
+    :password => ENV['mail_password'] 
+    } 
+  end
