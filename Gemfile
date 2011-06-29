@@ -71,6 +71,8 @@ gem 'resque-scheduler'
 gem 'exceptional'
 gem 'rollout'
 
+gem 'system_timer', :platforms => [:ruby_18]
+
 group :development, :test do
   gem 'metric_fu'
   gem 'factory_girl'
@@ -92,6 +94,7 @@ group :development, :test do
   gem 'autotest-rails-pure'
   gem 'hoe', '2.9.0'
   gem 'thor'
+  gem 'foreman'
 end
 
 
