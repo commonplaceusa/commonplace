@@ -1,7 +1,7 @@
-== Welcome to Rails
+== Welcome to CommonPlace
 
-Rails is a web-application framework that includes everything needed to create
-database-backed web applications according to the Model-View-Control pattern.
+CommonPlace is a Social Networking Site that includes everything needed to create
+database-backed civic infrastructure according to the Model-View-Control pattern.
 
 This pattern splits the view (also called the presentation) into "dumb"
 templates that are primarily responsible for inserting pre-built data in between
@@ -28,14 +28,18 @@ link:files/vendor/rails/actionpack/README.html.
 
 == Getting Started
 
-1. At the command prompt, create a new Rails application:
-       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
+1. At the command prompt, set up your development instance:
+       <tt>git clone git@github.com:commonplaceusa/commonplace.git</tt>
+       <tt>cd commonplace</tt>
+       <tt>gem install bundler</tt>
+       <tt>bundle install</tt>
+       <tt>rake db:setup</tt>
 
-2. Change directory to <tt>myapp</tt> and start the web server:
-       <tt>cd myapp; rails server</tt> (run with --help for options)
+2. Run the server and the email workers:
+       <tt>bundle exec foreman start</tt> 
 
-3. Go to http://localhost:3000/ and you'll see:
-       "Welcome aboard: You're riding Ruby on Rails!"
+3. Go to http://localhost:5000/test and login with test@example.com:password
+       
 
 4. Follow the guidelines to start developing your application. You can find
 the following resources handy:
