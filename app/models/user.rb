@@ -121,7 +121,7 @@ class User < ActiveRecord::Base
                         :croppable => "400x400>"
                       },
                       :default_url => "/avatars/missing.png"
-                    }.merge(Rails.env.development? ? 
+                    }.merge(Rails.env.development? || Rails.env.test? ? 
                             { :path => ":rails_root/public/system/users/:id/avatar/:style.:extension", 
                               :storage => :filesystem,
                               :url => "/system/users/:id/avatar/:style.:extension"
