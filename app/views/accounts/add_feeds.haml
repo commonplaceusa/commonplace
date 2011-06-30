@@ -13,7 +13,7 @@
       #feeds_container
         - @feeds.each do |feed|
           .feed
-            =image_tag(feed.avatar_url)
+            =image_tag(feed.avatar_url(:thumb))
             .unchecked
             %h3= feed.name
             %input{:class =>"feedId", :name => "feed_ids[]", :value => feed.id.to_s, :type =>"checkbox"}
