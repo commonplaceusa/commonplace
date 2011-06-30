@@ -102,7 +102,7 @@ class AccountsController < CommunitiesController
       if params[:user][:avatar].blank?
         redirect_to :action => "add_feeds"
       else
-        redirect_to :action => "add_feeds"
+        redirect_to :action => "crop"
       end
     else
       render :edit_new
