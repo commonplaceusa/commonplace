@@ -140,7 +140,8 @@ class User < ActiveRecord::Base
 
   def avatar_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
+    path = (avatar.options[:storage]==:s3) ? avatar.url(style) : avatar.path(style)
+    @geometry[style] ||= Paperclip::Geometry.from_file(path)
   end
 
   scope :receives_weekly_bulletin, :conditions => {:receive_weekly_digest => true}
