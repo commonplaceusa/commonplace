@@ -9,12 +9,14 @@ class UserSessionsController < ApplicationController
   end
   
   def new
-    authorize! :new, UserSession
+    if logged_in?
+      redirect_to root_url
+      return
+    end
     @user = User.new
   end
 
   def create
-    authorize! :create, UserSession
     if params[:user_session][:facebook_uid].present?
       facebook_uid = params[:user_session][:facebook_uid]
     end
