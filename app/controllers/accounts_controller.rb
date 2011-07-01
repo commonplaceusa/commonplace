@@ -224,10 +224,15 @@ class AccountsController < CommunitiesController
     authorize! :update, User
   end
 
-  private
-
-  def single_access_allowed?
-    true
+  def gatekeeper
+    if current_user.present
+      unless current_user.is_transitional_user
+        redirect_to root_url
+      end
+    else
+      redirect_to root_url
+    end
   end
-  
+
+
 end

@@ -17,6 +17,7 @@ Commonplace::Application.routes.draw do
   # Global routes
 
   match "/about" => "site#index", :as => :about
+  match "/gatekeeper" => "accounts#gatekeeper"
 
   match 'email_parse/parse' => 'email_parse#parse', :via => :post
   match "/admin/overview" => "admin#overview"

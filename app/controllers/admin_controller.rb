@@ -54,6 +54,9 @@ class AdminController < ApplicationController
   end
 
   def clipboard
+    require 'uuid'
+    UUID.state_file = false
+    uuid = UUID.new
     if params[:registrants].present?
       entries = params[:registrants].split("\n")
       email_addresses_registered = []
@@ -62,10 +65,10 @@ class AdminController < ApplicationController
         name = entry[0]
         email = entry[1]
         address = entry[2]
-        user = User.new(:full_name => name, :email => email, :address => address, :community => Community.find(params[:clipboard_community]))
-        if user.save_without_session_maintenance
+        half_user = HalfUser.new(:full_name => name, :email => email, :street_address => address, :community => Community.find(params[:clipboard_community]), :single_access_token => uuid.generate)
+        if half_user.save
           email_addresses_registered << email
-          Resque.enqueue(ClipboardWelcome, user.id)
+          Resque.enqueue(ClipboardWelcome, half_user.id)
         end
       end
       flash[:notice] = "Registered #{email_addresses_registered.count} users: #{email_addresses_registered.join(', ')}"

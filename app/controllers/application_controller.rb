@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user, :facebook_session
   helper_method :api
   
-  before_filter :domain_redirect, :set_process_name_from_request, :login_with_single_access_token
+  before_filter :domain_redirect, :set_process_name_from_request, :single_access_token
   after_filter :unset_process_name_from_request
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -136,12 +136,45 @@ class ApplicationController < ActionController::Base
     request.env['HTTP_X_REQUESTED_WITH'].present? || params[:xhr]
   end
 
-  private
-
-  def login_with_single_access_token
-    return if params[:token].nil?
-    user = User.find_by_single_access_token(params[:token])
-    UserSession.create(user) if user.present?
+  def redirect_to(options = {}, response_status = {})
+    if xhr? 
+      render :json => {"redirect_to" => options}
+    else
+      super(options, response_status)
+    end
   end
-  
+
+  def single_access_token
+    return unless params[:husat].present?
+    half_user = HalfUser.find_by_single_access_token(params[:husat])
+    user = User.new
+    user.transitional_user = true
+    if half_user.full_name.present?
+      user.full_name = half_user.full_name
+    end
+    if half_user.street_address.present?
+      user.address = half_user.street_address
+    end
+    user.email = half_user.email
+    user.community_id = half_user.community_id
+    user.single_access_token = half_user.single_access_token
+
+    placeholder = "GatekeeperPlaceholder12321"
+    unless user.first_name.present?
+      user.first_name = placeholder
+    end
+    unless user.last_name.present?
+      user.last_name = placeholder
+    end
+    if user.address.present?
+      user.place_in_neighborhood
+    else
+      user.neighborhood = Community.find(user.community_id).neighborhoods.first
+    end
+    @current_community = Community.find(user.community_id)
+    user.save
+    @current_user = user
+    #@current_user_session = UserSession.create(user)
+  end
+
 end
