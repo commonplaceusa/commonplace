@@ -2,6 +2,8 @@ class AdminController < ApplicationController
 
   before_filter :verify_admin
 
+  helper_method :ensure_no_timeout
+
   def verify_admin
     unless current_user.admin
       redirect_to root_url
@@ -52,5 +54,12 @@ class AdminController < ApplicationController
   def show_referrers
     @referred_users = User.all.select{ |u| u.referral_source.present? }.sort{ |a,b| a.community_id <=> b.community_id }.sort{ |a,b,| a.created_at <=> b.created_at }
   end
+
+  def ensure_no_timeout
+    self.response_body =  proc{ |response, output|
+      output.write " "
+    }
+  end
+    
 
 end
