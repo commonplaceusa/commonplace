@@ -27,13 +27,15 @@ class User < ActiveRecord::Base
   before_validation :place_in_neighborhood, :if => :address_changed?
 
   validates_presence_of :community
-  validates_presence_of :address, :on => :create, :unless => :authenticating_with_oauth2?
+  validates_presence_of :address, :on => :create, :unless => :is_transitional_user
   validates_presence_of :address, :on => :update
 
-    
-  validate :validate_first_and_last_names
+  validates_presence_of :first_name, :unless => :is_transitional_user
 
-  validates_presence_of :neighborhood
+    
+  validate :validate_first_and_last_names, :unless => :is_transitional_user
+
+  validates_presence_of :neighborhood, :unless => :is_transitional_user
   validates_uniqueness_of :facebook_uid, :allow_nil => true 
 
   scope :between, lambda { |start_date, end_date| 
@@ -251,5 +253,9 @@ class User < ActiveRecord::Base
   def reprocess_avatar
     avatar.reprocess!
   end
-  
+
+  def is_transitional_user
+    transitional_user
+  end
+
 end

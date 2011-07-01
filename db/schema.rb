@@ -59,20 +59,6 @@ ActiveRecord::Schema.define(:version => 20110713042546) do
     t.string   "tweet_id"
   end
 
-  create_table "archived_posts", :id => false, :force => true do |t|
-    t.integer  "id",                :null => false
-    t.text     "body",              :null => false
-    t.integer  "user_id",           :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "subject"
-    t.string   "category"
-    t.integer  "community_id"
-    t.boolean  "sent_to_community"
-    t.boolean  "published"
-    t.datetime "deleted_at"
-  end
-
   create_table "attendances", :force => true do |t|
     t.integer  "event_id",   :null => false
     t.integer  "user_id",    :null => false
