@@ -9,7 +9,7 @@ class AdminController < ApplicationController
   end
 
   def overview
-    @days = 14
+    @days = 7
     date = @days.days.ago
     @start_year = date.strftime("%Y")
     @start_month = date.strftime("%m")
