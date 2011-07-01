@@ -47,7 +47,6 @@
     = Message.today.count
 %br
 - @communities.each do |community|
-  - ensure_no_timeout
   .community{:width => "100%", :style => "border: 1px solid black;"}
     %h2{:style => "text-align: center;"}= community.name
     %table
