@@ -21,7 +21,7 @@
     = @messages.count
     %br
     Total Reply Percentage:
-    = "#{((100*@replies.count) / (@replies.count + @announcements.count + @events.count + @group_posts.count + @posts.count + @messages.count))}%"
+    = (@replies.count + @announcements.count + @events.count + @group_posts.count + @posts.count + @messages.count > 0) ? "#{((100*@replies.count) / (@replies.count + @announcements.count + @events.count + @group_posts.count + @posts.count + @messages.count))}%" : "N/A"
   .registrations
     %img{:src => Gchart.pie(:data => [@completed_registrations.count, @incomplete_registrations.count], :title => "Total Registration Status", :labels => ["Complete", "Incomplete"], :size => "300x200")}
     %br
@@ -47,6 +47,7 @@
     = Message.today.count
 %br
 - @communities.each do |community|
+  - ensure_no_timeout
   .community{:width => "100%", :style => "border: 1px solid black;"}
     %h2{:style => "text-align: center;"}= community.name
     %table
