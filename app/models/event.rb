@@ -16,15 +16,15 @@ class Event < ActiveRecord::Base
 
   has_many :invites, :as => :inviter
 
-  scope :upcoming, lambda { { :conditions => ["? <= date", Time.now.beginning_of_day.utc] } }
+  scope :upcoming, lambda { { :conditions => ["? <= eventsdate", Time.now.beginning_of_day.utc] } }
   scope :between, lambda { |start_date, end_date| 
-    { :conditions => ["? <= date AND date < ?", start_date, end_date] } 
+    { :conditions => ["? <= events.date AND events.date < ?", start_date, end_date] } 
   }
-  scope :past, :conditions => ["date < ?", Time.now.utc]
-  scope :today, :conditions => ["created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
-  scope :up_to, lambda { |end_date| { :conditions => ["created_at <= ?", end_date.utc] } }
+  scope :past, :conditions => ["events.date < ?", Time.now.utc]
+  scope :today, :conditions => ["events.created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
+  scope :up_to, lambda { |end_date| { :conditions => ["events.created_at <= ?", end_date.utc] } }
 
-  scope :created_on, lambda { |date| { :conditions => ["created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
+  scope :created_on, lambda { |date| { :conditions => ["events.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
 
   def tag_list
     self.cached_tag_list
