@@ -15,6 +15,14 @@ class AdminController < ApplicationController
     @start_month = date.strftime("%m")
     @start_day = date.strftime("%d")
     @communities = Community.all.select{|c| c.users.count > 0 and c.households != nil and c.households > 1 and c.core}.sort{|a,b| a.users.count <=> b.users.count}.reverse
+    @users = User.all
+    @events = Event.all
+    @group_posts = GroupPost.all
+    @posts = Post.all
+    @announcements = Announcement.all
+    @messages = Message.all
+    @replies = Reply.all
+
     @completed_registrations = User.where("created_at < updated_at")
     @incomplete_registrations = User.where("created_at >= updated_at")
     @emails_opened_today = 1
