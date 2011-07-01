@@ -2,8 +2,6 @@ class AdminController < ApplicationController
 
   before_filter :verify_admin
 
-  helper_method :ensure_no_timeout
-
   def verify_admin
     unless current_user.admin
       redirect_to root_url
@@ -11,8 +9,7 @@ class AdminController < ApplicationController
   end
 
   def overview
-    ensure_no_timeout
-    @days = 7
+    @days = 4
     date = @days.days.ago
     @start_year = date.strftime("%Y")
     @start_month = date.strftime("%m")
@@ -56,11 +53,5 @@ class AdminController < ApplicationController
     @referred_users = User.all.select{ |u| u.referral_source.present? }.sort{ |a,b| a.community_id <=> b.community_id }.sort{ |a,b,| a.created_at <=> b.created_at }
   end
 
-  def ensure_no_timeout
-    self.response_body =  proc{ |response, output|
-      output.write " "
-    }
-  end
-    
 
 end
