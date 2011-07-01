@@ -11,6 +11,7 @@ class AdminController < ApplicationController
   end
 
   def overview
+    ensure_no_timeout
     @days = 7
     date = @days.days.ago
     @start_year = date.strftime("%Y")
