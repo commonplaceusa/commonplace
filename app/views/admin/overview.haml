@@ -47,6 +47,12 @@
     = Message.today.count
 %br
 - @communities.each do |community|
+  - community_users = community.users
+  - community_users_count = community_users.count
+  - community_households = community.households.to_i
+  - community_users_today_count = community_users.today.count
+  - community_posts_count = community.posts.count
+
   .community{:width => "100%", :style => "border: 1px solid black;"}
     %h2{:style => "text-align: center;"}= community.name
     %table
@@ -60,13 +66,13 @@
       %tr
         %td{:valign => "top"}
           Total Users:
-          = community.users.count
+          = community_users_count
           %br
           Percentage of Field: 
-          = "#{(100*community.users.count) / community.households.to_i}%"
+          = "#{(100*community_users_count) / community_households}%"
           %br
           User Gains Today:
-          = community.users.today.count
+          = community_users_today_count
           %div[community, :user_growth]{:style => "width: 250px;"}
         %td{:valign => "top"}
           %table{:border => "1"}
