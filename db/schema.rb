@@ -159,6 +159,19 @@ ActiveRecord::Schema.define(:version => 20110620055609) do
     t.datetime "updated_at"
   end
 
+  create_table "half_users", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "password"
+    t.string   "street_address"
+    t.string   "email"
+    t.string   "single_access_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "middle_name"
+    t.integer  "community_id"
+  end
+
   create_table "internships", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -181,11 +194,11 @@ ActiveRecord::Schema.define(:version => 20110620055609) do
   end
 
   create_table "memberships", :force => true do |t|
-    t.string   "receive_method", :default => "Live"
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "receive_method", :default => "Live"
   end
 
   create_table "messages", :force => true do |t|
@@ -259,9 +272,9 @@ ActiveRecord::Schema.define(:version => 20110620055609) do
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id",                             :null => false
     t.integer  "feed_id",                             :null => false
-    t.string   "receive_method", :default => "Daily"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "receive_method", :default => "Daily"
   end
 
   create_table "taggings", :force => true do |t|
@@ -305,6 +318,7 @@ ActiveRecord::Schema.define(:version => 20110620055609) do
     t.text     "about"
     t.integer  "neighborhood_id",                                                   :null => false
     t.string   "interest_list"
+    t.string   "offer_list"
     t.boolean  "receive_events_and_announcements",              :default => true
     t.boolean  "admin",                                         :default => false
     t.string   "state"
@@ -313,7 +327,6 @@ ActiveRecord::Schema.define(:version => 20110620055609) do
     t.integer  "facebook_uid",                     :limit => 8
     t.string   "oauth2_token"
     t.integer  "community_id"
-    t.string   "offer_list"
     t.boolean  "receive_weekly_digest",                         :default => true
     t.string   "post_receive_method",                           :default => "Live"
     t.string   "middle_name"
