@@ -10,19 +10,19 @@ class AdminController < ApplicationController
   end
 
   def overview
-    @days = 2
+    @days = 7
     date = @days.days.ago
     @start_year = date.strftime("%Y")
     @start_month = date.strftime("%m")
     @start_day = date.strftime("%d")
-    @communities = Community.all.select{|c| c.users.count > 0 and c.households != nil and c.households > 1 and c.core}.sort{|a,b| a.users.count <=> b.users.count}.reverse
-    @users = User.all
-    @events = Event.all
-    @group_posts = GroupPost.all
-    @posts = Post.all
-    @announcements = Announcement.all
-    @messages = Message.all
-    @replies = Reply.all
+    @communities = Community.select{|c| c.users.size > 0 and c.households != nil and c.households > 1 and c.core}.sort{|a,b| a.users.size <=> b.users.size}.reverse
+    @user_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM users")[0]['count'].to_i
+    @event_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM events")[0]['count'].to_i
+    @group_post_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM group_posts")[0]['count'].to_i
+    @post_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM posts")[0]['count'].to_i
+    @announcement_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM announcements")[0]['count'].to_i
+    #@message_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM messages")[0]['count'].to_i
+    @reply_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM replies")[0]['count'].to_i
 
     @completed_registrations = User.where("created_at < updated_at")
     @incomplete_registrations = User.where("created_at >= updated_at")
