@@ -240,7 +240,7 @@ class User < ActiveRecord::Base
   end
 
   def value_adding?
-    (self.posts.count >= 1 || self.announcements.count >= 1 || self.events.count >= 1)
+    (self.posts.size >= 1 || self.announcements.size >= 1 || self.events.size >= 1)
   end
 
   private
