@@ -3,25 +3,26 @@
   %h2 Totals
   .totals
     Total Users: 
-    = @users.count
+    = @user_count
     %br
     Total Neighborhood Posts: 
-    = @posts.count
+    = @post_count
     %br
     Total Event Posts: 
-    = @events.count
+    = @event_count
     %br
     Total Announcements: 
-    = @announcements.count
+    = @announcement_count
     %br
     Total Group Posts:
-    = @group_posts.count
-    %br
-    Total Private Messages: 
-    = @messages.count
+    = @group_post_count
+    -#%br
+    -#Total Private Messages: 
+    -#= @message_count
     %br
     Total Reply Percentage:
-    = (@replies.count + @announcements.count + @events.count + @group_posts.count + @posts.count + @messages.count > 0) ? "#{((100*@replies.count) / (@replies.count + @announcements.count + @events.count + @group_posts.count + @posts.count + @messages.count))}%" : "N/A"
+    -#= (@reply_count + @announcement_count + @event_count + @group_post_count + @post_count + @message_count > 0) ? "#{((100*@reply_count) / (@reply_count + @announcement_count + @event_count + @group_post_count + @post_count + @message_count))}%" : "N/A"
+    = (@reply_count + @announcement_count + @event_count + @group_post_count + @post_count > 0) ? "#{((100*@reply_count) / (@reply_count + @announcement_count + @event_count + @group_post_count + @post_count))}%" : "N/A"
   .registrations
     %img{:src => Gchart.pie(:data => [@completed_registrations.count, @incomplete_registrations.count], :title => "Total Registration Status", :labels => ["Complete", "Incomplete"], :size => "300x200")}
     %br
@@ -32,27 +33,22 @@
     = @incomplete_registrations.count
   .today
     Today's Neighborhood Posts:
-    = Post.today.count
+    = Post.today.size
     %br
     Today's Event Posts:
-    = Event.today.count
+    = Event.today.size
     %br
     Today's Announcements:
-    = Announcement.today.count
+    = Announcement.today.size
     %br
     Today's Group Posts:
-    = GroupPost.today.count
+    = GroupPost.today.size
     %br
     Today's Private Messages:
-    = Message.today.count
+    = Message.today.size
 %br
 - @communities.each do |community|
-  - community_users = community.users
-  - community_users_count = community_users.count
-  - community_households = community.households.to_i
-  - community_users_today_count = community_users.today.count
-  - community_posts_count = community.posts.count
-
+  - community_user_count = community.users.size
   .community{:width => "100%", :style => "border: 1px solid black;"}
     %h2{:style => "text-align: center;"}= community.name
     %table
@@ -66,13 +62,13 @@
       %tr
         %td{:valign => "top"}
           Total Users:
-          = community_users_count
+          = community.users.count
           %br
           Percentage of Field: 
-          = "#{(100*community_users_count) / community_households}%"
+          = "#{(100*community.users.count) / community.households.to_i}%"
           %br
           User Gains Today:
-          = community_users_today_count
+          = community.users.today.count
           %div[community, :user_growth]{:style => "width: 250px;"}
         %td{:valign => "top"}
           %table{:border => "1"}
@@ -89,74 +85,47 @@
                 %div[community, :neighborhood_post_growth]{:style => "width: 250px;"}
               %td
                 Total Events:
-                = community.events.count
+                = community.events.size
                 %br
                 Events This Week:
-                = community.events.between(7.days.ago, 0.days.ago).count
+                = community.events.between(7.days.ago, 0.days.ago).size
                 %br
                 Average Per Day:
-                = community.events.between(7.days.ago, 0.days.ago).count / 7.0
+                = community.events.between(7.days.ago, 0.days.ago).size / 7.0
                 %span[community, :event_growth]{:style => "width: 250px;"}
             %tr
               %td
                 Total Announcements:
-                = community.announcements.count
+                = community.announcements.size
                 %br
                 Announcements This Week:
-                = community.announcements.between(7.days.ago,0.days.ago).count
+                = community.announcements.between(7.days.ago,0.days.ago).size
                 %br
                 Average Per Day:
-                = community.announcements.between(7.days.ago,0.days.ago).count / 7.0
+                = community.announcements.between(7.days.ago,0.days.ago).size / 7.0
                 %span[community, :announcement_growth]{:style => "width: 250px;"}
-              %td
+              -#%td
                 Total Private Messages:
-                = community.private_messages.count
+                = community.private_messages.size
                 %br
                 Private Messages This Week:
-                = community.private_messages.select { |m| m.created_at < 0.days.ago and m.created_at > 7.days.ago }.count
+                = community.private_messages.select { |m| m.created_at < 0.days.ago and m.created_at > 7.days.ago }.size
                 %br
                 Average Per Day:
-                = community.private_messages.select { |m| m.created_at < 0.days.ago and m.created_at > 7.days.ago }.count / 7.0
+                = community.private_messages.select { |m| m.created_at < 0.days.ago and m.created_at > 7.days.ago }.size / 7.0
                 %span[community, :private_message_growth]{:style => "width: 250px;"}
-          /
-            .registrations
-            %br
-            Completed Registrations: 
-            = community.completed_registrations.count
-            %br
-            Incomplete Registrations:
-            = community.incomplete_registrations.count
-            .today
-            Today's Neighborhood Posts:
-            = community.posts.today.count
-            %br
-            Today's Event Posts:
-            = community.events.today.count
-            %br
-            Today's Announcements:
-            = community.announcements.today.count
-            %br
-            Today's Group Posts:
-            = community.group_posts_today.count
-            %br
-            Today's Private Messages:
-            = community.private_messages_today.count
         %td{:valign => "top"}
           Users on Main Page: 
           ?
           %br
           Retention of Past Week: 
-          = "#{((100*community.users.logged_in_since(7.days.ago).count) / community.users.count)}%"
+          = "#{((100*community.users.logged_in_since(7.days.ago).size) / community_user_count)}%"
           %br
           Retention of Past Month:
-          = "#{((100*community.users.logged_in_since(30.days.ago).count) / community.users.count)}%"
-          %br
-          Value-Adding User Percentage:
-          = "#{((100*community.users.select { |u| u.value_adding? }.count) / community.users.count)}%"
-          /
-            .breakdown
-            %br
-            %img{:src => Gchart.pie(:data => [@posts.count, @events.count, @announcements.count, @group_posts.count, @messages.count], :title => "Overall Posts by Type", :labels => ["Neighborhood", "Event", "Announcement", "Group", "Private Message"], :size => "400x200")}
+          = "#{((100*community.users.logged_in_since(30.days.ago).size) / community_user_count)}%"
+          -#%br
+          -#Value-Adding User Percentage:
+          -#= "#{((100*community.users.select { |u| u.value_adding? }.size) / community_user_count)}%"
 
 %script
   = "days = #{@days};"
@@ -242,4 +211,5 @@
     ]}]}));
 
   });
+
 
