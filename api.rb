@@ -231,7 +231,8 @@ class API < Sinatra::Base
 
   get "/communities/:id/events" do |id|
     scope = Event.where("community_id = ?",id)
-    last_modified(scope.order("updated_at DESC").limit(1).first.try(:updated_at))
+    last_modified([scope.order("updated_at DESC").limit(1).first.try(:updated_at)
+                   DateTime.now.beginning_of_day].compact.max)
     serialize(scope.upcoming.includes(:replies).to_a)
   end
 
