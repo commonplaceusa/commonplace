@@ -28,7 +28,7 @@ class CommunitiesController < ApplicationController
 
       @group_posts = GroupPost.includes(:group, :user, :replies => :user).
         where(:groups  => {:community_id => current_community.id}).
-        first(3).to_a
+        order("group_posts.created_at DESC").first(3).to_a
 
       render 'show'
     end
