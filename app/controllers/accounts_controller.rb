@@ -1,4 +1,4 @@
-class AccountsController < CommunitiesController
+class AccountsController < ApplicationController
 
   layout 'application'
 
@@ -225,14 +225,14 @@ class AccountsController < CommunitiesController
   end
 
   def gatekeeper
-    if current_user.present
-      unless current_user.is_transitional_user
-        redirect_to root_url
-      end
+    if halfuser = HalfUser.find_by_single_access_token(params[:husat])
+      current_user.full_name = halfuser.full_name
+      current_user.email = halfuser.email
+      current_user.community_id = halfuser.community_id
+      current_user.address = halfuser.street_address
+      @user = current_user
     else
       redirect_to root_url
     end
   end
-
-
 end
