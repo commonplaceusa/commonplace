@@ -205,4 +205,5 @@ $(function() {
     $checkbox.attr("checked", 
                    $checkbox.is(":checked") ? false : "checked");
   });
+
 });
