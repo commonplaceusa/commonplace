@@ -18,6 +18,16 @@ GIT
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.4)
 
+GIT
+  remote: https://github.com/reedlaw/central_logger.git
+  revision: e572260edc53a40f94d2ca0028805fd056cd540e
+  specs:
+    central_logger (0.3.2)
+      bson_ext
+      bundler
+      mongo
+      rake
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -89,11 +99,6 @@ GEM
       net-ssh-gateway (>= 1.0.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
-    central_logger (0.3.3)
-      bson_ext
-      bundler
-      mongo
-      rake
     chalofa_ruby-progressbar (0.0.9.1)
     childprocess (0.1.8)
       ffi (~> 1.0.6)
@@ -402,7 +407,7 @@ DEPENDENCIES
   capistrano
   capistrano-ext
   capybara!
-  central_logger
+  central_logger!
   compass (~> 0)
   dalli
   database_cleaner
