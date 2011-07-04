@@ -21,18 +21,4 @@ class CommunitiesController < ApplicationController
       render 'accounts/new', :layout => 'application'
     end
   end
-
-
-
-  def posts
-    @posts ||= current_community.posts.all(:limit => 3)
-  end
-  
-  def announcements
-    @announcements ||= current_community.announcements.all(:limit => 3)
-  end
-
-  def events
-    @events ||= current_community.events.upcoming.take(3)
-  end
 end
