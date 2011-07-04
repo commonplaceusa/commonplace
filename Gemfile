@@ -45,6 +45,9 @@ gem 'sass', '~> 3.1'
 # Admin section
 gem 'activeadmin'
 
+# Logging for Heroku
+gem "mongoid"
+gem "central_logger"
 # Error Pages
 #gem 'goalie'
 
