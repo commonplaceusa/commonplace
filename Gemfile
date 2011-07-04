@@ -47,7 +47,7 @@ gem 'activeadmin'
 
 # Logging for Heroku
 gem "mongoid"
-gem "central_logger"
+gem "central_logger", :git => "https://github.com/reedlaw/central_logger.git"
 # Error Pages
 #gem 'goalie'
 

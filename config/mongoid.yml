@@ -1,16 +1,10 @@
 development:
-  host: <%= ENV['MONGOID_HOST'] || "localhost" %>
-  port: <%= ENV['MONGOID_PORT'] || '27017' %>
-  username: <%= ENV['MONGOID_USERNAME'] || '' %>
-  password: <%= ENV['MONGOID_PASSWORD'] || '' %>
-  database: <%= ENV['MONGOID_DATABASE'] || "commonplace_development" %>
+  host: localhost
+  database: commonplace_development
 
 test:
-  host: <%= ENV['MONGOID_HOST'] || "localhost" %>
-  port: <%= ENV['MONGOID_PORT'] || '27017' %>
-  username: <%= ENV['MONGOID_USERNAME'] || '' %>
-  password: <%= ENV['MONGOID_PASSWORD'] || '' %>
-  database: <%= ENV['MONGOID_DATABASE'] || "commonplace_test" %>
+  host: localhost
+  database: commonplace_test
 
 # set these environment variables on your prod server
 production:
