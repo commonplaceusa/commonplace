@@ -18,7 +18,7 @@
   = semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
 
     = f.inputs do 
-      - unless current_user.is_facebook_user
+      - unless current_user.is_facebook_user or current_user.password.present?
         = f.input :password
 
       = if current_user.address.blank?
