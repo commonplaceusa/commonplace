@@ -20,7 +20,7 @@
         = tab_to "Home", "/#{current_community.slug}"
         = tab_to "Inbox", "/messages"
         - if $rollout.active?(:facebook_invite, current_user)
-          = tab_to "Invite", "/accounts/facebook_invite"
+          = tab_to "Invite", "/account/facebook_invite"
         - else
           = tab_to "Invite", "/invites/new"
         .user-feeds
