@@ -38,7 +38,7 @@ class ClipboardWelcome < MailBase
   end
 
   def single_access_login
-    url("/account/gatekeeper?husat=#{user.single_access_token}")
+    url("/gatekeeper?husat=#{user.single_access_token}")
   end
 
 end
