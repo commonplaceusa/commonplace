@@ -38,7 +38,7 @@ class ClipboardWelcome < MailBase
   end
 
   def single_access_login
-    "http://#{community_slug}.ourcommonplace.com/account/gatekeeper?husat=#{user.single_access_token}"
+    url("/account/gatekeeper?husat=#{user.single_access_token}")
   end
 
 end
