@@ -12,10 +12,38 @@
   });
   }
 
+:javascript
+  var box_state = 1;
+  $(document).ready(function(){
+    window.setInterval(function(){
+      // Rotate the box
+      if (box_state == 1)
+      {
+        box_state += 1;
+        $('#tool_tip').animate({ top: '130px' })
+        //$("#tool_tip").css('top', '130px');
+        $('#tool_tip_text').text('Let your neighbors know about CommonPlace via e-mail.');
+      }
+      else if (box_state == 2)
+      {
+        box_state += 1;
+        $('#tool_tip').animate({ 'top': '330px'});
+        $('#tool_tip_text').text('Get the word out about CommonPlace the old-fashioned way, with flyers!');
+      }
+      else if (box_state == 3)
+      {
+        box_state = 1;
+        $('#tool_tip').animate({'top': '20px'});
+        $('#tool_tip_text').text('Find your neighbors on Facebook and invite them to join you on CommonPlace!');
+      }
+    }, 5000);
+  });
+
 %h1= t(".heading", :community => current_community.name)
 #groups_box
   #tool_tip
-    %p Find your neighbors on Facebook and invite them to join you on CommonPlace!
+    %p#tool_tip_text
+      Find your neighbors on Facebook and invite them to join you on CommonPlace!
   #groups_wrapper
     %h2
       %ul
