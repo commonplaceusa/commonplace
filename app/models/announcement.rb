@@ -6,7 +6,7 @@ class Announcement < ActiveRecord::Base
   belongs_to :owner, :polymorphic => true
   belongs_to :community
 
-  validates_presence_of :subject, :body, :feed, :unless => Proc.new { |announcement| announcements.type.to_s == 'TwitterAnnouncement'}
+  validates_presence_of :subject, :body
 
   scope :between, lambda { |start_date, end_date| 
     { :conditions => 
