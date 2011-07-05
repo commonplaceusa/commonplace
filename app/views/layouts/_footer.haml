@@ -11,7 +11,7 @@
         &sdot;
         = link_to "FAQ", faq_path(current_community)
       &sdot;
-      = link_to "About", "https://ourcommonplace.com", :target => :blank
+      = link_to "About", about_url, :target => :blank
       - if params[:community]
         &sdot;
         = link_to "Terms", terms_path(current_community)
