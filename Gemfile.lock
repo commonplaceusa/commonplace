@@ -18,6 +18,16 @@ GIT
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.4)
 
+GIT
+  remote: https://github.com/reedlaw/central_logger.git
+  revision: e572260edc53a40f94d2ca0028805fd056cd540e
+  specs:
+    central_logger (0.3.2)
+      bson_ext
+      bundler
+      mongo
+      rake
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -77,6 +87,8 @@ GEM
       mime-types
       xml-simple
     bcrypt-ruby (2.1.4)
+    bson (1.3.1)
+    bson_ext (1.3.1)
     builder (2.1.2)
     cancan (1.5.1)
     capistrano (2.5.19)
@@ -218,6 +230,12 @@ GEM
       reek (>= 1.2.6)
       roodi (>= 2.1.0)
     mime-types (1.16)
+    mongo (1.3.1)
+      bson (>= 1.3.1)
+    mongoid (2.0.2)
+      activemodel (~> 3.0)
+      mongo (~> 1.3)
+      tzinfo (~> 0.3.22)
     mongrel (1.2.0.pre2)
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
@@ -389,6 +407,7 @@ DEPENDENCIES
   capistrano
   capistrano-ext
   capybara!
+  central_logger!
   compass (~> 0)
   dalli
   database_cleaner
@@ -413,6 +432,7 @@ DEPENDENCIES
   mail
   mcbean
   metric_fu
+  mongoid
   mongrel (>= 1.2.0.pre2)
   mustache
   newrelic_rpm
