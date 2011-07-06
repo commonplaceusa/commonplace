@@ -6,8 +6,8 @@ en:
     invites:
       new:
         h1: Finally, invite some people to receive your announcements and events.
-        h2: Use CommonPlace to send your announcements and events to everyone on the %{community} CommonPlace network. The more email addresses you add, the more widely your announcements and events (and everyone else's!) will be sent.
-        emails_label: "Invite people to join CommonPlace and subscribe to your Feed:"
+        h2: Use CommonPlace to send your announcements and events to everyone on the %{community} CommonPlace network. The more email addresses you add, the more widely your announcements and events (and everyone else's!) will be sent. Invite everyone who your organization cares about.
+        emails_label: "To invite people to join CommonPlace and subscribe to your Feed, enter email addresses, separated by a comma:"
     new:
       link: Create a Community Feed
       
