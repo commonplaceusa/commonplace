@@ -47,9 +47,13 @@ class DailyBulletin < MailBase
   def posts_present
     posts.present?
   end
+
+  def yesterday
+    @date.advance(:days => -1)
+  end
   
   def posts
-    @posts ||= community.posts.today.map do |post|
+    @posts ||= community.posts.between(yesterday,@date).map do |post|
       Serializer::serialize(post).tap do |post|
         post['replies'].each {|reply| 
           reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
@@ -67,7 +71,7 @@ class DailyBulletin < MailBase
   end
 
   def announcements
-    @announcements ||= community.announcements.today.map do |announcement|
+    @announcements ||= community.announcements.between(yesterday, @date).map do |announcement|
       Serializer::serialize(announcement).tap do |announcement|
         announcement['replies'].each {|reply| 
           reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
