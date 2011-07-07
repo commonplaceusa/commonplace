@@ -225,44 +225,45 @@ class API < Sinatra::Base
   get "/communities/:id/posts" do |id|
     community = Community.find(id)
     last_modified(community.posts.unscoped.
-                  order("updated_at DESC").limit(1).first.try(:updated_at))
+                  reorder("updated_at DESC").limit(1).first.try(:updated_at))
     serialize(community.posts.includes(:user, :replies).to_a)
   end
 
   get "/communities/:id/events" do |id|
     scope = Event.where("community_id = ?",id)
-    last_modified([scope.order("updated_at DESC").limit(1).first.try(:updated_at),
+    last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
                    DateTime.now.beginning_of_day].compact.max)
     serialize(scope.upcoming.includes(:replies).to_a)
   end
 
   get "/communities/:id/announcements" do |id|
     scope = Announcement.where("community_id = ?", id)
-    last_modified(scope.order("updated_at DESC").limit(1).first.try(:updated_at))
+    last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
     serialize(scope.includes(:replies).to_a)
   end
 
   get "/communities/:id/group_posts" do |id|
     community = Community.find(id)
-    last_modified(GroupPost.includes(:group).where(:groups => {:community_id => community.id}).order("group_posts.updated_at DESC").first.try(:updated_at))
+    last_modified(GroupPost.includes(:group).where(:groups => {:community_id => community.id}).reorder("group_posts.updated_at DESC").first.try(:updated_at))
     serialize(GroupPost.includes(:group, :user, :replies => :user).where(:groups => {:community_id => community.id}).to_a)
   end
 
   get "/communities/:id/feeds" do |id|
-    community = Community.find(id)
-    last_modified(community.feeds.order("updated_at DESC").first.try(:updated_at))
-    serialize(community.feeds.to_a)
+    scope = Community.find(id).feeds
+    last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
+    serialize(scope.to_a)
   end
 
   get "/communities/:id/groups" do |id|
     community = Community.find(id) 
-    last_modified(community.groups.order("updated_at DESC").first.try(:updated_at))
+    scope = Community.find(id).groups
+    last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
     serialize(community.groups.to_a)
   end
 
   get "/communities/:id/users" do |id|
-    community = Community.find(id)
-    last_modified(community.users.order("updated_at DESC").first.try(:updated_at))
-    serialize(community.users.to_a)
+    scope = Community.find(id).users
+    last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
+    serialize(scope.to_a)
   end
 end
