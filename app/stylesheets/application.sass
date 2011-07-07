@@ -81,6 +81,7 @@ body.application
           padding-top: 13px
           height: 22px
           vertical-align: top
+          +border-radius(5px)
           h4
             font-size: 12px
             color: #cee7fe
@@ -91,6 +92,8 @@ body.application
             display: inline
             vertical-align: top
             padding: 3px 10px
+            text-decoration: none
+            +text-shadow(#000, 1px, 1px, 0px)
           ul 
             display: none
             top: 30px
@@ -123,14 +126,12 @@ body.application
                 +text-shadow()
           &:hover
             h4
-              +border-top-radius(5px)
-              padding: 1px 9px
-              border: 1px solid #3b6085 
-                bottom-color: #fff
-              color: #3b6085
+              color: #fff
               position: relative
               z-index: 4
-              background-color: white
+              background: #2e4b67
+              +border-radius(5px)
+              cursor: default
             ul
               display: block
     .remove_border
