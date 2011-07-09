@@ -1,0 +1,6 @@
+
+- semantic_form_for @community, :html => {:multipart => true} do |f|
+  %h2 Edit Community
+  = f.inputs :name, :slug, :zip_code, :logo, :email_header, :signup_message
+    
+  = f.buttons
