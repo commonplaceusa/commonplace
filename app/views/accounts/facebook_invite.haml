@@ -24,21 +24,6 @@
       });
     });
 
-:css
-  .fb_share_button {
-    display: -moz-inline-block;
-    display:inline-block;
-    padding:1px 20px 0 5px;
-    height:15px;
-    border:1px solid #d8dfea;
-    background:url(http://static.ak.facebook.com/images/share/facebook_share_icon.gif?6:26981) no-repeat top right;
-  }
-  .fb_share_button:hover {
-    color:#fff;
-    border-color:#295582;
-    background:#3b5998 url(http://static.ak.facebook.com/images/share/facebook_share_icon.gif?6:26981) no-repeat top right;
-    text-decoration:none;
-  }
 
 
 %h1
@@ -55,14 +40,8 @@
             =t(".step_one")
             %br
             %br
-            %a{:href => "http://twitter.com/share", :class => "twitter-share-button", "data-text" => "Hi neighbors, I'm part of The #{current_community.name} CommonPlace, where I connect and share with my neighbors in #{current_community.name}:", "data-count" => "horizontal", "data-url" => "http://www.#{current_community.slug}.OurCommonPlace.com/"} Tweet
-            %script{:type => "text/javascript", :src => "http://platform.twitter.com/widgets.js"}
-            %fb:like{:href => "http://www.#{current_community.slug}.OurCommonPlace.com", :send => "true", :layout => "button_count", :width => "200", :action => "recommend", :show_faces => "true", :colorscheme => "dark"}
-            -#%a{:rel => "nofollow", :href => "http://www.facebook.com/share.php?u=http://www.#{current_community.slug}.OurCommonPlace.com", :class => "fb_share_button", :onclick => "return facebook_share()", :target => "_blank", :style => "text-decoration:none;"} Share
+            -#%img{:src => "/images/fb-btn.png", :width => "90%", :onclick => "invite_friends();", :onmouseover => "document.body.style.cursor = 'pointer';", :onmouseout => "document.body.style.cursor = 'auto';"}
           #fb-root
-          %br
-          %br
-          %br
           %br
           %br
         %li
