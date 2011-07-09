@@ -1,5 +1,0 @@
-
-- unless user.feeds.include? feed
-  - link_to feed_subscription_path(feed), 'data-remote' => true, 'data-method' => 'post', :class => "new_subscription new_#{dom_id feed}_subscription" do
-    %span Subscribe to #{ feed.name }
-
