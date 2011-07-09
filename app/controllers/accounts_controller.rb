@@ -144,7 +144,11 @@ class AccountsController < CommunitiesController
 
   def subscribe_to_groups
     current_user.group_ids = params[:group_ids]
-    redirect_to root_url
+    if $rollout.active?(:facebook_invite, current_user)
+      redirect_to :action => "facebook_invite"
+    else
+      redirect_to root_url
+    end
   end
 
   def update
