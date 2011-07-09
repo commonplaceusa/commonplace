@@ -44,6 +44,7 @@ javascripts:
     - public/main_page/app.js
     - public/main_page/views/*.js
     - public/main_page/models/*.js
+    - public/javascripts/facebook.js
   templates:
     - public/main_page/templates/*.html.mustache
 
