@@ -14,7 +14,7 @@
     <script type='text/javascript' src="/javascripts/head.min.js"></script>
       
     = include_javascripts :application
-    -#= javascript_include_tag "https://connect.facebook.net/en_US/all.js#xfbml=1"
+    = javascript_include_tag "https://connect.facebook.net/en_US/all.js#xfbml=1"
     = javascript_include_tag "https://exceptional-js.heroku.com/exceptional.js"
     %script{:type => 'text/javascript'}
       $(document).ready(function () {
@@ -113,25 +113,20 @@
        var _dashboard_project_id = "e6a70fade40ed51da8bdfc4402bf786284b18908";
       (function() {function async_load(){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 'true'; s.src = (document.location.protocol == 'https:' ? "https:" : "http:") + '//dtn4rpwzrtdnb.cloudfront.net/dashboard.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);} if (window.attachEvent) window.attachEvent('onload', async_load); else window.addEventListener('load', async_load, false); })();
   %script
-    window.fbAsyncInit = function() {
     FB.init({
     appId : "#{($FacebookConfig || {})['app_id']}",
     status : true,
     cookie : true,
     xfbml  : true
     });
-    fbApiInit = true;
-    };
+    function facebook_pass(session)
+    {
+    return session.uid;
+    }
     $(document).ready(function(){
     $('a[href^="http://"]').attr({
     target: "_blank", 
     title: "Opens in a new window"
     });
     });
-    (function() {
-    var e = document.createElement('script');
-    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-    e.async = true;
-    document.getElementById('fb-root').appendChild(e);
-    }());
 
