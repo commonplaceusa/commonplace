@@ -1,0 +1,11 @@
+
+
+%ul#addresses
+  - @addresses.each do |address|
+    %li= address.name
+
+
+= render_map do |map|
+  - map.center :lat => 42.283285, :lng => -71.157144
+  - @addresses.each do |address|
+    - map.marker :lat => address.lat, :lng => address.lng

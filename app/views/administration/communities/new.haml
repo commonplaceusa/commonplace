@@ -1,0 +1,10 @@
+
+- semantic_form_for @community, :html => {:multipart => true} do |f|
+  %h2 New Community
+  - f.inputs :for => :neighborhoods, :name => "First Neighborhood" do |n|
+    = n.input :name
+    = n.input :bounds, :input_html => { :class => "polygon" }
+    
+  = f.buttons
+
+  

@@ -1,0 +1,21 @@
+
+- content_for(:current_page, "Editing #{@feed.name}")
+
+- semantic_form_for @feed do |f|
+  - f.inputs do
+    = f.input :community
+    = f.input :name
+  - f.inputs do
+    = f.input :about
+    = f.input :phone
+    = f.input :website
+    = f.input :category
+    = f.input :tag_list
+    = f.input :claimed
+    = f.input :code
+
+  - f.inputs :for => :avatar do |a|
+    = a.input :image, :as => :file
+  
+  = f.buttons
+

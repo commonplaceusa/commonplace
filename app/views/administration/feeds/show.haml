@@ -1,0 +1,12 @@
+
+- content_for(:current_page, "Viewing #{@feed.name}")
+
+#statistics
+  %dl
+    %dt
+      Events: 
+    %dd= @feed.events.count
+    %dt
+      Subscribers:
+    %dd= @feed.subscribers.count
+

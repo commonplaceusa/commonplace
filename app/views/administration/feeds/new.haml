@@ -1,0 +1,21 @@
+
+- content_for(:current_page, "New Feed")
+
+- semantic_form_for @feed do |f|
+  - f.inputs do
+    = f.input :community
+    = f.input :name
+    = f.input :about
+    = f.input :phone
+    = f.input :website
+    = f.input :category
+    = f.input :tag_list
+    = f.input :claimed, :checked => false
+    = f.input :code
+  - f.inputs :for => :avatar do |a|
+    = a.input :image, :as => :file
+  - f.inputs :for => :profile_fields do |pf|
+    = pf.input :subject
+    = pf.input :body
+
+  = f.buttons

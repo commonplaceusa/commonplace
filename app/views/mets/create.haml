@@ -1,0 +1,8 @@
+
+
+
+- update_content "#information" do
+  = render 'users/info_box', :user => @user
+
+- trigger 'replace-with', :selector => ".item.#{ dom_id(@user) } div" do
+  = render 'users/user', :user => @user
