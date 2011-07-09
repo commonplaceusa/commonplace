@@ -1,67 +1,73 @@
 %script
   = "var slug = '#{current_community.slug}';"
-  function invite_friends()
-  {
-  FB.login(function(response) {
-  FB.ui({
-  method: 'apprequests',
-  = "message: '#{t(".invitation", :community => current_community.name)}',"
-  data: slug,
-  display: 'iframe'
+  = "var message = '#{t(".invitation", :community => current_community.name)}';"
+
+  $(document).ready(function(){
+  $("#invite_email_input").removeClass("optional")
+  $("#invite_body_input").removeClass("optional")
+  $("#invite_email_input").addClass("required")
+  $("#invite_body_input").removeClass("required")
   });
-  });
-  }
 
 :javascript
-  var box_state = 1;
-  $(document).ready(function(){
-    window.setInterval(function(){
-      // Rotate the box
-      if (box_state == 1)
-      {
-        box_state += 1;
-        $('#tool_tip').animate({ top: '130px' })
-        //$("#tool_tip").css('top', '130px');
-        $('#tool_tip_text').text('Let your neighbors know about CommonPlace via e-mail.');
-      }
-      else if (box_state == 2)
-      {
-        box_state += 1;
-        $('#tool_tip').animate({ 'top': '330px'});
-        $('#tool_tip_text').text('Get the word out about CommonPlace the old-fashioned way, with flyers!');
-      }
-      else if (box_state == 3)
-      {
-        box_state = 1;
-        $('#tool_tip').animate({'top': '20px'});
-        $('#tool_tip_text').text('Find your neighbors on Facebook and invite them to join you on CommonPlace!');
-      }
-    }, 5000);
-  });
+    $(document).ready(function(){
+      fbEnsureInit(function(){
+        $("#step_one").append('<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/fb-btn.png" width="90%">');
+      });
+    });
 
-%h1= t(".heading", :community => current_community.name)
+:css
+  .fb_share_button {
+    display: -moz-inline-block;
+    display:inline-block;
+    padding:1px 20px 0 5px;
+    height:15px;
+    border:1px solid #d8dfea;
+    background:url(http://static.ak.facebook.com/images/share/facebook_share_icon.gif?6:26981) no-repeat top right;
+  }
+  .fb_share_button:hover {
+    color:#fff;
+    border-color:#295582;
+    background:#3b5998 url(http://static.ak.facebook.com/images/share/facebook_share_icon.gif?6:26981) no-repeat top right;
+    text-decoration:none;
+  }
+
+
+%h1
+  = t(".heading", :community => current_community.name)
+  %br
+  = t(".heading2", :community => current_community.name)
+
 #groups_box
-  #tool_tip
-    %p#tool_tip_text
-      Find your neighbors on Facebook and invite them to join you on CommonPlace!
   #groups_wrapper
     %h2
       %ul
         %li
           #step_one
             =t(".step_one")
+            %br
+            %br
+            %a{:href => "http://twitter.com/share", :class => "twitter-share-button", "data-text" => "Hi neighbors, I'm part of The #{current_community.name} CommonPlace, where I connect and share with my neighbors in #{current_community.name}:", "data-count" => "horizontal", "data-url" => "http://www.#{current_community.slug}.OurCommonPlace.com/"} Tweet
+            %script{:type => "text/javascript", :src => "http://platform.twitter.com/widgets.js"}
+            %fb:like{:href => "http://www.#{current_community.slug}.OurCommonPlace.com", :send => "true", :layout => "button_count", :width => "200", :action => "recommend", :show_faces => "true", :colorscheme => "dark"}
+            -#%a{:rel => "nofollow", :href => "http://www.facebook.com/share.php?u=http://www.#{current_community.slug}.OurCommonPlace.com", :class => "fb_share_button", :onclick => "return facebook_share()", :target => "_blank", :style => "text-decoration:none;"} Share
           #fb-root
-          %img{:src => "/images/fb-btn.png", :width => "90%", :onclick => "invite_friends();", :onmouseover => "document.body.style.cursor = 'pointer';", :onmouseout => "document.body.style.cursor = 'auto';"}
+          %br
+          %br
+          %br
+          %br
+          %br
         %li
           #step_two
             =t(".step_two")
-
+            #invite_errors
           - semantic_form_for @invitation do |f|
             - f.inputs do
-              = f.input :email, :input_html => { :placeholder => "Enter e-mail addresses to invite, separated by commas" }
-              = f.input :body, :input_html => { :placeholder => "Feel free to write a personal message here" }
+              = f.input :email, :input_html => { :placeholder => "Enter e-mail addresses to invite, separated by commas", :class => "required email" }
+              = f.input :body, :input_html => { :placeholder => "Feel free to write a personal message here" }, :html => {:class => "required"}
             - f.buttons do
-              = f.submit "Invite"
+              = f.submit "Invite", {:onmouseover => "document.body.style.cursor = 'pointer';", :onmouseout => "document.body.style.cursor = 'auto';"}
+            %br
             %br
       %li{:style => "height: 200px"}
         #step_three
