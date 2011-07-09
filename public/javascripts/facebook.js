@@ -23,18 +23,30 @@ function facebook_invite() {
       });
 }
 
-function inviteLoginCallback() {
+function inviteLoginCallback(fb_message, fb_slug) {
     console.log("Logged in successfully");
     FB.ui({
         method: 'apprequests',
-        message: 'Test message',
-        data: 'slug',
+        message: fb_message,
+        data: fb_slug,
         display: 'iframe'
     });
 }
 
 function invite_friends(fb_message, fb_slug) {
     console.log("Inviting friends...");
-    fbEnsureInit(function(){FB.login(inviteLoginCallback, {perms:'read_stream,publish_stream,offline_access'});});
+    fbEnsureInit(
+        function(){
+            FB.login(
+                function() {
+                    inviteLoginCallback(
+                        fb_message,
+                        fb_slug
+                    );
+                },
+                {perms:'read_stream,publish_stream,offline_access'}
+            );
+        }
+    );
 }
 
