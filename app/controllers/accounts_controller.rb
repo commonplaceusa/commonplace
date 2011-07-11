@@ -185,6 +185,10 @@ class AccountsController < CommunitiesController
   end
 
   def facebook_invite
+    # Twitter doesn't like https...
+    if request.ssl?
+      redirect_to :protocol => "http://"
+    end
     @invitation = Invite.new
   end
 
