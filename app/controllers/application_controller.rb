@@ -137,14 +137,6 @@ class ApplicationController < ActionController::Base
     request.env['HTTP_X_REQUESTED_WITH'].present? || params[:xhr]
   end
 
-  def redirect_to(options = {}, response_status = {})
-    if xhr? 
-      render :json => {"redirect_to" => options}
-    else
-      super(options, response_status)
-    end
-  end
-
   private
 
   def login_with_single_access_token
