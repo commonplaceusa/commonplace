@@ -49,8 +49,8 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    redirect_to login_url(current_community)
     current_user_session.destroy
+    redirect_to login_url(current_community)
   end
 
 end
