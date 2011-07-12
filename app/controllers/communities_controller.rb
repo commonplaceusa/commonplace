@@ -1,6 +1,5 @@
 class CommunitiesController < ApplicationController
   before_filter :current_community
-  before_filter :authorize_current_community
 
   helper_method :posts, :announcements, :events
 
