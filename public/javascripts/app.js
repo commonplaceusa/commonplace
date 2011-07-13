@@ -1,5 +1,13 @@
 var CommonPlace = CommonPlace || {};
 
+// FIXME: Monkey-patch for messaging from emails
+alert("Pathname: " + location.pathname);
+path = location.pathname.split("/");
+if (path[1] == "users" && path[3] == "messages" && path[4] == "new") {
+  user_id = int(path[2]);
+  alert("Sending message to " + user_id);
+}
+
 function _ajax_request(url, data, callback, type, method) {
   if (jQuery.isFunction(data)) {
     callback = data;

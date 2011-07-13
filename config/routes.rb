@@ -116,5 +116,6 @@ Commonplace::Application.routes.draw do
     root :to => "communities#show"
   end
 
+  match "/account/make_focp", :to => "accounts#make_focp"
   match "(*backbone_route)", :to => "communities#show", :via => :get, :as => :community
 end

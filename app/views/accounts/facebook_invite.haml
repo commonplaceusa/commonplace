@@ -33,6 +33,12 @@
           console.log("Posted to wall");
         }
     );
+
+  }
+
+  function add_to_friends_of_commonplace(email) {
+    console.log("Starting request");
+    $.post('/account/make_focp', 'email=' + email);
   }
 
 
@@ -103,6 +109,11 @@
               %tr
                 %td{:style => "text-align: center;"}
                   =t(".file_descriptions")[0]
+      %li{:style => "height: 200px"}
+        #step_four
+          =t(".step_four")
+          %br
+          %img{:src => "/images/buttons/continue.png", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);"}
       %li{:style => "text-align: right"}
         %a{:href => root_url}
           %img{:src => "/images/buttons/continue.png"}
