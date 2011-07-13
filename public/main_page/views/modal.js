@@ -9,6 +9,17 @@ CommonPlace.NewMessage = Backbone.View.extend({
   },
 
   render: function() {
+    var self = this;
+    if (CommonPlace.community.users.length === 0 && !this.options.loading) {
+        console.log("Fetching users...");
+        CommonPlace.community.users.fetch(
+            {success: function() {
+                                     new CommonPlace.NewMessage({person_id: self.options.person_id, loading: true}).render();
+            }});
+        return;
+    }
+    console.log("Got " + CommonPlace.community.users.length + " users");
+    console.log("Getting info for user " + this.options.person_id);
     $(this.el).addClass("not_empty");
     $(this.el).append('<div id="modal-overlay"></div>');
     $(this.el).append('<div id="modal-content"></div>');

@@ -120,21 +120,16 @@ class User < ActiveRecord::Base
                         :large => {:geometry => "200x200", :processors => [:cropper]},
                         :croppable => "400x400>"
                       },
-                      :default_url => "/avatars/missing.png"
-                    }.merge(Rails.env.development? || Rails.env.test? ? 
-                            { :path => ":rails_root/public/system/users/:id/avatar/:style.:extension", 
-                              :storage => :filesystem,
-                              :url => "/system/users/:id/avatar/:style.:extension"
-                            } : { 
-                              :storage => :s3,
-                              :s3_protocol => "https",
-                              :bucket => "commonplace-avatars-#{Rails.env}",
-                              :path => "/users/:id/avatar/:style.:extension",
-                              :s3_credentials => {
-                                :access_key_id => ENV['S3_KEY_ID'],
-                                :secret_access_key => ENV['S3_KEY_SECRET']
-                              }
-                            }))
+                      :default_url => "/avatars/missing.png",
+                      :storage => :s3,
+                      :s3_protocol => "https",
+                      :bucket => "commonplace-avatars-production",
+                      :path => "/users/:id/avatar/:style.:extension",
+                      :s3_credentials => {
+                        :access_key_id => ENV['S3_KEY_ID'],
+                        :secret_access_key => ENV['S3_KEY_SECRET']
+                      }
+                    })
   
 
 
