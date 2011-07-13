@@ -12,9 +12,29 @@
 :javascript
     $(document).ready(function(){
       fbEnsureInit(function(){
+        $("#step_one").append('<a href="#" onclick="fb_share();">Share on Facebook</a>');
         $("#step_one").append('<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/fb-btn.png" width="90%">');
       });
     });
+
+    function fb_share() {
+      console.log("Spawning FB dialog");
+      FB.ui(
+        {
+          method: 'feed',
+          name: 'NAME',
+          link: 'http://www.' + slug + '.OurCommonPlace.com/',
+          picture: '',
+          caption: 'CAPTION',
+          description: 'DESCRIPTION',
+          message: 'MESSAGE'
+        },
+        function(response) {
+          console.log("Posted to wall");
+        }
+    );
+  }
+
 
 :css
   .fb_share_button {
@@ -47,9 +67,9 @@
             =t(".step_one")
             %br
             %br
-            %a{:href => "http://twitter.com/share", :class => "twitter-share-button", "data-text" => "Hi neighbors, I'm part of The #{current_community.name} CommonPlace, where I connect and share with my neighbors in #{current_community.name}:", "data-count" => "horizontal", "data-url" => "http://www.#{current_community.slug}.OurCommonPlace.com/"} Tweet
-            %script{:type => "text/javascript", :src => "http://platform.twitter.com/widgets.js"}
-            %fb:like{:href => "http://www.#{current_community.slug}.OurCommonPlace.com", :send => "true", :layout => "button_count", :width => "200", :action => "recommend", :show_faces => "true", :colorscheme => "dark"}
+            -#%a{:href => "http://twitter.com/share", :class => "twitter-share-button", "data-text" => "Hi neighbors, I'm part of The #{current_community.name} CommonPlace, where I connect and share with my neighbors in #{current_community.name}:", "data-count" => "horizontal", "data-url" => "http://www.#{current_community.slug}.OurCommonPlace.com/"} Tweet
+            -#%script{:type => "text/javascript", :src => "http://platform.twitter.com/widgets.js"}
+            -#%fb:like{:href => "http://www.#{current_community.slug}.OurCommonPlace.com", :send => "true", :layout => "button_count", :width => "200", :action => "recommend", :show_faces => "true", :colorscheme => "dark"}
             -#%a{:rel => "nofollow", :href => "http://www.facebook.com/share.php?u=http://www.#{current_community.slug}.OurCommonPlace.com", :class => "fb_share_button", :onclick => "return facebook_share()", :target => "_blank", :style => "text-decoration:none;"} Share
           #fb-root
           %br
@@ -72,14 +92,17 @@
       %li{:style => "height: 200px"}
         #step_three
           =t(".step_three")
-          %table
-            %tr
-              %td
-                %a{:href => "/pdfs/#{t('.file_names')[0]}/#{current_community.slug}.pdf"}
-                  %img{:src => "/images/doc-icon.png"}
-            %tr
-              %td{:style => "text-align: center;"}
-                =t(".file_descriptions")[0]
+          %br
+          %br
+          #forms
+            %table
+              %tr
+                %td
+                  %a{:href => "/pdfs/#{t('.file_names')[0]}/#{current_community.slug}.pdf"}
+                    %img{:src => "/images/doc-icon.png"}
+              %tr
+                %td{:style => "text-align: center;"}
+                  =t(".file_descriptions")[0]
       %li{:style => "text-align: right"}
         %a{:href => root_url}
           %img{:src => "/images/buttons/continue.png"}

@@ -16,6 +16,7 @@ class Community < ActiveRecord::Base
            :order => "posts.updated_at DESC",
            :include => [:user, {:replies => :user}])
   
+  before_destroy :ensure_marked_for_deletion
   
   validates_presence_of :name, :slug
   
@@ -41,6 +42,10 @@ class Community < ActiveRecord::Base
 
   def self.find_by_slug(slug)
     where("LOWER(slug) = ?", slug.downcase).first
+  end
+
+  def ensure_marked_for_deletion
+    raise "Can not destroy community" unless self.should_delete
   end
   
   def neighborhood_for(address)
