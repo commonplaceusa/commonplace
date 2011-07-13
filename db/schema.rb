@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110620055609) do
+ActiveRecord::Schema.define(:version => 20110713042546) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20110620055609) do
     t.string   "time_zone",                  :default => "Eastern Time (US & Canada)"
     t.integer  "households",                 :default => 0
     t.boolean  "core"
+    t.boolean  "should_delete",              :default => false
   end
 
   create_table "events", :force => true do |t|
@@ -335,6 +336,7 @@ ActiveRecord::Schema.define(:version => 20110620055609) do
     t.string   "referral_source"
     t.datetime "last_login_at"
     t.boolean  "seen_tour"
+    t.boolean  "transitional_user"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
