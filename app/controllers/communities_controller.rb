@@ -1,17 +1,12 @@
 class CommunitiesController < ApplicationController
   before_filter :current_community
-  before_filter :authorize_current_community
 
   helper_method :posts, :announcements, :events
 
   layout 'communities'
   
   def show
-    if current_user_session.new_session?
-      @user = User.new
-      params[:controller], params[:action] = "accounts", "new"
-      render 'accounts/new', :layout => 'application'
-    else
+    if logged_in?
       @events = current_community.events.
         upcoming.
         includes(:owner, :replies => :user).
@@ -31,6 +26,10 @@ class CommunitiesController < ApplicationController
         order("group_posts.created_at DESC").first(3).to_a
 
       render 'show'
+    else
+      @user = User.new
+      params[:controller], params[:action] = "accounts", "new"
+      render 'accounts/new', :layout => 'application'
     end
   end
 

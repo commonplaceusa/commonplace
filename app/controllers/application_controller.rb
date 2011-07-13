@@ -77,32 +77,31 @@ class ApplicationController < ActionController::Base
   end
 
   def current_community
-    if @current_community = params[:community] ? Community.find_by_slug(params[:community]) : current_user.community
-      params[:community] = @current_community.slug
-      translate_with :community => @current_community.name
-      Time.zone = @current_community.time_zone
+    @_current_community ||= 
+      if params[:community]
+        Community.find_by_slug(params[:community])
+      elsif logged_in?
+        current_user.community
+      else
+        nil
+      end
+
+    if @_current_community
+      params[:community] = @_current_community.slug
+      translate_with :community => @_current_community.name
+      Time.zone = @_current_community.time_zone    
     else
       logger.info("URL: #{request.url}")
-      unless @current_community
-        store_location
-        redirect_to login_url
-      end
+      store_location
+      redirect_to login_url
     end
-    @current_community 
+    @_current_community 
   end
 
   def current_neighborhood
     @current_neighborhood ||= 
       (current_user.admin? && session[:neighborhood_id]) ? Neighborhood.find(session[:neighborhood_id]) :
       current_user.neighborhood
-  end
-
-  def authorize_current_community
-    if @current_community
-      authorize! :read, @current_community
-    else
-      raise CanCan::AccessDenied
-    end
   end
 
   def store_location
@@ -135,14 +134,6 @@ class ApplicationController < ActionController::Base
 
   def xhr?
     request.env['HTTP_X_REQUESTED_WITH'].present? || params[:xhr]
-  end
-
-  def redirect_to(options = {}, response_status = {})
-    if xhr? 
-      render :json => {"redirect_to" => options}
-    else
-      super(options, response_status)
-    end
   end
 
   private
