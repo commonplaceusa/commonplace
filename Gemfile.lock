@@ -360,6 +360,8 @@ GEM
       json_pure
       rubyzip
     sexp_processor (3.0.5)
+    sham_rack (1.3.3)
+      rack
     simple_uuid (0.1.2)
     sinatra (1.2.6)
       rack (~> 1.1)
@@ -414,6 +416,7 @@ DEPENDENCIES
   exceptional
   ezcrypto
   factory_girl
+  faraday
   foreman
   forgery
   formtastic
@@ -460,6 +463,7 @@ DEPENDENCIES
   ruby-prof
   sanitize
   sass (~> 3.1)
+  sham_rack
   simple_uuid
   sinatra
   spork
