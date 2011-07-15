@@ -1,4 +1,3 @@
-require Rails.root.join("api.rb")
 
 ShamRack.at("commonplace.api").rackup do 
   use(Rack::Cache,
