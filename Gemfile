@@ -84,7 +84,7 @@ group :development, :test do
   gem 'metric_fu'
   gem 'factory_girl'
   gem 'forgery'
-  gem 'rspec-rails', "~> 2.4"
+  gem 'rspec-rails', "~> 2.6"
   gem 'fuubar'
   gem 'spork'
   gem 'rr'
