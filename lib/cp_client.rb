@@ -6,11 +6,6 @@ class CPClient
     @authentication = options[:api_key]
   end
 
-
-  def connection
-    @_connection ||= Faraday.new(:url => @host, :headers => {"AUTHORIZATION" => @authentication})
-  end
-
   def community_posts(community, options = {})
     get("/communities/#{community}/posts", options)
   end
@@ -37,6 +32,12 @@ class CPClient
   
   def community_groups(community, options = {})
     get("/communities/#{community}/groups", options)
+  end
+
+  private
+
+  def connection
+    @_connection ||= Faraday.new(:url => @host, :headers => {"AUTHORIZATION" => @authentication})
   end
   
   def get(uri, params = {})
