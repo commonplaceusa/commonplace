@@ -89,6 +89,7 @@ group :development, :test do
   gem 'spork'
   gem 'rr'
   gem 'rspec-rr'
+  gem 'webmock'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner'
