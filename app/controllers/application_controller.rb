@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def api
-    @api ||= RestClient::Resource.new("#{root_url}/api", :headers => {:Authorization => current_user.single_access_token})
+  def cp_client
+    @_cp_client ||= CPClient.new(:host => "http://commonplace.api", :api_key => current_user.single_access_token)
   end
   
   def set_process_name_from_request
