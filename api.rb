@@ -223,29 +223,47 @@ class API < Sinatra::Base
   end
 
   get "/communities/:id/posts" do |id|
+    params.merge!(:limit => 25, :page => 0)
     community = Community.find(id)
+
     last_modified(community.posts.unscoped.
                   reorder("updated_at DESC").limit(1).first.try(:updated_at))
-    serialize(community.posts.includes(:user, :replies).to_a)
+
+    serialize(community.posts.
+              limit(params[:limit]).
+              offset(params[:limit].to_i * params[:page].to_i).
+              includes(:user, :replies).to_a)
   end
 
   get "/communities/:id/events" do |id|
+    params.merge!(:limit => 25, :page => 0)
     scope = Event.where("community_id = ?",id)
     last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
-                   DateTime.now.beginning_of_day].compact.max)
-    serialize(scope.upcoming.includes(:replies).to_a)
+                   DateTime.now.beginning_of_day.utc.to_time].compact.max)
+    serialize(scope.upcoming.
+                limit(params[:limit]).
+                offset(params[:limit].to_i * params[:page].to_i).
+                includes(:replies).to_a)
   end
 
   get "/communities/:id/announcements" do |id|
+    params.merge!(:limit => 25, :page => 0)
     scope = Announcement.where("community_id = ?", id)
     last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
-    serialize(scope.includes(:replies).to_a)
+    serialize(scope.includes(:replies).
+                limit(params[:limit]).
+                offset(params[:limit].to_i * params[:page].to_i).to_a)
   end
 
   get "/communities/:id/group_posts" do |id|
+    params.merge!(:limit => 25, :page => 0)
     community = Community.find(id)
     last_modified(GroupPost.includes(:group).where(:groups => {:community_id => community.id}).reorder("group_posts.updated_at DESC").first.try(:updated_at))
-    serialize(GroupPost.includes(:group, :user, :replies => :user).where(:groups => {:community_id => community.id}).to_a)
+    serialize(GroupPost.includes(:group, :user, :replies => :user).
+                where(:groups => {:community_id => community.id}).
+                limit(params[:limit]).
+                offset(params[:limit].to_i * params[:page].to_i).
+                to_a)
   end
 
   get "/communities/:id/feeds" do |id|
