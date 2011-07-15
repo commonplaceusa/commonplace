@@ -4,7 +4,6 @@ require 'rack/test'
 
 set :environment, :test
 
-
 describe API do 
   include Rack::Test::Methods
   include WebMock::API
@@ -12,7 +11,6 @@ describe API do
   let(:community) { mock_model(Community) }
   shared_examples "A JSON endpoint" do
     it "returns a valid JSON response" do
-      get uri
       lambda {JSON.parse(last_response.body)}.should_not raise_error(JSON::ParserError)
     end
   end
@@ -63,5 +61,49 @@ describe API do
       let(:uri) { "/communities/#{community.id}/group_posts" }
     end
   end
-  
+
+  describe "GET /users/:id" do
+
+    it_behaves_like "A JSON endpoint" do
+      let(:uri) { "/users/:id" }
+    end
+
+    describe "response body" do
+      let(:user) { mock_model(User, :facebook_uid => 2, :first_name => "John", :last_name => "Jacob", :middle_name => "Jingle", :about => "", :interest_list => "", :offer_list => "") }
+      before do 
+        stub(User).find(user.id.to_s) { user }
+        get "/users/#{user.id}"
+        @json = JSON.parse last_response.body
+      end
+      
+      ["interests", "name", "avatar_url", "subscriptions", 
+       "offers", "url", "id", "about", "last_name", 
+       "first_name"].each do |key|
+        it("has a(n) #{key} attribute") { @json.should have_key(key) }
+      end
+    end
+  end
+
+  describe "GET /posts/:id" do
+    it_behaves_like "A JSON endpoint" do
+      let(:uri) { "/users/:id" }
+    end
+
+    describe "response body" do
+      let(:post) { mock_model(Post, :created_at => DateTime.now, :last_activity => DateTime.now) }
+      let(:user) { mock_model(User, :facebook_uid => 2, :first_name => "John", :last_name => "Jacob", :middle_name => "Jingle", :about => "", :interest_list => "", :offer_list => "") }
+      let(:json) do 
+        stub(Post).find(post.id.to_s) { post }
+        stub(post).user { user }
+        get "/posts/#{post.id}"
+        JSON.parse last_response.body
+      end
+      
+      ["avatar_url", "last_activity", "body", "author", 
+       "title", "url", "id", "published_at", "author_url", 
+       "replies"].each do |key|
+        it("has a(n) #{key} attribute") { json.should have_key(key) }
+      end
+    end
+  end
 end
