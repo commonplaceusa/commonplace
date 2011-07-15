@@ -226,7 +226,7 @@ class API < Sinatra::Base
     current_account.groups.delete(Group.find(id))
     [200, ""]
   end
-
+  
   get "/communities/:id/posts" do |id|
     params.merge!(:limit => 25, :page => 0)
     community = Community.find(id)
@@ -288,5 +288,13 @@ class API < Sinatra::Base
     scope = Community.find(id).users
     last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
     serialize(scope.to_a)
+  end
+
+  get "/users/:id" do |id|
+    serialize User.find(id)
+  end
+  
+  get "/posts/:id" do |id|
+    serialize Post.find(id)
   end
 end
