@@ -39,6 +39,11 @@ class API < Sinatra::Base
     authorize!
   end
 
+  # GET /
+  # "HI!"
+  get "/" do
+    "HI!"
+  end
 
   # POST /posts/:id/replies
   # { body: Text }
