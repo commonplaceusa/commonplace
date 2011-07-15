@@ -7,24 +7,13 @@ class CommunitiesController < ApplicationController
   
   def show
     if logged_in?
-      @events = current_community.events.
-        upcoming.
-        includes(:owner, :replies => :user).
-        first(3).to_a
-
-      @announcements = current_community.announcements.
-        includes(:owner, :replies => :user).
-        first(3).to_a
-
-      @posts = current_community.posts.
-        order("created_at DESC").
-        includes(:user, :replies => :user).
-        first(3).to_a
-
-      @group_posts = GroupPost.includes(:group, :user, :replies => :user).
-        where(:groups  => {:community_id => current_community.id}).
-        order("group_posts.created_at DESC").first(3).to_a
-
+      @events = cp_client.community_events(current_community.id)
+      @announcements = cp_client.community_publicity(current_community.id)
+      @posts = cp_client.community_posts(current_community.id)
+      @group_posts = cp_client.community_group_posts(current_community.id)
+      @users = cp_client.community_neighbors(current_community.id)
+      @feeds = cp_client.community_feeds(current_community.id)
+      @groups = cp_client.community_groups(current_community.id)
       render 'show'
     else
       @user = User.new

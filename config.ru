@@ -10,7 +10,7 @@ app = Rack::Builder.new do
   use(Rack::Cache,
       :verbose     => true,
       :metastore   => Dalli::Client.new,
-      :entitystore => 'file:/tmp/cache/rack/body')
+      :entitystore => Dalli::Client.new)
 
 
   map("/api") { 
