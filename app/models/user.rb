@@ -232,7 +232,7 @@ class User < ActiveRecord::Base
   end
   
   def avatar_url(style_name = nil)
-    if is_facebook_user
+    if is_facebook_user && !self.avatar.file?
       facebook_avatar_url
     else
       self.avatar.url(style_name || self.avatar.default_style)
