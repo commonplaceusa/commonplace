@@ -53,7 +53,7 @@ CommonPlace.EditView = Backbone.View.extend({
     $(this.el).append('<div id="modal-overlay"></div>');
     $(this.el).append('<div id="modal-content"></div>');
     this.$("#modal-content").append('<img src="/images/modal-close.png" id="modal-close">');
-    this.$("#modal-content").append(CommonPlace.render("edit_" + this.options.model_type + "_form", {model: this.options.model}));
+    this.$("#modal-content").append(CommonPlace.render("edit_" + this.options.model_type + "_form", this.model.attributes));
     $("#main").append(this.el);
     $(window).trigger('resize.modal');
     return this;
