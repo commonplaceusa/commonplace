@@ -5,6 +5,11 @@
     <div class="actions-dropdown">
       <div class="toggle-actions"></div>
       <div class="actions">
+      {{#can_edit}}
+          <form action="{{url}}/edit" method="most" class="edit">
+            <input type="submit" value="Edit">
+          </form>
+        {{/can_edit}}
         {{#can_notify_all}}
           <form action="{{url}}/notify_all" method="post" class="send-notifications">
             <input type="submit" value="Send to everyone">
