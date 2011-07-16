@@ -34,6 +34,14 @@ class CPClient
     get("/communities/#{community}/groups", options)
   end
 
+  def post_info(id)
+    get("/posts/#{id}")
+  end
+
+  def user_info(id)
+    get("/users/#{id}")
+  end
+
   private
 
   def connection
