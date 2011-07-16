@@ -73,11 +73,8 @@ CommonPlace.EditView = Backbone.View.extend({
       error: function(){CommonPlace.app.notify("Your " + model_type + " could not be saved.");}
     };
     if (this.options.model_type == "post") {
-      console.log("Got post edit request");
       fields.title = this.$("form input#post_title").val();
       fields.body = this.$("form textarea#post_body").val();
-      console.log("Set fields");
-      console.log(fields);
     }
     model.save(fields, callbacks);
     this.remove();

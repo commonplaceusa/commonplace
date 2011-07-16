@@ -103,10 +103,16 @@ class API < Sinatra::Base
     post.subject = request_body['title']
     post.body    = request_body['body']
 
-    if (post.user == current_account or current_account.is_admin) and post.save
+    if (post.user == current_account or current_account.admin) and post.save
       serialize(post)
-    elsif post.user != current_account and !current_account.is_admin
-      [401, "errors"]
+    elsif post.user != current_account and !current_account.admin
+      if current_account.admin
+        [501, "THIS SHOULD NEVER HAPPEN"]
+      elsif post.user == current_account
+        [502, "Should be able to edit our own posts..."]
+      else
+        [401, "errors: #{current_account} does not have access."]
+      end
     else
       [400, "errors: #{post.errors.full_messages.to_s}"]
     end
