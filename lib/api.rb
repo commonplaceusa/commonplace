@@ -90,6 +90,49 @@ class API < Sinatra::Base
     end
   end
 
+  # PUT /post/:id
+  # { title: String
+  #   body: Text }
+  #
+  # Authorization: User owns the Post
+  put "/posts/:id" do |id|
+    post = Post.find(id)
+    unless post.present?
+      [404, "errors"]
+    end
+    post.subject = request_body['title']
+    post.body    = request_body['body']
+
+    if post.user == current_account and post.save
+      serialize(post)
+    else
+      [400, "errors"]
+    end
+  end
+
+  put "/event/:id" do |id|
+    event = Event.find(id)
+    unless event.present?
+      [404, "errors"]
+    end
+
+    event.name = request_body['title']
+    event.description = request_body['about']
+    event.date = request_body['date']
+    event.start_time = request_body['start']
+    event.end_time = request_body['end']
+    event.venue = request_body['venue']
+    event.address = request_body['address']
+    event.tag_list = request_body['tags']
+
+    # TODO: This should deal with feeds...
+    if event.owner == current_account and event.save
+      serialize(event)
+    else
+      [400, "errors"]
+    end
+  end
+
   # POST /events
   # { title: String
   # , about: String
