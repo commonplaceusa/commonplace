@@ -33,4 +33,8 @@ class Account
     @user.first_name
   end
 
+  def posts
+    @user.posts.map &:id
+  end
+
 end
