@@ -105,8 +105,10 @@ class API < Sinatra::Base
 
     if post.user == current_account and post.save
       serialize(post)
+    elsif post.user != current_account
+      [401, "errors"]
     else
-      [400, "errors"]
+      [400, "errors: #{post.errors.full_messages.to_s}"]
     end
   end
 
