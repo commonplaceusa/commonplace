@@ -100,9 +100,12 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
       body: CommonPlace.renderBody(this.model.get('body')),
       id: this.model.get('id'),
       any_available_actions: CommonPlace.account.can_notify_all(this.model) || 
-        CommonPlace.account.can_delete(this.model),
+        CommonPlace.account.can_delete(this.model) ||
+        CommonPlace.account.can_edit_post(this.model),
       can_notify_all: CommonPlace.account.can_notify_all(this.model),
-      can_delete: CommonPlace.account.can_delete(this.model)
+      can_delete: CommonPlace.account.can_delete(this.model),
+      can_edit: CommonPlace.account.can_edit_post(this.model),
+      can_edit_post: CommonPlace.account.can_edit_post(this.model)
     };
   },
 
