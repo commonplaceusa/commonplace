@@ -4,7 +4,11 @@ CommonPlace.Account = Backbone.Model.extend({
   url: "/api/account",
 
   can_delete: function(model) {
-    return this.get('is_admin') ;
+    return this.get('is_admin')  || this.can_delete_post(model);
+  },
+
+  can_delete_post: function(post) {
+    return ($.inArray(post.id, this.get('posts')) > -1);
   },
 
   can_edit_post: function(post) {
