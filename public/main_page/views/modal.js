@@ -44,8 +44,8 @@ CommonPlace.EditView = Backbone.View.extend({
   tagname: "div",
 
   events: { 
-    "click #modal-close": "remove"
-    //"submit form#edit_" + this.options.model_type: "submitEdit"
+    "click #modal-close": "remove",
+    "submit form.post": "submitEdit"
   },
 
   render: function() {
@@ -59,13 +59,27 @@ CommonPlace.EditView = Backbone.View.extend({
     return this;
   },
 
-  submitMessage: function(e) {
+  submitEdit: function(e) {
     e.preventDefault();
-    $.post("/api/people/" + this.options.person_id + "/messages",
-           JSON.stringify({ subject: this.$("form input#message_subject").val(),
-                            body: this.$("form textarea#message_body").val() }),
-           function() {});
+    //$.post("/api/" + this.options.model_type + "s/" + this.options.model.id + "/edit",
+    //       JSON.stringify({ title: this.$("form input#post_subject").val(),
+    //                        body: this.$("form textarea#post_body").val() }),
+    //       function() {});
+    var model_type = this.options.model_type;
+    model = this.options.model;
+    fields = {};
+    callbacks = {
+      success: function(){window.location.hash = "/" + model_type + "s/" + model.id;},
+      error: function(){CommonPlace.app.notify("Your " + model_type + " could not be saved.");}
+    };
+    if (this.options.model_type == "post") {
+      console.log("Got post edit request");
+      fields.title = this.$("form input#post_title").val();
+      fields.body = this.$("form textarea#post_body").val();
+      console.log("Set fields");
+      console.log(fields);
+    }
+    model.save(fields, callbacks);
     this.remove();
-    _.delay(function(){CommonPlace.app.notify("Your " + this.options.model_type + " has been edited.");},200);
   }
 });
