@@ -78,4 +78,20 @@ describe CPClient do
       cp_client.community_groups(1).should == [{"name" => "Gardeners"}]
     end
   end
+
+  describe "#post_info" do
+    it "retrieves the post's info" do
+      stub_api(:get, "/posts/3").to_return(:body => %q[{"body":"The quick Fox"}])
+      cp_client.post_info(3)["body"].should == "The quick Fox"
+    end
+  end
+
+  describe "#user_info" do
+    it "retrieves the user's info" do
+      stub_api(:get, "/users/4").to_return(:body => %q[{"about":"I like icecream"}])
+      cp_client.user_info(4)["about"].should == "I like icecream"
+    end
+  end
+    
+    
 end
