@@ -103,9 +103,9 @@ class API < Sinatra::Base
     post.subject = request_body['title']
     post.body    = request_body['body']
 
-    if post.user == current_account and post.save
+    if (post.user == current_account or current_account.is_admin) and post.save
       serialize(post)
-    elsif post.user != current_account
+    elsif post.user != current_account and !current_account.is_admin
       [401, "errors"]
     else
       [400, "errors: #{post.errors.full_messages.to_s}"]
