@@ -300,6 +300,7 @@ class API < Sinatra::Base
     last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
     serialize(scope.includes(:replies).
                 limit(params[:limit]).
+                reorder("updated_at DESC").
                 offset(params[:limit].to_i * params[:page].to_i).to_a)
   end
 
