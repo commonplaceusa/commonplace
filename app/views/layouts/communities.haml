@@ -1,4 +1,7 @@
 = render :layout => 'layouts/application' do
+  - if Rails.env.production?
+    %script
+      = "mpmetrics.track('Community Home Page', {'community': '#{current_community.slug}'});"
   #main
     #whats-happening
     #say-something
