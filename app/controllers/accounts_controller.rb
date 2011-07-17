@@ -75,7 +75,7 @@ class AccountsController < ApplicationController
     if can? :edit, current_user
       render :layout => 'application'
     else
-      redirect_to root_url
+      redirect_to login_url
     end
   end
 
