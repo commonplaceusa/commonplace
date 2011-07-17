@@ -1,0 +1,16 @@
+- if Rails.env.production?
+  :javascript
+    mpmetrics.track('');
+
+#main
+  %h1
+    Please complete your registration
+    = semantic_form_for @user, :url => create_account_path(current_community) do |f|
+      = f.inputs do
+        = f.input :full_name
+        = f.input :email
+        = f.input :address, :hint => ""
+        = f.input :password
+      = f.buttons do
+        = f.commit_button :button_html => { :type => "image", :src => "/images/buttons/sign-up.png" }
+

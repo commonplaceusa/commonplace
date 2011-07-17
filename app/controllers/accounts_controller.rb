@@ -1,4 +1,4 @@
-class AccountsController < CommunitiesController
+class AccountsController < ApplicationController
 
   layout 'application'
 
@@ -224,10 +224,15 @@ class AccountsController < CommunitiesController
     authorize! :update, User
   end
 
-  private
-
-  def single_access_allowed?
-    true
+  def gatekeeper
+    if halfuser = HalfUser.find_by_single_access_token(params[:husat])
+      current_user.full_name = halfuser.full_name
+      current_user.email = halfuser.email
+      current_user.community_id = halfuser.community_id
+      current_user.address = halfuser.street_address
+      @user = current_user
+    else
+      redirect_to root_url
+    end
   end
-  
 end

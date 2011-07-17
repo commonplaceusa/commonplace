@@ -33,6 +33,7 @@ gem 'authlogic_oauth2', ">= 1.1.6", :git => "git://github.com/commonplaceusa/aut
 gem 'cancan'
 gem 'ssl_requirement'
 gem 'ezcrypto'
+gem 'uuid'
 
 # Views/Stylesheets
 gem 'haml', '~> 3.1'
