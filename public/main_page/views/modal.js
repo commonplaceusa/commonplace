@@ -45,7 +45,7 @@ CommonPlace.EditView = Backbone.View.extend({
 
   events: { 
     "click #modal-close": "remove",
-    "submit form.post": "submitEdit"
+    "submit form.edit": "submitEdit"
   },
 
   render: function() {
@@ -75,6 +75,9 @@ CommonPlace.EditView = Backbone.View.extend({
     if (this.options.model_type == "post") {
       fields.title = this.$("form input#post_title").val();
       fields.body = this.$("form textarea#post_body").val();
+    }
+    if (this.options.model_type == "event") {
+
     }
     model.save(fields, callbacks);
     this.remove();
