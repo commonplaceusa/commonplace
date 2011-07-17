@@ -37,4 +37,8 @@ class Account
     @user.posts.map &:id
   end
 
+  def events
+    @user.events.map &:id
+  end
+
 end

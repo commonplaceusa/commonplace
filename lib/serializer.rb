@@ -119,7 +119,8 @@ module Serializer
         "is_admin" => o.is_admin,
         "accounts" => o.accounts.map {|a| {:name => a.name, :uid => "#{a.class.name.underscore}_#{a.id}"} },
         "short_name" => o.short_name,
-        "posts" => o.posts}
+        "posts" => o.posts,
+        "events" => o.events}
       end
 
     as_json

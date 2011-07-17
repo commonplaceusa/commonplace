@@ -15,6 +15,10 @@ CommonPlace.Account = Backbone.Model.extend({
     return this.get('is_admin') || ($.inArray(post.id, this.get('posts')) > -1);
   },
 
+  can_edit_event: function(event) {
+    return this.get('is_admin') || ($.inArray(event.id, this.get('events')) > -1);
+  },
+
   can_notify_all: function(post) {
     return this.get('is_admin') ;
   },
