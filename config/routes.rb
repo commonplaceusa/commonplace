@@ -23,6 +23,7 @@ Commonplace::Application.routes.draw do
   match "/admin/overview_no_render" => "admin#overview_no_render"
   match "/admin/clipboard" => "admin#clipboard"
   match "/admin/show_referrers" => "admin#show_referrers"
+  match "/admin/map" => "admin#map"
 
   # Blog and Starter Site routes
   resources :internships, :only => [:new, :create]
