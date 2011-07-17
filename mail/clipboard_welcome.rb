@@ -1,7 +1,7 @@
 class ClipboardWelcome < MailBase
 
   def initialize(user_id)
-    @user = User.find(user_id)
+    @user = HalfUser.find(user_id)
     @community = user.community
   end
 
@@ -38,7 +38,7 @@ class ClipboardWelcome < MailBase
   end
 
   def single_access_login
-    "http://#{community_slug}.ourcommonplace.com/account/edit_new?token=#{user.single_access_token}"
+    url("/gatekeeper?husat=#{user.single_access_token}")
   end
 
 end
