@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   layout 'application'
 
   protect_from_forgery :except => :update
-  caches_action :new
+
   def new
     if can? :create, User
       @user = User.new
