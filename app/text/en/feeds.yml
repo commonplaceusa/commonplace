@@ -6,12 +6,12 @@ en:
     invites:
       new:
         h1: Finally, invite some people to receive your announcements and events.
-        h2: Use CommonPlace to send your announcements and events to everyone on the %{community} CommonPlace network. The more email addresses you add, the more widely your announcements and events (and everyone else's!) will be sent.
-        emails_label: "Invite people to join CommonPlace and subscribe to your Feed:"
+        h2: Use CommonPlace to send your announcements and events to everyone on the %{community} CommonPlace network. The more email addresses you add, the more widely your announcements and events (and everyone else's!) will be sent. Invite everyone who your organization cares about.
+        emails_label: "To invite people to join CommonPlace and subscribe to your Feed, type in email addresses, separated by commas:"
     new:
       link: Create a Community Feed
       
-      h1: Fill out your feed profile so that people on CommonPlace can get in touch with you.
+      h1: Create a community feed so that your organization can post events and announcements to everyone on CommonPlace.
     edit:
       h1: Edit Your Feed
 
@@ -34,7 +34,7 @@ en:
       name: "Enter your feed's name"
       about: "Go ahead and describe your feed. Don't be afraid to use some detail. There's space."
       tag_list: "music, politics, food"
-      website: "http://www.yourfeed.com"
+      website: "http://www.YourWebsite.com"
       hours: "9:00AM - 1:00PM"
       phone: "867-5309"
       address: "0 Bleecker Street"

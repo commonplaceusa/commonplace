@@ -41,9 +41,7 @@ body.messages.show
         p
           margin-left: 85px
           color: #3b3b3b
-          line-height: 22px
-
-    
+          line-height: 22px 
 
     form.new_reply
       margin: 15px 0px
@@ -59,6 +57,10 @@ body.messages.show
       #reply_body
         width: 555px
         height: 80px
+        padding: 2px 4px
+        +border-radius(4px)
+        +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+        +serif     
 
       #submit_wrapper
         +box-shadow( rgba(0, 0, 0, 0.2), 0, 2px, 2px, 0, false)

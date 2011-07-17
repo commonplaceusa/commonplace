@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user, :facebook_session
   helper_method :api
   
-  before_filter :domain_redirect, :set_process_name_from_request, :login_with_single_access_token
+  before_filter :domain_redirect, :set_process_name_from_request
   after_filter :unset_process_name_from_request
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -136,12 +136,12 @@ class ApplicationController < ActionController::Base
     request.env['HTTP_X_REQUESTED_WITH'].present? || params[:xhr]
   end
 
-  private
-
-  def login_with_single_access_token
-    return if params[:token].nil?
-    user = User.find_by_single_access_token(params[:token])
-    UserSession.create(user) if user.present?
+  def redirect_to(options = {}, response_status = {})
+    if xhr? 
+      render :json => {"redirect_to" => options}
+    else
+      super(options, response_status)
+    end
   end
-  
+
 end
