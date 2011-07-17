@@ -19,6 +19,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     "/group_posts/new" : "newGroupPost",
 
     "/posts/:id/edit" : "editPost",
+    "/events/:id/edit" : "editEvent",
 
     "/users/:id/messages/new" : "newMessage",
 
@@ -77,15 +78,23 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   editPost : function(id) {
-    console.log("Editing post " + id);
     var post = this.community.posts.get(id);
     if (post) {
-        console.log("Rendering view");
         var view = new CommonPlace.EditView({
             model: post,
             model_type: "post"
         });
         view.render();
+    }
+  },
+
+  editEvent : function(id) {
+    var item = this.community.events.get(id);
+    if (item) {
+        new CommonPlace.EditView({
+            model: item,
+            model_type: "event"
+        }).render();
     }
   },
 
