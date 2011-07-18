@@ -1,0 +1,34 @@
+- if Rails.env.production?
+  :javascript
+    var _sf_startpt=(new Date()).getTime()
+
+%link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
+%meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
+%meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
+%meta{ :name => "description", :content => "The #{params[:community] && current_community.name} CommonPlace is an online community bulletin board for neighbors in #{params[:community] && current_community.name}, designed to make it easy for neighbors and community groups to share and connect." }
+%link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
+%title= "CommonPlace #{ params[:community] && current_community.name}"
+
+<script type='text/javascript' src="/javascripts/head.min.js"></script>
+  
+= include_javascripts :application
+-#= javascript_include_tag "https://connect.facebook.net/en_US/all.js#xfbml=1"
+= javascript_include_tag "https://exceptional-js.heroku.com/exceptional.js"
+%script{:type => 'text/javascript'}
+  $(document).ready(function () {
+  Exceptional.setHost('exceptional-api.heroku.com');
+  Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
+  });
+= include_stylesheets :application
+/ [if IE]
+  = javascript_include_tag "https://html5shiv.googlecode.com/svn/trunk/html5.js"
+  = include_stylesheets :ie
+
+:javascript
+  CommonPlace = window.CommonPlace || {};
+  CommonPlace.auth_token = "#{form_authenticity_token}";
+  CommonPlace.env = '#{Rails.env}';
+
+- if params[:first].present? and current_user.is_facebook_user 
+  :javascript
+    $(document).ready(function() { facebook_invite(); });

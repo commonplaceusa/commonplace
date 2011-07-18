@@ -1,45 +1,63 @@
-= render :layout => 'layouts/application' do
-  - if Rails.env.production?
-    %script
-      = "mpmetrics.track('Community Home Page', {'community': '#{current_community.slug}'});"
-  #main
-    #whats-happening
-    #say-something
-    #community-profiles
-      = render 'accounts/info_box'
-    = yield :modal
-:javascript
-  CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
-  name: "#{current_community.name}"});
+!!! 5
+%html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
+  %head
+    = render 'layouts/common_head'
+
+    = include_javascripts :templates
 
 
-  CommonPlace.community.posts.refresh(#{@posts.to_json.html_safe});
+  %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
+    #fb-root
 
-  CommonPlace.community.events.refresh(#{@events.to_json.html_safe});
 
-  CommonPlace.community.announcements.refresh(#{@announcements.to_json.html_safe});
+    = render 'shared/admin_bar'
+    = render 'layouts/header', :user_session => current_user_session
 
-  CommonPlace.community.group_posts.refresh(#{@group_posts.to_json.html_safe});
+    #main
+      #whats-happening
+      #say-something
+      #community-profiles
+        = render 'accounts/info_box'
+      = yield :modal
 
-  CommonPlace.community.feeds.refresh(#{@feeds.to_json.html_safe});
-  CommonPlace.community.groups.refresh(#{@groups.to_json.html_safe});
-  CommonPlace.community.users.refresh(#{@users.to_json.html_safe});
+    = render "layouts/footer"
 
-  CommonPlace.account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
+    = render "layouts/production_bottom_scripts"
 
-  CommonPlace.env = '#{Rails.env}';
-  var oldhash = window.location.hash.slice(1);
-  window.location.hash = "/";
+    :javascript
+      CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
+      name: "#{current_community.name}"});
 
-  CommonPlace.app = new CommonPlace.MainPageController({community: CommonPlace.community, account: CommonPlace.account});
-  CommonPlace.app.runNotifier();
-  Backbone.history.start();
 
-  window.location.hash = "/#{params[:backbone_route]}"
-  Backbone.history.loadUrl();
-  if (oldhash != "" && oldhash != "/") { window.location.hash = oldhash; }
+      CommonPlace.community.posts.refresh(#{@posts.to_json.html_safe});
 
-- unless current_user.seen_tour?
-  - current_user.toggle!(:seen_tour)
-  :javascript
-    (new CommonPlace.Tour({el: $("#main")})).render();
+      CommonPlace.community.events.refresh(#{@events.to_json.html_safe});
+
+      CommonPlace.community.announcements.refresh(#{@announcements.to_json.html_safe});
+
+      CommonPlace.community.group_posts.refresh(#{@group_posts.to_json.html_safe});
+
+      CommonPlace.community.feeds.refresh(#{@feeds.to_json.html_safe});
+      CommonPlace.community.groups.refresh(#{@groups.to_json.html_safe});
+      CommonPlace.community.users.refresh(#{@users.to_json.html_safe});
+
+      CommonPlace.account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
+
+      var oldhash = window.location.hash.slice(1);
+      window.location.hash = "/";
+
+      CommonPlace.app = new CommonPlace.MainPageController({community: CommonPlace.community, account: CommonPlace.account});
+      CommonPlace.app.runNotifier();
+      Backbone.history.start();
+
+      window.location.hash = "/#{params[:backbone_route]}"
+      Backbone.history.loadUrl();
+      if (oldhash != "" && oldhash != "/") { window.location.hash = oldhash; }
+
+    - unless current_user.seen_tour?
+      - current_user.toggle!(:seen_tour)
+      :javascript
+        (new CommonPlace.Tour({el: $("#main")})).render();
+    - if Rails.env.production?
+      %script
+        = "mpmetrics.track('Community Home Page', {'community': '#{current_community.slug}'});"
