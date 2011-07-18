@@ -1,87 +1,81 @@
+!!! 5
+%html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
+  %head
+    = render 'layouts/common_head'
+  %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
+    #fb-root
+    
+    = render 'layouts/header', :user_session => current_user_session
 
-- render :layout => "layouts/application" do
-  #main
-    %h1
-      = @feed.name
-      - if can?(:edit, @feed)
-        = link_to 'Edit', edit_feed_path(@feed), :class => 'edit'
+    #main
+      %h1
+        = @feed.name
+        - if can?(:edit, @feed)
+          = link_to 'Edit', edit_feed_path(@feed), :class => 'edit'
     
 
-    #column-1<>
-      = image_tag @feed.avatar_url, :id => 'feed-avatar', :size => "210x210"
-      - if [:phone, :website, :address].any? {|method| @feed.send(method).present?}
-        %h3= t 'feeds.profile.contact_info.title'
-        #contact-info
-          %table
-            - if @feed.phone.present?
-              %tr
-                %th= t("formtastic.labels.feed.show.phone")
-                %td= @feed.phone
-            - if @feed.website.present?
-              %tr
-                %th= t("formtastic.labels.feed.show.website")
-                %td= link_to truncate(@feed.website, :length => 25), @feed.website
-            - if @feed.address.present?
-              %tr
-                %th= t("formtastic.labels.feed.show.address")
-                %td= @feed.address
+      #column-1<>
+        = image_tag @feed.avatar_url, :id => 'feed-avatar', :size => "210x210"
+        - if [:phone, :website, :address].any? {|method| @feed.send(method).present?}
+          %h3= t 'feeds.profile.contact_info.title'
+          #contact-info
+            %table
+              - if @feed.phone.present?
+                %tr
+                  %th= t("formtastic.labels.feed.show.phone")
+                  %td= @feed.phone
+              - if @feed.website.present?
+                %tr
+                  %th= t("formtastic.labels.feed.show.website")
+                  %td= link_to truncate(@feed.website, :length => 25), @feed.website
+              - if @feed.address.present?
+                %tr
+                  %th= t("formtastic.labels.feed.show.address")
+                  %td= @feed.address
 
-      - if @feed.twitter_name?
+        - if @feed.twitter_name?
 
-        #twitter-feed
-          <script src="https://widgets.twimg.com/j/2/widget.js"></script>
-          :javascript
-            new TWTR.Widget({
-              version: 2,
-              type: 'profile',
-              rpp: 4,
-              interval: 6000,
-              width: 'auto',
-              height: 200,
-              theme: {
-                shell: {
-                  background: '#dadada',
-                  color: '#454545'
+          #twitter-feed
+            <script src="https://widgets.twimg.com/j/2/widget.js"></script>
+            :javascript
+              new TWTR.Widget({
+                version: 2, type: 'profile', rpp: 4,
+                interval: 6000, width: 'auto', height: 200,
+                theme: {
+                  shell: { background: '#dadada', color: '#454545' },
+                  tweets: { background: '#fff', color: '#454545', links: '255' }
                 },
-                tweets: {
-                  background: '#fff',
-                  color: '#454545',
-                  links: '255'
+                features: { 
+                  scrollbar: false, loop: false, live: true,
+                  hashtags: false, timestamp: false, 
+                  avatars: false, behavior: 'all'
                 }
-              },
-              features: {
-                scrollbar: false,
-                loop: false,
-                live: true,
-                hashtags: false,
-                timestamp: false,
-                avatars: false,
-                behavior: 'all'
-              }
-            }).render().setUser("#{@feed.twitter_name}").start();
+              }).render().setUser("#{@feed.twitter_name}").start();
 
 
-    #column-2<>
-      #recent-posts
-        %h2= t 'feeds.profile.recent_posts.title'
-        - if @feed.announcements.empty? && @feed.events.empty?
-          .no-recent-posts No Recent Posts
-        - else
-          = render 'shared/items', :items => @feed.wire
+      #column-2<>
+        #recent-posts
+          %h2= t 'feeds.profile.recent_posts.title'
+          - if @feed.announcements.empty? && @feed.events.empty?
+            .no-recent-posts No Recent Posts
+          - else
+            = render 'shared/items', :items => @feed.wire
+  
+      #column-3<>
+        #about
+          %h2= t 'feeds.profile.about.title'
+          %p= @feed.about
 
-    #column-3<>
-      #about
-        %h2= t 'feeds.profile.about.title'
-        %p= @feed.about
-
-      - unless @feed.subscribers.empty?
-        %h3= t 'feeds.profile.members.title', :count => @feed.subscribers.count
-        #members
-          %ul
-            - @feed.subscribers.each do |user|
-              %li
-                = image_tag user.avatar_url, :size => "32x32"
-                = user.name
+        - unless @feed.subscribers.empty?
+          %h3= t 'feeds.profile.members.title', :count => @feed.subscribers.count
+          #members
+            %ul
+              - @feed.subscribers.each do |user|
+                %li
+                  = image_tag user.avatar_url, :size => "32x32"
+                  = user.name
 
         
-      
+    = render "layouts/footer"
+
+    = render "layouts/production_bottom_scripts"  
