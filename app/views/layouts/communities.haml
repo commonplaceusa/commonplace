@@ -22,7 +22,7 @@
   CommonPlace.community.group_posts.refresh(#{@group_posts.to_json.html_safe});
 
   CommonPlace.community.feeds.refresh(#{@feeds.to_json.html_safe});
-  CommonPlace.community.groups.refresh(#{@group_posts.to_json.html_safe});
+  CommonPlace.community.groups.refresh(#{@groups.to_json.html_safe});
   CommonPlace.community.users.refresh(#{@users.to_json.html_safe});
 
   CommonPlace.account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
