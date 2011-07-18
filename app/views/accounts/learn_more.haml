@@ -1,6 +1,6 @@
 
 #learn-more
-  %h1= t ".title_html", :sign_up => link_to(t(".sign_up"), "/#{current_community.slug}")
+  %h1= t ".title_html", :sign_up => link_to(t(".sign_up"), "/#{current_community.slug}"), :community => current_community.name
   #content
     .p_wrapper
       %p= t ".p1", :community=> current_community.name
