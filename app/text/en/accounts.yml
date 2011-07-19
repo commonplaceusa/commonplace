@@ -4,7 +4,7 @@ en:
       h1: Sign up to receive community announcements from your neighbors and local organizations in %{community}. %{learn_more}
       learn_more: Click here to learn more.
       bubble_1: Publicize your events to the community
-      bubble_2: Get crime reports from the police
+      bubble_2: Get crime reportfis from the police
       who_is_bubble: Who's bringing CommonPlace to %{community}?
     edit_new:
 
@@ -61,18 +61,32 @@ en:
         wall_post_content: I just joined CommonPlace so I can connect with my neighbors. You should sign up too!
       
     facebook_invite:
-        heading:  The more neighbors on The %{community} CommonPlace,
-        heading2: the better a community-building utility it is for %{community}.
-        h2: Use CommonPlace to send your announcements and events to everyone on the %{community} CommonPlace network. The more email addresses you add, the more widely your announcements and events (and everyone else's!) will be sent.
+        heading: Make Commonplace Better!
+        heading2: Improve Commonplace by inviting people you know.
+        
         emails_label: "Invite people to join CommonPlace!"
         neighbors_name_label: "Neighbor's Name"
         email_label: "Email address"
         tool_tip: "Find your neighbors on Facebook and invite them to join you on CommonPlace!"
-        step_one: "Invite neighbors through Facebook or Twitter:"
-        step_two: "Invite neighbors by email:"
-        step_three: "Invite neighbors by hand:"
+
+        step_one: "1. Invite neighbors by Facebook"
+        step_one_label: "Find your neighbors on Facebook and invite them to join you on Commonplace!:"
+        step_two: "2. Share on Facebook and Twitter"
+        step_two_label: "Let all your friends know about Commonplace."
+        step_three: "3. Invite neighbors by email"
+        step_three_label: "Invite neighbors by entering their name and email address."
+        step_four: "4. Invite neighbors face-to-face"
+        step_four_label: "Invite neighbors the old fashioned way by handing out flyers and reading materials."
+        step_five: "5. Join Friends of Commonplace Network"
+        step_five_label: "Find your neighbors on Facebook and invite them to join you on CommonPlace!"
         invitation: "I just joined %{community}\'s CommonPlace so I can connect and share with my neighbors in %{community}.  You should sign up too!"
+        download_tag: "DOWNLOAD PDF"
         file_descriptions:
-          - "Download Info Sheet"
+          - "Commonplace Launch Letter"
+          - "Information Sheet"
+          - "Neighborhood Flyer"
         file_names:
-          - "info"
+          - "launchletter"
+          - "infosheet"
+          - "neighborflyer"
+        file_zip: "archives"
