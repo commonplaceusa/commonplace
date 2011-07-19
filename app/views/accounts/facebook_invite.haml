@@ -70,95 +70,94 @@
 
 #groups_box
   #groups_wrapper
-    %h3
-      %ul
-        %li
-          #step_one
+    %ul
+      %li
+        #step_one
+          %h3
             =t(".step_one")
-            %br/
-            %h4
-              =t(".step_one_label")
+          %h4
+            =t(".step_one_label")
           
 #groups_box
   #groups_wrapper
-    %h3
-      %ul
-        %li
-          #step_two
+    %ul
+      %li
+        #step_two
+          %h3
             =t(".step_two")
-            %h4
-              =t(".step_two_label")
-            -#The javascript will add the buttons in here.
+          %h4
+            =t(".step_two_label")
+          -#The javascript will add the buttons in here.
           
 #groups_box
   #groups_wrapper
-    %h3
-      %ul
-        %li
-          #step_three
+    %ul
+      %li
+        #step_three
+          %h3
             =t(".step_three")
-            %h4
-              =t(".step_three_label")
-            #invite_errors
-            - semantic_form_for @invitation do |f|
-              - f.inputs do
-                = f.input :email, :input_html => { :placeholder => "Email address (seperated by commas).", :class => "required email" }
-                = f.input :body, :input_html => { :placeholder => "Write something nice about Commonplace!" }, :html => {:class => "required"}
-              - f.buttons do
-                = f.submit :type => "image", :src => "/images/invite/neighborinvite.png", :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
-            #forms
+          %h4
+            =t(".step_three_label")
+          #invite_errors
+          - semantic_form_for @invitation do |f|
+            - f.inputs do
+              = f.input :email,:as => 'text', :input_html => { :placeholder => "Email address (seperated by commas).", :class => "required email" }
+              = f.input :body, :input_html => { :placeholder => "Write something nice about Commonplace!", :rows =>"4"}, :html => {:class => "required"}
+            - f.buttons do
+              = f.submit :type => "image", :src => "/images/invite/neighborinvite.png", :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
+          #forms
       
 #groups_box
   #groups_wrapper
-    %h3
-      %ul
-        %li 
-          #step_four
+    %ul
+      %li 
+        #step_four
+          %h3
             =t(".step_four")
-            %h4
-              =t(".step_four_label")
-            %table
-              %tr{:style =>"width:370px"}
-                %td{:style =>"width:60px"}
-                  %a{:href => "/pdfs/#{t('.file_names')[0]}/#{t('.file_names')[0]}-#{current_community.slug}.pdf"}
-                    %img{:src => "/images/invite/PDFLogo.png"}
-                %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
-                  %h5
-                    =t(".file_descriptions")[0]
-                  %a{:href => "/pdfs/#{t('.file_names')[0]}/#{t('.file_names')[0]}-#{current_community.slug}.pdf"}
-                    %h6
-                      =t(".download_tag")
-              %tr{:style =>"width:370px"}
-                %td{:style =>"width:60px"}
-                  %a{:href => "/pdfs/#{t('.file_names')[1]}/#{t('.file_names')[1]}-#{current_community.slug}.pdf"}
-                    %img{:src => "/images/invite/PDFLogo.png"}
-                %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
-                  %h5
-                    =t(".file_descriptions")[1]
-                  %a{:href => "/pdfs/#{t('.file_names')[1]}/#{t('.file_names')[1]}-#{current_community.slug}.pdf"}
-                    %h6
-                      =t(".download_tag")
-              %tr{:style =>"width:370px"}
-                %td{:style =>"width:60px"}
-                  %a{:href => "/pdfs/#{t('.file_names')[2]}/#{t('.file_names')[2]}-#{current_community.slug}.pdf"}
-                    %img{:src => "/images/invite/PDFLogo.png"}
-                %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
-                  %h5
-                    =t(".file_descriptions")[2]
-                  %a{:href => "/pdfs/#{t('.file_names')[2]}/#{t('.file_names')[2]}-#{current_community.slug}.pdf"}
-                    %h6
-                      =t(".download_tag")
-            %a{:href => "/pdfs/#{t('.file_zip')}/#{current_community.slug}.zip"}
-              %img{:src => "/images/invite/downloadzip.png",:width =>"370px",:style =>"margin-left:3px; margin-top:15px"}
+          %h4
+            =t(".step_four_label")
+          %table
+            %tr{:style =>"width:370px"}
+              %td{:style =>"width:60px"}
+                %a{:href => "/pdfs/#{t('.file_names')[0]}/#{t('.file_names')[0]}-#{current_community.slug}.pdf"}
+                  %img{:src => "/images/invite/PDFLogo.png"}
+              %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
+                %h5
+                  =t(".file_descriptions")[0]
+                %a{:href => "/pdfs/#{t('.file_names')[0]}/#{t('.file_names')[0]}-#{current_community.slug}.pdf"}
+                  %h6
+                    =t(".download_tag")
+            %tr{:style =>"width:370px"}
+              %td{:style =>"width:60px"}
+                %a{:href => "/pdfs/#{t('.file_names')[1]}/#{t('.file_names')[1]}-#{current_community.slug}.pdf"}
+                  %img{:src => "/images/invite/PDFLogo.png"}
+              %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
+                %h5
+                  =t(".file_descriptions")[1]
+                %a{:href => "/pdfs/#{t('.file_names')[1]}/#{t('.file_names')[1]}-#{current_community.slug}.pdf"}
+                  %h6
+                    =t(".download_tag")
+            %tr{:style =>"width:370px"}
+              %td{:style =>"width:60px"}
+                %a{:href => "/pdfs/#{t('.file_names')[2]}/#{t('.file_names')[2]}-#{current_community.slug}.pdf"}
+                  %img{:src => "/images/invite/PDFLogo.png"}
+              %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
+                %h5
+                  =t(".file_descriptions")[2]
+                %a{:href => "/pdfs/#{t('.file_names')[2]}/#{t('.file_names')[2]}-#{current_community.slug}.pdf"}
+                  %h6
+                    =t(".download_tag")
+          %a{:href => "/pdfs/#{t('.file_zip')}/#{current_community.slug}.zip"}
+            %img{:src => "/images/invite/downloadzip.png",:width =>"370px",:style =>"margin-left:3px; margin-top:15px"}
               
 #groups_box
   #groups_wrapper
-    %h3
-      %ul
-        %li 
-          #step_five
+    %ul
+      %li 
+        #step_five
+          %h3
             =t(".step_five")
-            %h4
-              =t(".step_five_label")
-            %img{:src => "/images/invite/joinfriends.png",:width =>"370px",:style =>"margin-left:3px; margin-top:10px;", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);", :onmouseout => "document.body.style.cursor = \'auto\';", :onmouseover => "document.body.style.cursor = \'pointer\';"}
-      %br
+          %h4
+            =t(".step_five_label")
+          %img{:src => "/images/invite/joinfriends.png",:width =>"370px",:style =>"margin-left:3px; margin-top:10px;", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);", :onmouseout => "document.body.style.cursor = \'auto\';", :onmouseover => "document.body.style.cursor = \'pointer\';"}
+    %br
