@@ -5,7 +5,11 @@ class AccountsController < ApplicationController
   protect_from_forgery :except => :update
 
   def new
-    if can? :create, User
+    if !logged_in?
+      redirect_to login_url
+      return
+    end
+    if can?(:create, User)
       @user = User.new
       if params[:short]
         params[:action] = "new short"
