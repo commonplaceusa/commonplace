@@ -90,10 +90,6 @@ class ApplicationController < ActionController::Base
       params[:community] = @_current_community.slug
       translate_with :community => @_current_community.name
       Time.zone = @_current_community.time_zone    
-    else
-      logger.info("URL: #{request.url}")
-      store_location
-      redirect_to login_url
     end
     @_current_community 
   end
@@ -130,18 +126,6 @@ class ApplicationController < ActionController::Base
   def reload_current_user!
     @current_user_session = UserSession.find
     @current_user = current_user_session.user
-  end
-
-  def xhr?
-    request.env['HTTP_X_REQUESTED_WITH'].present? || params[:xhr]
-  end
-
-  def redirect_to(options = {}, response_status = {})
-    if xhr? 
-      render :json => {"redirect_to" => options}
-    else
-      super(options, response_status)
-    end
   end
 
 end
