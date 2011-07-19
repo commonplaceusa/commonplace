@@ -19,6 +19,7 @@ body.application.accounts.facebook_invite
     font-weight: bold
     font-size: 40px
     text-align: center
+    margin-left: -5px
   h2
     color: #71879a
     line-height: 1.2
@@ -32,7 +33,7 @@ body.application.accounts.facebook_invite
     font-size: 23px
     text-shadow: #631e1c 2px 2px 0px
     text-align: left
-    padding: 0px 0 15px 0
+    margin-bottom: 5px
     
   h4
     color: #000000
@@ -70,6 +71,7 @@ body.application.accounts.facebook_invite
     li
       margin-left: 2px
       display: block
+      padding: 0px 0 15px 0
     #custom-tweet-button
       height: 41px
       width: 356px
@@ -80,49 +82,49 @@ body.application.accounts.facebook_invite
       width: 378px
     #step_one
       @extend #step
-      height: 135px      
+      height: 130px      
     #step_two
       @extend #step
-      height: 170px
+      height: 167px
     #step_three
       @extend #step
-      height: 352px
+      height: 423px
     #step_four
       @extend #step
-      height: 360px
+      height: 363px
     #step_five
       @extend #step
-      height: 140px
+      height: 150px
   label
     display: none
-  input[type="email"], 
+  #invite_email
     text-align: left
     vertical-align: top
-    height: 30px
-    padding: 4px 8px 4px
+    height: 95px
+    padding: 6px 10px 6px
     font-size: 16px
-    width: 360px
+    width: 356px
     border: 1px solid #982c28
     +border-radius(5px)
     +box-shadow(#1B0A1C, 1px, 1px, 6px, 0px, inset)
     +serif
-  textarea
+  #invite_body
     vertical-align: top
     text-align: left
-    height: 120px
+    height: 110px
     width: 356px
     padding: 8px 10px 8px
     font-size: 15px
     border: 1px solid #982c28
     +border-radius(5px)
-    +box-shadow(#545454, 1px, 1px, 6px, 0px, inset)
+    +box-shadow(#1B0A1C, 1px, 1px, 6px, 0px, inset)
     +serif
-    margin-top: 20px
-    margin-bottom: 10px
+    margin-top: 18px
+    margin-bottom: 3px
   input[type="submit"]
     width: 356px
     height: 41px
-    margin: 15px auto 15px auto
+    margin: 5px auto 15px auto
     font-family: "Rockwell",Georgia,Times,serif
   #doctable
     vertical-align:middle
