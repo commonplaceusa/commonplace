@@ -16,9 +16,7 @@ class CommunitiesController < ApplicationController
       @groups = cp_client.community_groups(current_community.id)
       render 'show'
     else
-      @user = User.new
-      params[:controller], params[:action] = "accounts", "new"
-      render 'accounts/new', :layout => 'application'
+      raise CanCan::AccessDenied
     end
   end
 end
