@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     c.perishable_token_valid_for 1.hour
   end
 
-  geocoded_by :address
+  geocoded_by :normalized_address
 
   belongs_to :community
   belongs_to :neighborhood  
@@ -247,6 +247,14 @@ class User < ActiveRecord::Base
 
   def value_adding?
     (self.posts.size >= 1 || self.announcements.size >= 1 || self.events.size >= 1)
+  end
+
+  def normalized_address
+    if address.match(/#{self.community.name}/i)
+      address
+    else
+      address + ", #{self.community.name}"
+    end
   end
 
   private
