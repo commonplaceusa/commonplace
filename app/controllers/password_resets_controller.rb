@@ -18,15 +18,12 @@ class PasswordResetsController < ApplicationController
 
   def edit
     if @user = User.find_by_perishable_token(params[:id])
-      raise @user.inspect
       render
     else
       redirect_to new_password_reset_url
     end
   end
   
-  alias :show :edit
-
   def update
     if @user = User.find_by_perishable_token(params[:id])
       @user.password = params[:user][:password]
