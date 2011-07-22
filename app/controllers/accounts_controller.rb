@@ -5,15 +5,12 @@ class AccountsController < ApplicationController
   protect_from_forgery :except => :update
 
   def new
-<<<<<<< Updated upstream
-    if can?(:create, User)
-=======
+
     if !current_community
       raise CanCan::AccessDenied
     end
       
     if can? :create, User
->>>>>>> Stashed changes
       @user = User.new
       if params[:short]
         params[:action] = "new short"
