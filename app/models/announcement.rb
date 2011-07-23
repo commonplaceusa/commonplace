@@ -1,4 +1,5 @@
 class Announcement < ActiveRecord::Base
+  #track_on_creation
 
 
   has_many :replies, :as => :repliable, :order => :created_at

@@ -1,4 +1,6 @@
 class GroupPost < ActiveRecord::Base
+  #track_on_creation
+
   belongs_to :group
   belongs_to :user
 

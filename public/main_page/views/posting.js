@@ -24,8 +24,6 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitAnnouncement: function(e) {
     e.preventDefault();
-    if (CommonPlace.env == 'production')
-      mpmetrics.track('Submitted Post', {'community': CommonPlace.community.attributes.name});
     this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
     owner_match = this.$("select#announcement_owner").val().match(/([a-z_]+)_(\d+)/);
     
@@ -43,8 +41,6 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitEvent: function(e) {
     e.preventDefault();
-    if (CommonPlace.env == 'production')
-      mpmetrics.track('Submitted Post', {'community': CommonPlace.community.attributes.name});
     this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
     owner_match = this.$("select#event_owner").val().match(/([a-z_]+)_(\d+)/);
     CommonPlace.community.events.create({
@@ -67,8 +63,6 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitGroupPost: function(e) {
     e.preventDefault();
-    if (CommonPlace.env == 'production')
-      mpmetrics.track('Submitted Post', {'community': CommonPlace.community.attributes.name});
     this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
     CommonPlace.community.group_posts.create({
       title: this.$("input#group_post_subject").val(),

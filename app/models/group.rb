@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  #track_on_creation
   
   validates_presence_of :name, :slug, :about, :community
 
