@@ -19,21 +19,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitPost: function(e) {
     e.preventDefault();
-    var self = this;
-    if (CommonPlace.env == 'production')
-      mpmetrics.track('Submitted Post', {'community': CommonPlace.community.attributes.name});
-    this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
-    CommonPlace.community.posts.create({ 
-      title: this.$("input#post_subject").val(),
-      body: this.$("textarea#post_body").val() 
-    }, { success: function() {
-      window.location.hash = "/posts/new";
-      Backbone.history.checkUrl();
-      window.location.hash = "/posts";
-      Backbone.history.checkUrl();
-    },
-         error: function() { self.render(); }
-       });
+    new CommonPlace.PostConfirmationView({subject: this.$("input#post_subject").val(), body: this.$("textarea#post_body").val()}).render();
   },
 
   submitAnnouncement: function(e) {
