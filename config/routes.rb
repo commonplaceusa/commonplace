@@ -31,31 +31,9 @@ Commonplace::Application.routes.draw do
   resources :requests, :only => [:new, :create]
   match 'interns', :to => "site#interns"
 
-  scope "/:community" do
-
-    match 'about' => 'site#about'
-    match 'privacy' => 'site#privacy', :as => :privacy
-    match 'terms' => 'site#terms', :as => :terms
-    match 'dmca' => 'site#dmca', :as => :dmca
-    match "faq", :to => "site#faq", :as => :faq, :via => :get
-    match "faq", :to => "site#send_faq", :via => :post
-  end
-  
   match "/facebook_canvas/" => "facebook_canvas#index"
   match 'login' => 'user_sessions#new', :as => :login
   resource :user_session
-  constraints LoggedInConstraint.new(false) do
-
-    root :to => "site#index"
-    
-    match "/:community/learn_more", :to => "accounts#learn_more"
-
-    resources :password_resets
-
-    match "/:community", :to => "accounts#new"
-    match "/:community/account", :via => :post, :to => "accounts#create", :as => "create_account"
-
-  end
 
   resources :feeds, :only => [:new, :create, :edit, :update] do
     member do
@@ -117,6 +95,32 @@ Commonplace::Application.routes.draw do
     
     root :to => "communities#show"
   end
+
+  constraints LoggedInConstraint.new(false) do
+
+    root :to => "site#index"
+    
+    match "/:community/learn_more", :to => "accounts#learn_more"
+
+    resources :password_resets
+    match "/:community", :to => "accounts#new"
+    match "/:community/account", :via => :post, :to => "accounts#create", :as => "create_account"
+
+    
+  end
+
+
+  scope "/:community" do
+
+    match 'about' => 'site#about'
+    match 'privacy' => 'site#privacy', :as => :privacy
+    match 'terms' => 'site#terms', :as => :terms
+    match 'dmca' => 'site#dmca', :as => :dmca
+    match "faq", :to => "site#faq", :as => :faq, :via => :get
+    match "faq", :to => "site#send_faq", :via => :post
+  end
+  
+
 
   match "/account/make_focp", :to => "accounts#make_focp"
   match "(*backbone_route)", :to => "communities#show", :via => :get, :as => :community
