@@ -1,0 +1,154 @@
+<form accept-charset="UTF-8" action="/events/{{id}}/info" class="new_entity formtastic edit" data-remote="true" id="edit_event" method="post">
+  <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓">
+    <input name="authenticity_token" type="hidden" value="X3HjlzXCNZLbRAV+a3zdB7rlE2/nYB9QGnsDGteB1mU=">
+  </div>
+
+  <hr class="staple">
+
+  <h1>Edit your event</h1>
+
+  <fieldset class="inputs">
+    <ol>
+      <li class="string required" id="event_title_input">
+        <label for="event_title">Name</label>
+        <input id="event_title" maxlength="255" name="event_title" size="25" type="text" value="{{title}}">
+      </li>
+      <li class="text required" id="event_body_input">
+        <label for="event_body">Description</label>
+        <textarea id="event_body" name="event_body" rows="5">{{body}}</textarea>
+      </li>
+      <li class="string required" id="event_date_input">
+        <label for="event_date">Date</label>
+        <input id="event_date" class="date" maxlength="255" name="event_date" size="25" type="text" value="{{occurs_on_date}}" autocomplete="off">
+      </li>
+      <li class="select required" id="event_start_time_input">
+        <label for="event_start_time">Start time</label>
+        <select id="event_start_time" name="event_start_time">
+          <option value="05:00 AM">05:00 AM</option>
+			<option value="05:30 AM">05:30 AM</option>
+			<option value="06:00 AM">06:00 AM</option>
+			<option value="06:30 AM">06:30 AM</option>
+			<option value="07:00 AM">07:00 AM</option>
+			<option value="07:30 AM">07:30 AM</option>
+			<option value="08:00 AM">08:00 AM</option>
+			<option value="08:30 AM">08:30 AM</option>
+			<option value="09:00 AM">09:00 AM</option>
+			<option value="09:30 AM">09:30 AM</option>
+			<option value="10:00 AM">10:00 AM</option>
+			<option value="10:30 AM">10:30 AM</option>
+			<option value="11:00 AM">11:00 AM</option>
+			<option value="11:30 AM">11:30 AM</option>
+			<option value="12:00 PM">12:00 PM</option>
+			<option value="12:30 PM">12:30 PM</option>
+			<option value="01:00 PM">01:00 PM</option>
+			<option value="01:30 PM">01:30 PM</option>
+			<option value="02:00 PM">02:00 PM</option>
+			<option value="02:30 PM">02:30 PM</option>
+			<option value="03:00 PM">03:00 PM</option>
+			<option value="03:30 PM">03:30 PM</option>
+			<option value="04:00 PM">04:00 PM</option>
+			<option value="04:30 PM">04:30 PM</option>
+			<option value="05:00 PM">05:00 PM</option>
+			<option value="05:30 PM">05:30 PM</option>
+			<option value="06:00 PM">06:00 PM</option>
+			<option value="06:30 PM">06:30 PM</option>
+			<option value="07:00 PM">07:00 PM</option>
+			<option value="07:30 PM">07:30 PM</option>
+			<option value="08:00 PM">08:00 PM</option>
+			<option value="08:30 PM">08:30 PM</option>
+			<option value="09:00 PM">09:00 PM</option>
+			<option value="09:30 PM">09:30 PM</option>
+			<option value="10:00 PM">10:00 PM</option>
+			<option value="10:30 PM">10:30 PM</option>
+			<option value="11:00 PM">11:00 PM</option>
+			<option value="11:30 PM">11:30 PM</option>
+			<option value="12:00 AM">12:00 AM</option>
+			<option value="12:30 AM">12:30 AM</option>
+			<option value="01:00 AM">01:00 AM</option>
+			<option value="01:30 AM">01:30 AM</option>
+			<option value="02:00 AM">02:00 AM</option>
+			<option value="02:30 AM">02:30 AM</option>
+			<option value="03:00 AM">03:00 AM</option>
+			<option value="03:30 AM">03:30 AM</option>
+			<option value="04:00 AM">04:00 AM</option>
+			<option value="04:30 AM">04:30 AM</option>
+		</select>
+      </li>
+      <li class="select required" id="event_end_time_input">
+        <label for="event_end_time">End time</label>
+        <select id="event_end_time" name="event_end_time">
+          <option value="05:00 AM">05:00 AM</option>
+			<option value="05:30 AM">05:30 AM</option>
+			<option value="06:00 AM">06:00 AM</option>
+			<option value="06:30 AM">06:30 AM</option>
+			<option value="07:00 AM">07:00 AM</option>
+			<option value="07:30 AM">07:30 AM</option>
+			<option value="08:00 AM">08:00 AM</option>
+			<option value="08:30 AM">08:30 AM</option>
+			<option value="09:00 AM">09:00 AM</option>
+			<option value="09:30 AM">09:30 AM</option>
+			<option value="10:00 AM">10:00 AM</option>
+			<option value="10:30 AM">10:30 AM</option>
+			<option value="11:00 AM">11:00 AM</option>
+			<option value="11:30 AM">11:30 AM</option>
+			<option value="12:00 PM">12:00 PM</option>
+			<option value="12:30 PM">12:30 PM</option>
+			<option value="01:00 PM">01:00 PM</option>
+			<option value="01:30 PM">01:30 PM</option>
+			<option value="02:00 PM">02:00 PM</option>
+			<option value="02:30 PM">02:30 PM</option>
+			<option value="03:00 PM">03:00 PM</option>
+			<option value="03:30 PM">03:30 PM</option>
+			<option value="04:00 PM">04:00 PM</option>
+			<option value="04:30 PM">04:30 PM</option>
+			<option value="05:00 PM">05:00 PM</option>
+			<option value="05:30 PM">05:30 PM</option>
+			<option value="06:00 PM">06:00 PM</option>
+			<option value="06:30 PM">06:30 PM</option>
+			<option value="07:00 PM">07:00 PM</option>
+			<option value="07:30 PM">07:30 PM</option>
+			<option value="08:00 PM">08:00 PM</option>
+			<option value="08:30 PM">08:30 PM</option>
+			<option value="09:00 PM">09:00 PM</option>
+			<option value="09:30 PM">09:30 PM</option>
+			<option value="10:00 PM">10:00 PM</option>
+			<option value="10:30 PM">10:30 PM</option>
+			<option value="11:00 PM">11:00 PM</option>
+			<option value="11:30 PM">11:30 PM</option>
+			<option value="12:00 AM">12:00 AM</option>
+			<option value="12:30 AM">12:30 AM</option>
+			<option value="01:00 AM">01:00 AM</option>
+			<option value="01:30 AM">01:30 AM</option>
+			<option value="02:00 AM">02:00 AM</option>
+			<option value="02:30 AM">02:30 AM</option>
+			<option value="03:00 AM">03:00 AM</option>
+			<option value="03:30 AM">03:30 AM</option>
+			<option value="04:00 AM">04:00 AM</option>
+			<option value="04:30 AM">04:30 AM</option>
+		</select>
+      </li>
+      <li class="string" id="event_venue_input">
+        <label for="event_venue">Venue</label>
+        <input id="event_venue" maxlength="255" name="event_venue" size="25" type="text" value="{{venue}}">
+      </li>
+      <li class="string" id="event_address_input">
+        <label for="event_address">Address</label>
+        <input id="event_address" maxlength="255" name="event_address" size="25" type="text" value="{{address}}">
+      </li>
+      <li class="string" id="event_tags_input">
+        <label for="event_tags">Tags</label>
+        <input id="event_tags" maxlength="255" name="event_tags" size="25" type="text" value="{{tags}}">
+      </li>
+    </ol>
+  </fieldset>
+
+  <fieldset class="buttons">
+    <ol>
+      <div id="submit_wrapper">
+        <li class="commit">
+          <input class="create" id="edit_submit" name="commit" type="submit" value="Submit">
+        </li>
+      </div>
+    </ol>
+  </fieldset>
+</form>

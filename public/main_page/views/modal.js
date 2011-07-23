@@ -53,18 +53,22 @@ CommonPlace.EditView = Backbone.View.extend({
     $(this.el).append('<div id="modal-overlay"></div>');
     $(this.el).append('<div id="modal-content"></div>');
     this.$("#modal-content").append('<img src="/images/modal-close.png" id="modal-close">');
+    if (this.options.model_type == "event") {
+      this.model.attributes.occurs_on_date = this.model.attributes.occurs_on.split("T")[0];
+    }
     this.$("#modal-content").append(CommonPlace.render("edit_" + this.options.model_type + "_form", this.model.attributes));
     $("#main").append(this.el);
+    if (this.options.model_type == "event") {
+      $('select#event_start_time>option[value="' + this.model.attributes.starts_at.replace("P", " P").replace("A", " A") + 'M"]').attr('selected', 'selected');
+      $('select#event_end_time>option[value="' + this.model.attributes.ends_at.replace("P", " P").replace("A", " A") + 'M"]').attr('selected', 'selected');
+      $("input.date").datepicker({dateFormat: 'yy-mm-dd'}); 
+    }
     $(window).trigger('resize.modal');
     return this;
   },
 
   submitEdit: function(e) {
     e.preventDefault();
-    //$.post("/api/" + this.options.model_type + "s/" + this.options.model.id + "/edit",
-    //       JSON.stringify({ title: this.$("form input#post_subject").val(),
-    //                        body: this.$("form textarea#post_body").val() }),
-    //       function() {});
     var model_type = this.options.model_type;
     model = this.options.model;
     fields = {};
@@ -77,7 +81,16 @@ CommonPlace.EditView = Backbone.View.extend({
       fields.body = this.$("form textarea#post_body").val();
     }
     if (this.options.model_type == "event") {
-
+      fields.title = this.$("form input#event_title").val();
+      fields.body = this.$("form input#event_body").val();
+      // TODO: I don't think this is right
+      fields.occurs_on = this.$("form input#event_date").val();
+      fields.starts_at = this.$("form select#event_start_time").val();
+      fields.ends_at = this.$("form select#event_end_time").val();
+      fields.venue = this.$("form input#event_venue").val();
+      fields.address = this.$("form input#event_address").val();
+      fields.tags = this.$("form input#event_tags").val();
+      console.log(fields);
     }
     model.save(fields, callbacks);
     this.remove();
