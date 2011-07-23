@@ -1,4 +1,5 @@
 class Message < ActiveRecord::Base
+  #track_on_creation
 
   
   belongs_to :user

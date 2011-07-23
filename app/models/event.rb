@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  #track_on_creation
 
   
   attr_accessor :pledge
