@@ -39,6 +39,68 @@ CommonPlace.NewMessage = Backbone.View.extend({
 
 });
 
+CommonPlace.PostConfirmationView = Backbone.View.extend({
+  id: "modal",
+  tagname: "div",
+
+  events: {
+    "click .submit": "confirm"
+  },
+
+  render: function() {
+    $(this.el).addClass("not_empty");
+    $(this.el).append('<div id="modal-overlay"></div>');
+    $(this.el).append('<div id="modal-content"></div>');
+    this.$("#modal-content").append('<img src="/images/modal-close.png" id="modal-close">');
+    this.$("#modal-content").append(CommonPlace.render("post_confirmation_form", {
+        'title': this.options.subject,
+        'body': this.options.body,
+        id: 0,
+        avatar_url: CommonPlace.account.attributes.avatar_url,
+        author: CommonPlace.account.attributes.short_name
+}));
+    $("#main").append(this.el);
+    $(window).trigger('resize.modal');
+    return this;
+  },
+
+  confirm: function(e) {
+    // Submit the post
+    // Dismiss modal dialog
+    this.remove();
+    $("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+    if (!this.$("input#commercial").is(':checked')) {
+      CommonPlace.community.posts.create({
+        title: this.options.subject,
+        body: this.options.body
+      }, { success: function() {
+          window.location.hash = "/posts/new";
+          Backbone.history.checkUrl();
+          window.location.hash = "/posts";
+          Backbone.history.checkUrl();
+        }, error: function() { self.render(); }
+      });
+    } else {
+        CommonPlace.community.announcements.create({
+          title: this.options.subject,
+            body: this.options.body,
+            feed: null
+        }, { success: function() {
+            window.location.hash = "/announcements";
+            Backbone.history.checkUrl();
+            window.location.hash = "/announcements/new";
+            Backbone.history.checkUrl();
+        } });
+    }
+  },
+
+  cancel: function(e) {
+    // Dismiss the modal box
+    console.log("Dismissing modal box");
+    this.remove();
+  }
+});
+
 CommonPlace.EditView = Backbone.View.extend({
   id: "modal",
   tagname: "div",
