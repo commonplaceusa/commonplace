@@ -1,94 +1,130 @@
 body.application.accounts.facebook_invite
+  #planewrapper
+    margin: 0px auto 10px
+    text-align: center
+  a:link, a:visited,a:hover, a:active
+    text-decoration: none
+  #plane
+    width: 960px
+    background-image:  url(/images/invite/plane.png)
+    background-repeat: no-repeat  
+    background-position: 111px 10px
+    padding-top: 25px
+    padding-bottom: 25px
+    margin: 0px auto    
+    text-align: center
+  h1
+    color: #172b3f
+    line-height: 25px
+    font-weight: bold
+    font-size: 40px
+    text-align: center
+    margin-left: -5px
+  h2
+    color: #71879a
+    line-height: 1.2
+    font-weight: bold
+    font-size: 22px
+    text-align: center
+  h3
+    color: #FFFFFF
+    line-height: 1em
+    font-weight: bold
+    font-size: 23px
+    text-shadow: #631e1c 2px 2px 0px
+    text-align: left
+    margin-bottom: 5px
+    
+  h4
+    color: #000000
+    font-size:  17px
+    text-align: left
+    text-shadow: #a94946 1px 1px 0px
+    font-weight: normal
+    line-height: 1.25em
+    padding: 5px 0 20px 0
+  h5
+    color: #FFFFFF
+    font-size:  17px
+    text-align: left
+    text-shadow: none
+    font-weight: normal
+    line-height: .8em
+    padding: 0px 0 0px 0
+    margin-top: 15px
+  h6
+    @extend h4
+    font-size: 14px
+    font-weight: bold
   #groups_box
-    +lightbox
-    width: 740px
+    +redlightbox
+    width: 380px
     margin: 20px auto
+    margin-bottom: 40px
     position: relative
+    font-family: "Rockwell",Georgia,Times,serif
+    
     #groups_wrapper
       width: 100%
       text-align: center
       margin: 0 auto
     li
-      list-style-position: outside
-      background-repeat: no-repeat
-      background-position: 20px 0px
-      //margin: 5px auto
-      margin: 0 auto
-      width: 460px
-      padding: 0 0px 0 50px
+      margin-left: 2px
       display: block
-      //margin: 5px 0
-      color: #898989
+      padding: 0px 0 15px 0
+    #custom-tweet-button
+      height: 41px
+      width: 356px
       margin-top: 10px
     #step  
-      height: 50px
-      padding: 10px 0px 0px 50px
+      padding: 0px 0px 0px 0px
       text-align: left
+      width: 378px
     #step_one
       @extend #step
-      height: 45px
-      background: url('/images/step-1-icon-small.png') no-repeat 0px 0px
+      height: 130px      
     #step_two
       @extend #step
-      height: 25px
-      background: url('/images/step-2-icon-small.png') no-repeat 0px 0px
+      height: 167px
     #step_three
       @extend #step
-      background: url('/images/step-3-icon-small.png') no-repeat 0px 0px
+      height: 423px
     #step_four
       @extend #step
-      background: url('/images/step-4-icon-small.png') no-repeat 0px 0px
-    #continue_button
-      background: url('/images/buttons/continue.png') no-repeat
-      height: 36px
-      width: 116px
-      cursor: pointer
-      float: right
-    .cleared
-      clear: both
+      height: 363px
+    #step_five
+      @extend #step
+      height: 150px
   label
     display: none
-  input[type="text"]
-    height: 20px
-    width: 90%
-    padding: 5px
-    border: 1px solid #982c28
-    +border-radius(5px)
-    +box-shadow(#545454, 1px, 1px, 8px, 0px, inset)
-  input[type="email"]
+  #invite_email
     text-align: left
-    height: 20px
-    padding: 5px
-    margin-left: -80px
-    width: 369px
+    vertical-align: top
+    height: 95px
+    padding: 6px 10px 6px
+    font-size: 16px
+    width: 356px
     border: 1px solid #982c28
     +border-radius(5px)
-    +box-shadow(#545454, 1px, 1px, 8px, 0px, inset)
-  textarea
-    height: 50px
-    margin-left: -79px
-    width: 369px
-    padding: 5px
+    +box-shadow(#1B0A1C, 1px, 1px, 6px, 0px, inset)
+    +serif
+  #invite_body
+    vertical-align: top
+    text-align: left
+    height: 110px
+    width: 356px
+    padding: 8px 10px 8px
+    font-size: 15px
     border: 1px solid #982c28
     +border-radius(5px)
-    +box-shadow(#545454, 1px, 1px, 8px, 0px, inset)
+    +box-shadow(#1B0A1C, 1px, 1px, 6px, 0px, inset)
+    +serif
+    margin-top: 18px
+    margin-bottom: 3px
   input[type="submit"]
-    width: 90px !important
-    margin-left: 290px
-    height: 30px
-    border: 1px solid #ccc
-    +border-radius(5px)
-    +linear-gradient(color_stops(#e6e6e6, #ebebeb))
-    padding-bottom: 1px
-    box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
-    -mox-box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
-    -webkit-box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #c7c7c7, 1px 1px 4px 0px #222
+    width: 356px
+    height: 41px
+    margin: 5px auto 15px auto
     font-family: "Rockwell",Georgia,Times,serif
-    +text-shadow(#ffffff, 1px, 1px 0px)
-  #invite_email_input
-    height: 25px
-  .buttons
-    position: relative
-    ol
-      position: absolute
-      left: 50px
+  #doctable
+    vertical-align:middle

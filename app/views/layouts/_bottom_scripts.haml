@@ -1,0 +1,80 @@
+- if Rails.env.production?
+  -# Mixpanel metrics
+  %script
+    var mp_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://'); document.write(unescape('%3Cscript src="' + mp_protocol + 'api.mixpanel.com/site_media/js/api/mixpanel.js" type="text/javascript"%3E%3C/script%3E')); </script> <script type='text/javascript'> try {  var mpmetrics = new MixpanelLib('811a15fe46de2d4df84c6ee51112e7ab'); } catch(err) { null_fn = function () {}; var mpmetrics = {  track: null_fn,  track_funnel: null_fn,  register: null_fn,  register_once: null_fn, register_funnel: null_fn }; }
+    
+  - if current_user.email.present?
+    %script
+      mpmetrics.identify("#{current_user.email}");
+      mpmetrics.name_tag("#{current_user.full_name} - #{current_user.email}");
+
+  -# Kissmetrics
+  :javascript
+    var _kmq = _kmq || [];
+    function _kms(u){
+      setTimeout(function(){
+        var s = document.createElement('script'); var f = document.getElementsByTagName('script')[0]; s.type = 'text/javascript'; s.async = true;
+        s.src = u; f.parentNode.insertBefore(s, f);
+      }, 1);
+    }
+    _kms('//i.kissmetrics.com/i.js');_kms('//doug1izaerwt3.cloudfront.net/43e47c426bf1156fddc7b7e065fb563ac1be5bf0.1.js');
+
+  -# Chartbeat
+
+  :javascript
+    var _sf_async_config={uid:25400,domain:"ourcommonplace.com"};
+    (function(){
+      function loadChartbeat() {
+      window._sf_endpt=(new Date()).getTime();
+        var e = document.createElement('script');
+          e.setAttribute('language', 'javascript');
+          e.setAttribute('type', 'text/javascript');
+          e.setAttribute('src',
+            (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+            "js/chartbeat.js");
+          document.body.appendChild(e);
+        }
+        var oldonload = window.onload;
+        window.onload = (typeof window.onload != 'function') ?
+          loadChartbeat : function() { oldonload(); loadChartbeat(); };
+      })();
+
+  -# Google analytics
+  :javascript
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12888551-3']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    var _dashboard_project_id = "e6a70fade40ed51da8bdfc4402bf786284b18908";
+    (function() {function async_load(){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 'true'; s.src = (document.location.protocol == 'https:' ? "https:" : "http:") + '//dtn4rpwzrtdnb.cloudfront.net/dashboard.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);} if (window.attachEvent) window.attachEvent('onload', async_load); else window.addEventListener('load', async_load, false); })();
+
+-# Facebook
+
+%script
+  window.fbAsyncInit = function() {
+  FB.init({
+  appId : "#{($FacebookConfig || {})['app_id']}",
+  status : true,
+  cookie : true,
+  xfbml  : true
+  });
+  fbApiInit = true;
+  };
+  $(document).ready(function(){
+  $('a[href^="http://"]').attr({
+  target: "_blank", 
+  title: "Opens in a new window"
+  });
+  });
+  (function() {
+  var e = document.createElement('script');
+  e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+  e.async = true;
+  document.getElementById('fb-root').appendChild(e);
+  }());
