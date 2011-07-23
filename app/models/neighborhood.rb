@@ -1,4 +1,6 @@
 class Neighborhood < ActiveRecord::Base
+  #track_on_creation
+
   has_many :users
 
   reverse_geocoded_by :latitude, :longitude

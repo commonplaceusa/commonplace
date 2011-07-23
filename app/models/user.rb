@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  #track_on_creation
 
   def self.post_receive_options
     ["Live", "Daily", "Never"]
