@@ -3,8 +3,13 @@ class AccountsController < ApplicationController
   layout 'application'
 
   protect_from_forgery :except => :update
-  caches_action :new
+
   def new
+
+    if !current_community
+      raise CanCan::AccessDenied
+    end
+      
     if can? :create, User
       @user = User.new
       if params[:short]
@@ -75,7 +80,7 @@ class AccountsController < ApplicationController
     if can? :edit, current_user
       render :layout => 'application'
     else
-      redirect_to root_url
+      redirect_to login_url
     end
   end
 

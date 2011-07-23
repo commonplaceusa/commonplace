@@ -12,8 +12,9 @@
 :javascript
     $(document).ready(function(){
       fbEnsureInit(function(){
-        $("#step_one").append('<a href="#" onclick="fb_share();">Share on Facebook</a>');
-        $("#step_one").append('<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/fb-btn.png" width="90%">');
+
+        $("#step_one").append('<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/findneighbors.png" width="370px" style="margin-left: 3px">');
+        $("#step_two").append('<a href="#" onclick="fb_share();"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/facebookinvite.png" width="370px" style="margin-left: 3px"></a><div id="custom-tweet-button"><a href="http://twitter.com/share?url=http://www.#{current_community.slug}.OurCommonPlace.com/&text=Hi neighbors, I am part of The #{current_community.name} CommonPlace, where I connect and share with my neighbors in #{current_community.name}:&count=horizontal" target="_blank" rel="nofollow"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/twitterinv.png" width="370px" style="margin-left: 3px"></a></div>');
       });
     });
 
@@ -49,75 +50,114 @@
     padding:1px 20px 0 5px;
     height:15px;
     border:1px solid #d8dfea;
-    background:url(http://static.ak.facebook.com/images/share/facebook_share_icon.gif?6:26981) no-repeat top right;
+    background:url(/images/invite/findneighbors.png) no-repeat top right;
   }
   .fb_share_button:hover {
     color:#fff;
     border-color:#295582;
-    background:#3b5998 url(http://static.ak.facebook.com/images/share/facebook_share_icon.gif?6:26981) no-repeat top right;
+    background:#3b5998 url(/images/invite/findneighbors.png) no-repeat top right;
     text-decoration:none;
   }
 
 
-%h1
-  = t(".heading", :community => current_community.name)
-  %br
-  = t(".heading2", :community => current_community.name)
+#planewrapper
+  #plane
+    %h1
+      = t(".heading")
+      %br
+    %h2
+      = t(".heading2")
 
 #groups_box
   #groups_wrapper
-    %h2
-      %ul
-        %li
-          #step_one
+    %ul
+      %li
+        #step_one
+          %h3
             =t(".step_one")
-            %br
-            %br
-            -#%a{:href => "http://twitter.com/share", :class => "twitter-share-button", "data-text" => "Hi neighbors, I'm part of The #{current_community.name} CommonPlace, where I connect and share with my neighbors in #{current_community.name}:", "data-count" => "horizontal", "data-url" => "http://www.#{current_community.slug}.OurCommonPlace.com/"} Tweet
-            -#%script{:type => "text/javascript", :src => "http://platform.twitter.com/widgets.js"}
-            -#%fb:like{:href => "http://www.#{current_community.slug}.OurCommonPlace.com", :send => "true", :layout => "button_count", :width => "200", :action => "recommend", :show_faces => "true", :colorscheme => "dark"}
-            -#%a{:rel => "nofollow", :href => "http://www.facebook.com/share.php?u=http://www.#{current_community.slug}.OurCommonPlace.com", :class => "fb_share_button", :onclick => "return facebook_share()", :target => "_blank", :style => "text-decoration:none;"} Share
-          #fb-root
-          %br
-          %br
-          %br
-          %br
-          %br
-        %li
-          #step_two
+          %h4
+            =t(".step_one_label")
+          
+#groups_box
+  #groups_wrapper
+    %ul
+      %li
+        #step_two
+          %h3
             =t(".step_two")
-            #invite_errors
+          %h4
+            =t(".step_two_label")
+          -#The javascript will add the buttons in here.
+          
+#groups_box
+  #groups_wrapper
+    %ul
+      %li
+        #step_three
+          %h3
+            =t(".step_three")
+          %h4
+            =t(".step_three_label")
+          #invite_errors
           - semantic_form_for @invitation do |f|
             - f.inputs do
-              = f.input :email, :input_html => { :placeholder => "Enter e-mail addresses to invite, separated by commas", :class => "required email" }
-              = f.input :body, :input_html => { :placeholder => "Feel free to write a personal message here" }, :html => {:class => "required"}
+              = f.input :email,:as => 'text', :input_html => { :placeholder => "Email addresses (separated by commas)", :class => "required email" }
+              = f.input :body, :input_html => { :placeholder => "Write something nice about Commonplace!", :rows =>"4"}, :html => {:class => "required"}
             - f.buttons do
-              = f.submit "Invite", {:onmouseover => "document.body.style.cursor = 'pointer';", :onmouseout => "document.body.style.cursor = 'auto';"}
-            %br
-            %br
-      %li{:style => "height: 200px"}
-        #step_three
-          =t(".step_three")
-          %br
-          %br
+              = f.submit :type => "image", :src => "/images/invite/neighborinvite.png", :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
           #forms
-            %table
-              %tr
-                %td
-                  %a{:href => "/pdfs/#{t('.file_names')[0]}/#{current_community.slug}.pdf"}
-                    %img{:src => "/images/doc-icon.png"}
-              %tr
-                %td{:style => "text-align: center;"}
-                  =t(".file_descriptions")[0]
-      %li{:style => "height: 200px"}
+      
+#groups_box
+  #groups_wrapper
+    %ul
+      %li 
         #step_four
-          =t(".step_four")
-          %br
-          %img{:src => "/images/buttons/continue.png", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);"}
-      %li{:style => "text-align: right"}
-        %a{:href => root_url}
-          %img{:src => "/images/buttons/continue.png"}
-
-    %br{:class=>"cleared"}
+          %h3
+            =t(".step_four")
+          %h4
+            =t(".step_four_label")
+          %table
+            %tr{:style =>"width:370px"}
+              %td{:style =>"width:60px"}
+                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[0]}.pdf"}
+                  %img{:src => "/images/invite/PDFLogo.png"}
+              %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
+                %h5
+                  =t(".file_descriptions")[0]
+                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[0]}.pdf"}
+                  %h6
+                    =t(".download_tag")
+            %tr{:style =>"width:370px"}
+              %td{:style =>"width:60px"}
+                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[1]}.pdf"}
+                  %img{:src => "/images/invite/PDFLogo.png"}
+              %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
+                %h5
+                  =t(".file_descriptions")[1]
+                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[1]}.pdf"}
+                  %h6
+                    =t(".download_tag")
+            %tr{:style =>"width:370px"}
+              %td{:style =>"width:60px"}
+                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[2]}.pdf"}
+                  %img{:src => "/images/invite/PDFLogo.png"}
+              %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
+                %h5
+                  =t(".file_descriptions")[2]
+                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[2]}.pdf"}
+                  %h6
+                    =t(".download_tag")
+          %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_zip')}.zip"}
+            %img{:src => "/images/invite/downloadzip.png",:width =>"370px",:style =>"margin-left:3px; margin-top:15px"}
+              
+#groups_box
+  #groups_wrapper
+    %ul
+      %li 
+        #step_five
+          %h3
+            =t(".step_five")
+          %h4
+            =t(".step_five_label")
+          %img{:src => "/images/invite/joinfriends.png",:width =>"370px",:style =>"margin-left:3px; margin-top:10px;", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);", :onmouseout => "document.body.style.cursor = \'auto\';", :onmouseover => "document.body.style.cursor = \'pointer\';"}
     %br
-    
