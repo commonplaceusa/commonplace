@@ -118,7 +118,7 @@ class API < Sinatra::Base
     end
   end
 
-  put "/event/:id" do |id|
+  put "/events/:id" do |id|
     event = Event.find(id)
     unless event.present?
       [404, "errors"]
@@ -126,18 +126,18 @@ class API < Sinatra::Base
 
     event.name = request_body['title']
     event.description = request_body['about']
-    event.date = request_body['date']
-    event.start_time = request_body['start']
-    event.end_time = request_body['end']
+    event.date = request_body['occurs_on']
+    event.start_time = request_body['starts_at']
+    event.end_time = request_body['ends_at']
     event.venue = request_body['venue']
     event.address = request_body['address']
     event.tag_list = request_body['tags']
 
     # TODO: This should deal with feeds...
-    if event.owner == current_account and event.save
+    if (event.owner == current_account or current_account.admin) and event.save
       serialize(event)
     else
-      [400, "errors"]
+      [400, "errors: #{event.errors.full_messages.to_s}"]
     end
   end
 
