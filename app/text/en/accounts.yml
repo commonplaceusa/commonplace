@@ -77,9 +77,8 @@ en:
         step_three_label: "Invite your neighbors by entering their email addresses and a short message below."
         step_four: "4. Invite neighbors face-to-face"
         step_four_label: "Invite neighbors the old fashioned way by handing out flyers and reading materials."
-        step_five: "5. Join Friends of Commonplace Network"
-        step_five_label: "Find your neighbors on Facebook and invite them to join you on CommonPlace!"
-        invitation: "I just joined %{community}\'s CommonPlace so I can connect and share with my neighbors in %{community}.  You should sign up too!"
+        step_five: "5. Join the Friends of The %{community} CommonPlace Network"
+        step_five_label: "Click below to join a group of %{community} neighbors committed to improving our new community-building utility."
         download_tag: "DOWNLOAD PDF"
         file_descriptions:
           - "Commonplace Launch Letter"
@@ -98,3 +97,5 @@ en:
           caption: "The %{community} CommonPlace is a new online community bulletin board for neighbors in %{community}."
           description: "Join your neighbors at: www.%{community}.OurCommonPlace.com."
           message: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}. You should join too at: www.%{slug}.OurCommonPlace.com."
+
+          invitation: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}.  You should join too at: www.%{slug}.OurCommonPlace.com."
