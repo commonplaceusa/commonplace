@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
-  #track_on_creation
+  acts_as_trackable
+
   CATEGORIES = %w{Request Offer Invitation Announcement Question}  
 
   delegate :neighborhood, :to => :user
