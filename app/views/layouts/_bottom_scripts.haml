@@ -6,7 +6,7 @@
   - if current_user.email.present?
     %script
       mpmetrics.identify("#{current_user.email}");
-      mpmetrics.register({'email': '#{current_user.email}', 'community': '#{current_community.slug}', 'referral_source': '#{current_user.referral_source}'});
+      mpmetrics.register({'email': '#{current_user.email}', 'community': '#{current_community.slug}', 'referral_source': '#{current_user.referral_source.gsub("'","")}'});
       mpmetrics.name_tag("#{current_user.full_name} - #{current_user.email}");
 
   -# Kissmetrics
