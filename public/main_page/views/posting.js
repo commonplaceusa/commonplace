@@ -40,7 +40,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
           mpmetrics.track('Submitted Announcement');
           mpmetrics.track('Submitted Content', {'type': 'announcement'});
         }
-        CommonPlace.app.notify("Your post is more appropriate as an announcement. We are moving it for you.");
+        //CommonPlace.app.notify("Your post is more appropriate as an announcement. We are moving it for you.");
       CommonPlace.community.announcements.create({
           title: $("input#post_subject").val(),
             body: $("textarea#post_body").val(),
