@@ -1,7 +1,29 @@
 <div class="group_post" id="group_post-{{id}}-item">
 
   <img src="{{avatar_url}}" class="avatar">
+  {{#any_available_actions}}
+    <div class="actions-dropdown">
+      <div class="toggle-actions"></div>
+      <div class="actions">
+        {{#can_edit}}
+          <form action="" method="post" class="edit">
+            <input type="submit" value="Edit" />
+          </form>
+        {{/can_edit}}
+        {{#can_notify_all}}
+          <form action="" method="post" class="notify-all">
+            <input type="submit" value="Send to Everyone" />
+          </form>
+        {{/can_notify_all}}
 
+        {{#can_delete}}
+          <form action="" method="post" class="delete">
+            <input type="submit" value="Delete" />
+          </form>
+        {{/can_delete}}
+      </div>
+    </div>
+  {{/any_available_actions}}
   <div class="published">{{published_at}}</div>
 
   <div class="reply-count">{{reply_count}} replies</div>

@@ -121,7 +121,9 @@ module Serializer
         "short_name" => o.short_name,
         "email" => o.email,
         "posts" => o.posts,
-        "events" => o.events}
+        "events" => o.events,
+        "announcements" => o.announcements,
+        "group_posts" => o.group_posts}
       end
 
     as_json

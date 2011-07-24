@@ -73,12 +73,6 @@ Commonplace::Application.routes.draw do
     
     resources :announcements, :only => [:create]
     
-    resources :posts, :only => [:destroy] do
-      member do
-        post :notify_all
-      end
-    end
-
     resources :events, :only => [:create]  
 
     resources :replies

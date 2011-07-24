@@ -30,7 +30,10 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
     "submit form.new_reply": "submitReply",
     "click a.all-replies" : "showAllReplies",
     "hover div.replies ul li": "replyHover",
-    "click .toggle-actions": "toggleActions"
+    "click .toggle-actions": "toggleActions",
+    "submit form.edit": "showEdit",
+    "submit form.notify-all": "sendToEveryone",
+    "submit form.delete": "showDelete"
   },
   toggleActions: function() { this.$(".actions").toggle(); },
   replies: function() {
@@ -57,7 +60,7 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
 
     return this;
   },
-  
+
   showReplyForm: function(e) {
     e.preventDefault();
     $(e.currentTarget).hide();
@@ -80,6 +83,21 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
 
   replyHover: function(e) {
     window.location.hash = $(e.currentTarget).attr('data-url') + "/info";
+  },
+
+  showEdit: function(e) {
+    e.preventDefault();
+    window.location.hash = this.model.get('url') + "/edit";
+  },
+
+  showDelete: function(e) {
+    e.preventDefault();
+    window.location.hash = this.model.get('url') + "/delete";
+  },
+
+  sendToEveryone: function(e) {
+    e.preventDefault();
+    window.location.href = this.model.get('url') + "/notify_all";
   }
 
 });
@@ -100,10 +118,10 @@ CommonPlace.PostItem = CommonPlace.PostLikeItem.extend({
       body: CommonPlace.renderBody(this.model.get('body')),
       id: this.model.get('id'),
       any_available_actions: CommonPlace.account.can_notify_all(this.model) || 
-        CommonPlace.account.can_delete(this.model) ||
+        CommonPlace.account.can_delete_post(this.model) ||
         CommonPlace.account.can_edit_post(this.model),
       can_notify_all: CommonPlace.account.can_notify_all(this.model),
-      can_delete: CommonPlace.account.can_delete(this.model),
+      can_delete: CommonPlace.account.can_delete_post(this.model),
       can_edit: CommonPlace.account.can_edit_post(this.model),
       can_edit_post: CommonPlace.account.can_edit_post(this.model)
     };
@@ -131,7 +149,12 @@ CommonPlace.EventItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: CommonPlace.renderBody(this.model.get('body'))
+      body: CommonPlace.renderBody(this.model.get('body')),
+      any_available_actions: CommonPlace.account.can_delete_event(this.model) ||
+        CommonPlace.account.can_edit_event(this.model),
+      can_delete: CommonPlace.account.can_delete_event(this.model),
+      can_edit: CommonPlace.account.can_edit_event(this.model),
+      can_edit_event: CommonPlace.account.can_edit_event(this.model)
     };
   },
 
@@ -154,7 +177,12 @@ CommonPlace.AnnouncementItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: CommonPlace.renderBody(this.model.get('body'))
+      body: CommonPlace.renderBody(this.model.get('body')),
+      any_available_actions: CommonPlace.account.can_delete_announcement(this.model) ||
+        CommonPlace.account.can_edit_announcement(this.model),
+      can_delete: CommonPlace.account.can_delete_announcement(this.model),
+      can_edit: CommonPlace.account.can_edit_announcement(this.model),
+      can_edit_announcement: CommonPlace.account.can_edit_announcement(this.model)
     };
   },
 
@@ -177,7 +205,12 @@ CommonPlace.GroupPostItem = CommonPlace.PostLikeItem.extend({
       url: this.model.get('url'),
       title: this.model.get('title'),
       author: this.model.get('author'),
-      body: CommonPlace.renderBody(this.model.get('body'))
+      body: CommonPlace.renderBody(this.model.get('body')),
+      any_available_actions: CommonPlace.account.can_delete(this.model) ||
+        CommonPlace.account.can_edit_group_post(this.model),
+      can_delete: CommonPlace.account.can_delete_group_post(this.model),
+      can_edit: CommonPlace.account.can_edit_group_post(this.model),
+      can_edit_group_post: CommonPlace.account.can_edit_group_post(this.model)
     };
   },
 
