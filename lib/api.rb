@@ -118,6 +118,26 @@ class API < Sinatra::Base
     end
   end
 
+  put "/announcements/:id" do |id|
+    announcement = Announcement.find(id)
+    unless announcement.present?
+      [404, "errors"]
+    end
+
+    announcement.subject = request_body['title']
+    announcement.body = request_body['body']
+
+    if (announcement.owner == current_account or current_account.admin) and announcement.save
+      serialize(announcement)
+    else
+      unless (announcement.owner == current_account or current_account.admin)
+        [401, 'unauthorized']
+      else
+        [500, 'could not save']
+      end
+    end
+  end
+
   put "/events/:id" do |id|
     event = Event.find(id)
     unless event.present?
@@ -125,7 +145,7 @@ class API < Sinatra::Base
     end
 
     event.name = request_body['title']
-    event.description = request_body['about']
+    event.description = request_body['body']
     event.date = request_body['occurs_on']
     event.start_time = request_body['starts_at']
     event.end_time = request_body['ends_at']
@@ -137,9 +157,99 @@ class API < Sinatra::Base
     if (event.owner == current_account or current_account.admin) and event.save
       serialize(event)
     else
-      [400, "errors: #{event.errors.full_messages.to_s}"]
+      unless (event.owner == current_account or current_account.admin)
+        [401, "unauthorized"]
+      else
+        [500, "could not save"]
+      end
     end
   end
+
+  put "/group_posts/:id" do |id|
+    post = GroupPost.find(id)
+    unless post.present?
+      [404, 'errors']
+    end
+
+    post.subject = request_body['title']
+    post.body = request_body['body']
+
+    if (post.user == current_account or current_account.admin) and post.save
+      serialize(post)
+    else
+      unless (post.user == current_account or current_account.admin)
+        [401, 'unauthorized']
+      else
+        [500, 'could not save']
+      end
+    end
+  end
+
+  # DELETE /posts/:id
+  #
+  # Authorization: User owns the Post
+  delete "/posts/:id" do |id|
+    post = Post.find(id)
+    unless post.present?
+      [404, "errors"]
+    end
+
+    if (post.user == current_account or current_account.admin)
+      post.destroy
+    else
+      [404, "errors"]
+    end
+  end
+
+  # DELETE /events/:id
+  #
+  # Authorization: User owns the Post
+  delete "/events/:id" do |id|
+    event = Event.find(id)
+    unless event.present?
+      [404, "errors"]
+    end
+
+    if (event.owner == current_account or current_account.admin)
+      event.destroy
+    else
+      [404, "errors"]
+    end
+  end
+
+  # DELETE /events/:id
+  #
+  # Authorization: User owns the Post
+  delete "/announcements/:id" do |id|
+    announcement = Announcement.find(id)
+    unless announcement.present?
+      [404, "errors"]
+    end
+
+    if (announcement.owner == current_account or current_account.admin)
+      announcement.destroy
+    else
+      [404, "errors"]
+    end
+  end
+
+  # DELETE /events/:id
+  #
+  # Authorization: User owns the Post
+  delete "/group_posts/:id" do |id|
+    post = GroupPost.find(id)
+    unless event.present?
+      [404, "errors"]
+    end
+
+    if (post.user == current_account or current_account.admin)
+      post.destroy
+    else
+      [404, "errors"]
+    end
+  end
+
+
 
   # POST /events
   # { title: String

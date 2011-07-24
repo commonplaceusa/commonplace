@@ -42,7 +42,15 @@ class Account
   end
 
   def events
-    @user.events.map &:id
+    Event.find_all_by_owner_id(@user.id).map &:id
+  end
+
+  def announcements
+    @user.announcements.map &:id
+  end
+
+  def group_posts
+    GroupPost.find_all_by_user_id(@user.id).map &:id
   end
 
 end
