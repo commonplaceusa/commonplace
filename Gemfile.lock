@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: git@github.com:Jberlinsky/Acts-As-Trackable.git
-  revision: 96e5a3f7f2c6106cdd9b5692be13d19a23123d56
+  revision: 12c3442674cf2ff7b49003b534f913e6e819fc90
   specs:
     acts-as-trackable (0.1.0)
 

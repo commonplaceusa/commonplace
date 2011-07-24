@@ -80,7 +80,7 @@ gem 'exceptional'
 gem 'rollout'
 
 # Tracking events
-gem 'acts-as-trackable', :git => 'git@github.com:Jberlinsky/Acts-As-Trackable.git'
+#gem 'acts-as-trackable', :git => 'git@github.com:Jberlinsky/Acts-As-Trackable.git'
 
 gem 'system_timer', :platforms => [:ruby_18]
 

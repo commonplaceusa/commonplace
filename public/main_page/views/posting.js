@@ -21,6 +21,10 @@ CommonPlace.SaySomething = Backbone.View.extend({
     e.preventDefault();
     $("input.create").replaceWith("<img src=\"/images/loading.gif\">");
     if (!this.$("input#commercial").is(':checked')) {
+      if (CommonPlace.env == 'production') {
+        mpmetrics.track('Submitted Neighborhood Post');
+        mpmetrics.track('Submitted Content', {'type': 'neighborhood_post'});
+      }
       CommonPlace.community.posts.create({
         title: $("input#post_subject").val(),
         body: $("textarea#post_body").val()
@@ -32,6 +36,10 @@ CommonPlace.SaySomething = Backbone.View.extend({
         }
       });
     } else {
+        if (CommonPlace.env == 'production') {
+          mpmetrics.track('Submitted Announcement');
+          mpmetrics.track('Submitted Content', {'type': 'announcement'});
+        }
         CommonPlace.app.notify("Your post is more appropriate as an announcement. We are moving it for you.");
       CommonPlace.community.announcements.create({
           title: $("input#post_subject").val(),
@@ -50,7 +58,10 @@ CommonPlace.SaySomething = Backbone.View.extend({
     e.preventDefault();
     this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
     owner_match = this.$("select#announcement_owner").val().match(/([a-z_]+)_(\d+)/);
-    
+    if (CommonPlace.env == 'production') {
+        mpmetrics.track('Submitted Announcement');
+        mpmetrics.track('Submitted Content', {'type': 'announcement'});
+    }
     CommonPlace.community.announcements.create({
       title: this.$("input#announcement_subject").val(),
       body: this.$("textarea#announcement_body").val(),
@@ -67,6 +78,10 @@ CommonPlace.SaySomething = Backbone.View.extend({
     e.preventDefault();
     this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
     owner_match = this.$("select#event_owner").val().match(/([a-z_]+)_(\d+)/);
+    if (CommonPlace.env == 'production') {
+      mpmetrics.track('Submitted Event');
+      mpmetrics.track('Submitted Content', {'type': 'event'});
+    }
     CommonPlace.community.events.create({
       title: this.$("input#event_name").val(),
       about: this.$("textarea#event_description").val(),
@@ -88,6 +103,10 @@ CommonPlace.SaySomething = Backbone.View.extend({
   submitGroupPost: function(e) {
     e.preventDefault();
     this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+    if (CommonPlace.env == 'production') {
+      mpmetrics.track('Submitted Group Post');
+      mpmetrics.track('Submitted Content', {'type': 'group_post'});
+    }
     CommonPlace.community.group_posts.create({
       title: this.$("input#group_post_subject").val(),
       body: this.$("textarea#group_post_body").val(),
