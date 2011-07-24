@@ -19,6 +19,12 @@ GIT
       xpath (~> 0.1.4)
 
 GIT
+  remote: git@github.com:Jberlinsky/Acts-As-Trackable.git
+  revision: 96e5a3f7f2c6106cdd9b5692be13d19a23123d56
+  specs:
+    acts-as-trackable (0.1.0)
+
+GIT
   remote: https://github.com/reedlaw/central_logger.git
   revision: e572260edc53a40f94d2ca0028805fd056cd540e
   specs:
@@ -406,6 +412,7 @@ DEPENDENCIES
   BlueCloth
   activeadmin
   acts-as-list
+  acts-as-trackable!
   authlogic
   authlogic_oauth2 (>= 1.1.6)!
   autotest-rails-pure

@@ -7,8 +7,7 @@
     - ([@message] + @message.replies).each do |message|
       %li 
         = image_tag message.user.avatar_url(:thumb), :size => "75x75", :class => "avatar"
-        %time.sent_at= message.created_at.to_s(:month_day_year)
-        
+        %time.sent_at= "#{message.created_at.to_s(:month_day_year)} at #{message.created_at.strftime('%H:%M')}"
         %h3= message.user.name
         %p= message.body
 
