@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  acts_as_trackable
+  #acts_as_trackable
 
   CATEGORIES = %w{Request Offer Invitation Announcement Question}  
 
