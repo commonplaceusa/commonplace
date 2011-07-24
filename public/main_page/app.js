@@ -20,6 +20,13 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
 
     "/posts/:id/edit" : "editPost",
     "/events/:id/edit" : "editEvent",
+    "/announcements/:id/edit" : "editAnnouncement",
+    "/group_posts/:id/edit" : "editGroupPost",
+
+    "/posts/:id/delete" : "deletePost",
+    "/events/:id/delete" : "deleteEvent",
+    "/announcements/:id/delete" : "deleteAnnouncement",
+    "/group_posts/:id/delete" : "deleteGroupPost", 
 
     "/users/:id/messages/new" : "newMessage",
 
@@ -97,6 +104,68 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
         }).render();
     }
   },
+
+  editGroupPost : function(id) {
+    var item = this.community.group_posts.get(id);
+    if (item) {
+        new CommonPlace.EditView({
+            model: item,
+            model_type: "group_post"
+        }).render();
+    }
+  },
+
+  editAnnouncement : function(id) {
+    var item = this.community.announcements.get(id);
+    if (item) {
+        new CommonPlace.EditView({
+            model: item,
+            model_type: "announcement"
+        }).render();
+    }
+  },
+
+  deletePost : function(id) {
+    var post = this.community.posts.get(id);
+    if (post) {
+        var view = new CommonPlace.DeleteView({
+            model: post,
+            model_type: "post"
+        });
+        view.render();
+    }
+  },
+
+  deleteEvent : function(id) {
+    var item = this.community.events.get(id);
+    if (item) {
+        new CommonPlace.DeleteView({
+            model: item,
+            model_type: "event"
+        }).render();
+    }
+  },
+
+  deleteGroupPost : function(id) {
+    var item = this.community.group_posts.get(id);
+    if (item) {
+        new CommonPlace.DeleteView({
+            model: item,
+            model_type: "group_post"
+        }).render();
+    }
+  },
+
+  deleteAnnouncement : function(id) {
+    var item = this.community.announcements.get(id);
+    if (item) {
+        new CommonPlace.DeleteView({
+            model: item,
+            model_type: "announcement"
+        }).render();
+    }
+  },
+
 
   event: function(id) {
     var event = this.community.events.get(id);

@@ -117,13 +117,13 @@ CommonPlace.EditView = Backbone.View.extend({
       success: function(){window.location.hash = "/" + model_type + "s/" + model.id;},
       error: function(){CommonPlace.app.notify("Your " + model_type + " could not be saved.");}
     };
-    if (this.options.model_type == "post") {
-      fields.title = this.$("form input#post_title").val();
-      fields.body = this.$("form textarea#post_body").val();
+    if (this.options.model_type == "post" || this.options.model_type == "announcement"|| this.options.model_type == "group_post") {
+      fields.title = this.$("form input#" + this.options.model_type + "_title").val();
+      fields.body = this.$("form textarea#" + this.options.model_type + "_body").val();
     }
     if (this.options.model_type == "event") {
       fields.title = this.$("form input#event_title").val();
-      fields.body = this.$("form input#event_body").val();
+      fields.body = this.$("form textarea#event_body").val();
       // TODO: I don't think this is right
       fields.occurs_on = this.$("form input#event_date").val();
       fields.starts_at = this.$("form select#event_start_time").val();
@@ -134,6 +134,41 @@ CommonPlace.EditView = Backbone.View.extend({
       console.log(fields);
     }
     model.save(fields, callbacks);
+    this.remove();
+  }
+});
+
+CommonPlace.DeleteView = Backbone.View.extend({
+  id: "modal",
+  tagname: "div",
+
+  events: { 
+    "click #modal-close": "remove",
+    "click .delete_cancel": "remove",
+    "click .delete_continue": "delete"
+  },
+
+  render: function() {
+    $(this.el).addClass("not_empty");
+    $(this.el).append('<div id="modal-overlay"></div>');
+    $(this.el).append('<div id="modal-content"></div>');
+    this.$("#modal-content").append('<img src="/images/modal-close.png" id="modal-close">');
+    this.$("#modal-content").append(CommonPlace.render("delete_confirmation", this.model.attributes));
+    $("#main").append(this.el);
+    $(window).trigger('resize.modal');
+    return this;
+  },
+
+  delete: function(e) {
+    e.preventDefault();
+    var model_type = this.options.model_type;
+    model = this.options.model;
+    fields = {};
+    callbacks = {
+      success: function(){window.location.hash = "/" + model_type + "s/";},
+      error: function(){CommonPlace.app.notify("Your " + model_type + " could not be deleted.");}
+    };
+    model.destroy(callbacks);
     this.remove();
   }
 });
