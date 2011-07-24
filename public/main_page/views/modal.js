@@ -68,30 +68,9 @@ CommonPlace.PostConfirmationView = Backbone.View.extend({
     // Submit the post
     // Dismiss modal dialog
     this.remove();
-    $("input.create").replaceWith("<img src=\"/images/loading.gif\">");
-    if (!this.$("input#commercial").is(':checked')) {
-      CommonPlace.community.posts.create({
-        title: this.options.subject,
-        body: this.options.body
-      }, { success: function() {
-          window.location.hash = "/posts/new";
-          Backbone.history.checkUrl();
-          window.location.hash = "/posts";
-          Backbone.history.checkUrl();
-        }, error: function() { self.render(); }
-      });
-    } else {
-        CommonPlace.community.announcements.create({
-          title: this.options.subject,
-            body: this.options.body,
-            feed: null
-        }, { success: function() {
-            window.location.hash = "/announcements";
-            Backbone.history.checkUrl();
-            window.location.hash = "/announcements/new";
-            Backbone.history.checkUrl();
-        } });
-    }
+  if (!this.$("input#commercial").is(':checked')) {
+          } else {
+            }
   },
 
   cancel: function(e) {
