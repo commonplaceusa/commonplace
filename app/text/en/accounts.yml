@@ -72,9 +72,9 @@ en:
         step_one: "1. Invite neighbors by Facebook"
         step_one_label: "Find your neighbors on Facebook and invite them to join you on Commonplace!"
         step_two: "2. Share on Facebook and Twitter"
-        step_two_label: "Let all your friends know about Commonplace."
+        step_two_label: "Let your friends and followers know you are on CommonPlace."
         step_three: "3. Invite neighbors by email"
-        step_three_label: "Invite neighbors by entering their name and email address."
+        step_three_label: "Invite your neighbors by entering their email addresses and a short message below."
         step_four: "4. Invite neighbors face-to-face"
         step_four_label: "Invite neighbors the old fashioned way by handing out flyers and reading materials."
         step_five: "5. Join Friends of Commonplace Network"
@@ -90,3 +90,11 @@ en:
           - "infosheet"
           - "neighborflyer"
         file_zip: "archives"
+
+        twitter_message: "Hey neighbors! If you live in %{community}, check out %{community}\'s CommonPlace, a new local community bulletin board:"
+
+        facebook:
+          name: "Register for the %{community} CommonPlace"
+          caption: "The %{community} CommonPlace is a new online community bulletin board for neighbors in %{community}."
+          description: "Join your neighbors at: www.%{community}.OurCommonPlace.com."
+          message: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}. You should join too at: www.%{slug}.OurCommonPlace.com."

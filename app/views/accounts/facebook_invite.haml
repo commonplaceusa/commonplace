@@ -14,24 +14,22 @@
       fbEnsureInit(function(){
 
         $("#step_one").append('<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/findneighbors.png" width="370px" style="margin-left: 3px">');
-        $("#step_two").append('<a href="#" onclick="fb_share();"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/facebookinvite.png" width="370px" style="margin-left: 3px"></a><div id="custom-tweet-button"><a href="http://twitter.com/share?url=http://www.#{current_community.slug}.OurCommonPlace.com/&text=Hi neighbors, I am part of The #{current_community.name} CommonPlace, where I connect and share with my neighbors in #{current_community.name}:&count=horizontal" target="_blank" rel="nofollow"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/twitterinv.png" width="370px" style="margin-left: 3px"></a></div>');
+        $("#step_two").append('<a href="#" onclick="fb_share();"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/facebookinvite.png" width="370px" style="margin-left: 3px"></a><div id="custom-tweet-button"><a href="http://twitter.com/share?url=http://www.#{current_community.slug}.OurCommonPlace.com/&text=#{t(".twitter_message", :community => current_community.name, :slug => current_community.slug)}&count=horizontal" target="_blank" rel="nofollow"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/twitterinv.png" width="370px" style="margin-left: 3px"></a></div>');
       });
     });
 
     function fb_share() {
-      console.log("Spawning FB dialog");
       FB.ui(
         {
           method: 'feed',
-          name: 'NAME',
+          name: '#{t(".facebook.name", :community => current_community.name)}',
           link: 'http://www.' + slug + '.OurCommonPlace.com/',
           picture: '',
-          caption: 'CAPTION',
-          description: 'DESCRIPTION',
-          message: 'MESSAGE'
+          caption: '#{t(".facebook.caption", :community => current_community.name)}',
+          description: '#{t(".facebook.description", :community => current_community.name)}',
+          message: '#{t(".facebook.message", :community => current_community.name, :slug => current_community.slug)}'
         },
         function(response) {
-          console.log("Posted to wall");
         }
     );
 
