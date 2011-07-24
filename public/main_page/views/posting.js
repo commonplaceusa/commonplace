@@ -19,7 +19,31 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitPost: function(e) {
     e.preventDefault();
-    new CommonPlace.PostConfirmationView({subject: this.$("input#post_subject").val(), body: this.$("textarea#post_body").val()}).render();
+    $("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+    if (!this.$("input#commercial").is(':checked')) {
+      CommonPlace.community.posts.create({
+        title: $("input#post_subject").val(),
+        body: $("textarea#post_body").val()
+      }, { success: function() {
+          window.location.hash = "/posts/new";
+          Backbone.history.checkUrl();
+          window.location.hash = "/posts";
+          Backbone.history.checkUrl();
+        }
+      });
+    } else {
+        CommonPlace.app.notify("Your post is more appropriate as an announcement. We are moving it for you.");
+      CommonPlace.community.announcements.create({
+          title: $("input#post_subject").val(),
+            body: $("textarea#post_body").val(),
+            feed: null
+        }, { success: function() {
+            window.location.hash = "/announcements";
+            Backbone.history.checkUrl();
+            window.location.hash = "/announcements/new";
+            Backbone.history.checkUrl();
+        } });
+    }
   },
 
   submitAnnouncement: function(e) {
