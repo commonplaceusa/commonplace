@@ -1,17 +1,5 @@
 = include_javascripts :application
 = javascript_include_tag "https://connect.facebook.net/en_US/all.js#xfbml=1"
--#= javascript_include_tag "https://static.ak.fbcdn.net/connect/en_US/core.debug.js"
-%script
-  $(document).ready(function() {
-  FB.init({
-  appId : "#{($FacebookConfig || {})['app_id']}",
-  status : true,
-  cookie : true,
-  xfbml  : true
-  });
-  s = FB.getSession();
-  = "FB.api('/#{@request_id}?access_token=#{@application_token}', 'GET', {access_token: '#{@application_token}'}, function(r) { $('#join').attr('href','https://' + r.data + '.ourcommonplace.com/'); });"
-  });
--# TODO: Change this from staging to production!
-= link_to(image_tag("http://ourcommonplace.com/images/join-commonplace.png"),"https://www.ourcommonplace.com/", :target => "_top", :id => "join")
+
+= link_to(image_tag("https://www.ourcommonplace.com/images/join-commonplace.png"),"https://www.ourcommonplace.com/", :target => "_top", :id => "join")
 #fb-root
