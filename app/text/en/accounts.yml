@@ -93,7 +93,7 @@ en:
         twitter_message: "Hey neighbors! If you live in %{community}, check out %{community}\'s CommonPlace, a new local community bulletin board:"
 
         facebook:
-          name: "Register for the %{community} CommonPlace"
+          name: "Register for The %{community} CommonPlace"
           caption: "The %{community} CommonPlace is a new online community bulletin board for neighbors in %{community}."
           description: "Join your neighbors at: www.%{community}.OurCommonPlace.com."
           message: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}. You should join too at: www.%{slug}.OurCommonPlace.com."
