@@ -2,6 +2,7 @@
   = "var slug = '#{current_community.slug}';"
   = "var message = '#{t(".facebook.invitation", :community => current_community.name, :slug => current_community.slug)}';"
 
+  $(function(){$('input[placeholder], textarea[placeholder]').placeholder();});
   $(document).ready(function(){
   $("#invite_email_input").removeClass("optional")
   $("#invite_body_input").removeClass("optional")
@@ -100,7 +101,7 @@
           - semantic_form_for @invitation do |f|
             - f.inputs do
               = f.input :email,:as => 'text', :input_html => { :placeholder => "Email addresses (separated by commas)", :class => "required email" }
-              = f.input :body, :input_html => { :placeholder => "Include a message to your neighbors about how you love #{current_community.slug}'s CommonPlace", :rows =>"4"}, :html => {:class => "required"}
+              = f.input :body, :input_html => { :placeholder => "Include a message about how you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
             - f.buttons do
               = f.submit :type => "image", :src => "/images/invite/neighborinvite.png", :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
           #forms
@@ -146,16 +147,17 @@
                   %h6
                     =t(".download_tag")
           %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_zip')}.zip"}
-            %img{:src => "/images/invite/downloadzip.png",:width =>"370px",:style =>"margin-left:3px; margin-top:15px"}
-              
-#groups_box
-  #groups_wrapper
-    %ul
-      %li 
-        #step_five
-          %h3
-            =t(".step_five", :community => current_community.name)
-          %h4
-            =t(".step_five_label", :community => current_community.name)
-          %img{:src => "/images/invite/joinfriends.png",:width =>"370px",:style =>"margin-left:3px; margin-top:10px;", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);", :onmouseout => "document.body.style.cursor = \'auto\';", :onmouseover => "document.body.style.cursor = \'pointer\';"}
-    %br
+            %img{:src => "/images/invite/downloadzip.png",:width =>"370px",:style =>"margin-left:3px; margin-top:17px"}
+
+/
+  #groups_box
+    #groups_wrapper
+      %ul
+        %li 
+          #step_five
+            %h3
+              =t(".step_five", :community => current_community.name)
+            %h4
+              =t(".step_five_label", :community => current_community.name)
+            %img{:src => "/images/invite/joinfriends.png",:width =>"370px",:style =>"margin-left:3px; margin-top:10px;", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);", :onmouseout => "document.body.style.cursor = \'auto\';", :onmouseover => "document.body.style.cursor = \'pointer\';"}
+      %br
