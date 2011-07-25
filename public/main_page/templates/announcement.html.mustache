@@ -5,7 +5,7 @@
     <div class="actions-dropdown">
       <div class="toggle-actions"></div>
       <div class="actions">
-        {{#can_edit_announcement}}
+        {{#can_edit}}
           <form action="" method="post" class="edit">
             <input type="submit" value="Edit" />
           </form>
@@ -16,7 +16,7 @@
           </form>
         {{/can_notify_all}}
 
-        {{#can_delete_announcement}}
+        {{#can_delete}}
           <form action="" method="post" class="delete">
             <input type="submit" value="Delete" />
           </form>
