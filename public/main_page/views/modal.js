@@ -15,7 +15,7 @@ CommonPlace.NewMessage = Backbone.View.extend({
             {success: function() {
                                      new CommonPlace.NewMessage({person_id: self.options.person_id, loading: true}).render();
             }});
-        return;
+        return this;
     }
     $(this.el).addClass("not_empty");
     $(this.el).append('<div id="modal-overlay"></div>');
@@ -68,9 +68,7 @@ CommonPlace.PostConfirmationView = Backbone.View.extend({
     // Submit the post
     // Dismiss modal dialog
     this.remove();
-  if (!this.$("input#commercial").is(':checked')) {
-          } else {
-            }
+    //    if (!this.$("input#commercial").is(':checked')) {  } else {  }
   },
 
   cancel: function(e) {
@@ -145,7 +143,7 @@ CommonPlace.DeleteView = Backbone.View.extend({
   events: { 
     "click #modal-close": "remove",
     "click .delete_cancel": "remove",
-    "click .delete_continue": "delete"
+    "click .delete_continue": "delete_"
   },
 
   render: function() {
@@ -159,7 +157,7 @@ CommonPlace.DeleteView = Backbone.View.extend({
     return this;
   },
 
-  delete: function(e) {
+  delete_: function(e) {
     e.preventDefault();
     var model_type = this.options.model_type;
     model = this.options.model;
