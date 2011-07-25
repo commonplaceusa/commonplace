@@ -348,7 +348,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
 
   runNotifier: function() {
     if (CommonPlace.app.notifications && CommonPlace.app.notifications.length > 0 && !CommonPlace.app.notificationInProgress) {
-      CommonPlace.app.notificationInProgress = true
+      CommonPlace.app.notificationInProgress = true;
       
       var notification = CommonPlace.app.notifications.shift();
       $notification = $('<div style="display:none;" class="notification ' + notification.classes + '">' + notification.message + '</div>');
