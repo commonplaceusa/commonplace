@@ -151,11 +151,11 @@ body.application.logged_out
   +serif
 
   header
-    margin: 20px auto 30px
-    width: 970px
-    background: none
-    border: none
-
+    text-align: center
+    background: #1b334a
+    border-bottom: 4px solid #fff
+    height: 31px
+    width: 100%
     #logo
       margin-top: 10px
       text-decoration: none
@@ -169,9 +169,12 @@ body.application.logged_out
         position: relative
         bottom: 4px
       img
-        vertical-align: bottom
-        
-
+        vertical-align: bottom 
+              
+    #nav_wrapper
+      margin: 0px auto 20px
+      width: 976px
+      text-align: left
     nav
       padding: 8px 0 12px 0 
       float: right
@@ -246,18 +249,20 @@ body.application.logged_out
             display: block
     #user_sign_in
       float: right
-      margin-top: 10px
-      position: relative
-
+      position: relative 
+      margin-top: 2px
       li 
         margin: 0 5px
         +inline-block
-        color: #545454
+        color: #BCD5EC
+        font-size: 13px
       #sign_in_button
-        background: url(/images/nav-down-arrow.png) no-repeat 95% 40% #fff
-        padding: 0px 20px 3px 5px
-        line-height: 18px
+        background: url(/images/nav-down-arrow.png) no-repeat 95% 40% #e0e0e0
+        padding: 2px 27px 3px 10px
+        line-height: 22px
         position: relative
+        color: #1B334A
+        font-size: 13px
         z-index: 100
         cursor: pointer
         border: 1px solid #ccc
@@ -268,7 +273,7 @@ body.application.logged_out
       #sign_in_form
         position: absolute
         right: -1px
-        top: 3px
+        top: 15px
     
     form.user_session
       position: absolute
