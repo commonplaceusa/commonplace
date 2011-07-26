@@ -88,6 +88,17 @@ group :development, :test do
   gem 'metric_fu'
   gem 'factory_girl'
   gem 'forgery'
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'mongrel', '>= 1.2.0.pre2'
+  gem 'ruby-prof'
+  gem 'newrelic_rpm'
+  gem 'hoe', '2.9.0'
+  gem 'thor'
+  gem 'foreman'
+end
+
+group :test do
   gem 'rspec-rails', "~> 2.6"
   gem 'fuubar'
   gem 'spork'
@@ -97,16 +108,8 @@ group :development, :test do
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'capistrano'
-  gem 'capistrano-ext'
-  gem 'mongrel', '>= 1.2.0.pre2'
-  gem 'ruby-prof'
-  gem 'newrelic_rpm'
   gem 'autotest-standalone'
   gem 'autotest-rails-pure'
-  gem 'hoe', '2.9.0'
-  gem 'thor'
-  gem 'foreman'
 end
 
 
