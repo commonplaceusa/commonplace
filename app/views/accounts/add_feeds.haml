@@ -2,11 +2,13 @@
   %script
     = "mpmetrics.track('Add feeds', {'community': '#{current_community.slug}'});"
 
-#feeds_box
-  #tool_tip
-    %h2 Stay in the loop!
-    %p= t ".p1"
-  #feeds_wrapper
+#wrapper
+  %h1= t(".h1").html_safe
+  #registration_information
+    %ul
+      %li= t ".p1"
+      %li= t ".p2"
+  #main
     %h2
       Subscribe to some community feeds:
     - form_tag "/account/subscribe_to_feeds", :id => "add_groups" do
