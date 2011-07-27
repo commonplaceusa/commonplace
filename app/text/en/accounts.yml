@@ -1,20 +1,20 @@
 en:
   accounts:
     new:
-      h1: Plug into %{community} Community
+      h1: Plug Into %{community} Community
       li1: Commonplace is a web platform built for the %{community} community.
       li2: Sign up to receive community announcements written by your neighbors and local leaders here in %{community}.
       li3: Use Commonplace to share with your neighbors, and to help make %{community} a better place to live in.
       li3: Use Commonplace to share with your neighbors, and to help make %{community} a better place to live in.
       project: Commonplace is a community service projected sponsored by the town. %{learn_more}
       learn_more: Click here to learn more.
-      
       who_is_bubble: Who's bringing CommonPlace to %{community}?
+      
     edit_new:
-
+      h1: Plug Into %{community} Community
       p1: CommonPlace makes it easy for you to share needs, announcements and events with folks who live in %{community}.
       p2: Use CommonPlace whenever you want to get local recommendations, borrow goods from your neighbors, or plan the next big town initiative.
-      p3: But before you start, take a moment to fill out your community profile.
+      p3: Before you start, take a moment to fill out your community profile.
 
     add_feeds:
       p1: Community leaders use CommonPlace to share events and announcements with people who live in %{community}. Subscribe to some local community feeds in order to get notified whenever they send out updates.
