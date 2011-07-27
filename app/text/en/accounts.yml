@@ -17,7 +17,9 @@ en:
       p3: Before you start, take a moment to fill out your community profile.
 
     add_feeds:
-      p1: Community leaders use CommonPlace to share events and announcements with people who live in %{community}. Subscribe to some local community feeds in order to get notified whenever they send out updates.
+      h1: Stay in the Loop!
+      p1: Community leaders use CommonPlace to share events and announcements with people who live in %{community}.           
+      p2: Subscribe to some local community feeds in order to get notified whenever they send out updates.
       
     add_groups:
       p1: CommonPlace Groups helps you connect with people in your community who share similar interests. Subscribe to groups to send and receive information about specific community topics that you care about. Feel free to join as many as you want! 
