@@ -5,10 +5,8 @@ en:
       li1: Commonplace is a web platform built for the %{community} community.
       li2: Sign up to receive community announcements written by your neighbors and local leaders here in %{community}.
       li3: Use Commonplace to share with your neighbors, and to help make %{community} a better place to live in.
-      li3: Use Commonplace to share with your neighbors, and to help make %{community} a better place to live in.
-      project: Commonplace is a community service projected sponsored by the town. %{learn_more}
+      project: Commonplace is a community service project sponsored by the town. %{learn_more}
       learn_more: Click here to learn more.
-      who_is_bubble: Who's bringing CommonPlace to %{community}?
       
     edit_new:
       h1: Plug Into %{community} Community
@@ -22,7 +20,10 @@ en:
       p2: Subscribe to some local community feeds in order to get notified whenever they send out updates.
       
     add_groups:
-      p1: CommonPlace Groups helps you connect with people in your community who share similar interests. Subscribe to groups to send and receive information about specific community topics that you care about. Feel free to join as many as you want! 
+      h1: Get Connected!
+      p1: CommonPlace Groups helps you connect with people in your community who share similar interests.
+      p2: Subscribe to groups to send and receive information about specific community topics that you care about. 
+      p3: Feel free to join as many as you want! 
       
     edit:
       title: Change Settings
