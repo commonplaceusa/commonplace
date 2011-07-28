@@ -89,7 +89,6 @@ en:
           - "infosheet"
           - "neighborflyer"
         file_zip: "archives"
-
         twitter_message: "Hey neighbors! If you live in %{community}, check out %{community}\'s CommonPlace, a new local community bulletin board:"
 
         facebook:
