@@ -7,15 +7,12 @@
   
 #wrapper
   %h1= t(".h1", :community => current_community.name).html_safe
-  %h2
-    = "Thanks for signing up, #{current_user.first_name}!"
   #registration_information
     %ul
-      %li= t ".p1" , :community => current_community.name 
-      / 
-        Email in is not yet implemented
-        %p= t ".p2" , :community_email => mail_to("myneighbors@ourcommonplace.com", "myneighbors@ourcommonplace.com")
+      %li= t ".p1" 
+      %li= t ".p2", :community => current_community.name 
       %li= t ".p3"
+      %li= t ".p4"
       - if current_user.is_facebook_user
         #facebook_avatar
           %img{:src => current_user.avatar_url, :style => "vertical-align:middle;"}
@@ -24,7 +21,7 @@
     = semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
       = f.inputs do 
         - unless current_user.is_facebook_user or current_user.password.present?
-          = f.input :password
+          = f.input :password, :hint => t(".password_hint")
 
         = if current_user.address.blank?
           = f.input :address
