@@ -61,7 +61,9 @@
       %li= t(".li2", :community => current_community.name)
       %li= t(".li3", :community => current_community.name)
     %ul{:id=>"link_item"}
-      %h3=t(".project", :learn_more => link_to(t(".learn_more"), "/#{current_community.slug}/learn_more")).html_safe
+      %h3=t(".project", :community => current_community.name)
+      %a{:href => "/#{current_community.slug}/learn_more"}
+        %img{:src=>"/images/buttons/learnmore.png", :alt=>"Learn more", :id=>"learnmore"}
   #main
     = semantic_form_for @user, :url => create_account_path(current_community) do |f|
       %table{:style => "width:360px;"}
@@ -81,20 +83,3 @@
         = f.buttons do 
           = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/signup.png"}
 
-#fb-root
-- if current_community.organizer_about?
-  /
-    #who_is_info_bubble
-      %h3.toggle= t ".who_is_bubble", :community=> current_community.name
-      #who_is_info
-        %p
-          = current_community.organizer_about
-        =image_tag(current_community.organizer_avatar.url, :size => "50x50")
-        %br{:class => "cleared"}   
-
-        %h3 Which local organizations are on #{current_community.name}'s CommonPlace?
-        - current_community.feeds.take(20).each do |feed|
-          %p
-            = feed.name
-          = image_tag(feed.avatar_url(:thumb), :size => "50x50")
-          %br{:class => "cleared"}
