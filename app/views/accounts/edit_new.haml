@@ -9,7 +9,7 @@
   %h1= t(".h1", :community => current_community.name).html_safe
   #registration_information
     %ul
-      %li= t ".p1" 
+      %li= "Thanks for signing up, #{current_user.first_name}!"
       %li= t ".p2", :community => current_community.name 
       %li= t ".p3"
       %li= t ".p4"
@@ -21,7 +21,7 @@
     = semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
       = f.inputs do 
         - unless current_user.is_facebook_user or current_user.password.present?
-          = f.input :password, :hint => t(".password_hint")
+          = f.input :password, :required => true, :hint => t(".password_hint")
 
         = if current_user.address.blank?
           = f.input :address

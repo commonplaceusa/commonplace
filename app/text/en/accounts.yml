@@ -9,7 +9,6 @@ en:
       
     edit_new:
       h1: Fill out your community profile
-      p1: Thanks for signing up, Jason!
       p2: CommonPlace makes it easy for you to share needs, announcements and events with folks who live in %{community}.
       p3: Use CommonPlace whenever you want to get local recommendations, borrow goods from your neighbors, or plan the next big town initiative.
       p4: Before you start, take a moment to fill out your community profile.
@@ -22,7 +21,7 @@ en:
       
     add_groups:
       h1: Get Connected!
-      p1: CommonPlace Groups helps you connect with people in your community who share similar interests.
+      p1: CommonPlace Groups help you connect with people in your community who share similar interests.
       p2: Subscribe to groups to send and receive information about specific community topics that you care about. 
       p3: Feel free to join as many as you want! 
       
