@@ -158,15 +158,22 @@ CommonPlace.DeleteView = Backbone.View.extend({
   },
 
   delete_: function(e) {
+    console.log("Got to delete_");
     e.preventDefault();
     var model_type = this.options.model_type;
+    console.log("Model type: " + model_type);
     model = this.options.model;
+    console.log("Model");
+    console.log(model);
     fields = {};
     callbacks = {
       success: function(){window.location.hash = "/" + model_type + "s/";},
       error: function(){CommonPlace.app.notify("Your " + model_type + " could not be deleted.");}
     };
+    console.log("Destructor");
     model.destroy(callbacks);
+    console.log("DESTROYED");
     this.remove();
+    console.log("Done with deletion");
   }
 });
