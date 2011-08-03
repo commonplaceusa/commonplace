@@ -39,6 +39,14 @@ class User < ActiveRecord::Base
   validates_presence_of :neighborhood, :unless => :is_transitional_user
   validates_uniqueness_of :facebook_uid, :allow_nil => true 
 
+  validates_presence_of :password, :on => :update
+
+  validates_presence_of  :referral_source, :on => :update, :if => :requires_referral_source
+
+  def requires_referral_source
+    self.community.slug == "Vienna"
+  end
+
   scope :between, lambda { |start_date, end_date| 
     { :conditions => 
       ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
