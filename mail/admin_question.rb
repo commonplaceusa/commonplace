@@ -5,7 +5,8 @@ class AdminQuestion < MailBase
   end
 
   def to
-    "faq@commonplace.zendesk.com"
+    #"faq@commonplace.zendesk.com"
+    "jason@commonplaceusa.com"
   end
 
   def sender
