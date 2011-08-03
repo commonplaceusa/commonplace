@@ -1,15 +1,19 @@
 class AdminQuestion < MailBase
 
-  def initialize(sender, question)
-    @sender, @question = sender, question
+  def initialize(sender, question, name)
+    @sender, @question, @name = sender, question, name
   end
 
   def to
-    "faq@commonplaceusa.com"
+    "petehappens@gmail.com"
   end
 
   def sender
     @sender
+  end
+
+  def name
+    @name
   end
 
   def question
@@ -17,12 +21,12 @@ class AdminQuestion < MailBase
   end
 
   def subject
-    #"New Question for you!"
-    "FAQ Question"
+    "New Question for you!"
   end
 
   def from
-    sender
+    @sender
+    "#{name} <#{sender}>"
   end
 
 end
