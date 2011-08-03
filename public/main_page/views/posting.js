@@ -19,8 +19,10 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitPost: function(e) {
     e.preventDefault();
-    $("input.create").replaceWith("<img src=\"/images/loading.gif\">");
-    if (!this.$("input#commercial").is(':checked')) {
+      if(!$('#commercialyes').is(':checked')&&!$('#commercialno').is(':checked')) {
+        CommonPlace.app.notify("Please check a 'Yes' or 'No' next to: Is this publicity relating to a business, organization, or event?");
+      } else if ($("input[@name=radio_name]:checked").val()=='No') {
+      $("input.create").replaceWith("<img src=\"/images/loading.gif\">");
       if (CommonPlace.env == 'production') {
         mpmetrics.track('Submitted Neighborhood Post');
         mpmetrics.track('Submitted Content', {'type': 'neighborhood_post'});
@@ -36,6 +38,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
         }
       });
     } else {
+        $("input.create").replaceWith("<img src=\"/images/loading.gif\">");
         if (CommonPlace.env == 'production') {
           mpmetrics.track('Submitted Announcement');
           mpmetrics.track('Submitted Content', {'type': 'announcement'});
@@ -51,7 +54,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
             window.location.hash = "/announcements/new";
             Backbone.history.checkUrl();
         } });
-    }
+    } 
   },
 
   submitAnnouncement: function(e) {
