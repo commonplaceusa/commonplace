@@ -71,6 +71,7 @@ gem 'geocoder'
 gem 'thinking-sphinx',
   :git     => 'git://github.com/freelancing-god/thinking-sphinx.git',
   :branch  => 'rails3'
+gem 'flying-sphinx',   '0.6.0'
 
 
 # Jobs
