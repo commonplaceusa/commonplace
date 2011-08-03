@@ -5,11 +5,12 @@
       = f.input :email, :input_html => { :placeholder => "Email address"}
       = f.input :password, :input_html => { :placeholder => "Password"}
     = f.buttons do 
+      %li
+        - unless current_user_session.errors.empty?
+          = f.semantic_errors
       = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/login2.png"}
       %li
         = link_to "Forgot your password?", new_password_reset_path, :class => 'forgot-password'
-        - unless current_user_session.errors.empty?
-          = f.semantic_errors
       %li.fb-button
         %fb:login-button{:size => "small", :onlogin => "loginFacebook();", :perms => 'email,user_hometown,publish_stream,offline_access'}
 
