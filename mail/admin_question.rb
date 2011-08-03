@@ -5,7 +5,7 @@ class AdminQuestion < MailBase
   end
 
   def to
-    "petehappens@gmail.com"
+    "faq@commonplaceusa.com"
   end
 
   def sender
@@ -17,11 +17,12 @@ class AdminQuestion < MailBase
   end
 
   def subject
-    "New Question for you!"
+    #"New Question for you!"
+    "FAQ Question"
   end
 
   def from
-    "CommonPlace <do-not-reply@commonplaceusa.com>"
+    sender
   end
 
 end
