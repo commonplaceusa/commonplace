@@ -24,8 +24,8 @@ en:
         message: Optional message
       
       user_session:
-        email: "EMAIL"
-        password: "PASSWORD"
+        email: "Enter your email:"
+        password: "Enter your password:"
 
       feed:
         name: "Feed Name:"
