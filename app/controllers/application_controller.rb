@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user, :facebook_session
   helper_method :api
   
-  before_filter :domain_redirect, :set_process_name_from_request
+  before_filter :domain_redirect, :set_process_name_from_request, :set_locale
   after_filter :unset_process_name_from_request
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -126,6 +126,12 @@ class ApplicationController < ActionController::Base
   def reload_current_user!
     @current_user_session = UserSession.find
     @current_user = current_user_session.user
+  end
+
+  def set_locale
+    if current_community.present?
+      I18n.locale = current_community.locale
+    end
   end
 
 end

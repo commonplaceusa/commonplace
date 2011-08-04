@@ -138,4 +138,12 @@ class Community < ActiveRecord::Base
   def to_param
     slug
   end
+
+  def locale
+    # Returns true if the community needs a custom locale
+    if self.slug.downcase == "vienna"
+      :umw
+    end
+    :en
+  end
 end
