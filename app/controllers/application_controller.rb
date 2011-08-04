@@ -130,6 +130,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     if current_community.present?
+      I18n.default_locale = :en
       I18n.locale = current_community.locale
     end
   end
