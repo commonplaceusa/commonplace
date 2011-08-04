@@ -1,13 +1,14 @@
 @import core
-
 body.application.user_sessions.new
-
+  header
+    #user_sign_in
+      display: none
   background-repeat: repeat-x
   position: relative
   h1
-    font-size: 50px
+    font-size: 44px
     color: #1b334a
-    padding: 12px 0px 6px
+    padding: 20px 0px 10px
     font-weight: bold
     text-align: center
   
@@ -20,6 +21,7 @@ body.application.user_sessions.new
   #main
     width: 590px
     position: relative
+    margin-bottom: 100px
     a
       color: #DDDDDD
     form
@@ -52,14 +54,14 @@ body.application.user_sessions.new
       fieldset.inputs
         li
           min-height: 60px
-          margin: 18px auto 10px auto
+          margin: 10px auto 5px auto
           label
             display: block
             text-align: left
             color: #FFFFFF
             font-weight: normal
             font-size: 17px
-            text-shadow: #000000 0px -2px 2px
+            text-shadow: #000000 1px 1px 1px
             word-spaciing: 1px
             margin-bottom: 4px
           input
@@ -81,6 +83,7 @@ body.application.user_sessions.new
           padding-right: 5px
           float: right
           margin-bottom: 3px
+          word-spacing: 4px
       .forgot-password
         float: left
           

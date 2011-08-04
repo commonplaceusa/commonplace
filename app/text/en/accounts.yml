@@ -4,7 +4,7 @@ en:
       h1: Plug in to the %{community} Community
       li1: CommonPlace is a web platform built for %{community} residents.  It's like an online bulletin board for the %{community} community.
       li2: Sign up to send and receive community announcements written by your neighbors and local leaders here in %{community}.
-      li3: Use CommonPlace to connect and share with you neighbors and to help make %{community} an even better place to live. 
+      li3: CommonPlace is a community service project. Join and help make %{community} an even better place to live.
       
     edit_new:
       h1: Fill out your community profile
