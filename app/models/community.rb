@@ -141,9 +141,11 @@ class Community < ActiveRecord::Base
 
   def locale
     # Returns true if the community needs a custom locale
+    # HACK HACK HACK
     if self.slug.downcase == "vienna"
       :umw
+    else
+      :en
     end
-    :en
   end
 end
