@@ -25,6 +25,14 @@
   border: 1px solid $lightGray
   background: $itemBackground + #020202
   +linear-gradient(color-stops($itemBackground + #060606, $itemBackground ))
+  
+@mixin starBullet
+  margin: 0 3px 15px 0px
+  background: url('/images/bullet-star.png') 
+  background-position: 0px 0px 
+  background-repeat: no-repeat
+  line-height: 1.5
+  font-weight:normal
 
 @mixin sans
   font-family: Helvetica, Arial, Verdana, sans-serif
