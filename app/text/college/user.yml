@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          address: "The address you entered is outside of %{community}.  If this is not the case, please email Pete@CommonPlaceUSA.com."
