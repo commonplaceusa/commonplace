@@ -1,6 +1,9 @@
-en:
+college:
   activerecord:
     errors:
       models:
         user:
+          attributes:
+            email:
+              invalid: "Please enter your college e-mail address"
           address: "The address you entered is outside of %{community}.  If this is not the case, please email Pete@CommonPlaceUSA.com."
