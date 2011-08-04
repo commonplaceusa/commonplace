@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
-  validates_format_of :email, :with => /^([^\s]+)@mail\.umw\.edu/, :if => Proc.new {|u| u.community.is_college}
+  validates_format_of :email, :with => /^([^\s]+)@mail\.umw\.edu/, :if => Proc.new {|u| u.community.is_college and u.community.slug == "umw"}
 
   validates_presence_of :first_name, :last_name
 
