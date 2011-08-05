@@ -26,6 +26,10 @@ CommonPlace.Posts = Backbone.Collection.extend({
   },
 
   url: function() {
-    return "/api/communities/" + this.community.id + "/posts";
+    if (this.community.get('locale') === "college") {
+      return "/api/neighborhoods/" + CommonPlace.account.get("neighborhood") + "/posts";
+    } else {
+      return "/api/communities/" + this.community.id + "/posts";
+    }
   }
 });
