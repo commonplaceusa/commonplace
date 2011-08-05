@@ -65,12 +65,13 @@
         %img{:src=>"/images/buttons/learnmore.png", :alt=>"Learn more", :id=>"learnmore"}
   #main
     = semantic_form_for @user, :url => create_account_path(current_community) do |f|
-      %table{:style => "width:360px;"}
+      %table{:style => "width:365px;"}
         %tr
           %td{:style => "text-align:left;"}  
             %h4 
               Register Here
           %td{:style => "text-align:right;"}  
+            %div{:id => "bottomregister"}  
             %h3 
               or
               %fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'facebookUserLoggedIn();', :perms => 'email,user_hometown,publish_stream,offline_access'}
