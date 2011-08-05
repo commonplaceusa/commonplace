@@ -13,8 +13,10 @@
       &sdot;
       = link_to "About", about_url, :target => :blank
       - if params[:community]
-        &sdot;
-        = link_to "Good Neighbor Discount", "/#{current_community.slug}/good_neighbor_discount/"
+        - if current_user.present?
+          - if $rollout.active?(:good_neighbor_discount, current_user)
+            &sdot;
+            = link_to "Good Neighbor Discount", "/#{current_community.slug}/good_neighbor_discount/"
       - if params[:community]
         &sdot;
         = link_to "Terms", terms_path(current_community)
