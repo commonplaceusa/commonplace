@@ -6,12 +6,15 @@
       - if params[:community]
         = mail_to current_community.organizer_email, "Questions?  Email #{current_community.organizer_email}"
       - else 
-        = mail_to "Pete@CommonPlaceUSA.com", "Questions?  Email Pete@CommonPlaceUsa.com"
+        = mail_to "FAQ@CommonPlaceUSA.com", "Questions?  Email FAQ@CommonPlaceUsa.com"
       - if params[:community]
         &sdot;
         = link_to "FAQ", faq_path(current_community)
       &sdot;
       = link_to "About", about_url, :target => :blank
+      - if params[:community]
+        &sdot;
+        = link_to "Good Neighbor Discount", "/#{current_community.slug}/good_neighbor_discount/"
       - if params[:community]
         &sdot;
         = link_to "Terms", terms_path(current_community)
