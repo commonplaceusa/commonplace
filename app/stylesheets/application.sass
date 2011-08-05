@@ -256,6 +256,8 @@ body.application.logged_out
         +inline-block
         color: #BCD5EC
         font-size: 13px
+        font-weight: 300
+        
       #sign_in_button
         background: url(/images/nav-down-arrow.png) no-repeat 95% 40% #e0e0e0
         padding: 2px 27px 3px 10px
@@ -284,20 +286,21 @@ body.application.logged_out
       background: #fff
       border: 1px solid #ccc
       +border-radius(5px 0px 5px 5px)
+      padding: 10px 5px 10px 15px
       display: none
       .inputs, .buttons
         +inline-block
         li 
-          margin: 0
+          margin: 0px 0px 0px 10px
           display: block
           width: 180px
-          padding:  2px 10px
-          text-align: right
+          padding:  2px 0px 5px 0px
+          text-align: center
           
           label
             display: block
             padding: 4px 2px
-            color: #b3b3b3
+            color: #1b334a
             +sans
             text-align: left
             font-weight: bold
@@ -312,42 +315,45 @@ body.application.logged_out
             +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
             margin: 0
             border: 1px solid #ddd  
-        
-      .buttons
+      #facebook
+        padding-top: 5px
+        +inline-block 
+        float: left 
+        margin-left: 58px
+        margin-top: 2px
+      fieldset.buttons
         margin-top: 3px
-        .commit:first-child
+        .commit
           float: right
           width: 60px
-        li:last-child
-          padding-top: 5px
-        .commit
-          submit
-            vertical-align: middle
-            padding-bottom: 2px
-      .forgot-password
-        text-align: right
-        display: block
-        padding: 0 10px 10px
-        font-size: 12px
-        color: #3b6085
-      ul.errors li
-        margin: 0px
-        text-align: right
-        padding: 0 10px 10px
-        color: #b7403c
-        font-size: 13px
-      #fb-login
-        position: relative
-        top: -4px
-        border: 1px solid #314A63
-        +border-radius(5px)
-        background: #3B6085
-        color: white
-        padding: 5px 5px
-        +box-shadow(inset 0px -1px 2px #335170, inset 0px 1px 0px #5883AD, 1px 1px 2px #999)
-        font-family: Rockwell, Georgia, serif
-        font-size: 11px
-        +text-shadow(#454545, 1px, 1px, 0px)
+          vertical-align: middle
+          padding-bottom: 2px
+          +inline-block
+        
+    .forgot-password
+      text-align: right
+      display: block
+      padding: 3px 15px 10px
+      font-size: 12px
+      color: #3b6085
+    ul.errors li
+      margin: 0px
+      text-align: right
+      padding: 0 10px 10px
+      color: #b7403c
+      font-size: 13px
+    #fb-login
+      position: relative
+      top: -4px
+      border: 1px solid #314A63
+      +border-radius(5px)
+      background: #3B6085
+      color: white
+      padding: 5px 5px
+      +box-shadow(inset 0px -1px 2px #335170, inset 0px 1px 0px #5883AD, 1px 1px 2px #999)
+      font-family: Rockwell, Georgia, serif
+      font-size: 11px
+      +text-shadow(#454545, 1px, 1px, 0px)
   footer
     clear: both
     background-image: url('/images/houses.png')

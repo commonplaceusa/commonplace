@@ -31,7 +31,7 @@
 
 #register  
   %h1
-    Please crop your avatar
+    =t(".h1")
   = image_tag current_user.avatar.url(:croppable), :id => "cropbox", :align => "center"
 
   = semantic_form_for current_user, :url => update_crop_account_path, :method => :put do |f|
@@ -39,5 +39,5 @@
       - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
         = f.hidden_field attribute, :id => attribute
     = f.buttons do
-      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
+      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue2.png"}
 
