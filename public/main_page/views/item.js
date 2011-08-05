@@ -92,7 +92,11 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
 
   showDelete: function(e) {
     e.preventDefault();
-    window.location.hash = this.model.get('url') + "/delete";
+    if (this.model) {
+      window.location.hash = this.model.get('url') + "/delete";
+    } else {
+      window.location.hash = "";
+    }
   },
 
   sendToEveryone: function(e) {
