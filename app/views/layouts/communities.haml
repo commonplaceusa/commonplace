@@ -53,11 +53,11 @@
       window.location.hash = "/#{params[:backbone_route]}"
       Backbone.history.loadUrl();
       if (oldhash != "" && oldhash != "/") { window.location.hash = oldhash; }
-
-    - unless current_user.seen_tour?
-      - current_user.toggle!(:seen_tour)
-      :javascript
-        (new CommonPlace.Tour({el: $("#main")})).render();
+    - if logged_in?
+      - unless current_user.seen_tour?
+        - current_user.toggle!(:seen_tour)
+        :javascript
+          (new CommonPlace.Tour({el: $("#main")})).render();
     - if Rails.env.production?
       %script
         = "mpmetrics.track('Community Home Page', {'community': '#{current_community.slug}'});"
