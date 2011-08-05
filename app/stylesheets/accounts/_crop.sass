@@ -19,12 +19,18 @@ body.application.accounts.crop
     margin: 20px auto
     font-size: 28px
     width: 400px
+    color: #FFFFFF
+    font-weight: bold
+    font-size: 30px
+    text-shadow: #000000 2px 2px 1px
+    padding-bottom: 4px
+    word-spaciing: 1px
 
   #register
-    +lightbox
+    +redlightbox
     margin: 20px auto
-    width: 840px
-    min-height: 600px
+    width: 520px
+    min-height: 400px
     position: relative
 
     #cropbox
@@ -54,7 +60,7 @@ body.application.accounts.crop
           color: $cpRed
           text-decoration: none   
     form
-      padding-left: 440px
+      padding-left: 20px
       padding-right: 20px
       +clearfix
     .info_box
@@ -63,7 +69,7 @@ body.application.accounts.crop
       #user_avatar_input
         position: relative
       li
-        margin: 20px 0
+        margin: 5px 0 20px
         padding: 0px 20px
         width: 380px
         input[type=text], input[type=password], textarea
@@ -128,8 +134,7 @@ body.application.accounts.crop
         
     fieldset.buttons
       margin-top: 20px
-      text-align: right
-      width: 390px
+      text-align: center
     .info_box
       width: 450px
       #info_box_top
