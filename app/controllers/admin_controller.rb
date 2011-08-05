@@ -24,10 +24,22 @@ class AdminController < ApplicationController
     #@message_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM messages")[0]['count'].to_i
     @reply_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM replies")[0]['count'].to_i
 
+    @messages_count = Message.count
+    @messages_and_replies_count = @messages_count + Reply.find_all_by_repliable_type("Message").count
+
     @completed_registrations = User.where("created_at < updated_at")
     @incomplete_registrations = User.where("created_at >= updated_at")
     @emails_opened_today = 1
     @emails_opened = 1
+
+    #@live_emails = User.find(:all, :conditions => ["receive_events_and_announcements=true"]).count
+    @live_emails = User.where("receive_events_and_announcements = true").count
+    @disabled_live_emails = User.where("receive_events_and_announcements = false").count
+
+    @daily_digest_emails = User.where("receive_weekly_digest").count
+    @disabled_daily_digest_emails = User.where("receive_weekly_digest = false").count
+
+
     render :layout => nil
   end
 
@@ -76,7 +88,7 @@ class AdminController < ApplicationController
   end
 
   def show_referrers
-    @referred_users = User.all.select{ |u| u.referral_source.present? }.sort{ |a,b| a.community_id <=> b.community_id }.sort{ |a,b,| a.created_at <=> b.created_at }
+    @referred_users = User.all.select{ |u| u.referral_source.present? }.sort{ |a,b| a.community_id <=> b.community_id }
   end
 
   def map
