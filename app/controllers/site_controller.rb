@@ -19,7 +19,7 @@ class SiteController < ApplicationController
   def faq ; end
   
   def send_faq
-    Resque.enqueue(AdminQuestion, params[:email_address], params[:message])
+    Resque.enqueue(AdminQuestion, params[:email_address], params[:message], params[:name])
     redirect_to faq_url
   end
 end
