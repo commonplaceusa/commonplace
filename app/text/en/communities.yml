@@ -1,5 +1,4 @@
 en:
-
   communities:
     say_something:
       title: "Say something to your neighbors:"
@@ -7,3 +6,18 @@ en:
       title: "View community profiles:"
     whats_happening:
       title: "Find out what's happening in town:"
+    good_neighbor_discount:
+      htitle: "The CommonPlace"
+      title: "Good Neighbor Discount:"
+      card_msg: "Write this on your card:"
+      business_msg: "Use at these participating businesses:"
+      1li1: "Nature's Food Path"
+      1li2: "Pete's Garage"
+      1li3: "Punjabi Dhaba"
+      1li4: "Jerry's Crab Shack"
+      1li5: "Vienna Bagels"
+      1li6: "Joe Haskins Bike Shop"
+      2li1: "Vienna Cinema"
+      2li2: "The Refinery"
+      2li3: "Top Of The Muffin To You"
+      foot_msg: "%{community} businesses are offering members of CommonPlace a \"Good Neighbor Discount.\" Ask at the register for details."
