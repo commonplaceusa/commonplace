@@ -15,6 +15,9 @@ $rollout.define_group(:fallschurch) do |user|
 end
 
 $rollout.define_group(:discount) do |user|
+  if user == nil or user.community == nil
+    return false
+  end
   user.present? and user.community.present? and user.community.slug == "Vienna" or user.community.slug == "test"
 end
 
