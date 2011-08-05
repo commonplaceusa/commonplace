@@ -225,19 +225,57 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     }});
   },
   
-  showPost: function(id) { this.posts(); 
-                           $.scrollTo($("#post-" + id + "-item"));
-                           $("#post-" + id + "-item" + " a.show-reply-form").click();
-                         },
-  showAnnouncement: function(id) { this.announcements();
-                                   $.scrollTo($("#announcement-" + id + "-item"));
-                                 },
-  showGroupPost: function(id) { this.group_posts();
-                                $.scrollTo($("#group_post-" + id + "-item")); 
-                              },
-  showEvent: function(id) { this.events();
-                            $.scrollTo($("#event-" + id + "-item"));
-                          },
+  showPost: function(id) { 
+    var post = this.community.posts.get(id)
+    var view = new CommonPlace.Index({
+      collection: _([post]),
+      el: $("#whats-happening"),
+      itemView: CommonPlace.PostItem,
+      subnav: [{url: "#/posts", current: true, last: true, name: "Neighborhood Posts"}],
+      zone: "posts"
+    });
+    view.render();
+    $("#post-" + id + "-item" + " a.show-reply-form").click();
+  },
+
+  showAnnouncement: function(id) { 
+    var announcement = this.community.announcements.get(id)
+    var view = new CommonPlace.Index({
+      collection: _([announcement]),
+      el: $("#whats-happening"),
+      itemView: CommonPlace.AnnouncementItem,
+      subnav: [{url: "#/announcements", current: true, last: true, name: "Community Announcements"}],
+      zone: "announcements"
+    });
+    view.render();
+    $("#announcement-" + id + "-item" + " a.show-reply-form").click(); 
+  },
+
+  showGroupPost: function(id) { 
+    var post = this.community.group_posts.get(id)
+    var view = new CommonPlace.Index({
+      collection: _([post]),
+      el: $("#whats-happening"),
+      itemView: CommonPlace.GroupPostItem,
+      subnav: [{url: "#/group_posts", current: true, last: true, name: "Discussion Group Posts"}],
+      zone: "posts"
+    });
+    view.render();
+    $("#group_post-" + id + "-item" + " a.show-reply-form").click(); 
+  },
+  showEvent: function(id) { 
+    var event = this.community.events.get(id)
+    var view = new CommonPlace.Index({
+      collection: _([event]),
+      el: $("#whats-happening"),
+      itemView: CommonPlace.EventItem,
+      subnav: [{url: "#/events", current: true, last: true, name: "Community Events"}],
+      zone: "events"
+    });
+    view.render();
+    $("#event-" + id + "-item" + " a.show-reply-form").click(); 
+    
+  },
   showUser: function(id) { this.users();
                            $.scrollTo($("#user-" + id + "-item"));
                          },

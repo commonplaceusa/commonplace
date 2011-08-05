@@ -1,15 +1,20 @@
 class AdminQuestion < MailBase
 
-  def initialize(sender, question)
-    @sender, @question = sender, question
+  def initialize(sender, question, name)
+    @sender, @question, @name = sender, question, name
   end
 
   def to
-    "petehappens@gmail.com"
+    "faq@commonplace.zendesk.com"
+    #"jason@commonplaceusa.com"
   end
 
   def sender
     @sender
+  end
+
+  def name
+    @name
   end
 
   def question
@@ -17,11 +22,11 @@ class AdminQuestion < MailBase
   end
 
   def subject
-    "New Question for you!"
+    "New CommonPlace Question"
   end
 
   def from
-    "CommonPlace <do-not-reply@commonplaceusa.com>"
+    "#{name} <#{sender}>"
   end
 
 end
