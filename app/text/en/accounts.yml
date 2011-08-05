@@ -77,7 +77,7 @@ en:
         tool_tip: "Find your neighbors on Facebook and invite them to join you on CommonPlace!"
 
         step_one: "1. Invite neighbors by Facebook"
-        step_one_label: "Find your neighbors on Facebook and invite them to join you on Commonplace!"
+        step_one_label: "Find your neighbors on Facebook and invite them to join you on CommonPlace!"
         step_two: "2. Share on Facebook and Twitter"
         step_two_label: "Let your friends and followers know you are on CommonPlace."
         step_three: "3. Invite neighbors by email"
@@ -88,7 +88,7 @@ en:
         step_five_label: "Click below to join a group of %{community} neighbors committed to improving our new community-building utility."
         download_tag: "DOWNLOAD PDF"
         file_descriptions:
-          - "Commonplace Launch Letter"
+          - "CommonPlace Launch Letter"
           - "Information Sheet"
           - "Neighborhood Flyer"
         file_names:

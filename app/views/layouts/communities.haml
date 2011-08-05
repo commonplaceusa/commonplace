@@ -9,8 +9,8 @@
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
     #fb-root
 
-
     = render 'shared/admin_bar'
+
     = render 'layouts/header', :user_session => current_user_session
 
     #main

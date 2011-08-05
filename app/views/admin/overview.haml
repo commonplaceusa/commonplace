@@ -16,6 +16,12 @@
     %br
     Total Group Posts:
     = @group_post_count
+    %br
+    Total Private Conversations
+    = @messages_count
+    %br
+    Total Private Messages
+    = @messages_and_replies_count
     -#%br
     -#Total Private Messages: 
     -#= @message_count
@@ -31,6 +37,18 @@
     %br
     Incomplete Registrations:
     = @incomplete_registrations.count
+    %br
+    People Receiving Live Emails:
+    = @live_emails
+    %br
+    People Not Receiving Live Emails:
+    = @disabled_live_emails
+    %br
+    People Receiving Daily Digest:
+    = @daily_digest_emails
+    %br
+    People Not Receiving Daily Digest:
+    = @disabled_daily_digest_emails
   .today
     Today's Neighborhood Posts:
     = Post.today.size
