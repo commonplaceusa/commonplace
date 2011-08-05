@@ -48,4 +48,14 @@ class Post < ActiveRecord::Base
     ([self.created_at] + self.replies.map(&:created_at)).max
   end
 
+  define_index do
+    indexes subject, :sortable => true
+    indexes body
+    indexes user(:name), :as => :owner
+
+    has created_at, updated_at
+
+    where sanitize_sql(["published", true])
+  end
+
 end
