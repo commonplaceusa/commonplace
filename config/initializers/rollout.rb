@@ -14,4 +14,9 @@ $rollout.define_group(:fallschurch) do |user|
   user.community.slug == "fallschurch" 
 end
 
+$rollout.define_group(:discount) do |user|
+  user.community.slug == "Vienna" or user.community.slug == "test"
+end
+
 $rollout.activate_group(:facebook_invite, :alpha)
+$rollout.activate_group(:good_neighbor_discount, :discount)
