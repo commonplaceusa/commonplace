@@ -39,7 +39,6 @@ class User < ActiveRecord::Base
   validates_presence_of :neighborhood, :unless => :is_transitional_user
   validates_uniqueness_of :facebook_uid, :allow_nil => true 
 
-  validates_presence_of :password, :on => :update
 
   validates_presence_of  :referral_source, :on => :update, :if => :requires_referral_source
 
