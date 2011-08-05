@@ -6,7 +6,7 @@
       - if params[:community]
         = mail_to current_community.organizer_email, "Questions?  Email #{current_community.organizer_email}"
       - else 
-        = mail_to "Pete@CommonPlaceUSA.com", "Questions?  Email Pete@CommonPlaceUsa.com"
+        = mail_to "FAQ@CommonPlaceUSA.com", "Questions?  Email FAQ@CommonPlaceUsa.com"
       - if params[:community]
         &sdot;
         = link_to "FAQ", faq_path(current_community)
