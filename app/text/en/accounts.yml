@@ -61,8 +61,8 @@ en:
         wall_post_content: I just joined CommonPlace so I can connect with my neighbors. You should sign up too!
       
     facebook_invite:
-        heading: Make Commonplace Better!
-        heading2: Improve Commonplace by inviting people you know.
+        heading: Make CommonPlace Better!
+        heading2: Improve CommonPlace by inviting people you know.
         
         emails_label: "Invite people to join CommonPlace!"
         neighbors_name_label: "Neighbor's Name"
