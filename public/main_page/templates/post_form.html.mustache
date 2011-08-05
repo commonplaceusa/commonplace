@@ -1,4 +1,3 @@
-
 <h2>Say something to your neighbors</h2>
 
   <div class="wrap">
@@ -14,20 +13,19 @@
 
 <li class="string required" id="post_subject_input">
 
-            <label for="post_subject">Title</label>
-              <input id="post_subject" maxlength="255" name="title" size="25" type="text">
+              <input id="post_subject" maxlength="255" name="title" size="25" type="text" placeholder = "Post Title">
 
           </li>
 
           <li class="text required" id="post_body_input">
 
-      <label for="post_body">Body</label>
-      <textarea id="post_body" name="body" rows="5"></textarea>
+      <textarea id="post_body" name="body" rows="5" placeholder = "Your Message" ></textarea>
       <br>
-      <input type="checkbox" name="commercial" id="commercial">Check here if this is publicity for a business or organization.
-
+      <p style="margin-top:5px; margin-bottom:5px;"> Is this publicity relating to a business, organization, or event?</p>
+      <input style="margin-left: 5px" type="radio" name="commercial" id="commercialyes" value = "Yes" onChange="if(document.getElementById('hidden_text').style.display == 'none'){ document.getElementById('hidden_text').style.display = 'block'; }else{ document.getElementById('hidden_text').style.display = 'none'; }"> Yes
+       <input type="radio" name="commercial" id="commercialno" value = "No" onChange="if(document.getElementById('hidden_text').style.display == 'block'){ document.getElementById('hidden_text').style.display = 'none'; }else{ document.getElementById('hidden_text').style.display = 'none'; }"> No
+      <div ID="hidden_text" style="display:none; margin-top:5px; margin-bottom:5px;">Your post is more appropriate as an announcement. We are moving it for you.</div>
     </li>
-
   </ol>
 </fieldset>
 
@@ -36,7 +34,7 @@
   <ol>
 
     <li class="commit">
-      <input class="wymupdate create" id="post_submit" name="commit" src="/images/buttons/post-now.png" type="image" value="Create Post">
+      <input class="wymupdate create" id="post_submit" name="commit" src="/images/buttons/post-now2.png" type="image" value="Create Post">
     </li>
 
   </ol>
