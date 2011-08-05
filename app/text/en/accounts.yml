@@ -1,7 +1,7 @@
 en:
   accounts:
     new:
-      h1: Plug in to the %{community} Community
+      h1: Plug Into the %{community} Community
       li1: CommonPlace is a web platform built for %{community} residents.  It's like an online bulletin board for the %{community} community.
       li2: Sign up to send and receive community announcements written by your neighbors and local leaders here in %{community}.
       li3: CommonPlace is a community service project. Join and help make %{community} an even better place to live.
@@ -12,7 +12,8 @@ en:
       p3: Use CommonPlace whenever you want to get local recommendations, borrow goods from your neighbors, or plan the next big town initiative.
       p4: Before you start, take a moment to fill out your community profile.
       password_hint: "*Required field."
-      
+    crop:
+      h1: Please crop your avatar
     add_feeds:
       h1: Stay in the Loop!
       p1: Community leaders use CommonPlace to share events and announcements with people who live in %{community}.           
