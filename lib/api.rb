@@ -403,8 +403,7 @@ class API < Sinatra::Base
 
   get "/neighborhoods/:id/posts" do |id|
     params.merge!(:limit => 25, :page => 0)
-    neighborhood = Neighborhood.find(id)
-    posts = neighborhood.users.map &:posts
+    posts = Post.includes(:user).where(:users => {:neighborhood_id => id})
 
     last_modified(posts.unscoped.
                   reorder("updated_at DESC").limit(1).first.try(:updated_at))
@@ -412,7 +411,7 @@ class API < Sinatra::Base
     serialize(posts.
               limit(params[:limit]).
               offset(params[:limit].to_i * params[:page].to_i).
-              includes(:user, :replies).to_s)
+              includes(:user, :replies).to_a)
   end
 
   get "/communities/:id/events" do |id|

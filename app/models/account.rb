@@ -53,4 +53,7 @@ class Account
     GroupPost.find_all_by_user_id(@user.id).map &:id
   end
 
+  def neighborhood
+    @user.neighborhood_id
+  end
 end
