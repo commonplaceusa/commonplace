@@ -1,0 +1,41 @@
+college:
+  feeds:
+    account:
+      h1: Welcome! Feeds make it easy for you to send events and announcement to the Mary Washington community. But before you can create a feed, you need to register a personal profile on CommonPlace.
+
+    invites:
+      new:
+        h1: Finally, invite some people to receive your announcements and events.
+        h2: Use CommonPlace to send your announcements and events to everyone on the %{community} CommonPlace network. The more email addresses you add, the more widely your announcements and events (and everyone else's!) will be sent. Invite everyone who your organization cares about.
+        emails_label: "To invite people to join CommonPlace and subscribe to your Feed, type in email addresses, separated by commas:"
+    new:
+      link: Create a Community Feed
+      
+      h1: Create a community feed so that your organization can post events and announcements to everyone on the %{community} CommonPlace.
+    edit:
+      h1: Edit Your Feed
+
+    profile:
+      contact_info:
+        title: Contact Information
+      recent_posts:
+        title: Recent Posts
+      about:
+        title: About Us
+      members:
+        title: Subscribers (%{count})
+      post:
+        title: Post an&#58;
+      post_tabs:
+        - Post Announcement
+        - Post Event
+        - Import Feed
+    preview:
+      name: "Enter your feed's name"
+      about: "Go ahead and describe your feed. Don't be afraid to use some detail. There's space."
+      tag_list: "music, politics, food"
+      website: "http://www.YourWebsite.com"
+      hours: "9:00AM - 1:00PM"
+      phone: "867-5309"
+      address: "0 Bleecker Street"
+    

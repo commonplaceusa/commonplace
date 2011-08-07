@@ -1,0 +1,7 @@
+college:
+  invites:
+    new:
+      h1_html: Invite People on campus <br> to %{community}'s CommonPlace
+      h2: The more people on campus that are on %{community}'s CommonPlace, the better a network it is for everyone!
+      message_label: Feel free to attach a personal message below to encourage people to sign up. You can share stories about how CommonPlace has helped you out.
+      emails_label: Type in email addresses, separated by commas.

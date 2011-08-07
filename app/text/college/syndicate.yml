@@ -1,0 +1,27 @@
+college:
+  syndicate:
+    events:
+      title: Upcoming Events
+      link_html: Campus<br> Events
+    posts:
+      title: Recent Hall Posts
+      link_html: Hall <br>Posts
+    announcements:
+      title: Recent Campus Announcements
+      link_html: Campus<br> Announcements
+    people:
+      title: Your Fellow Students
+    users:
+      link_html: Directory
+    groups:
+      title: Discussion Groups
+    feeds:
+      title: Campus Feeds
+      link_html: Campus <br>Feeds
+    group_posts:
+      link_html: Group <br>Posts
+      title: Discussion Group Posts
+    messages:
+      title: Your Inbox
+
+  

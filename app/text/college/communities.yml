@@ -1,0 +1,9 @@
+college:
+
+  communities:
+    say_something:
+      title: "Say something to your fellow students:"
+    community_profiles:
+      title: "View campus profiles:"
+    whats_happening:
+      title: "Find out what's happening on campus:"

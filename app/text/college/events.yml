@@ -1,0 +1,10 @@
+college:
+  events:
+    new:
+      link_html: Post an <br>Event
+      title: Post an event to the campus community
+    edit: 
+      title: Edit your Event
+      
+    index: 
+      title: Post an event to the campus community
