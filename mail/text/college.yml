@@ -1,0 +1,35 @@
+
+post_notification:
+  intro: Hi {{user_name}}, <br> {{poster_name}} just posted to your neighborhood board on CommonPlace.
+
+welcome: 
+  intro: We are happy to hear you have joined your neighbors on {{community_name}}'s CommonPlace, a new web platform for local community engagement here in {{community_name}}.  {{community_name}}'s CommonPlace is like an online bulletin for people who live in {{community_name}}, designed to make it really easy for you to share requests, offers and other information with your neighbors and to stay up-to-date with what's happening in {{community_name}}.
+
+  list-intro: |
+    Here are some platform features that you might be interested in using to get connected with your community:
+  
+  post-feature-title: Neighborhood Posts
+  post-feature-desc: |
+    Need to borrow a ladder?  Lost a cat?  Looking for a babysitter or an electrician recommendation?  See a downed wire in the neighborhood?  Click "Post to Your Neighborhood" in the red box on the top left of the mainpage to post a message to all your neighbors.  Have a ladder?  Found the cat?  Up for babysitting?  Click on any neighborhood post and a reply box will appear for you to reply directly to your neighbor.
+
+  announcement-feature-title: Community Announcements
+  announcement-feature-desc: |
+    Want to get the word out to everyone in the community about your upcoming canned food drive?  Want to let every parent in town know that you do SAT tutoring or piano lessons?  Click "Publicize a Community Announcement" to get the word out to the community.  Interested in staying in the loop with what's going on in {{community_name}}?  Click on "Community Announcements" to see all the updates that people, businesses, and organizations are sending out to the community.  Like with neighborhood posts, click on any announcement and a reply box will appear for you to reply directly to the person or organization that posted the announcement.
+
+  event-feature-title: Community Events
+  event-feature-desc: |
+    Click on "Community Events" to see everything going on in {{community_name}} in the coming weeks.  Add your own event to the CommonPlace events board anytime by clicking "Post an Event."  Like announcements and neighborhood posts, you can click on any event and reply to it to get in touch with the event coordinator.
+
+  feed-feature-title: Community Feeds
+  feed-feature-desc: |
+    Any organization, business, city service or cause in {{community_name}} can create a "Community Feed" on CommonPlace.  This allows them to send out announcements and events to the community from their organization.  Subscribe to community feeds to be emailed directly when that organization posts an announcement or an event.  If you are the leader of an organization or business in town and want to stream your announcements and events through CommonPlace, consider creating a community feed.
+
+  directory-feature-title: Directory
+  directory-feature-desc: |
+    On {{community_name}}'s CommonPlace, you can see a directory of everyone in town that has signed up for CommonPlace.  Click on any name to see their civic profile and click "Message" in their profile to send a neighbor a private message.
+
+    <p>If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  Also, please email us if you are interested in helping out with signing your neighbors up with CommonPlace. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for neighbors in {{community_name}} to connect, so make sure to tell your neighbors to sign up at <a href="{{root_url}}"><span>{{root_url}}</span></a>.</p>
+
+    <p>Thanks again for joining {{community_name}}'s CommonPlace and thanks for being a great neighbor!</p>
+  
+    <p>Cheers, <br> The {{community_name}} CommonPlace</p>

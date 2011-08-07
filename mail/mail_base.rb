@@ -24,6 +24,14 @@ class MailBase < Mustache
 
   self.template_path = File.dirname(__FILE__) + '/templates'
 
+  def underscored_name
+    MailBase.underscore(self.class.name)
+  end
+
+  def text
+    @text ||= YAML.load_file(File.join(File.dirname(__FILE__), "text", "#{community.locale}.yml"))[self.underscored_name]
+  end
+  
   def self.render(*args, &block)
     if block_given?
       new(*args, &block).render
@@ -33,6 +41,12 @@ class MailBase < Mustache
   end
 
   def community
+  end
+
+  def t
+    lambda do |key|
+      text[key] ? render(text[key]) : key
+    end
   end
   
   def render(*args)
