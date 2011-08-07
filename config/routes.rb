@@ -50,7 +50,7 @@ Commonplace::Application.routes.draw do
     
   resource :account do
     member do 
-      get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :facebook_invite, :profile, :crop
+      get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :profile, :crop
       put :update_new, :update_avatar, :update_interests, :settings, :update_crop
       post :subscribe_to_feeds, :subscribe_to_groups, :avatar
     end
@@ -61,6 +61,13 @@ Commonplace::Application.routes.draw do
   constraints LoggedInConstraint.new(true) do
 
     match 'logout' => 'user_sessions#destroy'
+
+    # Invitations
+    resource :account do
+      member do
+        get :facebook_invite
+      end
+    end
 
     # Community routes 
     
