@@ -1,0 +1,4 @@
+college:
+  authlogic:
+    error_messages:
+      no_authentication_details: "Invalid email or password"
