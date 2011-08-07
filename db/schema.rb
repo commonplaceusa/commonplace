@@ -338,7 +338,6 @@ ActiveRecord::Schema.define(:version => 20110804175412) do
     t.datetime "last_login_at"
     t.boolean  "seen_tour"
     t.boolean  "transitional_user"
-    t.string   "skills_list"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

@@ -72,7 +72,11 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   # HACK HACK HACK TODO: This should be in the database schema, or slugs for college towns should ALWAYS be the domain suffix
-  validates_format_of :email, :with => /^([^\s]+)@mail\.umw\.edu/, :if => proc { current_community.is_college and current_community.slug == "umw"}
+  validates_format_of :email, :with => /^([^\s]+)@mail\.umw\.edu/, :if => :college?
+
+  def college?
+    self.community.is_college
+  end
 
   validates_presence_of :first_name, :last_name
 

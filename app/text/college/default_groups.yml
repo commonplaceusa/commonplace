@@ -1,0 +1,56 @@
+college: 
+  default_groups:
+    - name: Volunteer Opportunities
+      about: Sign up if you are interested in hearing about how you can help out around %{community_name}.
+      avatar: "/images/group-icons/volunteer-opportunities.png"
+      slug: Volunteering
+
+    - name: Social Opportunities
+      about: Subscribe to stay in the loop about get-togethers with others in %{community_name}.
+      avatar: "/images/group-icons/social-opportunities.png"
+      slug: Social
+
+    - name: Music & The Arts
+      about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around %{community_name}.
+      avatar: "/images/group-icons/music-arts.png"
+      slug: MusicAndArts
+
+    - name: Gardening and Home Improvement
+      about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a %{community_name} Martha Stewart? "
+      avatar: "/images/group-icons/gardening-home-improvement.png"
+      slug: HomeAndGarden
+
+    - name: Food & Dining
+      about: Share recommendations and reviews about %{community_name} restaurants!
+      avatar: "/images/group-icons/local-dining.png"
+      slug: Food
+
+    - name: Dogs
+      about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+      avatar: "/images/group-icons/dogs.png"
+      slug: Dogs
+
+    - name: Parents & Families
+      about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in %{community_name}.
+      avatar: "/images/group-icons/parents-families.png"
+      slug: Parents
+
+    - name: New Mothers
+      about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in %{community_name}.
+      avatar: "/images/group-icons/new-mothers.png"
+      slug: Moms
+
+    - name: Sports & Recreation
+      about: Stay in the loop about sports, health, wellness, and recreational activities in %{community_name}.
+      avatar: "/images/group-icons/sports-recreation.png"
+      slug: SportsAndRec
+
+    - name: City Problem Solving and Ideas
+      about: Have a big idea about how to help make %{community_name} better. Join up and get the discussion going!
+      avatar: "/images/group-icons/city-problem-solving.png"
+      slug: City
+
+    - name: Environment
+      about: Get connected with other %{community_name} environmentalists to discuss environmental issues in %{community_name}.
+      avatar: "/images/group-icons/environment.png"
+      slug: Environment
