@@ -416,7 +416,7 @@ class API < Sinatra::Base
     params.merge!(:limit => 25, :page => 0)
     scope = Announcement.where("community_id = ?", id)
     last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
-    serialize(scope.includes(:replies).
+    serialize(scope.includes(:replies, :owner).
                 limit(params[:limit]).
                 reorder("updated_at DESC").
                 offset(params[:limit].to_i * params[:page].to_i).to_a)
