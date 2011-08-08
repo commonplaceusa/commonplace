@@ -265,6 +265,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_admin?
+    (self.is_a? Organizer or self.admin)
+  end
+
   private
   def reprocess_avatar
     avatar.reprocess!

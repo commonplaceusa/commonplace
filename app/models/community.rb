@@ -9,6 +9,7 @@ class Community < ActiveRecord::Base
            :include => [:replies])
 
   has_many :users, :order => "last_name, first_name"
+  has_many :organizers
 
   has_many :groups
 
@@ -133,6 +134,22 @@ class Community < ActiveRecord::Base
       items.push(self.private_messages.select { |m| m.created_at >= day.days.ago.beginning_of_day and m.created_at <= day.days.ago.end_of_day } )
     end
     items.reverse
+  end
+
+  def organizer_name
+    self.organizers.first.full_name
+  end
+
+  def organizer_email
+    self.organizers.first.email
+  end
+
+  def organizer_avatar_file_name
+    self.organizers.first.avatar
+  end
+
+  def organizer_about
+    self.organizers.first.about
   end
 
   def to_param
