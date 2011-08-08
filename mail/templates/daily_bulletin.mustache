@@ -63,7 +63,7 @@
                                 <tbody>
                                   <tr>
                                     <td valign="top" class="section-header">
-                                      <h2>Recent Neighborhood Posts</h2>
+                                      <h2>{{#t}}posts-section-title{{/t}}</h2>
                                     </td>
                                   </tr>
 
@@ -175,7 +175,7 @@
                                 <tbody>
                                   <tr>
                                     <td valign="top" class="section-header">
-                                      <h2>Upcoming Community Events</h2>
+                                      <h2>{{#t}}events-section-title{{/t}}</h2>
                                     </td>
                                   </tr>
 
@@ -300,7 +300,7 @@
                                 <tbody>
                                   <tr>
                                     <td valign="top" class="section-header">
-                                      <h2>Recent Community Announcements</h2>
+                                      <h2>{{#t}}announcements-section-title{{/t}}</h2>
                                     </td>
                                   </tr>
 
@@ -423,8 +423,8 @@
                                           <td valign="top" width="122" style="padding: 0; text-align:left;">
 
 
-                                            <h4><a href="{{new_invites_url}}">Invite your Neighbors!</a></h4>
-                                            <p>Know anyone in {{community_name}} <em>not</em> on CommonPlace?</p>
+                                            <h4><a href="{{new_invites_url}}">{{#t}}invite-action-title{{/t}}</a></h4>
+                                            <p>{{#t}}invite-action-body{{/t}}</p>
                                             <a href="{{new_invites_url}}">
                                               <img alt="Invite Them Now" src="{{invite_them_now_button_url}}">
                                             </a>
@@ -440,8 +440,8 @@
                                       <tbody>
                                         <tr>
                                           <td valign="top" width="122" style="padding: 0; text-align:left;">
-                                            <h4><a href="{{new_post_url}}">Post to Your Neighborhood</a></h4>
-                                            <p>Need to borrow a ladder? Lost a cat? Offering up vegetables from your garden? Share it with your neighbors!</p>
+                                            <h4><a href="{{new_post_url}}">{{#t}}post-action-title{{/t}}</a></h4>
+                                            <p>{{#t}}post-action-body{{/t}}</p>
 
                                             <a href="{{new_post_url}}" class="post-now"><span>POST NOW</span></a>
                                           </td>
@@ -456,8 +456,8 @@
                                       <tbody>
                                         <tr>
                                           <td valign="top" width="122" style="padding: 0; text-align:left;">
-                                            <h4><a href="{{new_group_post_url}}">Post to a Discussion Group</a></h4>
-                                            <p>Need to get in touch with other {{community_name}} dog owners?  Have an opinion on a local environmental issue?  Get the town discussion group conversations going!</p>
+                                            <h4><a href="{{new_group_post_url}}">{{#t}}group-post-action-title{{/t}}</a></h4>
+                                            <p>{{#t}}group-post-action-body{{/t}}</p>
 
                                             <a href="{{new_group_post_url}}" class="post-now"><span>POST NOW</span></a>
 
@@ -473,8 +473,8 @@
                                       <tbody>
                                         <tr>
                                           <td valign="top" width="122" style="padding: 0; text-align:left;">
-                                            <h4><a href="{{new_event_url}}">Post an Event</a></h4>
-                                            <p>Does your community organization have an event coming up?  Publicize it on {{community_name}}'s CommonPlace!</p>
+                                            <h4><a href="{{new_event_url}}">{{#t}}event-action-title{{/t}}</a></h4>
+                                            <p>{{#t}}event-action-body{{/t}}</p>
 
                                             <a href="{{new_event_url}}" class="post-now"><span>POST NOW</span></a>
                                           </td>
@@ -489,8 +489,8 @@
                                       <tbody>
                                         <tr>
                                           <td valign="top" width="122" style="padding: 0; text-align:left;">
-                                            <h4><a href="{{new_announcement_url}}">Publicize an Announcement</a></h4>
-                                            <p>Does your business have a new promotion?  Is your civic organization running a volunteer drive? Get the word out in tomorrow's Daily Bulletin!</p>
+                                            <h4><a href="{{new_announcement_url}}">{{#t}}announce-action-title{{/t}}</a></h4>
+                                            <p>{{#t}}announce-action-body{{/t}}</p>
                                             <a href="{{new_announcement_url}}" class="post-now"><span>POST NOW</span></a>
                                           </td>
                                         </tr>
@@ -504,8 +504,8 @@
                                       <tbody>
                                         <tr>
                                           <td valign="top" width="122" style="padding: 0; text-align:left;">
-                                            <h4><a href="{{new_feed_url}}">Register a Community Feed</a></h4>
-                                            <p>Are you part of a community organization, business, municipal agency or cause that wants to send announcements and events through {{community_name}}'s CommonPlace?</p>
+                                            <h4><a href="{{new_feed_url}}">{{#t}}new-feed-action-title{{/t}}</a></h4>
+                                            <p>{{#t}}new-feed-action-body{{/t}}</p>
                                             <a href="{{new_feed_url}}" class="post-now"><span>CREATE A FEED</span></a>
                                           </td>
                                         </tr>
@@ -532,15 +532,15 @@
 
           <td id="footer">
             <div class="posting-links">
-              <a href="{{new_post_url}}">Post to Your Neighborhood</a>
+              <a href="{{new_post_url}}">{{#t}}post-action-title{{/t}}</a>
 
               <span class="separator">&middot;</span>
 
-              <a href="{{new_announcement_url}}">Post an Announcement</a>
+              <a href="{{new_announcement_url}}">{{#t}}announce-action-title{{/t}}</a>
 
               <span class="separator">&middot;</span>
 
-              <a href="{{new_event_url}}">Post an Event</a>
+              <a href="{{new_event_url}}">{{#t}}event-action-title{{/t}}</a>
             </div>
 
             <div class="settings">
