@@ -1,19 +1,18 @@
 %header
-
   - if user_session.new_session?
-
-    %ul{:id=>"user_sign_in"}
-      %li Have an Account?
-      %li{:id=>"sign_in_button", :class=>"remove_border"} Sign in
-      %li{:id=>"sign_in_form"}
-        = render 'user_sessions/form', :user_session => user_session
-    - if params[:community]
-      = link_to "/#{params[:community]}", :id => "logo" do
-        = image_tag "logo.png"
-        %span.community= current_community.name
-    - else
-      = link_to "/", :id => "logo" do
-        = image_tag "logo.png"
+    #nav_wrapper  
+      %ul{:id=>"user_sign_in"}
+        %li Have an Account?
+        %li{:id=>"sign_in_button", :class=>"remove_border"} Sign in
+        %li{:id=>"sign_in_form"}
+          = render 'user_sessions/form', :user_session => user_session
+      - if params[:community]
+        = link_to "/#{params[:community]}", :id => "logo" do
+          = image_tag "logo2.png"
+          %span.community= current_community.name
+      - else
+        = link_to "/", :id => "logo" do
+          = image_tag "logo2.png"
   - else
     #nav_wrapper  
       %nav
