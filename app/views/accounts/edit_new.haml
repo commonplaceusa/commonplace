@@ -30,7 +30,7 @@
         = f.input :about
         = f.input :interest_list
         = f.input :offer_list
-        = f.input :referral_source
+        = f.input :referral_source, :as => :select, :collection => @referral_sources
         
       = f.buttons do
         = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue2.png"}
