@@ -1,5 +1,12 @@
 = javascript_include_tag "jquery-1.6.1", "highcharts", "date"
 .community{:width => "100%", :style => "border:1px solid black;"}
+  - if Rails.env.production?
+    %h2 App Statistics
+    .app
+      %iframe{:src => "https://heroku.newrelic.com/public/charts/5cuXYFk5Y5G", :width => 500, :height => 300, :scrolling => "no", :frameborder => "no"}
+      %iframe{:src => "https://heroku.newrelic.com/public/charts/kEvDBPRSEe5", :width => 500, :height => 300, :scrolling => "no", :frameborder => "no"}
+      %iframe{:src => "https://heroku.newrelic.com/public/charts/7Ygqo8txgwU", :width => 500, :height => 300, :scrolling => "no", :frameborder => "no"}
+
   %h2 Totals
   .totals
     Total Users: 
