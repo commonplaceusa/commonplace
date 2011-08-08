@@ -9,7 +9,9 @@ class Community < ActiveRecord::Base
            :include => [:replies])
 
   has_many :users, :order => "last_name, first_name"
-  has_many :organizers
+  def organizers
+    self.users.select { |u| u.admin }
+  end
 
   has_many :groups
 

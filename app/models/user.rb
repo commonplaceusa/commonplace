@@ -23,7 +23,11 @@ class User < ActiveRecord::Base
 
   belongs_to :community
   belongs_to :neighborhood  
-  
+
+  def organizer_data_points
+    OrganizerDataPoint.find_all_by_organizer_id(self.id)
+  end
+
   before_validation :geocode, :if => :address_changed?
   before_validation :place_in_neighborhood, :if => :address_changed?
 
@@ -263,10 +267,6 @@ class User < ActiveRecord::Base
     else
       address + ", #{self.community.name}"
     end
-  end
-
-  def is_admin?
-    (self.is_a? Organizer or self.admin)
   end
 
   private
