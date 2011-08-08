@@ -10,11 +10,37 @@
   greenIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"
   greenMarkerOptions = { icon: greenIcon };
 
+  var redIcon = new GIcon(G_DEFAULT_ICON);
+  redIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png"
+  redMarkerOptions = { icon: redIcon };
+
+  var yellowIcon = new GIcon(G_DEFAULT_ICON);
+  yellowIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/yellow-dot.png";
+  yellowMarkerOptions = { icon: yellowIcon };
+
+  var orangeIcon = new GIcon(G_DEFAULT_ICON);
+  orangeIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png";
+  orangeMarkerOptions = { icon: orangeIcon };
+
+  var blueIcon = new GIcon(G_DEFAULT_ICON);
+  blueIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
+  blueMarkerOptions = { icon: blueIcon };
+
   - current_community.users.select{ |u| u.latitude.present? and u.longitude.present? }.each do |user|
     = "map.addOverlay(new GMarker(new GLatLng(#{user.latitude}, #{user.longitude}), greenMarkerOptions));"
+  - @data_points.each do |p|
+    = "console.log('Got data point with status #{p.status} at address #{p.address}');"
+    - if p.status == "dropped"
+      = "geocoder.getLatLng('#{p.address} #{@center_zip_code}', function(point) { map.addOverlay(new GMarker(point, yellowMarkerOptions)); });"
+    - if p.status == "knocked"
+      = "geocoder.getLatLng('#{p.address} #{@center_zip_code}', function(point) { map.addOverlay(new GMarker(point, orangeMarkerOptions)); });"
+    - if p.status == "post_knocked_1"
+      = "geocoder.getLatLng('#{p.address} #{@center_zip_code}', function(point) { map.addOverlay(new GMarker(point, blueMarkerOptions)); });"
+    - if p.status == "no"
+      = "geocoder.getLatLng('#{p.address} #{@center_zip_code}', function(point) { map.addOverlay(new GMarker(point, redMarkerOptions)); });"
   }
   }
   $(document).ready(initialize);
-#map_canvas{:style => "width: 800px; height: 700px"}
+#map_canvas{:style => "width: 1024px; height: 700px"}
 
 
