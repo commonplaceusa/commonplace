@@ -19,6 +19,9 @@ gem 'thin'
 gem 'dalli'
 gem 'heroku'
 
+# Deployment Infrastructure
+gem 'jslint_on_rails', :require => false
+
 # Database3
 gem 'redis'
 gem 'redis-namespace', :require => false
@@ -83,6 +86,7 @@ gem 'hirefireapp'
 # Features/Monitoring
 gem 'exceptional'
 gem 'rollout'
+gem 'newrelic_rpm'
 
 # Tracking events
 #gem 'acts-as-trackable', :git => 'git@github.com:Jberlinsky/Acts-As-Trackable.git'
@@ -97,7 +101,6 @@ group :development, :test do
   gem 'capistrano-ext'
   gem 'mongrel', '>= 1.2.0.pre2'
   gem 'ruby-prof'
-  gem 'newrelic_rpm'
   gem 'hoe', '2.9.0'
   gem 'thor'
   gem 'foreman'
