@@ -1,6 +1,6 @@
 - if Rails.env.production?
   %script
-    = "mpmetricsEnsureInit(mpmetrics.track('Community Registration Page', {'community': '#{current_community.slug}'}));"
+    = "mpmetrics.track('Community Registration Page', {'community': '#{current_community.slug}'});"
 
 %script
   $(function(){$('input[placeholder], textarea[placeholder]').placeholder();});

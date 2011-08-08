@@ -10,17 +10,6 @@ function fbEnsureInit(callback) {
     }
 }
 
-function mpmetricsEnsureInit(callback) {
-    if(!mpmetrics || mpmetrics == undefined) {
-        setTimeout(function() {mpmetricsEnsureInit(callback);}, 50);
-    } else {
-        if(callback) {
-            callback();
-        }
-    }
-}
-
-
 function facebook_pass(session) {
     return session.uid;
 }
