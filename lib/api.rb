@@ -388,6 +388,11 @@ class API < Sinatra::Base
     [200, ""]
   end
   
+  get "/communities/:id/addresses" do |id|
+    community = Community.find(id)
+    serialize(community.users.map &:address)
+  end
+
   get "/communities/:id/posts" do |id|
     params.merge!(:limit => 25, :page => 0)
     community = Community.find(id)

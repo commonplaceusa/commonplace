@@ -93,6 +93,12 @@ Commonplace::Application.routes.draw do
       end
     end
 
+    resources :organizer do
+      collection do
+        get :map
+      end
+    end
+
     
     root :to => "communities#show"
   end

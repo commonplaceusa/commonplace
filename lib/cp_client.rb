@@ -42,6 +42,10 @@ class CPClient
     get("/users/#{id}")
   end
 
+  def addresses_for_community(community, options = {})
+    get("/communities/#{community.id}/addresses", options)
+  end
+
   private
 
   def connection
