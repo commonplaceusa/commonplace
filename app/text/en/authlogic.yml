@@ -1,4 +1,14 @@
 en:
   authlogic:
     error_messages:
-      no_authentication_details: "Invalid email or password"
+      login_blank: Please enter your email address.
+      login_not_found: The email address you entered is not valid.
+      login_invalid: The email address you entered should use only letters, numbers, spaces, and .-_@
+      consecutive_failed_logins_limit_exceeded: You have reached your login limit, your account is temporarily disabled.
+      email_invalid: The email address you entered is not valid.
+      password_blank: Please enter your password.
+      password_invalid: The password you entered is not valid.
+      not_active: Your account is not active.
+      not_confirmed: Your account is not confirmed.
+      not_approved: Your account is not approved.
+      no_authentication_details: Please enter your email and password.
