@@ -122,7 +122,7 @@ class AccountsController < ApplicationController
         redirect_to :action => "crop"
       end
     else
-      render :edit_new
+      redirect_to :edit_new
     end
   end
 
