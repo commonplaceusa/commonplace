@@ -3,6 +3,9 @@ module Serializer
     as_json = 
       case o
         
+      when String
+        o
+
       when Array
         o.map {|t| serialize t }
         
