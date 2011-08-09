@@ -449,7 +449,7 @@ class API < Sinatra::Base
   get "/communities/:id/users" do |id|
     scope = Community.find(id).users
     last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
-    serialize(scope.to_a)
+    serialize(scope.includes(:feeds, :groups).to_a)
   end
 
   get "/users/:id" do |id|
