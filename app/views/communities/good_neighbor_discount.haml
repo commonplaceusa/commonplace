@@ -1,0 +1,38 @@
+#planewrapper
+  #plane
+    %h1
+      = t(".htitle")
+      %br
+    %h2
+      = t(".title")
+
+#gbox
+  %h1
+    = t(".card_msg")
+          
+#card_box
+  %img{:src => "/images/cards/#{current_community.slug.downcase}.png", :alt => "Community Card"}
+    
+#gbox
+  %h1
+    = t(".business_msg")
+
+#businessinformation
+  %table
+    %tr{:id=>"tablerow1"}
+      %td{:id=>"tablecol1"}
+        %ul{:id=>"infolist1"}
+          %li= t(".1li1")
+          %li= t(".1li2")
+          %li= t(".1li3")
+          %li= t(".1li4")
+      %td{:id=>"tablecol2"}
+        %ul{:id=>"infolist2"}
+          %li= t(".2li1")
+          %li= t(".2li2")
+          %li= t(".2li3")
+          %li= t(".2li4")
+          
+#footerinfo
+  %h3
+    = t(".foot_msg")

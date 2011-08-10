@@ -2,21 +2,53 @@
 body.application.accounts.new, body.application.accounts.create, body.application.accounts.gatekeeper
   background-repeat: repeat-x
   position: relative
+  p.inline-hints
+    display:none
+  a img
+    border-style none 
   h1
-    a
-      text-decoration: none
-      font-size: 24px
-      color: #b53f3c
-  
+    font-size: 49px
+    color: #1b334a
+    padding: 18px 0px 18px
+    font-weight: bold
   header
     position: relative
-
-  html
+  #wrapper
+    width: 976px
+    margin: 0px auto
+      
+  #registration_information
+    float: left
+    margin-left: 58px
+    margin-right: 40px
+    width: 370px
     position: relative
+    
+    li 
+      +inline-block
+      +starBullet
+      font-size: 16px
+      padding-left: 35px
 
+  #learnmore
+    position: relative
+    left: 210px
+  #link_item
+    padding-left: 32px
+    margin: 5px 3px 5px 0px
+    +inline-block
+    font-size: 15px
+    a
+      text-decoration: none
+      color: #ac322f
+  
   #main
-    width: 590px
+    width: 410px
+    margin-right: 75px
     position: relative
+    float: left
+    margin-bottom: 50px
+    
     #create-a-feed
       position: absolute
       right: -180px
@@ -44,17 +76,36 @@ body.application.accounts.new, body.application.accounts.create, body.applicatio
       
     form
       position: relative
-      margin: 40px auto 40px
-      +lightbox
-      width: 480px
+      margin: 0px auto 10px
+      +redlightbox
+      padding-left: 35px
+      width: 380px
       z-index: 2
+      #bottomregister
+        vertical-align: text-bottom
       h3
-        text-align: center
-        font-size: 20px
-        color: #525252
+        text-align: right
+        float: right
+        font-size: 15px
+        color: #CCCCCC
+        display:inline
+        position:relative
+        float:right
+        margin-top: 3px
+        padding-left: 5px
+        word-spacing: 3px
+        vertical-align: text-bottom
       h4
-        text-align: center
-        margin-top: 10px
+        text-align: left
+        float:left
+        margin-top: 7px
+        color: #FFFFFF
+        font-weight: bold
+        font-size: 20px
+        text-shadow: #000000 2px 2px 2px
+        padding-bottom: 4px
+        letter-spacing: 1px
+        word-spaciing: 2px
       #invisible-button-to-prevent-accidental-facebook-registration-on-pressing-enter
         position: absolute
         left: -10000px
@@ -67,65 +118,45 @@ body.application.accounts.new, body.application.accounts.create, body.applicatio
         +box-shadow(inset 0px -1px 2px #335170, inset 0px 1px 0px #5883AD, 1px 1px 2px #999)
         font-family: Rockwell, Georgia, serif
         +text-shadow(#212121, 1px, 1px, 0px)
-        
-        
 
       #fb-wrapper
-        width: 402px
-        margin: 0 auto
-        text-align: right
+        width: 370px
+        text-align: center
       fieldset.inputs
-        margin-top: 10px
+        margin-bottom: 10px
         li
-      
-          list-style-position: outside
-          background-repeat: no-repeat
-          background-position: 20px 0px
-          margin: 5px auto
+          margin: 5px 0px
           width: 360px
-          padding: 0 0px 0 50px
-          min-height: 60px
-
           label
-            display: block
-            margin: 5px 0
+            display: none
             color: #898989
           input
             +border-radius(5px)
             +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
             border: 1px solid #ccc
             padding: 0px 5px
-            font-size: 22px
-            width: 348px
+            font-size: 18px
+            font-weight: 300
+            width: 354px
             display: block
             +serif
-         
-        li#user_address_input
-          background: url('/images/step-3-icon-small.png') 0px 14px no-repeat
-          p.inline-hints
-            float: left
-            font-size: 11px
-            font-weight: bold
-            +sans
-            line-height: 1.4
-            color: #aaa
-            width: 225px
-            margin-bottom: -100px 
-            text-align: left
-            a
-              color: #B53F3C
-        li#user_full_name_input
-          background: url('/images/step-1-icon-small.png') no-repeat  0px 14px
-        li#user_email_input
-          background: url('/images/step-2-icon-small.png') no-repeat  0px 14px
-        
+            margin-top: 20px
 
       fieldset.buttons
         margin-left: auto
-        margin-right: 0
+        margin-right: auto
+
         #user_submit
-          height: 35px
-          width: 90px 
+          margin-top: 5px
+          width: 366px 
+          
+      .inline-errors
+        width: 360px
+        margin: 0px 0px 0px 0px
+        padding: 0px
+        text-align: right
+        font-size: 11px
+        color: #FFFFFF
 
   .faq-link
     margin: 30px auto
@@ -180,8 +211,6 @@ body.application.accounts.new, body.application.accounts.create, body.applicatio
 
     img
       margin: 5px 0px 5px 30px
-
-
 
   #bubble-1, #bubble-2
     display: none

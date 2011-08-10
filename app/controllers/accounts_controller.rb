@@ -99,6 +99,18 @@ class AccountsController < ApplicationController
   end
 
   def edit_new
+    @referral_sources = [
+      "Flyer at my door",
+      "Someone knocked on my door",
+      "In a meeting with #{current_community.organizer_name}",
+      "At a table or booth at an event",
+      "In an email",
+      "On Facebook or Twitter",
+      "On another website",
+      "In the news",
+      "Word of mouth",
+      "Other"
+    ]
   end
 
   def update_new
@@ -111,7 +123,7 @@ class AccountsController < ApplicationController
         redirect_to :action => "crop"
       end
     else
-      render :edit_new
+      redirect_to :action => :edit_new
     end
   end
 

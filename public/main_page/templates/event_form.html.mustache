@@ -22,16 +22,13 @@
   </li>
 
   <li class="string required" id="event_name_input">
-    <label for="event_name">Event name:</label>
-
-    <input id="event_name" maxlength="255" name="event[name]" size="25" type="text"></li>
+    <input id="event_name" maxlength="255" name="event[name]" size="25" type="text" placeholder = "Event name"></li>
 
     <li class="text required" id="event_description_input">
-      <label for="event_description">Event description:</label>
-      <textarea cols="21" id="event_description" name="event[description]" rows="5"></textarea></li>
+      <textarea cols="21" id="event_description" name="event[description]" rows="5" placeholder = "Event description"></textarea></li>
 
       <li class="string required" id="event_date_input">
-      <label for="event_date">Date</label><input class="date" id="event_date" name="event[date]" size="25" type="text" autocomplete="off"></li>
+      <input class="date" id="event_date" name="event[date]" size="25" type="text" autocomplete="off" placeholder = "Event date"></li>
   <li class="select required" id="event_start_time_input"><label for="event_start_time">Start time</label><select id="event_start_time" name="event[start_time]"><option value="05:00 AM">05:00 AM</option>
   <option value="05:30 AM">05:30 AM</option>
   <option value="06:00 AM">06:00 AM</option>
@@ -128,18 +125,11 @@
   <option value="03:30 AM">03:30 AM</option>
   <option value="04:00 AM">04:00 AM</option>
   <option value="04:30 AM">04:30 AM</option></select></li>
-  <li class="string optional" id="event_venue_input"><label for="event_venue">Venue</label><input id="event_venue" maxlength="255" name="event[venue]" size="25" type="text"></li>
-  <li class="string optional" id="event_address_input"><label for="event_address">Address</label><input id="event_address" maxlength="255" name="event[address]" size="25" type="text"></li>
-  <li class="string optional" id="event_tag_list_input"><label for="event_tag_list">Tag list</label><input id="event_tag_list" name="event[tag_list]" size="25" type="text"></li>
-  </ol></fieldset><fieldset>
-    <ol>
-      <li class="check_boxes">
-        <label for="event_pledge">I pledge that this is a public, face-to-face event.</label>
-        <input name="event[pledge]" type="hidden" value="0"><input id="event_pledge" label="I pledge..." name="event[pledge]" type="checkbox" value="1">
-      </li>
-    </ol>
-  </fieldset>
-  <fieldset class="buttons"><ol><li class="commit"><input class="create" id="event_submit" name="commit" src="/images/buttons/post-now.png" type="image" value="Create Event"></li>
+  <li class="string optional" id="event_venue_input"><input id="event_venue" maxlength="255" name="event[venue]" size="25" type="text" placeholder = "Venue"></li>
+  <li class="string optional" id="event_address_input"><input id="event_address" maxlength="255" name="event[address]" size="25" type="text" placeholder = "Event address"></li>
+  <li class="string optional" id="event_tag_list_input"><input id="event_tag_list" name="event[tag_list]" size="25" type="text"placeholder = "Tag list"></li>
+  </ol></fieldset>
+  <fieldset class="buttons"><ol><li class="commit"><input class="create" id="event_submit" name="commit" src="/images/buttons/post-now2.png" type="image" value="Create Event"></li>
   </ol></fieldset></form>
 
 </div>
