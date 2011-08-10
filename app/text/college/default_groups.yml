@@ -1,4 +1,4 @@
-college: 
+en: 
   default_groups:
     - name: Volunteer Opportunities
       about: Sign up if you are interested in hearing about how you can help out around %{community_name}.

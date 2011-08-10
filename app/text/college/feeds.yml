@@ -1,7 +1,7 @@
-college:
+en:
   feeds:
     account:
-      h1: Welcome! Feeds make it easy for you to send events and announcement to the Mary Washington community. But before you can create a feed, you need to register a personal profile on CommonPlace.
+      h1: Welcome! Feeds make it easy for you to send events and announcement to the people who live in Falls Church. But before you can create a feed, you need to register a personal profile on CommonPlace.
 
     invites:
       new:
@@ -11,7 +11,7 @@ college:
     new:
       link: Create a Community Feed
       
-      h1: Create a community feed so that your organization can post events and announcements to everyone on the %{community} CommonPlace.
+      h1: Create a community feed so that your organization can post events and announcements to everyone on CommonPlace.
     edit:
       h1: Edit Your Feed
 

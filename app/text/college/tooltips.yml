@@ -1,8 +1,8 @@
-college:
+en:
   tooltips:
-    posts: View announcements, offers, and needs from your fellow students
-    events: View upcoming events on campus
-    announcements: View campus announcements from organizations in your area
-    people: Find fellow students and organization leaders on campus
-    feeds: View Campus Announcement Feeds
-    goods_and_skills: View Campus Directory
+    posts: View announcements, offers, and needs from your neighbors
+    events: View upcoming events in your community
+    announcements: View community announcements from organizations in your area
+    people: Find neighbors and civic leaders in your community
+    feeds: View Community Announcement Feeds
+    goods_and_skills: View Community Directory

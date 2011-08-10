@@ -1,0 +1,16 @@
+en:
+  users:
+    preview:
+      about: "Go ahead and describe yourself to your neighbors"
+      interest_list: "Reading, Community Engagement, Bicycling"
+      offer_list: "Lawnmower, Bikes, Word Processing"
+  
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: A password is required
+
