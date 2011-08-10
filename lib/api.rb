@@ -1,4 +1,13 @@
 class API < Sinatra::Base
+
+
+# we're in development, force preloading of models
+if Rails.env.development? 
+  Dir.glob(Rails.root.join("app","models","*.rb")).each do |f|
+    require(f)
+  end
+end
+
   
   helpers do
     
