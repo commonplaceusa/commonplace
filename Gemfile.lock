@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/commonplaceusa/kumade.git
-  revision: cca1650799114c397681e6c0e612c6524e7f580b
+  revision: b26cd4404a7f74a46791af30af6cdea09b95d937
   specs:
-    kumade (0.1.0)
+    kumade (0.1.2)
       heroku
       thor (~> 0.14)
 
@@ -467,7 +467,7 @@ DEPENDENCIES
   jammit
   jslint_on_rails
   json
-  kumade!
+  kumade (>= 0.1.1)!
   launchy
   mail
   mcbean
