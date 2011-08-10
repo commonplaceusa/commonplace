@@ -1,12 +1,16 @@
 - if Rails.env.production?
   %script
+    mpmetrics.register({'referral_source': "#{current_user.referral_source ? current_user.referral_source.gsub('\'','') : ''}"});
+    mpmetrics.register({'referral_metadata': "#{current_user.referral_metadata ? current_user.referral_metadata.gsub('\'', '') : ''}"});
     = "mpmetrics.track('Add feeds', {'community': '#{current_community.slug}'});"
 
-#feeds_box
-  #tool_tip
-    %h2 Stay in the loop!
-    %p= t ".p1"
-  #feeds_wrapper
+#wrapper
+  %h1= t(".h1").html_safe
+  #registration_information
+    %ul
+      %li= t ".p1"
+      %li= t ".p2"
+  #main
     %h2
       Subscribe to some community feeds:
     - form_tag "/account/subscribe_to_feeds", :id => "add_groups" do
@@ -17,7 +21,7 @@
             .unchecked
             %h3= feed.name
             %input{:class =>"feedId", :name => "feed_ids[]", :value => feed.id.to_s, :type =>"checkbox"}
-      %input{:type => "image", :src => "/images/buttons/continue.png"}
+      %input{:type => "image", :src => "/images/buttons/continue2.png"}
 
     %br{:class=>"cleared"}
 

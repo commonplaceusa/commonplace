@@ -10,7 +10,6 @@ function fbEnsureInit(callback) {
     }
 }
 
-
 function facebook_pass(session) {
     return session.uid;
 }

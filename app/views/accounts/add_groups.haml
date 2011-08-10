@@ -1,12 +1,15 @@
 - if Rails.env.production?
   %script
     = "mpmetrics.track('Add groups', {'community': '#{current_community.slug}'});"
-
-#groups_box
-  #tool_tip
-    %h2 Get connected with neighbors who share your interests!
-    %p= t ".p1"
-  #groups_wrapper
+    
+#wrapper
+  %h1= t(".h1").html_safe
+  #registration_information
+    %ul
+      %li= t ".p1"
+      %li= t ".p2"
+      %li= t ".p3"
+  #main
     %h2
       Subscribe to some groups:
     - form_tag "/account/subscribe_to_groups", :id => "add_groups" do
@@ -18,7 +21,7 @@
             %h3= group.name
             %p= group.about
             %input{:class =>"groupId", :name => "group_ids[]", :value => group.id.to_s, :type =>"checkbox"}
-      %input{:type => "image", :src => "/images/buttons/continue.png"}
+      %input{:type => "image", :src => "/images/buttons/continue2.png"}
 
     %br{:class=>"cleared"}
 
