@@ -2,6 +2,14 @@
 %script{:type => "text/javascript"}
   function initialize() {
   if (GBrowserIsCompatible()) {
+  function createMarker(point, html, colorOptions) {
+
+  var marker = new GMarker(point, colorOptions);
+  GEvent.addListener(marker, "click", function() {
+  marker.openInfoWindowHtml(html);
+  });
+  return marker;
+  }
   var map = new GMap2(document.getElementById("map_canvas"));
   map.enableContinuousZoom();
   map.enableGoogleBar();
@@ -33,7 +41,9 @@
   blueMarkerOptions = { icon: blueIcon };
 
   - current_community.users.select{ |u| u.latitude.present? and u.longitude.present? }.each do |user|
-    = "map.addOverlay(new GMarker(new GLatLng(#{user.latitude}, #{user.longitude}), greenMarkerOptions));"
+    = "var point = new GLatLng('#{user.latitude}', '#{user.longitude}');"
+    = "var marker = createMarker(point, '#{user.full_name.gsub('\'','')}', greenMarkerOptions);"
+    map.addOverlay(marker);
   - @data_points.each do |p|
     = "console.log('Got data point with status #{p.status} at address #{p.address}');"
     - if p.status == "dropped"
@@ -43,7 +53,6 @@
     - if p.status == "post_knocked_1"
       = "geocoder.getLatLng('#{p.address} #{@center_zip_code}', function(point) { map.addOverlay(new GMarker(point, blueMarkerOptions)); });"
     - if p.status == "no"
-      console.log("Got impossibility");
       = "geocoder.getLatLng('#{p.address} #{@center_zip_code}', function(point) { map.addOverlay(new GMarker(point, redMarkerOptions)); });"
   }
   }
