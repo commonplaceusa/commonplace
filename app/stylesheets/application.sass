@@ -8,6 +8,7 @@
 @import date_picker
 @import profile_fields
 @import accounts
+@import communities
 @import site_info
 @import edit_new
 @import admin_bar
@@ -151,11 +152,11 @@ body.application.logged_out
   +serif
 
   header
-    margin: 20px auto 30px
-    width: 970px
-    background: none
-    border: none
-
+    text-align: center
+    background: #1b334a
+    border-bottom: 4px solid #fff
+    height: 31px
+    width: 100%
     #logo
       margin-top: 10px
       text-decoration: none
@@ -169,9 +170,12 @@ body.application.logged_out
         position: relative
         bottom: 4px
       img
-        vertical-align: bottom
-        
-
+        vertical-align: bottom 
+              
+    #nav_wrapper
+      margin: 0px auto 20px
+      width: 976px
+      text-align: left
     nav
       padding: 8px 0 12px 0 
       float: right
@@ -246,18 +250,22 @@ body.application.logged_out
             display: block
     #user_sign_in
       float: right
-      margin-top: 10px
-      position: relative
-
+      position: relative 
+      margin-top: 2px
       li 
         margin: 0 5px
         +inline-block
-        color: #545454
+        color: #BCD5EC
+        font-size: 13px
+        font-weight: 300
+        
       #sign_in_button
-        background: url(/images/nav-down-arrow.png) no-repeat 95% 40% #fff
-        padding: 0px 20px 3px 5px
-        line-height: 18px
+        background: url(/images/nav-down-arrow.png) no-repeat 95% 40% #e0e0e0
+        padding: 2px 27px 3px 10px
+        line-height: 22px
         position: relative
+        color: #1B334A
+        font-size: 13px
         z-index: 100
         cursor: pointer
         border: 1px solid #ccc
@@ -268,7 +276,7 @@ body.application.logged_out
       #sign_in_form
         position: absolute
         right: -1px
-        top: 3px
+        top: 15px
     
     form.user_session
       position: absolute
@@ -279,20 +287,21 @@ body.application.logged_out
       background: #fff
       border: 1px solid #ccc
       +border-radius(5px 0px 5px 5px)
+      padding: 10px 5px 10px 15px
       display: none
       .inputs, .buttons
         +inline-block
         li 
-          margin: 0
+          margin: 0px 0px 0px 10px
           display: block
           width: 180px
-          padding:  2px 10px
-          text-align: right
+          padding:  2px 0px 5px 0px
+          text-align: center
           
           label
             display: block
             padding: 4px 2px
-            color: #b3b3b3
+            color: #1b334a
             +sans
             text-align: left
             font-weight: bold
@@ -307,42 +316,45 @@ body.application.logged_out
             +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
             margin: 0
             border: 1px solid #ddd  
-        
-      .buttons
+      #facebook
+        padding-top: 5px
+        +inline-block 
+        float: left 
+        margin-left: 58px
+        margin-top: 2px
+      fieldset.buttons
         margin-top: 3px
-        .commit:first-child
+        .commit
           float: right
           width: 60px
-        li:last-child
-          padding-top: 5px
-        .commit
-          submit
-            vertical-align: middle
-            padding-bottom: 2px
-      .forgot-password
-        text-align: right
-        display: block
-        padding: 0 10px 10px
-        font-size: 12px
-        color: #3b6085
-      ul.errors li
-        margin: 0px
-        text-align: right
-        padding: 0 10px 10px
-        color: #b7403c
-        font-size: 13px
-      #fb-login
-        position: relative
-        top: -4px
-        border: 1px solid #314A63
-        +border-radius(5px)
-        background: #3B6085
-        color: white
-        padding: 5px 5px
-        +box-shadow(inset 0px -1px 2px #335170, inset 0px 1px 0px #5883AD, 1px 1px 2px #999)
-        font-family: Rockwell, Georgia, serif
-        font-size: 11px
-        +text-shadow(#454545, 1px, 1px, 0px)
+          vertical-align: middle
+          padding-bottom: 2px
+          +inline-block
+        
+    .forgot-password
+      text-align: right
+      display: block
+      padding: 3px 15px 10px
+      font-size: 12px
+      color: #3b6085
+    ul.errors li
+      margin: 0px
+      text-align: right
+      padding: 0 10px 10px
+      color: #b7403c
+      font-size: 13px
+    #fb-login
+      position: relative
+      top: -4px
+      border: 1px solid #314A63
+      +border-radius(5px)
+      background: #3B6085
+      color: white
+      padding: 5px 5px
+      +box-shadow(inset 0px -1px 2px #335170, inset 0px 1px 0px #5883AD, 1px 1px 2px #999)
+      font-family: Rockwell, Georgia, serif
+      font-size: 11px
+      +text-shadow(#454545, 1px, 1px, 0px)
   footer
     clear: both
     background-image: url('/images/houses.png')

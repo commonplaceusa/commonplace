@@ -3,6 +3,10 @@ class CommunitiesController < ApplicationController
 
   helper_method :posts, :announcements, :events
 
+  def good_neighbor_discount
+    render :layout => "application"
+  end
+  
   layout 'communities'
   
   def show

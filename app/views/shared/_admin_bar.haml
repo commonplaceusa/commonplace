@@ -1,7 +1,7 @@
 - if current_user.admin?
   #admin_bar
     - current_community.neighborhoods.each do |neighborhood|
-      #{neighborhood.name}: #{neighborhood.users.count}u/#{neighborhood.users.map{|u|u.posts.count}.inject(0,&:+)}&nbsp;&nbsp;
+      #{neighborhood.name}: #{neighborhood.users.count}u/#{Post.includes(:user).where(:users => {:neighborhood_id => neighborhood.id}).count}&nbsp;&nbsp;
     Total Users: #{current_community.users.count}
     Total Posts: #{current_community.posts.count}
 
