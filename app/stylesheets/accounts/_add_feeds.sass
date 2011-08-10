@@ -1,9 +1,63 @@
 body.application.accounts.add_feeds
-  #feeds_box
-    +lightbox
-    width: 840px
-    margin: 20px auto
+  background-image: none
+  footer
+    clear: both
+    background-image: url('/images/houses.png')
+    background-repeat: repeat-x
+    background-position: center bottom
+    background-color: transparent 
+    border: none
+    padding: 200px 10px 10px
+    height: 20px
+    width: auto
+    margin: 0px
+    color: #ADD794 !important
+    .left_text
+      color: #ADD794 !important
+    .right_text
+      color: #ADD794 !important
+    a
+      color: #BFF4A0 !important
+  h1
+    font-size: 50px
+    color: #1b334a
+    padding: 18px 0px 8px
+    font-weight: bold
+    text-align: center
+  h2
+    display: block
+    text-align: left
+    color: #FFFFFF
+    font-weight: bold
+    font-size: 18px
+    text-shadow: #000000 0px -2px 2px
+    margin-bottom: 3px
+  #wrapper
+    width: 976px
+    margin: 0px auto   
+  #registration_information
+    float: left
+    margin-left: 58px
+    margin-right: 44px
+    width: 370px
     position: relative
+    
+    li 
+      +inline-block
+      +starBullet
+      font-size: 16px
+      padding-left: 35px
+      
+      
+  #main
+    +redlightbox
+    padding-right: 18px
+    width: 395px
+    margin-right: 60px
+    margin-bottom: 50px
+    position: relative
+    float: left
+    
     #feeds_wrapper
       width: 385px
       margin-left: 450px
@@ -29,13 +83,14 @@ body.application.accounts.add_feeds
           color: $cpRed
           text-decoration: none
     #feeds_container 
-      height: 280px
+      width: 390px
+      height: 240px
       margin: 10px 0
       overflow-y: scroll
       overflow-x: hidden
       .feed
         height: 30px
-        width: 345px
+        width: 350px
         padding: 10px
         margin: 0px 0px 4px
         +border-radius(5px)
@@ -67,6 +122,7 @@ body.application.accounts.add_feeds
     form
       input[type=image]
         float: right
+        margin-right: 20px
       input[type=checkbox]
         display: none
     #continue_button

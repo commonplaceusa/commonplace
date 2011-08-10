@@ -1,8 +1,6 @@
 class AdminController < ApplicationController
 
   before_filter :verify_admin
-  #stream :only => :overview_no_render
-
   def verify_admin
     unless current_user.admin
       redirect_to root_url
@@ -43,28 +41,6 @@ class AdminController < ApplicationController
     render :layout => nil
   end
 
-  def overview_no_render
-    @days = 7
-    date = @days.days.ago
-    @start_year = date.strftime("%Y")
-    @start_month = date.strftime("%m")
-    @start_day = date.strftime("%d")
-    @communities = Community.select{|c| c.users.size > 0 and c.households != nil and c.households > 1 and c.core}.sort{|a,b| a.users.size <=> b.users.size}.reverse
-    @user_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM users")[0]['count'].to_i
-    @event_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM events")[0]['count'].to_i
-    @group_post_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM group_posts")[0]['count'].to_i
-    @post_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM posts")[0]['count'].to_i
-    @announcement_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM announcements")[0]['count'].to_i
-    #@message_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM messages")[0]['count'].to_i
-    @reply_count = ActiveRecord::Base.connection.execute("SELECT COUNT(id) FROM replies")[0]['count'].to_i
-
-    @completed_registrations = User.where("created_at < updated_at")
-    @incomplete_registrations = User.where("created_at >= updated_at")
-    @emails_opened_today = 1
-    @emails_opened = 1
-    render :layout => nil
-  end
-
   def clipboard
     require 'uuid'
     UUID.state_file = false
@@ -88,7 +64,7 @@ class AdminController < ApplicationController
   end
 
   def show_referrers
-    @referred_users = User.all.select{ |u| u.referral_source.present? }.sort{ |a,b| a.community_id <=> b.community_id }
+    @referred_users = User.all.select{ |u| u.referral_source.present? }.sort{ |a,b| a.created_at <=> b.created_at }.reverse
   end
 
   def map

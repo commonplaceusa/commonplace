@@ -1,8 +1,9 @@
-%h1= t(".h1", :community => current_community.name, :learn_more => link_to(t(".learn_more"), "/#{current_community.slug}/learn_more")).html_safe
-
 - if Rails.env.production?
   %script
     = "mpmetrics.track('Community Registration Page', {'community': '#{current_community.slug}'});"
+
+%script
+  $(function(){$('input[placeholder], textarea[placeholder]').placeholder();});
 
 :javascript
   function facebookUserLoggedIn()
@@ -50,35 +51,35 @@
       }
     })
   })
-
-= update_content "#main" do
+  
+#wrapper
+  #titleslug
+    %h1= t(".h1", :community => current_community.name).html_safe
+  #registration_information
+    %ul{:id=>"infolist"}
+      %li= t(".li1", :community => current_community.name)
+      %li= t(".li2", :community => current_community.name)
+      %li= t(".li3", :community => current_community.name)
+    %ul{:id=>"link_item"}
+      %a{:href => "/#{current_community.slug}/learn_more"}
+        %img{:src=>"/images/buttons/learnmore.png", :alt=>"Learn more", :id=>"learnmore"}
   #main
     = semantic_form_for @user, :url => create_account_path(current_community) do |f|
-      %h3
-        Fill out the form to get started, or 
-        %fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'facebookUserLoggedIn();', :perms => 'email,user_hometown,publish_stream,offline_access'}
+      %table{:style => "width:365px;"}
+        %tr
+          %td{:style => "text-align:left;"}  
+            %h4 
+              Register Here
+          %td{:style => "text-align:right;"}  
+            %div{:id => "bottomregister"}  
+            %h3 
+              or
+              %fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'facebookUserLoggedIn();', :perms => 'email,user_hometown,publish_stream,offline_access'}
       = f.inputs do
-        = f.input :full_name
-        = f.input :email
-        = f.input :address, :hint => t("formtastic.hints.user.address", :community => current_community.name)
+        = f.input :full_name, :input_html => { :placeholder => "Full name"} 
+        = f.input :email, :input_html => { :placeholder => "Email address"}
+        = f.input :address, :hint => "", :input_html => {:placeholder => "Address"}
       #fb-wrapper
         = f.buttons do 
-          = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/sign-up.png"}
+          = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/signup.png"}
 
-#fb-root
-- if current_community.organizer_about?
-
-  #who_is_info_bubble
-    %h3.toggle= t ".who_is_bubble", :community=> current_community.name
-    #who_is_info
-      %p
-        = current_community.organizer_about
-      =image_tag(current_community.organizer_avatar.url, :size => "50x50")
-      %br{:class => "cleared"}   
-
-      %h3 Which local organizations are on #{current_community.name}'s CommonPlace?
-      - current_community.feeds.take(20).each do |feed|
-        %p
-          = feed.name
-        = image_tag(feed.avatar_url(:thumb), :size => "50x50")
-        %br{:class => "cleared"}

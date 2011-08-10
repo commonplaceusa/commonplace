@@ -30,33 +30,28 @@
         div.nav {
             width: 145px; margin-right: 15px; float: left;
 
-            a { width: 92px;
+            a { width: 86px;
                 display: block;
                 margin-bottom: 8px;
                 line-height: 14px;
                 text-decoration: none;
                 font-size: 12px;
                 vertical-align: middle;
-                height: 36px;
+                height: 40px;
                 padding: 8px 20px 8px 35px;
 
                 background: { repeat: no-repeat;
-                              image: url('/images/post-box-button-sprite.png'); }
+                              image: url('/images/post-box-button-sprite2.png'); }
 
-                &.post { background-position: -298px -1px }
-                &.announcement { background-position: -298px -60px }
-                &.event { background-position: -298px -120px }
-                &.group_post { background-position: -298px -180px }
+                &.post { background-position: -143px -1px }
+                &.announcement { background-position: -143px -57px }
+                &.event { background-position: -143px -114px }
+                &.group_post { background-position: -143px -171px }
 
-                &.post:hover { background-position: -151px -1px }
-                &.announcement:hover { background-position: -151px -60px }
-                &.event:hover { background-position: -151px -120px }
-                &.group_post:hover { background-position: -151px -180px }
-
-                &.post.current { background-position: -2px -1px }
-                &.announcement.current { background-position: -2px -60px }
-                &.event.current { background-position: -2px -120px }
-                &.group_post.current { background-position: -2px -180px }
+                &.post.current { background-position: -1px -1px }
+                &.announcement.current { background-position: -1px -57px }
+                &.event.current { background-position: -1px -114px }
+                &.group_post.current { background-position: -1px -170px }
             }
         }
 

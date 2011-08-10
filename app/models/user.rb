@@ -4,18 +4,21 @@ class User < ActiveRecord::Base
   def self.post_receive_options
     ["Live", "Daily", "Never"]
   end
-
+  
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_avatar, :if => :cropping?
 
   acts_as_authentic do |c|
     c.login_field :email
-    c.require_password_confirmation = false
-    c.validate_email_field=false
-    c.validate_password_field=false
+    c.validates_uniqueness_of_login_field_options({:message => "This email has already been taken."})
+    #c.merge_validates_length_of_login_field_options({:allow_nil => true,:message => "This email is too short"})
+    c.merge_validates_format_of_login_field_options({:with => "/^[\S]+$/", :message => "Please enter your email without spaces"})
+    c.validate_email_field = false
+    c.validate_login_field = false
+    #c.require_password_confirmation = true
     c.ignore_blank_passwords = true
-    c.merge_validates_length_of_email_field_options({:allow_nil => true})
-    c.merge_validates_format_of_email_field_options({:allow_nil => true})
+    #c.validates_length_of_password_field_options({:minimum => 1, :message => "Please create a password."})
+    c.validate_password_field = false
     c.perishable_token_valid_for 1.hour
   end
 
@@ -32,12 +35,11 @@ class User < ActiveRecord::Base
   before_validation :place_in_neighborhood, :if => :address_changed?
 
   validates_presence_of :community
-  validates_presence_of :address, :on => :create, :unless => :is_transitional_user
+  validates_presence_of :address, :on => :create, :unless => :is_transitional_user, :message => "Please provide a street address so CommonPlace can verify that you live in our community."
   validates_presence_of :address, :on => :update
+  
 
-  validates_presence_of :first_name, :unless => :is_transitional_user
-
-    
+  validates_presence_of :first_name, :unless => :is_transitional_user 
   validate :validate_first_and_last_names, :unless => :is_transitional_user
 
   validates_presence_of :neighborhood, :unless => :is_transitional_user
@@ -71,9 +73,8 @@ class User < ActiveRecord::Base
     return true
   end
 
-  validates_presence_of :email
-  validates_uniqueness_of :email
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :email, :message => "Please provide a valid email address."
+  validates_presence_of :first_name, :last_name, :message => "CommonPlace requires people to register with their first \& last names."
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
@@ -171,7 +172,7 @@ class User < ActiveRecord::Base
 
 
   def validate_first_and_last_names
-    errors.add(:full_name, "We need your first and last names.") if first_name.blank? || last_name.blank?
+    errors.add(:full_name, "CommonPlace requires people to register with their first \& last names.") if first_name.blank? || last_name.blank?
   end 
   
   def daily_subscribed_announcements
@@ -186,7 +187,9 @@ class User < ActiveRecord::Base
   def search(term)
     User.all
   end
+  
 
+  
   def full_name
     [first_name,middle_name,last_name].select(&:present?).join(" ")
   end
