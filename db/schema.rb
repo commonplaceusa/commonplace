@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110713042546) do
+ActiveRecord::Schema.define(:version => 20110810150906) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20110713042546) do
     t.integer  "households",                 :default => 0
     t.boolean  "core"
     t.boolean  "should_delete",              :default => false
+    t.boolean  "is_college",                 :default => false
   end
 
   create_table "events", :force => true do |t|
@@ -230,6 +231,14 @@ ActiveRecord::Schema.define(:version => 20110713042546) do
     t.decimal  "longitude"
   end
 
+  create_table "organizer_data_points", :force => true do |t|
+    t.integer  "organizer_id"
+    t.string   "address"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", :force => true do |t|
     t.text     "body",                                :null => false
     t.integer  "user_id",                             :null => false
@@ -337,6 +346,8 @@ ActiveRecord::Schema.define(:version => 20110713042546) do
     t.datetime "last_login_at"
     t.boolean  "seen_tour"
     t.boolean  "transitional_user"
+    t.string   "skills_list"
+    t.string   "referral_metadata"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
