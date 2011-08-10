@@ -1,6 +1,7 @@
 - if Rails.env.production?
   %script
     mpmetrics.register({'referral_source': "#{current_user.referral_source ? current_user.referral_source.gsub('\'','') : ''}"});
+    mpmetrics.register({'referral_metadata': "#{current_user.referral_metadata ? current_user.referral_metadata.gsub('\'', '') : ''}"});
     = "mpmetrics.track('Add feeds', {'community': '#{current_community.slug}'});"
 
 #wrapper
