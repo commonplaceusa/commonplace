@@ -7,9 +7,7 @@
 
 @mixin redlightbox
   background-color: #ac322f
-  border-radius 4px
-  -webkit-border-radius: 4px
-  -mox-border-radius: 4px
+  +border-radius(4px)
   padding: 24px
   box-shadow: 0 0 18px 4px #f6fbeb
   -webkit-box-shadow: 0 0 18px 4px #f6fbeb
@@ -27,6 +25,14 @@
   border: 1px solid $lightGray
   background: $itemBackground + #020202
   +linear-gradient(color-stops($itemBackground + #060606, $itemBackground ))
+  
+@mixin starBullet
+  margin: 0 3px 15px 0px
+  background: url('/images/bullet-star.png') 
+  background-position: 0px 0px 
+  background-repeat: no-repeat
+  line-height: 1.5
+  font-weight:normal
 
 @mixin sans
   font-family: Helvetica, Arial, Verdana, sans-serif

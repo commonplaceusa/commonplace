@@ -1,4 +1,4 @@
-embed_assets: on
+embed_assets: off
 template_extension: html.mustache
 template_function: Mustache.template
 template_namespace: CommonPlace.templates

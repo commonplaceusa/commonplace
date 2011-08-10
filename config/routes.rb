@@ -50,7 +50,7 @@ Commonplace::Application.routes.draw do
     
   resource :account do
     member do 
-      get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :facebook_invite, :profile, :crop
+      get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :profile, :crop
       put :update_new, :update_avatar, :update_interests, :settings, :update_crop
       post :subscribe_to_feeds, :subscribe_to_groups, :avatar
     end
@@ -62,11 +62,23 @@ Commonplace::Application.routes.draw do
 
     match 'logout' => 'user_sessions#destroy'
 
+    # Invitations
+    resource :account do
+      member do
+        get :facebook_invite
+      end
+    end
+
+    match "/invite", :to => "accounts#facebook_invite"
+
     # Community routes 
     
     resources :groups, :only => [] do
       resource :membership, :only => [:create, :destroy]
+   
     end
+    
+    match "/:community/good_neighbor_discount", :to => "communities#good_neighbor_discount"
     
     # Post-like things
     resources :group_posts, :only => [:create]
@@ -86,6 +98,13 @@ Commonplace::Application.routes.draw do
       end
     end
 
+    resources :organizer do
+      collection do
+        get :map
+        post :add
+      end
+    end
+
     
     root :to => "communities#show"
   end
@@ -99,6 +118,7 @@ Commonplace::Application.routes.draw do
     resources :password_resets
     match "/:community", :to => "accounts#new"
     match "/:community/account", :via => :post, :to => "accounts#create", :as => "create_account"
+    
 
     
   end
