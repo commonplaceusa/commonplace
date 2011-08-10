@@ -1,0 +1,59 @@
+en:
+    site:
+        faq:
+            h1: Got questions? We've got answers.
+            h2section: Frequently Asked Questions
+            p1: Click on the questions below to see the answer, if you don't see your question submit it in the form below
+            q1_1_html: What is CommonPlace?
+            a1_1_html: CommonPlace is a web platform for local community engagement.  It is designed to make it easier for you to connect and share information with your neighbors and local leaders.  
+            q1_2_html: What can I use CommonPlace for?
+            a1_2_html: CommonPlace is like an online bulletin board for %{community} that allows you to share events, needs, offers, questions and announcements with the people who live right around you.  You can use %{community}'s CommonPlace to&#58; notify your neighbors about a lost cat, or to ask to borrow a ladder&#59; use it to keep up with local events happening in town, or to publicize your own; use it to get announcements from the city government and local organizations, or to start up you own group in the community.
+            q1_3_html: What happens if I sign up for %{community}'s CommonPlace?
+            a1_3_html: If you sign up, you can start receiving important community announcements from your neighbors and local leaders here in %{community}.  You will easily stay in touch with what's happening in %{community}, as well be able to get the word out to everyone in town about any event, need, offer, question or announcement that you want to share with your neighbors.
+            q1_4_html: Who is behind CommonPlace?
+            a1_4_1_html: The lead CommonPlace organizer for %{community} is %{organizer}, who is helping to make the %{community} community more civic and more connected by organizing neighbors onto the %{community} CommonPlace platform.  If you have any questions or concerns about the platform, contact %{organizer_firstname} at %{organizer_email}
+            a1_4_2_html: CommonPlace America - the umbrella organization for CommonPlaces in towns and cities across the country - was founded in 2009 by Harvard students Peter Davis and Max Novendstern.  They began the CommonPlace project with the question&#58; how can the internet be utilized to build up civic life in America?   For more information on the national CommonPlace movement, check out %{starter_site}.
+            q1_5_html: Why was CommonPlace created?
+            a1_5_html: CommonPlace was created with the mission of using the internet to help revitalize local community in America.  We believe that web tools need not only connect us to 'friends' around the world - rather they can be used to connect us to the people who live right around us.  We aim to create a new standard for community information-sharing infrastructure that make neighborhoods better places to live in&#58; more connected, more civic and more empowered.
+            q2_1_html: What's the difference between a neighborhood post and an announcement?
+            a2_1_1_html: A neighborhood post is meant to be a neighborly post from an individual to their neighbors, like requests ("Can we borrow a ladder?"), offers ("I'm giving away maternity clothes"), questions ("Anyone know a good electrician?"), and personal, non-commercial updates ("We just had a baby!").
+            a2_1_2_html: A community announcement is the place for publicity to the whole town and commercial announcements.  If you want to announce that you do tax preparation or are an SAT tutor, post it as a community announcement.  If you are seeking donations for your cause or volunteers for your fair, post it as a community announcement.  If you are an organization, city service or business that will posting many community announcements, consider starting a "Community Feed" so that you can post as the organization or business, and so that people can subscribe to your announcements.
+            a2_1_3_html: In short, neighborhood posts are for neighbor-to-neighbor requests, offers, questions and updates while community announcements are for town-wide publicity and commercial use.
+            q2_2_html: What's a Community Feed?
+            a2_2_html: Any organization, business, city service or cause can create a "Community Feed" on CommonPlace.  This allows you to send out announcements and events to the community from your organization.  For example, if you are the President of the PTA, you could create a PTA "Community Feed" and then send out announcements and events which would show up as coming from the PTA, as opposed to from an individual.  In addition, people can subscribe to your community feed and thus receive your announcements and events by email.
+            q2_3_html: What is my 'neighborhood' on CommonPlace?
+            a2_3_html: Each town on CommonPlace is split into neighborhoods of roughly 700 residences each.  When you write a neighborhood post, it is emailed immediately to those who are in your neighborhood.  Everyone else in town will receive that post at the end of the day in a daily digest, under "Posts Around Town."  For specific information about your neighborhood's borders, email your community CommonPlace organizer at %{organizer_email}.  
+            q2_4_html: How do email notifications work on CommonPlace?
+            a2_4_1_html: Everything on CommonPlace - events, announcements and neighborhood posts - can be sent out in live emails (as they are posted), compiled into daily digest and/or compiled into a weekly bulletin.
+            a2_4_2_html: The community weekly bulletin is a compilation of all announcements posted to CommonPlace that week as well as the next two weeks of upcoming events.
+            a2_4_3_html: The daily digest is an email tailored directly to you, that includes posts from around town, as well as announcements and events from the community feeds to which you have subscribed.
+            a2_4_4_html: All posts from your neighborhood are, by default, emailed to you live.  You can also select to receive announcements and events from certain community feeds immediately as they are posted.
+            a2_4_5_html: If you ever want to change your email notification settings, feel free to go to the %{email_notification_settings_page}.               
+            q2_5_html: How can CommonPlace help me publicize things around town?
+            a2_5_html: If you post announcements and events to CommonPlace, they not only are immediately posted to CommonPlace for everyone in town to see - they are also emailed to everyone every week in the community weekly bulletin.  If you have an organization, city service, business or cause in %{community}, consider starting a Community Feed, which will allow you to send out announcements and events from your feed name. 
+            q2_6_html: What about privacy?
+            a2_6_1_html: CommonPlace is a closed network, meaning nothing you ever post or share on CommonPlace can be Googled-- one has to register and log in to see the information.
+            a2_6_2_html: CommonPlace is all about sharing public, community information -- only share on CommonPlace what you would want your neighbors to see. 
+            q2_7_html: Why do I have to input my full name when I register?
+            a2_7_html: When researching internet platforms while building CommonPlace, we noted that internet anonymity quickly leads to vandalism and unproductive web communication.  By associating posts with names, it ensures healthy, productive and neighborly interaction on CommonPlace.  Plus, we have already had cases of people meeting in person and saying, "Oh, wow, you must be Janet - I saw your post on CommonPlace!  Great to meet you!"
+            q2_8_html: Why do I have to input my street address when I register?
+            a2_8_html: This allows us to place you into the right neighborhood and to ensure you live in the correct CommonPlace town. 
+            q2_9_html: My friend in another town wants to use CommonPlace - can she join ours?
+            a2_9_1_html: Anyone can sign up to see the public events and community announcements posted to %{community}'s CommonPlace.  However, you have to have a street address inside the borders of the town to see neighborhood posts.       
+            a2_9_2_html: If your friend wants to bring CommonPlace to her town, tell her to fill out our "Nominate Your Town to have a CommonPlace" form at %{starter_site}.
+            q3_1_html: How do I invite one of my neighbors to %{community}'s CommonPlace?
+            a3_1_html: Fill out our invite form %{invite_link} - thanks for being a good neighbor!
+            q3_2_html: How do I post to CommonPlace?
+            a3_2_html: Everything involving posting to CommonPlace is in the red box in the upper left hand corner of the mainpage, after you log in.
+            q3_3_html: How do I create a community feed?
+            a3_3_html: Create a community feed %{create_feed}.
+            q3_4_html: How do I retrieve my lost password?
+            a3_4_html: Click %{lost_password} to receive your lost password.
+            q3_5_html: How do I report a bug?
+            a3_5_html: Fill out the form below to report a bug.  Thanks for being on the look out!
+            q3_6_html: How do I help out with the CommonPlace movement in %{community}?
+            a3_6_html: We are always looking for volunteers who believe in our mission of bringing local communities closer together.  If you're interested, email %{community}'s lead CommonPlace organizer, %{organizer_name}, at %{organizer_email}.
+            q3_7_html: How do I bring CommonPlace to a new town?
+            a3_7_html: Fill out our "Nominate Your Town to have a CommonPlace" %{new_community} at %{commonplace_usa}.
+            
+                

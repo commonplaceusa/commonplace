@@ -1,23 +1,23 @@
-college:
+en:
   syndicate:
     events:
       title: Upcoming Events
-      link_html: Campus<br> Events
+      link_html: Community<br> Events
     posts:
-      title: Recent Hall Posts
-      link_html: Hall <br>Posts
+      title: Recent Neighborhood Posts
+      link_html: Neighborhood <br>Posts
     announcements:
-      title: Recent Campus Announcements
-      link_html: Campus<br> Announcements
+      title: Recent Community Announcements
+      link_html: Community<br> Announcements
     people:
-      title: Your Fellow Students
+      title: Your Neighbors
     users:
       link_html: Directory
     groups:
       title: Discussion Groups
     feeds:
-      title: Campus Feeds
-      link_html: Campus <br>Feeds
+      title: Community Feeds
+      link_html: Community <br>Feeds
     group_posts:
       link_html: Group <br>Posts
       title: Discussion Group Posts

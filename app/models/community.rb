@@ -138,21 +138,21 @@ class Community < ActiveRecord::Base
     items.reverse
   end
 
-  def organizer_name
-    self.organizers.first.full_name
-  end
+  #def organizer_name
+  #  self.organizers.first.full_name
+  #end
 
-  def organizer_email
-    self.organizers.first.email
-  end
+  #def organizer_email
+  #  self.organizers.first.email
+  #end
 
-  def organizer_avatar_file_name
-    self.organizers.first.avatar
-  end
+  #def organizer_avatar_file_name
+  #  self.organizers.first.avatar
+  #end
 
-  def organizer_about
-    self.organizers.first.about
-  end
+  #def organizer_about
+  #  self.organizers.first.about
+  #end
 
   def to_param
     slug
