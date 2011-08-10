@@ -7,7 +7,7 @@ en:
       user:
         full_name: "Full Name:"
         email: "Email Address:"
-        password: "Create a Password:"
+        password: "Create a Password*:"
         about: "Tell your neighbors a bit about yourself:"
         interest_list: "Add some interests:"
         offer_list: "Do you have any goods and skills you can share with your neighbors?"
@@ -24,8 +24,8 @@ en:
         message: Optional message
       
       user_session:
-        email: "EMAIL"
-        password: "PASSWORD"
+        email: "Enter your email:"
+        password: "Enter your password:"
 
       feed:
         name: "Feed Name:"

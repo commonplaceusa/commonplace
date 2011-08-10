@@ -69,11 +69,16 @@ Commonplace::Application.routes.draw do
       end
     end
 
+    match "/invite", :to => "accounts#facebook_invite"
+
     # Community routes 
     
     resources :groups, :only => [] do
       resource :membership, :only => [:create, :destroy]
+   
     end
+    
+    match "/:community/good_neighbor_discount", :to => "communities#good_neighbor_discount"
     
     # Post-like things
     resources :group_posts, :only => [:create]
@@ -112,6 +117,7 @@ Commonplace::Application.routes.draw do
     resources :password_resets
     match "/:community", :to => "accounts#new"
     match "/:community/account", :via => :post, :to => "accounts#create", :as => "create_account"
+    
 
     
   end

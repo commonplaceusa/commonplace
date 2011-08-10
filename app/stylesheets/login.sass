@@ -1,14 +1,16 @@
 @import core
-
 body.application.user_sessions.new
-
+  header
+    #user_sign_in
+      display: none
   background-repeat: repeat-x
   position: relative
   h1
-    a
-      text-decoration: none
-      font-size: 24px
-      color: #b53f3c
+    font-size: 44px
+    color: #1b334a
+    padding: 20px 0px 10px
+    font-weight: bold
+    text-align: center
   
   header
     position: relative
@@ -19,47 +21,69 @@ body.application.user_sessions.new
   #main
     width: 590px
     position: relative
-
+    margin-bottom: 100px
+    a
+      color: #DDDDDD
     form
       position: relative
-      margin: 40px auto 40px
-      +lightbox
-      width: 360px
+      margin: 20px auto 40px
+      +redlightbox
+      padding: 14px 24px 26px 24px
+      width: 380px
       z-index: 2
       +clearfix
-      
-      h3
-        text-align: center
-        font-size: 20px
-        color: #525252
+      a
+      .inline-errors
+        width: 360px
+        margin: 0px 0px 0px 0px
+        padding: 0px
+        text-align: left
+        font-size: 13px
+        color: #FFFFFF
+      .errors
+        display: block
+        width: 360px
+        margin: 0px 0px 0px 0px
+        padding: 0px
+        text-align: left
+        font-size: 13px
+        color: #FFFFFF
       h4
         text-align: center
         margin-top: 10px
       fieldset.inputs
-        margin: 10px auto
         li
           min-height: 60px
-          margin: 10px auto
+          margin: 10px auto 5px auto
           label
             display: block
-            margin: 5px 0
-            color: #898989
+            text-align: left
+            color: #FFFFFF
+            font-weight: normal
+            font-size: 17px
+            text-shadow: #000000 1px 1px 1px
+            word-spaciing: 1px
+            margin-bottom: 4px
           input
             +border-radius(5px)
             +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
             border: 1px solid #ccc
             padding: 0px 5px
             font-size: 22px
-            width: 348px
+            width: 362px
             display: block
             +serif
       fieldset.buttons
-        float: right
-        li 
-          float: right
+        #user_session_submit
+          width: 377px
+          margin-top: 10px
+          margin-bottom: 10px
         li.fb-button
-          padding-top: 2px
+          position:relative
           padding-right: 5px
+          float: right
+          margin-bottom: 3px
+          word-spacing: 4px
       .forgot-password
         float: left
           
