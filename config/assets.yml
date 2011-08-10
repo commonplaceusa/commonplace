@@ -2,6 +2,7 @@ embed_assets: on
 template_extension: html.mustache
 template_function: Mustache.template
 template_namespace: CommonPlace.templates
+base_url: 'http://www.ourcommonplace.com'
 #javascript_compressor: closure
 #s3_bucket: "commonplace-assets"
 #s3_access_key_id: <%= ENV["S3_KEY_ID"] %>
