@@ -459,4 +459,12 @@ class API < Sinatra::Base
   get "/posts/:id" do |id|
     serialize Post.find(id)
   end
+
+  get "/groups/:id" do |id|
+    serialize Group.find(id)
+  end
+
+  get "/feeds/:id" do |id|
+    serialize Feed.find(id)
+  end
 end
