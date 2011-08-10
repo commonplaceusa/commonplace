@@ -1,0 +1,220 @@
+@import core
+@import header
+body
+  background-color: #eee
+  margin: 0
+
+#main
+  width: 980px
+  margin: auto
+
+#feed-header
+  font-family: Rockwell, Helvetica
+  margin-top: 25px
+  padding-bottom: 25px
+
+  h1
+    font-size: 30px
+    display: inline
+    padding-right: 10px
+
+  a.subscribe
+    color: #ac322f
+    font-size: 12px
+    text-decoration: none
+    font-weight: bold
+
+
+#left-column 
+  width: 235px
+  padding-right: 10px
+  float: left
+
+#center-column
+  width: 485px
+  padding-right: 10px
+  float: left
+
+#right-column
+  width: 240px
+  float: left
+
+#feed-profile
+  background-color: #fff
+  border: 2px solid #bebebe
+  +border-radius(3px)
+  +box-shadow(#888 2px 2px 10px)
+
+  h1
+    +border-top-radius(1px)
+    margin: 0px
+    background-color: #e0e0e0
+    font-family: Rockwell, Helvetica
+    font-size: 14px
+    padding: 5px
+    border-bottom: 1px solid #bebebe
+    text-align: center
+    color: #656565
+
+  img.avatar
+    display: block
+    margin: 20px auto 0
+    padding: 0
+    border: 0
+
+  dl.contact-info
+    padding: 20px 20px 0
+    dt
+      color: #1b334a
+      font-family: Helvetica, sans-serif
+      font-size: 12px
+      font-weight: bold
+      padding-bottom: 5px
+    dd
+      color: #252525
+      font-family: Helvetica, sans-serif
+      font-size: 12px
+      padding-bottom: 10px
+        
+      a
+        color: #ac322f
+
+  #send-message
+    +border-radius(5px)
+    background-color: #2b4462
+    color: #fff
+    border: 1px solid #13263b
+    padding: 15px 0
+    margin: 15px 20px
+    text-align: center
+    font-family: Rockwell, Helvetica
+    font-weight: bold
+    
+
+#feed-nav
+  font-family: Rockwell, Helvetica
+  margin-top: 20px
+
+  a 
+    +border-radius(3px)
+    display: block
+    padding: 5px 20px
+    color: #1b334a
+    text-decoration: none
+    
+  a.current
+    background-color: #ac322f
+    color: white
+
+
+#feeds-list
+  font-family: Rockwell, Helvetica
+
+  h1
+    border-bottom: 2px solid #e0e0e0
+    font-size: 14px
+    margin-bottom: 14px
+    margin-top: 0
+    color: #1d334c
+
+  a 
+    +border-radius(3px)
+    display: block
+    margin-bottom: 5px
+    background-color: #e0e0e0
+    padding: 6px 6px 6px 37px
+    line-height: 25px
+    text-decoration: none
+    color: #333
+
+    img.avatar
+      vertical-align: top
+      border: 0
+      float: left
+      margin-left: -31px
+      display: block
+  
+  a.current
+    background-color: #fff
+
+
+#feed-actions
+  #feed-action-nav
+    a 
+      display: block
+      float: left
+      width: 100px
+      background-color: #1b334a
+      height: 25px
+      padding: 20px 10px 20px 50px
+      color: #fff
+      text-decoration: none
+      font-family: Rockwell, Helvetica
+      font-size: 13px
+
+    a.post-announcement
+      +border-top-left-radius(3px)
+      border-left: 1px solid #182e42
+      border-right: 1px solid #192837
+    a.post-event
+      border-right: 1px solid #192837
+      border-left: 1px solid #3a4d5e
+    a.invite-subscribers
+      +border-top-right-radius(3px)
+      border-left: 1px solid #3a4d5e
+
+    
+    
+
+  #post-announcement, #post-event, #invite-subscribers
+    clear: both
+    +border-bottom-radius(3px)
+    background-color: #ac322f
+    padding-top: 10px
+    border: 2px solid #9a2c2a
+      top: 0px
+
+    display: none
+
+    &.current
+      display: block
+      
+  
+
+
+  img.avatar
+    float: left
+    margin-left: 10px
+    margin-top: 16px
+
+  form
+    
+    display: block
+    margin: 16px 15px 20px 73px
+      
+    
+    input, textarea
+      display: block
+
+    input
+      padding: 5px 5px
+      width: 380px
+      font-size: 15px
+      font-family: Rockwell, Georgia, Times, Serif 
+      +border-radius(5px)
+      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+
+    textarea
+      margin-top: 12px
+      width: 382px
+      font-size: 15px
+      font-family: Rockwell, Georgia, Times, Serif 
+      +border-radius(5px)
+      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+      padding: 5px 5px
+
+    button
+      float: right
+      margin: 20px 0 
+
+
