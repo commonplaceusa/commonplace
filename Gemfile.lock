@@ -215,6 +215,9 @@ GEM
     jslint_on_rails (1.0.6)
     json (1.4.6)
     json_pure (1.5.1)
+    kumade (0.1.0)
+      heroku
+      thor (~> 0.14)
     launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -462,6 +465,7 @@ DEPENDENCIES
   jammit
   jslint_on_rails
   json
+  kumade
   launchy
   mail
   mcbean
