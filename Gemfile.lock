@@ -7,6 +7,14 @@ GIT
       oauth2
 
 GIT
+  remote: git://github.com/commonplaceusa/kumade.git
+  revision: cca1650799114c397681e6c0e612c6524e7f580b
+  specs:
+    kumade (0.1.0)
+      heroku
+      thor (~> 0.14)
+
+GIT
   remote: git://github.com/freelancing-god/thinking-sphinx.git
   revision: b555c58a64ea73eabbf45de2671c91779f7060c4
   branch: rails3
@@ -215,9 +223,6 @@ GEM
     jslint_on_rails (1.0.6)
     json (1.4.6)
     json_pure (1.5.1)
-    kumade (0.1.0)
-      heroku
-      thor (~> 0.14)
     launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -465,7 +470,7 @@ DEPENDENCIES
   jammit
   jslint_on_rails
   json
-  kumade
+  kumade!
   launchy
   mail
   mcbean
