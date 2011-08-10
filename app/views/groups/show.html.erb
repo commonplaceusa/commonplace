@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link href="https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
+    <%= include_stylesheets :group_page %>
+    <%= include_javascripts :group_page %>
+    <%= include_javascripts :group_page_templates %>
+  </head>
+
+  <body>
+
+    <div id="top">
+      <div id="header">
+        <a href="/" id="logo">
+          <img src="/images/logo2.png" alt="CommonPlace">
+          <%= current_community.name %>
+        </a>
+
+        <div id="site-navigation">
+          <a href="/">Home</a>
+          <a href="/messages">Inbox</a>
+          <a href="/account/facebook_invite">Invite</a>
+          <a href="/feeds/new">Register a Community Feed</a>
+          <a href="/account">Settings</a>
+          <a href="/<%= current_community.slug %>/faq">FAQ</a>
+          <a href="/logout" rel="nofollow">Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="main">
+
+      <div id="group-header">
+      </div>
+      
+      <div id="left-column">
+        <div id="group-profile">
+        </div>
+        <div id="group-nav">
+        </div>
+      </div>
+      
+      <div id="center-column">
+        <div id="new-post">
+        </div>
+      </div>
+      
+      <div id="right-column">
+        <div id="groups-list">
+        </div>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+
+    <div id="bottom">
+      <div id="footer">
+        <span class="copy">
+          Find out more about CommonPlace at <a href="https://www.ourcommonplace.com/about">CommonPlaceUSA.com</a>
+        </span>
+        
+        Questions? Email: <a href="mailto:pete@commonplaceusa.com">Pete@CommonPlaceUSA.com</a>
+        &nbsp;&sdot;&nbsp;
+        <a href="/<%= current_community.slug %>/faq">FAQ</a>
+        &nbsp;&sdot;&nbsp;
+        <a href="/about">About</a>
+        &nbsp;&sdot;&nbsp;
+        <a href="/terms">Terms</a>
+        &nbsp;&sdot;&nbsp;
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+    </div>
+    
+  </body>
+
+</html>
