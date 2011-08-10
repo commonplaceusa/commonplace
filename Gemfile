@@ -21,6 +21,7 @@ gem 'heroku'
 
 # Deployment Infrastructure
 gem 'jslint_on_rails', :require => false
+gem 'kumade'
 
 # Database3
 gem 'redis'
