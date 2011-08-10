@@ -37,10 +37,18 @@
     - if p.status == "post_knocked_1"
       = "geocoder.getLatLng('#{p.address} #{@center_zip_code}', function(point) { map.addOverlay(new GMarker(point, blueMarkerOptions)); });"
     - if p.status == "no"
+      console.log("Got impossibility");
       = "geocoder.getLatLng('#{p.address} #{@center_zip_code}', function(point) { map.addOverlay(new GMarker(point, redMarkerOptions)); });"
   }
   }
   $(document).ready(initialize);
 #map_canvas{:style => "width: 1024px; height: 700px"}
 
-
+- form_tag "/organizer/add", :method => :post do
+  = label_tag :address, "Address"
+  = text_field_tag :address
+  = @center_zip_code
+  %br
+  = label_tag :status, "Status"
+  = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
+  = submit_tag "Enter"
