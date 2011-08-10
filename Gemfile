@@ -119,6 +119,7 @@ group :test do
   gem 'database_cleaner'
   gem 'autotest-standalone'
   gem 'autotest-rails-pure'
+  gem 'jasmine'
 end
 
 
