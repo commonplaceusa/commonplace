@@ -21,7 +21,7 @@ gem 'heroku'
 
 # Deployment Infrastructure
 gem 'jslint_on_rails', :require => false
-gem 'kumade', :git => "git://github.com/commonplaceusa/kumade.git"
+gem 'kumade', ">= 0.1.1", :git => "git://github.com/commonplaceusa/kumade.git"
 
 # Database3
 gem 'redis'
