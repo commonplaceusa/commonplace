@@ -3,7 +3,7 @@ namespace :assets do
   desc 'runs Jammit for javascripts and stylesheets'
   task :update => :environment do
     Sass::Plugin.update_stylesheets
-    `bundle exec jammit --force config/assets.yml --base_url "http://www.ourcommonplace.com/"`
+    `bundle exec jammit --force config/assets.yml --base-url "http://www.ourcommonplace.com/"`
   end
 
   def minify(files)
