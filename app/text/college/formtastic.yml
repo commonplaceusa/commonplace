@@ -7,16 +7,16 @@ college:
       user:
         full_name: "Full Name:"
         email: "Email Address:"
-        password: "Create a Password:"
-        about: "Tell your fellow students a bit about yourself:"
+        password: "Create a Password*:"
+        about: "Tell your neighbors a bit about yourself:"
         interest_list: "Add some interests:"
-        offer_list: "Do you have any goods and skills you can share with your fellow students?"
+        offer_list: "Do you have any goods and skills you can share with your neighbors?"
         referral_source: "How did you find out about CommonPlace?"
-        address: "Select Your Dorm*:"
+        address: "Street Address*:"
         avatar: "Add a photo:"
         edit:
           password: "Change your password:"
-        receive_posts: Get new dorm posts in emails
+        receive_posts: Get new neighborhood posts in emails
         receive_events_and_announcements: Get new announcements and events in emails
         receive_weekly_digest: Get a weekly bulletin
       invites:
@@ -24,8 +24,8 @@ college:
         message: Optional message
       
       user_session:
-        email: "EMAIL"
-        password: "PASSWORD"
+        email: "Enter your email:"
+        password: "Enter your password:"
 
       feed:
         name: "Feed Name:"

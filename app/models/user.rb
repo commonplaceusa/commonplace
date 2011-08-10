@@ -73,7 +73,6 @@ class User < ActiveRecord::Base
     return true
   end
 
-<<<<<<< HEAD
   validates_presence_of :email
   validates_uniqueness_of :email
 
@@ -85,10 +84,6 @@ class User < ActiveRecord::Base
   end
 
   validates_presence_of :first_name, :last_name
-=======
-  validates_presence_of :email, :message => "Please provide a valid email address."
-  validates_presence_of :first_name, :last_name, :message => "CommonPlace requires people to register with their first \& last names."
->>>>>>> fb0a65809482ac498e3f4fc7d788b6e9c35ff68b
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
