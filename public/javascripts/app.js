@@ -134,7 +134,31 @@ $(function() {
       setInfoBoxPosition();
     }
   }, 100); 
+
+  var didscroll = false;  
+  $(window).scroll(function() { didscroll = true; });
+
+  setInterval(function() {
+    if (didscroll) {
+      didscroll = false;
+      setInfoBoxPosition();
+    }
+  }, 100); 
     
+  $("body").bind("#information", function(e, content) {
+    if (content) {
+      $("#information").replaceWith(window.innerShiv(content, false));
+    }
+    
+
+    setInfoBoxPosition();    
+    
+    $("#file_uploader").change(function() {
+      $(this).trigger('image.inline-form');
+    });
+
+  });
+
 
   $("body").bind("#information", function(e, content) {
     if (content) {
@@ -155,6 +179,9 @@ $(function() {
 
   $("body").trigger("#information");
 
+  $("body").trigger("#modal");
+
+  $("body").trigger("#information");
 
   // Feed Profile
   $('#post-to-feed h2 nav li:last-child').hide();
