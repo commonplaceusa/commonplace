@@ -14,7 +14,7 @@ class RSSImporter
       begin
         RSS::Parser.parse(open(feed.feed_url).read, false).items.each do |item|
           
-          unless RnAnnouncement.exists?(:url => item.link)
+          unless RSSAnnouncement.exists?(:url => item.link)
             description = RSSImporter.strip_feedflare(item.description)
             RSSAnnouncement.create(:owner => feed,
                                    :subject => item.title,
