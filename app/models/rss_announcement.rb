@@ -1,3 +1,3 @@
-class RssAnnouncement < Announcement
+class RSSAnnouncement < Announcement
 
 end
