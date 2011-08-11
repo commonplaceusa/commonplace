@@ -19,6 +19,9 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitPost: function(e) {
     e.preventDefault();
+    if ($("input#post_subject").val() == 'Post Title' || $("textarea#post_body").val() == 'Your Message' || $("input#post_subject").val() == '' || $("textarea#post_body").val() == '') {
+        return;
+      }
       if(!$('#commercialyes').is(':checked')&&!$('#commercialno').is(':checked')) {
         CommonPlace.app.notify("Please check a 'Yes' or 'No' next to: Is this publicity relating to a business, organization, or event?");
       } else if ($("input[@name=radio_name]:checked").val()=='No') {
