@@ -105,6 +105,7 @@ Commonplace::Application.routes.draw do
       end
     end
 
+    match '/:nil_community', :to => "communities#show"
     
     root :to => "communities#show"
 
