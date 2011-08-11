@@ -272,6 +272,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  define_index do
+    indexes first_name, :sortable => true
+    indexes last_name, :sortable => true
+    indexes about
+    indexes interest_list
+    indexes offer_list
+    indexes address
+
+  end
+
   private
   def reprocess_avatar
     avatar.reprocess!
