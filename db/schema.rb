@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810150906) do
+ActiveRecord::Schema.define(:version => 20110811150030) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20110810150906) do
     t.string   "owner_type"
     t.integer  "owner_id"
     t.string   "tweet_id"
+    t.datetime "deleted_at"
   end
 
   create_table "archived_posts", :id => false, :force => true do |t|
@@ -117,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20110810150906) do
     t.string   "type"
     t.string   "host_group_name"
     t.integer  "community_id"
+    t.datetime "deleted_at"
   end
 
   create_table "feeds", :force => true do |t|
