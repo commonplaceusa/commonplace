@@ -1,2 +1,0 @@
-class Organizer < User
-end
