@@ -10,7 +10,9 @@ CommonPlace.render = function(name, params) {
 var FeedPageRouter = Backbone.Controller.extend({
 
   routes: {
-    "/feeds/:slug/profile": "show"
+    "/feeds/:slug/profile": "show",
+    
+
   },
 
   initialize: function(options) {
@@ -81,10 +83,26 @@ var FeedNavView = Backbone.View.extend({
 });
 
 var FeedActionsView = Backbone.View.extend({
+  events: {
+    "click #feed-action-nav a": "navigate"
+  },
+  
   render: function() {
     $(this.el).html(CommonPlace.render("feed-actions", {
       postAnnouncementClass: "current"
     }));
+    return this;
+  },
+
+  navigate: function(e) {
+    var $target = $(e.target);
+    $target.addClass("current")
+      .siblings().removeClass("current");
+    $(this.el).children(".tab")
+      .removeClass("current")
+      .filter("." + $target.attr('href').slice(2))
+      .addClass("current");
+    e.preventDefault();
   }
 });
 
