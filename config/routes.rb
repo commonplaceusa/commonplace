@@ -107,6 +107,9 @@ Commonplace::Application.routes.draw do
 
     
     root :to => "communities#show"
+
+    match "/groups/:slug", :to => "groups#show"
+
   end
 
   constraints LoggedInConstraint.new(false) do
@@ -137,5 +140,10 @@ Commonplace::Application.routes.draw do
 
 
   match "/account/make_focp", :to => "accounts#make_focp"
-  match "(*backbone_route)", :to => "communities#show", :via => :get, :as => :community
+  # explicitly list paths that we want the main_page js app to handle
+  ["/posts(/:id)", "/users(/:id)", "/events(/:id)", "/feeds(/:id)",
+   "/announcements(/:id)", "/group_posts(/:/id)", "/groups(/:id)",
+   "/users/:id/messages/new"].each do |s|
+    match s, :to => "communities#show", :via => :get, :as => :community
+  end
 end
