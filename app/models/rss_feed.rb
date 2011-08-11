@@ -1,4 +1,4 @@
-class RSSFeed < Feed
+class RssFeed < Feed
   
   validates_uniqueness_of :feed_url
   

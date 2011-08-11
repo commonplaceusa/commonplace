@@ -18,8 +18,7 @@ gem 'jammit'
 gem 'thin'
 gem 'dalli'
 gem 'heroku'
-gem 'thinking-sphinx', '2.0.4'
-gem 'flying-sphinx', '0.6.0'
+gem 'sunspot_rails'
 
 # Deployment Infrastructure
 gem 'jslint_on_rails', :require => false

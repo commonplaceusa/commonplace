@@ -1,22 +1,22 @@
 require 'rss'
 require 'htmlentities'
 
-class RSSImporter
+class RssImporter
 
   def self.strip_feedflare(html)
     HTMLEntities.new.decode(html.gsub(/<div class=\"feedflare\">(.*)<\/div>/m, ""))
   end
 
   def self.perform
-    RSSAnnouncement.record_timestamps = false    
+    RssAnnouncement.record_timestamps = false    
 
     Feed.find(:all, :conditions => ["feed_url != ?", "" ]).each do |feed|
       begin
-        RSS::Parser.parse(open(feed.feed_url).read, false).items.each do |item|
+        Rss::Parser.parse(open(feed.feed_url).read, false).items.each do |item|
           
-          unless RSSAnnouncement.exists?(:url => item.link)
-            description = RSSImporter.strip_feedflare(item.description)
-            RSSAnnouncement.create(:owner => feed,
+          unless RnAnnouncement.exists?(:url => item.link)
+            description = RssImporter.strip_feedflare(item.description)
+            RssAnnouncement.create(:owner => feed,
                                    :subject => item.title,
                                    :url => item.link,
                                    :community_id => feed.community_id,
