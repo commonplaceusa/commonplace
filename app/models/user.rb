@@ -273,15 +273,12 @@ class User < ActiveRecord::Base
   end
 
   searchable do
-    text :full_name do |user|
-      user.full_name
-    end
     string :first_name
     string :last_name
-    text :about
-    text :interest_list
-    text :offer_list
-    text :address
+    string :about
+    string :interest_list
+    string :offer_list
+    string :address
   end
   #handle_asynchronously :solr_index
 
