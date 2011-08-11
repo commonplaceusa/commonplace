@@ -272,14 +272,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  define_index do
-    indexes first_name, :sortable => true
-    indexes last_name, :sortable => true
-    indexes about
-    indexes interest_list
-    indexes offer_list
-    indexes address
-
+  searchable do
+    text :full_name do |user|
+      user.full_name
+    end
+    string :first_name
+    string :last_name
+    text :about
+    text :interest_list
+    text :offer_list
+    text :address
   end
 
   private

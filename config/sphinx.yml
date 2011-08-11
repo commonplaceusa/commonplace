@@ -1,5 +1,0 @@
-production:
-  version: 1.10-beta
-  enable_star: true
-  morphology: stem_en
-  min_infix_len: 1
