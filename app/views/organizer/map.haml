@@ -57,13 +57,35 @@
   }
   }
   $(document).ready(initialize);
-#map_canvas{:style => "width: 1024px; height: 700px"}
 
-- form_tag "/organizer/add", :method => :post do
-  = label_tag :address, "Address"
-  = text_field_tag :address
-  = @center_zip_code
-  %br
-  = label_tag :status, "Status"
-  = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
-  = submit_tag "Enter"
+%table{:width => "100%"}
+  %tr
+    %td#map_canvas{:style => "width: 50%; height:300px"}
+      - form_tag "/organizer/add", :method => :post do
+        = label_tag :address, "Address"
+        = text_field_tag :address
+        = @center_zip_code
+        %br
+        = label_tag :status, "Status"
+        = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
+        = submit_tag "Enter"
+    %td
+      Knocks out of total houses
+      %br
+      Drops out of total houses
+      %br
+      Median Signs out of total
+      %br
+      Big Posters out of total
+      %br
+      "Take One" Posters out of total
+      %br
+      Banner (y/n)
+      %br
+      FoCP out of 25
+  %tr
+    %td
+      %iframe{:width => '100%', :height => '300', :frameborder => '0', :src => 'https://spreadsheets.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0Ag3BspuR5xCgdGJHNDdIWVRwRzIxN3AxMDFHc2Q5R0E&single=true&gid=0&output=html&widget=true'}
+    %td
+      %iframe{:width => "50%", :height => "300", :frameborder => "0", :marginheight => "0", :marginwidth => "0", :src => 'https://spreadsheets.google.com/spreadsheet/embeddedform?formkey=dGV2emxka2FBVzI1aGlvOGtCbDRxVXc6MQ'}
+
