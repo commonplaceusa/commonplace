@@ -18,6 +18,8 @@ gem 'jammit'
 gem 'thin'
 gem 'dalli'
 gem 'heroku'
+gem 'thinking-sphinx', '2.0.4'
+gem 'flying-sphinx', '0.6.0'
 
 # Deployment Infrastructure
 gem 'jslint_on_rails', :require => false
@@ -72,10 +74,6 @@ gem 'acts-as-list', :require =>'acts_as_list'
 gem 'glebm-geokit', :require => 'geokit'
 gem 'simple_uuid'
 gem 'geocoder'
-gem 'thinking-sphinx',
-  :git     => 'git://github.com/freelancing-god/thinking-sphinx.git',
-  :branch  => 'rails3'
-gem 'flying-sphinx',   '0.6.0'
 
 
 # Jobs
