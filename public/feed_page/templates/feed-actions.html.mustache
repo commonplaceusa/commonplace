@@ -4,7 +4,7 @@
   <a href="#/invite-subscribers" class="invite-subscribers {{inviteSubscribersClass}}">Invite New Subscribers</a>
 </div>
 
-<div id="post-announcement" class="{{postAnnouncementClass}}">
+<div class="tab post-announcement {{postAnnouncementClass}}">
   <img class="avatar" src="{{account_avatar}}" width="50" height="50">
 
   <form>
@@ -15,8 +15,20 @@
   <div style="clear: both;"></div>
 </div>
 
-<div id="post-event" class="{{postEventClass}}">
+<div class="tab post-event {{postEventClass}}">
+  <form>
+    <input name="title" type="text" value="Title">
+    <textarea name="about">About</textarea>
+    <button>Post an Event</button>
+  </form>
+  <div style="clear: both;"></div>
 </div>
 
-<div id="invite-subscribers" class="{{inviteSubscribersClass}}">
+<div class="tab invite-subscribers {{inviteSubscribersClass}}">
+  <form>
+    <input name="title" type="text" value="Title">
+    <textarea name="about"></textarea>
+    <button>Invite People</button>
+  </form>
+  <div style="clear: both;"></div>
 </div>
