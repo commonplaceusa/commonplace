@@ -283,7 +283,7 @@ class User < ActiveRecord::Base
     text :offer_list
     text :address
   end
-  handle_asynchronously :solr_index
+  #handle_asynchronously :solr_index
 
   private
   def reprocess_avatar
