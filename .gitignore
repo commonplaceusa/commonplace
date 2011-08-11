@@ -1,10 +1,6 @@
 .vimrc
-log/cucumber.log
-log/development.log
-log/test.log
-log/production.log
-log/staging.log
 log/*.log
+log/*.lck
 tmp/**/*
 tmp/*
 doc/api
