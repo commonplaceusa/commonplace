@@ -103,7 +103,9 @@ module Serializer
         "tags" => o.tag_list,
         "website" => o.website,
         "phone" => o.phone,
-        "address" => o.address }
+        "address" => o.address,
+        "links" => { "announcements" => "/feeds/#{o.id}/announcements" }
+      }
 
       when Group
         { 
