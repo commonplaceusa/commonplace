@@ -11,8 +11,6 @@ var FeedPageRouter = Backbone.Controller.extend({
 
   routes: {
     "/feeds/:slug/profile": "show",
-    
-
   },
 
   initialize: function(options) {
@@ -26,7 +24,7 @@ var FeedPageRouter = Backbone.Controller.extend({
       
       new FeedHeaderView({ model: feed, account: self.account, el: $("#feed-header") }).render();
 
-      new FeedActionsView({ el: $("#feed-actions") }).render();
+      new FeedActionsView({ el: $("#feed-actions"), feed: feed }).render();
       
       new FeedNavView({ model: feed, el: $("#feed-nav") }).render();
 
@@ -84,7 +82,14 @@ var FeedNavView = Backbone.View.extend({
 
 var FeedActionsView = Backbone.View.extend({
   events: {
-    "click #feed-action-nav a": "navigate"
+    "click #feed-action-nav a": "navigate",
+    "submit .post-announcement form": "postAnnouncement"
+  },
+
+  initialize: function(options) {
+    console.log(options.feed);
+    this.feed = options.feed;
+    console.log(this.feed.links.announcements);
   },
   
   render: function() {
@@ -103,10 +108,23 @@ var FeedActionsView = Backbone.View.extend({
       .filter("." + $target.attr('href').slice(2))
       .addClass("current");
     e.preventDefault();
+  },
+
+  postAnnouncement: function(e) {
+    var $form = $(e.target);
+    e.preventDefault();
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.feed.links.announcements,
+      data: JSON.stringify({ title: $("[name=title]", $form).val(),
+                             body: $("[name=body]", $form).val() }),
+      type: "post",
+      dataType: "json",
+      success: function() { alert("yay")}});
   }
 });
 
-var Feed
+
 
 
 $(function() {
