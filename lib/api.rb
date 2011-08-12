@@ -311,6 +311,27 @@ end
       [400, "errors"]
     end
   end
+
+  # POST /feeds/:id/announcements
+  # { title: String,
+  # , body: String }
+  #
+  # Authorization: account owns feed
+  post "/feeds/:id/announcements" do |feed_id|
+    announcement = Announcement.new(:owner_type => "Feed",
+                                    :owner_id => feed_id,
+                                    :subject => request_body['title'],
+                                    :body => request_body['body'],
+                                    :community => current_account.community)
+    if announcement.save
+      announcement.owner.live_subscribers.each do |user|
+        Resque.enqueue(AnnouncementNotification, announcement.id, user.id)
+      end
+      serialize(announcement)
+    else
+      [400, "errors"]
+    end
+  end
   
   # POST "/group_posts"
   # { title: String
