@@ -90,12 +90,12 @@ var FeedActionsView = Backbone.View.extend({
     console.log(options.feed);
     this.feed = options.feed;
     console.log(this.feed.links.announcements);
+    this.postAnnouncementClass = "current";
+    _.extend(this, this.feed);
   },
   
   render: function() {
-    $(this.el).html(CommonPlace.render("feed-actions", {
-      postAnnouncementClass: "current"
-    }));
+    $(this.el).html(CommonPlace.render("feed-actions", this));
     return this;
   },
 
