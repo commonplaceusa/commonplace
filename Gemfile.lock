@@ -340,6 +340,8 @@ GEM
     rollout (0.3.0)
     roodi (2.1.0)
       ruby_parser
+    rpm_contrib (1.0.13)
+      newrelic_rpm (>= 2.13.1)
     rr (1.0.2)
     rsolr (0.12.1)
       builder (>= 2.1.2)
@@ -492,6 +494,7 @@ DEPENDENCIES
   rest-client-components
   rmagick
   rollout
+  rpm_contrib
   rr
   rspec-rails (~> 2.6)
   rspec-rr
