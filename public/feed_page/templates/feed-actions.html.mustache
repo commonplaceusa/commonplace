@@ -8,8 +8,8 @@
   <img class="avatar" src="{{avatar_url}}" width="50" height="50">
 
   <form>
-    <input name="title" type="text" value="Title">
-    <textarea name="body">Body</textarea>
+    <input name="title" placeholder="Title">
+    <textarea name="body" placeholder="Body"></textarea>
     <button>Post an Announcement</button>
   </form>
   <div style="clear: both;"></div>
@@ -17,16 +17,42 @@
 
 <div class="tab post-event {{postEventClass}}">
   <form>
-    <input name="title" type="text" value="Title">
-    <textarea name="about">About</textarea>
-    <button>Post an Event</button>
+
+    <input name="title" placeholder="Event name">
+
+    <textarea name="about" placeholder="Event description"></textarea>
+
+    <input class="date" name="date" placeholder="Event date">
+
+    <label for="start_time">Start time</label>
+    <select name="start_time">
+      {{#time_values}}
+        <option value="{{.}}">{{.}}</option>
+      {{/time_values}}
+    </select>
+
+    <label for="end_time">End time</label>
+    <select name="end_time">
+      {{#time_values}}
+        <option value="{{.}}">{{.}}</option>
+      {{/time_values}}
+    </select>
+
+    <input name="venue" placeholder="Venue">
+
+    <input name="address" placeholder="Event address">
+
+    <input name="tag_list" placeholder="Tag list">
+
+    <button>Post your Event</button>
+
   </form>
   <div style="clear: both;"></div>
 </div>
 
 <div class="tab invite-subscribers {{inviteSubscribersClass}}">
   <form>
-    <input name="title" type="text" value="Title">
+    <input name="title" value="Title">
     <textarea name="about"></textarea>
     <button>Invite People</button>
   </form>
