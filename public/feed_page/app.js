@@ -65,7 +65,7 @@ var FeedsListView = Backbone.View.extend({
 
 var FeedNavView = Backbone.View.extend({
   render: function() {
-    $(this.el).html(CommonPlace.render("nav", { 
+    $(this.el).html(CommonPlace.render("feed-nav", { 
       postsUrl: this.postsUrl(),
       membersUrl: this.membersUrl(),
       postsClass: this.isCurrentUrl(this.postsUrl()) ? "current" : "",
