@@ -121,7 +121,18 @@ var FeedActionsView = Backbone.View.extend({
       type: "post",
       dataType: "json",
       success: function() { alert("yay")}});
-  }
+  },
+
+  time_values: _.flatten(_.map(["AM", "PM"],
+                               function(half) {
+                                 return  _.map(_.range(1,13),
+                                               function(hour) {
+                                                 return _.map(["00", "30"],
+                                                              function(minute) {
+                                                                return String(hour) + ":" + minute + " " + half;
+                                                              });
+                                               });
+                               }))
 });
 
 
