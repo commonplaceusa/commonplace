@@ -85,6 +85,7 @@ gem 'hirefireapp'
 # Features/Monitoring
 gem 'exceptional'
 gem 'rollout'
+gem 'rpm_contrib'
 gem 'newrelic_rpm'
 
 # Tracking events
