@@ -21,6 +21,7 @@ Commonplace::Application.routes.draw do
 
   match 'email_parse/parse' => 'email_parse#parse', :via => :post
   match "/admin/overview" => "admin#overview"
+  match "/admin/:community/export_csv" => "admin#export_csv"
   match "/admin/overview_no_render" => "admin#overview_no_render"
   match "/admin/clipboard" => "admin#clipboard"
   match "/admin/show_referrers" => "admin#show_referrers"
