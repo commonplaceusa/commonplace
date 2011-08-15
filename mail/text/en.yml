@@ -96,8 +96,8 @@ daily_bulletin:
 
   invite-action-title: Invite your Neighbors!
   invite-action-body: |
-    Know anyone in {{community_name}} <em>not</em> on CommonPlace?  post-action-title: Post to Your Neighborhood
-      
+    Know anyone in {{community_name}} <em>not</em> on CommonPlace?
+
   post-action-title: Post to Your Neighborhood
   post-action-body: |
     Need to borrow a ladder? Lost a cat? Offering up vegetables from your garden? Share it with your neighbors!
