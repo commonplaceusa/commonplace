@@ -1,11 +1,11 @@
-en:  
+college:  
   announcements:
     new:
-      title: Send an announcement to your whole community
+      title: Send an announcement to the whole campus
       link_html: Publicize an Announcement
 
     edit:
       title: Edit your announcement
 
     index:
-      title: Send an announcement to your whole community
+      title: Send an announcement to your whole campus

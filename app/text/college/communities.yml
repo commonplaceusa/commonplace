@@ -1,9 +1,9 @@
-en:
+college:
   communities:
     say_something:
-      title: "Say something to your neighbors:"
+      title: "Say something to your hall:"
     community_profiles:
-      title: "View community profiles:"
+      title: "View campus profiles:"
     whats_happening:
       title: "Find out what's happening in town:"
     good_neighbor_discount:

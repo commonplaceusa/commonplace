@@ -1,11 +1,11 @@
-college:
+en:
   authlogic:
     error_messages:
       login_blank: Please enter your email address.
       login_not_found: The email address you entered is not valid.
       login_invalid: The email address you entered should use only letters, numbers, spaces, and .-_@
       consecutive_failed_logins_limit_exceeded: You have reached your login limit, your account is temporarily disabled.
-      email_invalid: Please register with your school e-mail address.
+      email_invalid: The email address you entered is not valid.
       password_blank: Please enter your password.
       password_invalid: The password you entered is not valid.
       not_active: Your account is not active.
