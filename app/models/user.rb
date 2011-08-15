@@ -73,8 +73,17 @@ class User < ActiveRecord::Base
     return true
   end
 
-  validates_presence_of :email, :message => "Please provide a valid email address."
-  validates_presence_of :first_name, :last_name, :message => "CommonPlace requires people to register with their first \& last names."
+  validates_presence_of :email
+  validates_uniqueness_of :email
+
+  # HACK HACK HACK TODO: This should be in the database schema, or slugs for college towns should ALWAYS be the domain suffix
+  validates_format_of :email, :with => /^([^\s]+)@mail\.umw\.edu/, :if => :college?
+
+  def college?
+    self.community.is_college
+  end
+
+  validates_presence_of :first_name, :last_name
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
