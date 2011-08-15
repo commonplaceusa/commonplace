@@ -1,5 +1,8 @@
 @import core
+@import buttons
 @import header
+
+
 body
   background-color: #eee
   margin: 0
@@ -80,17 +83,8 @@ body
         color: #ac322f
 
   #send-message
-    +border-radius(5px)
-    background-color: #2b4462
-    color: #fff
-    border: 1px solid #13263b
-    padding: 15px 0
+    +blue-button
     margin: 15px 20px
-    text-align: center
-    font-family: Rockwell, Helvetica
-    font-weight: bold
-    
-
 #feed-nav
   font-family: Rockwell, Helvetica
   margin-top: 20px
@@ -215,6 +209,7 @@ body
       padding: 5px 5px
 
     button
+      +blue-button
       float: right
       margin: 20px 0 
 
@@ -226,12 +221,16 @@ body
 
 .invite-subscribers div.invite-by-facebook
   margin: 20px 0 20px 73px
+  
+  button
+    +blue-button
 
 .invite-subscribers div.invite-by-hand
   margin: 16px 15px 20px 73px
   
   button
     margin-top: 20px
+    +blue-button
 
 .invite-subscribers .invite-by-hand a.download
   background-image: url("/feed_page/images/doc-icon.png")
@@ -258,6 +257,7 @@ body
     color: #5a1a19
     font-family: Rockwell, Helvetica
     font-size: 12px
+  
   
 
   
