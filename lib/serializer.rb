@@ -106,7 +106,8 @@ module Serializer
         "address" => o.address,
         "links" => { 
           "announcements" => "/feeds/#{o.id}/announcements",
-          "events" => "/feeds/#{o.id}/events"
+          "events" => "/feeds/#{o.id}/events",
+          "invites" => "/feeds/#{o.id}/invites"
         }
       }
 

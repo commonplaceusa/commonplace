@@ -361,6 +361,20 @@ end
       [400, "errors"]
     end
   end
+
+  # POST "/feeds/:id/invites"
+  # { emails: [String]
+  # , message: String }
+  #
+  post "/feeds/:id/invites" do |feed_id|
+    request_body['emails'].each do |email|
+      unless User.exists?(:email => email)
+        Resque.enqueue(FeedInvitation, email, feed_id)
+      end
+    end
+    [200, ""]
+  end
+  
   
   # POST "/group_posts"
   # { title: String
