@@ -1,10 +1,10 @@
-en:
+college:
   events:
     new:
       link_html: Post an <br>Event
-      title: Post an event to your community
+      title: Post an event to campus
     edit: 
       title: Edit your Event
       
     index: 
-      title: Post an event to your community
+      title: Post an event to campus

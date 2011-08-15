@@ -2,46 +2,46 @@ college:
   accounts:
     new:
       h1: Plug Into the %{community} Community
-      li1: CommonPlace is a web platform built for %{community} residents.  It's like an online bulletin board for the %{community} community.
-      li2: Sign up to send and receive community announcements written by your neighbors and local leaders here in %{community}.
-      li3: CommonPlace is a community service project. Join and help make %{community} an even better place to live.
+      li1: CommonPlace is a web platform built for %{community} students.  It's like an online bulletin board for the %{community} community.
+      li2: Sign up to send and receive community announcements written by your fellow students and organization leaders here at %{community}.
+      li3: CommonPlace is a community-building project. Join and help make the %{community} community even better.
       
     edit_new:
       h1: Fill out your community profile
-      p2: CommonPlace makes it easy for you to share needs, announcements and events with folks who live in %{community}.
-      p3: Use CommonPlace whenever you want to get local recommendations, borrow goods from your neighbors, or plan the next big town initiative.
+      p2: CommonPlace makes it easy for you to share needs, announcements and events with your fellow students at %{community}.
+      p3: Use CommonPlace whenever you want to get local recommendations, borrow goods from your neighbors, or plan the next big campus initiative.
       p4: Before you start, take a moment to fill out your community profile.
       password_hint: "*Required field."
     crop:
       h1: Please crop your avatar
     add_feeds:
       h1: Stay in the Loop!
-      p1: Community leaders use CommonPlace to share events and announcements with people who live in %{community}.           
-      p2: Subscribe to some local community feeds in order to get notified whenever they send out updates.
+      p1: Organization leaders use CommonPlace to share events and announcements with campus.
+      p2: Subscribe to some community feeds in order to get notified whenever they send out updates.
       
     add_groups:
       h1: Get Connected!
-      p1: CommonPlace Groups help you connect with people in your community who share similar interests.
+      p1: CommonPlace Groups help you connect with people on campus who share similar interests.
       p2: Subscribe to groups to send and receive information about specific community topics that you care about. 
       p3: Feel free to join as many as you want! 
       
     edit:
       title: Change Settings
     learn_more:
-      title_html: Join CommonPlace to receive important community announcements <br> from your neighbors and local organizations in %{community}. %{sign_up}
+      title_html: Join CommonPlace to receive important community announcements <br> from your fellow students and local organizations at %{community}. %{sign_up}
       sign_up: Sign up. 
-      p1: CommonPlace brings your neighborhoods and civic leaders in %{community} together into one "community network" online.
-      p2: Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and mayor.
+      p1: CommonPlace brings your fellow students and campus leaders at %{community} together into one "community network" online.
+      p2: Sign up once and you'll start receiving short email messages from your neighbors and community leaders.
       p3: Whenever something's interesting to you, you can hit "reply" and start a community conversation.
       p4: All these community conversations, events and announcements can always be viewed at %{link}.
       p5: And of course, whenever YOU have a need or announcement, CommonPlace makes it really easy to share it with the people around you.
       p6: To post, simply go to&#58; %{community_link}
       p7: Or email it in at&#58; %{community_email}
       list:
-        - Ask to borrow a ladder or power drill
-        - Publicize a tag sale or block party
+        - Ask to borrow a textbook or power drill
+        - Publicize a club event or campus-wide party
         - Find people and organizations with shared interests or hobbies around you
-        - Ask about how to fix a pot hole
+        - Ask about how to fix something
         - Organize a service project for %{community}
 
     edit_interests:
@@ -96,12 +96,12 @@ college:
           - "infosheet"
           - "neighborflyer"
         file_zip: "archives"
-        twitter_message: "Hey neighbors! If you live in %{community}, check out %{community}\'s CommonPlace, a new local community bulletin board:"
+        twitter_message: "Hey neighbors! If you live in %{community}, check out %{community}\'s CommonPlace, a new campus bulletin board:"
 
         facebook:
           name: "Register for The %{community} CommonPlace"
-          caption: "The %{community} CommonPlace is a new online community bulletin board for neighbors in %{community}."
+          caption: "The %{community} CommonPlace is a new online community bulletin board for students at %{community}."
           description: "Join your neighbors at: www.%{community}.OurCommonPlace.com."
-          message: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}. You should join too at: www.%{slug}.OurCommonPlace.com."
+          message: "I joined The %{community} CommonPlace, a new online community bulletin board for students at %{community}. You should join too at: www.%{slug}.OurCommonPlace.com."
 
-          invitation: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}.  You should join too at: www.%{slug}.OurCommonPlace.com."
+          invitation: "I joined The %{community} CommonPlace, a new online community bulletin board for students at %{community}.  You should join too at: www.%{slug}.OurCommonPlace.com."
