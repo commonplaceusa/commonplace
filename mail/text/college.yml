@@ -96,8 +96,7 @@ daily_bulletin:
 
   invite-action-title: Invite your fellow students!
   invite-action-body: |
-    Know anyone in {{community_name}} <em>not</em> on CommonPlace?  post-action-title: Post to Your Hall
-      
+    Know anyone in {{community_name}} <em>not</em> on CommonPlace?  
   post-action-title: Post to Your Hall
   post-action-body: |
     Need to borrow a stapler? Lost your phone? Offering up extra food you have? Share it with your hallmates!
