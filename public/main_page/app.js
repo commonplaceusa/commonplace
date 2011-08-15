@@ -8,6 +8,21 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     new CommonPlace.Index({el: $("#whats-happening")});
     this.newPost();
     this.notifications = [];
+
+    var didscroll = false;  
+    $(window).scroll(function() { didscroll = true; });
+    
+    setInterval(function() {
+      if (didscroll) {
+        didscroll = false;
+        setInfoBoxPosition();
+      }
+    }, 100); 
+    
+    setInfoBoxPosition();        
+    
+    $("body").trigger("#modal");
+
   },
 
   routes: {
@@ -82,6 +97,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
 
   newMessage: function(person_id) {
     new CommonPlace.NewMessage({person_id: person_id}).render();
+    $(window).trigger('resize.modal');
   },
 
   editPost : function(id) {
