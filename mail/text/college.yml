@@ -1,65 +1,65 @@
 
 post_notification:
-  intro: Hi {{user_name}}, <br> {{poster_name}} just posted to your neighborhood board on CommonPlace.
+  intro: Hi {{user_name}}, <br> {{poster_name}} just posted to your hall board on CommonPlace.
 
 welcome: 
-  intro: We are happy to hear you have joined your neighbors on {{community_name}}'s CommonPlace, a new web platform for local community engagement here in {{community_name}}.  {{community_name}}'s CommonPlace is like an online bulletin for people who live in {{community_name}}, designed to make it really easy for you to share requests, offers and other information with your neighbors and to stay up-to-date with what's happening in {{community_name}}.
+  intro: We are happy to hear you have joined your fellow students on {{community_name}}'s CommonPlace, a new web platform for local community engagement here in {{community_name}}.  {{community_name}}'s CommonPlace is like an online bulletin for students who attend {{community_name}}, designed to make it really easy for you to share requests, offers and other information with your fellow students and to stay up-to-date with what's happening at {{community_name}}.
 
   list-intro: |
     Here are some platform features that you might be interested in using to get connected with your community:
   
-  post-feature-title: Neighborhood Posts
+  post-feature-title: Hall Posts
   post-feature-desc: |
-    Need to borrow a ladder?  Lost a cat?  Looking for a babysitter or an electrician recommendation?  See a downed wire in the neighborhood?  Click "Post to Your Neighborhood" in the red box on the top left of the mainpage to post a message to all your neighbors.  Have a ladder?  Found the cat?  Up for babysitting?  Click on any neighborhood post and a reply box will appear for you to reply directly to your neighbor.
+    Need to borrow a stapler?  Lost your textbook?  Looking for a restaurant recommendation?  See something wrong in your hall?  Click "Post to Your Hall" in the red box on the top left of the mainpage to post a message to your hallmates.  Have a stapler?  Willing to share a textbook?  Have an idea about how to improve a posted problem?  Click on any hall post and a reply box will appear for you to reply directly to your fellow student.
 
-  announcement-feature-title: Community Announcements
+  announcement-feature-title: Campus Announcements
   announcement-feature-desc: |
-    Want to get the word out to everyone in the community about your upcoming canned food drive?  Want to let every parent in town know that you do SAT tutoring or piano lessons?  Click "Publicize a Community Announcement" to get the word out to the community.  Interested in staying in the loop with what's going on in {{community_name}}?  Click on "Community Announcements" to see all the updates that people, businesses, and organizations are sending out to the community.  Like with neighborhood posts, click on any announcement and a reply box will appear for you to reply directly to the person or organization that posted the announcement.
+    Want to get the word out to everyone in the community about your upcoming event?  Want to let every student on campus know that you are looking for people to act in your play?  Or that you need extra people for intermurals?  Click "Publicize a Campus Announcement" to get the word out to campus.  Interested in staying in the loop with what's going on in {{community_name}}?  Click on "Campus Announcements" to see all the updates that people, businesses, and organizations are sending out to the community.  Like with hall posts, click on any announcement and a reply box will appear for you to reply directly to the person or organization that posted the announcement.
 
-  event-feature-title: Community Events
+  event-feature-title: Campus Events
   event-feature-desc: |
-    Click on "Community Events" to see everything going on in {{community_name}} in the coming weeks.  Add your own event to the CommonPlace events board anytime by clicking "Post an Event."  Like announcements and neighborhood posts, you can click on any event and reply to it to get in touch with the event coordinator.
+    Click on "Campus Events" to see everything going on in {{community_name}} in the coming weeks.  Add your own event to the CommonPlace events board anytime by clicking "Post an Event."  Like announcements and hall posts, you can click on any event and reply to it to get in touch with the event coordinator.
 
-  feed-feature-title: Community Feeds
+  feed-feature-title: Campus Feeds
   feed-feature-desc: |
-    Any organization, business, city service or cause in {{community_name}} can create a "Community Feed" on CommonPlace.  This allows them to send out announcements and events to the community from their organization.  Subscribe to community feeds to be emailed directly when that organization posts an announcement or an event.  If you are the leader of an organization or business in town and want to stream your announcements and events through CommonPlace, consider creating a community feed.
+    Any organization, business, city service or cause in {{community_name}} can create a "Campus Feed" on CommonPlace.  This allows them to send out announcements and events to the community from their organization.  Subscribe to campus feeds to be emailed directly when that organization posts an announcement or an event.  If you are the leader of an organization on campus and want to stream your announcements and events through CommonPlace, consider creating a campus feed.
 
   directory-feature-title: Directory
   directory-feature-desc: |
-    On {{community_name}}'s CommonPlace, you can see a directory of everyone in town that has signed up for CommonPlace.  Click on any name to see their civic profile and click "Message" in their profile to send a neighbor a private message.
+    On {{community_name}}'s CommonPlace, you can see a directory of everyone on campus that has signed up for CommonPlace.  Click on any name to see their campus profile and click "Message" in their profile to send a neighbor a private message.
 
-    <p>If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  Also, please email us if you are interested in helping out with signing your neighbors up with CommonPlace. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for neighbors in {{community_name}} to connect, so make sure to tell your neighbors to sign up at <a href="{{root_url}}"><span>{{root_url}}</span></a>.</p>
+    <p>If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  Also, please email us if you are interested in helping out with signing your fellow students up with CommonPlace. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for students at {{community_name}} to connect, so make sure to tell your fellow students to sign up at <a href="{{root_url}}"><span>{{root_url}}</span></a>.</p>
 
-    <p>Thanks again for joining {{community_name}}'s CommonPlace and thanks for being a great neighbor!</p>
+    <p>Thanks again for joining {{community_name}}'s CommonPlace!</p>
   
     <p>Cheers, <br> The {{community_name}} CommonPlace</p>
 
   outro: |
-    If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  Also, please email us if you are interested in helping out with signing your neighbors up with CommonPlace. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for neighbors in {{community_name}} to connect, so make sure to tell your neighbors to sign up at <a href="{{root_url}}"><span>{{root_url}}</span></a>.
+    If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  Also, please email us if you are interested in helping out with signing your fellow students up with CommonPlace. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for students at {{community_name}} to connect, so make sure to tell your fellow students to sign up at <a href="{{root_url}}"><span>{{root_url}}</span></a>.
 
   thanks: |
-    Thanks again for joining {{community_name}}'s CommonPlace and thanks for being a great neighbor!
+    Thanks again for joining {{community_name}}'s CommonPlace!
 
 
 post_confirmation:
   thanks: |
-    Thanks for being a great neighbor,<br>{{community_name}}'s CommonPlace Team
+    Thanks,<br>{{community_name}}'s CommonPlace Team
 
 invitation:
   body: |
     <p>Hi Neighbor,</p>
-    <p>{{inviter_name}} has invited you to join {{community_name}}'s CommonPlace, a web platform that makes it easy for neighbors and local leaders in {{community_name}} to connect and share information with each other. {{#message}}{{short_inviter_name}} added the following message: {{/message}}
+    <p>{{inviter_name}} has invited you to join {{community_name}}'s CommonPlace, a web platform that makes it easy for students and organization leaders at {{community_name}} to connect and share information with each other. {{#message}}{{short_inviter_name}} added the following message: {{/message}}
     </p>
 
     {{#message}}
     <p class="quote">"{{message}}"</p>
     {{/message}}
 
-    <p>{{community_name}}'s CommonPlace is like an online bulletin board for your town -- {{short_inviter_name}} and other neighbors in {{community_name}} have been using {{community_name}}'s CommonPlace to share events, needs, questions and announcements with the people who live right around them. Sign up once and start receiving important community announcements from your neighbors and local leaders here in {{community_name}}. To sign up, simply click the link below:</p>
+    <p>{{community_name}}'s CommonPlace is like an online bulletin board for campus -- {{short_inviter_name}} and other neighbors in {{community_name}} have been using {{community_name}}'s CommonPlace to share events, needs, questions and announcements with the people who live right around them. Sign up once and start receiving important campus announcements from your fellow students and organization leaders here in {{community_name}}. To sign up, simply click the link below:</p>
 
     <p class="link-to-commonplace"><a href="{{root_url}}"><span>{{root_url}}</span></a></p>
 
-    <p>You can use {{community_name}}'s CommonPlace to: notify your neighbors about a lost cat, or to ask to borrow a ladder; use it to keep up with local events happening in town, or to publicize your own; use it to get announcements from the city government and local organizations, or to start up you own group in the community.</p>
+    <p>You can use {{community_name}}'s CommonPlace to: notify your fellow students about a lost phone, or to ask to borrow a stapler; use it to keep up with campus events, or to publicize your own; use it to get announcements from campus organizations, or to start up you own group on campus.</p>
     
     <p>If you have any questions, feel free to contact {{organizer_name}}, the lead CommonPlace organizer for {{community_name}}, at {{organizer_email}} with any questions, concerns, or ideas about {{community_name}}'s Commonplace.</p>
 
@@ -77,12 +77,12 @@ feed_invitation:
     <p class="quote">"{{message}}"</p>
     {{/message}}
 
-    <p>{{community_name}}'s CommonPlace is like an online bulletin board for your town -- {{short_inviter_name}} and other neighbors in {{community_name}} have been using {{community_name}}'s CommonPlace to share events, needs, questions and announcements with the people who live right around them. Sign up once and start receiving important community announcements from your neighbors and local leaders here in {{community_name}}. To sign up, simply click the link below:</p>
+  <p>{{community_name}}'s CommonPlace is like an online bulletin board for campus -- {{short_inviter_name}} and other neighbors in {{community_name}} have been using {{community_name}}'s CommonPlace to share events, needs, questions and announcements with the people who live right around them. Sign up once and start receiving important campus announcements from your fellow students and organization leaders here in {{community_name}}. To sign up, simply click the link below:</p>
 
     <p class="link-to-commonplace"><a href="{{root_url}}"><span>{{root_url}}</span></a></p>
 
-    <p>In addition to receiving information about <em>{{feed_name}}</em>, you can also use {{community_name}}'s CommonPlace to: notify your neighbors about a lost cat, or to ask to borrow a ladder; use it to keep up with local events happening in town, or to publicize your own; use it to get announcements from the city government and local organizations, or to start up you own group in the community.</p>
-
+    <p>You can use {{community_name}}'s CommonPlace to: notify your fellow students about a lost phone, or to ask to borrow a stapler; use it to keep up with campus events, or to publicize your own; use it to get announcements from campus organizations, or to start up you own group on campus.</p>
+    
     <p>If you have any questions, feel free to contact {{organizer_name}}, the lead CommonPlace organizer for {{community_name}}, at {{organizer_email}} with any questions, concerns, or ideas about {{communit_name}}'s Commonplace.</p>
 
     <p>Thanks,<br>
@@ -90,29 +90,29 @@ feed_invitation:
     </p>
 
 daily_bulletin:
-  posts-section-title: Recent Neighborhood Posts
-  events-section-title: Upcoming Community Events
-  announcements-section-title: Recent Community Announcements
+  posts-section-title: Recent Hall Posts
+  events-section-title: Upcoming Campus Events
+  announcements-section-title: Recent Campus Announcements
 
-  invite-action-title: Invite your Neighbors!
+  invite-action-title: Invite your fellow students!
   invite-action-body: |
-    Know anyone in {{community_name}} <em>not</em> on CommonPlace?  post-action-title: Post to Your Neighborhood
+    Know anyone in {{community_name}} <em>not</em> on CommonPlace?  post-action-title: Post to Your Hall
       
-  post-action-title: Post to Your Neighborhood
+  post-action-title: Post to Your Hall
   post-action-body: |
-    Need to borrow a ladder? Lost a cat? Offering up vegetables from your garden? Share it with your neighbors!
+    Need to borrow a stapler? Lost your phone? Offering up extra food you have? Share it with your hallmates!
 
   group-post-action-title: Post to a Discussion Group
   group-post-action-body: |
-    Need to get in touch with other {{community_name}} dog owners?  Have an opinion on a local environmental issue?  Get the town discussion group conversations going!
+    Need to get in touch with other {{community_name}} sports players?  Have an opinion on a campus life issue?  Get the campus discussion group conversations going!
   event-action-title: Post an Event
   event-action-body: |
-    Does your community organization have an event coming up?  Publicize it on {{community_name}}'s CommonPlace!
+    Does your organization have an event coming up?  Publicize it on {{community_name}}'s CommonPlace!
 
   announce-action-title: Publicize an Announcement
   announce-action-body: |
-    Does your business have a new promotion?  Is your civic organization running a volunteer drive? Get the word out in tomorrow's Daily Bulletin!</p>
+    Is your organization recruiting new members?  Are you running a volunteer drive? Get the word out in tomorrow's Daily Bulletin!</p>
     
   new-feed-action-title: Register a Community Feed
   new-feed-action-body: |
-    Are you part of a community organization, business, municipal agency or cause that wants to send announcements and events through {{community_name}}'s CommonPlace?
+    Are you part of a campus organization or cause that wants to send announcements and events through {{community_name}}'s CommonPlace?
