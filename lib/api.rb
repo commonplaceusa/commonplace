@@ -313,7 +313,7 @@ end
   end
 
   # POST /feeds/:id/announcements
-  # { title: String,
+  # { title: String
   # , body: String }
   #
   # Authorization: account owns feed
