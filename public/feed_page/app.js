@@ -83,7 +83,8 @@ var FeedNavView = Backbone.View.extend({
 var FeedActionsView = Backbone.View.extend({
   events: {
     "click #feed-action-nav a": "navigate",
-    "submit .post-announcement form": "postAnnouncement"
+    "submit .post-announcement form": "postAnnouncement",
+    "submit .post-event form": "postEvent"
   },
 
   initialize: function(options) {
@@ -120,8 +121,29 @@ var FeedActionsView = Backbone.View.extend({
                              body: $("[name=body]", $form).val() }),
       type: "post",
       dataType: "json",
-      success: function() { alert("yay")}});
+      success: function() { alert("announcement sent")}});
   },
+
+  postEvent: function(e) {
+    var $form = $(e.target);
+    e.preventDefault();
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.feed.links.events,
+      data: JSON.stringify({ title:   $("[name=title]", $form).val(),
+                             about:   $("[name=about]", $form).val(),
+                             date:    $("[name=date]", $form).val(),
+                             start:   $("[name=start]", $form).val(),
+                             end:     $("[name=end]", $form).val(),
+                             venue:   $("[name=venue]", $form).val(),
+                             address: $("[name=address]", $form).val(),
+                             tags:    $("[name=tags]", $form).val()
+                           }),
+      type: "post",
+      dataType: "json",
+      success: function() { alert("event sent")}});
+  },
+
 
   time_values: _.flatten(_.map(["AM", "PM"],
                                function(half) {
