@@ -81,6 +81,7 @@ gem 'resque'
 gem 'resque-exceptional'
 gem 'resque-scheduler'
 gem 'hirefireapp'
+gem 'delayed_job'
 
 # Features/Monitoring
 gem 'exceptional'
