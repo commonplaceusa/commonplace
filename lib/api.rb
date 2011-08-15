@@ -346,7 +346,7 @@ end
   post "/feeds/:id/events" do |feed_id|
     event = Event.new(:owner_type => "Feed",
                       :owner_id => feed_id,
-                      :name => request_body['title']
+                      :name => request_body['title'],
                       :description => request_body['about'],
                       :date => request_body['date'],
                       :start_time => request_body['start'],
