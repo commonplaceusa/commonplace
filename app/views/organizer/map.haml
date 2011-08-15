@@ -40,10 +40,11 @@
   blueIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
   blueMarkerOptions = { icon: blueIcon };
 
-  - current_community.users.select{ |u| u.latitude.present? and u.longitude.present? }.each do |user|
-    = "var point = new GLatLng('#{user.latitude}', '#{user.longitude}');"
-    = "var marker = createMarker(point, '#{user.full_name.gsub('\'','')}', greenMarkerOptions);"
-    map.addOverlay(marker);
+  - current_community.users.select{ |u| u.address.present? }.each do |user|
+    = "geocoder.getLatLng('#{} #{}', function(point) { map.addOverlay(new GMarker(point, greenMarkerOptions)); });"
+    -# = "var point = new GLatLng('#{user.latitude}', '#{user.longitude}');"
+    -# = "var marker = createMarker(point, '#{user.full_name.gsub('\'','')}', greenMarkerOptions);"
+    -# map.addOverlay(marker);
   - @data_points.each do |p|
     = "console.log('Got data point with status #{p.status} at address #{p.address}');"
     - if p.status == "dropped"
