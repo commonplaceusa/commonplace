@@ -141,4 +141,8 @@ class Community < ActiveRecord::Base
   def to_param
     slug
   end
+
+  def locale
+    (self.is_college) ? :college : :en
+  end
 end

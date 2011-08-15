@@ -10,6 +10,10 @@ class CPClient
     get("/communities/#{community}/posts", options)
   end
 
+  def neighborhood_posts(neighborhood, options = {})
+    get("/neighborhoods/#{neighborhood}/posts", options)
+  end
+
   def community_events(community, options = {})
     get("/communities/#{community}/events", options)
   end

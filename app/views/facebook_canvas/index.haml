@@ -9,7 +9,11 @@
   xfbml  : true
   });
   s = FB.getSession();
+<<<<<<< HEAD
+  = "FB.api('/#{@request_id}?access_token=#{@application_token}', 'GET', {access_token: '#{@application_token}'}, function(r) { $('#join').attr('href','https://' + r.data + '.ourcommonplace.com/'); });"
+=======
   = "FB.api('/#{@request_id}?access_token=#{@application_token}', 'GET', {access_token: '#{@application_token}'}, function(r) { $('#join').attr('href','http://www.ourcommonplace.com/' + r.data); });"
+>>>>>>> fb0a65809482ac498e3f4fc7d788b6e9c35ff68b
   });
 = link_to(image_tag("http://www.ourcommonplace.com/images/join-commonplace.png"),"https://www.ourcommonplace.com/", :target => "_top", :id => "join")
 #fb-root

@@ -78,7 +78,10 @@
       = f.inputs do
         = f.input :full_name, :input_html => { :placeholder => "Full name"} 
         = f.input :email, :input_html => { :placeholder => "Email address"}
-        = f.input :address, :hint => "", :input_html => {:placeholder => "Address"}
+        - if current_community.is_college
+          = f.input :address, :hint => "", :as => :select, :collection => college_dorms_for_school(current_community)
+        - else
+          = f.input :address, :hint => "", :input_html => {:placeholder => "Address"}
       #fb-wrapper
         = f.buttons do 
           = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/signup.png"}
