@@ -52,13 +52,19 @@ class Community < ActiveRecord::Base
   end
   
   def neighborhood_for(address)
-    default = self.neighborhoods.first
-    if position = LatLng.from_address(address, self.zip_code)
-      self.neighborhoods.to_a.find(lambda { default }) do |n|
-        n.contains?(position)
+    if self.is_college
+      self.neighborhoods.to_a.find(lambda { nil }) do |n|
+        n.name == address
       end
     else
-      default
+      default = self.neighborhoods.first
+      if position = LatLng.from_address(address, self.zip_code)
+        self.neighborhoods.to_a.find(lambda { default }) do |n|
+          n.contains?(position)
+        end
+      else
+        default
+      end
     end
   end
 
