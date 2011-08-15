@@ -26,7 +26,9 @@
 
     :javascript
       CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
-      name: "#{current_community.name}"});
+      name: "#{current_community.name}",
+      locale: "#{current_community.locale}"
+      });
 
 
       CommonPlace.community.posts.refresh(#{@posts.to_json.html_safe});
