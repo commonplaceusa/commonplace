@@ -84,7 +84,8 @@ var FeedActionsView = Backbone.View.extend({
   events: {
     "click #feed-action-nav a": "navigate",
     "submit .post-announcement form": "postAnnouncement",
-    "submit .post-event form": "postEvent"
+    "submit .post-event form": "postEvent",
+    "submit .invite-subscribers form.invite-by-email": "inviteByEmail"
   },
 
   initialize: function(options) {
@@ -154,7 +155,22 @@ var FeedActionsView = Backbone.View.extend({
                                                                 return String(hour) + ":" + minute + " " + half;
                                                               });
                                                });
-                               }))
+                               })),
+
+  inviteByEmail: function(e) {
+    var $form = $(e.target);
+    e.preventDefault();
+        $.ajax({
+          contentType: "application/json",
+          url: "/api" + this.feed.links.invites,
+          data: JSON.stringify({ emails: _.map($("[name=emails]", $form).val().split(/,|;/), 
+                                               function(s) { return s.replace(/\s*/,""); }),
+                                 message: $("[name=message]", $form).val()
+                               }),
+          type: "post",
+          dataType: "json",
+          success: function() { alert("invites sent")}});
+  }
 });
 
 
