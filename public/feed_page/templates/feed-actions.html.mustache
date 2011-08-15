@@ -24,15 +24,15 @@
 
     <input class="date" name="date" placeholder="Event date">
 
-    <label for="start_time">Start time</label>
-    <select name="start_time">
+    <label for="start">Start time</label>
+    <select name="start">
       {{#time_values}}
         <option value="{{.}}">{{.}}</option>
       {{/time_values}}
     </select>
 
-    <label for="end_time">End time</label>
-    <select name="end_time">
+    <label for="end">End time</label>
+    <select name="end">
       {{#time_values}}
         <option value="{{.}}">{{.}}</option>
       {{/time_values}}
