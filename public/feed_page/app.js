@@ -23,9 +23,9 @@ var FeedPageRouter = Backbone.Controller.extend({
       new FeedProfileView({ model: feed, el: $("#feed-profile")}).render();
       
       new FeedHeaderView({ model: feed, account: self.account, el: $("#feed-header") }).render();
-
-      new FeedActionsView({ el: $("#feed-actions"), feed: feed }).render();
-      
+      $.getJSON("/api/communities/1/groups", function(groups) {
+        new FeedActionsView({ el: $("#feed-actions"), feed: feed, groups: groups }).render();
+      });
       new FeedNavView({ model: feed, el: $("#feed-nav") }).render();
 
       $.getJSON("/api/communities/1/feeds", function(feeds) {
@@ -85,13 +85,13 @@ var FeedActionsView = Backbone.View.extend({
     "click #feed-action-nav a": "navigate",
     "submit .post-announcement form": "postAnnouncement",
     "submit .post-event form": "postEvent",
-    "submit .invite-subscribers form.invite-by-email": "inviteByEmail"
+    "submit .invite-subscribers form.invite-by-email": "inviteByEmail",
+    "change .post-label-selector input": "toggleCheckboxLIClass"
   },
 
   initialize: function(options) {
-    console.log(options.feed);
     this.feed = options.feed;
-    console.log(this.feed.links.announcements);
+    this.groups = options.groups;
     this.postAnnouncementClass = "current";
     _.extend(this, this.feed);
   },
@@ -110,6 +110,10 @@ var FeedActionsView = Backbone.View.extend({
       .filter("." + $target.attr('href').slice(2))
       .addClass("current");
     e.preventDefault();
+  },
+
+  toggleCheckboxLIClass: function(e) {
+    $(e.target).closest("li").toggleClass("checked");
   },
 
   postAnnouncement: function(e) {
