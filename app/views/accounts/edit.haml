@@ -5,7 +5,7 @@
     = f.input :email
     = f.input :password
     = f.input :receive_weekly_digest, :as => :boolean
-    = f.input :post_receive_method, :as => :radio, :collection => User.post_receive_options, :label => "Neighborhood Posts:"
+    = f.input :post_receive_method, :as => :radio, :collection => User.post_receive_options
 
   - f.semantic_fields_for :subscriptions do |sf|
     - sf.inputs do

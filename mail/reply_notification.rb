@@ -5,7 +5,11 @@ class ReplyNotification < MailBase
   end
 
   def subject
-    "#{replier_name} just replied to message on CommonPlace"
+    if @user.community.is_college
+      "#{replier_name} just replied to a hall board post on CommonPlace"
+    else
+      "#{replier_name} just replied to message on CommonPlace"
+    end
   end
 
   def community

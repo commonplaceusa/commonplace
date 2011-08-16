@@ -18,7 +18,8 @@ college:
           password: "Change your password:"
         receive_posts: Get new hall posts in emails
         receive_events_and_announcements: Get new announcements and events in emails
-        receive_weekly_digest: Get a weekly bulletin
+        receive_weekly_digest: Get a daily bulletin
+        post_receive_method: "Hall Posts:"
       invites:
         emails: Add comma-separated emails to invite other students at %{community} to CommonPlace
         message: Optional message

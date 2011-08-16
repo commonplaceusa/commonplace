@@ -77,7 +77,7 @@ feed_invitation:
     <p class="quote">"{{message}}"</p>
     {{/message}}
 
-  <p>{{community_name}}'s CommonPlace is like an online bulletin board for campus -- {{short_inviter_name}} and other neighbors in {{community_name}} have been using {{community_name}}'s CommonPlace to share events, needs, questions and announcements with the people who live right around them. Sign up once and start receiving important campus announcements from your fellow students and organization leaders here in {{community_name}}. To sign up, simply click the link below:</p>
+  <p>{{community_name}}'s CommonPlace is like an online bulletin board for your campus -- {{short_inviter_name}} and other students at {{community_name}} have been using {{community_name}}'s CommonPlace to share events, needs, questions and announcements with the people who live right around them. Sign up once and start receiving important campus announcements from your fellow students and organization leaders here in {{community_name}}. To sign up, simply click the link below:</p>
 
     <p class="link-to-commonplace"><a href="{{root_url}}"><span>{{root_url}}</span></a></p>
 

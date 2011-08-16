@@ -3,21 +3,21 @@ college:
     new:
       h1: Plug Into the %{community} Community
       li1: CommonPlace is a web platform built for %{community} students.  It's like an online bulletin board for the %{community} community.
-      li2: Sign up to send and receive community announcements written by your fellow students and organization leaders here at %{community}.
+      li2: Sign up to send and receive campus announcements written by your fellow students and organization leaders here at %{community}.
       li3: CommonPlace is a community-building project. Join and help make the %{community} community even better.
       
     edit_new:
-      h1: Fill out your community profile
+      h1: Fill out your campus profile
       p2: CommonPlace makes it easy for you to share needs, announcements and events with your fellow students at %{community}.
       p3: Use CommonPlace whenever you want to get local recommendations, borrow goods from your neighbors, or plan the next big campus initiative.
-      p4: Before you start, take a moment to fill out your community profile.
+      p4: Before you start, take a moment to fill out your campus profile.
       password_hint: "*Required field."
     crop:
       h1: Please crop your avatar
     add_feeds:
       h1: Stay in the Loop!
       p1: Organization leaders use CommonPlace to share events and announcements with campus.
-      p2: Subscribe to some community feeds in order to get notified whenever they send out updates.
+      p2: Subscribe to some campus feeds in order to get notified whenever they send out updates.
       
     add_groups:
       h1: Get Connected!
@@ -28,10 +28,10 @@ college:
     edit:
       title: Change Settings
     learn_more:
-      title_html: Join CommonPlace to receive important community announcements <br> from your fellow students and local organizations at %{community}. %{sign_up}
+      title_html: Join CommonPlace to receive important campus announcements <br> from your fellow students and local organizations at %{community}. %{sign_up}
       sign_up: Sign up. 
       p1: CommonPlace brings your fellow students and campus leaders at %{community} together into one "community network" online.
-      p2: Sign up once and you'll start receiving short email messages from your neighbors and community leaders.
+      p2: Sign up once and you'll start receiving short email messages from your fellow students and campus organization leaders.
       p3: Whenever something's interesting to you, you can hit "reply" and start a community conversation.
       p4: All these community conversations, events and announcements can always be viewed at %{link}.
       p5: And of course, whenever YOU have a need or announcement, CommonPlace makes it really easy to share it with the people around you.
@@ -69,19 +69,19 @@ college:
       
     facebook_invite:
         heading: Make CommonPlace Better!
-        heading2: Improve CommonPlace by inviting people you know.
+        heading2: Improve CommonPlace by inviting fellow students you know.
         
-        emails_label: "Invite people to join CommonPlace!"
+        emails_label: "Invite fellow students to join CommonPlace!"
         neighbors_name_label: "Neighbor's Name"
         email_label: "Email address"
-        tool_tip: "Find your neighbors on Facebook and invite them to join you on CommonPlace!"
+        tool_tip: "Find your fellow students on Facebook and invite them to join you on CommonPlace!"
 
         step_one: "1. Invite neighbors by Facebook"
         step_one_label: "Find your neighbors on Facebook and invite them to join you on CommonPlace!"
         step_two: "2. Share on Facebook and Twitter"
         step_two_label: "Let your friends and followers know you are on CommonPlace."
-        step_three: "3. Invite neighbors by email"
-        step_three_label: "Invite your neighbors by entering their email addresses and a short message below."
+        step_three: "3. Invite fellow students by email"
+        step_three_label: "Invite your fellow students by entering their email addresses and a short message below."
         step_four: "4. Invite neighbors face-to-face"
         step_four_label: "Invite neighbors the old fashioned way by handing out flyers and reading materials."
         step_five: "5. Join the Friends of The %{community} CommonPlace Network"
