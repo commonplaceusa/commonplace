@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110811202725) do
+ActiveRecord::Schema.define(:version => 20110816171445) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -363,6 +363,8 @@ ActiveRecord::Schema.define(:version => 20110811202725) do
     t.boolean  "transitional_user"
     t.string   "skills_list"
     t.string   "referral_metadata"
+    t.float    "generated_lat"
+    t.float    "generated_lng"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
