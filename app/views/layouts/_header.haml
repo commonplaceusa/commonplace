@@ -26,7 +26,7 @@
             - if current_user.managable_feeds.count > 0
               Feeds 
             - else
-              Register a Community Feed
+              =t "feeds.register"
           %ul
             - current_user.managable_feeds.each do |feed|
               %li= link_to feed.name, "/feeds/#{feed.id}/profile"
