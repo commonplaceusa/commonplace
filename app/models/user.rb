@@ -243,7 +243,7 @@ class User < ActiveRecord::Base
   end
 
   def place_in_neighborhood
-    if self.is_college
+    if self.community.is_college
       self.neighborhood = self.community.neighborhoods.select { |n| n.name == self.address }
     else
       self.neighborhood = self.community.neighborhoods.near(self.to_coordinates, 15).first || self.community.neighborhoods.first
