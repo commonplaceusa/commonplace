@@ -5,7 +5,11 @@ class PostNotification < MailBase
   end
 
   def subject
-    "#{poster_name} just posted to our neighborhood on CommonPlace"
+    if @post.community.is_college
+      "#{poster_name} just posted to your hall board on CommonPlace"
+    else
+      "#{poster_name} just posted to our neighborhood on CommonPlace"
+    end
   end
 
   def reply_to
