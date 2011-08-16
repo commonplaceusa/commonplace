@@ -35,18 +35,34 @@ CommonPlace.text.college = {
   "groupinfo": {},
   "say_something_nav": {},
   "group_post": {},
-  "index_nav": {},
+  "index_nav": {
+    "posts": "Hall<br> Posts",
+    "events": "Campus<br> Events",
+    "announcements": "Campus<br> Announcements",
+    "group_posts": "Group<br> Posts",
+    "directory": "Directory"
+  },
+  "announcement_form": {
+    "h2": "Send an announcement to your whole community"
+  },
   "announcement_form": {
     "h2": "Send an announcement to the whole campus"
   },
   "announcement": {},
   "delete_confirmation": {},
   "message_form": {},
-  "feedinfo": {},
+  "feedinfo": {
+    "view_feed": "View Campus Feed Page"
+  },
   "profile_tour": {
     "p1": "This is your \"campus profile.\" Your fellow students will see this profile when you post to the site. You can always add to it by clicking \"edit\" in the top right-hand corner."
   },
-  "wire": {},
+  "wire": {
+    "recent_posts": "Recent Hall Posts",
+    "upcoming_events": "Upcoming Events",
+    "recent_announcements": "Recent Campus Announcements",
+    "recent_discussion_group_posts": "Recent Discussion Group Posts"
+  },
   "post": {},
   "edit_group_post_form": {},
   "tour_welcome": {
@@ -54,7 +70,9 @@ CommonPlace.text.college = {
     "use2": "Meet your fellow students and find great campus organizations",
     "use3": "Discover ways to get involved with the campus community"
   },
-  "userinfo": {},
+  "userinfo": {
+    "h2": "Your Fellow Student"
+  },
   "index": {},
   "event_form": {
     "h2": "Post an event to the campus community"

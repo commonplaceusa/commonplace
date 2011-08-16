@@ -34,18 +34,31 @@ CommonPlace.text.en = {
   "groupinfo": {},
   "say_something_nav": {},
   "group_post": {},
-  "index_nav": {},
+  "index_nav": {
+    "posts": "Neighborhood<br> Posts",
+    "events": "Community<br> Events",
+    "announcements": "Community<br> Announcements",
+    "group_posts": "Group<br> Posts",
+    "directory": "Directory"
+  },
   "announcement_form": {
     "h2": "Send an announcement to your whole community"
   },
   "announcement": {},
   "delete_confirmation": {},
   "message_form": {},
-  "feedinfo": {},
+  "feedinfo": {
+    "view_feed": "View Community Feed Page"
+  },
   "profile_tour": {
     "p1": "This is your \"civic profile.\" Your neighbors will see this profile when you post to the site. You can always add to it by clicking \"edit\" in the top right-hand corner."
   },
-  "wire": {},
+  "wire": {
+    "recent_posts": "Recent Neighborhood Posts",
+    "upcoming_events": "Upcoming Events",
+    "recent_announcements": "Recent Community Announcements",
+    "recent_discussion_group_posts": "Recent Discussion Group Posts"
+  },
   "post": {},
   "edit_group_post_form": {},
   "tour_welcome": {
@@ -53,7 +66,9 @@ CommonPlace.text.en = {
     "use2": "Meet your neighbors and find great local organizations",
     "use3": "Discover ways to get involved in the community"
   },
-  "userinfo": {},
+  "userinfo": {
+    "h2": "Your Neighbor"
+  },
   "index": {},
   "event_form": {
     "h2": "Post an event to your community"

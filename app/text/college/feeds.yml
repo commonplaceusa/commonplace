@@ -1,5 +1,6 @@
 college:
   feeds:
+    register: "Register a Campus Feed"
     account:
       h1: Welcome! Feeds make it easy for you to send events and announcement to the people who live at Mary Washington. But before you can create a feed, you need to register a personal profile on CommonPlace.
 
