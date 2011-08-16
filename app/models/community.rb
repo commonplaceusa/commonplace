@@ -53,9 +53,7 @@ class Community < ActiveRecord::Base
   
   def neighborhood_for(address)
     if self.is_college
-      self.neighborhoods.to_a.find(lambda { nil }) do |n|
-        n.name == address
-      end
+      self.neighborhoods.select { |n| n.name == address }
     else
       default = self.neighborhoods.first
       if position = LatLng.from_address(address, self.zip_code)
