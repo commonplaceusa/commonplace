@@ -122,8 +122,10 @@ var FeedActionsView = Backbone.View.extend({
     $.ajax({
       contentType: "application/json",
       url: "/api" + this.feed.links.announcements,
-      data: JSON.stringify({ title: $("[name=title]", $form).val(),
-                             body: $("[name=body]", $form).val() }),
+      data: JSON.stringify({ title:  $("[name=title]", $form).val(),
+                             body:   $("[name=body]", $form).val(),
+                             groups: $("[name=groups]:checked", $form).map(function() { return $(this).val(); })
+                           }),
       type: "post",
       dataType: "json",
       success: function() { alert("announcement sent")}});
@@ -142,7 +144,8 @@ var FeedActionsView = Backbone.View.extend({
                              end:     $("[name=end]", $form).val(),
                              venue:   $("[name=venue]", $form).val(),
                              address: $("[name=address]", $form).val(),
-                             tags:    $("[name=tags]", $form).val()
+                             tags:    $("[name=tags]", $form).val(),
+                             groups:  $("[name=groups]:checked", $form).map(function() { return $(this).val(); })
                            }),
       type: "post",
       dataType: "json",
