@@ -51,6 +51,7 @@
       }
     })
   })
+  $("select#user_address").focus(function(e){ e.preventDefault(); });
   
 #wrapper
   #titleslug
@@ -74,7 +75,7 @@
             %div{:id => "bottomregister"}  
             %h3 
               or
-              %fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'facebookUserLoggedIn();', :perms => 'email,user_hometown,publish_stream,offline_access'}
+              %fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'fbEnsureInit(facebookUserLoggedIn);', :perms => 'email,user_hometown,publish_stream,offline_access'}
       = f.inputs do
         = f.input :full_name, :input_html => { :placeholder => "Full name"} 
         = f.input :email, :input_html => { :placeholder => "Email address"}
