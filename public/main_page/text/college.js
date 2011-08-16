@@ -61,7 +61,15 @@ CommonPlace.text.college = {
     "recent_posts": "Recent Hall Posts",
     "upcoming_events": "Upcoming Events",
     "recent_announcements": "Recent Campus Announcements",
-    "recent_discussion_group_posts": "Recent Discussion Group Posts"
+    "recent_discussion_group_posts": "Recent Discussion Group Posts",
+    "posts-tab": "Hall Posts",
+    "events-tab": "Campus Events",
+    "announcements-tab": "Campus Announcements",
+    "group-posts-tab": "Discussion Posts",
+    "directory-tab": "Directory",
+    "feeds-tab": "Campus Feeds",
+    "groups-tab": "Discussion Groups",
+    "users-tab": "Your Fellow Students"
   },
   "post": {},
   "edit_group_post_form": {},
@@ -73,7 +81,17 @@ CommonPlace.text.college = {
   "userinfo": {
     "h2": "Your Fellow Student"
   },
-  "index": {},
+  "index": {
+    "posts-tab": "Hall Posts",
+    "events-tab": "Campus Events",
+    "announcements-tab": "Campus Announcements",
+    "group-posts-tab": "Discussion Posts",
+    "directory-tab": "Directory",
+    "feeds-tab": "Campus Feeds",
+    "groups-tab": "Discussion Groups",
+    "users-tab": "Your Fellow Students"
+  },
+
   "event_form": {
     "h2": "Post an event to the campus community"
   }
