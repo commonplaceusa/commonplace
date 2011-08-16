@@ -217,6 +217,55 @@ body
       float: right
       margin: 20px 0 
 
+    label
+      color: #fff
+      margin-top: 15px
+      font-size: 16px
+      font-family: Rockwell, Helvetica
+      display: block
+    .post-label-selector
+      margin-top: 15px
+      height: 125px
+      overflow-y: scroll
+
+      li 
+        &:first-child
+          margin-top: 0px
+        
+        margin-top: 10px
+        margin-right: 10px
+        padding: 8px 5px 2px 5px
+        background-color: #fff
+        +border-radius(5px)
+        background-image: url("/feed_page/images/check-off.png")
+        background-repeat: no-repeat
+        background-position: 340px 8px
+
+        &.checked
+          background-image: url("/feed_page/images/check-on.png")
+          
+        label
+          display: block
+          font-size: 14px
+          font-family: Rockwell, Helvetica
+          color: #333
+          margin: 0
+          padding: 0
+        
+        img 
+          position: relative
+          top: -3px
+          vertical-align: middle
+          margin-right: 5px
+          border: 0
+
+        input
+          display: none
+
+          
+        
+        
+
 .invite-subscribers h1
   padding-left: 73px
   color: #fff

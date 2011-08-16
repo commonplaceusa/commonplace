@@ -10,6 +10,20 @@
   <form>
     <input name="title" placeholder="Title">
     <textarea name="body" placeholder="Body"></textarea>
+
+    <label>Label this post?</label>
+    <ul class="post-label-selector">
+      {{#groups}}
+        <li>
+          <label>
+            <img src="{{avatar_url}}" height="25" width="25">
+            {{name}}
+            <input name="groups" value="{{id}}" type="checkbox">
+          </label>
+        </li>
+      {{/groups}}
+    </ul>
+
     <button>Post an Announcement</button>
   </form>
   <div style="clear: both;"></div>
@@ -44,11 +58,23 @@
 
     <input name="address" placeholder="Event address">
 
-    <input name="tag_list" placeholder="Tag list">
+    <label>Label this post?</label>
+    <ul class="post-label-selector">
+      {{#groups}}
+        <li>
+          <label>
+            <img src="{{avatar_url}}" height="25" width="25">
+            {{name}}
+            <input name="groups" value="{{id}}" type="checkbox">
+          </label>
+        </li>
+      {{/groups}}
+    </ul>
 
     <button>Post your Event</button>
 
   </form>
+
   <div style="clear: both;"></div>
 </div>
 
