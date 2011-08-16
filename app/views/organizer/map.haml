@@ -1,5 +1,6 @@
 %script{:src => "https://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSosDVG8KKPE1-m51RBrvYughuyMxQ-i1QfUnH94QxWIa6N4U6MouMmBA", :type => "text/javascript"}
 %script{:type => "text/javascript"}
+  var map;
   function initialize() {
   if (GBrowserIsCompatible()) {
   function createMarker(point, html, colorOptions) {
@@ -10,7 +11,8 @@
   });
   return marker;
   }
-  var map = new GMap2(document.getElementById("map_canvas"));
+  console.log("Using #{current_community.slug} #{current_community.zip_code} #{@center_zip_code} as reference");
+  map = new GMap2(document.getElementById("map_canvas"));
   map.enableContinuousZoom();
   map.enableGoogleBar();
   map.enableScrollWheelZoom();
@@ -18,7 +20,7 @@
   control = new GLargeMapControl()
   map.addControl(control, control.getDefaultPosition())
   geocoder = new GClientGeocoder();
-  = "geocoder.getLatLng('#{@center_zip_code}', function(point){ map.setCenter(point, 12); });"
+  = "geocoder.getLatLng('#{@center_zip_code}', function(point){ map.setCenter(point, 16); });"
   map.setCenter(new GLatLng(37.4419, -122.1419), 1);
   var greenIcon = new GIcon(G_DEFAULT_ICON)
   greenIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"
@@ -41,7 +43,11 @@
   blueMarkerOptions = { icon: blueIcon };
 
   - current_community.users.select{ |u| u.address.present? }.each do |user|
-    = "geocoder.getLatLng('#{user.address} #{@center_zip_code}', function(point) { map.addOverlay(new GMarker(point, greenMarkerOptions)); });"
+    - point = user.generate_point
+    var point = new GLatLng('#{point['lat']}', '#{point['lng']}');
+    var marker = createMarker(point, '#{user.full_name.gsub('\'', '')}', greenMarkerOptions);
+    map.addOverlay(marker);
+    -# = "geocoder.getLatLng('#{user.address}, #{@community_bias}', function(point) { if (point == null) { console.log('Geocoding #{user.address} #{@community_bias} failed'); } else { map.addOverlay(new GMarker(point, greenMarkerOptions)); } });"
     -# = "var point = new GLatLng('#{user.latitude}', '#{user.longitude}');"
     -# = "var marker = createMarker(point, '#{user.full_name.gsub('\'','')}', greenMarkerOptions);"
     -# map.addOverlay(marker);
@@ -70,23 +76,4 @@
         = label_tag :status, "Status"
         = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
         = submit_tag "Enter"
-    %td
-      Knocks out of total houses
-      %br
-      Drops out of total houses
-      %br
-      Median Signs out of total
-      %br
-      Big Posters out of total
-      %br
-      "Take One" Posters out of total
-      %br
-      Banner (y/n)
-      %br
-      FoCP out of 25
-  %tr
-    %td
-      %iframe{:width => '100%', :height => '300', :frameborder => '0', :src => 'https://spreadsheets.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0Ag3BspuR5xCgdGJHNDdIWVRwRzIxN3AxMDFHc2Q5R0E&single=true&gid=0&output=html&widget=true'}
-    %td
-      %iframe{:width => "50%", :height => "300", :frameborder => "0", :marginheight => "0", :marginwidth => "0", :src => 'https://spreadsheets.google.com/spreadsheet/embeddedform?formkey=dGV2emxka2FBVzI1aGlvOGtCbDRxVXc6MQ'}
 
