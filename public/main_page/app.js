@@ -25,6 +25,10 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
 
   },
 
+  text: function(template,key) {
+    return CommonPlace.text[this.community.get('locale')][template][key];
+  },
+
   routes: {
     "/tour": "tour",
     
@@ -234,7 +238,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
           collection: self.community.posts,
           el: $("#whats-happening"),
           itemView: CommonPlace.PostItem,
-          subnav: [{url: "#/posts", current: true, last: true, name: "Neighborhood Posts"}],
+          subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-tab")}],
           zone: "posts"
         });
       self.postIndex.render();
@@ -247,7 +251,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
       collection: _([post]),
       el: $("#whats-happening"),
       itemView: CommonPlace.PostItem,
-      subnav: [{url: "#/posts", current: true, last: true, name: "Neighborhood Posts"}],
+      subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-tab")}],
       zone: "posts"
     });
     view.render();
@@ -260,7 +264,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
       collection: _([announcement]),
       el: $("#whats-happening"),
       itemView: CommonPlace.AnnouncementItem,
-      subnav: [{url: "#/announcements", current: true, last: true, name: "Community Announcements"}],
+      subnav: [{url: "#/announcements", current: true, last: true, name: self.text('index',"announcements-tab")}],
       zone: "announcements"
     });
     view.render();
@@ -273,7 +277,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
       collection: _([post]),
       el: $("#whats-happening"),
       itemView: CommonPlace.GroupPostItem,
-      subnav: [{url: "#/group_posts", current: true, last: true, name: "Discussion Group Posts"}],
+      subnav: [{url: "#/group_posts", current: true, last: true, name: self.text('index',"group-posts-tab")}],
       zone: "posts"
     });
     view.render();
@@ -285,7 +289,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
       collection: _([event]),
       el: $("#whats-happening"),
       itemView: CommonPlace.EventItem,
-      subnav: [{url: "#/events", current: true, last: true, name: "Community Events"}],
+      subnav: [{url: "#/events", current: true, last: true, name: self.text('index',"events-tab")}],
       zone: "events"
     });
     view.render();
@@ -310,8 +314,8 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
           collection: self.community.announcements,
           el: $("#whats-happening"),
           itemView: CommonPlace.AnnouncementItem,
-          subnav: [{url:"#/announcements", name:"Community Announcements", current: true},
-                   {url:"#/feeds", name: "Community Feeds", last:true}],
+          subnav: [{url:"#/announcements", name: self.text('index',"announcements-tab"), current: true},
+                   {url:"#/feeds", name: self.text('index',"feeds-tab"), last:true}],
           zone: "announcements"
         });
       self.announcementIndex.render();
@@ -326,7 +330,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
           collection: self.community.events,
           el:$("#whats-happening"),
         itemView: CommonPlace.EventItem,
-          subnav: [{url: "#/events", name:"Upcoming Events", current: true, last: true}],
+          subnav: [{url: "#/events", name: self.text('index',"events-tab"), current: true, last: true}],
           zone: "events"
         });
       self.eventIndex.render();
@@ -341,8 +345,8 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
           collection: self.community.group_posts,
           el: $("#whats-happening"),
           itemView: CommonPlace.GroupPostItem,
-          subnav: [{url: "#/group_posts", name: "Group Posts", current: true},
-                   {url: "#/groups", name: "Discussion Groups", last: true}],
+          subnav: [{url: "#/group_posts", name: self.text('index',"group-posts-tab"), current: true},
+                   {url: "#/groups", name: self.text('index',"groups-tab"), last: true}],
           zone: "group_posts"
         });
       self.group_postIndex.render();
@@ -350,9 +354,10 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
   
   directorySubnav: function(current_url) {
-    return _([{url: "#/users", name: "Your Neighbors"},
-              {url: "#/feeds", name: "Community Feeds"},
-              {url: "#/groups", name: "Discussion Groups", last: true}]).map(
+    var self = this;
+    return _([{url: "#/users", name: self.text('index',"users-tab")},
+              {url: "#/feeds", name: self.text('index',"feeds-tab")},
+              {url: "#/groups", name: self.text('index',"groups-tab"), last: true}]).map(
                 function(nav) {
                   return _.extend(nav, {current: current_url == nav.url});
                 });

@@ -57,7 +57,15 @@ CommonPlace.text.en = {
     "recent_posts": "Recent Neighborhood Posts",
     "upcoming_events": "Upcoming Events",
     "recent_announcements": "Recent Community Announcements",
-    "recent_discussion_group_posts": "Recent Discussion Group Posts"
+    "recent_discussion_group_posts": "Recent Discussion Group Posts",
+    "posts-tab": "Neighborhood Posts",
+    "events-tab": "Community Events",
+    "announcements-tab": "Community Announcements",
+    "group-posts-tab": "Discussion Posts",
+    "directory-tab": "Directory",
+    "feeds-tab": "Community Feeds",
+    "groups-tab": "Discussion Groups",
+    "users-tab": "Your Neighbors"
   },
   "post": {},
   "edit_group_post_form": {},
@@ -69,8 +77,19 @@ CommonPlace.text.en = {
   "userinfo": {
     "h2": "Your Neighbor"
   },
-  "index": {},
+  "index": {
+    "posts-tab": "Neighborhood Posts",
+    "events-tab": "Community Events",
+    "announcements-tab": "Community Announcements",
+    "group-posts-tab": "Discussion Posts",
+    "directory-tab": "Directory",
+    "feeds-tab": "Community Feeds",
+    "groups-tab": "Discussion Groups",
+    "users-tab": "Your Neighbors"
+  },
   "event_form": {
     "h2": "Post an event to your community"
-  }
+  },
+
+  
 };
