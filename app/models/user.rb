@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   #track_on_creation
+  include Geokit::Geocoders
 
   def self.post_receive_options
     ["Live", "Daily", "Never"]
@@ -279,6 +280,20 @@ class User < ActiveRecord::Base
     else
       address + ", #{self.community.name}"
     end
+  end
+
+  def generate_point
+    if self.generated_lat.present? and self.generated_lng.present?
+    else
+      loc = MultiGeocoder.geocode("#{self.address}, #{self.community.zip_code}")
+      self.generated_lat = loc.lat
+      self.generated_lng = loc.lng
+      self.save
+    end
+    point = Hash.new
+    point['lat'] = self.generated_lat
+    point['lng'] = self.generated_lng
+    point
   end
 
   # Hacky wrapper for staging and local development
