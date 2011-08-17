@@ -23,7 +23,15 @@
           = f.input :address
         - if current_user.is_facebook_user
           %img{:src => current_user.avatar_url, :style => "vertical-align:middle;float:left;", :width => "100px"}
-        = f.input :avatar, :input_html => {:size => 25}, :wrapper_html => { :style => "left: 100px; width: 270px;" }
+          = f.input :avatar, :input_html => {:size => 25}, :wrapper_html => { :style => "left: 100px; width: 270px;" }
+          :javascript
+            $("#file_input_fix").css('width', '270px');
+            $("#file_style_fix").css('width', '270px');
+            $("#user_avatar").css('left', '-5px');
+            $("#user_avatar").css('top', '20px');
+          %br
+        - else
+          = f.input :avatar, :input_html => {:size => 25}
         = f.input :about
         = f.input :interest_list
         = f.input :offer_list
