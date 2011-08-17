@@ -7,7 +7,9 @@ CommonPlace.SaySomething = Backbone.View.extend({
     "submit form.post": "submitPost",
     "submit form.announcement": "submitAnnouncement",
     "submit form.event": "submitEvent",
-    "submit form.group_post": "submitGroupPost"
+    "submit form.group_post": "submitGroupPost",
+    "click #commercialyes": "showPublicityWarning",
+    "click #commercialno": "hidePublicityWarning"
   },
   
   render: function() {
@@ -157,8 +159,17 @@ CommonPlace.SaySomething = Backbone.View.extend({
     };
     view.groups[0].selected = "selected";
     return view;
+  },
+
+  showPublicityWarning: function(e) {
+    this.$("#hidden_text").show();
+  },
+  hidePublicityWarning: function(e) {
+    this.$("#hidden_text").hide();
   }
   
 });
+
+
 
 
