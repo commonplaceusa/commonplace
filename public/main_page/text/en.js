@@ -1,6 +1,7 @@
 CommonPlace.text = CommonPlace.text || {};
 CommonPlace.text.en = { 
   "eventinfo": {
+    "h2": "Community Event",
   },
   "replies": {},
   "edit_post_form": {},
@@ -50,7 +51,8 @@ CommonPlace.text.en = {
   "delete_confirmation": {},
   "message_form": {},
   "feedinfo": {
-    "view_feed": "View Community Feed Page"
+    "view_feed": "View Community Feed Page",
+    "h2": "Community Feed"
   },
   "profile_tour": {
     "p1": "This is your \"civic profile.\" Your neighbors will see this profile when you post to the site. You can always add to it by clicking \"edit\" in the top right-hand corner."
