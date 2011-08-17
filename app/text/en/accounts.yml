@@ -5,6 +5,10 @@ en:
       li1: CommonPlace is a web platform built for %{community} residents.  It's like an online bulletin board for the %{community} community.
       li2: Sign up to send and receive community announcements written by your neighbors and local leaders here in %{community}.
       li3: CommonPlace is a community service project. Join and help make %{community} an even better place to live.
+
+      li1fb: You are now connected to CommonPlace through Facebook. Please verify you live in %{community} by providing your street address.
+
+      li2fb: Your street address will not be shared with anyone. It is only used to verify that you live in %{community}
       
     edit_new:
       h1: Fill out your community profile
