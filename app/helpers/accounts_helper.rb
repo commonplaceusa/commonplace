@@ -7,4 +7,8 @@ module AccountsHelper
       []
     end
   end
+
+  def community_registration_url(community)
+    return "#{root_url}#{community.slug}"
+  end
 end
