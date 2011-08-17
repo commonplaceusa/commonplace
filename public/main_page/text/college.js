@@ -1,6 +1,7 @@
 CommonPlace.text = CommonPlace.text || {};
 CommonPlace.text.college = { 
   "eventinfo": {
+    "h2": "Campus Event"
   },
   "replies": {},
   "edit_post_form": {},
@@ -55,7 +56,8 @@ CommonPlace.text.college = {
   "delete_confirmation": {},
   "message_form": {},
   "feedinfo": {
-    "view_feed": "View Campus Feed Page"
+    "view_feed": "View Campus Feed Page",
+    "h2": "Campus Feed"
   },
   "profile_tour": {
     "p1": "This is your \"campus profile.\" Your fellow students will see this profile when you post to the site. You can always add to it by clicking \"edit\" in the top right-hand corner."
