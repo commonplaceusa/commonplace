@@ -21,9 +21,13 @@
           mpmetrics.identify(response.email);
           mpmetrics.track('Connected with Facebook', {'community': '#{current_community.slug}'});
         }
+        $("#header").text("Complete Your Registration");
+        $("#li1").text("#{t(".li1fb", :community => current_community.name).gsub('"', '\"')}");
+        $("#li2").text("#{t(".li2fb", :community => current_community.name).gsub('"', '\"')}");
+        $("#li3").text("");
         $("#user_full_name").val(response.name);
         $("#user_email")
-          .attr("readonly", "true")
+          //.attr("readonly", "true")
           .val(response.email);
         $("<input />").attr("type","hidden")
           .attr("id", "user_facebook_uid")
@@ -55,12 +59,12 @@
   
 #wrapper
   #titleslug
-    %h1= t(".h1", :community => current_community.name).html_safe
+    %h1#header= t(".h1", :community => current_community.name).html_safe
   #registration_information
     %ul{:id=>"infolist"}
-      %li= t(".li1", :community => current_community.name)
-      %li= t(".li2", :community => current_community.name)
-      %li= t(".li3", :community => current_community.name)
+      %li#li1= t(".li1", :community => current_community.name)
+      %li#li2= t(".li2", :community => current_community.name)
+      %li#li3= t(".li3", :community => current_community.name)
     %ul{:id=>"link_item"}
       %a{:href => "/#{current_community.slug}/learn_more"}
         %img{:src=>"/images/buttons/learnmore.png", :alt=>"Learn more", :id=>"learnmore"}
