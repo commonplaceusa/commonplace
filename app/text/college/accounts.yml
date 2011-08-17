@@ -5,6 +5,10 @@ college:
       li1: CommonPlace is a web platform built for %{community} students.  It's like an online bulletin board for the %{community} community.
       li2: Sign up to send and receive campus announcements written by your fellow students and organization leaders here at %{community}.
       li3: CommonPlace is a community-building project. Join and help make the %{community} community even better.
+
+      li1fb: You are now connected to CommonPlace through Facebook. Please verify you live in %{community} by providing your residence hall.
+
+      li2fb: Your information will not be shared with anyone. It is only used to verify that you live in %{community}
       
     edit_new:
       h1: Fill out your campus profile
