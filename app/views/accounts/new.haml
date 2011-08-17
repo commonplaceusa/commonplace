@@ -34,6 +34,7 @@
           .attr("name", "user[facebook_uid]")
           .val(response.id)
           .appendTo("#new_user");
+        console.log("user[facebook_uid] == " + $("#user_facebook_uid").val());
         /*$("<input />").attr("type","hidden")
           .attr("id", "user_facebook_session")
           .attr("name", "user[facebook_session]")
@@ -52,10 +53,10 @@
           .attr("name", "user[facebook_session]")
           .val(JSON.stringify(response.session))
           .appendTo("#new_user");
+        console.log("user[facebook_session] == " + $("#user_facebook_session").val());
       }
     })
   })
-  $("select#user_address").focus(function(e){ e.preventDefault(); });
   
 #wrapper
   #titleslug

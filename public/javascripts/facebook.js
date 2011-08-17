@@ -1,9 +1,7 @@
 function fbEnsureInit(callback) {
     if(!window.fbApiInit) {
-        console.log("FB Not Initialized");
         setTimeout(function() {fbEnsureInit(callback);}, 50);
     } else {
-        console.log("FB initialized");
         if(callback) {
             callback();
         }
@@ -11,6 +9,7 @@ function fbEnsureInit(callback) {
 }
 
 function facebook_pass(session) {
+    console.log("Facebook pass: " + session.uid);
     return session.uid;
 }
 
