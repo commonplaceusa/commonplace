@@ -20,7 +20,7 @@ college:
       h1: Please crop your avatar
     add_feeds:
       h1: Stay in the Loop!
-      h2: Subscribe to some campus feeds:
+      h2: "Subscribe to some campus feeds:"
       p1: Organization leaders use CommonPlace to share events and announcements with campus.
       p2: Subscribe to some campus feeds in order to get notified whenever they send out updates.
       
