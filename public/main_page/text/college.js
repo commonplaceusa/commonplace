@@ -62,7 +62,7 @@ CommonPlace.text.college = {
     "upcoming_events": "Upcoming Events",
     "recent_announcements": "Recent Campus Announcements",
     "recent_discussion_group_posts": "Recent Discussion Group Posts",
-    "posts-tab": "Hall Posts",
+    "posts-tab": "Hall<br> Posts",
     "events-tab": "Campus Events",
     "announcements-tab": "Campus Announcements",
     "group-posts-tab": "Discussion Posts",
