@@ -11,8 +11,7 @@
       %li= t ".p1"
       %li= t ".p2"
   #main
-    %h2
-      Subscribe to some community feeds:
+    %h2= t ".h2"
     - form_tag "/account/subscribe_to_feeds", :id => "add_groups" do
       #feeds_container
         - @feeds.each do |feed|
