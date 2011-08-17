@@ -22,8 +22,8 @@
         = if current_user.address.blank?
           = f.input :address
         - if current_user.is_facebook_user
-          %img{:src => current_user.avatar_url, :style => "vertical-align:middle;", :width => "100px"}
-        = f.input :avatar, :input_html => {:size => 25}
+          %img{:src => current_user.avatar_url, :style => "vertical-align:middle;float:left;", :width => "100px"}
+        = f.input :avatar, :input_html => {:size => 25, :style => "left: 100px; width: 270px;}
         = f.input :about
         = f.input :interest_list
         = f.input :offer_list
