@@ -122,6 +122,18 @@ body.application.accounts.new, body.application.accounts.create, body.applicatio
       #fb-wrapper
         width: 370px
         text-align: center
+      select#user_address
+        //+border-radius(5px)
+          +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+          border: 1px solid #ccc
+          padding: 0px 5px
+        width: 366px
+        height: 23px
+        margin-top: 20px
+        font-size: 18px
+        +serif
+        font-weight: 300
+        display: block
       fieldset.inputs
         margin-bottom: 10px
         li
@@ -141,7 +153,7 @@ body.application.accounts.new, body.application.accounts.create, body.applicatio
             display: block
             +serif
             margin-top: 20px
-          select
+          select#user_address
             //+border-radius(5px)
               +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
               border: 1px solid #ccc
