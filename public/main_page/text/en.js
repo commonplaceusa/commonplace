@@ -8,7 +8,9 @@ CommonPlace.text.en = {
   "event": {},
   "feed": {},
   "post_form": {
-    "h2": "Say something to your neighbors"
+    "h2": "Say something to your neighbors",
+    "publicity-question": "Is this publicity relating to a business, organization, or event?",
+    "publicity-warning": "Your post will be sorted into the 'community announcements' board."
   },
   "edit_event_form": {},
   "edit_announcement_form": {},
