@@ -9,7 +9,7 @@
       =image_tag "example-email.png", :width => 603, :height => 357
     .p_wrapper
       %p= t ".p3"
-      %p= t(".p4", :link => link_to(community_url(current_community), community_url(current_community))).html_safe
+      %p= t(".p4", :link => link_to(community_registration_url(current_community), community_registration_url(current_community))).html_safe
     .img_wrapper
       =image_tag "example-platform.png", :width => 611, :height => 551
     .p_wrapper  
