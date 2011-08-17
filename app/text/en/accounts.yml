@@ -20,6 +20,7 @@ en:
       h1: Please crop your avatar
     add_feeds:
       h1: Stay in the Loop!
+      h2: Subscribe to some community feeds:
       p1: Community leaders use CommonPlace to share events and announcements with people who live in %{community}.           
       p2: Subscribe to some local community feeds in order to get notified whenever they send out updates.
       
