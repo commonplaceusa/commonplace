@@ -109,14 +109,22 @@
           %h3
             =t(".step_three")
           %h4
-            =t(".step_three_label")
+            %span{ :class => "vertical-align: middle" }
+              =t(".step_three_label")
+              %br
+              %br
+              %center
+                %a{ :href => "#", :onclick => "showPlaxoABChooser('invite_email', '/plaxo-importer.html'); return false;" }
+                  %img{ :src => "http://www.plaxo.com/images/abc/buttons/add_button.gif", :alt => "Add from my address book"}
+              /%img{ :src => "/images/invite/findneighbors.png", :style => "margin-left: 3px;", :width => 370}
+              %br
+              %center
+                OR
           #invite_errors
           - semantic_form_for @invitation do |f|
             - f.inputs do
-              = f.input :email,:as => 'text', :input_html => { :placeholder => "Email addresses (separated by commas)", :class => "required email" }
-              %a{ :href => "#", :onclick => "showPlaxoABChooser('invite_email', '/plaxo-importer.html'); return false;" }
-                %img{ :src => "http://www.plaxo.com/images/abc/buttons/add_button.gif", :alt => "Add from my address book" }
-              = f.input :body, :input_html => { :placeholder => "Include a message about how you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
+              = f.input :email,:as => 'text', :input_html => { :placeholder => "Enter email address(es) manually (separated by commas)", :class => "required email", :width => 370, :style => "width: 360px;" }
+              = f.input :body, :input_html => { :placeholder => "Include a message about why you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
             - f.buttons do
               = f.submit :type => "image", :src => "/images/invite/neighborinvite.png", :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
           #forms

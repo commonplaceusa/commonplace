@@ -86,7 +86,7 @@ en:
         step_two: "2. Share on Facebook and Twitter"
         step_two_label: "Let your friends and followers know you are on CommonPlace."
         step_three: "3. Invite neighbors by email"
-        step_three_label: "Invite your neighbors by entering their email addresses and a short message below."
+        step_three_label: "Invite your neighbors by adding their email addresses and writing a short message."
         step_four: "4. Invite neighbors face-to-face"
         step_four_label: "Invite neighbors the old fashioned way by handing out flyers and reading materials."
         step_five: "5. Join the Friends of The %{community} CommonPlace Network"
