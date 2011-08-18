@@ -246,6 +246,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
   
   showPost: function(id) { 
+    var self = this;
     var post = this.community.posts.get(id)
     var view = new CommonPlace.Index({
       collection: _([post]),
@@ -259,6 +260,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   showAnnouncement: function(id) { 
+    var self = this;
     var announcement = this.community.announcements.get(id)
     var view = new CommonPlace.Index({
       collection: _([announcement]),
@@ -272,6 +274,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   showGroupPost: function(id) { 
+    var self = this;
     var post = this.community.group_posts.get(id)
     var view = new CommonPlace.Index({
       collection: _([post]),
@@ -284,6 +287,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     $("#group_post-" + id + "-item" + " a.show-reply-form").click(); 
   },
   showEvent: function(id) { 
+    var self = this;
     var event = this.community.events.get(id)
     var view = new CommonPlace.Index({
       collection: _([event]),
