@@ -115,7 +115,7 @@
               %br
               %center
                 %a{ :href => "#", :onclick => "showPlaxoABChooser('invite_email', '/plaxo-importer.html'); return false;" }
-                  %img{ :src => "/images/contacts-from-email-btn.jpg", :alt => "Add from my address book"}
+                  %img{ :src => "/images/contacts-from-email-btn.jpg", :alt => "Add from my address book", :width => 370}
               /%img{ :src => "/images/invite/findneighbors.png", :style => "margin-left: 3px;", :width => 370}
               %br
               %center
@@ -123,7 +123,7 @@
           #invite_errors
           - semantic_form_for @invitation do |f|
             - f.inputs do
-              = f.input :email,:as => 'text', :input_html => { :placeholder => "Enter email address(es) manually (separated by commas)", :class => "required email", :width => 370, :style => "width: 360px;" }
+              = f.input :email,:as => 'text', :input_html => { :placeholder => "Enter email addresses here (separated by commas)", :class => "required email", :width => 370, :style => "height: 66px;" }
               = f.input :body, :input_html => { :placeholder => "Include a message about why you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
             - f.buttons do
               = f.submit :type => "image", :src => "/images/invite/neighborinvite.png", :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
