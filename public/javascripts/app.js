@@ -27,6 +27,7 @@ Mustache.template = function(templateString) {
   return templateString;
 };
 
+CommonPlace.say_something_blocked = false;
 CommonPlace.timeAgoInWords = function(date_str) {
   var time = CommonPlace.parseDate(date_str);
   var diff_in_seconds = (time - (new Date)) / 1000;
