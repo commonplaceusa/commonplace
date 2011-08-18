@@ -238,7 +238,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
           collection: self.community.posts,
           el: $("#whats-happening"),
           itemView: CommonPlace.PostItem,
-          subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-tab")}],
+          subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-title")}],
           zone: "posts"
         });
       self.postIndex.render();
@@ -246,12 +246,13 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
   
   showPost: function(id) { 
+    var self = this;
     var post = this.community.posts.get(id)
     var view = new CommonPlace.Index({
       collection: _([post]),
       el: $("#whats-happening"),
       itemView: CommonPlace.PostItem,
-      subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-tab")}],
+      subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-title")}],
       zone: "posts"
     });
     view.render();
@@ -259,6 +260,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   showAnnouncement: function(id) { 
+    var self = this;
     var announcement = this.community.announcements.get(id)
     var view = new CommonPlace.Index({
       collection: _([announcement]),
@@ -272,6 +274,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   showGroupPost: function(id) { 
+    var self = this;
     var post = this.community.group_posts.get(id)
     var view = new CommonPlace.Index({
       collection: _([post]),
@@ -284,6 +287,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     $("#group_post-" + id + "-item" + " a.show-reply-form").click(); 
   },
   showEvent: function(id) { 
+    var self = this;
     var event = this.community.events.get(id)
     var view = new CommonPlace.Index({
       collection: _([event]),
