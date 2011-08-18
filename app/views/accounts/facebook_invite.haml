@@ -1,3 +1,6 @@
+= javascript_include_tag "https://www.plaxo.com/css/m/js/util.js"
+= javascript_include_tag "https://www.plaxo.com/css/m/js/basic.js"
+= javascript_include_tag "https://www.plaxo.com/css/m/js/abc_launcher.js"
 %script
   = "var slug = '#{current_community.slug}';"
   = "var message = '#{t(".facebook.invitation", :community => current_community.name, :slug => current_community.slug)}';"
@@ -10,7 +13,17 @@
   $("#invite_body_input").removeClass("required")
   });
 
+- if Rails.env.production?
+  :javascript
+    mpmetrics.track('Visited invitation page', {'community': '#{current_community.slug}'});
+
 :javascript
+
+    function onABCommComplete() {
+      text = "";
+      $($("textarea#invite_email").val().split(", ")).each(function(index, value) { text += value.replace(/(.*)<(.*)>/, "$2") + ", "; });
+      $("textarea#invite_email").val(text.substring(0, text.length-2));
+    }
     $(document).ready(function(){
       fbEnsureInit(function(){
 
@@ -101,6 +114,8 @@
           - semantic_form_for @invitation do |f|
             - f.inputs do
               = f.input :email,:as => 'text', :input_html => { :placeholder => "Email addresses (separated by commas)", :class => "required email" }
+              %a{ :href => "#", :onclick => "showPlaxoABChooser('invite_email', '/plaxo-importer.html'); return false;" }
+                %img{ :src => "http://www.plaxo.com/images/abc/buttons/add_button.gif", :alt => "Add from my address book" }
               = f.input :body, :input_html => { :placeholder => "Include a message about how you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
             - f.buttons do
               = f.submit :type => "image", :src => "/images/invite/neighborinvite.png", :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
