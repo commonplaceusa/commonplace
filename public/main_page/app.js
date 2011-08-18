@@ -25,6 +25,12 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
 
   },
 
+  unblock: function() {
+    if (CommonPlace.say_something_blocked) {
+      $("#say-something .wrap").unblock();
+    }
+  },
+
   text: function(template,key) {
     return CommonPlace.text[this.community.get('locale')][template][key];
   },
@@ -231,6 +237,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   posts: function() {
+    this.unblock();
     var self = this;
     this.community.posts.fetch({success: function(r) {
       self.postIndex = self.postIndex ||
@@ -257,10 +264,8 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     });
     view.render();
     $("#post-" + id + "-item" + " a.show-reply-form").click();
-    console.log($("#post_body"));
-    //$("#post_subject").attr("disabled", "true");
-    //$("#post_body").attr("disabled", "true");
-    //$("#say-something .wrap a").click(function(e) { e.preventDefault(); });
+    CommonPlace.say_something_blocked = true;
+    $("#say-something .wrap").block({ message: null });
     
   },
 
@@ -276,6 +281,8 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     });
     view.render();
     $("#announcement-" + id + "-item" + " a.show-reply-form").click(); 
+    CommonPlace.say_something_blocked = true;
+    $("#say-something .wrap").block({ message: null });
   },
 
   showGroupPost: function(id) { 
@@ -289,7 +296,9 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
       zone: "posts"
     });
     view.render();
-    $("#group_post-" + id + "-item" + " a.show-reply-form").click(); 
+    $("#group_post-" + id + "-item" + " a.show-reply-form").click();
+    CommonPlace.say_something_blocked = true;
+    $("#say-something .wrap").block({ message: null });
   },
   showEvent: function(id) { 
     var self = this;
@@ -302,8 +311,9 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
       zone: "events"
     });
     view.render();
-    $("#event-" + id + "-item" + " a.show-reply-form").click(); 
-    
+    $("#event-" + id + "-item" + " a.show-reply-form").click();
+    CommonPlace.say_something_blocked = true;
+    $("#say-something .wrap").block({ message: null });
   },
   showUser: function(id) { this.users();
                            $.scrollTo($("#user-" + id + "-item"));
@@ -316,6 +326,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
                           },
 
   announcements: function(){
+    this.unblock();
     var self = this;
     this.community.announcements.fetch({success: function() {
       self.announcementIndex = self.announcementIndex ||
@@ -332,6 +343,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   events: function(){
+    this.unblock();
     var self = this;
     this.community.events.fetch({success: function() {
       self.eventIndex = self.eventIndex ||
@@ -347,6 +359,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   group_posts: function(){
+    this.unblock();
     var self = this;
     this.community.group_posts.fetch({success: function() {
       self.group_postIndex = self.group_postIndex ||
@@ -401,6 +414,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     }});
   },
   users: function(){
+    this.unblock();
     var self = this;
     this.community.users.fetch({success: function() {
       self.userIndex = self.userIndex ||
