@@ -133,7 +133,11 @@ module Serializer
         "events" => o.events,
         "announcements" => o.announcements,
         "group_posts" => o.group_posts,
-        "neighborhood" => o.neighborhood}
+        "neighborhood" => o.neighborhood, 
+        "links" => { 
+          "feed_subscriptions" => "/account/subscriptions/feeds"
+        }
+        }
       end
 
     as_json
