@@ -258,6 +258,10 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     view.render();
     $("#post-" + id + "-item" + " a.show-reply-form").click();
     console.log($("#post_body"));
+    //$("#post_subject").attr("disabled", "true");
+    //$("#post_body").attr("disabled", "true");
+    //$("#say-something .wrap a").click(function(e) { e.preventDefault(); });
+    
   },
 
   showAnnouncement: function(id) { 
