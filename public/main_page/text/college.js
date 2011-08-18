@@ -87,14 +87,15 @@ CommonPlace.text.college = {
     "h2": "Your Fellow Student"
   },
   "index": {
-    "posts-tab": "Hall Posts",
+    "posts-tab": "Hall<br> Posts",
     "events-tab": "Campus Events",
     "announcements-tab": "Campus Announcements",
     "group-posts-tab": "Discussion Posts",
     "directory-tab": "Directory",
     "feeds-tab": "Campus Feeds",
     "groups-tab": "Discussion Groups",
-    "users-tab": "Your Fellow Students"
+    "users-tab": "Your Fellow Students",
+    "posts-title": "Hall Posts"
   },
 
   "event_form": {
