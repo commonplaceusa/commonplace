@@ -22,7 +22,7 @@ var FeedPageRouter = Backbone.Controller.extend({
     $.getJSON("/api/feeds/" + slug, function(feed) {
       new FeedProfileView({ model: feed, el: $("#feed-profile")}).render();
       
-      new FeedHeaderView({ model: feed, account: self.account, el: $("#feed-header") }).render();
+      new FeedHeaderView({ feed: feed, account: self.account, el: $("#feed-header") }).render();
       $.getJSON("/api/communities/1/groups", function(groups) {
         new FeedActionsView({ el: $("#feed-actions"), feed: feed, groups: groups }).render();
       });
@@ -36,12 +36,56 @@ var FeedPageRouter = Backbone.Controller.extend({
 });
 
 var FeedHeaderView = Backbone.View.extend({
-  initialize: function(options) { this.account = options.account },
+  initialize: function(options) { 
+    this.account = options.account; 
+    this.feed = options.feed; 
+  },
+
+  events: {
+    "click a.subscribe": "subscribe",
+    "click a.unsubscribe": "unsubscribe"
+  },
 
   render: function() {
-    $(this.el).html(CommonPlace.render("header", this.model));
+    $(this.el).html(CommonPlace.render("feed-header", this));
     return this;
+  },
+
+  isSubscribed: function() {
+    return _.include(this.account.feed_subscriptions, this.feed.id);
+  },
+
+  subscribe: function(e) {
+    var self = this;
+    e.preventDefault();
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.account.links.feed_subscriptions,
+      data: JSON.stringify({ id: this.feed.id }),
+      type: "post",
+      dataType: "json",
+      success: function(account) { 
+        self.account = account;
+        self.render();
+      }
+    });
+  },
+  
+  unsubscribe: function(e) {
+    var self = this;
+    e.preventDefault();
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.account.links.feed_subscriptions + '/' + this.feed.id,
+      type: "delete",
+      dataType: "json",
+      success: function(account) { 
+        self.account = account;
+        self.render();
+      }
+    });
   }
+     
 });
 
 var FeedProfileView = Backbone.View.extend({
