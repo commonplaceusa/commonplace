@@ -111,16 +111,15 @@
           %h4
             %span{ :class => "vertical-align: middle" }
               =t(".step_three_label")
-              - if current_community.slug == "commonplace"
-                %br
-                %br
-                %center
-                  %a{ :href => "#", :onclick => "showPlaxoABChooser('invite_email', '/plaxo-importer.html'); return false;" }
-                    %img{ :src => "http://www.plaxo.com/images/abc/buttons/add_button.gif", :alt => "Add from my address book"}
-                /%img{ :src => "/images/invite/findneighbors.png", :style => "margin-left: 3px;", :width => 370}
-                %br
-                %center
-                  OR
+              %br
+              %br
+              %center
+                %a{ :href => "#", :onclick => "showPlaxoABChooser('invite_email', '/plaxo-importer.html'); return false;" }
+                  %img{ :src => "/images/contacts-from-email-btn.jpg", :alt => "Add from my address book"}
+              /%img{ :src => "/images/invite/findneighbors.png", :style => "margin-left: 3px;", :width => 370}
+              %br
+              %center
+                OR
           #invite_errors
           - semantic_form_for @invitation do |f|
             - f.inputs do

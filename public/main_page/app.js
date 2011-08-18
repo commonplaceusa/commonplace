@@ -257,6 +257,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     });
     view.render();
     $("#post-" + id + "-item" + " a.show-reply-form").click();
+    
   },
 
   showAnnouncement: function(id) { 
