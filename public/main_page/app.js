@@ -238,7 +238,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
           collection: self.community.posts,
           el: $("#whats-happening"),
           itemView: CommonPlace.PostItem,
-          subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-tab")}],
+          subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-title")}],
           zone: "posts"
         });
       self.postIndex.render();
@@ -252,7 +252,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
       collection: _([post]),
       el: $("#whats-happening"),
       itemView: CommonPlace.PostItem,
-      subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-tab")}],
+      subnav: [{url: "#/posts", current: true, last: true, name: self.text('index',"posts-title")}],
       zone: "posts"
     });
     view.render();
