@@ -63,6 +63,7 @@ class User < ActiveRecord::Base
   scope :up_to, lambda { |end_date| { :conditions => ["created_at <= ?", end_date.utc] } }
 
   scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }
+
   def facebook_user?
     authenticating_with_oauth2? || facebook_uid
   end
@@ -298,6 +299,20 @@ class User < ActiveRecord::Base
     point['lat'] = self.generated_lat
     point['lng'] = self.generated_lng
     point
+  end
+
+  def self.received_reply_to_object_in_last(repliable_type, days_ago)
+    # We expect repliable_type to be Post
+    if repliable_type == 'Post'
+      item = Post
+    elsif repliable_type == 'Event'
+      item = Event
+    elsif repliable_type == 'Announcement'
+      item = Announcement
+    end
+    user_ids = []
+    Reply.between(days_ago.days.ago, Time.now).select {|r| r.repliable_type == repliable_type}.map(&:repliable_id).uniq.each do |i| user_ids << item.find(i).owner end
+    user_ids
   end
 
   # Hacky wrapper for staging and local development
