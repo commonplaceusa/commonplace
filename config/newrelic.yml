@@ -2,18 +2,19 @@ production:
   error_collector:
     capture_source: true
     enabled: true
-    ignore_errors: ActionController::RoutingError
   apdex_t: 0.5
   ssl: false
   monitor_mode: true
+  capture_params: true
   license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
   developer_mode: false
   app_name: <%= ENV["NEW_RELIC_APPNAME"] %>
   transaction_tracer:
-    record_sql: obfuscated
+    record_sql: raw
     enabled: true
     stack_trace_threshold: 0.5
     transaction_threshold: apdex_f
+    explain_enabled: true
   capture_params: false
   log_level: info
   background:
