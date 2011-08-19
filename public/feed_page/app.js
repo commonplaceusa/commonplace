@@ -142,9 +142,23 @@ var FeedMessageFormView = Backbone.View.extend({
             });
   },
 
-  send: function() {
-    
-    this.exit();
+  send: function(e) {
+    e.preventDefault();
+    var self = this;
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.feed.links.messages,
+      type: "post",
+      data: JSON.stringify({ 
+        subject: this.$("[name=subject]").val(),
+        body: this.$("[name=body]").val()
+      }),
+      dataType: "json",
+      success: function(message) { 
+        
+        self.exit()
+      }
+    });
   },
 
   exit: function(e) {
