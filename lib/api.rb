@@ -372,6 +372,17 @@ end
     end
   end
 
+  get "/feeds/:id/events" do |feed_id|
+    params.merge!(:limit => 25, :page => 0)
+    scope = Event.where("owner_id = ? AND owner_type = ?",feed_id, "Feed")
+    last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
+                   DateTime.now.beginning_of_day.utc.to_time].compact.max)
+    serialize(scope.upcoming.
+              limit(params[:limit]).
+              offset(params[:limit].to_i * params[:page].to_i).
+              includes(:replies).to_a)
+  end
+
   # POST "/feeds/:id/invites"
   # { emails: [String]
   # , message: String }
