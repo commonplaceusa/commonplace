@@ -150,6 +150,8 @@ CommonPlace.EventItem = CommonPlace.PostLikeItem.extend({
       occurs_in: CommonPlace.timeAgoInWords(this.model.get('occurs_at')),
       abbrev_month: this.model.abbrev_month_name(),
       day_of_month: this.model.day_of_month(),
+      starts_at: this.model.get('starts_at'),
+      ends_at: this.model.get('ends_at'),
       author_url: this.model.get('author_url'),
       published_at: CommonPlace.timeAgoInWords(this.model.get('published_at')),
       reply_count: _(this.model.get('replies')).size(),
