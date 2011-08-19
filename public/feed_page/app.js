@@ -369,12 +369,27 @@ var FeedSubResourcesView = Backbone.View.extend({
 });
 
 var AnnouncementItemView = Backbone.View.extend({
+  tagName: "li",
+  initialize: function(options) { 
+    _.extend(this, this.model);
+  },
+  
   render: function() {
-    $(this.el).html(this.model.title);
+    $(this.el).html(CommonPlace.render("announcement-item", this));
+  },
+
+  publishedAt: function() {
+    return CommonPlace.timeAgoInWords(this.published_at);
+  },
+
+  replyCount: function() {
+    return this.replies.length;
   }
+  
 });
 
 var EventItemView = Backbone.View.extend({
+  tagName: "li",
   render: function() {
     $(this.el).html(this.model.title);
   }
