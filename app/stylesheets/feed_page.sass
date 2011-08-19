@@ -10,6 +10,7 @@ body
 #main
   width: 980px
   margin: auto
+  position: relative
 
 #feed-header
   font-family: Rockwell, Helvetica
@@ -82,7 +83,7 @@ body
       a
         color: #ac322f
 
-  #send-message
+  .send-message
     +blue-button
     margin: 15px 20px
 #feed-nav
@@ -315,3 +316,68 @@ body
   
 
   
+.feed-message-modal
+  position: absolute
+  z-index: 2000
+  background-color: #AC322F
+  border: 10px solid #fff
+  +border-radius(15px)
+
+  form 
+    width: 392px
+    padding: 15px
+    display: block
+
+    h1
+      font-family: Rockwell, Helvetica
+      font-size: 16px
+      color: #fff
+    label
+      display: block
+      margin-top: 20px
+      font-family: Rockwell, Helvetica
+      font-size: 16px
+      color: #fff
+      padding-bottom: 2px
+
+    input
+      padding: 5px 5px
+      width: 380px
+      font-size: 15px
+      font-family: Rockwell, Georgia, Times, Serif 
+      +border-radius(5px)
+      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+
+    textarea
+      margin-top: 12px
+      width: 382px
+      font-size: 15px
+      font-family: Rockwell, Georgia, Times, Serif 
+      +border-radius(5px)
+      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+      padding: 5px 5px
+
+    .controls
+      margin-top: 20px
+      text-align: right
+
+      button
+        +blue-button
+        margin-left: 15px
+
+      a.cancel
+        color: #fff
+        font-size: 15px
+        font-family: Rockwell, Helvetica
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+#modal-shadow
+  +opacity(0.5)
+  background-color: #000
+  position: fixed
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
+  z-index: 1000
