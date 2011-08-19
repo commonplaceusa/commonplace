@@ -85,4 +85,8 @@ class ReplyNotification < MailBase
                 end
     "#{replier_name} just replied to #{post_type} on CommonPlace."
   end
+
+  def tag
+    'reply'
+  end
 end

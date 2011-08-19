@@ -32,4 +32,8 @@ class PostConfirmation < MailBase
     community.name
   end
 
+  def tag
+    'post_confirmation'
+  end
+
 end

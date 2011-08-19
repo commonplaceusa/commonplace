@@ -32,4 +32,8 @@ class NoFeedPermission < MailBase
     community.organizer_email
   end
 
+  def tag
+    'no_permissions'
+  end
+
 end

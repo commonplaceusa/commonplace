@@ -46,4 +46,8 @@ class Invitation < MailBase
     community.organizer_email
   end
 
+  def tag
+    'invitation'
+  end
+
 end
