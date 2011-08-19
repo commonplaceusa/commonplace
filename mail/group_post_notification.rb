@@ -68,4 +68,8 @@ class GroupPostNotification < PostNotification
     user.name
   end
 
+  def tag
+    'group_post'
+  end
+
 end

@@ -63,5 +63,9 @@ class MessageNotification < PostNotification
   def user_name
     user.name
   end
+
+  def tag
+    'message'
+  end
   
 end
