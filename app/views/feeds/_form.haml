@@ -9,7 +9,8 @@
     = f.input :about
     = f.input :avatar, :input_html => {:size => 20}
     = f.input :tag_list
-    = f.input :kind, :as => :radio, :collection => Feed.kinds.to_hash
+    - unless current_community.is_college
+      = f.input :kind, :as => :radio, :collection => Feed.kinds.to_hash
     = f.input :feed_url, :label => "To pull Announcements from an RSS feed, type in your RSS URL here:", :as => :string
     = f.input :twitter_name, :label => "To add your tweets to your feed's page, type your twitter handle here:"
   = f.inputs :contact_information, :id => 'contact-info' do

@@ -26,7 +26,9 @@
 
     :javascript
       CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
-      name: "#{current_community.name}"});
+      name: "#{current_community.name}",
+      locale: "#{current_community.locale}"
+      });
 
 
       CommonPlace.community.posts.refresh(#{@posts.to_json.html_safe});
@@ -50,7 +52,7 @@
       CommonPlace.app.runNotifier();
       Backbone.history.start();
 
-      window.location.hash = "/#{params[:backbone_route]}"
+      window.location.hash = "#{request.fullpath}"
       Backbone.history.loadUrl();
       if (oldhash != "" && oldhash != "/") { window.location.hash = oldhash; }
     - if logged_in?

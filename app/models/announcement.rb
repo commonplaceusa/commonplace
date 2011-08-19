@@ -31,14 +31,4 @@ class Announcement < ActiveRecord::Base
     end
   end
 
-  define_index do
-    indexes subject, :sortable => true
-    indexes body
-    indexes owner(:name), :as => :author, :sortable => true
-
-    has owner_id, created_at, updated_at
-
-    where sanitize_sql(["private", false])
-  end
-
 end

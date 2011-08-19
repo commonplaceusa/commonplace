@@ -1,3 +1,6 @@
+= javascript_include_tag "https://www.plaxo.com/css/m/js/util.js"
+= javascript_include_tag "https://www.plaxo.com/css/m/js/basic.js"
+= javascript_include_tag "https://www.plaxo.com/css/m/js/abc_launcher.js"
 %script
   = "var slug = '#{current_community.slug}';"
   = "var message = '#{t(".facebook.invitation", :community => current_community.name, :slug => current_community.slug)}';"
@@ -10,7 +13,17 @@
   $("#invite_body_input").removeClass("required")
   });
 
+- if Rails.env.production?
+  :javascript
+    mpmetrics.track('Visited invitation page', {'community': '#{current_community.slug}'});
+
 :javascript
+
+    function onABCommComplete() {
+      text = "";
+      $($("textarea#invite_email").val().split(", ")).each(function(index, value) { text += value.replace(/(.*)<(.*)>/, "$2") + ", "; });
+      $("textarea#invite_email").val(text.substring(0, text.length-2));
+    }
     $(document).ready(function(){
       fbEnsureInit(function(){
 
@@ -96,58 +109,69 @@
           %h3
             =t(".step_three")
           %h4
-            =t(".step_three_label")
+            %span{ :class => "vertical-align: middle" }
+              =t(".step_three_label")
+              %br
+              %br
+              %center
+                %a{ :href => "#", :onclick => "showPlaxoABChooser('invite_email', '/plaxo-importer.html'); return false;" }
+                  %img{ :src => "/images/contacts-from-email-btn.jpg", :alt => "Add from my address book", :width => 370}
+              /%img{ :src => "/images/invite/findneighbors.png", :style => "margin-left: 3px;", :width => 370}
+              %br
+              %center
+                OR
           #invite_errors
           - semantic_form_for @invitation do |f|
             - f.inputs do
-              = f.input :email,:as => 'text', :input_html => { :placeholder => "Email addresses (separated by commas)", :class => "required email" }
-              = f.input :body, :input_html => { :placeholder => "Include a message about how you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
+              = f.input :email,:as => 'text', :input_html => { :placeholder => "Enter email addresses here (separated by commas)", :class => "required email", :width => 370, :style => "height: 66px;" }
+              = f.input :body, :input_html => { :placeholder => "Include a message about why you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
             - f.buttons do
               = f.submit :type => "image", :src => "/images/invite/neighborinvite.png", :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
           #forms
       
-#groups_box
-  #groups_wrapper
-    %ul
-      %li 
-        #step_four
-          %h3
-            =t(".step_four")
-          %h4
-            =t(".step_four_label")
-          %table
-            %tr{:style =>"width:370px"}
-              %td{:style =>"width:60px"}
-                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[0]}.pdf"}
-                  %img{:src => "/images/invite/PDFLogo.png"}
-              %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
-                %h5
-                  =t(".file_descriptions")[0]
-                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[0]}.pdf"}
-                  %h6
-                    =t(".download_tag")
-            %tr{:style =>"width:370px"}
-              %td{:style =>"width:60px"}
-                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[1]}.pdf"}
-                  %img{:src => "/images/invite/PDFLogo.png"}
-              %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
-                %h5
-                  =t(".file_descriptions")[1]
-                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[1]}.pdf"}
-                  %h6
-                    =t(".download_tag")
-            %tr{:style =>"width:370px"}
-              %td{:style =>"width:60px"}
-                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[2]}.pdf"}
-                  %img{:src => "/images/invite/PDFLogo.png"}
-              %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
-                %h5
-                  =t(".file_descriptions")[2]
-                %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[2]}.pdf"}
-                  %h6
-                    =t(".download_tag")
-          %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_zip')}.zip"}
-            %img{:src => "/images/invite/downloadzip.png",:width =>"370px",:style =>"margin-left:3px; margin-top:17px"}
+- unless current_community.is_college
+  #groups_box
+    #groups_wrapper
+      %ul
+        %li 
+          #step_four
+            %h3
+              =t(".step_four")
+            %h4
+              =t(".step_four_label")
+            %table
+              %tr{:style =>"width:370px"}
+                %td{:style =>"width:60px"}
+                  %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[0]}.pdf"}
+                    %img{:src => "/images/invite/PDFLogo.png"}
+                %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
+                  %h5
+                    =t(".file_descriptions")[0]
+                  %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[0]}.pdf"}
+                    %h6
+                      =t(".download_tag")
+              %tr{:style =>"width:370px"}
+                %td{:style =>"width:60px"}
+                  %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[1]}.pdf"}
+                    %img{:src => "/images/invite/PDFLogo.png"}
+                %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
+                  %h5
+                    =t(".file_descriptions")[1]
+                  %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[1]}.pdf"}
+                    %h6
+                      =t(".download_tag")
+              %tr{:style =>"width:370px"}
+                %td{:style =>"width:60px"}
+                  %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[2]}.pdf"}
+                    %img{:src => "/images/invite/PDFLogo.png"}
+                %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
+                  %h5
+                    =t(".file_descriptions")[2]
+                  %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[2]}.pdf"}
+                    %h6
+                      =t(".download_tag")
+            %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_zip')}.zip"}
+              %img{:src => "/images/invite/downloadzip.png",:width =>"370px",:style =>"margin-left:3px; margin-top:17px"}
 
 /
   #groups_box

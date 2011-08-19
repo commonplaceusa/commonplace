@@ -75,7 +75,9 @@
 - @communities.each do |community|
   - community_user_count = community.users.size
   .community{:width => "100%", :style => "border: 1px solid black;"}
-    %h2{:style => "text-align: center;"}= community.name
+    %h2{:style => "text-align: center;"}
+      = community.name
+      = link_to "(csv)", "/admin/#{community.slug}/export_csv"
     %table
       %tr
         %th Users

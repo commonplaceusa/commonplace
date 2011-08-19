@@ -21,21 +21,26 @@
           mpmetrics.identify(response.email);
           mpmetrics.track('Connected with Facebook', {'community': '#{current_community.slug}'});
         }
+        $("#header").text("Complete Your Registration");
+        $("#li1").text("#{t(".li1fb", :community => current_community.name).gsub('"', '\"')}");
+        $("#li2").text("#{t(".li2fb", :community => current_community.name).gsub('"', '\"')}");
+        $("#li3").text("");
         $("#user_full_name").val(response.name);
         $("#user_email")
-          .attr("readonly", "true")
+          //.attr("readonly", "true")
           .val(response.email);
         $("<input />").attr("type","hidden")
           .attr("id", "user_facebook_uid")
           .attr("name", "user[facebook_uid]")
           .val(response.id)
           .appendTo("#new_user");
+        console.log("user[facebook_uid] == " + $("#user_facebook_uid").val());
         /*$("<input />").attr("type","hidden")
           .attr("id", "user_facebook_session")
           .attr("name", "user[facebook_session]")
           .val(JSON.stringify(session))
           .appendTo("#new_user");*/
-        $("#user_address").focus();
+        //$("#user_address").focus();
       });
     }
   }
@@ -48,18 +53,19 @@
           .attr("name", "user[facebook_session]")
           .val(JSON.stringify(response.session))
           .appendTo("#new_user");
+        console.log("user[facebook_session] == " + $("#user_facebook_session").val());
       }
     })
   })
   
 #wrapper
   #titleslug
-    %h1= t(".h1", :community => current_community.name).html_safe
+    %h1#header= t(".h1", :community => current_community.name).html_safe
   #registration_information
     %ul{:id=>"infolist"}
-      %li= t(".li1", :community => current_community.name)
-      %li= t(".li2", :community => current_community.name)
-      %li= t(".li3", :community => current_community.name)
+      %li#li1= t(".li1", :community => current_community.name)
+      %li#li2= t(".li2", :community => current_community.name)
+      %li#li3= t(".li3", :community => current_community.name)
     %ul{:id=>"link_item"}
       %a{:href => "/#{current_community.slug}/learn_more"}
         %img{:src=>"/images/buttons/learnmore.png", :alt=>"Learn more", :id=>"learnmore"}
@@ -74,11 +80,14 @@
             %div{:id => "bottomregister"}  
             %h3 
               or
-              %fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'facebookUserLoggedIn();', :perms => 'email,user_hometown,publish_stream,offline_access'}
+              %fb:login-button{:size => 'medium', :length => 'long', :onlogin => 'fbEnsureInit(facebookUserLoggedIn);', :perms => 'email,user_hometown,publish_stream,offline_access'}
       = f.inputs do
         = f.input :full_name, :input_html => { :placeholder => "Full name"} 
-        = f.input :email, :input_html => { :placeholder => "Email address"}
-        = f.input :address, :hint => "", :input_html => {:placeholder => "Address"}
+        = f.input :email, :input_html => { :placeholder => "Email address", :type => "text"}
+        - if current_community.is_college
+          = f.select :address, college_dorms_for_school(current_community)
+        - else
+          = f.input :address, :hint => "", :input_html => {:placeholder => "Address"}
       #fb-wrapper
         = f.buttons do 
           = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/signup.png"}

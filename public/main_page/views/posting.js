@@ -7,7 +7,9 @@ CommonPlace.SaySomething = Backbone.View.extend({
     "submit form.post": "submitPost",
     "submit form.announcement": "submitAnnouncement",
     "submit form.event": "submitEvent",
-    "submit form.group_post": "submitGroupPost"
+    "submit form.group_post": "submitGroupPost",
+    "click #commercialyes": "showPublicityWarning",
+    "click #commercialno": "hidePublicityWarning"
   },
   
   render: function() {
@@ -19,6 +21,9 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitPost: function(e) {
     e.preventDefault();
+    if ($("input#post_subject").val() == 'Post Title' || $("textarea#post_body").val() == 'Your Message' || $("input#post_subject").val() == '' || $("textarea#post_body").val() == '') {
+        return;
+      }
       if(!$('#commercialyes').is(':checked')&&!$('#commercialno').is(':checked')) {
         CommonPlace.app.notify("Please check a 'Yes' or 'No' next to: Is this publicity relating to a business, organization, or event?");
       } else if ($("input[@name=radio_name]:checked").val()=='No') {
@@ -154,8 +159,17 @@ CommonPlace.SaySomething = Backbone.View.extend({
     };
     view.groups[0].selected = "selected";
     return view;
+  },
+
+  showPublicityWarning: function(e) {
+    this.$("#hidden_text").show();
+  },
+  hidePublicityWarning: function(e) {
+    this.$("#hidden_text").hide();
   }
   
 });
+
+
 
 

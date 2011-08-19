@@ -3,6 +3,9 @@ module Serializer
     as_json = 
       case o
         
+      when String
+        o
+
       when Array
         o.map {|t| serialize t }
         
@@ -123,7 +126,8 @@ module Serializer
         "posts" => o.posts,
         "events" => o.events,
         "announcements" => o.announcements,
-        "group_posts" => o.group_posts}
+        "group_posts" => o.group_posts,
+        "neighborhood" => o.neighborhood}
       end
 
     as_json

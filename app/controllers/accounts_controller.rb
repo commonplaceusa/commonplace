@@ -12,6 +12,7 @@ class AccountsController < ApplicationController
       
     if can? :create, User
       @user = User.new
+      @user.community = current_community
       if params[:short]
         params[:action] = "new short"
         render :short
