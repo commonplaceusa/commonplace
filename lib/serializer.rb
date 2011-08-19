@@ -107,7 +107,8 @@ module Serializer
         "links" => { 
           "announcements" => "/feeds/#{o.id}/announcements",
           "events" => "/feeds/#{o.id}/events",
-          "invites" => "/feeds/#{o.id}/invites"
+          "invites" => "/feeds/#{o.id}/invites",
+          "messages" => "/feeds/#{o.id}/messages"
         }
       }
 
