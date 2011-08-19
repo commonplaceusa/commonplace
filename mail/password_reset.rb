@@ -27,4 +27,8 @@ class PasswordReset < MailBase
   def community
     user.community
   end
+
+  def tag
+    'password_reset'
+  end
 end

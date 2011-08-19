@@ -32,4 +32,8 @@ class AnnouncementConfirmation < MailBase
     community.name
   end
 
+  def tag
+    'announcement_confirmation'
+  end
+
 end

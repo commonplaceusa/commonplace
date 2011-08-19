@@ -41,4 +41,8 @@ class ClipboardWelcome < MailBase
     url("/gatekeeper?husat=#{user.single_access_token}")
   end
 
+  def tag
+    'clipboard_welcome'
+  end
+
 end

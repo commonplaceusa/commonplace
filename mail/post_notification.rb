@@ -71,5 +71,9 @@ class PostNotification < MailBase
   def user_name
     user.name
   end
+
+  def tag
+    'post'
+  end
   
 end
