@@ -14,7 +14,13 @@ CommonPlace.NewMessage = Backbone.View.extend({
     $(this.el).append('<div id="modal-overlay"></div>');
     $(this.el).append('<div id="modal-content"></div>');
     this.$("#modal-content").append('<img src="/images/modal-close.png" id="modal-close">');
-    this.$("#modal-content").append(CommonPlace.render("message_form", {user_name: CommonPlace.community.users.get(this.options.person_id).get('name')}));
+    user_name = "";
+    if ( this.options.feed_id != undefined ) {
+        user_name = CommonPlace.community.feeds.get(this.options.feed_id).get('name');
+    } else {
+        user_name = CommonPlace.community.users.get(this.options.person_id).get('name');
+    }
+    this.$("#modal-content").append(CommonPlace.render("message_form", {user_name: user_name}));
 
     $("#main").append(this.el);
 
