@@ -311,6 +311,109 @@ end
       [400, "errors"]
     end
   end
+
+  # POST /feeds/:id/announcements
+  # { title: String
+  # , body: String }
+  #
+  # Authorization: account owns feed
+  post "/feeds/:id/announcements" do |feed_id|
+    announcement = Announcement.new(:owner_type => "Feed",
+                                    :owner_id => feed_id,
+                                    :subject => request_body['title'],
+                                    :body => request_body['body'],
+                                    :community => current_account.community)
+    if announcement.save
+      announcement.owner.live_subscribers.each do |user|
+        Resque.enqueue(AnnouncementNotification, announcement.id, user.id)
+      end
+      serialize(announcement)
+    else
+      [400, "errors"]
+    end
+  end
+
+  get "/feeds/:id/announcements" do |feed_id|
+    params.merge!(:limit => 25, :page => 0)
+    scope = Announcement.where("owner_id = ? AND owner_type = ?", feed_id, "Feed")
+    last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
+    serialize(scope.includes(:replies, :owner).
+              limit(params[:limit]).
+              reorder("updated_at DESC").
+              offset(params[:limit].to_i * params[:page].to_i).to_a)
+  end
+
+  # POST /feeds/:id/events
+  # { title: String
+  # , about: String
+  # , date: DateString
+  # , start: TimeString
+  # , end: TimeString
+  # , venue: String
+  # , address: String
+  # , tags: String }
+  #
+  post "/feeds/:id/events" do |feed_id|
+    event = Event.new(:owner_type => "Feed",
+                      :owner_id => feed_id,
+                      :name => request_body['title'],
+                      :description => request_body['about'],
+                      :date => request_body['date'],
+                      :start_time => request_body['start'],
+                      :end_time => request_body['end'],
+                      :venue => request_body['venue'],
+                      :address => request_body['address'],
+                      :tag_list => request_body['tags'],
+                      :community => current_account.community)
+    if event.save
+      serialize(event)
+    else
+      [400, "errors"]
+    end
+  end
+
+  get "/feeds/:id/events" do |feed_id|
+    params.merge!(:limit => 25, :page => 0)
+    scope = Event.where("owner_id = ? AND owner_type = ?",feed_id, "Feed")
+    last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
+                   DateTime.now.beginning_of_day.utc.to_time].compact.max)
+    serialize(scope.upcoming.
+              limit(params[:limit]).
+              offset(params[:limit].to_i * params[:page].to_i).
+              includes(:replies).to_a)
+  end
+
+  # POST "/feeds/:id/invites"
+  # { emails: [String]
+  # , message: String }
+  #
+  post "/feeds/:id/invites" do |feed_id|
+    request_body['emails'].each do |email|
+      unless User.exists?(:email => email)
+        Resque.enqueue(FeedInvitation, email, feed_id)
+      end
+    end
+    [200, ""]
+  end
+
+  # POST "/feeds/:id/messages"
+  # { subject: String
+  # , body: String }
+  #
+  # Authorization: any account
+  post "/feeds/:id/messages" do |feed_id|
+    message = Message.new(:subject => request_body['subject'],
+                          :body => request_body['body'],
+                          :messagable_type => "Feed",
+                          :messagable_id => feed_id,
+                          :user => current_account)
+    if message.save
+      [200, ""]
+    else
+      [400, "errors"]
+    end
+  end  
+  
   
   # POST "/group_posts"
   # { title: String
@@ -369,8 +472,8 @@ end
   # { id: Integer }
   # Authorization: Account community is Feed community
   post "/account/subscriptions/feeds" do
-    current_account.feeds << Feed.find(params[:id])
-    [200, ""]
+    current_account.feeds << Feed.find(params[:id] || request_body['id'])
+    serialize(Account.new(current_account))
   end
 
   # DELETE /subscriptions/feeds/:id
@@ -378,7 +481,7 @@ end
   # Authorization: Account exists
   delete "/account/subscriptions/feeds/:id" do |id|
     current_account.feeds.delete(Feed.find(id))
-    [200, ""]
+    serialize(Account.new(current_account))
   end
 
   # POST /account/subscriptions/groups

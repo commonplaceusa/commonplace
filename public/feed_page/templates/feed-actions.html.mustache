@@ -1,0 +1,119 @@
+<div id="feed-action-nav">
+  <a href="#/post-announcement" class="post-announcement {{postAnnouncementClass}}">Post an Announcement</a>
+  <a href="#/post-event" class="post-event {{postEventClass}}">Post an <br>Event</a>
+  <a href="#/invite-subscribers" class="invite-subscribers {{inviteSubscribersClass}}">Invite New Subscribers</a>
+</div>
+
+<div class="tab post-announcement {{postAnnouncementClass}}">
+  <img class="avatar" src="{{avatar_url}}" width="50" height="50">
+
+  <form>
+    <input name="title" placeholder="Title">
+    <textarea name="body" placeholder="Body"></textarea>
+
+    <label>Label this post?</label>
+    <ul class="post-label-selector">
+      {{#groups}}
+        <li>
+          <label>
+            <img src="{{avatar_url}}" height="25" width="25">
+            {{name}}
+            <input name="groups" value="{{id}}" type="checkbox">
+          </label>
+        </li>
+      {{/groups}}
+    </ul>
+
+    <button>Post an Announcement</button>
+  </form>
+  <div style="clear: both;"></div>
+</div>
+
+<div class="tab post-event {{postEventClass}}">
+  <img class="avatar" src="{{avatar_url}}" width="50" height="50">
+
+  <form>
+
+    <input name="title" placeholder="Event name">
+
+    <textarea name="about" placeholder="Event description"></textarea>
+
+    <input class="date" name="date" placeholder="Event date">
+
+    <label for="start">Start time</label>
+    <select name="start">
+      {{#time_values}}
+        <option value="{{.}}">{{.}}</option>
+      {{/time_values}}
+    </select>
+
+    <label for="end">End time</label>
+    <select name="end">
+      {{#time_values}}
+        <option value="{{.}}">{{.}}</option>
+      {{/time_values}}
+    </select>
+
+    <input name="venue" placeholder="Venue">
+
+    <input name="address" placeholder="Event address">
+
+    <label>Label this post?</label>
+    <ul class="post-label-selector">
+      {{#groups}}
+        <li>
+          <label>
+            <img src="{{avatar_url}}" height="25" width="25">
+            {{name}}
+            <input name="groups" value="{{id}}" type="checkbox">
+          </label>
+        </li>
+      {{/groups}}
+    </ul>
+
+    <button>Post your Event</button>
+
+  </form>
+
+  <div style="clear: both;"></div>
+</div>
+
+<div class="tab invite-subscribers {{inviteSubscribersClass}}">
+
+  <h1 class="invite-by-facebook">Invite by Facebook:</h1>
+  <div class="invite-by-facebook">
+    <button>Find Subscribers on Facebook</button>
+  </div>
+
+  <h1 class="invite-by-email">Invite by email:</h1>
+  <form class="invite-by-email">
+
+    <textarea name="emails" placeholder="Enter email addresses"></textarea>
+    <textarea name="message" placeholder="Enter a personal message"></textarea>
+    <button>Send Invite</button>
+
+    <div style="clear: both"></div>
+  </form>
+
+  <h1 class="invite-by-hand">Invite by hand:</h1>
+  <div class="invite-by-hand">
+
+    <a class="download" href="#">
+      <p class="description-text">Description text goes here</p>
+      <p class="download-pdf">Download PDF</p>
+    </a>
+    <a class="download" href="#">
+      <p class="description-text">Description text goes here</p>
+      <p class="download-pdf">Download PDF</p>
+    </a>
+    <a class="download last" href="#">
+      <p class="description-text">Description text goes here</p>
+      <p class="download-pdf">Download PDF</p>
+    </a>
+
+    <button>Download All Flyers</button>
+
+    <div style="clear: both"></div>
+  </div>
+  <div style="clear: both;"></div>
+</div>
