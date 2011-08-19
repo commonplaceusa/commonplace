@@ -89,9 +89,68 @@ var FeedHeaderView = Backbone.View.extend({
 });
 
 var FeedProfileView = Backbone.View.extend({
+  
+  events: {
+    "click button.send-message": "openMessageModal"
+  },
+  
   render: function() {
     $(this.el).html(CommonPlace.render("feed-profile", this.model));
     return this;
+  },
+
+  openMessageModal: function() {
+    var view = new FeedMessageFormView({ feed: this.model });
+    view.render();
+    return this;
+  }
+  
+});
+
+var FeedMessageFormView = Backbone.View.extend({
+  className: "feed-message-modal",
+
+  events: {
+    "click form a.cancel": "exit",
+    "submit form": "send"
+  },
+  
+  initialize: function(options) { this.feed = this.options.feed },
+  
+  render: function() {
+    var self = this;
+    var $container = $("body");
+    this.$shadow = $("<div/>", { 
+      id: "modal-shadow",
+      click: function() { self.exit() }
+    });
+
+    $(this.el).html(CommonPlace.render("feed-message-form", this));
+
+    $container.append(this.el);
+    $container.append(this.$shadow);
+
+    this.centerEl();
+  },
+
+  centerEl: function() {
+    var $el = $(this.el);
+    var $window = $(window);
+    
+    $el.css({ top: ($window.height() - $el.height()) / 2,
+              left: ($window.width() - $el.width()) / 2 
+            });
+  },
+
+  send: function() {
+    
+    this.exit();
+  },
+
+  exit: function(e) {
+    e && e.preventDefault();
+    this.$shadow.remove();
+    $(this.el).remove();
   }
 });
 
