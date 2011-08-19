@@ -23,8 +23,15 @@
 .clear
   clear: both
 
+html
+  height: 100%
+
 body.application
   background-image: url('/images/neighborhood-bg.png')
+  position: relative
+  min-height: 100% // real browsers
+  height: auto !important // real browsers
+  height: 100% // IE6: treaded as min-height
   background-position: 0 100%
   background-repeat: repeat-x
   background-color: #cee7fe
@@ -151,6 +158,9 @@ body.application.logged_out
   background-color: #cee7fe
   background-attachment: fixed
   +serif
+
+  #main
+    padding-bottom: 275px
 
   header
     text-align: center
@@ -363,9 +373,8 @@ body.application.logged_out
     background-position: center bottom
     background-color: transparent 
     border: none
-    padding: 200px 10px 10px
+    padding: 200px 0 10px
     height: 20px
-    width: auto
     margin: 0px
     color: #ADD794 !important
     .left_text
@@ -378,13 +387,16 @@ body.application.logged_out
 body.application
   #main
     width: 980px
+    padding-bottom: 75px
     margin: auto
   footer
     background: #1b334a
     height: 30px
     border-top: 4px solid #fff
-    padding: 20px 10px 0px
-    width: auto
+    padding: 20px 0 0
+    width: 100%
+    position: absolute
+    bottom: 0
     margin: 20px 0 0 0
     clear: both
     color: #fff
