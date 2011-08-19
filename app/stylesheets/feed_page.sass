@@ -1,0 +1,407 @@
+@import core
+@import buttons
+@import header
+
+
+body
+  background-color: #eee
+  margin: 0
+
+#main
+  width: 980px
+  margin: auto
+  position: relative
+
+#feed-header
+  font-family: Rockwell, Helvetica
+  margin-top: 25px
+  padding-bottom: 25px
+
+  h1
+    font-size: 30px
+    display: inline
+    padding-right: 10px
+
+  a.subscribe, a.unsubscribe
+    color: #ac322f
+    font-size: 12px
+    text-decoration: none
+    font-weight: bold
+
+
+#left-column 
+  width: 235px
+  padding-right: 10px
+  float: left
+
+#center-column
+  width: 485px
+  padding-right: 10px
+  float: left
+
+#right-column
+  width: 240px
+  float: left
+
+#feed-profile
+  background-color: #fff
+  border: 2px solid #bebebe
+  +border-radius(3px)
+  +box-shadow(#888 2px 2px 10px)
+
+  h1
+    +border-top-radius(1px)
+    margin: 0px
+    background-color: #e0e0e0
+    font-family: Rockwell, Helvetica
+    font-size: 14px
+    padding: 5px
+    border-bottom: 1px solid #bebebe
+    text-align: center
+    color: #656565
+
+  img.avatar
+    display: block
+    margin: 20px auto 0
+    padding: 0
+    border: 0
+
+  dl.contact-info
+    padding: 20px 20px 0
+    dt
+      color: #1b334a
+      font-family: Helvetica, sans-serif
+      font-size: 12px
+      font-weight: bold
+      padding-bottom: 5px
+    dd
+      color: #252525
+      font-family: Helvetica, sans-serif
+      font-size: 12px
+      padding-bottom: 10px
+        
+      a
+        color: #ac322f
+
+  .send-message
+    +blue-button
+    margin: 15px 20px
+#feed-nav
+  font-family: Rockwell, Helvetica
+  margin-top: 20px
+
+  a 
+    +border-radius(3px)
+    display: block
+    padding: 5px 20px
+    color: #1b334a
+    text-decoration: none
+    
+  a.current
+    background-color: #ac322f
+    color: white
+
+
+#feeds-list
+  font-family: Rockwell, Helvetica
+
+  h1
+    border-bottom: 2px solid #e0e0e0
+    font-size: 14px
+    margin-bottom: 14px
+    margin-top: 0
+    color: #1d334c
+
+  a 
+    +border-radius(3px)
+    display: block
+    margin-bottom: 5px
+    background-color: #e0e0e0
+    padding: 6px 6px 6px 37px
+    line-height: 25px
+    text-decoration: none
+    color: #333
+
+    img.avatar
+      vertical-align: top
+      border: 0
+      float: left
+      margin-left: -31px
+      display: block
+  
+  a.current
+    background-color: #fff
+
+
+#feed-actions
+  #feed-action-nav
+    a 
+      display: block
+      float: left
+      width: 100px
+      background-color: #1b334a
+      height: 25px
+      padding: 20px 10px 20px 50px
+      color: #fff
+      text-decoration: none
+      font-family: Rockwell, Helvetica
+      font-size: 13px
+      background-repeat: no-repeat
+      background-position: 15px 22px
+
+    a.post-announcement
+      +border-top-left-radius(3px)
+      border-left: 1px solid #182e42
+      border-right: 1px solid #192837
+      background-image: url("/feed_page/images/announcement-tab-icon.png")
+    a.post-event
+      border-right: 1px solid #192837
+      border-left: 1px solid #3a4d5e
+      background-image: url("/feed_page/images/event-tab-icon.png")
+    a.invite-subscribers
+      +border-top-right-radius(3px)
+      border-left: 1px solid #3a4d5e
+
+    a.current 
+      background-color: #2e4b67
+    
+
+  .tab
+    clear: both
+    +border-bottom-radius(3px)
+    background-color: #ac322f
+    padding-top: 10px
+    border: 2px solid #9a2c2a
+      top: 0px
+
+    display: none
+
+    &.current
+      display: block
+      
+  
+
+
+  img.avatar
+    float: left
+    margin-left: 10px
+    margin-top: 16px
+
+  form
+    
+    display: block
+    margin: 16px 15px 20px 73px
+      
+    
+    input, textarea
+      display: block
+
+    input
+      padding: 5px 5px
+      width: 380px
+      font-size: 15px
+      font-family: Rockwell, Georgia, Times, Serif 
+      +border-radius(5px)
+      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+
+    textarea
+      margin-top: 12px
+      width: 382px
+      font-size: 15px
+      font-family: Rockwell, Georgia, Times, Serif 
+      +border-radius(5px)
+      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+      padding: 5px 5px
+
+    button
+      +blue-button
+      float: right
+      margin: 20px 0 
+
+    label
+      color: #fff
+      margin-top: 15px
+      font-size: 16px
+      font-family: Rockwell, Helvetica
+      display: block
+    .post-label-selector
+      margin-top: 15px
+      height: 125px
+      overflow-y: scroll
+
+      li 
+        &:first-child
+          margin-top: 0px
+        
+        margin-top: 10px
+        margin-right: 10px
+        padding: 8px 5px 2px 5px
+        background-color: #fff
+        +border-radius(5px)
+        background-image: url("/feed_page/images/check-off.png")
+        background-repeat: no-repeat
+        background-position: 340px 8px
+
+        &.checked
+          background-image: url("/feed_page/images/check-on.png")
+          
+        label
+          display: block
+          font-size: 14px
+          font-family: Rockwell, Helvetica
+          color: #333
+          margin: 0
+          padding: 0
+        
+        img 
+          position: relative
+          top: -3px
+          vertical-align: middle
+          margin-right: 5px
+          border: 0
+
+        input
+          display: none
+
+          
+        
+        
+
+.invite-subscribers h1
+  padding-left: 73px
+  color: #fff
+  font-family: Rockwell, Helvetica
+  height: 16px
+  padding-top: 10px
+
+.invite-subscribers div.invite-by-facebook
+  margin: 20px 0 20px 73px
+  
+  button
+    +blue-button
+
+.invite-subscribers div.invite-by-hand
+  margin: 16px 15px 20px 73px
+  
+  button
+    margin-top: 20px
+    +blue-button
+
+.invite-subscribers .invite-by-hand a.download
+  background-image: url("/feed_page/images/doc-icon.png")
+  background-position: 0 0
+  background-repeat: no-repeat
+  padding-top: 135px
+  display: block
+  float: left
+  width: 100px
+  text-decoration: none
+    
+  padding-right: 40px
+
+  &.last
+    padding-right: 0
+
+  .description-text
+    color: #fff
+    font-family: Rockwell, Helvetica
+    font-size: 12px
+
+  .download-pdf
+    margin-top: 5px
+    color: #5a1a19
+    font-family: Rockwell, Helvetica
+    font-size: 12px
+  
+  
+
+  
+.feed-message-modal
+  position: absolute
+  z-index: 2000
+  background-color: #AC322F
+  border: 10px solid #fff
+  +border-radius(15px)
+
+  form 
+    width: 392px
+    padding: 15px
+    display: block
+
+    h1
+      font-family: Rockwell, Helvetica
+      font-size: 16px
+      color: #fff
+    label
+      display: block
+      margin-top: 20px
+      font-family: Rockwell, Helvetica
+      font-size: 16px
+      color: #fff
+      padding-bottom: 2px
+
+    input
+      padding: 5px 5px
+      width: 380px
+      font-size: 15px
+      font-family: Rockwell, Georgia, Times, Serif 
+      +border-radius(5px)
+      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+
+    textarea
+      margin-top: 12px
+      width: 382px
+      font-size: 15px
+      font-family: Rockwell, Georgia, Times, Serif 
+      +border-radius(5px)
+      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
+      padding: 5px 5px
+
+    .controls
+      margin-top: 20px
+      text-align: right
+
+      button
+        +blue-button
+        margin-left: 15px
+
+      a.cancel
+        color: #fff
+        font-size: 15px
+        font-family: Rockwell, Helvetica
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+
+#modal-shadow
+  +opacity(0.5)
+  background-color: #000
+  position: fixed
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
+  z-index: 1000
+
+
+#feed-subresources
+  border: 2px solid #bebebe
+  +border-radius(4px)
+
+  margin-top: 15px
+  
+  h1
+    background-color: #e0e0e0
+    color: #656565
+    font-family: Rockwell, Helvetica
+    font-size: 13px
+    border-bottom: 1px solid #bebebe
+    +border-top-radius(2px)
+    padding: 5px
+      
+    
+  .tab
+    display: none
+
+  .tab.current
+    display: block
