@@ -315,19 +315,15 @@ class User < ActiveRecord::Base
     user_ids
   end
 
-  # Hacky wrapper for staging and local development
-
-  if CP_ENV == 'production' or !Rails.env.development?
-    searchable do
-      string :first_name
-      string :last_name
-      string :about
-      string :interest_list
-      string :offer_list
-      string :address
-    end
-    #handle_asynchronously :solr_index
+  searchable do
+    string :first_name
+    string :last_name
+    string :about
+    string :interest_list
+    string :offer_list
+    string :address
   end
+  #handle_asynchronously :solr_index
 
   private
   def reprocess_avatar
