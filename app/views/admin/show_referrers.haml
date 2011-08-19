@@ -6,12 +6,14 @@
       %th Community
       %th Timestamp
       %th Referral Source
+      %th Metadata
     - @referred_users.each do |user|
       %tr
-        %td= user.full_name
-        %td= user.community.name
-        %td
+        %td{:width => "20%"}= user.full_name
+        %td{:width => "10%"}= user.community.name
+        %td{:width => "20%"}
           = user.created_at.getlocal.to_date
           = user.created_at.getlocal
-        %td= user.referral_source
+        %td{:width => "25%"}= user.referral_source
+        %td{:width => "25%"}= user.referral_metadata
 

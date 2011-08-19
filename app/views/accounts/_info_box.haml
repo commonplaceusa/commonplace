@@ -2,7 +2,7 @@
 #information.info_box.user.inline-form{'data-form-url'=>"/account", 'data-form-method'=>"put"}
   .edit
     = link_to "Edit Profile", "/account/profile"
-  %h2 Your Civic Profile
+  %h2 #{current_community.is_college ? "Your Campus Profile" : "Your Civic Profile"}
 
   = image_tag current_user.avatar_url(:normal), :width => 120, :class => "avatar"
 

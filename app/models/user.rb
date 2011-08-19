@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   #track_on_creation
+  include Geokit::Geocoders
 
   def self.post_receive_options
     ["Live", "Daily", "Never"]
@@ -26,7 +27,11 @@ class User < ActiveRecord::Base
 
   belongs_to :community
   belongs_to :neighborhood  
-  
+
+  def organizer_data_points
+    OrganizerDataPoint.find_all_by_organizer_id(self.id)
+  end
+
   before_validation :geocode, :if => :address_changed?
   before_validation :place_in_neighborhood, :if => :address_changed?
 
@@ -69,8 +74,17 @@ class User < ActiveRecord::Base
     return true
   end
 
-  validates_presence_of :email, :message => "Please provide a valid email address."
-  validates_presence_of :first_name, :last_name, :message => "CommonPlace requires people to register with their first \& last names."
+  validates_presence_of :email
+  validates_uniqueness_of :email
+
+  # HACK HACK HACK TODO: This should be in the database schema, or slugs for college towns should ALWAYS be the domain suffix
+  validates_format_of :email, :with => /^([^\s]+)mail\.umw\.edu/, :if => :college?
+
+  def college?
+    self.community.is_college
+  end
+
+  validates_presence_of :first_name, :last_name
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
@@ -229,7 +243,11 @@ class User < ActiveRecord::Base
   end
 
   def place_in_neighborhood
-    self.neighborhood = self.community.neighborhoods.near(self.to_coordinates, 15).first || self.community.neighborhoods.first
+    if self.community.is_college
+      self.neighborhood = self.community.neighborhoods.select { |n| n.name == self.address }.first
+    else
+      self.neighborhood = self.community.neighborhoods.near(self.to_coordinates, 15).first || self.community.neighborhoods.first
+    end
     unless self.neighborhood
       errors.add :address, I18n.t('activerecord.errors.models.user.address',
                                   :community => self.community.name)
@@ -266,6 +284,34 @@ class User < ActiveRecord::Base
     else
       address + ", #{self.community.name}"
     end
+  end
+
+  def generate_point
+    if self.generated_lat.present? and self.generated_lng.present?
+    else
+      loc = MultiGeocoder.geocode("#{self.address}, #{self.community.zip_code}")
+      self.generated_lat = loc.lat
+      self.generated_lng = loc.lng
+      self.save
+    end
+    point = Hash.new
+    point['lat'] = self.generated_lat
+    point['lng'] = self.generated_lng
+    point
+  end
+
+  # Hacky wrapper for staging and local development
+
+  if CP_ENV == 'production' or Rails.env.development?
+    searchable do
+      string :first_name
+      string :last_name
+      string :about
+      string :interest_list
+      string :offer_list
+      string :address
+    end
+    #handle_asynchronously :solr_index
   end
 
   private

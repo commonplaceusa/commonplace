@@ -11,7 +11,7 @@
     = t(".card_msg")
           
 #card_box
-  %img{:src => "/images/cards/#{current_community.slug}.png", :alt => "Community Card"}
+  %img{:src => "/images/cards/#{current_community.slug.downcase}.png", :alt => "Community Card"}
     
 #gbox
   %h1

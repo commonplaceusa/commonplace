@@ -9,6 +9,9 @@ class Community < ActiveRecord::Base
            :include => [:replies])
 
   has_many :users, :order => "last_name, first_name"
+  def organizers
+    self.users.select { |u| u.admin }
+  end
 
   has_many :groups
 
@@ -49,13 +52,17 @@ class Community < ActiveRecord::Base
   end
   
   def neighborhood_for(address)
-    default = self.neighborhoods.first
-    if position = LatLng.from_address(address, self.zip_code)
-      self.neighborhoods.to_a.find(lambda { default }) do |n|
-        n.contains?(position)
-      end
+    if self.is_college
+      self.neighborhoods.select { |n| n.name == address }
     else
-      default
+      default = self.neighborhoods.first
+      if position = LatLng.from_address(address, self.zip_code)
+        self.neighborhoods.to_a.find(lambda { default }) do |n|
+          n.contains?(position)
+        end
+      else
+        default
+      end
     end
   end
 
@@ -137,5 +144,9 @@ class Community < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def locale
+    (self.is_college) ? :college : :en
   end
 end
