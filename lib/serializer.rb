@@ -45,6 +45,8 @@ module Serializer
         "author" => o.owner.name,
         "body" => o.description,
         "author_url" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
+        "messagable_author_url" => (o.owner_type.downcase == "feed") ? "/feeds/#{o.owner_id}/#{o.owner.user_id}" : "/users/#{o.owner_id}",
+        "messagable_author_name" => (o.owner_type.downcase == "feed") ? o.owner.name : o.owner.first_name,
         "tags" => o.tag_list,
         "starts_at" => o.start_time.try(:strftime, "%l:%M%P"),
         "ends_at" => o.end_time.try(:strftime, "%l:%M%P"),

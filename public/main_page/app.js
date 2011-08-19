@@ -55,6 +55,8 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
 
     "/users/:id/messages/new" : "newMessage",
 
+    "/feeds/:person_id/:feed_id/messages/new_feed" : "newMessageToFeed",
+
     "/events/:id/info": "event",
     "/users/:id/info": "user",
     "/groups/:id/info": "group",
@@ -107,6 +109,12 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
 
   newMessage: function(person_id) {
     new CommonPlace.NewMessage({person_id: person_id}).render();
+    $(window).trigger('resize.modal');
+  },
+
+  newMessageToFeed: function(feed_id, person_id) {
+    console.log("Feed ID: " + feed_id + " \n Person ID: " + person_id);
+    new CommonPlace.NewMessage({person_id: person_id, feed_id: feed_id}).render();
     $(window).trigger('resize.modal');
   },
 
