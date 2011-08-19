@@ -103,7 +103,14 @@ module Serializer
         "tags" => o.tag_list,
         "website" => o.website,
         "phone" => o.phone,
-        "address" => o.address }
+        "address" => o.address,
+        "links" => { 
+          "announcements" => "/feeds/#{o.id}/announcements",
+          "events" => "/feeds/#{o.id}/events",
+          "invites" => "/feeds/#{o.id}/invites",
+          "messages" => "/feeds/#{o.id}/messages"
+        }
+      }
 
       when Group
         { 
@@ -127,7 +134,11 @@ module Serializer
         "events" => o.events,
         "announcements" => o.announcements,
         "group_posts" => o.group_posts,
-        "neighborhood" => o.neighborhood}
+        "neighborhood" => o.neighborhood, 
+        "links" => { 
+          "feed_subscriptions" => "/account/subscriptions/feeds"
+        }
+        }
       end
 
     as_json
