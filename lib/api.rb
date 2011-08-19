@@ -374,6 +374,24 @@ end
     end
     [200, ""]
   end
+
+  # POST "/feeds/:id/messages"
+  # { subject: String
+  # , body: String }
+  #
+  # Authorization: any account
+  post "/feeds/:id/messages" do |feed_id|
+    message = Message.new(:subject => request_body['subject'],
+                          :body => request_body['body'],
+                          :messagable_type => "Feed",
+                          :messagable_id => feed_id,
+                          :user => current_account)
+    if message.save
+      [200, ""]
+    else
+      [400, "errors"]
+    end
+  end  
   
   
   # POST "/group_posts"
