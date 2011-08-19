@@ -191,6 +191,9 @@ class AccountsController < ApplicationController
   end
 
   def learn_more
+    unless current_community.present?
+      redirect_to root_url
+    end
   end
 
   def edit_interests
