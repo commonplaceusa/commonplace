@@ -1,4 +1,13 @@
 class API < Sinatra::Base
+
+
+# we're in development, force preloading of models
+if Rails.env.development? 
+  Dir.glob(Rails.root.join("app","models","*.rb")).each do |f|
+    require(f)
+  end
+end
+
   
   helpers do
     
@@ -401,6 +410,19 @@ class API < Sinatra::Base
               includes(:user, :replies).to_a)
   end
 
+  get "/neighborhoods/:id/posts" do |id|
+    params.merge!(:limit => 25, :page => 0)
+    posts = Post.includes(:user).where(:users => {:neighborhood_id => id})
+
+    last_modified(posts.unscoped.
+                  reorder("updated_at DESC").limit(1).first.try(:updated_at))
+
+    serialize(posts.
+              limit(params[:limit]).
+              offset(params[:limit].to_i * params[:page].to_i).
+              includes(:user, :replies).to_a)
+  end
+
   get "/communities/:id/events" do |id|
     params.merge!(:limit => 25, :page => 0)
     scope = Event.where("community_id = ?",id)
@@ -458,5 +480,13 @@ class API < Sinatra::Base
   
   get "/posts/:id" do |id|
     serialize Post.find(id)
+  end
+
+  get "/groups/:id" do |id|
+    serialize Group.find(id)
+  end
+
+  get "/feeds/:id" do |id|
+    serialize Feed.find(id)
   end
 end

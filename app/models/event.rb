@@ -73,17 +73,5 @@ class Event < ActiveRecord::Base
   def self.find_by_long_id(long_id)
     Event.find(IDEncoder.from_long_id(long_id))
   end
-
-  define_index do
-    indexes :name, :sortable => true
-    indexes description
-    indexes cached_tag_list
-    indexes address
-    indexes venue
-    indexes host_group_name
-    indexes owner(:name), :as => :host
-
-    has created_at, updated_at
-  end
   
 end

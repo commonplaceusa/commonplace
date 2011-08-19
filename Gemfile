@@ -15,12 +15,15 @@ gem 'rack-cache'
 gem 'rest-client-components'
 gem 'aws-s3', :require => 'aws/s3'
 gem 'jammit'
+gem 'jammit-s3'
 gem 'thin'
 gem 'dalli'
 gem 'heroku'
+gem 'sunspot_rails'
 
 # Deployment Infrastructure
 gem 'jslint_on_rails', :require => false
+gem 'kumade'
 
 # Database3
 gem 'redis'
@@ -48,12 +51,15 @@ gem 'googlecharts'
 gem 'compass', '~> 0'
 gem 'sass', '~> 3.1'
 
+# User data tracking
+gem 'tripwire_notifier'
+
 # Admin section
 gem 'activeadmin'
 
 # Logging for Heroku
-gem "mongoid"
-gem "central_logger", :git => "https://github.com/reedlaw/central_logger.git"
+#gem "mongoid"
+#gem "central_logger", :git => "https://github.com/reedlaw/central_logger.git"
 # Error Pages
 #gem 'goalie'
 
@@ -71,10 +77,6 @@ gem 'acts-as-list', :require =>'acts_as_list'
 gem 'glebm-geokit', :require => 'geokit'
 gem 'simple_uuid'
 gem 'geocoder'
-gem 'thinking-sphinx',
-  :git     => 'git://github.com/freelancing-god/thinking-sphinx.git',
-  :branch  => 'rails3'
-gem 'flying-sphinx',   '0.6.0'
 
 
 # Jobs
@@ -82,10 +84,12 @@ gem 'resque'
 gem 'resque-exceptional'
 gem 'resque-scheduler'
 gem 'hirefireapp'
+gem 'delayed_job'
 
 # Features/Monitoring
 gem 'exceptional'
 gem 'rollout'
+gem 'rpm_contrib'
 gem 'newrelic_rpm'
 
 # Tracking events
@@ -118,6 +122,7 @@ group :test do
   gem 'database_cleaner'
   gem 'autotest-standalone'
   gem 'autotest-rails-pure'
+  gem 'jasmine'
 end
 
 

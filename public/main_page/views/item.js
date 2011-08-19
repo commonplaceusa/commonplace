@@ -79,6 +79,9 @@ CommonPlace.PostLikeItem = CommonPlace.Item.extend({
     this.model.replies.create({body: $("textarea[name='reply[body]']", e.currentTarget).val()},
                               {success: function() {self.render(); },
                                error: function() {self.render(); } });
+    if (CommonPlace.say_something_blocked) {
+      $("#say-something .wrap").unblock();
+    }
   },
 
   replyHover: function(e) {

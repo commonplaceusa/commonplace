@@ -29,6 +29,13 @@ describe API do
       last_response.body.should == "HI!"
     end
   end
+
+  describe "GET /communities/:id/addresses" do
+
+    it_behaves_like "A JSON endpoint" do
+      let(:uri) { "/communities/#{community.id}/addresses" }
+    end
+  end
   
   describe "GET /communities/:id/posts" do
     

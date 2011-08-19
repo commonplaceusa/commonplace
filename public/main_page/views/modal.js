@@ -10,20 +10,26 @@ CommonPlace.NewMessage = Backbone.View.extend({
 
   render: function() {
     var self = this;
-    if (CommonPlace.community.users.length === 0 && !this.options.loading) {
-        CommonPlace.community.users.fetch(
-            {success: function() {
-                                     new CommonPlace.NewMessage({person_id: self.options.person_id, loading: true}).render();
-            }});
-        return this;
-    }
     $(this.el).addClass("not_empty");
     $(this.el).append('<div id="modal-overlay"></div>');
     $(this.el).append('<div id="modal-content"></div>');
     this.$("#modal-content").append('<img src="/images/modal-close.png" id="modal-close">');
     this.$("#modal-content").append(CommonPlace.render("message_form", {user_name: CommonPlace.community.users.get(this.options.person_id).get('name')}));
+
     $("#main").append(this.el);
-    $(window).trigger('resize.modal');
+
+    var $m = this.$("#modal-content")
+    if ($m.get(0)) {
+      var w = $m.width(),
+      h = $m.height(),
+      $b = $(window),
+      bw = $b.width(),
+      bh = $b.height();
+      
+      $m.css({top: (bh - h) / 2,
+              left: (bw - w) / 2 - 20
+             });
+    }
     return this;
   },
 

@@ -27,9 +27,16 @@ jQuery.extend({
 CommonPlace.render = function(name, params) {
   return Mustache.to_html(
     CommonPlace.templates[name],
-    _.extend({auth_token: CommonPlace.auth_token,
-              account_avatar_url: CommonPlace.account.get('avatar_url')},
-             params),
+    _.extend({ auth_token: CommonPlace.auth_token,
+               account_avatar_url: CommonPlace.account.get('avatar_url'),
+               t: function() {
+                 return function(key,render) {
+                   var text = CommonPlace.text[CommonPlace.community.get('locale')][name][key];
+                   return text ? render(text) : key ;
+                 };
+               } 
+             }, params),
+    
     CommonPlace.templates);
 };
 
@@ -82,8 +89,14 @@ $(function() {
   });
 
   $('#sign_in_button').click(function() {
-    $(this).addClass("open");
-    $("form.user_session").slideDown(300);
+    if ( $(this).hasClass("open") ) {
+      $(this).removeClass("open");
+      $("form.user_session").slideUp();
+    } else {
+      $(this).addClass("open");
+      //$("form.user_session").slideDown(300);
+      $("form.user_session").slideDown();
+    }
   });
 
 
@@ -112,36 +125,6 @@ $(function() {
    $(window).trigger('resize.modal');
    setTimeout(function(){$(window).trigger("resize.modal");}, 500);
   });
-
-  $("body").trigger("#modal");
-
-
-  var didscroll = false;  
-  $(window).scroll(function() { didscroll = true; });
-
-  setInterval(function() {
-    if (didscroll) {
-      didscroll = false;
-      setInfoBoxPosition();
-    }
-  }, 100); 
-    
-
-  $("body").bind("#information", function(e, content) {
-    if (content) {
-      $("#information").replaceWith(window.innerShiv(content, false));
-    }
-    
-
-    setInfoBoxPosition();    
-    
-    $("#file_uploader").change(function() {
-      $(this).trigger('image.inline-form');
-    });
-
-  });
-
-  $("body").trigger("#information");
 
 
   // Feed Profile
