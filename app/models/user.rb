@@ -317,7 +317,7 @@ class User < ActiveRecord::Base
 
   # Hacky wrapper for staging and local development
 
-  if CP_ENV == 'production' or Rails.env.development?
+  if CP_ENV == 'production' or !Rails.env.development?
     searchable do
       string :first_name
       string :last_name
