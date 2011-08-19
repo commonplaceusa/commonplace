@@ -26,7 +26,10 @@ var FeedPageRouter = Backbone.Controller.extend({
       $.getJSON("/api/communities/1/groups", function(groups) {
         new FeedActionsView({ el: $("#feed-actions"), feed: feed, groups: groups }).render();
       });
-      new FeedNavView({ model: feed, el: $("#feed-nav") }).render();
+      var resourceView = new FeedSubResourcesView({ feed: feed, el: $("#feed-subresources") }).render();
+      var resourceNav = new FeedNavView({ model: feed, el: $("#feed-nav"),  }).render();
+
+      resourceNav.bind("switchTab", function(tab) { resourceView.switchTab(tab) });
 
       $.getJSON("/api/communities/1/feeds", function(feeds) {
         new FeedsListView({ model: feed, collection: feeds, el: $("#feeds-list") }).render();
@@ -181,20 +184,32 @@ var FeedsListView = Backbone.View.extend({
 });
 
 var FeedNavView = Backbone.View.extend({
-  render: function() {
-    $(this.el).html(CommonPlace.render("feed-nav", { 
-      postsUrl: this.postsUrl(),
-      membersUrl: this.membersUrl(),
-      postsClass: this.isCurrentUrl(this.postsUrl()) ? "current" : "",
-      membersClass: this.isCurrentUrl(this.membersUrl()) ? "current" : ""
-    }));
-    return this;
+  events: {
+    "click a": "navigate"
   },
 
-  postsUrl: function() { return "/feeds/" + this.model['id']  },
-  membersUrl: function() { return "/feeds/" + this.model['id'] + "/members" },
-  isCurrentUrl: function(string) { return window.location.hash.slice(1) == string }
+  initialize: function(options) {
+    this.current = options.current || "announcements";
+  },
   
+  render: function() {
+    $(this.el).html(CommonPlace.render("feed-nav", this));
+    return this;
+  },
+  
+  navigate: function(e) {
+    e.preventDefault();
+    this.current = $(e.target).attr('data-tab');
+    this.trigger('switchTab', this.current);
+    this.render();
+  },
+
+  classIfCurrent: function() {
+    var self = this;
+    return function(text) {
+      return this.current == text ? "current" : "";
+    };
+  }
 });
 
 var FeedActionsView = Backbone.View.extend({
@@ -297,6 +312,73 @@ var FeedActionsView = Backbone.View.extend({
   }
 });
 
+var FeedSubResourcesView = Backbone.View.extend({
+  initialize: function(options) {
+    this.feed = options.feed;
+    this.currentTab = options.current || "announcements";
+    window.rview = this;
+  },
+
+  render: function() {
+    this.el.html(CommonPlace.render("feed-subresources", this));
+    this[this.currentTab]();
+    return this;
+  },
+
+  announcements: function() {
+    var self = this;
+    $.getJSON("/api" + this.feed.links.announcements, function(announcements) {
+      _.each(announcements, function(announcement) {
+        var view = new AnnouncementItemView({model: announcement});
+        view.render();
+        self.$(".feed-announcements ul").append(view.el);
+      });
+    });
+  },
+
+  events: function() {
+    var self = this;
+    $.getJSON("/api" + this.feed.links.events, function(events) {
+      _.each(events, function(event) {
+        var view = new EventItemView({model: event});
+        view.render();
+        self.$(".feed-events ul").append(view.el);
+      });
+    });
+  },
+
+  tabs: function() {
+    return { announcements: this.$(".feed-announcements"),
+             events: this.$(".feed-events") };
+  },
+
+  classIfCurrent: function() {
+    var self = this;
+    return function(text) {
+      return text == self.currentTab ? "current" : "";
+    };
+  },
+
+  switchTab: function(newTab) {
+    console.log(this);
+    this.tabs()[this.currentTab].hide();
+    this.currentTab = newTab;
+    this.tabs()[this.currentTab].show();
+    this.render();
+  }
+});
+
+var AnnouncementItemView = Backbone.View.extend({
+  render: function() {
+    $(this.el).html(this.model.title);
+  }
+});
+
+var EventItemView = Backbone.View.extend({
+  render: function() {
+    $(this.el).html(this.model.title);
+  }
+});
 
 
 
