@@ -333,6 +333,16 @@ end
     end
   end
 
+  get "/feeds/:id/announcements" do |feed_id|
+    params.merge!(:limit => 25, :page => 0)
+    scope = Announcement.where("owner_id = ? AND owner_type = ?", feed_id, "Feed")
+    last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
+    serialize(scope.includes(:replies, :owner).
+              limit(params[:limit]).
+              reorder("updated_at DESC").
+              offset(params[:limit].to_i * params[:page].to_i).to_a)
+  end
+
   # POST /feeds/:id/events
   # { title: String
   # , about: String
