@@ -315,6 +315,25 @@ class User < ActiveRecord::Base
     user_ids
   end
 
+  def has_received_message_within(time_ago)
+    messages.between(time_ago, Time.now).select { |m| m.messagable_id == self.id and m.messagable_type == "User" }.present?
+  end
+
+  def self.received_no_reply_in_last(start_time)
+    user_ids = []
+    post_ids = []
+    User.all.each do |u|
+      unless u.has_received_message_within(start_time)
+        u.posts.between(start_time, Time.now).each do |p|
+          unless p.replies.present?
+            post_ids << p.id
+          end
+        end
+      end
+    end
+    post_ids.uniq
+  end
+
   searchable do
     string :first_name
     string :last_name
