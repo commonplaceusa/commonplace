@@ -63,7 +63,7 @@ class AccountsController < ApplicationController
     @user = User.new(params[:user].merge(:community => current_community))
     if @user.save
       if password == ""
-        password = 'cp123'
+        password = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{@user.email}--")[0,6]
       end
       unless password == ""
         @user.password = password
