@@ -124,9 +124,19 @@ Commonplace::Application.routes.draw do
     
     match "/:community/learn_more", :to => "accounts#learn_more"
 
+
     resources :password_resets
     match "/:community", :to => "accounts#new"
     match "/:community/account", :via => :post, :to => "accounts#create", :as => "create_account"
+
+    # Invitations
+  resource :account do
+    member do
+      get :facebook_invite
+    end
+  end
+
+  match "/invite", :to => "accounts#facebook_invite"
     
 
     

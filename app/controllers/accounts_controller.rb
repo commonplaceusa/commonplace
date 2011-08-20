@@ -62,6 +62,9 @@ class AccountsController < ApplicationController
     
     @user = User.new(params[:user].merge(:community => current_community))
     if @user.save
+      if password == ""
+        password = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{@user.email}--")[0,6]
+      end
       unless password == ""
         @user.password = password
         @user.save!
@@ -207,6 +210,9 @@ class AccountsController < ApplicationController
 
   def facebook_invite
     # Twitter doesn't like https...
+    unless logged_in?
+      raise CanCan::AccessDenied
+    end
     if request.ssl?
       redirect_to :protocol => "http://"
     end
