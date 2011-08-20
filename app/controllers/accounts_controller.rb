@@ -210,6 +210,9 @@ class AccountsController < ApplicationController
 
   def facebook_invite
     # Twitter doesn't like https...
+    unless logged_in?
+      raise CanCan::AccessDenied
+    end
     if request.ssl?
       redirect_to :protocol => "http://"
     end
