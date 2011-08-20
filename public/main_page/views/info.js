@@ -18,17 +18,12 @@ var setInfoBoxPosition = (function () { // wrapped in a function to minimize glo
     if ($container.get(0)) {
       if ($win.scrollTop() >= current_offset.top - top_offset && original_position <= current_offset.top) {
         bottom_diff = (current_offset.top + $container.outerHeight()) - ($(document).height() - bottom_offset);
-        console.log([current_offset.top, bottom_diff, top_offset]);
-        // console.log([current_offset.top, $container.height(), $(document).height(), bottom_offset]);
         $container.css({
           'position': 'fixed',
           'top': top_offset,
           'margin-top': bottom_diff > 0 ? -bottom_diff : 0,
           'padding-bottom': bottom_diff > 0 ? bottom_diff : 0
         });
-        // $container.animate({
-        //   'top': bottom_diff > 0 ? top_offset - bottom_diff : top_offset
-        // }, 3000, 'easeOutCubic')
       } else {
         $container.css({
           'position': 'static'
