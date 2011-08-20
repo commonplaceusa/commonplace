@@ -15,4 +15,8 @@ class FeedInvitation < Invitation
     @feed.name
   end
 
+  def tag
+    'feed_invitation'
+  end
+
 end

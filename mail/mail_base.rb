@@ -81,6 +81,10 @@ class MailBase < Mustache
     "Notification from CommonPlace"
   end
 
+  def tag
+    "administrative"
+  end
+
   def deliver?
     true
   end
@@ -96,7 +100,8 @@ class MailBase < Mustache
                           :headers => {
                             "Precedence" => "list",
                             "Auto-Submitted" => "auto-generated",
-                            "X-Campaign-Id" => community ? community.slug : "administrative"
+                            "X-Campaign-Id" => community ? community.slug : "administrative",
+                            "X-Mailgun-Tag" => self.tag
                           })
     end
   end

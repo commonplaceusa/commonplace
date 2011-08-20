@@ -101,4 +101,8 @@ class DailyBulletin < MailBase
       end
     end
   end
+
+  def tag
+    'daily_bulletin'
+  end
 end

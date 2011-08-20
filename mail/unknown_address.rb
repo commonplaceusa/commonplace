@@ -28,4 +28,8 @@ class UnknownAddress < MailBase
     community.organizer_email
   end
 
+  def tag
+    'unknown_address'
+  end
+
 end
