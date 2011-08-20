@@ -12,16 +12,21 @@ college:
 
     - name: Campus Problem Solving and Ideas
       about: "Have a big idea about how to help make %{community_name} better?  Join up and get the discussion going. "
-      avatar: ""
+      avatar: "/images/group-icons/city-problem-solving.png"
       slug: CampusProblemSolving
 
     - name: Social Opportunities
       about: Subscribe to stay in the loop about get-togethers with others in %{community_name}.
-      avatar: ""
+      avatar: "/images/group-icons/social-opportunities.png"
       slug: SocialOpportunities
 
     - name: Academic Life
       about: Talk about courses and requirements.  Form study groups and share textbooks.
-      avatar: ""
+      avatar: "/images/group-icons/academic-life.png"
       slug: AcademicLife
+
+    - name: Sports & Recreation
+      about: Stay in the loop about sports, IMs, health, wellness and recreational activities at %{community_name}.
+      avatar: "/images/group-icons/sports-recreation.png"
+      slug: SportsAndRec
 

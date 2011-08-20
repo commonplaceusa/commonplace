@@ -45,6 +45,8 @@ module Serializer
         "author" => o.owner.name,
         "body" => o.description,
         "author_url" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
+        "messagable_author_url" => (o.owner_type.downcase == "feed") ? "/feeds/#{o.owner_id}/#{o.owner.user_id}" : "/users/#{o.owner_id}",
+        "messagable_author_name" => (o.owner_type.downcase == "feed") ? o.owner.name : o.owner.first_name,
         "tags" => o.tag_list,
         "starts_at" => o.start_time.try(:strftime, "%l:%M%P"),
         "ends_at" => o.end_time.try(:strftime, "%l:%M%P"),
@@ -103,7 +105,14 @@ module Serializer
         "tags" => o.tag_list,
         "website" => o.website,
         "phone" => o.phone,
-        "address" => o.address }
+        "address" => o.address,
+        "links" => { 
+          "announcements" => "/feeds/#{o.id}/announcements",
+          "events" => "/feeds/#{o.id}/events",
+          "invites" => "/feeds/#{o.id}/invites",
+          "messages" => "/feeds/#{o.id}/messages"
+        }
+      }
 
       when Group
         { 
@@ -127,7 +136,11 @@ module Serializer
         "events" => o.events,
         "announcements" => o.announcements,
         "group_posts" => o.group_posts,
-        "neighborhood" => o.neighborhood}
+        "neighborhood" => o.neighborhood, 
+        "links" => { 
+          "feed_subscriptions" => "/account/subscriptions/feeds"
+        }
+        }
       end
 
     as_json

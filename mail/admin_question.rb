@@ -9,6 +9,10 @@ class AdminQuestion < MailBase
     #"jason@commonplaceusa.com"
   end
 
+  def tag
+    "question"
+  end
+
   def sender
     @sender
   end
