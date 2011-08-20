@@ -390,9 +390,29 @@ var AnnouncementItemView = Backbone.View.extend({
 
 var EventItemView = Backbone.View.extend({
   tagName: "li",
+
+  initialize: function(options) {
+    _.extend(this, this.model);
+  },
+
   render: function() {
-    $(this.el).html(this.model.title);
+    $(this.el).html(CommonPlace.render("event-item", this));
+  },
+
+  month: function() { return "Feb"; },
+
+  day_of_month: function() { return "12"; },
+
+  publishedAt: function() {
+    return CommonPlace.timeAgoInWords(this.published_at);
+  },
+
+  replyCount: function() {
+    return this.replies.length;
   }
+  
+  
+
 });
 
 
