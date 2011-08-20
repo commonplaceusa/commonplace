@@ -28,6 +28,9 @@ stylesheets:
     - public/stylesheets/starter_site.css
 
 
+  feed_page:
+    - public/stylesheets/feed_page.css
+
 javascripts:
   application:
     - public/javascripts/showdown.js
@@ -50,6 +53,20 @@ javascripts:
   templates:
     - public/main_page/templates/*.html.mustache
 
+  feed_page:
+    - public/javascripts/showdown.js
+    - public/javascripts/jquery-1.6.1.js
+    - public/javascripts/jquery-ui.js
+    - public/javascripts/jquery/jquery.*.js
+    - public/javascripts/jquery/underscore.js
+    - public/javascripts/jquery/mustache.js
+    - public/javascripts/jquery/json2.js
+    - public/javascripts/jquery/backbone.js
+    - public/javascripts/lib.js
+    - public/feed_page/*.js
+
+  feed_page_templates:
+    - public/feed_page/templates/*.html.mustache
 
   jquery:
     - public/javascripts/jquery-1.6.1.js

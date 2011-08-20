@@ -31,8 +31,9 @@ class AdminController < ApplicationController
     @emails_opened = 1
 
     #@live_emails = User.find(:all, :conditions => ["receive_events_and_announcements=true"]).count
-    @live_emails = User.where("receive_events_and_announcements = true").count
-    @disabled_live_emails = User.where("receive_events_and_announcements = false").count
+    @live_emails = User.select { |u| u.post_receive_method == 'Live' }.count
+    @daily_emails = User.select { |u| u.post_receive_method == 'Daily' }.count
+    @disabled_live_emails = User.select { |u| u.post_receive_method == 'Never' }.count
 
     @daily_digest_emails = User.where("receive_weekly_digest").count
     @disabled_daily_digest_emails = User.where("receive_weekly_digest = false").count

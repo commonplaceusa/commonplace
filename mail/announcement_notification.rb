@@ -78,5 +78,9 @@ class AnnouncementNotification < PostNotification
   def user_name
     user.name
   end
+
+  def tag
+    'announcement'
+  end
   
 end

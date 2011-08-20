@@ -8,4 +8,8 @@ class UnknownUser < MailBase
     @to
   end
 
+  def tag
+    'unknown_user'
+  end
+
 end

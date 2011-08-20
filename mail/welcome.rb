@@ -28,5 +28,9 @@ class Welcome < MailBase
   def subject
     "Welcome to #{community_name}'s CommonPlace!"
   end
+
+  def tag
+    'welcome'
+  end
     
 end
