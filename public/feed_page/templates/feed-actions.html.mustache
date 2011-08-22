@@ -99,22 +99,26 @@
 
     <h1 class="invite-by-hand">Invite by hand:</h1>
     <div class="invite-by-hand">
+      {{#community}}
+        {{#links}}
+          <a class="download" href="{{launch_letter}}">
+            <p class="description-text">CommonPlace Launch Letter</p>
+            <p class="download-pdf">Download PDF</p>
+          </a>
+          <a class="download" href="{{information_sheet}}">
+            <p class="description-text">Information Sheet</p>
+            <p class="download-pdf">Download PDF</p>
+          </a>
+          <a class="download last" href="{{neighborhood_flyer}}">
+            <p class="description-text">Neighborhood Flyer</p>
+            <p class="download-pdf">Download PDF</p>
+          </a>
 
-      <a class="download" href="#">
-        <p class="description-text">Description text goes here</p>
-        <p class="download-pdf">Download PDF</p>
-      </a>
-      <a class="download" href="#">
-        <p class="description-text">Description text goes here</p>
-        <p class="download-pdf">Download PDF</p>
-      </a>
-      <a class="download last" href="#">
-        <p class="description-text">Description text goes here</p>
-        <p class="download-pdf">Download PDF</p>
-      </a>
-
-      <button>Download All Flyers</button>
-
+          <a href="{{all_flyers}}">
+            <button>Download All Flyers</button>
+          </a>
+        {{/links}}
+      {{/community}}
       <div style="clear: both"></div>
     </div>
     <div style="clear: both;"></div>
