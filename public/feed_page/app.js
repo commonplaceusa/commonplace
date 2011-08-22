@@ -15,6 +15,7 @@ var FeedPageRouter = Backbone.Controller.extend({
 
   initialize: function(options) {
     this.account = options.account;
+    this.community = options.community;
   },
 
   show: function(slug) {
@@ -27,7 +28,8 @@ var FeedPageRouter = Backbone.Controller.extend({
         new FeedActionsView({ el: $("#feed-actions"), 
                               feed: feed, 
                               groups: groups,
-                              account: self.account
+                              account: self.account,
+                              community: self.community
                             }).render();
       });
       var resourceView = new FeedSubResourcesView({ feed: feed, el: $("#feed-subresources") }).render();
@@ -229,6 +231,7 @@ var FeedActionsView = Backbone.View.extend({
     this.feed = options.feed;
     this.groups = options.groups;
     this.account = options.account;
+    this.community = options.community;
     this.postAnnouncementClass = "current";
     _.extend(this, this.feed);
   },
@@ -322,6 +325,7 @@ var FeedActionsView = Backbone.View.extend({
       return account.uid === "feed_" + self.id;
     });
   }
+  
 });
 
 var FeedSubResourcesView = Backbone.View.extend({
@@ -427,14 +431,3 @@ var EventItemView = Backbone.View.extend({
 
 });
 
-
-
-$(function() {
-  $.getJSON("/api/account", function(account) {
-
-    new FeedPageRouter({ account: account });
-    window.location.hash = window.location.pathname;
-    Backbone.history.start();
-
-  });
-});
