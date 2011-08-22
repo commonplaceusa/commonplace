@@ -3,7 +3,7 @@ post_notification:
   intro: Hi {{user_name}}, <br> {{poster_name}} just posted to your hall board on CommonPlace.
 
 welcome: 
-  intro: We are happy to hear you have joined your fellow students on {{community_name}}'s CommonPlace, a new web platform for local community engagement here in {{community_name}}.  {{community_name}}'s CommonPlace is like an online bulletin for students who attend {{community_name}}, designed to make it really easy for you to share requests, offers and other information with your fellow students and to stay up-to-date with what's happening at {{community_name}}.
+  intro: We are happy to hear you have joined your fellow students on {{community_name}}'s CommonPlace, a new web platform for campus engagement here in {{community_name}}.  {{community_name}}'s CommonPlace is like an online bulletin for students who attend {{community_name}}, designed to make it really easy for you to share requests, offers and other information with your fellow students and to stay up-to-date with what's happening at {{community_name}}.
 
   list-intro: |
     Here are some platform features that you might be interested in using to get connected with your community:
@@ -14,8 +14,7 @@ welcome:
 
   announcement-feature-title: Campus Announcements
   announcement-feature-desc: |
-    Want to get the word out to everyone in the community about your upcoming event?  Want to let every student on campus know that you are looking for people to act in your play?  Or that you need extra people for intermurals?  Click "Publicize a Campus Announcement" to get the word out to campus.  Interested in staying in the loop with what's going on in {{community_name}}?  Click on "Campus Announcements" to see all the updates that people, businesses, and organizations are sending out to the community.  Like with hall posts, click on any announcement and a reply box will appear for you to reply directly to the person or organization that posted the announcement.
-
+    Want to get the word out to everyone on campus about your upcoming event? Want to let every student know that you are looking for people to act in your play? Or that you need extra people for intermurals? Click "Publicize a Campus Announcement" to get the word out to campus. Interested in staying in the loop with what's going on in {{community_name}}? Click on "Campus Announcements" to see all the updates that people, businesses, and organizations are sending out to the community. Like with hall posts, click on any announcement and a reply box will appear for you to reply directly to the person or organization that posted the announcement.
   event-feature-title: Campus Events
   event-feature-desc: |
     Click on "Campus Events" to see everything going on in {{community_name}} in the coming weeks.  Add your own event to the CommonPlace events board anytime by clicking "Post an Event."  Like announcements and hall posts, you can click on any event and reply to it to get in touch with the event coordinator.
@@ -27,12 +26,6 @@ welcome:
   directory-feature-title: Directory
   directory-feature-desc: |
     On {{community_name}}'s CommonPlace, you can see a directory of everyone on campus that has signed up for CommonPlace.  Click on any name to see their campus profile and click "Message" in their profile to send a neighbor a private message.
-
-    <p>If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  Also, please email us if you are interested in helping out with signing your fellow students up with CommonPlace. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for students at {{community_name}} to connect, so make sure to tell your fellow students to sign up at <a href="{{root_url}}"><span>{{root_url}}</span></a>.</p>
-
-    <p>Thanks again for joining {{community_name}}'s CommonPlace!</p>
-  
-    <p>Cheers, <br> The {{community_name}} CommonPlace</p>
 
   outro: |
     If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  Also, please email us if you are interested in helping out with signing your fellow students up with CommonPlace. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for students at {{community_name}} to connect, so make sure to tell your fellow students to sign up at <a href="{{root_url}}"><span>{{root_url}}</span></a>.
