@@ -20,25 +20,32 @@
 @import password_resets
 @import faq
 @import messages
+
 .clear
   clear: both
 
 body.application
-  background-image: url('/images/neighborhood-bg.png')
-  background-position: 0 100%
-  background-repeat: repeat-x
-  background-color: #cee7fe
+  background: #cee7fe url('/images/neighborhood-bg.png') repeat-x center bottom
   +serif
+
+  #sticky-wrapper
+    position: relative
+    min-height: 100% // real browsers
+    height: auto !important // real browsers
+    height: 100% // IE6: treaded as min-height
+
   header
     background: #1b334a
     height: 31px
-    padding: 15px 0px
+    padding: 15px 0
     border-bottom: 4px solid #fff
     margin: 0 0 20px 0
     #nav_wrapper
       width: 976px
       margin: 0 auto
+      white-space: nowrap
       #logo
+        white-space: nowrap
         margin-top: 10px
         text-decoration: none
         text-align: left
@@ -54,7 +61,7 @@ body.application
         img
           vertical-align: bottom
       nav
-        padding: 14px 0 12px 0 
+        padding: 14px 0 12px 0
         float: right
         display: inline
         a, .disabled_link
@@ -94,16 +101,16 @@ body.application
             padding: 3px 10px
             text-decoration: none
             +text-shadow(#000, 1px, 1px, 0px)
-          ul 
+          ul
             display: none
             top: 30px
             right: 4px
             position: absolute
             z-index: 1000
-            width: 148px 
+            width: 148px
             background-color: white
             color: #3b6085 !important
-            border: 1px solid #3b6085 
+            border: 1px solid #3b6085
             +border-bottom-radius(5px)
             +border-top-left-radius(5px)
             li
@@ -119,7 +126,7 @@ body.application
                   +text-shadow()
                   background: #eee
               padding: 5px 5px 3px
-              border-bottom: 1px solid #3b6085 
+              border-bottom: 1px solid #3b6085
               a
                 display: block
                 color: #3B6085
@@ -143,7 +150,61 @@ body.application
       +border-radius(5px 5px 0px 0px)
     .border
       border: 1px solid #ccc
-      +border-radius(5px) 
+      +border-radius(5px)
+
+  #main
+    +pie-clearfix
+    width: 980px
+    padding-bottom: 75px
+    margin: auto
+
+  footer
+    background: #1b334a
+    height: 30px
+    border-top: 4px solid #fff
+    padding: 20px 0 0
+    width: 100%
+    position: absolute
+    bottom: 0
+    margin: 0
+    color: #fff
+    #cont
+      +serif
+      width: 980px
+      margin: 0 auto
+      font-size: 12px
+      color: #3b6085
+      a
+        color: #3b6085+#222
+        font-weight: normal
+      .right_text
+        font-size: 30px
+        line-height: 12px
+        a
+          display: inline-block
+          vertical-align: middle
+          margin-top: -8px
+          margin-left: 3px
+          font-size: 12px
+
+  #wrap
+    +clearfix
+    width: 972px
+    margin: auto
+    color: $baseText
+
+  #say-something
+    width: 485px
+  #community-profiles
+    width: 487px
+    margin-top: 10px
+    +border-radius(5px)
+  #whats-happening
+    width: 485px
+    +border-bottom-radius(5px)
+
+  #information
+    +single-box-shadow(#666, 0px, 2px, 7px, -2px)
 
 body.application.logged_out
   background-image: none
@@ -170,14 +231,14 @@ body.application.logged_out
         position: relative
         bottom: 4px
       img
-        vertical-align: bottom 
-              
+        vertical-align: bottom
+
     #nav_wrapper
       margin: 0px auto 20px
       width: 976px
       text-align: left
     nav
-      padding: 8px 0 12px 0 
+      padding: 8px 0 12px 0
       float: right
       display: inline
       a, .disabled_link
@@ -208,20 +269,20 @@ body.application.logged_out
           display: inline
           vertical-align: top
           padding: 5px
-            right: 20px 
+            right: 20px
           background-image: url('/images/nav-down-arrow.png')
           background-repeat: no-repeat
           background-position: 48px
           border: 1px solid transparent
-        ul 
+        ul
           display: none
           top: 25px
           left: 0px
           position: absolute
           z-index: 1
-          width: 150px 
+          width: 150px
           background-color: white
-          border: 1px solid #3b6085 
+          border: 1px solid #3b6085
           +border-bottom-radius(5px)
           +border-top-right-radius(5px)
           li
@@ -233,14 +294,14 @@ body.application.logged_out
             &:hover
               background-color: #eee
             padding: 5px 5px 3px
-            border-bottom: 1px solid #3b6085 
+            border-bottom: 1px solid #3b6085
             a
               display: block
 
         &:hover
           h4
             +border-top-radius(5px)
-            border: 1px solid #3b6085 
+            border: 1px solid #3b6085
               bottom-color: #fff
             color: #3b6085
             position: relative
@@ -250,15 +311,15 @@ body.application.logged_out
             display: block
     #user_sign_in
       float: right
-      position: relative 
+      position: relative
       margin-top: 2px
-      li 
+      li
         margin: 0 5px
         +inline-block
         color: #BCD5EC
         font-size: 13px
         font-weight: 300
-        
+
       #sign_in_button
         background: url(/images/nav-down-arrow.png) no-repeat 95% 40% #e0e0e0
         padding: 2px 27px 3px 10px
@@ -269,7 +330,7 @@ body.application.logged_out
         z-index: 100
         cursor: pointer
         border: 1px solid #ccc
-        +border-radius(5px) 
+        +border-radius(5px)
         &.open
           border-bottom: 0px
           +border-radius(5px 5px 0px 0px)
@@ -277,7 +338,7 @@ body.application.logged_out
         position: absolute
         right: -1px
         top: 15px
-    
+
     form.user_session
       position: absolute
       right: 1px
@@ -291,13 +352,13 @@ body.application.logged_out
       display: none
       .inputs, .buttons
         +inline-block
-        li 
+        li
           margin: 0px 0px 0px 10px
           display: block
           width: 180px
           padding:  2px 0px 5px 0px
           text-align: center
-          
+
           label
             display: block
             padding: 4px 2px
@@ -306,7 +367,7 @@ body.application.logged_out
             text-align: left
             font-weight: bold
             font-size: 11px
-              
+
           input[type=text], input[type=password]
             +border-radius(5px)
             width: 165px
@@ -315,11 +376,11 @@ body.application.logged_out
             font-size: 0.9em
             +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
             margin: 0
-            border: 1px solid #ddd  
+            border: 1px solid #ddd
       #facebook
         padding-top: 5px
-        +inline-block 
-        float: left 
+        +inline-block
+        float: left
         margin-left: 58px
         margin-top: 2px
       fieldset.buttons
@@ -330,7 +391,7 @@ body.application.logged_out
           vertical-align: middle
           padding-bottom: 2px
           +inline-block
-        
+
     .forgot-password
       text-align: right
       display: block
@@ -355,17 +416,14 @@ body.application.logged_out
       font-family: Rockwell, Georgia, serif
       font-size: 11px
       +text-shadow(#454545, 1px, 1px, 0px)
+
   footer
     clear: both
-    background-image: url('/images/houses.png')
-    background-repeat: repeat-x
-    background-position: center bottom
-    background-color: transparent 
+    background: transparent url('/images/houses.png') repeat-x center bottom
     border: none
-    padding: 200px 10px 10px
+    padding: 200px 0 10px
     height: 20px
-    width: auto
-    margin: 0px
+    margin: 0
     color: #ADD794 !important
     .left_text
       color: #ADD794 !important
@@ -373,57 +431,7 @@ body.application.logged_out
       color: #ADD794 !important
     a
       color: #BFF4A0 !important
-        
-body.application
-  #main
-    width: 980px
-    margin: auto
-  footer
-    background: #1b334a
-    height: 30px
-    border-top: 4px solid #fff
-    padding: 20px 10px 0px
-    width: auto
-    margin: 20px 0 0 0
-    clear: both
-    color: #fff
-    #cont
-      +serif
-      width: 980px
-      margin: 0 auto
-      font-size: 12px
-      color: #3b6085
-      a
-        color: #3b6085+#222
-        font-weight: normal
-      .right_text
-        font-size: 30px
-        line-height: 12px
-        a
-          display: inline-block
-          vertical-align: middle
-          margin-top: -8px
-          margin-left: 3px
-          font-size: 12px
-                              
-  #wrap       
-    +clearfix                                 
-    width: 972px
-    margin: auto                                
-    color: $baseText
 
-  #say-something
-    width: 485px
-  #community-profiles
-    width: 487px
-    margin-top: 10px
-    +border-radius(5px)
-  #whats-happening
-    width: 485px
-    +border-bottom-radius(5px)
-
-  #information
-    +single-box-shadow(#666, 0px, 2px, 7px, -2px)
 
 input.placeholder, textarea.placeholder
   color: #aaa

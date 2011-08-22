@@ -4,12 +4,15 @@
     = render 'layouts/common_head'
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
-    #fb-root
 
-    = render 'layouts/header', :user_session => current_user_session
-    
-    = yield
-    
-    = render "layouts/footer"
-    
-    = render "layouts/bottom_scripts"
+    #sticky-wrapper
+
+      #fb-root
+
+      = render 'layouts/header', :user_session => current_user_session
+
+      = yield
+
+      = render "layouts/footer"
+
+      = render "layouts/bottom_scripts"
