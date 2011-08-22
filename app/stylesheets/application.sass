@@ -29,10 +29,16 @@ body.application
   +serif
 
   #sticky-wrapper
+    +pie-clearfix
     position: relative
     min-height: 100% // real browsers
     height: auto !important // real browsers
     height: 100% // IE6: treaded as min-height
+
+    footer
+      width: 100%
+      position: absolute
+      bottom: 0
 
   header
     background: #1b334a
@@ -159,13 +165,11 @@ body.application
     margin: auto
 
   footer
+    width: auto
     background: #1b334a
     height: 30px
     border-top: 4px solid #fff
     padding: 20px 0 0
-    width: 100%
-    position: absolute
-    bottom: 0
     margin: 0
     color: #fff
     #cont
