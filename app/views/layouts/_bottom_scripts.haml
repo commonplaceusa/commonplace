@@ -89,3 +89,18 @@
   $(document).ready(function() {
     $('textarea').autoResize();
   });
+
+:javascript
+  // position the footer when window resizes
+  $(function () {
+      function positionFooter() {
+          if ($(window).height() >= $(document).height()) {
+              $('html, body').css('height', '100%');
+          } else {
+              $('html, body').css('height', '');
+          }
+      }
+
+      positionFooter();
+      $(window).resize(positionFooter);
+  });
