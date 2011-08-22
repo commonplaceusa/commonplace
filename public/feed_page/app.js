@@ -261,7 +261,7 @@ var FeedActionsView = Backbone.View.extend({
       url: "/api" + this.feed.links.announcements,
       data: JSON.stringify({ title:  $("[name=title]", $form).val(),
                              body:   $("[name=body]", $form).val(),
-                             groups: $("[name=groups]:checked", $form).map(function() { return $(this).val(); })
+                             groups: $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
                            }),
       type: "post",
       dataType: "json",
@@ -282,7 +282,7 @@ var FeedActionsView = Backbone.View.extend({
                              venue:   $("[name=venue]", $form).val(),
                              address: $("[name=address]", $form).val(),
                              tags:    $("[name=tags]", $form).val(),
-                             groups:  $("[name=groups]:checked", $form).map(function() { return $(this).val(); })
+                             groups:  $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
                            }),
       type: "post",
       dataType: "json",
