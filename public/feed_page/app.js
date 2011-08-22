@@ -24,7 +24,7 @@ var FeedPageRouter = Backbone.Controller.extend({
       new FeedProfileView({ model: feed, el: $("#feed-profile")}).render();
       
       new FeedHeaderView({ feed: feed, account: self.account, el: $("#feed-header") }).render();
-      $.getJSON("/api/communities/1/groups", function(groups) {
+      $.getJSON("/api" + self.community.links.groups, function(groups) {
         new FeedActionsView({ el: $("#feed-actions"), 
                               feed: feed, 
                               groups: groups,
@@ -37,7 +37,7 @@ var FeedPageRouter = Backbone.Controller.extend({
 
       resourceNav.bind("switchTab", function(tab) { resourceView.switchTab(tab) });
 
-      $.getJSON("/api/communities/1/feeds", function(feeds) {
+      $.getJSON("/api" + self.community.links.feeds, function(feeds) {
         new FeedsListView({ model: feed, collection: feeds, el: $("#feeds-list") }).render();
       });
     });
