@@ -36,6 +36,16 @@
         = include_javascripts :feed_page
         = include_javascripts :feed_page_templates
 
+        %script{ :type => "text/javascript" }
+          $(function() {
+          $.getJSON("/api/account", function(account) {
+          new FeedPageRouter({ account: account, community: #{Serializer::serialize(current_community).to_json.html_safe}, feed: "#{@feed.slug}" });
+          window.location.hash = window.location.pathname;
+          Backbone.history.start();
+          });
+          });
+
+
 - else
   !!! 5
   %html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
