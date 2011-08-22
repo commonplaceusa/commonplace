@@ -152,7 +152,10 @@ module Serializer
           "launch_letter" => community_asset_url + "launchletter.pdf",
           "information_sheet" => community_asset_url + "infosheet.pdf",
           "neighborhood_flyer" => community_asset_url + "neighborflyer.pdf",
-          "all_flyers" => community_asset_url + "archives.zip"
+          "all_flyers" => community_asset_url + "archives.zip",
+          "groups" => "/communities/#{o.id}/groups",
+          "feeds" => "/communities/#{o.id}/feeds"
+          
         }
       }
       end
