@@ -1,4 +1,4 @@
-if Rails.env.development? or CP_ENV == 'staging'
+if Rails.env.development?
   begin
     Sunspot::Rails::Server.new.start
   rescue Sunspot::Server::AlreadyRunningError
