@@ -1,4 +1,4 @@
-
+ 
 CommonPlace.SaySomething = Backbone.View.extend({
   tagName: "div",
   id: "say-something",
@@ -21,7 +21,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitPost: function(e) {
     e.preventDefault();
-    if ($("input#post_subject").val() == 'Post Title' || $("textarea#post_body").val() == 'Your Message' || $("input#post_subject").val() == '' || $("textarea#post_body").val() == '') {
+    if ($("input#post_subject").val() == 'Post Title' || $("textarea#post_body").val() === 'Your Message' || $("input#post_subject").val() === '' || $("textarea#post_body").val() === '') {
         return;
       }
       if(!$('#commercialyes').is(':checked')&&!$('#commercialno').is(':checked')) {
