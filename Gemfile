@@ -45,9 +45,6 @@ gem 'googlecharts'
 gem 'compass', '~> 0'
 gem 'sass', '~> 3.1'
 
-# User data tracking
-gem 'tripwire_notifier'
-
 # Admin section
 gem 'activeadmin'
 

@@ -332,7 +332,6 @@ GEM
     tilt (1.3.2)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    tripwire_notifier (0.2.10)
     tzinfo (0.3.27)
     uuid (2.3.2)
       macaddr (~> 1.0)
@@ -428,6 +427,5 @@ DEPENDENCIES
   system_timer
   thin
   thor
-  tripwire_notifier
   uuid
   webmock
