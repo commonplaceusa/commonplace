@@ -391,6 +391,5 @@ DEPENDENCIES
   sunspot_rails
   system_timer
   thin
-  thor
   uuid
   webmock
