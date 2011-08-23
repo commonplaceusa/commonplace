@@ -79,7 +79,6 @@ gem 'system_timer', :platforms => [:ruby_18]
 group :development, :test do
   gem 'factory_girl'
   gem 'forgery'
-  gem 'thor'
   gem 'foreman'
 end
 
