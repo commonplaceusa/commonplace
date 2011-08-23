@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_filter :current_community
+  before_filter :current_community, :current_neighborhood
 
   helper_method :posts, :announcements, :events
 
@@ -27,4 +27,5 @@ class CommunitiesController < ApplicationController
       raise CanCan::AccessDenied
     end
   end
+
 end
