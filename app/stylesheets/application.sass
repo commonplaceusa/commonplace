@@ -55,15 +55,16 @@ body.application
         margin-top: 10px
         text-decoration: none
         text-align: left
-        color: #444545
+        color: #fff
         font-size: 30px
         line-height: 30px
+        +text-shadow(#000, -1px, 1px, 0)
         span
+          font-family: Rokkitt, Rockwell, Helvetica, sans-serif
           color: #b7430c
           font-size: 25px
           position: relative
-          bottom: 4px
-          +text-shadow(#000, -1px, 1px, 0px)
+          bottom: 1px
         img
           vertical-align: bottom
       nav
@@ -72,12 +73,12 @@ body.application
         display: inline
         a, .disabled_link
           vertical-align: top
-          font-size: 12px
+          font-size: 14px
           letter-spacing: .5px
           padding: 3px 10px
           color: #cee7fe
           font-weight: normal
-          +serif
+          font-family: Rokkitt, Rockwell, Helvetica, sans-serif
           text-decoration: none
           +text-shadow(#000, 1px, 1px, 0px)
         a.selected_nav
@@ -96,12 +97,12 @@ body.application
           height: 22px
           vertical-align: top
           h4
-            font-size: 12px
+            font-size: 14px
             color: #cee7fe
             font-weight: normal
             height: 20px
             width: 66px
-            +serif
+            font-family: Rokkitt, Rockwell, Helvetica, sans-serif
             display: inline
             vertical-align: top
             padding: 3px 10px
@@ -233,7 +234,7 @@ body.application.logged_out
         color: #b7430c
         font-size: 25px
         position: relative
-        bottom: 4px
+        bottom: 1px
       img
         vertical-align: bottom
 
