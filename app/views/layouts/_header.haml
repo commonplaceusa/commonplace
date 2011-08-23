@@ -1,4 +1,4 @@
-%header
+#header
   - if user_session.new_session?
     #nav_wrapper
       %ul{:id=>"user_sign_in"}
@@ -15,7 +15,7 @@
           = image_tag "logo2.png", :alt => 'CommonPlace'
   - else
     #nav_wrapper
-      %nav
+      .nav
         = tab_to "Home", "/#{current_community.slug}"
         - if current_user.admin?
           = tab_to "Stats", "#", {:onclick => "$('#admin_bar').toggle('slow');"}

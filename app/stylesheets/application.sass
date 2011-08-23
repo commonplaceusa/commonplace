@@ -35,12 +35,12 @@ body.application
     height: auto !important // real browsers
     height: 100% // IE6: treaded as min-height
 
-    footer
+    footer, #footer
       width: 100%
       position: absolute
       bottom: 0
 
-  header
+  header, #header
     background: #1b334a
     height: 31px
     padding: 15px 0
@@ -67,7 +67,7 @@ body.application
           bottom: 1px
         img
           vertical-align: bottom
-      nav
+      nav, .nav
         padding: 14px 0 12px 0
         float: right
         display: inline
@@ -165,7 +165,7 @@ body.application
     padding-bottom: 75px
     margin: auto
 
-  footer
+  footer, #footer
     width: auto
     background: #1b334a
     height: 30px
@@ -217,7 +217,7 @@ body.application.logged_out
   background-attachment: fixed
   +serif
 
-  header
+  header, #header
     text-align: center
     background: #1b334a
     border-bottom: 4px solid #fff
@@ -242,7 +242,7 @@ body.application.logged_out
       margin: 0px auto 20px
       width: 976px
       text-align: left
-    nav
+    nav, .nav
       padding: 8px 0 12px 0
       float: right
       display: inline
@@ -422,7 +422,7 @@ body.application.logged_out
       font-size: 11px
       +text-shadow(#454545, 1px, 1px, 0px)
 
-  footer
+  footer, #footer
     clear: both
     background: transparent url('/images/houses.png') repeat-x center bottom
     border: none
