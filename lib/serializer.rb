@@ -141,6 +141,23 @@ module Serializer
           "feed_subscriptions" => "/account/subscriptions/feeds"
         }
         }
+
+      when Community
+        community_asset_url = "https://s3.amazonaws.com/commonplace-community-assets/#{o.slug}/"
+        { 
+        "id" => o.id,
+        "slug" => o.slug,
+        "name" => o.name,
+        "links" => {
+          "launch_letter" => community_asset_url + "launchletter.pdf",
+          "information_sheet" => community_asset_url + "infosheet.pdf",
+          "neighborhood_flyer" => community_asset_url + "neighborflyer.pdf",
+          "all_flyers" => community_asset_url + "archives.zip",
+          "groups" => "/communities/#{o.id}/groups",
+          "feeds" => "/communities/#{o.id}/feeds"
+          
+        }
+      }
       end
 
     as_json
