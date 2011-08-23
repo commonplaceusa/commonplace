@@ -402,7 +402,6 @@ DEPENDENCIES
   mongrel (>= 1.2.0.pre2)
   mustache
   newrelic_rpm
-  nokogiri (= 1.4.4)
   oauth2
   paperclip
   permanent_records
