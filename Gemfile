@@ -74,9 +74,6 @@ gem 'rollout'
 gem 'rpm_contrib'
 gem 'newrelic_rpm'
 
-# Tracking events
-#gem 'acts-as-trackable', :git => 'git@github.com:Jberlinsky/Acts-As-Trackable.git'
-
 gem 'system_timer', :platforms => [:ruby_18]
 
 group :development, :test do
