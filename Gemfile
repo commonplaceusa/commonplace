@@ -98,7 +98,6 @@ gem 'newrelic_rpm'
 gem 'system_timer', :platforms => [:ruby_18]
 
 group :development, :test do
-  gem 'metric_fu'
   gem 'factory_girl'
   gem 'forgery'
   gem 'capistrano'
