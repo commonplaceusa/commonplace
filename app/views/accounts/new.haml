@@ -60,7 +60,7 @@
   
 #wrapper
   #titleslug
-    %h1#header= t(".h1", :community => current_community.name).html_safe
+    %h1= t(".h1", :community => current_community.name).html_safe
   #registration_information
     %ul{:id=>"infolist"}
       %li#li1= t(".li1", :community => current_community.name)
