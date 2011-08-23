@@ -57,7 +57,6 @@ gem 'BlueCloth', :require => 'bluecloth'
 # ActiveRecord
 gem 'paperclip'
 gem 'rmagick'
-gem 'acts-as-list', :require =>'acts_as_list'
 gem 'glebm-geokit', :require => 'geokit'
 gem 'simple_uuid'
 gem 'geocoder'
