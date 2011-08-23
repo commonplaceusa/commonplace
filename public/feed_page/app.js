@@ -332,7 +332,6 @@ var FeedSubResourcesView = Backbone.View.extend({
   initialize: function(options) {
     this.feed = options.feed;
     this.currentTab = options.current || "announcements";
-    window.rview = this;
   },
 
   render: function() {
@@ -376,7 +375,6 @@ var FeedSubResourcesView = Backbone.View.extend({
   },
 
   switchTab: function(newTab) {
-    console.log(this);
     this.tabs()[this.currentTab].hide();
     this.currentTab = newTab;
     this.tabs()[this.currentTab].show();
