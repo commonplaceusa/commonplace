@@ -10,12 +10,13 @@ CommonPlace.render = function(name, params) {
 var FeedPageRouter = Backbone.Controller.extend({
 
   routes: {
-    "/feeds/:slug/profile": "show",
+    "/feeds/:slug": "show",
   },
 
   initialize: function(options) {
     this.account = options.account;
     this.community = options.community;
+    this.show(options.feed);
   },
 
   show: function(slug) {

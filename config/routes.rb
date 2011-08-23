@@ -36,7 +36,7 @@ Commonplace::Application.routes.draw do
   match 'login' => 'user_sessions#new', :as => :login
   resource :user_session
 
-  resources :feeds, :only => [:new, :create, :edit, :update] do
+  resources :feeds, :only => [:show, :new, :create, :edit, :update] do
     member do
       get :import
       get :profile
@@ -157,7 +157,7 @@ Commonplace::Application.routes.draw do
 
   match "/account/make_focp", :to => "accounts#make_focp"
   # explicitly list paths that we want the main_page js app to handle
-  ["/posts(/:id)", "/users(/:id)", "/events(/:id)", "/feeds(/:id)",
+  ["/posts(/:id)", "/users(/:id)", "/events(/:id)", "/feeds",
    "/announcements(/:id)", "/group_posts(/:/id)", "/groups(/:id)",
    "/users/:id/messages/new"].each do |s|
     match s, :to => "communities#show", :via => :get, :as => :community
