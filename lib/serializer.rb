@@ -98,7 +98,7 @@ module Serializer
         { 
         "id" => o.id,
         "url" => "/feeds/#{o.id}",
-        "slug" => o.slug,
+        "slug" => o.slug.blank? ? o.id : o.slug ,
         "name" => o.name,
         "about" => o.about,
         "avatar_url" => o.avatar_url(:normal),
