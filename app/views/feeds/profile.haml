@@ -40,8 +40,7 @@
         %script{ :type => "text/javascript" }
           $(function() {
           $.getJSON("/api/account", function(account) {
-          new FeedPageRouter({ account: account, community: #{Serializer::serialize(current_community).to_json.html_safe}, feed: "#{@feed.slug}" });
-          window.location.hash = window.location.pathname;
+          new FeedPageRouter({ account: account, community: #{Serializer::serialize(current_community).to_json.html_safe}, feed: "#{params[:id]}" });
           Backbone.history.start();
           });
           });
