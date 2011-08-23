@@ -307,7 +307,6 @@ GEM
       rubyzip
     sham_rack (1.3.3)
       rack
-    simple_uuid (0.1.2)
     sinatra (1.2.6)
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
@@ -415,7 +414,6 @@ DEPENDENCIES
   sanitize
   sass (~> 3.1)
   sham_rack
-  simple_uuid
   sinatra
   spork
   sunspot_rails

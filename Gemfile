@@ -58,7 +58,6 @@ gem 'BlueCloth', :require => 'bluecloth'
 gem 'paperclip'
 gem 'rmagick'
 gem 'glebm-geokit', :require => 'geokit'
-gem 'simple_uuid'
 gem 'geocoder'
 
 
