@@ -95,9 +95,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_neighborhood
-    @current_neighborhood ||= 
-      (current_user.admin? && session[:neighborhood_id]) ? Neighborhood.find(session[:neighborhood_id]) :
-      current_user.neighborhood
+    if current_user.admin? && params[:neighborhood_id].present?
+      current_user.neighborhood = Neighborhood.find(params[:neighborhood_id])
+      current_user.save!
+    end
+    @current_neighborhood ||= current_user.neighborhood
   end
 
   def store_location
