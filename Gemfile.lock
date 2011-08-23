@@ -151,8 +151,6 @@ GEM
       rake (>= 0.8.7)
     hpricot (0.8.4)
     htmlentities (4.2.4)
-    httparty (0.7.3)
-      crack (= 0.1.8)
     i18n (0.5.0)
     inherited_resources (1.2.2)
       has_scope (~> 0.5.0)
@@ -384,7 +382,6 @@ DEPENDENCIES
   heroku
   hirefireapp
   hoe (= 2.9.0)
-  httparty
   jammit
   jammit-s3
   jasmine

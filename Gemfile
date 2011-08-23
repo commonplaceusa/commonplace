@@ -50,7 +50,6 @@ gem 'activeadmin'
 
 # Formats
 gem 'premailer'
-gem 'httparty'
 gem 'json'
 gem 'mcbean'
 gem 'BlueCloth', :require => 'bluecloth'
