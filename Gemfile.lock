@@ -136,8 +136,6 @@ GEM
       rest-client (~> 1.6.1)
       term-ansicolor (~> 1.0.5)
     hirefireapp (0.0.1)
-    hoe (2.9.0)
-      rake (>= 0.8.7)
     hpricot (0.8.4)
     htmlentities (4.2.4)
     i18n (0.5.0)
@@ -355,7 +353,6 @@ DEPENDENCIES
   haml (~> 3.1)
   heroku
   hirefireapp
-  hoe (= 2.9.0)
   jammit
   jammit-s3
   jasmine
