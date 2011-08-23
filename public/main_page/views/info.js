@@ -137,6 +137,7 @@ CommonPlace.FeedInfo = CommonPlace.Info.extend({
     return { 
       id: this.model.get('id'),
       url: this.model.get('url'),
+      slug: this.model.get('slug'),
       avatar_url: this.model.get('avatar_url'),
       name: this.model.get('name'),
       about: window.linkify(this.model.get('about')),
