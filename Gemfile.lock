@@ -272,9 +272,6 @@ GEM
       rufus-scheduler
     rest-client (1.6.3)
       mime-types (>= 1.16)
-    rest-client-components (1.2.0)
-      rack (>= 1.0.1)
-      rest-client (>= 1.6.0, < 1.7.0)
     rmagick (2.13.1)
     rollout (0.3.0)
     rpm_contrib (1.0.13)
@@ -415,8 +412,6 @@ DEPENDENCIES
   resque
   resque-exceptional
   resque-scheduler
-  rest-client
-  rest-client-components
   rmagick
   rollout
   rpm_contrib
