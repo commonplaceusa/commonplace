@@ -21,20 +21,33 @@ var FeedPageRouter = Backbone.Controller.extend({
   show: function(slug) {
     var self = this;
     $.getJSON("/api/feeds/" + slug, function(feed) {
+      var resourceNav, resourceView, feedActionsView;
       new FeedProfileView({ model: feed, el: $("#feed-profile")}).render();
       
-      new FeedHeaderView({ feed: feed, account: self.account, el: $("#feed-header") }).render();
-      $.getJSON("/api" + self.community.links.groups, function(groups) {
-        new FeedActionsView({ el: $("#feed-actions"), 
-                              feed: feed, 
-                              groups: groups,
-                              account: self.account,
-                              community: self.community
-                            }).render();
-      });
-      var resourceView = new FeedSubResourcesView({ feed: feed, el: $("#feed-subresources") }).render();
-      var resourceNav = new FeedNavView({ model: feed, el: $("#feed-nav"),  }).render();
 
+      new FeedHeaderView({ feed: feed, account: self.account, el: $("#feed-header") }).render();
+
+      resourceView = new FeedSubResourcesView({ feed: feed, el: $("#feed-subresources") }).render();
+      
+      resourceNav = new FeedNavView({ model: feed, el: $("#feed-nav"),  }).render();
+      
+      $.getJSON("/api" + self.community.links.groups, function(groups) {
+        feedActionsView = new FeedActionsView({ el: $("#feed-actions"), 
+                                                feed: feed, 
+                                                groups: groups,
+                                                account: self.account,
+                                                community: self.community
+                                              }).render();
+
+        feedActionsView.bind("announcement:created", function() { resourceView.switchTab("announcements"); });
+
+        feedActionsView.bind("event:created", function() { resourceView.switchTab("events"); });
+
+      });
+      
+
+
+  
       resourceNav.bind("switchTab", function(tab) { resourceView.switchTab(tab) });
 
       $.getJSON("/api" + self.community.links.feeds, function(feeds) {
@@ -258,6 +271,7 @@ var FeedActionsView = Backbone.View.extend({
 
   postAnnouncement: function(e) {
     var $form = $(e.target);
+    var self = this;
     e.preventDefault();
     $.ajax({
       contentType: "application/json",
@@ -268,10 +282,15 @@ var FeedActionsView = Backbone.View.extend({
                            }),
       type: "post",
       dataType: "json",
-      success: function() { alert("announcement sent")}});
+      success: function() { 
+        self.trigger("announcement:created"); self.render();
+      }
+
+    });
   },
 
   postEvent: function(e) {
+    var self = this;
     var $form = $(e.target);
     e.preventDefault();
     $.ajax({
@@ -289,7 +308,7 @@ var FeedActionsView = Backbone.View.extend({
                            }),
       type: "post",
       dataType: "json",
-      success: function() { alert("event sent")}});
+      success: function() { self.trigger("event:created"); self.render(); }});
   },
 
 
