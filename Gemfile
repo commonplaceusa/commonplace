@@ -79,7 +79,6 @@ gem 'system_timer', :platforms => [:ruby_18]
 group :development, :test do
   gem 'factory_girl'
   gem 'forgery'
-  gem 'mongrel', '>= 1.2.0.pre2'
   gem 'ruby-prof'
   gem 'hoe', '2.9.0'
   gem 'thor'
