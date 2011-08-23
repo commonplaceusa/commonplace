@@ -51,12 +51,6 @@ gem 'tripwire_notifier'
 # Admin section
 gem 'activeadmin'
 
-# Logging for Heroku
-#gem "mongoid"
-#gem "central_logger", :git => "https://github.com/reedlaw/central_logger.git"
-# Error Pages
-#gem 'goalie'
-
 # Formats
 gem 'premailer'
 gem 'httparty'
