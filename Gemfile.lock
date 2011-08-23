@@ -328,9 +328,6 @@ GEM
       sunspot (= 1.2.1)
     system_timer (1.2.4)
     term-ansicolor (1.0.6)
-    text-hyphen (1.0.0)
-    text-reform (0.2.0)
-      text-hyphen (~> 1.0.0)
     thin (1.2.11)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -437,7 +434,6 @@ DEPENDENCIES
   ssl_requirement
   sunspot_rails
   system_timer
-  text-reform
   thin
   thor
   tripwire_notifier
