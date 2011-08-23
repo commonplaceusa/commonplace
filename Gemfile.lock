@@ -126,7 +126,6 @@ GEM
       chalofa_ruby-progressbar (~> 0.0.9)
       rspec (~> 2.0)
       rspec-instafail (~> 0.1.4)
-    gem_plugin (0.2.3)
     geocoder (1.0.0)
     glebm-geokit (1.5.2)
     googlecharts (1.6.7)
@@ -188,9 +187,6 @@ GEM
       arel (~> 2.0.2)
     mime-types (1.16)
     mimemagic (0.1.8)
-    mongrel (1.2.0.pre2)
-      daemons (~> 1.0.10)
-      gem_plugin (~> 0.2.3)
     multi_json (1.0.1)
     multipart-post (1.1.0)
     mustache (0.99.1)
@@ -370,7 +366,6 @@ DEPENDENCIES
   launchy
   mail
   mcbean
-  mongrel (>= 1.2.0.pre2)
   mustache
   newrelic_rpm
   oauth2
