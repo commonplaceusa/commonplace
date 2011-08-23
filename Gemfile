@@ -4,7 +4,6 @@ gem 'rails', '3.0.7'
 gem 'rack', '1.2.3'
 
 # Infrastructure
-gem 'nokogiri', '1.4.4'
 gem 'sinatra'
 gem 'sham_rack'
 gem 'faraday'
