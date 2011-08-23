@@ -439,4 +439,3 @@ DEPENDENCIES
   tripwire_notifier
   uuid
   webmock
-  xpath
