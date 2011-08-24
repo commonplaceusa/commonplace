@@ -13,4 +13,10 @@ namespace :resque do
   task :restart_workers => :environment do
     system("sudo god restart resque-workers")
   end
+
+  task :free_workers => :environment do
+    Resque.workers.each do |w|
+      w.unregister_worker
+    end
+  end
 end
