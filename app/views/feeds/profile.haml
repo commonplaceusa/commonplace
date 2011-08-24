@@ -3,7 +3,8 @@
   !!! 5
   %html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
     %head
-      <link href="https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
+      %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
+      %link{ :href=> 'https://fonts.googleapis.com/css?family=Rokkitt:400,700', :rel =>"stylesheet", :type =>"text/css"}
       = include_stylesheets :feed_page
 
       :javascript
@@ -39,8 +40,7 @@
         %script{ :type => "text/javascript" }
           $(function() {
           $.getJSON("/api/account", function(account) {
-          new FeedPageRouter({ account: account, community: #{Serializer::serialize(current_community).to_json.html_safe}, feed: "#{@feed.slug}" });
-          window.location.hash = window.location.pathname;
+          new FeedPageRouter({ account: account, community: #{Serializer::serialize(current_community).to_json.html_safe}, feed: "#{params[:id]}" });
           Backbone.history.start();
           });
           });

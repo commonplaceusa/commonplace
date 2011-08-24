@@ -50,7 +50,7 @@ $.preLoadImages("/images/loading.gif");
 CommonPlace.linkify = function(text) {
   var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
   return text.replace(exp,"<a href='$1'>$1</a>"); 
-}
+};
 
 CommonPlace.timeAgoInWords = function(date_str) {
   var time = CommonPlace.parseDate(date_str);
@@ -333,7 +333,7 @@ window.linkify = (function(){
         // If no changes are made, we don't want to loop forever!
                        link_last = link;
         
-                       quote_end = link.substr( -1 )
+        quote_end = link.substr( -1 );
                        quote_begin = quotes[ quote_end ];
         
         // Ending quote character?

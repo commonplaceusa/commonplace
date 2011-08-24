@@ -2,7 +2,7 @@
 
 $(function() {
   $(window).bind('resize.modal', function () {
-    var $m = $("#modal-content")
+    var $m = $("#modal-content");
     if ($m.get(0)) {
       var w = $m.width(),
       h = $m.height(),

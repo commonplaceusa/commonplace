@@ -1,5 +1,5 @@
 class FeedsController < CommunitiesController
-  before_filter :load, :except => [:index]
+  before_filter :load, :except => [:index, :show]
   authorize_resource
   
   def index
@@ -16,13 +16,7 @@ class FeedsController < CommunitiesController
   end
 
   def show
-    if params[:action] == "profile"
-      render :profile, :layout => false
-    else
-      if current_user.feeds.include?(@feed) && !flash.now[:message]
-        flash.now[:message] = "You are subscribed to #{@feed.name}"
-      end
-    end
+    render :profile, :layout => false
   end
   
   def delete

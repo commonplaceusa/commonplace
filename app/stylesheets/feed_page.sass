@@ -13,18 +13,21 @@ body
   position: relative
 
 #feed-header
-  font-family: Rockwell, Helvetica
-  margin-top: 25px
-  padding-bottom: 10px
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+  font-weight: bold
+  margin-top: 21px
+  padding-bottom: 1px
 
   h1
-    font-size: 30px
+    color: #262626
+    font-size: 44px
     display: inline
     padding-right: 10px
 
-  a.subscribe, a.unsubscribe
+  a.subscribe,
+  a.unsubscribe
     color: #ac322f
-    font-size: 12px
+    font-size: 18px
     text-decoration: none
     font-weight: bold
 
@@ -54,12 +57,13 @@ body
     +border-top-radius(1px)
     margin: 0px
     background-color: #e0e0e0
-    font-family: Rockwell, Helvetica
-    font-size: 14px
+    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+    font-size: 15px
     padding: 5px
     border-bottom: 1px solid #bebebe
     text-align: center
     color: #656565
+    +text-shadow(#fafafa, 0, 1px, 0)
 
   img.avatar
     display: block
@@ -80,15 +84,20 @@ body
       font-family: Helvetica, sans-serif
       font-size: 12px
       padding-bottom: 10px
+      line-height: 15px
         
       a
+        text-decoration: none
         color: #ac322f
+        &:hover
+          text-decoration: underline
 
   .send-message
     +blue-button
     margin: 15px 20px
 #feed-nav
-  font-family: Rockwell, Helvetica
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+  font-size: 18px
   margin-top: 20px
 
   a 
@@ -104,12 +113,13 @@ body
 
 
 #feeds-list
-  font-family: Rockwell, Helvetica
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
   margin-top: 15px
 
   h1
     border-bottom: 2px solid #e0e0e0
-    font-size: 14px
+    font-size: 16px
+    font-weight: bold
     margin-bottom: 14px
     margin-top: 0
     color: #1d334c
@@ -147,10 +157,11 @@ body
       padding: 20px 10px 20px 50px
       color: #fff
       text-decoration: none
-      font-family: Rockwell, Helvetica
-      font-size: 13px
+      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+      font-size: 15px
       background-repeat: no-repeat
       background-position: 15px 22px
+      +text-shadow(#000, 0, 1px, 0)
 
     a.post-announcement
       +border-top-left-radius(3px)
@@ -196,25 +207,18 @@ body
     margin: 16px 15px 20px 73px
       
     
-    input, textarea
-      display: block
-
-    input
-      padding: 5px 5px
-      width: 380px
-      font-size: 15px
-      font-family: Rockwell, Georgia, Times, Serif 
-      +border-radius(5px)
-      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
-
+    input,
     textarea
-      margin-top: 12px
-      width: 382px
-      font-size: 15px
-      font-family: Rockwell, Georgia, Times, Serif 
+      display: block
+      width: 375px
+      border: none
+      margin: 12px 0
+      padding: 10px 9px
+      font-size: 13px
+      font-family: Helvetica, sans-serif
       +border-radius(5px)
-      +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
-      padding: 5px 5px
+      +box-shadow(#333, 1px, 1px, 3px, 0, inset)
+
 
     button
       +blue-button
@@ -225,7 +229,7 @@ body
       color: #fff
       margin-top: 15px
       font-size: 16px
-      font-family: Rockwell, Helvetica
+      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
       display: block
     .post-label-selector
       margin-top: 15px
@@ -238,20 +242,20 @@ body
         
         margin-top: 10px
         margin-right: 10px
-        padding: 8px 5px 2px 5px
+        padding: 7px 5px 3px
         background-color: #fff
         +border-radius(5px)
         background-image: url("/feed_page/images/check-off.png")
         background-repeat: no-repeat
-        background-position: 340px 8px
+        background-position: 340px 9px
 
         &.checked
           background-image: url("/feed_page/images/check-on.png")
           
         label
           display: block
-          font-size: 14px
-          font-family: Rockwell, Helvetica
+          font-size: 18px
+          font-family: Rokkitt, Rockwell, Helvetica, sans-serif
           color: #333
           margin: 0
           padding: 0
@@ -273,7 +277,7 @@ body
 .invite-subscribers h1
   padding-left: 73px
   color: #fff
-  font-family: Rockwell, Helvetica
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
   height: 16px
   padding-top: 10px
 
@@ -307,13 +311,13 @@ body
 
   .description-text
     color: #fff
-    font-family: Rockwell, Helvetica
+    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
     font-size: 12px
 
   .download-pdf
     margin-top: 5px
     color: #5a1a19
-    font-family: Rockwell, Helvetica
+    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
     font-size: 12px
   
   
@@ -332,13 +336,13 @@ body
     display: block
 
     h1
-      font-family: Rockwell, Helvetica
+      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
       font-size: 16px
       color: #fff
     label
       display: block
       margin-top: 20px
-      font-family: Rockwell, Helvetica
+      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
       font-size: 16px
       color: #fff
       padding-bottom: 2px
@@ -347,7 +351,7 @@ body
       padding: 5px 5px
       width: 380px
       font-size: 15px
-      font-family: Rockwell, Georgia, Times, Serif 
+      font-family: Rokkitt, Rockwell, Georgia, Times, serif
       +border-radius(5px)
       +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
 
@@ -355,7 +359,7 @@ body
       margin-top: 12px
       width: 382px
       font-size: 15px
-      font-family: Rockwell, Georgia, Times, Serif 
+      font-family: Rokkitt, Rockwell, Georgia, Times, serif
       +border-radius(5px)
       +box-shadow(#eee, 1px, 1px, 3px, 0, inset)
       padding: 5px 5px
@@ -371,7 +375,7 @@ body
       a.cancel
         color: #fff
         font-size: 15px
-        font-family: Rockwell, Helvetica
+        font-family: Rokkitt, Rockwell, Helvetica, sans-serif
         text-decoration: none
         &:hover
           text-decoration: underline
@@ -396,8 +400,8 @@ body
   h1
     background-color: #e0e0e0
     color: #656565
-    font-family: Rockwell, Helvetica
-    font-size: 13px
+    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+    font-size: 15px
     +border-top-radius(2px)
     padding: 5px
       
@@ -418,7 +422,7 @@ body
       .title, .author, .body                 
         margin-left: 62px
       .body
-        font-family: Georgia, Times, 'Times New Roman', serif
+        font-family: Helvetica, sans-serif
         font-size: 0.8em
         line-height: 1.4
         color: $textColor
@@ -426,23 +430,23 @@ body
           margin-top: 0.8em
       .title
         color: $titleColor
-        font-size: 18px
+        font-size: 22px
         margin-bottom: 3px
         display: block
         text-decoration: none
-        font-family: Georgia, Times, 'Times New Roman', serif
+        font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
       .author
         font-size: 13px
         color: $subtitle
         line-height: 1.2
         margin-bottom: 5px
-        font-family: Rockwell, Helvetica, Arial, Verdana, sans-serif
         font-weight: normal
+        font-family: Helvetica, sans-serif
         
       .published
         float: right
         color: #888
-        font-family: Rockwell, Helvetica, Arial, Verdana, sans-serif
+        font-family: Helvetica, sans-serif
         font-size: 11px
         font-weight: normal
       .avatar
@@ -460,10 +464,10 @@ body
         text-align: center
         font-size: 10px
         clear: left
-        font-family: Rockwell, Helvetica, Arial, Verdana, sans-serif
+        font-family: Helvetica, sans-serif
 
       .avatar.calendar
-        font-family: Rockwell, Helvetica, Arial, Verdana, sans-serif
+        font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
 
         .month
           background-color: #ac322f
@@ -477,3 +481,49 @@ body
           text-align: center
           padding: 4px 0 8px
           +border-bottom-radius(3px)
+
+#main
+  margin-bottom: 75px
+
+// THIS STUFF IS DUPLICATED IN OTHER FILES :/
+
+// application.sass
+
+#sticky-wrapper
+  +pie-clearfix
+  position: relative
+  min-height: 100% // real browsers
+  height: auto !important // real browsers
+  height: 100% // IE6: treaded as min-height
+
+  footer, #footer
+    width: 100%
+    position: relative
+    bottom: 0
+
+footer, #footer
+  width: auto
+  background: #1b334a
+  height: 30px
+  border-top: 4px solid #fff
+  padding: 20px 0 0
+  margin: 0
+  color: #fff
+  #cont
+    +serif
+    width: 980px
+    margin: 0 auto
+    font-size: 12px
+    color: #3b6085
+    a
+      color: #3b6085+#222
+      font-weight: normal
+    .right_text
+      font-size: 30px
+      line-height: 12px
+      a
+        display: inline-block
+        vertical-align: middle
+        margin-top: -8px
+        margin-left: 3px
+        font-size: 12px
