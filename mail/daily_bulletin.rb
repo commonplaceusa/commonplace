@@ -53,7 +53,7 @@ class DailyBulletin < MailBase
   end
   
   def posts
-    @posts ||= community.posts.between(yesterday,@date).map do |post|
+    @posts ||= community.posts_for_user(@user).between(yesterday,@date).map do |post|
       Serializer::serialize(post).tap do |post|
         post['replies'].each {|reply| 
           reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
