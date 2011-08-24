@@ -21,40 +21,42 @@ em
   margin: 10px auto
   +museo
 
-nav.page-navigation
+nav.page-navigation, .nav.page-navigation
   .links 
     text-align: right
     padding-top: 8px
 
 
-header
+header, #header
   display: block
   margin: 1.5em
   text-align: right
   +clearfix
   
-header img
-  float: left
+header, #header
+  img
+    float: left
 
-header nav
-  float: right
-  margin-top: 1em
-  a
-    font-size: 18px
-    margin-left: 20px
-    +headline_font
-    &:hover
-      text-decoration: none
-      color: $cpRed
-      padding-bottom: 2px
-      border-bottom: 2px solid $cpRed
-    &.selected_nav
-      color: $cpRed
-      padding-bottom: 2px
+header, #header
+  nav, .nav
+    float: right
+    margin-top: 1em
+    a
+      font-size: 18px
+      margin-left: 20px
+      +headline_font
+      &:hover
+        text-decoration: none
+        color: $cpRed
+        padding-bottom: 2px
+        border-bottom: 2px solid $cpRed
+      &.selected_nav
+        color: $cpRed
+        padding-bottom: 2px
         border-bottom: 2px solid $cpRed
 
     
-footer
+footer, #footer
   +sans
   display: block
   font-weight: bold

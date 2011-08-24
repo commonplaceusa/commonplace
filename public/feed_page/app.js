@@ -1,21 +1,18 @@
 CommonPlace.render = function(name, params) {
-  return Mustache.to_html(
-    CommonPlace.templates[name], 
-    params,
-    CommonPlace.templates
-  );
+  return Mustache.to_html(CommonPlace.templates[name], params,CommonPlace.templates);
 };
 
 
 var FeedPageRouter = Backbone.Controller.extend({
 
   routes: {
-    "/feeds/:slug/profile": "show",
+    "/feeds/:slug": "show"
   },
 
   initialize: function(options) {
     this.account = options.account;
     this.community = options.community;
+    this.show(options.feed);
   },
 
   show: function(slug) {
@@ -29,7 +26,7 @@ var FeedPageRouter = Backbone.Controller.extend({
 
       resourceView = new FeedSubResourcesView({ feed: feed, el: $("#feed-subresources") }).render();
       
-      resourceNav = new FeedNavView({ model: feed, el: $("#feed-nav"),  }).render();
+      resourceNav = new FeedNavView({ model: feed, el: $("#feed-nav") }).render();
       
       $.getJSON("/api" + self.community.links.groups, function(groups) {
         feedActionsView = new FeedActionsView({ el: $("#feed-actions"), 
@@ -48,7 +45,7 @@ var FeedPageRouter = Backbone.Controller.extend({
 
 
   
-      resourceNav.bind("switchTab", function(tab) { resourceView.switchTab(tab) });
+      resourceNav.bind("switchTab", function(tab) { resourceView.switchTab(tab); });
 
       $.getJSON("/api" + self.community.links.feeds, function(feeds) {
         new FeedsListView({ model: feed, collection: feeds, el: $("#feeds-list") }).render();
@@ -137,14 +134,14 @@ var FeedMessageFormView = Backbone.View.extend({
     "submit form": "send"
   },
   
-  initialize: function(options) { this.feed = this.options.feed },
+  initialize: function(options) { this.feed = this.options.feed; },
   
   render: function() {
     var self = this;
     var $container = $("body");
     this.$shadow = $("<div/>", { 
       id: "modal-shadow",
-      click: function() { self.exit() }
+      click: function() { self.exit(); }
     });
 
     $(this.el).html(CommonPlace.render("feed-message-form", this));
@@ -177,8 +174,7 @@ var FeedMessageFormView = Backbone.View.extend({
       }),
       dataType: "json",
       success: function(message) { 
-        
-        self.exit()
+        self.exit();
       }
     });
   },
@@ -257,12 +253,8 @@ var FeedActionsView = Backbone.View.extend({
 
   navigate: function(e) {
     var $target = $(e.target);
-    $target.addClass("current")
-      .siblings().removeClass("current");
-    $(this.el).children(".tab")
-      .removeClass("current")
-      .filter("." + $target.attr('href').slice(2))
-      .addClass("current");
+    $target.addClass("current").siblings().removeClass("current");
+    $(this.el).children(".tab").removeClass("current").filter("." + $target.attr('href').slice(2)).addClass("current");
     e.preventDefault();
   },
 
@@ -325,6 +317,7 @@ var FeedActionsView = Backbone.View.extend({
                                })),
 
   inviteByEmail: function(e) {
+    var self = this;
     var $form = $(e.target);
     e.preventDefault();
         $.ajax({
@@ -336,7 +329,7 @@ var FeedActionsView = Backbone.View.extend({
                                }),
           type: "post",
           dataType: "json",
-          success: function() { alert("invites sent")}});
+          success: function() { self.render(); }});
   },
 
   isFeedOwner: function() {

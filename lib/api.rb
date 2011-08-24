@@ -590,6 +590,6 @@ end
   end
 
   get "/feeds/:id" do |id|
-    serialize Feed.find(id)
+    serialize(id =~ /[^\d]/ ? Feed.find_by_slug(id) : Feed.find(id))
   end
 end

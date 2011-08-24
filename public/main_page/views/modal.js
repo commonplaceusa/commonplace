@@ -24,7 +24,7 @@ CommonPlace.NewMessage = Backbone.View.extend({
 
     $("#main").append(this.el);
 
-    var $m = this.$("#modal-content")
+    var $m = this.$("#modal-content");
     if ($m.get(0)) {
       var w = $m.width(),
       h = $m.height(),
