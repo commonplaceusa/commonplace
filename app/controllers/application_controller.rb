@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def cp_client
-    @_cp_client ||= CPClient.new(:host => "http://commonplace.api", :api_key => current_user.single_access_token)
+    @_cp_client ||= CPClient.new(:host => "http://commonplace.api", :api_key => current_user.authentication_token)
   end
   
   def set_process_name_from_request
