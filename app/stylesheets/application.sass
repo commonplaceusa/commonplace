@@ -35,12 +35,12 @@ body.application
     height: auto !important // real browsers
     height: 100% // IE6: treaded as min-height
 
-    footer
+    footer, #footer
       width: 100%
       position: absolute
       bottom: 0
 
-  header
+  header, #header
     background: #1b334a
     height: 31px
     padding: 15px 0
@@ -55,29 +55,30 @@ body.application
         margin-top: 10px
         text-decoration: none
         text-align: left
-        color: #444545
+        color: #fff
         font-size: 30px
         line-height: 30px
+        +text-shadow(#000, -1px, 1px, 0)
         span
+          font-family: Rokkitt, Rockwell, Helvetica, sans-serif
           color: #b7430c
           font-size: 25px
           position: relative
-          bottom: 4px
-          +text-shadow(#000, -1px, 1px, 0px)
+          bottom: 1px
         img
           vertical-align: bottom
-      nav
+      nav, .nav
         padding: 14px 0 12px 0
         float: right
         display: inline
         a, .disabled_link
           vertical-align: top
-          font-size: 12px
+          font-size: 14px
           letter-spacing: .5px
           padding: 3px 10px
           color: #cee7fe
           font-weight: normal
-          +serif
+          font-family: Rokkitt, Rockwell, Helvetica, sans-serif
           text-decoration: none
           +text-shadow(#000, 1px, 1px, 0px)
         a.selected_nav
@@ -96,12 +97,12 @@ body.application
           height: 22px
           vertical-align: top
           h4
-            font-size: 12px
+            font-size: 14px
             color: #cee7fe
             font-weight: normal
             height: 20px
             width: 66px
-            +serif
+            font-family: Rokkitt, Rockwell, Helvetica, sans-serif
             display: inline
             vertical-align: top
             padding: 3px 10px
@@ -164,7 +165,7 @@ body.application
     padding-bottom: 75px
     margin: auto
 
-  footer
+  footer, #footer
     width: auto
     background: #1b334a
     height: 30px
@@ -216,7 +217,7 @@ body.application.logged_out
   background-attachment: fixed
   +serif
 
-  header
+  header, #header
     text-align: center
     background: #1b334a
     border-bottom: 4px solid #fff
@@ -233,7 +234,7 @@ body.application.logged_out
         color: #b7430c
         font-size: 25px
         position: relative
-        bottom: 4px
+        bottom: 1px
       img
         vertical-align: bottom
 
@@ -241,7 +242,7 @@ body.application.logged_out
       margin: 0px auto 20px
       width: 976px
       text-align: left
-    nav
+    nav, .nav
       padding: 8px 0 12px 0
       float: right
       display: inline
@@ -421,7 +422,7 @@ body.application.logged_out
       font-size: 11px
       +text-shadow(#454545, 1px, 1px, 0px)
 
-  footer
+  footer, #footer
     clear: both
     background: transparent url('/images/houses.png') repeat-x center bottom
     border: none
