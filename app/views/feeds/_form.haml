@@ -15,7 +15,7 @@
     = f.input :twitter_name, :label => "To add your tweets to your feed's page, type your twitter handle here:"
   = f.inputs :contact_information, :id => 'contact-info' do
     = f.input :website, :as => :string
-    = f.input :phone
+    = f.input :phone, :as => :string
     = f.input :address
   = f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
