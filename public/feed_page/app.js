@@ -24,7 +24,7 @@ var FeedPageRouter = Backbone.Controller.extend({
       var resourceNav, resourceView, feedActionsView;
       new FeedProfileView({ model: feed, el: $("#feed-profile")}).render();
       
-
+      new FeedAboutView({ feed: feed, el: $("#feed-about") }).render();
       new FeedHeaderView({ feed: feed, account: self.account, el: $("#feed-header") }).render();
 
       resourceView = new FeedSubResourcesView({ feed: feed, el: $("#feed-subresources") }).render();
@@ -440,8 +440,15 @@ var EventItemView = Backbone.View.extend({
   replyCount: function() {
     return this.replies.length;
   }
-  
-  
 
+});
+
+var FeedAboutView = Backbone.View.extend({
+  initialize: function(options) { this.feed = options.feed; },
+
+  render: function() {
+    $(this.el).html(CommonPlace.render("feed-about", this));
+    return this;
+  }
 });
 

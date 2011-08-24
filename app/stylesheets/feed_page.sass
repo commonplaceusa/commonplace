@@ -397,8 +397,7 @@ body
   left: 0
   z-index: 1000
 
-
-#feed-subresources
+#feed-subresources, #feed-about
   border: 2px solid #bebebe
   +border-radius(4px)
 
@@ -411,8 +410,20 @@ body
     font-size: 15px
     +border-top-radius(2px)
     padding: 5px
-      
-    
+
+#feed-about
+  h1
+    text-align: center
+
+  p
+    border-top: 1px solid #bebebe
+    padding: 15px
+    font-family: Helvetica, sans-serif
+    font-size: 0.8em
+    line-height: 1.4
+    color: $textColor
+
+#feed-subresources    
   .tab
     display: none
 
