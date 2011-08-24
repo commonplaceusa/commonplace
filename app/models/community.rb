@@ -149,4 +149,13 @@ class Community < ActiveRecord::Base
   def locale
     (self.is_college) ? :college : :en
   end
+
+  def posts_for_user(user)
+    if user.community.is_college
+      Post.includes(:user).where(:users => { :neighborhood_id => user.neighborhood_id})
+      user.neighborhood.posts
+    else
+      user.community.posts
+    end
+  end
 end
