@@ -6,7 +6,7 @@
     = include_javascripts :templates
 
 
-  %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
+  %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" } #{ current_community.is_college ? "is_college" : ""}"}
 
     #sticky-wrapper
 

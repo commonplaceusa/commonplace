@@ -231,6 +231,13 @@ body
       font-size: 16px
       font-family: Rokkitt, Rockwell, Helvetica, sans-serif
       display: block
+
+    label.time
+      float: left
+      margin-right: 30px
+      padding-bottom: 15px
+      margin-top: 5px
+        
     .post-label-selector
       margin-top: 15px
       height: 125px
@@ -390,8 +397,7 @@ body
   left: 0
   z-index: 1000
 
-
-#feed-subresources
+#feed-subresources, #feed-about
   border: 2px solid #bebebe
   +border-radius(4px)
 
@@ -404,8 +410,21 @@ body
     font-size: 15px
     +border-top-radius(2px)
     padding: 5px
-      
-    
+
+#feed-about
+  h1
+    text-align: center
+
+  p
+    border-top: 1px solid #bebebe
+    padding: 15px
+    font-family: Helvetica, sans-serif
+    font-size: 0.8em
+    line-height: 1.4
+    color: $textColor
+    background-color: #fff
+
+#feed-subresources    
   .tab
     display: none
 
