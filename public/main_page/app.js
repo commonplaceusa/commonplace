@@ -9,10 +9,20 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
     this.newPost();
     this.notifications = [];
 
-    $(window).scroll(setInfoBoxPosition);
-    setInfoBoxPosition();
-
+    var didscroll = false;  
+    $(window).scroll(function() { didscroll = true; });
+    
+    setInterval(function() {
+      if (didscroll) {
+        didscroll = false;
+        setInfoBoxPosition();
+      }
+    }, 100); 
+    
+    setInfoBoxPosition();        
+    
     $("body").trigger("#modal");
+
   },
 
   unblock: function() {
