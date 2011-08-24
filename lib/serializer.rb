@@ -108,6 +108,11 @@ module Serializer
         "phone" => o.phone,
         "address" => o.address,
         "links" => { 
+          "avatar" => {
+            "large" => o.avatar_url(:large),
+            "normal" => o.avatar_url(:normal),
+            "thumb" => o.avatar_url(:thumb)
+          },
           "announcements" => "/feeds/#{o.id}/announcements",
           "events" => "/feeds/#{o.id}/events",
           "invites" => "/feeds/#{o.id}/invites",
