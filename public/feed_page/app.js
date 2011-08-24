@@ -18,6 +18,9 @@ var FeedPageRouter = Backbone.Controller.extend({
   show: function(slug) {
     var self = this;
     $.getJSON("/api/feeds/" + slug, function(feed) {
+
+      $("head title").html(feed.name);
+
       var resourceNav, resourceView, feedActionsView;
       new FeedProfileView({ model: feed, el: $("#feed-profile")}).render();
       
