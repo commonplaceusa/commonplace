@@ -1,42 +1,16 @@
 
-var setInfoBoxPosition = (function () { // wrapped in a function to minimize globals
-  var $container = $('#left-container'), // pre-select #left-container
-      $win = $(window), // idk if this needs to be pre-selected but it can't hurt
-      original_position, // distance from the top of the document to #left-container
-      top_offset = 20, // desired offset from the top of the viewport to #left-container
-      bottom_offset = 95; // desired offset from the bottom of the viewport to #left-container
 
-  function set_original_position(jq_node) {
-    // jq_node should be a jQuery object, defaults to 85
-    original_position = jq_node.get(0) ? jq_node.offset().top : 85;
-  }
-  set_original_position($container);
-
-  function setInfoBoxPosition() {
-    var current_offset = $container.offset(),
-        bottom_diff = 0;
-    if ($container.get(0)) {
-      if ($win.scrollTop() >= current_offset.top - top_offset && original_position <= current_offset.top) {
-        bottom_diff = (current_offset.top + $container.outerHeight()) - ($(document).height() - bottom_offset);
-        $container.css({
-          'position': 'fixed',
-          'top': top_offset,
-          'margin-top': bottom_diff > 0 ? -bottom_diff : 0,
-          'padding-bottom': bottom_diff > 0 ? bottom_diff : 0
-        });
-      } else {
-        $container.css({
-          'position': 'static'
-        });
-      }
+function setInfoBoxPosition() {
+  if ($('#information').get(0) && $('#syndicate').get(0)) {
+    if ($(window).scrollTop() - 10 > $('#information').parent().offset().top){
+      var left;
+      if ($(window).scrollLeft() !== 0) { left = - $(window).scrollLeft(); } else { left = null ;}
+      $('#information').css({'position':'fixed','top': 10, 'width':485, left: left });
     } else {
-      // $container was not selected, try again
-      $container = $('#left-container');
-      set_original_position($container);
+      $('#information').css({'position': 'static'});
     }
   }
-  return setInfoBoxPosition;
-})();
+}
 
 CommonPlace.Info = Backbone.View.extend({
   tagName: "div",
