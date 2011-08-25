@@ -89,3 +89,5 @@ javascripts:
 
   registration_page:
     - public/javascripts/jquery-1.6.1.js
+    - public/javascripts/jquery/jquery.placeholder.js
+    - public/javascripts/registration_page.js
