@@ -1,5 +1,3 @@
-require 'iconv'
-
 class EmailParseController < ApplicationController
   
   protect_from_forgery :only => []
