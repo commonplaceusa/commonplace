@@ -12,7 +12,7 @@
 @import mixins
 @import colors
 @import measurements
-
+@import compass/layout/sticky-footer
 @import tipsy
 
 +global-reset
@@ -44,24 +44,3 @@ strong
 em
   font-style: italic
 
-#footer_grad
-  height: 10px
-  width: 100%
-  +linear-gradient(color-stops(#ddd,  #efefef))
-footer, #footer
-  +clearfix
-  +sans
-  font-size: 0.8em
-  width: 972px
-  margin: 1em auto
-  color: #333
-  .left_text
-    float: left
-  .right_text
-    float: right
-  a
-    font-weight: bold
-    color: #333
-    text-decoration: none
-    &:hover
-      text-decoration: underline

@@ -21,6 +21,28 @@
 @import faq
 @import messages
 
+#footer_grad
+  height: 10px
+  width: 100%
+  +linear-gradient(color-stops(#ddd,  #efefef))
+footer, #footer
+  +clearfix
+  +sans
+  font-size: 0.8em
+  width: 972px
+  margin: 1em auto
+  color: #333
+  .left_text
+    float: left
+  .right_text
+    float: right
+  a
+    font-weight: bold
+    color: #333
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+
 .clear
   clear: both
 
@@ -452,3 +474,4 @@ input.placeholder, textarea.placeholder
   z-index: 3000
   +border-radius(5px)
   text-align: center
+
