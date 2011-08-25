@@ -31,6 +31,9 @@ stylesheets:
   feed_page:
     - public/stylesheets/feed_page.css
 
+  registration:
+    - public/stylesheets/registration_page.css
+
 javascripts:
   application:
     - public/javascripts/showdown.js
@@ -84,3 +87,5 @@ javascripts:
     - public/javascripts/starter_site/slideshow.js
     - public/javascripts/starter_site/scroll.js
 
+  registration_page:
+    - public/javascripts/jquery-1.6.1.js
