@@ -29,11 +29,11 @@ en:
         password: "Enter your password:"
 
       feed:
-        name: "Feed Name:"
+        name: "Organization Name:"
         slug: "CommonPlace Address:"
         avatar: "Add a photo of your organization:"
         is_news: "This is a Newspaper or News Service"
-        about: "Describe your feed:"
+        about: "Describe your organization:"
         phone: "Phone Number:"
         address: "Street Address:"
         kind: "Is your community feed for:"
