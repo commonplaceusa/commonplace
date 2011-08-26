@@ -7,6 +7,4 @@ $(function() {
     $(this).siblings("#sign_in_form").children("form").slideToggle();
   });
 
-
-
 });
