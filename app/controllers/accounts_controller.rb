@@ -71,7 +71,7 @@ class AccountsController < ApplicationController
         redirect_to edit_new_account_url
       end
     else
-      render params[:short] ? :short : :new
+      render :new, :layout => "registration"
     end
   end
 
