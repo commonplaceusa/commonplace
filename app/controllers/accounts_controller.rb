@@ -155,7 +155,7 @@ class AccountsController < ApplicationController
   def add_feeds
     @feeds = current_community.feeds
     if @feeds.present?
-      render
+      render :layout => "registration"
     else
       redirect_to :action => "add_groups"
     end
@@ -169,7 +169,7 @@ class AccountsController < ApplicationController
   def add_groups
     @groups = current_community.groups
     if @groups.present?
-      render
+      render :layout => "registration"
     else
       redirect_to root_url
     end

@@ -53,5 +53,12 @@ $(function() {
     boxWidth: 600
   });
 
+  // add feeds and add groups
+  $('.add_groups .group, .add_feeds .feed').click(function(){
+    $('div', this).toggleClass('checked');
+    var $checkbox = $("input:checkbox", this);
+    $checkbox.attr("checked", 
+                   $checkbox.is(":checked") ? false : "checked");
+  });
 
 });
