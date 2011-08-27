@@ -38,4 +38,20 @@ $(function() {
     }
   });
 
+  // Avatar crop
+  var updateCrop = function(coords) {
+    $("#crop_x").val(coords.x);
+    $("#crop_y").val(coords.y);
+    $("#crop_w").val(coords.w);
+    $("#crop_h").val(coords.h);
+  };
+
+  $("#cropbox").Jcrop({
+    onChange: updateCrop,
+    onSelect: updateCrop,
+    aspectRatio: 1.0,
+    boxWidth: 600
+  });
+
+
 });
