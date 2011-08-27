@@ -10,11 +10,6 @@ class FeedsController < CommunitiesController
     end
   end
 
-  def municipal
-    @items = current_community.feeds
-    render :index
-  end
-
   def show
     render :profile, :layout => false
   end
