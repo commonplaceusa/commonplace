@@ -1,87 +1,37 @@
-- if Rails.env.production?
-  %script
-    = "mpmetrics.track('Password entry', {'community': '#{current_community.slug}'});"
-
-%script
-  $(function(){$('input[placeholder], textarea[placeholder]').placeholder();});
-
-#wrapper
-  %h1= t(".h1", :community => current_community.name).html_safe
+%h1= t(".h1", :community => current_community.name).html_safe
+#main 
   #registration_information
     %ul
       %li= "Thanks for signing up, #{current_user.first_name}!"
       %li= t ".p2", :community => current_community.name 
       %li= t ".p3"
       %li= t ".p4"
-  #main 
-    = semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
-      = f.inputs do 
-        - unless current_user.is_facebook_user or current_user.password.present?
-          = f.input :password, :required => true, :hint => t(".password_hint")
 
-        = if current_user.address.blank?
-          = f.input :address
-        - if current_user.is_facebook_user
-          %img{:src => current_user.avatar_url, :style => "vertical-align:middle;float:left;", :width => "100px"}
-          = f.input :avatar, :input_html => {:size => 25}, :wrapper_html => { :style => "left: 100px; width: 270px;" }
-          :javascript
-            $(document).ready(function(){
-              $("#file_input_fix").css('width', '270px');
-              $("#file_style_fix").css('width', '270px');
-              $("#user_avatar").css('left', '-5px');
-              $("#user_avatar").css('top', '20px');
-            });
-          %br
-          %br
-          %br
-          %br
-        - else
-          = f.input :avatar, :input_html => {:size => 25}
-        = f.input :about
-        = f.input :interest_list
-        = f.input :offer_list
-        = f.input :referral_source, :as => :select, :collection => @referral_sources, :hint => "*Required field."
-        = f.input :referral_metadata
+  = semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
+    = f.inputs do 
+      - unless current_user.is_facebook_user or current_user.password.present?
+        = f.input :password, :required => true, :hint => t(".password_hint")
 
-      = f.buttons do
-        = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue2.png"}
+      = if current_user.address.blank?
+        = f.input :address
+      - if current_user.is_facebook_user
+        %img{:src => current_user.avatar_url, :style => "vertical-align:middle;float:left;", :width => "100px"}
+        = f.input :avatar, :input_html => {:size => 25}, :wrapper_html => { :style => "left: 100px; width: 270px;" }
+        %br
+        %br
+        %br
+        %br
+      - else
+        = f.input :avatar, :input_html => {:size => 25}
+      = f.input :about
+      = f.input :interest_list
+      = f.input :offer_list
+      = f.input :referral_source, :as => :select, :collection => @referral_sources, :hint => "*Required field."
+      = f.input :referral_metadata
 
-:javascript
-  $('#edit_user_#{current_user.id} fieldset.inputs li:last').hide();
-  $('#user_referral_source').change(function() {
-    selection = $("select#user_referral_source option:selected").text();
-    new_label = "";
-    if (selection == "At a table or booth at an event")
-    {
-      new_label = "What was the event?";
-    }
-    if (selection == "In an email")
-    {
-      new_label = "Who was the email from?";
-    }
-    if (selection == "On Facebook or Twitter")
-    {
-      new_label = "From what person or organization?";
-    }
-    if (selection == "On another website")
-    {
-      new_label = "What website?";
-    }
-    if (selection == "In the news")
-    {
-      new_label = "From which news source?";
-    }
-    if (selection == "Word of mouth")
-    {
-      new_label = "From what person or organization?";
-    }
-    if (selection == "Other")
-    {
-      new_label = "Where?";
-    }
-    if (new_label != "")
-    {
-      $('#user_referral_metadata_input label').text(new_label);
-      $('#edit_user_#{current_user.id} fieldset.inputs li:last').show('slow');
-    }
-  });
+    = f.buttons do
+      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue2.png"}
+
+- if Rails.env.production?
+  %script
+    = "mpmetrics.track('Password entry', {'community': '#{current_community.slug}'});"
