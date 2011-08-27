@@ -59,10 +59,6 @@ h1
       letter-spacing: 1px
       word-spacing: 2px
     select#user_address
-      //+border-radius(5px)
-        +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
-        border: 1px solid #ccc
-        padding: 0px 5px
       width: 366px
       height: 23px
       margin-top: 20px
@@ -72,35 +68,23 @@ h1
       display: block
     fieldset.inputs
       margin-bottom: 10px
-      li
-        margin: 5px 0px
-        width: 360px
-        label
-          display: none
-          color: #898989
-        input
-          +border-radius(5px)
-          +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
-          border: 1px solid #ccc
-          padding: 3px 5px
-          font-size: 18px
-          font-weight: 300
-          width: 354px
-          display: block
-          +serif
-          margin-top: 20px
-        select#user_address
-          //+border-radius(5px)
-            +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
-            border: 1px solid #ccc
-            padding: 0px 5px
-          width: 366px
-          height: 23px
-          margin-top: 20px
-          font-size: 18px
-          +serif
-          font-weight: 300
-          display: block
+    li
+      margin: 5px 0px
+      width: 360px
+    label
+      display: none
+      color: #898989
+    input[type=text], input[type=password]
+      +border-radius(5px)
+      +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+      border: 1px solid #ccc
+      padding: 3px 5px
+      font-size: 18px
+      font-weight: 300
+      width: 354px
+      display: block
+      +serif
+      margin-top: 20px
 
     fieldset.buttons
       margin-left: auto
@@ -118,6 +102,78 @@ h1
       font-size: 11px
       color: #FFFFFF
 
+  form[action="/account/update_new"]
+    #user_avatar_input
+      position: relative
+      min-height: 54px
+
+    #user_avatar
+      cursor: pointer
+      position: relative
+      left: 145px
+      opacity: 0
+      z-index: 2
+      position: absolute
+      top: 25px
+      height: 30px
+
+    #file_input_fix
+      position: absolute
+      width: 360px
+      margin: 0px 0px 15px
+
+    #file_style_fix
+      height: 27px
+
+    #browse_button
+      position: absolute
+      top: 5px
+      right: -12px
+      padding: 5px
+      height: 17px
+      width: 80px
+      color: white
+      background: #808080
+      border: 1px solid #666666
+      +border-radius(0 5px 5px 0)
+      +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
+      cursor: pointer
+
+    li
+      margin: 10px 0
+      padding: 0px 0px
+      width: 355px
+
+    input[type=text], input[type=password], textarea
+      border: 1px solid #ccc
+      +border-radius(5px)
+      +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+      font-size: 22px
+      +serif
+      padding: 0 5px
+      width: 350px
+      margin: 5px 0
+
+    textarea
+      height: 70px
+        
+    label
+      display: block
+      text-align: left
+      color: #FFFFFF
+      font-weight: 600
+      font-size: 14px
+      text-shadow: #000000 1px 1px 1px
+    .inline-hints
+      width: 360px
+      margin: 0px 0px 3px 0px
+      padding: 0px
+      text-align: right
+      font-size: 12px
+      color: #FFFFFF
+    
+    #user_referral_metadata_input
+      display: none
 
 
 #wrapper

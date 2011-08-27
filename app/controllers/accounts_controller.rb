@@ -109,6 +109,7 @@ class AccountsController < ApplicationController
       "Word of mouth",
       "Other"
     ]
+    render :layout => "registration"
   end
 
   def update_new
