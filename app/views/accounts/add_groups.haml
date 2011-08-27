@@ -1,28 +1,25 @@
-- if Rails.env.production?
-  %script
-    = "mpmetrics.track('Add groups', {'community': '#{current_community.slug}'});"
-    
-#wrapper
-  %h1= t(".h1").html_safe
+
+%h1= t(".h1").html_safe
+#main
   #registration_information
     %ul
       %li= t ".p1"
       %li= t ".p2"
       %li= t ".p3"
-  #main
-    %h2
-      Subscribe to some groups:
-    - form_tag "/account/subscribe_to_groups", :id => "add_groups" do
-      #groups_container
-        - @groups.each do |group|
-          .group
-            = image_tag(group.avatar_url)
-            .unchecked
-            %h3= group.name
-            %p= group.about
-            %input{:class =>"groupId", :name => "group_ids[]", :value => group.id.to_s, :type =>"checkbox"}
-      %input{:type => "image", :src => "/images/buttons/continue2.png"}
 
-    %br{:class=>"cleared"}
+  - form_tag "/account/subscribe_to_groups", :id => "add_groups", :class => "add_groups" do
+    %h2 Subscribe to some groups:
+    #groups_container
+      - @groups.each do |group|
+        .group
+          = image_tag(group.avatar_url)
+          .unchecked
+          %h3= group.name
+          %p= group.about
+          %input{:class =>"groupId", :name => "group_ids[]", :value => group.id.to_s, :type =>"checkbox"}
+    %input{:type => "image", :src => "/images/buttons/continue2.png"}
 
-#fb-root
+- if Rails.env.production?
+  %script
+    = "mpmetrics.track('Add groups', {'community': '#{current_community.slug}'});"
+    
