@@ -135,47 +135,6 @@ $(function() {
     $('#post-to-feed h2 nav li:last-child').hide();	
   });
 
-
-  // Accounts
-  //Does the who is bubble stuff
-  $('#who_is_info_bubble h3').click(function(){
-    var re = new RegExp(/blue-arrow-down/);
-    if($('#who_is_info_bubble h3.toggle').css("background-image").match(re)) {
-      $('#who_is_info_bubble h3.toggle').css("background-image","url(/images/blue-arrow-up.png)");
-    } else  {
-      $('#who_is_info_bubble h3.toggle').css("background-image","");
-    }
-    	$('#who_is_info').slideToggle();
-  });
-
-  //Tool tips for main page:
-//  $('#user_address').tipsy({delayIn: 1000, delayOut: 1000, fade: true, gravity: 'n', trigger: 'focus', live: true, offset: -20 ,fallback: "We need your address so we can place you in a neighborhood within Falls Church!"});
-  
-  //Style fix for the photoupload stuff
-
-  var style_fix = '<div id="file_input_fix"><input type="text" name="file_fix" id="file_style_fix"></input><div id="browse_button">Browse...</div></div>';
-  var take_photo_button = '<div id="take_a_photo" onClick="load_modal();">Take a photo</div>';
-  $('.edit_new #user_avatar_input').append(style_fix).css("min-height", "54px");
-  
-  $('.edit_new #user_avatar').
-    css("opacity", 0).
-    css("z-index", 2).
-    css("position", "absolute").
-    css("top", "25px").
-    css("height", "30px");
-  
-  $('.edit_new #user_avatar').change(function() {
-    $("#file_input_fix input").val($(this).val().replace(/^.*\\/,""));
-  });
-  
-  
-  // accounts/add_feeds
-  $('.add_groups .group, .add_feeds .feed').click(function(){
-    $('div', this).toggleClass('checked');
-    var $checkbox = $("input:checkbox", this);
-    $checkbox.attr("checked", 
-                   $checkbox.is(":checked") ? false : "checked");
-  });
 });
 /*!
  * JavaScript Linkify - v0.3 - 6/27/2009
