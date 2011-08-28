@@ -27,6 +27,8 @@ stylesheets:
   starter_site:
     - public/stylesheets/starter_site.css
 
+  main_page:
+    - public/stylesheets/main_page.css
 
   feed_page:
     - public/stylesheets/feed_page.css
