@@ -58,31 +58,6 @@
 
   %script{:type => "text/javascript", :src => "https://secure.bugmuncher.com/js/bugMuncher.min.js"}
 
--# Facebook
-
-%script
-  window.fbAsyncInit = function() {
-  FB.init({
-  appId : "#{($FacebookConfig || {})['app_id']}",
-  status : true,
-  cookie : true,
-  xfbml  : true
-  });
-  fbApiInit = true;
-  };
-  $(document).ready(function(){
-  $('a[href^="http://"]').attr({
-  target: "_blank", 
-  title: "Opens in a new window"
-  });
-  });
-  (function() {
-  var e = document.createElement('script');
-  e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-  e.async = true;
-  document.getElementById('fb-root').appendChild(e);
-  }());
-
 -# JQuery Magic
 
 :javascript
