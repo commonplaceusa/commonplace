@@ -34,6 +34,7 @@ Commonplace::Application.routes.draw do
 
   match "/facebook_canvas/" => "facebook_canvas#index"
   match 'login' => 'user_sessions#new', :as => :login
+
   resource :user_session
 
   resources :feeds, :only => [:show, :new, :create, :edit, :update] do
@@ -48,6 +49,7 @@ Commonplace::Application.routes.draw do
     resource :invites, :controller => 'feeds/invites', :only => [:new, :create]
   end
 
+  match "/pages/:id" => "feeds#profile"
     
   resource :account do
     member do 
