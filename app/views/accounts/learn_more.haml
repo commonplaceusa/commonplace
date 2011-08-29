@@ -1,27 +1,35 @@
+!!! 5
+%html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
+  %head
+    %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
+    %link{ :href=> 'https://fonts.googleapis.com/css?family=Rokkitt:400,700', :rel =>"stylesheet", :type =>"text/css"}
 
-#learn-more
-  %h1= t ".title_html", :sign_up => link_to(t(".sign_up"), "/#{current_community.slug}"), :community => current_community.name
-  #content
-    .p_wrapper
-      %p= t ".p1", :community=> current_community.name
-      %p= t ".p2"
-    .img_wrapper
-      =image_tag "example-email.png", :width => 603, :height => 357
-    .p_wrapper
-      %p= t ".p3"
-      %p= t(".p4", :link => link_to(community_registration_url(current_community), community_registration_url(current_community))).html_safe
-    .img_wrapper
-      =image_tag "example-platform.png", :width => 611, :height => 551
-    .p_wrapper  
-      %p= t ".p5"
-    %ul
-      - t(".list", :community => current_community.name).each do |text|
-        %li= text.sub(/%{community}/, current_community.name)
-    .p_wrapper
-      %p= t(".p6", :community_link => link_to(community_registration_url(current_community), community_registration_url(current_community))).html_safe
-     
-    //%p= t ".p7", :community_email => mail_to("announcement-"+current_community.slug+"@ourcommonplace.com", "announcement-"+current_community.slug+"@ourcommonplace.com")
-    .img_wrapper
-      -link_to community_registration_url(current_community) do
-        =image_tag "sign-up-now-btn.png", :width => 193, :height => 49
+    %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
+    %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
+    %meta{ :name => "description", :content => "The #{params[:community] && current_community.name} CommonPlace is an online community bulletin board for neighbors in #{params[:community] && current_community.name}, designed to make it easy for neighbors and community groups to share and connect." }
+
+    %title= "CommonPlace #{ params[:community] && current_community.name}"
+
+    %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
+
+    = javascript_include_tag "https://exceptional-js.heroku.com/exceptional.js"
+
+    = stylesheet_link_tag 'learn_more'
+
+    :javascript
+      CommonPlace = {};
+  %body
+
+  #wrapper
+    = render 'layouts/registration_header', :user_session => current_user_session
+
+    #main
       
+
+      = image_tag "learn_more/plane.png"
+      
+
+    #wrapper-footer
+
+
+  = render "layouts/footer"

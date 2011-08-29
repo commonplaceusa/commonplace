@@ -41,6 +41,7 @@ class AccountsController < ApplicationController
     unless current_community.present?
       redirect_to root_url
     end
+    render :layout => false
   end
 
   def facebook_invite
