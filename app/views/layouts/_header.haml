@@ -22,15 +22,15 @@
         = tab_to "Inbox", "/messages"
         = tab_to "Invite", "/account/facebook_invite"
         .user-feeds
-          %h4
-            - if current_user.managable_feeds.count > 0
-              Your Feeds 
-            - else
-              =t "feeds.register"
-          %ul
-            - current_user.managable_feeds.each do |feed|
-              %li= link_to feed.name, "/feeds/#{feed.id}/profile"
-            %li= link_to 'Create a feed', "/feeds/new"
+          - if current_user.managable_feeds.count > 0
+            %h4 Your Feeds
+            %ul
+              - current_user.managable_feeds.each do |feed|
+                %li= link_to feed.name, "/feeds/#{feed.id}/profile"
+              %li= link_to 'Create a feed', "/feeds/new"
+          - else
+            %h4
+              = link_to((t "feeds.register"), new_feed_url)
         = tab_to "Settings", "/account"
         = tab_to "FAQ", "/#{current_community.slug}/faq"
         = tab_to "Logout", "/logout", :method => :delete
