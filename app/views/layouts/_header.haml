@@ -29,7 +29,7 @@
               =t "feeds.register"
           %ul
             - current_user.managable_feeds.each do |feed|
-              %li= link_to feed.name, "/feeds/#{feed.id}/profile"
+              %li= link_to feed.name, "/feeds/#{feed.slug}"
             %li= link_to 'Create a feed', "/feeds/new"
         = tab_to "Settings", "/account"
         = tab_to "FAQ", "/#{current_community.slug}/faq"
