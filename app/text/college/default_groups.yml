@@ -16,7 +16,7 @@ college:
       slug: CampusProblemSolving
 
     - name: Social Opportunities
-      about: Subscribe to stay in the loop about get-togethers with others in %{community_name}.
+      about: Subscribe to stay in the loop about get-togethers with others at %{community_name}.
       avatar: "/images/group-icons/social-opportunities.png"
       slug: SocialOpportunities
 
