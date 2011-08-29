@@ -158,4 +158,13 @@ class Community < ActiveRecord::Base
       user.community.posts
     end
   end
+
+  def launch_date
+    self.read_attribute(:launch_date) || self.created_at
+  end
+
+  def has_launched?
+    self.launch_date < DateTime.now
+  end
+
 end
