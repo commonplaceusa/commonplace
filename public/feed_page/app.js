@@ -251,6 +251,7 @@ var FeedActionsView = Backbone.View.extend({
   render: function() {
     $(this.el).html(CommonPlace.render("feed-actions", this));
     $("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
+    $('input[placeholder], textarea[placeholder]').placeholder();
     return this;
   },
 
