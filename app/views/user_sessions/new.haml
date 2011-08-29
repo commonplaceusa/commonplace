@@ -1,19 +1,32 @@
-%h1 Log in to CommonPlace
-#main
-  = semantic_form_for( (current_user_session || :user_session), :url => user_session_path) do |f|
-    = f.inputs do
-      = f.input :email
-      = f.input :password
-    = f.buttons do 
-      %li
-        - unless current_user_session.errors.empty?
-          = f.semantic_errors
-      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/login2.png"}
-      %li
-        = link_to "Forgot your password?", new_password_reset_path, :class => 'forgot-password'
-      -#%li.fb-button
-        or 
-        %fb:login-button{:size => "small", :onlogin => "loginFacebook();", :perms => 'email,user_hometown,publish_stream,offline_access'}
+!!! 5
+%html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
+  %head
+    = include_stylesheets :login_page
 
-      
+    %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
+    %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
+    %link{ :href=> 'https://fonts.googleapis.com/css?family=Rokkitt:400,700', :rel =>"stylesheet", :type =>"text/css"}
+  %body
+
+    #wrapper
+
+      = render 'layouts/header', :user_session => current_user_session
+
+
+      %h1 Log in to CommonPlace
+      #main
+        = semantic_form_for( (current_user_session || :user_session), :url => user_session_path) do |f|
+          = f.inputs do
+            = f.input :email
+            = f.input :password
+          = f.buttons do 
+            %li
+              - unless current_user_session.errors.empty?
+                = f.semantic_errors
+              = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/login2.png"}
+            %li
+              = link_to "Forgot your password?", new_password_reset_path, :class => 'forgot-password'
+
+      #wrapper-footer
   
+    = render "layouts/footer"
