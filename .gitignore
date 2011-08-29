@@ -31,3 +31,4 @@ config/exceptional.yml
 
 log/*.log
 .rvmrc
+log/sunspot-solr-development.log.1
