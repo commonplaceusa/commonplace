@@ -3,12 +3,18 @@
 <img src="{{#links}}{{#avatar}}{{large}}{{/avatar}}{{/links}}" class="avatar" width="200" height="200">
 
 <dl class="contact-info">
+  {{#address}}
   <dt>ADDRESS</dt>
   <dd>{{address}}</dd>
+  {{/address}}
+  {{#phone}}
   <dt>PHONE</dt>
   <dd>{{phone}}</dd>
+  {{/phone}}
+  {{#website}}
   <dt>WEBSITE</dt>
   <dd><a href="{{website}}" target="_blank">{{website}}</a></dd>
+  {{/website}}
 </dl>
 
 <button class="send-message">Send Us a Message</button>
