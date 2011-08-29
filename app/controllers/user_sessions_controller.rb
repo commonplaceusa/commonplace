@@ -14,6 +14,7 @@ class UserSessionsController < ApplicationController
       return
     end
     @user = User.new
+    render :layout => false
   end
 
   def create
