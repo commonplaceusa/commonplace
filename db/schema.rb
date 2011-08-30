@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110816171445) do
+ActiveRecord::Schema.define(:version => 20110830143431) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20110816171445) do
     t.boolean  "core"
     t.boolean  "should_delete",              :default => false
     t.boolean  "is_college",                 :default => false
+    t.date     "launch_date",                :default => '2010-01-01'
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -361,10 +363,10 @@ ActiveRecord::Schema.define(:version => 20110816171445) do
     t.datetime "last_login_at"
     t.boolean  "seen_tour"
     t.boolean  "transitional_user"
-    t.string   "skills_list"
     t.string   "referral_metadata"
     t.float    "generated_lat"
     t.float    "generated_lng"
+    t.integer  "emails_sent"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
