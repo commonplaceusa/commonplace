@@ -116,3 +116,9 @@ daily_bulletin:
   new-feed-action-title: Register a Community Feed
   new-feed-action-body: |
     Are you part of a community organization, business, municipal agency or cause that wants to send announcements and events through {{community_name}}'s CommonPlace?
+
+help_a_neighbor_out:
+  posts-section-title: Unresolved Neighborhood Posts
+  post-action-title: Post to Your Neighborhood
+  post-action-body: |
+    Need to borrow a ladder? Lost a cat? Offering up vegetables from your garden? Share it with your neighbors!
