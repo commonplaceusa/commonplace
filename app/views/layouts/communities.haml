@@ -14,6 +14,10 @@
 
       = render 'layouts/header', :user_session => current_user_session
 
+      - if !current_community.has_launched?
+        .prelaunch-notification
+          Hey #{current_user.first_name}, welcome to #{current_community.name} CommonPlace! We're officially launching on #{current_community.launch_date.strftime("%B")} #{current_community.launch_date.day.ordinalize}. In the meantime, help us improve by <a href="/invite">inviting some more neighbors</a>.
+
       #main
         #whats-happening
         #left-container
