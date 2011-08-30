@@ -251,6 +251,7 @@ var FeedActionsView = Backbone.View.extend({
   render: function() {
     $(this.el).html(CommonPlace.render("feed-actions", this));
     $("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
+    $('input[placeholder], textarea[placeholder]').placeholder();
     return this;
   },
 
@@ -429,9 +430,17 @@ var EventItemView = Backbone.View.extend({
     $(this.el).html(CommonPlace.render("event-item", this));
   },
 
-  month: function() { return "Feb"; },
+  
 
-  day_of_month: function() { return "12"; },
+  short_month_name: function() { 
+    var m = this["occurs_on"].match(/(\d{4})-(\d{2})-(\d{2})/);
+    return this.monthAbbrevs[m[2] - 1];
+  },
+
+  day_of_month: function() { 
+    var m = this["occurs_on"].match(/(\d{4})-(\d{2})-(\d{2})/);
+    return m[3]; 
+  },
 
   publishedAt: function() {
     return CommonPlace.timeAgoInWords(this.published_at);
@@ -439,7 +448,10 @@ var EventItemView = Backbone.View.extend({
 
   replyCount: function() {
     return this.replies.length;
-  }
+  },
+
+  monthAbbrevs: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                 "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
 });
 

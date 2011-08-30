@@ -92,7 +92,7 @@ body.is_college #say-something .wrap div.nav a.post {
                 font-size: 15px;
                 font-family: Rockwell, Georgia, Times, Serif ;
                 @include border-radius(5px);
-                @include box-shadow(#eee, 1px, 1px, 3px, 0, inset);
+                @include box-shadow(#eee 1px 1px 3px 0 inset);
             }
 
             #event_start_time_input { float: left ; margin-right: 40px }
