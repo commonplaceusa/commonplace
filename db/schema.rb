@@ -335,9 +335,6 @@ ActiveRecord::Schema.define(:version => 20110830143431) do
     t.string   "email",                                                             :null => false
     t.string   "crypted_password"
     t.string   "password_salt"
-    t.string   "persistence_token"
-    t.string   "single_access_token",                                               :null => false
-    t.string   "perishable_token",                                                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name",                                                        :null => false
@@ -367,6 +364,9 @@ ActiveRecord::Schema.define(:version => 20110830143431) do
     t.float    "generated_lat"
     t.float    "generated_lng"
     t.integer  "emails_sent"
+    t.string   "perishable_token"
+    t.string   "single_access_token"
+    t.string   "persistence_token"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
