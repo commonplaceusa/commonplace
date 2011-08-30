@@ -15,7 +15,7 @@
 #footer_grad
   height: 10px
   width: 100%
-  +linear-gradient(color-stops(#ddd,  #efefef))
+  +background-image(linear-gradient(#ddd,  #efefef))
 footer, #footer
   +clearfix
   +sans
@@ -71,7 +71,7 @@ body.application
         color: #fff
         font-size: 30px
         line-height: 30px
-        +text-shadow(#000, -1px, 1px, 0)
+        +text-shadow(#000 -1px 1px 0)
         span
           font-family: Rokkitt, Rockwell, Helvetica, sans-serif
           color: #b7430c
@@ -93,7 +93,7 @@ body.application
           font-weight: normal
           font-family: Rokkitt, Rockwell, Helvetica, sans-serif
           text-decoration: none
-          +text-shadow(#000, 1px, 1px, 0px)
+          +text-shadow(#000 1px 1px 0px)
         a.selected_nav
           color: #fff
           background: #2e4b67
@@ -120,7 +120,7 @@ body.application
             vertical-align: top
             padding: 3px 10px
             text-decoration: none
-            +text-shadow(#000, 1px, 1px, 0px)
+            +text-shadow(#000 1px 1px 0px)
           ul
             display: none
             top: 30px
@@ -392,7 +392,7 @@ body.application.logged_out
             outline: none
             padding: 5px 7px
             font-size: 0.9em
-            +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+            +box-shadow(#ccc 1px 1px 2px 0 inset)
             margin: 0
             border: 1px solid #ddd
       #facebook
@@ -433,7 +433,7 @@ body.application.logged_out
       +box-shadow(inset 0px -1px 2px #335170, inset 0px 1px 0px #5883AD, 1px 1px 2px #999)
       font-family: Rockwell, Georgia, serif
       font-size: 11px
-      +text-shadow(#454545, 1px, 1px, 0px)
+      +text-shadow(#454545 1px 1px 0px)
 
   footer, #footer
     clear: both
