@@ -2,7 +2,7 @@
   background-color: #ebebeb
   +border-radius(15px)
   border: 10px solid #c5c5c5
-  +box-shadow($default-box-shadow-color, 0, 0, $default-box-shadow-blur, 0, inset)
+  +box-shadow($default-box-shadow-color 0 0 $default-box-shadow-blur 0 inset)
   padding: 25px
 
 @mixin redlightbox
@@ -20,12 +20,12 @@
     color: $color
 
 @mixin styledBox
-  +box-shadow($lightestGray, 1px, 1px, 3px)
+  +box-shadow($lightestGray 1px 1px 3px)
   +border-radius($defaultRadius)
   border: 1px solid $lightGray
   background: $itemBackground + #020202
-  +linear-gradient(color-stops($itemBackground + #060606, $itemBackground ))
-  
+  +background-image(linear-gradient($itemBackground + #060606, $itemBackground))
+
 @mixin starBullet
   margin: 0 3px 15px 0px
   background: url('/images/bullet-star.png') 
@@ -61,7 +61,7 @@
 
 @mixin red-button
   float: right
-  +box-shadow(#aaa, 0, 2px, 2px, 0, false)
+  +box-shadow(#aaa 0 2px 2px 0 false)
   text-decoration: none
   font-weight: bold
   font-size: 10px
@@ -75,7 +75,7 @@
     background-color: transparent
     margin: 0
     color: white
-    +text-shadow($cpDarkRed, 2px, 1px, 1px)
+    +text-shadow($cpDarkRed 2px 1px 1px)
     cursor: pointer
     border: 1px solid $cpRed + #222
       bottom: 1px solid $cpDarkRed
