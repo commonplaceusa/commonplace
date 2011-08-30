@@ -57,7 +57,7 @@ class FeedsController < CommunitiesController
     @feed = current_community.feeds.new(params[:feed])
     @feed.user = current_user
     if @feed.save
-      redirect_to "/feeds/#{@feed.slug.blank? ? @feed.id : @feed.slug}"
+      redirect_to "/pages/#{@feed.slug.blank? ? @feed.id : @feed.slug}"
     else
       render :new, :layout => 'application'
     end

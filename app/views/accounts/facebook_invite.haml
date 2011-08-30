@@ -26,7 +26,6 @@
     }
     $(document).ready(function(){
       fbEnsureInit(function(){
-
         $("#step_one").append('<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/findneighbors.png" width="370px" style="margin-left: 3px">');
         $("#step_two").append('<a href="#" onclick="fb_share();"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/facebookinvite.png" width="370px" style="margin-left: 3px"></a><div id="custom-tweet-button"><a href="http://twitter.com/share?url=http://www.#{current_community.slug}.OurCommonPlace.com/&text=#{t(".twitter_message", :community => current_community.name, :slug => current_community.slug)}&count=horizontal" target="_blank" rel="nofollow"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/twitterinv.png" width="370px" style="margin-left: 3px"></a></div>');
       });
@@ -185,4 +184,30 @@
               =t(".step_five_label", :community => current_community.name)
             %img{:src => "/images/invite/joinfriends.png",:width =>"370px",:style =>"margin-left:3px; margin-top:10px;", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);", :onmouseout => "document.body.style.cursor = \'auto\';", :onmouseover => "document.body.style.cursor = \'pointer\';"}
       %br
+
+-# Facebook
+
+%script
+  window.fbAsyncInit = function() {
+  FB.init({
+  appId : "#{($FacebookConfig || {})['app_id']}",
+  status : true,
+  cookie : true,
+  xfbml  : true
+  });
+  fbApiInit = true;
+  };
+  $(document).ready(function(){
+  $('a[href^="http://"]').attr({
+  target: "_blank", 
+  title: "Opens in a new window"
+  });
+  });
+  (function() {
+  var e = document.createElement('script');
+  e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+  e.async = true;
+  document.getElementById('fb-root').appendChild(e);
+  }());
+ 
 

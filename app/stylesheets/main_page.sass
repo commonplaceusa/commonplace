@@ -12,14 +12,19 @@
 @import modal_form
 @import whats_happening
 @import admin_bar
+@import neutral_notification
+@import tour
 
 body
   background-color: #cee7fe
   font-family: Rockwell,Georgia,Times,"Times New Roman",serif
 
+.prelaunch-notification
+  +neutral-notification
+
 #main 
   width: 980px
-  margin: auto
+  margin: 20px auto 0
 
 #wrap
   +clearfix
