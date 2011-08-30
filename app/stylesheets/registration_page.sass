@@ -1,9 +1,12 @@
 @import core
 @import logged_out_header
-
+@import neutral_notification
 body
   font-family: Rockwell,Georgia,Times,"Times New Roman",serif
   background-color: #cee7fe
+
+.prelaunch-notification
+  +neutral-notification
 
 h1
   font-size: 49px
@@ -14,7 +17,7 @@ h1
   margin: 5px auto 20px
   width: 960px
   line-height: 1.2
-  +text-shadow(#bfc8cf, 1px, 1px, 1px)
+  +text-shadow(#bfc8cf 1px 1px 1px)
 
 #registration_information
   float: left
@@ -76,7 +79,7 @@ h1
       color: #898989
     input[type=text], input[type=password]
       +border-radius(5px)
-      +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+      +box-shadow(#ccc 1px 1px 2px 0 inset)
       border: 1px solid #ccc
       padding: 3px 5px
       font-size: 18px
@@ -147,7 +150,7 @@ h1
     input[type=text], input[type=password], textarea
       border: 1px solid #ccc
       +border-radius(5px)
-      +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+      +box-shadow(#ccc 1px 1px 2px 0 inset)
       font-size: 22px
       +serif
       padding: 0 5px
