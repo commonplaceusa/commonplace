@@ -92,7 +92,7 @@ end
     if post.save
       current_account.neighborhood.users.receives_posts_live.each do |user|
         # This isn't working in the mailer itself...
-        if user.emails_sent < 2 and post.user != user
+        if user.emails_sent < 3 and post.user != user
           user.emails_sent += 1
           user.save
           Resque.enqueue(PostNotification, post.id, user.id)
