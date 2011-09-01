@@ -1,5 +1,33 @@
 
-%h1= t ".h1"
+%h1 Create a Community Feed
 
-= update_content "#new_feed" do
-  = render 'form', :feed => @feed
+%ul#registration_information
+
+  %li 
+    Any organization, business, city service or cause can create a
+    "Community Feed" on CommonPlace.
+
+  %li
+    This allows you to send out announcements and events from your
+    organization to everyone on CommonPlace.
+
+  %li 
+    People can subscribe to your community feed and receive your
+    announcements and events by email.
+
+= semantic_form_for @feed, :html => {:multipart => true} do |f|
+
+  = f.inputs do
+    = f.input :name
+
+    - unless current_community.is_college
+      = f.input :kind, :as => :radio, :collection => Feed.kinds.to_hash
+
+    = f.input :avatar, :input_html => {:size => 20}
+
+    = f.input :feed_url, :label => "To pull Announcements from an RSS feed, type in your RSS URL here:", :as => :string
+
+    = f.input :twitter_name, :label => "To add your tweets to your feed's page, type your twitter handle here:"
+
+  = f.buttons do
+    = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue2.png"}
