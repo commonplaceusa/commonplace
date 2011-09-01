@@ -163,6 +163,8 @@ var FeedMessageFormView = Backbone.View.extend({
     $container.append(this.el);
     $container.append(this.$shadow);
 
+    this.$("textarea").autoResize();
+
     this.centerEl();
   },
 
