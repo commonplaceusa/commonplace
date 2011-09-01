@@ -125,15 +125,24 @@ body
     margin-top: 0
     color: #1d334c
 
-  a 
-    +border-radius(3px)
-    display: block
-    margin-bottom: 5px
-    background-color: #e0e0e0
-    padding: 6px 6px 6px 37px
-    line-height: 25px
-    text-decoration: none
-    color: #333
+  ul
+    overflow-y: auto
+    height: 416px
+    
+    a
+      text-decoration: none
+      color: #333
+
+    li
+      +border-radius(3px)
+      display: block
+      margin-bottom: 5px
+      background-color: #e0e0e0
+      padding: 6px 6px 6px 37px
+      line-height: 25px
+
+    li.current, li:hover
+      background-color: #fff
 
     img.avatar
       vertical-align: top
@@ -141,12 +150,6 @@ body
       float: left
       margin-left: -31px
       display: block
-  
-  a.current
-    background-color: #fff
-
-  a:hover
-    background-color: #fff
 
 
 #feed-actions
