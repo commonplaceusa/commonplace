@@ -69,6 +69,7 @@ javascripts:
     - public/javascripts/jquery/mustache.js
     - public/javascripts/jquery/json2.js
     - public/javascripts/jquery/backbone.js
+    - public/javascripts/jquery/jquery.autoresize.min.js
     - public/javascripts/lib.js
     - public/feed_page/*.js
 
