@@ -96,6 +96,7 @@ end
           user.emails_sent += 1
           user.save
           Resque.enqueue(PostNotification, post.id, user.id)
+        end
       end
       serialize(post)
     else
