@@ -37,7 +37,7 @@ Commonplace::Application.routes.draw do
 
   resource :user_session
 
-  resources :feeds, :only => [:show, :new, :create, :edit, :update] do
+  resources :feeds, :only => [:show, :new, :create, :edit, :update, :destroy] do
     member do
       get :import
       get :profile
