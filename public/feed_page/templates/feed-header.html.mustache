@@ -1,8 +1,14 @@
 <h1>{{#feed}}{{name}}{{/feed}}</h1>
 
-{{#isSubscribed}}
-<a href="#" class="unsubscribe">UNSUBSCRIBE</a>
-{{/isSubscribed}}
-{{^isSubscribed}}
-  <a href="#" class="subscribe">SUBSCRIBE</a>
-{{/isSubscribed}}
+{{#isOwner}}
+  <a href="{{editURL}}" class="edit">EDIT FEED PROFILE</a>
+{{/isOwner}}
+
+{{^isOwner}}
+  {{#isSubscribed}}
+    <a href="#" class="unsubscribe">UNSUBSCRIBE</a>
+  {{/isSubscribed}}
+  {{^isSubscribed}}
+    <a href="#" class="subscribe">SUBSCRIBE</a>
+  {{/isSubscribed}}
+{{/isOwner}}
