@@ -77,6 +77,17 @@ var FeedHeaderView = Backbone.View.extend({
     return _.include(this.account.feed_subscriptions, this.feed.id);
   },
 
+  isOwner: function() {
+    var feed = this.feed;
+    return _.any(this.account.accounts, function(account) {
+      return account.uid === "feed_" + feed.id;
+    });
+  },
+
+  editURL: function() {
+    return this.feed.links.edit;
+  },
+
   subscribe: function(e) {
     var self = this;
     e.preventDefault();
