@@ -1,7 +1,12 @@
+
 <h1>Recommended Feeds</h1>
-{{#feeds}}
-  <a href="#/feeds/{{slug}}" class="{{#isCurrent}}current{{/isCurrent}}">
-    <img src="{{avatar_url}}" class="avatar" width="25" height="25">
-    {{name}}
-  </a>
-{{/feeds}}
+<ul>
+  {{#feeds}}
+    <li class="{{#isCurrent}}current{{/isCurrent}}">
+      <a href="#/feeds/{{slug}}">
+        <img src="{{avatar_url}}" class="avatar" width="25" height="25">
+        {{name}}
+      </a>
+    </li>
+  {{/feeds}}
+</ul>
