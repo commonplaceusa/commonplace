@@ -90,13 +90,16 @@ end
                     :subject => request_body['title'],
                     :body => request_body['body'])
     if post.save
-      current_account.neighborhood.users.receives_posts_live.each do |user|
+      current_account.neighborhood.users.receives_posts_live_limited.each do |user|
         # This isn't working in the mailer itself...
         if user.emails_sent < 3 and post.user != user
           user.emails_sent += 1
           user.save
           Resque.enqueue(PostNotification, post.id, user.id)
         end
+      end
+      current_account.neighborhood.users.receives_posts_live.each do |user|
+        Resque.enqueue(PostNotification, post.id, user.id) if post.user != user
       end
       serialize(post)
     else

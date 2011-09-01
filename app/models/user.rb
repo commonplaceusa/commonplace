@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   include Geokit::Geocoders
 
   def self.post_receive_options
-    ["Live", "Daily", "Never"]
+    ["Live", "Three a Day", "Daily", "Never"]
   end
   
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
@@ -168,6 +168,8 @@ class User < ActiveRecord::Base
   scope :receives_daily_digest, :conditions => {:post_receive_method => "Daily"}
 
   scope :receives_posts_live, :conditions => {:post_receive_method => "Live"}
+
+  scope :receives_posts_live_limited, :conditions => {:post_receive_method => "Three a Day"}
 
 
   def inbox
