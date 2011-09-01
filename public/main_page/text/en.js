@@ -1,7 +1,7 @@
 CommonPlace.text = CommonPlace.text || {};
 CommonPlace.text.en = { 
   "eventinfo": {
-    "h2": "Community Event",
+    "h2": "Community Event"
   },
   "replies": {},
   "edit_post_form": {},
@@ -93,7 +93,7 @@ CommonPlace.text.en = {
   },
   "event_form": {
     "h2": "Post an event to your community"
-  },
+  }
 
   
 };
