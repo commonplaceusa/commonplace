@@ -50,16 +50,30 @@ class FeedsController < CommunitiesController
   end
 
   def new
-    render :layout => 'application'
+    render :layout => "feed_registration"
   end
 
   def create
     @feed = current_community.feeds.new(params[:feed])
     @feed.user = current_user
     if @feed.save
+      redirect_to new_profile_feed_url(@feed)
+    else
+      render :new, :layout => "feed_registration"
+    end
+  end
+
+  def new_profile
+    @feed = Feed.find(params[:id])
+    render :layout => "feed_registration"
+  end
+
+  def create_profile
+    @feed = Feed.find(params[:id])
+    if @feed.update_attributes(params[:feed])
       redirect_to "/pages/#{@feed.slug.blank? ? @feed.id : @feed.slug}"
     else
-      render :new, :layout => 'application'
+      render :new_profile, :layout => "feed_registration"
     end
   end
 
