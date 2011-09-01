@@ -75,5 +75,15 @@ class PostNotification < MailBase
   def tag
     'post'
   end
+
+  def deliver?
+    if @user.emails_sent < 2
+      @user.emails_sent += 1
+      @user.save
+      return true
+    else
+      return false
+    end
+  end
   
 end
