@@ -4,4 +4,131 @@
 
 body
   font-family: Rockwell,Georgia,Times,"Times New Roman",serif
+  background-image: url('/images/neighborhood-bg.png')
+  background-repeat: repeat-x
+  background-position-y: 100%
   background-color: #cee7fe
+
+#wrapper
+  #main
+    margin: auto auto 150px
+    position: relative
+    z-index: 1000
+    width: 1000px
+
+    h1
+      font-size: 50px
+      color: #1b334a
+      padding: 18px 0px 
+      font-weight: bold
+      text-align: center
+      margin: 30px auto auto
+      line-height: 1.2
+      +text-shadow(#bfc8cf, 1px, 1px, 1px)
+      background: url('/images/learn_more/plane.png') no-repeat 138px
+
+    #smallbanner
+      font-size: 22px
+      color: #ac322f
+      +text-shadow(none)
+
+    h2
+      font-size: 24px
+      text-align: center
+      clear: both
+      color: #1b334a
+      font-weight: bold
+      margin: 40px auto 40px
+      +text-shadow(#fff, 1px, 1px, 1px)
+
+    li
+      display: block
+      margin: 40px auto 0
+      width: 700px
+      font-size: 15px
+
+      h3
+        color: #ac322f
+        font-size: 22px
+        padding-bottom: 15px
+        font-weight: bold
+        +text-shadow(#fff, 1px, 1px, 1px)
+
+      p
+        width: 350px
+        line-height: 1.2
+        color: #1b334a
+        padding-bottom: 20px
+
+      a 
+        color: #ac322f
+        text-decoration: none
+
+      li
+        width: 320px
+        +starBullet
+        padding-left: 30px 
+        color: #1b334a
+        margin-bottom: 5px
+
+      img
+        float: right
+        position: relative
+        border: 12px solid #fff
+        +border-radius(5px)
+        +single-box-shadow(#c3dbf3, -5px, 5px, 0, 0, false)
+
+    #testimonial
+      background-color: #fff
+      font-family: Georgia,Times,"Times New Roman",serif
+      font-weight: light
+      margin: 30px auto
+      width: 700px
+      display: block
+      border: 12px solid #fff
+      +border-radius(5px)
+      +single-box-shadow(#c3dbf3, -5px, 5px, 0, 0, false)
+      color: #242424
+      position: relative
+
+      iframe
+        float: left
+        position: relative
+        width: 330px
+        height: 215px
+        margin: 0 15px 0 0
+  
+      h3
+        font-size: 33px
+        color: #1b334a
+        margin: 0 auto 10px
+
+      blockquote
+        font-size: 25px
+        color: #242424
+        margin: 0 auto 20px
+
+      p
+        font-family: Helvetica, sans-serif
+        margin: 10px auto 15px
+        line-height: 1.3
+        font-size: 15px
+        
+
+      #more
+        font-size: 12px
+        font-family: Helvetica, sans-serif
+        color: #ac322f
+        position: absolute
+        bottom: 0
+        right: 0
+        align: right
+
+      #author
+        font-size: 12px
+        font-family: Helvetica, sans-serif
+        color: #1b334a
+        position: absolute
+        bottom: 0
+        right: 0
+        align: right

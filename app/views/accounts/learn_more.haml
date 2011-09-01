@@ -21,13 +21,92 @@
   %body
 
   #wrapper
-    = render 'layouts/registration_header', :user_session => current_user_session
+    = render 'layouts/registration_header'
 
     #main
       
+      %h1
+        #smallbanner Learn more about
+        CommonPlace
 
-      = image_tag "learn_more/plane.png"
-      
+      %h2 How CommonPlace Works
+
+      %ul
+        %li
+          %img{:src => "http://home.vicnet.net.au/~hmwkhelp/images/volcano2.jpg", :width => 300, :height => 210}
+
+          %h3 1. Sign Up
+          
+          %p= t ".signup1"
+
+          %p= t ".signup2"
+
+          %div{:style => "clear: both;"}
+
+        %li
+          %img{:src => "http://home.vicnet.net.au/~hmwkhelp/images/volcano2.jpg", :width => 300, :height => 210}
+
+          %h3 2. Recieve Community Bulletins
+
+          %p= t ".bulletins1"
+
+          %p= t ".bulletins2"
+ 
+          %div{:style => "clear: both;"}
+
+        %li 
+          %img{:src => "http://home.vicnet.net.au/~hmwkhelp/images/volcano2.jpg", :width => 300, :height => 210}
+
+          %h3 3. Search the Community
+
+          %p= t ".search1_html", :slug => current_community.slug
+
+          %p= t ".search2"
+
+          %div{:style => "clear: both;"}
+
+        %li 
+          %img{:src => "http://home.vicnet.net.au/~hmwkhelp/images/volcano2.jpg", :width => 300, :height => 210}
+
+          %h3 4. Post to the Neighborhood
+
+          %p= t ".post1"
+  
+          %ul
+            %li= t ".post2"
+            %li= t ".post3"
+            %li= t ".post4"
+            %li= t ".post5"
+
+          %div{:style => "clear: both;"}
+
+
+      %h2 Press and Local Testimonials
+
+      #testimonial
+        %h3 Neighbors now have a common online community bulletin board
+        %p #{current_community.name} - Neighbors in #{current_community.name} now have a new way to connect with their neighbors and local leaders, thanks to two college students at Harvard University. CommonPlace is an online bulletin board that allows members to post questions, event information, requests and announcements for their neighbors.
+        #more READ MORE...
+        %div{:style => "clear: both;"}
+
+      #testimonial
+        <iframe width="330" height="215" src="http://www.youtube.com/embed/nf670orHKcA" frameborder="0" allowfullscreen></iframe>
+        %h3 Local news helps to describe CommonPlace
+        %p Watch this video from Marquette, Michigan. Description using community organizer's name and name of program/TV show.
+        #more VIEW MORE...
+        %div{:style => "clear: both;"}
+
+      #testimonial
+        %blockquote "I've posted on and responded to Falls Church CommonPlace posts. People attended a community event I promoted. I found work through it. And I scored a free perfect-condition TV from it."
+        #author <strong>- Deborah Roth</strong>, a Falls Church neighbor
+        %div{:style => "clear: both;"}
+
+      #testimonial
+        %h3 In Order to Form a More Perfect Community
+        %p Because community is the heart of Raleigh, and because our neighborhoods are made up of amazing and inspiring neighbors who love their families and want to help each other, it is time we hammer the Internet into a tool that unites rather than divides our communities.
+        %p (A beautiful article about CommonPlace published in <strong>The Raleigh Creative District</strong>)
+        #more READ MORE...
+        %div{:style => "clear: both;"}
 
     #wrapper-footer
 

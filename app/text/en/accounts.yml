@@ -1,5 +1,26 @@
 en:
   accounts:
+      
+    edit:
+      title: Change Settings
+      receive_options:
+        live: "Receive all neighborhood posts by email"
+        three: "Receive three neighborhood posts by email per day"
+        daily: "Only receive neigborhood posts in the daily bulletin"
+        never: "Receive no neighborhood posts"
+
+    learn_more:
+      signup1: "CommonPlace brings your neighbors and civic leaders in %{community} together onto one 'community network' online."
+      signup2: "Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and the mayor."
+      bulletins1: "Each day you'll receive a 'community bulletin' featuring events and announcements written by your neighbors and local leaders. Learn about local events. Find a good mechanic. Join a new biking group."
+      bulletins2: "Whenever something's interesting to you, you can hit 'reply' and start a community conversation."
+      search1_html: "All these community conversations, events, and announcements can always be views at <a href='http://%{slug}.ourcommonplace.com/'>%{community}.OurCommonPlace.com</a>."
+      search2: "CommonPlace centralizes community information. Use it to search for people in your area, find cool local organizations, or locate goods and skills in your neighborhood."
+      post1: "Of course, whenever YOU have a need or announcement, CommonPlace makes it really easy to share it with the people around you."
+      post2: "Ask to borrow a ladder or a power drill"
+      post3: "Publicize a tag sale or block party"
+      post4: "Ask about how to fix a pot hole"
+      post5: "Organize service projects for %{community}"
 
     facebook_wall_post:
         wall_post_content: I just joined CommonPlace so I can connect with my neighbors. You should sign up too!
@@ -42,28 +63,3 @@ en:
           message: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}. You should join too at: www.%{slug}.OurCommonPlace.com."
 
           invitation: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}.  You should join too at: www.%{slug}.OurCommonPlace.com."
-    edit:
-      title: Change Settings
-      receive_options:
-        live: "Receive all neighborhood posts by email"
-        three: "Receive three neighborhood posts by email per day"
-        daily: "Only receive neigborhood posts in the daily bulletin"
-        never: "Receive no neighborhood posts"
-    
-
-    learn_more:
-      title_html: Join CommonPlace to receive important community announcements <br> from your neighbors and local organizations in %{community}. %{sign_up}
-      sign_up: Sign up. 
-      p1: CommonPlace brings your neighborhoods and civic leaders in %{community} together into one "community network" online.
-      p2: Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and mayor.
-      p3: Whenever something's interesting to you, you can hit "reply" and start a community conversation.
-      p4: All these community conversations, events and announcements can always be viewed at %{link}.
-      p5: And of course, whenever YOU have a need or announcement, CommonPlace makes it really easy to share it with the people around you.
-      p6: To post, simply go to&#58; %{community_link}
-      p7: Or email it in at&#58; %{community_email}
-      list:
-        - Ask to borrow a ladder or power drill
-        - Publicize a tag sale or block party
-        - Find people and organizations with shared interests or hobbies around you
-        - Ask about how to fix a pot hole
-        - Organize a service project for %{community}
