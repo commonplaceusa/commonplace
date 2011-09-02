@@ -1,0 +1,19 @@
+%h1 Build your Feed Profile
+
+%ul#registration_information
+
+  %li 
+    Fill out a community feed description so that neighbors can know a bit about your organization and what types of announcements you will be sending out.
+
+= semantic_form_for @feed, :url => create_profile_feed_url(@feed), :method => :put, :html => {:multipart => true} do |f|
+
+  = f.inputs do
+    = f.input :about
+    = f.input :website, :as => :string
+    = f.input :address
+    = f.input :phone, :as => :string
+
+
+  = f.buttons do
+    = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue2.png"}
+
