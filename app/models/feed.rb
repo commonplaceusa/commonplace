@@ -2,7 +2,6 @@ class Feed < ActiveRecord::Base
   #track_on_creation
 
   validates_presence_of :name, :community
-  validates_presence_of :about, :if => lambda { |f| f.user_id }
   
   validates_attachment_presence :avatar
 
@@ -31,11 +30,13 @@ class Feed < ActiveRecord::Base
     self.subscriptions.all(:conditions => "receive_method = 'Live'").map &:user
   end
 
+  include CroppableAvatar
   has_attached_file(:avatar,                    
                     { :styles => { 
-                        :thumb => "100x100#", 
-                        :normal => "120x120#",
-                        :large => "200x200#"
+                        :thumb => {:geometry => "100x100", :processors => [:cropper]},
+                        :normal => {:geometry => "120x120", :processors => [:cropper]},
+                        :large => {:geometry => "200x200", :processors => [:cropper]},
+                        :original => "1000x1000>"
                       },
                       :default_url => "/avatars/missing.png"
                     }.merge(Rails.env.development? || Rails.env.test? ?
