@@ -97,14 +97,14 @@ class FeedsController < CommunitiesController
   end
 
   def edit
-    render :layout => 'application'
+    render :layout => 'feed_registration'
   end
 
   def update
     if @feed.update_attributes(params[:feed])
       redirect_to profile_feed_url(@feed)
     else
-      render :edit, :layout => 'application'
+      render :edit, :layout => 'feed_registration'
     end
   end
   
