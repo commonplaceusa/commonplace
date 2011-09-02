@@ -5,9 +5,6 @@ class User < ActiveRecord::Base
   def self.post_receive_options
     ["Live", "Three", "Daily", "Never"]
   end
-  
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  after_update :reprocess_avatar, :if => :cropping?
 
   acts_as_authentic do |c|
     c.login_field :email
@@ -80,10 +77,6 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
 
-  def cropping?
-    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
-  end
-  
   def after_oauth2_authentication
     json = oauth2_access.get('/me')
     
@@ -132,6 +125,7 @@ class User < ActiveRecord::Base
   
   has_many :people, :through => :mets, :source => "requestee"
 
+  include CroppableAvatar
   has_attached_file(:avatar,                    
                     {:styles => { 
                         :thumb => {:geometry => "100x100", :processors => [:cropper]},
@@ -340,9 +334,6 @@ class User < ActiveRecord::Base
   #handle_asynchronously :solr_index
 
   private
-  def reprocess_avatar
-    avatar.reprocess!
-  end
 
   def is_transitional_user
     transitional_user
