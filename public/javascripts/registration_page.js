@@ -46,11 +46,14 @@ $(function() {
     $("#crop_h").val(coords.h);
   };
 
+  $("form.crop img").load(function() {
+    $("form.crop").css({ width: Math.max($("#cropbox").width(), 420) });
+  });
+
   $("#cropbox").Jcrop({
     onChange: updateCrop,
     onSelect: updateCrop,
-    aspectRatio: 1.0,
-    boxWidth: 600
+    aspectRatio: 1.0
   });
 
   // add feeds and add groups
