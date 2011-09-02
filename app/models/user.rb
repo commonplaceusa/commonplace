@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
                         :thumb => {:geometry => "100x100", :processors => [:cropper]},
                         :normal => {:geometry => "120x120", :processors => [:cropper]},
                         :large => {:geometry => "200x200", :processors => [:cropper]},
-                        :croppable => "400x400>"
+                        :original => "400x400>"
                       },
                       :default_url => "/avatars/missing.png"
                     }.merge(Rails.env.development? || Rails.env.test? ? 
