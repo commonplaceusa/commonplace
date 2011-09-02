@@ -46,6 +46,8 @@ Commonplace::Application.routes.draw do
       put :update_owner
       get :new_profile
       put :create_profile
+      get :crop
+      put :update_crop
     end
     resource :subscription, :only => [:create, :destroy]
     resource :invites, :controller => 'feeds/invites', :only => [:new, :create]
