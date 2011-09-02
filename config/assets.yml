@@ -33,7 +33,7 @@ stylesheets:
     - public/stylesheets/feed_page.css
 
   new_feed_page:
-    - public/stylesheets/new_feed_page.css
+    - public/stylesheets/feed_registration.css
 
   registration:
     - public/stylesheets/registration_page.css
