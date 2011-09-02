@@ -11,6 +11,7 @@ CommonPlace.Tour = Backbone.View.extend({
     "click a.wire-tour" : "wire",
     "click a.end-tour" : "end",
     "click a.profile-tour" : "profile",
+    "click a.feed-tour" : "feed",
     "click a.post-tour" : "post",
     "click #tour-shadow" : "end",
     "click #community-profiles, #whats-happening, #say-something" : "end"
@@ -43,6 +44,13 @@ CommonPlace.Tour = Backbone.View.extend({
     this.$("#tour").html(CommonPlace.render("profile_tour")).attr('class','profile');
     this.raise("#community-profiles");
     $.scrollTo(250, 700);
+  },
+
+  feed: function() {
+    this.cleanUp();
+    this.$("#tour").html(CommonPlace.render("feed_tour")).attr('class', 'feed');
+    this.raise("#header");
+    $.scrollTo(0, 0); // sjumoe
   },
 
   post: function() {

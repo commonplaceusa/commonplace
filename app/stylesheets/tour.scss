@@ -79,6 +79,18 @@ $darkBlue: #1b334a ;
     background: transparent url('/images/tour/reverse-small-tour-bg.png') no-repeat;
     p { font-size: 15px; line-height: 1.2; }
 
+    a.feed-tour { display: block ; margin: 20px auto ; 
+                  background: url('/images/tour/next-button.png') no-repeat ;
+                  height: 36px ; width: 123px ; cursor: pointer ;
+                }
+}
+
+#tour.feed {
+    top: -30px; left: 486px;
+    width: 390px ; height: 236px ; padding: 60px 50px 50px 60px ;
+    background: transparent url('/images/tour/up-tour-bg.png') no-repeat;
+    p { font-size: 15px; line-height: 1.2; }
+
     a.post-tour { display: block ; margin: 20px auto ; 
                   background: url('/images/tour/next-button.png') no-repeat ;
                   height: 36px ; width: 123px ; cursor: pointer ;

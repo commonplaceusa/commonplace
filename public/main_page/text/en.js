@@ -1,7 +1,7 @@
 CommonPlace.text = CommonPlace.text || {};
 CommonPlace.text.en = { 
   "eventinfo": {
-    "h2": "Community Event",
+    "h2": "Community Event"
   },
   "replies": {},
   "edit_post_form": {},
@@ -94,6 +94,9 @@ CommonPlace.text.en = {
   "event_form": {
     "h2": "Post an event to your community"
   },
+  "feed_tour": {
+    "p1": "Are you the leader of a community organization, business or municipal entity? Register a community feed so that you send out announcements and events as your organization.  It is a great way for neighbors to stay in touch with your organization: those who subscribe to your community feed get emailed every time you send out an update!"
+  }
 
   
 };

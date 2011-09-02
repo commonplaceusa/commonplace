@@ -133,17 +133,6 @@ class AccountsController < ApplicationController
   def update_crop
     authorize! :update, User
 
-    wratio = current_user.avatar_geometry(:original).width / 
-      current_user.avatar_geometry(:croppable).width
-
-    hratio = current_user.avatar_geometry(:original).height / 
-      current_user.avatar_geometry(:croppable).height
-
-    params[:user][:crop_x] *= wratio
-    params[:user][:crop_y] *= hratio
-    params[:user][:crop_w] *= wratio
-    params[:user][:crop_h] *= hratio
-
     current_user.attributes = params[:user]
     if current_user.save
       redirect_to :action => "add_feeds"

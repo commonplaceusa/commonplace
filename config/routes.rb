@@ -37,13 +37,17 @@ Commonplace::Application.routes.draw do
 
   resource :user_session
 
-  resources :feeds, :only => [:show, :new, :create, :edit, :update] do
+  resources :feeds, :only => [:show, :new, :create, :edit, :update, :destroy] do
     member do
       get :import
       get :profile
       get :delete
       get :edit_owner
       put :update_owner
+      get :new_profile
+      put :create_profile
+      get :crop
+      put :update_crop
     end
     resource :subscription, :only => [:create, :destroy]
     resource :invites, :controller => 'feeds/invites', :only => [:new, :create]

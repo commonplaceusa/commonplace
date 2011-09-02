@@ -32,6 +32,9 @@ stylesheets:
   feed_page:
     - public/stylesheets/feed_page.css
 
+  new_feed_page:
+    - public/stylesheets/feed_registration.css
+
   registration:
     - public/stylesheets/registration_page.css
 
@@ -69,11 +72,17 @@ javascripts:
     - public/javascripts/jquery/mustache.js
     - public/javascripts/jquery/json2.js
     - public/javascripts/jquery/backbone.js
+    - public/javascripts/jquery/jquery.autoresize.min.js
     - public/javascripts/lib.js
     - public/feed_page/*.js
 
   feed_page_templates:
     - public/feed_page/templates/*.html.mustache
+
+  feed_registration_page:
+    - public/vendor/jquery-1.6.1.js
+    - public/javascripts/jquery/jquery.Jcrop.min.js
+    - public/javascripts/feed_registration.js
 
   jquery:
     - public/javascripts/jquery-1.6.1.js
