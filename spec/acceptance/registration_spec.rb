@@ -12,7 +12,7 @@ feature "Registration", %q{
     neighborhood = Factory(:neighborhood, :community => community, 
                            :coordinates => Forgery(:latlng).random)
 
-    stub_geocoder("100 Example Way", 
+    stub_geocoder("100 Example Way, #{@community.name}", 
                   :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
     Capybara.app_host = "http://localhost:#{Capybara.server_port}"
 
@@ -22,7 +22,7 @@ feature "Registration", %q{
   scenario "landing page includes important actions" do
     page.should have_content("Sign in")
     page.should have_selector("form#new_user")
-    page.should have_link("Click here to learn more.", :href => "/#{@community.slug}/learn_more")
+    page.should have_link("Learn more", :href => "/#{@community.slug}/learn_more")
   end
 
   scenario "register" do
