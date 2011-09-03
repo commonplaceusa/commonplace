@@ -11,7 +11,7 @@ feature "Logging in", %q{
     neighborhood = Factory(:neighborhood, :community => community, 
             :coordinates => Forgery(:latlng).random)
 
-    stub_geocoder("100 Example Way", 
+    stub_geocoder("100 Example Way, #{community.name}", 
                   :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
 
     Factory(:user, :email => "test@example.com", :password => "password",
