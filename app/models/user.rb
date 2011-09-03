@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /^([^\s]+)umw\.edu/, :if => :college?
 
   def college?
-    self.community.is_college
+    self.community and self.community.is_college
   end
 
   validates_presence_of :first_name, :last_name
@@ -323,15 +323,17 @@ class User < ActiveRecord::Base
     post_ids.uniq
   end
 
-  searchable do
-    string :first_name
-    string :last_name
-    string :about
-    string :interest_list
-    string :offer_list
-    string :address
+  unless Rails.env.test?
+    searchable do
+      string :first_name
+      string :last_name
+      string :about
+      string :interest_list
+      string :offer_list
+      string :address
+    end
+    #handle_asynchronously :solr_index
   end
-  #handle_asynchronously :solr_index
 
   private
 

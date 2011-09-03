@@ -32,3 +32,8 @@ class RSSImporter
     RSSAnnouncement.record_timestamps = true
   end
 end
+
+# Hack.
+class RssImporter < RSSImporter
+
+end

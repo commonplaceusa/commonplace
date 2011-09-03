@@ -3,6 +3,7 @@ require 'spec_helper'
 describe AccountsController do
   before :each do
     stub(Community).find_by_slug { mock_model(Community, :name => "test", :slug => "test",  :time_zone => "Eastern Time (US & Canada)") }
+    stub(User).email { "#{Forgery(:name).last_name@example.com}".downcase }
 
   end
 
@@ -18,7 +19,7 @@ describe AccountsController do
       before(:each) { stub(user).save { true } }
       
       it "redirects to edit new" do
-        post :create, :community => "test"
+        post :create
         response.should redirect_to('http://test.host/account/edit_new')
       end
 
