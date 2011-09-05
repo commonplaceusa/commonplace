@@ -2,65 +2,86 @@ CommonPlace.render = function(name, params) {
   return Mustache.to_html(CommonPlace.templates[name], params,CommonPlace.templates);
 };
 
-
-var FeedPageRouter = Backbone.Controller.extend({
+var FeedPageRouter = Backbone.Router.extend({
 
   routes: {
     "/feeds/:slug": "show"
   },
 
   initialize: function(options) {
+    var self = this;
     this.account = options.account;
     this.community = options.community;
+    this.feedsList = new FeedsListView({ collection: options.feeds, el: $("#feeds-list") })
+    this.feedsList.render();
     this.show(options.feed);
   },
 
   show: function(slug) {
     var self = this;
-    $.getJSON("/api/feeds/" + slug, function(feed) {
-
-      document.title = feed.name;
-
-      var resourceNav, resourceView, feedActionsView;
-      new FeedProfileView({ model: feed, el: $("#feed-profile")}).render();
-      
-      new FeedAboutView({ feed: feed, el: $("#feed-about") }).render();
-      new FeedHeaderView({ feed: feed, account: self.account, el: $("#feed-header") }).render();
-
-      resourceView = new FeedSubResourcesView({ feed: feed, el: $("#feed-subresources") }).render();
-      
-      resourceNav = new FeedNavView({ model: feed, el: $("#feed-nav") }).render();
-      
-      $.getJSON("/api" + self.community.links.groups, function(groups) {
-        feedActionsView = new FeedActionsView({ el: $("#feed-actions"), 
-                                                feed: feed, 
-                                                groups: groups,
-                                                account: self.account,
-                                                community: self.community
-                                              }).render();
-
-        feedActionsView.bind("announcement:created", function() { resourceView.switchTab("announcements"); });
-
-        feedActionsView.bind("event:created", function() { resourceView.switchTab("events"); });
-
-      });
-      
-
-
-  
-      resourceNav.bind("switchTab", function(tab) { resourceView.switchTab(tab); });
-
-      $.getJSON("/api" + self.community.links.feeds, function(feeds) {
-        new FeedsListView({ model: feed, collection: feeds, el: $("#feeds-list") }).render();
+    $.getJSON("/api" + this.community.links.groups, function(groups) {
+      self.feedsList.select(slug);
+      $.getJSON("/api/feeds/" + slug, function(response) {
+        var feed = new Feed(response);
+        
+        document.title = feed.get('name');
+        
+        var feedView = new FeedView({ model: feed, community: self.community, account: self.account, groups: groups });
+        window.currentFeedView = feedView;
+        feedView.render();
+        
+        $("#feed").replaceWith(feedView.el);
       });
     });
   }
 });
 
-var FeedHeaderView = Backbone.View.extend({
+var FeedView = CommonPlace.View.extend({
+  template: "feed_page/feed",
+  id: "feed",
+  initialize: function(options) {
+    var self = this;
+    this.community = options.community;
+    this.account = options.account;
+    this.groups = options.groups;
+    var feed = this.model;
+    var resourceNav, resource, actions, profile, about, header;
+
+    profile = new FeedProfileView({ model: feed });
+    about = new FeedAboutView({ model: feed });
+    header = new FeedHeaderView({ model: feed, account: self.account });
+    resource = new FeedSubResourcesView({ feed: feed });
+    resourceNav = resourceNav = new FeedNavView({ model: feed });
+    actions = feedActionsView = new FeedActionsView({ feed: feed, 
+                                                      groups: this.groups,
+                                                      account: self.account,
+                                                      community: self.community
+                                                    });
+
+    resourceNav.bind("switchTab", function(tab) { resource.switchTab(tab);});
+
+    this.subViews = [profile, about, header, resource, resourceNav, actions];
+  },
+
+  afterRender: function() {
+    var self = this;
+    _(this.subViews).each(function(view) { 
+      view.render();
+      self.$("#" + view.id).replaceWith(view.el);
+    });
+  },
+
+  isOwner: function() {
+    return this.account.isFeedOwner(this.model);
+  }
+
+});
+
+var FeedHeaderView = CommonPlace.View.extend({
+  template: "feed_page/feed-header",
+  id: "feed-header",
   initialize: function(options) { 
     this.account = options.account; 
-    this.feed = options.feed; 
   },
 
   events: {
@@ -68,79 +89,57 @@ var FeedHeaderView = Backbone.View.extend({
     "click a.unsubscribe": "unsubscribe"
   },
 
-  render: function() {
-    $(this.el).html(CommonPlace.render("feed-header", this));
-    return this;
-  },
-
   isSubscribed: function() {
-    return _.include(this.account.feed_subscriptions, this.feed.id);
+    return this.account.isSubscribedToFeed(this.model);
   },
 
   isOwner: function() {
-    var feed = this.feed;
-    return _.any(this.account.accounts, function(account) {
-      return account.uid === "feed_" + feed.id;
-    });
+    return this.account.isFeedOwner(this.model);
   },
 
   editURL: function() {
-    return this.feed.links.edit;
+    return "/feeds/" + this.model.id + "/edit";
   },
 
   subscribe: function(e) {
     var self = this;
     e.preventDefault();
-    $.ajax({
-      contentType: "application/json",
-      url: "/api" + this.account.links.feed_subscriptions,
-      data: JSON.stringify({ id: this.feed.id }),
-      type: "post",
-      dataType: "json",
-      success: function(account) { 
-        self.account = account;
-        self.render();
-      }
-    });
+    this.account.subscribeToFeed(this.model, function() { self.render(); });
   },
   
   unsubscribe: function(e) {
     var self = this;
     e.preventDefault();
-    $.ajax({
-      contentType: "application/json",
-      url: "/api" + this.account.links.feed_subscriptions + '/' + this.feed.id,
-      type: "delete",
-      dataType: "json",
-      success: function(account) { 
-        self.account = account;
-        self.render();
-      }
-    });
-  }
+    this.account.unsubscribeFromFeed(this.model, function() { self.render(); });
+  },
+
+  feedName: function() { return this.model.get('name'); }
      
 });
 
-var FeedProfileView = Backbone.View.extend({
+var FeedProfileView = CommonPlace.View.extend({
+  template: "feed_page/feed-profile",
+  id: "feed-profile",
   
   events: {
     "click button.send-message": "openMessageModal"
   },
   
-  render: function() {
-    $(this.el).html(CommonPlace.render("feed-profile", this.model));
-    return this;
-  },
-
   openMessageModal: function() {
     var view = new FeedMessageFormView({ feed: this.model });
     view.render();
     return this;
-  }
+  },
+
+  avatarSrc: function() { return this.model.get("links").avatar.large; },
+  address: function() { return this.model.get("address"); },
+  phone: function() { return this.model.get("phone"); },
+  website: function() { return this.model.get("website"); }
   
 });
 
-var FeedMessageFormView = Backbone.View.extend({
+var FeedMessageFormView = CommonPlace.View.extend({
+  template: "feed_page/feed-message-form",
   className: "feed-message-modal",
 
   events: {
@@ -148,23 +147,20 @@ var FeedMessageFormView = Backbone.View.extend({
     "submit form": "send"
   },
   
-  initialize: function(options) { this.feed = this.options.feed; },
-  
-  render: function() {
+  initialize: function(options) {
     var self = this;
-    var $container = $("body");
+    this.feed = this.options.feed; 
+    this.$container = $("body");
     this.$shadow = $("<div/>", { 
       id: "modal-shadow",
       click: function() { self.exit(); }
     });
+  },
 
-    $(this.el).html(CommonPlace.render("feed-message-form", this));
-
-    $container.append(this.el);
-    $container.append(this.$shadow);
-
+  afterRender: function() {
+    this.$container.append(this.el);
+    this.$container.append(this.$shadow);
     this.$("textarea").autoResize();
-
     this.centerEl();
   },
 
@@ -202,30 +198,29 @@ var FeedMessageFormView = Backbone.View.extend({
   }
 });
 
-var FeedsListView = Backbone.View.extend({
-  render: function() {
-    var self = this;
-    $(this.el).html(CommonPlace.render("feeds-list", { 
-      feeds: _(this.collection).map(function(feed) {
-        return _(feed).extend({ isCurrent: feed['id'] == self.model['id'] });
-      })
-    }));
-    return this;
+var FeedsListView = CommonPlace.View.extend({
+  template: "feed_page/feeds-list",
+
+  feeds: function() {
+    return this.collection;
+  },
+
+  select: function(slug) {
+    this.$("li").removeClass("current");
+    this.$("li[data-feed-slug=" + slug + "]").addClass("current");
   }
+
 });
 
-var FeedNavView = Backbone.View.extend({
+var FeedNavView = CommonPlace.View.extend({
+  template: "feed_page/feed-nav",
+  id: "feed-nav",
   events: {
     "click a": "navigate"
   },
 
   initialize: function(options) {
-    this.current = options.current || "announcements";
-  },
-  
-  render: function() {
-    $(this.el).html(CommonPlace.render("feed-nav", this));
-    return this;
+    this.current = options.current || "showAnnouncements";
   },
   
   navigate: function(e) {
@@ -243,7 +238,9 @@ var FeedNavView = Backbone.View.extend({
   }
 });
 
-var FeedActionsView = Backbone.View.extend({
+var FeedActionsView = CommonPlace.View.extend({
+  id: "feed-actions",
+  template: "feed_page/feed-actions",
   events: {
     "click #feed-action-nav a": "navigate",
     "submit .post-announcement form": "postAnnouncement",
@@ -258,17 +255,12 @@ var FeedActionsView = Backbone.View.extend({
     this.account = options.account;
     this.community = options.community;
     this.postAnnouncementClass = "current";
-    _.extend(this, this.feed);
   },
   
-  render: function() {
-    $(this.el).html(CommonPlace.render("feed-actions", this));
+  afterRender: function() {
     $("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
     $('input[placeholder], textarea[placeholder]').placeholder();
-
     this.$("textarea").autoResize();
-
-    return this;
   },
 
   navigate: function(e) {
@@ -286,43 +278,35 @@ var FeedActionsView = Backbone.View.extend({
     var $form = $(e.target);
     var self = this;
     e.preventDefault();
-    $.ajax({
-      contentType: "application/json",
-      url: "/api" + this.feed.links.announcements,
-      data: JSON.stringify({ title:  $("[name=title]", $form).val(),
-                             body:   $("[name=body]", $form).val(),
-                             groups: $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
-                           }),
-      type: "post",
-      dataType: "json",
-      success: function() { 
-        self.trigger("announcement:created"); self.render();
-      }
-
-    });
+    this.feed.announcements.create(
+      { title: $("[name=title]", $form).val(),
+        body: $("[name=body]", $form).val(),
+        groups: $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
+      }, {
+        success: function() { self.render(); }
+      });
   },
 
   postEvent: function(e) {
     var self = this;
     var $form = $(e.target);
     e.preventDefault();
-    $.ajax({
-      contentType: "application/json",
-      url: "/api" + this.feed.links.events,
-      data: JSON.stringify({ title:   $("[name=title]", $form).val(),
-                             about:   $("[name=about]", $form).val(),
-                             date:    $("[name=date]", $form).val(),
-                             start:   $("[name=start]", $form).val(),
-                             end:     $("[name=end]", $form).val(),
-                             venue:   $("[name=venue]", $form).val(),
-                             address: $("[name=address]", $form).val(),
-                             tags:    $("[name=tags]", $form).val(),
-                             groups:  $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
-                           }),
-      type: "post",
-      dataType: "json",
-      success: function() { self.trigger("event:created"); self.render(); }});
+    this.feed.events.create(
+      { title:   $("[name=title]", $form).val(),
+        about:   $("[name=about]", $form).val(),
+        date:    $("[name=date]", $form).val(),
+        start:   $("[name=start]", $form).val(),
+        end:     $("[name=end]", $form).val(),
+        venue:   $("[name=venue]", $form).val(),
+        address: $("[name=address]", $form).val(),
+        tags:    $("[name=tags]", $form).val(),
+        groups:  $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
+      }, {
+        success: function() { self.render(); }
+      });
   },
+
+  avatarUrl: function() { return this.feed.get('links').avatar.thumb; },
 
 
   time_values: _.flatten(_.map(["AM", "PM"],
@@ -350,54 +334,55 @@ var FeedActionsView = Backbone.View.extend({
           type: "post",
           dataType: "json",
           success: function() { self.render(); }});
-  },
-
-  isFeedOwner: function() {
-    var self = this;
-    return _.any(this.account.accounts, function(account) {
-      return account.uid === "feed_" + self.id;
-    });
   }
-  
+
 });
 
-var FeedSubResourcesView = Backbone.View.extend({
+var FeedSubResourcesView = CommonPlace.View.extend({
+  template: "feed_page/feed-subresources",
+  id: "feed-subresources",
   initialize: function(options) {
     this.feed = options.feed;
-    this.currentTab = options.current || "announcements";
+    this.announcementsCollection = this.feed.announcements;
+    this.eventsCollection = this.feed.events;
+    this.currentTab = options.current || "showAnnouncements";
+    this.feed.events.bind("add", function() { this.switchTab("showEvents"); }, this);
+    this.feed.announcements.bind("add", function() { this.switchTab("showAnnouncements"); }, this);
   },
 
-  render: function() {
-    this.el.html(CommonPlace.render("feed-subresources", this));
+  afterRender: function() {
     this[this.currentTab]();
-    return this;
   },
 
-  announcements: function() {
+  showAnnouncements: function() {
     var self = this;
-    $.getJSON("/api" + this.feed.links.announcements, function(announcements) {
-      _.each(announcements, function(announcement) {
-        var view = new AnnouncementItemView({model: announcement});
-        view.render();
-        self.$(".feed-announcements ul").append(view.el);
-      });
+    this.announcementsCollection.fetch({
+      success: function(announcements) {
+        announcements.each(function(announcement) {
+          var view = new AnnouncementItemView({model: announcement});
+          view.render();
+          self.$(".feed-announcements ul").append(view.el);
+        });
+      }
     });
   },
 
-  events: function() {
+  showEvents: function() {
     var self = this;
-    $.getJSON("/api" + this.feed.links.events, function(events) {
-      _.each(events, function(event) {
-        var view = new EventItemView({model: event});
-        view.render();
-        self.$(".feed-events ul").append(view.el);
-      });
+    this.eventsCollection.fetch({
+      success: function(events) {
+        events.each(function(event) {
+          var view = new EventItemView({model: event});
+          view.render();
+          self.$(".feed-events ul").append(view.el);
+        });
+      }
     });
   },
 
   tabs: function() {
-    return { announcements: this.$(".feed-announcements"),
-             events: this.$(".feed-events") };
+    return { showAnnouncements: this.$(".feed-announcements"),
+             showEvents: this.$(".feed-events") };
   },
 
   classIfCurrent: function() {
@@ -412,71 +397,14 @@ var FeedSubResourcesView = Backbone.View.extend({
     this.currentTab = newTab;
     this.tabs()[this.currentTab].show();
     this.render();
-  }
+  },
+
+  feedName: function() { return this.feed.get('name'); }
 });
 
-var AnnouncementItemView = Backbone.View.extend({
-  tagName: "li",
-  initialize: function(options) { 
-    _.extend(this, this.model);
-  },
-  
-  render: function() {
-    $(this.el).html(CommonPlace.render("announcement-item", this));
-  },
-
-  publishedAt: function() {
-    return CommonPlace.timeAgoInWords(this.published_at);
-  },
-
-  replyCount: function() {
-    return this.replies.length;
-  }
-  
-});
-
-var EventItemView = Backbone.View.extend({
-  tagName: "li",
-
-  initialize: function(options) {
-    _.extend(this, this.model);
-  },
-
-  render: function() {
-    $(this.el).html(CommonPlace.render("event-item", this));
-  },
-
-  
-
-  short_month_name: function() { 
-    var m = this["occurs_on"].match(/(\d{4})-(\d{2})-(\d{2})/);
-    return this.monthAbbrevs[m[2] - 1];
-  },
-
-  day_of_month: function() { 
-    var m = this["occurs_on"].match(/(\d{4})-(\d{2})-(\d{2})/);
-    return m[3]; 
-  },
-
-  publishedAt: function() {
-    return CommonPlace.timeAgoInWords(this.published_at);
-  },
-
-  replyCount: function() {
-    return this.replies.length;
-  },
-
-  monthAbbrevs: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                 "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
-
-});
-
-var FeedAboutView = Backbone.View.extend({
-  initialize: function(options) { this.feed = options.feed; },
-
-  render: function() {
-    $(this.el).html(CommonPlace.render("feed-about", this));
-    return this;
-  }
+var FeedAboutView = CommonPlace.View.extend({
+  template: "feed_page/feed-about",
+  id: "feed-about",
+  about: function() { return this.model.get('about'); }
 });
 
