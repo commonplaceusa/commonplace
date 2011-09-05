@@ -30,7 +30,7 @@ Getting Started
 ----
 
 1.  Install and setup Git
-2.  Install RVM, and setup an installation of Ruby (1.9.2 or 1.9.3)
+2.  Install RVM, and setup an installation of Ruby (1.9.2, or 1.9.3 if you want the tests to pass)
 3.  Install Gem
 4.  `git clone git@github.com:commonplaceusa/commonplace.git`
 5.  `cd commonplace`
@@ -38,11 +38,16 @@ Getting Started
 7.  Install Redis
 8.  Install ImageMagick 
 9.  Install Postgres
-10. Install Jetty
-11. `bundle install`
-12. `cp config/database.yml.example config/database.yml`
-13. `bundle exec rake db:setup`
+10. `bundle install`
+11. `cp config/database.yml.example config/database.yml`
+12. `bundle exec rake db:setup`
 
 Run the server with `bundle exec foreman start`
 
 Go to [http://localhost:5000/test](http://localhost:5000/test) and login with test@example.com:password
+
+TDD
+----
+
+It's nice to have reasonable assurrance that you didn't bork something by making a simple change or git merge. That's why we <3 tests. Write them to conform to the spec before you start writing the feature, and write the feature to conform to the tests. Anything going into master should pass all test cases, and all new code should be tested to the hilt.
+
