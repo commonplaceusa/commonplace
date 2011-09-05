@@ -16,19 +16,8 @@
       = render 'layouts/header', :user_session => current_user_session
 
       #main
-        #feed-header
+        #feed
 
-        #left-column
-          #feed-profile
-          #feed-nav
-
-        #center-column
-          #feed-actions
-            
-          #feed-about
-
-          #feed-subresources
-      
         #right-column
           #feeds-list
     
@@ -42,9 +31,11 @@
 
       %script{ :type => "text/javascript" }
         $(function() {
-        $.getJSON("/api/account", function(account) {
-        new FeedPageRouter({ account: account, community: #{Serializer::serialize(current_community).to_json.html_safe}, feed: "#{params[:id]}" });
+        $.getJSON("/api/account", function(account_response) {
+        $.getJSON("/api/communities/#{current_community.id}/feeds", function(feeds) {
+        new FeedPageRouter({ account: new Account(account_response), community: #{Serializer::serialize(current_community).to_json.html_safe}, feed: "#{params[:id]}", feeds: feeds });
         Backbone.history.start();
+        });
         });
         });
 
