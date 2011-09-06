@@ -442,77 +442,149 @@ body
 
   .tab.current
     display: block
+ul.wire
+  background-color: white
 
-  ul 
-    background-color: white
+.wire 
+  li
+    border-top: 1px solid #bebebe
+    padding: 12px 10px 15px 10px
 
+  .title, .author, .body                 
+    margin-left: 62px
+  .body
+    font-family: Helvetica, sans-serif
+    font-size: 0.8em
+    line-height: 1.4
+    color: $textColor
+    p
+      margin-top: 0.8em
+  .title
+    color: $titleColor
+    font-size: 22px
+    margin-bottom: 3px
+    display: block
+    text-decoration: none
+    font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
+  .author
+    font-size: 13px
+    color: $subtitle
+    line-height: 1.2
+    margin-bottom: 5px
+    font-weight: normal
+    font-family: Helvetica, sans-serif
+    
+  .published
+    float: right
+    color: #888
+    font-family: Helvetica, sans-serif
+    font-size: 11px
+    font-weight: normal
+  .avatar
+    float: left
+    width: 50px                           
+    height: 50px
+    display: block 
+    border: 1px solid #aaa
+    +border-radius(5px)                   
+
+  .reply-count 
+    float: left
+    width: 50px
+    margin-top: 5px
+    text-align: center
+    font-size: 10px
+    clear: left
+    font-family: Helvetica, sans-serif
+
+  .avatar.calendar
+    font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
+
+    .month
+      background-color: #ac322f
+      text-align: center
+      color: #fff
+      padding: 3px 0
+      +border-top-radius(3px)
+
+    .day-of-month
+      background-color: #e0e0e0
+      text-align: center
+      padding: 4px 0 8px
+      +border-bottom-radius(3px)
+
+.replies 
+  background-color: #efefef
+  padding: 1px 10px 10px
+  margin-top: 20px
+  position: relative
+
+  .reply-arrow
+    position: absolute
+    top: -10px
+
+  .avatar 
+    float: left
+    width: 30px
+    height: 30px
+    +border-radius(0)
+    border: 0
+
+  .reply-info
+    margin-left: 40px
+
+  .author, .body
+    margin-left: 0
+
+  .author
+    margin-right: 5px
+    float: left
+    margin-bottom: 0
+
+    font-size: 11px
+    color: #B7403C
+    font-weight: bold
+
+  .body
+    font-size: 12px
+    color: #000
+
+  .time
+    color: #555
+    font-size: 11px
+
+  form
+    margin-top: 10px
+
+  textarea 
+    height: 23px
+    width: 330px
+    margin-left: 10px
+
+  input[type=submit]
+    float: right
+    cursor: pointer
+    display: block
+    border: 1px solid #d7615e
+    border-bottom: 1px solid #9a3633
+    padding: 3px 8px 4px
+    +border-radius(5px)
+    background-color: #B53F3C
+    color: #fff
+    +box-shadow(#9A3633 0px 0px 3px)
+    +text-shadow(#9A3633 2px 1px 1px)
+    
+  ul
     li
-      border-top: 1px solid #bebebe
-      padding: 12px 10px 15px 10px
+      margin-top: 10px
+      padding: 0
+      border-top: 0px
+      &:hover
+        background-color: #fafafa
 
-      .title, .author, .body                 
-        margin-left: 62px
-      .body
-        font-family: Helvetica, sans-serif
-        font-size: 0.8em
-        line-height: 1.4
-        color: $textColor
-        p
-          margin-top: 0.8em
-      .title
-        color: $titleColor
-        font-size: 22px
-        margin-bottom: 3px
-        display: block
-        text-decoration: none
-        font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
-      .author
-        font-size: 13px
-        color: $subtitle
-        line-height: 1.2
-        margin-bottom: 5px
-        font-weight: normal
-        font-family: Helvetica, sans-serif
-        
-      .published
-        float: right
-        color: #888
-        font-family: Helvetica, sans-serif
-        font-size: 11px
-        font-weight: normal
-      .avatar
-        float: left
-        width: 50px                           
-        height: 50px
-        display: block 
-        border: 1px solid #aaa
-        +border-radius(5px)                   
-
-      .reply-count 
-        float: left
-        width: 50px
-        margin-top: 5px
-        text-align: center
-        font-size: 10px
-        clear: left
-        font-family: Helvetica, sans-serif
-
-      .avatar.calendar
-        font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
-
-        .month
-          background-color: #ac322f
-          text-align: center
-          color: #fff
-          padding: 3px 0
-          +border-top-radius(3px)
-
-        .day-of-month
-          background-color: #e0e0e0
-          text-align: center
-          padding: 4px 0 8px
-          +border-bottom-radius(3px)
-
+      
+      
+  
 #main
   margin-bottom: 75px
 

@@ -3,10 +3,25 @@ CommonPlace.Model = Backbone.Model.extend({
 });
 
 CommonPlace.Collection = Backbone.Collection.extend({});
+  
+CommonPlace.Repliable = CommonPlace.Model.extend({
+  replies: function() {
+    this._replies = this._replies || 
+      new Replies(_.map(this.get('replies'), 
+                        function (reply) {
+                          return new Reply(reply);
+                        }), 
+                  { repliable: this });
+    return this._replies;
+  }
+});
 
-var Announcement = CommonPlace.Model.extend({});
+  
+var Announcement = CommonPlace.Repliable.extend({});
 
-var Event = CommonPlace.Model.extend({});
+var Event = CommonPlace.Repliable.extend({});
+
+var Reply = CommonPlace.Model.extend({});
 
 var Feed = CommonPlace.Model.extend({
   initialize: function() {
@@ -74,3 +89,8 @@ var Community = CommonPlace.Model.extend({
 
 });
 
+var Replies = CommonPlace.Collection.extend({
+  initialize: function(models, options) { this.repliable = options.repliable },
+  model: Reply,
+  url: function() { return "/api" + this.repliable.get('links').replies; }
+});
