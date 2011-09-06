@@ -56,7 +56,8 @@ module Serializer
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "replies" => serialize(o.replies.to_a),
         "links" => {
-          "replies" => "/events/#{o.id}/replies"
+          "replies" => "/events/#{o.id}/replies",
+          "self" => "/events/#{o.id}"
         }
       }
 
@@ -74,7 +75,8 @@ module Serializer
         "body" => o.body,
         "replies" => serialize(o.replies.to_a),
         "links" => {
-          "replies" => "/announcements/#{o.id}/replies"
+          "replies" => "/announcements/#{o.id}/replies",
+          "self" => "/announcements/#{o.id}"
         } 
       }
 
