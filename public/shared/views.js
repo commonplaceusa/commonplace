@@ -14,7 +14,7 @@ var EventItemView = CommonPlace.View.extend({
   template: "shared/event-item",
   tagName: "li",
 
-  initialize: function(options) { this.account = options.account },
+  initialize: function(options) { this.account = options.account; },
 
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
@@ -53,7 +53,7 @@ var AnnouncementItemView = CommonPlace.View.extend({
   template: "shared/announcement-item",
   tagName: "li",
 
-  initialize: function(options) { this.account = options.account },
+  initialize: function(options) { this.account = options.account; },
 
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
@@ -79,7 +79,7 @@ var AnnouncementItemView = CommonPlace.View.extend({
   
   author: function() { return this.model.get('author'); },
   
-  body: function() { return this.model.get('body'); },
+  body: function() { return this.model.get('body'); }
 
 });
 
