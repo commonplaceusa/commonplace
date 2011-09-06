@@ -50,7 +50,7 @@ var FeedView = CommonPlace.View.extend({
     profile = new FeedProfileView({ model: feed });
     about = new FeedAboutView({ model: feed });
     header = new FeedHeaderView({ model: feed, account: self.account });
-    resource = new FeedSubResourcesView({ feed: feed });
+    resource = new FeedSubResourcesView({ feed: feed, account: self.account });
     resourceNav = resourceNav = new FeedNavView({ model: feed });
     actions = feedActionsView = new FeedActionsView({ feed: feed, 
                                                       groups: this.groups,
@@ -342,6 +342,7 @@ var FeedSubResourcesView = CommonPlace.View.extend({
   template: "feed_page/feed-subresources",
   id: "feed-subresources",
   initialize: function(options) {
+    this.account = options.account;
     this.feed = options.feed;
     this.announcementsCollection = this.feed.announcements;
     this.eventsCollection = this.feed.events;
@@ -359,9 +360,9 @@ var FeedSubResourcesView = CommonPlace.View.extend({
     this.announcementsCollection.fetch({
       success: function(announcements) {
         announcements.each(function(announcement) {
-          var view = new AnnouncementItemView({model: announcement});
+          var view = new AnnouncementItemView({model: announcement, account: self.account});
           view.render();
-          self.$(".feed-announcements ul").append(view.el);
+          self.$(".feed-announcements > ul").append(view.el);
         });
       }
     });
@@ -372,9 +373,9 @@ var FeedSubResourcesView = CommonPlace.View.extend({
     this.eventsCollection.fetch({
       success: function(events) {
         events.each(function(event) {
-          var view = new EventItemView({model: event});
+          var view = new EventItemView({model: event, account: self.account});
           view.render();
-          self.$(".feed-events ul").append(view.el);
+          self.$(".feed-events > ul").append(view.el);
         });
       }
     });

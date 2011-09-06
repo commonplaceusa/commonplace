@@ -54,7 +54,11 @@ module Serializer
         "address" => o.address,
         "user_id" => o.owner_type == "User" ? o.owner_id : nil,
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
-        "replies" => serialize(o.replies.to_a) }
+        "replies" => serialize(o.replies.to_a),
+        "links" => {
+          "replies" => "/events/#{o.id}/replies"
+        }
+      }
 
       when Announcement
         { 
@@ -68,7 +72,11 @@ module Serializer
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "title" => o.subject,
         "body" => o.body,
-        "replies" => serialize(o.replies.to_a) }
+        "replies" => serialize(o.replies.to_a),
+        "links" => {
+          "replies" => "/announcements/#{o.id}/replies"
+        } 
+      }
 
       when GroupPost
         { 

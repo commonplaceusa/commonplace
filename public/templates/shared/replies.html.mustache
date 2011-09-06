@@ -1,0 +1,25 @@
+<img src="/images/reply-arrow-top.png" class="reply-arrow">
+<ul>
+  {{#replies}}
+    <li>
+      <img class="avatar" src="{{authorAvatarUrl}}" height="30" width="30">
+      <div class="reply-info">
+        <div class="reply-text">
+          <span class="author">{{author}}</span>
+          <p class="body">{{body}}</p>
+        </div>
+
+        <span class="time">{{time}}</span>
+      </div>
+
+
+      <div style="clear: both;"></div>
+    </li>
+  {{/replies}}
+</ul>
+
+<form>
+  <img class="avatar" src="{{accountAvatarUrl}}" height="30" width="30">
+  <textarea name="body" placeholder="Write your reply here..."></textarea>
+  <input type="submit" value="Reply">
+</form>
