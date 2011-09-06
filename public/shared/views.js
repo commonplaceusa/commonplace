@@ -1,3 +1,14 @@
+var WireView = CommonPlace.View.extend({
+  className: "wire",
+  template: "shared/wire",
+
+  afterRender: function() {
+    var $ul = this.$("ul.wire-list");
+    _.each(this.collection, function(itemView) { 
+      $ul.append(itemView.render().el);
+    });
+  }
+});
 
 var EventItemView = CommonPlace.View.extend({
   template: "shared/event-item",

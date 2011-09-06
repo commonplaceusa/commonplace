@@ -359,11 +359,14 @@ var FeedSubResourcesView = CommonPlace.View.extend({
     var self = this;
     this.announcementsCollection.fetch({
       success: function(announcements) {
-        announcements.each(function(announcement) {
-          var view = new AnnouncementItemView({model: announcement, account: self.account});
-          view.render();
-          self.$(".feed-announcements > ul").append(view.el);
+        var wireView = new WireView({
+          collection: announcements.map(function(announcement) {
+            return new AnnouncementItemView({ model: announcement, 
+                                              account: self.account });
+          }),
+          el: this.$(".feed-announcements .wire")
         });
+        wireView.render();
       }
     });
   },
@@ -372,11 +375,13 @@ var FeedSubResourcesView = CommonPlace.View.extend({
     var self = this;
     this.eventsCollection.fetch({
       success: function(events) {
-        events.each(function(event) {
-          var view = new EventItemView({model: event, account: self.account});
-          view.render();
-          self.$(".feed-events > ul").append(view.el);
+        var wireView = new WireView({
+          collection: events.map(function(event) {
+            return new EventItemView({model: event, account: self.account});
+          }),
+          el: this.$(".feed-events .wire")
         });
+        wireView.render();
       }
     });
   },
