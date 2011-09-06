@@ -28,8 +28,10 @@ var GroupPageRouter = Backbone.Controller.extend({
       
       new GroupNavView({ model: group, el: $("#group-nav") }).render();
 
+      new GroupPostListView({ el: $("#post-list") }).render();
+
       $.getJSON("/api/communities/1/groups", function(groups) {
-        new GroupsListView({ model: group, collection: groups, el: $("#groups-list") }).render();
+        new GroupsListView({ model: group, collection: groups, el: $("#groups-list"), community: "Nihlists" }).render();
       });
     });
   }
@@ -59,14 +61,23 @@ var NewPostView = Backbone.View.extend({
 });
 
 var GroupsListView = Backbone.View.extend({
+
+  initialize: function(options) {
+    this.community = options.community;
+  },
+
   render: function() {
     var self = this;
-    $(this.el).html(CommonPlace.render("groups-list", { 
-      groups: _(this.collection).map(function(group) {
-        return _(group).extend({ isCurrent: group['id'] == self.model['id'] });
-      })
-    }));
+    $(this.el).html(CommonPlace.render("groups-list", this));
+
     return this;
+  },
+
+  groups: function() {
+    var self = this;
+    return _(this.collection).map(function(group) {
+      return _(group).extend({ isCurrent: group['id'] == self.model['id'] });
+    });
   }
 });
 
@@ -85,6 +96,14 @@ var GroupNavView = Backbone.View.extend({
   membersUrl: function() { return "/groups/" + this.model['id'] + "/members" },
   isCurrentUrl: function(string) { return window.location.hash.slice(1) == string }
   
+});
+
+var GroupPostListView = Backbone.View.extend({
+
+  render: function() {
+    $(this.el).html(CommonPlace.render("post-list", {}));
+    return this;
+  }
 });
 
 

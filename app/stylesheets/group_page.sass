@@ -1,80 +1,34 @@
-
-@import compass/css3/border-radius
-@import compass/css3/box-shadow
-@import compass/css3/text-shadow
+@import core
+@import buttons
+@import header
+@import date_picker
+@import footer
 
 body
   background-color: #eee
   margin: 0
-
-#top
-  background-color: #1b334a
-  border-bottom: 4px solid #fff
-
-
-#header
-  width: 980px
-  margin: auto
-  padding: 15px 0
-
-  #logo
-    color: #ac322f
-    font-family: Rockwell, Helvetica
-    font-size: 25px
-    line-height: 30px
-    text-decoration: none
-
-    img
-      vertical-align: top
-
-  #site-navigation
-    float: right
-    margin-top: 10px
-    a
-      color: #d7e1ea
-      text-decoration: none
-      font-family: Rockwell, Helvetica
-      font-size: 12px
-      padding-left: 20px
-
-#bottom
-  background-color: #1b334a
-  border-top: 4px solid #fff
-  margin-top: 15px
-
-#footer
-  width: 980px 
-  margin: auto
-  font-family: Rockwell, Helvetica
-  color: #36597a
-  text-align: right
-  padding: 15px 0
-  font-size: 12px
-
-  a
-    text-decoration: none
-    color: #648aae
-
-  .copy
-    float: left
 
 #main
   width: 980px
   margin: auto
 
 #group-header
-  font-family: Rockwell, Helvetica
-  margin-top: 25px
-  padding-bottom: 25px
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+  font-weight: bold
+  margin-top: 21px
+  padding-bottom: 1px
 
   h1
-    font-size: 30px
+    color: #262626
+    font-size: 44px
     display: inline
     padding-right: 10px
 
-  a.subscribe
+  a.subscribe,
+  a.unsubscribe,
+  a.edit
     color: #ac322f
-    font-size: 12px
+    font-size: 14px
     text-decoration: none
     font-weight: bold
 
@@ -98,17 +52,19 @@ body
   border: 2px solid #bebebe
   +border-radius(3px)
   +box-shadow(#888 2px 2px 10px)
+  margin-top: 15px
 
   h1
     +border-top-radius(1px)
     margin: 0px
     background-color: #e0e0e0
-    font-family: Rockwell, Helvetica
-    font-size: 14px
+    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+    font-size: 15px
     padding: 5px
     border-bottom: 1px solid #bebebe
     text-align: center
     color: #656565
+    +text-shadow(#fafafa 0 1px 0)
 
   img.avatar
     display: block
@@ -121,11 +77,12 @@ body
     margin: 20px auto 0
     padding: 0 0 20px
     font-family: Helvetica, sans-serif
-    font-size: 14px
+    font-size: 13px
     line-height: 1.4
 
 #group-nav
-  font-family: Rockwell, Helvetica
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+  font-size: 18px
   margin-top: 20px
 
   a 
@@ -141,24 +98,35 @@ body
 
 
 #groups-list
-  font-family: Rockwell, Helvetica
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+  margin-top: 15px
 
   h1
     border-bottom: 2px solid #e0e0e0
-    font-size: 14px
+    font-size: 16px
+    font-weight: bold
     margin-bottom: 14px
     margin-top: 0
     color: #1d334c
 
-  a 
-    +border-radius(3px)
-    display: block
-    margin-bottom: 5px
-    background-color: #e0e0e0
-    padding: 6px 6px 6px 37px
-    line-height: 25px
-    text-decoration: none
-    color: #333
+  ul
+    overflow-y: auto
+    height: 416px
+    
+    a
+      text-decoration: none
+      color: #333
+      font-weight: bold
+      padding-top: 3px
+      +border-radius(3px)
+      display: block
+      margin-bottom: 5px
+      background-color: #e0e0e0
+      padding: 6px 6px 4px 37px
+      line-height: 25px
+
+    a.current, a:hover
+      background-color: #fff
 
     img.avatar
       vertical-align: top
@@ -166,25 +134,24 @@ body
       float: left
       margin-left: -31px
       display: block
-  
-  a.current
-    background-color: #fff
 
 
 #new-post
   +border-top-radius(3px)
   background-color: #ac322f
   border: 2px solid #9a2c2a
+  margin-top: 15px
 
   h1 
     +border-top-radius(3px)
     background-color: #9a2c2a
     padding: 5px
     text-align: center
-    font-size: 14px
-    margin: 0
+    font-size: 15px
+    margin-bottom: 5px
     color: #fff
-    font-family: Rockwell, Helvetica
+    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+    font-weight: bold
 
   img.avatar
     float: left
@@ -195,17 +162,64 @@ body
     
     display: block
     margin: 16px 15px 20px 73px
-      
     
-    input, textarea
-      display: block
-
-    input
-      height: 18px
-      padding: 6px
-      width: 380px
-
+    input,
     textarea
+      display: block
+      width: 375px
+      border: none
+      margin: 12px 0
+      padding: 10px 9px
+      font-size: 18px
+      font-weight: bold
+      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+      +border-radius(5px)
+      +box-shadow(#333 1px 1px 3px 0 inset)
+
+#post-list
+  +border-bottom-radius(3px)
+  background-color: #fff
+  border: 2px solid #bebebe
+  border-top: 0px
+
+  li
+    .avatar
+      float: left
+      margin-left: 8px
+      margin-right: 15px
+      margin-top: 8px
+      text-align: center
+      
+      p
+        font-family: Helvetica, sans-serif
+        font-size: 9px
+        color: #888
+        margin-top: 5px
+
+    .date-posted
+      font-family: Helvetica, sans-serif
+      font-size: 9px
+      color: #888
+
+    h1
+      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+      font-size: 20px
+      padding-top: 14px
+      font-weight: bold
+
+    .author
+      color: #ac322f
+      font-weight: bold
+      font-family: Helvetica, sans-serif
+      font-size: 12px
+
+    .date-posted
       margin-top: 12px
-      width: 392px
-      height: 50px
+      margin-right: 8px
+      float: right
+
+    p
+      font-family: Helvetica, sans-serif
+      font-size: 12px
+      margin-top: 15px
+      margin-bottom: 25px

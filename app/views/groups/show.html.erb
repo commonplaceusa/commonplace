@@ -6,29 +6,14 @@
     <%= include_stylesheets :group_page %>
     <%= include_javascripts :group_page %>
     <%= include_javascripts :group_page_templates %>
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type ="text/css">
+    <title>CommonPlace Groups</title>
   </head>
 
   <body>
 
-    <div id="top">
-      <div id="header">
-        <a href="/" id="logo">
-          <img src="/images/logo2.png" alt="CommonPlace">
-          <%= current_community.name %>
-        </a>
-
-        <div id="site-navigation">
-          <a href="/">Home</a>
-          <a href="/messages">Inbox</a>
-          <a href="/account/facebook_invite">Invite</a>
-          <a href="/feeds/new">Register a Community Feed</a>
-          <a href="/account">Settings</a>
-          <a href="/<%= current_community.slug %>/faq">FAQ</a>
-          <a href="/logout" rel="nofollow">Logout</a>
-        </div>
-      </div>
-    </div>
-
+    <%= render "layouts/header", :user_session => current_user_session %>
+    
     <div id="main">
 
       <div id="group-header">
@@ -44,6 +29,8 @@
       <div id="center-column">
         <div id="new-post">
         </div>
+        <div id="post-list">
+        </div>
       </div>
       
       <div id="right-column">
@@ -53,23 +40,7 @@
       <div style="clear: both"></div>
     </div>
 
-    <div id="bottom">
-      <div id="footer">
-        <span class="copy">
-          Find out more about CommonPlace at <a href="https://www.ourcommonplace.com/about">CommonPlaceUSA.com</a>
-        </span>
-        
-        Questions? Email: <a href="mailto:pete@commonplaceusa.com">Pete@CommonPlaceUSA.com</a>
-        &nbsp;&sdot;&nbsp;
-        <a href="/<%= current_community.slug %>/faq">FAQ</a>
-        &nbsp;&sdot;&nbsp;
-        <a href="/about">About</a>
-        &nbsp;&sdot;&nbsp;
-        <a href="/terms">Terms</a>
-        &nbsp;&sdot;&nbsp;
-        <a href="/privacy">Privacy Policy</a>
-      </div>
-    </div>
+   <%= render "layouts/footer" %>
     
   </body>
 
