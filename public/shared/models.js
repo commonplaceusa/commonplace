@@ -1,5 +1,11 @@
 CommonPlace.Model = Backbone.Model.extend({
-
+  url: function() {
+    if (this.get('links') && this.get('links').self) {
+      return this.get('links').self
+    } else {
+      return Backbone.Model.prototype.url.call(this); // super
+    }
+  },
 });
 
 CommonPlace.Collection = Backbone.Collection.extend({});
@@ -38,7 +44,9 @@ var Feed = CommonPlace.Model.extend({
   AnnouncementCollection :  CommonPlace.Collection.extend({
     initialize: function(models, options) { this.feed = options.feed; },
     model: Announcement,
-    url: function() { return "/api" + this.feed.get('links').announcements; }
+    url: function() { 
+      return "/api" + this.feed.get('links').announcements; 
+    }
   })
 });
 
