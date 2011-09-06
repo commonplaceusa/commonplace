@@ -27,18 +27,18 @@ var Feed = CommonPlace.Model.extend({
   initialize: function() {
     this.announcements = new Feed.AnnouncementCollection([], { feed: this });
     this.events = new Feed.EventCollection([], { feed: this });
-  },
+  }
 }, {
   EventCollection: CommonPlace.Collection.extend({
-    initialize: function(models, options) { this.feed = options.feed },
+    initialize: function(models, options) { this.feed = options.feed; },
     model: Event, 
-    url: function() { return "/api" + this.feed.get('links').events }
+    url: function() { return "/api" + this.feed.get('links').events; }
   }),
   
   AnnouncementCollection :  CommonPlace.Collection.extend({
-    initialize: function(models, options) { this.feed = options.feed },
+    initialize: function(models, options) { this.feed = options.feed; },
     model: Announcement,
-    url: function() { return "/api" + this.feed.get('links').announcements }
+    url: function() { return "/api" + this.feed.get('links').announcements; }
   })
 });
 
@@ -90,7 +90,7 @@ var Community = CommonPlace.Model.extend({
 });
 
 var Replies = CommonPlace.Collection.extend({
-  initialize: function(models, options) { this.repliable = options.repliable },
+  initialize: function(models, options) { this.repliable = options.repliable; },
   model: Reply,
   url: function() { return "/api" + this.repliable.get('links').replies; }
 });

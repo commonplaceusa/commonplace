@@ -12,7 +12,7 @@ var FeedPageRouter = Backbone.Router.extend({
     var self = this;
     this.account = options.account;
     this.community = options.community;
-    this.feedsList = new FeedsListView({ collection: options.feeds, el: $("#feeds-list") })
+    this.feedsList = new FeedsListView({ collection: options.feeds, el: $("#feeds-list") });
     this.feedsList.render();
     this.show(options.feed);
   },
