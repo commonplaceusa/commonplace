@@ -1,6 +1,7 @@
 @import core
 @import buttons
 @import header
+@import footer
 @import date_picker
 
 body
@@ -587,49 +588,3 @@ body
   
 #main
   margin-bottom: 75px
-
-// THIS STUFF IS DUPLICATED IN OTHER FILES :/
-
-// application.sass
-
-#sticky-wrapper
-  +pie-clearfix
-  position: relative
-  min-height: 100% // real browsers
-  height: auto !important // real browsers
-  height: 100% // IE6: treaded as min-height
-
-  footer, #footer
-    width: 100%
-    position: relative
-    bottom: 0
-
-footer, #footer
-  width: auto
-  background: #1b334a
-  height: 30px
-  border-top: 4px solid #fff
-  padding: 20px 0 0
-  margin: 0
-  color: #fff
-  #cont
-    +serif
-    width: 980px
-    margin: 0 auto
-    font-size: 12px
-    color: #3b6085
-    a
-      color: #3b6085+#222
-      font-weight: normal
-    .left_text
-      float: left
-    .right_text
-      font-size: 30px
-      line-height: 12px
-      float: right
-      a
-        display: inline-block
-        vertical-align: middle
-        margin-top: -8px
-        margin-left: 3px
-        font-size: 12px
