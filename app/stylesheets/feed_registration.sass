@@ -33,6 +33,9 @@ form
   li 
     list-style: none
 
+  p.inline-hints
+    width: 340px
+
   input[type=text], textarea
     +border-radius(5px)
     +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
@@ -101,6 +104,20 @@ form
       +border-radius(0 5px 5px 0)
       +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
       cursor: pointer
+
+  #feed_slug_input
+    position: relative
+    p.inline-hints
+      left: -370px
+      line-height: 1.2
+      font-size: 12
+      font-family: Helvetica, sans-serif
+      top: 20px
+      padding: 10px
+      position: absolute
+      display: none
+      background-color: white
+      border: 1px solid #888
 
 form.crop
   margin: auto

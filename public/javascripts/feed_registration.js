@@ -9,7 +9,24 @@ $(function() {
     $("#file_input_fix input").val($(this).val().replace(/^.*\\/,""));
   });
 
+  $("#feed_name").keyup(function() {
+    if (!$("#feed_slug").data("manual")) {
+      $("#feed_slug").val(slugify($(this).val()));
+    }
+  });
+  
+  $("#feed_slug").keydown(function() {
+    $(this).data("manual", true);
+  });
 
+  $("#feed_slug").focusin(function() {
+    $("#feed_slug_input p.inline-hints").show();
+  });
+
+  $("#feed_slug").focusout(function() {
+    $("#feed_slug_input p.inline-hints").hide();
+  });
+  
   // Avatar crop
   var updateCrop = function(coords) {
     $("#crop_x").val(coords.x);
