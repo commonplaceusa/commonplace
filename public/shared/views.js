@@ -12,42 +12,68 @@ var WireView = CommonPlace.View.extend({
     this.currentPage = options.currentPage || 0;
   },
 
+  aroundRender: function(render) {
+    var self = this;
+    this.fetchCurrentPage(function() {
+      render();
+    });
+  },
+
   afterRender: function() { this.appendCurrentPage(); },
 
   modelToView: function() { 
     throw new Error("This is an abstract class, use a child of this class");
   },
 
-  appendCurrentPage: function() {
-    var self = this;
-    var $ul = this.$("ul.wire-list");
+  fetchCurrentPage: function(callback) {
     this.collection.fetch({
       data: { limit: this.perPage, page: this.currentPage },
-      success: function(collection) {
-        collection.each(function(model) {
-          $ul.append(self.modelToView(model).render().el);
-        });
-      }
+      success: callback
     });
   },
 
+  appendCurrentPage: function() {
+    var self = this;
+    var $ul = this.$("ul.wire-list");
+    this.collection.each(function(model) {
+      $ul.append(self.modelToView(model).render().el);
+    });
+  },
+
+  areMore: function() {
+    return !(this.collection.length < this.perPage)
+  },
+
+  isEmpty: function() {
+    return this.collection.isEmpty();
+  },
+
+  emptyMessage: function() {
+    throw new Error("This is an abstract class, use a child of this class");
+  },
+    
   showMore: function(e) {
+    var self = this;
     e.preventDefault();
     this.currentPage = this.currentPage + 1;
-    this.appendCurrentPage();
+    this.fetchCurrentPage(function() { self.appendCurrentPage(); });
   }
 });
 
 var EventWireView = WireView.extend({
   modelToView: function(model) {
     return new EventItemView({model: model, account: this.account});
-  }
+  },
+
+  emptyMessage: "No events here yet"
 });
 
 var AnnouncementWireView = WireView.extend({
   modelToView: function(model) {
     return new AnnouncementItemView({model: model, account: this.account});
-  }
+  },
+
+  emptyMessage: "No announcements here yet"
 });
 
 var EventItemView = CommonPlace.View.extend({
