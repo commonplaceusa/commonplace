@@ -240,8 +240,8 @@ var EventFormView = FormView.extend({
   save: function() {
     this.model.save({
       title: this.$("[name=title]").val(),
-      about: this.$("[name=about]").val(),
-      date: this.$("[name=date]").val(),
+      body: this.$("[name=body]").val(),
+      occurs_at: this.$("[name=date]").val(),
       start: this.$("[name=start]").val(),
       end: this.$("[name=end]").val(),
       venue: this.$("[name=venue]").val(),
