@@ -86,7 +86,26 @@ class MailBase < Mustache
   end
 
   def deliver?
-    true
+    unless limited?
+      true
+    else
+      increase_email_count
+      meets_limitation_requirement
+    end
+  end
+
+  def limited?
+    false
+    #user.emails_are_limited?
+  end
+
+  def increase_email_count
+    user.emails_sent += 1
+    user.save
+  end
+
+  def meets_limitation_requirement
+    user.emails_sent <= 3
   end
 
   def deliver

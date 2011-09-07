@@ -32,5 +32,5 @@ class Welcome < MailBase
   def tag
     'welcome'
   end
-    
+
 end

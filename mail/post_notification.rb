@@ -76,4 +76,8 @@ class PostNotification < MailBase
     'post'
   end
 
+  def limited?
+    user.emails_are_limited?
+  end
+
 end

@@ -31,4 +31,5 @@ class PasswordReset < MailBase
   def tag
     'password_reset'
   end
+
 end

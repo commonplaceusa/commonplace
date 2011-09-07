@@ -161,7 +161,9 @@ class User < ActiveRecord::Base
 
   scope :receives_daily_digest, :conditions => {:post_receive_method => "Daily"}
 
-  scope :receives_posts_live, :conditions => {:post_receive_method => "Live"}
+  scope :receives_posts_live, :conditions => {:post_receive_method => ["Live", "Three"]}
+
+  scope :receives_posts_live_unlimited, :conditions => {:post_receive_method => "Live"}
 
   scope :receives_posts_live_limited, :conditions => {:post_receive_method => "Three"}
 
@@ -321,6 +323,10 @@ class User < ActiveRecord::Base
       end
     end
     post_ids.uniq
+  end
+
+  def emails_are_limited?
+    self.post_receive_method == "Three"
   end
 
   unless Rails.env.test?
