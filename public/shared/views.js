@@ -2,11 +2,51 @@ var WireView = CommonPlace.View.extend({
   className: "wire",
   template: "shared/wire",
 
-  afterRender: function() {
+  events: {
+    "click a.more": "showMore"
+  },
+
+  initialize: function(options) { 
+    this.account = options.account;
+    this.perPage = options.perPage || 10;
+    this.currentPage = options.currentPage || 0;
+  },
+
+  afterRender: function() { this.appendCurrentPage(); },
+
+  modelToView: function() { 
+    throw new Error("This is an abstract class, use a child of this class");
+  },
+
+  appendCurrentPage: function() {
+    var self = this;
     var $ul = this.$("ul.wire-list");
-    _.each(this.collection, function(itemView) { 
-      $ul.append(itemView.render().el);
+    this.collection.fetch({
+      data: { limit: this.perPage, page: this.currentPage },
+      success: function(collection) {
+        collection.each(function(model) {
+          $ul.append(self.modelToView(model).render().el);
+        });
+      }
     });
+  },
+
+  showMore: function(e) {
+    e.preventDefault();
+    this.currentPage = this.currentPage + 1;
+    this.appendCurrentPage();
+  }
+});
+
+var EventWireView = WireView.extend({
+  modelToView: function(model) {
+    return new EventItemView({model: model, account: this.account});
+  }
+});
+
+var AnnouncementWireView = WireView.extend({
+  modelToView: function(model) {
+    return new AnnouncementItemView({model: model, account: this.account});
   }
 });
 
