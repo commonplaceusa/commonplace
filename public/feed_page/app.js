@@ -126,9 +126,11 @@ var FeedProfileView = CommonPlace.View.extend({
   },
   
   openMessageModal: function() {
-    var view = new FeedMessageFormView({ feed: this.model });
-    view.render();
-    return this;
+    var formview = new MessageFormView({
+      model: new Message({feed: this.model}),
+      template: "feed_page/feed-message-form"
+    });
+    formview.render();
   },
 
   avatarSrc: function() { return this.model.get("links").avatar.large; },
@@ -136,66 +138,6 @@ var FeedProfileView = CommonPlace.View.extend({
   phone: function() { return this.model.get("phone"); },
   website: function() { return this.model.get("website"); }
   
-});
-
-var FeedMessageFormView = CommonPlace.View.extend({
-  template: "feed_page/feed-message-form",
-  className: "feed-message-modal",
-
-  events: {
-    "click form a.cancel": "exit",
-    "submit form": "send"
-  },
-  
-  initialize: function(options) {
-    var self = this;
-    this.feed = this.options.feed; 
-    this.$container = $("body");
-    this.$shadow = $("<div/>", { 
-      id: "modal-shadow",
-      click: function() { self.exit(); }
-    });
-  },
-
-  afterRender: function() {
-    this.$container.append(this.el);
-    this.$container.append(this.$shadow);
-    this.$("textarea").autoResize();
-    this.centerEl();
-  },
-
-  centerEl: function() {
-    var $el = $(this.el);
-    var $window = $(window);
-    
-    $el.css({ top: ($window.height() - $el.height()) / 2,
-              left: ($window.width() - $el.width()) / 2 
-            });
-  },
-
-  send: function(e) {
-    e.preventDefault();
-    var self = this;
-    $.ajax({
-      contentType: "application/json",
-      url: "/api" + this.feed.links.messages,
-      type: "post",
-      data: JSON.stringify({ 
-        subject: this.$("[name=subject]").val(),
-        body: this.$("[name=body]").val()
-      }),
-      dataType: "json",
-      success: function(message) { 
-        self.exit();
-      }
-    });
-  },
-
-  exit: function(e) {
-    e && e.preventDefault();
-    this.$shadow.remove();
-    $(this.el).remove();
-  }
 });
 
 var FeedsListView = CommonPlace.View.extend({
