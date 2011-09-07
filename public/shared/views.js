@@ -13,6 +13,7 @@ var WireView = CommonPlace.View.extend({
 var EventItemView = CommonPlace.View.extend({
   template: "shared/event-item",
   tagName: "li",
+  className: "wire-item",
 
   initialize: function(options) { this.account = options.account; },
 
@@ -66,6 +67,7 @@ var EventItemView = CommonPlace.View.extend({
 var AnnouncementItemView = CommonPlace.View.extend({
   template: "shared/announcement-item",
   tagName: "li",
+  className: "wire-item",
 
   initialize: function(options) { this.account = options.account; },
 
