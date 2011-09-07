@@ -89,6 +89,7 @@ var EventItemView = CommonPlace.View.extend({
                                         account: this.account
                                       });
     repliesView.render();
+    this.model.bind("change", this.render, this);
   },
 
   short_month_name: function() { 
@@ -115,8 +116,7 @@ var EventItemView = CommonPlace.View.extend({
                  "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
 
   events: {
-    "click a": "editEvent",
-    "change": "render"
+    "click a": "editEvent"
   },
 
   editEvent: function(e) {
@@ -143,6 +143,7 @@ var AnnouncementItemView = CommonPlace.View.extend({
                                         account: this.account
                                       });
     repliesView.render();
+    this.model.bind("change", this.render, this);
   },
   
   publishedAt: function() {
@@ -164,8 +165,7 @@ var AnnouncementItemView = CommonPlace.View.extend({
   body: function() { return this.model.get('body'); },
   
   events: {
-    "click a": "editAnnouncement",
-    "change": "render"
+    "click a": "editAnnouncement"
   },
 
   editAnnouncement: function(e) {
@@ -232,6 +232,10 @@ var AnnouncementFormView = FormView.extend({
 });
 
 var EventFormView = FormView.extend({
+  afterRender: function() {
+    $("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
+  },
+
   save: function() {
     this.model.save({
       title: this.$("[name=title]").val(),
