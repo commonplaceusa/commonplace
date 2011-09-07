@@ -67,5 +67,5 @@ class MessageNotification < PostNotification
   def tag
     'message'
   end
-  
+
 end

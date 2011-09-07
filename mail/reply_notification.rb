@@ -89,4 +89,5 @@ class ReplyNotification < MailBase
   def tag
     'reply'
   end
+
 end
