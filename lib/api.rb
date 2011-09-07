@@ -163,7 +163,7 @@ end
     event.tag_list = request_body['tags']
 
     # TODO: This should deal with feeds...
-    if (event.owner == current_account or current_account.admin) and event.save
+    if (event.user == current_account or current_account.admin) and event.save
       serialize(event)
     else
       unless (event.owner == current_account or current_account.admin)
