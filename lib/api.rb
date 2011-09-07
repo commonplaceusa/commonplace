@@ -136,7 +136,7 @@ end
     announcement.subject = request_body['title']
     announcement.body = request_body['body']
 
-    if (announcement.owner == current_account or current_account.admin) and announcement.save
+    if (announcement.user == current_account or current_account.admin) and announcement.save
       serialize(announcement)
     else
       unless (announcement.owner == current_account or current_account.admin)

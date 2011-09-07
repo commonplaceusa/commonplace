@@ -1,7 +1,7 @@
 CommonPlace.Model = Backbone.Model.extend({
   url: function() {
     if (this.get('links') && this.get('links').self) {
-      return this.get('links').self;
+      return "/api" + this.get('links').self;
     } else {
       return Backbone.Model.prototype.url.call(this); // super
     }
