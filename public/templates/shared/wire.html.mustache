@@ -1,3 +1,10 @@
-<ul class="wire-list">
-</ul>
-<a class="more">More</a>
+{{#isEmpty}}
+  <p class="wire-empty-message">{{emptyMessage}}</p>
+{{/isEmpty}}
+{{^isEmpty}}
+  <ul class="wire-list">
+  </ul>
+{{/isEmpty}}
+{{#areMore}}
+  <a class="more">More</a>
+{{/areMore}}
