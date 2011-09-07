@@ -41,7 +41,7 @@ var WireView = CommonPlace.View.extend({
   },
 
   areMore: function() {
-    return !(this.collection.length < this.perPage)
+    return !(this.collection.length < this.perPage);
   },
 
   isEmpty: function() {
