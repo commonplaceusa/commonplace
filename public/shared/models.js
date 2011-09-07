@@ -29,6 +29,17 @@ var Event = CommonPlace.Repliable.extend({});
 
 var Reply = CommonPlace.Model.extend({});
 
+var Message = CommonPlace.Model.extend({
+  initialize: function(options) {
+    this.feed = options.feed;
+  },
+
+  url: function() {
+    return "/api" + this.feed.get("links").messages;
+  }
+  
+});
+
 var Feed = CommonPlace.Model.extend({
   initialize: function() {
     this.announcements = new Feed.AnnouncementCollection([], { feed: this });
