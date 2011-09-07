@@ -340,12 +340,12 @@ body
   
 
   
-.feed-message-modal
+.feed-message-modal, .modal-container
   position: absolute
-  z-index: 2000
   background-color: #AC322F
   border: 10px solid #fff
   +border-radius(15px)
+  z-index: 2000
 
   form 
     width: 392px
@@ -475,12 +475,15 @@ body
     font-weight: normal
     font-family: Helvetica, sans-serif
     
-  .published
+  .corner
     float: right
     color: #888
     font-family: Helvetica, sans-serif
     font-size: 11px
     font-weight: normal
+    a
+      color: #ac322f
+      text-decoration: none
   .avatar
     float: left
     width: 50px                           
