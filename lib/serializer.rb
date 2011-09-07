@@ -107,6 +107,7 @@ module Serializer
       when Feed
         { 
         "id" => o.id,
+        "user_id" => o.user.id,
         "url" => "/feeds/#{o.id}",
         "slug" => o.slug.blank? ? o.id : o.slug ,
         "name" => o.name,
@@ -128,7 +129,9 @@ module Serializer
           "invites" => "/feeds/#{o.id}/invites",
           "messages" => "/feeds/#{o.id}/messages",
           "edit" => "/feeds/#{o.id}/edit"
-        }
+        },
+        "messagable_author_url" => "/feeds/#{o.id}/#{o.user.id}",
+      "messagable_author_name" => o.name
       }
 
       when Group

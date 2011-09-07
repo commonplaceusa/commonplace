@@ -119,6 +119,8 @@ CommonPlace.FeedInfo = CommonPlace.Info.extend({
       website: this.model.get('website'),
       phone: this.model.get('phone'),
       address: this.model.get('address'),
+      messagable_author_url: this.model.get('messagable_author_url'),
+      messagable_author_name: this.model.get('messagable_author_name'),
       isSubscribed: _.include(CommonPlace.account.get('feed_subscriptions'), this.model.get('id'))
     };
   },
