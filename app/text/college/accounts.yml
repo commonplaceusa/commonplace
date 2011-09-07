@@ -32,6 +32,11 @@ college:
       
     edit:
       title: Change Settings
+      receive_options:
+        live: "Receive all hall posts by email"
+        three: "Receive three hall posts by email per day"
+        daily: "Only receive hall posts in the daily bulletin"
+        never: "Receive no hall posts"
     learn_more:
       title_html: Join CommonPlace to receive important campus announcements <br> from your fellow students and local organizations at %{community}. %{sign_up}
       sign_up: Sign up. 
