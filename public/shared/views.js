@@ -182,7 +182,6 @@ var FormView = CommonPlace.View.extend({
   initialize: function(options) {
     this.template = this.options.template;
     this.modal = new ModalView({form: this.el});
-    this.model.bind("create", this.modal.exit, this.modal);
   },
 
   afterRender: function() {
@@ -197,6 +196,7 @@ var FormView = CommonPlace.View.extend({
   send: function(e) {
     e.preventDefault();
     this.save();
+    this.exit();
   },
 
   exit: function(e) {
@@ -233,6 +233,7 @@ var AnnouncementFormView = FormView.extend({
 
 var EventFormView = FormView.extend({
   afterRender: function() {
+    this.modal.render();
     $("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
   },
 
@@ -258,7 +259,7 @@ window.ev = this.model;
   },
 
   date: function() {
-    return this.model.get("occurs_at");
+    return this.model.get("occurs_at").split("T")[0];
   },
 
   venue: function() {
