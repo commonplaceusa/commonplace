@@ -242,15 +242,14 @@ var EventFormView = FormView.extend({
       title: this.$("[name=title]").val(),
       body: this.$("[name=body]").val(),
       occurs_at: this.$("[name=date]").val(),
-      start: this.$("[name=start]").val(),
-      end: this.$("[name=end]").val(),
+      starts_at: this.$("[name=start]").val(),
+      ends_at: this.$("[name=end]").val(),
       venue: this.$("[name=venue]").val(),
       address: this.$("[name=address]").val()
     });
   },
 
   title: function() {
-window.ev = this.model;
     return this.model.get("title");
   },
 
@@ -263,7 +262,6 @@ window.ev = this.model;
   },
 
   venue: function() {
-    console.log("hi");
     return this.model.get("venue");
   },
 
@@ -272,9 +270,9 @@ window.ev = this.model;
   },
 
   time_values: function() {
-    var start_value = this.model.get("starts_at");
-    var end_value = this.model.get("ends_at");
-    return _.flatten(_.map(["AM", "PM"],
+    var start_value = this.model.get("starts_at").replace(" ", "");
+    var end_value = this.model.get("ends_at").replace(" ", "");
+    var list = _.flatten(_.map(["AM", "PM"],
       function(half) {
         return  _.map(_.range(1,13),
         function(hour) {
@@ -285,6 +283,17 @@ window.ev = this.model;
         });
       })
     );
+    var result = new Array();
+    _.each(list, function(time) {
+      console.log(time, start_value, end_value);
+      var obj = {
+        ".": time,
+        "is_start": (time.replace(" ","").toLowerCase() == start_value),
+        "is_end": (time.replace(" ","").toLowerCase() == end_value)
+      };
+      result.push(obj);
+    });
+    return result;
   }
 });
 
