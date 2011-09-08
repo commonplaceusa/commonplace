@@ -27,15 +27,15 @@ class FeedWelcome < MailBase
   end
 
   def feed_name
-    feed.name
+    feed.name.titlecase
   end
 
   def feed_url
-    url("/pages/#{feed.slug}")
+    feed_profile(feed)
   end
 
   def feed_email_address
-    "#{feed.slug}@CommonPlace.com"
+    "#{feed.slug}@OurCommonPlace.com"
   end
 
   def organizer_email
