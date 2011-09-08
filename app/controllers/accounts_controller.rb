@@ -7,16 +7,18 @@ class AccountsController < ApplicationController
   def new
 
     if !current_community
-#      raise CanCan::AccessDenied
+      raise CanCan::AccessDenied
     end
       
-    if can? :create, User
-      @user = User.new
-      @user.community = current_community
-      render :layout => "registration"
-    else
-      redirect_to root_url
+    if logged_in?
+      redirect_to "/"
+      return
     end
+
+    @user = User.new
+    @user.community = current_community
+    render :layout => "registration"
+
   end
   
   def new_from_facebook
