@@ -44,6 +44,7 @@ var Feed = CommonPlace.Model.extend({
   initialize: function() {
     this.announcements = new Feed.AnnouncementCollection([], { feed: this });
     this.events = new Feed.EventCollection([], { feed: this });
+    this.subscribers = new Feed.SubscriberCollection([], { feed: this });
   }
 }, {
   EventCollection: CommonPlace.Collection.extend({
@@ -57,6 +58,14 @@ var Feed = CommonPlace.Model.extend({
     model: Announcement,
     url: function() { 
       return "/api" + this.feed.get('links').announcements; 
+    }
+  }),
+
+  SubscriberCollection: CommonPlace.Collection.extend({
+    initialize: function(models, options) { this.feed = options.feed },
+    model: Subscriber,
+    url: function () {
+      return "/api" + this.feed.get("links").subscribers;
     }
   })
 });
@@ -112,4 +121,12 @@ var Replies = CommonPlace.Collection.extend({
   initialize: function(models, options) { this.repliable = options.repliable; },
   model: Reply,
   url: function() { return "/api" + this.repliable.get('links').replies; }
+});
+
+var Subscriber = CommonPlace.Model.extend({
+  defaults: {
+    first_name: "Eblong",
+    last_name: "Zarf"
+  }
+  
 });

@@ -385,6 +385,17 @@ end
               includes(:replies).to_a)
   end
 
+  get "/feeds/:id/subscribers" do |feed_id|
+    params[:limit] ||= 25
+    params[:page] ||= 0
+    serialize(Feed.find(feed_id).
+      subscribers.
+      limit(params[:limit]).
+      offset(params[:limit].to_i * params[:page].to_i).
+      to_a
+    )
+  end
+
   # POST "/feeds/:id/invites"
   # { emails: [String]
   # , message: String }
