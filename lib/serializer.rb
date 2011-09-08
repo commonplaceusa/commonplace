@@ -128,7 +128,8 @@ module Serializer
           "events" => "/feeds/#{o.id}/events",
           "invites" => "/feeds/#{o.id}/invites",
           "messages" => "/feeds/#{o.id}/messages",
-          "edit" => "/feeds/#{o.id}/edit"
+          "edit" => "/feeds/#{o.id}/edit",
+          "subscribers" => "/feeds/#{o.id}/subscribers"
         },
         "messagable_author_url" => "/feeds/#{o.id}/#{o.user.id}",
       "messagable_author_name" => o.name

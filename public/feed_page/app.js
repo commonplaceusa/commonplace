@@ -288,9 +288,11 @@ var FeedSubResourcesView = CommonPlace.View.extend({
     this.feed = options.feed;
     this.announcementsCollection = this.feed.announcements;
     this.eventsCollection = this.feed.events;
+    this.subscribersCollection = this.feed.subscribers;
     this.currentTab = options.current || "showAnnouncements";
     this.feed.events.bind("add", function() { this.switchTab("showEvents"); }, this);
     this.feed.announcements.bind("add", function() { this.switchTab("showAnnouncements"); }, this);
+    this.feed.subscribers.bind("add", function() { this.switchTab("showSubscribers"); }, this);
   },
 
   afterRender: function() {
@@ -315,9 +317,21 @@ var FeedSubResourcesView = CommonPlace.View.extend({
     wireView.render();
   },
 
+  showSubscribers: function() {
+    var wireView = new SubscriberWireView({
+      collection: this.subscribersCollection,
+      account: this.account,
+      el: this.$(".feed-subscribers .wire")
+    });
+    wireView.render();
+  },
+
   tabs: function() {
-    return { showAnnouncements: this.$(".feed-announcements"),
-             showEvents: this.$(".feed-events") };
+    return {
+      showAnnouncements: this.$(".feed-announcements"),
+      showEvents: this.$(".feed-events"),
+      showSubscribers: this.$(".feed-subscribers")
+    };
   },
 
   classIfCurrent: function() {

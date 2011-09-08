@@ -17,7 +17,7 @@
     color: #888
 
 .wire-item
-  .title, .author, .body                 
+  .title, .author, .body, .message-user
     margin-left: 62px
   .body
     font-family: Helvetica, sans-serif
@@ -83,8 +83,16 @@
       padding: 4px 0 8px
       +border-bottom-radius(3px)
 
+  .message-user
+    cursor: pointer
+    display: block
+    border: 1px solid #d7615e
+    border-bottom: 1px solid #9a3633
+    +border-radius(5px)
+    background-color: #B53F3C
+    color: #fff
+    +box-shadow(#9A3633 0px 0px 3px)
+    +text-shadow(#9A3633 2px 1px 1px)
+    margin-top: 10px
 
 
-      
-      
-  
