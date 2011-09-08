@@ -19,7 +19,11 @@ module Serializer
         "about" => o.about,
         "interests" => o.interest_list,
         "offers" => o.offer_list,
-        "subscriptions" => o.feed_list }
+        "subscriptions" => o.feed_list,
+        "links" => {
+          "messages" => "/people/#{o.id}/messages"
+        }
+      }
         
       when Post
         { 
