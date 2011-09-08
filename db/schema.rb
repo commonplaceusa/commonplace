@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830143431) do
+ActiveRecord::Schema.define(:version => 20110908201405) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -332,18 +332,18 @@ ActiveRecord::Schema.define(:version => 20110830143431) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                             :null => false
+    t.string   "email",                                                              :null => false
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.string   "single_access_token",                                               :null => false
-    t.string   "perishable_token",                                                  :null => false
+    t.string   "single_access_token",                                                :null => false
+    t.string   "perishable_token",                                                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name",                                                        :null => false
-    t.string   "last_name",                                                         :null => false
+    t.string   "first_name",                                                         :null => false
+    t.string   "last_name",                                                          :null => false
     t.text     "about"
-    t.integer  "neighborhood_id",                                                   :null => false
+    t.integer  "neighborhood_id",                                                    :null => false
     t.string   "interest_list"
     t.string   "offer_list"
     t.boolean  "receive_events_and_announcements",              :default => true
@@ -355,7 +355,7 @@ ActiveRecord::Schema.define(:version => 20110830143431) do
     t.string   "oauth2_token"
     t.integer  "community_id"
     t.boolean  "receive_weekly_digest",                         :default => true
-    t.string   "post_receive_method",                           :default => "Live"
+    t.string   "post_receive_method",                           :default => "Three"
     t.string   "middle_name"
     t.decimal  "latitude"
     t.decimal  "longitude"
