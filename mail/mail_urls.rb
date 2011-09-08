@@ -72,4 +72,8 @@ module MailUrls
     url("/faq")
   end
 
+  def feed_profile(feed)
+    url("/pages/#{feed.slug}")
+  end
+
 end
