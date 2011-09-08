@@ -12,7 +12,7 @@ end
   helpers do
     
     def current_account
-      @_user ||= if request.env["HTTP_AUTHORIZATION"]
+      @_user ||= if request.env["HTTP_AUTHORIZATION"].present?
                    User.find_by_authentication_token(request.env["HTTP_AUTHORIZATION"])
                  else
                    User.find_by_id(session['user_credentials_id'])
