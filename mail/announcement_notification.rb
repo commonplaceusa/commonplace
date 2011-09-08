@@ -5,7 +5,7 @@ class AnnouncementNotification < PostNotification
   end
 
   def subject
-    "#{poster_name} just posted a message to your neighborhood"
+    "#{poster_name} just posted an announcement to CommonPlace"
   end
 
   def announcement
