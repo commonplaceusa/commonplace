@@ -12,6 +12,8 @@
     Total Users: 
     = @user_count
     %br
+    %img{:src => Gchart.pie(:data => @communities.map(&:user_count), :title => "Users by Community", :labels => @communities.map(&:name), :size => "300x200")}
+    %br
     Total Neighborhood Posts: 
     = @post_count
     %br

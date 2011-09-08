@@ -166,5 +166,9 @@ class Community < ActiveRecord::Base
   def has_launched?
     self.launch_date < DateTime.now
   end
+  
+  def user_count
+    self.users.count
+  end
 
 end
