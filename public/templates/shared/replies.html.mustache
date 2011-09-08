@@ -1,7 +1,7 @@
 <img src="/images/reply-arrow-top.png" class="reply-arrow">
 <ul>
   {{#replies}}
-    <li>
+    <li class="reply-item">
       <img class="avatar" src="{{authorAvatarUrl}}" height="30" width="30">
       <div class="reply-info">
         <div class="reply-text">
@@ -18,7 +18,7 @@
   {{/replies}}
 </ul>
 
-<form>
+<form class="new-reply">
   <img class="avatar" src="{{accountAvatarUrl}}" height="30" width="30">
   <textarea name="body" placeholder="Write your reply here..."></textarea>
   <input type="submit" value="Reply">

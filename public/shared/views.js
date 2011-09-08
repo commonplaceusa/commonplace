@@ -2,17 +2,92 @@ var WireView = CommonPlace.View.extend({
   className: "wire",
   template: "shared/wire",
 
-  afterRender: function() {
-    var $ul = this.$("ul.wire-list");
-    _.each(this.collection, function(itemView) { 
-      $ul.append(itemView.render().el);
+  events: {
+    "click a.more": "showMore"
+  },
+
+  initialize: function(options) { 
+    this.account = options.account;
+    this.perPage = options.perPage || 10;
+    this.currentPage = options.currentPage || 0;
+  },
+
+  aroundRender: function(render) {
+    var self = this;
+    this.fetchCurrentPage(function() {
+      render();
     });
+  },
+
+  afterRender: function() { this.appendCurrentPage(); },
+
+  modelToView: function() { 
+    throw new Error("This is an abstract class, use a child of this class");
+  },
+
+  fetchCurrentPage: function(callback) {
+    this.collection.fetch({
+      data: { limit: this.perPage, page: this.currentPage },
+      success: callback
+    });
+  },
+
+  appendCurrentPage: function() {
+    var self = this;
+    var $ul = this.$("ul.wire-list");
+    this.collection.each(function(model) {
+      $ul.append(self.modelToView(model).render().el);
+    });
+  },
+
+  areMore: function() {
+    return !(this.collection.length < this.perPage);
+  },
+
+  isEmpty: function() {
+    return this.collection.isEmpty();
+  },
+
+  emptyMessage: function() {
+    throw new Error("This is an abstract class, use a child of this class");
+  },
+    
+  showMore: function(e) {
+    var self = this;
+    e.preventDefault();
+    this.currentPage = this.currentPage + 1;
+    this.fetchCurrentPage(function() { self.appendCurrentPage(); });
   }
+});
+
+var EventWireView = WireView.extend({
+  modelToView: function(model) {
+    return new EventItemView({model: model, account: this.account});
+  },
+
+  emptyMessage: "No events here yet"
+});
+
+var AnnouncementWireView = WireView.extend({
+  modelToView: function(model) {
+    return new AnnouncementItemView({model: model, account: this.account});
+  },
+
+  emptyMessage: "No announcements here yet"
+});
+
+var SubscriberWireView = WireView.extend({
+  modelToView: function(model) {
+    return new SubscriberItemView({model: model, account: this.account});
+  },
+
+  emptyMessage: "No subscribers here yet"
 });
 
 var EventItemView = CommonPlace.View.extend({
   template: "shared/event-item",
   tagName: "li",
+  className: "wire-item",
 
   initialize: function(options) { this.account = options.account; },
 
@@ -22,6 +97,7 @@ var EventItemView = CommonPlace.View.extend({
                                         account: this.account
                                       });
     repliesView.render();
+    this.model.bind("change", this.render, this);
   },
 
   short_month_name: function() { 
@@ -48,8 +124,7 @@ var EventItemView = CommonPlace.View.extend({
                  "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
 
   events: {
-    "click a": "editEvent",
-    "change": "render"
+    "click a": "editEvent"
   },
 
   editEvent: function(e) {
@@ -66,6 +141,7 @@ var EventItemView = CommonPlace.View.extend({
 var AnnouncementItemView = CommonPlace.View.extend({
   template: "shared/announcement-item",
   tagName: "li",
+  className: "wire-item",
 
   initialize: function(options) { this.account = options.account; },
 
@@ -75,6 +151,7 @@ var AnnouncementItemView = CommonPlace.View.extend({
                                         account: this.account
                                       });
     repliesView.render();
+    this.model.bind("change", this.render, this);
   },
   
   publishedAt: function() {
@@ -96,8 +173,7 @@ var AnnouncementItemView = CommonPlace.View.extend({
   body: function() { return this.model.get('body'); },
   
   events: {
-    "click a": "editAnnouncement",
-    "change": "render"
+    "click a": "editAnnouncement"
   },
 
   editAnnouncement: function(e) {
@@ -114,7 +190,6 @@ var FormView = CommonPlace.View.extend({
   initialize: function(options) {
     this.template = this.options.template;
     this.modal = new ModalView({form: this.el});
-    this.model.bind("create", this.modal.exit, this.modal);
   },
 
   afterRender: function() {
@@ -129,6 +204,7 @@ var FormView = CommonPlace.View.extend({
   send: function(e) {
     e.preventDefault();
     this.save();
+    this.exit();
   },
 
   exit: function(e) {
@@ -143,6 +219,18 @@ var MessageFormView = FormView.extend({
       subject: this.$("[name=subject]").val(),
       body: this.$("[name=body]").val()
     });
+  },
+
+  first_name: function() {
+    return this.model.get("first_name");
+  },
+
+  last_name: function() {
+    return this.model.get("last_name");
+  },
+
+  feed_name: function() {
+   return this.model.get("feed").get("name");
   }
 });
 
@@ -164,20 +252,24 @@ var AnnouncementFormView = FormView.extend({
 });
 
 var EventFormView = FormView.extend({
+  afterRender: function() {
+    this.modal.render();
+    $("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
+  },
+
   save: function() {
     this.model.save({
       title: this.$("[name=title]").val(),
-      about: this.$("[name=about]").val(),
-      date: this.$("[name=date]").val(),
-      start: this.$("[name=start]").val(),
-      end: this.$("[name=end]").val(),
+      body: this.$("[name=body]").val(),
+      occurs_at: this.$("[name=date]").val(),
+      starts_at: this.$("[name=start]").val(),
+      ends_at: this.$("[name=end]").val(),
       venue: this.$("[name=venue]").val(),
       address: this.$("[name=address]").val()
     });
   },
 
   title: function() {
-window.ev = this.model;
     return this.model.get("title");
   },
 
@@ -186,11 +278,10 @@ window.ev = this.model;
   },
 
   date: function() {
-    return this.model.get("occurs_at");
+    return this.model.get("occurs_at").split("T")[0];
   },
 
   venue: function() {
-    console.log("hi");
     return this.model.get("venue");
   },
 
@@ -199,9 +290,9 @@ window.ev = this.model;
   },
 
   time_values: function() {
-    var start_value = this.model.get("starts_at");
-    var end_value = this.model.get("ends_at");
-    return _.flatten(_.map(["AM", "PM"],
+    var start_value = this.model.get("starts_at").replace(" ", "");
+    var end_value = this.model.get("ends_at").replace(" ", "");
+    var list = _.flatten(_.map(["AM", "PM"],
       function(half) {
         return  _.map(_.range(1,13),
         function(hour) {
@@ -212,6 +303,17 @@ window.ev = this.model;
         });
       })
     );
+    var result = new Array();
+    _.each(list, function(time) {
+      console.log(time, start_value, end_value);
+      var obj = {
+        ".": time,
+        "is_start": (time.replace(" ","").toLowerCase() == start_value),
+        "is_end": (time.replace(" ","").toLowerCase() == end_value)
+      };
+      result.push(obj);
+    });
+    return result;
   }
 });
 
@@ -280,4 +382,29 @@ var RepliesView = CommonPlace.View.extend({
   },
   
   accountAvatarUrl: function() { return this.account.get('avatar_url'); }
+});
+
+var SubscriberItemView = CommonPlace.View.extend({
+  template: "shared/subscriber-item",
+  tagName: "li",
+  className: "wire-item",
+
+  avatarUrl: function() { return this.model.get('avatar_url'); },
+
+  firstname: function() { return this.model.get("first_name"); },
+
+  lastname: function() { return this.model.get("last_name"); },
+  
+  events: {
+    "click button": "messageUser"
+  },
+
+  messageUser: function(e) {
+    e && e.preventDefault();
+    var formview = new MessageFormView({
+      model: this.model,
+      template: "feed_page/feed-message-user-form"
+    });
+    formview.render();
+  }
 });
