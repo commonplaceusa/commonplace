@@ -21,7 +21,6 @@ gem 'geocoder' # we use geocoder to find user latlngs from addresses
 # Deployment
 gem 'thin' # lighter than mongrel, faster than webrick
 gem 'jslint_on_rails', :require => false #! will run before deployments
-gem 'kumade' # easy deployment to heroku
 
 # Authentication
 gem 'authlogic' # will be replaced with devise
