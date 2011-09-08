@@ -1,9 +1,9 @@
 class FeedWelcome < MailBase
 
-  def initialize(user_id, feed_id)
-    @user = User.find(user_id)
-    @community = user.community
+  def initialize(feed_id)
     @feed = Feed.find(feed_id)
+    @user = User.find(feed.user_id)
+    @community = user.community
   end
 
   def user
