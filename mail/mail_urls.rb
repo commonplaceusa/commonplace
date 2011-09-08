@@ -5,7 +5,7 @@ module MailUrls
       path
     else
       if Rails.env.development?
-        "http://localhost:3000" + path
+        "http://localhost:5000" + path
       else
         "https://www.ourcommonplace.com" + path
       end
@@ -17,7 +17,7 @@ module MailUrls
       path
     else
       if Rails.env.development?
-        "http://localhost:3000" + path
+        "http://localhost:5000" + path
       else
         "https://www.ourcommonplace.com" + path
       end

@@ -24,11 +24,20 @@ Mustache.template = function(templateString) {
 CommonPlace.View = Backbone.View.extend({
 
   render: function() {   
-    $(this.el).html(CommonPlace.render(this.template, this));  
-    this.afterRender();
+    var  self = this;
+    self.aroundRender(function() {
+      self.beforeRender();
+      $(self.el).html(CommonPlace.render(self.template, self));  
+      self.afterRender();
+    });
     return this;
   },
-  
-  afterRender: function() {}
+  beforeRender: function() {},
+                      
+  afterRender: function() {},
+
+  aroundRender: function(render) {
+    render();
+  }
 });
 
