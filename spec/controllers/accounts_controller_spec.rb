@@ -8,26 +8,30 @@ describe AccountsController do
   end
 
   describe "#create" do
-    let(:user) { mock_model(User) }
-    before :each do 
-      stub(UserSession).find.stub!.user { user}
-      stub(user).new_record? { true } 
-      stub(User).new { user }
-    end
+    before {
+      @user = User.new
+      stub(User).new { @user }
+    }
 
     context "when user save is succesful" do
-      before(:each) { stub(user).save { true } }
+      before { 
+        stub(@user).save { true } 
+        stub(controller.kickoff).deliver_welcome_email
+        post :create
+      }
       
       it "redirects to edit new" do
-        post :create
         response.should redirect_to('http://test.host/account/edit_new')
       end
 
+      it "sends a welcome email" do
+        controller.kickoff.should have_received.deliver_welcome_email(@user)
+      end
     end
 
     context "when user save is not successful" do
       before(:each) { 
-        stub(user).save { false }
+        stub(@user).save { false }
       }
 
       it "renders new.haml" do
