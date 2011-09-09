@@ -146,7 +146,13 @@ module Serializer
         "url" => "/groups/#{o.id}",
         "name" => o.name,
         "about" => o.about,
-        "avatar_url" => o.avatar_url }
+        "avatar_url" => o.avatar_url,
+        "slug" => o.slug,
+        "links" => {
+          "posts" => "/groups/#{o.id}/posts",
+          "members" => "/groups/#{o.id}/members"
+        }
+        }
 
       when Account
         {
