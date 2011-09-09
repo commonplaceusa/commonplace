@@ -110,3 +110,7 @@ javascripts:
     - public/javascripts/jquery/jquery.placeholder.js
     - public/javascripts/jquery/jquery.Jcrop.min.js
     - public/javascripts/registration_page.js
+
+  login_page:
+    - public/vendor/jquery.js
+    - public/javascripts/login_page.js
