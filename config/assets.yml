@@ -105,11 +105,14 @@ javascripts:
     - public/javascripts/jquery/json2.js
     - public/javascripts/jquery/backbone.js
     - public/javascripts/lib.js
+    - public/shared/app.js
+    - public/shared/models.js
+    - public/shared/views.js
     - public/group_page/*.js
 
   group_page_templates:
-    - public/group_page/templates/*.html.mustache
-
+    - public/templates/group_page/*.html.mustache
+    - public/templates/shared/*.html.mustache
 
   jquery:
     - public/javascripts/jquery-1.6.1.js
