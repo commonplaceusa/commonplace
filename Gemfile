@@ -97,7 +97,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec-rails', "~> 2.6" # we use rspec-rails for tests
+  gem 'rspec-rails' # we use rspec-rails for tests
   gem 'fuubar' # we use fuubar for pretty rspec output
   gem 'spork' # we use spork to speed up tests
   gem 'rr' # we use rr for mocking
