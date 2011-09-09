@@ -84,6 +84,22 @@ var SubscriberWireView = WireView.extend({
   emptyMessage: "No subscribers here yet"
 });
 
+var GroupPostWireView = WireView.extend({
+  modelToView: function(model) {
+    return new GroupPostItemView({model: model, account: this.account});
+  },
+
+  emptyMessage: "No posts here yet"
+});
+
+var GroupMemberWireView = WireView.extend({
+  modelToView: function(model) {
+    return new GroupMemberItemView({model: model, account: this.account});
+  },
+
+  emptyMessage: "No members here yet"
+});
+
 var EventItemView = CommonPlace.View.extend({
   template: "shared/event-item",
   tagName: "li",
@@ -184,6 +200,90 @@ var AnnouncementItemView = CommonPlace.View.extend({
     });
     formview.render();
   }
+});
+
+var SubscriberItemView = CommonPlace.View.extend({
+  template: "shared/subscriber-item",
+  tagName: "li",
+  className: "wire-item",
+
+  avatarUrl: function() { return this.model.get('avatar_url'); },
+
+  firstname: function() { return this.model.get("first_name"); },
+
+  lastname: function() { return this.model.get("last_name"); },
+  
+  events: {
+    "click button": "messageUser"
+  },
+
+  messageUser: function(e) {
+    e && e.preventDefault();
+    var formview = new MessageFormView({
+      model: this.model,
+      template: "feed_page/feed-message-user-form"
+    });
+    formview.render();
+  }
+});
+
+var GroupPostItemView = CommonPlace.View.extend({
+  template: "group_page/post-item",
+  tagName: "li",
+  className: "wire-item",
+
+  initialize: function(options) {
+    this.account = options.account;
+  },
+
+  afterRender: function() {
+    this.model.bind("change", this.render, this);
+  },
+
+  publishedAt: function() {
+    return timeAgoInWords(this.model.get("published_at"));
+  },
+
+  avatarUrl: function() {
+    return this.model.get("avatar_url");
+  },
+
+  title: function() {
+    return this.model.get("title");
+  },
+
+  author: function() {
+    return this.model.get("author");
+  },
+
+  body: function() {
+    return this.model.get("body");
+  }
+});
+
+var GroupMemberItemView = CommonPlace.View.extend({
+  template: "group_page/member-item",
+  tagName: "li",
+  className: "wire-item",
+  
+  initialize: function(options) {},
+
+  afterRender: function() {
+    this.model.bind("change", this.render, this);
+  },
+
+  avatarUrl: function() {
+    return this.model.get("avatar_url");
+  },
+
+  first_name: function() {
+    return this.model.get("first_name");
+  },
+
+  last_name: function() {
+    return this.model.get("last_name");
+  }
+
 });
 
 var FormView = CommonPlace.View.extend({
@@ -382,29 +482,4 @@ var RepliesView = CommonPlace.View.extend({
   },
   
   accountAvatarUrl: function() { return this.account.get('avatar_url'); }
-});
-
-var SubscriberItemView = CommonPlace.View.extend({
-  template: "shared/subscriber-item",
-  tagName: "li",
-  className: "wire-item",
-
-  avatarUrl: function() { return this.model.get('avatar_url'); },
-
-  firstname: function() { return this.model.get("first_name"); },
-
-  lastname: function() { return this.model.get("last_name"); },
-  
-  events: {
-    "click button": "messageUser"
-  },
-
-  messageUser: function(e) {
-    e && e.preventDefault();
-    var formview = new MessageFormView({
-      model: this.model,
-      template: "feed_page/feed-message-user-form"
-    });
-    formview.render();
-  }
 });
