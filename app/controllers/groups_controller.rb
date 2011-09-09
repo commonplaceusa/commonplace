@@ -1,3 +1,6 @@
 class GroupsController < ApplicationController
-  def show ; render :layout => false; end
+  def show
+    @group = Group.find(params[:slug])
+    render :layout => false
+  end
 end
