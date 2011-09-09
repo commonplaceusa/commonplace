@@ -276,11 +276,11 @@ var GroupMemberItemView = CommonPlace.View.extend({
     return this.model.get("avatar_url");
   },
 
-  first_name: function() {
+  firstname: function() {
     return this.model.get("first_name");
   },
 
-  last_name: function() {
+  lastname: function() {
     return this.model.get("last_name");
   }
 

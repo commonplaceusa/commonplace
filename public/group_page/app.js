@@ -49,7 +49,7 @@ var GroupView = CommonPlace.View.extend({
     subresources = new GroupSubresourcesView({model: group});
     list = new GroupsListView({model: group});
 
-    //nav.bind("switchTab", function(tab) { subresources.switchTab(tab); });
+    nav.bind("switchTab", function(tab) { subresources.switchTab(tab); });
 
     this.subviews = [profile, header, newpost, nav, subresources, list];
 
@@ -125,7 +125,7 @@ var GroupNavView = CommonPlace.View.extend({
   },
 
   initialize: function(options) {
-    this.current = options.current || "showPosts";
+    this.current = options.current || "showGroupPosts";
   },
   
   navigate: function(e) {
@@ -154,8 +154,8 @@ var GroupSubresourcesView = CommonPlace.View.extend({
     this.groupPostsCollection = this.group.posts;
     this.groupMembersCollection = this.group.members;
     this.currentTab = options.current || "showGroupPosts";
-    //this.group.posts.bind("add", function() { this.switchTab("showGroupPosts"); }, this);
-    //this.group.members.bind("add", function() { this.switchTab("showGroupMembers"); }, this);
+    this.group.posts.bind("add", function() { this.switchTab("showGroupPosts"); }, this);
+    this.group.members.bind("add", function() { this.switchTab("showGroupMembers"); }, this);
   },
 
   afterRender: function() {
@@ -172,7 +172,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
   },
 
   showGroupMembers: function() {
-    var wireView = new GroupMembersWireView({
+    var wireView = new GroupMemberWireView({
       collection: this.groupMembersCollection,
       account: this.account,
       el: this.$(".group-members .wire")
@@ -194,7 +194,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
     };
   },
 
-  switchTab: function() {
+  switchTab: function(newTab) {
     this.tabs()[this.currentTab].hide();
     this.currentTab = newTab;
     this.tabs()[this.currentTab].show();
