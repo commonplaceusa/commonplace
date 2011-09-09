@@ -560,7 +560,15 @@ end
   end
 
   get "/groups/:id" do |id|
-    serialize Group.find(id)
+    serialize(id =! /[^\d]/ ? Group.find_by_slug(id) : Group.find(id))
+  end
+
+  get "/groups/:id/posts" do |id|
+    serialize(Group.find(id).group_posts.to_a)
+  end
+
+  get "/groups/:id/members" do |id|
+    serialize(Group.find(id).subscribers.to_a)
   end
 
   get "/feeds/:id" do |id|
