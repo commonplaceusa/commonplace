@@ -3,18 +3,12 @@ class EmailParseController < ApplicationController
   protect_from_forgery :only => []
   before_filter :check_user, :filter_out_of_office
 
-
   def parse
     case to
       
     when /reply\+([a-zA-Z_0-9]+)/
       if reply = Reply.create(:body => body_text, :repliable => Repliable.find($1), :user => user)
-        (reply.repliable.replies.map(&:user) + [reply.repliable.user]).uniq.each do |user|
-          if user != reply.user
-            logger.info("Enqueue ReplyNotification #{reply.id} #{user.id}")
-            Resque.enqueue(ReplyNotification, reply.id, user.id)
-          end
-        end
+        kickoff.deliver_reply(reply)
       end
     when 'notifications'
       logger.info(<<END
@@ -27,26 +21,23 @@ END
     else
 
       if to.downcase == user.community.slug.downcase
-        post = Post.create(:body => body_text, :user => user, :subject => params[:subject], :community => user.community)
-
-        Resque.enqueue(PostConfirmation, post.id) if post
-
-        user.neighborhood.users.receives_posts_live.each do |u|
-          Resque.enqueue(PostNotification, post.id, u.id) if post.user != user
+        if post = Post.create(:body => body_text, :user => user, :subject => params[:subject], :community => user.community)
+        
+          kickoff.deliver_post_confirmation(post) 
+          kickoff.deliver_post(post)
         end
         
       elsif feed = user.community.feeds.find_by_slug(to)
         if feed.user_id == user.id
           announcement = Announcement.create(:body => body_text, :owner => feed, :subject => params[:subject], :community => feed.community)
-
-          Resque.enqueue(AnnouncementConfirmation, announcement.id) if announcement
-
+          kickoff.deliver_announcement(announcement) if announcement
+          kickoff.deliver_announcement_confirmation(announcement) if announcement
         else
-          Resque.enqueue(NoFeedPermission, user.id, feed.id)
+          kickoff.deliver_feed_permission_warning(user, feed)
         end
 
       else
-        Resque.enqueue(UnknownAddress, user.id)
+        kickoff.deliver_unknown_address_warning(user)
       end
       
     end
@@ -88,7 +79,7 @@ END
 
   def check_user
     if user.nil?
-      Resque.enqueue(UnknownUser, from)
+      kickoff.deliver_unknown_user_warning(from)
       render :nothing => true
       false
     else

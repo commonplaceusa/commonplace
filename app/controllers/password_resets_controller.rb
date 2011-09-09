@@ -8,7 +8,7 @@ class PasswordResetsController < ApplicationController
   def create
     if @user = User.find_by_email(params[:email])
       @user.reset_perishable_token!
-      Resque.enqueue(PasswordReset, @user.id)
+      kickoff.deliver_password_reset(@user)
       render :show
     else
       flash.now[:error] = "That email address is not in our system"

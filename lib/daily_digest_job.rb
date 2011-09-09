@@ -2,8 +2,10 @@ class DailyDigestJob
   @queue = :daily_digest
 
   def self.perform
+    kickoff = KickOff.new
+    date = DateTime.now.utc
     User.where("post_receive_method != 'Never'").find_each do |user|
-      Resque.enqueue(DailyBulletin, user.id, DateTime.now.utc.to_s(:db))
+      kickoff.deliver_daily_bulletin(user, date)
     end
   end
 

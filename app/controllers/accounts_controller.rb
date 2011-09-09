@@ -64,7 +64,7 @@ class AccountsController < ApplicationController
         @user.password = password
         @user.save!
       end
-      Resque.enqueue(Welcome, @user.id)
+      kickoff.deliver_welcome_email(@user)
       if params[:short]
         redirect_to new_feed_url
       else

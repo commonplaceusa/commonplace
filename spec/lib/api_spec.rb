@@ -7,7 +7,16 @@ set :environment, :test
 describe API do 
   include Rack::Test::Methods
   include WebMock::API
-  let(:app) { API }
+
+  let(:kickoff) { KickOff.new }
+
+  let(:app) { 
+    lambda do |env| 
+      env['kickoff'] = kickoff
+      API.call(env) 
+    end
+  }
+
   let(:community) { mock_model(Community) }
   shared_examples "A JSON endpoint" do
     it "returns a valid JSON response" do

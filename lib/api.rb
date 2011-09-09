@@ -51,6 +51,10 @@ end
       scope.limit(limit).offset(limit * page)
     end
 
+    def kickoff
+      request.env["kickoff"] ||= KickOff.new
+    end
+
   end
 
   before do 
@@ -78,12 +82,7 @@ end
                         :body => request_body['body'])
 
       if reply.save
-        (reply.repliable.replies.map(&:user) + [reply.repliable.user]).uniq.each do |user|
-          if user != reply.user
-            logger.info("Enqueue ReplyNotification #{reply.id} #{user.id}")
-            Resque.enqueue(ReplyNotification, reply.id, user.id)
-          end
-        end
+        kickoff.deliver_reply(reply)
         Serializer::serialize(reply).to_json
       else
         [400, "errors"]
@@ -102,9 +101,7 @@ end
                     :subject => request_body['title'],
                     :body => request_body['body'])
     if post.save
-      current_account.neighborhood.users.receives_posts_live.each do |user|
-        Resque.enqueue(PostNotification, post.id, user.id) if post.user != user
-      end
+      kickoff.deliver_post(post)
       serialize(post)
     else
       [400, "errors"]
@@ -313,11 +310,7 @@ end
                                     :community => current_account.community)
 
     if announcement.save
-      if announcement.owner.is_a?(Feed)
-        announcement.owner.live_subscribers.each do |user|
-          Resque.enqueue(AnnouncementNotification, announcement.id, user.id)
-        end
-      end
+      kickoff.deliver_announcement(announcement)
       serialize(announcement)
     else
       [400, "errors"]
@@ -336,9 +329,7 @@ end
                                     :body => request_body['body'],
                                     :community => current_account.community)
     if announcement.save
-      announcement.owner.live_subscribers.each do |user|
-        Resque.enqueue(AnnouncementNotification, announcement.id, user.id)
-      end
+      kickoff.deliver_announcement(announcement)
       serialize(announcement)
     else
       [400, "errors"]
@@ -396,11 +387,7 @@ end
   # , message: String }
   #
   post "/feeds/:id/invites" do |feed_id|
-    request_body['emails'].each do |email|
-      unless User.exists?(:email => email)
-        Resque.enqueue(FeedInvitation, email, feed_id)
-      end
-    end
+    kickoff.deliver_feed_invite(request_body['emails'], Feed.find(feed_id))
     [200, ""]
   end
 
@@ -434,9 +421,7 @@ end
                                :body => request_body['body'],
                                :user => current_account)
     if group_post.save
-      group_post.group.live_subscribers.each do |user|
-        Resque.enqueue(GroupPostNotification, group_post.id, user.id)
-      end
+      kickoff.deliver_group_post(group_post)
       serialize(group_post)
     else
       [400, "errors"]
@@ -455,7 +440,7 @@ end
                           :messagable => User.find(id),
                           :user => current_account)
     if message.save
-      Resque.enqueue(MessageNotification, message.id, id)
+      kickoff.deliver_user_message(message)
       [200, ""]
     else
       [400, "errors"]

@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_url
   end
 
+  def kickoff
+    @kickoff ||= KickOff.new
+  end
+
   protected
 
   def serialize(thing)

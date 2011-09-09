@@ -28,10 +28,7 @@ class PostsController < CommunitiesController
       #    :caption => "CommonPlace for " + current_community.name,
       #    :description => "DESCRIPTION")
       end
-
-      current_neighborhood.users.receives_posts_live.each do |user|
-        Resque.enqueue(PostNotification, post.id, user.id) if @post.user != user
-      end
+      kickoff.deliver_post(post)
       redirect_to posts_path
     else
       render :new
@@ -67,12 +64,7 @@ class PostsController < CommunitiesController
       original_neighborhood = @post.neighborhood
       @post.sent_to_community = true
       @post.save
-      current_community.neighborhoods.reject {|n| n == original_neighborhood }.
-        each do |n|
-        n.users.receives_posts_live.each do |user|
-          Resque.enqueue(PostNotification, @post.id, user.id)
-        end
-      end
+      kickoff.deliver_post_to_community(post)
     end
     redirect_to root_url
   end

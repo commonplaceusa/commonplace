@@ -13,14 +13,7 @@ class InvitesController < ApplicationController
         unless params[:message].present?
           params[:message] = params[:invite][:body] if params[:invite]
         end
-        i = Invite.new
-        i.email = email
-        i.inviter_id = current_user.id
-        i.body = params[:message] || nil
-        i.inviter_type = "User"
-        i.save
-        Resque.enqueue(Invitation, 
-                       email, current_user.id, params[:message] || nil)
+        kickoff.deliver_user_invite(email, current_user, params[:message])
       end
     end
     redirect_to root_url

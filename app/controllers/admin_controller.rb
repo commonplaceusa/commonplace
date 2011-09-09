@@ -57,7 +57,7 @@ class AdminController < ApplicationController
         half_user = HalfUser.new(:full_name => name, :email => email, :street_address => address, :community => Community.find(params[:clipboard_community]), :single_access_token => uuid.generate)
         if half_user.save
           email_addresses_registered << email
-          Resque.enqueue(ClipboardWelcome, half_user.id)
+          kickoff.deliver_clipboard_welcome(half_user)
         end
       end
       flash[:notice] = "Registered #{email_addresses_registered.count} users: #{email_addresses_registered.join(', ')}"
