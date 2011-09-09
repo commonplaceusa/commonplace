@@ -22,7 +22,7 @@ class MessagesController < CommunitiesController
     @message = current_user.messages.build(params[:message])
     if @message.save
       flash.now[:message] = "Message sent to #{@message.messagable.name}"
-      Resque.enqueue(MessageNotification, @message.id, @message.messagable_id)
+      kickoff.deliver_user_message(@message)
       render :create, :layout => false
     else
       render :new, :layout => false

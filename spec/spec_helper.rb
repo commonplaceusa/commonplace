@@ -9,6 +9,7 @@ Spork.prefork do
   require 'capybara/rails'
   require 'rr_patch'
 
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
   RSpec.configure do |config|
     DatabaseCleaner.strategy = :truncation
 
@@ -25,7 +26,8 @@ Spork.prefork do
     config.before :all do 
       stub(Geocoder).search
     end
-
+    
+    config.include(Matchers)
   end
 
 end

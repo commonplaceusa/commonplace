@@ -23,9 +23,9 @@ Hey -- testing a reply!
   let(:community) { mock_model(Community, :id => 1, :slug => "test", :time_zone => "Eastern Time (US & Canada)") }
   let(:user) { mock_model(User, :email => "test@example.com", :community => community, :neighborhood => neighborhood) }
 
-  let (:neighborhood) { mock_model(Neighborhood) }
+  let(:neighborhood) { mock_model(Neighborhood) }
 
-  before :each do 
+  before do 
     request.host = "test.example.com"
     stub(User).find_by_email(user.email) { user }
   end
@@ -38,6 +38,7 @@ Hey -- testing a reply!
       @reply_text = "reply text"
       stub(Reply).create { reply }
       stub(reply).repliable { fake_post }
+      mock(controller.kickoff).deliver_reply(reply)
       repliable_id = [fake_post.class.name.underscore, fake_post.id.to_s].join("_")
       stub(Repliable).find(repliable_id) { fake_post }
       post(:parse,
@@ -61,6 +62,7 @@ Hey -- testing a reply!
     
     it "creates a new post" do
       mock(Post).create(hash_including(:user => user)) { new_post }
+      mock(controller.kickoff).deliver_post(new_post)
       @body = "Lorem Ipsum dolor sit amet."
       post(:parse,
            :from => user.email,
@@ -78,6 +80,7 @@ Hey -- testing a reply!
     let(:feed) { mock_model(Feed, :slug => "testfeed", :user_id => user.id, :community_id => community.id) }
 
     it "posts a new announcement to a feed" do
+      mock(controller.kickoff).deliver_announcement(new_announcement)
       mock(Announcement).create(hash_including(:owner => feed)) { new_announcement }
       stub(community).feeds.stub!.find_by_slug( feed.slug ) { feed }
       @body = "Lorem Ipsum dolor sit amet."
