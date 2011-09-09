@@ -130,3 +130,32 @@ var Subscriber = CommonPlace.Model.extend({
   }
   
 });
+
+var Group = CommonPlace.Model.extend({
+  initialize: function() {
+    this.posts = new Group.PostCollection([], { group: this });
+    this.members = new Group.MemberCollection([], { group: this });
+  }
+}, {
+  PostCollection: CommonPlace.Collection.extend({
+    initialize: function(models, options) { this.group = options.group; },
+    model: GroupPost, 
+    url: function() {
+      return "/api" + this.group.get('links').posts;
+    }
+  }),
+  
+  MemberCollection :  CommonPlace.Collection.extend({
+    initialize: function(models, options) { this.group = options.group; },
+    model: GroupMember,
+    url: function() { 
+      return "/api" + this.group.get('links').members; 
+    }
+  })
+});
+
+var GroupPost = CommonPlace.Model.extend({
+});
+
+var GroupMember = CommonPlace.Model.extend({
+});
