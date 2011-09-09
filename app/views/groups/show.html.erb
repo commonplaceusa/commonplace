@@ -44,4 +44,18 @@
     
   </body>
 
+  <script type="text/javascript">
+    $(function() {
+      $.getJSON("/api/account", function(account) {
+
+      var community = <%= (Serializer::serialize current_community).to_json.html_safe %>;
+      var group = <%= (Serializer::serialize @group).to_json.html_safe %>;
+      var groups = <%= (Serializer::serialize current_community.groups.to_a).to_json.html_safe %>;
+      new GroupPageRouter({ account: account, community: community, group: group.slug, groups: groups });
+      //Backbone.history.start();
+
+      });
+    });
+  </script>
+
 </html>
