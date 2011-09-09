@@ -44,7 +44,7 @@ var GroupView = CommonPlace.View.extend({
 
     profile = new GroupProfileView({model: group});
     header = new GroupHeaderView({model: group});
-    newpost = new NewPostView({model: group});
+    newpost = new NewPostView({model: group, account: this.account});
     nav = new GroupNavView({model: group});
     subresources = new GroupSubresourcesView({model: group});
     list = new GroupsListView({model: group});
@@ -91,7 +91,15 @@ var GroupProfileView = CommonPlace.View.extend({
 
 var NewPostView = CommonPlace.View.extend({
   template: "group_page/new-post",
-  id: "new-post"
+  id: "new-post",
+
+  initialize: function(options) {
+    this.account = options.account;
+  },
+
+  account_avatar: function() {
+    return this.account.avatar_url;
+  }
 });
 
 var GroupsListView = CommonPlace.View.extend({
