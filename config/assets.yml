@@ -105,6 +105,7 @@ javascripts:
     - public/javascripts/jquery/json2.js
     - public/javascripts/jquery/backbone.js
     - public/javascripts/lib.js
+    - public/vendor/time_ago_in_words.js
     - public/shared/app.js
     - public/shared/models.js
     - public/shared/views.js
