@@ -1,109 +1,197 @@
 var GroupPageRouter = Backbone.Controller.extend({
 
-  routes: { 
-    "/groups/:slug": "show"
-  },
+  routes: {},
 
   initialize: function(options) {
     this.account = options.account;
+    this.community = options.community;
+    this.group = options.group;
+    this.groupsList = new GroupsListView({ collection: options.groups, el: $("#groups-list") });
+    this.groupsList.render();
+    this.show(options.group);
   },
 
   show: function(slug) {
-    var self = this;
-    $.getJSON("/api/groups/" + slug, function(group) {
-      new GroupProfileView({ model: group, el: $("#group-profile")}).render();
-      
-      new GroupHeaderView({ model: group, account: self.account, el: $("#group-header") }).render();
-      
-      new NewPostView({ el: $("#new-post") }).render();
-      
-      new GroupNavView({ model: group, el: $("#group-nav") }).render();
-
-      new GroupPostListView({ el: $("#post-list") }).render();
-
-      $.getJSON("/api/communities/1/groups", function(groups) {
-        new GroupsListView({ model: group, collection: groups, el: $("#groups-list"), community: "Nihlists" }).render();
+    var self = this; 
+    $.getJSON("/api" + this.community.links.groups, function(groups) {
+      self.groupsList.select(slug);
+      $.getJSON("/api/groups/" + slug, function(response) {
+        var group = new Group(response);
+        
+        document.title = group.get('name');
+        
+        var groupView = new GroupView({ model: group, community: self.community, account: self.account });
+        window.currentGroupView = groupView;
+        groupView.render();
+        
+        $("#group").replaceWith(groupView.el);
       });
     });
   }
+
 });
 
-var GroupHeaderView = Backbone.View.extend({
-  initialize: function(options) { this.account = options.account },
-
-  render: function() {
-    $(this.el).html(CommonPlace.render("header", this.model));
-    return this;
-  }
-});
-
-var GroupProfileView = Backbone.View.extend({
-  render: function() {
-    $(this.el).html(CommonPlace.render("profile", this.model));
-    return this;
-  }
-});
-
-var NewPostView = Backbone.View.extend({
-  render: function() {
-    $(this.el).html(CommonPlace.render("new-post", {}));
-    return this;
-  }
-});
-
-var GroupsListView = Backbone.View.extend({
+var GroupView = CommonPlace.View.extend({
+  template: "group_page/group",
+  id: "group",
 
   initialize: function(options) {
+    var self = this;
     this.community = options.community;
+    this.account = options.account;
+    var group = this.model;
+    var profile, header, newpost, nav, subresources, list;
+
+    profile = new GroupProfileView({model: group});
+    header = new GroupHeaderView({model: group});
+    newpost = new NewPostView({model: group});
+    nav = new GroupNavView({model: group});
+    subresources = new GroupSubresourcesView({model: group});
+    list = new GroupsListView({model: group});
+
+    //nav.bind("switchTab", function(tab) { subresources.switchTab(tab); });
+
+    this.subviews = [profile, header, newpost, nav, subresources, list];
+
   },
-
-  render: function() {
+  
+  afterRender: function() {
     var self = this;
-    $(this.el).html(CommonPlace.render("groups-list", this));
-
-    return this;
-  },
-
-  groups: function() {
-    var self = this;
-    return _(this.collection).map(function(group) {
-      return _(group).extend({ isCurrent: group['id'] == self.model['id'] });
+    _(this.subviews).each(function(view) {
+      view.render();
+      self.$("#" + view.id).replaceWith(view.el);
     });
+  }
+
+});
+
+var GroupHeaderView = CommonPlace.View.extend({
+  template: "group_page/header",
+  id: "group-header",
+  
+  initialize: function(options) { this.account = options.account },
+
+  name: function() {
+    return this.model.get("name");
   }
 });
 
-var GroupNavView = Backbone.View.extend({
-  render: function() {
-    $(this.el).html(CommonPlace.render("nav", { 
-      postsUrl: this.postsUrl(),
-      membersUrl: this.membersUrl(),
-      postsClass: this.isCurrentUrl(this.postsUrl()) ? "current" : "",
-      membersClass: this.isCurrentUrl(this.membersUrl()) ? "current" : ""
-    }));
-    return this;
+var GroupProfileView = CommonPlace.View.extend({
+  template: "group_page/profile",
+  id: "group-profile",
+  
+  avatar_url: function() {
+    return this.model.get("avatar_url");
   },
 
-  postsUrl: function() { return "/groups/" + this.model['id']  },
-  membersUrl: function() { return "/groups/" + this.model['id'] + "/members" },
-  isCurrentUrl: function(string) { return window.location.hash.slice(1) == string }
+  about: function() {
+    return this.model.get("about");
+  }
+});
+
+var NewPostView = CommonPlace.View.extend({
+  template: "group_page/new-post",
+  id: "new-post"
+});
+
+var GroupsListView = CommonPlace.View.extend({
+  template: "group_page/groups-list",
+
+  groups: function() {
+    return this.collection;
+  },
+
+  select: function(slug) {
+    this.$("li").removeClass("current");
+    this.$("li[data-group-slug=" + slug + "]").addClass("current");
+  }
+
+});
+
+var GroupNavView = CommonPlace.View.extend({
+  template: "group_page/nav",
+  id: "group-nav",
+
+  events: {
+    "click a": "navigate"
+  },
+
+  initialize: function(options) {
+    this.current = options.current || "showPosts";
+  },
+  
+  navigate: function(e) {
+    e.preventDefault();
+    this.current = $(e.target).attr('data-tab');
+    this.trigger('switchTab', this.current);
+    this.render();
+  },
+
+  classIfCurrent: function() {
+    var self = this;
+    return function(text) {
+      return this.current == text ? "current" : "";
+    };
+  }
   
 });
 
-var GroupPostListView = Backbone.View.extend({
+var GroupSubresourcesView = CommonPlace.View.extend({
+  template: "group_page/subresources",
+  id: "group-subresources",
+  
+  initialize: function(options) {
+    this.account = options.account;
+    this.group = options.model;
+    this.groupPostsCollection = this.group.posts;
+    this.groupMembersCollection = this.group.members;
+    this.currentTab = options.current || "showGroupPosts";
+    //this.group.posts.bind("add", function() { this.switchTab("showGroupPosts"); }, this);
+    //this.group.members.bind("add", function() { this.switchTab("showGroupMembers"); }, this);
+  },
 
-  render: function() {
-    $(this.el).html(CommonPlace.render("post-list", {}));
-    return this;
+  afterRender: function() {
+    this[this.currentTab]();
+  },
+
+  showGroupPosts: function() {
+    var wireView = new GroupPostWireView({
+      collection: this.groupPostsCollection,
+      account: this.account,
+      el: this.$(".group-posts .wire")
+    });
+    wireView.render();
+  },
+
+  showGroupMembers: function() {
+    var wireView = new GroupMembersWireView({
+      collection: this.groupMembersCollection,
+      account: this.account,
+      el: this.$(".group-members .wire")
+    });
+    wireView.render();
+  },
+
+  tabs: function() {
+    return {
+      showGroupPosts: this.$(".group-posts"),
+      showGroupMembers: this.$(".group-members")
+    };
+  },
+
+  classIfCurrent: function() {
+    var self = this;
+    return function(text) {
+      return text == self.currentTab ? "current" : "";
+    };
+  },
+
+  switchTab: function() {
+    this.tabs()[this.currentTab].hide();
+    this.currentTab = newTab;
+    this.tabs()[this.currentTab].show();
+    this.render();
   }
+
 });
 
-
-$(function() {
-  $.getJSON("/api/account", function(account) {
-
-    new GroupPageRouter({ account: account });
-    window.location.hash = window.location.pathname;
-    Backbone.history.start();
-
-  });
-});
