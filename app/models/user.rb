@@ -316,6 +316,12 @@ class User < ActiveRecord::Base
     #handle_asynchronously :solr_index
   end
 
+  # Devise calls this on POST /users/password
+  def send_reset_password_instructions
+    generate_reset_password_token! if should_generate_token?
+    Kickoff.new.deliver_password_reset(self)
+  end
+
   private
 
   def is_transitional_user
