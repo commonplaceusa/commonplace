@@ -2,8 +2,8 @@
 <h1>All {{community}} Groups</h1>
 <ul>
   {{#groups}}
-    <li>
-      <a href="{{url}}" class="{{#isCurrent}}current{{/isCurrent}}">
+    <li class="{{#isCurrent}}current{{/isCurrent}}" data-group-slug="{{slug}}">
+      <a href="{{url}}">
         <img src="{{avatar_url}}" class="avatar" width="25" height="25">
         {{name}}
       </a>
