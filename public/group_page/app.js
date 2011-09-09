@@ -1,12 +1,3 @@
-CommonPlace.render = function(name, params) {
-  return Mustache.to_html(
-    CommonPlace.templates[name], 
-    params,
-    CommonPlace.templates
-  );
-};
-
-
 var GroupPageRouter = Backbone.Controller.extend({
 
   routes: { 
