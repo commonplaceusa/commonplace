@@ -348,7 +348,7 @@ end
   get "/feeds/:id/announcements" do |feed_id|
     scope = Announcement.where("owner_id = ? AND owner_type = ?", feed_id, "Feed")
     last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
-    serialize(paginate(scope.includes(:replies, :owner).reorder("updated_at DESC")).to_a)
+    serialize(paginate(scope.includes(:replies, :owner).reorder("updated_at DESC")))
   end
 
   # POST /feeds/:id/events
@@ -384,11 +384,11 @@ end
     scope = Event.where("owner_id = ? AND owner_type = ?",feed_id, "Feed")
     last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
                    DateTime.now.beginning_of_day.utc.to_time].compact.max)
-    serialize(paginate(scope.upcoming.includes(:replies)).to_a)
+    serialize(paginate(scope.upcoming.includes(:replies)))
   end
 
   get "/feeds/:id/subscribers" do |feed_id|
-    serialize(paginate(Feed.find(feed_id).subscribers).to_a)
+    serialize(paginate(Feed.find(feed_id).subscribers))
   end
 
   # POST "/feeds/:id/invites"
@@ -514,7 +514,7 @@ end
     last_modified(community.posts.unscoped.
                   reorder("updated_at DESC").limit(1).first.try(:updated_at))
 
-    serialize(paginate(community.posts.includes(:user, :replies).to_a))
+    serialize(paginate(community.posts.includes(:user, :replies)))
   end
 
   get "/neighborhoods/:id/posts" do |id|
@@ -523,20 +523,20 @@ end
     last_modified(posts.unscoped.
                   reorder("updated_at DESC").limit(1).first.try(:updated_at))
 
-    serialize(paginate(posts.includes(:user, :replies)).to_a)
+    serialize(paginate(posts.includes(:user, :replies)))
   end
 
   get "/communities/:id/events" do |id|
     scope = Event.where("community_id = ?",id)
     last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
                    DateTime.now.beginning_of_day.utc.to_time].compact.max)
-    serialize(paginate(scope.upcoming.includes(:replies)).to_a)
+    serialize(paginate(scope.upcoming.includes(:replies)))
   end
 
   get "/communities/:id/announcements" do |id|
     scope = Announcement.where("community_id = ?", id)
     last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
-    serialize(paginate(scope.includes(:replies, :owner).reorder("updated_at DESC")).to_a)
+    serialize(paginate(scope.includes(:replies, :owner).reorder("updated_at DESC")))
 
   end
 
@@ -544,26 +544,26 @@ end
     community = Community.find(id)
     last_modified(GroupPost.includes(:group).where(:groups => {:community_id => community.id}).reorder("group_posts.updated_at DESC").first.try(:updated_at))
     serialize(paginate(GroupPost.includes(:group, :user, :replies => :user).
-                       where(:groups => {:community_id => community.id})).to_a)
+                       where(:groups => {:community_id => community.id})))
   end
 
   get "/communities/:id/feeds" do |id|
     scope = Community.find(id).feeds
     last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
-    serialize(scope.to_a)
+    serialize(scope)
   end
 
   get "/communities/:id/groups" do |id|
     community = Community.find(id) 
     scope = Community.find(id).groups
     last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
-    serialize(community.groups.to_a)
+    serialize(community.groups)
   end
 
   get "/communities/:id/users" do |id|
     scope = Community.find(id).users
     last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
-    serialize(scope.includes(:feeds, :groups).to_a)
+    serialize(scope.includes(:feeds, :groups))
   end
 
   get "/users/:id" do |id|
