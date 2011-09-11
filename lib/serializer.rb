@@ -1,5 +1,6 @@
 module Serializer
   def self.serialize(o)
+    o = o.to_a if o.respond_to?(:to_a)
     as_json = 
       case o
         
