@@ -39,6 +39,18 @@ end
       @logger ||= Logger.new(Rails.root.join("log", "api.log"))
     end
 
+    def page
+      (params[:page] || 0).to_i
+    end
+
+    def limit
+      (params[:limit] || 25).to_i
+    end
+
+    def paginate(scope)
+      scope.limit(limit).offset(limit * page)
+    end
+
   end
 
   before do 
@@ -334,14 +346,9 @@ end
   end
 
   get "/feeds/:id/announcements" do |feed_id|
-    params[:limit] ||= 25
-    params[:page] ||= 0
     scope = Announcement.where("owner_id = ? AND owner_type = ?", feed_id, "Feed")
     last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
-    serialize(scope.includes(:replies, :owner).
-              limit(params[:limit]).
-              reorder("updated_at DESC").
-              offset(params[:limit].to_i * params[:page].to_i).to_a)
+    serialize(paginate(scope.includes(:replies, :owner).reorder("updated_at DESC")).to_a)
   end
 
   # POST /feeds/:id/events
@@ -374,26 +381,14 @@ end
   end
 
   get "/feeds/:id/events" do |feed_id|
-    params[:limit] ||= 25
-    params[:page] ||= 0
     scope = Event.where("owner_id = ? AND owner_type = ?",feed_id, "Feed")
     last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
                    DateTime.now.beginning_of_day.utc.to_time].compact.max)
-    serialize(scope.upcoming.
-              limit(params[:limit]).
-              offset(params[:limit].to_i * params[:page].to_i).
-              includes(:replies).to_a)
+    serialize(paginate(scope.upcoming.includes(:replies)).to_a)
   end
 
   get "/feeds/:id/subscribers" do |feed_id|
-    params[:limit] ||= 25
-    params[:page] ||= 0
-    serialize(Feed.find(feed_id).
-      subscribers.
-      limit(params[:limit]).
-      offset(params[:limit].to_i * params[:page].to_i).
-      to_a
-    )
+    serialize(paginate(Feed.find(feed_id).subscribers).to_a)
   end
 
   # POST "/feeds/:id/invites"
@@ -514,65 +509,42 @@ end
   end
   
   get "/communities/:id/posts" do |id|
-    params[:limit] ||= 25
-    params[:page] ||= 0
     community = Community.find(id)
 
     last_modified(community.posts.unscoped.
                   reorder("updated_at DESC").limit(1).first.try(:updated_at))
 
-    serialize(community.posts.
-              limit(params[:limit]).
-              offset(params[:limit].to_i * params[:page].to_i).
-              includes(:user, :replies).to_a)
+    serialize(paginate(community.posts.includes(:user, :replies).to_a))
   end
 
   get "/neighborhoods/:id/posts" do |id|
-    params[:limit] ||= 25
     posts = Post.includes(:user).where(:users => {:neighborhood_id => id})
 
     last_modified(posts.unscoped.
                   reorder("updated_at DESC").limit(1).first.try(:updated_at))
 
-    serialize(posts.
-              limit(params[:limit]).
-              offset(params[:limit].to_i * params[:page].to_i).
-              includes(:user, :replies).to_a)
+    serialize(paginate(posts.includes(:user, :replies)).to_a)
   end
 
   get "/communities/:id/events" do |id|
-    params[:limit] ||= 25
-    params[:page] ||= 0
     scope = Event.where("community_id = ?",id)
     last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
                    DateTime.now.beginning_of_day.utc.to_time].compact.max)
-    serialize(scope.upcoming.
-                limit(params[:limit]).
-                offset(params[:limit].to_i * params[:page].to_i).
-                includes(:replies).to_a)
+    serialize(paginate(scope.upcoming.includes(:replies)).to_a)
   end
 
   get "/communities/:id/announcements" do |id|
-    params[:limit] ||= 25
-    params[:page] ||= 0
     scope = Announcement.where("community_id = ?", id)
     last_modified(scope.reorder("updated_at DESC").limit(1).first.try(:updated_at))
-    serialize(scope.includes(:replies, :owner).
-                limit(params[:limit]).
-                reorder("updated_at DESC").
-                offset(params[:limit].to_i * params[:page].to_i).to_a)
+    serialize(paginate(scope.includes(:replies, :owner).reorder("updated_at DESC")).to_a)
+
   end
 
   get "/communities/:id/group_posts" do |id|
-    params[:limit] ||= 25
-    params[:page] ||= 0
     community = Community.find(id)
     last_modified(GroupPost.includes(:group).where(:groups => {:community_id => community.id}).reorder("group_posts.updated_at DESC").first.try(:updated_at))
-    serialize(GroupPost.includes(:group, :user, :replies => :user).
-                where(:groups => {:community_id => community.id}).
-                limit(params[:limit]).
-                offset(params[:limit].to_i * params[:page].to_i).
-                to_a)
+    serialize(paginate(GroupPost.includes(:group, :user, :replies => :user).
+                       where(:groups => {:community_id => community.id})).to_a)
   end
 
   get "/communities/:id/feeds" do |id|
