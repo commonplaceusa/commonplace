@@ -51,7 +51,7 @@
       CommonPlace.community.groups.refresh(#{@groups.to_json.html_safe});
       CommonPlace.community.users.refresh(#{@users.to_json.html_safe});
 
-      CommonPlace.account = new CommonPlace.Account(#{Serializer::serialize(Account.new(current_user)).to_json.html_safe});
+      CommonPlace.account = new CommonPlace.Account(#{serialize(Account.new(current_user))});
 
       var oldhash = window.location.hash.slice(1);
       window.location.hash = "/";

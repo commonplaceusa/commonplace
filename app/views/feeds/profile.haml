@@ -33,7 +33,7 @@
         $(function() {
         $.getJSON("/api/account", function(account_response) {
         $.getJSON("/api/communities/#{current_community.id}/feeds", function(feeds) {
-        new FeedPageRouter({ account: new Account(account_response), community: #{Serializer::serialize(current_community).to_json.html_safe}, feed: "#{params[:id]}", feeds: feeds });
+        new FeedPageRouter({ account: new Account(account_response), community: #{serialize(current_community)}, feed: "#{params[:id]}", feeds: feeds });
         Backbone.history.start();
         });
         });

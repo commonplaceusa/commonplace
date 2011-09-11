@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method 'logged_in?'
   helper_method 'xhr?'
   helper_method :current_user_session, :current_user, :facebook_session
-  helper_method :api
+  helper_method :api, :serialize
   
   before_filter :domain_redirect, :set_process_name_from_request, :set_locale
   after_filter :unset_process_name_from_request
@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def serialize(thing)
+    Serializer::serialize(thing).to_json.html_safe
+  end
 
   def cp_client
     @_cp_client ||= CPClient.new(:host => "http://commonplace.api", :api_key => current_user.single_access_token)
