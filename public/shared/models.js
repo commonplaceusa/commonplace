@@ -31,13 +31,16 @@ var Reply = CommonPlace.Model.extend({});
 
 var Message = CommonPlace.Model.extend({
   initialize: function(options) {
-    this.feed = options.feed;
+    this.messagable = options.messagable;
   },
 
   url: function() {
-    return "/api" + this.feed.get("links").messages;
+    return "/api" + this.messagable.get("links").messages;
+  },
+
+  name: function() {
+    return this.messagable.get("name");
   }
-  
 });
 
 var Feed = CommonPlace.Model.extend({
@@ -157,10 +160,6 @@ var Replies = CommonPlace.Collection.extend({
 });
 
 var Subscriber = CommonPlace.Model.extend({
-  defaults: {
-    first_name: "Eblong",
-    last_name: "Zarf"
-  }
   
 });
 
