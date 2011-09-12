@@ -8,10 +8,7 @@ class Ability
     alias_action(:neighborhood, :subscribed, :your, :suggested, :neighbors,
                  :business, :municipal,
                  :to => :read)
-    if user.new_record?
-      can :create, User
-      can :create, UserSession
-    else
+    if user.present? && !user.new_record?
       can :read, Message do |m|
         m.user == user || m.messagable == user
       end
@@ -25,7 +22,6 @@ class Ability
       can :create, GroupPost
       can :destroy, GroupPost, :user_id => user.id
       can :update, GroupPost, :user_id => user.id
-      can :destroy, UserSession
       can :read, Reply
       can :create, Reply
       can :read, Post
