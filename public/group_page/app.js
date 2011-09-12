@@ -3,7 +3,7 @@ var GroupPageRouter = Backbone.Controller.extend({
   routes: {},
 
   initialize: function(options) {
-    this.account = options.account;
+    this.account = new Account(options.account);
     this.community = options.community;
     this.group = options.group;
     this.groupsList = new GroupsListView({ collection: options.groups, el: $("#groups-list") });
@@ -43,7 +43,7 @@ var GroupView = CommonPlace.View.extend({
     var profile, header, newpost, nav, subresources, list;
 
     profile = new GroupProfileView({model: group});
-    header = new GroupHeaderView({model: group});
+    header = new GroupHeaderView({model: group, account: this.account});
     newpost = new NewPostView({model: group, account: this.account});
     nav = new GroupNavView({model: group});
     subresources = new GroupSubresourcesView({model: group});
@@ -73,6 +73,27 @@ var GroupHeaderView = CommonPlace.View.extend({
 
   name: function() {
     return this.model.get("name");
+  },
+
+  isSubscribed: function() {
+    return this.account.isSubscribedToGroup(this.model);
+  },
+
+  events: {
+    "click a.subscribe": "subscribe",
+    "click a.unsubscribe": "unsubscribe"
+  },
+
+  subscribe: function(e) {
+    var self = this;
+    e.preventDefault();
+    this.account.subscribeToGroup(this.model, function() { self.render(); });
+  },
+
+  unsubscribe: function(e) {
+    var self = this;
+    e.preventDefault();
+    this.account.unsubscribeFromGroup(this.model, function() { self.render(); });
   }
 });
 
@@ -98,7 +119,7 @@ var NewPostView = CommonPlace.View.extend({
   },
 
   account_avatar: function() {
-    return this.account.avatar_url;
+    return this.account.get("avatar_url");
   }
 });
 

@@ -1,2 +1,8 @@
 <h1>{{name}}</h1>
-<a href="" class="subscribe">SUBSCRIBE</a>
+
+{{#isSubscribed}}
+  <a href="#" class="unsubscribe">UNSUBSCRIBE</a>
+{{/isSubscribed}}
+{{^isSubscribed}}
+  <a href="#" class="subscribe">SUBSCRIBE</a>
+{{/isSubscribed}}
