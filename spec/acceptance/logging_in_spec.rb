@@ -16,8 +16,7 @@ feature "Logging in", %q{
 
     Factory(:user, :email => "test@example.com", :password => "password",
             :neighborhood_id => neighborhood.id, :community_id => community.id,
-            :address => "100 Example Way")
-    
+                   :address => "100 Example Way")
     Capybara.app_host = "http://localhost:#{Capybara.server_port}"
   end
 
@@ -26,12 +25,12 @@ feature "Logging in", %q{
     visit "/#{@community.slug}"
     find("#sign_in_button").click
 
-    find("form.user_session").should be_visible
+    find("form.user").should be_visible
 
-    within("form.user_session") do
-      fill_in "user_session[email]", :with => "test@example.com"
-      fill_in "user_session[password]", :with => "password"
-      find("#user_session_submit").click
+    within("form.user") do
+      fill_in "user[email]", :with => "test@example.com"
+      fill_in "user[password]", :with => "password"
+      find("#user_submit").click
     end
 
     current_path.should == "/"
