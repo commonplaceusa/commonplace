@@ -38,12 +38,10 @@ feature "Registration", %q{
 
     within "form.user" do
       fill_in "user[password]", :with => "super-secret"
-      click_button "Update User"
+      click_button "user_submit"
     end
 
     current_path.should == "/"
   end
-
-  
 
 end
