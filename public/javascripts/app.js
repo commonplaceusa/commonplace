@@ -65,17 +65,6 @@ $(function() {
   });
 
 
-  $('#sign_in_button').click(function() {
-    if ( $(this).hasClass("open") ) {
-      $(this).removeClass("open");
-      $("form.user_session").slideUp();
-    } else {
-      $(this).addClass("open");
-      //$("form.user_session").slideDown(300);
-      $("form.user_session").slideDown();
-    }
-  });
-
   // Feed Profile
   $('#post-to-feed h2 nav li:last-child').hide();
   $('#post-to-feed h2 nav ul').hover(function(){

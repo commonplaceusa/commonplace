@@ -1,32 +1,8 @@
-:javascript
-  function loginFacebook()
-  {
-    session = FB.getSession();
-    if (!session.uid || session.uid == '')
-      alert("We could not log you in using Facebook. Please try again.");
-    else
-    {
-      field = $("<input />").attr("type", "hidden")
-        .attr("id", "user_session_facebook_uid")
-        .attr("name", "user_session[facebook_uid]")
-        .val(session.uid);
-      field.appendTo("#new_user_session");
-      FB.api("/me", function(response) {
-        $("#user_session_email").attr("readonly", "true").val(response.email);
-        $("#user_session_password").attr("readonly","true").val(facebook_pass(session));
-        $("#new_user_session").submit();
-      });
-    }
-  }
-
-= semantic_form_for( (user_session || :user_session), :url => user_session_path) do |f|
+= semantic_form_for(:user, :url => "/users/sign_in") do |f|
   = f.inputs :email, :password
   = f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/login.png"}
-    -#= f.commit_button :button_html => {:type => "image", :src => "/images/buttons/facebook-login.png", :name => "login_with_oauth2", :value => "true"}
-
 
   = link_to "Forgot your password?", new_password_reset_path, :class => 'forgot-password'
-  - unless user_session.errors.empty?
-    = f.semantic_errors
+  
 
