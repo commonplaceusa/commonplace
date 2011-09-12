@@ -220,8 +220,7 @@ var SubscriberItemView = CommonPlace.View.extend({
   messageUser: function(e) {
     e && e.preventDefault();
     var formview = new MessageFormView({
-      model: this.model,
-      template: "feed_page/feed-message-user-form"
+      model: new Message({messagable: this.model})
     });
     formview.render();
   }
@@ -282,13 +281,25 @@ var GroupMemberItemView = CommonPlace.View.extend({
 
   lastname: function() {
     return this.model.get("last_name");
+  },
+
+  events: {
+    "click button": "messageUser"
+  },
+
+  messageUser: function(e) {
+    e && e.preventDefault();
+    var formview = new MessageFormView({
+      model: new Message({messagable: this.model})
+    });
+    formview.render();
   }
 
 });
 
 var FormView = CommonPlace.View.extend({
   initialize: function(options) {
-    this.template = this.options.template;
+    this.template = (this.options.template || this.template);
     this.modal = new ModalView({form: this.el});
   },
 
@@ -314,6 +325,8 @@ var FormView = CommonPlace.View.extend({
 });
 
 var MessageFormView = FormView.extend({
+  template: "shared/message-form",
+
   save: function() {
     this.model.save({
       subject: this.$("[name=subject]").val(),
@@ -321,16 +334,8 @@ var MessageFormView = FormView.extend({
     });
   },
 
-  first_name: function() {
-    return this.model.get("first_name");
-  },
-
-  last_name: function() {
-    return this.model.get("last_name");
-  },
-
-  feed_name: function() {
-   return this.model.get("feed").get("name");
+  name: function() {
+    return this.model.name();
   }
 });
 
@@ -418,8 +423,8 @@ var EventFormView = FormView.extend({
 });
 
 var ModalView = CommonPlace.View.extend({
-  template: "feed_page/feed-modal",
-  className: "feed-modal",
+  template: "shared/modal",
+  className: "modal",
 
   initialize: function(options) {
     var self = this;
