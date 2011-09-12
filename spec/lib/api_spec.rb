@@ -9,9 +9,12 @@ describe API do
   include WebMock::API
 
   let(:kickoff) { KickOff.new }
+  let(:account) { User.new }
+  let(:warden) { Object.new.tap {|o| stub(o).authenticate! { account } } }
 
   let(:app) { 
     lambda do |env| 
+      env['warden'] = warden
       env['kickoff'] = kickoff
       API.call(env) 
     end
