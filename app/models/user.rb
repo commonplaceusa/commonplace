@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  before_save :ensure_authentication_token
+
   #track_on_creation
   include Geokit::Geocoders
 
