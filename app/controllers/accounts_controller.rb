@@ -4,8 +4,10 @@ class AccountsController < ApplicationController
 
   protect_from_forgery :except => :update
 
-  def new
+  before_filter :authenticate_user!, :except => [:new, :create]
 
+
+  def new
     if !current_community
       raise CanCan::AccessDenied
     end
@@ -21,15 +23,6 @@ class AccountsController < ApplicationController
 
   end
   
-  def new_from_facebook
-    if can? :create, User
-      @user = User.new
-      @user.send_to_facebook
-    else
-      redirect_to root_url
-    end
-  end
-  
   def show
     redirect_to edit_account_url
   end
@@ -43,35 +36,13 @@ class AccountsController < ApplicationController
   end
   
   def create
-    authorize! :create, User
     params[:user] ||= {}
-    password = ""
-    if params[:user][:facebook_session].present?
-      j = ActiveSupport::JSON.decode(params[:user][:facebook_session])
-      params[:user][:facebook_uid] = j["uid"]
-      params[:user].delete("facebook_session")
-    end
-    if params[:user][:facebook_uid].present?
-      password = params[:user][:facebook_uid]
-      # Permute it!
-      password = $CryptoKey.encrypt(password)
-    end
     
     @user = User.new(params[:user].merge(:community => current_community))
     if @user.save
-      if password == ""
-        password = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{@user.email}--")[0,6]
-      end
-      unless password == ""
-        @user.password = password
-        @user.save!
-      end
+      sign_in(:user, @user)
       kickoff.deliver_welcome_email(@user)
-      if params[:short]
-        redirect_to new_feed_url
-      else
-        redirect_to edit_new_account_url
-      end
+      redirect_to edit_new_account_url
     else
       render :new, :layout => "registration"
     end
