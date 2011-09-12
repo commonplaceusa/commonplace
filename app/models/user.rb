@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   #track_on_creation
   include Geokit::Geocoders
 
@@ -6,6 +7,8 @@ class User < ActiveRecord::Base
     ["Live", "Three", "Daily", "Never"]
   end
 
+  devise :database_authenticatable, :encryptable, :token_authenticatable, :recoverable
+  
   geocoded_by :normalized_address
 
   belongs_to :community
