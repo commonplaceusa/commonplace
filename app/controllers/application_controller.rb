@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_neighborhood
   helper_method 'logged_in?'
   helper_method 'xhr?'
-  helper_method :current_user_session, :current_user, :facebook_session
+  helper_method :facebook_session
   helper_method :api, :serialize
   
   before_filter :domain_redirect, :set_process_name_from_request, :set_locale
@@ -123,21 +123,6 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     user_signed_in?
-  end
-
-  def current_user_session
-    return @current_user_session if defined?(@current_user_session)
-    @current_user_session = UserSession.find || UserSession.new(params[:user_session])
-  end
-  
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.user || User.new(:neighborhood_id => 1)
-  end
-
-  def reload_current_user!
-    @current_user_session = UserSession.find
-    @current_user = current_user_session.user
   end
 
   def set_locale
