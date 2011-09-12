@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/commonplaceusa/authlogic_oauth2.git
-  revision: f3a72e177dc5269337bb95d557f7d260e3f9af7f
-  specs:
-    authlogic_oauth2 (1.1.6)
-      authlogic
-      oauth2
-
-GIT
   remote: git://github.com/jnicklas/capybara.git
   revision: e92ef27842c20eccde9a64a712f20eef24d8c5aa
   specs:
@@ -64,9 +56,6 @@ GEM
     activesupport (3.0.10)
     addressable (2.2.5)
     arel (2.0.10)
-    authlogic (3.0.2)
-      activerecord (~> 3.0.7)
-      activerecord (~> 3.0.7)
     autotest-rails-pure (4.1.2)
     autotest-standalone (4.5.5)
     aws-s3 (0.6.2)
@@ -106,7 +95,6 @@ GEM
     eventmachine (0.12.10)
     exceptional (2.0.32)
       rack
-    ezcrypto (0.7.2)
     factory_girl (1.3.3)
     faraday (0.6.1)
       addressable (~> 2.2.4)
@@ -192,14 +180,10 @@ GEM
       ruby_parser (>= 2.0.5)
     mime-types (1.16)
     mimemagic (0.1.8)
-    multi_json (1.0.1)
     multipart-post (1.1.0)
     mustache (0.99.1)
     newrelic_rpm (2.14.1)
     nokogiri (1.4.4)
-    oauth2 (0.4.1)
-      faraday (~> 0.6.1)
-      multi_json (>= 0.0.5)
     open4 (1.0.1)
     orm_adapter (0.0.5)
     paperclip (2.3.8)
@@ -347,8 +331,6 @@ PLATFORMS
 DEPENDENCIES
   BlueCloth
   activeadmin
-  authlogic
-  authlogic_oauth2 (>= 1.1.6)!
   autotest-rails-pure
   autotest-standalone
   aws-s3
@@ -358,8 +340,8 @@ DEPENDENCIES
   dalli
   database_cleaner
   delayed_job
+  devise
   exceptional
-  ezcrypto
   factory_girl
   faraday
   foreman
@@ -385,7 +367,6 @@ DEPENDENCIES
   mcbean
   mustache
   newrelic_rpm
-  oauth2
   paperclip
   permanent_records
   pg
