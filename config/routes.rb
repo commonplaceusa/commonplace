@@ -35,7 +35,6 @@ Commonplace::Application.routes.draw do
   match 'interns', :to => "site#interns"
 
   match "/facebook_canvas/" => "facebook_canvas#index"
-  match 'login' => 'user_sessions#new', :as => :login
 
   resource :user_session
 
@@ -67,7 +66,29 @@ Commonplace::Application.routes.draw do
 
   resource :invites
 
-  constraints LoggedInConstraint.new(true) do
+  unauthenticated do
+
+    root :to => "site#index"
+    
+    match "/:community/learn_more", :to => "accounts#learn_more"
+
+
+    resources :password_resets
+    match "/:community", :to => "accounts#new"
+    match "/:community/account", :via => :post, :to => "accounts#create", :as => "create_account"
+
+    # Invitations
+    resource :account do
+      member do
+        get :facebook_invite
+      end
+    end
+    
+    match "/invite", :to => "accounts#facebook_invite"
+  end
+
+
+  authenticated do
 
     match 'logout' => 'user_sessions#destroy'
 
@@ -126,29 +147,6 @@ Commonplace::Application.routes.draw do
 
   end
 
-  constraints LoggedInConstraint.new(false) do
-
-    root :to => "site#index"
-    
-    match "/:community/learn_more", :to => "accounts#learn_more"
-
-
-    resources :password_resets
-    match "/:community", :to => "accounts#new"
-    match "/:community/account", :via => :post, :to => "accounts#create", :as => "create_account"
-
-    # Invitations
-  resource :account do
-    member do
-      get :facebook_invite
-    end
-  end
-
-  match "/invite", :to => "accounts#facebook_invite"
-    
-
-    
-  end
 
 
   scope "/:community" do

@@ -1,19 +1,5 @@
 #header
-  - if user_session.new_session?
-    #nav_wrapper
-      %ul{:id=>"user_sign_in"}
-        %li Have an Account?
-        %li{:id=>"sign_in_button", :class=>"remove_border"} Sign in
-        %li{:id=>"sign_in_form"}
-          = render 'user_sessions/form', :user_session => user_session
-      - if params[:community]
-        = link_to "/#{params[:community]}", :id => "logo" do
-          = image_tag "logo2.png", :alt => 'CommonPlace'
-          %span.community= current_community.name
-      - else
-        = link_to "/", :id => "logo" do
-          = image_tag "logo2.png", :alt => 'CommonPlace'
-  - else
+  - if logged_in?
     #nav_wrapper
       .nav
         = tab_to "Home", "/#{current_community.slug}"
@@ -33,9 +19,31 @@
               = link_to((t "feeds.register"), new_feed_url)
         = tab_to "Settings", "/account"
         = tab_to "FAQ", "/#{current_community.slug}/faq"
-        = tab_to "Logout", "/logout", :method => :delete
+        = tab_to "Logout", "/users/sign_out"
       = link_to "/", :id => "logo" do
         = image_tag "logo2.png", :alt => 'CommonPlace'
         %span.community= current_community.name
+  - else
+    #nav_wrapper
+      :javascript
+        $(function() {
+        $('#sign_in_button').click(function() {
+        $("#header form.user").slideToggle();
+        });
+        });
+
+      %ul{:id=>"user_sign_in"}
+        %li Have an Account?
+        %li{:id=>"sign_in_button", :class=>"remove_border"} Sign in
+        %li{:id=>"sign_in_form"}
+          = render 'user_sessions/form'
+            
+      - if params[:community]
+        = link_to "/#{params[:community]}", :id => "logo" do
+          = image_tag "logo2.png", :alt => 'CommonPlace'
+          %span.community= current_community.name
+      - else
+        = link_to "/", :id => "logo" do
+          = image_tag "logo2.png", :alt => 'CommonPlace'
     
   .clear

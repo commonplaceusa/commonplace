@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     store_location
-    redirect_to login_url
+    redirect_to "/users/sign_in"
   end
 
   def kickoff
@@ -103,11 +103,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_neighborhood
-    if current_user.admin? && params[:neighborhood_id].present?
-      current_user.neighborhood = Neighborhood.find(params[:neighborhood_id])
-      current_user.save!
+    if logged_in?
+      if current_user.admin? && params[:neighborhood_id].present?
+        current_user.neighborhood = Neighborhood.find(params[:neighborhood_id])
+        current_user.save!
+      end
+      @current_neighborhood ||= current_user.neighborhood
     end
-    @current_neighborhood ||= current_user.neighborhood
   end
 
   def store_location
