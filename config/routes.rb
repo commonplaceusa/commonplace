@@ -4,6 +4,8 @@ Commonplace::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  
+  devise_for :users
 
   match("/#{Jammit.package_path}/:package.:extension",
         :to => 'jammit#package', :as => :jammit, :constraints => {
