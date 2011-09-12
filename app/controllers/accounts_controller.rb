@@ -58,6 +58,7 @@ class AccountsController < ApplicationController
 
   def settings
     if current_user.update_attributes(params[:user])
+      sign_in(current_user, :bypass => true)
       redirect_to root_url
     else
       render :edit
@@ -89,6 +90,7 @@ class AccountsController < ApplicationController
     authorize! :update, User
     current_user.attributes = params[:user]
     if current_user.save
+      sign_in(current_user, :bypass => true)
       if params[:user][:avatar].blank?
         redirect_to :action => "add_feeds"
       else
@@ -144,6 +146,7 @@ class AccountsController < ApplicationController
 
   def update
     current_user.update_attributes(params[:user])
+    sign_in(current_user, :bypass => true)
     redirect_to root_url
   end
   
