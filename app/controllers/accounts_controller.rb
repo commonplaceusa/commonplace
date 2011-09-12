@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
   def new
 
     if !current_community
-      raise CanCan::AccessDenied
+#      raise CanCan::AccessDenied
     end
       
     if can? :create, User
@@ -79,7 +79,7 @@ class AccountsController < ApplicationController
     if can? :edit, current_user
       render :layout => 'application'
     else
-      redirect_to login_url
+      redirect_to '/users/sign_in'
     end
   end
 

@@ -12,7 +12,7 @@
 
       = render 'shared/admin_bar'
 
-      = render 'layouts/header', :user_session => current_user_session
+      = render 'layouts/header'
 
       - if !current_community.has_launched?
         .prelaunch-notification
