@@ -5,6 +5,7 @@
 @import date_picker
 @import shared/replies
 @import shared/wire
+@import shared/modal
 
 
 body
@@ -342,76 +343,6 @@ body
   
   
 
-  
-.feed-message-modal, .modal-container
-  position: absolute
-  background-color: #AC322F
-  border: 10px solid #fff
-  +border-radius(15px)
-  z-index: 2000
-
-  form 
-    width: 392px
-    padding: 15px
-    display: block
-
-    h1
-      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
-      font-size: 16px
-      color: #fff
-      text-align: center
-
-    label
-      display: block
-      margin-top: 20px
-      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
-      font-size: 16px
-      color: #fff
-      padding-bottom: 2px
-
-    input
-      margin-top: 6px
-      padding: 5px 5px
-      width: 380px
-      font-size: 15px
-      font-family: Rokkitt, Rockwell, Georgia, Times, serif
-      +border-radius(5px)
-      +box-shadow(#eee 1px 1px 3px 0 inset)
-
-    textarea
-      margin-top: 6px
-      width: 382px
-      font-size: 15px
-      font-family: Rokkitt, Rockwell, Georgia, Times, serif
-      +border-radius(5px)
-      +box-shadow(#eee 1px 1px 3px 0 inset)
-      padding: 5px 5px
-
-    .controls
-      margin-top: 20px
-      text-align: right
-
-      button
-        +blue-button
-        margin-left: 15px
-
-      a.cancel
-        color: #fff
-        font-size: 15px
-        font-family: Rokkitt, Rockwell, Helvetica, sans-serif
-        text-decoration: none
-        &:hover
-          text-decoration: underline
-
-#modal-shadow
-  +opacity(0.8)
-  background-color: #000
-  position: fixed
-  top: 0
-  bottom: 0
-  right: 0
-  left: 0
-  z-index: 1000
 
 #feed-subresources, #feed-about
   border: 2px solid #bebebe
