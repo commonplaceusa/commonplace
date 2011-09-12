@@ -6,20 +6,6 @@ class User < ActiveRecord::Base
     ["Live", "Three", "Daily", "Never"]
   end
 
-  acts_as_authentic do |c|
-    c.login_field :email
-    c.validates_uniqueness_of_login_field_options({:message => "This email has already been taken."})
-    #c.merge_validates_length_of_login_field_options({:allow_nil => true,:message => "This email is too short"})
-    c.merge_validates_format_of_login_field_options({:with => "/^[\S]+$/", :message => "Please enter your email without spaces"})
-    c.validate_email_field = false
-    c.validate_login_field = false
-    #c.require_password_confirmation = true
-    c.ignore_blank_passwords = true
-    #c.validates_length_of_password_field_options({:minimum => 1, :message => "Please create a password."})
-    c.validate_password_field = false
-    c.perishable_token_valid_for 1.hour
-  end
-
   geocoded_by :normalized_address
 
   belongs_to :community
@@ -55,7 +41,7 @@ class User < ActiveRecord::Base
   scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }
 
   def facebook_user?
-    authenticating_with_oauth2? || facebook_uid
+    facebook_uid
   end
   
   def validate_password?
@@ -76,20 +62,6 @@ class User < ActiveRecord::Base
   end
 
   validates_presence_of :first_name, :last_name
-
-  def after_oauth2_authentication
-    json = oauth2_access.get('/me')
-    
-    if user_data = JSON.parse(json)
-      self.full_name = user_data['name']
-      self.facebook_uid = user_data['id']
-      self.email = user_data['email']
-    end
-  end
-  
-  def send_to_facebook
-    redirect_to_oauth2
-  end
 
   def self.find_by_email(email)
     where("LOWER(users.email) = ?", email.downcase).first
