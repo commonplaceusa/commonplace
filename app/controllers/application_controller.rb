@@ -120,7 +120,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    ! current_user.new_record?
+    user_signed_in?
   end
 
   def current_user_session
