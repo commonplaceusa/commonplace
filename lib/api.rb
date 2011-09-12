@@ -428,7 +428,6 @@ end
     end
   end
   
-  
   # POST /people/:id/messages
   # { subject: String
   # , body: String }
@@ -561,6 +560,21 @@ end
 
   get "/groups/:id" do |id|
     serialize(id =! /[^\d]/ ? Group.find_by_slug(id) : Group.find(id))
+  end
+
+  post "/groups/:id/posts" do |id|
+    group_post = GroupPost.new(:group => Group.find(id),
+                               :subject => request_body['title'],
+                               :body => request_body['body'],
+                               :user => current_account)
+    if group_post.save
+      group_post.group.live_subscribers.each do |user|
+        Resque.enqueue(GroupPostNotification, group_post.id, user.id)
+      end
+      serialize(group_post)
+    else
+      [400, "errors"]
+    end
   end
 
   get "/groups/:id/posts" do |id|
