@@ -170,7 +170,8 @@ module Serializer
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood, 
         "links" => { 
-          "feed_subscriptions" => "/account/subscriptions/feeds"
+          "feed_subscriptions" => "/account/subscriptions/feeds",
+          "group_subscriptions" => "/account/subscriptions/groups"
         }
         }
 

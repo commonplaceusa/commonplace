@@ -481,8 +481,8 @@ end
   # { id: Integer }
   # Authorization: Account community is Feed community
   post "/account/subscriptions/groups" do 
-    current_account.groups << Group.find(params[:id])
-    [200, ""]
+    current_account.groups << Group.find(params[:id] || request_body['id'])
+    serialize(Account.new(current_account))
   end
 
   # DELETE /account/subscriptions/groups/:id
@@ -490,7 +490,7 @@ end
   # Authorization: Account exists
   delete "/account/subscriptions/groups/:id" do |id|
     current_account.groups.delete(Group.find(id))
-    [200, ""]
+    serialize(Account.new(current_account))
   end
   
   get "/communities/:id/posts" do |id|
