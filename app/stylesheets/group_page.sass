@@ -163,7 +163,6 @@ body
     margin-top: 16px
 
   form
-    
     display: block
     margin: 16px 15px 20px 73px
     
@@ -180,6 +179,12 @@ body
       +border-radius(5px)
       +box-shadow(#333 1px 1px 3px 0 inset)
 
+    button
+      +blue-button
+      float: right
+      margin-bottom: 20px
+      margin-top: 12px
+
 #post-list, #group-subresources
   +border-bottom-radius(3px)
   background-color: #fff
@@ -195,16 +200,13 @@ body
   li
     .avatar
       float: left
-      margin-left: 8px
       margin-right: 15px
-      margin-top: 8px
-      text-align: center
       
-      p
-        font-family: Helvetica, sans-serif
-        font-size: 9px
-        color: #888
-        margin-top: 5px
+    .reply-count
+      font-family: Helvetica, sans-serif
+      font-size: 9px
+      color: #555
+      text-align: center
 
     .date-posted
       font-family: Helvetica, sans-serif
@@ -214,7 +216,6 @@ body
     h1
       font-family: Rokkitt, Rockwell, Helvetica, sans-serif
       font-size: 20px
-      padding-top: 14px
       font-weight: bold
 
     .author

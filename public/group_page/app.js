@@ -120,6 +120,22 @@ var NewPostView = CommonPlace.View.extend({
 
   account_avatar: function() {
     return this.account.get("avatar_url");
+  },
+
+  events: {
+    "submit form": "postMessage",
+  },
+
+  postMessage: function(e) {
+    var $form = $(e.target);
+    var self = this;
+    e.preventDefault();
+    this.model.posts.create({
+      title: $("[name=title]", $form).val(),
+      body: $("[name=body]", $form).val()
+    }, {
+      success: function() { self.render(); }
+    });
   }
 });
 
@@ -170,13 +186,14 @@ var GroupSubresourcesView = CommonPlace.View.extend({
   id: "group-subresources",
   
   initialize: function(options) {
+    var self = this;
     this.account = options.account;
     this.group = options.model;
     this.groupPostsCollection = this.group.posts;
     this.groupMembersCollection = this.group.members;
     this.currentTab = options.current || "showGroupPosts";
-    this.group.posts.bind("add", function() { this.switchTab("showGroupPosts"); }, this);
-    this.group.members.bind("add", function() { this.switchTab("showGroupMembers"); }, this);
+    this.group.posts.bind("add", function() { self.switchTab("showGroupPosts"); }, this);
+    this.group.members.bind("add", function() { self.switchTab("showGroupMembers"); }, this);
   },
 
   afterRender: function() {
