@@ -578,11 +578,11 @@ end
   end
 
   get "/groups/:id/posts" do |id|
-    serialize(Group.find(id).group_posts.to_a)
+    serialize( paginate(Group.find(id).group_posts) )
   end
 
   get "/groups/:id/members" do |id|
-    serialize(Group.find(id).subscribers.to_a)
+    serialize( paginate(Group.find(id).subscribers) )
   end
 
   get "/feeds/:id" do |id|
