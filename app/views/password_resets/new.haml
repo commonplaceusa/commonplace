@@ -1,16 +1,7 @@
-%h1 Reset Your Password 
-
-- form_tag password_resets_path, :method => :post, :id => "new_password_reset" do
-  %p.subhead Please enter the email address associated with your account and we will email you instructions to reset your password:
-    
-  %fieldset
-    %ol
-      %li
-        = text_field_tag 'email',nil, :placeholder => "Email address"
-  - if flash[:error]
-    %p.fail= flash[:error]
-  %fieldset
-    %ol
-      #submit_wrapper
-        <input type="image" id = "submitimage" onclick="submit();" src="/images/buttons/continue2.png">
-        
+#main
+  %h1 Enter the email you registered with to reset your password
+  = semantic_form_for(:user, :url => user_password_url) do |f|
+    = f.inputs do
+      = f.input :email
+    = f.buttons do
+      = f.submit "Send me password reset instructions"
