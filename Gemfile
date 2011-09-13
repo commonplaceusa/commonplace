@@ -78,6 +78,9 @@ gem 'newrelic_rpm' # we use this to monitor the app
 # Features
 gem 'rollout' # we use this to control features
 
+# Tagging
+gem 'acts-as-taggable-on', '~> 2.1.0'
+
 # Misc
 gem 'json' # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
