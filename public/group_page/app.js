@@ -46,7 +46,7 @@ var GroupView = CommonPlace.View.extend({
     header = new GroupHeaderView({model: group, account: this.account});
     newpost = new NewPostView({model: group, account: this.account});
     nav = new GroupNavView({model: group});
-    subresources = new GroupSubresourcesView({model: group});
+    subresources = new GroupSubresourcesView({model: group, account: this.account});
     list = new GroupsListView({model: group});
 
     nav.bind("switchTab", function(tab) { subresources.switchTab(tab); });
