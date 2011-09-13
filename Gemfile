@@ -23,10 +23,7 @@ gem 'thin' # lighter than mongrel, faster than webrick
 gem 'jslint_on_rails', :require => false #! will run before deployments
 
 # Authentication
-gem 'authlogic' # will be replaced with devise
-gem 'oauth2'  # will be replaced with devise
-gem 'authlogic_oauth2', ">= 1.1.6", :git => "git://github.com/commonplaceusa/authlogic_oauth2.git" # will be replaced with devise
-gem 'ezcrypto' # will be replaced with devise
+gem 'devise' # used for authentication
 gem 'uuid' # used in app/controllers/admin_controller.rb, could be refactored/removed?
 
 # Authorization
