@@ -4,28 +4,23 @@ class AccountsController < ApplicationController
 
   protect_from_forgery :except => :update
 
-  def new
+  before_filter :authenticate_user!, :except => [:new, :create]
 
+
+  def new
     if !current_community
       raise CanCan::AccessDenied
     end
       
-    if can? :create, User
-      @user = User.new
-      @user.community = current_community
-      render :layout => "registration"
-    else
-      redirect_to root_url
+    if logged_in?
+      redirect_to "/"
+      return
     end
-  end
-  
-  def new_from_facebook
-    if can? :create, User
-      @user = User.new
-      @user.send_to_facebook
-    else
-      redirect_to root_url
-    end
+
+    @user = User.new
+    @user.community = current_community
+    render :layout => "registration"
+
   end
   
   def show
@@ -41,35 +36,13 @@ class AccountsController < ApplicationController
   end
   
   def create
-    authorize! :create, User
     params[:user] ||= {}
-    password = ""
-    if params[:user][:facebook_session].present?
-      j = ActiveSupport::JSON.decode(params[:user][:facebook_session])
-      params[:user][:facebook_uid] = j["uid"]
-      params[:user].delete("facebook_session")
-    end
-    if params[:user][:facebook_uid].present?
-      password = params[:user][:facebook_uid]
-      # Permute it!
-      password = $CryptoKey.encrypt(password)
-    end
     
     @user = User.new(params[:user].merge(:community => current_community))
     if @user.save
-      if password == ""
-        password = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{@user.email}--")[0,6]
-      end
-      unless password == ""
-        @user.password = password
-        @user.save!
-      end
+      sign_in(:user, @user)
       kickoff.deliver_welcome_email(@user)
-      if params[:short]
-        redirect_to new_feed_url
-      else
-        redirect_to edit_new_account_url
-      end
+      redirect_to edit_new_account_url
     else
       render :new, :layout => "registration"
     end
@@ -79,12 +52,13 @@ class AccountsController < ApplicationController
     if can? :edit, current_user
       render :layout => 'application'
     else
-      redirect_to login_url
+      redirect_to '/users/sign_in'
     end
   end
 
   def settings
     if current_user.update_attributes(params[:user])
+      sign_in(current_user, :bypass => true)
       redirect_to root_url
     else
       render :edit
@@ -116,6 +90,7 @@ class AccountsController < ApplicationController
     authorize! :update, User
     current_user.attributes = params[:user]
     if current_user.save
+      sign_in(current_user, :bypass => true)
       if params[:user][:avatar].blank?
         redirect_to :action => "add_feeds"
       else
@@ -171,6 +146,7 @@ class AccountsController < ApplicationController
 
   def update
     current_user.update_attributes(params[:user])
+    sign_in(current_user, :bypass => true)
     redirect_to root_url
   end
   

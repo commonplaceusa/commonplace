@@ -51,7 +51,7 @@ Devise.setup do |config|
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
   # using other encryptors, it sets how many times you want the password re-encrypted.
-  config.stretches = 10
+  config.stretches = 20
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = "8c5b81bee2c1480efb85b794780ee664e4eea855b7c30b9e9fcea713377a09da8b45151443a2922a9a9205f90d24433d2a07cd0f19b034f9095c5df05c97c2a0"
@@ -137,7 +137,7 @@ Devise.setup do |config|
   # :authlogic_sha512 (then you should set stretches above to 20 for default behavior)
   # and :restful_authentication_sha1 (then you should set stretches to 10, and copy
   # REST_AUTH_SITE_KEY to pepper)
-  # config.encryptor = :sha512
+  config.encryptor = :authlogic_sha512
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
@@ -155,7 +155,7 @@ Devise.setup do |config|
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
-  # config.default_scope = :user
+  config.default_scope = :user
 
   # Configure sign_out behavior.
   # Sign_out action can be scoped (i.e. /users/sign_out affects only :user scope).
