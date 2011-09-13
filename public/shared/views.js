@@ -175,7 +175,8 @@ var AnnouncementItemView = CommonPlace.View.extend({
   },
 
   replyCount: function() {
-    return this.model.get('replies').length;
+    var num = this.model.get('replies').length;
+    return (num == 1 ? "1 reply" : num + " replies");
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -245,7 +246,8 @@ var GroupPostItemView = CommonPlace.View.extend({
   },
 
   replyCount: function() {
-    return this.model.get('replies').length;
+    var num = this.model.get('replies').length;
+    return (num == 1 ? "1 reply" : num + " replies");
   },
 
   publishedAt: function() {
