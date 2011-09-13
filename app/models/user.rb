@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  acts_as_taggable_on :offers, :interests
+  acts_as_taggable_on :offers, :interests, :skills
 
   before_save :ensure_authentication_token
 

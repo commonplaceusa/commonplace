@@ -35,10 +35,20 @@ describe User do
 
     it "has an interest list" do
       @user.interest_list.should_not be_nil
+      @user.interest_list.class.to_s.should == "ActsAsTaggableOn::TagList"
+      @user.interests.should_not be_nil
     end
 
     it "has an offers list" do
       @user.offer_list.should_not be_nil
+      @user.offer_list.class.to_s.should == "ActsAsTaggableOn::TagList"
+      @user.offers.should_not be_nil
+    end
+
+    it "has a skills list" do
+      @user.skill_list.should_not be_nil
+      @user.skill_list.class.to_s.should == "ActsAsTaggableOn::TagList"
+      @user.skills.should_not be_nil
     end
 
     context "on update" do
