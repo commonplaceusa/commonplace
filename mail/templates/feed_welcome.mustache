@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+  <body>
+    <table id="body">
+
+      {{< header }}
+
+      <tr>
+        <td>
+          <p>Dear {{short_user_name}},</p>
+
+          <p>You have successfully created a feed for {{feed_name}} on CommonPlace.  You can now send announcements and events to everyone on CommonPlace through your organization feed!  Here are three ways to get the word out:</p>
+
+          <ul>
+            <li>
+              <p>Visit your feed page at <a href="{{feed_url}}">{{feed_url}}</a> to post an announcement, post an event or edit your feed profile.</p>
+            </li>
+
+            <li>
+              <p>Email in announcements to your feed by emailing <a href="mailto:{{feed_email_address}}">{{feed_email_address}}</a> with the exact announcement you want to post to CommonPlace.</p>
+            </li>
+
+            <li>
+              <p>Use the red box in the upper left of the main page to quickly post announcements or events.</p>
+            </li>
+
+          </ul>
+
+          <p>We hope The {{town_name}} CommonPlace can help you get the word out to the community about your organization's updates and events.  Feel free to email {{organizer_name}} at (<a href="mailto:{{organizer_email}}">{{organizer_email}}</a>) with any questions about how to use your feed.</p>
+
+          <p>Cheers, <br> The {{town_name}} CommonPlace Team</p>
+
+        </td>
+
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< legal }}
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>
