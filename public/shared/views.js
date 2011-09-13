@@ -236,7 +236,16 @@ var GroupPostItemView = CommonPlace.View.extend({
   },
 
   afterRender: function() {
+    var repliesView = new RepliesView({ collection: this.model.replies(),
+                                        el: this.$(".replies"),
+                                        account: this.account
+                                      });
+    repliesView.render();
     this.model.bind("change", this.render, this);
+  },
+
+  replyCount: function() {
+    return this.model.get('replies').length;
   },
 
   publishedAt: function() {
@@ -410,7 +419,6 @@ var EventFormView = FormView.extend({
     );
     var result = new Array();
     _.each(list, function(time) {
-      console.log(time, start_value, end_value);
       var obj = {
         ".": time,
         "is_start": (time.replace(" ","").toLowerCase() == start_value),
@@ -461,9 +469,10 @@ var ModalView = CommonPlace.View.extend({
 var RepliesView = CommonPlace.View.extend({
   className: "replies",
   template: "shared/replies",
-  initialize: function(options) { 
+  initialize: function(options) {
+    var self = this;
     this.account = options.account;
-    this.collection.bind("add", this.render, this);
+    this.collection.bind("add", function() { self.render(); });
   },
   
   afterRender: function() {

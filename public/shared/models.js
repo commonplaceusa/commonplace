@@ -153,14 +153,10 @@ var Community = CommonPlace.Model.extend({
 
 });
 
-var Replies = CommonPlace.Collection.extend({
-  initialize: function(models, options) { this.repliable = options.repliable; },
-  model: Reply,
-  url: function() { return "/api" + this.repliable.get('links').replies; }
+var GroupPost = CommonPlace.Repliable.extend({
 });
 
-var Subscriber = CommonPlace.Model.extend({
-  
+var GroupMember = CommonPlace.Model.extend({
 });
 
 var Group = CommonPlace.Model.extend({
@@ -186,8 +182,15 @@ var Group = CommonPlace.Model.extend({
   })
 });
 
-var GroupPost = CommonPlace.Model.extend({
+var Replies = CommonPlace.Collection.extend({
+  initialize: function(models, options) { this.repliable = options.repliable; },
+  model: Reply,
+  url: function() { return "/api" + this.repliable.get('links').replies; }
 });
 
-var GroupMember = CommonPlace.Model.extend({
+var Subscriber = CommonPlace.Model.extend({
+  
 });
+
+
+
