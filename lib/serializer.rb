@@ -99,7 +99,11 @@ module Serializer
         "group_id" => o.group_id,
         "title" => o.subject,
         "body" => o.body,
-        "replies" => serialize(o.replies.to_a) }
+        "replies" => serialize(o.replies.to_a),
+        "links" => {
+          "replies" => "/group_posts/#{o.id}/replies"
+        }
+        }
 
       when Reply
         { 
