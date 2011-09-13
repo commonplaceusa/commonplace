@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909212621) do
+ActiveRecord::Schema.define(:version => 20110913044436) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -341,8 +341,8 @@ ActiveRecord::Schema.define(:version => 20110909212621) do
     t.string   "last_name",                                                          :null => false
     t.text     "about"
     t.integer  "neighborhood_id",                                                    :null => false
-    t.string   "interest_list"
-    t.string   "offer_list"
+    t.string   "cached_interest_list"
+    t.string   "cached_good_list"
     t.boolean  "receive_events_and_announcements",              :default => true
     t.boolean  "admin",                                         :default => false
     t.string   "state"
@@ -368,6 +368,7 @@ ActiveRecord::Schema.define(:version => 20110909212621) do
     t.string   "remember_token"
     t.datetime "remember_created_at"
     t.string   "authentication_token"
+    t.string   "cached_skill_list"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

@@ -33,6 +33,14 @@ describe User do
       @user.should have_at_least(1).errors_on(:full_name)
     end
 
+    it "has an interest list" do
+      @user.interest_list.should_not be_nil
+    end
+
+    it "has an offers list" do
+      @user.offer_list.should_not be_nil
+    end
+
     context "on update" do
       before(:each) { stub(@user).new_record? { false } }
 
