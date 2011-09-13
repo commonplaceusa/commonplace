@@ -243,10 +243,12 @@ var GroupPostItemView = CommonPlace.View.extend({
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
+    var self = this;
+    repliesView.collection.bind("add", function() { self.render(); });
   },
 
   replyCount: function() {
-    var num = this.model.get('replies').length;
+    var num = this.model.replies().length;
     return (num == 1 ? "1 reply" : num + " replies");
   },
 
