@@ -54,6 +54,8 @@ GEM
       activemodel (= 3.0.10)
       activesupport (= 3.0.10)
     activesupport (3.0.10)
+    acts-as-taggable-on (2.1.1)
+      rails
     addressable (2.2.5)
     arel (2.0.10)
     autotest-rails-pure (4.1.2)
@@ -331,6 +333,7 @@ PLATFORMS
 DEPENDENCIES
   BlueCloth
   activeadmin
+  acts-as-taggable-on (~> 2.1.0)
   autotest-rails-pure
   autotest-standalone
   aws-s3
