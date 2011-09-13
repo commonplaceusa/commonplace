@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110908201405) do
+ActiveRecord::Schema.define(:version => 20110909212621) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -333,11 +333,8 @@ ActiveRecord::Schema.define(:version => 20110908201405) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                                                              :null => false
-    t.string   "crypted_password"
+    t.string   "encrypted_password"
     t.string   "password_salt"
-    t.string   "persistence_token"
-    t.string   "single_access_token",                                                :null => false
-    t.string   "perishable_token",                                                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name",                                                         :null => false
@@ -363,11 +360,14 @@ ActiveRecord::Schema.define(:version => 20110908201405) do
     t.datetime "last_login_at"
     t.boolean  "seen_tour"
     t.boolean  "transitional_user"
-    t.string   "skills_list"
     t.string   "referral_metadata"
     t.float    "generated_lat"
     t.float    "generated_lng"
     t.integer  "emails_sent",                                   :default => 0
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.string   "authentication_token"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

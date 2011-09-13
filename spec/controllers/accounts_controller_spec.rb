@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe AccountsController do
+  include Devise::TestHelpers
+
+
   before :each do
     stub(Community).find_by_slug { mock_model(Community, :name => "test", :slug => "test",  :time_zone => "Eastern Time (US & Canada)") }
     stub(User).email { "#{Forgery(:name).last_name@example.com}".downcase }
@@ -8,10 +11,10 @@ describe AccountsController do
   end
 
   describe "#create" do
-    before {
+    before do 
       @user = User.new
       stub(User).new { @user }
-    }
+    end
 
     context "when user save is succesful" do
       before { 
@@ -30,12 +33,10 @@ describe AccountsController do
     end
 
     context "when user save is not successful" do
-      before(:each) { 
-        stub(@user).save { false }
-      }
+      before { stub(@user).save { false } }
 
       it "renders new.haml" do
-        post :create, :community => "test"
+        post :create
         response.should render_template("new")
       end
     end

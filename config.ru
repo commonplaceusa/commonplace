@@ -14,6 +14,10 @@ app = Rack::Builder.new do
 
   map("/api") { 
     use Rack::Session::Cookie, :secret => Commonplace::Application.config.secret_token, :key => "_commonplace_session"
+    use Warden::Manager do |config|
+      config.failure_app = ApiFailureApp
+      config.default_scope = :user
+    end
     run API
   }
 

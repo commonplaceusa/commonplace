@@ -18,12 +18,14 @@ h1
 
 
 #main
+  width: 800px
+  margin: auto
   form
     position: relative
-    margin: 20px auto 40px
+    margin: 50px auto 40px
     +redlightbox
     padding: 14px 24px 26px 24px
-    width: 380px
+    width: 360px
     z-index: 2
     +clearfix
     a
@@ -46,9 +48,11 @@ h1
       text-align: center
       margin-top: 10px
     fieldset.inputs
+      li.hidden
+        display: none
       li
         min-height: 60px
-        margin: 10px auto 5px auto
+        margin: 10px auto 20px auto
         label
           display: block
           text-align: left
@@ -57,14 +61,14 @@ h1
           font-size: 17px
           text-shadow: #000000 1px 1px 1px
           word-spaciing: 1px
-          margin-bottom: 4px
+          margin-bottom: 8px
         input
           +border-radius(5px)
           +box-shadow(#ccc 1px 1px 2px 0 inset)
           border: 1px solid #ccc
           padding: 0px 5px
           font-size: 22px
-          width: 362px
+          width: 340px
           display: block
           +serif
     fieldset.buttons
