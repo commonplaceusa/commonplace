@@ -6,7 +6,11 @@ var GroupPageRouter = Backbone.Controller.extend({
     this.account = new Account(options.account);
     this.community = options.community;
     this.group = options.group;
-    this.groupsList = new GroupsListView({ collection: options.groups, el: $("#groups-list") });
+    this.groupsList = new GroupsListView({
+      collection: options.groups,
+      el: $("#groups-list"),
+      community: this.community
+    });
     this.groupsList.render();
     this.show(options.group);
   },
@@ -47,11 +51,10 @@ var GroupView = CommonPlace.View.extend({
     newpost = new NewPostView({model: group, account: this.account});
     nav = new GroupNavView({model: group});
     subresources = new GroupSubresourcesView({model: group, account: this.account});
-    list = new GroupsListView({model: group});
 
     nav.bind("switchTab", function(tab) { subresources.switchTab(tab); });
 
-    this.subviews = [profile, header, newpost, nav, subresources, list];
+    this.subviews = [profile, header, newpost, nav, subresources];
 
   },
   
@@ -142,6 +145,10 @@ var NewPostView = CommonPlace.View.extend({
 var GroupsListView = CommonPlace.View.extend({
   template: "group_page/groups-list",
 
+  initialize: function(options) {
+    this.community = options.community;
+  },
+
   groups: function() {
     return this.collection;
   },
@@ -149,6 +156,10 @@ var GroupsListView = CommonPlace.View.extend({
   select: function(slug) {
     this.$("li").removeClass("current");
     this.$("li[data-group-slug=" + slug + "]").addClass("current");
+  },
+
+  community_name: function() {
+    return this.community.name;
   }
 
 });
