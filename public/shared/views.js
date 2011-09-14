@@ -302,6 +302,27 @@ var GroupPostItemView = CommonPlace.View.extend({
 
   body: function() {
     return this.model.get("body");
+  },
+
+  events: {
+    "click .group-post > .author": "messageUser"
+  },
+
+  messageUser: function(e) {
+    e && e.preventDefault();
+    var user = new User({
+      links: {
+        self: this.model.get("links").author
+      }
+    });
+    user.fetch({
+      success: function() {
+        var formview = new MessageFormView({
+          model: new Message({messagable: user})
+        });
+        formview.render();
+      }
+    });
   }
 });
 
@@ -514,16 +535,19 @@ var RepliesView = CommonPlace.View.extend({
   afterRender: function() {
     this.$("textarea").placeholder();
     this.$("textarea").autoResize();
+    this.appendReplies();
   }, 
   
-  events: { "submit form": "sendReply" },
-  
-  replies: function() {
-    return this.collection.map(function(reply) {
-      return { time: timeAgoInWords(reply.get('published_at')),
-               author: reply.get('author'),
-               authorAvatarUrl: reply.get('avatar_url'),
-               body: reply.get('body') };
+  events: {
+    "submit form": "sendReply"
+  },
+
+  appendReplies: function() {
+    var self = this;
+    var $ul = this.$("ul.reply-list");
+    this.collection.each(function(reply) {
+      var replyview = new ReplyItemView({ model: reply, account: self.account });
+      $ul.append(replyview.render().el);
     });
   },
 
@@ -533,4 +557,49 @@ var RepliesView = CommonPlace.View.extend({
   },
   
   accountAvatarUrl: function() { return this.account.get('avatar_url'); }
+});
+
+var ReplyItemView = CommonPlace.View.extend({
+  template: "shared/reply-item",
+  initialize: function(options) {
+    this.account = options.account;
+    this.model = options.model;
+  },
+
+  events: {
+    "click .reply-text > .author": "messageUser"
+  },
+
+  time: function() {
+    return timeAgoInWords(this.model.get("published_at"));
+  },
+
+  author: function() {
+    return this.model.get("author");
+  },
+
+  authorAvatarUrl: function() {
+    return this.model.get("avatar_url");
+  },
+
+  body: function() {
+    return this.model.get("body");
+  },
+
+  messageUser: function(e) {
+    e && e.preventDefault();
+    var user = new User({
+      links: {
+        self: this.model.get("links").author
+      }
+    });
+    user.fetch({
+      success: function() {
+        var formview = new MessageFormView({
+          model: new Message({messagable: user})
+        });
+        formview.render();
+      }
+    });
+  }
 });
