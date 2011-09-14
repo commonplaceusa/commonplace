@@ -144,7 +144,10 @@ class KickOff
   def deliver_daily_bulletin(user, date)
     enqueue(DailyBulletin, user.id, date.to_s(:db))
   end
-
+  
+  def deliver_feed_owner_welcome(feed)
+    enqueue(FeedWelcome, feed.id)
+  end
 
   private
   

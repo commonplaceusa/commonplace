@@ -314,4 +314,13 @@ describe KickOff do
       should have_queued(DailyBulletin, user.id, date.to_s(:db))
     end
   end
+
+  describe "#deliver_feed_owner_welcome" do
+    let(:feed) { Feed.new {|f| f.id = 34 } }
+    before { kickoff.deliver_feed_owner_welcome(feed) }
+    
+    it "enqueues a welcome for the feed" do
+      should have_queued(FeedWelcome, feed.id)
+    end
+  end
 end
