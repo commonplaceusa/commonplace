@@ -1,10 +1,12 @@
 var CommonPlace = CommonPlace || {};
 
 CommonPlace.render = function(name, params) {
+  if (!CommonPlace.templates[name]) {
+    throw new Error("template '" + name + "' does not exist");
+  };
   return Mustache.to_html(
     CommonPlace.templates[name],
-    _.extend({ auth_token: CommonPlace.auth_token,
-               account_avatar_url: CommonPlace.account.get('avatar_url'),
+    _.extend({ 
                t: function() {
                  return function(key,render) {
                    var text = CommonPlace.text[CommonPlace.community.get('locale')][name][key];

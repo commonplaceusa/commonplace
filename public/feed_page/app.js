@@ -1,6 +1,4 @@
-CommonPlace.render = function(name, params) {
-  return Mustache.to_html(CommonPlace.templates[name], params,CommonPlace.templates);
-};
+
 
 var FeedPageRouter = Backbone.Router.extend({
 
@@ -127,8 +125,7 @@ var FeedProfileView = CommonPlace.View.extend({
   
   openMessageModal: function() {
     var formview = new MessageFormView({
-      model: new Message({feed: this.model}),
-      template: "feed_page/feed-message-form"
+      model: new Message({messagable: this.model})
     });
     formview.render();
   },

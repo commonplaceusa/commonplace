@@ -31,13 +31,16 @@ var Reply = CommonPlace.Model.extend({});
 
 var Message = CommonPlace.Model.extend({
   initialize: function(options) {
-    this.feed = options.feed;
+    this.messagable = options.messagable;
   },
 
   url: function() {
-    return "/api" + this.feed.get("links").messages;
+    return "/api" + this.messagable.get("links").messages;
+  },
+
+  name: function() {
+    return this.messagable.get("name");
   }
-  
 });
 
 var Feed = CommonPlace.Model.extend({
@@ -109,12 +112,74 @@ var Account = CommonPlace.Model.extend({
         callback();
       }
     });
+  },
+
+  isSubscribedToGroup: function(group) {
+    return _.include(this.get("group_subscriptions"), group.id);
+  },
+
+  subscribeToGroup: function(group, callback) {
+    var self = this;
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.get("links").group_subscriptions,
+      data: JSON.stringify({ id: group.id }),
+      type: "post",
+      dataType: "json",
+      success: function(account) {
+        self.set(account);
+        callback();
+      }
+    });
+  },
+
+  unsubscribeFromGroup: function(group, callback) {
+    var self = this;
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.get("links").group_subscriptions + "/" + group.id,
+      type: "delete",
+      dataType: "json",
+      success: function(account) {
+        self.set(account);
+        callback();
+      }
+    });
   }
 
 });
 
 var Community = CommonPlace.Model.extend({
 
+});
+
+var GroupPost = CommonPlace.Repliable.extend({
+});
+
+var GroupMember = CommonPlace.Model.extend({
+});
+
+var Group = CommonPlace.Model.extend({
+  initialize: function() {
+    this.posts = new Group.PostCollection([], { group: this });
+    this.members = new Group.MemberCollection([], { group: this });
+  }
+}, {
+  PostCollection: CommonPlace.Collection.extend({
+    initialize: function(models, options) { this.group = options.group; },
+    model: GroupPost, 
+    url: function() {
+      return "/api" + this.group.get('links').posts;
+    }
+  }),
+  
+  MemberCollection :  CommonPlace.Collection.extend({
+    initialize: function(models, options) { this.group = options.group; },
+    model: GroupMember,
+    url: function() { 
+      return "/api" + this.group.get('links').members; 
+    }
+  })
 });
 
 var Replies = CommonPlace.Collection.extend({
@@ -124,9 +189,8 @@ var Replies = CommonPlace.Collection.extend({
 });
 
 var Subscriber = CommonPlace.Model.extend({
-  defaults: {
-    first_name: "Eblong",
-    last_name: "Zarf"
-  }
   
 });
+
+
+
