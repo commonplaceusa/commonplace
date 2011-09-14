@@ -321,7 +321,15 @@ class User < ActiveRecord::Base
   # Devise calls this on POST /users/password
   def send_reset_password_instructions
     generate_reset_password_token! if should_generate_token?
-    Kickoff.new.deliver_password_reset(self)
+    kickoff.deliver_password_reset(self)
+  end
+
+  def kickoff=(kickoff)
+    @kickoff = kickoff
+  end
+
+  def kickoff
+    @kickoff ||= KickOff.new
   end
 
   # Devise case insensitivity is broken, it needs

@@ -158,4 +158,27 @@ describe User do
     end
 
   end
+
+  describe "#send_reset_password_instructions" do
+    let(:user) { User.new {|u| 
+        u.kickoff = kickoff 
+        stub(u).generate_reset_password_token! 
+      } 
+    }
+    let(:kickoff) { 
+      KickOff.new.tap {|k| 
+        stub(k).deliver_password_reset 
+      }
+    }
+    before { user.send_reset_password_instructions }
+    
+    it "regenerates reset_password_token" do
+      user.should have_received.generate_reset_password_token!
+    end
+
+    it "sends a reset password email" do
+      kickoff.should have_received.deliver_password_reset(user)
+    end
+  end
+
 end
