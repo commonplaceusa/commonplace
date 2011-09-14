@@ -1,4 +1,4 @@
-var GroupPageRouter = Backbone.Controller.extend({
+var GroupPageRouter = Backbone.Router.extend({
 
   routes: {},
 
