@@ -312,8 +312,6 @@ class User < ActiveRecord::Base
       string :first_name
       string :last_name
       string :about
-      string :interest_list
-      string :offer_list
       string :address
     end
     #handle_asynchronously :solr_index
