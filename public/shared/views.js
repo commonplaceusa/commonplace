@@ -513,6 +513,7 @@ var RepliesView = CommonPlace.View.extend({
   
   afterRender: function() {
     this.$("textarea").placeholder();
+    this.$("textarea").autoResize();
   }, 
   
   events: { "submit form": "sendReply" },
