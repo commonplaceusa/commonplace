@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :offers, :interests, :skills
 
   before_save :ensure_authentication_token
-  before_save :downcase_email
 
   #track_on_creation
   include Geokit::Geocoders
@@ -330,12 +329,6 @@ class User < ActiveRecord::Base
 
   def kickoff
     @kickoff ||= KickOff.new
-  end
-
-  # Devise case insensitivity is broken, it needs
-  # in the database
-  def downcase_email
-    self.email.downcase
   end
 
   private
