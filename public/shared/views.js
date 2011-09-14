@@ -84,6 +84,22 @@ var SubscriberWireView = WireView.extend({
   emptyMessage: "No subscribers here yet"
 });
 
+var GroupPostWireView = WireView.extend({
+  modelToView: function(model) {
+    return new GroupPostItemView({model: model, account: this.account});
+  },
+
+  emptyMessage: "No posts here yet"
+});
+
+var GroupMemberWireView = WireView.extend({
+  modelToView: function(model) {
+    return new GroupMemberItemView({model: model, account: this.account});
+  },
+
+  emptyMessage: "No members here yet"
+});
+
 var EventItemView = CommonPlace.View.extend({
   template: "shared/event-item",
   tagName: "li",
@@ -159,7 +175,8 @@ var AnnouncementItemView = CommonPlace.View.extend({
   },
 
   replyCount: function() {
-    return this.model.get('replies').length;
+    var num = this.model.get('replies').length;
+    return (num == 1 ? "1 reply" : num + " replies");
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -186,9 +203,116 @@ var AnnouncementItemView = CommonPlace.View.extend({
   }
 });
 
+var SubscriberItemView = CommonPlace.View.extend({
+  template: "shared/subscriber-item",
+  tagName: "li",
+  className: "wire-item",
+
+  avatarUrl: function() { return this.model.get('avatar_url'); },
+
+  firstname: function() { return this.model.get("first_name"); },
+
+  lastname: function() { return this.model.get("last_name"); },
+  
+  events: {
+    "click button": "messageUser"
+  },
+
+  messageUser: function(e) {
+    e && e.preventDefault();
+    var formview = new MessageFormView({
+      model: new Message({messagable: this.model})
+    });
+    formview.render();
+  }
+});
+
+var GroupPostItemView = CommonPlace.View.extend({
+  template: "group_page/post-item",
+  tagName: "li",
+  className: "wire-item",
+
+  initialize: function(options) {
+    this.account = options.account;
+  },
+
+  afterRender: function() {
+    var repliesView = new RepliesView({ collection: this.model.replies(),
+                                        el: this.$(".replies"),
+                                        account: this.account
+                                      });
+    repliesView.render();
+    this.model.bind("change", this.render, this);
+    var self = this;
+    repliesView.collection.bind("add", function() { self.render(); });
+  },
+
+  replyCount: function() {
+    var num = this.model.replies().length;
+    return (num == 1 ? "1 reply" : num + " replies");
+  },
+
+  publishedAt: function() {
+    return timeAgoInWords(this.model.get("published_at"));
+  },
+
+  avatarUrl: function() {
+    return this.model.get("avatar_url");
+  },
+
+  title: function() {
+    return this.model.get("title");
+  },
+
+  author: function() {
+    return this.model.get("author");
+  },
+
+  body: function() {
+    return this.model.get("body");
+  }
+});
+
+var GroupMemberItemView = CommonPlace.View.extend({
+  template: "group_page/member-item",
+  tagName: "li",
+  className: "wire-item",
+  
+  initialize: function(options) {},
+
+  afterRender: function() {
+    this.model.bind("change", this.render, this);
+  },
+
+  avatarUrl: function() {
+    return this.model.get("avatar_url");
+  },
+
+  firstname: function() {
+    return this.model.get("first_name");
+  },
+
+  lastname: function() {
+    return this.model.get("last_name");
+  },
+
+  events: {
+    "click button": "messageUser"
+  },
+
+  messageUser: function(e) {
+    e && e.preventDefault();
+    var formview = new MessageFormView({
+      model: new Message({messagable: this.model})
+    });
+    formview.render();
+  }
+
+});
+
 var FormView = CommonPlace.View.extend({
   initialize: function(options) {
-    this.template = this.options.template;
+    this.template = (this.options.template || this.template);
     this.modal = new ModalView({form: this.el});
   },
 
@@ -214,6 +338,8 @@ var FormView = CommonPlace.View.extend({
 });
 
 var MessageFormView = FormView.extend({
+  template: "shared/message-form",
+
   save: function() {
     this.model.save({
       subject: this.$("[name=subject]").val(),
@@ -221,16 +347,8 @@ var MessageFormView = FormView.extend({
     });
   },
 
-  first_name: function() {
-    return this.model.get("first_name");
-  },
-
-  last_name: function() {
-    return this.model.get("last_name");
-  },
-
-  feed_name: function() {
-   return this.model.get("feed").get("name");
+  name: function() {
+    return this.model.name();
   }
 });
 
@@ -305,7 +423,6 @@ var EventFormView = FormView.extend({
     );
     var result = new Array();
     _.each(list, function(time) {
-      console.log(time, start_value, end_value);
       var obj = {
         ".": time,
         "is_start": (time.replace(" ","").toLowerCase() == start_value),
@@ -318,8 +435,8 @@ var EventFormView = FormView.extend({
 });
 
 var ModalView = CommonPlace.View.extend({
-  template: "feed_page/feed-modal",
-  className: "feed-modal",
+  template: "shared/modal",
+  className: "modal",
 
   initialize: function(options) {
     var self = this;
@@ -356,9 +473,10 @@ var ModalView = CommonPlace.View.extend({
 var RepliesView = CommonPlace.View.extend({
   className: "replies",
   template: "shared/replies",
-  initialize: function(options) { 
+  initialize: function(options) {
+    var self = this;
     this.account = options.account;
-    this.collection.bind("add", this.render, this);
+    this.collection.bind("add", function() { self.render(); });
   },
   
   afterRender: function() {
@@ -382,29 +500,4 @@ var RepliesView = CommonPlace.View.extend({
   },
   
   accountAvatarUrl: function() { return this.account.get('avatar_url'); }
-});
-
-var SubscriberItemView = CommonPlace.View.extend({
-  template: "shared/subscriber-item",
-  tagName: "li",
-  className: "wire-item",
-
-  avatarUrl: function() { return this.model.get('avatar_url'); },
-
-  firstname: function() { return this.model.get("first_name"); },
-
-  lastname: function() { return this.model.get("last_name"); },
-  
-  events: {
-    "click button": "messageUser"
-  },
-
-  messageUser: function(e) {
-    e && e.preventDefault();
-    var formview = new MessageFormView({
-      model: this.model,
-      template: "feed_page/feed-message-user-form"
-    });
-    formview.render();
-  }
 });
