@@ -506,12 +506,12 @@ var ModalView = CommonPlace.View.extend({
   centerEl: function() {
     var $el = $(".modal-container");
     var $window = $(window);
-    
-   
     $el.css({
-      top: ($window.height() - $el.height()) /2,
+      top: (($window.height() - $el.height()) /2) + $window.scrollTop(),
       left: ($window.width() - $el.width()) /2
     });
+
+    
   },
 
   events: {
