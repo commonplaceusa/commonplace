@@ -1,6 +1,6 @@
 
 #main
-  %h1 Crop your avatar
+  %h1 Crop your Organization Photo
     
   = form_for @feed, :url => update_crop_feed_path(@feed), :method => :put, :html => { :class => "crop" } do |f|
     = image_tag @feed.avatar.url(:original), :id => "cropbox"
