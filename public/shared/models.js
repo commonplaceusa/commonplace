@@ -66,7 +66,7 @@ var Feed = CommonPlace.Model.extend({
 
   SubscriberCollection: CommonPlace.Collection.extend({
     initialize: function(models, options) { this.feed = options.feed },
-    model: Subscriber,
+    model: User,
     url: function () {
       return "/api" + this.feed.get("links").subscribers;
     }
@@ -149,15 +149,9 @@ var Account = CommonPlace.Model.extend({
 
 });
 
-var Community = CommonPlace.Model.extend({
+var Community = CommonPlace.Model.extend({});
 
-});
-
-var GroupPost = CommonPlace.Repliable.extend({
-});
-
-var GroupMember = CommonPlace.Model.extend({
-});
+var GroupPost = CommonPlace.Repliable.extend({});
 
 var Group = CommonPlace.Model.extend({
   initialize: function() {
@@ -175,7 +169,7 @@ var Group = CommonPlace.Model.extend({
   
   MemberCollection :  CommonPlace.Collection.extend({
     initialize: function(models, options) { this.group = options.group; },
-    model: GroupMember,
+    model: User,
     url: function() { 
       return "/api" + this.group.get('links').members; 
     }
@@ -188,9 +182,8 @@ var Replies = CommonPlace.Collection.extend({
   url: function() { return "/api" + this.repliable.get('links').replies; }
 });
 
-var Subscriber = CommonPlace.Model.extend({
-  
+var User = CommonPlace.Model.extend({
+  //url: "google.com"
 });
-
 
 
