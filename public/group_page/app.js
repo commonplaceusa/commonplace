@@ -121,6 +121,11 @@ var NewPostView = CommonPlace.View.extend({
     this.account = options.account;
   },
 
+  afterRender: function() {
+    $('input[placeholder], textarea[placeholder]').placeholder();
+    this.$("textarea").autoResize();
+  },
+
   account_avatar: function() {
     return this.account.get("avatar_url");
   },
