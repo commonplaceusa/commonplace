@@ -57,6 +57,7 @@ class FeedsController < CommunitiesController
     @feed = current_community.feeds.new(params[:feed])
     @feed.user = current_user
     if @feed.save
+      kickoff.deliver_feed_owner_welcome(@feed)
       if params[:feed][:avatar].blank?
         redirect_to new_profile_feed_url(@feed)
       else
