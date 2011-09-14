@@ -428,7 +428,6 @@ end
     end
   end
   
-  
   # POST /people/:id/messages
   # { subject: String
   # , body: String }
@@ -481,8 +480,8 @@ end
   # { id: Integer }
   # Authorization: Account community is Feed community
   post "/account/subscriptions/groups" do 
-    current_account.groups << Group.find(params[:id])
-    [200, ""]
+    current_account.groups << Group.find(params[:id] || request_body['id'])
+    serialize(Account.new(current_account))
   end
 
   # DELETE /account/subscriptions/groups/:id
@@ -490,7 +489,7 @@ end
   # Authorization: Account exists
   delete "/account/subscriptions/groups/:id" do |id|
     current_account.groups.delete(Group.find(id))
-    [200, ""]
+    serialize(Account.new(current_account))
   end
   
   get "/communities/:id/posts" do |id|
@@ -560,7 +559,30 @@ end
   end
 
   get "/groups/:id" do |id|
-    serialize Group.find(id)
+    serialize(id =! /[^\d]/ ? Group.find_by_slug(id) : Group.find(id))
+  end
+
+  post "/groups/:id/posts" do |id|
+    group_post = GroupPost.new(:group => Group.find(id),
+                               :subject => request_body['title'],
+                               :body => request_body['body'],
+                               :user => current_account)
+    if group_post.save
+      group_post.group.live_subscribers.each do |user|
+        Resque.enqueue(GroupPostNotification, group_post.id, user.id)
+      end
+      serialize(group_post)
+    else
+      [400, "errors"]
+    end
+  end
+
+  get "/groups/:id/posts" do |id|
+    serialize( paginate(Group.find(id).group_posts) )
+  end
+
+  get "/groups/:id/members" do |id|
+    serialize( paginate(Group.find(id).subscribers) )
   end
 
   get "/feeds/:id" do |id|

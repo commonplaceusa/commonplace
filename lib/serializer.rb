@@ -99,7 +99,11 @@ module Serializer
         "group_id" => o.group_id,
         "title" => o.subject,
         "body" => o.body,
-        "replies" => serialize(o.replies.to_a) }
+        "replies" => serialize(o.replies.to_a),
+        "links" => {
+          "replies" => "/group_posts/#{o.id}/replies"
+        }
+        }
 
       when Reply
         { 
@@ -146,7 +150,13 @@ module Serializer
         "url" => "/groups/#{o.id}",
         "name" => o.name,
         "about" => o.about,
-        "avatar_url" => o.avatar_url }
+        "avatar_url" => o.avatar_url,
+        "slug" => o.slug,
+        "links" => {
+          "posts" => "/groups/#{o.id}/posts",
+          "members" => "/groups/#{o.id}/members"
+        }
+        }
 
       when Account
         {
@@ -164,7 +174,8 @@ module Serializer
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood, 
         "links" => { 
-          "feed_subscriptions" => "/account/subscriptions/feeds"
+          "feed_subscriptions" => "/account/subscriptions/feeds",
+          "group_subscriptions" => "/account/subscriptions/groups"
         }
         }
 
