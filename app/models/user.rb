@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :offers, :interests, :skills
 
   before_save :ensure_authentication_token
+  before_save :downcase_email
 
   #track_on_creation
   include Geokit::Geocoders
@@ -321,6 +322,12 @@ class User < ActiveRecord::Base
   def send_reset_password_instructions
     generate_reset_password_token! if should_generate_token?
     Kickoff.new.deliver_password_reset(self)
+  end
+
+  # Devise case insensitivity is broken, it needs
+  # in the database
+  def downcase_email
+    self.email.downcase
   end
 
   private
