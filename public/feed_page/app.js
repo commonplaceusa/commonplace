@@ -300,7 +300,8 @@ var FeedSubResourcesView = CommonPlace.View.extend({
     var wireView = new AnnouncementWireView({
       collection: this.announcementsCollection,
       account: this.account,
-      el: this.$(".feed-announcements .wire")
+      el: this.$(".feed-announcements .wire"),
+      isFeedOwner: this.account.isFeedOwner(this.feed)
     });
     wireView.render();
   },

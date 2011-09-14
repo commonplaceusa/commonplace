@@ -2,7 +2,7 @@
 
   <img src="{{avatarUrl}}" width="50" height="50" class="avatar">
 
-  <div class="corner">{{publishedAt}} - <a href="#">EDIT</a></div>
+  <div class="corner">{{publishedAt}}{{#isOwner}} - <a href="#">EDIT</a>{{/isOwner}}</div>
 
   <div class="reply-count">{{replyCount}}</div>
 
