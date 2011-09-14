@@ -131,26 +131,22 @@ describe User do
 
   describe "#inbox" do
     let(:user) do
-      User.new.tap do |u|
-        u.received_messages << Array.new(3) { 
-          mock_model(Message, :updated_at => rand(10).hours.ago)
+      u = User.new do |u|
+        stub(u).received_messages = Array.new(3) { 
+        mock_model(Message, :updated_at => rand(10).hours.ago)
         }
-        u.messages << Array.new(3) { 
+        stub(u).messages = Array.new(3) { 
           mock_model(Message, :updated_at => rand(10).hours.ago)
         }
       end
     end
 
     it "includes received messages" do
-      user.received_messages.each do |message|
-        user.inbox.should include(message)
-      end
+      user.inbox.should include(*user.received_messages)
     end
     
     it "includes sent messages" do
-      user.messages.each do |message|
-        user.inbox.should include(message)
-      end
+      user.inbox.should include(*user.messages)
     end
     
     it "orders messages most recently updated first" do
