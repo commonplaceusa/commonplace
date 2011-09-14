@@ -96,16 +96,16 @@ javascripts:
     - public/javascripts/feed_registration.js
 
   group_page:
-    - public/javascripts/showdown.js
-    - public/javascripts/jquery-1.6.1.js
-    - public/javascripts/jquery-ui.js
-    - public/javascripts/jquery/jquery.*.js
-    - public/javascripts/jquery/underscore.js
-    - public/javascripts/jquery/mustache.js
-    - public/javascripts/jquery/json2.js
-    - public/javascripts/jquery/backbone.js
-    - public/javascripts/lib.js
+    - public/vendor/showdown.js
+    - public/vendor/jquery.js
+    - public/vendor/jquery-ui.js
+    - public/vendor/underscore.js
+    - public/vendor/mustache.js
+    - public/vendor/json2.js
     - public/vendor/time_ago_in_words.js
+    - public/vendor/backbone.js
+    - public/vendor/placeholder.js
+    - public/vendor/autoresize.js
     - public/shared/app.js
     - public/shared/models.js
     - public/shared/views.js
