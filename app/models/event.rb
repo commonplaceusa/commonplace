@@ -65,6 +65,10 @@ class Event < ActiveRecord::Base
       when Feed then owner.user
     end
   end
+
+  def user_id
+    user.id
+  end
   
   def long_id
     IDEncoder.to_long_id(self.id)

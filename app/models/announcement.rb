@@ -31,4 +31,8 @@ class Announcement < ActiveRecord::Base
     end
   end
 
+  def user_id
+    user.id
+  end
+
 end
