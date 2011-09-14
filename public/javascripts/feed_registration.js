@@ -9,9 +9,15 @@ $(function() {
     $("#file_input_fix input").val($(this).val().replace(/^.*\\/,""));
   });
 
+  $("#feed_slug_input").data("original-hint", 
+                             $("#feed_slug_input p.inline-hints").html());
+
   $("#feed_name").keyup(function() {
     if (!$("#feed_slug").data("manual")) {
       $("#feed_slug").val(slugify($(this).val()));
+      $("#feed_slug_input p.inline-hints").html(
+        $("#feed_slug_input").data("original-hint").replace(/____/g,
+                                                            $("#feed_slug").val()));
     }
   });
   
@@ -21,6 +27,12 @@ $(function() {
 
   $("#feed_slug").focusin(function() {
     $("#feed_slug_input p.inline-hints").show();
+  });
+
+  $("#feed_slug").keyup(function() {
+    $("#feed_slug_input p.inline-hints").html(
+      $("#feed_slug_input").data("original-hint").replace(/____/g,
+                                                          $("#feed_slug").val()));
   });
 
   $("#feed_slug").focusout(function() {
