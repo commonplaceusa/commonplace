@@ -101,7 +101,8 @@ module Serializer
         "body" => o.body,
         "replies" => serialize(o.replies.to_a),
         "links" => {
-          "replies" => "/group_posts/#{o.id}/replies"
+          "replies" => "/group_posts/#{o.id}/replies",
+          "author" => "/users/#{o.user_id}"
         }
         }
 
@@ -111,7 +112,11 @@ module Serializer
         "avatar_url" => o.user.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
         "body" => o.body,
-        "published_at" => o.created_at.utc }
+        "published_at" => o.created_at.utc,
+        "links" => {
+          "author" => "/users/#{o.user_id}"
+        }
+        }
 
       when Feed
         { 
