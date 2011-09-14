@@ -559,7 +559,7 @@ end
   end
 
   get "/groups/:id" do |id|
-    serialize(id =! /[^\d]/ ? Group.find_by_slug(id) : Group.find(id))
+    serialize(id =~ /[^\d]/ ? Group.find_by_slug(id) : Group.find(id))
   end
 
   post "/groups/:id/posts" do |id|
