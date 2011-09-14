@@ -61,8 +61,17 @@ var WireView = CommonPlace.View.extend({
 });
 
 var EventWireView = WireView.extend({
+  initialize: function(options) {
+    this.account = options.account;
+    this.isFeedOwner = options.isFeedOwner;
+  },
+
   modelToView: function(model) {
-    return new EventItemView({model: model, account: this.account});
+    return new EventItemView({
+      model: model,
+      account: this.account,
+      isFeedOwner: this.isFeedOwner
+    });
   },
 
   emptyMessage: "No events here yet"
@@ -114,7 +123,10 @@ var EventItemView = CommonPlace.View.extend({
   tagName: "li",
   className: "wire-item",
 
-  initialize: function(options) { this.account = options.account; },
+  initialize: function(options) {
+    this.account = options.account;
+    this.isFeedOwner = options.isFeedOwner;
+  },
 
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
@@ -159,6 +171,10 @@ var EventItemView = CommonPlace.View.extend({
       template: "feed_page/feed-event-edit-form"
     });
     formview.render();
+  },
+
+  isOwner: function() {
+    return this.isFeedOwner;
   }
 
 });
