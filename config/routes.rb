@@ -44,6 +44,8 @@ Commonplace::Application.routes.draw do
       put :create_profile
       get :crop
       put :update_crop
+      get :new_subscribers
+      put :add_subscribers
     end
   end
 
