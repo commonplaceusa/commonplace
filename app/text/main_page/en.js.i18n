@@ -1,5 +1,4 @@
-CommonPlace.text = CommonPlace.text || {};
-CommonPlace.text.en = { 
+{
   "eventinfo": {
     "h2": "Community Event"
   },
@@ -99,4 +98,4 @@ CommonPlace.text.en = {
   }
 
   
-};
+}
