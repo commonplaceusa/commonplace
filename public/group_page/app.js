@@ -154,6 +154,15 @@ var GroupsListView = CommonPlace.View.extend({
     this.community = options.community;
   },
 
+  afterRender: function() {
+    var height = 0;
+    $("#groups-list li").each(function(index) {
+      if (index == 9) { return false; }
+      height = height + $(this).outerHeight(true);
+    });
+    $("#groups-list ul").height(height);
+  },
+
   groups: function() {
     return this.collection;
   },
