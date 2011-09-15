@@ -1,6 +1,6 @@
 source :gemcutter
 
-gem 'rails' 
+gem 'rails', "~> 3.1.0"
 gem 'rack' 
 
 # API
@@ -31,8 +31,6 @@ gem 'cancan' # Authorization, see app/models/ability.rb, should be refactored/re
 
 # Assets
 gem 'aws-s3', :require => 'aws/s3' # storing avatars and stuff
-gem 'jammit' # compiling assets
-gem 'jammit-s3' #! will be used to store compiled assets on s3
 
 # Worker Jobs
 gem 'redis' # for queueing with resque 
@@ -62,7 +60,6 @@ gem 'premailer' # we use this to inline css in our emails
 gem 'sanitize' # used in app/controllers/posts_controller.rb (which is dead code) ! remove
 gem 'haml', '~> 3.1' # used for view templates
 gem 'formtastic' # used for view templates
-gem 'compass', '~> 0' # used for stylesheet helpers
 gem 'sass', '~> 3.1' # used for stylesheets
 gem 'BlueCloth', :require => 'bluecloth' # we use this in our views and mailers
 
@@ -85,6 +82,13 @@ gem 'acts-as-taggable-on', '~> 2.1.0'
 gem 'json' # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku' # access heroku api
+
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+  gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :branch => 'rails31'
+end
 
 group :development, :test do
   gem 'factory_girl' # we use factory_girl to generate models for tests
