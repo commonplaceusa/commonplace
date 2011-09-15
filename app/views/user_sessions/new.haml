@@ -4,7 +4,7 @@
       = f.input :email
       = f.input :password, :label => "Enter your password:"
     = f.buttons do
-      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/login2.png"}
+      = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/login2.png")}
 
     = link_to "Forgot your password?", new_user_password_url, :class => 'forgot-password'
   

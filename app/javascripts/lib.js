@@ -42,7 +42,7 @@ Mustache.template = function(templateString) {
 };
 
 
-$.preLoadImages("/images/loading.gif");
+$.preLoadImages("/assets/loading.gif");
 
 CommonPlace.linkify = function(text) {
   var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;

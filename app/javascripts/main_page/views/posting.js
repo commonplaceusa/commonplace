@@ -27,7 +27,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
       if(!$('#commercialyes').is(':checked')&&!$('#commercialno').is(':checked')) {
         CommonPlace.app.notify("Please check a 'Yes' or 'No' next to: Is this publicity relating to a business, organization, or event?");
       } else if ($("input[@name=radio_name]:checked").val()=='No') {
-      $("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+      $("input.create").replaceWith("<img src=\"/assets/loading.gif\">");
       if (CommonPlace.env == 'production') {
         mpmetrics.track('Submitted Neighborhood Post');
         mpmetrics.track('Submitted Content', {'type': 'neighborhood_post'});
@@ -43,7 +43,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
         }
       });
     } else {
-        $("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+        $("input.create").replaceWith("<img src=\"/assets/loading.gif\">");
         if (CommonPlace.env == 'production') {
           mpmetrics.track('Submitted Announcement');
           mpmetrics.track('Submitted Content', {'type': 'announcement'});
@@ -64,7 +64,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitAnnouncement: function(e) {
     e.preventDefault();
-    this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+    this.$("input.create").replaceWith("<img src=\"/assets/loading.gif\">");
     owner_match = this.$("select#announcement_owner").val().match(/([a-z_]+)_(\d+)/);
     if (CommonPlace.env == 'production') {
         mpmetrics.track('Submitted Announcement');
@@ -84,7 +84,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitEvent: function(e) {
     e.preventDefault();
-    this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+    this.$("input.create").replaceWith("<img src=\"/assets/loading.gif\">");
     owner_match = this.$("select#event_owner").val().match(/([a-z_]+)_(\d+)/);
     if (CommonPlace.env == 'production') {
       mpmetrics.track('Submitted Event');
@@ -110,7 +110,7 @@ CommonPlace.SaySomething = Backbone.View.extend({
 
   submitGroupPost: function(e) {
     e.preventDefault();
-    this.$("input.create").replaceWith("<img src=\"/images/loading.gif\">");
+    this.$("input.create").replaceWith("<img src=\"/assets/loading.gif\">");
     if (CommonPlace.env == 'production') {
       mpmetrics.track('Submitted Group Post');
       mpmetrics.track('Submitted Content', {'type': 'group_post'});

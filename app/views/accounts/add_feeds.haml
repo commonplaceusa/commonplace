@@ -14,7 +14,7 @@
           .unchecked
           %h3= feed.name
           %input{:class =>"feedId", :name => "feed_ids[]", :value => feed.id.to_s, :type =>"checkbox"}
-    %input{:type => "image", :src => "/images/buttons/continue2.png"}
+    %input{:type => "image", :src => asset_path("buttons/continue2.png")}
 
 
 - if Rails.env.production?

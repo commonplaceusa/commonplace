@@ -9,7 +9,7 @@
     - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
       = f.hidden_field attribute, :id => attribute
 
-    = f.submit :type => "image", :src => "/images/buttons/continue2.png"
+    = f.submit :type => "image", :src => asset_path("buttons/continue2.png")
 
 - if Rails.env.production?
   :javascript
