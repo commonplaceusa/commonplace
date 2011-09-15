@@ -24,6 +24,15 @@ module Commonplace
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.assets.paths += [File.join(Rails.root, 'app', 'javascripts'),
+                            File.join(Rails.root, 'app', 'stylesheets'),
+                            File.join(Rails.root, 'app', 'templates'),
+                            File.join(Rails.root, 'app', 'text'),
+                            File.join(Rails.root, 'app', 'images'),
+                            File.join(Rails.root, 'vendor', 'javascripts'),
+                            File.join(Rails.root, 'vendor', 'stylesheets')]
+
+
     config.generators do |g|
       g.orm :active_record
     end
