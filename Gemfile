@@ -23,6 +23,7 @@ gem 'thin' # lighter than mongrel, faster than webrick
 
 # Authentication
 gem 'devise' # used for authentication
+gem 'omniauth', :git => "git://github.com/intridea/omniauth.git", :branch => "0-3-stable"  # used for authentication with facebook
 gem 'uuid' # used in app/controllers/admin_controller.rb, could be refactored/removed?
 
 # Authorization
@@ -81,7 +82,6 @@ gem 'acts-as-taggable-on', '~> 2.1.0'
 gem 'json' # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku' # access heroku api
-
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
