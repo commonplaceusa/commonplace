@@ -60,4 +60,27 @@ $(function() {
     onSelect: updateCrop,
     aspectRatio: 1.0
   });
+
+  $("form.new_subscribers td").focusin(function() {
+    if ($(this).text() == "...") { $(this).text(""); }
+  });
+
+  $("form.new_subscribers td").focusout(function() {
+    if ($(this).text() == "") { $(this).text("..."); }
+  });
+
+  $("form.new_subscribers").submit(function(e) {
+    var subscribers = [];
+    $("form.new_subscribers .input-row").each(function() {
+      var name = $(".name", this).text();
+      var email = $(".email", this).text();
+      if ((name != "") && (name != "...") && (email != "") && (email != "...")) {
+        var val =  name + "<" + email + ">";
+        $('<input type="hidden" name="feed_subscribers[]">').val(val).appendTo($("form.new_subscribers"));
+      }
+    });
+    
+  });
+
+  
 });

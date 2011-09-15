@@ -30,7 +30,7 @@ class FeedsController < CommunitiesController
       redirect_to root_url
     end
   end
-      
+
   def new
     render :layout => "feed_registration"
   end
@@ -58,7 +58,7 @@ class FeedsController < CommunitiesController
   def create_profile
     @feed = Feed.find(params[:id])
     if @feed.update_attributes(params[:feed])
-      redirect_to "/pages/#{@feed.slug.blank? ? @feed.id : @feed.slug}"
+      redirect_to feed_profile_path(@feed)
     else
       render :new_profile, :layout => "feed_registration"
     end
@@ -90,6 +90,15 @@ class FeedsController < CommunitiesController
       render :edit, :layout => 'feed_registration'
     end
   end
+
+  def new_subscribers
+    render :layout => 'feed_registration'
+  end
+
+  def add_subscribers
+    kickoff.deliver_feed_invite(params[:feed_subscribers])
+    redirect_to feed_profile_path(@feed)
+  end
   
   protected
   def load
@@ -103,5 +112,9 @@ class FeedsController < CommunitiesController
       else
         Feed.new
       end
+  end
+
+  def feed_profile_path(feed)
+    "/pages/#{feed.slug.blank? ? feed.id : feed.slug}"
   end
 end

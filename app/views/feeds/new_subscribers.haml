@@ -1,0 +1,18 @@
+
+= form_for @feed, :url => "/feeds/#{@feed.id}/add_subscribers", :html => {:class => "new_subscribers"} do |f|
+
+  %label
+    Add subscribers directly to your feed
+
+  .scrolling-table-container
+    %table
+      %tr
+        %th Subscriber Name
+        %th Email Address
+
+      - 20.times do
+        %tr.input-row
+          %td.name{contenteditable: true}...
+          %td.email{contenteditable: true}...
+
+  = f.submit :type => "image", :src => asset_path("buttons/continue2.png")
