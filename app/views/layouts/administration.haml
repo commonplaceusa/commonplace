@@ -12,9 +12,9 @@
     %script{ :type => 'text/javascript', :src => 'http://maps.google.com/maps/api/js?sensor=false' }
     
     = include_javascripts :jquery
-	= include_javascripts :map
+    = include_javascripts :map
 
-    = include_stylesheets :application
+    = stylesheet_link_tag "application"
     %style{:type => "text/css"}
       = 'div.polygon-canvas { width: 600px; height: 300px; }'
       

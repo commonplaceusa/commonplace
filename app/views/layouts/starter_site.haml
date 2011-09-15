@@ -15,9 +15,10 @@
     / [if IE]
       = javascript_include_tag "https://html5shiv.googlecode.com/svn/trunk/html5.js"        
     = include_javascripts :starter_site
-    = include_stylesheets :starter_site
+    = stylesheet_link_tag "starter_site"
     /[if lt IE 9]
-      = include_stylesheets :ie
+      = stylesheet_link_tag "ie"
+
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-12807510-2']);
