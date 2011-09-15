@@ -1,5 +1,14 @@
 Commonplace::Application.configure do
 
+  # Don't Compress JavaScripts and CSS
+  config.assets.compress = false
+
+  # Fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = true
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+
   config.action_mailer.delivery_method = :smtp
   
   config.cache_classes = true
@@ -7,7 +16,6 @@ Commonplace::Application.configure do
   config.cache_store = :dalli_store
   
   # Full error reports are disabled and caching is turned on
-  config.action_controller.consider_all_requests_local = false
   config.action_controller.perform_caching             = true
   config.log_level = :debug
   
