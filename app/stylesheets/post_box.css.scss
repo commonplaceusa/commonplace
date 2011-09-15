@@ -2,11 +2,11 @@
 
 body.is_college #say-something .wrap div.nav a.post {
     background: { repeat: no-repeat;
-                  image: url('/images/post-hall-btn.png'); 
+                  image: image-url('post-hall-btn.png'); 
                   position: 0 0; }
     &.current {
     background: { repeat: no-repeat;
-                  image: url('/images/post-hall-btn-selected.png'); 
+                  image: image-url('post-hall-btn-selected.png'); 
                   position: 0 0; }
     }
     
@@ -52,7 +52,7 @@ body.is_college #say-something .wrap div.nav a.post {
                 padding: 8px 20px 8px 35px;
 
                 background: { repeat: no-repeat;
-                              image: url('/images/post-box-button-sprite2.png'); }
+                              image: image-url('post-box-button-sprite2.png'); }
 
                 &.post { background-position: -143px -1px }
                 &.announcement { background-position: -143px -57px }

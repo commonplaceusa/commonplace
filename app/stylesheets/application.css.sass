@@ -38,7 +38,7 @@ footer, #footer
   clear: both
 
 body.application
-  background: #cee7fe url('/images/neighborhood-bg.png') repeat-x center bottom
+  background: #cee7fe image-url('neighborhood-bg.png') repeat-x center bottom
   +serif
 
   #sticky-wrapper
@@ -288,7 +288,7 @@ body.application.logged_out
           vertical-align: top
           padding: 5px
             right: 20px
-          background-image: url('/images/nav-down-arrow.png')
+          background-image: image-url('nav-down-arrow.png')
           background-repeat: no-repeat
           background-position: 48px
           border: 1px solid transparent
@@ -339,7 +339,7 @@ body.application.logged_out
         font-weight: 300
 
       #sign_in_button
-        background: url(/images/nav-down-arrow.png) no-repeat 95% 40% #e0e0e0
+        background: image-url("nav-down-arrow.png") no-repeat 95% 40% #e0e0e0
         padding: 2px 27px 3px 10px
         line-height: 22px
         position: relative
@@ -437,7 +437,7 @@ body.application.logged_out
 
   footer, #footer
     clear: both
-    background: transparent url('/images/houses.png') repeat-x center bottom
+    background: transparent image-url('houses.png') repeat-x center bottom
     border: none
     padding: 200px 0 10px
     height: 20px
