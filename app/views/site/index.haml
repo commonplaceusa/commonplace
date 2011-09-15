@@ -44,13 +44,13 @@
       #nominate-padding
         %p#leading="Want CommonPlace?"
         %h3="Nominate Your Town:"
-        - semantic_form_for @request do |f|
-          - f.inputs do
+        = semantic_form_for @request do |f|
+          = f.inputs do
             = f.input :community_name, :label=>"Name of Community:"
             = f.input :name, :label => "Your name:"
             = f.input :email, :label => "Your email:"
             = f.input :sponsor_organization, :label => "Sponsoring organization:"
-          - f.buttons do
+          = f.buttons do
             = f.commit_button :label => "Submit Now"
            
     .clear

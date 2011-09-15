@@ -3,7 +3,6 @@
   %head
     = render 'layouts/common_head'
     = stylesheet_link_tag "main_page"
-    = include_javascripts :templates
 
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" } #{ current_community.is_college ? "is_college" : ""}"}
@@ -33,6 +32,10 @@
     = render "layouts/bottom_scripts"
 
     :javascript
+      _(Templates).each(function(v,k) {
+      Templates[k.replace("main_page/","")] = v;
+      });
+
       CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
       name: "#{current_community.name}",
       locale: "#{current_community.locale}"

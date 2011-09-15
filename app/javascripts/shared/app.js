@@ -1,25 +1,21 @@
 var CommonPlace = CommonPlace || {};
 
 CommonPlace.render = function(name, params) {
-  if (!CommonPlace.templates[name]) {
+  if (!Templates[name]) {
     throw new Error("template '" + name + "' does not exist");
   };
   return Mustache.to_html(
-    CommonPlace.templates[name],
+    Templates[name],
     _.extend({ 
                t: function() {
                  return function(key,render) {
-                   var text = CommonPlace.text[CommonPlace.community.get('locale')][name][key];
+                   var text = I18N[CommonPlace.community.get('locale')][name][key];
                    return text ? render(text) : key ;
                  };
                } 
              }, params),
     
-    CommonPlace.templates);
-};
-
-Mustache.template = function(templateString) {
-  return templateString;
+    Templates);
 };
 
 

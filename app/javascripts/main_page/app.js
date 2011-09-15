@@ -32,7 +32,7 @@ CommonPlace.MainPageController = Backbone.Controller.extend({
   },
 
   text: function(template,key) {
-    return CommonPlace.text[this.community.get('locale')][template][key];
+    return I18N["main_page/" + this.community.get('locale')][template][key];
   },
 
   routes: {
