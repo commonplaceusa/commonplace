@@ -17,6 +17,9 @@ class Event < ActiveRecord::Base
 
   has_many :invites, :as => :inviter
 
+  has_many :event_cross_postings
+  has_many :groups, :through => :event_cross_postings
+
   scope :upcoming, lambda { { :conditions => ["? <= events.date", Time.now.beginning_of_day.utc] } }
   scope :between, lambda { |start_date, end_date| 
     { :conditions => ["? <= events.date AND events.date < ?", start_date, end_date] } 

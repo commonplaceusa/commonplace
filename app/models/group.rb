@@ -15,6 +15,10 @@ class Group < ActiveRecord::Base
 
   has_many :memberships
   has_many :subscribers, :through => :memberships, :source => :user, :uniq => true
+
+  has_many :event_cross_postings
+  has_many :events, :through => :event_cross_postings
+
   def avatar_url=(url)
     self.avatar_file_name = url
   end
