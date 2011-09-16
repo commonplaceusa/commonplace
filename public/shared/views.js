@@ -305,6 +305,8 @@ var GroupPostItemView = CommonPlace.View.extend({
 
   initialize: function(options) {
     this.account = options.account;
+    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){100}/);
+    this.allwords = (this.shortbody == null);
   },
 
   afterRender: function() {
@@ -340,11 +342,16 @@ var GroupPostItemView = CommonPlace.View.extend({
   },
 
   body: function() {
-    return this.model.get("body");
+    if (!this.allwords) {
+      return this.shortbody[0];
+    } else {
+      return this.model.get("body");
+    }
   },
 
   events: {
-    "click .group-post > .author": "messageUser"
+    "click .author": "messageUser",
+    "click .moreBody": "loadMore"
   },
 
   messageUser: function(e) {
@@ -362,7 +369,18 @@ var GroupPostItemView = CommonPlace.View.extend({
         formview.render();
       }
     });
+  },
+
+  isMore: function() {
+    return !this.allwords;
+  },
+
+  loadMore: function(e) {
+    e.preventDefault();
+    this.allwords = true;
+    this.render();
   }
+
 });
 
 var GroupMemberItemView = CommonPlace.View.extend({
