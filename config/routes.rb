@@ -10,12 +10,6 @@ Commonplace::Application.routes.draw do
     :passwords => "password_resets"
   }
 
-  match("/#{Jammit.package_path}/:package.:extension",
-        :to => 'jammit#package', :as => :jammit, :constraints => {
-          # A hack to allow extension to include "."
-          :extension => /.+/
-        })
-
   get "facebook_canvas/index"
   match "/facebook_canvas/" => "facebook_canvas#index"
 

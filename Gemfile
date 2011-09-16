@@ -97,7 +97,6 @@ group :development, :test do
   gem 'pry' # for when IRB is not enough
   gem 'guard' # because doing things manually is for suckers
   gem 'guard-bundler'
-  gem 'guard-jammit'
 end
 
 group :test do
