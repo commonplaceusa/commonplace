@@ -1,4 +1,19 @@
+reply_based_invite:
+  body: |
+    <p>Dear {{short_user_name}},</p>
+    
+   <p>This past week, you received a reply to one of your CommonPlace neighborhood posts.  We hope one of your neighbors was able to help you out!</p>
 
+  <p>If you were helped through {{community_name}}’s CommonPlace, we hope you can help give back to the network by inviting neighbors to CommonPlace.  The more {community_name}} residents on CommonPlace, the better a tool CommonPlace is for community engagement.</p>
+
+  <p><a href="http://www.ourcommonplace.com/account/facebook_invite"><img src="images/mail/invite-them-now.png""></a></p>
+
+
+  <p>Hope you can make CommonPlace an even better place to share and connect with your neighbors.</p>
+  
+  thanks: |
+  <p>Thanks for being a great neighbor,<br>The {{community_name}} CommonPlace team</p>
+    
 post_notification:
   intro: Hi {{user_name}}, <br> {{poster_name}} just posted to your neighborhood board on CommonPlace.
 
