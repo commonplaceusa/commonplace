@@ -24,10 +24,6 @@ GEM
   remote: http://rubygems.org/
   specs:
     BlueCloth (1.0.1)
-    POpen4 (0.1.4)
-      Platform (>= 0.4.0)
-      open4
-    Platform (0.4.0)
     RedCloth (4.2.3)
     actionmailer (3.1.0)
       actionpack (= 3.1.0)
@@ -84,7 +80,6 @@ GEM
     childprocess (0.1.8)
       ffi (~> 1.0.6)
     chunky_png (1.2.4)
-    closure-compiler (1.1.1)
     coderay (0.9.8)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
@@ -142,9 +137,6 @@ GEM
     guard-bundler (0.1.3)
       bundler (>= 1.0.0)
       guard (>= 0.2.2)
-    guard-jammit (0.2.0)
-      guard
-      jammit
     haml (3.1.1)
     has_scope (0.5.1)
     heroku (2.4.1)
@@ -159,9 +151,6 @@ GEM
     inherited_resources (1.2.2)
       has_scope (~> 0.5.0)
       responders (~> 0.6.0)
-    jammit (0.6.0)
-      closure-compiler (>= 0.1.0)
-      yui-compressor (>= 0.9.1)
     jasmine (1.0.2.1)
       json_pure (>= 1.4.3)
       rack (>= 1.1)
@@ -198,7 +187,6 @@ GEM
     mustache (0.99.1)
     newrelic_rpm (2.14.1)
     nokogiri (1.4.4)
-    open4 (1.0.1)
     orm_adapter (0.0.5)
     paperclip (2.3.8)
       activerecord
@@ -349,8 +337,6 @@ GEM
     xml-simple (1.1.0)
     xpath (0.1.4)
       nokogiri (~> 1.3)
-    yui-compressor (0.9.6)
-      POpen4 (>= 0.1.4)
 
 PLATFORMS
   ruby
@@ -382,7 +368,6 @@ DEPENDENCIES
   googlecharts
   guard
   guard-bundler
-  guard-jammit
   haml (~> 3.1)
   heroku
   hirefireapp
