@@ -4,13 +4,13 @@
     <div class="day-of-month">{{day_of_month}}</div>
   </div>
 
-  <div class="corner">{{publishedAt}}{{#isOwner}} - <a href="#">EDIT</a>{{/isOwner}}</div>
+  <div class="corner">{{publishedAt}}{{#isOwner}} - <a href="#" class="editlink">EDIT</a>{{/isOwner}}</div>
 
   <div class="title">{{title}}</div>
 
   <div class="author">{{author}}</div>
 
-  <div class="body">{{body}}</div>
+  <div class="body">{{body}}{{#isMore}}... <a class="moreBody" href="#">More</a>{{/isMore}}</div>
 
   <div style="clear:both;"></div>
 
