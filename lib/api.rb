@@ -585,6 +585,14 @@ end
     serialize( paginate(Group.find(id).subscribers) )
   end
 
+  get "/groups/:id/events" do |id|
+    serialize( paginate(Group.find(id).events) )
+  end
+
+  get "/groups/:id/announcements" do |id|
+    serialize( paginate(Group.find(id).announcements) )
+  end
+
   get "/feeds/:id" do |id|
     serialize(id =~ /[^\d]/ ? Feed.find_by_slug(id) : Feed.find(id))
   end
