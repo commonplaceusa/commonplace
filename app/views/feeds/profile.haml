@@ -25,8 +25,7 @@
       = render 'layouts/footer'
 
 
-      = include_javascripts :feed_page
-      = include_javascripts :feed_page_templates
+      = javascript_include_tag "feed_page"
 
       %script{ :type => "text/javascript" }
         $(function() {
