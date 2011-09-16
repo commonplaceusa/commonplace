@@ -22,22 +22,19 @@ jQuery.extend({
   }
 });
 
-
-
 CommonPlace.render = function(name, params) {
   return Mustache.to_html(
-    CommonPlace.templates[name],
+    Templates[name],
     _.extend({ auth_token: CommonPlace.auth_token,
                account_avatar_url: CommonPlace.account.get('avatar_url'),
                t: function() {
                  return function(key,render) {
-                   var text = CommonPlace.text[CommonPlace.community.get('locale')][name][key];
+                   var text = I18N["main_page/" + CommonPlace.community.get('locale')][name][key];
                    return text ? render(text) : key ;
                  };
                } 
              }, params),
-    
-    CommonPlace.templates);
+    Templates);
 };
 
 Mustache.template = function(templateString) {
