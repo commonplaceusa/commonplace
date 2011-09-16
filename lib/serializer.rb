@@ -159,7 +159,9 @@ module Serializer
         "slug" => o.slug,
         "links" => {
           "posts" => "/groups/#{o.id}/posts",
-          "members" => "/groups/#{o.id}/members"
+          "members" => "/groups/#{o.id}/members",
+          "announcements" => "/groups/#{o.id}/announcements",
+          "events" => "/groups/#{o.id}/events"
         }
         }
 
