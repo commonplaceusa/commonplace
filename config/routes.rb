@@ -7,8 +7,11 @@ Commonplace::Application.routes.draw do
     
     devise_for :users, :controllers => { 
       :sessions => "user_sessions",
-      :passwords => "password_resets"
-    }
+      :passwords => "password_resets",
+    :omniauth_callbacks => "users_omniauth_callbacks"
+    } do
+      get '/users/auth/:provider' => 'users_omniauth_callbacks#passthru'
+    end
   rescue
     Rails.logger.warn "ActiveAdmin routes not initialized"
     Rails.logger.warn "Devise routes not initialized"

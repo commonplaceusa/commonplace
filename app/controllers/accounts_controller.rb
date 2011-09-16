@@ -25,7 +25,7 @@ class AccountsController < ApplicationController
   end
 
   def new_facebook
-    @_currrent_community = Community.find(session["devise.commmunity"])
+    @_current_community = Community.find(session["devise.community"])
     @user = current_user
     render :layout => "registration"
   end
