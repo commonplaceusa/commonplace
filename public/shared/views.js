@@ -126,6 +126,8 @@ var EventItemView = CommonPlace.View.extend({
   initialize: function(options) {
     this.account = options.account;
     this.isFeedOwner = options.isFeedOwner;
+    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){100}/);
+    this.allwords = (this.shortbody == null);
   },
 
   afterRender: function() {
@@ -155,13 +157,20 @@ var EventItemView = CommonPlace.View.extend({
 
   author: function() { return this.model.get('author'); },
   
-  body: function() { return this.model.get('body'); },
+  body: function() {
+    if (!this.allwords) {
+      return this.shortbody[0];
+    } else {
+      return this.model.get("body");
+    }
+  },
 
   monthAbbrevs: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                  "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
 
   events: {
-    "click a": "editEvent"
+    "click .editlink": "editEvent",
+    "click .moreBody": "loadMore"
   },
 
   editEvent: function(e) {
@@ -175,6 +184,16 @@ var EventItemView = CommonPlace.View.extend({
 
   isOwner: function() {
     return this.isFeedOwner;
+  },
+
+  isMore: function() {
+    return !this.allwords;
+  },
+
+  loadMore: function(e) {
+    e.preventDefault();
+    this.allwords = true;
+    this.render();
   }
 
 });
@@ -187,6 +206,8 @@ var AnnouncementItemView = CommonPlace.View.extend({
   initialize: function(options) {
     this.account = options.account;
     this.isFeedOwner = options.isFeedOwner;
+    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){100}/);
+    this.allwords = (this.shortbody == null);
   },
 
   afterRender: function() {
@@ -215,10 +236,17 @@ var AnnouncementItemView = CommonPlace.View.extend({
   
   author: function() { return this.model.get('author'); },
   
-  body: function() { return this.model.get('body'); },
+  body: function() {
+    if (!this.allwords) {
+      return this.shortbody[0];
+    } else {
+      return this.model.get("body");
+    }
+  },
   
   events: {
-    "click a": "editAnnouncement"
+    "click .editlink": "editAnnouncement",
+    "click .moreBody": "loadMore"
   },
 
   editAnnouncement: function(e) {
@@ -232,7 +260,18 @@ var AnnouncementItemView = CommonPlace.View.extend({
 
   isOwner: function() {
     return this.isFeedOwner;
+  },
+
+  isMore: function() {
+    return !this.allwords;
+  },
+
+  loadMore: function(e) {
+    e.preventDefault();
+    this.allwords = true;
+    this.render();
   }
+    
 });
 
 var SubscriberItemView = CommonPlace.View.extend({
