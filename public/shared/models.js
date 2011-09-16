@@ -157,6 +157,8 @@ var Group = CommonPlace.Model.extend({
   initialize: function() {
     this.posts = new Group.PostCollection([], { group: this });
     this.members = new Group.MemberCollection([], { group: this });
+    this.announcements = new Group.AnnouncementCollection([], { group: this });
+    this.events = new Group.EventCollection([], { group: this });
   }
 }, {
   PostCollection: CommonPlace.Collection.extend({
@@ -172,6 +174,22 @@ var Group = CommonPlace.Model.extend({
     model: User,
     url: function() { 
       return "/api" + this.group.get('links').members; 
+    }
+  }),
+
+  AnnouncementCollection :  CommonPlace.Collection.extend({
+    initialize: function(models, options) { this.group = options.group; },
+    model: Announcement,
+    url: function() { 
+      return "/api" + this.group.get('links').announcements; 
+    }
+  }),
+
+  EventCollection :  CommonPlace.Collection.extend({
+    initialize: function(models, options) { this.group = options.group; },
+    model: Event,
+    url: function() { 
+      return "/api" + this.group.get('links').events; 
     }
   })
 });
