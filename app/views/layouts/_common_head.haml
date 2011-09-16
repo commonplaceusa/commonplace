@@ -11,7 +11,7 @@
 %title= "CommonPlace #{ params[:community] && current_community.name}"
 
 
-= include_javascripts :application
+= javascript_include_tag "application"
 -#= javascript_include_tag "https://connect.facebook.net/en_US/all.js#xfbml=1"
 = javascript_include_tag "https://exceptional-js.heroku.com/exceptional.js"
 %script{:type => "text/javascript"}
