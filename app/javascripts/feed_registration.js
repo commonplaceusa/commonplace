@@ -1,3 +1,7 @@
+//= require slugify.js
+//= require jquery.js
+//= require jcrop.js
+
 $(function() {
   $("<div/>", { id: "file_input_fix" }).
     append($("<input/>", { type: "text", name: "file_fix", id: "file_style_fix" })).

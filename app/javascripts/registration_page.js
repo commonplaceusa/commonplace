@@ -1,3 +1,7 @@
+//= require jquery
+//= require placeholder
+//= require jcrop
+
 $(function() {
 
   // all pages
