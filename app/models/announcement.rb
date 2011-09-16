@@ -7,6 +7,9 @@ class Announcement < ActiveRecord::Base
   belongs_to :owner, :polymorphic => true
   belongs_to :community
 
+  has_many :announcement_cross_postings
+  has_many :groups, :through => :announcement_cross_postings
+
   validates_presence_of :subject, :body
 
   scope :between, lambda { |start_date, end_date| 
