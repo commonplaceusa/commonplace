@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914144318) do
+ActiveRecord::Schema.define(:version => 20110916202652) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -112,6 +112,13 @@ ActiveRecord::Schema.define(:version => 20110914144318) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.text     "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_cross_postings", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -360,6 +367,7 @@ ActiveRecord::Schema.define(:version => 20110914144318) do
     t.datetime "last_login_at"
     t.boolean  "seen_tour"
     t.boolean  "transitional_user"
+    t.string   "skills_list"
     t.string   "referral_metadata"
     t.float    "generated_lat"
     t.float    "generated_lng"
