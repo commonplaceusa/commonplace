@@ -8,8 +8,6 @@ var WireView = CommonPlace.View.extend({
 
   initialize: function(options) { 
     this.account = options.account;
-    this.perPage = options.perPage || 10;
-    this.currentPage = options.currentPage || 0;
   },
 
   aroundRender: function(render) {
@@ -27,7 +25,7 @@ var WireView = CommonPlace.View.extend({
 
   fetchCurrentPage: function(callback) {
     this.collection.fetch({
-      data: { limit: this.perPage, page: this.currentPage },
+      data: { limit: this.perPage(), page: this.currentPage() },
       success: callback
     });
   },
@@ -41,7 +39,7 @@ var WireView = CommonPlace.View.extend({
   },
 
   areMore: function() {
-    return !(this.collection.length < this.perPage);
+    return !(this.collection.length < this.perPage());
   },
 
   isEmpty: function() {
@@ -55,8 +53,20 @@ var WireView = CommonPlace.View.extend({
   showMore: function(e) {
     var self = this;
     e.preventDefault();
-    this.currentPage = this.currentPage + 1;
+    this.nextPage();
     this.fetchCurrentPage(function() { self.appendCurrentPage(); });
+  },
+
+  currentPage: function() {
+    return (this._currentPage || this.options.currentPage || 0);
+  },
+
+  perPage: function() {
+    return (this.options.perPage || 10);
+  },
+
+  nextPage: function() {
+    this._currentPage = (this._currentPage || this.options.currentPage || 0) + 1;
   }
 });
 
