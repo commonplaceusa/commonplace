@@ -69,7 +69,7 @@
     border: 1px solid #ccc
     +border-radius(5px 0px 5px 5px)
     display: none
-    .inputs, .buttons
+    .inputs
       +inline-block
       li
         margin: 0
@@ -99,15 +99,10 @@
 
     .buttons
       margin-top: 3px
-      .commit:first-child
-        float: right
-        width: 60px
-      li:last-child
-        padding-top: 5px
-      .commit
-        submit
-          vertical-align: middle
-          padding-bottom: 2px
+      padding: 12px 0 12px 12px
+    .commit
+      float: right
+
     .forgot-password
       text-align: right
       display: block
@@ -120,15 +115,6 @@
       padding: 0 10px 10px
       color: #b7403c
       font-size: 13px
-    #fb-login
-      position: relative
-      top: -4px
-      border: 1px solid #314A63
-      +border-radius(5px)
-      background: #3B6085
-      color: white
-      padding: 5px 5px
-      +box-shadow(inset 0px -1px 2px #335170, inset 0px 1px 0px #5883AD, 1px 1px 2px #999)
-      font-family: Rockwell, Georgia, serif
-      font-size: 11px
-      +text-shadow(#454545 1px 1px 0px)
+    .facebook
+      padding-top: 3px
+      float: right

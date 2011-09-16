@@ -28,8 +28,12 @@
       - else
         = f.input :address, :hint => "", :input_html => {:placeholder => "Street address"}
     = f.buttons do 
+
       = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/signup.png")}
-  
+
+      = link_to user_omniauth_authorize_path(:facebook, :state => current_community.id), :class => "facebook" do
+        = image_tag "buttons/facebook-sign-up.png"
+
   %div{:style=>"clear: both;"}
 
 - if Rails.env.production?
