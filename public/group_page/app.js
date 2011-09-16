@@ -216,9 +216,13 @@ var GroupSubresourcesView = CommonPlace.View.extend({
     this.group = options.model;
     this.groupPostsCollection = this.group.posts;
     this.groupMembersCollection = this.group.members;
+    this.groupAnnouncementsCollection = this.group.announcements;
+    this.groupEventsCollection = this.group.events;
     this.currentTab = options.current || "showGroupPosts";
     this.group.posts.bind("add", function() { self.switchTab("showGroupPosts"); }, this);
     this.group.members.bind("add", function() { self.switchTab("showGroupMembers"); }, this);
+    this.group.announcements.bind("add", function() { self.switchTab("showAnnouncements"); }, this);
+    this.group.events.bind("add", function() { self.switchTab("showEvents"); }, this);
   },
 
   afterRender: function() {
@@ -243,10 +247,30 @@ var GroupSubresourcesView = CommonPlace.View.extend({
     wireView.render();
   },
 
+  showAnnouncements: function() {
+    var wireView = new AnnouncementWireView({
+      collection: this.groupAnnouncementsCollection,
+      account: this.account,
+      el: this.$(".group-announcements .wire")
+    });
+    wireView.render();
+  },
+
+  showEvents: function() {
+    var wireView = new EventWireView({
+      collection: this.groupEventsCollection,
+      account: this.account,
+      el: this.$(".group-events .wire")
+    });
+    wireView.render();
+  },
+
   tabs: function() {
     return {
       showGroupPosts: this.$(".group-posts"),
-      showGroupMembers: this.$(".group-members")
+      showGroupMembers: this.$(".group-members"),
+      showAnnouncements: this.$(".group-announcements"),
+      showEvents: this.$(".group-events")
     };
   },
 
