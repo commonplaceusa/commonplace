@@ -64,6 +64,7 @@ Commonplace::Application.routes.draw do
       get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :profile, :crop
       put :update_new, :update_avatar, :update_interests, :settings, :update_crop
       post :subscribe_to_feeds, :subscribe_to_groups, :avatar
+      get :new_facebook
     end
   end
 
