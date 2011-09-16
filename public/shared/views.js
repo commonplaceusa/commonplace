@@ -126,7 +126,7 @@ var EventItemView = CommonPlace.View.extend({
   initialize: function(options) {
     this.account = options.account;
     this.isFeedOwner = options.isFeedOwner;
-    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){100}/);
+    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
     this.allwords = (this.shortbody == null);
   },
 
@@ -206,7 +206,7 @@ var AnnouncementItemView = CommonPlace.View.extend({
   initialize: function(options) {
     this.account = options.account;
     this.isFeedOwner = options.isFeedOwner;
-    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){100}/);
+    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
     this.allwords = (this.shortbody == null);
   },
 
@@ -305,7 +305,7 @@ var GroupPostItemView = CommonPlace.View.extend({
 
   initialize: function(options) {
     this.account = options.account;
-    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){100}/);
+    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
     this.allwords = (this.shortbody == null);
   },
 
