@@ -327,7 +327,8 @@ end
                                     :owner_id => feed_id,
                                     :subject => request_body['title'],
                                     :body => request_body['body'],
-                                    :community => current_account.community)
+                                    :community => current_account.community,
+                                    :group_ids => request_body["groups"])
     if announcement.save
       kickoff.deliver_announcement(announcement)
       serialize(announcement)
@@ -363,7 +364,8 @@ end
                       :venue => request_body['venue'],
                       :address => request_body['address'],
                       :tag_list => request_body['tags'],
-                      :community => current_account.community)
+                      :community => current_account.community,
+                      :group_ids => request_body["groups"])
     if event.save
       serialize(event)
     else
