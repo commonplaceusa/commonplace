@@ -42,11 +42,11 @@ class Account
   end
 
   def events
-    Event.find_all_by_owner_id(@user.id).map &:id
+    @user.direct_event_ids + @user.managable_feeds.flat_map {|f| f.event_ids }
   end
 
   def announcements
-    @user.announcements.map &:id
+    @user.announcement_ids + @user.managable_feeds.flat_map {|f| f.announcement_ids }
   end
 
   def group_posts
