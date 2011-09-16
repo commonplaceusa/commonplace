@@ -83,6 +83,7 @@ gem 'json' # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku' # access heroku api
 
+
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
@@ -91,6 +92,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'rails-dev-tweaks', '~> 0.5.0' # Don't reload the code when serving assets
   gem 'factory_girl' # we use factory_girl to generate models for tests
   gem 'forgery' # we use forgery to generate data for tests
   gem 'foreman' # we use foreman to start all the processes we need for development
