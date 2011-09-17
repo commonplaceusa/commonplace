@@ -2,8 +2,7 @@
 %html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
   %head
     = render 'layouts/common_head'
-    = include_stylesheets :main_page
-    = include_javascripts :templates
+    = stylesheet_link_tag "main_page"
 
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" } #{ current_community.is_college ? "is_college" : ""}"}
@@ -33,6 +32,10 @@
     = render "layouts/bottom_scripts"
 
     :javascript
+      _(Templates).each(function(v,k) {
+      Templates[k.replace("main_page/","")] = v;
+      });
+
       CommonPlace.community = new CommonPlace.Community({ id: #{current_community.id},
       name: "#{current_community.name}",
       locale: "#{current_community.locale}"

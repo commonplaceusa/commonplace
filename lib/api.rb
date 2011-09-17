@@ -1,14 +1,5 @@
 class API < Sinatra::Base
 
-
-# we're in development, force preloading of models
-if Rails.env.development? 
-  Dir.glob(Rails.root.join("app","models","*.rb")).each do |f|
-    require(f)
-  end
-end
-
-  
   helpers do
     
     def current_account
@@ -74,9 +65,10 @@ end
   # { body: Text }
   # 
   # Authorization: User is in community
-  [Post, GroupPost, Announcement, Event].each do |repliable_class|
+  ["Post", "GroupPost", "Announcement", "Event"].each do |class_name|
     
-    post "/#{repliable_class.name.pluralize.underscore}/:id/replies" do |id|
+    post "/#{class_name.pluralize.underscore}/:id/replies" do |id|
+      repliable_class = class_name.constantize
       reply = Reply.new(:repliable => repliable_class.find(id),
                         :user => current_account,
                         :body => request_body['body'])

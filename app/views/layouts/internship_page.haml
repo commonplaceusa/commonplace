@@ -12,10 +12,10 @@
   
     / [if IE]
       = javascript_include_tag "https://html5shiv.googlecode.com/svn/trunk/html5.js"        
-    = include_javascripts :starter_site
-    = include_stylesheets :internship
+    = javascript_include_tag "starter_site"
+    = stylesheet_link_tag "internship"
     /[if lt IE 9]
-      = include_stylesheets :ie
+      = stylesheet_link_tag "ie"
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-12807510-2']);
@@ -34,7 +34,7 @@
       .container-12
         #logo.grid-4
           %a{:href=>"/"}
-            %img{:src=>"images/starter_site/logo1.png"}
+            = image_tag "starter_site/logo1.png"
         #alert
           -if flash[:notice].present?
             =flash[:notice]

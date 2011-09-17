@@ -12,4 +12,4 @@
           - row.each do |interest|
             %td{'data-selected' => 'false', 'data-value' => interest}<>= interest
     - f.buttons do 
-      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/continue.png"}
+      = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/continue.png")}

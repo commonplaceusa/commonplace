@@ -1,20 +1,20 @@
 
 Commonplace::Application.routes.draw do
 
-  ActiveAdmin.routes(self)
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  
-  devise_for :users, :controllers => { 
-    :sessions => "user_sessions",
-    :passwords => "password_resets"
-  }
-
-  match("/#{Jammit.package_path}/:package.:extension",
-        :to => 'jammit#package', :as => :jammit, :constraints => {
-          # A hack to allow extension to include "."
-          :extension => /.+/
-        })
+  begin 
+    ActiveAdmin.routes(self) 
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    
+    devise_for :users, :controllers => { 
+      :sessions => "user_sessions",
+      :passwords => "password_resets"
+    }
+  rescue
+    Rails.logger.warn "ActiveAdmin routes not initialized"
+    Rails.logger.warn "Devise routes not initialized"
+    # ActiveAdmin and Devise try to hit the database on initialization.
+    # That fails when Heroku is compiling assets, so we catch the error here.
+  end
 
   get "facebook_canvas/index"
   match "/facebook_canvas/" => "facebook_canvas#index"
