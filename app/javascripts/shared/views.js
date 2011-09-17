@@ -70,6 +70,21 @@ var WireView = CommonPlace.View.extend({
   }
 });
 
+var PostWireView = WireView.extend({
+  initialize: function(options) {
+    this.account = options.account;
+  },
+
+  modelToView: function(model) {
+    return new GroupPostItemView({
+      model: model,
+      account: this.account
+    });
+  },
+
+  emptyMessage: "No posts here yet"
+});
+
 var EventWireView = WireView.extend({
   initialize: function(options) {
     this.account = options.account;
@@ -100,12 +115,95 @@ var AnnouncementWireView = WireView.extend({
   emptyMessage: "No announcements here yet"
 });
 
-var SubscriberWireView = WireView.extend({
+var UserWireView = WireView.extend({
   modelToView: function(model) {
-    return new SubscriberItemView({model: model, account: this.account});
+    return new UserItemView({model: model, account: this.account});
   },
 
-  emptyMessage: "No subscribers here yet"
+  emptyMessage: "Nobody here yet"
+});
+
+var FeedWireView = WireView.extend({
+  modelToView: function(model) {
+    return new FeedItemView({model: model, account: this.account});
+  },
+
+  emptyMessage: "No feeds here yet"
+});
+
+var GroupWireView = WireView.extend({
+  modelToView: function(model) {
+    return new FeedItemView({model: model, account: this.account});
+  },
+
+  emptyMessage: "No groups here yet"
+});
+
+var UserItemView = CommonPlace.View.extend({
+  template: "shared/user-item",
+  tagName: "li",
+  className: "wire-item",
+  
+  initialize: function(options) {},
+
+  afterRender: function() {
+    this.model.bind("change", this.render, this);
+  },
+
+  avatarUrl: function() {
+    return this.model.get("avatar_url");
+  },
+
+  firstname: function() {
+    return this.model.get("first_name");
+  },
+
+  lastname: function() {
+    return this.model.get("last_name");
+  },
+
+  events: {
+    "click button": "messageUser"
+  },
+
+  messageUser: function(e) {
+    e && e.preventDefault();
+    var formview = new MessageFormView({
+      model: new Message({messagable: this.model})
+    });
+    formview.render();
+  }
+
+});
+
+var FeedItemView = CommonPlace.View.extend({
+  template: "shared/feed-item",
+  tagName: "li",
+  className: "wire-item",
+
+  avatarUrl: function() {
+    return this.model.get("avatar_url");
+  },
+
+  name: function() {
+    return this.model.get("name");
+  }
+
+});
+
+var GroupItemView = CommonPlace.View.extend({
+  template: "shared/feed-item",
+  tagName: "li",
+  className: "wire-item",
+
+  avatarUrl: function() {
+    return this.model.get("avatar_url");
+  },
+
+  name: function() {
+    return this.model.get("name");
+  }
+
 });
 
 var GroupPostWireView = WireView.extend({
@@ -116,13 +214,7 @@ var GroupPostWireView = WireView.extend({
   emptyMessage: "No posts here yet"
 });
 
-var GroupMemberWireView = WireView.extend({
-  modelToView: function(model) {
-    return new GroupMemberItemView({model: model, account: this.account});
-  },
 
-  emptyMessage: "No members here yet"
-});
 
 var EventItemView = CommonPlace.View.extend({
   template: "shared/event-item",
@@ -278,32 +370,8 @@ var AnnouncementItemView = CommonPlace.View.extend({
     
 });
 
-var SubscriberItemView = CommonPlace.View.extend({
-  template: "shared/subscriber-item",
-  tagName: "li",
-  className: "wire-item",
-
-  avatarUrl: function() { return this.model.get('avatar_url'); },
-
-  firstname: function() { return this.model.get("first_name"); },
-
-  lastname: function() { return this.model.get("last_name"); },
-  
-  events: {
-    "click button": "messageUser"
-  },
-
-  messageUser: function(e) {
-    e && e.preventDefault();
-    var formview = new MessageFormView({
-      model: new Message({messagable: this.model})
-    });
-    formview.render();
-  }
-});
-
 var GroupPostItemView = CommonPlace.View.extend({
-  template: "group_page/post-item",
+  template: "shared/post-item",
   tagName: "li",
   className: "wire-item",
 
@@ -311,6 +379,7 @@ var GroupPostItemView = CommonPlace.View.extend({
     this.account = options.account;
     this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
     this.allwords = (this.shortbody == null);
+    window.gpi = this.model;
   },
 
   afterRender: function() {
@@ -387,42 +456,6 @@ var GroupPostItemView = CommonPlace.View.extend({
 
 });
 
-var GroupMemberItemView = CommonPlace.View.extend({
-  template: "group_page/member-item",
-  tagName: "li",
-  className: "wire-item",
-  
-  initialize: function(options) {},
-
-  afterRender: function() {
-    this.model.bind("change", this.render, this);
-  },
-
-  avatarUrl: function() {
-    return this.model.get("avatar_url");
-  },
-
-  firstname: function() {
-    return this.model.get("first_name");
-  },
-
-  lastname: function() {
-    return this.model.get("last_name");
-  },
-
-  events: {
-    "click button": "messageUser"
-  },
-
-  messageUser: function(e) {
-    e && e.preventDefault();
-    var formview = new MessageFormView({
-      model: new Message({messagable: this.model})
-    });
-    formview.render();
-  }
-
-});
 
 var FormView = CommonPlace.View.extend({
   initialize: function(options) {

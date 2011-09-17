@@ -30,16 +30,21 @@ var MainPageView = CommonPlace.View.extend({
     this.account = this.options.account;
     this.community = this.options.community;
     
-    var post_box = new PostBox({ 
+    var postBox = new PostBox({ 
       account: this.account,
       community: this.community
     });
     
-    var info_box = new AccountInfoBox({
+    var infoBox = new AccountInfoBox({
       account: this.account
     });
+
+    var communityResources = new CommunityResources({
+      account: this.account,
+      community: this.community
+    });
     
-    this.views = [post_box, info_box];
+    this.views = [postBox, infoBox, communityResources];
   },
 
   afterRender: function() {

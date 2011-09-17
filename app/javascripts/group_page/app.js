@@ -239,7 +239,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
   },
 
   showGroupMembers: function() {
-    var wireView = new GroupMemberWireView({
+    var wireView = new UserWireView({
       collection: this.groupMembersCollection,
       account: this.account,
       el: this.$(".group-members .wire")
