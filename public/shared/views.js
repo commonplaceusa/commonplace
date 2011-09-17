@@ -73,14 +73,12 @@ var WireView = CommonPlace.View.extend({
 var EventWireView = WireView.extend({
   initialize: function(options) {
     this.account = options.account;
-    this.isFeedOwner = options.isFeedOwner;
   },
 
   modelToView: function(model) {
     return new EventItemView({
       model: model,
-      account: this.account,
-      isFeedOwner: this.isFeedOwner
+      account: this.account
     });
   },
 
@@ -90,14 +88,12 @@ var EventWireView = WireView.extend({
 var AnnouncementWireView = WireView.extend({
   initialize: function(options) {
     this.account = options.account;
-    this.isFeedOwner = options.isFeedOwner;
   },
 
   modelToView: function(model) {
     return new AnnouncementItemView({
       model: model,
-      account: this.account,
-      isFeedOwner: this.isFeedOwner
+      account: this.account
     });
   },
 
@@ -135,7 +131,6 @@ var EventItemView = CommonPlace.View.extend({
 
   initialize: function(options) {
     this.account = options.account;
-    this.isFeedOwner = options.isFeedOwner;
     this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
     this.allwords = (this.shortbody == null);
   },
@@ -187,13 +182,13 @@ var EventItemView = CommonPlace.View.extend({
     e && e.preventDefault();
     var formview = new EventFormView({
       model: this.model,
-      template: "feed_page/feed-event-edit-form"
+      template: "shared/event-edit-form"
     });
     formview.render();
   },
 
   isOwner: function() {
-    return this.isFeedOwner;
+    return (_.indexOf(this.account.get("events"), this.model.get("id"))>=0);
   },
 
   isMore: function() {
@@ -215,7 +210,6 @@ var AnnouncementItemView = CommonPlace.View.extend({
 
   initialize: function(options) {
     this.account = options.account;
-    this.isFeedOwner = options.isFeedOwner;
     this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
     this.allwords = (this.shortbody == null);
   },
@@ -263,13 +257,13 @@ var AnnouncementItemView = CommonPlace.View.extend({
     e && e.preventDefault();
     var formview = new AnnouncementFormView({
       model: this.model,
-      template: "feed_page/feed-edit-form"
+      template: "shared/announcement-edit-form"
     });
     formview.render();
   },
 
   isOwner: function() {
-    return this.isFeedOwner;
+    return (_.indexOf(this.account.get("announcements"), this.model.get("id"))>=0);
   },
 
   isMore: function() {
