@@ -1,6 +1,7 @@
 
 var PostBox = CommonPlace.View.extend({
   template: "main_page/post-box",
+  id: "post-box",
   
   initialize: function(options) {
     this.community = options.community;
