@@ -1,0 +1,17 @@
+//= require showdown
+//= require jquery
+//= require jquery-ui
+//= require underscore
+//= require placeholder
+//= require time_ago_in_words
+//= require mustache
+//= require json2
+//= require backbone
+//= require autoresize
+//= require shared/app
+//= require shared/models
+//= require shared/views
+//= require_tree ../templates/shared
+//= require_tree ../templates/main_page
+//= require main_page/app
+//= require main_page/post_box

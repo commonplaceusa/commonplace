@@ -45,18 +45,6 @@
 
       #main
 
-        #left-column
-          #post-box
-
-          #info-box
-
-
-        #right-column
-
-          #wire-navigation
-
-          #wire
-
       #wrapper-footer
 
     = render "layouts/footer"
@@ -65,10 +53,10 @@
 
     %script
       $(function() {
-      var router = new MainPageRouter({
+      window.router = new MainPageRouter({
 
-      account: #{serialize(Account.new(current_user))},
-      community: #{serialize(current_community)}
+      account: new Account(#{serialize(Account.new(current_user))}),
+      community: new Community(#{serialize(current_community)})
     
       });
 
