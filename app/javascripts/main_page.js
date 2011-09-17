@@ -13,5 +13,4 @@
 //= require shared/views
 //= require_tree ../templates/shared
 //= require_tree ../templates/main_page
-//= require main_page/app
-//= require main_page/post_box
+//= require_tree ./main_page
