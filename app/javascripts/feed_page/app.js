@@ -324,7 +324,7 @@ var FeedSubResourcesView = CommonPlace.View.extend({
   },
 
   showSubscribers: function() {
-    var wireView = new SubscriberWireView({
+    var wireView = new UserWireView({
       collection: this.subscribersCollection,
       account: this.account,
       el: this.$(".feed-subscribers .wire")

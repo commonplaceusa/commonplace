@@ -28,7 +28,8 @@ var Announcement = CommonPlace.Repliable.extend({});
 var Event = CommonPlace.Repliable.extend({});
 
 var Reply = CommonPlace.Model.extend({});
-
+var GroupPost = CommonPlace.Repliable.extend({});
+var Post = CommonPlace.Repliable.extend({});
 var Message = CommonPlace.Model.extend({
   initialize: function(options) {
     this.messagable = options.messagable;
@@ -149,9 +150,7 @@ var Account = CommonPlace.Model.extend({
 
 });
 
-var Community = CommonPlace.Model.extend({});
-
-var GroupPost = CommonPlace.Repliable.extend({});
+var User = CommonPlace.Model.extend({});
 
 var Group = CommonPlace.Model.extend({
   initialize: function() {
@@ -194,14 +193,67 @@ var Group = CommonPlace.Model.extend({
   })
 });
 
+var Community = CommonPlace.Model.extend({
+  initialize: function() {
+    this.posts = new Community.Posts([], { community: this });
+    this.events = new Community.Events([], { community: this });
+    this.announcements = new Community.Announcements([], { community: this });
+    this.groupPosts = new Community.GroupPosts([], { community: this });
+    this.users = new Community.Users([], { community: this });
+    this.feeds = new Community.Feeds([], { community: this });
+    this.groups = new Community.Groups([], { community: this });
+  }
+}, {
+  Posts: CommonPlace.Collection.extend({
+    initialize: function(models,options) { this.community = options.community; },
+    model: Post,
+    url: function() { return "/api" + this.community.get('links').posts; }
+  }),
+
+  Events: CommonPlace.Collection.extend({
+    initialize: function(models,options) { this.community = options.community; },
+    model: Event,
+    url: function() { return "/api" + this.community.get('links').events; }
+  }),
+
+  Announcements: CommonPlace.Collection.extend({
+    initialize: function(models,options) { this.community = options.community; },
+    model: Announcement,
+    url: function() { return "/api" + this.community.get('links').announcements; }
+  }),
+
+  GroupPosts: CommonPlace.Collection.extend({
+    initialize: function(models,options) { this.community = options.community; },
+    model: GroupPost,
+    url: function() { return "/api" + this.community.get('links').group_posts; }
+  }),
+
+  Users: CommonPlace.Collection.extend({
+    initialize: function(models,options) { this.community = options.community; },
+    model: User,
+    url: function() { return "/api" + this.community.get('links').users; }
+  }),
+
+  Feeds: CommonPlace.Collection.extend({
+    initialize: function(models,options) { this.community = options.community; },
+    model: Feed,
+    url: function() { return "/api" + this.community.get('links').feeds; }
+  }),
+
+  Groups: CommonPlace.Collection.extend({
+    initialize: function(models,options) { this.community = options.community; },
+    model: Group,
+    url: function() { return "/api" + this.community.get('links').groups; }
+  })
+
+});
+
 var Replies = CommonPlace.Collection.extend({
   initialize: function(models, options) { this.repliable = options.repliable; },
   model: Reply,
   url: function() { return "/api" + this.repliable.get('links').replies; }
 });
 
-var User = CommonPlace.Model.extend({
-  //url: "google.com"
-});
+
 
 

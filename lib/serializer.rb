@@ -198,8 +198,12 @@ module Serializer
           "neighborhood_flyer" => community_asset_url + "neighborflyer.pdf",
           "all_flyers" => community_asset_url + "archives.zip",
           "groups" => "/communities/#{o.id}/groups",
-          "feeds" => "/communities/#{o.id}/feeds"
-          
+          "feeds" => "/communities/#{o.id}/feeds",
+          "posts" => "/communities/#{o.id}/posts",
+          "events" => "/communities/#{o.id}/events",
+          "announcements" => "/communities/#{o.id}/announcements",
+          "group_posts" => "/communities/#{o.id}/group_posts",
+          "users" => "/communities/#{o.id}/users"
         }
       }
       end

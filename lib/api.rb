@@ -528,20 +528,20 @@ class API < Sinatra::Base
   get "/communities/:id/feeds" do |id|
     scope = Community.find(id).feeds
     last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
-    serialize(scope)
+    serialize(paginate(scope))
   end
 
   get "/communities/:id/groups" do |id|
     community = Community.find(id) 
     scope = Community.find(id).groups
     last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
-    serialize(community.groups)
+    serialize(paginate(community.groups))
   end
 
   get "/communities/:id/users" do |id|
     scope = Community.find(id).users
     last_modified(scope.reorder("updated_at DESC").first.try(:updated_at))
-    serialize(scope.includes(:feeds, :groups))
+    serialize(paginate(scope.includes(:feeds, :groups)))
   end
 
   get "/users/:id" do |id|
