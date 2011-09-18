@@ -290,6 +290,38 @@ class API < Sinatra::Base
     end
   end
 
+  # POST /communities/:id/events
+  # { title: String
+  # , about: String
+  # , date: DateString
+  # , start: TimeString
+  # , end: TimeString
+  # , venue: String
+  # , address: String
+  # , tags: String
+  # , feed: Integer
+  # , groups: [Integer] }
+  #
+  post "/communities/:id/events" do
+    event = Event.new(:owner => request_body['feed'].present? ? Feed.find(request_body['feed']) : current_account,
+                      :name => request_body['title'],
+                      :description => request_body['about'],
+                      :date => request_body['date'],
+                      :start_time => request_body['start'],
+                      :end_time => request_body['end'],
+                      :venue => request_body['venue'],
+                      :address => request_body['address'],
+                      :tag_list => request_body['tags'],
+                      :community => current_account.community,
+                      :group_ids => request_body['groups']
+                      )
+    if event.save
+      serialize(event)
+    else
+      [400, "errors"]
+    end
+  end
+
   # POST /announcements
   # { title: String
   # , body: String
@@ -300,6 +332,26 @@ class API < Sinatra::Base
                                     :subject => request_body['title'],
                                     :body => request_body['body'],
                                     :community => current_account.community)
+
+    if announcement.save
+      kickoff.deliver_announcement(announcement)
+      serialize(announcement)
+    else
+      [400, "errors"]
+    end
+  end
+
+  # POST /communities/:id/announcements
+  # { title: String
+  # , body: String
+  # , feed: Integer 
+  # , groups: [Integer] }
+  post "/communities/:id/announcements" do
+    announcement = Announcement.new(:owner => request_body['feed'].present? ? Feed.find(request_body['feed']) : current_account,
+                                    :subject => request_body['title'],
+                                    :body => request_body['body'],
+                                    :community_id => params[:id],
+                                    :group_ids => request_body["groups"])
 
     if announcement.save
       kickoff.deliver_announcement(announcement)
@@ -410,6 +462,24 @@ class API < Sinatra::Base
   # , group: Integer }
   #
   post "/group_posts" do
+    group_post = GroupPost.new(:group => Group.find(request_body['group']),
+                               :subject => request_body['title'],
+                               :body => request_body['body'],
+                               :user => current_account)
+    if group_post.save
+      kickoff.deliver_group_post(group_post)
+      serialize(group_post)
+    else
+      [400, "errors"]
+    end
+  end
+
+  # POST "/communities/:id/group_posts"
+  # { title: String
+  # , body: String
+  # , group: Integer }
+  #
+  post "/communities/:id/group_posts" do
     group_post = GroupPost.new(:group => Group.find(request_body['group']),
                                :subject => request_body['title'],
                                :body => request_body['body'],

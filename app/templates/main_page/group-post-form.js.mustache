@@ -1,0 +1,14 @@
+
+<label for="group">Group:</label>
+
+<select name="group">
+  {{#groups}}
+    <option value="{{id}}" selected="{{selected}}">{{name}}</option>
+  {{/groups}}
+</select>
+
+<input name="title" type="text" placeholder="Post Title">
+
+<textarea name="body" placeholder="Your Message"></textarea>
+
+<button>Post Now</button>
