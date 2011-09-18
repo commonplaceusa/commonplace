@@ -3,6 +3,12 @@ development:
   database: commonplace_development
   pool: 5
   timeout: 5000
+
+frontend:
+  adapter: postgresql
+  database: commonplace_development
+  pool: 5
+  timeout: 5000
   
 
 # Warning: The database defined as "test" will be erased and
