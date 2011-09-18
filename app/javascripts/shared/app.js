@@ -7,13 +7,18 @@ CommonPlace.render = function(name, params) {
   return Mustache.to_html(
     Templates[name],
     _.extend({ 
-               t: function() {
-                 return function(key,render) {
-                   var text = I18N[CommonPlace.community.get('locale')][name][key];
-                   return text ? render(text) : key ;
-                 };
-               } 
-             }, params),
+      assets: function() {
+        return function(uri, render) {
+          return "/assets/" + uri;
+        };
+      },
+      t: function() {
+        return function(key,render) {
+          var text = I18N[CommonPlace.community.get('locale')][name][key];
+          return text ? render(text) : key ;
+        };
+      } 
+    }, params),
     
     Templates);
 };
