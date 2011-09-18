@@ -1,12 +1,12 @@
 var CommonPlace = CommonPlace || {};
 
-CommonPlace.render = function(name, params) {
-  if (!Templates[name]) {
-    throw new Error("template '" + name + "' does not exist");
+CommonPlace.render = function(templateName, params) {
+  if (!Templates[templateName]) {
+    throw new Error("template '" + templateName + "' does not exist");
   };
   return Mustache.to_html(
-    Templates[name],
-    _.extend({ 
+    Templates[templateName],
+    _.extend({}, params, { 
       assets: function() {
         return function(uri, render) {
           return "/assets/" + uri;
@@ -14,12 +14,14 @@ CommonPlace.render = function(name, params) {
       },
       t: function() {
         return function(key,render) {
-          var text = I18N[CommonPlace.community.get('locale')][name][key];
+          var locale = I18N[CommonPlace.community.get('locale')];
+          if (!locale) { throw new Error("Unknown locale"); }
+          var template = locale[templateName] || {};
+          var text = template[key];
           return text ? render(text) : key ;
         };
       } 
-    }, params),
-    
+    }),
     Templates);
 };
 
@@ -41,6 +43,15 @@ CommonPlace.View = Backbone.View.extend({
 
   aroundRender: function(render) {
     render();
+  },
+
+  t: function(key) {
+    var locale = I18N[CommonPlace.community.get('locale')];
+    if (!locale) { throw new Error("Unknown locale"); }
+    var template = locale[this.template] || {};
+    var text = template[key];
+    return text ? text : key;
   }
+
 });
 

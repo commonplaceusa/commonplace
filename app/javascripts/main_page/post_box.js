@@ -49,10 +49,9 @@ var PostBox = CommonPlace.View.extend({
 
   showTab: function(tab) { 
     this.$("." + tab).addClass("current"); 
-    this.$("h1").text(tab);
+    this.$("h1").text(this.t(tab + ".h1"));
   },
     
-
   tabs: function() {
     return ["create-neighborhood-post",
             "create-announcement",
