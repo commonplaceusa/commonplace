@@ -1,0 +1,31 @@
+@mixin form
+  display: block
+
+
+
+
+  input[type=text], input[type=password], textarea
+    margin: 12px 0 
+    display: block
+    border: none
+    padding: 10px 9px
+    font-size: 13px
+    font-family: Helvetica, sans-serif
+    +border-radius(5px)
+    +box-shadow(#333 1px 1px 3px 0 inset)
+
+    &:first-child
+      margin-top: 0
+  button
+    +blue-button
+    float: right
+
+  label
+    color: #fff
+    margin-top: 15px
+    font-size: 16px
+    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+    display: block
+
+    &:first-child
+      margin-top: 0
