@@ -37,7 +37,12 @@ module Serializer
         "body" => o.body,
         "author_url" => "/users/#{o.user_id}",
         "replies" => serialize(o.replies.to_a),
-        "last_activity" => o.last_activity.utc }
+        "last_activity" => o.last_activity.utc,
+        "links" => {
+          "author" => "/users/#{o.user_id}",
+          "replies" => "/posts/#{o.id}/replies"
+        }
+      }
 
       when Event
         { 
@@ -177,6 +182,7 @@ module Serializer
         "email" => o.email,
         "posts" => o.posts,
         "events" => o.events,
+        "feeds" => o.feeds,
         "announcements" => o.announcements,
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood, 
@@ -192,6 +198,10 @@ module Serializer
         "id" => o.id,
         "slug" => o.slug,
         "name" => o.name,
+        "groups" => o.groups.map {|g| 
+          { "avatar_url" => g.avatar_url, "id" => g.id, "name" => g.name }
+        },
+        "locale" => o.locale.to_s,
         "links" => {
           "launch_letter" => community_asset_url + "launchletter.pdf",
           "information_sheet" => community_asset_url + "infosheet.pdf",
