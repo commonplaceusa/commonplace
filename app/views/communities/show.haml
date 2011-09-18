@@ -53,10 +53,14 @@
 
     %script
       $(function() {
-      window.router = new MainPageRouter({
+      var community = new Community(#{serialize(current_community)});
+      CommonPlace || (CommonPlace = {});
+      CommonPlace.page = "main_page";
+      CommonPlace.community = community;
 
+      window.router = new MainPageRouter({
       account: new Account(#{serialize(Account.new(current_user))}),
-      community: new Community(#{serialize(current_community)})
+      community: community
     
       });
 
