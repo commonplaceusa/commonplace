@@ -56,4 +56,10 @@ class Account
   def neighborhood
     @user.neighborhood_id
   end
+
+  def feeds
+    @user.managable_feeds.map do |feed|
+      {"name" => feed.name, "id" => feed.id}
+    end
+  end
 end
