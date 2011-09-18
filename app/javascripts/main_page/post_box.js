@@ -13,23 +13,32 @@ var PostBox = CommonPlace.View.extend({
   },
 
   afterRender: function() {
-  //   var self = this;
-  //   _(this.forms()).each(function(form) {
-  //     var view = new form({ 
-  //       community: self.community,
-  //       account: self.account
-  //     });
-
-  //     view.render();
-      
-  //     self.$(".form-container").append(view.el);
-  //   });
-
+    var self = this;
+    _(this.forms()).each(function(view) {
+      view.render();
+      self.$(".form-container").append(view.el);
+    });
     this.showTab("create-neighborhood-post");
   },
 
   forms: function() {
-    return [PostForm, AnnouncementForm, EventForm, GroupPostForm];
+    return [
+      (new PostForm({ collection: this.community.posts,
+                      community: this.community })),
+
+      (new AnnouncementForm({ collection: this.community.announcements, 
+                              account: this.account,
+                              community: this.community
+                            })),
+
+      (new EventForm({ collection: this.community.events,
+                       community: this.community
+                     })),
+      (new GroupPostForm({ collection: this.community.groupPosts,
+                           community: this.community 
+                         }))
+      
+    ];
   },
 
   switchTab: function(tab) {

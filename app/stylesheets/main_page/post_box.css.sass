@@ -22,22 +22,96 @@
     width: 140px
 
     a.tab-button
+      +red-button
       margin-top: 15px
       display: block
-      color: #fff
-      font-size: 13px
+      font-size: 11px
+      text-align: left
+      padding: 10px 0 15px 8px
+      text-decoration: none
+      border-color: #821f1f
+      background: #8F2927
+      +box-shadow(#962f30 0 0 0 1px inset, #555 0 1px 2px )
+      &:hover
+        +box-shadow(0 0 0 1px rgba(255, 115, 100, 0.4) inset, #555 0 1px 3px)
+      &.current
+        +blue-button
+        padding: 10px 0 15px 8px
+        text-align: left
 
-      height: 30px
-      padding: 10px
-
-      background-color: #8F2927
-
-      &.current, &:hover
-        background-color: #1d334c
-          
+      img 
+        float: left
+        margin-right: 5px
 
   .form-container
     float: left
-    margin-left: 30px
+    margin-left: 15px
     margin-top: 15px
-      
+    width: 300px
+
+    form
+      +form
+      display: none
+
+      &.current
+        display: block
+
+      input[type=text]
+        width: 290px
+
+      textarea
+        margin-top: 15px
+        width: 290px
+        height: 100px
+
+      label.radio
+        display: inline
+
+      p.warning
+        display: none
+        color: #fff
+        font-size: 13px
+
+      .post-label-selector
+        margin-top: 15px
+        height: 125px
+        overflow-y: scroll
+    
+        li 
+          &:first-child
+            margin-top: 0px
+          
+          margin-top: 10px
+          margin-right: 10px
+          padding: 7px 5px 3px
+          background-color: #fff
+          +border-radius(5px)
+          background-image: image-url("feed_page/check-off.png")
+          background-repeat: no-repeat
+          background-position: 246px 8px
+    
+          &.checked
+            background-image: image-url("feed_page/check-on.png")
+            
+          label
+            display: block
+            font-size: 18px
+            font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+            color: #333
+            margin: 0
+            padding: 0
+          
+          img 
+            position: relative
+            top: -3px
+            vertical-align: middle
+            margin-right: 5px
+            border: 0
+    
+          input
+            display: none
+
+      button
+        margin-top: 15px
+        font-size: 18px
+        padding: 15px 15px

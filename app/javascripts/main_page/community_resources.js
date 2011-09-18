@@ -4,8 +4,13 @@ var CommunityResources = CommonPlace.View.extend({
   id: "community-resources",
 
   initialize: function(options) {
+    var self = this;
     this.community = options.community;
     this.account = options.account;
+    this.community.posts.bind("add", function() { self.switchTab("posts"); });
+    this.community.announcements.bind("add", function() { self.switchTab("announcements"); });
+    this.community.events.bind("add", function() { self.switchTab("events"); });
+    this.community.groupPosts.bind("add", function() { self.switchTab("groupPosts"); });
   },
 
   events: {
