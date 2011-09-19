@@ -199,8 +199,14 @@ var FeedItemView = WireItemView.extend({
   tagName: "li",
   className: "wire-item",
 
+  initialize: function() {
+    this.options.account.bind("change", this.render, this);
+  },
+
   events: {
-    "mouseenter": "showInfoBox"
+    "mouseenter": "showInfoBox",
+    "click button.subscribe": "subscribe",
+    "click button.unsubscribe": "unsubscribe"
   },
 
   avatarUrl: function() {
@@ -213,7 +219,13 @@ var FeedItemView = WireItemView.extend({
 
   getInfoBox: function(callback) {
     callback(new FeedInfoBox({ model: this.model, account: this.options.account }));
-  }
+  },
+
+  subscribe: function() { this.options.account.subscribeToFeed(this.model); },
+
+  unsubscribe: function() { this.options.account.unsubscribeFromFeed(this.model); },
+
+  isSubscribed: function() { return this.options.account.isSubscribedToFeed(this.model); }
 
 });
 
@@ -222,8 +234,14 @@ var GroupItemView = WireItemView.extend({
   tagName: "li",
   className: "wire-item",
 
+  initialize: function() {
+    this.options.account.bind("change", this.render, this);
+  },
+
   events: {
-    "mouseenter": "showInfoBox"
+    "mouseenter": "showInfoBox",
+    "click button.subscribe": "subscribe",
+    "click button.unsubscribe": "unsubscribe"
   },
 
   avatarUrl: function() {
@@ -236,7 +254,14 @@ var GroupItemView = WireItemView.extend({
 
   getInfoBox: function(callback) {
     callback(new GroupInfoBox({model: this.model, account: this.options.account}));
-  }
+  },
+
+  subscribe: function() { this.options.account.subscribeToGroup(this.model); },
+
+  unsubscribe: function() { this.options.account.unsubscribeFromGroup(this.model); },
+
+  isSubscribed: function() { return this.options.account.isSubscribedToGroup(this.model); }
+
 
 });
 
