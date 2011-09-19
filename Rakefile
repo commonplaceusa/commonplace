@@ -5,7 +5,5 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
 # JSLint configuration
-require 'jslint/tasks'
-JSLint.config_path = "config/jslint.yml"
 
 Commonplace::Application.load_tasks

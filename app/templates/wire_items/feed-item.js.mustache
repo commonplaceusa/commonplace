@@ -1,0 +1,16 @@
+<div class="feed">
+
+  <img src="{{avatarUrl}}" width="50" height="50" class="avatar">
+
+  <div class="title">{{name}}</div>
+
+  {{#isSubscribed}}
+    <button class="unsubscribe">You're Subscribed</button>
+  {{/isSubscribed}}
+  {{^isSubscribed}}
+    <button class="subscribe">Subscribe</button>
+  {{/isSubscribed}}
+
+
+  <div style="clear:both;"></div>
+</div>

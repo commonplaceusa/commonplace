@@ -1,3 +1,2 @@
 git pull origin master
-jammit-s3
 git push origin master && git push production master --force

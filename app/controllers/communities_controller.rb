@@ -22,7 +22,7 @@ class CommunitiesController < ApplicationController
       @users = cp_client.community_neighbors(current_community.id)
       @feeds = cp_client.community_feeds(current_community.id)
       @groups = cp_client.community_groups(current_community.id)
-      render 'show'
+      render :layout => false
     else
       raise CanCan::AccessDenied
     end

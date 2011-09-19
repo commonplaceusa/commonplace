@@ -56,4 +56,14 @@ class Account
   def neighborhood
     @user.neighborhood_id
   end
+
+  def feeds
+    @user.managable_feeds.map do |feed|
+      {"name" => feed.name, "id" => feed.id}
+    end
+  end
+
+  def method_missing(method, *args)
+    @user.send(method, *args)
+  end
 end

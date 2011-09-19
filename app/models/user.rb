@@ -10,8 +10,21 @@ class User < ActiveRecord::Base
     ["Live", "Three", "Daily", "Never"]
   end
 
-  devise :database_authenticatable, :encryptable, :token_authenticatable, :recoverable
-  
+  devise :database_authenticatable, :encryptable, :token_authenticatable, :recoverable, :omniauthable, :omniauth_providers => [:facebook]
+
+  def self.find_for_facebook_oauth(access_token)
+    User.find_by_facebook_uid(access_token["uid"])
+  end
+
+  def self.new_from_facebook(params, facebook_data)
+    User.new(params).tap do |user|
+      user.email = facebook_data["user_info"]["email"]
+      user.full_name = facebook_data["user_info"]["name"]
+      user.facebook_uid = facebook_data["uid"]
+    end
+  end
+
+
   geocoded_by :normalized_address
 
   belongs_to :community

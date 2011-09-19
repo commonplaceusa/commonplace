@@ -1,1 +1,78 @@
+!!! 5
+%html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
+  %head
+
+    %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
+    %link{ :href=> 'https://fonts.googleapis.com/css?family=Rokkitt:400,700', :rel =>"stylesheet", :type =>"text/css"}
+
+    %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
+
+    %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
+    %meta{ :name => "description", :content => "The #{params[:community] && current_community.name} CommonPlace is an online community bulletin board for neighbors in #{params[:community] && current_community.name}, designed to make it easy for neighbors and community groups to share and connect." }
+
+
+    %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
+
+    %title= "CommonPlace #{current_community.name}"
+
+
+    = stylesheet_link_tag "main_page"
+    = javascript_include_tag "main_page"
+    = javascript_include_tag "https://exceptional-js.heroku.com/exceptional.js"
+
+
+    - if Rails.env.production?
+      %script{:type => "text/javascript"}
+        var mp_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://'); document.write(unescape('%3Cscript src="' + mp_protocol + 'api.mixpanel.com/site_media/js/api/mixpanel.js" type="text/javascript"%3E%3C/script%3E')); </script> <script type='text/javascript'> try {  var mpmetrics = new MixpanelLib('811a15fe46de2d4df84c6ee51112e7ab'); } catch(err) { null_fn = function () {}; var mpmetrics = {  track: null_fn,  track_funnel: null_fn,  register: null_fn,  register_once: null_fn, register_funnel: null_fn }; }
+
+      %script{:type => 'text/javascript'}
+        $(document).ready(function () {
+        Exceptional.setHost('exceptional-api.heroku.com');
+        Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
+        });
+
+  %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" } #{ current_community.is_college ? "is_college" : ""}"}
+
+    #wrapper
+
+      = render 'shared/admin_bar'
+
+      = render 'layouts/header'
+
+      - if !current_community.has_launched?
+        .prelaunch-notification
+          Hey #{current_user.first_name}, welcome to #{current_community.name} CommonPlace! We're officially launching on #{current_community.launch_date.strftime("%B")} #{current_community.launch_date.day.ordinalize}. In the meantime, help us improve by <a href="/invite">inviting some more neighbors</a>.
+
+      #main
+
+      #wrapper-footer
+
+    = render "layouts/footer"
+
+    = render "layouts/bottom_scripts"
+
+    %script
+      $(function() {
+      var community = new Community(#{serialize(current_community)});
+      CommonPlace || (CommonPlace = {});
+      CommonPlace.page = "main_page";
+      CommonPlace.community = community;
+
+      window.router = new MainPageRouter({
+      account: new Account(#{serialize(Account.new(current_user))}),
+      community: community
+    
+      });
+
+      Backbone.history.start();
+      });
+
+    - if logged_in?
+      - unless current_user.seen_tour?
+        - current_user.toggle!(:seen_tour)
+        :javascript
+          $(function() { window.router.navigate("/tour", true); });
+    - if Rails.env.production?
+      %script
+        = "mpmetrics.track('Community Home Page', {'community': '#{current_community.slug}'});"
 

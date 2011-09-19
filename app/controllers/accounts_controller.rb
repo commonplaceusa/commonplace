@@ -4,13 +4,14 @@ class AccountsController < ApplicationController
 
   protect_from_forgery :except => :update
 
-  before_filter :authenticate_user!, :except => [:new, :create]
+  before_filter :authenticate_user!, :except => [:new, :create, :new_facebook]
 
 
   def new
     if !current_community
       raise CanCan::AccessDenied
     end
+    session["devise.community"] = current_community.id
       
     if logged_in?
       redirect_to "/"
@@ -21,6 +22,12 @@ class AccountsController < ApplicationController
     @user.community = current_community
     render :layout => "registration"
 
+  end
+
+  def new_facebook
+    @_current_community = Community.find(session["devise.community"])
+    @user = current_user
+    render :layout => "registration"
   end
   
   def show

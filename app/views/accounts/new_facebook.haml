@@ -1,0 +1,25 @@
+#main
+  
+  %h1 You are now connected through Facebook
+
+  #registration_information
+    %ul{:id=>"infolist"}
+      %li To complete your registration for CommonPlace, please fill out your street address so we can verify that you live in <town name>.  Your address will not be shared with anyone.
+      %li If you want, feel free to adjust your display name and contact email as well.
+
+  = semantic_form_for @user, :url => create_account_path(current_community) do |f|
+    %h4 
+      Fill edit your basic information.
+
+    = f.inputs do
+      = f.input :full_name, :input_html => { :placeholder => "Full name"} 
+      = f.input :email, :input_html => { :placeholder => "Email address", :type => "text"}
+      - if current_community.is_college
+        = f.select :address, college_dorms_for_school(current_community)
+      - else
+        = f.input :address, :hint => "", :input_html => {:placeholder => "Street address"}
+      = f.input :facebook_uid, :as => :hidden
+    = f.buttons do 
+      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/signup.png"}
+  
+  %div{:style=>"clear: both;"}
