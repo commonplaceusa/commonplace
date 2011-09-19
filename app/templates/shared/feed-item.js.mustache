@@ -4,5 +4,13 @@
 
   <div class="title">{{name}}</div>
 
+  {{#isSubscribed}}
+    <button class="unsubscribe">You're Subscribed</button>
+  {{/isSubscribed}}
+  {{^isSubscribed}}
+    <button class="subscribe">Subscribe</button>
+  {{/isSubscribed}}
+
+
   <div style="clear:both;"></div>
 </div>
