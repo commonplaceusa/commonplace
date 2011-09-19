@@ -306,7 +306,7 @@ var FeedSubResourcesView = CommonPlace.View.extend({
   },
 
   showAnnouncements: function() {
-    var wireView = new AnnouncementWireView({
+    var wireView = new AnnouncementWire({
       collection: this.announcementsCollection,
       account: this.account,
       el: this.$(".feed-announcements .wire")
@@ -315,7 +315,7 @@ var FeedSubResourcesView = CommonPlace.View.extend({
   },
 
   showEvents: function() {
-    var wireView = new EventWireView({
+    var wireView = new EventWire({
       collection: this.eventsCollection,
       account: this.account,
       el: this.$(".feed-events .wire")
@@ -324,7 +324,7 @@ var FeedSubResourcesView = CommonPlace.View.extend({
   },
 
   showSubscribers: function() {
-    var wireView = new UserWireView({
+    var wireView = new UserWire({
       collection: this.subscribersCollection,
       account: this.account,
       el: this.$(".feed-subscribers .wire")

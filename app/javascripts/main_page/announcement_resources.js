@@ -9,7 +9,7 @@ var AnnouncementResources = CommonPlace.View.extend({
   },
 
   afterRender: function() { 
-    var wire = new AnnouncementWireView({ 
+    var wire = new AnnouncementWire({ 
       collection: this.community.announcements,
       account: this.account,
       el: this.$(".announcements.wire"),

@@ -8,10 +8,10 @@ var UserResources = CommonPlace.View.extend({
   },
 
   afterRender: function() { 
-    var wire = new UserWireView({ collection: this.community.users,
-                                  account: this.account,
-                                  el: this.$(".users.wire"),
-                                  perPage: 15 });
+    var wire = new UserWire({ collection: this.community.users,
+                              account: this.account,
+                              el: this.$(".users.wire"),
+                              perPage: 15 });
     wire.render();
   }
 

@@ -8,10 +8,10 @@ var PostResources = CommonPlace.View.extend({
   },
 
   afterRender: function() { 
-    var wire = new PostWireView({ collection: this.community.posts,
-                                  account: this.account,
-                                  el: this.$(".posts.wire"),
-                                  perPage: 15 });
+    var wire = new PostWire({ collection: this.community.posts,
+                              account: this.account,
+                              el: this.$(".posts.wire"),
+                              perPage: 15 });
     wire.render();
   }
 });

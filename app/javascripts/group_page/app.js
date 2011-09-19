@@ -230,7 +230,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
   },
 
   showGroupPosts: function() {
-    var wireView = new GroupPostWireView({
+    var wireView = new GroupPostWire({
       collection: this.groupPostsCollection,
       account: this.account,
       el: this.$(".group-posts .wire")
@@ -239,7 +239,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
   },
 
   showGroupMembers: function() {
-    var wireView = new UserWireView({
+    var wireView = new UserWire({
       collection: this.groupMembersCollection,
       account: this.account,
       el: this.$(".group-members .wire")
@@ -248,7 +248,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
   },
 
   showAnnouncements: function() {
-    var wireView = new AnnouncementWireView({
+    var wireView = new AnnouncementWire({
       collection: this.groupAnnouncementsCollection,
       account: this.account,
       el: this.$(".group-announcements .wire")
@@ -257,7 +257,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
   },
 
   showEvents: function() {
-    var wireView = new EventWireView({
+    var wireView = new EventWire({
       collection: this.groupEventsCollection,
       account: this.account,
       el: this.$(".group-events .wire")

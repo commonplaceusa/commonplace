@@ -18,5 +18,6 @@
 //= require college
 //= require main_page/app
 //= require info_boxes
+//= require wires
 //= require wire_items
 //= require_tree ./main_page
