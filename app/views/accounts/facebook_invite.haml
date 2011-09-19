@@ -26,8 +26,8 @@
     }
     $(document).ready(function(){
       fbEnsureInit(function(){
-        $("#step_one").append('<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/findneighbors.png" width="370px" style="margin-left: 3px">');
-        $("#step_two").append('<a href="#" onclick="fb_share();"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/facebookinvite.png" width="370px" style="margin-left: 3px"></a><div id="custom-tweet-button"><a href="http://twitter.com/share?url=http://www.#{current_community.slug}.OurCommonPlace.com/&text=#{t(".twitter_message", :community => current_community.name, :slug => current_community.slug)}&count=horizontal" target="_blank" rel="nofollow"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="/images/invite/twitterinv.png" width="370px" style="margin-left: 3px"></a></div>');
+        $("#step_one").append('<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="#{asset_path("invite/findneighbors.png")}" width="370px" style="margin-left: 3px">');
+        $("#step_two").append('<a href="#" onclick="fb_share();"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="#{asset_path("invite/facebookinvite.png")}" width="370px" style="margin-left: 3px"></a><div id="custom-tweet-button"><a href="http://twitter.com/share?url=http://www.#{current_community.slug}.OurCommonPlace.com/&text=#{t(".twitter_message", :community => current_community.name, :slug => current_community.slug)}&count=horizontal" target="_blank" rel="nofollow"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="#{asset_path("invite/twitterinv.png")}" width="370px" style="margin-left: 3px"></a></div>');
       });
     });
 
@@ -37,7 +37,7 @@
           method: 'feed',
           name: '#{t(".facebook.name", :community => current_community.name)}',
           link: "https://www.OurCommonPlace.com/#{current_community.slug}",
-          picture: 'http://www.ourcommonplace.com/images/logo-pin.png',
+          picture: 'http://www.ourcommonplace.com/assets/logo-pin.png',
           caption: '#{t(".facebook.caption", :community => current_community.name)}',
           description: '#{t(".facebook.description", :community => current_community.name)}',
           message: '#{t(".facebook.message", :community => current_community.name, :slug => current_community.slug)}'
@@ -61,12 +61,12 @@
     padding:1px 20px 0 5px;
     height:15px;
     border:1px solid #d8dfea;
-    background:url(/images/invite/findneighbors.png) no-repeat top right;
+    background: url("assets/findneighbors.png") no-repeat top right;
   }
   .fb_share_button:hover {
     color:#fff;
     border-color:#295582;
-    background:#3b5998 url(/images/invite/findneighbors.png) no-repeat top right;
+    background:#3b5998 url("/assets/invite/findneighbors.png") no-repeat top right;
     text-decoration:none;
   }
 
@@ -114,8 +114,7 @@
               %br
               %center
                 %a{ :href => "#", :onclick => "showPlaxoABChooser('invite_email', '/plaxo-importer.html'); return false;" }
-                  %img{ :src => "/images/contacts-from-email-btn.jpg", :alt => "Add from my address book", :width => 370}
-              /%img{ :src => "/images/invite/findneighbors.png", :style => "margin-left: 3px;", :width => 370}
+                  %img{ :src => asset_path("contacts-from-email-btn.jpg"), :alt => "Add from my address book", :width => 370}
               %br
               %center
                 OR
@@ -125,7 +124,7 @@
               = f.input :email,:as => 'text', :input_html => { :placeholder => "Enter email addresses here (separated by commas)", :class => "required email", :width => 370, :style => "height: 66px;" }
               = f.input :body, :input_html => { :placeholder => "Include a message about why you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
             - f.buttons do
-              = f.submit :type => "image", :src => "/images/invite/neighborinvite.png", :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
+              = f.submit :type => "image", :src => asset_path("invite/neighborinvite.png"), :width => "370px", :style => "margin-left: 3px; margin-top: 15px;"
           #forms
       
 - unless current_community.is_college
@@ -142,7 +141,7 @@
               %tr{:style =>"width:370px"}
                 %td{:style =>"width:60px"}
                   %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[0]}.pdf"}
-                    %img{:src => "/images/invite/PDFLogo.png"}
+                    = image_tag "invite/PDFLogo.png"
                 %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
                   %h5
                     =t(".file_descriptions")[0]
@@ -152,7 +151,7 @@
               %tr{:style =>"width:370px"}
                 %td{:style =>"width:60px"}
                   %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[1]}.pdf"}
-                    %img{:src => "/images/invite/PDFLogo.png"}
+                    = image_tag "invite/PDFLogo.png"
                 %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
                   %h5
                     =t(".file_descriptions")[1]
@@ -162,7 +161,7 @@
               %tr{:style =>"width:370px"}
                 %td{:style =>"width:60px"}
                   %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[2]}.pdf"}
-                    %img{:src => "/images/invite/PDFLogo.png"}
+                    = image_tag "invite/PDFLogo.png"
                 %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
                   %h5
                     =t(".file_descriptions")[2]
@@ -170,7 +169,7 @@
                     %h6
                       =t(".download_tag")
             %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_zip')}.zip"}
-              %img{:src => "/images/invite/downloadzip.png",:width =>"370px",:style =>"margin-left:3px; margin-top:17px"}
+              = image_tag "invite/downloadzip.png", :width => "370", :style => "margin-left: 3px; margin-top: 17px"
 
 /
   #groups_box
@@ -182,7 +181,8 @@
               =t(".step_five", :community => current_community.name)
             %h4
               =t(".step_five_label", :community => current_community.name)
-            %img{:src => "/images/invite/joinfriends.png",:width =>"370px",:style =>"margin-left:3px; margin-top:10px;", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);", :onmouseout => "document.body.style.cursor = \'auto\';", :onmouseover => "document.body.style.cursor = \'pointer\';"}
+              
+            = image_tag "invite/joinfriends.png", :width =>"370px",:style =>"margin-left:3px; margin-top:10px;", :onclick => "add_to_friends_of_commonplace('#{current_user.email}',slug);", :onmouseout => "document.body.style.cursor = \'auto\';", :onmouseover => "document.body.style.cursor = \'pointer\';"}
       %br
 
 -# Facebook

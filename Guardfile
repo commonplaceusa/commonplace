@@ -7,7 +7,9 @@ guard 'bundler' do
   # watch(/^.+\.gemspec/)
 end
 
-guard 'jammit' do
-  watch(/^public\/javascripts\/(.*)\.js/)
-  watch(/^public\/stylesheets\/(.*)\.css/)
+guard 'jslint-on-rails' do
+  # watch for changes to application javascript files
+  watch(%r{^app/javascripts/.*\.js$})
+  # watch for changes to the JSLint configuration
+  watch('config/jslint.yml')
 end

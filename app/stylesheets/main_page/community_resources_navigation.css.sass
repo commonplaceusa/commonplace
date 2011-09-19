@@ -1,0 +1,57 @@
+
+#community-resources
+  .navigation
+    height: 42px
+
+    a.tab-button
+      position: relative
+      text-decoration: none
+      background-color: #AC322F
+      border: 2px solid #982524
+        bottom: 0
+      display: block
+      float: left
+      color: #fff
+      font-size: 13px
+      margin-left: 4px
+      text-align: center
+      padding: 5px 0 7px
+      height: 28px
+      +border-top-radius(5px)
+    
+      &:first-child
+        margin-left: 0
+
+        
+      &.posts
+        width: 108px
+
+      &.events
+        width: 86px
+
+      &.announcements
+        width: 110px
+
+      &.groupPosts
+        width: 80px
+
+      &.users
+        width: 70px
+        height: 15px
+        padding: 10px 0 15px
+
+      &.current, &:hover
+        color: #1B334A
+        border: 2px solid #bcbcbc
+          bottom: 0
+        background-color: #e0e0e0
+        +text-shadow(#fff 1px 1px 0)
+        z-index: 20
+        
+    .nav-under
+      clear: both
+      height: 2px
+      top: -2px
+      position: relative
+      background-color: #bcbcbc
+      z-index: 10

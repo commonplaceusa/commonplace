@@ -37,7 +37,12 @@ module Serializer
         "body" => o.body,
         "author_url" => "/users/#{o.user_id}",
         "replies" => serialize(o.replies.to_a),
-        "last_activity" => o.last_activity.utc }
+        "last_activity" => o.last_activity.utc,
+        "links" => {
+          "author" => "/users/#{o.user_id}",
+          "replies" => "/posts/#{o.id}/replies"
+        }
+      }
 
       when Event
         { 
@@ -78,11 +83,14 @@ module Serializer
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "title" => o.subject,
         "body" => o.body,
+        "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
         "links" => {
           "replies" => "/announcements/#{o.id}/replies",
-          "self" => "/announcements/#{o.id}"
-        } 
+          "self" => "/announcements/#{o.id}",
+          "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
+        }
+
       }
 
       when GroupPost
@@ -102,7 +110,8 @@ module Serializer
         "replies" => serialize(o.replies.to_a),
         "links" => {
           "replies" => "/group_posts/#{o.id}/replies",
-          "author" => "/users/#{o.user_id}"
+          "author" => "/users/#{o.user_id}",
+          "group" => "/groups/#{o.group_id}"
         }
         }
 
@@ -174,12 +183,18 @@ module Serializer
         "is_admin" => o.is_admin,
         "accounts" => o.accounts.map {|a| {:name => a.name, :uid => "#{a.class.name.underscore}_#{a.id}"} },
         "short_name" => o.short_name,
+        "name" => o.full_name,
         "email" => o.email,
         "posts" => o.posts,
         "events" => o.events,
+        "feeds" => o.feeds,
         "announcements" => o.announcements,
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood, 
+        "interests" => o.interest_list,
+        "offers" => o.offer_list,
+        "subscriptions" => o.feed_list,
+        "about" => o.about,
         "links" => { 
           "feed_subscriptions" => "/account/subscriptions/feeds",
           "group_subscriptions" => "/account/subscriptions/groups"
@@ -192,14 +207,22 @@ module Serializer
         "id" => o.id,
         "slug" => o.slug,
         "name" => o.name,
+        "groups" => o.groups.map {|g| 
+          { "avatar_url" => g.avatar_url, "id" => g.id, "name" => g.name }
+        },
+        "locale" => o.locale.to_s,
         "links" => {
           "launch_letter" => community_asset_url + "launchletter.pdf",
           "information_sheet" => community_asset_url + "infosheet.pdf",
           "neighborhood_flyer" => community_asset_url + "neighborflyer.pdf",
           "all_flyers" => community_asset_url + "archives.zip",
           "groups" => "/communities/#{o.id}/groups",
-          "feeds" => "/communities/#{o.id}/feeds"
-          
+          "feeds" => "/communities/#{o.id}/feeds",
+          "posts" => "/communities/#{o.id}/posts",
+          "events" => "/communities/#{o.id}/events",
+          "announcements" => "/communities/#{o.id}/announcements",
+          "group_posts" => "/communities/#{o.id}/group_posts",
+          "users" => "/communities/#{o.id}/users"
         }
       }
       end

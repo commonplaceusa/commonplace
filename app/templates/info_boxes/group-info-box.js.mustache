@@ -1,0 +1,23 @@
+<h1>{{#t}}h1{{/t}}</h1>
+
+<div class="left-column">
+  <img class="avatar" src="{{avatarUrl}}" width="120">
+
+  {{#isSubscribed}}
+    <button class="unsubscribe">You're Subscribed</button>
+  {{/isSubscribed}}
+  {{^isSubscribed}}
+    <button class="subscribe">Subscribe to {{name}}</button>
+  {{/isSubscribed}}
+
+</div>
+
+<div class="right-column">
+
+  <div class="name">{{name}}</div>
+
+  <div class="about">{{about}}</div>
+
+</div>
+
+<div style="clear: both;"></div>

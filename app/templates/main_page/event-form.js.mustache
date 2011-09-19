@@ -1,0 +1,39 @@
+<input name="title" type="text" placeholder="Event name">
+
+<textarea name="about" placeholder="Event description" rows="4"></textarea>
+
+<input class="date" type="text" name="date" placeholder="Event date">
+
+<label for="start" class="time">Start time <br>
+  <select name="start">
+    {{#time_values}}
+      <option value="{{.}}">{{.}}</option>
+    {{/time_values}}
+  </select>
+</label>
+<label for="end" class="time">End time<br>
+  <select name="end">
+    {{#time_values}}
+      <option value="{{.}}">{{.}}</option>
+    {{/time_values}}
+  </select>
+</label>
+
+<input name="venue" type="text" placeholder="Venue">
+
+<input name="address" type="text" placeholder="Event address">
+
+<label>Label this post?</label>
+<ul class="post-label-selector">
+  {{#groups}}
+    <li>
+      <label>
+        <img src="{{avatar_url}}" height="25" width="25">
+        {{name}}
+        <input name="groups" value="{{id}}" type="checkbox">
+      </label>
+    </li>
+  {{/groups}}
+</ul>
+
+<button>Post your Event</button>

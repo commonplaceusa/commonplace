@@ -13,7 +13,7 @@
       %li#li3= t(".li3", :community => current_community.name)
     %ul{:id=>"link_item"}
       %a{:href => "/#{current_community.slug}/learn_more"}
-        %img{:src=>"/images/buttons/learnmore.png", :alt=>"Learn more", :id=>"learnmore"}
+        %img{:src=> asset_path("buttons/learnmore.png"), :alt=>"Learn more", :id=>"learnmore"}
 
 
   = semantic_form_for @user, :url => create_account_path(current_community) do |f|
@@ -28,8 +28,12 @@
       - else
         = f.input :address, :hint => "", :input_html => {:placeholder => "Street address"}
     = f.buttons do 
-      = f.commit_button :button_html => {:type => "image", :src => "/images/buttons/signup.png"}
-  
+
+      = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/signup.png")}
+
+      = link_to user_omniauth_authorize_path(:facebook, :state => current_community.id), :class => "facebook" do
+        = image_tag "buttons/facebook-sign-up.png"
+
   %div{:style=>"clear: both;"}
 
 - if Rails.env.production?
