@@ -83,11 +83,14 @@ module Serializer
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "title" => o.subject,
         "body" => o.body,
+        "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
         "links" => {
           "replies" => "/announcements/#{o.id}/replies",
-          "self" => "/announcements/#{o.id}"
-        } 
+          "self" => "/announcements/#{o.id}",
+          "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
+        }
+
       }
 
       when GroupPost
@@ -107,7 +110,8 @@ module Serializer
         "replies" => serialize(o.replies.to_a),
         "links" => {
           "replies" => "/group_posts/#{o.id}/replies",
-          "author" => "/users/#{o.user_id}"
+          "author" => "/users/#{o.user_id}",
+          "group" => "/groups/#{o.group_id}"
         }
         }
 
@@ -179,6 +183,7 @@ module Serializer
         "is_admin" => o.is_admin,
         "accounts" => o.accounts.map {|a| {:name => a.name, :uid => "#{a.class.name.underscore}_#{a.id}"} },
         "short_name" => o.short_name,
+        "name" => o.full_name,
         "email" => o.email,
         "posts" => o.posts,
         "events" => o.events,
@@ -186,6 +191,10 @@ module Serializer
         "announcements" => o.announcements,
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood, 
+        "interests" => o.interest_list,
+        "offers" => o.offer_list,
+        "subscriptions" => o.feed_list,
+        "about" => o.about,
         "links" => { 
           "feed_subscriptions" => "/account/subscriptions/feeds",
           "group_subscriptions" => "/account/subscriptions/groups"

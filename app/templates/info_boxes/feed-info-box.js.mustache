@@ -1,0 +1,54 @@
+<h1>{{#t}}h1{{/t}}</h1>
+
+<div class="left-column">
+  <img class="avatar" src="{{avatarUrl}}" width="120">
+
+  {{#isSubscribed}}
+    <button class="unsubscribe">You're Subscribed</button>
+  {{/isSubscribed}}
+  {{^isSubscribed}}
+    <button class="subscribe">Subscribe to {{name}}</button>
+  {{/isSubscribed}}
+
+  <button class="message">Message {{name}}</button>
+
+</div>
+
+<div class="right-column">
+
+  <div class="name">{{name}}</div>
+
+  <div class="about">{{about}}</div>
+
+  <a href="/pages/{{slug}}">View {{name}}'s Profile Page</a>
+
+  <table>
+    {{#tags}}
+      <tr>
+        <th>TAGS</th>
+        <td>{{tags}}</td>
+      </tr>
+    {{/tags}}
+    {{#website}}
+      <tr>
+        <th>WEBSITE</th>
+        <td><a href="{{website}}">{{website}}</a></td>
+      </tr>
+    {{/website}}
+    {{#phone}}
+      <tr>
+        <th>PHONE</th>
+        <td>{{phone}}</td>
+      </tr>
+    {{/phone}}
+    {{#address}}
+      <tr>
+        <th>ADDRESS</th>
+        <td>{{address}}</td>
+      </tr>
+    {{/address}}
+
+  </table>
+</div>
+
+<div style="clear: both;"></div>

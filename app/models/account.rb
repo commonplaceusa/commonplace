@@ -62,4 +62,8 @@ class Account
       {"name" => feed.name, "id" => feed.id}
     end
   end
+
+  def method_missing(method, *args)
+    @user.send(method, *args)
+  end
 end

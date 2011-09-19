@@ -22,14 +22,52 @@ CommonPlace.Repliable = CommonPlace.Model.extend({
   }
 });
 
-  
-var Announcement = CommonPlace.Repliable.extend({});
+var Announcement = CommonPlace.Repliable.extend({
+  author: function(callback) {
+    if (!this._author) {
+      this._author = new window[this.get('owner_type')]({
+        links: { self: this.get('links').author }
+      });
+    }
+    this._author.fetch({ success: callback });
+  }
+
+});
 
 var Event = CommonPlace.Repliable.extend({});
 
-var Reply = CommonPlace.Model.extend({});
-var GroupPost = CommonPlace.Repliable.extend({});
-var Post = CommonPlace.Repliable.extend({});
+var Reply = CommonPlace.Model.extend({
+  user: function(callback) {
+    if (!this._user) { 
+      this._user = new User({
+        links: { self: this.get("links").author }
+      });
+    }
+    this._user.fetch({ success: callback });
+  }
+});
+
+var GroupPost = CommonPlace.Repliable.extend({
+  group: function(callback) {
+    if (!this._group) { 
+      this._group = new Group({
+        links: { self: this.get("links").group }
+      });
+    }
+    this._group.fetch({ success: callback });
+  }
+});
+var Post = CommonPlace.Repliable.extend({
+  user: function(callback) {
+    if (!this._user) {
+      this._user = new User({
+        links: { self: this.get("links").author }
+      });
+    }
+    this._user.fetch({ success: callback });
+  }
+});
+
 var Message = CommonPlace.Model.extend({
   initialize: function(options) {
     this.messagable = options.messagable;
@@ -96,7 +134,7 @@ var Account = CommonPlace.Model.extend({
       dataType: "json",
       success: function(account) { 
         self.set(account);
-        callback();
+        callback && callback();
       }
     });
   },
@@ -110,7 +148,7 @@ var Account = CommonPlace.Model.extend({
       dataType: "json",
       success: function(account) { 
         self.set(account);
-        callback();
+        callback && callback();
       }
     });
   },
@@ -129,7 +167,7 @@ var Account = CommonPlace.Model.extend({
       dataType: "json",
       success: function(account) {
         self.set(account);
-        callback();
+        callback && callback();
       }
     });
   },
@@ -143,7 +181,7 @@ var Account = CommonPlace.Model.extend({
       dataType: "json",
       success: function(account) {
         self.set(account);
-        callback();
+        callback && callback();
       }
     });
   }

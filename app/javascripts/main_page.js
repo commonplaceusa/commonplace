@@ -13,6 +13,10 @@
 //= require shared/views
 //= require_tree ../templates/shared
 //= require_tree ../templates/main_page
+//= require_tree ../templates/info_boxes
 //= require en
 //= require college
+//= require main_page/app
+//= require info_boxes/info_box
+//= require_tree ./info_boxes
 //= require_tree ./main_page
