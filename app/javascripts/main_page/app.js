@@ -7,23 +7,23 @@ var MainPageView = CommonPlace.View.extend({
     this.account = this.options.account;
     this.community = this.options.community;
     
-    var postBox = new PostBox({ 
+    this.postBox = new PostBox({ 
       account: this.account,
       community: this.community
     });
     
-    var infoBox = new AccountInfoBox({
+    this.accountInfoBox = new AccountInfoBox({
       model: this.account
     });
 
-    var communityResources = new CommunityResources({
+    this.lists = new CommunityResources({
       account: this.account,
       community: this.community
     });
 
     var self = this;
-    $(window).scroll(function() { infoBox.setPosition($("#info-box")); });
-    this.views = [postBox, infoBox, communityResources];
+    $(window).scroll(function() { self.accountInfoBox.setPosition($("#info-box")); });
+    this.views = [this.postBox, this.accountInfoBox, this.lists];
   },
 
   afterRender: function() {
@@ -33,6 +33,7 @@ var MainPageView = CommonPlace.View.extend({
       self.$("#" + view.id).replaceWith(view.el);
     });
   }
+
 });
 
 var MainPageRouter = Backbone.Router.extend({
@@ -48,12 +49,41 @@ var MainPageRouter = Backbone.Router.extend({
     
     this.view.render();
 
+    this.lists = this.view.lists;
+    this.postBox = this.view.postBox;
+
     $("#main").replaceWith(this.view.el);
   },
 
   routes: {
-    "foo": "landing"
-  }
-  
+    "/": "landing",
+    "": "landing",
+    "/posts": "posts",
+    "/announcements": "announcements",
+    "/events": "events",
+    "/group_posts": "groupPosts",
+    "/users": "users",
+    "/feeds": "feeds",
+    "/groups": "groups",
+    "/new-neighborhood-post": "newPost",
+    "/new-announcement": "newAnnouncement",
+    "/new-event": "newEvent",
+    "/new-group-post": "newGroupPost"
+    
+  },
+
+  posts: function() { this.lists.switchTab("posts"); },
+  events: function() { this.lists.switchTab("events"); },
+  announcements: function() { this.lists.switchTab("announcements"); },
+  groupPosts: function() { this.lists.switchTab("groupPosts"); },
+  users: function() { this.lists.switchTab("users"); },
+  feeds: function() { this.lists.switchTab("feeds"); },
+  groups: function() { this.lists.switchTab("groups"); },
+  landing: function() { this.lists.switchTab("landing"); },
+
+  newPost: function() { this.postBox.switchTab("create-neighborhood-post"); },
+  newAnnouncement: function() { this.postBox.switchTab("create-announcement"); },
+  newEvent: function() { this.postBox.switchTab("create-event"); },
+  newGroupPost: function() { this.postBox.switchTab("create-group-post"); }
 });
 

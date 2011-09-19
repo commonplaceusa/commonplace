@@ -13,11 +13,6 @@ var CommunityResources = CommonPlace.View.extend({
     this.community.groupPosts.bind("add", function() { self.switchTab("groupPosts"); });
   },
 
-  events: {
-    "click .navigation .tab-button": "switchTabOnClick",
-    "click .sub-navigation a": "switchTabOnClick"
-  },
-
   afterRender: function() {
     this.switchTab("landing");
   },
@@ -33,7 +28,7 @@ var CommunityResources = CommonPlace.View.extend({
   },
 
   resourcesView: function(tab) {
-    var viewClass = { landing: LandingResources,
+    var ViewClass = { landing: LandingResources,
                       posts: PostResources,
                       events: EventResources,
                       announcements: AnnouncementResources,
@@ -42,14 +37,7 @@ var CommunityResources = CommonPlace.View.extend({
                       feeds: FeedResources,
                       groups: GroupResources 
                     }[tab];
-    return new viewClass({ community: this.community,
+    return new ViewClass({ community: this.community,
                            account: this.account });
-  },
-
-  switchTabOnClick: function(e) {
-    e.preventDefault();
-    var tab = $(e.target).attr('href').split("#")[1];
-    this.switchTab(tab);
   }
-
 });
