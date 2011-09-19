@@ -70,13 +70,26 @@ var WireView = CommonPlace.View.extend({
   }
 });
 
+var WireItemView = CommonPlace.View.extend({
+  showInfoBox: function() {
+    var $infoBox = $("#info-box");
+    if ($infoBox.size() === 1) {
+      this.getInfoBox(function(infoBox) {
+        infoBox.render();
+        $infoBox.replaceWith(infoBox.el);
+        infoBox.setPosition();
+      });
+    }
+  }
+});
+
 var PostWireView = WireView.extend({
   initialize: function(options) {
     this.account = options.account;
   },
 
   modelToView: function(model) {
-    return new GroupPostItemView({
+    return new PostItemView({
       model: model,
       account: this.account
     });
@@ -125,7 +138,7 @@ var UserWireView = WireView.extend({
 
 var FeedWireView = WireView.extend({
   modelToView: function(model) {
-    return new FeedItemView({model: model, account: this.account});
+    return new FeedItemView({model: model, account: this.options.account});
   },
 
   emptyMessage: "No feeds here yet"
@@ -133,13 +146,13 @@ var FeedWireView = WireView.extend({
 
 var GroupWireView = WireView.extend({
   modelToView: function(model) {
-    return new FeedItemView({model: model, account: this.account});
+    return new GroupItemView({model: model, account: this.options.account});
   },
 
   emptyMessage: "No groups here yet"
 });
 
-var UserItemView = CommonPlace.View.extend({
+var UserItemView = WireItemView.extend({
   template: "shared/user-item",
   tagName: "li",
   className: "wire-item",
@@ -163,7 +176,8 @@ var UserItemView = CommonPlace.View.extend({
   },
 
   events: {
-    "click button": "messageUser"
+    "click button": "messageUser",
+    "mouseenter": "showInfoBox"
   },
 
   messageUser: function(e) {
@@ -172,14 +186,22 @@ var UserItemView = CommonPlace.View.extend({
       model: new Message({messagable: this.model})
     });
     formview.render();
+  },
+
+  getInfoBox: function(callback) {
+    callback(new UserInfoBox({ model: this.model, account: this.options.account }));
   }
 
 });
 
-var FeedItemView = CommonPlace.View.extend({
+var FeedItemView = WireItemView.extend({
   template: "shared/feed-item",
   tagName: "li",
   className: "wire-item",
+
+  events: {
+    "mouseenter": "showInfoBox"
+  },
 
   avatarUrl: function() {
     return this.model.get("avatar_url");
@@ -187,14 +209,22 @@ var FeedItemView = CommonPlace.View.extend({
 
   name: function() {
     return this.model.get("name");
+  },
+
+  getInfoBox: function(callback) {
+    callback(new FeedInfoBox({ model: this.model, account: this.options.account }));
   }
 
 });
 
-var GroupItemView = CommonPlace.View.extend({
+var GroupItemView = WireItemView.extend({
   template: "shared/feed-item",
   tagName: "li",
   className: "wire-item",
+
+  events: {
+    "mouseenter": "showInfoBox"
+  },
 
   avatarUrl: function() {
     return this.model.get("avatar_url");
@@ -202,21 +232,23 @@ var GroupItemView = CommonPlace.View.extend({
 
   name: function() {
     return this.model.get("name");
+  },
+
+  getInfoBox: function(callback) {
+    callback(new GroupInfoBox({model: this.model, account: this.options.account}));
   }
 
 });
 
 var GroupPostWireView = WireView.extend({
   modelToView: function(model) {
-    return new GroupPostItemView({model: model, account: this.account});
+    return new GroupPostItemView({model: model, account: this.options.account});
   },
 
   emptyMessage: "No posts here yet"
 });
 
-
-
-var EventItemView = CommonPlace.View.extend({
+var EventItemView = WireItemView.extend({
   template: "shared/event-item",
   tagName: "li",
   className: "wire-item",
@@ -267,7 +299,8 @@ var EventItemView = CommonPlace.View.extend({
 
   events: {
     "click .editlink": "editEvent",
-    "click .moreBody": "loadMore"
+    "click .moreBody": "loadMore",
+    "mouseenter": "showInfoBox"
   },
 
   editEvent: function(e) {
@@ -291,11 +324,15 @@ var EventItemView = CommonPlace.View.extend({
     e.preventDefault();
     this.allwords = true;
     this.render();
+  },
+
+  getInfoBox: function(callback) {
+    callback(new EventInfoBox({ model: this.model, account: this.account }));
   }
 
 });
 
-var AnnouncementItemView = CommonPlace.View.extend({
+var AnnouncementItemView = WireItemView.extend({
   template: "shared/announcement-item",
   tagName: "li",
   className: "wire-item",
@@ -342,7 +379,8 @@ var AnnouncementItemView = CommonPlace.View.extend({
   
   events: {
     "click .editlink": "editAnnouncement",
-    "click .moreBody": "loadMore"
+    "click .moreBody": "loadMore",
+    "mouseenter": "showInfoBox"
   },
 
   editAnnouncement: function(e) {
@@ -366,11 +404,22 @@ var AnnouncementItemView = CommonPlace.View.extend({
     e.preventDefault();
     this.allwords = true;
     this.render();
+  },
+  
+  getInfoBox: function(callback) {
+    var self = this;
+    this.model.author(function(author) {
+      if (self.model.get('owner_type') == "Feed") {
+        callback(new FeedInfoBox({ model: author, account: self.account }));
+      } else {
+        callback(new UserInfoBox({ model: author, account: self.account }));
+      }
+    });
   }
     
 });
 
-var GroupPostItemView = CommonPlace.View.extend({
+var GroupPostItemView = WireItemView.extend({
   template: "shared/post-item",
   tagName: "li",
   className: "wire-item",
@@ -379,7 +428,6 @@ var GroupPostItemView = CommonPlace.View.extend({
     this.account = options.account;
     this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
     this.allwords = (this.shortbody == null);
-    window.gpi = this.model;
   },
 
   afterRender: function() {
@@ -424,7 +472,8 @@ var GroupPostItemView = CommonPlace.View.extend({
 
   events: {
     "click .author": "messageUser",
-    "click .moreBody": "loadMore"
+    "click .moreBody": "loadMore",
+    "mouseenter": "showInfoBox"
   },
 
   messageUser: function(e) {
@@ -452,9 +501,111 @@ var GroupPostItemView = CommonPlace.View.extend({
     e.preventDefault();
     this.allwords = true;
     this.render();
+  },
+  
+  getInfoBox: function(callback) {
+    var account = this.account;
+    this.model.group(function(group) {
+      callback(new GroupInfoBox({ model: group, account: account }));
+    });
   }
 
 });
+
+var PostItemView = WireItemView.extend({
+  template: "shared/post-item",
+  tagName: "li",
+  className: "wire-item",
+
+  initialize: function(options) {
+    this.account = options.account;
+    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
+    this.allwords = (this.shortbody == null);
+  },
+
+  afterRender: function() {
+    var repliesView = new RepliesView({ collection: this.model.replies(),
+                                        el: this.$(".replies"),
+                                        account: this.account
+                                      });
+    repliesView.render();
+    this.model.bind("change", this.render, this);
+    var self = this;
+    repliesView.collection.bind("add", function() { self.render(); });
+  },
+
+  replyCount: function() {
+    var num = this.model.replies().length;
+    return (num == 1 ? "1 reply" : num + " replies");
+  },
+
+  publishedAt: function() {
+    return timeAgoInWords(this.model.get("published_at"));
+  },
+
+  avatarUrl: function() {
+    return this.model.get("avatar_url");
+  },
+
+  title: function() {
+    return this.model.get("title");
+  },
+
+  author: function() {
+    return this.model.get("author");
+  },
+
+  body: function() {
+    if (!this.allwords) {
+      return this.shortbody[0];
+    } else {
+      return this.model.get("body");
+    }
+  },
+
+  events: {
+    "click .author": "messageUser",
+    "click .moreBody": "loadMore",
+    "mouseenter": "showInfoBox"
+  },
+
+  messageUser: function(e) {
+    e && e.preventDefault();
+    var user = new User({
+      links: {
+        self: this.model.get("links").author
+      }
+    });
+    user.fetch({
+      success: function() {
+        var formview = new MessageFormView({
+          model: new Message({messagable: user})
+        });
+        formview.render();
+      }
+    });
+  },
+
+  isMore: function() {
+    return !this.allwords;
+  },
+
+  loadMore: function(e) {
+    e.preventDefault();
+    this.allwords = true;
+    this.render();
+  },
+  
+  getInfoBox: function(callback) {
+    var account = this.account;
+    this.model.user(function(user) {
+      callback(new UserInfoBox({ model: user, account: account }));
+    });
+  }
+
+});
+
+
 
 
 var FormView = CommonPlace.View.extend({
@@ -653,7 +804,7 @@ var RepliesView = CommonPlace.View.extend({
   accountAvatarUrl: function() { return this.account.get('avatar_url'); }
 });
 
-var ReplyItemView = CommonPlace.View.extend({
+var ReplyItemView = WireItemView.extend({
   template: "shared/reply-item",
   initialize: function(options) {
     this.account = options.account;
@@ -661,7 +812,8 @@ var ReplyItemView = CommonPlace.View.extend({
   },
 
   events: {
-    "click .reply-text > .author": "messageUser"
+    "click .reply-text > .author": "messageUser",
+    "mouseenter": "showInfoBox"
   },
 
   time: function() {
@@ -682,18 +834,19 @@ var ReplyItemView = CommonPlace.View.extend({
 
   messageUser: function(e) {
     e && e.preventDefault();
-    var user = new User({
-      links: {
-        self: this.model.get("links").author
-      }
+
+    this.model.user(function(user) {
+      var formview = new MessageFormView({
+        model: new Message({messagable: user})
+      });
+      formview.render();
     });
-    user.fetch({
-      success: function() {
-        var formview = new MessageFormView({
-          model: new Message({messagable: user})
-        });
-        formview.render();
-      }
+  },
+
+  getInfoBox: function(callback) {
+    var account = this.account
+    this.model.user(function(user) {
+      callback(new UserInfoBox({ model: user, account: account }));
     });
   }
 });

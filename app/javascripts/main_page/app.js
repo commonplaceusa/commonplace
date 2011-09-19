@@ -36,14 +36,16 @@ var MainPageView = CommonPlace.View.extend({
     });
     
     var infoBox = new AccountInfoBox({
-      account: this.account
+      model: this.account
     });
 
     var communityResources = new CommunityResources({
       account: this.account,
       community: this.community
     });
-    
+
+    var self = this;
+    $(window).scroll(function() { infoBox.setPosition($("#info-box")); });
     this.views = [postBox, infoBox, communityResources];
   },
 
@@ -54,6 +56,4 @@ var MainPageView = CommonPlace.View.extend({
       self.$("#" + view.id).replaceWith(view.el);
     });
   }
-  
 });
-

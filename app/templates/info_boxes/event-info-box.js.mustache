@@ -1,0 +1,52 @@
+<h1>{{#t}}h1{{/t}}</h1>
+
+<div class="left-column">
+  <div class="calendar" class="avatar">
+    <div class="month">{{abbrevMonth}}</div>
+    <div class="date">{{dayOfMonth}}</div>
+  </div>
+
+</div>
+
+<div class="right-column">
+
+  <div class="name">{{name}}</div>
+
+  <div class="about">{{about}}</div>
+
+  <table>
+    {{#tags}}
+      <tr>
+        <th>TAGS</th>
+        <td>{{tags}}</td>
+      </tr>
+    {{/tags}}
+    {{#startsAt}}
+      <tr>
+        <th>STARTS</th>
+        <td>{{starts_at}}</td>
+      </tr>
+    {{/startsAt}}
+    {{#endsAt}}
+      <tr>
+        <th>ENDS</th>
+        <td>{{ends_at}}</td>
+      </tr>
+    {{/endsAt}}
+    {{#venue}}
+      <tr>
+        <th>VENUE</th>
+        <td>{{venue}}</td>
+      </tr>
+    {{/venue}}
+    {{#address}}
+      <tr>
+        <th>ADDRESS</th>
+        <td>{{address}}</td>
+      </tr>
+    {{/address}}
+  </table>
+
+</div>
+
+<div style="clear: both;"></div>
