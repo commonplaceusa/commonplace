@@ -68,8 +68,9 @@ var MainPageRouter = Backbone.Router.extend({
     "/new-neighborhood-post": "newPost",
     "/new-announcement": "newAnnouncement",
     "/new-event": "newEvent",
-    "/new-group-post": "newGroupPost"
-    
+    "/new-group-post": "newGroupPost",
+
+    "/tour": "tour"
   },
 
   posts: function() { this.lists.switchTab("posts"); },
@@ -84,6 +85,15 @@ var MainPageRouter = Backbone.Router.extend({
   newPost: function() { this.postBox.switchTab("create-neighborhood-post"); },
   newAnnouncement: function() { this.postBox.switchTab("create-announcement"); },
   newEvent: function() { this.postBox.switchTab("create-event"); },
-  newGroupPost: function() { this.postBox.switchTab("create-group-post"); }
+  newGroupPost: function() { this.postBox.switchTab("create-group-post"); },
+
+  tour: function() { 
+    var tour = new Tour({ 
+      el: $("#main"), 
+      account: this.account, 
+      community: this.community 
+    });
+    tour.render();
+  }
 });
 
