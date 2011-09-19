@@ -13,4 +13,5 @@
 //= require shared/views
 //= require_tree ../templates/shared
 //= require_tree ../templates/group_page
+//= require wire_items
 //= require group_page/app.js
