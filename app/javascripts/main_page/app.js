@@ -1,27 +1,4 @@
 
-var MainPageRouter = Backbone.Router.extend({
-
-  initialize: function(options) {
-    this.account = options.account;
-    this.community = options.community;
-    
-    this.view = new MainPageView({
-      account: this.account,
-      community: this.community
-    });
-    
-    this.view.render();
-
-    $("#main").replaceWith(this.view.el);
-  },
-
-  routes: {
-    "foo": "landing"
-  }
-  
-});
-
-
 var MainPageView = CommonPlace.View.extend({
   template: "main_page/main-page",
   id: "main",
@@ -57,3 +34,26 @@ var MainPageView = CommonPlace.View.extend({
     });
   }
 });
+
+var MainPageRouter = Backbone.Router.extend({
+
+  initialize: function(options) {
+    this.account = options.account;
+    this.community = options.community;
+    
+    this.view = new MainPageView({
+      account: this.account,
+      community: this.community
+    });
+    
+    this.view.render();
+
+    $("#main").replaceWith(this.view.el);
+  },
+
+  routes: {
+    "foo": "landing"
+  }
+  
+});
+

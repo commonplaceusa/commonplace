@@ -744,7 +744,7 @@ var EventFormView = FormView.extend({
         });
       })
     );
-    var result = new Array();
+    var result = [];
     _.each(list, function(time) {
       var obj = {
         ".": time,
@@ -869,7 +869,7 @@ var ReplyItemView = WireItemView.extend({
   },
 
   getInfoBox: function(callback) {
-    var account = this.account
+    var account = this.account;
     this.model.user(function(user) {
       callback(new UserInfoBox({ model: user, account: account }));
     });

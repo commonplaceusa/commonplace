@@ -104,7 +104,7 @@ var Feed = CommonPlace.Model.extend({
   }),
 
   SubscriberCollection: CommonPlace.Collection.extend({
-    initialize: function(models, options) { this.feed = options.feed },
+    initialize: function(models, options) { this.feed = options.feed; },
     model: User,
     url: function () {
       return "/api" + this.feed.get("links").subscribers;

@@ -59,7 +59,5 @@ var EventForm = CommonPlace.View.extend({
         );
       }
     )
-  ),
-  
-  
+  )
 });

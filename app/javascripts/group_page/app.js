@@ -72,7 +72,7 @@ var GroupHeaderView = CommonPlace.View.extend({
   template: "group_page/header",
   id: "group-header",
   
-  initialize: function(options) { this.account = options.account },
+  initialize: function(options) { this.account = options.account; },
 
   name: function() {
     return this.model.get("name");
@@ -131,7 +131,7 @@ var NewPostView = CommonPlace.View.extend({
   },
 
   events: {
-    "submit form": "postMessage",
+    "submit form": "postMessage"
   },
 
   postMessage: function(e) {
