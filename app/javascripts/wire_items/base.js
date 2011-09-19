@@ -1,11 +1,8 @@
 var WireItem = CommonPlace.View.extend({
   showInfoBox: function() {
-    var $infoBox = $("#info-box");
-    if ($infoBox.size() === 1) {
+    if (window.infoBoxManager) {
       this.getInfoBox(function(infoBox) {
-        infoBox.render();
-        $infoBox.replaceWith(infoBox.el);
-        infoBox.setPosition();
+        window.infoBoxManager.show(infoBox);
       });
     }
   }

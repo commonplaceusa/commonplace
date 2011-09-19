@@ -1,3 +1,43 @@
+var InfoBoxManager = CommonPlace.View.extend({
+
+  initialize: function(options) {
+    var self = this;
+    $(window).scroll(function() {
+      self.setPosition();
+    });
+  },
+
+  infoBoxId: "#info-box",
+  
+  setPosition: function() {
+    var $el = $(this.infoBoxId);
+    var marginTop = parseInt($el.css("margin-top"), 10);
+    var $parent = $el.parent();
+    var topScroll = $(window).scrollTop();
+    var distanceFromTop = $el.offset().top;
+    var parentBottomDistanceToTop = $parent.offset().top + $parent.height();
+
+    $el.css({ width: $el.width() }); 
+
+    if ($el.css("position") == "relative") {
+      if (distanceFromTop < topScroll) {
+        $el.css({ position: "fixed", top: 0 });
+      }
+    } else {
+      if (distanceFromTop < parentBottomDistanceToTop + marginTop) {
+        $el.css({ position: "relative" });
+      }
+    }
+  },
+
+  show: function(newInfoBox) { 
+    this.model = newInfoBox; 
+    this.model.render();
+    $(this.infoBoxId).replaceWith(this.model.el);
+    this.setPosition();
+  }
+  
+});
 
 var MainPageView = CommonPlace.View.extend({
   template: "main_page/main-page",
@@ -21,8 +61,10 @@ var MainPageView = CommonPlace.View.extend({
       community: this.community
     });
 
-    var self = this;
-    $(window).scroll(function() { self.accountInfoBox.setPosition($("#info-box")); });
+    window.infoBoxManager = new InfoBoxManager({
+      model: this.accountInfoBox
+    })
+
     this.views = [this.postBox, this.accountInfoBox, this.lists];
   },
 
