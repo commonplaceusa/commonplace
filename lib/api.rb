@@ -421,7 +421,7 @@ class API < Sinatra::Base
     scope = Event.where("owner_id = ? AND owner_type = ?",feed_id, "Feed")
     last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
                    DateTime.now.beginning_of_day.utc.to_time].compact.max)
-    serialize(paginate(scope.upcoming.includes(:replies)))
+    serialize(paginate(scope.upcoming.includes(:replies).reorder("date ASC")))
   end
 
   get "/feeds/:id/subscribers" do |feed_id|
@@ -578,7 +578,7 @@ class API < Sinatra::Base
     scope = Event.where("community_id = ?",id)
     last_modified([scope.reorder("updated_at DESC").limit(1).first.try(:updated_at),
                    DateTime.now.beginning_of_day.utc.to_time].compact.max)
-    serialize(paginate(scope.upcoming.includes(:replies)))
+    serialize(paginate(scope.upcoming.includes(:replies).reorder("date ASC")))
   end
 
   get "/communities/:id/announcements" do |id|
@@ -642,19 +642,23 @@ class API < Sinatra::Base
   end
 
   get "/groups/:id/posts" do |id|
-    serialize( paginate(Group.find(id).group_posts) )
+    scope = Group.find(id).group_posts.reorder("updated_at DESC")
+    serialize( paginate(scope) )
   end
 
   get "/groups/:id/members" do |id|
-    serialize( paginate(Group.find(id).subscribers) )
+    scope = Group.find(id).subscribers
+    serialize( paginate(scope) )
   end
 
   get "/groups/:id/events" do |id|
-    serialize( paginate(Group.find(id).events) )
+    scope = Group.find(id).events.upcoming.reorder("date ASC")
+    serialize( paginate(scope) )
   end
 
   get "/groups/:id/announcements" do |id|
-    serialize( paginate(Group.find(id).announcements) )
+    scope = Group.find(id).announcements.reorder("updated_at DESC")
+    serialize( paginate(scope) )
   end
 
   get "/feeds/:id" do |id|
