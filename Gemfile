@@ -20,7 +20,6 @@ gem 'geocoder' # we use geocoder to find user latlngs from addresses
 
 # Deployment
 gem 'thin' # lighter than mongrel, faster than webrick
-gem 'jslint_on_rails', :require => false #! will run before deployments
 
 # Authentication
 gem 'devise' # used for authentication
@@ -92,6 +91,9 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'libnotify'
+  gem 'rb-inotify'
+  gem 'guard-jslint-on-rails'
   gem 'rails-dev-tweaks', '~> 0.5.0' # Don't reload the code when serving assets
   gem 'factory_girl' # we use factory_girl to generate models for tests
   gem 'forgery' # we use forgery to generate data for tests
