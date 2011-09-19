@@ -13,4 +13,5 @@
 //= require shared/views
 //= require_tree ../templates/shared
 //= require_tree ../templates/feed_page
+//= require wire_items
 //= require feed_page/app
