@@ -87,7 +87,7 @@ group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
-  gem 'compass', :git => 'git://github.com/chriseppstein/compass.git', :branch => 'rails31'
+  gem 'compass', '0.12.alpha.0'
 end
 
 group :development, :test do
@@ -101,6 +101,7 @@ group :development, :test do
   gem 'pry' # for when IRB is not enough
   gem 'guard' # because doing things manually is for suckers
   gem 'guard-bundler'
+  gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
 end
 
 group :test do
