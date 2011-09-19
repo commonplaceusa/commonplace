@@ -30,10 +30,10 @@ var PostForm = CommonPlace.View.extend({
   },
 
   showPublicityWarning: function() {
-    this.$("p.warning").show()
+    this.$("p.warning").show();
   },
 
   hidePublicityWarning: function() {
-    this.$("p.warning").hide()
+    this.$("p.warning").hide();
   }
 });
