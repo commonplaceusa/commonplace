@@ -71,7 +71,7 @@
       - unless current_user.seen_tour?
         - current_user.toggle!(:seen_tour)
         :javascript
-          (new CommonPlace.Tour({el: $("#main")})).render();
+          $(function() { window.router.navigate("/tour", true); });
     - if Rails.env.production?
       %script
         = "mpmetrics.track('Community Home Page', {'community': '#{current_community.slug}'});"
