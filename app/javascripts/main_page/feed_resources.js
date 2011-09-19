@@ -8,10 +8,10 @@ var FeedResources = CommonPlace.View.extend({
   },
 
   afterRender: function() { 
-    var wire = new FeedWireView({ collection: this.community.feeds,
-                                  account: this.account,
-                                  el: this.$(".feeds.wire"),
-                                  perPage: 15 });
+    var wire = new FeedWire({ collection: this.community.feeds,
+                              account: this.account,
+                              el: this.$(".feeds.wire"),
+                              perPage: 15 });
     wire.render();
   }
 });

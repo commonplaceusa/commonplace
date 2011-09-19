@@ -8,10 +8,10 @@ var GroupPostResources = CommonPlace.View.extend({
   },
 
   afterRender: function() { 
-    var wire = new GroupPostWireView({ collection: this.community.groupPosts,
-                                       account: this.account,
-                                       el: this.$(".groupPosts.wire"),
-                                       perPage: 15 });
+    var wire = new GroupPostWire({ collection: this.community.groupPosts,
+                                   account: this.account,
+                                   el: this.$(".groupPosts.wire"),
+                                   perPage: 15 });
     wire.render();
   }
 

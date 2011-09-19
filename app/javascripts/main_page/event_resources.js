@@ -8,10 +8,10 @@ var EventResources = CommonPlace.View.extend({
   },
 
   afterRender: function() { 
-    var wire = new EventWireView({ collection: this.community.events,
-                                  account: this.account,
-                                  el: this.$(".events.wire"),
-                                  perPage: 15 });
+    var wire = new EventWire({ collection: this.community.events,
+                               account: this.account,
+                               el: this.$(".events.wire"),
+                               perPage: 15 });
     wire.render();
   }
 });

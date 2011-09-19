@@ -14,32 +14,32 @@ var LandingResources = CommonPlace.View.extend({
   wires: function() {
     if (!this._wires) { 
       this._wires = [
-        (new PostWireView({ collection: this.community.posts,
-                            account: this.account,
-                            el: this.$(".posts.wire"),
-                            perPage: 3
-                          })),
+        (new PostWire({ collection: this.community.posts,
+                        account: this.account,
+                        el: this.$(".posts.wire"),
+                        perPage: 3
+                      })),
         
-        (new EventWireView({ collection: this.community.events,
+        (new EventWire({ collection: this.community.events,
+                         account: this.account,
+                         el: this.$(".events.wire"),
+                         perPage: 3
+                       })),
+        
+        
+        
+        
+        (new AnnouncementWire({ collection: this.community.announcements,
+                                account: this.account,
+                                el: this.$(".announcements.wire"),
+                                perPage: 3
+                              })),
+        
+        (new GroupPostWire({ collection: this.community.groupPosts,
                              account: this.account,
-                             el: this.$(".events.wire"),
+                             el: this.$(".groupPosts.wire"),
                              perPage: 3
-                           })),
-        
-        
-        
-        
-        (new AnnouncementWireView({ collection: this.community.announcements,
-                                    account: this.account,
-                                    el: this.$(".announcements.wire"),
-                                    perPage: 3
-                                  })),
-        
-        (new GroupPostWireView({ collection: this.community.groupPosts,
-                                 account: this.account,
-                                 el: this.$(".groupPosts.wire"),
-                                 perPage: 3
-                               }))
+                           }))
       ];
     }
     return this._wires;
