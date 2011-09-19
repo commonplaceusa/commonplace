@@ -29,7 +29,7 @@ var AnnouncementForm = CommonPlace.View.extend({
 
   feeds: function() {
     var owners = this.options.account.get('feeds');
-    owners[0].selected = "selected";
+    owners[0] && (owners[0].selected = "selected");
     return owners;
   },
 
