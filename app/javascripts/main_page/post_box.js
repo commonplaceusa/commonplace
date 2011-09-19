@@ -8,10 +8,6 @@ var PostBox = CommonPlace.View.extend({
     this.account = options.account;
   },
 
-  events: {
-    "click a.tab-button": "switchTabOnClick"
-  },
-
   afterRender: function() {
     var self = this;
     _(this.forms()).each(function(view) {
@@ -61,13 +57,8 @@ var PostBox = CommonPlace.View.extend({
 
   $tabForms: function() { return this.$("form"); },
 
-  $tabButtons: function() { return this.$("a.tab-button"); },
+  $tabButtons: function() { return this.$("a.tab-button"); }
 
-  switchTabOnClick: function(e) {
-    e.preventDefault();
-    var tab = $(e.target).attr('href').split("#")[1];
-    this.switchTab(tab);
-  }
 
 });
     
