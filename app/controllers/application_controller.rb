@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :facebook_session
   helper_method :api, :serialize
   
-  before_filter :domain_redirect, :set_process_name_from_request, :set_locale
+  before_filter :domain_redirect, :set_process_name_from_request, :set_locale, :set_api_token
   after_filter :unset_process_name_from_request
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -27,6 +27,12 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def set_api_token
+    if logged_in?
+      cookies['authentication_token'] = current_user.authentication_token
+    end
+  end
 
   def serialize(thing)
     Serializer::serialize(thing).to_json.html_safe
