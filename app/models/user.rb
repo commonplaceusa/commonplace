@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   validate :validate_first_and_last_names, :unless => :is_transitional_user
 
   validates_presence_of :neighborhood, :unless => :is_transitional_user
-  validates_uniqueness_of :facebook_uid, :allow_nil => true 
+  validates_uniqueness_of :facebook_uid, :allow_blank => true
 
   scope :between, lambda { |start_date, end_date| 
     { :conditions => 
