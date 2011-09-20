@@ -47,7 +47,7 @@ class FeedWelcome < MailBase
   end
 
   def subject
-    "Your {feed_name} feed on The {town_name} CommonPlace"
+    "Your #{feed_name} feed on The #{town_name} CommonPlace"
   end
 
   def tag
