@@ -3,7 +3,7 @@ var CommonPlace = CommonPlace || {};
 CommonPlace.render = function(templateName, params) {
   if (!Templates[templateName]) {
     throw new Error("template '" + templateName + "' does not exist");
-  };
+  }
   return Mustache.to_html(
     Templates[templateName],
     _.extend({}, params, { 
@@ -20,7 +20,13 @@ CommonPlace.render = function(templateName, params) {
           var text = template[key];
           return text ? render(text) : key ;
         };
-      } 
+      },
+      markdown: function() {
+        return function(text,render) {
+          text = render(text).replace(/!\[/g, "\["); // workaround to disable images
+          return "<div class='markdown'>" + (new Showdown.converter()).makeHtml(text) + "</div>";
+        }
+      }
     }),
     Templates);
 };
