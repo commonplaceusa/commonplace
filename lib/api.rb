@@ -6,7 +6,7 @@ class API < Sinatra::Base
       @_user ||= if request.env["HTTP_AUTHORIZATION"].present?
                    User.find_by_authentication_token(request.env["HTTP_AUTHORIZATION"])
                  else
-                   request.env['warden'].authenticate!
+                   User.find_by_authentication_token(request.cookies['authentication_token'])
                  end
     end
 
