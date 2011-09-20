@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916205352) do
+ActiveRecord::Schema.define(:version => 20110920185338) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -346,27 +346,27 @@ ActiveRecord::Schema.define(:version => 20110916205352) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                              :null => false
+    t.string   "email",                                                 :null => false
     t.string   "encrypted_password"
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name",                                                         :null => false
-    t.string   "last_name",                                                          :null => false
+    t.string   "first_name",                                            :null => false
+    t.string   "last_name",                                             :null => false
     t.text     "about"
-    t.integer  "neighborhood_id",                                                    :null => false
+    t.integer  "neighborhood_id",                                       :null => false
     t.string   "cached_interest_list"
     t.string   "cached_good_list"
-    t.boolean  "receive_events_and_announcements",              :default => true
-    t.boolean  "admin",                                         :default => false
+    t.boolean  "receive_events_and_announcements", :default => true
+    t.boolean  "admin",                            :default => false
     t.string   "state"
     t.string   "avatar_file_name"
     t.string   "address"
-    t.integer  "facebook_uid",                     :limit => 8
+    t.string   "facebook_uid"
     t.string   "oauth2_token"
     t.integer  "community_id"
-    t.boolean  "receive_weekly_digest",                         :default => true
-    t.string   "post_receive_method",                           :default => "Three"
+    t.boolean  "receive_weekly_digest",            :default => true
+    t.string   "post_receive_method",              :default => "Three"
     t.string   "middle_name"
     t.decimal  "latitude"
     t.decimal  "longitude"
@@ -374,11 +374,10 @@ ActiveRecord::Schema.define(:version => 20110916205352) do
     t.datetime "last_login_at"
     t.boolean  "seen_tour"
     t.boolean  "transitional_user"
-    t.string   "skills_list"
     t.string   "referral_metadata"
     t.float    "generated_lat"
     t.float    "generated_lng"
-    t.integer  "emails_sent",                                   :default => 0
+    t.integer  "emails_sent",                      :default => 0
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
