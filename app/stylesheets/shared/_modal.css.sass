@@ -5,7 +5,8 @@
   +border-radius(15px)
   z-index: 2000
 
-  form 
+  form
+    +form
     width: 392px
     padding: 15px
     display: block
@@ -22,25 +23,14 @@
       font-family: Rokkitt, Rockwell, Helvetica, sans-serif
       font-size: 16px
       color: #fff
-      padding-bottom: 2px
 
-    input
-      margin-top: 6px
-      padding: 5px 5px
-      width: 380px
-      font-size: 15px
-      font-family: Rokkitt, Rockwell, Georgia, Times, serif
-      +border-radius(5px)
-      +box-shadow(#eee 1px 1px 3px 0 inset)
+    input[type=text]
+      margin-top: 2px
+      width: 372px
 
     textarea
-      margin-top: 6px
-      width: 382px
-      font-size: 15px
-      font-family: Rokkitt, Rockwell, Georgia, Times, serif
-      +border-radius(5px)
-      +box-shadow(#eee 1px 1px 3px 0 inset)
-      padding: 5px 5px
+      margin-top: 2px
+      width: 372px
 
     .controls
       margin-top: 20px
@@ -49,6 +39,7 @@
       button
         +blue-button
         margin-left: 15px
+        float: none
 
       a.cancel
         color: #fff

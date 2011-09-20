@@ -2,13 +2,13 @@
 <form>
   <h1>Edit your event</h1>
   <label for="title">Event name:</label>
-  <input name="title" value="{{title}}">
+  <input name="title" value="{{title}}" type="text">
   
   <label for="body">Event description:</label>
   <textarea name="body" rows="3">{{body}}</textarea>
 
   <label for="date">Event date:</label>
-  <input class="date" name="date" value="{{date}}">
+  <input class="date" name="date" value="{{date}}" type="text">
 
   <label for="start" class="time">Start time <br>
     <select name="start">
@@ -26,10 +26,10 @@
   </label>
 
   <label for="venue">Venue:</label>
-  <input name="venue" value="{{venue}}">
+  <input name="venue" value="{{venue}}" type="text">
 
   <label for="address">Event address:</label>
-  <input name="address" value="{{address}}">
+  <input name="address" value="{{address}}" type="text">
   <div class="controls">
     <a class="cancel" href="#">Cancel</a>
     <button>Change Event</button>
