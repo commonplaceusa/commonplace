@@ -1,9 +1,6 @@
 .wire 
   background-color: white
   padding-bottom: 10px
-  li
-    border-top: 1px solid #bebebe
-    padding: 12px 10px 15px 10px
 
   a.more
     +blue-button
@@ -17,13 +14,16 @@
     color: #888
 
 .wire-item
-  .title, .author, .body, .message-user
+  border-top: 1px solid #bebebe
+  padding: 12px 10px 15px 10px
+  .title, .author, .body, .message-user 
     margin-left: 62px
   .body
     font-family: Helvetica, sans-serif
     font-size: 0.8em
     line-height: 1.4
     color: $textColor
+    word-wrap: break-word
     a
       color: #ac322f
       text-decoration: none
