@@ -58,6 +58,23 @@ var AnnouncementFormView = FormView.extend({
   }
 });
 
+var GroupPostFormView = FormView.extend({
+  save: function() {
+    this.model.save({
+      title: this.$("[name=title]").val(),
+      body: this.$("[name=body]").val()
+    });
+  },
+
+  title: function() {
+    return this.model.get("title");
+  },
+
+  body: function() {
+    return this.model.get("body");
+  }
+});
+
 var EventFormView = FormView.extend({
   afterRender: function() {
     this.modal.render();
