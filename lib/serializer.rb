@@ -62,7 +62,7 @@ module Serializer
         "ends_at" => o.end_time.try(:strftime, "%l:%M%P"),
         "venue" => o.venue,
         "address" => o.address,
-        "user_id" => o.owner_type == "User" ? o.owner_id : nil,
+        "user_id" => o.user_id,
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "replies" => serialize(o.replies.to_a),
         "links" => {
@@ -79,7 +79,7 @@ module Serializer
         "avatar_url" => o.owner.avatar_url(:thumb),
         "author_url" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
         "author" => o.owner.name,
-        "user_id" => o.owner_type == "User" ? o.owner_id : nil,
+        "user_id" => o.user_id,
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "title" => o.subject,
         "body" => o.body,
