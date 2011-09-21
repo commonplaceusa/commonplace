@@ -5,7 +5,7 @@
   %li 
     Fill out a community feed description so that neighbors can know a bit about your organization and what types of announcements you will be sending out.
 
-= semantic_form_for @feed, :url => create_profile_feed_url(@feed), :method => :put, :html => {:multipart => true} do |f|
+= semantic_form_for registration.feed, :url => add_profile_feed_registration_url(registration), :method => :put, :html => {:multipart => true} do |f|
 
   = f.inputs do
     = f.input :about

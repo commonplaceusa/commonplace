@@ -2,8 +2,8 @@
 #main
   %h1 Crop your Organization Photo
     
-  = form_for @feed, :url => update_crop_feed_path(@feed), :method => :put, :html => { :class => "crop" } do |f|
-    = image_tag @feed.avatar.url(:original), :id => "cropbox"
+  = form_for registration.feed, :url => crop_avatar_feed_registration_url(registration), :method => :put, :html => { :class => "crop" } do |f|
+    = image_tag registration.avatar_url(:original), :id => "cropbox"
 
 
     - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|

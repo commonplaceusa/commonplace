@@ -7,6 +7,13 @@ Commonplace::Application.routes.draw do
       put :add_profile, :crop_avatar, :add_feeds, :add_groups
     end
   end
+
+  resources :feed_registrations, :only => [:new, :create] do
+    member do
+      get :profile, :avatar, :subscribers
+      put :add_profile, :crop_avatar, :invite_subscribers
+    end
+  end
  
   get "facebook_canvas/index"
   match "/facebook_canvas/" => "facebook_canvas#index"
@@ -33,19 +40,13 @@ Commonplace::Application.routes.draw do
 
   resource :user_session
 
-  resources :feeds, :only => [:new, :create, :edit, :update, :destroy] do
+  resources :feeds, :only => [:edit, :update, :destroy] do
     member do
       get :import
       get :profile
       get :delete
       get :edit_owner
       put :update_owner
-      get :new_profile
-      put :create_profile
-      get :crop
-      put :update_crop
-      get :new_subscribers
-      put :add_subscribers
     end
   end
 
