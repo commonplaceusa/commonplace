@@ -1,14 +1,7 @@
 class FeedsController < CommunitiesController
-  before_filter :load, :except => [:index, :show]
+  before_filter :load, :except => [:show]
   authorize_resource
-  
-  def index
-    if params[:letter].present?
-      @items = current_community.feeds.all(:conditions => ["name ILIKE ?", params[:letter].slice(0,1) + "%"])
-    else
-      @items = current_community.feeds.all(:order => "name ASC")
-    end
-  end
+
 
   def show
     render :profile, :layout => false
