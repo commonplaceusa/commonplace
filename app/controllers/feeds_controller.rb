@@ -31,54 +31,6 @@ class FeedsController < CommunitiesController
     end
   end
 
-  def new
-    render :layout => "feed_registration"
-  end
-
-  def create
-    @feed = current_community.feeds.new(params[:feed])
-    @feed.user = current_user
-    if @feed.save
-      kickoff.deliver_feed_owner_welcome(@feed)
-      if params[:feed][:avatar].blank?
-        redirect_to new_profile_feed_url(@feed)
-      else
-        redirect_to crop_feed_url(@feed)
-      end
-    else
-      render :new, :layout => "feed_registration"
-    end
-  end
-
-  def new_profile
-    @feed = Feed.find(params[:id])
-    render :layout => "feed_registration"
-  end
-
-  def create_profile
-    @feed = Feed.find(params[:id])
-    if @feed.update_attributes(params[:feed])
-      redirect_to feed_profile_path(@feed)
-    else
-      render :new_profile, :layout => "feed_registration"
-    end
-  end
-
-  def crop
-    @feed = Feed.find(params[:id])
-    render :layout => "feed_registration"
-  end
-  
-  def update_crop
-    @feed = Feed.find(params[:id])
-    @feed.attributes = params[:feed]
-    if @feed.save
-        redirect_to new_profile_feed_url(@feed)
-    else
-      render :edit_new
-    end
-  end
-
   def edit
     render :layout => 'feed_registration'
   end
@@ -89,15 +41,6 @@ class FeedsController < CommunitiesController
     else
       render :edit, :layout => 'feed_registration'
     end
-  end
-
-  def new_subscribers
-    render :layout => 'feed_registration'
-  end
-
-  def add_subscribers
-    kickoff.deliver_feed_invite(params[:feed_subscribers])
-    redirect_to feed_profile_path(@feed)
   end
   
   protected

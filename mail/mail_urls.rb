@@ -45,7 +45,7 @@ module MailUrls
   end
 
   def new_feed_url
-    url("/feeds/new")
+    url("/feed_registrations/new")
   end
 
   def new_group_post_url

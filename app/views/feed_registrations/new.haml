@@ -15,7 +15,7 @@
     People can subscribe to your community feed and receive your
     announcements and events by email.
 
-= semantic_form_for @feed, :html => {:multipart => true} do |f|
+= semantic_form_for registration.feed, :url => feed_registrations_url, :html => {:multipart => true} do |f|
 
   = f.inputs do
     = f.input :name, :input_html => {'autocomplete' => "off"}

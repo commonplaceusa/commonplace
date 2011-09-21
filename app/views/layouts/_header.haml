@@ -13,7 +13,7 @@
             %ul
               - current_user.managable_feeds.each do |feed|
                 %li= link_to feed.name, "/pages/#{feed.slug.blank? ? feed.id : feed.slug}"
-              %li= link_to 'Create a feed', "/feeds/new"
+              %li= link_to 'Create a feed', new_feed_registration_url
           - else
             %h4
               = link_to((t "feeds.register"), new_feed_url)
