@@ -6,7 +6,9 @@
 @import date_picker
 @import shared/replies
 @import shared/wire
+@import shared/form
 @import shared/modal
+@import shared/markdown
 
 
 body
@@ -217,7 +219,7 @@ body
     margin-top: 16px
 
   form
-    
+    +form
     display: block
     margin: 16px 15px 20px 73px
       
@@ -226,13 +228,6 @@ body
     textarea
       display: block
       width: 375px
-      border: none
-      margin: 12px 0
-      padding: 10px 9px
-      font-size: 13px
-      font-family: Helvetica, sans-serif
-      +border-radius(5px)
-      +box-shadow(#333 1px 1px 3px 0 inset)
 
 
     button
@@ -254,7 +249,7 @@ body
       margin-top: 5px
         
     .post-label-selector
-      margin-top: 15px
+      margin-top: 5px
       height: 125px
       overflow-y: scroll
 
@@ -351,18 +346,16 @@ body
 
   margin-top: 15px
   
-  h1
+  .feed-sub-header
     background-color: #e0e0e0
     color: #656565
     font-family: Rokkitt, Rockwell, Helvetica, sans-serif
     font-size: 15px
     +border-top-radius(2px)
     padding: 5px
-
-#feed-about
-  h1
     text-align: center
 
+#feed-about
   p
     border-top: 1px solid #bebebe
     padding: 15px

@@ -5,7 +5,9 @@
 @import footer
 @import shared/replies
 @import shared/wire
+@import shared/form
 @import shared/modal
+@import shared/markdown
 
 body
   background-color: #eee
@@ -163,21 +165,13 @@ body
     margin-top: 16px
 
   form
+    +form
     display: block
     margin: 16px 15px 20px 73px
     
     input,
     textarea
-      display: block
       width: 375px
-      border: none
-      margin: 12px 0
-      padding: 10px 9px
-      font-size: 18px
-      font-weight: bold
-      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
-      +border-radius(5px)
-      +box-shadow(#333 1px 1px 3px 0 inset)
 
     button
       +blue-button

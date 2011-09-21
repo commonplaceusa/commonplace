@@ -88,7 +88,7 @@
         .bind('keyup.dynSiz', updateSize)
         .bind('keydown.dynSiz', updateSize)
         .bind('change.dynSiz', updateSize);
-      
+      if ($.contains(document.body, textarea.get(0))) { textarea.trigger("change.dynSiz") }
     });
     
     // Chain:

@@ -52,7 +52,8 @@ var GroupPostWireItem = WireItem.extend({
   events: {
     "click .author": "messageUser",
     "click .moreBody": "loadMore",
-    "mouseenter": "showInfoBox"
+    "mouseenter": "showInfoBox",
+    "click .editlink": "editGroupPost"
   },
 
   messageUser: function(e) {
@@ -87,6 +88,19 @@ var GroupPostWireItem = WireItem.extend({
     this.model.group(function(group) {
       callback(new GroupInfoBox({ model: group, account: account }));
     });
+  },
+
+  isOwner: function() {
+    return (this.account.get("id") == this.model.get("user_id"));
+  },
+
+  editGroupPost: function(e) {
+    e && e.preventDefault();
+    var formview = new GroupPostFormView({
+      model: this.model,
+      template: "shared/group-post-edit-form"
+    });
+    formview.render();
   }
 
 });

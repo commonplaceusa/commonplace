@@ -59,7 +59,7 @@ var AnnouncementWireItem = WireItem.extend({
   },
 
   isOwner: function() {
-    return (_.indexOf(this.account.get("announcements"), this.model.get("id"))>=0);
+    return (this.account.get("id") == this.model.get("user_id"));
   },
 
   isMore: function() {
