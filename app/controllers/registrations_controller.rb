@@ -2,6 +2,8 @@ class RegistrationsController < ApplicationController
   helper_method :registration
   layout 'registration'
 
+  before_filter :authenticate_user!, :except => [:new, :create, :facebook_new]
+
   def new
     session["devise.community"] = current_community.id
   end
