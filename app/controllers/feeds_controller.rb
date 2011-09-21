@@ -1,12 +1,6 @@
 class FeedsController < CommunitiesController
-  before_filter :load, :except => [:show]
   authorize_resource
 
-
-  def show
-    render :profile, :layout => false
-  end
-  
   def delete
     render :layout => 'application'
   end
@@ -37,11 +31,6 @@ class FeedsController < CommunitiesController
     end
   end
       
-
-  def profile
-    render :layout => false
-  end
-
   def new
     render :layout => "feed_registration"
   end
