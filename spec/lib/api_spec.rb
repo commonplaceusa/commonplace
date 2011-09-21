@@ -10,17 +10,16 @@ describe API do
 
   let(:kickoff) { KickOff.new }
   let(:account) { User.new }
-  let(:warden) { Object.new.tap {|o| stub(o).authenticate! { account } } }
 
   let(:app) { 
     lambda do |env| 
-      env['warden'] = warden
       env['kickoff'] = kickoff
       API.call(env) 
     end
   }
 
   let(:community) { mock_model(Community) }
+
   shared_examples "A JSON endpoint" do
     it "returns a valid JSON response" do
       lambda {JSON.parse(last_response.body)}.should_not raise_error(JSON::ParserError)
@@ -30,7 +29,7 @@ describe API do
   before do 
     stub_request(:get, "http://maps.google.com/maps/api/geocode/json?address=100%20Endless%20Sidewalk&language=en&sensor=false").
       to_return(:body => %q[{"results" : [], "status" : "ZERO_RESULTS"}])
-    stub(User).find_by_id { true }
+    stub(User).find_by_authentication_token { true }
     stub(Community).find(community.id.to_s) { community }
   end
   

@@ -1,7 +1,11 @@
-class EmailParseController < ApplicationController
+class EmailParseController < ActionController::Base
   
   protect_from_forgery :only => []
   before_filter :check_user, :filter_out_of_office
+
+  def kickoff
+    @kickoff ||= KickOff.new
+  end
 
   def parse
     case to
@@ -120,5 +124,5 @@ END
     }
       
   end
-  
+
 end

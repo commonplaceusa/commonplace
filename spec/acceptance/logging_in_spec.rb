@@ -30,10 +30,10 @@ feature "Logging in", %q{
     within("form.user") do
       fill_in "user[email]", :with => "test@example.com"
       fill_in "user[password]", :with => "password"
-      find("#user_submit").click
+      find("input.submit").click
     end
 
-    current_path.should == "/"
+    response.should be_redirect
     
   end
 end

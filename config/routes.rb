@@ -1,24 +1,13 @@
 
 Commonplace::Application.routes.draw do
 
-  begin 
-    ActiveAdmin.routes(self) 
-    devise_for :admin_users, ActiveAdmin::Devise.config
-    
-    devise_for :users, :controllers => { 
-      :sessions => "user_sessions",
-      :passwords => "password_resets",
-    :omniauth_callbacks => "users_omniauth_callbacks"
-    } do
-      get '/users/auth/:provider' => 'users_omniauth_callbacks#passthru'
+  resource :registration, :only => [:new, :create] do
+    member do
+      get :profile, :avatar, :feeds, :groups
+      put :add_profile, :crop_avatar, :add_feeds, :add_groups
     end
-  rescue
-    Rails.logger.warn "ActiveAdmin routes not initialized"
-    Rails.logger.warn "Devise routes not initialized"
-    # ActiveAdmin and Devise try to hit the database on initialization.
-    # That fails when Heroku is compiling assets, so we catch the error here.
   end
-
+ 
   get "facebook_canvas/index"
   match "/facebook_canvas/" => "facebook_canvas#index"
 
@@ -62,25 +51,24 @@ Commonplace::Application.routes.draw do
     
   resource :account do
     member do 
-      get :edit_new, :edit_avatar, :edit_interests, :add_feeds, :add_groups, :delete, :profile, :crop
-      put :update_new, :update_avatar, :update_interests, :settings, :update_crop
-      post :subscribe_to_feeds, :subscribe_to_groups, :avatar
-      get :new_facebook
+      get :edit_avatar, :edit_interests, :delete, :profile
+      put :update_avatar, :update_interests, :settings
+      post :avatar
     end
   end
 
-  resource :invites
-
   unauthenticated do
-
-    root :to => "site#index"
     
-    match "/:community/learn_more", :to => "accounts#learn_more"
+    root :to => "site#index"
+
+    match "/:community", :to => "registrations#new", :via => :get
+
+    match "/:community/learn_more", :to => "accounts#learn_more", :via => :get
 
 
     resources :password_resets
-    match "/:community", :to => "accounts#new"
-    match "/:community/account", :via => :post, :to => "accounts#create", :as => "create_account"
+
+    match "/:community/registrations", :via => :post, :to => "registrations#create", :as => "create_registration"
 
     # Invitations
     resource :account do
@@ -138,6 +126,23 @@ Commonplace::Application.routes.draw do
 
   end
 
+  begin 
+    ActiveAdmin.routes(self) 
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    
+    devise_for :users, :controllers => { 
+      :sessions => "user_sessions",
+      :passwords => "password_resets",
+    :omniauth_callbacks => "users_omniauth_callbacks"
+    } do
+      get '/users/auth/:provider' => 'users_omniauth_callbacks#passthru'
+    end
+  rescue
+    Rails.logger.warn "ActiveAdmin routes not initialized"
+    Rails.logger.warn "Devise routes not initialized"
+    # ActiveAdmin and Devise try to hit the database on initialization.
+    # That fails when Heroku is compiling assets, so we catch the error here.
+  end
 
 
   scope "/:community" do
@@ -158,4 +163,6 @@ Commonplace::Application.routes.draw do
    "/users/:id/messages/new"].each do |s|
     match s, :to => "bootstraps#community", :via => :get, :as => :community
   end
+
+
 end

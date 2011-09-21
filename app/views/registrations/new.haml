@@ -16,7 +16,7 @@
         %img{:src=> asset_path("buttons/learnmore.png"), :alt=>"Learn more", :id=>"learnmore"}
 
 
-  = semantic_form_for @user, :url => create_account_path(current_community) do |f|
+  = semantic_form_for registration.user, :url => create_registration_url(current_community) do |f|
     %h4 
       Register Here
 
@@ -28,6 +28,7 @@
       - else
         = f.input :address, :hint => "", :input_html => {:placeholder => "Street address"}
       = f.input :facebook_uid, :as => :hidden
+      = f.input :community_id, :as => :hidden
     = f.buttons do 
 
       = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/signup.png")}

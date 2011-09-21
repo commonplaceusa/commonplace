@@ -6,7 +6,7 @@ class UsersOmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       @_current_community = Community.find(session["devise.community"])
       @user = User.new_from_facebook({:community_id => session["devise.community"]}, env["omniauth.auth"])
-      render "accounts/new_facebook", :layout => "registration"
+      render "registrations/facebook_new", :layout => "registration"
     end
   end
 
