@@ -7,10 +7,10 @@
       %li= t ".p2"
       %li= t ".p3"
 
-  - form_tag "/account/subscribe_to_groups", :id => "add_groups", :class => "add_groups" do
+  = form_tag add_groups_registration_url, :id => "add_groups", :class => "add_groups", :method => "put" do
     %h2 Subscribe to some groups:
     #groups_container
-      - @groups.each do |group|
+      - current_community.groups.each do |group|
         .group
           = image_tag(group.avatar_url)
           .unchecked

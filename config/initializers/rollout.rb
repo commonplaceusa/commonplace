@@ -1,4 +1,4 @@
-uri = if Rails.env.development?
+uri = if Rails.env.development? || Rails.env.test?
         URI.parse("localhost:6379")
       elsif ENV["REDISTOGO_URL"].present?
         URI.parse(ENV["REDISTOGO_URL"])

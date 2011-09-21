@@ -2,8 +2,8 @@
 #main
   %h1
     =t(".h1")
-  = form_for current_user, :url => update_crop_account_path, :method => :put, :html => { :class => "crop" } do |f|
-    = image_tag current_user.avatar.url(:original), :id => "cropbox"
+  = form_for registration.user, :url => crop_avatar_registration_path, :method => :put, :html => { :class => "crop" } do |f|
+    = image_tag registration.avatar_url(:original), :id => "cropbox"
 
 
     - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|

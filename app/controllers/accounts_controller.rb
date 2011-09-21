@@ -4,25 +4,7 @@ class AccountsController < ApplicationController
 
   protect_from_forgery :except => :update
 
-  before_filter :authenticate_user!, :except => [:new, :create, :new_facebook]
-
-
-  def new
-    if !current_community
-      raise CanCan::AccessDenied
-    end
-    session["devise.community"] = current_community.id
-      
-    if logged_in?
-      redirect_to "/"
-      return
-    end
-
-    @user = User.new
-    @user.community = current_community
-    render :layout => "registration"
-
-  end
+  before_filter :authenticate_user!
 
   def new_facebook
     @_current_community = Community.find(session["devise.community"])
@@ -42,19 +24,6 @@ class AccountsController < ApplicationController
     redirect_to root_url
   end
   
-  def create
-    params[:user] ||= {}
-    
-    @user = User.new(params[:user].merge(:community => current_community))
-    if @user.save
-      sign_in(:user, @user)
-      kickoff.deliver_welcome_email(@user)
-      redirect_to edit_new_account_url
-    else
-      render :new, :layout => "registration"
-    end
-  end
-
   def edit
     if can? :edit, current_user
       render :layout => 'application'
@@ -75,80 +44,6 @@ class AccountsController < ApplicationController
   def avatar
     current_user.update_attributes(params[:user])
     render :nothing => true
-  end
-
-  def edit_new
-    @referral_sources = [
-      "Flyer at my door",
-      "Someone knocked on my door",
-      "In a meeting with #{current_community.organizer_name}",
-      "At a table or booth at an event",
-      "In an email",
-      "On Facebook or Twitter",
-      "On another website",
-      "In the news",
-      "Word of mouth",
-      "Other"
-    ]
-    render :layout => "registration"
-  end
-
-  def update_new
-    authorize! :update, User
-    current_user.attributes = params[:user]
-    if current_user.save
-      sign_in(current_user, :bypass => true)
-      if params[:user][:avatar].blank?
-        redirect_to :action => "add_feeds"
-      else
-        redirect_to :action => "crop"
-      end
-    else
-      redirect_to :action => :edit_new
-    end
-  end
-
-  def crop
-    render :layout => "registration"
-  end
-  
-  def update_crop
-    authorize! :update, User
-
-    current_user.attributes = params[:user]
-    if current_user.save
-      redirect_to :action => "add_feeds"
-    else
-      render :edit_new
-    end
-  end
-
-  def add_feeds
-    @feeds = current_community.feeds
-    if @feeds.present?
-      render :layout => "registration"
-    else
-      redirect_to :action => "add_groups"
-    end
-  end
-  
-  def subscribe_to_feeds
-    current_user.feed_ids = params[:feed_ids]
-    redirect_to :action => "add_groups"
-  end
-
-  def add_groups
-    @groups = current_community.groups
-    if @groups.present?
-      render :layout => "registration"
-    else
-      redirect_to root_url
-    end
-  end
-
-  def subscribe_to_groups
-    current_user.group_ids = params[:group_ids]
-    redirect_to root_url
   end
 
   def update

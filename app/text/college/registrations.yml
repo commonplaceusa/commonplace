@@ -1,0 +1,34 @@
+college:
+  registrations:
+    new:
+      h1: Plug Into the %{community} Community
+      li1: CommonPlace is a web platform built for %{community} students.  It's like an online bulletin board for the %{community} community.
+      li2: Sign up to send and receive campus announcements written by your fellow students and organization leaders here at %{community}.
+      li3: CommonPlace is a community-building project. Join and help make the %{community} community even better.
+
+      li1fb: You are now connected to CommonPlace through Facebook. Please verify that you live in %{community} by providing your residence hall.
+
+      li2fb: Your information will not be shared with anyone. It is only used to verify that you live in %{community}.
+      
+    profile:
+      h1: Fill out your campus profile
+      p2: CommonPlace makes it easy for you to share needs, announcements and events with your fellow students at %{community}.
+      p3: Use CommonPlace whenever you want to get local recommendations, borrow goods from your neighbors, or plan the next big campus initiative.
+      p4: Before you start, take a moment to fill out your campus profile.
+      password_hint: "*Required field."
+
+    avatar:
+      h1: Please crop your avatar
+
+    feeds:
+      h1: Stay in the Loop!
+      h2: "Subscribe to some campus feeds:"
+      p1: Organization leaders use CommonPlace to share events and announcements with campus.
+      p2: Subscribe to some campus feeds in order to get notified whenever they send out updates.
+      
+    groups:
+      h1: Get Connected!
+      p1: CommonPlace Groups help you connect with people on campus who share similar interests.
+      p2: Subscribe to groups to send and receive information about specific community topics that you care about. 
+      p3: Feel free to join as many as you want! 
+      

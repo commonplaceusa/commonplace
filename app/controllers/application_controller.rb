@@ -95,22 +95,23 @@ class ApplicationController < ActionController::Base
   end
 
   def current_community
-    @_current_community ||= 
-      if params[:community]
-        Community.find_by_slug(params[:community])
-      elsif logged_in?
-        current_user.community
-      else
-        nil
-      end
-
-    if @_current_community
-      params[:community] = @_current_community.slug
-      translate_with :community => @_current_community.name
-      Time.zone = @_current_community.time_zone    
+    @_community ||= if params[:community]
+                      Community.find_by_slug(params[:community])
+                    elsif logged_in?
+                      current_user.community
+                    else
+                      nil
+                    end
+    
+    if @_community
+      params[:community] = @_community.slug
+      translate_with :community => @_community.name
+      Time.zone = @_community.time_zone    
     end
-    @_current_community 
+
+    @_community
   end
+  
 
   def current_neighborhood
     if logged_in?

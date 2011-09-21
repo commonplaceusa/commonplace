@@ -2,17 +2,17 @@
 #main 
   #registration_information
     %ul
-      %li= "Thanks for signing up, #{current_user.first_name}!"
+      %li= "Thanks for signing up, #{registration.first_name}!"
       %li= t ".p3"
       %li= t ".p4"
 
-  = semantic_form_for current_user, :url => update_new_account_path, :html => {:multipart => true}, :method => :put do |f|
+  = semantic_form_for registration.user, :url => add_profile_registration_url, :html => {:multipart => true, :class => "add_profile"}, :method => :put do |f|
     = f.inputs do 
-      - unless current_user.is_facebook_user or current_user.password.present?
+      - unless registration.from_facebook?
         = f.input :password, :required => true, :hint => t(".password_hint")
 
-      - if current_user.is_facebook_user
-        %img{:src => current_user.avatar_url, :style => "vertical-align:middle;float:left;", :width => "100px"}
+      - if registration.from_facebook?
+        %img{:src => registration.avatar_url, :style => "vertical-align:middle;float:left;", :width => "100px"}
         = f.input :avatar, :input_html => {:size => 25}, :wrapper_html => { :class => "facebook"} , :label => "Upload a different photo?:"
         %div{style: "clear: both; height: 10px"}
       - else
@@ -20,7 +20,7 @@
       = f.input :about
       = f.input :interest_list
       = f.input :offer_list
-      = f.input :referral_source, :as => :select, :collection => @referral_sources, :hint => "*Required field."
+      = f.input :referral_source, :as => :select, :collection => registration.referral_sources
       = f.input :referral_metadata
 
     = f.buttons do

@@ -5,10 +5,10 @@
     %ul
       %li= t ".p1"
       %li= t ".p2"
-  - form_tag "/account/subscribe_to_feeds", :class => "add_feeds" do
+  = form_tag add_feeds_registration_url, :class => "add_feeds", :method => "put" do
     %h2= t ".h2"
     #feeds_container
-      - @feeds.each do |feed|
+      - current_community.feeds.each do |feed|
         .feed
           =image_tag(feed.avatar_url(:thumb))
           .unchecked

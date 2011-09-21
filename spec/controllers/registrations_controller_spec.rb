@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AccountsController do
+describe RegistrationsController do
   include Devise::TestHelpers
 
 
@@ -12,28 +12,28 @@ describe AccountsController do
 
   describe "#create" do
     before do 
-      @user = User.new
-      stub(User).new { @user }
+      @registration = Registration.new(User.new)
+      stub(Registration).new { @registration }
     end
 
-    context "when user save is succesful" do
+    context "when registration save is succesful" do
       before { 
-        stub(@user).save { true } 
+        stub(@registration).save { true } 
         stub(controller.kickoff).deliver_welcome_email
         post :create
       }
       
       it "redirects to edit new" do
-        response.should redirect_to('http://test.host/account/edit_new')
+        response.should redirect_to('http://test.host/registration/profile')
       end
 
       it "sends a welcome email" do
-        controller.kickoff.should have_received.deliver_welcome_email(@user)
+        controller.kickoff.should have_received.deliver_welcome_email(@registration.user)
       end
     end
 
     context "when user save is not successful" do
-      before { stub(@user).save { false } }
+      before { stub(@registration).save { false } }
 
       it "renders new.haml" do
         post :create
