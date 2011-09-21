@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110920185338) do
+ActiveRecord::Schema.define(:version => 20110921174419) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -372,7 +372,6 @@ ActiveRecord::Schema.define(:version => 20110920185338) do
     t.decimal  "longitude"
     t.string   "referral_source"
     t.datetime "last_login_at"
-    t.boolean  "seen_tour"
     t.boolean  "transitional_user"
     t.string   "referral_metadata"
     t.float    "generated_lat"
