@@ -44,7 +44,7 @@ Commonplace::Application.routes.draw do
 
   resource :user_session
 
-  resources :feeds, :only => [:show, :new, :create, :edit, :update, :destroy] do
+  resources :feeds, :only => [:new, :create, :edit, :update, :destroy] do
     member do
       get :import
       get :profile
@@ -58,7 +58,7 @@ Commonplace::Application.routes.draw do
     end
   end
 
-  match "/pages/:id" => "feeds#profile"
+  match "/pages/:id" => "bootstraps#feed"
     
   resource :account do
     member do 
@@ -126,15 +126,15 @@ Commonplace::Application.routes.draw do
       end
     end
 
-    match '/?community=:community', :to => "communities#show"
+    match '/?community=:community', :to => "bootstrapss#community"
 
-    match '/:nil_community', :to => "communities#show"
+    match '/:nil_community', :to => "bootstraps#community"
 
     resources :password_resets
 
-    root :to => "communities#show"
+    root :to => "bootstraps#community"
 
-    match "/groups/:slug", :to => "groups#show"
+    match "/groups/:slug", :to => "bootstraps#group"
 
   end
 
@@ -156,6 +156,6 @@ Commonplace::Application.routes.draw do
   ["/posts(/:id)", "/users(/:id)", "/events(/:id)", "/feeds",
    "/announcements(/:id)", "/group_posts(/:/id)", "/groups(/:id)",
    "/users/:id/messages/new"].each do |s|
-    match s, :to => "communities#show", :via => :get, :as => :community
+    match s, :to => "bootstraps#community", :via => :get, :as => :community
   end
 end
