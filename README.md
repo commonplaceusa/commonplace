@@ -36,8 +36,13 @@ Getting Started
 5.  `cd commonplace`
 6.  `gem install bundler`
 7.  Install Redis
+
 8.  Install ImageMagick 
+  * `sudo apt-get install imagemagick libmagick9-dev`
+
 9.  Install Postgres
+  * `sudo apt-get install postgresql libpq-dev`
+
 10. `bundle install`
 11. `cp config/database.yml.example config/database.yml`
 12. `bundle exec rake db:setup`
