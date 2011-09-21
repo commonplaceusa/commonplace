@@ -56,8 +56,6 @@ Commonplace::Application.routes.draw do
       get :crop
       put :update_crop
     end
-    resource :subscription, :only => [:create, :destroy]
-    resource :invites, :controller => 'feeds/invites', :only => [:new, :create]
   end
 
   match "/pages/:id" => "feeds#profile"
@@ -110,23 +108,9 @@ Commonplace::Application.routes.draw do
 
     # Community routes 
     
-    resources :groups, :only => [] do
-      resource :membership, :only => [:create, :destroy]
-   
-    end
-    
     match "/:community/good_neighbor_discount", :to => "communities#good_neighbor_discount"
     
     # Post-like things
-    resources :group_posts, :only => [:create]
-    
-    resources :announcements, :only => [:create]
-    
-    resources :events, :only => [:create]  
-
-    resources :replies
-
-    resources :avatars, :only => [:edit, :update]
     resource :inbox, :only => [:get]
 
     resources :messages do
@@ -157,7 +141,6 @@ Commonplace::Application.routes.draw do
 
 
   scope "/:community" do
-
     match 'about' => 'site#about'
     match 'privacy' => 'site#privacy', :as => :privacy
     match 'terms' => 'site#terms', :as => :terms
