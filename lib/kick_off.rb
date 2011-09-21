@@ -48,7 +48,10 @@ class KickOff
     recipients = Array(emails) # it's definitely an array now
 
     # That don't already exist in the system
-    recipients.reject! {|email| User.exists?(:email => email) }
+    
+    recipients.reject! do |email| 
+      User.exists?(:email => Mail::Address.new(email).address) 
+    end
 
     # Send invites
     recipients.each do |email|
