@@ -1,2 +1,0 @@
-class MeetupEvent < Event
-end
