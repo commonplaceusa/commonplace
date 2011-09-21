@@ -7,10 +7,10 @@ feature "Registration", %q{
 } do
 
   background do
-    @community = community = Factory(:community, :slug => "testing")
+    @community = community = FactoryGirl.create(:community, :slug => "testing")
     
-    neighborhood = Factory(:neighborhood, :community => community, 
-                           :coordinates => Forgery(:latlng).random)
+    neighborhood = FactoryGirl.create(:neighborhood, :community => community, 
+                                      :coordinates => Forgery(:latlng).random)
 
     stub_geocoder("100 Example Way, #{@community.name}", 
                   :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
