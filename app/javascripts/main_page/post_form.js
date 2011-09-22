@@ -7,7 +7,7 @@ var PostForm = CommonPlace.View.extend({
     "submit": "createPost",
     "click [name=commercial][value=yes]": "showPublicityWarning",
     "click [name=commercial][value=no]": "hidePublicityWarning",
-    "focus input, textarea": "onFormFocus"
+    "focusin input, textarea": "onFormFocus"
   },
 
   afterRender: function() {
@@ -39,6 +39,15 @@ var PostForm = CommonPlace.View.extend({
   },
 
   onFormFocus: function() {
-    this.$(".on-focus").slideDown(500);
+    $moreInputs = this.$(".on-focus");
+    if (!$moreInputs.is(":visible")) {
+      $moreInputs.show("blind", 
+                       // animate to it's natural height (set explicitly to
+                       // avoid choppiness)
+                       { height: $moreInputs.actual('height') }, 
+                       // set height back to auto so the element can
+                       // naturally expand/contract
+                       function() { $moreInputs.css({height: "auto"}); });
+    }
   }
 });
