@@ -25,4 +25,8 @@ class Neighborhood < ActiveRecord::Base
   def contains?(position)
     position.within? self.bounds
   end
+
+  def posts
+    Posts.where("user_id in (?)", self.user_ids)
+  end
 end
