@@ -28,6 +28,7 @@ class RegistrationsController < ApplicationController
 
   def add_profile
     if registration.update_attributes params[:user]
+      sign_in(registration.user, :bypass => true)
       if registration.has_avatar?
         redirect_to avatar_registration_url
       else
