@@ -81,10 +81,12 @@ module Serializer
         "address" => o.address,
         "user_id" => o.user_id,
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
+        "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
         "links" => {
           "replies" => "/events/#{o.id}/replies",
-          "self" => "/events/#{o.id}"
+          "self" => "/events/#{o.id}",
+          "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
         }
       }
 
