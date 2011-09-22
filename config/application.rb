@@ -30,7 +30,9 @@ module Commonplace
                             File.join(Rails.root, 'app', 'text'),
                             File.join(Rails.root, 'app', 'images'),
                             File.join(Rails.root, 'vendor', 'javascripts'),
-                            File.join(Rails.root, 'vendor', 'stylesheets')]
+                            File.join(Rails.root, 'vendor', 'stylesheets'),
+                            File.join(Rails.root, 'lib', 'javascripts')
+                           ]
 
 
     config.generators do |g|
