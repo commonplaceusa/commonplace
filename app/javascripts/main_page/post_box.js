@@ -58,8 +58,9 @@ var PostBox = CommonPlace.View.extend({
 
   $tabForms: function() { return this.$("form"); },
 
-  $tabButtons: function() { return this.$("a.tab-button"); }
+  $tabButtons: function() { return this.$("a.tab-button"); },
 
+  accountHasFeeds: function() { return this.account.get('feeds').length > 0 }
 
 });
     
