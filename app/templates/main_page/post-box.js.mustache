@@ -9,10 +9,12 @@
       {{#t}}create-neighborhood-post.a{{/t}}
     </a>
 
-    <a href="#/new-announcement" class="create-announcement tab-button">
-      <img src="{{#assets}}main_page/announcement-tab-icon.png{{/assets}}">
-      {{#t}}create-announcement.a{{/t}}
-    </a>
+    {{#accountHasFeeds}}
+      <a href="#/new-announcement" class="create-announcement tab-button">
+        <img src="{{#assets}}main_page/announcement-tab-icon.png{{/assets}}">
+        {{#t}}create-announcement.a{{/t}}
+      </a>
+    {{/accountHasFeeds}}
 
     <a href="#/new-event" class="create-event tab-button">
       <img src="{{#assets}}main_page/event-tab-icon.png{{/assets}}">
