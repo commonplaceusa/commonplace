@@ -16,7 +16,7 @@
               %li= link_to 'Create a feed', new_feed_registration_url
           - else
             %h4
-              = link_to((t "feeds.register"), new_feed_url)
+              = link_to((t "feeds.register"), new_feed_registration_url)
         = tab_to "Settings", "/account"
         = tab_to "FAQ", "/#{current_community.slug}/faq"
         = tab_to "Logout", "/users/sign_out"
