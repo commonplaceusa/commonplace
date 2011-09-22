@@ -53,7 +53,7 @@ var PostWireItem = WireItem.extend({
   events: {
     "click .author": "messageUser",
     "click .moreBody": "loadMore",
-    "mouseenter": "showInfoBox"
+    "mouseenter": "showProfile"
   },
 
   messageUser: function(e) {
@@ -82,11 +82,11 @@ var PostWireItem = WireItem.extend({
     this.allwords = true;
     this.render();
   },
-  
-  getInfoBox: function(callback) {
-    var account = this.account;
+
+  getProfile: function(callback) {
+    var self = this;
     this.model.user(function(user) {
-      callback(new UserInfoBox({ model: user, account: account }));
+      callback(new UserProfileBox({ model: user, account: self.account }));
     });
   }
 
