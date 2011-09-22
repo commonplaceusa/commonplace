@@ -8,7 +8,7 @@ var GroupWireItem = WireItem.extend({
   },
 
   events: {
-    "mouseenter": "showInfoBox",
+    "mouseenter": "showProfile",
     "click button.subscribe": "subscribe",
     "click button.unsubscribe": "unsubscribe"
   },
@@ -22,7 +22,12 @@ var GroupWireItem = WireItem.extend({
   },
 
   getInfoBox: function(callback) {
-    callback(new GroupInfoBox({model: this.model, account: this.options.account}));
+    callback(new GroupProfile({model: this.model, account: this.options.account}));
+  },
+
+  getProfile: function(callback) {
+    console.log("hellop");
+    callback(new GroupProfile({model: this.model, account: this.options.account}));
   },
 
   subscribe: function() { this.options.account.subscribeToGroup(this.model); },

@@ -5,5 +5,13 @@ var WireItem = CommonPlace.View.extend({
         window.infoBoxManager.show(infoBox);
       });
     }
+  },
+
+  showProfile: function() {
+    if (window.infoBoxManager) {
+      this.getProfile(function(profile) {
+        window.infoBoxManager.show(profile);
+      });
+    }
   }
 });

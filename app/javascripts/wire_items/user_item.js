@@ -23,7 +23,7 @@ var UserWireItem = WireItem.extend({
 
   events: {
     "click button": "messageUser",
-    "mouseenter": "showInfoBox"
+    "mouseenter": "showProfile"
   },
 
   messageUser: function(e) {
@@ -36,6 +36,10 @@ var UserWireItem = WireItem.extend({
 
   getInfoBox: function(callback) {
     callback(new UserInfoBox({ model: this.model, account: this.options.account }));
+  },
+
+  getProfile: function(callback) {
+    callback(new UserProfileBox({ model: this.model, account: this.options.account }));
   }
 
 });
