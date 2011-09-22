@@ -1,0 +1,17 @@
+<div class="spacing"> 
+  <div class="profile-main"> 
+    <h3>{{fullName}}</h3>
+    <img src="{{avatarUrl}}" width="122" /> 
+    <div class="profile-top">
+      <p class="mini-description">Mini-description text or status goes here.</p>
+    </div> 
+  </div> 
+  <h4>About</h4> 
+  <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>
+  <h4>Interests</h4> 
+  <p class="about">{{#interests}}{{.}}, {{/interests}}</p>
+  <h4>Goods</h4> 
+  <p class="about">{{#offers}}{{.}}, {{/offers}}</p>
+  <h4>Skill</h4> 
+  <p class="about">{{skills}}</p> 
+</div> 
