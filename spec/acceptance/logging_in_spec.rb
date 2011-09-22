@@ -15,8 +15,8 @@ feature "Logging in", %q{
                   :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
 
     FactoryGirl.create(:user, :email => "test@example.com", :password => "password",
-            :neighborhood_id => neighborhood.id, :community_id => community.id,
-                   :address => "100 Example Way")
+                       :neighborhood_id => neighborhood.id, :community_id => community.id,
+                       :address => "100 Example Way")
     Capybara.app_host = "http://localhost:#{Capybara.server_port}"
   end
 
@@ -33,7 +33,7 @@ feature "Logging in", %q{
       find("input.submit").click
     end
 
-    response.should be_redirect
+    current_path.should == "/"
     
   end
 end
