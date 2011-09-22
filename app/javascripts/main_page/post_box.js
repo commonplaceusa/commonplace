@@ -49,13 +49,6 @@ var PostBox = CommonPlace.View.extend({
     this.$("h1").text(this.t(tab + ".h1"));
   },
     
-  tabs: function() {
-    return ["create-neighborhood-post",
-            "create-announcement",
-            "create-event",
-            "create-group-post"];
-  },
-
   $tabForms: function() { return this.$("form"); },
 
   $tabButtons: function() { return this.$("a.tab-button"); },
