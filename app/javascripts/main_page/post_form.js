@@ -6,7 +6,8 @@ var PostForm = CommonPlace.View.extend({
   events: {
     "submit": "createPost",
     "click [name=commercial][value=yes]": "showPublicityWarning",
-    "click [name=commercial][value=no]": "hidePublicityWarning"
+    "click [name=commercial][value=no]": "hidePublicityWarning",
+    "focus input, textarea": "onFormFocus"
   },
 
   afterRender: function() {
@@ -35,5 +36,9 @@ var PostForm = CommonPlace.View.extend({
 
   hidePublicityWarning: function() {
     this.$("p.warning").hide();
+  },
+
+  onFormFocus: function() {
+    this.$(".on-focus").slideDown(500);
   }
 });

@@ -38,6 +38,7 @@ var PostBox = CommonPlace.View.extend({
   },
 
   switchTab: function(tab) {
+    this.$(".on-focus").hide();
     this.$tabForms().removeClass("current");
     this.$tabButtons().removeClass("current");
     this.showTab(tab);
