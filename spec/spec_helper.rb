@@ -15,7 +15,7 @@ Spork.prefork do
 
     config.use_transactional_fixtures = false
 
-    config.around :each, :type => :request do |example|
+    config.around :each do |example|
       DatabaseCleaner.start
       example.run
       DatabaseCleaner.clean

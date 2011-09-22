@@ -33,12 +33,14 @@ feature "Registration", %q{
       fill_in "user[address]", :with => "100 Example Way"
       click_button "Create User"
     end
-  
-    current_path.should == "/registration/profile"
 
-    within "form.user" do
+    current_path.should == "/registration/profile"
+    save_and_open_page
+
+    within "form.add_profile" do
       fill_in "user[password]", :with => "super-secret"
-      click_button "Update User"
+
+      find("input.update").click
     end
 
     current_path.should == "/"
