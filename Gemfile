@@ -101,6 +101,7 @@ group :development, :test do
   gem 'pry' # for when IRB is not enough
   gem 'guard' # because doing things manually is for suckers
   gem 'guard-rspec'
+  gem 'guard-spork'
   gem 'guard-bundler'
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
 end

@@ -14,6 +14,14 @@ guard 'jslint-on-rails' do
   watch('config/jslint.yml')
 end
 
+guard 'spork' do
+  watch('config/application.rb')
+  watch('config/environment.rb')
+  watch(%r{^config/environments/.*\.rb$})
+  watch(%r{^config/initializers/.*\.rb$})
+  watch('spec/spec_helper.rb')
+end
+
 
 guard 'rspec', cli: "--colour --drb --format Fuubar" do
   watch('spec/spec_helper.rb') { "spec" }
