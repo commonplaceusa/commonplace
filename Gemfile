@@ -100,6 +100,7 @@ group :development, :test do
   gem 'foreman' # we use foreman to start all the processes we need for development
   gem 'pry' # for when IRB is not enough
   gem 'guard' # because doing things manually is for suckers
+  gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
 end
@@ -114,7 +115,5 @@ group :test do
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git' # we use capybara for integration testing
   gem 'launchy' # we use launchy to launch a browser during integration testing 
   gem 'database_cleaner' # we use database_cleaner to clean the database between tests
-  gem 'autotest-standalone' # we use autotest to run tests when files change
-  gem 'autotest-rails-pure' # we use autotest to run tests when files change
   gem 'jasmine' # we use jasmine for javascript tests
 end
