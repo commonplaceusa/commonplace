@@ -27,6 +27,6 @@ class Neighborhood < ActiveRecord::Base
   end
 
   def posts
-    Posts.where("user_id in (?)", self.user_ids)
+    Post.where("user_id in (?)", self.user_ids)
   end
 end
