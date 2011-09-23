@@ -40,7 +40,8 @@ module Serializer
         "offers" => o.offer_list,
         "subscriptions" => o.feed_list,
         "links" => {
-          "messages" => "/people/#{o.id}/messages"
+          "messages" => "/people/#{o.id}/messages",
+          "self" => "/users/#{o.id}"
         }
       }
       when Post
@@ -57,7 +58,8 @@ module Serializer
         "last_activity" => o.last_activity.utc,
         "links" => {
           "author" => "/users/#{o.user_id}",
-          "replies" => "/posts/#{o.id}/replies"
+          "replies" => "/posts/#{o.id}/replies",
+          "self" => "posts/#{o.id}"
         }
       }
 
@@ -130,7 +132,8 @@ module Serializer
         "links" => {
           "replies" => "/group_posts/#{o.id}/replies",
           "author" => "/users/#{o.user_id}",
-          "group" => "/groups/#{o.group_id}"
+          "group" => "/groups/#{o.group_id}",
+          "self" => "/group_posts/#{o.id}"
         }
         }
 
@@ -171,7 +174,8 @@ module Serializer
           "invites" => "/feeds/#{o.id}/invites",
           "messages" => "/feeds/#{o.id}/messages",
           "edit" => "/feeds/#{o.id}/edit",
-          "subscribers" => "/feeds/#{o.id}/subscribers"
+          "subscribers" => "/feeds/#{o.id}/subscribers",
+          "self" => "/feeds/#{o.id}"
         },
         "messagable_author_url" => "/feeds/#{o.id}/#{o.user.id}",
       "messagable_author_name" => o.name
@@ -189,7 +193,8 @@ module Serializer
           "posts" => "/groups/#{o.id}/posts",
           "members" => "/groups/#{o.id}/members",
           "announcements" => "/groups/#{o.id}/announcements",
-          "events" => "/groups/#{o.id}/events"
+          "events" => "/groups/#{o.id}/events",
+          "self" => "/groups/#{o.id}"
         }
         }
 
@@ -216,7 +221,8 @@ module Serializer
         "about" => o.about,
         "links" => { 
           "feed_subscriptions" => "/account/subscriptions/feeds",
-          "group_subscriptions" => "/account/subscriptions/groups"
+          "group_subscriptions" => "/account/subscriptions/groups",
+          "self" => "/account"
         }
         }
 
@@ -241,7 +247,8 @@ module Serializer
           "events" => "/communities/#{o.id}/events",
           "announcements" => "/communities/#{o.id}/announcements",
           "group_posts" => "/communities/#{o.id}/group_posts",
-          "users" => "/communities/#{o.id}/users"
+          "users" => "/communities/#{o.id}/users",
+          "self" => "/communities/#{o.id}"
         }
       }
       end
