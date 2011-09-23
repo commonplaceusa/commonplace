@@ -3,20 +3,33 @@ require 'spec_helper'
 describe EmailParseController do
 
   describe ".strip_email_body" do
-    after = "\n> > Hi Peter, 
-> CommonPlace Team just replied to a message: jojo > > jojo > But laso check this out. "
-    ["^-- \n", "^--\n", "-----Original\ Message-----", "--- Original Message---", "_" * 32, "On Mar 5, 2011, at 10:51 AM, Falls Church CommonPlace wrote:", "From: Max Tilford", "Sent from my iPhone", "4/10/2011 3:16:02 P.M. Eastern Daylight Time,\n nnotifications@fallschurch.ourcommonplace.com writes:"].each do |separator|
 
-      it "strips by #{separator.chomp}" do
-        result = EmailParseController.strip_email_body("
+    let(:separators) { ["^-- \n",
+     "^--\n",
+     "-----Original\ Message-----",
+     "--- Original Message---",
+     "_" * 32,
+     "On Mar 5, 2011, at 10:51 AM, Falls Church CommonPlace wrote:",
+     "From: Max Tilford",
+     "Sent from my iPhone",
+     "4/10/2011 3:16:02 P.M. Eastern Daylight Time,\n nnotifications@fallschurch.ourcommonplace.com writes:"
+                       ] }
+
+    let(:make_email) { lambda {|separator| <<END } }
 Hey -- testing a reply!
 #{separator}
 > > > Reply to CommonPlace 
 > or reply to this email to message CommonPlace. > > Want to disable this and/or other e-mails? Click here to manage your subscriptions
-")
-        result.should match "Hey -- testing a reply"
-        result.should_not match "Hi Peter"
+END
+
+
+    it "strips by common separators" do
+      results = separators.map do |separator|
+        EmailParseController.strip_email_body(make_email.call(separator))
       end
+      
+      results.each {|r| r.should match "Hey -- testing a reply" }
+      results.each {|r| r.should_not match "Hi Peter" }
     end
   end
 

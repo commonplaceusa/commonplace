@@ -10,33 +10,34 @@ Spork.prefork do
   require 'rr_patch'
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  Dir[Rails.root.join("spec/acceptance/support/**/*.rb")].each {|f| require f}
+
   RSpec.configure do |config|
-    DatabaseCleaner.strategy = :truncation
-
-    config.use_transactional_fixtures = false
-
-    config.around :each do |example|
-      DatabaseCleaner.start
-      example.run
-      DatabaseCleaner.clean
-    end
+    config.use_transactional_examples = false
     
     config.mock_with :rr
 
     config.before :all do 
       stub(Geocoder).search
     end
+
+    config.before :suite do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
+    end
+
+    config.before :each do
+      DatabaseCleaner.start
+    end
+
+    config.after :each do
+      DatabaseCleaner.clean
+    end
     
-    config.include(Matchers)
+    config.include Matchers
+    config.include Helpers, :type => :request 
   end
 
 end
 
-Spork.each_run do 
-
-  # Requires supporting ruby files with custom matchers and macros, etc,
-  # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-  
-
-end
+Spork.each_run { }
