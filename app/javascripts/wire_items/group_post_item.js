@@ -83,11 +83,11 @@ var GroupPostWireItem = WireItem.extend({
     this.render();
   },
   
-  getProfile: function(callback) {
-    var account = this.account;
-    this.model.group(function(group) {
-      callback(new GroupProfileBox({ model: group, account: account }));
+  showProfile: function(e) {
+    var group = new Group({
+      links: { self: this.model.link("group") }
     });
+    window.infoBox.showGroup(group);
   },
 
   isOwner: function() {

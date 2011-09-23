@@ -21,12 +21,8 @@ var FeedWireItem = WireItem.extend({
   name: function() {
     return this.model.get("name");
   },
-
-  getInfoBox: function(callback) {
-    callback(new FeedInfoBox({ model: this.model, account: this.options.account }));
-  },
   
-  getProfile: function(callback) {
+  showProfile: function(callback) {
     callback(new FeedProfileBox({ model: this.model, account: this.options.account }));
   },
 

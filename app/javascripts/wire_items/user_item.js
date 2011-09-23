@@ -34,12 +34,8 @@ var UserWireItem = WireItem.extend({
     formview.render();
   },
 
-  getInfoBox: function(callback) {
-    callback(new UserInfoBox({ model: this.model, account: this.options.account }));
-  },
-
-  getProfile: function(callback) {
-    callback(new UserProfileBox({ model: this.model, account: this.options.account }));
+  showProfile: function(e) {
+    window.infoBox.showUser(this.model);
   }
 
 });
