@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
+require 'spec_helper'
 
 feature "Logging in", %q{
   In order to interact with CommonPlace
