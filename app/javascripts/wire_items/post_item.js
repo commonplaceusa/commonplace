@@ -83,11 +83,11 @@ var PostWireItem = WireItem.extend({
     this.render();
   },
 
-  getProfile: function(callback) {
-    var self = this;
-    this.model.user(function(user) {
-      callback(new UserProfileBox({ model: user, account: self.account }));
+  showProfile: function(e) {
+    var user = new User({
+      links: { self: this.model.link("author") }
     });
+    window.infoBox.showUser(user);
   }
 
 });

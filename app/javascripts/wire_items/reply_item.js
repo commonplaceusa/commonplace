@@ -7,7 +7,7 @@ var ReplyWireItem = WireItem.extend({
 
   events: {
     "click .reply-text > .author": "messageUser",
-    "mouseenter": "showInfoBox"
+    "mouseenter": "showProfile"
   },
 
   time: function() {
@@ -37,10 +37,10 @@ var ReplyWireItem = WireItem.extend({
     });
   },
 
-  getInfoBox: function(callback) {
+  showProfile: function(callback) {
     var account = this.account;
     this.model.user(function(user) {
-      callback(new UserInfoBox({ model: user, account: account }));
+      callback(new UserProfileBox({ model: user, account: account }));
     });
   }
 });

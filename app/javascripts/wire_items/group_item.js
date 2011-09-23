@@ -21,13 +21,8 @@ var GroupWireItem = WireItem.extend({
     return this.model.get("name");
   },
 
-  getInfoBox: function(callback) {
-    callback(new GroupProfile({model: this.model, account: this.options.account}));
-  },
-
-  getProfile: function(callback) {
-    console.log("hellop");
-    callback(new GroupProfile({model: this.model, account: this.options.account}));
+  showProfile: function(e) {
+    window.infoBox.showGroup(this.model);
   },
 
   subscribe: function() { this.options.account.subscribeToGroup(this.model); },
