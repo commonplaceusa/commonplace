@@ -50,8 +50,8 @@ var InfoBox = CommonPlace.View.extend({
           var list = new InfoListItem({ model: item, account: self.account });
           list.render();
           $(self.listId).append(list.el);
-          if (callback) { callback(collection); }
         });
+        if (callback) { callback(collection); }
       }
     });
     var group = {
