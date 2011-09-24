@@ -1,15 +1,3 @@
-var InfoBoxManager = CommonPlace.View.extend({
-
-  infoBoxId: "#info-box",
-  profileId: "#profile",
-
-  show: function(newProfile) { 
-    this.profile = newProfile; 
-    this.profile.render();
-    $(this.profileId).replaceWith(this.profile.el);
-  }
-  
-});
 
 var MainPageView = CommonPlace.View.extend({
   template: "main_page/main-page",
@@ -34,11 +22,7 @@ var MainPageView = CommonPlace.View.extend({
       community: this.community
     });
 
-    window.infoBoxManager = new InfoBoxManager({
-      account: this.account,
-      community: this.community,
-      model: this.infoBox
-    });
+    window.infoBox = this.infoBox;
 
     this.views = [this.postBox, this.lists, this.infoBox];
   },
@@ -49,6 +33,8 @@ var MainPageView = CommonPlace.View.extend({
       view.render();
       self.$("#" + view.id).replaceWith(view.el);
     });
+
+    window.infoBox.showAccount(this.account);
   }
 
 });
