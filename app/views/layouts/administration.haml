@@ -31,7 +31,7 @@
           #main
             = yield
         - else
-          - form_for UserSession.new, :url => user_session_path do |f|
+          = form_for UserSession.new, :url => user_session_path do |f|
             .field.email
               %label= 'Email'.upcase
               = f.text_field :email, :size => 20

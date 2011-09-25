@@ -1,6 +1,6 @@
 
 
-- form_tag update_owner_feed_url(@feed), :method => :put, :class => "feed" do
+= form_tag update_owner_feed_url(@feed), :method => :put, :class => "feed" do
   %p To change the owner of this feed, enter the email address associated with the account that will be the new owner.
   - if @error
     %p.error We could not find an account with that email address.

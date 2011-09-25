@@ -68,7 +68,7 @@
 %table{:width => "100%"}
   %tr
     %td#map_canvas{:style => "width: 50%; height:300px"}
-      - form_tag "/organizer/add", :method => :post do
+      = form_tag "/organizer/add", :method => :post do
         = label_tag :address, "Address"
         = text_field_tag :address
         = @center_zip_code
