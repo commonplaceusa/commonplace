@@ -17,7 +17,7 @@
           - else
             %h4
               = link_to((t "feeds.register"), new_feed_registration_url)
-        = tab_to "Settings", "/account"
+        = tab_to "Settings", "/account/edit"
         = tab_to "FAQ", "/#{current_community.slug}/faq"
         = tab_to "Logout", "/users/sign_out"
       = link_to "/", :id => "logo" do
