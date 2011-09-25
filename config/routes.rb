@@ -32,9 +32,7 @@ Commonplace::Application.routes.draw do
   match "/admin/map" => "admin#map"
 
   # Blog and Starter Site routes
-  resources :internships, :only => [:new, :create]
   resources :requests, :only => [:new, :create]
-  match 'interns', :to => "site#interns"
 
   match "/facebook_canvas/" => "facebook_canvas#index"
 
