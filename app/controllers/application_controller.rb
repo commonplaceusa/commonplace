@@ -1,18 +1,14 @@
 class ApplicationController < ActionController::Base
-  #include CentralLogger::Filter
   protect_from_forgery
   helper :all
   include FeedsHelper
   helper_method :current_community
-  helper_method :current_neighborhood
   helper_method 'logged_in?'
-  helper_method 'xhr?'
-  helper_method :facebook_session
+
   helper_method :api, :serialize
   
-  before_filter :domain_redirect, :set_process_name_from_request, :set_locale, :set_api_token
-  after_filter :unset_process_name_from_request
-
+  before_filter :domain_redirect, :set_locale, :set_api_token
+  
   rescue_from CanCan::AccessDenied do |exception|
     store_location
     redirect_to "/users/sign_in"
@@ -42,23 +38,9 @@ class ApplicationController < ActionController::Base
     @_cp_client ||= CPClient.new(:host => "http://commonplace.api", :api_key => current_user.authentication_token)
   end
   
-  def set_process_name_from_request
-    $0 = request.path[0,16] 
-  end   
-  
-  def unset_process_name_from_request
-    $0 = request.path[0,15] + "*"
-  end  
-  
   def translate_with(options = {})
     @default_translate_options ||= {}
     @default_translate_options.merge!(options)
-  end
-
-  def set_template_format
-    if xhr?
-      response.template.template_format = :json
-    end
   end
 
   def domain_redirect
@@ -112,17 +94,6 @@ class ApplicationController < ActionController::Base
     @_community
   end
   
-
-  def current_neighborhood
-    if logged_in?
-      if current_user.admin? && params[:neighborhood_id].present?
-        current_user.neighborhood = Neighborhood.find(params[:neighborhood_id])
-        current_user.save!
-      end
-      @current_neighborhood ||= current_user.neighborhood
-    end
-  end
-
   def store_location
     session["user_return_to"] = request.fullpath
   end
