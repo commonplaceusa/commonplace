@@ -16,8 +16,10 @@ Commonplace::Application.configure do
   config.cache_store = :dalli_store
   
   # Full error reports are disabled and caching is turned on
+  config.consider_all_requests_local = true
 
   config.action_controller.perform_caching             = true
+
   config.log_level = :debug
   
   
