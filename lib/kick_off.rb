@@ -152,6 +152,10 @@ class KickOff
     enqueue(FeedWelcome, feed.id)
   end
 
+  def deliver_reply_based_invite(user_id)
+    Resque.enqueue(ReplyBasedInvite, user_id)
+  end
+
   private
   
   def enqueue(*args)

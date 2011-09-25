@@ -12,3 +12,9 @@ import_feeds_rss:
   queue: rss_importer
   description: "Imports feed announcements from rss"
 
+reply_based_email:
+  cron: "30 09 * * 1"
+  class: ReplyInviteJob
+  args:
+  queue: reply_based_invite
+  description: "Sends out invitation to the users if they receive replies to their posts."

@@ -17,4 +17,16 @@ describe RssImporter do
       RssImporter.strip_feedflare(html).should == html
     end
   end
+
+  context "given a markdown feed and an RSS source link" do
+    it "should truncate the feed to 150 words and link to the source" do
+      source = "http://en.wikipedia.org/wiki/Robert_D._Putnam"
+      orig_feed  = 'Roger Putnam graduated from Swarthmore College in 1963, won a Fulbright Fellowship to study at Balliol College, Oxford, and went on to earn master\'s and doctorate degrees from Yale University, the latter in 1970. He taught at the University of Michigan until going to Harvard in 1979, where he has held a variety of positions, including Dean of the Kennedy School, and is currently the Malkin Professor of Public Policy. Putnam was born as a religiously observant Methodist. Around the time of his marriage, he converted to Judaism, his wife\'s religion. His first work in the area of social capital was Making Democracy Work: Civic Traditions in Modern Italy, a comparative study of regional governments in Italy which drew great scholarly attention for its argument that the success of democracies depends in large part on the horizontal bonds that make up social capital.In 1995 he published "Bowling Alone: America\'s Declining Social Capital" in the Journal of Democracy. The article was widely read and garnered much attention for Putnam, including an invitation to meet with then-President Bill Clinton and a spot in the pages of People magazine. Some critics argued that Putnam was ignoring new organizations and forms of social capital; others argued that many of the included organizations were responsible for the suppression of civil rights movements and the reinforcement of anti-egalitarian social norms. Over the last decade and a half, the United States had seen an increase in bowlers but a decrease in bowling leagues.'
+      truncated = 'Roger Putnam graduated from Swarthmore College in 1963, won a Fulbright Fellowship to study at Balliol College, Oxford, and went on to earn master\'s and doctorate degrees from Yale University, the latter in 1970. He taught at the University of Michigan until going to Harvard in 1979, where he has held a variety of positions, including Dean of the Kennedy School, and is currently the Malkin Professor of Public Policy. Putnam was born as a religiously observant Methodist. Around the time of his marriage, he converted to Judaism, his wife\'s religion. His first work in the area of social capital was Making Democracy Work: Civic Traditions in Modern Italy, a comparative study of regional governments in Italy which drew great scholarly attention for its argument that the success of democracies depends in large part on the horizontal bonds that make up social capital.In 1995 he published "Bowling<a href="http://en.wikipedia.org/wiki/Robert_D._Putnam">...read more</a>' 
+
+      RSSImporter.truncate_feed(orig_feed, source).should == truncated
+     end
+    end
+
+  
 end
