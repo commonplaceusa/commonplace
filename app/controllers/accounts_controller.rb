@@ -78,15 +78,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  def edit_interests
-  end
-
-  def update_interests
-    current_user.interest_list = params[:user][:interest_list]
-    current_user.save
-    redirect_to root_url
-  end
-
   def facebook_invite
     # Twitter doesn't like https...
     unless logged_in?
