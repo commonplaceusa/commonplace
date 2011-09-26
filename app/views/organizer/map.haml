@@ -141,11 +141,3 @@
       %a{:onclick => "showMarkerSet(noMarkers);"} Show Negative Responses
       |
       %a{:onclick => "hideMarkerSet(noMarkers);"} Hide Negative Responses
-  %tr
-    -#= form_tag "/organizer/add", :method => :post do
-      = label_tag :address, "Address"
-      = text_field_tag :address
-      = @center_zip_code
-      = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
-      = submit_tag "Enter"
-    
