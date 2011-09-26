@@ -3,7 +3,11 @@ var UserProfileBox = Profile.extend({
   className: "profile",
 
   events: {
-    "click button.message": "showMessageForm"
+    "click .message": "showMessageForm"
+  },
+
+  comma: function(item) {
+    return " " + item;
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -14,15 +18,24 @@ var UserProfileBox = Profile.extend({
   
   about: function() { return this.model.get('about'); },
 
-  interests: function() { return this.model.get('interests'); },
+  interests: function() { return _.map(this.model.get('interests'), this.comma); },
 
-  skills: function() { return ["climbing", "falling"]; },
+  skills: function() { return ["climbing", " falling"]; },
+
+  offers: function() { return _.map(this.model.get("offers"), this.comma); },
 
   subscriptions: function() { return this.model.get('subscriptions'); },
   
   groups: function() { return ""; },
 
-  showMessageForm: function() {
+  hasInterests: function() { return this.model.get("interests").length > 0; },
+ 
+  hasSkills: function() { return true; },
+
+  hasOffers: function() { return this.model.get("offers").length > 0; },
+
+  showMessageForm: function(e) {
+    e.preventDefault();
     var formView = new MessageFormView({
       model: new Message({ messagable: this.model })
     });
