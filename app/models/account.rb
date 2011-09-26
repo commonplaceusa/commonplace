@@ -59,7 +59,10 @@ class Account
 
   def feeds
     @user.managable_feeds.map do |feed|
-      {"name" => feed.name, "id" => feed.id}
+      {"name" => feed.name, 
+        "id" => feed.id, 
+        "slug" => feed.slug.blank? ? feed.id : feed.slug
+      }
     end
   end
 
