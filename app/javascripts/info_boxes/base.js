@@ -9,9 +9,18 @@ var InfoBox = CommonPlace.View.extend({
 
   show: function(type, model) {
     var self = this;
+    var accountId = this.options.account.id;
+    if (type == "account" && model) {
+      if (accountId != model.id) { type = "users"; }
+    }
     this.profileType = type;
     var profile;
     this.showList(this.collectionFor(type), function(collection) {
+      if (type == "account" && !model) {
+        model = collection.find(function(item) {
+          return accountId == item.id;
+        });
+      }
       profile = self.profileBoxFor(type, ( model ? model : collection.first() ));
       profile.render();
       self.$(self.profileId).replaceWith(profile.el);
@@ -66,7 +75,8 @@ var InfoBox = CommonPlace.View.extend({
   events: {
     "click .feeds-filter": "switchTab",
     "click .users-filter": "switchTab",
-    "click .groups-filter": "switchTab"
+    "click .groups-filter": "switchTab",
+    "click .account-filter": "switchTab"
   },
 
   profileBoxFor: function(type, model) {
