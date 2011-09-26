@@ -3,7 +3,8 @@
     <h3>{{fullName}}</h3> 
     <img src="{{avatarUrl}}" width="122" /> 
     <div class="profile-top"> 
-      <p class="mini-description">Mini-description text or status goes here.</p> 
+      {{^isSubscribed}}<a href="#" class="gray-button subscribe">Subscribe</a>{{/isSubscribed}}
+      {{#isSubscribed}}<a href="#" class="gray-button unsubscribe">Unsubscribe</a>{{/isSubscribed}}
     </div> 
   </div> 
   <h4>About</h4> 

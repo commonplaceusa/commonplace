@@ -3,11 +3,11 @@
     <h3>{{fullName}}</h3>
     <img src="{{avatarUrl}}" width="122" /> 
     <div class="profile-top">
-      <p class="mini-description">Mini-description text or status goes here.</p>
+      <a href="account/edit" class="gray-button edit">Edit Your Profile</a> 
     </div> 
   </div> 
-  <h4>About</h4> 
-  <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>
+  {{#hasAbout}}<h4>About</h4> 
+  <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>{{/hasAbout}}
   {{#hasInterests}}<h4>Interests</h4> 
   <p class="about">{{interests}}</p>{{/hasInterests}}
   {{#hasOffers}}<h4>Goods</h4> 
