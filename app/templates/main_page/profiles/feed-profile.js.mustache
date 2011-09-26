@@ -1,10 +1,11 @@
 <div class="spacing"> 
-  <div class="profile-main"> 
+  <div class="profile-main">
+    <h3>{{fullName}}</h3>
     <img src="{{avatarUrl}}" width="122" /> 
     <div class="profile-top"> 
-      <h3>{{fullName}}</h3> 
-      <p class="mini-description">Mini-description text or status goes here.</p> 
       <a href="#" class="gray-button message">Send a Message</a> 
+      {{^isSubscribed}}<a href="#" class="gray-button subscribe">Subscribe</a>{{/isSubscribed}} 
+      {{#isSubscribed}}<a href="#" class="gray-button unsubscribe">Unsubscribe</a>{{/isSubscribed}} 
     </div> 
   </div> 
   <h4>About</h4> 
