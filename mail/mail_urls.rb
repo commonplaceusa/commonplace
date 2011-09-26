@@ -29,15 +29,15 @@ module MailUrls
   end
 
   def new_event_url
-    url("/events/new")
+    url("/new-event")
   end
 
   def new_announcement_url
-    url("/announcements/new")
+    url("/new-post")
   end
 
   def new_post_url
-    url("/posts/new")
+    url("/new-post")
   end
 
   def new_invites_url
@@ -49,7 +49,7 @@ module MailUrls
   end
 
   def new_group_post_url
-    url("/group_posts/new")
+    url("/new-group-post")
   end
 
   def starter_site_url
