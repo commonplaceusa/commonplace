@@ -1,3 +1,7 @@
+class NamedPoint
+  attr_accessor :lat, :lng, :name
+end
+
 class User < ActiveRecord::Base
   acts_as_taggable_on :offers, :interests, :skills
 
@@ -270,16 +274,21 @@ class User < ActiveRecord::Base
   end
 
   def generate_point
-    if self.generated_lat.present? and self.generated_lng.present?
+    if self.attempted_geolocating or (self.generated_lat.present? and self.generated_lng.present?)
+      if self.attempted_geolocating and not self.generated_lat.present?
+        return
+      end
     else
+      self.attempted_geolocating = true
       loc = MultiGeocoder.geocode("#{self.address}, #{self.community.zip_code}")
       self.generated_lat = loc.lat
       self.generated_lng = loc.lng
       self.save
     end
-    point = Hash.new
-    point['lat'] = self.generated_lat
-    point['lng'] = self.generated_lng
+    point = NamedPoint.new
+    point.lat = self.generated_lat
+    point.lng = self.generated_lng
+    point.name = self.full_name
     point
   end
 

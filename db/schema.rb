@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110921174419) do
+ActiveRecord::Schema.define(:version => 20110925215853) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -382,6 +382,7 @@ ActiveRecord::Schema.define(:version => 20110921174419) do
     t.datetime "remember_created_at"
     t.string   "authentication_token"
     t.string   "cached_skill_list"
+    t.boolean  "attempted_geolocating"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

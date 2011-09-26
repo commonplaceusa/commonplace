@@ -7,9 +7,27 @@ module Serializer
       when String
         o
 
+      when Fixnum
+        o.to_s
+
+      when Float
+        o.to_s
+
       when Array
         o.map {|t| serialize t }
-        
+
+      when NamedPoint
+      {
+        "lat" => o.lat,
+        "lng" => o.lng,
+        "name" => o.name
+      }
+
+      when OrganizerDataPoint
+      {
+        "address" => "#{o.address} #{o.community.zip_code}",
+        "status" => o.status
+      }
       when User
         { "id" => o.id,
         "avatar_url" => o.avatar_url(:normal),
@@ -25,7 +43,6 @@ module Serializer
           "messages" => "/people/#{o.id}/messages"
         }
       }
-        
       when Post
         { 
         "id" => o.id,
