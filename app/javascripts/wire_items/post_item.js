@@ -84,10 +84,15 @@ var PostWireItem = WireItem.extend({
   },
 
   showProfile: function(e) {
+    var self = this;
     var user = new User({
       links: { self: this.model.link("author") }
     });
-    window.infoBox.showUser(user);
+    if (_.any(this.account.get("posts"), function(id) { return self.model.id == id; })) {
+      window.infoBox.showAccount(user);
+    } else {
+      window.infoBox.showUser(user);
+    }
   }
 
 });
