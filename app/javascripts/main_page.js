@@ -5,6 +5,7 @@
 //= require underscore
 //= require placeholder
 //= require time_ago_in_words
+//= require scrollTo
 //= require mustache
 //= require json2
 //= require backbone
