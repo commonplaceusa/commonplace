@@ -10,7 +10,7 @@ var InfoBox = CommonPlace.View.extend({
   show: function(type, model) {
     var self = this;
     var accountId = this.options.account.id;
-    if (type == "account" && model) {
+    if (type == "account" && model && model.id) {
       if (accountId != model.id) { type = "users"; }
     }
     if (type == "users" && model) {
