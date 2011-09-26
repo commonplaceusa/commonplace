@@ -13,12 +13,20 @@ var InfoBox = CommonPlace.View.extend({
     if (type == "account" && model) {
       if (accountId != model.id) { type = "users"; }
     }
+    if (type == "users" && model) {
+      if (accountId == model.id) { type = "account"; }
+    }
     this.profileType = type;
     var profile;
     this.showList(this.collectionFor(type), function(collection) {
       if (type == "account" && !model) {
         model = collection.find(function(item) {
           return accountId == item.id;
+        });
+      }
+      if (type == "users" && !model) {
+        model = collection.find(function(item) {
+          return accountId != item.id;
         });
       }
       profile = self.profileBoxFor(type, ( model ? model : collection.first() ));
