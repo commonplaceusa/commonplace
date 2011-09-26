@@ -3,7 +3,8 @@ var GroupProfileBox = Profile.extend({
   className: "profile",
 
   events: {
-    "click button.message": "showMessageForm"
+    "click .subscribe": "subscribe",
+    "click .unsubscribe": "unsubscribe"
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -12,11 +13,18 @@ var GroupProfileBox = Profile.extend({
   
   about: function() { return this.model.get('about'); },
 
-  showMessageForm: function() {
-    var formView = new MessageFormView({
-      model: new Message({ messagable: this.model })
-    });
-    formView.render();
-  }
+  subscribe: function(e) {
+    e.preventDefault();
+    this.options.account.subscribeToGroup(this.model);
+    this.render();
+  },
+
+  unsubscribe: function(e) {
+    e.preventDefault();
+    this.options.account.unsubscribeFromGroup(this.model);
+    this.render();
+  },
+
+  isSubscribed: function() { return this.options.account.isSubscribedToGroup(this.model); }
   
 });
