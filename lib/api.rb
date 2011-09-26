@@ -565,6 +565,17 @@ class API < Sinatra::Base
     serialize(paginate(community.posts.includes(:user, :replies)))
   end
 
+  get "/communities/:id/registration_points" do |id|
+    community = Community.find(id)
+
+    serialize(community.users.map &:generate_point)
+  end
+
+  get "/communities/:id/data_points" do |id|
+    community = Community.find(id)
+    serialize(community.organizers.map(&:organizer_data_points).flatten.select { |p| p.present? })
+  end
+
   get "/neighborhoods/:id/posts" do |id|
     posts = Post.includes(:user).where(:users => {:neighborhood_id => id})
 

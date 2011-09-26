@@ -92,7 +92,7 @@ end
 
 group :development, :test do
   gem 'libnotify'
-  gem 'rb-inotify'
+  #gem 'rb-inotify'
   gem 'guard-jslint-on-rails'
   gem 'rails-dev-tweaks', '~> 0.5.0' # Don't reload the code when serving assets
   gem 'factory_girl' # we use factory_girl to generate models for tests
