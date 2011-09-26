@@ -1,11 +1,10 @@
 {
   "main_page/post-box": {
     "create-neighborhood-post.h1": "Say something to your neighbors",
-    "create-announcement.h1": "Send an announcement to your whole community",
     "create-event.h1": "Post an event to your community",
     "create-group-post.h1": "Post to a Discussion Group",
     "create-neighborhood-post.a": "Post to Your<br> Neighborhood",
-    "create-announcement.a": "Publicize an<br> Announcement",
+    "create-announcement.a": "Post to Your<br> Feed",
     "create-event.a": "Post an<br> Event",
     "create-group-post.a": "Discussion<br> Groups"
   },            

@@ -6,16 +6,6 @@ class AccountsController < ApplicationController
 
   before_filter :authenticate_user!
 
-  def new_facebook
-    @_current_community = Community.find(session["devise.community"])
-    @user = current_user
-    render :layout => "registration"
-  end
-  
-  def show
-    redirect_to edit_account_url
-  end
-
   def delete
   end
 
@@ -41,50 +31,16 @@ class AccountsController < ApplicationController
     end
   end
 
-  def avatar
-    current_user.update_attributes(params[:user])
-    render :nothing => true
-  end
-
   def update
     current_user.update_attributes(params[:user])
     sign_in(current_user, :bypass => true)
     redirect_to root_url
   end
   
-  def take_photo
-    File.open("#{ Rails.root }/tmp/#{current_user.id}_upload.jpg", 'w') do |f|
-      f.write request.raw_post
-    end
-    current_user.avatar = File.new("#{Rails.root}/tmp/#{current_user.id}_upload.jpg")
-    current_user.save
-    render :nothing => true
-  end
-
-  def edit_avatar
-    @avatar = current_user.avatar
-  end
-
-  def update_avatar
-    @avatar = current_user.avatar
-    @avatar.update_attributes(params[:avatar])
-    @avatar.save
-    redirect_to new_first_post_url
-  end
-
   def learn_more
     unless current_community.present?
       redirect_to root_url
     end
-  end
-
-  def edit_interests
-  end
-
-  def update_interests
-    current_user.interest_list = params[:user][:interest_list]
-    current_user.save
-    redirect_to root_url
   end
 
   def facebook_invite
@@ -129,16 +85,5 @@ class AccountsController < ApplicationController
   def profile
     authorize! :update, User
   end
-
-  def gatekeeper
-    if halfuser = HalfUser.find_by_single_access_token(params[:husat])
-      current_user.full_name = halfuser.full_name
-      current_user.email = halfuser.email
-      current_user.community_id = halfuser.community_id
-      current_user.address = halfuser.street_address
-      @user = current_user
-    else
-      redirect_to root_url
-    end
-  end
+  
 end

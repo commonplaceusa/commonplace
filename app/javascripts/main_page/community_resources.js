@@ -39,5 +39,39 @@ var CommunityResources = CommonPlace.View.extend({
                     }[tab];
     return new ViewClass({ community: this.community,
                            account: this.account });
+  },
+
+  showPost: function(post) {
+    this.showSingleItem(post, GroupPostWireItem);
+  },
+  showAnnouncement: function(announcement) {
+    this.showSingleItem(announcement, AnnouncementWireItem);
+  },
+  showEvent: function(event) {
+    this.showSingleItem(event, EventWireItem);
+  },
+  showGroupPost: function(groupPost) {
+    this.showSingleItem(groupPost, GroupPostWireItem);
+  },
+
+  showSingleItem: function(model, ItemView) {
+    var self = this;
+    model.fetch({
+      success: function(model) {
+        var item = new ItemView({model: model, account: self.account});
+
+        self.$(".tab-button").removeClass("current");
+
+        item.render();
+
+        self.$(".resources").html($("<div/>", { 
+          class: "wire",
+          html: $("<ul/>", {
+            class: "wire-list",
+            html: item.el
+          })
+        }));
+      }
+    });
   }
 });

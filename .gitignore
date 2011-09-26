@@ -28,7 +28,7 @@ log/sendmail.log
 config/exceptional.yml
 .sass-cache
 *.swp
-
+.bundle/*
 log/*.log
 .rvmrc
 log/sunspot-solr-development.log.1

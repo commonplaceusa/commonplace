@@ -16,3 +16,4 @@
 //= require wires
 //= require wire_items
 //= require feed_page/app
+//= require_tree ./feed_page
