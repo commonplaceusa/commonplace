@@ -32,9 +32,7 @@ Commonplace::Application.routes.draw do
   match "/admin/map" => "admin#map"
 
   # Blog and Starter Site routes
-  resources :internships, :only => [:new, :create]
   resources :requests, :only => [:new, :create]
-  match 'interns', :to => "site#interns"
 
   match "/facebook_canvas/" => "facebook_canvas#index"
 
@@ -153,8 +151,8 @@ Commonplace::Application.routes.draw do
     match 'privacy' => 'site#privacy', :as => :privacy
     match 'terms' => 'site#terms', :as => :terms
     match 'dmca' => 'site#dmca', :as => :dmca
-    match "faq", :to => "site#faq", :as => :faq, :via => :get
-    match "faq", :to => "site#send_faq", :via => :post
+    match "faq", :to => "communities#faq", :as => :faq, :via => :get
+    match "faq", :to => "communities#send_faq", :via => :post
   end
   
 

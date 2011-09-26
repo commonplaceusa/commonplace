@@ -42,3 +42,11 @@ en:
           message: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}. You should join too at: www.%{slug}.OurCommonPlace.com."
 
           invitation: "I joined The %{community} CommonPlace, a new online community bulletin board for neighbors in %{community}.  You should join too at: www.%{slug}.OurCommonPlace.com."
+    edit:
+      title: Change Settings
+      receive_options:
+        live: "Receive all neighborhood posts by email"
+        three: "Receive three neighborhood posts by email per day"
+        daily: "Only receive neigborhood posts in the daily bulletin"
+        never: "Receive no neighborhood posts"
+    

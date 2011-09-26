@@ -1,0 +1,101 @@
+
+
+var FeedActionsView = CommonPlace.View.extend({
+  id: "feed-actions",
+  template: "feed_page/feed-actions",
+  events: {
+    "click #feed-action-nav a": "navigate",
+    "submit .post-announcement form": "postAnnouncement",
+    "submit .post-event form": "postEvent",
+    "submit .invite-subscribers form.invite-by-email": "inviteByEmail",
+    "change .post-label-selector input": "toggleCheckboxLIClass"
+  },
+
+  initialize: function(options) {
+    this.feed = options.feed;
+    this.groups = options.groups;
+    this.account = options.account;
+    this.community = options.community;
+    this.postAnnouncementClass = "current";
+  },
+  
+  afterRender: function() {
+    $("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
+    $('input[placeholder], textarea[placeholder]').placeholder();
+    this.$("textarea").autoResize();
+  },
+
+  navigate: function(e) {
+    var $target = $(e.target);
+    $target.addClass("current").siblings().removeClass("current");
+    $(this.el).children(".tab").removeClass("current").filter("." + $target.attr('href').slice(2)).addClass("current");
+    e.preventDefault();
+  },
+
+  toggleCheckboxLIClass: function(e) {
+    $(e.target).closest("li").toggleClass("checked");
+  },
+
+  postAnnouncement: function(e) {
+    var $form = $(e.target);
+    var self = this;
+    e.preventDefault();
+    this.feed.announcements.create(
+      { title: $("[name=title]", $form).val(),
+        body: $("[name=body]", $form).val(),
+        groups: $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
+      }, {
+        success: function() { self.render(); }
+      });
+  },
+
+  postEvent: function(e) {
+    var self = this;
+    var $form = $(e.target);
+    e.preventDefault();
+    this.feed.events.create(
+      { title:   $("[name=title]", $form).val(),
+        about:   $("[name=about]", $form).val(),
+        date:    $("[name=date]", $form).val(),
+        start:   $("[name=start]", $form).val(),
+        end:     $("[name=end]", $form).val(),
+        venue:   $("[name=venue]", $form).val(),
+        address: $("[name=address]", $form).val(),
+        tags:    $("[name=tags]", $form).val(),
+        groups:  $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
+      }, {
+        success: function() { self.render(); }
+      });
+  },
+
+  avatarUrl: function() { return this.feed.get('links').avatar.thumb; },
+
+
+  time_values: _.flatten(_.map(["AM", "PM"],
+                               function(half) {
+                                 return  _.map(_.range(1,13),
+                                               function(hour) {
+                                                 return _.map(["00", "30"],
+                                                              function(minute) {
+                                                                return String(hour) + ":" + minute + " " + half;
+                                                              });
+                                               });
+                               })),
+
+  inviteByEmail: function(e) {
+    var self = this;
+    var $form = $(e.target);
+    e.preventDefault();
+        $.ajax({
+          contentType: "application/json",
+          url: "/api" + this.feed.links.invites,
+          data: JSON.stringify({ emails: _.map($("[name=emails]", $form).val().split(/,|;/), 
+                                               function(s) { return s.replace(/\s*/,""); }),
+                                 message: $("[name=message]", $form).val()
+                               }),
+          type: "post",
+          dataType: "json",
+          success: function() { self.render(); }});
+  }
+
+});

@@ -91,8 +91,6 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'libnotify'
-  #gem 'rb-inotify'
   gem 'guard-jslint-on-rails'
   gem 'rails-dev-tweaks', '~> 0.5.0' # Don't reload the code when serving assets
   gem 'factory_girl' # we use factory_girl to generate models for tests
@@ -104,6 +102,15 @@ group :development, :test do
   gem 'guard-spork'
   gem 'guard-bundler'
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
+end
+
+group :linux do
+  gem 'libnotify'
+  gem 'rb-inotify'
+end
+
+group :osx do
+
 end
 
 group :test do

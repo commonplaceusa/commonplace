@@ -1,5 +1,5 @@
 class FeedsController < CommunitiesController
-  authorize_resource
+  before_filter :load
 
   def delete
     render :layout => 'application'
@@ -37,7 +37,7 @@ class FeedsController < CommunitiesController
 
   def update
     if @feed.update_attributes(params[:feed])
-      redirect_to profile_feed_url(@feed)
+      redirect_to feed_profile_path(@feed)
     else
       render :edit, :layout => 'feed_registration'
     end

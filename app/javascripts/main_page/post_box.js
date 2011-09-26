@@ -22,11 +22,6 @@ var PostBox = CommonPlace.View.extend({
       (new PostForm({ collection: this.community.posts,
                       community: this.community })),
 
-      (new AnnouncementForm({ collection: this.community.announcements, 
-                              account: this.account,
-                              community: this.community
-                            })),
-
       (new EventForm({ collection: this.community.events,
                        community: this.community
                      })),
@@ -53,8 +48,15 @@ var PostBox = CommonPlace.View.extend({
 
   $tabButtons: function() { return this.$("a.tab-button"); },
 
-  accountHasFeeds: function() { return this.account.get('feeds').length > 0 }
+  accountHasFeeds: function() { return this.account.get('feeds').length > 0; },
 
+  firstFeedUrl: function() {
+    if (this.account.get('feeds')[0]) {
+      return "/pages/" + this.account.get('feeds')[0].id;
+    } else {
+      return "/feed-registrations/new";
+    }
+  }
 });
     
 

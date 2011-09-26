@@ -20,6 +20,27 @@ body
   margin: auto
   position: relative
 
+#feed-admin-bar
+  margin: auto
+  text-align: right
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+  li 
+    display: inline
+    float: left
+  a
+    background-color: #fff
+    +border-bottom-radius(5px)
+    text-decoration: none
+    padding: 4px 8px 5px 8px
+    margin: 0 0 0 5px
+    display: block
+    color: #555
+    &:hover
+      color: #AC322F
+      text-decoration: underline
+    &.current
+      display: none
+
 #feed-header
   font-family: Rokkitt, Rockwell, Helvetica, sans-serif
   font-weight: bold
