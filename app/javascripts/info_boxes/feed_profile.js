@@ -3,7 +3,7 @@ var FeedProfileBox = Profile.extend({
   className: "profile",
 
   events: {
-    "click button.message": "showMessageForm"
+    "click .message": "showMessageForm"
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -16,7 +16,8 @@ var FeedProfileBox = Profile.extend({
   
   groups: function() { return ""; },
 
-  showMessageForm: function() {
+  showMessageForm: function(e) {
+    e.preventDefault();
     var formView = new MessageFormView({
       model: new Message({ messagable: this.model })
     });

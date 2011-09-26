@@ -8,10 +8,10 @@
   </div> 
   <h4>About</h4> 
   <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>
-  <h4>Interests</h4> 
-  <p class="about">{{#interests}}{{.}}, {{/interests}}</p>
-  <h4>Goods</h4> 
-  <p class="about">{{#offers}}{{.}}, {{/offers}}</p>
-  <h4>Skill</h4> 
-  <p class="about">{{skills}}</p> 
+  {{#hasInterests}}<h4>Interests</h4> 
+  <p class="about">{{interests}}</p>{{/hasInterests}}
+  {{#hasOffers}}<h4>Goods</h4> 
+  <p class="about">{{offers}}</p>{{/hasOffers}}
+  {{#hasSkills}}<h4>Skill</h4> 
+  <p class="about">{{skills}}</p>{{/hasSkills}}
 </div> 
