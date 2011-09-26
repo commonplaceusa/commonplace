@@ -28,6 +28,8 @@ var UserProfileBox = Profile.extend({
   
   groups: function() { return ""; },
 
+  hasAbout: function() { return this.model.get("about") != undefined; },
+
   hasInterests: function() { return this.model.get("interests").length > 0; },
  
   hasSkills: function() { return true; },

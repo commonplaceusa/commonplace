@@ -3,7 +3,9 @@ var FeedProfileBox = Profile.extend({
   className: "profile",
 
   events: {
-    "click .message": "showMessageForm"
+    "click .message": "showMessageForm",
+    "click .subscribe": "subscribe",
+    "click .unsubscribe": "unsubscribe"
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -22,6 +24,20 @@ var FeedProfileBox = Profile.extend({
       model: new Message({ messagable: this.model })
     });
     formView.render();
-  }
+  },
+
+  subscribe: function(e) {
+    e.preventDefault();
+    this.options.account.subscribeToFeed(this.model);
+    this.render();
+  },
+
+  unsubscribe: function(e) {
+    e.preventDefault();
+    this.options.account.unsubscribeFromFeed(this.model);
+    this.render();
+  },
+
+  isSubscribed: function() { return this.options.account.isSubscribedToFeed(this.model); }
   
 });

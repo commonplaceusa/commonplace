@@ -28,6 +28,8 @@ var AccountProfileBox = Profile.extend({
  
   hasSkills: function() { return true; },
 
-  hasOffers: function() { return this.model.get("offers").length > 0; }
+  hasOffers: function() { return this.model.get("offers").length > 0; },
+
+  hasAbout: function() { return this.model.get("about") != undefined; }
   
 });
