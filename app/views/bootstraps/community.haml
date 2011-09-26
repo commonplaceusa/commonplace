@@ -61,10 +61,13 @@
       window.router = new MainPageRouter({
       account: new Account(#{serialize(Account.new(current_user))}),
       community: community
-    
       });
-
+      
       Backbone.history.start();
+
+      window.router.navigate(window.location.pathname, true);
+
+
       });
 
     - if Rails.env.production?
