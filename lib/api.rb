@@ -622,6 +622,18 @@ class API < Sinatra::Base
     serialize Post.find(id)
   end
 
+  get "/events/:id" do |id|
+    serialize Event.find(id)
+  end
+
+  get "/announcements/:id" do |id|
+    serialize Announcement.find(id)
+  end
+
+  get "/group_posts/:id" do |id|
+    serialize GroupPost.find(id)
+  end
+
   get "/groups/:id" do |id|
     serialize(id =~ /[^\d]/ ? Group.find_by_slug(id) : Group.find(id))
   end

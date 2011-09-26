@@ -112,6 +112,11 @@ var MainPageRouter = Backbone.Router.extend({
     "/new-event": "newEvent",
     "/new-group-post": "newGroupPost",
 
+    "/posts/:id": "post",
+    "/events/:id": "event",
+    "/group_posts/:id": "groupPost",
+    "/announcements/:id": "announcement",
+    
     "/tour": "tour"
   },
 
@@ -129,6 +134,22 @@ var MainPageRouter = Backbone.Router.extend({
   newEvent: function() { this.postBox.switchTab("create-event"); },
   newGroupPost: function() { this.postBox.switchTab("create-group-post"); },
 
+  post: function(id) {
+    this.lists.showPost(new Post({links: {self: "/posts/" + id}}));
+  },
+  
+  event: function(id) { 
+    this.lists.showEvent(new Event({links: {self: "/events/" + id }}));
+  },
+  
+  announcement: function(id) {
+    this.lists.showAnnouncement(new Event({links: {self: "/announcements/" + id}}));
+  },
+
+  groupPost: function(id) {
+    this.lists.showGroupPost(new GroupPost({links: {self: "/group_posts/" + id}}));
+  },
+    
   tour: function() { 
     var tour = new Tour({ 
       el: $("#main"), 
