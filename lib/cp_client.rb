@@ -51,6 +51,9 @@ class CPClient
     get("/communities/#{community.id}/addresses", options)
   end
 
+  def add_data_point(community,options)
+    post("/communities/#{community.id}/add_data_point", options)
+  end
   private
 
   def logger
@@ -75,5 +78,20 @@ class CPClient
       end
     end
   end
-  
+
+  def post(uri, params = {}, &on_fail)
+    request = connection.post { |req| req.url uri, params }
+    if request.success?
+      true
+    else
+      if on_fail
+        result = on_fail.call
+        logger.warn "POST #{uri} #{params.inspect} failed; falling back to #{result.inspect}"
+        result
+      else
+        raise "POST #{uri} #{params.inspect} failed with no fallback"
+      end
+    end
+  end
+
 end

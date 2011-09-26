@@ -565,6 +565,42 @@ class API < Sinatra::Base
     serialize(paginate(community.posts.includes(:user, :replies)))
   end
 
+  post "/communities/:id/add_data_point" do |id|
+    num = params[:number]
+    if num.include? "-"
+      odds = false
+      evens = false
+      all = true
+      if num.include? "O"
+        odds = true
+        all = false
+        num = num.gsub("O", "")
+      elsif num.include? "E"
+        evens = true
+        all = false
+        num = num.gsub("E", "")
+      end
+
+      range = num.split("-")
+      (range[0].to_i..range[1].to_i).each do |n|
+        if (odds and (n % 2 == 1)) or (evens and (n % 2 == 0)) or all
+          data_point = OrganizerDataPoint.new
+          data_point.organizer_id = current_account.id
+          data_point.address = "#{n} #{params[:address]}"
+          data_point.status = params[:status]
+          data_point.save
+        end
+      end
+      else
+        data_point = OrganizerDataPoint.new
+        data_point.organizer_id = current_account.id
+        data_point.address = params[:address]
+        data_point.status = params[:status]
+        data_point.save
+      end
+    [200, "OK"]
+  end
+
   get "/communities/:id/registration_points" do |id|
     community = Community.find(id)
 
