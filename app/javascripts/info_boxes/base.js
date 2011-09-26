@@ -116,7 +116,7 @@ var InfoListItem = CommonPlace.View.extend({
   template: "main_page/info-list",
 
   events: {
-    "click": "switch"
+    "click": "switchProfile"
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -132,7 +132,7 @@ var InfoListItem = CommonPlace.View.extend({
     return "";
   },
 
-  switch: function(e) {
+  switchProfile: function(e) {
     e.preventDefault();
     window.infoBox.show(window.infoBox.profileType, this.model);
   }
