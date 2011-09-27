@@ -12,4 +12,6 @@ class OrganizerController < ApplicationController
     redirect_to :action => :map
   end
 
+  def mobile ; end
+
 end
