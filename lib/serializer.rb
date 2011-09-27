@@ -212,6 +212,7 @@ module Serializer
         "posts" => o.posts,
         "events" => o.events,
         "feeds" => o.feeds,
+        "mets" => o.mets,
         "announcements" => o.announcements,
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood, 
@@ -222,6 +223,7 @@ module Serializer
         "links" => { 
           "feed_subscriptions" => "/account/subscriptions/feeds",
           "group_subscriptions" => "/account/subscriptions/groups",
+          "mets" => "/account/mets",
           "self" => "/account"
         }
         }
