@@ -25,6 +25,8 @@ var GroupProfileBox = Profile.extend({
     this.render();
   },
 
-  isSubscribed: function() { return this.options.account.isSubscribedToGroup(this.model); }
+  isSubscribed: function() { return this.options.account.isSubscribedToGroup(this.model); },
+
+  url: function() { return this.model.get("url"); }
   
 });
