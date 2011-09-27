@@ -605,12 +605,14 @@ class API < Sinatra::Base
   end
 
   get "/communities/:id/registration_points" do |id|
+    headers 'Access-Control-Allow-Origin' => '*'
     community = Community.find(id)
 
     serialize(community.users.map &:generate_point)
   end
 
   get "/communities/:id/data_points" do |id|
+    headers 'Access-Control-Allow-Origin' => '*'
     community = Community.find(id)
     serialize(community.organizers.map(&:organizer_data_points).flatten.select { |p| p.present? })
   end
