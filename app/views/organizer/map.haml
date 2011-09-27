@@ -118,7 +118,7 @@
     %td
       = form_tag "/organizer/add", :method => :post do
         = text_field_tag :number, "", :size => 4, :placeholder => "1-10O"
-        = text_field_tag :address, "", :placeholder => "Maple Ave"
+        = text_field_tag :address, "", :placeholder => "Maple Ave", :size => 30
         = @center_zip_code
         = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
         = submit_tag "Enter"

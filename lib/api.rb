@@ -567,6 +567,7 @@ class API < Sinatra::Base
 
   post "/communities/:id/add_data_point" do |id|
     num = params[:number]
+    zip_code = User.find(current_account.id).community.zip_code
     if num.include? "-"
       odds = false
       evens = false
@@ -586,7 +587,7 @@ class API < Sinatra::Base
         if (odds and (n % 2 == 1)) or (evens and (n % 2 == 0)) or all
           data_point = OrganizerDataPoint.new
           data_point.organizer_id = current_account.id
-          data_point.address = "#{n} #{params[:address]}"
+          data_point.address = "#{n} #{params[:address]} #{zip_code}"
           data_point.status = params[:status]
           data_point.save
         end
@@ -594,7 +595,7 @@ class API < Sinatra::Base
       else
         data_point = OrganizerDataPoint.new
         data_point.organizer_id = current_account.id
-        data_point.address = params[:address]
+        data_point.address = "#{params[:address]} #{zip_code}"
         data_point.status = params[:status]
         data_point.save
       end
