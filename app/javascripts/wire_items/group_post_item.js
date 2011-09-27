@@ -52,7 +52,7 @@ var GroupPostWireItem = WireItem.extend({
   events: {
     "click .author": "messageUser",
     "click .moreBody": "loadMore",
-    "mouseenter": "showInfoBox",
+    "mouseenter": "showProfile",
     "click .editlink": "editGroupPost"
   },
 
@@ -83,11 +83,11 @@ var GroupPostWireItem = WireItem.extend({
     this.render();
   },
   
-  getInfoBox: function(callback) {
-    var account = this.account;
-    this.model.group(function(group) {
-      callback(new GroupInfoBox({ model: group, account: account }));
+  showProfile: function(e) {
+    var group = new Group({
+      links: { self: this.model.link("group") }
     });
+    window.infoBox.showGroup(group);
   },
 
   isOwner: function() {

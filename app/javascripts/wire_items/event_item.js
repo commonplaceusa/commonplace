@@ -50,7 +50,7 @@ var EventWireItem = WireItem.extend({
   events: {
     "click .editlink": "editEvent",
     "click .moreBody": "loadMore",
-    "mouseenter": "showInfoBox"
+    "mouseenter": "showProfile"
   },
 
   editEvent: function(e) {
@@ -76,8 +76,19 @@ var EventWireItem = WireItem.extend({
     this.render();
   },
 
-  getInfoBox: function(callback) {
-    callback(new EventInfoBox({ model: this.model, account: this.account }));
+  showProfile: function(e) {
+    var author = this.model.link("author");
+    if (this.model.get("owner_type") == "Feed") {
+      var feed = new Feed({
+        links: { self: author }
+      });
+      window.infoBox.showFeed(feed);
+    } else {
+      var user = new User({
+        links: { self: author }
+      });
+      window.infoBox.showUser(user);
+    }
   }
 
 });
