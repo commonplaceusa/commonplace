@@ -5,6 +5,8 @@ class API < Sinatra::Base
     def current_account
       @_user ||= if request.env["HTTP_AUTHORIZATION"].present?
                    User.find_by_authentication_token(request.env["HTTP_AUTHORIZATION"])
+                 elsif params['authentication_token'].present?
+                   User.find_by_authentication_token(params[:authentication_token])
                  else
                    User.find_by_authentication_token(request.cookies['authentication_token'])
                  end
