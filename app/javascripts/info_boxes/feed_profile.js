@@ -38,6 +38,8 @@ var FeedProfileBox = Profile.extend({
     this.render();
   },
 
-  isSubscribed: function() { return this.options.account.isSubscribedToFeed(this.model); }
+  isSubscribed: function() { return this.options.account.isSubscribedToFeed(this.model); },
+
+  url: function() { return this.model.get("url"); }
   
 });
