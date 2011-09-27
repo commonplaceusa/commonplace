@@ -22,9 +22,7 @@ var UserProfileBox = Profile.extend({
 
   interests: function() { return _.map(this.model.get('interests'), this.comma); },
 
-  skills: function() { return ["climbing", " falling"]; },
-
-  offers: function() { return _.map(this.model.get("offers"), this.comma); },
+  skills: function() { return _.map(this.model.get("offers"), this.comma); },
 
   subscriptions: function() { return this.model.get('subscriptions'); },
   
@@ -33,10 +31,8 @@ var UserProfileBox = Profile.extend({
   hasAbout: function() { return this.model.get("about") != undefined; },
 
   hasInterests: function() { return this.model.get("interests").length > 0; },
- 
-  hasSkills: function() { return true; },
 
-  hasOffers: function() { return this.model.get("offers").length > 0; },
+  hasSkills: function() { return this.model.get("offers").length > 0; },
 
   showMessageForm: function(e) {
     e.preventDefault();
