@@ -9,6 +9,10 @@ class Account
     @user.subscriptions.map &:feed_id    
   end
 
+  def mets
+    @user.mets.map &:wanted_id
+  end
+
   def group_subscriptions
     @user.memberships.map &:group_id
   end
