@@ -3,7 +3,9 @@ var UserProfileBox = Profile.extend({
   className: "profile",
 
   events: {
-    "click .message": "showMessageForm"
+    "click .message": "showMessageForm",
+    "click .meet": "meet",
+    "click .unmeet": "unmeet"
   },
 
   comma: function(item) {
@@ -42,6 +44,20 @@ var UserProfileBox = Profile.extend({
       model: new Message({ messagable: this.model })
     });
     formView.render();
-  }
+  },
+
+  meet: function(e) {
+    e.preventDefault();
+    this.options.account.meetUser(this.model);
+    this.render();
+  },
+
+  unmeet: function(e) {
+    e.preventDefault();
+    this.options.account.unmeetUser(this.model);
+    this.render();
+  },
+
+  hasMet: function() { return this.options.account.hasMetUser(this.model); }
   
 });

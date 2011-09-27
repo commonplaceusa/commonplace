@@ -71,6 +71,42 @@ var Account = Model.extend({
         callback && callback();
       }
     });
+  },
+
+  meetUser: function(user, callback) {
+    var self = this;
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.get("links").mets,
+      data: JSON.stringify({ id: user.id }),
+      type: "post",
+      dataType: "json",
+      success: function(account) {
+        self.set(account);
+        callback && callback();
+      },
+      failure: function(account) {
+        console.log(self, user);
+      }
+    });
+  },
+
+  unmeetUser: function(user, callback) {
+    var self = this;
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.get("links").mets + "/" + user.id,
+      type: "delete",
+      dataType: "json",
+      success: function(account) {
+        self.set(account);
+        callback && callback();
+      }
+    });
+  },
+
+  hasMetUser: function(user) {
+    return _.include(this.get("mets"), user.id);
   }
 
 });

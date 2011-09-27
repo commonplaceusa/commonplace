@@ -4,7 +4,8 @@
     <img src="{{avatarUrl}}" width="122" /> 
     <div class="profile-top">
       <a href="#" class="gray-button message">Send a Message</a> 
-      <a href="#" class="gray-button meet">Have You Met?</a> 
+      {{^hasMet}}<a href="#" class="gray-button meet">Have You Met?</a>{{/hasMet}}
+      {{#hasMet}}<a href="#" class="gray-button unmeet">Don't Know Them?</a>{{/hasMet}}
     </div> 
   </div> 
   {{#hasAbout}}<h4>About</h4>
