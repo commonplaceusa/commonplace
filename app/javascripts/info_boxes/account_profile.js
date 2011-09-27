@@ -7,6 +7,8 @@ var AccountProfileBox = Profile.extend({
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
+
+  editLink: function() { return this.options.account.link("edit"); },
   
   fullName: function() { return this.model.get("name"); },
   
