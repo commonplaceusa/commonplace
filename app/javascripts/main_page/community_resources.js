@@ -65,9 +65,9 @@ var CommunityResources = CommonPlace.View.extend({
         item.render();
 
         self.$(".resources").html($("<div/>", { 
-          class: "wire",
+          "class": "wire",
           html: $("<ul/>", {
-            class: "wire-list",
+            "class": "wire-list",
             html: item.el
           })
         }));
