@@ -5,7 +5,7 @@ var FeedAdminBar = CommonPlace.View.extend({
 
   feeds: function() {
     var self = this;
-    var feeds = this.options.account.get('feeds').map(function(f) {
+    var feeds = _(this.options.account.get('feeds')).map(function(f) {
       return {name: f.name, slug: f.slug, current: f.id == self.model.id};
     });
     return feeds;
