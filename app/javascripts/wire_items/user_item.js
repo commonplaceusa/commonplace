@@ -23,7 +23,7 @@ var UserWireItem = WireItem.extend({
 
   events: {
     "click button": "messageUser",
-    "mouseenter": "showInfoBox"
+    "mouseenter": "showProfile"
   },
 
   messageUser: function(e) {
@@ -34,8 +34,8 @@ var UserWireItem = WireItem.extend({
     formview.render();
   },
 
-  getInfoBox: function(callback) {
-    callback(new UserInfoBox({ model: this.model, account: this.options.account }));
+  showProfile: function(e) {
+    window.infoBox.showUser(this.model);
   }
 
 });

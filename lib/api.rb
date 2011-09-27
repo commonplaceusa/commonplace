@@ -557,6 +557,16 @@ class API < Sinatra::Base
     current_account.groups.delete(Group.find(id))
     serialize(Account.new(current_account))
   end
+
+  post "/account/mets" do
+    current_account.people << User.find(params[:id] || request_body["id"])
+    serialize(Account.new(current_account))
+  end
+
+  delete "/account/mets/:id" do |id|
+    current_account.people.delete(User.find(id))
+    serialize(Account.new(current_account))
+  end
   
   get "/communities/:id/posts" do |id|
     community = Community.find(id)

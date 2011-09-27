@@ -101,6 +101,10 @@ class Feed < ActiveRecord::Base
     feed_kinds
   end
 
+  def slug
+    read_attribute(:slug).blank? ? id : read_attribute(:slug)
+  end
+
   private
 
   def sanitize_slug
