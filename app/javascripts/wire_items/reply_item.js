@@ -37,10 +37,15 @@ var ReplyWireItem = WireItem.extend({
     });
   },
 
-  showProfile: function(callback) {
-    var account = this.account;
-    this.model.user(function(user) {
-      callback(new UserProfileBox({ model: user, account: account }));
+  showProfile: function(e) {
+    var self = this;
+    var user = new User({
+      links: { self: this.model.link("author") }
     });
+    if (_.any(this.account.get("posts"), function(id) { return self.model.id == id; })) {
+      window.infoBox.showAccount(user);
+    } else {
+      window.infoBox.showUser(user);
+    }
   }
 });
