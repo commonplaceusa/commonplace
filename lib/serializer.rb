@@ -153,8 +153,8 @@ module Serializer
         { 
         "id" => o.id,
         "user_id" => o.user.id,
-        "url" => "/feeds/#{o.id}",
-        "slug" => o.slug.blank? ? o.id : o.slug ,
+        "url" => "/pages/#{o.slug}",
+        "slug" => o.slug ,
         "name" => o.name,
         "about" => o.about,
         "avatar_url" => o.avatar_url(:normal),
@@ -224,7 +224,8 @@ module Serializer
           "feed_subscriptions" => "/account/subscriptions/feeds",
           "group_subscriptions" => "/account/subscriptions/groups",
           "mets" => "/account/mets",
-          "self" => "/account"
+          "self" => "/account",
+          "edit" => "/account/profile"
         }
         }
 
