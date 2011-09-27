@@ -25,7 +25,7 @@ module Serializer
 
       when OrganizerDataPoint
       {
-        "address" => "#{o.address} #{o.community.zip_code}",
+        "address" => o.address,
         "status" => o.status
       }
       when User

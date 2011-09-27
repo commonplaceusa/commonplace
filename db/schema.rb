@@ -373,6 +373,7 @@ ActiveRecord::Schema.define(:version => 20110925215853) do
     t.string   "referral_source"
     t.datetime "last_login_at"
     t.boolean  "transitional_user"
+    t.string   "skills_list"
     t.string   "referral_metadata"
     t.float    "generated_lat"
     t.float    "generated_lng"
