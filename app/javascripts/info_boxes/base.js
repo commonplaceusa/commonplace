@@ -7,6 +7,32 @@ var InfoBox = CommonPlace.View.extend({
   profileType: "account",
   lastCollection: null,
 
+  afterRender: function() {
+    var self = this;
+    $(window).scroll(function() {
+      self.setPosition();
+    });
+  },
+
+  setPosition: function() {
+    var $el = $(this.el);
+    var marginTop = parseInt($el.css("margin-top"), 10);
+    var $parent = $el.parent();
+    var topScroll = $(window).scrollTop();
+    var distanceFromTop = $el.offset().top;
+    var parentBottomDistanceToTop = $parent.offset().top + $parent.height();
+
+    if ($el.css("position") == "relative") {
+      if (distanceFromTop < topScroll) {
+        $el.css({ position: "fixed", top: 0 });
+      }
+    } else {
+      if (distanceFromTop < parentBottomDistanceToTop + marginTop) {
+        $el.css({ position: "relative" });
+      }
+    }
+  },
+
   show: function(type, model) {
     var self = this;
     var accountId = this.options.account.id;
@@ -32,9 +58,12 @@ var InfoBox = CommonPlace.View.extend({
       profile = self.profileBoxFor(type, ( model ? model : collection.first() ));
       profile.render();
       self.$(self.profileId).replaceWith(profile.el);
+      self.setPosition();
+      $(self.el).css({ width: $(self.el).width() });
     });
     this.$(".filter-tab").removeClass("current");
     this.$("." + type + "-filter").addClass("current");
+
   },
 
   showUser: function(user) {
