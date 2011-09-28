@@ -9,7 +9,7 @@ var FeedWireItem = WireItem.extend({
   },
 
   events: {
-    "mouseenter": "showInfoBox",
+    "mouseenter": "showProfile",
     "click button.subscribe": "subscribe",
     "click button.unsubscribe": "unsubscribe"
   },
@@ -21,9 +21,9 @@ var FeedWireItem = WireItem.extend({
   name: function() {
     return this.model.get("name");
   },
-
-  getInfoBox: function(callback) {
-    callback(new FeedInfoBox({ model: this.model, account: this.options.account }));
+  
+  showProfile: function(callback) {
+    callback(new FeedProfileBox({ model: this.model, account: this.options.account }));
   },
 
   subscribe: function() { this.options.account.subscribeToFeed(this.model); },

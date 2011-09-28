@@ -8,7 +8,7 @@ var GroupWireItem = WireItem.extend({
   },
 
   events: {
-    "mouseenter": "showInfoBox",
+    "mouseenter": "showProfile",
     "click button.subscribe": "subscribe",
     "click button.unsubscribe": "unsubscribe"
   },
@@ -21,8 +21,8 @@ var GroupWireItem = WireItem.extend({
     return this.model.get("name");
   },
 
-  getInfoBox: function(callback) {
-    callback(new GroupInfoBox({model: this.model, account: this.options.account}));
+  showProfile: function(e) {
+    window.infoBox.showGroup(this.model);
   },
 
   subscribe: function() { this.options.account.subscribeToGroup(this.model); },

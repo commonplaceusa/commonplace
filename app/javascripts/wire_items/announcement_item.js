@@ -46,7 +46,7 @@ var AnnouncementWireItem = WireItem.extend({
   events: {
     "click .editlink": "editAnnouncement",
     "click .moreBody": "loadMore",
-    "mouseenter": "showInfoBox"
+    "mouseenter": "showProfile"
   },
 
   editAnnouncement: function(e) {
@@ -71,16 +71,20 @@ var AnnouncementWireItem = WireItem.extend({
     this.allwords = true;
     this.render();
   },
-  
-  getInfoBox: function(callback) {
-    var self = this;
-    this.model.author(function(author) {
-      if (self.model.get('owner_type') == "Feed") {
-        callback(new FeedInfoBox({ model: author, account: self.account }));
-      } else {
-        callback(new UserInfoBox({ model: author, account: self.account }));
-      }
-    });
+
+  showProfile: function(e) {
+    var author = this.model.link("author");
+    if (this.model.get("owner_type") == "Feed") {
+      var feed = new Feed({
+        links: { self: author }
+      });
+      window.infoBox.showFeed(feed);
+    } else {
+      var user = new User({
+        links: { self: author }
+      });
+      window.infoBox.showUser(user);
+    }
   }
     
 });

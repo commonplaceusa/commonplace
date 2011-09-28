@@ -1,0 +1,12 @@
+<div class="spacing"> 
+  <div class="profile-main"> 
+    <a href="{{url}}"><h3>{{fullName}}</h3></a>
+    <img src="{{avatarUrl}}" width="122" /> 
+    <div class="profile-top"> 
+      {{^isSubscribed}}<a href="#" class="gray-button subscribe">Subscribe</a>{{/isSubscribed}}
+      {{#isSubscribed}}<a href="#" class="gray-button unsubscribe">Unsubscribe</a>{{/isSubscribed}}
+    </div> 
+  </div> 
+  <h4>About</h4> 
+  <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>
+</div> 
