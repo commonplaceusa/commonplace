@@ -18,8 +18,9 @@
 
   = semantic_form_for registration.user, :url => create_registration_url(current_community) do |f|
     %h4 
+      = link_to user_omniauth_authorize_path(:facebook, :state => current_community.id), :class => "facebook" do
+        = image_tag "buttons/facebook-sign-up.png"
       Register Here
-
     = f.inputs do
       = f.input :full_name, :input_html => { :placeholder => "Full name"} 
       = f.input :email, :input_html => { :placeholder => "Email address", :type => "text"}
@@ -33,8 +34,7 @@
 
       = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/signup.png")}
 
-      = link_to user_omniauth_authorize_path(:facebook, :state => current_community.id), :class => "facebook" do
-        = image_tag "buttons/facebook-sign-up.png"
+
 
   %div{:style=>"clear: both;"}
 
