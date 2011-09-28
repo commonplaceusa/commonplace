@@ -607,7 +607,7 @@ class API < Sinatra::Base
       else
         data_point = OrganizerDataPoint.new
         data_point.organizer_id = current_account.id
-        data_point.address = "#{params[:address]} #{zip_code}"
+        data_point.address = "#{num} #{params[:address]} #{zip_code}"
         data_point.status = params[:status]
         data_point.save
       end
