@@ -51,7 +51,7 @@ var AnnouncementWireItem = WireItem.extend({
 
   editAnnouncement: function(e) {
     e && e.preventDefault();
-    var formview = new AnnouncementFormView({
+    var formview = new PostFormView({
       model: this.model,
       template: "shared/announcement-edit-form"
     });

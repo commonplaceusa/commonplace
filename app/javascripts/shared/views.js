@@ -41,40 +41,6 @@ var MessageFormView = FormView.extend({
   }
 });
 
-var AnnouncementFormView = FormView.extend({
-  save: function() {
-    this.model.save({
-      title: this.$("[name=title]").val(),
-      body: this.$("[name=body]").val()
-    });
-  },
-
-  title: function() {
-    return this.model.get("title");
-  },
-
-  body: function() {
-    return this.model.get("body");
-  }
-});
-
-var GroupPostFormView = FormView.extend({
-  save: function() {
-    this.model.save({
-      title: this.$("[name=title]").val(),
-      body: this.$("[name=body]").val()
-    });
-  },
-
-  title: function() {
-    return this.model.get("title");
-  },
-
-  body: function() {
-    return this.model.get("body");
-  }
-});
-
 var PostFormView = FormView.extend({
   save: function() {
     this.model.save({

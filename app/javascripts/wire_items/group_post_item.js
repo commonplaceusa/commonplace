@@ -96,7 +96,7 @@ var GroupPostWireItem = WireItem.extend({
 
   editGroupPost: function(e) {
     e && e.preventDefault();
-    var formview = new GroupPostFormView({
+    var formview = new PostFormView({
       model: this.model,
       template: "shared/group-post-edit-form"
     });
