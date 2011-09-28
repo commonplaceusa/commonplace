@@ -11,6 +11,7 @@ var FormView = CommonPlace.View.extend({
 
   events: {
     "click form a.cancel": "exit",
+    "click form a.delete": "deletePost",
     "submit form": "send"
   },
 
@@ -23,6 +24,12 @@ var FormView = CommonPlace.View.extend({
   exit: function(e) {
     e && e.preventDefault();
     this.modal.exit();
+  },
+
+  deletePost: function(e) {
+    e && e.preventDefault();
+    var self = this;
+    this.remove(function() { self.modal.exit(); });
   }
 });
 
@@ -47,6 +54,10 @@ var PostFormView = FormView.extend({
       title: this.$("[name=title]").val(),
       body: this.$("[name=body]").val()
     });
+  },
+
+  remove: function(callback) {
+    this.model.destroy({ success: callback });
   },
 
   title: function() {
@@ -74,6 +85,10 @@ var EventFormView = FormView.extend({
       venue: this.$("[name=venue]").val(),
       address: this.$("[name=address]").val()
     });
+  },
+
+  remove: function(callback) {
+    this.model.destroy({ success: callback });
   },
 
   title: function() {
