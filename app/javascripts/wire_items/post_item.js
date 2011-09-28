@@ -53,6 +53,7 @@ var PostWireItem = WireItem.extend({
   events: {
     "click .author": "messageUser",
     "click .moreBody": "loadMore",
+    "click .editlink": "editPost",
     "mouseenter": "showProfile"
   },
 
@@ -93,6 +94,19 @@ var PostWireItem = WireItem.extend({
     } else {
       window.infoBox.showUser(user);
     }
+  },
+
+  isOwner: function() {
+    return this.account.get("id") == this.model.get("user_id");
+  },
+
+  editPost: function(e) {
+    e.preventDefault();
+    var formview = new PostFormView({
+      model: this.model,
+      template: "shared/post-edit-form"
+    });
+    formview.render();
   }
 
 });
