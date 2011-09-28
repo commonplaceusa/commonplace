@@ -7,6 +7,8 @@ var GroupPostWireItem = WireItem.extend({
     this.account = options.account;
     this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
     this.allwords = (this.shortbody == null);
+    var self = this;
+    this.model.bind("destroy", function() { self.remove(); });
   },
 
   afterRender: function() {
