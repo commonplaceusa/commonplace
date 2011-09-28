@@ -41,13 +41,18 @@
         margin-left: 15px
         float: none
 
-      a.cancel
-        color: #fff
-        font-size: 15px
-        font-family: Rokkitt, Rockwell, Helvetica, sans-serif
-        text-decoration: none
-        &:hover
-          text-decoration: underline
+    a.cancel, a.delete
+      color: #fff
+      font-size: 15px
+      font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+      text-decoration: none
+      &:hover
+        text-decoration: underline
+
+    a.delete
+      right: 15px
+      position: absolute
+      margin-top: 2px
 
 #modal-shadow
   +opacity(0.8)
