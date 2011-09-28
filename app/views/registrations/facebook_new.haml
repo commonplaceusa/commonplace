@@ -4,12 +4,12 @@
 
   #registration_information
     %ul{:id=>"infolist"}
-      %li To complete your registration for CommonPlace, please fill out your street address so we can verify that you live in <town name>.  Your address will not be shared with anyone.
+      %li To complete your registration, fill out your street address so we can verify you live in town. 
       %li If you want, feel free to adjust your display name and contact email as well.
 
   = semantic_form_for registration.user, :url => create_registration_url(current_community) do |f|
     %h4 
-      Fill edit your basic information.
+      Add your street address
 
     = f.inputs do
       = f.input :full_name, :input_html => { :placeholder => "Full name"} 
