@@ -1,0 +1,15 @@
+<div class="spacing"> 
+  <div class="profile-main"> 
+    <h3>{{fullName}}</h3>
+    <img src="{{avatarUrl}}" width="122" /> 
+    <div class="profile-top">
+      <a href="{{editLink}}" class="gray-button edit">Edit Profile</a> 
+    </div> 
+  </div> 
+  {{#hasAbout}}<h4>About</h4> 
+  <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>{{/hasAbout}}
+  {{#hasInterests}}<h4>Interests</h4> 
+  <p class="about">{{interests}}</p>{{/hasInterests}}
+  {{#hasSkills}}<h4>Skill</h4> 
+  <p class="about">{{skills}}</p>{{/hasSkills}}
+</div> 

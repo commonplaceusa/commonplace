@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
 
   protect_from_forgery :except => :update
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :learn_more
 
   def delete
   end

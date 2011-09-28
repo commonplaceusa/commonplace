@@ -1,0 +1,170 @@
+
+#info-box
+  margin-top: 12px
+  background: #2e4b67
+  color: white
+  font-family: Helvetica, Arial, sans-serif
+  font-size: 12px
+  padding: 15px
+  padding-bottom: 5px
+  +border-radius(4px)
+  +box-shadow(4px 4px 2px rgba(46, 75, 103, 0.1), 0 0 0 1px #1b334a, 0 1px 0 rgba(70, 117, 161, 0.7) inset)
+  h1, h2, h3, h4, h5, h6, p
+    margin: 0
+  
+  ul, li
+    margin: 0
+    padding: 0
+    list-style: none
+  
+  h2
+    font-size: 12px
+    font-family: Helvetica, Arial, sans-serif
+    text-align: center
+    font-weight: bold
+
+  #info-upper
+    +border-radius(4px)
+    +box-shadow(2px 2px 6px rgba(0, 0, 0, 0.25) inset, 0 0 0 1px rgba(0, 0, 0, 0.24))
+    overflow: hidden
+    margin: 15px 0
+    height: 400px
+    
+    #info-list
+      width: 33.3337%
+      float: left
+      overflow: auto
+      height: 100%
+      background: rgba(0, 0, 0, 0.39)
+
+      li
+        padding: 8px
+        overflow: hidden
+        a
+          color: #738392
+          text-decoration: none
+          img
+            float: left
+            margin-right: 5px
+          p
+            float: right
+            width: 70%
+          strong
+            color: white
+            display: block
+    
+    .profile
+      width: 66.6667%
+      float: right
+      background: white
+      height: 100%
+      overflow: auto
+      color: #444
+      a
+        text-decoration: none
+      img
+        float: left
+        margin: 0 15px 15px 0
+      .profile-main
+        overflow: hidden
+      .profile-top
+        float: right
+        width: 47%
+        padding-right: 1px
+      h3
+        color: #ac322f
+        font-family: Rokkitt, Rockwell
+        font-size: 28px
+        font-weight: bold
+        line-height: 1em
+        margin-bottom: 10px
+      h4
+        color: #ac322f
+        text-transform: uppercase
+        font-size: 11px
+        font-weight: bold
+        float: left
+        margin-right: 5px
+        position: relative
+        top: 1px
+        clear: left
+      .about
+        font-size: 12px
+        margin-bottom: 10px
+        line-height: 1.4em
+  ul.filter
+    margin: 10px 0
+    &:after
+      content: "."
+      display: block
+      height: 0
+      clear: both
+      visibility: hidden
+    li
+      text-transform: uppercase
+      font-weight: bold
+      float: left
+      margin-right: 5px
+      &:first-child
+        margin-right: 8px
+      a
+        text-transform: none
+        color: #cee7fe
+        text-decoration: none
+        padding: 4px 8px
+        +text-shadow(black 1px 1px 0)
+        &.current, &:hover
+          background: #ac322f
+          +border-radius(4px)
+          +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
+          
+  form
+    overflow: hidden
+    display: none
+    margin-bottom: 10px
+    input[type=text]
+      float: left
+      width: 285px
+      +border-radius(4px)
+      border: 0
+      display: block
+      font-size: 12px
+      color: #666
+      line-height: 13px
+      padding: 8px 8px 8px 25px
+      +box-shadow(2px 2px 6px rgba(0, 0, 0, 0.25) inset, 0 0 0 1px rgba(0, 0, 0, 0.24))
+      background: white image-url("shared/icons/search.png") 8px 7px no-repeat
+      &:focus
+        color: #333
+        outline: 0
+    a.invite
+      float: right
+      width: 130px
+      margin: 0
+      text-transform: none
+      font-size: 12px
+      margin-top: 2px
+      line-height: 13px
+      padding: 8px 0
+      height: auto
+      text-align: right
+      background: #cfcfcf image-url("shared/icons/add_person.png") 10px center no-repeat
+      +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.24), 0 1px 0 rgba(255, 255, 255, 0.7) inset)
+      span
+        padding: 0 10px
+  a.gray-button
+    display: block
+    line-height: 20px
+    text-align: center
+    margin-top: 10px
+    +border-radius(4px)
+    background: #cfcfcf
+    color: #1b334a
+    text-transform: uppercase
+    font-weight: bold
+    text-decoration: none
+    font-size: 12px
+    +text-shadow(1px 1px 0 rgba(255, 255, 255, 0.9))
+    +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #cfcfcf inset, 0 2px 0 rgba(255, 255, 255, 0.7) inset)
+  .spacing
+    padding: 15px
