@@ -1,14 +1,24 @@
 
-<label for="group">Group:</label>
+<ul class="group-select">
 
-<select name="group">
   {{#groups}}
-    <option value="{{id}}" selected="{{selected}}">{{name}}</option>
+    <li>
+      <a class="{{class}}" href="#{{id}}">
+        <img src="{{avatar_url}}" width="50" height="50">
+        <span>{{name}}</span>
+      </a>
+    </li>
   {{/groups}}
-</select>
 
-<input name="title" type="text" placeholder="Post Title">
+</ul>
 
-<textarea name="body" placeholder="Your Message"></textarea>
 
-<button>Post Now</button>
+<div class="group-post-inputs">
+  <label class="group-name"></label>
+  <input name="group" type="hidden">
+  <input name="title" type="text" placeholder="Post Title">
+
+  <textarea name="body" placeholder="Your Message"></textarea>
+
+  <button>Post Now</button>
+</div>
