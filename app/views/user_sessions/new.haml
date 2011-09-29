@@ -7,7 +7,7 @@
       = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/login2.png")}
       = link_to user_omniauth_authorize_path(:facebook), :class => "facebook"  do 
         = image_tag "buttons/facebook-login.png"
-    = link_to "Forgot your password?", new_user_password_url, :class => 'forgot-password'
+      = link_to "Forgot your password?", new_user_password_url, :class => 'forgot-password'
 
   
 
