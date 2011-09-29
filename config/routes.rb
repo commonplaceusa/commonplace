@@ -165,7 +165,7 @@ Commonplace::Application.routes.draw do
   # explicitly list paths that we want the main_page js app to handle
   ["/posts(/:id)", "/users(/:id)", "/events(/:id)", "/feeds",
    "/announcements(/:id)", "/group_posts(/:/id)", "/groups(/:id)",
-   "/users/:id/messages/new"].each do |s|
+   "/users/:id/messages/new", "/feeds/:id/messages/new"].each do |s|
     match s, :to => "bootstraps#community", :via => :get, :as => :community
   end
 
