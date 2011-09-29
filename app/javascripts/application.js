@@ -6,4 +6,5 @@
 //= require jquery/json2
 //= require jquery/backbone
 //= require_tree ./jquery/
+//= require facebook
 

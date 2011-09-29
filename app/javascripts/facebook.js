@@ -9,7 +9,6 @@ function fbEnsureInit(callback) {
 }
 
 function facebook_pass(session) {
-    console.log("Facebook pass: " + session.uid);
     return session.uid;
 }
 
@@ -29,7 +28,6 @@ function facebook_invite() {
 }
 
 function inviteLoginCallback(fb_message, fb_slug) {
-    console.log("Logged in successfully");
     FB.ui({
         method: 'apprequests',
         message: fb_message,
@@ -39,7 +37,6 @@ function inviteLoginCallback(fb_message, fb_slug) {
 }
 
 function invite_friends(fb_message, fb_slug) {
-    console.log("Inviting friends...");
     fbEnsureInit(
         function(){
             FB.login(

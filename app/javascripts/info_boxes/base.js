@@ -1,6 +1,6 @@
 var InfoListItem = CommonPlace.View.extend({
   template: "main_page/info-list",
-
+  tagName: "li",
   events: {
     "click": "switchProfile"
   },
@@ -19,6 +19,8 @@ var InfoListItem = CommonPlace.View.extend({
   },
 
   switchProfile: function(e) {
+    $(this.el).siblings().removeClass("current");
+    $(this.el).addClass("current");
     e.preventDefault();
     window.infoBox.showProfile(this.model);
   }
