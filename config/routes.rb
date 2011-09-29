@@ -96,7 +96,7 @@ Commonplace::Application.routes.draw do
       end
     end
 
-    match "/invite", :to => "accounts#facebook_invite"
+    match "/invite", :to => "accounts#facebook_invite", :as => :invites
 
     # Community routes 
     
