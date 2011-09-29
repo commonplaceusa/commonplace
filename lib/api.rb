@@ -639,9 +639,9 @@ class API < Sinatra::Base
   end
 
   get "/communities/:id/group_posts" do |id|
-    community = Community.find(id)
-    serialize(paginate(GroupPost.includes(:group, :user, :replies => :user).
-                       where(:groups => {:community_id => community.id})))
+    serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
+                       includes(:group, :user, :replies => :user).
+                       where(:groups => {:community_id => id})))
   end
 
   get "/communities/:id/feeds" do |id|
