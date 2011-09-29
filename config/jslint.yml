@@ -77,4 +77,4 @@ newstat: false
 # although these will still cause a warning:
 #    element && link;
 #    selected ? 5 : 10;
-statinexp: false
+statinexp: true
