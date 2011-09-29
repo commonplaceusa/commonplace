@@ -90,7 +90,6 @@ var PostWireItem = WireItem.extend({
     var user = new User({
       links: { self: this.model.link("author") }
     });
-    console.log(user);
     window.infoBox.showProfile(user);
   },
 

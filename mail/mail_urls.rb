@@ -16,11 +16,7 @@ module MailUrls
     if path.start_with?("http")
       path
     else
-      if Rails.env.development?
-        "http://localhost:5000" + path
-      else
-        "https://www.ourcommonplace.com" + path
-      end
+      "https://s3.amazonaws.com/commonplace-mail-assets-production/#{path}"
     end
   end
 
@@ -61,7 +57,7 @@ module MailUrls
   end
 
   def logo_url
-    asset_url("/images/logo.png")
+    asset_url("logo.png")
   end
 
   def settings_url
