@@ -110,10 +110,7 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   events: {
-    "click .feeds-filter": "switchTab",
-    "click .users-filter": "switchTab",
-    "click .groups-filter": "switchTab",
-    "click .account-filter": "switchTab"
+    "click .filter-tab": "switchTab"
   },
 
   profileBoxFor: function(type, model) {

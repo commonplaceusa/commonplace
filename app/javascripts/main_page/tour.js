@@ -1,5 +1,5 @@
 
-var Tour = Backbone.View.extend({
+var Tour = CommonPlace.View.extend({
   id: "main",
   tagName: "div",
   
@@ -28,16 +28,20 @@ var Tour = Backbone.View.extend({
     return this;
   },
 
+  community_name: function() { return this.community.get('name'); },
+
+  first_name: function() { return this.account.get('short_name'); },
+
   welcome: function() {
-    this.$("#tour").html(CommonPlace.render("main_page/tour/welcome", {
-      community_name: this.community.get('name'),
-      first_name: this.account.get('short_name')
-    })).attr('class','welcome');
+    this.template = "main_page/tour/welcome";
+    this.$("#tour").html(this.renderTemplate("main_page/tour/welcome", this))
+      .attr('class','welcome');
   },
 
   wire: function() {
     this.cleanUp();
-    this.$("#tour").html(CommonPlace.render("main_page/tour/wire"))
+    this.template = "main_page/tour/wire";
+    this.$("#tour").html(this.renderTemplate("main_page/tour/wire", this))
       .attr('class','wire');
     this.removeShadows("#community-resources");
     this.raise("#community-resources");
@@ -46,7 +50,8 @@ var Tour = Backbone.View.extend({
 
   profile: function() {
     this.cleanUp();
-    this.$("#tour").html(CommonPlace.render("main_page/tour/profile"))
+    this.template = "main_page/tour/profile";
+    this.$("#tour").html(this.renderTemplate("main_page/tour/profile", this))
       .attr('class','profile');
     this.raise("#info-box");
     $.scrollTo(250, 700);
@@ -54,7 +59,8 @@ var Tour = Backbone.View.extend({
 
   feed: function() {
     this.cleanUp();
-    this.$("#tour").html(CommonPlace.render("main_page/tour/feed"))
+    this.template = "main_page/tour/feed";
+    this.$("#tour").html(this.renderTemplate("main_page/tour/feed", this))
       .attr('class', 'feed');
     this.raise("#header");
     $.scrollTo(0, 0);
@@ -62,7 +68,8 @@ var Tour = Backbone.View.extend({
 
   post: function() {
     this.cleanUp();
-    this.$("#tour").html(CommonPlace.render("main_page/tour/post"))
+    this.template = "main_page/tour/post";
+    this.$("#tour").html(this.renderTemplate("main_page/tour/post", this))
       .attr('class','post');
     this.removeShadows("#post-box");
     this.raise("#post-box");

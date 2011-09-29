@@ -7,7 +7,9 @@ var PostWireItem = WireItem.extend({
   initialize: function(options) {
     this.account = options.account;
     this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
-    this.allwords = (this.shortbody == null);
+    this.allwords = (this.shortbody === null);
+    var self = this;
+    this.model.bind("destroy", function() { self.remove(); });
   },
 
   afterRender: function() {
@@ -53,6 +55,7 @@ var PostWireItem = WireItem.extend({
   events: {
     "click .author": "messageUser",
     "click .moreBody": "loadMore",
+    "click .editlink": "editPost",
     "mouseenter": "showProfile"
   },
 
@@ -93,6 +96,17 @@ var PostWireItem = WireItem.extend({
     } else {
       window.infoBox.showUser(user);
     }
+  },
+
+  canEdit: function() { return this.account.canEditPost(this.model); },
+
+  editPost: function(e) {
+    e.preventDefault();
+    var formview = new PostFormView({
+      model: this.model,
+      template: "shared/post-edit-form"
+    });
+    formview.render();
   }
 
 });

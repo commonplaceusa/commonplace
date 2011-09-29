@@ -1,6 +1,9 @@
 
 Commonplace::Application.routes.draw do
 
+  # Community specific redirects
+  match "/corunna" => redirect { "/owosso" }
+
   resource :registration, :only => [:new, :create] do
     member do
       get :profile, :avatar, :feeds, :groups
@@ -144,6 +147,7 @@ Commonplace::Application.routes.draw do
     # ActiveAdmin and Devise try to hit the database on initialization.
     # That fails when Heroku is compiling assets, so we catch the error here.
   end
+
 
 
   scope "/:community" do

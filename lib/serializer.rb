@@ -56,12 +56,13 @@ module Serializer
         "author" => o.user.name,
         "body" => o.body,
         "author_url" => "/users/#{o.user_id}",
+        "user_id" => o.user_id,
         "replies" => serialize(o.replies.to_a),
         "last_activity" => o.last_activity.utc,
         "links" => {
           "author" => "/users/#{o.user_id}",
           "replies" => "/posts/#{o.id}/replies",
-          "self" => "posts/#{o.id}"
+          "self" => "/posts/#{o.id}"
         }
       }
 
