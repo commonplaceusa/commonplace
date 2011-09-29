@@ -11,14 +11,13 @@ var PostBox = CommonPlace.View.extend({
   afterRender: function() {
     var self = this;
     _(this.forms()).each(function(view) {
-      view.render();
       self.$(".form-container").append(view.el);
     });
     this.showTab("create-neighborhood-post");
   },
 
   forms: function() {
-    return [
+    this._forms || (this._forms = [
       (new PostForm({ collection: this.community.posts,
                       community: this.community })),
 
@@ -29,7 +28,8 @@ var PostBox = CommonPlace.View.extend({
                            community: this.community 
                          }))
       
-    ];
+    ]);
+    return this._forms;
   },
 
   switchTab: function(tab) {
@@ -42,6 +42,7 @@ var PostBox = CommonPlace.View.extend({
   showTab: function(tab) { 
     this.$("." + tab).addClass("current"); 
     this.$("h1").text(this.t(tab + ".h1"));
+    _(this.forms()).invoke("render");
   },
     
   $tabForms: function() { return this.$("form"); },

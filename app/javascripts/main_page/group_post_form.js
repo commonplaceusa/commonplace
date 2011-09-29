@@ -4,6 +4,7 @@ var GroupPostForm = CommonPlace.View.extend({
   className: "create-group-post",
 
   events: {
+    "click .group-select a": "selectGroup",
     "submit": "createGroupPost"
   },
 
@@ -23,8 +24,19 @@ var GroupPostForm = CommonPlace.View.extend({
   },
 
   groups: function() {
-    var groups = this.options.community.get('groups');
-    groups[0].selected = "selected";
-    return groups;
+    return _.map(this.options.community.get('groups'), function(g, i) {
+      g['class'] = ((i % 2) === 0) ? "even" : "odd";
+      return g;
+    });
+  },
+
+  selectGroup: function(e) {
+    e.preventDefault();
+    var id = $(e.currentTarget).attr('href').split('#')[1];
+    this.$(".group-name").text($("span", e.currentTarget).text());
+    this.$("[name=group]").val(id);
+    this.$(".group-select").hide();
+    this.$(".group-post-inputs").show();
   }
+  
 });
