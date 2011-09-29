@@ -38,7 +38,7 @@ class Feed < ActiveRecord::Base
                         :large => {:geometry => "200x200", :processors => [:cropper]},
                         :original => "1000x1000>"
                       },
-                      :default_url => "/avatars/missing.png"
+                      :default_url => "https://s3.amazonaws.com/commonplace-avatars-production/missing.png"
                     }.merge(Rails.env.development? || Rails.env.test? ?
                             { :path => ":rails_root/public/system/feeds/:id/avatar/:style.:extension", 
                               :storage => :filesystem,
