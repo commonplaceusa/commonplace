@@ -48,6 +48,13 @@ class API < Sinatra::Base
       request.env["kickoff"] ||= KickOff.new
     end
 
+    def last_modified_by_updated_at(scope)
+    last_modified(scope.unscoped
+                    .reorder("updated_at DESC")
+                    .select('updated_at')
+                    .first.try(&:updated_at))
+    end
+
   end
 
   before do 
@@ -566,10 +573,57 @@ class API < Sinatra::Base
   end
   
   get "/communities/:id/posts" do |id|
-    community = Community.find(id)
+    last_modified_by_updated_at(Post)
 
-    serialize(paginate(community.posts.includes(:user, :replies)))
+    serialize(paginate(Community.find(id).posts.includes(:user, :replies)))
   end
+
+
+  get "/communities/:id/events" do |id|
+    last_modified([Event.unscoped.reorder("updated_at DESC").
+                   select('updated_at').
+                   first.try(&:updated_at),
+                   Date.today.beginning_of_day].compact.max)
+
+    serialize(paginate(Community.find(id).events.upcoming.
+                       includes(:replies).reorder("date ASC")))
+  end
+
+  get "/communities/:id/announcements" do |id|
+    last_modified_by_updated_at(Announcement)
+
+    serialize(paginate(Community.find(id).announcements.
+                       includes(:replies, :owner).
+                       reorder("updated_at DESC")))
+  end
+
+  get "/communities/:id/group_posts" do |id|
+    last_modified_by_updated_at(GroupPost)
+
+    serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
+                       includes(:group, :user, :replies => :user).
+                       where(:groups => {:community_id => id})))
+  end
+
+  get "/communities/:id/feeds" do |id|
+    last_modified_by_updated_at(Feed)
+
+    serialize(paginate(Community.find(id).feeds))
+  end
+
+  get "/communities/:id/groups" do |id|
+    last_modified_by_updated_at(Group)
+
+    serialize(paginate(Community.find(id).groups))
+  end
+
+  get "/communities/:id/users" do |id|
+    last_modified_by_updated_at(User)
+
+     serialize(paginate(Community.find(id).users.includes(:feeds, :groups)))
+  end
+
+
 
   post "/communities/:id/add_data_point" do |id|
     num = params[:number]
@@ -625,41 +679,6 @@ class API < Sinatra::Base
     posts = Post.includes(:user).where(:users => {:neighborhood_id => id})
 
     serialize(paginate(posts.includes(:user, :replies)))
-  end
-
-  get "/communities/:id/events" do |id|
-    scope = Event.where("community_id = ?",id)
-    serialize(paginate(scope.upcoming.includes(:replies).reorder("date ASC")))
-  end
-
-  get "/communities/:id/announcements" do |id|
-    scope = Announcement.where("community_id = ?", id)
-    serialize(paginate(scope.includes(:replies, :owner).reorder("updated_at DESC")))
-
-  end
-
-  get "/communities/:id/group_posts" do |id|
-    serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
-                       includes(:group, :user, :replies => :user).
-                       where(:groups => {:community_id => id})))
-  end
-
-  get "/communities/:id/feeds" do |id|
-    scope = Community.find(id).feeds
-    serialize(paginate(scope))
-  end
-
-  get "/communities/:id/groups" do |id|
-    community = Community.find(id) 
-    scope = Community.find(id).groups
-
-    serialize(paginate(community.groups))
-  end
-
-  get "/communities/:id/users" do |id|
-    scope = Community.find(id).users
-
-    serialize(paginate(scope.includes(:feeds, :groups)))
   end
 
   get "/users/:id" do |id|
