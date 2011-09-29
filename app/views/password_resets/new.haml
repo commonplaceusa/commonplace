@@ -1,6 +1,6 @@
 #main
   %h1 Enter the email you registered with to reset your password
-  = semantic_form_for(:user, :url => user_password_url) do |f|
+  = semantic_form_for(:user, :url => user_password_url, :html => {:class => "forgot-password"}) do |f|
     = f.inputs do
       = f.input :email
     = f.buttons do
