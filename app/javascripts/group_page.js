@@ -8,9 +8,8 @@
 //= require backbone
 //= require placeholder
 //= require autoresize
-//= require shared/app
+//= require views
 //= require models
-//= require shared/views
 //= require_tree ../templates/shared
 //= require_tree ../templates/group_page
 //= require wires

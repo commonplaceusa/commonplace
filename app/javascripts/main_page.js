@@ -10,8 +10,7 @@
 //= require json2
 //= require backbone
 //= require autoresize
-//= require shared/app
-//= require shared/views
+//= require views
 //= require_tree ../templates/shared
 //= require_tree ../templates/main_page
 //= require info_boxes

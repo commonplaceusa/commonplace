@@ -8,9 +8,8 @@
 //= require json2
 //= require backbone
 //= require autoresize
-//= require shared/app
+//= require views
 //= require models
-//= require shared/views
 //= require_tree ../templates/shared
 //= require_tree ../templates/feed_page
 //= require wires
