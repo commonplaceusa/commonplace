@@ -26,7 +26,9 @@ module Serializer
       when OrganizerDataPoint
       {
         "address" => o.address,
-        "status" => o.status
+        "status" => o.status,
+        "lat" => o.lat,
+        "lng" => o.lng
       }
       when User
         { "id" => o.id,

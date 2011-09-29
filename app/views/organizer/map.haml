@@ -1,20 +1,26 @@
 %script{:src => "http://maps.google.com/maps?file=api&amp;v=2&amp;key=#{google_api_key()}", :type => "text/javascript"}
+%script{:src => "http://acme.com/javascript/Clusterer2.jsm", :type => "text/javascript"}
 :javascript
   var map;
+  var clusterer;
   var greenMarkerOptions, redMarkerOptions, orangeMarkerOptions, blueMarkerOptions;
+  var allHouseMarkers = Array();
   var droppedMarkers = Array();
   var knockedMarkers = Array();
   var postKnockedMarkers = Array();
   var noMarkers = Array();
   var onMarkers = Array();
   function createMarker(point, html, colorOptions) {
-
-        var marker = new GMarker(point, colorOptions);
-        GEvent.addListener(marker, "click", function() {
-          marker.openInfoWindowHtml(html);
-        });
-        return marker;
-      }
+    var marker = new GMarker(point, colorOptions);
+    GEvent.addListener(marker, "click", function() {
+      marker.openInfoWindowHtml(html);
+    });
+    return marker;
+  }
+  function createMarkerLight(point, html, colorOptions) {
+    var marker = new MarkerLight(point, colorOptions);
+    return marker;
+  }
   function initialize() {
     if (GBrowserIsCompatible()) {
       map = new GMap2(document.getElementById("map_canvas"));
@@ -24,9 +30,16 @@
       map.enablePinchToZoom();
       control = new GLargeMapControl()
       map.addControl(control, control.getDefaultPosition())
+      clusterer = new Clusterer(map);
+      clusterer.SetMaxVisibleMarkers(1500);
       geocoder = new GClientGeocoder();
       geocoder.getLatLng('#{@center_zip_code}', function(point){ map.setCenter(point, 16); });
       map.setCenter(new GLatLng(37.4419, -122.1419), 1);
+
+      var greyIcon = new GIcon(G_DEFAULT_ICON);
+      greyIcon.image = "http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png";
+      greyMarkerOptions = { icon: greyIcon };
+
       var greenIcon = new GIcon(G_DEFAULT_ICON)
       greenIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"
       greenMarkerOptions = { icon: greenIcon };
@@ -53,14 +66,14 @@
   function showMarkerSet(markers)
   {
     $.each(markers, function(key, marker){
-      map.addOverlay(marker);
+      clusterer.AddMarker(marker);
     });
   }
 
   function hideMarkerSet(markers)
   {
     $.each(markers, function(key, marker){
-      map.removeOverlay(marker);
+      clusterer.RemoveMarker(marker);
     });
   }
 
@@ -84,7 +97,12 @@
       success: function(data) {
         $.each(data, function(key, val) {
           var colorOption;
-          var collection;
+          if (val['status'] == 'house') {
+            colorOption = greyMarkerOptions;
+            var point = new GLatLng(val['lat'], val['lng']);
+            var marker = createMarker(point, '', greyMarkerOptions);
+            allHouseMarkers.push(marker);
+          }
           if (val['status'] == 'dropped') {
             colorOption = yellowMarkerOptions;
             geocoder.getLatLng(val['address'], function(p){ droppedMarkers.push(new GMarker(p, colorOption)); });
@@ -102,6 +120,7 @@
             geocoder.getLatLng(val['address'], function(p){ noMarkers.push(new GMarker(p, colorOption)); });
           }
         });
+        showMarkerSet(allHouseMarkers);
         showMarkerSet(droppedMarkers);
         showMarkerSet(knockedMarkers);
         showMarkerSet(postKnockedMarkers);
@@ -122,6 +141,10 @@
         = @center_zip_code
         = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
         = submit_tag "Enter"
+      %a{:onclick => "showMarkerSet(allHouseMarkers);"} Show All Houses
+      |
+      %a{:onclick => "hideMarkerSet(allHouseMarkers);"} Hide All Houses
+      %br
       %a{:onclick => "showMarkerSet(onMarkers);"} Show People on CommonPlace
       |
       %a{:onclick => "hideMarkerSet(onMarkers);"} Hide People on CommonPlace

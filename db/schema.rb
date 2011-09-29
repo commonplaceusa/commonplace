@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110925215853) do
+ActiveRecord::Schema.define(:version => 20110928235927) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -268,6 +268,9 @@ ActiveRecord::Schema.define(:version => 20110925215853) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "lat"
+    t.float    "lng"
+    t.boolean  "attempted_geolocating"
   end
 
   create_table "posts", :force => true do |t|
