@@ -64,9 +64,7 @@ var EventWireItem = WireItem.extend({
     formview.render();
   },
 
-  isOwner: function() {
-    return (this.account.get("id") == this.model.get("user_id"));
-  },
+  canEdit: function() { return this.account.canEditEvent(this.model); },
 
   isMore: function() {
     return !this.allwords;

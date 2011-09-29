@@ -98,9 +98,7 @@ var PostWireItem = WireItem.extend({
     }
   },
 
-  isOwner: function() {
-    return this.account.get("id") == this.model.get("user_id");
-  },
+  canEdit: function() { return this.account.canEditPost(this.model); },
 
   editPost: function(e) {
     e.preventDefault();

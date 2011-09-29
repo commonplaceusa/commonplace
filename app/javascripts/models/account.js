@@ -91,6 +91,7 @@ var Account = Model.extend({
     });
   },
 
+
   unmeetUser: function(user, callback) {
     var self = this;
     $.ajax({
@@ -107,6 +108,32 @@ var Account = Model.extend({
 
   hasMetUser: function(user) {
     return _.include(this.get("mets"), user.id);
+  },
+
+  canEditPost: function(post) {
+    return post.get('user_id') == this.id || this.get('is_admin');
+  },
+
+  canEditGroupPost: function(post) {
+    return post.get('user_id') == this.id || this.get('is_admin');
+  },
+
+  canEditEvent: function(event) {
+    if (this.get('is_admin')) { return true; }
+    if (event.get('owner_type') == "Feed") {
+      return _.include(_.pluck(this.get('feeds'), 'id'), event.get('feed_id'));
+    } else {
+      return event.get('user_id') == this.id;
+    }
+  },
+
+  canEditAnnouncement: function(post) {
+    if (this.get('is_admin')) { return true; }
+    if (post.get('owner_type') == "Feed") {
+      return _.include(_.pluck(this.get('feeds'), 'id'), post.get('feed_id'));
+    } else {
+      return post.get('user_id') == this.id;
+    }
   }
 
 });
