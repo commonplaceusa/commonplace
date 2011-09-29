@@ -33,8 +33,6 @@ var MainPageView = CommonPlace.View.extend({
       view.render();
       self.$("#" + view.id).replaceWith(view.el);
     });
-
-    window.infoBox.showAccount(this.account);
   }
 
 });

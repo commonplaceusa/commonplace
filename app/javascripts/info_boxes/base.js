@@ -1,15 +1,45 @@
+var InfoListItem = CommonPlace.View.extend({
+  template: "main_page/info-list",
+
+  events: {
+    "click": "switchProfile"
+  },
+
+  avatarUrl: function() { return this.model.get('avatar_url'); },
+  
+  title: function() { return this.model.get("name"); },
+
+  about: function() {
+    var longText = this.model.get("about");
+    if (longText) {
+      var shortText = longText.match(/\b([\w]+[\W]+){6}/);
+      return (shortText) ? shortText[0] : longText;
+    }
+    return "";
+  },
+
+  switchProfile: function(e) {
+    e.preventDefault();
+    window.infoBox.showProfile(this.model);
+  }
+  
+});
 
 var InfoBox = CommonPlace.View.extend({
   id: "info-box",
   template: "main_page/info-box",
-  profileId: "#profile",
-  listId: "#info-list",
-  profileType: "account",
-  lastCollection: null,
+  $profile: function() { return this.$("#profile"); },
+  $list: function() { return this.$("#info-list"); },
+
+  events: {
+    "click .filter-tab": "switchTab"
+  },
 
   afterRender: function() {
     var self = this;
+    this.showProfile(this.options.account);
     $(window).scroll(function() {
+      $(self.el).css({ width: $(self.el).width() });
       self.setPosition();
     });
   },
@@ -33,136 +63,103 @@ var InfoBox = CommonPlace.View.extend({
     }
   },
 
-  show: function(type, model) {
+  showProfile: function(model) {
     var self = this;
-    var accountId = this.options.account.id;
-    if (type == "account" && model && model.id) {
-      if (accountId != model.id) { type = "users"; }
-    }
-    if (type == "users" && model) {
-      if (accountId == model.id) { type = "account"; }
-    }
-    this.profileType = type;
-    var profile;
-    this.showList(this.collectionFor(type), function(collection) {
-      if (type == "account" && !model) {
-        model = collection.find(function(item) {
-          return accountId == item.id;
-        });
-      }
-      if (type == "users" && !model) {
-        model = collection.find(function(item) {
-          return accountId != item.id;
-        });
-      }
-      profile = self.profileBoxFor(type, ( model ? model : collection.first() ));
-      profile.render();
-      self.$(self.profileId).replaceWith(profile.el);
-      self.setPosition();
-      $(self.el).css({ width: $(self.el).width() });
-    });
-    this.$(".filter-tab").removeClass("current");
-    this.$("." + type + "-filter").addClass("current");
-
-  },
-
-  showUser: function(user) {
-    this.show("users", user);
-  },
-
-  showGroup: function(group) {
-    this.show("groups", group);
-  },
-
-  showFeed: function(feed) {
-    this.show("feeds", feed);
-  },
-
-  showAccount: function(user) {
-    this.show("account", user);
-  },
-
-  showList: function(collection, callback) {
-    var self = this;
-    if (collection == this.lastCollection) {
-      if (callback) { callback(collection); }
-      return;
-    }
-    this.lastCollection = collection;
-    $(self.listId).empty();
-    collection.fetch({
+    model.fetch({ 
       success: function() {
-        collection.each(function(item) {
-          var list = new InfoListItem({ model: item, account: self.account });
-          list.render();
-          $(self.listId).append(list.el);
-        });
-        if (callback) { callback(collection); }
+        if (model.get('schema') == "user" && model.id == self.options.account.id) {
+          model = self.options.account;
+        }
+
+        var profile = self.profileBoxFor(model);
+        var collection = self.collectionFor(model);
+        
+        self.showCollection(collection, false);
+      
+        profile.render();
+        
+        self.$profile().replaceWith(profile.el);
+        
+        self.$(".filter-tab").removeClass("current");
+        self.$("." + model.get('schema') + "-filter").addClass("current");
+        self.$("h2").text(self.headerTextFor(model));
       }
     });
-    var group = {
-      "account": "neighbors",
-      "users": "neighbors",
-      "groups": "community",
-      "feeds": "community"
-    };
-    this.$("h2").text("Learn about your " + group[this.profileType] + ":");
   },
 
-  events: {
-    "click .filter-tab": "switchTab"
+  showCollection: function(collection, showFirst) {
+    if (this.currentCollection == collection && !showFirst) { return ; }
+
+    this.currentCollection = collection;
+
+    var self = this;
+
+    collection.fetch({ 
+      success: function() {
+        self.$list().empty();
+        collection.each(function(model) {
+          var item = new InfoListItem({ 
+            model: model, 
+            account: self.options.account
+          });
+          item.render();
+          self.$list().append(item.el);
+        });
+        
+        if (showFirst) {
+          self.showProfile(collection.first());
+        }
+      }
+    });
+                        
   },
 
-  profileBoxFor: function(type, model) {
-    return new (this.config(type).profileBox)({ model: model, account: this.options.account });
+  profileBoxFor: function(model) {
+    return new (this.config(model.get('schema')).profileBox)({ 
+      model: model, account: 
+      this.options.account 
+    });
   },
 
-  collectionFor: function(type) {
-    return this.config(type).collection;
+  collectionFor: function(model) {
+    return this.config(model.get('schema')).collection;
+  },
+
+  headerTextFor: function(model) {
+    return "Learn about your " + this.config(model.get('schema')).text + ":";
   },
 
   config: function(type) {
     return {
-      "account": { profileBox: AccountProfileBox, collection: this.options.community.users },
-      "users":  { profileBox: UserProfileBox, collection: this.options.community.users },
-      "groups": { profileBox: GroupProfileBox, collection: this.options.community.groups },
-      "feeds": { profileBox: FeedProfileBox, collection: this.options.community.feeds } 
+      "account": { profileBox: AccountProfileBox, 
+                   collection: this.options.community.users,
+                   text: "neighbors"
+                 },
+      "user":  { profileBox: UserProfileBox, 
+                 collection: this.options.community.users ,
+                 text: "neighbors"
+               },
+      "group": { profileBox: GroupProfileBox, 
+                 collection: this.options.community.groups,
+                 text: "community"
+               },
+      "feed": { profileBox: FeedProfileBox, 
+                collection: this.options.community.feeds,
+                text: "community"
+              } 
     }[type];    
   },
 
   switchTab: function(e) {
     e.preventDefault();
     var type = $(e.target).attr("href").split("#")[1];
-    this.show(type);
-  }
-
-});
-
-var InfoListItem = CommonPlace.View.extend({
-  template: "main_page/info-list",
-
-  events: {
-    "click": "switchProfile"
-  },
-
-  avatarUrl: function() { return this.model.get('avatar_url'); },
-  
-  title: function() { return this.model.get("name"); },
-
-  about: function() {
-    var longText = this.model.get("about");
-    if (longText) {
-      var shortText = longText.match(/\b([\w]+[\W]+){6}/);
-      return (shortText) ? shortText[0] : longText;
+    if (type == "account") {
+      this.showProfile(this.options.account);
+    } else {
+      this.showCollection(this.options.community[type], true);
     }
-    return "";
-  },
-
-  switchProfile: function(e) {
-    e.preventDefault();
-    window.infoBox.show(window.infoBox.profileType, this.model);
   }
-  
+
 });
 
 var Profile = CommonPlace.View.extend({

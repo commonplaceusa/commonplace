@@ -35,7 +35,7 @@ var UserWireItem = WireItem.extend({
   },
 
   showProfile: function(e) {
-    window.infoBox.showUser(this.model);
+    window.infoBox.showProfile(this.model);
   }
 
 });
