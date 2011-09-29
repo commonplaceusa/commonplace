@@ -6,7 +6,9 @@ var GroupPostWireItem = WireItem.extend({
   initialize: function(options) {
     this.account = options.account;
     this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
-    this.allwords = (this.shortbody == null);
+    this.allwords = (this.shortbody === null);
+    var self = this;
+    this.model.bind("destroy", function() { self.remove(); });
   },
 
   afterRender: function() {
@@ -90,13 +92,11 @@ var GroupPostWireItem = WireItem.extend({
     window.infoBox.showGroup(group);
   },
 
-  isOwner: function() {
-    return (this.account.get("id") == this.model.get("user_id"));
-  },
+  canEdit: function() { return this.account.canEditGroupPost(this.model); },
 
   editGroupPost: function(e) {
     e && e.preventDefault();
-    var formview = new GroupPostFormView({
+    var formview = new PostFormView({
       model: this.model,
       template: "shared/group-post-edit-form"
     });
