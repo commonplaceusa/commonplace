@@ -27,7 +27,11 @@ class Group < ActiveRecord::Base
   end
 
   def avatar_url(style_name = nil)
-    self.avatar_file_name || "/avatars/missing.png"
+    if Rails.env.development?
+      self.avatar_file_name || "/avatars/missing.png"
+    else
+      "https://s3.amazonaws.com/commonplace-avatars-#{Rails.env}/groups/#{self.slug}.png"
+    end
   end
 
   def live_subscribers
