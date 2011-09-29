@@ -45,7 +45,7 @@ gem 'geocoder' # we use geocoder to find user latlngs from addresses
 gem 'glebm-geokit', :require => 'geokit' # use this to find latlngs from address again. try to remove in favor of geocoder
 
 # Jobs
-gem 'resque' # use this to queue worker processes
+gem 'resque', "~> 1.19.0" # use this to queue worker processes
 gem 'resque-exceptional' # we use this to send notify of exceptions with worker processes
 gem 'resque-scheduler' # we use this to queue jobs at specific times
 gem 'hirefireapp' # auto-scale web and worker processes
