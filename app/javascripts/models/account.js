@@ -85,9 +85,7 @@ var Account = Model.extend({
         self.set(account);
         callback && callback();
       },
-      failure: function(account) {
-        console.log(self, user);
-      }
+      failure: function(account) {      }
     });
   },
 
