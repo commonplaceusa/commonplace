@@ -28,7 +28,7 @@ var UserProfileBox = Profile.extend({
   
   groups: function() { return ""; },
 
-  hasAbout: function() { return this.model.get("about") != undefined; },
+  hasAbout: function() { return this.model.get("about") ; },
 
   hasInterests: function() { return this.model.get("interests").length > 0; },
 
