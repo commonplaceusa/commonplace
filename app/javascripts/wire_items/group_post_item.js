@@ -89,7 +89,7 @@ var GroupPostWireItem = WireItem.extend({
     var group = new Group({
       links: { self: this.model.link("group") }
     });
-    window.infoBox.showGroup(group);
+    window.infoBox.showProfile(group);
   },
 
   canEdit: function() { return this.account.canEditGroupPost(this.model); },

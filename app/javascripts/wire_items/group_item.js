@@ -22,7 +22,7 @@ var GroupWireItem = WireItem.extend({
   },
 
   showProfile: function(e) {
-    window.infoBox.showGroup(this.model);
+    window.infoBox.showProfile(this.model);
   },
 
   subscribe: function() { this.options.account.subscribeToGroup(this.model); },

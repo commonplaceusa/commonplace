@@ -75,18 +75,7 @@ var AnnouncementWireItem = WireItem.extend({
   },
 
   showProfile: function(e) {
-    var author = this.model.link("author");
-    if (this.model.get("owner_type") == "Feed") {
-      var feed = new Feed({
-        links: { self: author }
-      });
-      window.infoBox.showFeed(feed);
-    } else {
-      var user = new User({
-        links: { self: author }
-      });
-      window.infoBox.showUser(user);
-    }
+    window.infoBox.showProfile(this.model.author());
   }
     
 });

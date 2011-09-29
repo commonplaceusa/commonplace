@@ -23,7 +23,7 @@ var FeedWireItem = WireItem.extend({
   },
   
   showProfile: function(callback) {
-    callback(new FeedProfileBox({ model: this.model, account: this.options.account }));
+    window.infoBox.showProfile(this.model);
   },
 
   subscribe: function() { this.options.account.subscribeToFeed(this.model); },

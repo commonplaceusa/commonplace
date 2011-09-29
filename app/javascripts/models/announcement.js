@@ -1,12 +1,15 @@
 
 var Announcement = Repliable.extend({
-  author: function(callback) {
-    if (!this._author) {
-      this._author = new window[this.get('owner_type')]({
-        links: { self: this.get('links').author }
+  author: function() {
+    if (this.get('owner_type') == "Feed") {
+      return new Feed({
+        links: { self: this.link('author') }
+      });
+    } else {
+      return new User({
+        links: { self: this.link('author') }
       });
     }
-    this._author.fetch({ success: callback });
   }
 });
 

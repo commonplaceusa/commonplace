@@ -32,6 +32,7 @@ module Serializer
       }
       when User
         { "id" => o.id,
+        "schema" => "user",
         "avatar_url" => o.avatar_url(:normal),
         "url" => "/users/#{o.id}",
         "name" => o.name,
@@ -49,6 +50,7 @@ module Serializer
       when Post
         { 
         "id" => o.id,
+        "schema" => "post",
         "avatar_url" => o.user.avatar_url(:thumb),
         "published_at" => o.created_at.utc,
         "url" => "/posts/#{o.id}",
@@ -69,6 +71,7 @@ module Serializer
       when Event
         { 
         "id" => o.id,
+        "schema" => "event",
         "published_at" => o.created_at.utc,
         "url" => "/events/#{o.id}",
         "occurs_on" => o.date.to_time.utc,
@@ -98,6 +101,7 @@ module Serializer
       when Announcement
         { 
         "id" => o.id,
+        "schema" => "announcement",
         "url" => "/announcements/#{o.id}",
         "published_at" => o.created_at.utc,
         "avatar_url" => o.owner.avatar_url(:thumb),
@@ -120,6 +124,7 @@ module Serializer
       when GroupPost
         { 
         "id" => o.id,
+        "schema" => "group_post",
         "url" => "/group_posts/#{o.id}",
         "published_at" => o.created_at.utc,
         "author" => o.user.name,
@@ -142,6 +147,7 @@ module Serializer
 
       when Reply
         { 
+        "schema" => "reply",
         "author" => o.user.name,
         "avatar_url" => o.user.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
@@ -155,6 +161,7 @@ module Serializer
       when Feed
         { 
         "id" => o.id,
+        "schema" => "feed",
         "user_id" => o.user.id,
         "url" => "/pages/#{o.slug}",
         "slug" => o.slug ,
@@ -187,6 +194,7 @@ module Serializer
       when Group
         { 
         "id" => o.id,
+        "schema" => "group",
         "url" => "/groups/#{o.id}",
         "name" => o.name,
         "about" => o.about,
@@ -204,6 +212,7 @@ module Serializer
       when Account
         {
         "id" => o.id,
+        "schema" => "account",
         "avatar_url" => o.avatar_url(:normal),
         "feed_subscriptions" => o.feed_subscriptions,
         "group_subscriptions" => o.group_subscriptions,
@@ -236,6 +245,7 @@ module Serializer
         community_asset_url = "https://s3.amazonaws.com/commonplace-community-assets/#{o.slug}/"
         { 
         "id" => o.id,
+        "schema" => "community",
         "slug" => o.slug,
         "name" => o.name,
         "groups" => o.groups.map {|g| 
