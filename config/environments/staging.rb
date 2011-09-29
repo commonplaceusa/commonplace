@@ -1,7 +1,7 @@
 Commonplace::Application.configure do
 
   # Don't Compress JavaScripts and CSS
-  config.assets.compress = false
+  config.assets.compress = true
 
   # Fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = true
