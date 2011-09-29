@@ -76,6 +76,9 @@ var MainPageRouter = Backbone.Router.extend({
     "/events/:id": "event",
     "/group_posts/:id": "groupPost",
     "/announcements/:id": "announcement",
+
+    "/users/:id/messages/new": "messageUser",
+    "/feeds/:id/messages/new": "messageFeed",
     
     "/tour": "tour"
   },
@@ -108,6 +111,30 @@ var MainPageRouter = Backbone.Router.extend({
 
   groupPost: function(id) {
     this.lists.showGroupPost(new GroupPost({links: {self: "/group_posts/" + id}}));
+  },
+
+  messageUser: function(id) {
+    var user = new User({ links: { self: "/users/" + id } });
+    user.fetch({ 
+      success: function() {
+        var form = new MessageFormView({
+          model: new Message({ messagable: user })
+        });
+        form.render();
+      } 
+    });
+  },
+  
+  messageFeed: function(id) {
+    var feed = new Feed({ links: { self: "/feeds/" + id } });
+    feed.fetch({
+      success: function() {
+        var form = new MessageFormView({
+          model: new Message({ messagable: feed })
+        });
+        form.render();
+      }
+    });
   },
     
   tour: function() { 
