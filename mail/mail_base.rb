@@ -32,11 +32,11 @@ class MailBase < Mustache
     @text ||= YAML.load_file(File.join(File.dirname(__FILE__), "text", "#{community.locale}.yml"))[self.underscored_name]
   end
   
-  def self.render(*args, &block)
+  def self.render_html(*args, &block)
     if block_given?
       new(*args, &block).render
     else
-      super(*args)
+      self.render(*args)
     end
   end
 
@@ -49,8 +49,8 @@ class MailBase < Mustache
     end
   end
   
-  def render(*args)
-    Premailer.new(super(*args), :with_html_string => true).to_inline_css
+  def render_html(*args)
+    Premailer.new(render(*args), :with_html_string => true).to_inline_css
   end
 
   def styles
@@ -115,7 +115,7 @@ class MailBase < Mustache
                           :reply_to => self.reply_to,
                           :subject => self.subject,
                           :content_type => "text/html",
-                          :body => self.render,
+                          :body => self.render_html,
                           :headers => {
                             "Precedence" => "list",
                             "Auto-Submitted" => "auto-generated",
