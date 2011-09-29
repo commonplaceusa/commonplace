@@ -9,15 +9,15 @@ class DailyBulletin < MailBase
   end
 
   def logo_url
-    asset_url("/images/logo2.png")
+    asset_url("logo2.png")
   end
 
   def reply_button_url
-    asset_url("/images/mail/reply-button.png")
+    asset_url("reply-button.png")
   end
 
   def invite_them_now_button_url
-    asset_url("/images/mail/invite-them-now-button.png")
+    asset_url("invite-them-now-button.png")
   end
   
   def short_user_name
