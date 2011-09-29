@@ -60,8 +60,8 @@ var AnnouncementWireItem = WireItem.extend({
     formview.render();
   },
 
-  isOwner: function() {
-    return (this.account.get("id") == this.model.get("user_id"));
+  canEdit: function() {
+    return this.account.canEditAnnouncement(this.model);
   },
 
   isMore: function() {
