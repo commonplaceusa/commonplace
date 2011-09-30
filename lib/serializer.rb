@@ -43,7 +43,7 @@ module Serializer
         "offers" => o.offer_list,
         "subscriptions" => o.feed_list,
         "links" => {
-          "messages" => "/people/#{o.id}/messages",
+          "messages" => "/users/#{o.id}/messages",
           "self" => "/users/#{o.id}"
         }
       }
@@ -142,6 +142,25 @@ module Serializer
           "author" => "/users/#{o.user_id}",
           "group" => "/groups/#{o.group_id}",
           "self" => "/group_posts/#{o.id}"
+        }
+        }
+
+      when Message
+        {
+        "id" => o.id,
+        "url" => "/users/#{o.messagable_id}/messages/#{o.id}",
+        "published_at" => o.created_at.utc,
+        "user_id" => o.messagable_id,
+        "author_id" => o.user_id,
+        "avatar_url" => o.user.avatar_url(:thumb),
+        "author" => o.user.name,
+        "title" => o.subject,
+        "body" => o.body,
+        "replies" => serialize(o.replies.to_a),
+        "links" => {
+          "replies" => "/messages/#{o.id}/replies",
+          "author" => "/users/#{o.messagable_id}",
+          "self" => "/users/#{o.messagable_id}/messages/#{o.id}"
         }
         }
 
