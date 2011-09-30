@@ -256,7 +256,8 @@ module Serializer
           "group_subscriptions" => "/account/subscriptions/groups",
           "mets" => "/account/mets",
           "self" => "/account",
-          "edit" => "/account/profile"
+          "edit" => "/account/profile",
+          "inbox" => "/account/inbox"
         }
         }
 

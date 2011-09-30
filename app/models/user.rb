@@ -329,6 +329,13 @@ class User < ActiveRecord::Base
     self.post_receive_method == "Three"
   end
 
+  def message_threads
+    Message.where(%q{ user_id = ? OR
+                      (messagable_type = 'User' AND messagable_id = ?) },
+                  self.id,
+                  self.id)    
+  end
+
   unless Rails.env.test?
     searchable do
       string :first_name
