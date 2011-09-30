@@ -10,6 +10,7 @@
 //= require json2
 //= require backbone
 //= require autoresize
+//= require dropkick
 //= require views
 //= require_tree ../templates/shared
 //= require_tree ../templates/main_page

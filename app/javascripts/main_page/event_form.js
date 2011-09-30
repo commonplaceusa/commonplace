@@ -13,6 +13,7 @@ var EventForm = CommonPlace.View.extend({
     this.$("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
     this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$("textarea").autoResize();
+    this.$("select.time").dropkick();
   },
 
   createEvent: function(e) {
