@@ -4,6 +4,11 @@
     <div class="day-of-month">{{day_of_month}}</div>
   </div>
 
+  {{#time}}
+    <div class="event-time">
+      {{time}}
+    </div>
+  {{/time}}
   <div class="corner">{{publishedAt}}{{#canEdit}} - <a href="#" class="editlink">EDIT</a>{{/canEdit}}</div>
 
   <div class="title">{{title}}</div>
@@ -11,6 +16,11 @@
   <div class="author">{{author}}</div>
 
   <div class="body">{{#markdown}}{{body}}{{/markdown}}{{#isMore}}... <a class="moreBody" href="#">More</a>{{/isMore}}</div>
+  
+  <table class="event-location">
+    {{#venue}}<tr><th>Venue:</th><td>{{venue}}</td></tr>{{/venue}}
+    {{#address}}<tr><th>Address:</th><td>{{address}}</td></tr>{{/address}}
+  </table>
 
   <div style="clear:both;"></div>
 
