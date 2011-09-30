@@ -1,0 +1,70 @@
+@import core
+@import shared/buttons
+@import header
+@import header
+@import footer
+@import date_picker
+@import shared/replies
+@import shared/wire
+@import shared/form
+@import shared/modal
+@import shared/markdown
+
+#inbox
+  border: #d5d6d6
+  width: 700px
+  +border-radius(5px)
+  border: 1px solid #d5d6d6
+  background-color: white
+  margin: auto
+  margin-top: 20px
+
+  h2
+    background-color: #f2f2f2
+    color: #67769e
+    text-align: center
+    padding: 3px
+    border-bottom: 1px solid #d5d6d6
+    +border-top-radius(5px)
+
+  ul.list
+    +border-bottom-radius(4px)
+    +min-height(500px)
+
+    .message-item
+      border-bottom: 1px solid #e4e4e4
+      padding: 15px
+
+      .clear
+        clear: both
+
+      .replies
+        textarea
+          width: 530px
+
+      .main-message
+        img.avatar
+          float: left
+          margin-right: 10px
+
+        .corner
+          float: right
+          color: #bab9bf
+          font-size: 18px
+
+        h3
+          color: #af473e
+          font-size: 24px
+          margin-bottom: 10px
+          font-weight: bold
+          font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
+
+        .author
+          color: #b65951
+          font-size: 18px
+          margin-bottom: 5px
+
+        .body
+          margin-left: 85px
+          color: #3b3b3b
+          line-height: 22px
