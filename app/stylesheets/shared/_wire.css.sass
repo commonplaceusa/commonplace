@@ -14,6 +14,7 @@
     color: #888
 
 .wire-item
+  position: relative
   border-top: 1px solid #bebebe
   padding: 12px 10px 15px 10px
   .title, .author, .body, .message-user 
@@ -46,7 +47,9 @@
     font-family: Helvetica, sans-serif
     
   .corner
-    float: right
+    position: absolute
+    right: 10px
+    top: 10px
     color: #888
     font-family: Helvetica, sans-serif
     font-size: 11px
@@ -101,3 +104,23 @@
     padding: 5px 
     float: right
 
+.wire-item .event
+  .event-time
+    font-size: 13px
+    float: left
+    width: 50px
+    color: #1B334A
+    clear: left
+    text-align: center
+
+  .event-location
+    margin-top: 10px
+    margin-left: 60px
+    font-size: 13px
+    font-family: Helvetica, sans-serif
+    th
+      color: #B7403C
+      padding-right: 10px
+      padding-bottom: 5px
+    td
+      color: $textColor
