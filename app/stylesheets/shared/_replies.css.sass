@@ -30,10 +30,13 @@
   .author
     margin-bottom: 0
     margin-right: 5px
-    font-size: 11px
+    font-size: 14px
+    position: relative
+    top: 1px
     color: #B7403C
     font-weight: bold
     float: left
+    font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
 
   .body, h1, h2, h3, h4, h5, h6
     font-size: 12px
@@ -43,6 +46,7 @@
     font-family: Helvetica, sans-serif
     p
       margin-top: 0px
+      line-height: 1.4em
 
   h1, h2, h3, h4, h5, h6
     font-weight: bold
@@ -62,9 +66,23 @@
     border: 0
 
   textarea 
-    height: 23px
-    width: 330px
+    font-family: Helvetica, Arial, sans-serif
+    font-size: 12px
+    color: #888
+    background: white
+    border: none
+    +border-radius(4px)
+    padding: 9px 10px 10px 10px
+    margin: 1px 0 0 0
+    height: 10px
+    width: 310px
     margin-left: 10px
+    line-height: 1.4em
+    +box-shadow(0 0 0 1px #ccc,1px 1px 3px #ddd inset)
+    
+    &:focus
+      outline: none
+      color: #333
 
   button
     margin-top: 0px
@@ -72,6 +90,7 @@
     float: right
     cursor: pointer
     display: block
-    padding: 6px 6px 7px
+    font-size: 14px
+    padding: 7px 10px 8px
     
     

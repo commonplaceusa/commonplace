@@ -77,6 +77,7 @@
 
   .avatar.calendar
     font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
+    border: 0
 
     .month
       background-color: #ac322f
@@ -88,8 +89,12 @@
     .day-of-month
       background-color: #e0e0e0
       text-align: center
-      padding: 4px 0 8px
+      padding: 3px 0
+      font-size: 26px
+      color: #081428
       +border-bottom-radius(3px)
+      +box-shadow(0 0 0 1px #ccc inset)
+      +text-shadow(1px 1px 0 white)
 
   .message-user
     +red-button
@@ -107,7 +112,7 @@
 
 .wire-item .event
   .event-time
-    margin-top: 5px
+    margin-top: 10px
     font-size: 13px
     float: left
     width: 50px
