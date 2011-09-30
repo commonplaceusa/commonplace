@@ -257,7 +257,8 @@ module Serializer
           "mets" => "/account/mets",
           "self" => "/account",
           "edit" => "/account/profile",
-          "inbox" => "/account/inbox"
+          "inbox" => "/account/inbox",
+          "sent" => "/account/inbox/sent"
         }
         }
 
