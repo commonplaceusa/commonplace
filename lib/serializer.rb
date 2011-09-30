@@ -249,7 +249,7 @@ module Serializer
         "slug" => o.slug,
         "name" => o.name,
         "groups" => o.groups.map {|g| 
-          { "avatar_url" => g.avatar_url, "id" => g.id, "name" => g.name }
+          { "slug" => g.slug, "avatar_url" => g.avatar_url, "id" => g.id, "name" => g.name }
         },
         "locale" => o.locale.to_s,
         "links" => {
