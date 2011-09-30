@@ -42,7 +42,7 @@ var EventWireItem = WireItem.extend({
 
   address: function() { return this.model.get('address'); },
 
-  time: function() { return this.model.get('start_time'); },
+  time: function() { return this.model.get('starts_at'); },
 
   body: function() {
     if (!this.allwords) {
