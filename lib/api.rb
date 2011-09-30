@@ -573,7 +573,11 @@ class API < Sinatra::Base
   end
   
   get "/account/inbox" do 
-    serialize(paginate(current_account.message_threads.reorder("updated_at DESC")))
+    serialize(current_account.inbox)
+  end
+
+  get "/account/inbox/sent" do
+    serialize(paginate(current_account.sent_messages.reorder("updated_at DESC")))
   end
 
   get "/communities/:id/posts" do |id|
