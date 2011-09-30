@@ -151,6 +151,7 @@ module Serializer
         "url" => "/users/#{o.messagable_id}/messages/#{o.id}",
         "published_at" => o.created_at.utc,
         "user_id" => o.messagable_id,
+        "user" => o.messagable.name,
         "author_id" => o.user_id,
         "avatar_url" => o.user.avatar_url(:thumb),
         "author" => o.user.name,
@@ -159,8 +160,9 @@ module Serializer
         "replies" => serialize(o.replies.to_a),
         "links" => {
           "replies" => "/messages/#{o.id}/replies",
-          "author" => "/users/#{o.messagable_id}",
-          "self" => "/users/#{o.messagable_id}/messages/#{o.id}"
+          "author" => "/users/#{o.user_id}",
+          "self" => "/messages/#{o.id}",
+          "user" => "/users/#{o.messagable_id}"
         }
         }
 
@@ -170,6 +172,7 @@ module Serializer
         "author" => o.user.name,
         "avatar_url" => o.user.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
+        "author_id" => o.user.id,
         "body" => o.body,
         "published_at" => o.created_at.utc,
         "links" => {
