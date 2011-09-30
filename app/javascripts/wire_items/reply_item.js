@@ -29,12 +29,14 @@ var ReplyWireItem = WireItem.extend({
   messageUser: function(e) {
     if (e) { e.preventDefault(); }
 
-    this.model.user(function(user) {
-      var formview = new MessageFormView({
-        model: new Message({messagable: user})
+    if (this.model.get("author_id") != this.account.id) {
+      this.model.user(function(user) {
+        var formview = new MessageFormView({
+          model: new Message({messagable: user})
+        });
+        formview.render();
       });
-      formview.render();
-    });
+    }
   },
 
   showProfile: function(e) {
