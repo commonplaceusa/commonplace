@@ -4,6 +4,10 @@ var MessageWireItem = WireItem.extend({
   tagName: "li",
   className: "message-item",
 
+  events: {
+    "click a.main-author": "sendMessage"
+  },
+
   initialize: function(options) {
     this.account = options.account;
     this.model = options.model;
@@ -30,8 +34,34 @@ var MessageWireItem = WireItem.extend({
 
   title: function() { return this.model.get("title"); },
 
-  author: function() { return this.model.get("author"); },
+  author: function() {
+    return this.model.get("author");
+  },
 
-  body: function() { return this.model.get("body"); }
+  recipient: function() {
+    return this.model.get("user");
+  },
+
+  body: function() { return this.model.get("body"); },
+
+  sendMessage: function(e) {
+    e && e.preventDefault();
+
+    var user = new User({
+      links: {
+        self: this.model.link(this.isSent() ? "user" : "author")
+      }
+    });
+    user.fetch({
+      success: function() {
+        var formview = new MessageFormView({
+          model: new Message({ messagable: user })
+        });
+        formview.render();
+      }
+    });
+  },
+
+  isSent: function() { return this.model.get("author_id") == this.account.id; }
 
 });
