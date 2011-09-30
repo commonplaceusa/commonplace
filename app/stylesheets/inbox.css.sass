@@ -10,13 +10,42 @@
 @import shared/modal
 @import shared/markdown
 
-#inbox
-  border: #d5d6d6
-  width: 700px
-  +border-radius(5px)
-  border: 1px solid #d5d6d6
-  background-color: white
+body
+  background-color: #eee
+  margin: 0
+
+#main
+  width: 980px
   margin: auto
+  position: relative
+
+#inbox-nav
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+  font-size: 18px
+  float: left
+  width: 100px
+  padding-left: 30px
+  padding-right: 30px
+  margin-top: 20px
+
+  a 
+    +border-radius(3px)
+    display: block
+    padding: 5px 20px
+    color: #1b334a
+    text-decoration: none
+
+  .current
+    background-color: #ac322f
+    color: white
+
+#inbox
+  border: #bbb
+  width: 650px
+  +border-radius(5px)
+  border: 1px solid #bbb
+  background-color: white
+  float: left
   margin-top: 20px
 
   h2
@@ -32,15 +61,32 @@
     +min-height(500px)
 
     .message-item
-      border-bottom: 1px solid #e4e4e4
+      border-bottom: 1px solid #bbb
       padding: 15px
 
       .clear
         clear: both
 
       .replies
+        .reply-info
+          margin-left: 60px
+        img.avatar
+          width: 50px
+          height: 50px
         textarea
-          width: 530px
+          width: 470px
+          height: 43px
+        .author
+          display: block
+          font-size: 14px
+          float: none
+          margin-bottom: 5px
+        .body
+          display: block
+          font-size: 14px
+          margin-bottom: 5px
+        .time
+          font-size: 14px
 
       .main-message
         img.avatar
@@ -59,12 +105,20 @@
           font-weight: bold
           font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
 
-        .author
+        .main-author
           color: #b65951
-          font-size: 18px
+          text-decoration: none
+
+        .date
+          color: #bab9bf
+          font-size: 16px
           margin-bottom: 5px
 
         .body
           margin-left: 85px
           color: #3b3b3b
           line-height: 22px
+          li
+            margin-left: 10px
+          p, ul, ol, h1, h2, h3, h4, h5, h6
+            margin-bottom: 10px
