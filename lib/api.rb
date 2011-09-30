@@ -516,11 +516,6 @@ class API < Sinatra::Base
     end
   end
 
-  get "/users/:id/messages" do |id|
-    scope = User.find(id).received_messages.reorder("updated_at DESC")
-    serialize( paginate(scope) )
-  end
-
   # GET /account
   # { id: Integer
   # , avatar_url: String
@@ -577,6 +572,10 @@ class API < Sinatra::Base
     serialize(Account.new(current_account))
   end
   
+  get "/account/inbox" do 
+    serialize(paginate(current_account.message_threads.reorder("updated_at DESC")))
+  end
+
   get "/communities/:id/posts" do |id|
     last_modified_by_updated_at(Post)
 
