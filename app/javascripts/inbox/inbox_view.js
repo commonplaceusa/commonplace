@@ -8,7 +8,8 @@ var InboxView = CommonPlace.View.extend({
     this.community = options.community;
 
     var self = this;
-    var messages = new Messages([], { uri: this.account.link('inbox') });
+    var uri = this.account.link(options.type == "sent" ? "sent" : "inbox");
+    var messages = new Messages([], { uri: uri });
 
     messages.fetch({
       success: function(collection) {
