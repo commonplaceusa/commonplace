@@ -16,7 +16,7 @@ var InboxRouter = Backbone.Router.extend({
     var inboxview = new InboxView({ account: this.account, community: this.community, type: type });
     inboxnav.render();
     inboxview.render();
-    $("#nav").replaceWith(inboxnav.el);
+    $("#inbox-nav").replaceWith(inboxnav.el);
     $("#inbox").replaceWith(inboxview.el);
     $(".nav-tab").removeClass("current");
     $("." + type).addClass("current");
