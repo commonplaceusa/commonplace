@@ -40,7 +40,7 @@ module Serializer
         "last_name" => o.last_name,
         "about" => o.about,
         "interests" => o.interest_list,
-        "offers" => o.offer_list,
+        "offers" => o.good_list,
         "subscriptions" => o.feed_list,
         "links" => {
           "messages" => "/users/#{o.id}/messages",
@@ -251,7 +251,7 @@ module Serializer
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood, 
         "interests" => o.interest_list,
-        "offers" => o.offer_list,
+        "offers" => o.good_list,
         "subscriptions" => o.feed_list,
         "about" => o.about,
         "links" => { 
