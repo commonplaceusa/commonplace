@@ -38,6 +38,10 @@ class Group < ActiveRecord::Base
     self.memberships.all(:conditions => "memberships.receive_method = 'Live'").map &:user
   end
 
+  def self.find_by_slug(slug)
+    Group.where(slug: slug).first || Group.find_by_id(slug)
+  end
+
   private
 
   def generate_slug

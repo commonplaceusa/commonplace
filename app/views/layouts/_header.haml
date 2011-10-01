@@ -2,10 +2,9 @@
   - if logged_in?
     #nav_wrapper
       .nav
-        = tab_to "Home", "/#{current_community.slug}"
         - if current_user.admin?
           = tab_to "Stats", "#", {:onclick => "$('#admin_bar').toggle('slow');"}
-        = tab_to "Inbox", "/messages"
+        = tab_to "Inbox", "/inbox"
         = tab_to "Invite", "/account/facebook_invite"
         .user-feeds
           - if current_user.managable_feeds.count > 0
@@ -18,7 +17,6 @@
             %h4
               = link_to((t "feeds.register"), new_feed_registration_url)
         = tab_to "Settings", "/account/edit"
-        = tab_to "FAQ", "/#{current_community.slug}/faq"
         = tab_to "Logout", "/users/sign_out"
       = link_to "/", :id => "logo" do
         = image_tag "logo2.png", :alt => 'CommonPlace'

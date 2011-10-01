@@ -3,7 +3,6 @@ class NamedPoint
 end
 
 class User < ActiveRecord::Base
-  acts_as_taggable_on :offers, :interests, :skills
 
   before_save :ensure_authentication_token
 
@@ -112,7 +111,7 @@ class User < ActiveRecord::Base
   has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies, :dependent => :destroy
 
   has_many :referrals, :foreign_key => "referee_id"
-  has_many :messages, :dependent => :destroy
+  has_many :sent_messages, :dependent => :destroy, :class_name => "Message"
 
   has_many :received_messages, :as => :messagable, :class_name => "Message", :dependent => :destroy
 
@@ -128,7 +127,7 @@ class User < ActiveRecord::Base
                         :large => {:geometry => "200x200", :processors => [:cropper]},
                         :original => "1000x1000>"
                       },
-                      :default_url => "/avatars/missing.png"
+                      :default_url => "https://s3.amazonaws.com/commonplace-avatars-production/missing.png"
                     }.merge(Rails.env.development? || Rails.env.test? ? 
                             { :path => ":rails_root/public/system/users/:id/avatar/:style.:extension", 
                               :storage => :filesystem,
@@ -162,11 +161,9 @@ class User < ActiveRecord::Base
 
   scope :receives_posts_live_limited, :conditions => {:post_receive_method => "Three"}
 
-
-  def inbox
-    (self.received_messages + self.messages).sort {|m,n| n.updated_at <=> m.updated_at }.select {|m| !m.archived }
+  def messages
+    self.sent_messages.select {|m| m.replies.count > 0 }
   end
-
 
   def validate_first_and_last_names
     errors.add(:full_name, "CommonPlace requires people to register with their first \& last names.") if first_name.blank? || last_name.blank?
@@ -307,27 +304,18 @@ class User < ActiveRecord::Base
     user_ids
   end
 
-  def has_received_message_within(time_ago)
-    messages.between(time_ago, Time.now).select { |m| m.messagable_id == self.id and m.messagable_type == "User" }.present?
-  end
-
-  def self.received_no_reply_in_last(start_time)
-    user_ids = []
-    post_ids = []
-    User.all.each do |u|
-      unless u.has_received_message_within(start_time)
-        u.posts.between(start_time, Time.now).each do |p|
-          unless p.replies.present?
-            post_ids << p.id
-          end
-        end
-      end
-    end
-    post_ids.uniq
-  end
-
   def emails_are_limited?
     self.post_receive_method == "Three"
+  end
+
+  def inbox
+    Message.where(<<WHERE, self.id, self.id)
+    ("messages"."user_id" = ? AND
+    (SELECT COUNT(*) FROM "replies" WHERE "replies"."repliable_type" = 'Message' AND
+    "replies"."repliable_id" = "messages"."id") > 0) OR
+    ("messages"."messagable_type" = 'User' AND
+    "messages"."messagable_id" = ?)
+WHERE
   end
 
   unless Rails.env.test?
@@ -338,6 +326,45 @@ class User < ActiveRecord::Base
       string :address
     end
     #handle_asynchronously :solr_index
+  end
+
+  def skill_list
+    (self.skills || "").split(", ")
+  end
+
+  def interest_list
+    (self.interests || "").split(", ")
+  end
+
+  def good_list
+    (self.goods || "").split(", ")
+  end
+
+  def skill_list=(skill_list)
+    case skill_list
+    when Array
+      self.skills = skill_list.join(", ")
+    else
+      self.skills = skill_list
+    end
+  end
+
+  def good_list=(good_list)
+    case good_list
+    when Array
+      self.goods = good_list.join(", ")
+    else
+      self.goods = good_list
+    end
+  end
+
+  def interest_list=(interest_list)
+    case interest_list
+    when Array
+      self.interests = interest_list.join(", ")
+    else
+      self.interests = interest_list
+    end
   end
 
   # Devise calls this on POST /users/password

@@ -41,10 +41,10 @@ module Serializer
         "last_name" => o.last_name,
         "about" => o.about,
         "interests" => o.interest_list,
-        "offers" => o.offer_list,
-        "subscriptions" => o.feed_list,
+        "offers" => o.good_list,
+        "subscriptions" => o.feeds,
         "links" => {
-          "messages" => "/people/#{o.id}/messages",
+          "messages" => "/users/#{o.id}/messages",
           "self" => "/users/#{o.id}"
         }
       }
@@ -146,12 +146,34 @@ module Serializer
         }
         }
 
+      when Message
+        {
+        "id" => o.id,
+        "url" => "/users/#{o.messagable_id}/messages/#{o.id}",
+        "published_at" => o.created_at.utc,
+        "user_id" => o.messagable_id,
+        "user" => o.messagable.name,
+        "author_id" => o.user_id,
+        "avatar_url" => o.user.avatar_url(:thumb),
+        "author" => o.user.name,
+        "title" => o.subject,
+        "body" => o.body,
+        "replies" => serialize(o.replies.to_a),
+        "links" => {
+          "replies" => "/messages/#{o.id}/replies",
+          "author" => "/users/#{o.user_id}",
+          "self" => "/messages/#{o.id}",
+          "user" => "/users/#{o.messagable_id}"
+        }
+        }
+
       when Reply
         { 
         "schema" => "reply",
         "author" => o.user.name,
         "avatar_url" => o.user.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
+        "author_id" => o.user.id,
         "body" => o.body,
         "published_at" => o.created_at.utc,
         "links" => {
@@ -230,15 +252,17 @@ module Serializer
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood, 
         "interests" => o.interest_list,
-        "offers" => o.offer_list,
-        "subscriptions" => o.feed_list,
+        "offers" => o.good_list,
+        "subscriptions" => o.feeds,
         "about" => o.about,
         "links" => { 
           "feed_subscriptions" => "/account/subscriptions/feeds",
           "group_subscriptions" => "/account/subscriptions/groups",
           "mets" => "/account/mets",
           "self" => "/account",
-          "edit" => "/account/profile"
+          "edit" => "/account/profile",
+          "inbox" => "/account/inbox",
+          "sent" => "/account/inbox/sent"
         }
         }
 
@@ -250,7 +274,7 @@ module Serializer
         "slug" => o.slug,
         "name" => o.name,
         "groups" => o.groups.map {|g| 
-          { "avatar_url" => g.avatar_url, "id" => g.id, "name" => g.name }
+          { "slug" => g.slug, "avatar_url" => g.avatar_url, "id" => g.id, "name" => g.name }
         },
         "locale" => o.locale.to_s,
         "links" => {

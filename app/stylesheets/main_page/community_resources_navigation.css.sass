@@ -1,27 +1,29 @@
 
 #community-resources
   .navigation
-    height: 42px
+    height: auto
 
     a.tab-button
       position: relative
       text-decoration: none
-      background-color: #AC322F
-      border: 2px solid #982524
-        bottom: 0
       display: block
       float: left
       color: #fff
-      font-size: 13px
       margin-left: 4px
       text-align: center
       padding: 5px 0 7px
-      height: 28px
-      +border-top-radius(5px)
+      line-height: 1.2em
+      padding: 6px 2px 6px 3px
+      font-weight: bold
+      font-family: Helvetica, Arial, sans-serif
+      +text-shadow(black 1px 1px 0)
+      font-size: 12px
+      background: #ac322f
+      +border-radius(4px 4px 0 0)
+      +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
     
       &:first-child
         margin-left: 0
-
         
       &.posts
         width: 108px
@@ -42,16 +44,16 @@
 
       &.current, &:hover
         color: #1B334A
-        border: 2px solid #bcbcbc
-          bottom: 0
         background-color: #e0e0e0
         +text-shadow(#fff 1px 1px 0)
+        +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
         z-index: 20
         
     .nav-under
       clear: both
-      height: 2px
-      top: -2px
+      height: 1px
+      top: -1px
       position: relative
-      background-color: #bcbcbc
+      background-color: #bebebe
       z-index: 10
+      margin-bottom: -1px

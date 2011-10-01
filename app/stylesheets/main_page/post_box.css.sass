@@ -1,7 +1,23 @@
+@mixin input
+  font-family: Helvetica, Arial, sans-serif
+  font-size: 14px
+  color: #888
+  background: white
+  border: none
+  width: 94%
+  @include border-radius(4px)
+  padding: 10px 3% 9px
+  margin: 0 0 3% 0
+  resize: none
+  @include box-shadow(0 0 0 1px #8b2324, 2px 2px 5px #ccc inset)
+  
+  &:focus
+    outline: none
+    color: #333
 
 #post-box
   +border-radius(5px)
-  +box-shadow(#8f2927 0 -2px 1px 0 inset, #bcd4eb 3px 3px 0)
+  +box-shadow(#bcd4eb 3px 3px 0)
 
   background-color: #AC322F
 
@@ -10,12 +26,16 @@
   padding-bottom: 15px
 
   h1
-    background-color: #8F2927
+    background-color: #8b2324
     text-align: center
     color: #fff
     +border-top-radius(5px)
-    font-size: 13px
-    padding: 8px 0 10px
+    font-size: 12px
+    padding: 13px
+    font-weight: bold
+    font-family: Helvetica, Arial, sans-serif
+    +text-shadow(rgba(0, 0, 0, 0.75) 1px 1px 0 )
+    +box-shadow(#b53a37 0 1px 0 inset)
 
   .navigation
     float: left
@@ -23,27 +43,50 @@
     width: 140px
 
     a.tab-button
-      +red-button
-      margin-top: 15px
       display: block
-      font-size: 11px
-      text-align: left
-      padding: 10px 0 15px 8px
+      cursor: pointer
+      color: white
+      font-family: Rokkitt, Rockwell
       text-decoration: none
-      border-color: #821f1f
-      background: #8F2927
-      +box-shadow(#962f30 0 0 0 1px inset, #555 0 1px 2px )
-      &:hover
-        +box-shadow(0 0 0 1px rgba(255, 115, 100, 0.4) inset, #555 0 1px 3px)
+      padding: 10px 0 10px 6px
+      font-size: 15px
+      margin-top: 15px
+      line-height: 1em
+      border: none
+      font-weight: bold
+      +border-radius(5px)
+
+      background: #8B2324
+      +background-image(linear-gradient(#b42d2f 0%, #8b2324 50%))
+      +text-shadow(#4e1414 0 -1px 0)
+      +box-shadow(#a82a2b 0 0 0 1px inset, #6e1c1d 0 0 0 1px, #4e1414 0 5px 6px -4px)
+
       &.current
-        +blue-button
-        padding: 10px 0 15px 8px
-        text-align: left
+        background: #1B334A
+        +background-image(linear-gradient(#294d6f 0%, #1b334a 50%))
+      
+        +text-shadow(#070C12 0 -1px 0)
+        +box-shadow(#254564 0 0 0 1px inset, #112130 0 0 0 1px, #070c12 0 5px 6px -4px)
+        &:hover
+          +background-image(linear-gradient(#2d547b 0%, #1f3b55 50%))
+
+        &:active
+          +background-image(linear-gradient(#22405d 0%, #182e43 50%))
+          +box-shadow(#1e3851 0 0 0 1px inset, #112130 0 0 0 1px)
 
       img 
         float: left
-        margin-right: 5px
+        margin-right: 6px
 
+      &:hover
+        +background-image(linear-gradient(#c03032 0%, #972627 50%))
+
+      &:active
+        position: relative
+        top: 2px
+        +background-image(linear-gradient(#9f2829 0%, #832122 50%))
+        +box-shadow(#932526 0 0 0 1px inset, #6e1c1d 0 0 0 1px)
+        
   .form-container
     float: left
     margin-left: 15px
@@ -59,12 +102,14 @@
 
       input[type=text]
         width: 285px
+        +input()
 
       textarea
         margin-top: 15px
         width: 285px
         height: 105px
         margin-bottom: 0
+        +input()
 
 
       label.radio
@@ -91,7 +136,7 @@
           +border-radius(5px)
           background-image: image-url("feed_page/check-off.png")
           background-repeat: no-repeat
-          background-position: 246px 8px
+          background-position: 252px 7px
     
           &.checked
             background-image: image-url("feed_page/check-on.png")
@@ -122,6 +167,21 @@
       .on-focus
         display: none
         margin-top: 15px
+
+      input.date
+        position: relative
+        z-index: 10000
+
+      fieldset.event-times
+        label
+          margin-top: 0
+          float: left
+          display: block
+          width: 145px
+          &:first-child
+            margin-right: 14px
+        margin-bottom: 5px
+        
 
     form.create-group-post
 

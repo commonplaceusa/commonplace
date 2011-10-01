@@ -18,8 +18,9 @@
       - else
         = f.input :avatar, :input_html => {:size => 25}
       = f.input :about
-      = f.input :interest_list
-      = f.input :offer_list
+      = f.input :interest_list, :as => :select, :collection => $interests, :multiple => true, :input_html => {"data-placeholder" => "Select some interests" }, :label => "Select some interests to share with your neighbors:"
+      = f.input :skill_list, :as => :select, :collection => $skills, :multiple => true, :input_html => {"data-placeholder" => "Select some skills" }, :label => "Select some skills you can share with your neighbors:"
+      = f.input :good_list, :as => :select, :collection => $goods, :multiple => true, :input_html => {"data-placeholder" => "Select some goods" }, :label => "Select some goods you can share with your neighbors:"
       = f.input :referral_source, :as => :select, :collection => registration.referral_sources
       = f.input :referral_metadata
 

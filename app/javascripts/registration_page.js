@@ -1,6 +1,7 @@
 //= require jquery
 //= require placeholder
 //= require jcrop
+//= require chosen
 
 $(function() {
 
@@ -14,6 +15,8 @@ $(function() {
   });
 
   // Add more info
+  $("#user_interest_list, #user_good_list, #user_skill_list").chosen();
+
   $("<div/>", { id: "file_input_fix" }).
     append($("<input/>", { type: "text", name: "file_fix", id: "file_style_fix" })).
     append($("<div/>", { id: "browse_button", text: "Browse..." })).
