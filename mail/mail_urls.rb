@@ -72,4 +72,8 @@ module MailUrls
     url("/pages/#{feed.slug}")
   end
 
+  def inbox_url
+    url("/inbox")
+  end
+
 end
