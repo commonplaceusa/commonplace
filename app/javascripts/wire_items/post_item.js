@@ -53,7 +53,7 @@ var PostWireItem = WireItem.extend({
   },
 
   events: {
-    "click .author": "messageUser",
+    "click div.group-post > .author": "messageUser",
     "click .moreBody": "loadMore",
     "click .editlink": "editPost",
     "mouseenter": "showProfile"
