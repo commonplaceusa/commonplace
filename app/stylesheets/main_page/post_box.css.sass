@@ -1,7 +1,23 @@
+@mixin input
+  font-family: Helvetica, Arial, sans-serif
+  font-size: 14px
+  color: #888
+  background: white
+  border: none
+  width: 94%
+  @include border-radius(4px)
+  padding: 10px 3% 9px
+  margin: 0 0 3% 0
+  resize: none
+  @include box-shadow(0 0 0 1px #8b2324, 2px 2px 5px #ccc inset)
+  
+  &:focus
+    outline: none
+    color: #333
 
 #post-box
   +border-radius(5px)
-  +box-shadow(#8f2927 0 -2px 1px 0 inset, #bcd4eb 3px 3px 0)
+  +box-shadow(#bcd4eb 3px 3px 0)
 
   background-color: #AC322F
 
@@ -86,12 +102,14 @@
 
       input[type=text]
         width: 285px
+        +input()
 
       textarea
         margin-top: 15px
         width: 285px
         height: 105px
         margin-bottom: 0
+        +input()
 
 
       label.radio
