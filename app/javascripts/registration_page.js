@@ -15,7 +15,7 @@ $(function() {
   });
 
   // Add more info
-  $("#user_interests, #user_goods, #user_skills").chosen();
+  $("#user_interest_list, #user_good_list, #user_skill_list").chosen();
 
   $("<div/>", { id: "file_input_fix" }).
     append($("<input/>", { type: "text", name: "file_fix", id: "file_style_fix" })).
