@@ -1,3 +1,35 @@
+:css
+  #referral_sources {
+    text-align: center;
+  }
+  table {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  td {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    text-align: center;
+  }
+  
+  h1 {
+    margin: 20px auto;
+    font-size: 28px;
+    color: blue;
+  }
 %script{:src => "http://maps.google.com/maps?file=api&amp;v=2&amp;key=#{google_api_key()}", :type => "text/javascript"}
 %script{:src => "http://acme.com/javascript/Clusterer2.jsm", :type => "text/javascript"}
 :javascript
@@ -22,6 +54,7 @@
     return marker;
   }
   function initialize() {
+    console.log("Initializing");
     if (GBrowserIsCompatible()) {
       map = new GMap2(document.getElementById("map_canvas"));
       map.enableContinuousZoom();
@@ -34,6 +67,7 @@
       clusterer.SetMaxVisibleMarkers(1500);
       geocoder = new GClientGeocoder();
       geocoder.getLatLng('#{@center_zip_code}', function(point){ map.setCenter(point, 16); });
+      console.log("Centered");
       map.setCenter(new GLatLng(37.4419, -122.1419), 1);
 
       var greyIcon = new GIcon(G_DEFAULT_ICON);
@@ -63,104 +97,199 @@
     drawPoints();
   }
 
-  function showMarkerSet(markers)
+  function showMarkerSet(markers, cluster)
   {
+    cluster = typeof(cluster) != 'undefined' ? cluster : false;
     $.each(markers, function(key, marker){
-      clusterer.AddMarker(marker);
+      if (cluster)
+        clusterer.AddMarker(marker);
+      else
+        map.addOverlay(marker);
     });
   }
 
-  function hideMarkerSet(markers)
+  function hideMarkerSet(markers, cluster)
   {
+    cluster = typeof(cluster) != 'undefined' ? cluster : false;
     $.each(markers, function(key, marker){
-      clusterer.RemoveMarker(marker);
+      if (cluster)
+        clusterer.RemoveMarker(marker);
+      else
+        map.removeOverlay(marker);
     });
   }
 
   function drawPoints()
   {
+    console.log("Getting reg points");
     $.ajax({
       url: '/api/communities/#{@community_id}/registration_points',
       dataType: 'json',
       success: function(data) {
+        console.log("Got reg points");
         $.each(data, function(key, val) {
           var point = new GLatLng(val['lat'], val['lng']);
-          var marker = createMarker(point, val['name'], greenMarkerOptions);
+          var marker = createMarker(point, val['name'] + '<br />' + val['address'], greenMarkerOptions);
           onMarkers.push(marker);
         });
         showMarkerSet(onMarkers);
       }
     });
+    console.log("Getting data points");
     $.ajax({
-      url: '/api/communities/#{@community_id}/data_points',
+      url: '/api/communities/#{@community_id}/data_points?top=true',
       dataType: 'json',
       success: function(data) {
+        console.log("Got data points");
         $.each(data, function(key, val) {
           var colorOption;
           if (val['status'] == 'house') {
             colorOption = greyMarkerOptions;
             var point = new GLatLng(val['lat'], val['lng']);
-            var marker = createMarker(point, '', greyMarkerOptions);
+            var marker = createMarker(point, val['address'], greyMarkerOptions);
             allHouseMarkers.push(marker);
           }
           if (val['status'] == 'dropped') {
             colorOption = yellowMarkerOptions;
-            geocoder.getLatLng(val['address'], function(p){ droppedMarkers.push(new GMarker(p, colorOption)); });
+            if (val['lat'] && val['lng'])
+            {
+              var point = new GLatLng(val['lat'], val['lng']);
+              var marker = createMarker(point, val['address'], colorOption);
+              droppedMarkers.push(marker);
+            }
+            else
+              geocoder.getLatLng(val['address'], function(p){ droppedMarkers.push(new GMarker(p, colorOption)); });
           }
           if (val['status'] == 'knocked') {
             colorOption = orangeMarkerOptions;
-            geocoder.getLatLng(val['address'], function(p){ knockedMarkers.push(new GMarker(p, colorOption)); });
+            if (val['lat'] && val['lng'])
+            {
+              var point = new GLatLng(val['lat'], val['lng']);
+              var marker = createMarker(point, val['address'], colorOptions);
+              knockedMarkers.push(marker);
+            }
+            else
+              geocoder.getLatLng(val['address'], function(p){ knockedMarkers.push(new GMarker(p, colorOption)); });
           }
           if (val['status'] == 'post_knocked_1') {
             colorOption = blueMarkerOptions;
-            geocoder.getLatLng(val['address'], function(p){ postKnockedMarkers.push(new GMarker(p, colorOption)); });
+            if (val['lat'] && val['lng'])
+            {
+              var point = new GLatLng(val['lat'], val['lng']);
+              var marker = createMarker(point, '', colorOptions);
+              postKnockedMarkers.push(marker);
+            }
+            else
+              geocoder.getLatLng(val['address'], function(p){ postKnockedMarkers.push(new GMarker(p, colorOption)); });
           }
           if (val['status'] == 'no') {
             colorOption = redMarkerOptions;
-            geocoder.getLatLng(val['address'], function(p){ noMarkers.push(new GMarker(p, colorOption)); });
+            if (val['lat'] && val['lng'])
+            {
+              var point = new GLatLng(val['lat'], val['lng']);
+              var marker = createMarker(point, val['address'], colorOptions);
+              noMarkers.push(marker);
+            }
+            else
+              geocoder.getLatLng(val['address'], function(p){ noMarkers.push(new GMarker(p, colorOption)); });
           }
         });
-        showMarkerSet(allHouseMarkers);
-        showMarkerSet(droppedMarkers);
-        showMarkerSet(knockedMarkers);
-        showMarkerSet(postKnockedMarkers);
-        showMarkerSet(noMarkers);
+        console.log("Showing all markers");
+        showMarkerSet(allHouseMarkers.concat(droppedMarkers).concat(knockedMarkers).concat(postKnockedMarkers).concat(noMarkers));
       }
     });
 
   }
   $(document).ready(initialize);
-
-%table
-  %tr{:height => "300px;"}
-    %td#map_canvas{:style => "width: 50%; height: 300px;"}
-    %td
+  $(document).ready(function(){
+    $('.marker').onHover(function(){
+      document.body.style.cursor = 'pointer';
+    });
+  });
+  var TOGGLE_OPTS = 'slow';
+  function toggle_map()
+  {
+    hide_all();
+    $("#map").toggle(TOGGLE_OPTS);
+  }
+  function toggle_overview()
+  {
+    hide_all();
+    $("#community_overview").toggle(TOGGLE_OPTS);
+  }
+  function toggle_doc()
+  {
+    hide_all();
+    $("#google_doc").toggle(TOGGLE_OPTS);
+  }
+  function toggle_referrers()
+  {
+    hide_all();
+    $("#community_referrers").toggle(TOGGLE_OPTS);
+  }
+  function hide_all()
+  {
+    $("#map").hide();
+    $("#community_overview").hide();
+    $("#google_doc").hide();
+    $("#community_referrers").hide();
+  }
+  
+  var entry_count = 0;
+  function add_entry()
+  {
+    entry_count += 1;
+    $("#addresses").append('<br /><input id="number" name="number' + entry_count + '" placeholder="1-10O" size="10" type="text" value="" /><input id="address" name="address' + entry_count + '" placeholder="Maple Ave" size="50" type="text" value="" />');
+  }
+#organizer_app
+  #links
+    %a{:onclick => "toggle_map();", :style=>"text-decoration: underline;"} Toggle Map
+    %br
+    %a{:onclick => "toggle_overview();", :style=>"text-decoration: underline;"} Overview
+    %br
+    %a{:onclick => "toggle_doc();", :style=>"text-decoration: underline;"} Google Doc
+    %br
+    %a{:onclick => "toggle_referrers();", :style=>"text-decoration: underline;"} Referrers
+  #map{:style => "display: none;"}
+    #map_canvas{:style => "margin-left: 200px; width: 350px; height: 350px;"}
+    #map_form
       = form_tag "/organizer/add", :method => :post do
-        = text_field_tag :number, "", :size => 4, :placeholder => "1-10O"
-        = text_field_tag :address, "", :placeholder => "Maple Ave", :size => 30
-        = @center_zip_code
-        = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
+        #addresses
+          = text_field_tag :number, "", :size => 10, :placeholder => "1-10O"
+          = text_field_tag :address, "", :placeholder => "Maple Ave", :size => 50
+          = @center_zip_code
+          = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
+          %a{:onclick => "add_entry();"} Add More
+        %br
         = submit_tag "Enter"
-      %a{:onclick => "showMarkerSet(allHouseMarkers);"} Show All Houses
+      %a{:onclick => "showMarkerSet(allHouseMarkers);", :class => "markers show"} Show All Houses
       |
-      %a{:onclick => "hideMarkerSet(allHouseMarkers);"} Hide All Houses
+      %a{:onclick => "hideMarkerSet(allHouseMarkers);", :class => "markers hide"} Hide All Houses
       %br
-      %a{:onclick => "showMarkerSet(onMarkers);"} Show People on CommonPlace
+      %a{:onclick => "showMarkerSet(onMarkers);", :class => "markers show"} Show People on CommonPlace
       |
-      %a{:onclick => "hideMarkerSet(onMarkers);"} Hide People on CommonPlace
+      %a{:onclick => "hideMarkerSet(onMarkers);", :class => "markers hide"} Hide People on CommonPlace
       %br
-      %a{:onclick => "showMarkerSet(droppedMarkers);"} Show Doordrops
+      %a{:onclick => "showMarkerSet(droppedMarkers);", :class => "markers show"} Show Doordrops
       |
-      %a{:onclick => "hideMarkerSet(droppedMarkers);"} Hide Doordrops
+      %a{:onclick => "hideMarkerSet(droppedMarkers);", :class => "markers hide"} Hide Doordrops
       %br
-      %a{:onclick => "showMarkerSet(knockedMarkers);"} Show Doorknocks
+      %a{:onclick => "showMarkerSet(knockedMarkers);", :class => "markers show"} Show Doorknocks
       |
-      %a{:onclick => "hideMarkerSet(knockedMarkers);"} Hide Doorknocks
+      %a{:onclick => "hideMarkerSet(knockedMarkers);", :class => "markers hide"} Hide Doorknocks
       %br
-      %a{:onclick => "showMarkerSet(postKnockedMarkers);"} Show Post-Knocks
+      %a{:onclick => "showMarkerSet(postKnockedMarkers);", :class => "markers show"} Show Post-Knocks
       |
-      %a{:onclick => "hideMarkerSet(postKnockedMarkers);"} Hide Post-Knocks
+      %a{:onclick => "hideMarkerSet(postKnockedMarkers);", :class => "markers hide"} Hide Post-Knocks
       %br
-      %a{:onclick => "showMarkerSet(noMarkers);"} Show Negative Responses
+      %a{:onclick => "showMarkerSet(noMarkers);", :class => "markers show"} Show Negative Responses
       |
-      %a{:onclick => "hideMarkerSet(noMarkers);"} Hide Negative Responses
+      %a{:onclick => "hideMarkerSet(noMarkers);", :class=> "markers hide"} Hide Negative Responses
+
+  #community_overview{:style => "display: none;"}
+    = render :partial => "admin/community_overview", :collection => [current_community]
+  #google_doc{:style => "display: none;"}
+    %iframe{:src => "https://docs.google.com/spreadsheet/ccc?key=0Ag3BspuR5xCgdEs0UW5FOEg5Z0I4Z21LSU0tVzZvOFE&hl=en_US", :width => "100%", :height => "300px"}
+  #community_referrers{:style => "display: none;"}
+    %h1 Recent Referrals
+    = render :partial => "admin/community_referrer", :collection => [current_community]

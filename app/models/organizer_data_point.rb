@@ -18,4 +18,5 @@ class OrganizerDataPoint < ActiveRecord::Base
       self.save
     end
   end
+
 end

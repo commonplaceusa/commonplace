@@ -658,6 +658,7 @@ class API < Sinatra::Base
         data_point.address = "#{num} #{params[:address]} #{zip_code}"
         data_point.status = params[:status]
         data_point.save
+        data_point.generate_point
       end
     [200, "OK"]
   end
@@ -672,6 +673,9 @@ class API < Sinatra::Base
   get "/communities/:id/data_points" do |id|
     headers 'Access-Control-Allow-Origin' => '*'
     community = Community.find(id)
+    if params[:top]
+      serialize(community.organizers.map(&:organizer_data_points).flatten.uniq { |p| p.address }.select { |p| p.present? })
+    end
     serialize(community.organizers.map(&:organizer_data_points).flatten.select { |p| p.present? })
   end
 
