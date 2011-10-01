@@ -29,26 +29,6 @@ describe User do
     end
   end
 
-  shared_examples_for "an ActsAsTaggable attribute" do
-    it { should be_an ActsAsTaggableOn::TagList }
-  end
-
-  
-  describe "#interest_list" do
-    subject { user.interest_list }
-    it_behaves_like "an ActsAsTaggable attribute" 
-  end
-  
-  describe "#offer_list" do
-    subject { user.offer_list }
-    it_behaves_like "an ActsAsTaggable attribute"
-  end
-  
-  describe "#skill_list" do
-    subject { user.skill_list }
-    it_behaves_like "an ActsAsTaggable attribute"
-  end
-  
   describe "#full_name" do
     it "is composed of first and last names" do
       user.first_name = "Bob"
