@@ -74,7 +74,7 @@ class API < Sinatra::Base
   # { body: Text }
   # 
   # Authorization: User is in community
-  ["Post", "GroupPost", "Announcement", "Event"].each do |class_name|
+  ["Post", "GroupPost", "Announcement", "Event", "Message"].each do |class_name|
     
     post "/#{class_name.pluralize.underscore}/:id/replies" do |id|
       repliable_class = class_name.constantize
@@ -498,12 +498,12 @@ class API < Sinatra::Base
     end
   end
   
-  # POST /people/:id/messages
+  # POST /users/:id/messages
   # { subject: String
   # , body: String }
   #
   # Authorization: Account community is person community
-  post "/people/:id/messages" do |id|
+  post "/users/:id/messages" do |id|
     message = Message.new(:subject => request_body['subject'],
                           :body => request_body['body'],
                           :messagable => User.find(id),
@@ -572,6 +572,14 @@ class API < Sinatra::Base
     serialize(Account.new(current_account))
   end
   
+  get "/account/inbox" do 
+    serialize(paginate(current_account.inbox.reorder("updated_at DESC")))
+  end
+
+  get "/account/inbox/sent" do
+    serialize(paginate(current_account.sent_messages.reorder("updated_at DESC")))
+  end
+
   get "/communities/:id/posts" do |id|
     last_modified_by_updated_at(Post)
 

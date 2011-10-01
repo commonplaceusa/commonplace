@@ -1,0 +1,132 @@
+@import core
+@import shared/buttons
+@import header
+@import header
+@import footer
+@import date_picker
+@import shared/replies
+@import shared/wire
+@import shared/form
+@import shared/modal
+@import shared/markdown
+
+body
+  background-color: #eee
+  margin: 0
+
+#main
+  width: 800px
+  margin: auto
+  position: relative
+
+#inbox-nav
+  font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+  font-size: 18px
+  width: 100px
+  padding-left: 30px
+  padding-right: 30px
+  margin-top: 20px
+  float: left
+
+  a 
+    +border-radius(3px)
+    display: block
+    padding: 5px 20px
+    color: #1b334a
+    text-decoration: none
+
+  .current
+    background-color: #ac322f
+    color: white
+
+#inbox
+  border: #bbb
+  width: 598px
+  +border-radius(5px)
+  border: 1px solid #bbb
+  background-color: white
+  margin-top: 20px
+  float: left
+
+  .more
+    margin-top: 10px
+
+  h2
+    background-color: #f2f2f2
+    color: #67769e
+    text-align: center
+    padding: 6px
+    border-bottom: 1px solid #d5d6d6
+    +border-top-radius(5px)
+    font-family: Helvetica, Arial, sans-serif
+    font-size: 14px
+
+  ul.list
+    +border-bottom-radius(4px)
+    +min-height(500px)
+
+    .message-item
+      border-bottom: 1px solid #bbb
+      padding: 15px
+
+      .clear
+        clear: both
+
+      .replies
+        .reply-info
+          margin-left: 60px
+        img.avatar
+          width: 50px
+          height: 50px
+        textarea
+          width: 465px
+          height: 43px
+          margin-bottom: 10px
+        .author
+          display: block
+          font-size: 14px
+          float: none
+          margin-bottom: 5px
+        .body
+          display: block
+          font-size: 14px
+          margin-bottom: 5px
+        .time
+          font-size: 14px
+        .reply-arrow
+          left: 25px
+
+      .main-message
+        img.avatar
+          float: left
+          margin-right: 10px
+
+        .corner
+          float: right
+          color: #bab9bf
+          font-size: 18px
+
+        h3
+          color: #af473e
+          font-size: 24px
+          margin-bottom: 10px
+          font-weight: bold
+          font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
+
+        .main-author
+          color: #b65951
+          text-decoration: none
+
+        .date
+          color: #bab9bf
+          font-size: 16px
+          margin-bottom: 5px
+
+        .body
+          margin-left: 85px
+          color: #3b3b3b
+          line-height: 22px
+          li
+            margin-left: 10px
+          p, ul, ol, h1, h2, h3, h4, h5, h6
+            margin-bottom: 10px
