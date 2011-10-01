@@ -573,7 +573,7 @@ class API < Sinatra::Base
   end
   
   get "/account/inbox" do 
-    serialize(current_account.inbox)
+    serialize(paginate(current_account.inbox.reorder("updated_at DESC")))
   end
 
   get "/account/inbox/sent" do
