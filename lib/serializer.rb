@@ -41,7 +41,7 @@ module Serializer
         "about" => o.about,
         "interests" => o.interest_list,
         "offers" => o.good_list,
-        "subscriptions" => o.feed_list,
+        "subscriptions" => o.feeds,
         "links" => {
           "messages" => "/users/#{o.id}/messages",
           "self" => "/users/#{o.id}"
@@ -252,7 +252,7 @@ module Serializer
         "neighborhood" => o.neighborhood, 
         "interests" => o.interest_list,
         "offers" => o.good_list,
-        "subscriptions" => o.feed_list,
+        "subscriptions" => o.feeds,
         "about" => o.about,
         "links" => { 
           "feed_subscriptions" => "/account/subscriptions/feeds",

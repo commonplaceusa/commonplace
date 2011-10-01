@@ -328,15 +328,42 @@ WHERE
   end
 
   def skill_list
-    skills
+    (self.skills || "").split(", ")
   end
 
   def interest_list
-    interests
+    (self.interests || "").split(", ")
   end
 
   def good_list
-    goods
+    (self.goods || "").split(", ")
+  end
+
+  def skill_list=(skill_list)
+    case skill_list
+    when Array
+      self.skills = skill_list.join(", ")
+    else
+      self.skills = skill_list
+    end
+  end
+
+  def good_list=(good_list)
+    case good_list
+    when Array
+      self.goods = good_list.join(", ")
+    else
+      self.goods = good_list
+    end
+  end
+
+  def interest_list=(interest_list)
+    case interest_list
+    when Array
+      self.interests = interest_list.join(", ")
+    else
+      self.interests = interest_list
+    end
   end
 
   # Devise calls this on POST /users/password
