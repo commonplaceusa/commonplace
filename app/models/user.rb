@@ -308,8 +308,14 @@ class User < ActiveRecord::Base
     self.post_receive_method == "Three"
   end
 
-  def inbox 
-    (self.received_messages + self.messages).sort {|m,n| n.updated_at <=> m.updated_at }
+  def inbox
+    Message.where(<<WHERE, self.id, self.id)
+    ("messages"."user_id" = ? AND
+    (SELECT COUNT(*) FROM "replies" WHERE "replies"."repliable_type" = 'Message' AND
+    "replies"."repliable_id" = "messages"."id") > 0) OR
+    ("messages"."messagable_type" = 'User' AND
+    "messages"."messagable_id" = ?)
+WHERE
   end
 
   unless Rails.env.test?
