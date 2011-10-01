@@ -52,6 +52,8 @@ Commonplace::Application.routes.draw do
   end
 
   match "/pages/:id" => "bootstraps#feed"
+
+  match "/inbox", :to => "bootstraps#inbox"
     
   resource :account do
     member do 
@@ -116,8 +118,6 @@ Commonplace::Application.routes.draw do
         post :add
       end
     end
-
-    match "/inbox", :to => "bootstraps#inbox"
 
     match '/?community=:community', :to => "bootstraps#community"
 
