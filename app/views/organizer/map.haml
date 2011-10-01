@@ -227,12 +227,18 @@
     hide_all();
     $("#community_referrers").toggle(TOGGLE_OPTS);
   }
+  function toggle_journal()
+  {
+    hide_all();
+    $("#daily_journal").toggle(TOGGLE_OPTS);
+  }
   function hide_all()
   {
     $("#map").hide();
     $("#community_overview").hide();
     $("#google_doc").hide();
     $("#community_referrers").hide();
+    $("#daily_journal").hide();
   }
   
   var entry_count = 0;
@@ -250,6 +256,9 @@
     %a{:onclick => "toggle_doc();", :style=>"text-decoration: underline;"} Google Doc
     %br
     %a{:onclick => "toggle_referrers();", :style=>"text-decoration: underline;"} Referrers
+    %br
+    %a{:onclick => "toggle_journal();", :style => "text-decoration: underline;"} Daily Journal
+    %br
   #map{:style => "display: none;"}
     #map_canvas{:style => "margin-left: 200px; width: 350px; height: 350px;"}
     #map_form
@@ -293,3 +302,5 @@
   #community_referrers{:style => "display: none;"}
     %h1 Recent Referrals
     = render :partial => "admin/community_referrer", :collection => [current_community]
+  #daily_journal{:style => "display: none;"}
+    Coming soon :-)
