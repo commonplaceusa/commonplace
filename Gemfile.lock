@@ -96,8 +96,6 @@ GEM
       activesupport (= 3.1.0)
     activesupport (3.1.0)
       multi_json (~> 1.0)
-    acts-as-taggable-on (2.1.1)
-      rails
     addressable (2.2.6)
     arel (2.2.1)
     aws-s3 (0.6.2)
@@ -418,7 +416,6 @@ PLATFORMS
 DEPENDENCIES
   BlueCloth
   activeadmin
-  acts-as-taggable-on (~> 2.1.0)
   aws-s3
   cancan
   capybara!
