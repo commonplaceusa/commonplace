@@ -47,7 +47,7 @@ class Event < ActiveRecord::Base
   end
 
   def occurs_at
-    DateTime.strptime("#{self.date.strftime("%Y-%m-%d")}T#{self.start_time.strftime("%H:%M:%S")}#{Time.zone.formatted_offset}")
+    DateTime.strptime("#{self.date.strftime("%Y-%m-%d")}T00:00:00#{Time.zone.formatted_offset}")
   end
   
   def start_datetime

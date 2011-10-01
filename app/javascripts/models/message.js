@@ -1,4 +1,4 @@
-var Message = Model.extend({
+var Message = Repliable.extend({
   initialize: function(options) {
     this.messagable = options.messagable;
   },
@@ -11,3 +11,5 @@ var Message = Model.extend({
     return this.messagable.get("name");
   }
 });
+
+var Messages = Collection.extend({ model: Message });

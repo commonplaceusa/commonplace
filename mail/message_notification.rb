@@ -37,7 +37,7 @@ class MessageNotification < PostNotification
   end
 
   def message_url
-    url("/messages/#{message.id}")
+    inbox_url
   end
 
   def new_message_url

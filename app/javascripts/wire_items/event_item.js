@@ -37,7 +37,13 @@ var EventWireItem = WireItem.extend({
   title: function() { return this.model.get('title'); },
 
   author: function() { return this.model.get('author'); },
-  
+
+  venue: function() { return this.model.get('venue'); },
+
+  address: function() { return this.model.get('address'); },
+
+  time: function() { return this.model.get('starts_at'); },
+
   body: function() {
     if (!this.allwords) {
       return this.shortbody[0];

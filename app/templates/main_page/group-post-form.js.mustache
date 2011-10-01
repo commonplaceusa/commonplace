@@ -3,7 +3,7 @@
 
   {{#groups}}
     <li>
-      <a class="{{class}}" href="#{{id}}">
+      <a class="{{class}}" href="/groups/{{slug}}">
         <img src="{{avatar_url}}" width="50" height="50">
         <span>{{name}}</span>
       </a>
@@ -12,13 +12,3 @@
 
 </ul>
 
-
-<div class="group-post-inputs">
-  <label class="group-name"></label>
-  <input name="group" type="hidden">
-  <input name="title" type="text" placeholder="Post Title">
-
-  <textarea name="body" placeholder="Your Message"></textarea>
-
-  <button>Post Now</button>
-</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110928235927) do
+ActiveRecord::Schema.define(:version => 20110930232557) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -358,8 +358,8 @@ ActiveRecord::Schema.define(:version => 20110928235927) do
     t.string   "last_name",                                             :null => false
     t.text     "about"
     t.integer  "neighborhood_id",                                       :null => false
-    t.string   "cached_interest_list"
-    t.string   "cached_good_list"
+    t.text     "interests"
+    t.text     "goods"
     t.boolean  "receive_events_and_announcements", :default => true
     t.boolean  "admin",                            :default => false
     t.string   "state"
@@ -376,7 +376,6 @@ ActiveRecord::Schema.define(:version => 20110928235927) do
     t.string   "referral_source"
     t.datetime "last_login_at"
     t.boolean  "transitional_user"
-    t.string   "skills_list"
     t.string   "referral_metadata"
     t.float    "generated_lat"
     t.float    "generated_lng"
@@ -385,7 +384,7 @@ ActiveRecord::Schema.define(:version => 20110928235927) do
     t.string   "remember_token"
     t.datetime "remember_created_at"
     t.string   "authentication_token"
-    t.string   "cached_skill_list"
+    t.text     "skills"
     t.boolean  "attempted_geolocating"
   end
 
