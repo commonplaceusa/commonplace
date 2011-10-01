@@ -3,7 +3,6 @@ class NamedPoint
 end
 
 class User < ActiveRecord::Base
-  acts_as_taggable_on :offers, :interests, :skills
 
   before_save :ensure_authentication_token
 
@@ -326,6 +325,18 @@ WHERE
       string :address
     end
     #handle_asynchronously :solr_index
+  end
+
+  def skill_list
+    skills
+  end
+
+  def interest_list
+    interests
+  end
+
+  def good_list
+    goods
   end
 
   # Devise calls this on POST /users/password
