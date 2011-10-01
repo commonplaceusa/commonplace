@@ -128,7 +128,7 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   headerTextFor: function(model) {
-    return "Learn about your " + this.config(model.get('schema')).text + ":";
+    return "Learn about your " + this.config(model.get('schema')).text;
   },
 
   config: function(type) {
