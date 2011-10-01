@@ -2,7 +2,7 @@ var InfoListItem = CommonPlace.View.extend({
   template: "main_page/info-list",
   tagName: "li",
   events: {
-    "click": "switchProfile"
+    "mouseenter": "switchProfile"
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
