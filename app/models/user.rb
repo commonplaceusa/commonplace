@@ -112,7 +112,7 @@ class User < ActiveRecord::Base
   has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies, :dependent => :destroy
 
   has_many :referrals, :foreign_key => "referee_id"
-  has_many :messages, :dependent => :destroy
+  has_many :sent_messages, :dependent => :destroy, :class_name => "Message"
 
   has_many :received_messages, :as => :messagable, :class_name => "Message", :dependent => :destroy
 
@@ -162,11 +162,9 @@ class User < ActiveRecord::Base
 
   scope :receives_posts_live_limited, :conditions => {:post_receive_method => "Three"}
 
-
-  def inbox
-    (self.received_messages + self.messages).sort {|m,n| n.updated_at <=> m.updated_at }.select {|m| !m.archived }
+  def messages
+    self.sent_messages.select {|m| m.replies.count > 0 }
   end
-
 
   def validate_first_and_last_names
     errors.add(:full_name, "CommonPlace requires people to register with their first \& last names.") if first_name.blank? || last_name.blank?
@@ -306,27 +304,18 @@ class User < ActiveRecord::Base
     user_ids
   end
 
-  def has_received_message_within(time_ago)
-    messages.between(time_ago, Time.now).select { |m| m.messagable_id == self.id and m.messagable_type == "User" }.present?
-  end
-
-  def self.received_no_reply_in_last(start_time)
-    user_ids = []
-    post_ids = []
-    User.all.each do |u|
-      unless u.has_received_message_within(start_time)
-        u.posts.between(start_time, Time.now).each do |p|
-          unless p.replies.present?
-            post_ids << p.id
-          end
-        end
-      end
-    end
-    post_ids.uniq
-  end
-
   def emails_are_limited?
     self.post_receive_method == "Three"
+  end
+
+  def inbox
+    Message.where(<<WHERE, self.id, self.id)
+    ("messages"."user_id" = ? AND
+    (SELECT COUNT(*) FROM "replies" WHERE "replies"."repliable_type" = 'Message' AND
+    "replies"."repliable_id" = "messages"."id") > 0) OR
+    ("messages"."messagable_type" = 'User' AND
+    "messages"."messagable_id" = ?)
+WHERE
   end
 
   unless Rails.env.test?
