@@ -1,5 +1,5 @@
 class NamedPoint
-  attr_accessor :lat, :lng, :name
+  attr_accessor :lat, :lng, :name, :address
 end
 
 class User < ActiveRecord::Base
@@ -289,6 +289,7 @@ class User < ActiveRecord::Base
     point.lat = self.generated_lat
     point.lng = self.generated_lng
     point.name = self.full_name
+    point.address = self.address
     point
   end
 

@@ -77,10 +77,6 @@ class AdminController < ApplicationController
     send_data csv, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{slug}.csv"
   end
 
-  def show_referrers
-    @referred_users = User.all.select{ |u| u.referral_source.present? }.sort{ |a,b| a.created_at <=> b.created_at }.reverse
-  end
-
-  def map
-  end
+  def show_referrers ; end
+  def map ; end
 end

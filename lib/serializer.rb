@@ -20,7 +20,8 @@ module Serializer
       {
         "lat" => o.lat,
         "lng" => o.lng,
-        "name" => o.name
+        "name" => o.name,
+        "address" => o.address
       }
 
       when OrganizerDataPoint
