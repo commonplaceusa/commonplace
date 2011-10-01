@@ -1,3 +1,4 @@
+//= require chosen
 @import core
 @import logged_out_header
 @import neutral_notification
@@ -74,13 +75,13 @@ h1
       display: block
     fieldset.inputs
       margin-bottom: 10px
-    li
+    ol > li
       margin: 5px 0px
       width: 360px
     label
       display: none
       color: #898989
-    input[type=text], input[type=password]
+    ol > li > input[type=text], input[type=password]
       +border-radius(5px)
       +box-shadow(#ccc 1px 1px 2px 0 inset)
       border: 1px solid #ccc
@@ -91,6 +92,7 @@ h1
       display: block
       +serif
       margin-top: 20px
+        
 
     fieldset.buttons
       margin-left: auto
@@ -109,6 +111,10 @@ h1
       color: #FFFFFF
 
   form.add_profile
+
+    .chzn-container
+      margin-top: 5px
+
     #user_avatar_input
       position: relative
       min-height: 54px
@@ -156,20 +162,26 @@ h1
       #user_avatar
         left: 0
 
-    li
+    ol > li
       margin: 10px 0
       padding: 0px 0px
       width: 355px
+    
+      > select[multiple]
+        width: 365px
 
-    input[type=text], input[type=password], textarea
-      border: 1px solid #ccc
-      +border-radius(5px)
-      +box-shadow(#ccc 1px 1px 2px 0 inset)
-      font-size: 22px
-      +serif
-      padding: 0 5px
-      width: 350px
-      margin: 5px 0
+      > input[type=text], > input[type=password], 
+      > textarea, #file_style_fix
+        border: 1px solid #ccc
+        +border-radius(5px)
+        +box-shadow(#ccc 1px 1px 2px 0 inset)
+        font-size: 22px
+        +serif
+        padding: 0 5px
+        width: 350px
+        margin: 5px 0
+
+
 
     textarea
       height: 70px
@@ -266,7 +278,7 @@ h1
           background: image-url('check-off.png')
         .checked
           background: image-url('check-on.png')
-
+    
 
 #wrapper
   #main
@@ -296,3 +308,5 @@ h1
     text-decoration: none
     &:hover
       text-decoration: underline
+    
+
