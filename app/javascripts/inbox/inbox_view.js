@@ -6,9 +6,10 @@ var InboxView = CommonPlace.View.extend({
   initialize: function(options) {
     this.account = options.account;
     this.community = options.community;
+    this.type = options.type;
 
     var self = this;
-    var uri = this.account.link(options.type == "sent" ? "sent" : "inbox");
+    var uri = this.account.link(this.type == "sent" ? "sent" : "inbox");
     var messages = new Messages([], { uri: uri });
 
     messages.fetch({
@@ -22,6 +23,10 @@ var InboxView = CommonPlace.View.extend({
         self.$("#message-list").replaceWith(listview.el);
       }
     });
+  },
+
+  title: function() {
+    return (this.type == "sent" ? "Your Sent Messages" : "Your Inbox");
   }
 });
 
