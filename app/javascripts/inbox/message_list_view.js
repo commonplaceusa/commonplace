@@ -1,5 +1,5 @@
 
-var MessageWire = Wire.extend({
+var MessageWire = PaginatingWire.extend({
   template: "inbox/message-list",
   id: "message-list",
   

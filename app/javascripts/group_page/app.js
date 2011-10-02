@@ -230,37 +230,57 @@ var GroupSubresourcesView = CommonPlace.View.extend({
   },
 
   showGroupPosts: function() {
-    var wireView = new GroupPostWire({
+    var account = this.account;
+    var wireView = new PaginatingWire({
       collection: this.groupPostsCollection,
       account: this.account,
-      el: this.$(".group-posts .wire")
+      el: this.$(".group-posts .wire"),
+      emptyMessage: "No posts here yet",
+      modelToView: function(model) {
+        return new GroupPostWireItem({ model: model, account: account });
+      }
     });
     wireView.render();
   },
 
   showGroupMembers: function() {
-    var wireView = new UserWire({
+    var account = this.account;
+    var wireView = new PaginatingWire({
       collection: this.groupMembersCollection,
       account: this.account,
-      el: this.$(".group-members .wire")
+      el: this.$(".group-members .wire"),
+      emptyMessage: "No members yet",
+      modelToView: function(model) {
+        return new UserWireItem({ model: model, account: account });
+      }
     });
     wireView.render();
   },
 
   showAnnouncements: function() {
-    var wireView = new AnnouncementWire({
+    var account = this.account;
+    var wireView = new PaginatingWire({
       collection: this.groupAnnouncementsCollection,
       account: this.account,
-      el: this.$(".group-announcements .wire")
+      el: this.$(".group-announcements .wire"),
+      emptyMessage: "No announcements here yet",
+      modelToView: function(model) {
+        return new AnnouncementWireItem({ model: model, account: account });
+      }
     });
     wireView.render();
   },
 
   showEvents: function() {
-    var wireView = new EventWire({
+    var account = this.account;
+    var wireView = new PaginatingWire({
       collection: this.groupEventsCollection,
       account: this.account,
-      el: this.$(".group-events .wire")
+      el: this.$(".group-events .wire"),
+      emptyMessage: "No events here yet",
+      modelToView: function(model) {
+        return new EventWireItem({ model: model, account: account });
+      }
     });
     wireView.render();
   },
