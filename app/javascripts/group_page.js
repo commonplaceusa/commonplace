@@ -14,4 +14,4 @@
 //= require_tree ../templates/group_page
 //= require wires
 //= require wire_items
-//= require group_page/app.js
+//= require_tree ./group_page
