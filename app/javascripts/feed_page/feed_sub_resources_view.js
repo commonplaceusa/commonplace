@@ -20,28 +20,43 @@ var FeedSubResourcesView = CommonPlace.View.extend({
   },
 
   showAnnouncements: function() {
-    var wireView = new AnnouncementWire({
+    var account = this.account;
+    var wireView = new PaginatingWire({
       collection: this.announcementsCollection,
       account: this.account,
-      el: this.$(".feed-announcements .wire")
+      el: this.$(".feed-announcements .wire"),
+      emptyMessage: "No announcements here yet",
+      modelToView: function(model) {
+        return new AnnouncementWireItem({ model: model, account: account });
+      }
     });
     wireView.render();
   },
 
   showEvents: function() {
-    var wireView = new EventWire({
+    var account = this.account;
+    var wireView = new PaginatingWire({
       collection: this.eventsCollection,
       account: this.account,
-      el: this.$(".feed-events .wire")
+      el: this.$(".feed-events .wire"),
+      emptyMessage: "No events here yet",
+      modelToView: function(model) {
+        return new EventWireItem({ model: model, account: account });
+      }
     });
     wireView.render();
   },
 
   showSubscribers: function() {
-    var wireView = new UserWire({
+    var account = this.account;
+    var wireView = new PaginatingWire({
       collection: this.subscribersCollection,
       account: this.account,
-      el: this.$(".feed-subscribers .wire")
+      el: this.$(".feed-subscribers .wire"),
+      emptyMessage: "No subscribers yet",
+      modelToView: function(model) {
+        return new UserWireItem({ model: model, account: account });
+      }
     });
     wireView.render();
   },
