@@ -6,7 +6,7 @@ CommonPlace.View = Backbone.View.extend({
     var self = this;
     self.aroundRender(function() {
       self.beforeRender();
-      $(self.el).html(self.renderTemplate(self.template, self));
+      $(self.el).html(self.renderTemplate(self.getTemplate(), self));
       self.afterRender();
     });  
     return this;
@@ -33,10 +33,12 @@ CommonPlace.View = Backbone.View.extend({
     return path ? makeUrl(path) : makeUrl;
   },
 
+  getTemplate: function() { return this.options.template || this.template; },
+
   t: function(key) {
     var locale = I18N[CommonPlace.community.get('locale')];
     if (!locale) { throw new Error("Unknown locale"); }
-    var templateTexts = locale[this.template] || {};
+    var templateTexts = locale[this.getTemplate()] || {};
     var translate = function(key, render) {
       render || (render = function(t) { return t; });
       var text = templateTexts[key];
