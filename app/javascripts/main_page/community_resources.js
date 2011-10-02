@@ -140,7 +140,7 @@ var CommunityResources = CommonPlace.View.extend({
     var self = this;
     model.fetch({
       success: function(model) {
-        var item = new ItemView({model: model, account: self.account});
+        var item = new ItemView({model: model, account: self.options.account});
 
         self.$(".tab-button").removeClass("current");
 
