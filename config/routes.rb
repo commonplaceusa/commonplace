@@ -52,7 +52,8 @@ Commonplace::Application.routes.draw do
   end
 
   match "/pages/:id" => "bootstraps#feed"
-
+  
+  match "/messages/:id", :to => "bootstraps#inbox"
   match "/inbox", :to => "bootstraps#inbox"
     
   resource :account do
@@ -106,11 +107,7 @@ Commonplace::Application.routes.draw do
     
     # Post-like things
 
-    resources :messages do
-      collection do
-        get :admin_quick_view
-      end
-    end
+    match "/messages/admin_quick_view", :to => "messages#admin_quick_view"
 
     resources :organizer do
       collection do
