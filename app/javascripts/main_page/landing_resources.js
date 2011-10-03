@@ -18,12 +18,13 @@ var LandingResources = CommonPlace.View.extend({
         (new PreviewWire({ 
           collection: this.community.posts,
           account: this.account,
-           el: this.$(".posts.wire"),
-           perPage: 3,
-           fullLink: "#/posts",
-           modelToView: function(model) {
-             return new PostWireItem({ model: model, account: self.options.account });
-           }
+          el: this.$(".posts.wire"),
+          perPage: 3,
+          fullLink: "#/posts",
+          emptyMessage: "No posts here yet.",
+          modelToView: function(model) {
+            return new PostWireItem({ model: model, account: self.options.account });
+          }
          })),
         
         (new PreviewWire({ 
@@ -32,6 +33,7 @@ var LandingResources = CommonPlace.View.extend({
           el: this.$(".events.wire"),
           perPage: 3,
           fullLink: "#/events",
+          emptyMessage: "There are no upcoming events yet. Add some.",
           modelToView: function(model) {
             return new EventWireItem({ model: model, account: self.options.account });
           }
@@ -42,6 +44,7 @@ var LandingResources = CommonPlace.View.extend({
           account: this.account,
           el: this.$(".announcements.wire"),
           perPage: 3,
+          emptyMessage: "No announcements here yet.",
           fullLink: "#/announcements",
           modelToView: function(model) {
             return new AnnouncementWireItem({ model: model, account: self.options.account });
@@ -53,6 +56,7 @@ var LandingResources = CommonPlace.View.extend({
           account: this.account,
           el: this.$(".groupPosts.wire"),
           perPage: 3,
+          emptyMessage: "No posts here yet.",
           fullLink: "#/group_posts",
           modelToView: function(model) {
             return new GroupPostWireItem({ model: model, account: self.options.account });
