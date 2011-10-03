@@ -11,6 +11,14 @@ var Event = Repliable.extend({
         links: { self: this.link('author') }
       });
     }
+  },
+
+  validate: function(attribs) {
+    var response = [];
+    if (!attribs.title) { response.push("title"); }
+    if (!attribs.about) { response.push("body"); }
+    if (!attribs.date) { response.push("date"); }
+    if (response.length > 0) { return response; }
   }
 });
 
