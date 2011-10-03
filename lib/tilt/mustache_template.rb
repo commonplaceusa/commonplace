@@ -12,6 +12,7 @@ module Tilt
       (function() {
       this.Templates || (this.Templates = {});
       this.Templates[#{scope.logical_path.inspect}] = #{data.inspect};
+      this.Templates[#{scope.logical_path.inspect.gsub("/",".")}] = #{data.inspect};
       })(this);
       END
     end

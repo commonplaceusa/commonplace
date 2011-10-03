@@ -41,7 +41,7 @@ class API < Sinatra::Base
     end
 
     def paginate(scope)
-      scope.limit(limit).offset(limit * page)
+      limit.to_i == 0 ? scope : scope.limit(limit).offset(limit * page)
     end
 
     def kickoff
