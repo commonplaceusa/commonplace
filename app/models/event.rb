@@ -30,6 +30,8 @@ class Event < ActiveRecord::Base
 
   scope :created_on, lambda { |date| { :conditions => ["events.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
 
+  default_scope where(:deleted_at => nil)
+
   def tag_list
     self.cached_tag_list
   end
