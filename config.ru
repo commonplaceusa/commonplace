@@ -5,12 +5,14 @@ require 'resque/server'
 require 'exceptional'
 
 app = Rack::Builder.new do 
-  use Rack::Exceptional, ENV['exceptional_key']
-  use(Rack::Cache,
-      :verbose     => true,
-      :metastore   => Dalli::Client.new,
-      :entitystore => Dalli::Client.new)
 
+  if Rails.env.staging? || Rails.env.production?
+    use Rack::Exceptional, ENV['exceptional_key']
+    use(Rack::Cache,
+        :verbose     => true,
+        :metastore   => Dalli::Client.new,
+        :entitystore => Dalli::Client.new)
+  end
 
   map("/api") { 
     run API
