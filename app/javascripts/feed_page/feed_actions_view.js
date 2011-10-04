@@ -29,7 +29,7 @@ var FeedActionsView = CommonPlace.View.extend({
     var $target = $(e.target);
     $target.addClass("current").siblings().removeClass("current");
     $(this.el).children(".tab").removeClass("current").filter("." + $target.attr('href').slice(2)).addClass("current");
-    $(".incomplete").hide();
+    this.$(".incomplete").hide();
     e.preventDefault();
   },
 
@@ -43,8 +43,8 @@ var FeedActionsView = CommonPlace.View.extend({
     _.each(fields, function(f) {
       incompleteFields = incompleteFields + " and " + f;
     });
-    $(".incomplete-fields").text(incompleteFields);
-    $(".incomplete").show();
+    this.$(".incomplete-fields").text(incompleteFields);
+    this.$(".incomplete").show();
   },
 
   postAnnouncement: function(e) {

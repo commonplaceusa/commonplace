@@ -25,8 +25,8 @@ var NewPostView = CommonPlace.View.extend({
     _.each(fields, function(f) {
       incompleteFields = incompleteFields + " and " + f;
     });
-    $(".incomplete-fields").text(incompleteFields);
-    $(".incomplete").show();
+    this.$(".incomplete-fields").text(incompleteFields);
+    this.$(".incomplete").show();
   },
 
   postMessage: function(e) {
