@@ -1,5 +1,5 @@
 class API
-  class Feeds
+  class Feeds < Base
 
     post "/:id/announcements" do |feed_id|
       announcement = Announcement.new(:owner_type => "Feed",
