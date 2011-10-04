@@ -3,7 +3,8 @@ var InboxRouter = Backbone.Router.extend({
   routes: {
     "": "showReceived",
     "received": "showReceived",
-    "sent": "showSent"
+    "sent": "showSent",
+    "feeds": "showFeeds"
   },
 
   initialize: function(options) {
@@ -24,6 +25,8 @@ var InboxRouter = Backbone.Router.extend({
 
   showReceived: function() { this.show("received"); },
 
-  showSent: function() { this.show("sent"); }
+  showSent: function() { this.show("sent"); },
+
+  showFeeds: function() { this.show("feeds"); }
 });
 
