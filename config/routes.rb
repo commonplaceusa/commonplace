@@ -2,7 +2,8 @@
 Commonplace::Application.routes.draw do
 
   # Community specific redirects
-  match "/corunna" => redirect { "/owosso" }
+  match "/corunna" => redirect { "/owossocorunna" }
+  match "/owosso" => redirect { "/owossocorunna" }
 
   resource :registration, :only => [:new, :create] do
     member do
