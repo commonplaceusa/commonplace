@@ -28,6 +28,7 @@ Commonplace::Application.routes.draw do
 
   match 'email_parse/parse' => 'email_parse#parse', :via => :post
   match "/admin/overview" => "admin#overview"
+  match "/admin/view_messages" => "admin#view_messages"
   match "/admin/:community/export_csv" => "admin#export_csv"
   match "/admin/overview_no_render" => "admin#overview_no_render"
   match "/admin/clipboard" => "admin#clipboard"
@@ -98,16 +99,13 @@ Commonplace::Application.routes.draw do
         get :facebook_invite
       end
     end
-
+    match "/send_invite", :to => "accounts#send_invite"
     match "/invite", :to => "accounts#facebook_invite", :as => :invites
 
     # Community routes 
     
     match "/:community/good_neighbor_discount", :to => "communities#good_neighbor_discount"
     
-    # Post-like things
-
-    match "/messages/admin_quick_view", :to => "messages#admin_quick_view"
 
     resources :organizer do
       collection do

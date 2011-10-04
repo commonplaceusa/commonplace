@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
-  include FeedsHelper
   helper_method :current_community
   helper_method 'logged_in?'
 

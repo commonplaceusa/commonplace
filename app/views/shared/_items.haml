@@ -1,5 +1,0 @@
-%ul.items
-  - items.each do |item|
-    %li.item{ :class => [cycle('odd', 'even'), dom_class(item), dom_id(item)] }
-      = render item
-        

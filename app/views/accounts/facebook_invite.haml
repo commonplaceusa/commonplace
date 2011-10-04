@@ -119,7 +119,7 @@
               %center
                 OR
           #invite_errors
-          = semantic_form_for @invitation do |f|
+          = semantic_form_for @invitation, :url => "/send_invite" do |f|
             = f.inputs do
               = f.input :email,:as => 'text', :input_html => { :placeholder => "Enter email addresses here (separated by commas)", :class => "required email", :width => 370, :style => "height: 66px;" }
               = f.input :body, :input_html => { :placeholder => "Include a message about why you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
