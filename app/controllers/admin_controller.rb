@@ -7,6 +7,12 @@ class AdminController < ApplicationController
     end
   end
 
+  def view_messages
+    @messages = Message.find(:all, :order => "id desc", :limit => 50).sort { |x, y| y.created_at <=> x.created_at }
+    render :layout => false
+  end
+
+
   def overview
     @days = 7
     date = @days.days.ago
