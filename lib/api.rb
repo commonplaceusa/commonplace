@@ -6,7 +6,7 @@ class API
 
       use Rack::JSONP
 
-      map("/account") { run API::Account }
+      map("/account") { run Accounts }
       map("/announcements") { run Announcements }
       map("/communities") { run Communities }
       map("/events") { run Events }
