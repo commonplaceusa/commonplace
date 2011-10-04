@@ -3,7 +3,8 @@
     <a href="{{url}}"><h3>{{fullName}}</h3></a>
     <img src="{{avatarUrl}}" width="122" />
     <div class="profile-top">
-      <a href="#" class="gray-button message">Send a Message</a>
+      {{^isOwner}}<a href="#" class="gray-button message">Send a Message</a>{{/isOwner}}
+      {{#isOwner}}<a href="{{editUrl}}" class="gray-button">Edit Feed Profile</a>{{/isOwner}}
       {{^isSubscribed}}<a href="#" class="gray-button subscribe">Subscribe</a>{{/isSubscribed}}
       {{#isSubscribed}}<a href="#" class="gray-button unsubscribe">Unsubscribe</a>{{/isSubscribed}}
     </div>

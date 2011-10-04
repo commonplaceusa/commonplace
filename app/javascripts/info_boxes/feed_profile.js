@@ -40,6 +40,10 @@ var FeedProfileBox = Profile.extend({
 
   isSubscribed: function() { return this.options.account.isSubscribedToFeed(this.model); },
 
-  url: function() { return this.model.get("url"); }
+  isOwner: function() { return this.options.account.isFeedOwner(this.model); },
+
+  url: function() { return this.model.get("url"); },
+
+  editUrl: function() { return this.model.link("edit"); }
   
 });
