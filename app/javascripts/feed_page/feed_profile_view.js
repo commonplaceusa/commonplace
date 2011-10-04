@@ -17,6 +17,16 @@ var FeedProfileView = CommonPlace.View.extend({
   avatarSrc: function() { return this.model.get("links").avatar.large; },
   address: function() { return this.model.get("address"); },
   phone: function() { return this.model.get("phone"); },
-  website: function() { return this.model.get("website"); }
+  website: function() { 
+    if (!this.model.get("website")) { return false; }
+
+    if (this.model.get("website").length <= 35) {
+      return this.model.get("website"); 
+    } else {
+      return this.model.get("website").substring(0,32) + "...";
+    }
+  },
+  
+  websiteURL: function() { return this.model.get("website"); }
   
 });
