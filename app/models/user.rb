@@ -178,12 +178,6 @@ class User < ActiveRecord::Base
     []
   end
 
-  def search(term)
-    User.all
-  end
-  
-
-  
   def full_name
     [first_name,middle_name,last_name].select(&:present?).join(" ")
   end
@@ -318,14 +312,11 @@ class User < ActiveRecord::Base
 WHERE
   end
 
-  unless Rails.env.test?
-    searchable do
-      string :first_name
-      string :last_name
-      string :about
-      string :address
-    end
-    #handle_asynchronously :solr_index
+  searchable do
+    string :first_name
+    string :last_name
+    string :about
+    string :address
   end
 
   def skill_list
