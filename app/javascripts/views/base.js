@@ -80,8 +80,8 @@ var FormView = CommonPlace.View.extend({
 
   send: function(e) {
     e.preventDefault();
-    this.save();
-    this.exit();
+    var self = this;
+    this.save(function() { self.modal.exit(); });
   },
 
   exit: function(e) {
