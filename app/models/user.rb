@@ -221,7 +221,7 @@ class User < ActiveRecord::Base
   end
 
   def feed_messages
-    managable_feeds.flat_map(&:messages)
+    Message.where("messagable_type = 'Feed' AND messagable_id IN (?)", self.managable_feed_ids)
   end
 
   def place_in_neighborhood

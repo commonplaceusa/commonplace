@@ -106,10 +106,7 @@ class Feed < ActiveRecord::Base
   end
 
   def messages
-    Message.where(<<WHERE, self.id)
-    ("messages"."messagable_type" = 'Feed' AND
-    "messages"."messagable_id" = ?)
-WHERE
+    Message.where("messagable_type = 'Feed' AND messagable_id = ?", self.id)
   end
 
   private
