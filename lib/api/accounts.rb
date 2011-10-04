@@ -44,7 +44,7 @@ class API
     end
 
     get "/inbox/feeds" do
-      serialize(current_account.feed_messages)
+      serialize(paginate(current_account.feed_messages.reorder("updated_at DESC")))
     end
 
   end
