@@ -18,7 +18,7 @@ class API
       map("/neighborhoods") { run Neighborhoods }
       map("/posts") { run Posts }
 
-      map("/") { run lambda {|env|  [200, {}, "HI!"] } }
+      map("/") { run lambda {|env|  [200, {}, ["HI!"]] } }
     end
   end
 
