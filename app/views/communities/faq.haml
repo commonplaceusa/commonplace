@@ -130,7 +130,7 @@
       #3_1
         %h3{ :class => "item_head"}= t ".q3_1_html", :community => current_community.name
         .answer
-          %p= t ".a3_1_html", :community => current_community.name, :invite_link => link_to("here (you must be logged in)", "/invites/new")
+          %p= t ".a3_1_html", :community => current_community.name, :invite_link => link_to("here (you must be logged in)", "/invite")
       #3_2
         %h3{ :class => "item_head"}= t ".q3_2_html", :community => current_community.name
         .answer
@@ -138,11 +138,11 @@
       #3_3
         %h3{:class => "item_head"}= t ".q3_3_html", :community => current_community.name
         .answer
-          %p= t ".a3_3_html", :community => current_community.name, :create_feed=> link_to("here", "/feeds/new")
+          %p= t ".a3_3_html", :community => current_community.name, :create_feed=> link_to("here", "/feeds_registrations/new")
       #3_4
         %h3{:class => "item_head"}= t ".q3_4_html", :community => current_community.name
         .answer
-          %p= t ".a3_4_html", :community => current_community.name, :lost_password => link_to("here", "/password_resets/new")
+          %p= t ".a3_4_html", :community => current_community.name, :lost_password => link_to("here", "/users/password/new")
       #3_5
         %h3{:class => "item_head"}= t ".q3_5_html", :community => current_community.name
         .answer
