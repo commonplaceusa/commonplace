@@ -17,7 +17,7 @@ var Event = Repliable.extend({
     var response = [];
     if (!attribs.title) { response.push("title"); }
     if (!attribs.about && !attribs.body) { response.push("body"); }
-    if (!attribs.date) { response.push("date"); }
+    if (!attribs.date && !attribs.occurs_at) { response.push("date"); }
     if (response.length > 0) { return response; }
   }
 });
