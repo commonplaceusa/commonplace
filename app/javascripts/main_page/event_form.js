@@ -18,6 +18,7 @@ var EventForm = CommonPlace.View.extend({
 
   createEvent: function(e) {
     e.preventDefault();
+    var self = this;
     this.collection.create({ 
       title:   this.$("[name=title]").val(),
       about:   this.$("[name=about]").val(),
@@ -30,9 +31,20 @@ var EventForm = CommonPlace.View.extend({
       groups:  this.$("[name=groups]:checked").map(function() { 
         return $(this).val(); 
       }).toArray()
+    }, {
+      success: function() { self.render(); },
+      error: function(attribs, response) { self.incomplete(response); }
     });
+  },
 
-    this.render();
+  incomplete: function(fields) {
+    var incompleteFields = fields.shift();
+    var self = this;
+    _.each(fields, function(f) {
+      incompleteFields = incompleteFields + " and " + f;
+    });
+    $(".incomplete-fields").text(incompleteFields);
+    $(".incomplete").show();
   },
 
   groups: function() {
