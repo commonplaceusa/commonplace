@@ -1,4 +1,0 @@
-class CPAccount < Account
-
-end
-
