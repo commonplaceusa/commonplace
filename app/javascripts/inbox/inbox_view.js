@@ -9,7 +9,8 @@ var InboxView = CommonPlace.View.extend({
     this.type = options.type;
 
     var self = this;
-    var uri = this.account.link(this.type == "sent" ? "sent" : "inbox");
+    this.type = { sent: "sent", received: "inbox", feeds: "feed_messages" }[this.type];
+    var uri = this.account.link(this.type);
     var messages = new Messages([], { uri: uri });
 
     messages.fetch({

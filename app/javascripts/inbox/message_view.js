@@ -5,7 +5,8 @@ var MessageWireItem = WireItem.extend({
   className: "message-item",
 
   events: {
-    "click a.main-author": "sendMessage"
+    "click a.person": "sendMessageToUser",
+    "click a.feed": "sendMessageToFeed"
   },
 
   initialize: function(options) {
@@ -44,7 +45,7 @@ var MessageWireItem = WireItem.extend({
 
   body: function() { return this.model.get("body"); },
 
-  sendMessage: function(e) {
+  sendMessageToUser: function(e) {
     e && e.preventDefault();
 
     var user = new User({
@@ -61,6 +62,26 @@ var MessageWireItem = WireItem.extend({
       }
     });
   },
+
+  sendMessageToFeed: function(e) {
+    e && e.preventDefault();
+    
+    var feed = new Feed({
+      links: {
+        self: this.model.link("user")
+      }
+    });
+    feed.fetch({
+      success: function() {
+        var formview = new MessageFormView({
+          model: new Message({ messagable: feed })
+        });
+        formview.render();
+      }
+    });
+  },
+
+  isFeed: function() { return this.model.get("type") == "Feed"; },
 
   isSent: function() { return this.model.get("author_id") == this.account.id; }
 
