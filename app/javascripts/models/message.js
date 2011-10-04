@@ -9,6 +9,13 @@ var Message = Repliable.extend({
 
   name: function() {
     return this.messagable.get("name");
+  },
+
+  validate: function(attribs) {
+    var response = [];
+    if (!attribs.subject && !attribs.title) { response.push("title"); }
+    if (!attribs.body) { response.push("body"); }
+    if (response.length > 0) { return response; }
   }
 });
 
