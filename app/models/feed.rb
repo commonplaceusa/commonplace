@@ -105,6 +105,13 @@ class Feed < ActiveRecord::Base
     read_attribute(:slug).blank? ? id : read_attribute(:slug)
   end
 
+  def messages
+    Message.where(<<WHERE, self.id)
+    ("messages"."messagable_type" = 'Feed' AND
+    "messages"."messagable_id" = ?)
+WHERE
+  end
+
   private
 
   def sanitize_slug
