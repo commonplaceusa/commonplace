@@ -4,7 +4,8 @@ var EventFormView = FormView.extend({
     $("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
   },
 
-  save: function() {
+  save: function(callback) {
+    var self = this;
     this.model.save({
       title: this.$("[name=title]").val(),
       body: this.$("[name=body]").val(),
@@ -13,7 +14,20 @@ var EventFormView = FormView.extend({
       ends_at: this.$("[name=end]").val(),
       venue: this.$("[name=venue]").val(),
       address: this.$("[name=address]").val()
+    }, {
+      success: callback,
+      error: function(attribs, response) { self.incomplete(response); }
     });
+  },
+
+  incomplete: function(fields) {
+    var incompleteFields = fields.shift();
+    var self = this;
+    _.each(fields, function(f) {
+      incompleteFields = incompleteFields + " and " + f;
+    });
+    this.$(".incomplete-fields").text(incompleteFields);
+    this.$(".incomplete").show();
   },
 
   remove: function(callback) {
