@@ -8,6 +8,13 @@ var GroupPost = Repliable.extend({
       });
     }
     this._group.fetch({ success: callback });
+  },
+
+  validate: function(attribs) {
+    var response = [];
+    if (!attribs.title) { response.push("title"); }
+    if (!attribs.body) { response.push("body"); }
+    if (response.length > 0) { return response; }
   }
 });
 

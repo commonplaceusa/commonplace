@@ -22,12 +22,24 @@ var PostForm = CommonPlace.View.extend({
       collection = this.options.community.announcements;
     }
 
+    var self = this;
     collection.create({
       title: this.$("[name=title]").val(),
       body: this.$("[name=body]").val()
+    }, {
+      success: function() { self.render(); },
+      error: function(attribs, response) { self.incomplete(response); }
     });
+  },
 
-    this.render();
+  incomplete: function(fields) {
+    var incompleteFields = fields.shift();
+    var self = this;
+    _.each(fields, function(f) {
+      incompleteFields = incompleteFields + " and " + f;
+    });
+    $(".incomplete-fields").text(incompleteFields);
+    $(".incomplete").show();
   },
 
   showPublicityWarning: function() {

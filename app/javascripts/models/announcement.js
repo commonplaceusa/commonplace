@@ -10,6 +10,13 @@ var Announcement = Repliable.extend({
         links: { self: this.link('author') }
       });
     }
+  },
+
+  validate: function(attribs) {
+    var response = [];
+    if (!attribs.title) { response.push("title"); }
+    if (!attribs.body) { response.push("body"); }
+    if (response.length > 0) { return response; }
   }
 });
 

@@ -29,11 +29,22 @@ var FeedActionsView = CommonPlace.View.extend({
     var $target = $(e.target);
     $target.addClass("current").siblings().removeClass("current");
     $(this.el).children(".tab").removeClass("current").filter("." + $target.attr('href').slice(2)).addClass("current");
+    $(".incomplete").hide();
     e.preventDefault();
   },
 
   toggleCheckboxLIClass: function(e) {
     $(e.target).closest("li").toggleClass("checked");
+  },
+
+  incomplete: function(fields) {
+    var incompleteFields = fields.shift();
+    var self = this;
+    _.each(fields, function(f) {
+      incompleteFields = incompleteFields + " and " + f;
+    });
+    $(".incomplete-fields").text(incompleteFields);
+    $(".incomplete").show();
   },
 
   postAnnouncement: function(e) {
@@ -45,7 +56,8 @@ var FeedActionsView = CommonPlace.View.extend({
         body: $("[name=body]", $form).val(),
         groups: $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
       }, {
-        success: function() { self.render(); }
+        success: function() { self.render(); },
+        error: function(attribs, response) { self.incomplete(response); }
       });
   },
 
@@ -64,7 +76,8 @@ var FeedActionsView = CommonPlace.View.extend({
         tags:    $("[name=tags]", $form).val(),
         groups:  $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
       }, {
-        success: function() { self.render(); }
+        success: function() { self.render(); },
+        error: function(attribs, response) { self.incomplete(response); }
       });
   },
 
