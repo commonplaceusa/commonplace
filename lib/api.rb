@@ -1,3 +1,6 @@
+require 'rack/contrib/jsonp'
+use Rack::JSONP
+
 class API < Sinatra::Base
 
   helpers do
@@ -54,6 +57,12 @@ class API < Sinatra::Base
                     .select('updated_at')
                     .first.try(&:updated_at))
     end
+
+    def jsonp(callback, data)
+      "#{callback}(#{data})"
+    end
+
+    NO_CALLBACK = ["no_callback"].to_json
 
   end
 
@@ -674,17 +683,25 @@ class API < Sinatra::Base
   get "/communities/:id/registration_points" do |id|
     headers 'Access-Control-Allow-Origin' => '*'
     community = Community.find(id)
-
-    serialize(community.users.map &:generate_point)
+    callback = params.delete("callback")
+    unless callback.present?
+      NO_CALLBACK
+    else
+      jsonp(callback, serialize(community.users.map &:generate_point))    end
   end
 
   get "/communities/:id/data_points" do |id|
     headers 'Access-Control-Allow-Origin' => '*'
     community = Community.find(id)
-    if params[:top]
-      serialize(community.organizers.map(&:organizer_data_points).flatten.uniq { |p| p.address }.select { |p| p.present? })
+    callback = params.delete("callback")
+    unless callback.present?
+      NO_CALLBACK
+    else
+      if params[:top]
+        jsonp(callback, serialize(community.organizers.map(&:organizer_data_points).flatten.uniq { |p| p.address }.select { |p| p.present? }))
+      end
+      jsonp(callback, serialize(community.organizers.map(&:organizer_data_points).flatten.select { |p| p.present? }))
     end
-    serialize(community.organizers.map(&:organizer_data_points).flatten.select { |p| p.present? })
   end
 
   get "/neighborhoods/:id/posts" do |id|
@@ -756,3 +773,4 @@ class API < Sinatra::Base
     serialize(id =~ /[^\d]/ ? Feed.find_by_slug(id) : Feed.find(id))
   end
 end
+
