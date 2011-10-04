@@ -52,8 +52,9 @@ class CPClient
   end
 
   def add_data_point(community,options)
-    post("/communities/#{community.id}/add_data_point", options)
+    post("/communities/#{community.id}/data_points", options)
   end
+
   private
 
   def logger

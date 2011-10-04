@@ -97,38 +97,17 @@ class API
 
 
 
-    post "/:id/add_data_point" do |id|
-      num = params[:number]
-      zip_code = User.find(current_account.id).community.zip_code
-      if num.include? "-"
-        odds = false
-        evens = false
-        all = true
-        if num.include? "O"
-          odds = true
-          all = false
-          num = num.gsub("O", "")
-        elsif num.include? "E"
-          evens = true
-          all = false
-          num = num.gsub("E", "")
-        end
+    post "/:id/data_points" do |id|
+      zip_code = current_account.community.zip_code
 
-        range = num.split("-")
-        (range[0].to_i..range[1].to_i).each do |n|
-          if (odds and (n % 2 == 1)) or (evens and (n % 2 == 0)) or all
-            data_point = OrganizerDataPoint.new
-            data_point.organizer_id = current_account.id
-            data_point.address = "#{n} #{params[:address]} #{zip_code}"
-            data_point.status = params[:status]
-            data_point.save
-          end
+      AddressRange.new(params[:number]).each do |address_number| 
+     
+        data_point = OrganizerDataPoint.new do |point|
+          point.organizer_id = current_account.id
+          point.address = "#{address_number} #{params[:address]} #{zip_code}"
+          point.status = params[:status]
         end
-      else
-        data_point = OrganizerDataPoint.new
-        data_point.organizer_id = current_account.id
-        data_point.address = "#{num} #{params[:address]} #{zip_code}"
-        data_point.status = params[:status]
+      
         data_point.save
         data_point.generate_point
       end
