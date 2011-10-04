@@ -20,7 +20,7 @@ var FeedHeaderView = CommonPlace.View.extend({
   },
 
   editURL: function() {
-    return "/feeds/" + this.model.id + "/edit";
+    return this.model.link("edit");
   },
 
   subscribe: function(e) {
