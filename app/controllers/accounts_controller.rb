@@ -54,6 +54,13 @@ class AccountsController < ApplicationController
     @invitation = Invite.new
   end
 
+  def send_invite
+    KickOff.new.deliver_user_invite(params[:invite][:email].split(/\n|;|,/),
+                                    current_user,
+                                    params[:invite][:body])
+    redirect_to root_url
+  end
+
   def make_focp
     user = User.find_by_email(params[:email])
     slug = user.community.slug
