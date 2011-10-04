@@ -99,8 +99,17 @@ class KickOff
   end
 
 
-  def deliver_user_invite(to_email, from_user, message = nil)
-    enqueue(Invitation, to_email, from_user.id, message)
+  def deliver_user_invite(emails, from_user, message = nil)
+    # emails is an array
+    emails = Array(emails)
+
+    emails.reject! do |email| 
+      User.exists?(:email => Mail::Address.new(email).address) 
+    end
+
+    emails.each do |email|
+      enqueue(Invitation, email, from_user.id, message)
+    end
   end
 
   
