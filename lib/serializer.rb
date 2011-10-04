@@ -150,6 +150,7 @@ module Serializer
       when Message
         {
         "id" => o.id,
+        "type" => o.messagable_type,
         "url" => "/users/#{o.messagable_id}/messages/#{o.id}",
         "published_at" => o.created_at.utc,
         "user_id" => o.messagable_id,
@@ -164,7 +165,7 @@ module Serializer
           "replies" => "/messages/#{o.id}/replies",
           "author" => "/users/#{o.user_id}",
           "self" => "/messages/#{o.id}",
-          "user" => "/users/#{o.messagable_id}"
+          "user" => (o.messagable_type == "User" ? "/users" : "/feeds") + "/#{o.messagable_id}"
         }
         }
 
@@ -263,7 +264,8 @@ module Serializer
           "self" => "/account",
           "edit" => "/account/profile",
           "inbox" => "/account/inbox",
-          "sent" => "/account/inbox/sent"
+          "sent" => "/account/inbox/sent",
+          "feed_messages" => "/account/inbox/feeds"
         }
         }
 
