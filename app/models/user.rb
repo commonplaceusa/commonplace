@@ -220,6 +220,10 @@ class User < ActiveRecord::Base
     groups.map(&:name).join(", ")
   end
 
+  def feed_messages
+    managable_feeds.flat_map(&:messages)
+  end
+
   def place_in_neighborhood
     if self.community.is_college
       self.neighborhood = self.community.neighborhoods.select { |n| n.name == self.address }.first
