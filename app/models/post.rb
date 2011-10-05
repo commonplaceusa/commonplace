@@ -51,9 +51,6 @@ class Post < ActiveRecord::Base
   searchable do
     text :subject
     text :body
-    text :author do |post|
-      post.user.full_name
-    end
   end
 
 end

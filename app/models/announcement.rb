@@ -40,4 +40,9 @@ class Announcement < ActiveRecord::Base
     user.id
   end
 
+  searchable do
+    text :subject
+    text :body
+  end
+
 end

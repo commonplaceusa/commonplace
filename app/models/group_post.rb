@@ -18,4 +18,9 @@ class GroupPost < ActiveRecord::Base
     self.user
   end
 
+  searchable do
+    text :subject
+    text :body
+  end
+
 end

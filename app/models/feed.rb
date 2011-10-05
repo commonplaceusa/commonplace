@@ -109,6 +109,11 @@ class Feed < ActiveRecord::Base
     Message.where("messagable_type = 'Feed' AND messagable_id = ?", self.id)
   end
 
+  searchable do
+    text :name
+    text :about
+  end
+
   private
 
   def sanitize_slug
