@@ -65,25 +65,11 @@
     "groupPosts.a": "Recent Community Discussion Group Posts"
   },
 
-  "info_boxes/account-info-box": {
-    "h1": "Your Civic Profile"
-  },
-
-
-  "info_boxes/user-info-box": {
-    "h1": "Your Neighbor"
-  },
-
-  "info_boxes/event-info-box": {
-    "h1": "Community Event"
-  },
-
-  "info_boxes/feed-info-box": {
-    "h1": "Community Feed"
-  },
-
-  "info_boxes/group-info-box": {
-    "h1": "Discussion Group"
+  "main_page/info-box": {
+    "user.h2": "Learn about your neighbors",
+    "account.h2": "Learn about your neighbors",
+    "group.h2": "Learn about your community",
+    "feed.h2": "Learn about your community"
   },
 
   "main_page/tour/post": {

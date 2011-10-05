@@ -65,24 +65,11 @@
     "groupPosts.a": "Recent Discussion Group Posts"
   },
 
-  "info_boxes/account-info-box": {
-    "h1": "Your Campus Profile"
-  },
-
-  "info_boxes/user-info-box": {
-    "h1": "Your Fellow Student"
-  },
-
-  "info_boxes/event-info-box": {
-    "h1": "Campus Event"
-  },
-
-  "info_boxes/feed-info-box": {
-    "h1": "Campus Feed"
-  },
-
-  "info_boxes/group-info-box": {
-    "h1": "Discussion Group"
+  "main_page/info-box": {
+    "user.h2": "Learn about your fellow students",
+    "account.h2": "Learn about your fellow students",
+    "group.h2": "Learn about your campus",
+    "feed.h2": "Learn about your campus"
   },
 
   "main_page/tour/post": {
