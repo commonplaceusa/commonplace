@@ -42,7 +42,25 @@ class API
       end
     end
 
-
+    post "/:id/events" do
+      event = Event.new(:owner => request_body['feed'].present? ? Feed.find(request_body['feed']) : current_account,
+                        :name => request_body['title'],
+                        :description => request_body['about'],
+                        :date => request_body['date'],
+                        :start_time => request_body['start'],
+                        :end_time => request_body['end'],
+                        :venue => request_body['venue'],
+                        :address => request_body['address'],
+                        :tag_list => request_body['tags'],
+                        :community => current_account.community,
+                        :group_ids => request_body['groups']
+                        )
+      if event.save
+        serialize(event)
+      else
+        [400, "errors"]
+      end
+    end
 
     get "/:id/posts" do |id|
       last_modified_by_updated_at(Post)
