@@ -158,18 +158,7 @@
                   %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[1]}.pdf"}
                     %h6
                       =t(".download_tag")
-              %tr{:style =>"width:370px"}
-                %td{:style =>"width:60px"}
-                  %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[2]}.pdf"}
-                    = image_tag "invite/PDFLogo.png"
-                %td{:style => "width:310px; text-align: center;vertical-align: middle;"}
-                  %h5
-                    =t(".file_descriptions")[2]
-                  %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_names')[2]}.pdf"}
-                    %h6
-                      =t(".download_tag")
-            %a{:href => "https://s3.amazonaws.com/commonplace-community-assets/#{current_community.slug}/#{t('.file_zip')}.zip"}
-              = image_tag "invite/downloadzip.png", :width => "370", :style => "margin-left: 3px; margin-top: 17px"
+
 
 /
   #groups_box
