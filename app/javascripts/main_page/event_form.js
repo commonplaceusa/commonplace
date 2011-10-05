@@ -61,7 +61,7 @@ var EventForm = CommonPlace.View.extend({
       ["AM", "PM"],
       function(half) {
         return  _.map(
-          _.range(1,13),
+          [12,1,2,3,4,5,6,7,8,9,10,11],
           function(hour) {
             return _.map(
               ["00", "30"],
