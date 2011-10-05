@@ -84,7 +84,8 @@ var InfoBox = CommonPlace.View.extend({
         
         self.$(".filter-tab").removeClass("current");
         self.$("." + model.get('schema') + "-filter").addClass("current");
-        self.$("h2").text(self.headerTextFor(model));
+
+        self.$("h2").text(self.t(model.get('schema') + ".h2"));
       }
     });
   },
@@ -127,27 +128,19 @@ var InfoBox = CommonPlace.View.extend({
     return this.config(model.get('schema')).collection;
   },
 
-  headerTextFor: function(model) {
-    return "Learn about your " + this.config(model.get('schema')).text;
-  },
-
   config: function(type) {
     return {
       "account": { profileBox: AccountProfileBox, 
-                   collection: this.options.community.users,
-                   text: "neighbors"
+                   collection: this.options.community.users
                  },
       "user":  { profileBox: UserProfileBox, 
-                 collection: this.options.community.users ,
-                 text: "neighbors"
+                 collection: this.options.community.users
                },
       "group": { profileBox: GroupProfileBox, 
-                 collection: this.options.community.groups,
-                 text: "community"
+                 collection: this.options.community.groups
                },
       "feed": { profileBox: FeedProfileBox, 
-                collection: this.options.community.feeds,
-                text: "community"
+                collection: this.options.community.feeds
               } 
     }[type];    
   },
