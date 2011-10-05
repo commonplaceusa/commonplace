@@ -255,7 +255,7 @@ module Serializer
         "neighborhood" => o.neighborhood, 
         "interests" => o.interest_list,
         "offers" => o.good_list,
-        "subscriptions" => o.feeds,
+        "subscripitons" => o.feeds,
         "about" => o.about,
         "links" => { 
           "feed_subscriptions" => "/account/subscriptions/feeds",
@@ -265,7 +265,8 @@ module Serializer
           "edit" => "/account/profile",
           "inbox" => "/account/inbox",
           "sent" => "/account/inbox/sent",
-          "feed_messages" => "/account/inbox/feeds"
+          "feed_messages" => "/account/inbox/feeds",
+          "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts"
         }
         }
 

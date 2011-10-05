@@ -13,10 +13,16 @@ var LandingResources = CommonPlace.View.extend({
 
   wires: function() {
     var self = this;
+    var postsCollection;
+    if (self.options.community.get('locale') == "college") {
+      postsCollection = self.options.account.neighborhoodsPosts();
+    } else {
+      postsCollection = self.options.community.posts;
+    }
     if (!this._wires) { 
       this._wires = [
         (new PreviewWire({ 
-          collection: this.community.posts,
+          collection: postsCollection,
           account: this.account,
           el: this.$(".posts.wire"),
           perPage: 3,
