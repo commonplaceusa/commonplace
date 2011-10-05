@@ -320,7 +320,6 @@ WHERE
     string :first_name
     string :last_name
     string :about
-    string :address
   end
 
   def skill_list
