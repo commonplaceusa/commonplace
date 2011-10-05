@@ -8,6 +8,6 @@ var GroupPostForm = CommonPlace.View.extend({
       g['class'] = ((i % 2) === 0) ? "even" : "odd";
       return g;
     });
-  },
+  }
 });
 
