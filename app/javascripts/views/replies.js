@@ -28,6 +28,7 @@ var RepliesView = CommonPlace.View.extend({
 
   sendReply: function(e) {
     e.preventDefault();
+    this.cleanUpPlaceholders();
     this.collection.create({ body: this.$("[name=body]").val()});
   },
   

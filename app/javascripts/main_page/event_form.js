@@ -19,6 +19,7 @@ var EventForm = CommonPlace.View.extend({
   createEvent: function(e) {
     e.preventDefault();
     var self = this;
+    this.cleanUpPlaceholders();
     this.collection.create({ 
       title:   this.$("[name=title]").val(),
       about:   this.$("[name=about]").val(),

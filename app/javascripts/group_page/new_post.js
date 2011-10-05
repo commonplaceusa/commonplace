@@ -32,6 +32,7 @@ var NewPostView = CommonPlace.View.extend({
   postMessage: function(e) {
     var $form = $(e.target);
     var self = this;
+    this.cleanUpPlaceholders();
     e.preventDefault();
     this.model.posts.create({
       title: $("[name=title]", $form).val(),

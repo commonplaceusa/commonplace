@@ -56,8 +56,17 @@ CommonPlace.View = Backbone.View.extend({
         '</div>';
     };
     return text ? markdownify(text) : markdownify;
-  }
+  },
 
+  //TODO: make this part of the placeholder plugin
+  cleanUpPlaceholders: function() { 
+    this.$("[placeholder]").each(function() {
+      var input = $(this);
+      if (input.val() == input.attr('placeholder')) {
+        input.val('');
+      }
+    });
+  }
 });
 
 

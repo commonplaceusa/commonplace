@@ -17,6 +17,9 @@ var PostForm = CommonPlace.View.extend({
   
   createPost: function(e) {
     e.preventDefault();
+    
+    this.cleanUpPlaceholders();
+
     var collection = this.collection;
     if ($("[name=commercial]:checked").val() == "yes") {
       collection = this.options.community.announcements;

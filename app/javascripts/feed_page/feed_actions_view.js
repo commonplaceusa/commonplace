@@ -50,6 +50,7 @@ var FeedActionsView = CommonPlace.View.extend({
   postAnnouncement: function(e) {
     var $form = $(e.target);
     var self = this;
+    this.cleanUpPlaceholders();
     e.preventDefault();
     this.feed.announcements.create(
       { title: $("[name=title]", $form).val(),
@@ -65,6 +66,7 @@ var FeedActionsView = CommonPlace.View.extend({
     var self = this;
     var $form = $(e.target);
     e.preventDefault();
+    this.cleanUpPlaceholders();
     this.feed.events.create(
       { title:   $("[name=title]", $form).val(),
         about:   $("[name=about]", $form).val(),
