@@ -12,7 +12,8 @@ gem 'rack-cache' # For caching
 gem 'dalli' # memcache client, for caching
 
 # ActiveRecord
-gem 'sunspot_rails', '>= 1.3.0.rc4' # database search
+gem 'sunspot_rails', :git => 'git://github.com/alindeman/sunspot.git' # database search
+gem 'sunspot_solr'
 gem 'pg' # for postgres
 gem 'permanent_records' # adds soft-delete if a model has a deleted_at column
 gem 'paperclip' # we use this to store avatars
