@@ -1,4 +1,17 @@
 GIT
+  remote: git://github.com/alindeman/sunspot.git
+  revision: f69629ccf5921b9c90f08121ed9a76cc05c8cc79
+  specs:
+    sunspot (1.3.0.rc3)
+      escape (= 0.0.4)
+      pr_geohash (~> 1.0)
+      rsolr (= 1.0.2)
+    sunspot_rails (1.3.0.rc3)
+      nokogiri
+      sunspot (= 1.3.0.rc3)
+    sunspot_solr (1.3.0.rc3)
+
+GIT
   remote: git://github.com/intridea/omniauth.git
   revision: e22e77d32dc27942df2b0a639e3f8caa2ebfaf66
   branch: 0-3-stable
@@ -375,13 +388,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (!= 1.3.0, ~> 1.1)
-    sunspot (1.3.0.rc4)
-      escape (= 0.0.4)
-      pr_geohash (~> 1.0)
-      rsolr (= 1.0.2)
-    sunspot_rails (1.3.0.rc4)
-      nokogiri
-      sunspot (= 1.3.0.rc4)
     system_timer (1.2.4)
     systemu (2.2.0)
     term-ansicolor (1.0.6)
@@ -484,7 +490,8 @@ DEPENDENCIES
   sham_rack
   sinatra
   spork
-  sunspot_rails (>= 1.3.0.rc4)
+  sunspot_rails!
+  sunspot_solr
   system_timer
   therubyracer
   thin
