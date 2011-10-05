@@ -4,6 +4,6 @@
       %a{:href => "/?neighborhood_id=#{neighborhood.id}"}
         #{neighborhood.name}
       \: #{neighborhood.users.count}u/#{Post.includes(:user).where(:users => {:neighborhood_id => neighborhood.id}).count}&nbsp;&nbsp;
-    Total Users: #{current_community.users.count}
+    Total Members: #{current_community.users.count}
     Total Posts: #{current_community.posts.count}
 
