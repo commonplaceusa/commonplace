@@ -88,7 +88,7 @@ var FeedActionsView = CommonPlace.View.extend({
 
   time_values: _.flatten(_.map(["AM", "PM"],
                                function(half) {
-                                 return  _.map(_.range(1,13),
+                                 return  _.map([12,1,2,3,4,5,6,7,8,9,10,11],
                                                function(hour) {
                                                  return _.map(["00", "30"],
                                                               function(minute) {
