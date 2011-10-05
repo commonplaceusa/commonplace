@@ -35,11 +35,18 @@ var CommunityResources = CommonPlace.View.extend({
     },
     
     posts: function(self) {
+      var postsCollection;
+      if (self.options.community.get('locale') == "college") {
+        postsCollection = self.options.account.neighborhoodsPosts();
+      } else {
+        postsCollection = self.options.community.posts;
+      }
+
       return new self.PaginatingResourceWire({
         template: "main_page/post-resources",
         perPage: 15,
         emptyMessage: "No posts here yet",
-        collection: self.options.community.posts,
+        collection: postsCollection,
         modelToView: function(model) {
           return new PostWireItem({ model: model, account: self.options.account });
         }

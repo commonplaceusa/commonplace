@@ -1,5 +1,9 @@
 
 var Account = Model.extend({
+
+  neighborhoodsPosts: function() {
+    return new Posts([], { uri: this.link('neighborhoods_posts') });
+  },
   
   isFeedOwner: function(feed) {
     return _.any(this.get('accounts'), function(account) {
