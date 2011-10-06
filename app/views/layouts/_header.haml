@@ -2,6 +2,7 @@
   - if logged_in?
     #nav_wrapper
       .nav
+        = tab_to "Home", "/#{current_community.slug}"
         - if current_user.admin?
           = tab_to "Stats", "#", {:onclick => "$('#admin_bar').toggle('slow');"}
         = tab_to "Inbox", "/inbox"
