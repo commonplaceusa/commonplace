@@ -320,6 +320,7 @@ WHERE
     string :first_name
     string :last_name
     text :about
+    integer :community_id
   end
 
   def skill_list

@@ -112,6 +112,7 @@ class Feed < ActiveRecord::Base
   searchable do
     text :name
     text :about
+    integer :community_id
   end
 
   private

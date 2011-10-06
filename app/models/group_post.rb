@@ -18,9 +18,14 @@ class GroupPost < ActiveRecord::Base
     self.user
   end
 
+  def community_id
+    self.user.community_id
+  end
+
   searchable do
     text :subject
     text :body
+    integer :community_id
   end
 
 end
