@@ -319,7 +319,7 @@ WHERE
   searchable do
     string :first_name
     string :last_name
-    string :about
+    text :about
   end
 
   def skill_list
