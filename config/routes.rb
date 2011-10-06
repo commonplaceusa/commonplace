@@ -66,6 +66,25 @@ Commonplace::Application.routes.draw do
     end
   end
 
+
+  begin 
+    ActiveAdmin.routes(self) 
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    
+    devise_for :users, :controllers => { 
+      :sessions => "user_sessions",
+      :passwords => "password_resets",
+    :omniauth_callbacks => "users_omniauth_callbacks"
+    } do
+      get '/users/auth/:provider' => 'users_omniauth_callbacks#passthru'
+    end
+  rescue
+    Rails.logger.warn "ActiveAdmin routes not initialized"
+    Rails.logger.warn "Devise routes not initialized"
+    # ActiveAdmin and Devise try to hit the database on initialization.
+    # That fails when Heroku is compiling assets, so we catch the error here.
+  end
+
   unauthenticated do
     
     root :to => "site#index"
@@ -126,26 +145,6 @@ Commonplace::Application.routes.draw do
     match "/groups/:slug", :to => "bootstraps#group"
 
   end
-
-  begin 
-    ActiveAdmin.routes(self) 
-    devise_for :admin_users, ActiveAdmin::Devise.config
-    
-    devise_for :users, :controllers => { 
-      :sessions => "user_sessions",
-      :passwords => "password_resets",
-    :omniauth_callbacks => "users_omniauth_callbacks"
-    } do
-      get '/users/auth/:provider' => 'users_omniauth_callbacks#passthru'
-    end
-  rescue
-    Rails.logger.warn "ActiveAdmin routes not initialized"
-    Rails.logger.warn "Devise routes not initialized"
-    # ActiveAdmin and Devise try to hit the database on initialization.
-    # That fails when Heroku is compiling assets, so we catch the error here.
-  end
-
-
 
   scope "/:community" do
     match 'about' => 'site#about'
