@@ -88,6 +88,7 @@ class Event < ActiveRecord::Base
     text :description
     text :venue
     text :address
+    integer :community_id
   end
   
 end

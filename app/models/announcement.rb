@@ -43,6 +43,7 @@ class Announcement < ActiveRecord::Base
   searchable do
     text :subject
     text :body
+    integer :community_id
   end
 
 end

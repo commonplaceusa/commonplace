@@ -62,6 +62,7 @@ class Group < ActiveRecord::Base
   searchable do
     text :name
     text :about
+    integer :community_id
   end
   
 end
