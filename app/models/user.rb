@@ -317,8 +317,8 @@ WHERE
   end
 
   searchable do
-    string :first_name
-    string :last_name
+    text :first_name
+    text :last_name
     text :about
     integer :community_id
   end
