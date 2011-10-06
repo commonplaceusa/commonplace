@@ -1,8 +1,8 @@
 <div class="announcement">
 
-  <img src="{{avatarUrl}}" width="50" height="50" class="avatar">
+  <div class="corner">{{publishedAt}}{{#canEdit}} - <a href=#" class="editlink">EDIT</a>{{/canEdit}}</div>
 
-  <div class="corner">{{publishedAt}}{{#canEdit}} - <a href="#" class="editlink">EDIT</a>{{/canEdit}}</div>
+  <img src="{{avatarUrl}}" width="50" height="50" class="avatar">
 
   <div class="reply-count">{{replyCount}}</div>
 

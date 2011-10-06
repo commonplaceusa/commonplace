@@ -1,4 +1,7 @@
 <div class="event">
+
+  <div class="corner">{{publishedAt}}{{#canEdit}} - <a href="#" class="editlink">EDIT</a>{{/canEdit}}</div>
+
   <div class="calendar avatar">
     <div class="month">{{short_month_name}}</div>
     <div class="day-of-month">{{day_of_month}}</div>
@@ -9,7 +12,6 @@
       {{time}}
     </div>
   {{/time}}
-  <div class="corner">{{publishedAt}}{{#canEdit}} - <a href="#" class="editlink">EDIT</a>{{/canEdit}}</div>
 
   <div class="title">{{title}}</div>
 
