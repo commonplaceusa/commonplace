@@ -35,6 +35,12 @@ class API
       search(User, params["query"], params["page"])
     end
 
+    get "/group-like" do
+      halt [200, {}, "[]"] if params["query"].blank?
+
+      search([Feed, Group, User], params["query"], params["page"])
+    end
+
     get "/announcements" do
       halt [200, {}, "[]"] if params["query"].blank?
 
