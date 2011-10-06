@@ -3,72 +3,75 @@ class API
 
     helpers do
       
-      def search(klass, params)
+      def search(klass, params, community_id)
         search = Sunspot.search(klass) do
-          keywords params["query"].split(" ")
+          keywords phrase(params["query"])
           paginate(:page => params["page"])
+          with(:community_id, community_id)
         end
-        serialize(search.results)
+        serialize(search)
+      end
+
+      def phrase(string)
+        string.split('"').each_with_index.map { |object, i|
+          i.odd? ? object : object.split(" ")
+        }.flatten
       end
 
     end
 
-    get "/" do
-      halt [200, {}, "[]"]
-    end
-
-    get "/feeds" do
+    get "/:id/feeds" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
-      search(Feed, params)
+      search(Feed, params, community_id)
     end
 
-    get "/groups" do
+    get "/:id/groups" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
-      search(Group, params)
+      search(Group, params, community_id)
     end
 
-    get "/users" do
+    get "/:id/users" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
-      search(User, params)
+      search(User, params, community_id)
     end
 
-    get "/group-like" do
+    get "/:id/group-like" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
-      search([Feed, Group, User], params)
+      search([Feed, Group, User], params, community_id)
     end
 
-    get "/announcements" do
+    get "/:id/announcements" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
-      search(Announcement, params)
+      search(Announcement, params, community_id)
     end
 
-    get "/events" do
+    get "/:id/events" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
-      search(Event, params)
+      search(Event, params, community_id)
     end
 
-    get "/posts" do
+    get "/:id/posts" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
-      search(Post, params)
+      search(Post, params, community_id)
     end
 
-    get "/group-posts" do
+    get "/:id/group-posts" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
-      search(GroupPost, params)
+      search(GroupPost, params, community_id)
     end
 
-    get "/post-like" do
+    get "/:id/post-like" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
-      search([Announcement, Event, Post, GroupPost], params)
+      search([Announcement, Event, Post, GroupPost], params, community_id)
     end
 
   end

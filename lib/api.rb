@@ -23,7 +23,7 @@ class API
       map("/messages") { run Messages }
       map("/neighborhoods") { run Neighborhoods }
       map("/posts") { run Posts }
-      map("/search") { run Search }
+      map("/search/community") { run Search }
 
       map("/") { run lambda {|env|  [200, {}, ["HI!"]] } }
     end
