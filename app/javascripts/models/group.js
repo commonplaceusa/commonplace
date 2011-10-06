@@ -8,4 +8,10 @@ var Group = Model.extend({
   }
 });
 
-var Groups = Collection.extend({ model: Group });
+var Groups = Collection.extend({
+  model: Group,
+
+  search: function(query) {
+    this.uri = "/search/community/1/groups?query=" + query;
+  }
+});

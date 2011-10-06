@@ -34,7 +34,8 @@ var InfoBox = CommonPlace.View.extend({
   $list: function() { return this.$("#info-list"); },
 
   events: {
-    "click .filter-tab": "switchTab"
+    "click .filter-tab": "switchTab",
+    "keyup .search": "filterBySearch"
   },
 
   afterRender: function() {
@@ -99,6 +100,8 @@ var InfoBox = CommonPlace.View.extend({
 
     collection.fetch({ 
       success: function() {
+        console.log(collection);
+        if (collection.length == 0) { return; }
         self.$list().empty();
         collection.each(function(model) {
           var item = new InfoListItem({ 
@@ -113,8 +116,13 @@ var InfoBox = CommonPlace.View.extend({
           self.showProfile(collection.first());
         }
       }
-    });
-                        
+    });                
+  },
+
+  showSearch: function(query) {
+    var self = this;
+    this.currentCollection.search(query);
+    this.showCollection(this.currentCollection, true);
   },
 
   profileBoxFor: function(model) {
@@ -153,6 +161,12 @@ var InfoBox = CommonPlace.View.extend({
     } else {
       this.showCollection(this.options.community[type], true);
     }
+  },
+
+  filterBySearch: function(e) {
+    e.preventDefault();
+    query = this.$("form > input").val();
+    this.showSearch(query);
   }
 
 });

@@ -6,4 +6,10 @@ var Feed = Model.extend({
   }
 });
 
-var Feeds = Collection.extend({ model: Feed });
+var Feeds = Collection.extend({
+  model: Feed,
+
+  search: function(query) {
+    this.uri = "/search/community/1/feeds?query=" + query;
+  }
+});
