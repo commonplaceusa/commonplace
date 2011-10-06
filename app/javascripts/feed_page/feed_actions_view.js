@@ -103,7 +103,7 @@ var FeedActionsView = CommonPlace.View.extend({
     e.preventDefault();
         $.ajax({
           contentType: "application/json",
-          url: "/api" + this.feed.links.invites,
+          url: "/api" + this.feed.link('invites'),
           data: JSON.stringify({ emails: _.map($("[name=emails]", $form).val().split(/,|;/), 
                                                function(s) { return s.replace(/\s*/,""); }),
                                  message: $("[name=message]", $form).val()
