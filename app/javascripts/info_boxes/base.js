@@ -100,7 +100,6 @@ var InfoBox = CommonPlace.View.extend({
 
     collection.fetch({ 
       success: function() {
-        console.log(collection);
         if (collection.length == 0) { return; }
         self.$list().empty();
         collection.each(function(model) {
