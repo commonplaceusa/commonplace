@@ -14,7 +14,8 @@ body.application.accounts.edit, body.application.accounts.profile
     margin-bottom: 70px
 
   fieldset.inputs
-    li
+    width: 450px
+    > ol > li
       margin: 20px 0px
       label, input, textarea
         color: #444545
@@ -25,9 +26,9 @@ body.application.accounts.edit, body.application.accounts.profile
         +serif
         margin: 10px
         width: 100%
-      input[type=file]
+      > input[type=file]
         border: none
-      input, textarea
+      > input, > textarea
         height: 38px
         +border-radius(5px)
         +box-shadow(#eee 1px 1px 3px 0 inset)
@@ -49,14 +50,14 @@ body.application.accounts.edit, body.application.accounts.profile
         height: auto
 
   fieldset.inputs
-    li
+    > li
       padding: 0px 20px
       width: 400px
-      input, textarea
+      > input, > textarea
         width: 100%
-      textarea
+      > textarea
         height: 70px
-      label
+      > label
         margin: 10px
 
     li.radio
@@ -90,6 +91,7 @@ body.application.accounts.edit, body.application.accounts.profile
                 height: auto
                 width: auto
                 padding: 0 5px
+
   fieldset.buttons
     text-align: right
 
