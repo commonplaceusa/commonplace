@@ -41,7 +41,8 @@ module Serializer
         "last_name" => o.last_name,
         "about" => o.about,
         "interests" => o.interest_list,
-        "offers" => o.good_list,
+        "goods" => o.good_list,
+        "skills" => o.skill_list,
         "subscriptions" => o.feeds,
         "links" => {
           "messages" => "/users/#{o.id}/messages",
@@ -254,8 +255,9 @@ module Serializer
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood, 
         "interests" => o.interest_list,
-        "offers" => o.good_list,
-        "subscripitons" => o.feeds,
+        "goods" => o.good_list,
+        "skills" => o.skill_list,
+        "subscriptions" => o.feeds,
         "about" => o.about,
         "links" => { 
           "feed_subscriptions" => "/account/subscriptions/feeds",

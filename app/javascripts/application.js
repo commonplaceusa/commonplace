@@ -7,4 +7,8 @@
 //= require jquery/backbone
 //= require_tree ./jquery/
 //= require facebook
+//= require chosen
 
+$(function() {
+  $("#user_interest_list, #user_good_list, #user_skill_list").chosen();
+});
