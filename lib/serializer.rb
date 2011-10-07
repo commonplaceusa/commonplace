@@ -296,7 +296,10 @@ module Serializer
           "announcements" => "/communities/#{o.id}/announcements",
           "group_posts" => "/communities/#{o.id}/group_posts",
           "users" => "/communities/#{o.id}/users",
-          "self" => "/communities/#{o.id}"
+          "self" => "/communities/#{o.id}",
+          "feeds_search" => "/search/community/#{o.id}/feeds?query=",
+          "users_search" => "/search/community/#{o.id}/users?query=",
+          "groups_search" => "/search/community/#{o.id}/groups?query="
         }
       }
       end
