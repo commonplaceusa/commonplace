@@ -30,13 +30,32 @@
     margin: 15px 0
     height: 400px
     
-    #info-list
+    #info-list-area
       width: 33.3337%
       float: left
       overflow-x: hidden
       overflow-y: scroll
       height: 100%
       background: rgba(0, 0, 0, 0.39)
+
+      .remove-search
+        text-align: center
+        font-weight: bold
+        text-transform: none
+        color: #cee7fe
+        text-decoration: none
+        padding: 4px 8px
+        +text-shadow(black 1px 1px 0)
+        +border-radius(4px)
+        display: none
+
+      .empty
+        background: #acacac
+        +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #acacac inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
+
+      .not-empty
+        background: #ac322f
+        +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
 
       li
         padding: 8px
