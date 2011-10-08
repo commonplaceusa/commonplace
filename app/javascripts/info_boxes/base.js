@@ -22,7 +22,7 @@ var InfoListItem = CommonPlace.View.extend({
     $(this.el).siblings().removeClass("current");
     $(this.el).addClass("current");
     e.preventDefault();
-    window.infoBox.showProfile(this.model);
+    window.infoBox.showList(this.model.get("schema"), this.model);
   }
   
 });
@@ -35,11 +35,16 @@ var InfoBox = CommonPlace.View.extend({
 
   events: {
     "click .filter-tab": "switchTab",
+    "click .remove-search": "removeSearch",
+    "change .search": "filterBySearch",
+    "submit form": "filterBySearch",
     "keyup .search": "filterBySearch"
   },
 
   afterRender: function() {
     var self = this;
+    this.currentCollection = {};
+    this.currentQuery = "";
     this.showProfile(this.options.account);
     $(window).scroll(function() {
       $(self.el).css({ width: $(self.el).width() });
@@ -66,62 +71,122 @@ var InfoBox = CommonPlace.View.extend({
     }
   },
 
+  isAccount: function(model) {
+    if (model.get("id") != this.options.account.id) {
+      return false;
+    } else {
+      return model.get("schema") == "user" || model.get("schema") == "account";
+    }
+  },
+
   showProfile: function(model) {
     var self = this;
-    model.fetch({ 
+
+    this.$(".remove-search").hide();
+    this.currentQuery = "";
+
+    model.fetch({
       success: function() {
-        if (model.get('schema') == "user" && model.id == self.options.account.id) {
-          model = self.options.account;
-        }
+        if (self.isAccount(model)) { model = self.options.account; }
 
-        var profile = self.profileBoxFor(model);
-        var collection = self.collectionFor(model);
-        
-        self.showCollection(collection, false);
-      
-        profile.render();
-        
-        self.$profile().replaceWith(profile.el);
-        
-        self.$(".filter-tab").removeClass("current");
-        self.$("." + model.get('schema') + "-filter").addClass("current");
+        self.renderProfile(model);
 
-        self.$("h2").text(self.t(model.get('schema') + ".h2"));
+        self.currentQuery = "";
+        self.$("form > input").val(self.currentQuery);
+
+        self.currentCollection = self.collectionFor(model);
+        self.currentCollection.fetch({
+          success: function() {
+            self.renderList(self.currentCollection);
+          }
+        });
       }
     });
   },
 
-  showCollection: function(collection, showFirst) {
-    if (this.currentCollection == collection && !showFirst) { return ; }
-
-    this.currentCollection = collection;
-
+  showList: function(schema, model) {
     var self = this;
 
-    collection.fetch({ 
+    var partial = this.currentQuery ? this.options.community.search : this.options.community;
+    var collection = (schema == "account") ? partial.users : partial[schema];
+
+    if (schema == "account") {
+      if ( (model && this.isAccount(model)) || !model) {
+        model = this.options.account;
+      }
+    }
+
+    collection.fetch({
+      data: { query: this.currentQuery },
       success: function() {
-        if (collection.length == 0) { return; }
-        self.$list().empty();
-        collection.each(function(model) {
-          var item = new InfoListItem({ 
-            model: model, 
-            account: self.options.account
+        if (collection.length == 0) {
+          self.$(".remove-search").removeClass("not-empty");
+          self.$(".remove-search").addClass("empty");
+          collection = self.options.community;
+          collection = (schema == "account") ? collection.users : collection[schema];
+          collection.fetch({
+            success: function() {
+              self.showFetchedList(collection, model);
+            }
           });
-          item.render();
-          self.$list().append(item.el);
-        });
-        
-        if (showFirst) {
-          self.showProfile(collection.first());
+        } else {
+          this.$(".remove-search").addClass("not-empty");
+          this.$(".remove-search").removeClass("empty");
+          self.showFetchedList(collection, model);
         }
       }
-    });                
+    });
   },
 
-  showSearch: function(query) {
+  showFetchedList: function(collection, model) {
+    if (collection != this.currentCollection) {
+      this.renderList(collection);
+      this.currentCollection = collection;
+    }
+
+    var firstIsAccount = this.isAccount(collection.first());
     var self = this;
-    this.currentCollection.search(query);
-    this.showCollection(this.currentCollection, true);
+
+    if ((firstIsAccount && collection.length == 1)) {
+      model = this.options.account;
+    } else {
+      if (model) {
+        model = this.isAccount(model) ? this.options.account : model;
+      } else {
+        model = firstIsAccount ? collection.at(1) : collection.first();
+      }
+    }
+    model.fetch({
+      success: function() {
+        self.renderProfile(model);
+      }
+    });
+  },
+
+  renderProfile: function(model) {
+    var profile = this.profileBoxFor(model);
+    profile.render();
+    this.$profile().replaceWith(profile.el);
+    this.changeSchema(model.get("schema"));
+  },
+
+  renderList: function(collection) {
+    var self = this;
+    this.$list().empty();
+    collection.each(function (model) {
+      var item = new InfoListItem({
+        model: model,
+        account: self.options.account
+      });
+      item.render();
+      self.$list().append(item.el);
+    });
+  },
+
+  changeSchema: function(schema) {
+    this.$(".filter-tab").removeClass("current");
+    this.$("." + schema + "-filter").addClass("current");
+    this.$("h2").text(this.t(schema + ".h2"));
   },
 
   profileBoxFor: function(model) {
@@ -135,37 +200,58 @@ var InfoBox = CommonPlace.View.extend({
     return this.config(model.get('schema')).collection;
   },
 
+  searchFor: function(model) {
+    return this.config(model.get("schema")).search;
+  },
+
   config: function(type) {
     return {
       "account": { profileBox: AccountProfileBox, 
-                   collection: this.options.community.users
+                   collection: this.options.community.users,
+                   search: this.options.community.search.users
                  },
       "user":  { profileBox: UserProfileBox, 
-                 collection: this.options.community.users
+                 collection: this.options.community.users,
+                 search: this.options.community.search.users
                },
       "group": { profileBox: GroupProfileBox, 
-                 collection: this.options.community.groups
+                 collection: this.options.community.groups,
+                 search: this.options.community.search.groups
                },
       "feed": { profileBox: FeedProfileBox, 
-                collection: this.options.community.feeds
+                collection: this.options.community.feeds,
+                search: this.options.community.search.feeds
               } 
     }[type];    
   },
 
   switchTab: function(e) {
-    e.preventDefault();
-    var type = $(e.target).attr("href").split("#")[1];
-    if (type == "account") {
-      this.showProfile(this.options.account);
-    } else {
-      this.showCollection(this.options.community[type], true);
-    }
+    e && e.preventDefault();
+    this.showList(this.getSchema($(e.target)));
   },
 
   filterBySearch: function(e) {
-    e.preventDefault();
+    e && e.preventDefault();
     query = this.$("form > input").val();
-    this.showSearch(query);
+    if (query) {
+      this.$(".remove-search").show();
+      this.$(".remove-search").text(query);
+      this.currentQuery = query;
+      this.showList(this.getSchema());
+    } else { this.removeSearch(); }
+  },
+
+  removeSearch: function(e) {
+    e && e.preventDefault();
+    this.$(".remove-search").hide();
+    this.currentQuery = "";
+    this.$("form > input").val("");
+    this.showList(this.getSchema());
+  },
+
+  getSchema: function(el) {
+    el = el ? el : $(".filter-tab.current");
+    return el.attr("href").split("#")[1];
   }
 
 });
