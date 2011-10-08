@@ -1,7 +1,8 @@
 var EventFormView = FormView.extend({
   afterRender: function() {
     this.modal.render();
-    $("input.date", this.el).datepicker({dateFormat: 'yy-mm-dd'});
+    this.$("input.date").datepicker({dateFormat: 'yy-mm-dd'});
+    this.$("select.time").dropkick();
   },
 
   save: function(callback) {

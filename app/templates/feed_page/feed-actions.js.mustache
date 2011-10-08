@@ -44,20 +44,26 @@
 
     <input class="date" name="date" placeholder="Event date" type="text">
 
-    <label for="start" class="time">Start time <br>
-      <select name="start">
-        {{#time_values}}
-          <option value="{{.}}">{{.}}</option>
-        {{/time_values}}
-      </select>
-    </label>
-    <label for="end" class="time">End time<br>
-      <select name="end">
-        {{#time_values}}
-          <option value="{{.}}">{{.}}</option>
-        {{/time_values}}
-      </select>
-    </label>
+    <fieldset class="event-times">
+
+      <label for="start" class="time">
+        <select name="start" class="time dk">
+          <option value="">Starts at</option>
+          {{#time_values}}
+            <option value="{{.}}">{{.}}</option>
+          {{/time_values}}
+        </select>
+      </label>
+      <label for="end" class="time">
+        <select name="end" class="time dk">
+          <option value="">Ends at</option>
+      {{#time_values}}
+        <option value="{{.}}">{{.}}</option>
+      {{/time_values}}
+        </select>
+      </label>
+      <div style="clear: both;"></div>
+    </fieldset>
 
     <input name="venue" placeholder="Venue" type="text">
 

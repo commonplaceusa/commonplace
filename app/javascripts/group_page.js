@@ -8,6 +8,7 @@
 //= require backbone
 //= require placeholder
 //= require autoresize
+//= require dropkick
 //= require views
 //= require models
 //= require_tree ../templates/shared

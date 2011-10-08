@@ -23,6 +23,7 @@ var FeedActionsView = CommonPlace.View.extend({
     this.$("input.date").datepicker({dateFormat: 'yy-mm-dd'});
     this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$("textarea").autoResize();
+    this.$("select.time").dropkick();
   },
 
   navigate: function(e) {
