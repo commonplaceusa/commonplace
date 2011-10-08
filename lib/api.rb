@@ -1,4 +1,10 @@
 require 'rack/contrib/jsonp'
+%w{ base accounts announcements communities events
+    feeds users group_posts groups messages
+    neighborhoods posts }.each do |path|
+  require Rails.root.join("lib", "api", path)
+end
+
 class API
 
   def initialize
