@@ -5,27 +5,34 @@
   <h1>Edit your event</h1>
   <label for="title">Event name:</label>
   <input name="title" value="{{title}}" type="text">
-  
+
   <label for="body">Event description:</label>
   <textarea name="body" rows="3">{{body}}</textarea>
 
   <label for="date">Event date:</label>
   <input class="date" name="date" value="{{date}}" type="text">
 
-  <label for="start" class="time">Start time <br>
-    <select name="start">
-      {{#time_values}}
-        <option value="{{.}}" {{#is_start}}selected="selected"{{/is_start}}>{{.}}</option>
-      {{/time_values}}
-    </select>
-  </label>
-  <label for="end" class="time">End time<br>
-    <select name="end">
-      {{#time_values}}
-        <option value="{{.}}" {{#is_end}}selected="selected"{{/is_end}}>{{.}}</option>
-      {{/time_values}}
-    </select>
-  </label>
+  <fieldset class="event-times">
+
+    <label for="start" class="time">
+      <select name="start" class="time dk">
+        <option value="">Starts at</option>
+        {{#time_values}}
+          <option value="{{.}}">{{.}}</option>
+        {{/time_values}}
+      </select>
+    </label>
+    <label for="end" class="time">
+      <select name="end" class="time dk">
+        <option value="">Ends at</option>
+        {{#time_values}}
+          <option value="{{.}}">{{.}}</option>
+        {{/time_values}}
+      </select>
+    </label>
+    <div style="clear: both;"></div>
+
+  </fieldset>
 
   <label for="venue">Venue:</label>
   <input name="venue" value="{{venue}}" type="text">
