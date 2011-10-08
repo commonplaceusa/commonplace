@@ -55,8 +55,8 @@ var EventFormView = FormView.extend({
   },
 
   time_values: function() {
-    var start_value = this.model.get("starts_at").replace(" ", "");
-    var end_value = this.model.get("ends_at").replace(" ", "");
+    var start_value = (this.model.get("starts_at") || "").replace(" ", "");
+    var end_value = (this.model.get("ends_at") || "").replace(" ", "");
     var list = _.flatten(_.map(["AM", "PM"],
       function(half) {
         return  _.map(_.range(1,13),
