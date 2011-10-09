@@ -11,7 +11,7 @@ class OrganizerController < ApplicationController
 
   def add
     cp_client.add_data_point(current_community,params)
-    redirect_to :action => :map
+    redirect_to :action => :app
   end
 
 end
