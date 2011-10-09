@@ -304,29 +304,29 @@
           %a{:onclick => "add_entry();"} Add More
         %br
         = submit_tag "Enter"
-      %a{:onclick => "showMarkerSet(allHouseMarkers);", :class => "markers show"} Show All Houses
+      %a{:onclick => "showMarkerSet(allHouseMarkers);", :class => "markers show", :style => "cursor: pointer"} Show All Houses
       |
-      %a{:onclick => "hideMarkerSet(allHouseMarkers);", :class => "markers hide"} Hide All Houses
+      %a{:onclick => "hideMarkerSet(allHouseMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide All Houses
       %br
-      %a{:onclick => "showMarkerSet(onMarkers);", :class => "markers show"} Show People on CommonPlace
+      %a{:onclick => "showMarkerSet(onMarkers);", :class => "markers show", :style => "cursor: pointer"} Show People on CommonPlace
       |
-      %a{:onclick => "hideMarkerSet(onMarkers);", :class => "markers hide"} Hide People on CommonPlace
+      %a{:onclick => "hideMarkerSet(onMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide People on CommonPlace
       %br
-      %a{:onclick => "showMarkerSet(droppedMarkers);", :class => "markers show"} Show Doordrops
+      %a{:onclick => "showMarkerSet(droppedMarkers);", :class => "markers show", :style => "cursor: pointer"} Show Doordrops
       |
-      %a{:onclick => "hideMarkerSet(droppedMarkers);", :class => "markers hide"} Hide Doordrops
+      %a{:onclick => "hideMarkerSet(droppedMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide Doordrops
       %br
-      %a{:onclick => "showMarkerSet(knockedMarkers);", :class => "markers show"} Show Doorknocks
+      %a{:onclick => "showMarkerSet(knockedMarkers);", :class => "markers show", :style => "cursor: pointer"} Show Doorknocks
       |
-      %a{:onclick => "hideMarkerSet(knockedMarkers);", :class => "markers hide"} Hide Doorknocks
+      %a{:onclick => "hideMarkerSet(knockedMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide Doorknocks
       %br
-      %a{:onclick => "showMarkerSet(postKnockedMarkers);", :class => "markers show"} Show Post-Knocks
+      %a{:onclick => "showMarkerSet(postKnockedMarkers);", :class => "markers show", :style => "cursor: pointer"} Show Post-Knocks
       |
-      %a{:onclick => "hideMarkerSet(postKnockedMarkers);", :class => "markers hide"} Hide Post-Knocks
+      %a{:onclick => "hideMarkerSet(postKnockedMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide Post-Knocks
       %br
-      %a{:onclick => "showMarkerSet(noMarkers);", :class => "markers show"} Show Negative Responses
+      %a{:onclick => "showMarkerSet(noMarkers);", :class => "markers show", :style => "cursor: pointer"} Show Negative Responses
       |
-      %a{:onclick => "hideMarkerSet(noMarkers);", :class=> "markers hide"} Hide Negative Responses
+      %a{:onclick => "hideMarkerSet(noMarkers);", :class=> "markers hide", :style => "cursor: pointer"} Hide Negative Responses
 
   #community_overview{:style => "display: none;"}
     = render :partial => "admin/community_overview", :collection => [current_community]
