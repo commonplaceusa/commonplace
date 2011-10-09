@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110930232557) do
+ActiveRecord::Schema.define(:version => 20111009154752) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20110930232557) do
     t.boolean  "should_delete",              :default => false
     t.boolean  "is_college",                 :default => false
     t.date     "launch_date",                :default => '2010-01-01'
+    t.string   "google_docs_url"
   end
 
   create_table "delayed_jobs", :force => true do |t|
