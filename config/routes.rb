@@ -129,7 +129,7 @@ Commonplace::Application.routes.draw do
 
     resources :organizer do
       collection do
-        get :map
+        get :map, :app
         post :add
       end
     end

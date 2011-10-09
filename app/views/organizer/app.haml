@@ -30,11 +30,12 @@
     font-size: 28px;
     color: blue;
   }
-%script{:src => "http://maps.google.com/maps?file=api&amp;v=2&amp;key=#{google_api_key()}", :type => "text/javascript"}
-%script{:src => "http://acme.com/javascript/Clusterer2.jsm", :type => "text/javascript"}
+%script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
+-#%script{:src => "http://acme.com/javascript/Clusterer2.jsm", :type => "text/javascript"}
 :javascript
   var map;
   var clusterer;
+  var infowindow;
   var greenMarkerOptions, redMarkerOptions, orangeMarkerOptions, blueMarkerOptions;
   var allHouseMarkers = Array();
   var droppedMarkers = Array();
@@ -42,21 +43,29 @@
   var postKnockedMarkers = Array();
   var noMarkers = Array();
   var onMarkers = Array();
-  function createMarker(point, html, colorOptions) {
-    var marker = new GMarker(point, colorOptions);
-    GEvent.addListener(marker, "click", function() {
-      marker.openInfoWindowHtml(html);
+  function createMarker(point, html, image) {
+    var marker = new google.maps.Marker({
+      position: point,
+      title: html,
+      icon: image
     });
+    google.maps.event.addListener(marker, 'click', function(marker){
+      infowindow = new google.maps.InfoWindow();
+      infowindow.open(map, marker, marker.title);
+    });
+
+    //var marker = new GMarker(point, colorOptions);
+    //GEvent.addListener(marker, "click", function() {
+    //  marker.openInfoWindowHtml(html);
+    //});
     return marker;
   }
-  function createMarkerLight(point, html, colorOptions) {
+  /*function createMarkerLight(point, html, colorOptions) {
     var marker = new MarkerLight(point, colorOptions);
     return marker;
-  }
+  }*/
   function initialize() {
-    console.log("Initializing");
-    if (GBrowserIsCompatible()) {
-      map = new GMap2(document.getElementById("map_canvas"));
+      /*map = new GMap2(document.getElementById("map_canvas"));
       map.enableContinuousZoom();
       map.enableGoogleBar();
       map.enableScrollWheelZoom();
@@ -67,34 +76,52 @@
       clusterer.SetMaxVisibleMarkers(1500);
       geocoder = new GClientGeocoder();
       geocoder.getLatLng('#{@center_zip_code}', function(point){ map.setCenter(point, 16); });
-      console.log("Centered");
-      map.setCenter(new GLatLng(37.4419, -122.1419), 1);
+      console.log("Centered");*/
+      geocoder = new google.maps.Geocoder();
+      var myOptions = {
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-      var greyIcon = new GIcon(G_DEFAULT_ICON);
-      greyIcon.image = "http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png";
-      greyMarkerOptions = { icon: greyIcon };
+      if (navigator.geolocation)
+      {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          map.setCenter(pos);
+        }, function(){
+          handleNoGeolocation(true);
+        });
+      }
+      else
+        handleNoGeolocation(false);
 
-      var greenIcon = new GIcon(G_DEFAULT_ICON)
-      greenIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"
-      greenMarkerOptions = { icon: greenIcon };
+      // Set up markers
+      greenMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png";
+      greyMarker = "http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png";
+      redMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png";
+      yellowMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/yellow-dot.png";
+      orangeMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png";
+      blueMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
+      drawPoints();
+  }
 
-      var redIcon = new GIcon(G_DEFAULT_ICON);
-      redIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png"
-      redMarkerOptions = { icon: redIcon };
-
-      var yellowIcon = new GIcon(G_DEFAULT_ICON);
-      yellowIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/yellow-dot.png";
-      yellowMarkerOptions = { icon: yellowIcon };
-
-      var orangeIcon = new GIcon(G_DEFAULT_ICON);
-      orangeIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png";
-      orangeMarkerOptions = { icon: orangeIcon };
-
-      var blueIcon = new GIcon(G_DEFAULT_ICON);
-      blueIcon.image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
-      blueMarkerOptions = { icon: blueIcon };
+  function handleNoGeolocation(errorFlag) {
+    if (errorFlag)
+    {
+      var content = 'Error: The Geolocation service failed.';
     }
-    drawPoints();
+    else
+    {
+      var content = 'Error: Your browser doesn\'t support geolocation.';
+    }
+    var options = {
+      map: map,
+      position: new google.maps.LatLng(60, 105),
+      content: content
+    };
+    var infowindow = new google.maps.InfoWindow(options);
+    map.setCenter(options.position);
   }
 
   function showMarkerSet(markers, cluster)
@@ -104,7 +131,7 @@
       if (cluster)
         clusterer.AddMarker(marker);
       else
-        map.addOverlay(marker);
+        marker.setMap(map);
     });
   }
 
@@ -115,7 +142,7 @@
       if (cluster)
         clusterer.RemoveMarker(marker);
       else
-        map.removeOverlay(marker);
+        marker.setMap(null);
     });
   }
 
@@ -124,13 +151,12 @@
     console.log("Getting reg points");
     $.ajax({
       url: '/api/communities/#{@community_id}/registration_points',
-      dataType: 'jsonp',
+      dataType: 'json',
       success: function(data) {
-        console.log(data);
         console.log("Got reg points");
         $.each(data, function(key, val) {
-          var point = new GLatLng(val['lat'], val['lng']);
-          var marker = createMarker(point, val['name'] + '<br />' + val['address'], greenMarkerOptions);
+          var point = new google.maps.LatLng(val['lat'], val['lng']);
+          var marker = createMarker(point, val['name'] + '<br />' + val['address'], greenMarker);
           onMarkers.push(marker);
         });
         showMarkerSet(onMarkers);
@@ -139,80 +165,90 @@
     console.log("Getting data points");
     $.ajax({
       url: '/api/communities/#{@community_id}/data_points?top=true',
-      dataType: 'jsonp',
+      dataType: 'json',
       success: function(data) {
         console.log(data);
         console.log("Got data points");
         $.each(data, function(key, val) {
           var colorOption;
           if (val['status'] == 'house') {
-            colorOption = greyMarkerOptions;
-            var point = new GLatLng(val['lat'], val['lng']);
-            var marker = createMarker(point, val['address'], greyMarkerOptions);
-            allHouseMarkers.push(marker);
+            console.log("Adding all house marker");
+            allHouseMarkers.push(createMarker(point, val['address'], greyMarker));
           }
           if (val['status'] == 'dropped') {
-            colorOption = yellowMarkerOptions;
             if (val['lat'] && val['lng'])
             {
-              var point = new GLatLng(val['lat'], val['lng']);
+              colorOption = yellowMarker;
+              var point = new google.maps.LatLng(val['lat'], val['lng']);
               var marker = createMarker(point, val['address'], colorOption);
               droppedMarkers.push(marker);
             }
             else
-              geocoder.getLatLng(val['address'], function(p){ droppedMarkers.push(new GMarker(p, colorOption)); });
+            {
+              geocoder.geocode({ 'address' : val['address'] }, function(result, status){
+                if (status == google.maps.GeocoderStatus.OK)
+                  droppedMarkers.push(createMarker(result[0].geometry.location, val['address'], yellowMarker));
+              });
+            }
           }
           if (val['status'] == 'knocked') {
-            colorOption = orangeMarkerOptions;
             if (val['lat'] && val['lng'])
             {
-              var point = new GLatLng(val['lat'], val['lng']);
-              var marker = createMarker(point, val['address'], colorOptions);
+              var point = new google.maps.LatLng(val['lat'], val['lng']);
+              var marker = createMarker(point, val['address'], orangeMarker);
               knockedMarkers.push(marker);
             }
             else
-              geocoder.getLatLng(val['address'], function(p){ knockedMarkers.push(new GMarker(p, colorOption)); });
+            {
+              geocoder.geocode({ 'address' : val['address'] }, function(result, status){
+                if (status == google.maps.GeocoderStatus.OK)
+                  knockedMarkers.push(createMarker(result[0].geometry.location, val['address'], orangeMarker));
+              });
+            }
           }
           if (val['status'] == 'post_knocked_1') {
-            colorOption = blueMarkerOptions;
             if (val['lat'] && val['lng'])
             {
-              var point = new GLatLng(val['lat'], val['lng']);
-              var marker = createMarker(point, '', colorOptions);
+              var point = new google.maps.LatLng(val['lat'], val['lng']);
+              var marker = createMarker(point, val['address'], blueMarker);
               postKnockedMarkers.push(marker);
             }
             else
-              geocoder.getLatLng(val['address'], function(p){ postKnockedMarkers.push(new GMarker(p, colorOption)); });
+            {
+              geocoder.geocode({ 'address' : val['address'] }, function(result, status){
+                if (status == google.maps.GeocoderStatus.OK)
+                  postKnockedMarkers.push(createMarker(result[0].geometry.location, val['address'], blueMarker));
+              });
+            }
           }
           if (val['status'] == 'no') {
-            colorOption = redMarkerOptions;
             if (val['lat'] && val['lng'])
             {
-              var point = new GLatLng(val['lat'], val['lng']);
-              var marker = createMarker(point, val['address'], colorOptions);
+              var point = new google.maps.LatLng(val['lat'], val['lng']);
+              var marker = createMarker(point, val['address'], redMarker);
               noMarkers.push(marker);
             }
             else
-              geocoder.getLatLng(val['address'], function(p){ noMarkers.push(new GMarker(p, colorOption)); });
+            {
+              geocoder.geocode({ 'address' : val['address'] }, function(result, status){
+                if (status == google.maps.GeocoderStatus.OK)
+                  noMarkers.push(createMarker(result[0].geometry.location, val['address'], redMarker));
+              });
+            }
           }
         });
-        console.log("Showing all markers");
-        showMarkerSet(allHouseMarkers.concat(droppedMarkers).concat(knockedMarkers).concat(postKnockedMarkers).concat(noMarkers));
+        //console.log("Showing all markers");
+        //showMarkerSet(allHouseMarkers.concat(droppedMarkers).concat(knockedMarkers).concat(postKnockedMarkers).concat(noMarkers));
       }
     });
-
   }
   $(document).ready(initialize);
-  $(document).ready(function(){
-    $('.marker').onHover(function(){
-      document.body.style.cursor = 'pointer';
-    });
-  });
   var TOGGLE_OPTS = 'slow';
   function toggle_map()
   {
     hide_all();
     $("#map").toggle(TOGGLE_OPTS);
+    initialize();
   }
   function toggle_overview()
   {
@@ -251,18 +287,18 @@
   }
 #organizer_app
   #links
-    %a{:onclick => "toggle_map();", :style=>"text-decoration: underline;"} Toggle Map
+    %a{:onclick => "toggle_map();", :style=>"text-decoration: underline; cursor: pointer;"} Toggle Map
     %br
-    %a{:onclick => "toggle_overview();", :style=>"text-decoration: underline;"} Overview
+    %a{:onclick => "toggle_overview();", :style=>"text-decoration: underline; cursor: pointer;"} Overview
     %br
-    %a{:onclick => "toggle_doc();", :style=>"text-decoration: underline;"} Community Leaders
+    %a{:onclick => "toggle_doc();", :style=>"text-decoration: underline; cursor: pointer;"} Community Leaders
     %br
-    %a{:onclick => "toggle_referrers();", :style=>"text-decoration: underline;"} Referrers
+    %a{:onclick => "toggle_referrers();", :style=>"text-decoration: underline; cursor: pointer;"} Referrers
     %br
-    %a{:onclick => "toggle_journal();", :style => "text-decoration: underline;"} Daily Journal
+    %a{:onclick => "toggle_journal();", :style => "text-decoration: underline; cursor: pointer;"} Daily Journal
     %br
   #map{:style => "display: none;"}
-    #map_canvas{:style => "margin-left: 200px; width: 350px; height: 350px;"}
+    #map_canvas{:style => "width: 1024px; height: 350px;"}
     #map_form
       = form_tag "/organizer/add", :method => :post do
         #addresses
@@ -300,8 +336,8 @@
   #community_overview{:style => "display: none;"}
     = render :partial => "admin/community_overview", :collection => [current_community]
   #google_doc{:style => "display: none;"}
-    - if current_community.google_docs_link.present?
-      %iframe{:src => current_community.google_docs_link, :width => "100%", :height => "300px"}
+    - if current_community.google_docs_url.present?
+      %iframe{:src => current_community.google_docs_url, :width => "100%", :height => "800px"}
     - else
       No such document exists
   #community_referrers{:style => "display: none;"}
