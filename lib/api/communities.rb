@@ -159,7 +159,7 @@ class API
       community = Community.find(id)
       callback = params.delete("callback")
       unless callback.present?
-        NO_CALLBACK
+        serialize(community.users.map &:generate_point)
       else
         jsonp(callback, serialize(community.users.map &:generate_point))
       end
@@ -170,7 +170,11 @@ class API
       community = Community.find(id)
       callback = params.delete("callback")
       unless callback.present?
-        NO_CALLBACK
+        if params[:top]
+          serialize(community.organizers.map(&:organizer_data_points).flatten.uniq { |p| p.address }.select { |p| p.present? })
+        else
+          serialize(community.organizers.map(&:organizer_data_points).flatten.select { |p| p.present? })
+        end
       else
         if params[:top]
           jsonp(callback, serialize(community.organizers.map(&:organizer_data_points).flatten.uniq { |p| p.address }.select { |p| p.present? }))

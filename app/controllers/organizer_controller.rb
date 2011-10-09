@@ -1,4 +1,9 @@
 class OrganizerController < ApplicationController
+  def app
+    @center_zip_code = current_community.zip_code.to_s
+    @community_id = current_community.id
+  end
+
   def map
     @center_zip_code = current_community.zip_code.to_s
     @community_id = current_community.id
