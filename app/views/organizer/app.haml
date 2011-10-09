@@ -98,7 +98,7 @@
 
       // Set up markers
       greenMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png";
-      greyMarker = "http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png";
+      greyMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/pink-dot.png";
       redMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png";
       yellowMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/yellow-dot.png";
       orangeMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png";
@@ -148,31 +148,26 @@
 
   function drawPoints()
   {
-    console.log("Getting reg points");
     $.ajax({
       url: '/api/communities/#{@community_id}/registration_points',
       dataType: 'json',
       success: function(data) {
-        console.log("Got reg points");
         $.each(data, function(key, val) {
           var point = new google.maps.LatLng(val['lat'], val['lng']);
-          var marker = createMarker(point, val['name'] + '<br />' + val['address'], greenMarker);
+          var marker = createMarker(point, val['name'] + '\n' + val['address'], greenMarker);
           onMarkers.push(marker);
         });
         showMarkerSet(onMarkers);
       }
     });
-    console.log("Getting data points");
     $.ajax({
       url: '/api/communities/#{@community_id}/data_points?top=true',
       dataType: 'json',
       success: function(data) {
-        console.log(data);
-        console.log("Got data points");
         $.each(data, function(key, val) {
           var colorOption;
           if (val['status'] == 'house') {
-            console.log("Adding all house marker");
+            var point = new google.maps.LatLng(val['lat'], val['lng']);
             allHouseMarkers.push(createMarker(point, val['address'], greyMarker));
           }
           if (val['status'] == 'dropped') {
