@@ -22,7 +22,7 @@ var InfoListItem = CommonPlace.View.extend({
     $(this.el).siblings().removeClass("current");
     $(this.el).addClass("current");
     e.preventDefault();
-    window.infoBox.showList(this.model.get("schema"), this.model);
+    window.infoBox.showList(window.infoBox.getSchema(), this.model);
   }
   
 });
