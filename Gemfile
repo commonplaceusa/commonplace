@@ -79,6 +79,7 @@ gem 'rollout' # we use this to control features
 gem 'json', "~> 1.6.0" # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku' # access heroku api
+gem 'rack-timeout' # Timeout requests that take too long
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
