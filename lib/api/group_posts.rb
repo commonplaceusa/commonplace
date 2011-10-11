@@ -23,7 +23,7 @@ class API
 
     delete "/:id" do |id|
       post = GroupPost.find(id)
-      unless event.present?
+      unless post.present?
         [404, "errors"]
       end
 
