@@ -276,6 +276,7 @@ GEM
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
+    rack-timeout (0.0.3)
     rails (3.1.0)
       actionmailer (= 3.1.0)
       actionpack (= 3.1.0)
@@ -461,6 +462,7 @@ DEPENDENCIES
   rack
   rack-cache
   rack-contrib
+  rack-timeout
   rails (~> 3.1.0)
   rails-dev-tweaks (~> 0.5.0)
   rb-inotify
