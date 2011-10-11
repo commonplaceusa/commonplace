@@ -38,7 +38,7 @@ class API
       serialize GroupPost.find(id)
     end
 
-    post "/messages/:id/replies" do |id|
+    post "/:id/replies" do |id|
       reply = Reply.new(:repliable => GroupPost.find(id),
                         :user => current_account,
                         :body => request_body['body'])
