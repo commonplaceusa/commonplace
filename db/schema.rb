@@ -388,6 +388,7 @@ ActiveRecord::Schema.define(:version => 20111011154345) do
     t.string   "authentication_token"
     t.text     "skills"
     t.boolean  "attempted_geolocating"
+    t.datetime "last_checked_inbox"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
