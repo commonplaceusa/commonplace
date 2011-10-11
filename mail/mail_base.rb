@@ -133,11 +133,11 @@ class MailBase < Mustache
     new(*args).deliver
   end
 
-  def after_perform_heroku(*args)
+  def self.after_perform_heroku(*args)
     ActiveRecord::Base.connection.disconnect!
   end
   
-  def on_failure_heroku(e, *args)
+  def self.on_failure_heroku(e, *args)
     ActiveRecord::Base.connection.disconnect!
   end
 end
