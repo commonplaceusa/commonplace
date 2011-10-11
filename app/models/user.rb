@@ -376,6 +376,21 @@ WHERE
     @kickoff ||= KickOff.new
   end
 
+  def last_checked_inbox
+    read_attribute(:last_checked_inbox) || Time.at(0).to_datetime
+  end
+
+  def unread
+    (self.inbox + self.feed_messages).select { |m|
+      m.updated_at > self.last_checked_inbox
+    }.length
+  end
+
+  def checked_inbox!
+    self.last_checked_inbox = DateTime.now
+    self.save! or raise "sjumoe"
+  end
+
   private
 
   def is_transitional_user
