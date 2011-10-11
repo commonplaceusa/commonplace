@@ -37,7 +37,7 @@ gem 'aws-s3', :require => 'aws/s3' # storing avatars and stuff
 gem 'redis' # for queueing with resque 
 gem 'redis-namespace', :require => false # resque wants it, we don't need to require it
 gem 'mcbean' # We use this to pull data from rss feeds for import
-gem 'BlueCloth', :require => 'bluecloth' # we use this in our views and mailers
+gem 'redcarpet' # We use this to format user messages in emails
 
 # ActiveRecord
 gem 'paperclip' # we use this to store avatars
@@ -62,7 +62,6 @@ gem 'sanitize' # used in app/controllers/posts_controller.rb (which is dead code
 gem 'haml', '~> 3.1' # used for view templates
 gem 'formtastic' # used for view templates
 gem 'sass', '~> 3.1' # used for stylesheets
-gem 'BlueCloth', :require => 'bluecloth' # we use this in our views and mailers
 
 # Admin
 gem 'activeadmin' # use as an easy admin tool

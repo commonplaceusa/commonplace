@@ -62,7 +62,7 @@ class MailBase < Mustache
   end
 
   def markdown(text = "")
-    BlueCloth.new(text).to_html
+    Redcarpet.new(text).to_html
   end
 
   def from
