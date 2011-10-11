@@ -1,6 +1,15 @@
 class API
   class Accounts < Base
 
+    helpers do
+
+      def checked_inbox
+        current_account.checked_inbox!
+        serialize(Account.new(current_account))
+      end
+
+    end
+
     get "/" do 
       serialize Account.new(current_account)
     end
@@ -35,7 +44,8 @@ class API
       serialize(Account.new(current_account))
     end
     
-    get "/inbox" do 
+    get "/inbox" do
+      checked_inbox()
       serialize(paginate(current_account.inbox.reorder("updated_at DESC")))
     end
 
@@ -44,6 +54,7 @@ class API
     end
 
     get "/inbox/feeds" do
+      checked_inbox()
       serialize(paginate(current_account.feed_messages.reorder("updated_at DESC")))
     end
 
