@@ -15,7 +15,8 @@
   <fieldset class="event-times">
 
     <label for="start" class="time">
-      <select name="start" class="time dk">
+      <!-- Dropkick wants the id --->
+      <select name="start" class="time dk" id="event_edit_start">
         <option value="">Starts at</option>
         {{#time_values}}
           <option value="{{.}}">{{.}}</option>
@@ -23,7 +24,8 @@
       </select>
     </label>
     <label for="end" class="time">
-      <select name="end" class="time dk">
+      <!-- Dropkick wants the id --->
+      <select name="end" class="time dk" id="event_edit_end">
         <option value="">Ends at</option>
         {{#time_values}}
           <option value="{{.}}">{{.}}</option>
