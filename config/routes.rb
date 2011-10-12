@@ -85,28 +85,6 @@ Commonplace::Application.routes.draw do
     # That fails when Heroku is compiling assets, so we catch the error here.
   end
 
-  unauthenticated do
-    
-    root :to => "site#index"
-    match "/invite", :to => "accounts#facebook_invite"
-    match "/:community", :to => "registrations#new", :via => :get
-
-    match "/:community/learn_more", :to => "accounts#learn_more", :via => :get
-
-
-    resources :password_resets
-
-    match "/:community/registrations", :via => :post, :to => "registrations#create", :as => "create_registration"
-
-    # Invitations
-    resource :account do
-      member do
-        get :facebook_invite
-      end
-    end
-    
-    
-  end
 
 
   authenticated do
@@ -136,7 +114,6 @@ Commonplace::Application.routes.draw do
 
     match '/?community=:community', :to => "bootstraps#community"
 
-    match '/:nil_community', :to => "bootstraps#community"
 
     resources :password_resets
 
@@ -158,12 +135,39 @@ Commonplace::Application.routes.draw do
 
 
   match "/account/make_focp", :to => "accounts#make_focp"
+
+
   # explicitly list paths that we want the main_page js app to handle
   ["/posts(/:id)", "/users(/:id)", "/events(/:id)", "/feeds",
    "/announcements(/:id)", "/group_posts(/:/id)", "/groups(/:id)",
-   "/users/:id/messages/new", "/feeds/:id/messages/new"].each do |s|
+   "/users/:id/messages/new", "/feeds/:id/messages/new", "/new-event",
+   "/new-group-post", "/new-announcement", "/new-neighborhood-post"].each do |s|
     match s, :to => "bootstraps#community", :via => :get, :as => :community
   end
 
 
+  unauthenticated do
+    
+    root :to => "site#index"
+    match "/invite", :to => "accounts#facebook_invite"
+    match "/:community", :to => "registrations#new", :via => :get
+
+    match "/:community/learn_more", :to => "accounts#learn_more", :via => :get
+
+
+    resources :password_resets
+
+    match "/:community/registrations", :via => :post, :to => "registrations#create", :as => "create_registration"
+
+    # Invitations
+    resource :account do
+      member do
+        get :facebook_invite
+      end
+    end
+    
+    
+  end
+
+  match '/:nil_community', :to => "bootstraps#community"
 end
