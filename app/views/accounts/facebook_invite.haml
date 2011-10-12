@@ -1,17 +1,12 @@
 = javascript_include_tag "https://www.plaxo.com/css/m/js/util.js"
 = javascript_include_tag "https://www.plaxo.com/css/m/js/basic.js"
 = javascript_include_tag "https://www.plaxo.com/css/m/js/abc_launcher.js"
+= javascript_include_tag "invite_page"
+
 %script
   = "var slug = '#{current_community.slug}';"
   = "var message = '#{t(".facebook.invitation", :community => current_community.name, :slug => current_community.slug)}';"
 
-  $(function(){$('input[placeholder], textarea[placeholder]').placeholder();});
-  $(document).ready(function(){
-  $("#invite_email_input").removeClass("optional")
-  $("#invite_body_input").removeClass("optional")
-  $("#invite_email_input").addClass("required")
-  $("#invite_body_input").removeClass("required")
-  });
 
 - if Rails.env.production?
   :javascript
@@ -19,39 +14,29 @@
 
 :javascript
 
-    function onABCommComplete() {
-      text = "";
-      $($("textarea#invite_email").val().split(", ")).each(function(index, value) { text += value.replace(/(.*)<(.*)>/, "$2") + ", "; });
-      $("textarea#invite_email").val(text.substring(0, text.length-2));
-    }
-    $(document).ready(function(){
-      fbEnsureInit(function(){
-        $("#step_one").append('<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="#{asset_path("invite/findneighbors.png")}" width="370px" style="margin-left: 3px">');
-        $("#step_two").append('<a href="#" onclick="fb_share();"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="#{asset_path("invite/facebookinvite.png")}" width="370px" style="margin-left: 3px"></a><div id="custom-tweet-button"><a href="http://twitter.com/share?url=http://www.#{current_community.slug}.OurCommonPlace.com/&text=#{t(".twitter_message", :community => current_community.name, :slug => current_community.slug)}&count=horizontal" target="_blank" rel="nofollow"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="#{asset_path("invite/twitterinv.png")}" width="370px" style="margin-left: 3px"></a></div>');
-      });
-    });
-
-    function fb_share() {
-      FB.ui(
-        {
-          method: 'feed',
-          name: '#{t(".facebook.name", :community => current_community.name)}',
-          link: "https://www.OurCommonPlace.com/#{current_community.slug}",
-          picture: 'http://www.ourcommonplace.com/assets/logo-pin.png',
-          caption: '#{t(".facebook.caption", :community => current_community.name)}',
-          description: '#{t(".facebook.description", :community => current_community.name)}',
-          message: '#{t(".facebook.message", :community => current_community.name, :slug => current_community.slug)}'
-        },
-        function(response) {
-        }
-    );
-
+  function fb_share() {
+  FB.ui(
+  {
+  method: 'feed',
+  name: '#{t(".facebook.name", :community => current_community.name)}',
+  link: "https://www.OurCommonPlace.com/#{current_community.slug}",
+  picture: 'http://www.ourcommonplace.com/assets/logo-pin.png',
+  caption: '#{t(".facebook.caption", :community => current_community.name)}',
+  description: '#{t(".facebook.description", :community => current_community.name)}',
+  message: '#{t(".facebook.message", :community => current_community.name, :slug => current_community.slug)}'
+  },
+  function(response) {
   }
-
-  function add_to_friends_of_commonplace(email) {
-    console.log("Starting request");
-    $.post('/account/make_focp', 'email=' + email);
+  );
+  
   }
+  fbEnsureInit(function() {
+  $("#step_one").append(
+  '<img onclick="fbEnsureInit(function(){invite_friends(message,slug);});" onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="#{asset_path("invite/findneighbors.png")}" width="370px" style="margin-left: 3px">');
+    
+  $("#step_two").append('<a href="#" onclick="fb_share();"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="#{asset_path("invite/facebookinvite.png")}" width="370px" style="margin-left: 3px"></a><div id="custom-tweet-button"><a href="http://twitter.com/share?url=http://www.#{current_community.slug}.OurCommonPlace.com/&text=#{t(".twitter_message", :community => current_community.name, :slug => current_community.slug)}&count=horizontal" target="_blank" rel="nofollow"><img onmouseout="document.body.style.cursor = \'auto\';" onmouseover="document.body.style.cursor = \'pointer\';" src="#{asset_path("invite/twitterinv.png")}" width="370px" style="margin-left: 3px"></a></div>');
+  });
+
 
 
 :css
@@ -102,9 +87,9 @@
           
 #groups_box
   #groups_wrapper
-    %ul
+    %ul{style: "height: auto;"}
       %li
-        #step_three
+        #step_three{style: "height:auto;"}
           %h3
             =t(".step_three")
           %h4
@@ -119,7 +104,7 @@
               %center
                 OR
           #invite_errors
-          = semantic_form_for @invitation, :url => "/send_invite" do |f|
+          = semantic_form_for @invitation, :url => "/api/communities/#{current_community.id}/invites" do |f|
             = f.inputs do
               = f.input :email,:as => 'text', :input_html => { :placeholder => "Enter email addresses here (separated by commas)", :class => "required email", :width => 370, :style => "height: 66px;" }
               = f.input :body, :input_html => { :placeholder => "Include a message about why you love CommonPlace", :rows =>"4"}, :html => {:class => "required"}
