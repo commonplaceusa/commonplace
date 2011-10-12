@@ -4,9 +4,6 @@ Commonplace::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
-  # Fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true
-
   # Generate digests for assets URLs
   config.assets.digest = true
 
