@@ -88,7 +88,7 @@ Commonplace::Application.routes.draw do
   unauthenticated do
     
     root :to => "site#index"
-
+    match "/invite", :to => "accounts#facebook_invite"
     match "/:community", :to => "registrations#new", :via => :get
 
     match "/:community/learn_more", :to => "accounts#learn_more", :via => :get
@@ -105,7 +105,7 @@ Commonplace::Application.routes.draw do
       end
     end
     
-    match "/invite", :to => "accounts#facebook_invite"
+    
   end
 
 
