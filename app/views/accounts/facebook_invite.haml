@@ -10,7 +10,7 @@
 
 - if Rails.env.production?
   :javascript
-    mpmetrics.track('Visited invitation page', {'community': '#{current_community.slug}'});
+    mpq.track('Visited invitation page', {'community': '#{current_community.slug}'});
 
 :javascript
 

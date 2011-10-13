@@ -29,4 +29,4 @@
 
 - if Rails.env.production?
   %script
-    = "mpmetrics.track('Password entry', {'community': '#{current_community.slug}'});"
+    = "mpq.track('Password entry', {'community': '#{current_community.slug}'});"
