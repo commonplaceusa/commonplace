@@ -6,8 +6,14 @@ require 'exceptional'
 
 app = Rack::Builder.new do 
 
+  
   if Rails.env.staging? || Rails.env.production?
+
     use Rack::Exceptional, ENV['exceptional_key']
+
+    use Rack::Timeout
+    Rack::Timeout.timeout = 15 # seconds
+
     use(Rack::Cache,
         :verbose     => true,
         :metastore   => Dalli::Client.new,

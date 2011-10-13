@@ -62,7 +62,7 @@ class MailBase < Mustache
   end
 
   def markdown(text = "")
-    BlueCloth.new(text).to_html
+    Redcarpet.new(text).to_html
   end
 
   def from
@@ -131,5 +131,13 @@ class MailBase < Mustache
 
   def self.perform(*args)
     new(*args).deliver
+  end
+
+  def self.after_perform_heroku(*args)
+    ActiveRecord::Base.connection.disconnect!
+  end
+  
+  def self.on_failure_heroku(e, *args)
+    ActiveRecord::Base.connection.disconnect!
   end
 end

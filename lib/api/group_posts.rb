@@ -23,7 +23,7 @@ class API
 
     delete "/:id" do |id|
       post = GroupPost.find(id)
-      unless event.present?
+      unless post.present?
         [404, "errors"]
       end
 
@@ -38,7 +38,7 @@ class API
       serialize GroupPost.find(id)
     end
 
-    post "/messages/:id/replies" do |id|
+    post "/:id/replies" do |id|
       reply = Reply.new(:repliable => GroupPost.find(id),
                         :user => current_account,
                         :body => request_body['body'])

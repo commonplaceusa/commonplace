@@ -6,14 +6,14 @@ send_daily_digest:
   description: "Sends daily digest"
 
 import_feeds_rss:
-  cron: "0 * * * *"
+  cron: "00 0 * * *"
   class: RSSImporter
   args:
   queue: rss_importer
   description: "Imports feed announcements from rss"
 
 geolocate_data_points:
-  cron: "0 * * * *"
+  cron: "0 0 * * *"
   class: AddressGeolocater
   args: 
   queue: geolocation
