@@ -72,5 +72,27 @@ class API
       serialize(id =~ /[^\d]/ ? Feed.find_by_slug(id) : Feed.find(id))
     end
 
+    get "/:id/owners" do |id|
+      serialize(Feed.find(id).feed_owners)
+    end
+
+    post "/:id/owners" do |id|
+      serialize(params["emails"].split(",").map { |email|
+        u = User.find_by_email(email.gsub(" ",""))
+        if u
+          owner = FeedOwner.new(:feed => Feed.find(id),
+                                :user => u)
+          if owner.save
+            owner
+          end
+        end
+      }.reject { |obj| obj == nil })
+    end
+
+    delete "/:feed_id/owners/:id" do |feed_id, id|
+      owner = FeedOwner.find(id)
+      owner.destroy
+    end
+
   end
 end
