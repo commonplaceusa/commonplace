@@ -2,7 +2,7 @@ class API
   class Groups < Base
 
     get "/:id" do |id|
-      serialize(id =~ /[^\d]/ ? Group.find_by_slug(id) : Group.find(id))
+      serialize(Group.find(id))
     end
     
     post "/:id/posts" do |id|
