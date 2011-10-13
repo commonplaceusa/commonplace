@@ -5,7 +5,7 @@ class API
 
       def auth(event)
         if (event.owner_type == "Feed")
-          event.owner.is_feed_Owner(current_account) or current_account.admin
+          event.owner.get_feed_Owner(current_account) or current_account.admin
         else
           event.owner == current_account or event.user == current_account or current_account.admin
         end
