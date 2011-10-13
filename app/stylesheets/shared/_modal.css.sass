@@ -18,6 +18,40 @@
     font-size: 14px
     text-align: center
 
+  table
+    width: 390px
+    margin-top: 2px
+    border: none
+    +border-radius(5px)
+    tr:nth-child(even)
+      background-color: #ddd
+    tr:nth-child(odd)
+      background-color: white
+    tr:first-child
+      td:first-child
+        +border-top-left-radius(5px)
+      td:last-child
+        +border-top-right-radius(5px)
+    tr:last-child
+      td:first-child
+        +border-bottom-left-radius(5px)
+      td:last-child
+        +border-bottom-right-radius(5px)
+    td
+      padding: 10px 9px
+      font-size: 13px
+      font-family: Helvetica, sans-serif
+      a
+        color: #ac322f
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+    .right
+      text-align: right
+
+  .unimportant
+    color: #aaa
+
   form
     +form
     width: 392px
