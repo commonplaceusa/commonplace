@@ -1,5 +1,18 @@
 class API
   class Events < Base
+
+    helpers do
+
+      def auth(event)
+        if (event.owner_type == "Feed")
+          event.owner.is_feed_Owner(current_account) or current_account.admin
+        else
+          event.owner == current_account or event.user == current_account or current_account.admin
+        end
+      end
+
+    end
+
     put "/:id" do |id|
       event = Event.find(id)
       unless event.present?
@@ -15,11 +28,10 @@ class API
       event.address = request_body['address']
       event.tag_list = request_body['tags']
 
-      # TODO: This should deal with feeds...
-      if (event.user == current_account or current_account.admin) and event.save
+      if (auth(event)) and event.save
         serialize(event)
       else
-        unless (event.owner == current_account or current_account.admin)
+        unless (auth(event))
           [401, "unauthorized"]
         else
           [500, "could not save"]
@@ -33,7 +45,7 @@ class API
         [404, "errors"]
       end
 
-      if (event.owner == current_account or current_account.admin)
+      if (auth(event))
         event.destroy
       else
         [404, "errors"]
