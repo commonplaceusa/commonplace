@@ -1,7 +1,13 @@
 class API
   class Communities < Base
 
-    post "/:id/posts" do |community_id|
+    before do
+      unless current_account.community.id == params[:community_id] or current_account.admin
+        [401, "wrong community"]
+      end
+    end
+
+    post "/:community_id/posts" do |community_id|
       post = Post.new(:user => current_account,
                       :community_id => community_id,
                       :subject => request_body['title'],
@@ -14,11 +20,11 @@ class API
       end
     end
 
-    post "/:id/announcements" do
+    post "/:community_id/announcements" do |community_id|
       announcement = Announcement.new(:owner => request_body['feed'].present? ? Feed.find(request_body['feed']) : current_account,
                                       :subject => request_body['title'],
                                       :body => request_body['body'],
-                                      :community_id => params[:id],
+                                      :community_id => community_id,
                                       :group_ids => request_body["groups"])
 
       if announcement.save
@@ -29,20 +35,7 @@ class API
       end
     end
 
-    post "/:id/group_posts" do
-      group_post = GroupPost.new(:group => Group.find(request_body['group']),
-                                 :subject => request_body['title'],
-                                 :body => request_body['body'],
-                                 :user => current_account)
-      if group_post.save
-        kickoff.deliver_group_post(group_post)
-        serialize(group_post)
-      else
-        [400, "errors"]
-      end
-    end
-
-    post "/:id/events" do
+    post "/:community_id/events" do |community_id|
       event = Event.new(:owner => request_body['feed'].present? ? Feed.find(request_body['feed']) : current_account,
                         :name => request_body['title'],
                         :description => request_body['about'],
@@ -52,7 +45,7 @@ class API
                         :venue => request_body['venue'],
                         :address => request_body['address'],
                         :tag_list => request_body['tags'],
-                        :community => current_account.community,
+                        :community_id => community_id,
                         :group_ids => request_body['groups']
                         )
       if event.save
@@ -62,60 +55,60 @@ class API
       end
     end
 
-    get "/:id/posts" do |id|
+    get "/:community_id/posts" do |community_id|
       last_modified_by_updated_at(Post)
 
-      serialize(paginate(Community.find(id).posts.includes(:user, :replies)))
+      serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
     end
 
 
-    get "/:id/events" do |id|
+    get "/:community_id/events" do |community_id|
       last_modified([Event.unscoped.reorder("updated_at DESC").
                      select('updated_at').
                      first.try(&:updated_at),
                      Date.today.beginning_of_day].compact.max)
 
-      serialize(paginate(Community.find(id).events.upcoming.
+      serialize(paginate(Community.find(community_id).events.upcoming.
                          includes(:replies).reorder("date ASC")))
     end
 
-    get "/:id/announcements" do |id|
+    get "/:community_id/announcements" do |community_id|
       last_modified_by_updated_at(Announcement)
 
-      serialize(paginate(Community.find(id).announcements.
+      serialize(paginate(Community.find(community_id).announcements.
                          includes(:replies, :owner).
                          reorder("updated_at DESC")))
     end
 
-    get "/:id/group_posts" do |id|
+    get "/:community_id/group_posts" do |community_id|
       last_modified_by_updated_at(GroupPost)
 
       serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
                          includes(:group, :user, :replies => :user).
-                         where(:groups => {:community_id => id})))
+                         where(:groups => {:community_id => community_id})))
     end
 
-    get "/:id/feeds" do |id|
+    get "/:community_id/feeds" do |community_id|
       last_modified_by_updated_at(Feed)
 
-      serialize(paginate(Community.find(id).feeds))
+      serialize(paginate(Community.find(community_id).feeds))
     end
 
-    get "/:id/groups" do |id|
+    get "/:community_id/groups" do |community_id|
       last_modified_by_updated_at(Group)
 
-      serialize(paginate(Community.find(id).groups))
+      serialize(paginate(Community.find(community_id).groups))
     end
 
-    get "/:id/users" do |id|
+    get "/:community_id/users" do |community_id|
       last_modified_by_updated_at(User)
 
-      serialize(paginate(Community.find(id).users.includes(:feeds, :groups)))
+      serialize(paginate(Community.find(community_id).users.includes(:feeds, :groups)))
     end
 
 
 
-    post "/:id/add_data_point" do |id|
+    post "/:community_id/add_data_point" do |community_id|
       num = params[:number]
       zip_code = User.find(current_account.id).community.zip_code
       if num.include? "-"
@@ -154,9 +147,9 @@ class API
     end
 
 
-    get "/:id/registration_points" do |id|
+    get "/:community_id/registration_points" do |community_id|
       headers 'Access-Control-Allow-Origin' => '*'
-      community = Community.find(id)
+      community = Community.find(community_id)
       callback = params.delete("callback")
       unless callback.present?
         serialize(community.users.map &:generate_point)
@@ -165,9 +158,9 @@ class API
       end
     end
     
-    get "/:id/data_points" do |id|
+    get "/:community_id/data_points" do |community_id|
       headers 'Access-Control-Allow-Origin' => '*'
-      community = Community.find(id)
+      community = Community.find(community_id)
       callback = params.delete("callback")
       unless callback.present?
         if params[:top]
@@ -183,7 +176,7 @@ class API
       end
     end
 
-    post "/:id/invites" do |id|
+    post "/:community_id/invites" do |community_id|
       kickoff.deliver_user_invite(request_body['emails'], current_account, request_body['message'])
       [200, {}, ""]
     end
