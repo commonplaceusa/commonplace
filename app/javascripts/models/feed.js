@@ -3,6 +3,7 @@ var Feed = Model.extend({
     this.announcements = new Announcements([], { uri: this.link("announcements") });
     this.events = new Events([], { uri: this.link("events") });
     this.subscribers = new Users([], { uri: this.link("subscribers") });
+    this.owners = new FeedOwners([], { uri: this.link("owners") });
   }
 });
 
