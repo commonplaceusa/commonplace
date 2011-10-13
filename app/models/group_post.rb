@@ -12,6 +12,8 @@ class GroupPost < ActiveRecord::Base
 
   scope :today, where("group_posts.created_at between ? and ?", Date.today, Time.now)
 
+  default_scope where(:deleted_at => nil)
+
   def owner
     self.user
   end

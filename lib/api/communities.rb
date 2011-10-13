@@ -182,6 +182,11 @@ class API
         jsonp(callback, serialize(community.organizers.map(&:organizer_data_points).flatten.select { |p| p.present? }))
       end
     end
+
+    post "/:id/invites" do |id|
+      kickoff.deliver_user_invite(request_body['emails'], current_account, request_body['message'])
+      [200, {}, ""]
+    end
     
   end
 end
