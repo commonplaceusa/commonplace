@@ -212,10 +212,25 @@ module Serializer
           "messages" => "/feeds/#{o.id}/messages",
           "edit" => "/feeds/#{o.id}/edit",
           "subscribers" => "/feeds/#{o.id}/subscribers",
-          "self" => "/feeds/#{o.id}"
+          "self" => "/feeds/#{o.id}",
+          "owners" => "/feeds/#{o.id}/owners"
         },
         "messagable_author_url" => "/feeds/#{o.id}/#{o.user.id}",
       "messagable_author_name" => o.name
+      }
+
+      when FeedOwner
+        {
+        "id" => o.id,
+        "user_id" => o.user_id,
+        "feed_id" => o.feed_id,
+        "user_name" => o.user.name,
+        "user_email" => o.user.email,
+        "links" => {
+          "self" => "/feeds/#{o.feed_id}/owners/#{o.id}",
+          "user" => "/users/#{o.user_id}",
+          "feed" => "/feeds/#{o.feed_id}"
+        }
       }
 
       when Group
