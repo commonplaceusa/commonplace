@@ -40,5 +40,5 @@
 
 - if Rails.env.production?
   %script
-    = "mpmetrics.track('Community Registration Page', {'community': '#{current_community.slug}'});"
+    = "mpq.track('Community Registration Page', {'community': '#{current_community.slug}'});"
 
