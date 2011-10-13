@@ -6,9 +6,12 @@
   -# Mixpanel metrics
   - if current_user.try(:email).present?
     %script
+      mpq.push(["identify", "#{current_user.email}"];
+      mpq.push(["name_tag", "#{current_user.full_name} - #{current_user.email}");
+      mpq.push(["register", {'email': '#{current_user.email}', 'community': '#{current_community.slug}', 'referral_source': '#{current_user.referral_source ? current_user.referral_source.gsub("'","") : ''}'}]);
       //mpmetrics.identify("#{current_user.email}");
-      mpmetrics.register({'email': '#{current_user.email}', 'community': '#{current_community.slug}', 'referral_source': '#{current_user.referral_source ? current_user.referral_source.gsub("'","") : ''}'});
-      mpmetrics.name_tag("#{current_user.full_name} - #{current_user.email}");
+      //mpmetrics.register({'email': '#{current_user.email}', 'community': '#{current_community.slug}', 'referral_source': '#{current_user.referral_source ? current_user.referral_source.gsub("'","") : ''}'});
+      //mpmetrics.name_tag("#{current_user.full_name} - #{current_user.email}");
 
   -# Chartbeat
 
