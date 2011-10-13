@@ -11,7 +11,7 @@ var FeedOwnersFormView = FormView.extend({
     this.fillList();
   },
 
-  fillList: function() {
+  fillList: function(callback) {
     var list = this.$(".existing-owners");
     list.empty();
     var self = this;
@@ -23,6 +23,7 @@ var FeedOwnersFormView = FormView.extend({
           item.render();
           list.append(item.el);
         });
+        if (callback) { callback(owners); }
       }
     });
   },
@@ -43,23 +44,22 @@ var FeedOwnersFormView = FormView.extend({
     if (emailform.val() == "") { return this.$(".incomplete-form").show(); }
 
     $.post(
-      "/api" + this.model.link("owners"), 
+      "/api" + this.model.link("owners"),
       { emails: emailform.val() },
       function(response) {
-        var bad_emails = _.select(emailform.val().split(","), function(email) {
-          return !_.any(response, function(obj) {
-            return obj.user_email == email.replace(/ /g, "");
+        self.fillList(function(owners) {
+          var bad_emails = _.select(emailform.val().split(","), function(email) {
+            return !owners.any(function(obj) {
+              return obj.get("user_email") == email.replace(/ /g, "");
+            });
           });
+          if (bad_emails.length) {
+            self.$(".bad-emails").show();
+            emailform.val(bad_emails);
+          } else {
+            emailform.val("");
+          }
         });
-        
-        if (bad_emails.length) {
-          self.$(".bad-emails").show();
-          emailform.val(bad_emails);
-        } else {
-          emailform.val("");
-        }
-
-        self.fillList();
       },
       "JSON"
     );

@@ -77,16 +77,16 @@ class API
     end
 
     post "/:id/owners" do |id|
-      serialize(params["emails"].split(",").map { |email|
-        u = User.find_by_email(email.gsub(" ",""))
-        if u
+      params["emails"].split(",").each do |email|
+        user = User.find_by_email(email.gsub(" ",""))
+        existing_owner = Feed.find(id).get_feed_owner(user)
+        if user and !existing_owner
           owner = FeedOwner.new(:feed => Feed.find(id),
-                                :user => u)
-          if owner.save
-            owner
-          end
+                                :user => user)
+          owner.save
         end
-      }.reject { |obj| obj == nil })
+      end
+      [200, ""]
     end
 
     delete "/:feed_id/owners/:id" do |feed_id, id|
