@@ -117,8 +117,13 @@ class Feed < ActiveRecord::Base
     integer :community_id
   end
 
-  def is_feed_owner(user)
-    !self.feed_owners.select { |o| o.user == user }.empty?
+  def get_feed_owner(user)
+    owner = self.feed_owners.select { |o| o.user == user }
+    if (owner.empty?)
+      false
+    else
+      owner
+    end
   end
 
   private
