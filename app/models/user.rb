@@ -107,7 +107,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :memberships
   has_many :groups, :through => :memberships, :uniq => true
 
-  has_many :managable_feeds, :class_name => "Feed"
+  has_many :feed_owners
+  has_many :managable_feeds, :through => :feed_owners, :class_name => "Feed", :source => :feed
   has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies, :dependent => :destroy
 
   has_many :referrals, :foreign_key => "referee_id"
