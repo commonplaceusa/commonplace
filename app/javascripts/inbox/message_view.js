@@ -5,8 +5,7 @@ var MessageWireItem = WireItem.extend({
   className: "message-item",
 
   events: {
-    "click a.person": "sendMessageToUser",
-    "click a.feed": "sendMessageToFeed"
+    "click a.person": "sendMessageToUser"
   },
 
   initialize: function(options) {
@@ -63,9 +62,8 @@ var MessageWireItem = WireItem.extend({
     });
   },
 
-  sendMessageToFeed: function(e) {
-    e && e.preventDefault();
-    
+  feedUrl: function() {
+    var self = this;
     var feed = new Feed({
       links: {
         self: this.model.link("user")
@@ -73,10 +71,7 @@ var MessageWireItem = WireItem.extend({
     });
     feed.fetch({
       success: function() {
-        var formview = new MessageFormView({
-          model: new Message({ messagable: feed })
-        });
-        formview.render();
+        self.$(".messagable.feed").attr("href", feed.get("url"));
       }
     });
   },
