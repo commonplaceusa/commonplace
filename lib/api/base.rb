@@ -14,6 +14,10 @@ class API
                    end
       end
 
+      def current_user
+        current_account
+      end
+
       def authenticate!
         current_account || halt(401)
       end
