@@ -116,6 +116,7 @@ class MailBase < Mustache
                           :subject => self.subject,
                           :content_type => "text/html",
                           :body => self.render_html,
+                          :charset => 'UTF-8',
                           :headers => {
                             "Precedence" => "list",
                             "Auto-Submitted" => "auto-generated",
