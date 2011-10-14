@@ -36,9 +36,7 @@ var InfoBox = CommonPlace.View.extend({
   events: {
     "click .filter-tab": "switchTab",
     "click .remove-search": "removeSearch",
-    "change .search": "filterBySearch",
     "submit form": "filterBySearch",
-    "keyup .search": "filterBySearch"
   },
 
   afterRender: function() {
@@ -49,6 +47,10 @@ var InfoBox = CommonPlace.View.extend({
     $(window).scroll(function() {
       $(self.el).css({ width: $(self.el).width() });
       self.setPosition();
+    });
+
+    this.$("form input.search").onFinishedTyping(500, function() {
+      self.$("form").submit();
     });
   },
 
