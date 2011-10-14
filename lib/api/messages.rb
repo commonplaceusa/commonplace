@@ -3,7 +3,7 @@ class API
 
     post "/:id/replies" do |id|
       message = Message.find(id)
-      halt [401, "wrong community"] unless in_comm(message.community.id)
+      halt [401, "wrong community"] unless [message.user,message.messagable].include? current_user
       reply = Reply.new(:repliable => message,
                         :user => current_account,
                         :body => request_body['body'])
