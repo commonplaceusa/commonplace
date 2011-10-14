@@ -23,6 +23,7 @@ class FeedRegistration
 
   def save
     if feed.save
+      feed.owners << feed.user
       kickoff.deliver_feed_owner_welcome(feed)
       true
     else
