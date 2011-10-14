@@ -25,7 +25,7 @@ gem 'thin' # lighter than mongrel, faster than webrick
 
 # Authentication
 gem 'devise' # used for authentication
-gem 'omniauth', :git => "git://github.com/intridea/omniauth.git", :branch => "0-3-stable"  # used for authentication with facebook
+gem 'omniauth', "0.3.0" # used for authentication with facebook
 gem 'uuid' # used in app/controllers/admin_controller.rb, could be refactored/removed?
 
 # Authorization
