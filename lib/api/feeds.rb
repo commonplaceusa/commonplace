@@ -78,25 +78,38 @@ class API
     end
 
     get "/:feed_id/owners" do |feed_id|
-      serialize(Feed.find(feed_id).feed_owners)
+      if Feed.find(feed_id).get_feed_owner(current_user)
+        serialize(Feed.find(feed_id).feed_owners)
+      else
+        [401, "unauthorized"]
+      end
     end
 
     post "/:feed_id/owners" do |feed_id|
-      params["emails"].split(",").each do |email|
-        user = User.find_by_email(email.gsub(" ",""))
-        existing_owner = Feed.find(id).get_feed_owner(user)
-        if user and !existing_owner
-          owner = FeedOwner.new(:feed => Feed.find(feed_id),
-                                :user => user)
-          owner.save
+      feed = Feed.find(feed_id)
+      if feed.get_feed_owner(current_user)
+        params["emails"].split(",").each do |email|
+          user = User.find_by_email(email.gsub(" ",""))
+          existing_owner = feed.get_feed_owner(user)
+          if user and !existing_owner
+            owner = FeedOwner.new(:feed => feed,
+                                  :user => user)
+            owner.save
+          end
         end
+        [200, ""]
+      else
+        [401, "unauthorized"]
       end
-      [200, ""]
     end
 
     delete "/:feed_id/owners/:id" do |feed_id, id|
-      owner = FeedOwner.find(id)
-      owner.destroy
+      if Feed.find(feed_id).get_feed_owner(current_user)
+        owner = FeedOwner.find(id)
+        owner.destroy
+      else
+        [401, "unauthorized"]
+      end
     end
 
   end
