@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
     ["Live", "Three", "Daily", "Never"]
   end
 
+
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
   devise :database_authenticatable, :encryptable, :token_authenticatable, :recoverable, :omniauthable, :omniauth_providers => [:facebook]
 
   def self.find_for_facebook_oauth(access_token)
