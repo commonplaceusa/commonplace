@@ -15,7 +15,9 @@ class API
     end
 
     post "/subscriptions/feeds" do
-      current_account.feeds << Feed.find(params[:id] || request_body['id'])
+      feed = Feed.find(params[:id] || request_body['id'])
+      halt [401, "wrong community"] unless in_comm(feed.community.id)
+      current_account.feeds << feed
       serialize(Account.new(current_account))
     end
 
@@ -24,8 +26,10 @@ class API
       serialize(Account.new(current_account))
     end
     
-    post "/subscriptions/groups" do 
-      current_account.groups << Group.find(params[:id] || request_body['id'])
+    post "/subscriptions/groups" do
+      group = Group.find(params[:id] || request_body['id'])
+      halt [401, "wrong community"] unless in_comm(group.community.id)
+      current_account.groups << group
       serialize(Account.new(current_account))
     end
 
@@ -35,7 +39,9 @@ class API
     end
 
     post "/mets" do
-      current_account.people << User.find(params[:id] || request_body["id"])
+      user = User.find(params[:id] || request_body["id"])
+      halt [401, "wrong community"] unless in_comm(user.community.id)
+      current_account.people << user
       serialize(Account.new(current_account))
     end
 

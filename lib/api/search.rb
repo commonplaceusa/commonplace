@@ -1,6 +1,10 @@
 class API
   class Search < Base
 
+    before "/:community_id/*" do |community_id, stuff|
+      halt [401, "wrong community"] unless in_comm(params[:community_id])
+    end
+
     helpers do
       
       def search(klass, params, community_id)
@@ -20,55 +24,55 @@ class API
 
     end
 
-    get "/:id/feeds" do |community_id|
+    get "/:community_id/feeds" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
       search(Feed, params, community_id)
     end
 
-    get "/:id/groups" do |community_id|
+    get "/:community_id/groups" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
       search(Group, params, community_id)
     end
 
-    get "/:id/users" do |community_id|
+    get "/:community_id/users" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
       search(User, params, community_id)
     end
 
-    get "/:id/group-like" do |community_id|
+    get "/:community_id/group-like" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
       search([Feed, Group, User], params, community_id)
     end
 
-    get "/:id/announcements" do |community_id|
+    get "/:community_id/announcements" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
       search(Announcement, params, community_id)
     end
 
-    get "/:id/events" do |community_id|
+    get "/:community_id/events" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
       search(Event, params, community_id)
     end
 
-    get "/:id/posts" do |community_id|
+    get "/:community_id/posts" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
       search(Post, params, community_id)
     end
 
-    get "/:id/group-posts" do |community_id|
+    get "/:community_id/group-posts" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
       search(GroupPost, params, community_id)
     end
 
-    get "/:id/post-like" do |community_id|
+    get "/:community_id/post-like" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 
       search([Announcement, Event, Post, GroupPost], params, community_id)

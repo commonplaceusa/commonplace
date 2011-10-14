@@ -1,6 +1,15 @@
 class API
   class GroupPosts < Base
 
+    helpers do
+    
+      def auth(post)
+        halt [401, "wrong community"] unless in_comm(post.community.id)
+        post.user == current_account or current_account.admin
+      end
+
+    end
+
     put "/:id" do |id|
       post = GroupPost.find(id)
       unless post.present?
@@ -10,10 +19,10 @@ class API
       post.subject = request_body['title']
       post.body = request_body['body']
 
-      if (post.user == current_account or current_account.admin) and post.save
+      if auth(post) and post.save
         serialize(post)
       else
-        unless (post.user == current_account or current_account.admin)
+        unless auth(post)
           [401, 'unauthorized']
         else
           [500, 'could not save']
@@ -27,7 +36,7 @@ class API
         [404, "errors"]
       end
 
-      if (post.user == current_account or current_account.admin)
+      if auth(post)
         post.destroy
       else
         [404, "errors"]
@@ -35,11 +44,15 @@ class API
     end
 
     get "/:id" do |id|
-      serialize GroupPost.find(id)
+      post = GroupPost.find(id)
+      halt [401, "wrong community"] unless in_comm(post.community.id)
+      serialize post
     end
 
     post "/:id/replies" do |id|
-      reply = Reply.new(:repliable => GroupPost.find(id),
+      post = GroupPost.find(id)
+      halt [401, "wrong community"] unless in_comm(post.community.id)
+      reply = Reply.new(:repliable => post,
                         :user => current_account,
                         :body => request_body['body'])
 

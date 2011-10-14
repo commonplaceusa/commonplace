@@ -4,8 +4,9 @@ class API
     helpers do
 
       def auth(announcement)
+        halt [401, "wrong community"] unless in_comm(announcement.community.id)
         if (announcement.owner_type == "Feed")
-          announcement.owner.get_feed_Owner(current_account) or current_account.admin
+          announcement.owner.get_feed_owner(current_account) or current_account.admin
         else
           announcement.owner == current_account or announcement.user == current_account or current_account.admin
         end
@@ -47,11 +48,15 @@ class API
     end
 
     get "/:id" do |id|
-      serialize Announcement.find(id)
+      announcement = Announcement.find(id)
+      halt [401, "wrong community"] unless in_comm(announcement.community.id)
+      serialize announcement
     end
 
     post "/:id/replies" do |id|
-      reply = Reply.new(:repliable => Announcement.find(id),
+      announcement = Announcement.find(id)
+      halt [401, "wrong community"] unless in_comm(announcement.community.id)
+      reply = Reply.new(:repliable => announcement,
                         :user => current_account,
                         :body => request_body['body'])
 

@@ -1,8 +1,8 @@
 class API
   class Communities < Base
 
-    before do
-      unless current_account.community.id == params[:community_id] or current_account.admin
+    before "/:community_id/*" do |community_id, stuff|
+      unless current_account.community.id == community_id or current_account.admin
         [401, "wrong community"]
       end
     end
