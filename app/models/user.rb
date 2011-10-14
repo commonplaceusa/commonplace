@@ -321,6 +321,9 @@ WHERE
     text :first_name
     text :last_name
     text :about
+    text :skills
+    text :goods
+    text :interests
     integer :community_id
   end
 
