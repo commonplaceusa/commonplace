@@ -18,7 +18,7 @@ class Feed < ActiveRecord::Base
 
   belongs_to :community
   has_many :feed_owners
-  has_many :owners, :through => :feed_owners, :class_name => "User"
+  has_many :owners, :through => :feed_owners, :class_name => "User", :source => :user
   belongs_to :user
 
   has_many :events, :dependent => :destroy, :as => :owner, :include => :replies
