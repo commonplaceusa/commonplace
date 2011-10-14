@@ -392,7 +392,7 @@ WHERE
 
   def checked_inbox!
     self.last_checked_inbox = DateTime.now
-    self.save! or raise "sjumoe"
+    self.save :validate => false
   end
 
   private
