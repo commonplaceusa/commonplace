@@ -1,6 +1,19 @@
 class API
   class Announcements < Base
 
+    helpers do
+
+      def auth(announcement)
+        halt [401, "wrong community"] unless in_comm(announcement.community.id)
+        if (announcement.owner_type == "Feed")
+          announcement.owner.get_feed_owner(current_account) or current_account.admin
+        else
+          announcement.owner == current_account or announcement.user == current_account or current_account.admin
+        end
+      end
+
+    end
+
     put "/:id" do |id|
       announcement = Announcement.find(id)
       unless announcement.present?
@@ -10,10 +23,10 @@ class API
       announcement.subject = request_body['title']
       announcement.body = request_body['body']
 
-      if (announcement.user == current_account or current_account.admin) and announcement.save
+      if auth(announcement) and announcement.save
         serialize(announcement)
       else
-        unless (announcement.owner == current_account or current_account.admin)
+        unless auth(announcement)
           [401, 'unauthorized']
         else
           [500, 'could not save']
@@ -27,7 +40,7 @@ class API
         [404, "errors"]
       end
 
-      if (announcement.owner == current_account or current_account.admin)
+      if (auth(announcement))
         announcement.destroy
       else
         [404, "errors"]
@@ -35,11 +48,15 @@ class API
     end
 
     get "/:id" do |id|
-      serialize Announcement.find(id)
+      announcement = Announcement.find(id)
+      halt [401, "wrong community"] unless in_comm(announcement.community.id)
+      serialize announcement
     end
 
     post "/:id/replies" do |id|
-      reply = Reply.new(:repliable => Announcement.find(id),
+      announcement = Announcement.find(id)
+      halt [401, "wrong community"] unless in_comm(announcement.community.id)
+      reply = Reply.new(:repliable => announcement,
                         :user => current_account,
                         :body => request_body['body'])
 

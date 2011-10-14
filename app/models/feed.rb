@@ -17,6 +17,8 @@ class Feed < ActiveRecord::Base
   end
 
   belongs_to :community
+  has_many :feed_owners
+  has_many :owners, :through => :feed_owners, :class_name => "User"
   belongs_to :user
 
   has_many :events, :dependent => :destroy, :as => :owner, :include => :replies
@@ -107,6 +109,21 @@ class Feed < ActiveRecord::Base
 
   def messages
     Message.where("messagable_type = 'Feed' AND messagable_id = ?", self.id)
+  end
+
+  searchable do
+    text :name
+    text :about
+    integer :community_id
+  end
+
+  def get_feed_owner(user)
+    owner = self.feed_owners.select { |o| o.user == user }
+    if (owner.empty?)
+      false
+    else
+      owner
+    end
   end
 
   private

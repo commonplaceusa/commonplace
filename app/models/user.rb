@@ -107,7 +107,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :memberships
   has_many :groups, :through => :memberships, :uniq => true
 
-  has_many :managable_feeds, :class_name => "Feed"
+  has_many :feed_owners
+  has_many :managable_feeds, :through => :feed_owners, :class_name => "Feed", :source => :feed
   has_many :direct_events, :class_name => "Event", :as => :owner, :include => :replies, :dependent => :destroy
 
   has_many :referrals, :foreign_key => "referee_id"
@@ -317,10 +318,13 @@ WHERE
   end
 
   searchable do
-    string :first_name
-    string :last_name
-    string :about
-    string :address
+    text :first_name
+    text :last_name
+    text :about
+    text :skills
+    text :goods
+    text :interests
+    integer :community_id
   end
 
   def skill_list
@@ -374,6 +378,21 @@ WHERE
 
   def kickoff
     @kickoff ||= KickOff.new
+  end
+
+  def last_checked_inbox
+    read_attribute(:last_checked_inbox) || Time.at(0).to_datetime
+  end
+
+  def unread
+    (self.inbox + self.feed_messages).select { |m|
+      m.updated_at > self.last_checked_inbox
+    }.length
+  end
+
+  def checked_inbox!
+    self.last_checked_inbox = DateTime.now
+    self.save :validate => false
   end
 
   private

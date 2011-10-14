@@ -8,5 +8,10 @@ var Community = Model.extend({
     this.users = new Users([], { uri: this.link("users") });
     this.feeds = new Feeds([], { uri: this.link("feeds") });
     this.groups = new Groups([], { uri: this.link("groups") });
+    this.search = {
+      users: new Users([], { uri: this.link("users_search") }),
+      feeds: new Feeds([], { uri: this.link("feeds_search") }),
+      groups: new Groups([], { uri: this.link("groups_search") })
+    }
   }
 });

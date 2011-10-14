@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011154345) do
+ActiveRecord::Schema.define(:version => 20111011221234) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -149,6 +149,13 @@ ActiveRecord::Schema.define(:version => 20111011154345) do
     t.string   "host_group_name"
     t.integer  "community_id"
     t.datetime "deleted_at"
+  end
+
+  create_table "feed_owners", :force => true do |t|
+    t.integer  "feed_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "feeds", :force => true do |t|
@@ -388,6 +395,7 @@ ActiveRecord::Schema.define(:version => 20111011154345) do
     t.string   "authentication_token"
     t.text     "skills"
     t.boolean  "attempted_geolocating"
+    t.datetime "last_checked_inbox"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

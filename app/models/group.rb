@@ -58,5 +58,11 @@ class Group < ActiveRecord::Base
       self.slug = string
     end
   end
+
+  searchable do
+    text :name
+    text :about
+    integer :community_id
+  end
   
 end

@@ -82,5 +82,13 @@ class Event < ActiveRecord::Base
   def self.find_by_long_id(long_id)
     Event.find(IDEncoder.from_long_id(long_id))
   end
+
+  searchable do
+    text :name
+    text :description
+    text :venue
+    text :address
+    integer :community_id
+  end
   
 end

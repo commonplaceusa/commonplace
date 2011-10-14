@@ -1,5 +1,6 @@
 module Serializer
   def self.serialize(o)
+    o = o.results if o.respond_to?(:results)
     o = o.to_a if o.respond_to?(:to_a)
     as_json = 
       case o
@@ -211,10 +212,25 @@ module Serializer
           "messages" => "/feeds/#{o.id}/messages",
           "edit" => "/feeds/#{o.id}/edit",
           "subscribers" => "/feeds/#{o.id}/subscribers",
-          "self" => "/feeds/#{o.id}"
+          "self" => "/feeds/#{o.id}",
+          "owners" => "/feeds/#{o.id}/owners"
         },
         "messagable_author_url" => "/feeds/#{o.id}/#{o.user.id}",
       "messagable_author_name" => o.name
+      }
+
+      when FeedOwner
+        {
+        "id" => o.id,
+        "user_id" => o.user_id,
+        "feed_id" => o.feed_id,
+        "user_name" => o.user.name,
+        "user_email" => o.user.email,
+        "links" => {
+          "self" => "/feeds/#{o.feed_id}/owners/#{o.id}",
+          "user" => "/users/#{o.user_id}",
+          "feed" => "/feeds/#{o.feed_id}"
+        }
       }
 
       when Group
@@ -295,7 +311,10 @@ module Serializer
           "announcements" => "/communities/#{o.id}/announcements",
           "group_posts" => "/communities/#{o.id}/group_posts",
           "users" => "/communities/#{o.id}/users",
-          "self" => "/communities/#{o.id}"
+          "self" => "/communities/#{o.id}",
+          "feeds_search" => "/search/community/#{o.id}/feeds?query=",
+          "users_search" => "/search/community/#{o.id}/users?query=",
+          "groups_search" => "/search/community/#{o.id}/groups?query="
         }
       }
       end
