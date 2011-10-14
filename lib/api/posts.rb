@@ -1,5 +1,15 @@
 class API
   class Posts < Base
+
+    helpers do
+    
+      def auth(post)
+        halt [401, "wrong community"] unless in_comm(post.community.id)
+        post.user == current_account or current_account.admin
+      end
+
+    end
+
     put "/:id" do |id|
       post = Post.find(id)
       unless post.present?
@@ -8,16 +18,10 @@ class API
       post.subject = request_body['title']
       post.body    = request_body['body']
 
-      if (post.user == current_account or current_account.admin) and post.save
+      if auth(post) and post.save
         serialize(post)
-      elsif post.user != current_account and !current_account.admin
-        if current_account.admin
-          [501, "THIS SHOULD NEVER HAPPEN"]
-        elsif post.user == current_account
-          [502, "Should be able to edit our own posts..."]
-        else
-          [401, "errors: #{current_account} does not have access."]
-        end
+      elsif !auth(post)
+        [401, "errors: #{current_account} does not have access."]
       else
         [400, "errors: #{post.errors.full_messages.to_s}"]
       end
@@ -29,7 +33,7 @@ class API
         [404, "errors"]
       end
 
-      if (post.user == current_account or current_account.admin)
+      if auth(post)
         post.destroy
       else
         [404, "errors"]
@@ -37,11 +41,15 @@ class API
     end
 
     get "/:id" do |id|
-      serialize Post.find(id)
+      post = Post.find(id)
+      halt [401, "wrong community"] unless in_comm(post.community.id)
+      serialize post
     end
 
     post "/:id/replies" do |id|
-      reply = Reply.new(:repliable => Post.find(id),
+      post = Post.find(id)
+      halt [401, "wrong community"] unless in_comm(post.community.id)
+      reply = Reply.new(:repliable => post,
                         :user => current_account,
                         :body => request_body['body'])
 

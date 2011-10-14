@@ -18,16 +18,12 @@ class API
         current_account
       end
 
-      def authenticate!
-        current_account || halt(401)
-      end
-
       def request_body
         @_request_body ||= JSON.parse(request.body.read.to_s)
       end
 
       def authorize!
-        
+        halt [401, "not logged in"] unless current_user
       end
 
       def serialize(thing)
@@ -64,6 +60,10 @@ class API
       def jsonp(callback, data)
         "#{callback}(#{data})"
       end
+
+      def in_comm(community_id)
+        current_user.community.id == community_id unless current_user.admin
+      end
       
       NO_CALLBACK = ["no_callback"].to_json
 
@@ -72,7 +72,6 @@ class API
     before do 
       cache_control :public, :must_revalidate, :max_age => 0
       content_type :json
-      authenticate!
       authorize!
     end
 
