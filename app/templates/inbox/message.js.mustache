@@ -5,8 +5,8 @@
     {{#isSent}}<div class="date"><span class="messagable person">You</span> sent to <a class="messagable person">{{recipient}}</a> {{date}}:</div>{{/isSent}}
   {{/isFeed}}
   {{#isFeed}}
-    {{^isSent}}<div class="date"><a class="messagable person">{{author}}</a>  sent to <a class="messagable feed">{{recipient}}</a> {{date}}:</div>{{/isSent}}
-    {{#isSent}}<div class="date"><span class="messagable person">You</span> sent to <a class="messagable feed">{{recipient}}</a> {{date}}:</div>{{/isSent}}
+    {{^isSent}}<div class="date"><a class="messagable person">{{author}}</a>  sent to <a class="messagable feed" href="{{feedUrl}}">{{recipient}}</a> {{date}}:</div>{{/isSent}}
+    {{#isSent}}<div class="date"><span class="messagable person">You</span> sent to <a class="messagable feed" href="{{feedUrl}}">{{recipient}}</a> {{date}}:</div>{{/isSent}}
   {{/isFeed}}
   <h3>{{title}}</h3>
   <div class="body">{{#markdown}}{{body}}{{/markdown}}</div>

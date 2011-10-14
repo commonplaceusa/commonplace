@@ -120,9 +120,6 @@
       // Hide the <select> list and place our new one in front of it
       $select.before($dk);
 
-      // Update the reference to $dk
-      $dk = $('#dk_container_' + id).show(settings.startSpeed);
-
       // Save the current theme
       theme = settings.theme ? settings.theme : 'default';
       $dk.addClass('dk_theme_' + theme);

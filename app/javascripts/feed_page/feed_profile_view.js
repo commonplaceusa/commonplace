@@ -2,14 +2,27 @@
 var FeedProfileView = CommonPlace.View.extend({
   template: "feed_page/feed-profile",
   id: "feed-profile",
-  
-  events: {
-    "click button.send-message": "openMessageModal"
+  initialize: function(options) { 
+    this.account = options.account; 
   },
   
-  openMessageModal: function() {
+  events: {
+    "click .send-message": "openMessageModal",
+    "click .feed-owners": "openPermissionsModal"
+  },
+  
+  openMessageModal: function(e) {
+    e.preventDefault();
     var formview = new MessageFormView({
       model: new Message({messagable: this.model})
+    });
+    formview.render();
+  },
+
+  openPermissionsModal: function(e) {
+    e.preventDefault();
+    var formview = new FeedOwnersFormView({
+      model: this.model
     });
     formview.render();
   },
@@ -27,6 +40,10 @@ var FeedProfileView = CommonPlace.View.extend({
     }
   },
   
-  websiteURL: function() { return this.model.get("website"); }
+  websiteURL: function() { return this.model.get("website"); },
+
+  isOwner: function() {
+    return this.account.isFeedOwner(this.model);
+  }
   
 });

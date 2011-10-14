@@ -11,7 +11,7 @@ var FeedView = CommonPlace.View.extend({
 
 
     adminBar = new FeedAdminBar({ model: feed, collection: this.account.feeds, account: this.account });
-    profile = new FeedProfileView({ model: feed });
+    profile = new FeedProfileView({ model: feed, account: this.account });
     about = new FeedAboutView({ model: feed });
     header = new FeedHeaderView({ model: feed, account: self.account });
     resource = new FeedSubResourcesView({ feed: feed, account: self.account });

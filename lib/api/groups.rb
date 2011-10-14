@@ -1,12 +1,17 @@
 class API
   class Groups < Base
 
-    get "/:id" do |id|
-      serialize(id =~ /[^\d]/ ? Group.find_by_slug(id) : Group.find(id))
+    before "/:group_id/*" do |group_id, stuff|
+      group = Group.find(group_id)
+      halt [401, "wrong community"] unless in_comm(group.community.id)
+    end
+
+    get "/:group_id" do |group_id|
+      serialize(Group.find(group_id))
     end
     
-    post "/:id/posts" do |id|
-      group_post = GroupPost.new(:group => Group.find(id),
+    post "/:group_id/posts" do |group_id|
+      group_post = GroupPost.new(:group => Group.find(group_id),
                                  :subject => request_body['title'],
                                  :body => request_body['body'],
                                  :user => current_account)
@@ -20,23 +25,23 @@ class API
       end
     end
 
-    get "/:id/posts" do |id|
-      scope = Group.find(id).group_posts.reorder("updated_at DESC")
+    get "/:group_id/posts" do |group_id|
+      scope = Group.find(group_id).group_posts.reorder("updated_at DESC")
       serialize( paginate(scope) )
     end
 
-    get "/:id/members" do |id|
-      scope = Group.find(id).subscribers
+    get "/:group_id/members" do |group_id|
+      scope = Group.find(group_id).subscribers
       serialize( paginate(scope) )
     end
 
-    get "/:id/events" do |id|
-      scope = Group.find(id).events.upcoming.reorder("date ASC")
+    get "/:group_id/events" do |group_id|
+      scope = Group.find(group_id).events.upcoming.reorder("date ASC")
       serialize( paginate(scope) )
     end
 
-    get "/:id/announcements" do |id|
-      scope = Group.find(id).announcements.reorder("updated_at DESC")
+    get "/:group_id/announcements" do |group_id|
+      scope = Group.find(group_id).announcements.reorder("updated_at DESC")
       serialize( paginate(scope) )
     end
 

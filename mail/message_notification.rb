@@ -4,6 +4,10 @@ class MessageNotification < PostNotification
     @message, @user = Message.find(message_id), User.find(user_id)
   end
 
+  def limited?
+    false
+  end
+
   def subject
     "#{sender_name} just sent you a private message through CommonPlace"
   end

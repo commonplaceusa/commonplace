@@ -8,4 +8,6 @@ var Group = Model.extend({
   }
 });
 
-var Groups = Collection.extend({ model: Group });
+var Groups = Collection.extend({
+  model: Group
+});
