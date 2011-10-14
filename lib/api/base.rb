@@ -62,7 +62,7 @@ class API
       end
 
       def in_comm(community_id)
-        current_user.community.id == community_id unless current_user.admin
+        current_user.community.id == community_id || current_user.admin
       end
       
       NO_CALLBACK = ["no_callback"].to_json
