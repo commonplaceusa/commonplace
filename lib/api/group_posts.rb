@@ -4,7 +4,7 @@ class API
     helpers do
     
       def auth(post)
-        halt [401, "wrong community"] unless in_comm(post.community.id)
+        halt [401, "wrong community"] unless in_comm(post.group.community.id)
         post.user == current_account or current_account.admin
       end
 
@@ -45,13 +45,13 @@ class API
 
     get "/:id" do |id|
       post = GroupPost.find(id)
-      halt [401, "wrong community"] unless in_comm(post.community.id)
+      halt [401, "wrong community"] unless in_comm(post.group.community.id)
       serialize post
     end
 
     post "/:id/replies" do |id|
       post = GroupPost.find(id)
-      halt [401, "wrong community"] unless in_comm(post.community.id)
+      halt [401, "wrong community"] unless in_comm(post.group.community.id)
       reply = Reply.new(:repliable => post,
                         :user => current_account,
                         :body => request_body['body'])
