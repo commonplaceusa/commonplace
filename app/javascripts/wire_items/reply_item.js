@@ -5,6 +5,10 @@ var ReplyWireItem = WireItem.extend({
     this.model = options.model;
   },
 
+  afterRender: function() {
+    this.$(".reply-body").truncate({max_length: 450});
+  },
+
   events: {
     "click .reply-text > .author": "messageUser",
     "mouseenter": "showProfile"
