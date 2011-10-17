@@ -20,6 +20,7 @@ class FeedsController < CommunitiesController
     if can?(:update, @feed) 
       if user = User.find_by_email(params[:email])
         @feed.user = user
+        @feed.owners << user
         @feed.save
         redirect_to root_url
       else
