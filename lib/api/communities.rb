@@ -106,8 +106,6 @@ class API
       serialize(paginate(Community.find(community_id).users.includes(:feeds, :groups)))
     end
 
-
-
     post "/:community_id/add_data_point" do |community_id|
       num = params[:number]
       zip_code = User.find(current_account.id).community.zip_code
