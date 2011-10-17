@@ -6,8 +6,6 @@ var PostWireItem = WireItem.extend({
 
   initialize: function(options) {
     this.account = options.account;
-    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
-    this.allwords = (this.shortbody === null);
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
@@ -21,6 +19,7 @@ var PostWireItem = WireItem.extend({
     this.model.bind("change", this.render, this);
     var self = this;
     repliesView.collection.bind("add", function() { self.render(); });
+    this.$(".post-body").truncate({max_length: 450});
   },
 
   replyCount: function() {
@@ -45,16 +44,11 @@ var PostWireItem = WireItem.extend({
   },
 
   body: function() {
-    if (!this.allwords) {
-      return this.shortbody[0];
-    } else {
       return this.model.get("body");
-    }
   },
 
   events: {
     "click div.group-post > .author": "messageUser",
-    "click .moreBody": "loadMore",
     "click .editlink": "editPost",
     "mouseenter": "showProfile"
   },

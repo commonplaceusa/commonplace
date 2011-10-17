@@ -9,6 +9,7 @@
 //= require placeholder
 //= require autoresize
 //= require dropkick
+//= require truncator
 //= require views
 //= require models
 //= require_tree ../templates/shared
