@@ -7,7 +7,6 @@ function onABCommComplete() {
 
 
 function add_to_friends_of_commonplace(email) {
-  console.log("Starting request");
   $.post('/account/make_focp', 'email=' + email);
 }
 

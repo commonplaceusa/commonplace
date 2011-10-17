@@ -36,7 +36,6 @@ var PostForm = CommonPlace.View.extend({
   },
 
   incomplete: function(fields) {
-    console.log(fields);
     var incompleteFields = fields.shift();
     var self = this;
     _.each(fields, function(f) {
