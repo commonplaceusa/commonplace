@@ -1,3 +1,4 @@
+-#= javascript_include_tag 'chosen'
 :css
   #referral_sources {
     text-align: center;
@@ -31,7 +32,6 @@
     color: blue;
   }
 %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
--#%script{:src => "http://acme.com/javascript/Clusterer2.jsm", :type => "text/javascript"}
 :javascript
   var map;
   var clusterer;
@@ -43,6 +43,7 @@
   var postKnockedMarkers = Array();
   var noMarkers = Array();
   var onMarkers = Array();
+  var streetAddresses = Array();
   function createMarker(point, html, image) {
     var marker = new google.maps.Marker({
       position: point,
@@ -54,29 +55,9 @@
       infowindow.open(map, marker, marker.title);
     });
 
-    //var marker = new GMarker(point, colorOptions);
-    //GEvent.addListener(marker, "click", function() {
-    //  marker.openInfoWindowHtml(html);
-    //});
     return marker;
   }
-  /*function createMarkerLight(point, html, colorOptions) {
-    var marker = new MarkerLight(point, colorOptions);
-    return marker;
-  }*/
   function initialize() {
-      /*map = new GMap2(document.getElementById("map_canvas"));
-      map.enableContinuousZoom();
-      map.enableGoogleBar();
-      map.enableScrollWheelZoom();
-      map.enablePinchToZoom();
-      control = new GLargeMapControl()
-      map.addControl(control, control.getDefaultPosition())
-      clusterer = new Clusterer(map);
-      clusterer.SetMaxVisibleMarkers(1500);
-      geocoder = new GClientGeocoder();
-      geocoder.getLatLng('#{@center_zip_code}', function(point){ map.setCenter(point, 16); });
-      console.log("Centered");*/
       geocoder = new google.maps.Geocoder();
       var myOptions = {
         zoom: 16,
@@ -98,11 +79,12 @@
 
       // Set up markers
       greenMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png";
-      greyMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/pink-dot.png";
+      greyMarker = "/assets/GreyDot.jpg";
       redMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png";
       yellowMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/yellow-dot.png";
       orangeMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png";
       blueMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
+      blackMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/black-dot.png";
       drawPoints();
   }
 
@@ -166,6 +148,7 @@
       success: function(data) {
         $.each(data, function(key, val) {
           var colorOption;
+          streetAddresses.push(val['address']);
           if (val['status'] == 'house') {
             var point = new google.maps.LatLng(val['lat'], val['lng']);
             allHouseMarkers.push(createMarker(point, val['address'], greyMarker));
@@ -232,8 +215,36 @@
             }
           }
         });
-        //console.log("Showing all markers");
-        //showMarkerSet(allHouseMarkers.concat(droppedMarkers).concat(knockedMarkers).concat(postKnockedMarkers).concat(noMarkers));
+        // Show default markers
+        // Load street addresses
+        $.each(streetAddresses, function(key, val) {
+          tmp = val.split(" ");
+          // Remove punctuation
+          $.each(tmp, function(key, val) {
+            tmp[key] = val.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+          });
+          if (tmp.length == 4)
+            streetAddresses[key] = tmp[1] + " " + tmp[2];
+          else if (tmp.length >= 5)
+            streetAddresses[key] = tmp[1] + " " + tmp[2] + " " + tmp[3];
+          else
+          {
+            for (i = 1; i < tmp.length - 1; i++)
+              streetAddresses[key] += tmp[i] + " ";
+          }
+        });
+        streetAddresses = _.uniq(streetAddresses);
+        $.each(streetAddresses, function(k, v) {
+          streetAddresses[k] = '<option value="' + v + '"> ' + v + ' </option>';
+        });
+        $('#address_selector').html(streetAddresses.join(''));
+        $('#address_selector').chosen();
+
+        showMarkerSet(droppedMarkers);
+        showMarkerSet(knockedMarkers);
+        showMarkerSet(postKnockedMarkers);
+        showMarkerSet(onMarkers);
+        showMarkerSet(noMarkers);
       }
     });
   }
@@ -280,6 +291,19 @@
     entry_count += 1;
     $("#addresses").append('<br /><input id="number" name="number' + entry_count + '" placeholder="1-10O" size="10" type="text" value="" /><input id="address" name="address' + entry_count + '" placeholder="Maple Ave" size="50" type="text" value="" />');
   }
+
+  function query()
+  {
+    var resultSet = Array();
+    q = $("#search_query").val();
+    geocoder.geocode({'address': q}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var marker = createMarker(results[0].geometry.location, q, blueMarker);
+        marker.setMap(map);
+      }
+    });
+  }
+
 #organizer_app
   #links
     %a{:onclick => "toggle_map();", :style=>"text-decoration: underline; cursor: pointer;"} Toggle Map
@@ -295,10 +319,14 @@
   #map{:style => "display: none;"}
     #map_canvas{:style => "width: 1024px; height: 350px;"}
     #map_form
+      = text_field_tag :search_query, "", :placeholder => "Search"
+      = submit_tag "Search", :id => "search_query_commit", :onclick => "query();"
+      %br
       = form_tag "/organizer/add", :method => :post do
         #addresses
           = text_field_tag :number, "", :size => 10, :placeholder => "1-10O"
-          = text_field_tag :address, "", :placeholder => "Maple Ave", :size => 50
+          -#= text_field_tag :address, "", :placeholder => "Maple Ave", :size => 50
+          = select_tag :address_selector, "", :class => "address_selector", "data-placeholder" => "Street", :style => "width: 200px;"
           = @center_zip_code
           = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
           %a{:onclick => "add_entry();"} Add More
