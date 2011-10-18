@@ -19,6 +19,7 @@ gem 'permanent_records' # adds soft-delete if a model has a deleted_at column
 gem 'paperclip' # we use this to store avatars
 gem 'rmagick' # we use this to crop avatars
 gem 'geocoder' # we use geocoder to find user latlngs from addresses
+gem 'glebm-geokit', :require => 'geokit' # use this to find latlngs from address again. try to remove in favor of geocoder
 
 # Deployment
 gem 'thin' # lighter than mongrel, faster than webrick
@@ -40,11 +41,6 @@ gem 'redis-namespace', :require => false # resque wants it, we don't need to req
 gem 'mcbean' # We use this to pull data from rss feeds for import
 gem 'redcarpet' # We use this to format user messages in emails
 
-# ActiveRecord
-gem 'paperclip' # we use this to store avatars
-gem 'rmagick' # we use this to crop avatars
-gem 'geocoder' # we use geocoder to find user latlngs from addresses
-gem 'glebm-geokit', :require => 'geokit' # use this to find latlngs from address again. try to remove in favor of geocoder
 
 # Jobs
 gem 'resque', "~> 1.19.0" # use this to queue worker processes
