@@ -1,0 +1,5 @@
+- if Rails.env.production?
+  = javascript_include_tag "https://exceptional-js.heroku.com/exceptional.js"
+  :javascript
+    Exceptional.setHost('exceptional-api.heroku.com');
+    Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
