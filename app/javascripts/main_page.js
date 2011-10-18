@@ -5,7 +5,6 @@
 //= require underscore
 //= require placeholder
 //= require time_ago_in_words
-//= require on_finished_typing
 //= require scrollTo
 //= require mustache
 //= require json2

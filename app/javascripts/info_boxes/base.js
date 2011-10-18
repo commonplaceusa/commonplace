@@ -36,8 +36,11 @@ var InfoBox = CommonPlace.View.extend({
   events: {
     "click .filter-tab": "switchTab",
     "click .remove-search": "removeSearch",
-    "submit form": "filterBySearch"
+    "submit form": "searchFormSubmit",
+    "keyup form input.search": "filterBySearch"
   },
+
+  searchFormSubmit: function(e) { e.preventDefault(); },
 
   afterRender: function() {
     var self = this;
@@ -53,10 +56,6 @@ var InfoBox = CommonPlace.View.extend({
       if (this.offsetHeight + $(this).scrollTop() >= this.scrollHeight) {
         self.nextPage();
       }
-    });
-
-    this.$("form input.search").onFinishedTyping(500, function() {
-      self.$("form").submit();
     });
   },
 
@@ -263,7 +262,7 @@ var InfoBox = CommonPlace.View.extend({
     this.showList(this.getSchema($(e.target)));
   },
 
-  filterBySearch: function(e) {
+  filterBySearch: _.debounce(function(e) {
     e && e.preventDefault();
     query = this.$("form > input").val();
     if (query) {
@@ -272,7 +271,7 @@ var InfoBox = CommonPlace.View.extend({
       this.currentQuery = query;
       this.showList(this.getSchema());
     } else { this.removeSearch(); }
-  },
+  }, 500),
 
   removeSearch: function(e) {
     e && e.preventDefault();
