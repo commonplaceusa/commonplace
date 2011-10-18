@@ -1,4 +1,6 @@
 var ReplyWireItem = WireItem.extend({
+  tagName: 'li',
+  className: 'reply-item',
   template: "wire_items/reply-item",
   initialize: function(options) {
     this.account = options.account;
