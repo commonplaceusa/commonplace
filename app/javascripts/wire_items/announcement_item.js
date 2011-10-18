@@ -23,11 +23,6 @@ var AnnouncementWireItem = WireItem.extend({
     return timeAgoInWords(this.model.get('published_at'));
   },
 
-  replyCount: function() {
-    var num = this.model.get('replies').length;
-    return (num == 1 ? "1 reply" : num + " replies");
-  },
-
   avatarUrl: function() { return this.model.get('avatar_url'); },
   
   url: function() { return this.model.get('url'); },

@@ -21,11 +21,6 @@ var GroupPostWireItem = WireItem.extend({
     this.$(".post-body").truncate({max_length: 450});
   },
 
-  replyCount: function() {
-    var num = this.model.replies().length;
-    return (num == 1 ? "1 reply" : num + " replies");
-  },
-
   publishedAt: function() {
     return timeAgoInWords(this.model.get("published_at"));
   },

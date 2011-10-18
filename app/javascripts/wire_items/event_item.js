@@ -31,8 +31,6 @@ var EventWireItem = WireItem.extend({
 
   publishedAt: function() { return timeAgoInWords(this.model.get('published_at')); },
 
-  replyCount: function() { return this.model.get('replies').length; },
-
   title: function() { return this.model.get('title'); },
 
   author: function() { return this.model.get('author'); },
