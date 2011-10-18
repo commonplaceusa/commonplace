@@ -82,7 +82,7 @@ var InfoBox = CommonPlace.View.extend({
     if (model.get("id") != this.options.account.id) {
       return false;
     } else {
-      return model.get("schema") == "user" || model.get("schema") == "account";
+      return model.get("schema") == "users" || model.get("schema") == "account";
     }
   },
 
@@ -216,7 +216,6 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   changeSchema: function(schema) {
-    schema = schema.replace(/s$/, ""); // de-pluralizing hack
     console.log(schema);
     this.$(".filter-tab").removeClass("current");
     this.$("." + schema + "-filter").addClass("current");
@@ -244,15 +243,15 @@ var InfoBox = CommonPlace.View.extend({
                    collection: this.options.community.users,
                    search: this.options.community.search.users
                  },
-      "user":  { profileBox: UserProfileBox, 
+      "users":  { profileBox: UserProfileBox, 
                  collection: this.options.community.users,
                  search: this.options.community.search.users
                },
-      "group": { profileBox: GroupProfileBox, 
+      "groups": { profileBox: GroupProfileBox, 
                  collection: this.options.community.groups,
                  search: this.options.community.search.groups
                },
-      "feed": { profileBox: FeedProfileBox, 
+      "feeds": { profileBox: FeedProfileBox, 
                 collection: this.options.community.feeds,
                 search: this.options.community.search.feeds
               } 

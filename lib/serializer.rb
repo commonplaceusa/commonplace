@@ -34,7 +34,7 @@ module Serializer
       }
       when User
         { "id" => o.id,
-        "schema" => "user",
+        "schema" => "users",
         "avatar_url" => o.avatar_url(:normal),
         "url" => "/users/#{o.id}",
         "name" => o.name,
@@ -53,7 +53,7 @@ module Serializer
       when Post
         { 
         "id" => o.id,
-        "schema" => "post",
+        "schema" => "posts",
         "avatar_url" => o.user.avatar_url(:thumb),
         "published_at" => o.created_at.utc,
         "url" => "/posts/#{o.id}",
@@ -74,7 +74,7 @@ module Serializer
       when Event
         { 
         "id" => o.id,
-        "schema" => "event",
+        "schema" => "events",
         "published_at" => o.created_at.utc,
         "url" => "/events/#{o.id}",
         "occurs_on" => o.date.to_time.utc,
@@ -105,7 +105,7 @@ module Serializer
       when Announcement
         { 
         "id" => o.id,
-        "schema" => "announcement",
+        "schema" => "announcements",
         "url" => "/announcements/#{o.id}",
         "published_at" => o.created_at.utc,
         "avatar_url" => o.owner.avatar_url(:thumb),
@@ -128,7 +128,7 @@ module Serializer
       when GroupPost
         { 
         "id" => o.id,
-        "schema" => "group_post",
+        "schema" => "group_posts",
         "url" => "/group_posts/#{o.id}",
         "published_at" => o.created_at.utc,
         "author" => o.user.name,
@@ -173,7 +173,7 @@ module Serializer
 
       when Reply
         { 
-        "schema" => "reply",
+        "schema" => "replies",
         "author" => o.user.name,
         "avatar_url" => o.user.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
@@ -188,7 +188,7 @@ module Serializer
       when Feed
         { 
         "id" => o.id,
-        "schema" => "feed",
+        "schema" => "feeds",
         "user_id" => o.user.id,
         "url" => "/pages/#{o.slug}",
         "slug" => o.slug ,
@@ -236,7 +236,7 @@ module Serializer
       when Group
         { 
         "id" => o.id,
-        "schema" => "group",
+        "schema" => "groups",
         "url" => "/groups/#{o.id}",
         "name" => o.name,
         "about" => o.about,
