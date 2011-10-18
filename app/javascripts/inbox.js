@@ -5,6 +5,7 @@
 //= require time_ago_in_words
 //= require underscore
 //= require mustache
+//= require truncator
 //= require json2
 //= require backbone
 //= require autoresize
