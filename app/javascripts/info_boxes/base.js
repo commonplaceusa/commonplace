@@ -2,7 +2,7 @@ var InfoListItem = CommonPlace.View.extend({
   template: "main_page/info-list",
   tagName: "li",
   events: {
-    "click a": "switchProfile"
+    "click": "switchProfile"
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -132,7 +132,7 @@ var InfoBox = CommonPlace.View.extend({
           self.$(".remove-search").removeClass("not-empty");
           self.$(".remove-search").addClass("empty");
           self.page = 0;
-
+          self.changeSchema(schema);
           if (self.currentQuery) {
             self.$list().empty();
           } else {
@@ -216,6 +216,8 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   changeSchema: function(schema) {
+    schema = schema.replace(/s$/, ""); // de-pluralizing hack
+    console.log(schema);
     this.$(".filter-tab").removeClass("current");
     this.$("." + schema + "-filter").addClass("current");
     this.$("h2").text(this.t(schema + ".h2"));
