@@ -5,6 +5,11 @@ Commonplace::Application.routes.draw do
   match "/corunna" => redirect { "/owossocorunna" }
   match "/owosso" => redirect { "/owossocorunna" }
 
+  constraints :subdomain => "m" do
+    match "/:community" => "registrations#mobile_new"
+    match "/registration/profile" => "registrations#mobile_profile"
+  end
+
   resource :registration, :only => [:new, :create] do
     member do
       get :profile, :avatar, :feeds, :groups

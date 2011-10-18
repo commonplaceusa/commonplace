@@ -2,10 +2,14 @@ class RegistrationsController < ApplicationController
   helper_method :registration
   layout 'registration'
 
-  before_filter :authenticate_user!, :except => [:new, :create, :facebook_new]
+  before_filter :authenticate_user!, :except => [:new, :create, :facebook_new, :mobile_new]
 
   def new
     session["devise.community"] = current_community.id
+  end
+
+  def mobile_new
+    render :layout => 'mobile_registration'
   end
   
   def facebook_new
@@ -25,6 +29,10 @@ class RegistrationsController < ApplicationController
   end
 
   def profile ;  end
+
+  def mobile_profile 
+    render :layout => 'mobile_registration'
+  end
 
   def add_profile
     if registration.update_attributes params[:user]
