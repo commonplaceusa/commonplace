@@ -1,8 +1,14 @@
 var ReplyWireItem = WireItem.extend({
+  tagName: 'li',
+  className: 'reply-item',
   template: "wire_items/reply-item",
   initialize: function(options) {
     this.account = options.account;
     this.model = options.model;
+  },
+
+  afterRender: function() {
+    this.$(".reply-body").truncate({max_length: 450});
   },
 
   events: {

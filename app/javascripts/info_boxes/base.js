@@ -36,17 +36,23 @@ var InfoBox = CommonPlace.View.extend({
   events: {
     "click .filter-tab": "switchTab",
     "click .remove-search": "removeSearch",
-    "submit form": "filterBySearch",
+    "submit form": "filterBySearch"
   },
 
   afterRender: function() {
     var self = this;
     this.currentCollection = {};
     this.currentQuery = "";
+    this.page = 0;
     this.showProfile(this.options.account);
     $(window).scroll(function() {
       $(self.el).css({ width: $(self.el).width() });
       self.setPosition();
+    });
+    this.$("#info-list-area").scroll(function() {
+      if (this.offsetHeight + $(this).scrollTop() >= this.scrollHeight) {
+        self.nextPage();
+      }
     });
 
     this.$("form input.search").onFinishedTyping(500, function() {
@@ -118,19 +124,28 @@ var InfoBox = CommonPlace.View.extend({
       }
     }
 
+    if (collection != this.currentCollection) { this.page = 0; }
+
     collection.fetch({
       data: { query: this.currentQuery },
       success: function() {
-        if (collection.length == 0) {
+        if (collection.length == 0) { // when a search has failed
           self.$(".remove-search").removeClass("not-empty");
           self.$(".remove-search").addClass("empty");
-          collection = self.options.community;
-          collection = (schema == "account") ? collection.users : collection[schema];
-          collection.fetch({
-            success: function() {
-              self.showFetchedList(collection, model);
-            }
-          });
+          self.page = 0;
+
+          if (self.currentQuery) {
+            self.$list().empty();
+          } else {
+            collection = self.options.community;
+            collection = (schema == "account") ? collection.users : collection[schema];
+
+            collection.fetch({
+              success: function() {
+                self.showFetchedList(collection, model);
+              }
+            });
+          }
         } else {
           this.$(".remove-search").addClass("not-empty");
           this.$(".remove-search").removeClass("empty");
@@ -141,7 +156,7 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   showFetchedList: function(collection, model) {
-    if (collection != this.currentCollection) {
+    if (collection != this.currentCollection || this.$list().is(":empty")) {
       this.renderList(collection);
       this.currentCollection = collection;
     }
@@ -165,6 +180,22 @@ var InfoBox = CommonPlace.View.extend({
     });
   },
 
+  nextPage: function() {
+    var collection = this.currentCollection;
+    if (collection.length < 25) { return; }
+    this.page = this.page + 1;
+    var self = this;
+    collection.fetch({
+      data: {
+        query: this.currentQuery,
+        page: this.page
+      },
+      success: function() {
+        self.renderList(collection, "append");
+      }
+    });
+  },
+
   renderProfile: function(model) {
     var profile = this.profileBoxFor(model);
     profile.render();
@@ -172,9 +203,9 @@ var InfoBox = CommonPlace.View.extend({
     this.changeSchema(model.get("schema"));
   },
 
-  renderList: function(collection) {
+  renderList: function(collection, options) {
     var self = this;
-    this.$list().empty();
+    if (options != "append") { this.$list().empty(); }
     collection.each(function (model) {
       var item = new InfoListItem({
         model: model,

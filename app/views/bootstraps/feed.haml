@@ -7,6 +7,8 @@
 
     %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
     = stylesheet_link_tag "feed_page"
+    
+    = render 'exceptional'
 
   %body
     #sticky-wrapper
@@ -25,17 +27,12 @@
 
 
       = javascript_include_tag "feed_page"
-      = javascript_include_tag "https://exceptional-js.heroku.com/exceptional.js"
-      :javascript
 
 
       %script{ :type => "text/javascript" }
         CommonPlace = {};
 
         $(function() {
-
-        Exceptional.setHost('exceptional-api.heroku.com');
-        Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
 
         $.getJSON("/api/account", function(account_response) {
 

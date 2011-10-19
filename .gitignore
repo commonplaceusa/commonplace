@@ -28,6 +28,7 @@ log/sendmail.log
 config/exceptional.yml
 .sass-cache
 *.swp
+.idea*
 .bundle/*
 log/*.log
 .rvmrc
