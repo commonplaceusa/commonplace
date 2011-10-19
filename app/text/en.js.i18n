@@ -66,10 +66,10 @@
   },
 
   "main_page/info-box": {
-    "user.h2": "Learn about your neighbors",
+    "users.h2": "Learn about your neighbors",
     "account.h2": "Learn about your neighbors",
-    "group.h2": "Learn about your community",
-    "feed.h2": "Learn about your community"
+    "groups.h2": "Learn about your community",
+    "feeds.h2": "Learn about your community"
   },
 
   "main_page/tour/post": {
