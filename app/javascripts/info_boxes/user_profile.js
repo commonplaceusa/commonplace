@@ -61,3 +61,9 @@ var UserProfileBox = Profile.extend({
   hasMet: function() { return this.options.account.hasMetUser(this.model); }
   
 });
+
+var UserNoneBox = CommonPlace.View.extend({
+  template: "main_page/profiles/user-none",
+  className: "none",
+  query: function() { return window.infoBox.currentQuery; }
+});
