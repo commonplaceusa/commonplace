@@ -30,3 +30,16 @@ var GroupProfileBox = Profile.extend({
   url: function() { return this.model.get("url"); }
   
 });
+
+var GroupNoneBox = CommonPlace.View.extend({
+  template: "main_page/profiles/group-none",
+  className: "none",
+  
+  initialize: function(options) {
+    this.community = options.community;
+  },
+  
+  query: function() { return window.infoBox.currentQuery; },
+  
+  url: function() { return "test/faq"; }
+});
