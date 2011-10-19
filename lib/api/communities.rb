@@ -134,7 +134,8 @@ class API
       if params["query"].present?
         search(Feed, params, community_id)
       else
-        serialize(paginate(Community.find(community_id).feeds))
+        scope = Community.find(community_id).feeds.reorder("avatar_file_name DESC nulls last, about DESC nulls last")
+        serialize(paginate(scope))
       end
     end
 
@@ -154,7 +155,8 @@ class API
       if params["query"].present?
         search(User, params, community_id)
       else
-        serialize(paginate(Community.find(community_id).users.includes(:feeds, :groups)))
+        scope = Community.find(community_id).users.reorder("avatar_file_name DESC nulls last, about DESC nulls last")
+        serialize(paginate(scope))
       end
     end
 
