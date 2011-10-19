@@ -32,6 +32,8 @@ var InfoBox = CommonPlace.View.extend({
   template: "main_page/info-box",
   $profile: function() { return this.$("#profile"); },
   $list: function() { return this.$("#info-list"); },
+  $profile-none: function() { return this.$("#profile-area > .none"); },
+  $list-none: function() { return this.$("#info-list-area > .none"); },
 
   events: {
     "click .filter-tab": "switchTab",
@@ -124,7 +126,7 @@ var InfoBox = CommonPlace.View.extend({
       }
     }
 
-    if (collection != this.currentCollection) { this.page = 0; }
+    this.page = 0;
 
     collection.fetch({
       data: { query: this.currentQuery },
@@ -132,9 +134,7 @@ var InfoBox = CommonPlace.View.extend({
         if (collection.length == 0) { // when a search has failed
           self.$(".remove-search").removeClass("not-empty");
           self.$(".remove-search").addClass("empty");
-          self.$(".none").show();
-          self.$list().hide();
-          self.page = 0;
+          self.renderNone();
           self.changeSchema(schema);
           if (self.currentQuery) {
             self.$list().empty();
@@ -159,10 +159,8 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   showFetchedList: function(collection, model) {
-    if (collection != this.currentCollection || this.$list().is(":empty")) {
-      this.renderList(collection);
-      this.currentCollection = collection;
-    }
+    this.renderList(collection);
+    this.currentCollection = collection;
 
     var firstIsAccount = this.isAccount(collection.first());
     var self = this;
@@ -200,15 +198,36 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   renderProfile: function(model) {
+    this.$profile().show();
+    this.$profile-none.hide();
     var profile = this.profileBoxFor(model);
     profile.render();
     this.$profile().replaceWith(profile.el);
     this.changeSchema(model.get("schema"));
   },
+  
+  renderNone: function() {
+    this.$profile().hide();
+    this.$list().hide();
+    this.$profile().hide();
+    this.page = 0;
+    var schema = (this.getSchema() == "account" ? "users" : this.getSchema());
+    var box = new {
+      "users" : UserNoneBox,
+      "feeds" : FeedNoneBox,
+      "groups" : GroupNoneBox,
+      "account" : UserNoneBox
+    }[schema]({ community: this.options.community });
+    box.render();
+    this.$profile-none.replaceWith(box.el);
+    this.$profile-none().show();
+    this.$list-none().show();
+  },
 
   renderList: function(collection, options) {
     var self = this;
     this.$list().show();
+    this.$list-none().hide();
     this.$("#info-list-area").scrollTop(0);
     if (options != "append") { this.$list().empty(); }
     collection.each(function (model) {
