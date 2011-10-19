@@ -205,6 +205,7 @@ var InfoBox = CommonPlace.View.extend({
 
   renderList: function(collection, options) {
     var self = this;
+    this.$list().scrollTop(0);
     if (options != "append") { this.$list().empty(); }
     collection.each(function (model) {
       var item = new InfoListItem({
