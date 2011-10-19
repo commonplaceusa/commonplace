@@ -216,7 +216,6 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   changeSchema: function(schema) {
-    console.log(schema);
     this.$(".filter-tab").removeClass("current");
     this.$("." + schema + "-filter").addClass("current");
     this.$("h2").text(this.t(schema + ".h2"));
