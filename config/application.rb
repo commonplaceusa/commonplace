@@ -35,6 +35,15 @@ module Commonplace
                             File.join(Rails.root, 'lib', 'javascripts')
                            ]
 
+    config.assets.precompile += ['main_page.js', 'group_page.js', 'inbox.js',
+                                 'feed_page.js', 'invite_page.js', 
+                                 'registration_page.js', 'feed_registration.js',
+                                 'sign_in.js', 'accounts.js']
+
+    config.assets.precompile += ['feed_registration.css.sass', 'main_page.css.sass',
+                                 'group_page.css.sass', 'feed_page.css.sass',
+                                 'registration_page.css.sass', 'login_page.css.sass',
+                                 'inbox.css.sass']
 
     config.generators do |g|
       g.orm :active_record
