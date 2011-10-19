@@ -248,7 +248,7 @@ GEM
       oa-oauth (= 0.3.0)
       oa-openid (= 0.3.0)
     orm_adapter (0.0.5)
-    paperclip (2.4.1)
+    paperclip (2.4.4)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
@@ -454,7 +454,7 @@ DEPENDENCIES
   mustache
   newrelic_rpm
   omniauth (= 0.3.0)
-  paperclip
+  paperclip (~> 2.4.4)
   permanent_records
   pg
   premailer
