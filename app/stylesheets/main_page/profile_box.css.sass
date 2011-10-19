@@ -50,8 +50,8 @@
         display: none
 
       .empty
-        background: #acacac
-        +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #acacac inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
+        background: #888
+        +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #888 inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
 
       .not-empty
         background: #ac322f
@@ -83,14 +83,17 @@
           strong
             color: white
             display: block
-    
-    .profile
+            
+    #profile-area
       width: 66.6667%
       float: right
       background: white
       height: 100%
       overflow: auto
       color: #444
+      
+      .none
+        display: none
       a
         text-decoration: none
         h3
