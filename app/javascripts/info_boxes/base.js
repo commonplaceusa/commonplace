@@ -32,8 +32,8 @@ var InfoBox = CommonPlace.View.extend({
   template: "main_page/info-box",
   $profile: function() { return this.$("#profile"); },
   $list: function() { return this.$("#info-list"); },
-  $profile-none: function() { return this.$("#profile-area > .none"); },
-  $list-none: function() { return this.$("#info-list-area > .none"); },
+  $profile_none: function() { return this.$("#profile-area > .none"); },
+  $list_none: function() { return this.$("#info-list-area > .none"); },
 
   events: {
     "click .filter-tab": "switchTab",
@@ -199,7 +199,7 @@ var InfoBox = CommonPlace.View.extend({
 
   renderProfile: function(model) {
     this.$profile().show();
-    this.$profile-none.hide();
+    this.$profile_none().hide();
     var profile = this.profileBoxFor(model);
     profile.render();
     this.$profile().replaceWith(profile.el);
@@ -219,15 +219,15 @@ var InfoBox = CommonPlace.View.extend({
       "account" : UserNoneBox
     }[schema]({ community: this.options.community });
     box.render();
-    this.$profile-none.replaceWith(box.el);
-    this.$profile-none().show();
-    this.$list-none().show();
+    this.$profile_none().replaceWith(box.el);
+    this.$profile_none().show();
+    this.$list_none().show();
   },
 
   renderList: function(collection, options) {
     var self = this;
     this.$list().show();
-    this.$list-none().hide();
+    this.$list_none().hide();
     this.$("#info-list-area").scrollTop(0);
     if (options != "append") { this.$list().empty(); }
     collection.each(function (model) {
