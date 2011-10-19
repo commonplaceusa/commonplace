@@ -5,8 +5,6 @@ var AnnouncementWireItem = WireItem.extend({
 
   initialize: function(options) {
     this.account = options.account;
-    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
-    this.allwords = (this.shortbody === null);
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
@@ -18,15 +16,11 @@ var AnnouncementWireItem = WireItem.extend({
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
+    this.$(".announcement-body").truncate({max_length: 450});
   },
   
   publishedAt: function() {
     return timeAgoInWords(this.model.get('published_at'));
-  },
-
-  replyCount: function() {
-    var num = this.model.get('replies').length;
-    return (num == 1 ? "1 reply" : num + " replies");
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -38,16 +32,11 @@ var AnnouncementWireItem = WireItem.extend({
   author: function() { return this.model.get('author'); },
   
   body: function() {
-    if (!this.allwords) {
-      return this.shortbody[0];
-    } else {
-      return this.model.get("body");
-    }
+    return this.model.get("body");
   },
   
   events: {
     "click .editlink": "editAnnouncement",
-    "click .moreBody": "loadMore",
     "mouseenter": "showProfile"
   },
 

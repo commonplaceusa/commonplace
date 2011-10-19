@@ -5,8 +5,6 @@ var EventWireItem = WireItem.extend({
 
   initialize: function(options) {
     this.account = options.account;
-    this.shortbody = this.model.get("body").match(/\b([\w]+[\W]+){60}/);
-    this.allwords = (this.shortbody === null);
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
@@ -18,6 +16,7 @@ var EventWireItem = WireItem.extend({
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
+    this.$(".event-body").truncate({max_length: 450});
   },
 
   short_month_name: function() { 
@@ -32,8 +31,6 @@ var EventWireItem = WireItem.extend({
 
   publishedAt: function() { return timeAgoInWords(this.model.get('published_at')); },
 
-  replyCount: function() { return this.model.get('replies').length; },
-
   title: function() { return this.model.get('title'); },
 
   author: function() { return this.model.get('author'); },
@@ -45,11 +42,7 @@ var EventWireItem = WireItem.extend({
   time: function() { return this.model.get('starts_at'); },
 
   body: function() {
-    if (!this.allwords) {
-      return this.shortbody[0];
-    } else {
       return this.model.get("body");
-    }
   },
 
   monthAbbrevs: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -57,7 +50,6 @@ var EventWireItem = WireItem.extend({
 
   events: {
     "click .editlink": "editEvent",
-    "click .moreBody": "loadMore",
     "mouseenter": "showProfile"
   },
 
