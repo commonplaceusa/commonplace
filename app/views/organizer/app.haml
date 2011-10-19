@@ -79,7 +79,7 @@
 
       // Set up markers
       greenMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png";
-      greyMarker = "/assets/GreyDot.jpg";
+      greyMarker = "/images/grey-dot.png";
       redMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png";
       yellowMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/yellow-dot.png";
       orangeMarker = "http://www.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png";
@@ -217,34 +217,41 @@
         });
         // Show default markers
         // Load street addresses
-        $.each(streetAddresses, function(key, val) {
-          tmp = val.split(" ");
-          // Remove punctuation
-          $.each(tmp, function(key, val) {
-            tmp[key] = val.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+        if (streetAddresses[0].substr(0,7) != "<option")
+        {
+          $.each(streetAddresses, function(key, val) {
+            tmp = val.split(" ");
+            // Remove punctuation
+            $.each(tmp, function(key, val) {
+              tmp[key] = val.replace(/[\"\'\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+            });
+            if (tmp.length == 4)
+              streetAddresses[key] = tmp[1] + " " + tmp[2];
+            else if (tmp.length >= 5)
+              streetAddresses[key] = tmp[1] + " " + tmp[2] + " " + tmp[3];
+            else
+            {
+              for (i = 1; i < tmp.length - 1; i++)
+                streetAddresses[key] += tmp[i] + " ";
+            }
           });
-          if (tmp.length == 4)
-            streetAddresses[key] = tmp[1] + " " + tmp[2];
-          else if (tmp.length >= 5)
-            streetAddresses[key] = tmp[1] + " " + tmp[2] + " " + tmp[3];
-          else
-          {
-            for (i = 1; i < tmp.length - 1; i++)
-              streetAddresses[key] += tmp[i] + " ";
-          }
-        });
-        streetAddresses = _.uniq(streetAddresses);
-        $.each(streetAddresses, function(k, v) {
-          streetAddresses[k] = '<option value="' + v + '"> ' + v + ' </option>';
-        });
-        $('#address_selector').html(streetAddresses.join(''));
-        $('#address_selector').chosen();
+          streetAddresses = (_.uniq(streetAddresses)).sort();
 
-        showMarkerSet(droppedMarkers);
-        showMarkerSet(knockedMarkers);
-        showMarkerSet(postKnockedMarkers);
-        showMarkerSet(onMarkers);
-        showMarkerSet(noMarkers);
+          $.each(streetAddresses, function(k, v) {
+            streetAddresses[k] = '<option value="' + v + '"> ' + v + ' </option>';
+          });
+          $('.address_selector').html(streetAddresses.join(''));
+          $('.address_selector').width('250px');
+          $('.address_selector').chosen();
+
+          showMarkerSet(droppedMarkers);
+          showMarkerSet(knockedMarkers);
+          showMarkerSet(postKnockedMarkers);
+          showMarkerSet(onMarkers);
+          showMarkerSet(noMarkers);
+          hiddenInput = $('<input/>', {type: 'hidden', id: 'entry_count', value: '1', name: 'entry_count'});
+          hiddenInput.appendTo("#addresses");
+        }
       }
     });
   }
@@ -285,28 +292,49 @@
     $("#daily_journal").hide();
   }
   
-  var entry_count = 0;
+  var entry_count = 1;
   function add_entry()
   {
     entry_count += 1;
-    $("#addresses").append('<br /><input id="number" name="number' + entry_count + '" placeholder="1-10O" size="10" type="text" value="" /><input id="address" name="address' + entry_count + '" placeholder="Maple Ave" size="50" type="text" value="" />');
+    $("#addresses").append('<br /><input id="number" name="number_' + entry_count + '" placeholder="1-10O" size="10" type="text" value="" /><select class="address_selector" data-placeholder="Street" id="address_' + entry_count + '" name="address_' + entry_count + '"></select>');
+    $('.address_selector').html(streetAddresses.join(''));
+    $('.address_selector').width('250px');
+    $('.address_selector').chosen();
+    $("#entry_count").val(entry_count);
   }
 
-  function query()
+  function query(run_immediately, e)
   {
-    var resultSet = Array();
-    q = $("#search_query").val();
-    geocoder.geocode({'address': q}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        var marker = createMarker(results[0].geometry.location, q, blueMarker);
-        marker.setMap(map);
+    if (!run_immediately)
+    {
+      var key_code;
+      if (window.event)
+      {
+        key_code = e.keyCode;
       }
-    });
+      else if (e.which)
+      {
+        key_code = e.which;
+      }
+      if (key_code == 13)
+        run_immediately = true;
+    }
+    if (run_immediately)
+    {
+      var resultSet = Array();
+      q = $("#search_query").val();
+      geocoder.geocode({'address': q}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          var marker = createMarker(results[0].geometry.location, q, blueMarker);
+          marker.setMap(map);
+        }
+      });
+    }
   }
 
 #organizer_app
   #links
-    %a{:onclick => "toggle_map();", :style=>"text-decoration: underline; cursor: pointer;"} Toggle Map
+    %a{:onclick => "toggle_map();", :style=>"text-decoration: underline; cursor: pointer;"} Neighborhood Canvassing Map
     %br
     %a{:onclick => "toggle_overview();", :style=>"text-decoration: underline; cursor: pointer;"} Overview
     %br
@@ -319,39 +347,44 @@
   #map{:style => "display: none;"}
     #map_canvas{:style => "width: 1024px; height: 350px;"}
     #map_form
-      = text_field_tag :search_query, "", :placeholder => "Search"
-      = submit_tag "Search", :id => "search_query_commit", :onclick => "query();"
+      = text_field_tag :search_query, "", :placeholder => "Search", :onkeypress => "query(false, event)"
+      = submit_tag "Search", :id => "search_query_commit", :onclick => "query(true, event);"
       %br
       = form_tag "/organizer/add", :method => :post do
         #addresses
-          = text_field_tag :number, "", :size => 10, :placeholder => "1-10O"
-          -#= text_field_tag :address, "", :placeholder => "Maple Ave", :size => 50
-          = select_tag :address_selector, "", :class => "address_selector", "data-placeholder" => "Street", :style => "width: 200px;"
+          = text_field_tag :number_1, "", :size => 10, :placeholder => "1-10O"
+          = select_tag :address_1, "", :class => "address_selector", "data-placeholder" => "Street"
           = @center_zip_code
           = select_tag :status, options_for_select([["Door-Dropped", 'dropped'], ['Door-Knocked', 'knocked'], ['Post-Knocked Once', 'post_knocked_1'], ['Impossibility', 'no']])
           %a{:onclick => "add_entry();"} Add More
         %br
         = submit_tag "Enter"
+      %img{:src => "/images/grey-dot.png"}
       %a{:onclick => "showMarkerSet(allHouseMarkers);", :class => "markers show", :style => "cursor: pointer"} Show All Houses
       |
       %a{:onclick => "hideMarkerSet(allHouseMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide All Houses
       %br
+      %img{:src => "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png"}
       %a{:onclick => "showMarkerSet(onMarkers);", :class => "markers show", :style => "cursor: pointer"} Show People on CommonPlace
       |
       %a{:onclick => "hideMarkerSet(onMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide People on CommonPlace
       %br
+      %img{:src => "http://www.google.com/intl/en_us/mapfiles/ms/micons/yellow-dot.png"}
       %a{:onclick => "showMarkerSet(droppedMarkers);", :class => "markers show", :style => "cursor: pointer"} Show Doordrops
       |
       %a{:onclick => "hideMarkerSet(droppedMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide Doordrops
       %br
+      %img{:src => "http://www.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png"}
       %a{:onclick => "showMarkerSet(knockedMarkers);", :class => "markers show", :style => "cursor: pointer"} Show Doorknocks
       |
       %a{:onclick => "hideMarkerSet(knockedMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide Doorknocks
       %br
+      %img{:src => "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png"}
       %a{:onclick => "showMarkerSet(postKnockedMarkers);", :class => "markers show", :style => "cursor: pointer"} Show Post-Knocks
       |
       %a{:onclick => "hideMarkerSet(postKnockedMarkers);", :class => "markers hide", :style => "cursor: pointer"} Hide Post-Knocks
       %br
+      %img{:src => "http://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png"}
       %a{:onclick => "showMarkerSet(noMarkers);", :class => "markers show", :style => "cursor: pointer"} Show Negative Responses
       |
       %a{:onclick => "hideMarkerSet(noMarkers);", :class=> "markers hide", :style => "cursor: pointer"} Hide Negative Responses
