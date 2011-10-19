@@ -132,6 +132,8 @@ var InfoBox = CommonPlace.View.extend({
         if (collection.length == 0) { // when a search has failed
           self.$(".remove-search").removeClass("not-empty");
           self.$(".remove-search").addClass("empty");
+          self.$(".none").show();
+          self.$list().hide();
           self.page = 0;
           self.changeSchema(schema);
           if (self.currentQuery) {
@@ -147,8 +149,9 @@ var InfoBox = CommonPlace.View.extend({
             });
           }
         } else {
-          this.$(".remove-search").addClass("not-empty");
-          this.$(".remove-search").removeClass("empty");
+          self.$(".remove-search").addClass("not-empty");
+          self.$(".remove-search").removeClass("empty");
+          self.$(".none").hide();
           self.showFetchedList(collection, model);
         }
       }
@@ -205,7 +208,8 @@ var InfoBox = CommonPlace.View.extend({
 
   renderList: function(collection, options) {
     var self = this;
-    this.$list().scrollTop(0);
+    this.$list().show();
+    this.$("#info-list-area").scrollTop(0);
     if (options != "append") { this.$list().empty(); }
     collection.each(function (model) {
       var item = new InfoListItem({

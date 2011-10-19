@@ -34,13 +34,9 @@
       width: 33.3337%
       float: left
       overflow-x: hidden
-      overflow-y: hidden
+      overflow-y: scroll
       height: 100%
       background: rgba(0, 0, 0, 0.39)
-      
-      ul
-        overflow-y: scroll
-        height: 100%
 
       .remove-search
         text-align: center
@@ -60,6 +56,11 @@
       .not-empty
         background: #ac322f
         +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
+        
+      .none
+        display: none
+        margin-top: 10px
+        text-align: center
 
       li
         padding: 8px
