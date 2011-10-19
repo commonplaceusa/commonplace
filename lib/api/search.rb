@@ -10,7 +10,7 @@ class API
       def search(klass, params, community_id)
         search = Sunspot.search(klass) do
           keywords phrase(params["query"])
-          paginate(:page => params["page"])
+          paginate(:page => params["page"].to_i + 1)
           with(:community_id, community_id)
         end
         serialize(search)
