@@ -131,11 +131,11 @@ var InfoBox = CommonPlace.View.extend({
     collection.fetch({
       data: { query: this.currentQuery },
       success: function() {
-        if (collection.length == 0) { // when a search has failed
+        if (collection.length == 0) {
           self.$(".remove-search").removeClass("not-empty");
           self.$(".remove-search").addClass("empty");
-          self.renderNone();
           self.changeSchema(schema);
+          self.renderNone();
           if (self.currentQuery) {
             self.$list().empty();
           } else {
