@@ -299,6 +299,8 @@ module Serializer
           { "slug" => g.slug, "avatar_url" => g.avatar_url, "id" => g.id, "name" => g.name }
         },
         "locale" => o.locale.to_s,
+        "admin_name" => o.organizer_name,
+        "admin_email" => o.organizer_email,
         "links" => {
           "launch_letter" => community_asset_url + "launchletter.pdf",
           "information_sheet" => community_asset_url + "infosheet.pdf",

@@ -41,5 +41,5 @@ var GroupNoneBox = CommonPlace.View.extend({
   
   query: function() { return window.infoBox.currentQuery; },
   
-  url: function() { return "test/faq"; }
+  email: function() { return this.community.get("admin_email"); }
 });
