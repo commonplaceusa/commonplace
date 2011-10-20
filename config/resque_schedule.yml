@@ -6,7 +6,7 @@ send_daily_digest:
   description: "Sends daily digest"
 
 import_feeds_rss:
-  cron: "00 0 * * *"
+  cron: "00 * * * *"
   class: RSSImporter
   args:
   queue: rss_importer
