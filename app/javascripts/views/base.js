@@ -4,6 +4,7 @@ CommonPlace.View = Backbone.View.extend({
   
   render: function() {
     var self = this;
+    // trigger around, before, and after hooks
     self.aroundRender(function() {
       self.beforeRender();
       $(self.el).html(self.renderTemplate(self.getTemplate(), self));

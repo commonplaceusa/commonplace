@@ -46,14 +46,6 @@
     "groups.a": "Groups"
   },
 
-
-  "main_page/landing-resources": {
-    "posts.a": "Recent Neighborhood Posts",
-    "events.a": "Upcoming Events",
-    "announcements.a": "Recent Community Announcements",
-    "groupPosts.a": "Recent Community Discussion Group Posts"
-  },
-
   "main_page/info-box": {
     "users.h2": "Learn about your neighbors",
     "account.h2": "Learn about your neighbors",
