@@ -44,7 +44,6 @@ var CommunityResources = CommonPlace.View.extend({
 
       return new self.PaginatingResourceWire({
         template: "main_page/post-resources",
-        perPage: 15,
         emptyMessage: "No posts here yet",
         collection: postsCollection,
         modelToView: function(model) {
@@ -56,7 +55,6 @@ var CommunityResources = CommonPlace.View.extend({
     events: function(self) {
       return new self.PaginatingResourceWire({
         template: "main_page/event-resources",
-        perPage: 15,
         emptyMessage: "No events here yet",
         collection: self.options.community.events,
         modelToView: function(model) {
@@ -68,7 +66,6 @@ var CommunityResources = CommonPlace.View.extend({
     announcements: function(self) {
       return new self.PaginatingResourceWire({
         template: "main_page/announcement-resources",
-        perPage: 15,
         emptyMessage: "No announcements here yet",
         collection: self.options.community.announcements,
         modelToView: function(model) {
@@ -80,7 +77,6 @@ var CommunityResources = CommonPlace.View.extend({
     groupPosts: function(self) {
       return new self.PaginatingResourceWire({
         template: "main_page/group-post-resources",
-        perPage: 15,
         emptyMessage: "No posts here yet",
         collection: self.options.community.groupPosts,
         modelToView: function(model) {
@@ -92,7 +88,6 @@ var CommunityResources = CommonPlace.View.extend({
     users: function(self) {
       return new self.ResourceWire({
         template: "main_page/directory-resources",
-        perPage: 15,
         emptyMessage: "No posts here yet",
         collection: self.options.community.users,
         active: 'users',
@@ -105,7 +100,6 @@ var CommunityResources = CommonPlace.View.extend({
     groups: function(self) {
       return new self.ResourceWire({
         template: "main_page/directory-resources",
-        perPage: 15,
         emptyMessage: "No posts here yet",
         collection: self.options.community.groups,
         active: 'groups',
@@ -118,7 +112,6 @@ var CommunityResources = CommonPlace.View.extend({
     feeds: function(self) {
       return new self.ResourceWire({
         template: "main_page/directory-resources",
-        perPage: 15,
         emptyMessage: "No posts here yet",
         collection: self.options.community.feeds,
         active: 'feeds',
@@ -130,17 +123,16 @@ var CommunityResources = CommonPlace.View.extend({
   },
 
   PaginatingResourceWire: PaginatingWire.extend({
-    className: "resources"
+    className: "resources",
+    _defaultPerPage: 15
   }),
 
   ResourceWire: Wire.extend(
     {
       className: "resources",
-
       usersLinkClass: function() {
         return this.options.active == 'users' ? 'current' : '';
       },
-
       feedsLinkClass: function() {
         return this.options.active == 'feeds' ? 'current' : '';
       },

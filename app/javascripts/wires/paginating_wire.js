@@ -15,8 +15,10 @@ var PaginatingWire = Wire.extend({
     return this.collection.length >= this.perPage();
   },
 
+  _defaultPerPage: 10,
+
   perPage: function() {
-    return (this.options.perPage || 10);
+    return (this.options.perPage || this._defaultPerPage);
   },
 
   nextPage: function() {
@@ -36,6 +38,5 @@ var PaginatingWire = Wire.extend({
   query: function() {
     return this.scope['query'] || '';
   }
-
 
 });
