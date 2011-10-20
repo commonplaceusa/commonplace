@@ -5,7 +5,9 @@ class DailyDigestJob
     kickoff = KickOff.new
     date = DateTime.now.utc
     User.where("post_receive_method != 'Never'").find_each do |user|
-      kickoff.deliver_daily_bulletin(user, date)
+     Exceptional.rescue do
+        kickoff.deliver_daily_bulletin(user, date) 
+     end
     end
   end
 

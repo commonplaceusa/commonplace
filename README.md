@@ -31,23 +31,30 @@ Getting Started
 
 1.  Install and setup Git
 2.  Install RVM, and setup an installation of Ruby (1.9.2, or 1.9.3 if you want the tests to pass)
-3.  Install Gem
-4.  `git clone git@github.com:commonplaceusa/commonplace.git`
-5.  `cd commonplace`
-6.  `gem install bundler`
-7.  Install Redis
+3.  Follow the steps in `rvm notes`
+4.  Install Gem
+5.  `git clone git@github.com:commonplaceusa/commonplace.git`
+6.  `cd commonplace`
+7.  `gem install bundler`
+8.  Install Redis
+  * `sudo apt-get install redis-server`
 
-8.  Install ImageMagick 
+9.  Install ImageMagick 
   * `sudo apt-get install imagemagick libmagick9-dev`
 
-9.  Install Postgres
+10. Install Postgres
   * `sudo apt-get install postgresql libpq-dev`
 
-10. `bundle install`
-11. `cp config/database.yml.example config/database.yml`
-12. `bundle exec rake db:setup`
+11. `bundle install`
+12. `cp config/database.yml.example config/database.yml`
+13. Authenticate for the database
+  * `sudo su postgres`
+  * `createuser `username
+14. `bundle exec rake db:setup`
 
-Run the server with `bundle exec foreman start`
+Run the server with `bundle exec foreman start` or `bundle exec rails s thin`
+
+Run sunspot with `bundle exec sunspot-solr run`
 
 Go to [http://localhost:5000/test](http://localhost:5000/test) and login with test@example.com:password
 

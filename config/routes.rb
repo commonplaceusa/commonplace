@@ -50,6 +50,8 @@ Commonplace::Application.routes.draw do
       get :delete
       get :edit_owner
       put :update_owner
+      get :avatar
+      put :crop_avatar
     end
   end
 

@@ -2,7 +2,7 @@ var InfoListItem = CommonPlace.View.extend({
   template: "main_page/info-list",
   tagName: "li",
   events: {
-    "click a": "switchProfile"
+    "click": "switchProfile"
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -36,8 +36,11 @@ var InfoBox = CommonPlace.View.extend({
   events: {
     "click .filter-tab": "switchTab",
     "click .remove-search": "removeSearch",
-    "submit form": "filterBySearch"
+    "submit form": "searchFormSubmit",
+    "keyup form input.search": "filterBySearch"
   },
+
+  searchFormSubmit: function(e) { e.preventDefault(); },
 
   afterRender: function() {
     var self = this;
@@ -53,10 +56,6 @@ var InfoBox = CommonPlace.View.extend({
       if (this.offsetHeight + $(this).scrollTop() >= this.scrollHeight) {
         self.nextPage();
       }
-    });
-
-    this.$("form input.search").onFinishedTyping(500, function() {
-      self.$("form").submit();
     });
   },
 
@@ -83,7 +82,7 @@ var InfoBox = CommonPlace.View.extend({
     if (model.get("id") != this.options.account.id) {
       return false;
     } else {
-      return model.get("schema") == "user" || model.get("schema") == "account";
+      return model.get("schema") == "users" || model.get("schema") == "account";
     }
   },
 
@@ -133,7 +132,7 @@ var InfoBox = CommonPlace.View.extend({
           self.$(".remove-search").removeClass("not-empty");
           self.$(".remove-search").addClass("empty");
           self.page = 0;
-
+          self.changeSchema(schema);
           if (self.currentQuery) {
             self.$list().empty();
           } else {
@@ -243,15 +242,15 @@ var InfoBox = CommonPlace.View.extend({
                    collection: this.options.community.users,
                    search: this.options.community.search.users
                  },
-      "user":  { profileBox: UserProfileBox, 
+      "users":  { profileBox: UserProfileBox, 
                  collection: this.options.community.users,
                  search: this.options.community.search.users
                },
-      "group": { profileBox: GroupProfileBox, 
+      "groups": { profileBox: GroupProfileBox, 
                  collection: this.options.community.groups,
                  search: this.options.community.search.groups
                },
-      "feed": { profileBox: FeedProfileBox, 
+      "feeds": { profileBox: FeedProfileBox, 
                 collection: this.options.community.feeds,
                 search: this.options.community.search.feeds
               } 
@@ -263,7 +262,7 @@ var InfoBox = CommonPlace.View.extend({
     this.showList(this.getSchema($(e.target)));
   },
 
-  filterBySearch: function(e) {
+  filterBySearch: _.debounce(function(e) {
     e && e.preventDefault();
     query = this.$("form > input").val();
     if (query) {
@@ -272,7 +271,7 @@ var InfoBox = CommonPlace.View.extend({
       this.currentQuery = query;
       this.showList(this.getSchema());
     } else { this.removeSearch(); }
-  },
+  }, 500),
 
   removeSearch: function(e) {
     e && e.preventDefault();
