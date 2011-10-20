@@ -1,16 +1,12 @@
-<div class="feed">
+<img src="{{avatar_url}}" width="50" height="50" class="avatar">
 
-  <img src="{{avatarUrl}}" width="50" height="50" class="avatar">
+<div class="title"><a href="{{url}}">{{name}}</a></div>
 
-  <div class="title">{{name}}</div>
+{{#isSubscribed}}
+<button class="unsubscribe">You're Subscribed</button>
+{{/isSubscribed}}
+{{^isSubscribed}}
+<button class="subscribe">Subscribe</button>
+{{/isSubscribed}}
 
-  {{#isSubscribed}}
-    <button class="unsubscribe">You're Subscribed</button>
-  {{/isSubscribed}}
-  {{^isSubscribed}}
-    <button class="subscribe">Subscribe</button>
-  {{/isSubscribed}}
-
-
-  <div style="clear:both;"></div>
-</div>
+<div style="clear:both;"></div>

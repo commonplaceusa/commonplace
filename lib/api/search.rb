@@ -48,30 +48,6 @@ class API
       search([Feed, Group, User], params, community_id)
     end
 
-    get "/:community_id/announcements" do |community_id|
-      halt [200, {}, "[]"] if params["query"].blank?
-
-      search(Announcement, params, community_id)
-    end
-
-    get "/:community_id/events" do |community_id|
-      halt [200, {}, "[]"] if params["query"].blank?
-
-      search(Event, params, community_id)
-    end
-
-    get "/:community_id/posts" do |community_id|
-      halt [200, {}, "[]"] if params["query"].blank?
-
-      search(Post, params, community_id)
-    end
-
-    get "/:community_id/group-posts" do |community_id|
-      halt [200, {}, "[]"] if params["query"].blank?
-
-      search(GroupPost, params, community_id)
-    end
-
     get "/:community_id/post-like" do |community_id|
       halt [200, {}, "[]"] if params["query"].blank?
 

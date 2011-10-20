@@ -314,7 +314,8 @@ module Serializer
           "self" => "/communities/#{o.id}",
           "feeds_search" => "/search/community/#{o.id}/feeds?query=",
           "users_search" => "/search/community/#{o.id}/users?query=",
-          "groups_search" => "/search/community/#{o.id}/groups?query="
+          "groups_search" => "/search/community/#{o.id}/groups?query=",
+          "posts_search" => "/search/community/#{o.id}/posts?query="
         }
       }
       end

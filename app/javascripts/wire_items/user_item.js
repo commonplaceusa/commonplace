@@ -1,25 +1,16 @@
 var UserWireItem = WireItem.extend({
   template: "wire_items/user-item",
   tagName: "li",
-  className: "wire-item",
-  
-  initialize: function(options) {},
+  className: "wire-item group-member",
+
+  initialize: function(options) {
+    this.attr_accessible(['first_name', 'last_name', 'url', 'avatar_url']);
+  },
 
   afterRender: function() {
     this.model.bind("change", this.render, this);
   },
 
-  avatarUrl: function() {
-    return this.model.get("avatar_url");
-  },
-
-  firstname: function() {
-    return this.model.get("first_name");
-  },
-
-  lastname: function() {
-    return this.model.get("last_name");
-  },
 
   events: {
     "click button": "messageUser",

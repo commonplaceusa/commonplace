@@ -91,10 +91,11 @@ var CommunityResources = CommonPlace.View.extend({
 
     users: function(self) {
       return new self.ResourceWire({
-        template: "main_page/user-resources",
+        template: "main_page/directory-resources",
         perPage: 15,
         emptyMessage: "No posts here yet",
         collection: self.options.community.users,
+        active: 'users',
         modelToView: function(model) {
           return new UserWireItem({ model: model, account: self.options.account });
         }
@@ -103,10 +104,11 @@ var CommunityResources = CommonPlace.View.extend({
 
     groups: function(self) {
       return new self.ResourceWire({
-        template: "main_page/group-resources",
+        template: "main_page/directory-resources",
         perPage: 15,
         emptyMessage: "No posts here yet",
         collection: self.options.community.groups,
+        active: 'groups',
         modelToView: function(model) {
           return new GroupWireItem({ model: model, account: self.options.account });
         }
@@ -115,10 +117,11 @@ var CommunityResources = CommonPlace.View.extend({
 
     feeds: function(self) {
       return new self.ResourceWire({
-        template: "main_page/feed-resources",
+        template: "main_page/directory-resources",
         perPage: 15,
         emptyMessage: "No posts here yet",
         collection: self.options.community.feeds,
+        active: 'feeds',
         modelToView: function(model) {
           return new FeedWireItem({ model: model, account: self.options.account });
         }
@@ -126,9 +129,26 @@ var CommunityResources = CommonPlace.View.extend({
     }
   },
 
-  PaginatingResourceWire: PaginatingWire.extend({ className: "resources" }),
+  PaginatingResourceWire: PaginatingWire.extend({
+    className: "resources"
+  }),
 
-  ResourceWire: Wire.extend({ className: "resources" }),
+  ResourceWire: Wire.extend(
+    {
+      className: "resources",
+
+      usersLinkClass: function() {
+        return this.options.active == 'users' ? 'current' : '';
+      },
+
+      feedsLinkClass: function() {
+        return this.options.active == 'feeds' ? 'current' : '';
+      },
+      groupsLinkClass: function() {
+        return this.options.active == 'groups' ? 'current' : '';
+      }
+    }
+  ),
 
   showPost: function(post) {
     this.showSingleItem(post, GroupPostWireItem);
