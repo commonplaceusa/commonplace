@@ -1,0 +1,14 @@
+
+#main
+  %h1 Crop your Organization Photo
+    
+  = form_for @feed, :url => crop_avatar_feed_url(@feed), :method => :put, :html => { :class => "crop" } do |f|
+    = image_tag @feed.avatar_url(:original), :id => "cropbox"
+
+
+    - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
+      = f.hidden_field attribute, :id => attribute
+
+    = f.submit :type => "image", :src => asset_path("buttons/continue2.png")
+
+

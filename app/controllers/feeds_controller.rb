@@ -6,9 +6,7 @@ class FeedsController < CommunitiesController
   end
 
   def destroy
-    if can?(:destroy, @feed)
-      @feed.destroy
-    end
+    @feed.destroy
     redirect_to root_url
   end
 
@@ -17,18 +15,14 @@ class FeedsController < CommunitiesController
   end
 
   def update_owner
-    if can?(:update, @feed) 
-      if user = User.find_by_email(params[:email])
-        @feed.user = user
-        @feed.owners << user
-        @feed.save
-        redirect_to root_url
-      else
-        @error = true
-        render :edit_owner, :layout => 'application'
-      end
-    else
+    if user = User.find_by_email(params[:email])
+      @feed.user = user
+      @feed.owners << user
+      @feed.save
       redirect_to root_url
+    else
+      @error = true
+      render :edit_owner, :layout => 'application'
     end
   end
 
@@ -36,9 +30,22 @@ class FeedsController < CommunitiesController
     render :layout => 'feed_registration'
   end
 
+  def avatar 
+    render :layout => 'feed_registration'
+  end
+
+  def crop_avatar
+    @feed.update_attributes(params[:feed])
+    redirect_to feed_profile_path(@feed)
+  end
+
   def update
     if @feed.update_attributes(params[:feed])
-      redirect_to feed_profile_path(@feed)
+      if params[:feed].has_key?(:avatar)
+        redirect_to :action => :avatar
+      else
+        redirect_to feed_profile_path(@feed)
+      end
     else
       render :edit, :layout => 'feed_registration'
     end

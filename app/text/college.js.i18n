@@ -66,10 +66,10 @@
   },
 
   "main_page/info-box": {
-    "user.h2": "Learn about your fellow students",
+    "users.h2": "Learn about your fellow students",
     "account.h2": "Learn about your fellow students",
-    "group.h2": "Learn about your campus",
-    "feed.h2": "Learn about your campus"
+    "groups.h2": "Learn about your campus",
+    "feeds.h2": "Learn about your campus"
   },
 
   "main_page/tour/post": {
