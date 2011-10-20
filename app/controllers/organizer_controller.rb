@@ -7,7 +7,7 @@ class OrganizerController < ApplicationController
   def add
     puts "(1..#{params[:entry_count]})"
     (1..(params[:entry_count].to_i)).each do |e|
-      cp_client.add_data_point(current_community, {:number => params["number_#{e}"], :address => params["address_#{e}"]})
+      cp_client.add_data_point(current_community, {:number => params["number_#{e}"], :address => params["address_#{e}"], :status => params[:status]})
     end
     redirect_to :action => :app
   end
