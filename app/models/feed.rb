@@ -125,6 +125,11 @@ class Feed < ActiveRecord::Base
       owner
     end
   end
+  
+  def rss_feed
+    RSSFeed.new(self)
+  end
+
 
   private
 
