@@ -20,7 +20,7 @@ var EventForm = CommonPlace.View.extend({
     e.preventDefault();
     var self = this;
     this.cleanUpPlaceholders();
-    this.collection.create({ 
+    this.collection.create({ // use $.fn.serialize here
       title:   this.$("[name=title]").val(),
       about:   this.$("[name=about]").val(),
       date:    this.$("[name=date]").val(),

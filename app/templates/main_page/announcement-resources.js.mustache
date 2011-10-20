@@ -1,7 +1,11 @@
 <div class="sub-navigation">
-  <a href="#/announcements" class="current">{{#t}}announcements.a{{/t}}</a>
+  <form class="search">
+    <input type="text" value="{{query}}" placeholder="Search"/>
+  </form>
+  <h2><a href="#/announcements" class="current">{{#t}}announcements.a{{/t}}</a>
   &sdot;
-  <a href="#/feeds">{{#t}}feeds.a{{/t}}</a>
+  <a href="#/feeds">{{#t}}feeds.a{{/t}}</a></h2>
+  <div style="clear:both;"></div>
 </div>
 
 <div class="announcements wire">{{>wires.wire}}</div>

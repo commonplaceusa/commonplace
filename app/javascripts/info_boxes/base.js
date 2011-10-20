@@ -57,6 +57,7 @@ var InfoBox = CommonPlace.View.extend({
         self.nextPage();
       }
     });
+
   },
 
   setPosition: function() {

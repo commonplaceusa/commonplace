@@ -1,7 +1,11 @@
 <div class="sub-navigation">
-  <a href="#/groupPosts" class="current">{{#t}}group-posts.a{{/t}}</a>
+  <form class="search">
+    <input type="text" value="{{query}}" placeholder="Search"/>
+  </form>
+  <h2><a href="#/groupPosts" class="current">{{#t}}group-posts.a{{/t}}</a>
   &sdot;
-  <a href="#/groups">{{#t}}groups.a{{/t}}</a>
+  <a href="#/groups">{{#t}}groups.a{{/t}}</a></h2>
+  <div style="clear:both;"></div>
 </div>
 
 <div class="groupPosts wire">{{>wires.wire}}</div>

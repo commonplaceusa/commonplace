@@ -3,6 +3,7 @@
 //= require jquery-ui
 //= require actual
 //= require underscore
+//= require config
 //= require placeholder
 //= require time_ago_in_words
 //= require scrollTo
