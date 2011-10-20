@@ -6,29 +6,28 @@ var Wire = CommonPlace.View.extend({
     if ($.isFunction(options.modelToView)) {
       this.modelToView = options.modelToView;
     }
+
+    this.scope['limit'] = this.perPage();
+    this.scope['page'] = this.currentPage();
+
+    this.aroundRender = this.fetchPage;
+    this.afterRender = this.appendPage;
   },
 
-  aroundRender: function(render) {
-    var self = this;
-    this.fetchCurrentPage(function() {
-      render();
-    });
-  },
-
-  afterRender: function() { this.appendCurrentPage(); },
-
-  modelToView: function() { 
+  modelToView: function() {
     throw new Error("This is an abstract class, use a child of this class");
   },
 
-  fetchCurrentPage: function(callback) {
+  scope: {},
+
+  fetchPage: function(callback) {
     this.collection.fetch({
-      data: { limit: this.perPage(), page: this.currentPage() },
+      data: this.scope,
       success: callback
     });
   },
 
-  appendCurrentPage: function() {
+  appendPage: function(collection, response) {
     var self = this;
     var $ul = this.$("ul.wire-list");
     this.collection.each(function(model) {
@@ -45,11 +44,10 @@ var Wire = CommonPlace.View.extend({
     return this.options.emptyMessage;
   },
     
-  showMore: function(e) {
-    var self = this;
-    e.preventDefault();
+  showMore: function(event) {
+    event.preventDefault();
     this.nextPage();
-    this.fetchCurrentPage(function() { self.appendCurrentPage(); });
+    this.render();
   },
 
   currentPage: function() {
