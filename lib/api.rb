@@ -25,7 +25,7 @@ class API
       map("/posts") { run Posts }
       map("/search/community") { run Search }
 
-      map("/") { run lambda {|env|  [200, {}, ["HI!"]] } }
+      map("/") { run lambda {|env|  [200, {}, ["Invalid Request"]] } }
     end
   end
 

@@ -4,6 +4,7 @@ CommonPlace.View = Backbone.View.extend({
   
   render: function() {
     var self = this;
+    // trigger around, before, and after hooks
     self.aroundRender(function() {
       self.beforeRender();
       $(self.el).html(self.renderTemplate(self.getTemplate(), self));
@@ -24,6 +25,17 @@ CommonPlace.View = Backbone.View.extend({
     }
 
     return Mustache.to_html(Templates[templateName], params, Templates);
+  },
+
+  attr_accessible: function(attributes) {
+    var self = this;
+    _.each(attributes, function(attribute) {
+
+        self[attribute] = function() {
+          return self.model.get(attribute);
+        };
+
+      });
   },
 
   // these functions work both directly and in templates

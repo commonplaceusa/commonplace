@@ -19,51 +19,51 @@ var LandingResources = CommonPlace.View.extend({
     } else {
       postsCollection = self.options.community.posts;
     }
-    if (!this._wires) { 
+    if (!this._wires) {
       this._wires = [
-        (new PreviewWire({ 
+        (new PreviewWire({
+          template: 'main_page/post-resources',
           collection: postsCollection,
           account: this.account,
           el: this.$(".posts.wire"),
-          perPage: 3,
-          fullLink: "#/posts",
+          fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
           modelToView: function(model) {
             return new PostWireItem({ model: model, account: self.options.account });
           }
          })),
         
-        (new PreviewWire({ 
+        (new PreviewWire({
+          template: 'main_page/event-resources',
           collection: this.community.events,
           account: this.account,
           el: this.$(".events.wire"),
-          perPage: 3,
-          fullLink: "#/events",
+          fullWireLink: "#/events",
           emptyMessage: "There are no upcoming events yet. Add some.",
           modelToView: function(model) {
             return new EventWireItem({ model: model, account: self.options.account });
           }
         })),
         
-        (new PreviewWire({ 
+        (new PreviewWire({
+          template: 'main_page/announcement-resources',
           collection: this.community.announcements,
           account: this.account,
           el: this.$(".announcements.wire"),
-          perPage: 3,
           emptyMessage: "No announcements here yet.",
-          fullLink: "#/announcements",
+          fullWireLink: "#/announcements",
           modelToView: function(model) {
             return new AnnouncementWireItem({ model: model, account: self.options.account });
           }
         })),
         
-        (new PreviewWire({ 
+        (new PreviewWire({
+          template: 'main_page/group-post-resources',
           collection: this.community.groupPosts,
           account: this.account,
           el: this.$(".groupPosts.wire"),
-          perPage: 3,
           emptyMessage: "No posts here yet.",
-          fullLink: "#/group_posts",
+          fullWireLink: "#/group_posts",
           modelToView: function(model) {
             return new GroupPostWireItem({ model: model, account: self.options.account });
           }
