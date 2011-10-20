@@ -1,24 +1,19 @@
 var GroupWireItem = WireItem.extend({
+  // this is line-for-line the same as feed_item. todo: DRY
+
   template: "wire_items/feed-item",
   tagName: "li",
-  className: "wire-item",
+  className: "wire-item feed",
 
   initialize: function() {
     this.options.account.bind("change", this.render, this);
+    this.attr_accessible(['name', 'url', 'avatar_url']);
   },
 
   events: {
     "mouseenter": "showProfile",
     "click button.subscribe": "subscribe",
     "click button.unsubscribe": "unsubscribe"
-  },
-
-  avatarUrl: function() {
-    return this.model.get("avatar_url");
-  },
-
-  name: function() {
-    return this.model.get("name");
   },
 
   showProfile: function(e) {
@@ -30,6 +25,5 @@ var GroupWireItem = WireItem.extend({
   unsubscribe: function() { this.options.account.unsubscribeFromGroup(this.model); },
 
   isSubscribed: function() { return this.options.account.isSubscribedToGroup(this.model); }
-
 
 });

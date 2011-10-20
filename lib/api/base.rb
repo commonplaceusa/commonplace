@@ -51,6 +51,7 @@ class API
       end
 
       def last_modified_by_updated_at(scope)
+        # sets last modified header for this request to that of the newest record
         last_modified(scope.unscoped
                         .reorder("updated_at DESC")
                         .select('updated_at')

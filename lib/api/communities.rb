@@ -2,9 +2,29 @@ class API
   class Communities < Base
 
     before "/:community_id/*" do |community_id, stuff|
-      unless current_account.community.id == community_id or current_account.admin
+      unless current_account.community.id == community_id || current_account.admin
         [401, "wrong community"]
       end
+    end
+
+    helpers do
+
+      def search(klass, params, community_id)
+        search = Sunspot.search(klass) do
+          keywords phrase(params["query"])
+          #paginate(:page => params["page"])
+          paginate(:page => 1)
+          with(:community_id, community_id)
+        end
+        serialize(search)
+      end
+
+      def phrase(string)
+        string.split('"').each_with_index.map { |object, i|
+          i.odd? ? object : object.split(" ")
+        }.flatten
+      end
+
     end
 
     post "/:community_id/posts" do |community_id|
@@ -47,7 +67,7 @@ class API
                         :tag_list => request_body['tags'],
                         :community_id => community_id,
                         :group_ids => request_body['groups']
-                        )
+      )
       if event.save
         serialize(event)
       else
@@ -55,56 +75,104 @@ class API
       end
     end
 
+    # todo: all these GET methods are not so DRY.  could make a common search or not functinon that takes a class name
+    # would require a lookup to see how to paginate various classes
+
     get "/:community_id/posts" do |community_id|
       last_modified_by_updated_at(Post)
 
-      serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
+      if params["query"].present?
+        #params["limit"] = 1
+        #params["page"] = 1
+        search(Post, params, community_id)
+      else
+        serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
+      end
     end
-
 
     get "/:community_id/events" do |community_id|
       last_modified([Event.unscoped.reorder("updated_at DESC").
-                     select('updated_at').
-                     first.try(&:updated_at),
+                       select('updated_at').
+                       first.try(&:updated_at),
                      Date.today.beginning_of_day].compact.max)
 
-      serialize(paginate(Community.find(community_id).events.upcoming.
-                         includes(:replies).reorder("date ASC")))
+      if params["query"].present?
+        search(Event, params, community_id)
+      else
+        serialize(paginate(Community.find(community_id).events.upcoming.
+                             includes(:replies).reorder("date ASC")))
+      end
     end
 
     get "/:community_id/announcements" do |community_id|
       last_modified_by_updated_at(Announcement)
 
-      serialize(paginate(Community.find(community_id).announcements.
-                         includes(:replies, :owner).
-                         reorder("updated_at DESC")))
+      if params["query"].present?
+        search(Announcement, params, community_id)
+      else
+        serialize(paginate(Community.find(community_id).announcements.
+                             includes(:replies, :owner).
+                             reorder("updated_at DESC")))
+      end
     end
 
     get "/:community_id/group_posts" do |community_id|
       last_modified_by_updated_at(GroupPost)
 
-      serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
-                         includes(:group, :user, :replies => :user).
-                         where(:groups => {:community_id => community_id})))
+      if params["query"].present?
+        search(GroupPost, params, community_id)
+      else
+        serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
+                             includes(:group, :user, :replies => :user).
+                             where(:groups => {:community_id => community_id})))
+      end
     end
 
     get "/:community_id/feeds" do |community_id|
       last_modified_by_updated_at(Feed)
 
-      serialize(paginate(Community.find(community_id).feeds))
+      if params["query"].present?
+        search(Feed, params, community_id)
+      else
+        serialize(paginate(Community.find(community_id).feeds))
+      end
     end
 
     get "/:community_id/groups" do |community_id|
       last_modified_by_updated_at(Group)
 
-      serialize(paginate(Community.find(community_id).groups))
+      if params["query"].present?
+        search(Group, params, community_id)
+      else
+        serialize(paginate(Community.find(community_id).groups))
+      end
     end
 
     get "/:community_id/users" do |community_id|
       last_modified_by_updated_at(User)
 
-      serialize(paginate(Community.find(community_id).users.includes(:feeds, :groups)))
+      if params["query"].present?
+        search(User, params, community_id)
+      else
+        serialize(paginate(Community.find(community_id).users.includes(:feeds, :groups)))
+      end
     end
+
+
+    get "/:community_id/group-like" do |community_id|
+      # only search
+      halt [200, {}, "[]"] if params["query"].blank?
+
+      search([Feed, Group, User], params, community_id)
+    end
+
+    get "/:community_id/post-like" do |community_id|
+      # only search
+      halt [200, {}, "[]"] if params["query"].blank?
+
+      search([Announcement, Event, Post, GroupPost], params, community_id)
+    end
+
 
     post "/:community_id/add_data_point" do |community_id|
       num = params[:number]
@@ -155,7 +223,7 @@ class API
         jsonp(callback, serialize(community.users.map &:generate_point))
       end
     end
-    
+
     get "/:community_id/data_points" do |community_id|
       headers 'Access-Control-Allow-Origin' => '*'
       community = Community.find(community_id)

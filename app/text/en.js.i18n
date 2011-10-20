@@ -18,51 +18,32 @@
     "posts.a": "Neighborhood<br> Posts",
     "events.a": "Community<br> Events",
     "announcements.a": "Community<br> Announcements",
-    "groupPosts.a": "Discussion<br> Posts",
+    "groupPosts.a": "Group<br> Posts",
     "users.a": "Directory"
   },
 
   "main_page/post-resources": {
-    "posts.a": "Recent Neighborhood Posts"
+    "posts.a": "Neighborhood Posts"
   },
 
   "main_page/event-resources": {
-    "events.a": "Upcoming Community Events"
+    "events.a": "Community Events"
   },
 
   "main_page/announcement-resources": {
-    "announcements.a": "Recent Community Announcements",
-    "feeds.a": "Community Feeds"
+    "announcements.a": "Announcements",
+    "feeds.a": "Feeds"
   },
 
   "main_page/group-post-resources": {
-    "group-posts.a": "Discussion Group Posts",
-    "groups.a": "Discussion Groups"
+    "group-posts.a": "Group Posts",
+    "groups.a": "Groups"
   },
 
-  "main_page/feed-resources": {
-    "users.a": "Your Neighbors",
-    "feeds.a": "Community Feeds",
-    "groups.a": "Discussion Groups"
-  },
-
-  "main_page/user-resources": {
-    "users.a": "Your Neighbors",
-    "feeds.a": "Community Feeds",
-    "groups.a": "Discussion Groups"
-  },
-
-  "main_page/group-resources": {
-    "users.a": "Your Neighbors",
-    "feeds.a": "Community Feeds",
-    "groups.a": "Discussion Groups"
-  },
-
-  "main_page/landing-resources": {
-    "posts.a": "Recent Neighborhood Posts",
-    "events.a": "Upcoming Events",
-    "announcements.a": "Recent Community Announcements",
-    "groupPosts.a": "Recent Community Discussion Group Posts"
+  "main_page/directory-resources": {
+    "users.a": "Neighbors",
+    "feeds.a": "Feeds",
+    "groups.a": "Groups"
   },
 
   "main_page/info-box": {

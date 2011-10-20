@@ -1,5 +1,9 @@
 <div class="sub-navigation">
-  <a href="#/posts" class="current">{{#t}}posts.a{{/t}}</a>
+  <form class="search">
+    <input type="text" value="{{query}}" placeholder="Search"/>
+  </form>
+  <h2><a href="#/posts" class="current">{{#t}}posts.a{{/t}}</a></h2>
+  <div style="clear:both;"></div>
 </div>
 
 <div class="posts wire">{{>wires.wire}}</div>

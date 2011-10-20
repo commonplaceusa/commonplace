@@ -49,8 +49,11 @@ class Post < ActiveRecord::Base
   end
 
   searchable do
-    text :subject
-    text :body
+    # this appears to be broken.
+    text :subject, :body
+    text :replies do
+      replies.map &:body
+    end
     integer :community_id
   end
 
