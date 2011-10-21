@@ -10,6 +10,7 @@ $MailDeliveryOptions =
     :domain => ENV['domain'],
     :authentication => ENV['mail_authentication'],
     :user_name => ENV['mail_username'],
-    :password => ENV['mail_password'] 
+    :password => ENV['mail_password'],
+    :api_key => ENV['mail_api_key']
     } 
   end
