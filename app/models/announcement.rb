@@ -41,8 +41,10 @@ class Announcement < ActiveRecord::Base
   end
 
   searchable do
-    text :subject
-    text :body
+    text :subject, :body
+    text :replies do
+      replies.map &:body
+    end
     integer :community_id
     time :created_at
   end

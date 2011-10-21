@@ -84,10 +84,11 @@ class Event < ActiveRecord::Base
   end
 
   searchable do
-    text :name
-    text :description
-    text :venue
-    text :address
+    text :name, :description, :venue, :address
+    text :replies do
+      replies.map &:body
+    end
+    with(:date).greater_than Time.now
     integer :community_id
     time :created_at
   end
