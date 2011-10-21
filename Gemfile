@@ -53,6 +53,7 @@ gem 'delayed_job' # we use this to run jobs to index our data
 gem 'mail' # Used for mail
 gem 'mustache' # used for mail
 gem 'premailer' # we use this to inline css in our emails
+gem 'rest-client', :git => "https://github.com/archiloque/rest-client.git" # lets us send e-mail via Mailgun's HTTP API
 
 # ActionView
 gem 'sanitize' # used in app/controllers/posts_controller.rb (which is dead code) ! remove
