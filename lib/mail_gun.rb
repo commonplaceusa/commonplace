@@ -1,10 +1,10 @@
 class MailGun
 
-  def self.deliver(method, options, to, from, reply_to, subject, content_type = "text/html", body, charset = "UTF-8", headers = {})
+  def self.deliver(method, options, to, from, reply_to, subject, body, content_type = "text/html", charset = "UTF-8", headers = {}, fake = false)
     if (method == :file)
-      # Save the e-mail to a file
       # STUB
-    else if (method == :action_mailer)
+      return
+    elsif (method == :action_mailer)
       # Send the e-mail with actionmailer
       Mail.defaults do
         delivery_method(method, options)
@@ -19,9 +19,30 @@ class MailGun
                    :headers => headers)
     else
       # Deliver with Mailgun
-      response = RestClient.post "https://api:#{options[:api_key]}@api.mailgun.net/v2/#{options[:domain]}/messages", :from => from, :to => to, :subject => subject, :html => body, :tag => ((headers['X-Milgun-Tag'].present?) ? headers['X-Mailgun-Tag']: ""), "h:X-Reply-To" => reply_to, "h:X-Precedence", "h:Auto-Submitted" => ((headers["Auto-Submitted"].present?) ? headers["Auto-Submitted"] : ""), "h:Return-Path" => ((headers["Return-Path"].present?) ? headers["Return-Path"] : ""), "h:X-Campaign-ID" => ((headers["X-Campaign-Id"].present?) ? headers["X-Campaign-Id"] : "")
-      # Do something with the response...
-      Resque.redis.rpush("api_results", response.to_str)
+      params = {}
+      params[:to] = to
+      params[:from] = from
+      params[:subject] = subject
+      params[:html] = body
+      if headers['X-Mailgun-Tag']
+        params[:tag] = headers['X-Mailgun-Tag']
+        headers.delete('X-Mailgun-Tag')
+      else
+        params[:tag] = ''
+      end
+      params["h:X-Reply-To"] = reply_to
+      headers.each do |k,v|
+        params["h:#{k}"] = v
+      end
+
+      endpoint = "https://api:#{options[:api_key]}@api.mailgun.net/v2/#{options[:domain]}/messages"
+      if fake
+        puts "Sending e-mail to endpoint #{endpoint} with parameters #{params.inspect}"
+      else
+        response = RestClient.post endpoint, {:params => params}
+        # Do something with the response...
+        Resque.redis.rpush("api_results", response.to_str)
+      end
     end
   end
 
