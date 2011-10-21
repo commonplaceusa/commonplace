@@ -49,7 +49,6 @@ class Post < ActiveRecord::Base
   end
 
   searchable do
-    # this appears to be broken.
     text :subject, :body
     text :replies do
       replies.map &:body
