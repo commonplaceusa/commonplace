@@ -10,6 +10,6 @@ class DailyDigestTestJob
         sent << user
      end
     end
-    Resque.redis.rpush("daily_digest_test_results", "#{sent.count}")
+    Resque.redis.set("daily_digest_test_result", "#{sent.count}")
   end
 end
