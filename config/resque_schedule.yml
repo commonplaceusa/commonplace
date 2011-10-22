@@ -14,7 +14,7 @@ import_feeds_rss:
 
 geolocate_data_points:
   cron: "0 0 * * *"
-  class: AddressGeolocater
+  class: AddressGeolocator
   args: 
   queue: geolocation
   description: "Geolocates bulk entered data points from organizers"
