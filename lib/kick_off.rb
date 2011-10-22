@@ -153,8 +153,8 @@ class KickOff
   end
 
 
-  def deliver_daily_bulletin(user, date)
-    enqueue(DailyBulletin, user.id, date.to_s(:db))
+  def deliver_daily_bulletin(user, date_string)
+    enqueue(DailyBulletin, user.id, date_string)
   end
   
   def deliver_feed_owner_welcome(feed)
