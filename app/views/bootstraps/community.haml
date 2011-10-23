@@ -39,7 +39,9 @@
       - if !current_community.has_launched?
         .prelaunch-notification
           Hey #{current_user.first_name}, welcome to #{current_community.name} CommonPlace! We're officially launching on #{current_community.launch_date.strftime("%B")} #{current_community.launch_date.day.ordinalize}. In the meantime, help us improve by <a href="/invite">inviting some more neighbors</a>.
-
+      
+      #feature-panel
+          
       #main
 
       #wrapper-footer
@@ -54,11 +56,14 @@
       CommonPlace || (CommonPlace = {});
       CommonPlace.page = "main_page";
       CommonPlace.community = community;
+      var account =  new Account(#{serialize(Account.new(current_user))});
 
       window.router = new MainPageRouter({
-      account: new Account(#{serialize(Account.new(current_user))}),
+      account: account,
       community: community
       });
+
+      (new FeatureSwitching({account: account, el: $("#feature-panel")})).render();
       
       Backbone.history.start();
 
