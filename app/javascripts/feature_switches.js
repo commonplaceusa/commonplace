@@ -1,8 +1,9 @@
+
 FeatureSwitcher = function(features, backend) {
   
   this._features = _(features).keys();
 
-  this._backend = backend || sessionStorage;
+  this._backend = backend;
 
   this.features = function() { return this._features; };
 
@@ -43,4 +44,10 @@ FeatureSwitcher = function(features, backend) {
 
 Features = new FeatureSwitcher({
   wireSearch: false
-});
+}, window.sessionStorage || { 
+  setItem: function(name, value) {},
+  getItem: function(name) { return false; }
+})
+
+
+;
