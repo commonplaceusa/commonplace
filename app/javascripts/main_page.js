@@ -4,6 +4,7 @@
 //= require actual
 //= require underscore
 //= require config
+//= require feature_switches
 //= require placeholder
 //= require time_ago_in_words
 //= require scrollTo

@@ -1,7 +1,9 @@
 <div class="sub-navigation">
-  <form class="search">
-    <input type="text" value="{{query}}" placeholder="Search"/>
-  </form>
+  {{#isSearchEnabled}}
+    <form class="search">
+      <input type="text" value="{{query}}" placeholder="Search"/>
+    </form>
+  {{/isSearchEnabled}}
   <h2><a href="#/events" class="current">{{#t}}events.a{{/t}}</a></h2>
   <div style="clear:both;"></div>
 </div>

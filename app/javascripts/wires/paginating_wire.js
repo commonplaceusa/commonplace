@@ -37,6 +37,8 @@ var PaginatingWire = Wire.extend({
 
   query: function() {
     return this.scope['query'] || '';
-  }
+  },
+
+  isSearchEnabled: function() { return this.isActive('wireSearch');  }
 
 });
