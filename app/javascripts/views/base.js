@@ -78,7 +78,12 @@ CommonPlace.View = Backbone.View.extend({
         input.val('');
       }
     });
+  },
+
+  isActive: function(feature) {
+    return window.Features[feature];
   }
+
 });
 
 
