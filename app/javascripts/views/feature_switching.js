@@ -7,14 +7,17 @@ FeatureSwitching = CommonPlace.View.extend({
   },
 
   features: function() {
-    return _(window.Features).map(function(enabled, feature) {
-      return { name: feature, isEnabled: enabled };
+    return _(window.Features.features()).map(function(feature) {
+      return { 
+        name: feature, 
+        isEnabled: window.Features.isActive(feature) 
+      };
     });
   },
 
   toggleFeature: function(e) {
     var $checkbox = $(e.target);
-    window.Features[$checkbox.val()] = $checkbox.is(":checked");
+    window.Features.toggle($checkbox.val());
   },
 
   canTryFeatures: function() {
