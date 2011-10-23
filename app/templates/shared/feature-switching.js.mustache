@@ -1,0 +1,16 @@
+{{#canTryFeatures}}
+  <a class="feature-list-toggle">Feature Switches</a>
+  <ul class="feature-list">
+    {{#features}}
+      <li>
+        <label>
+          <input type="checkbox"
+          name="{{name}}_toggle"
+          value="{{name}}"
+          {{#isEnabled}}checked{{isEnabled}}>
+          {{name}}
+        </label>
+      </li>
+    {{/features}}
+  </ul>
+{{/canTryFeatures}}

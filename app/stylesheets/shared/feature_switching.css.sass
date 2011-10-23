@@ -1,0 +1,24 @@
+#feature-panel
+  position: absolute
+  right: 0
+  font-family: Helvetica
+  a.feature-list-toggle
+    background-color: #fff
+    padding: 5px 5px 5px 20px
+    display: block
+    background-image: image-url("blue-arrow-up.png")
+    background-position: 5px center
+    background-repeat: no-repeat
+
+    &.shown
+      background-image: image-url("blue-arrow-down.png")
+  
+  ul.feature-list
+    border-top: 1px solid #fafafa
+    display: none
+    background-color: #fff
+    
+    li
+      padding: 10px 0
+
+  

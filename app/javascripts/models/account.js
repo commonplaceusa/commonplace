@@ -136,6 +136,8 @@ var Account = Model.extend({
     } else {
       return post.get('user_id') == this.id;
     }
-  }
+  },
+
+  canTryFeatures: function() { return this.get('is_admin'); }
 
 });
