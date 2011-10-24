@@ -40,7 +40,7 @@
         .prelaunch-notification
           Hey #{current_user.first_name}, welcome to #{current_community.name} CommonPlace! We're officially launching on #{current_community.launch_date.strftime("%B")} #{current_community.launch_date.day.ordinalize}. In the meantime, help us improve by <a href="/invite">inviting some more neighbors</a>.
       
-      #feature-panel
+      #feature-switching
           
       #main
 
@@ -63,7 +63,7 @@
       community: community
       });
 
-      (new FeatureSwitching({account: account, el: $("#feature-panel")})).render();
+      (new FeatureSwitching({account: account, el: $("#feature-switching")})).render();
       
       Backbone.history.start();
 

@@ -1,8 +1,8 @@
-#feature-panel
+#feature-switching
   position: absolute
   right: 0
   font-family: Helvetica
-  a.feature-list-toggle
+  a.feature-panel-toggle
     background-color: #fff
     padding: 5px 5px 5px 20px
     display: block
@@ -13,12 +13,17 @@
     &.shown
       background-image: image-url("blue-arrow-down.png")
   
-  ul.feature-list
+  div.feature-panel
     border-top: 1px solid #fafafa
     display: none
     background-color: #fff
+    padding-bottom: 5px
     
     li
       padding: 10px 0
 
+    button
+      display: block
+      width: 90%
+      margin: auto
   
