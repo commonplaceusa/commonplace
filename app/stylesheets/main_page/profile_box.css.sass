@@ -204,3 +204,26 @@
     +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #cfcfcf inset, 0 2px 0 rgba(255, 255, 255, 0.7) inset)
   .spacing
     padding: 15px
+
+body.fixedLeftColumn
+
+  #info-upper
+    position: relative
+
+    #info-list-area
+      height: auto
+      position: absolute
+      top: 0
+      bottom: 0
+
+    #profile-area
+      overflow-y: scroll
+      overflow-x: hidden
+      position: absolute
+      top: 0
+      bottom: 0
+      right: 0
+
+      .profile-top
+        width: 120px
+
