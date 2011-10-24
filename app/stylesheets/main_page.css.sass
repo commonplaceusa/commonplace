@@ -35,3 +35,24 @@ body
 #right-column
   margin-left: 10px
 
+body.fixedLeftColumn
+  #left-column, #right-column
+    float: none
+
+  #right-column
+    margin-left: 0
+    float: right
+
+  #left-column
+    position: absolute
+    top: 15px
+    bottom: 15px
+
+  #post-box
+    position: fixed
+    width: 485px
+
+  #info-box
+    position: fixed
+    bottom: 0
+    width: 455px

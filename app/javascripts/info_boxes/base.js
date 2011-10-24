@@ -50,10 +50,19 @@ var InfoBox = CommonPlace.View.extend({
     this.currentQuery = "";
     this.page = 0;
     this.showProfile(this.options.account);
-    $(window).scroll(function() {
-      $(self.el).css({ width: $(self.el).width() });
-      self.setPosition();
-    });
+
+    if (this.isActive("fixedLeftColumn")) {
+      setPostBoxTop();
+      setProfileBoxBottom();
+      setProfileBoxTop();
+      setProfileBoxInfoUpperHeight();
+    } else {
+      $(window).scroll(function() {
+        $(self.el).css({ width: $(self.el).width() });
+        self.setPosition();
+      });
+    }
+
     this.$("#info-list-area").scroll(function() {
       if (this.offsetHeight + $(this).scrollTop() >= this.scrollHeight) {
         self.nextPage();
