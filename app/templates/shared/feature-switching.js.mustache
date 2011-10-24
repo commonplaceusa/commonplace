@@ -1,16 +1,19 @@
 {{#canTryFeatures}}
-  <a class="feature-list-toggle">Feature Switches</a>
-  <ul class="feature-list">
-    {{#features}}
-      <li>
-        <label>
-          <input type="checkbox"
-          name="{{name}}_toggle"
-          value="{{name}}"
-          {{#isEnabled}}checked="checked"{{/isEnabled}}>
-          {{name}}
-        </label>
-      </li>
-    {{/features}}
-  </ul>
+  <a class="feature-panel-toggle">Feature Switches</a>
+  <div class="feature-panel">
+    <ul class="feature-list">
+      {{#features}}
+        <li>
+          <label>
+            <input type="checkbox"
+            name="{{name}}_toggle"
+            value="{{name}}"
+            {{#isEnabled}}checked="checked"{{/isEnabled}}>
+              {{name}}
+          </label>
+        </li>
+      {{/features}}
+    </ul>
+    <button class="refresh-page">Refresh Page</button>
+  </div>
 {{/canTryFeatures}}

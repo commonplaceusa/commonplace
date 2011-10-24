@@ -3,7 +3,8 @@ FeatureSwitching = CommonPlace.View.extend({
 
   events: {
     "change input:checkbox": "toggleFeature",
-    "click a.feature-list-toggle": "toggleFeatureList"
+    "click a.feature-panel-toggle": "toggleFeaturePanel",
+    "click button.refresh-page": "refreshPage"
   },
 
   features: function() {
@@ -24,9 +25,14 @@ FeatureSwitching = CommonPlace.View.extend({
     return this.options.account.canTryFeatures();
   },
 
-  toggleFeatureList: function(e) { 
+  toggleFeaturePanel: function(e) { 
     e.preventDefault();
-    this.$("ul.feature-list").slideToggle();
-    this.$("a.feature-list-toggle").toggleClass("shown");
+    this.$("div.feature-panel").slideToggle();
+    this.$("a.feature-panel-toggle").toggleClass("shown");
+  },
+
+  refreshPage: function() {
+    window.location.reload();
   }
+
 });
