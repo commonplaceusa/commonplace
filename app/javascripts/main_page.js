@@ -1,3 +1,4 @@
+//= require json2
 //= require showdown
 //= require jquery
 //= require jquery-ui
@@ -9,7 +10,6 @@
 //= require time_ago_in_words
 //= require scrollTo
 //= require mustache
-//= require json2
 //= require backbone
 //= require autoresize
 //= require dropkick
