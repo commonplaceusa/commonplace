@@ -22,21 +22,17 @@ var FeedEditFormView = FormView.extend({
     }, {
       success: function() {
         callback();
-        window.location.reload();
+        alert(self.model.get("slug"));
+        window.location.pathname = self.model.get("url");
       },
-      error: function(attribs, response) { self.incomplete(response); }
+      error: function(attribs, response) { self.showError(response); }
     });
   },
 
-  incomplete: function(fields) {
-    console.log(fields);
-    var incompleteFields = fields.shift();
-    var self = this;
-    _.each(fields, function(f) {
-      incompleteFields = incompleteFields + " and " + f;
-    });
-    this.$(".incomplete-fields").text(incompleteFields);
-    this.$(".incomplete").show();
+  showError: function(response) {
+    console.log(response);
+    this.$(".error").text(response.responseText);
+    this.$(".error").show();
   },
 
   feedName: function() {
