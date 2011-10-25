@@ -11,7 +11,6 @@ var PostFormView = FormView.extend({
   },
   
   showError: function(response) {
-    console.log(response);
     this.$(".error").text(response.responseText);
     this.$(".error").show();
   },
