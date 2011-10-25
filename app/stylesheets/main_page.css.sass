@@ -35,7 +35,15 @@ body
 #right-column
   margin-left: 10px
 
-body.fixedLeftColumn
+body.fixedLayout
+  #header
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 1000
+  #footer 
+    display: none
   #left-column, #right-column
     float: none
 
