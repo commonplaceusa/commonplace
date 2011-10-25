@@ -13,6 +13,27 @@ class API
       end
 
     end
+    
+    put "/:feed_id" do |feed_id|
+      feed = Feed.find(feed_id)
+      halt [404, "errors"] unless feed.present?
+      halt [401, "unauthorized"] unless auth(feed)
+      
+      feed.name = request_body["name"]
+      feed.about = request_body["about"]
+      feed.kind = request_body["kind"]
+      feed.phone = request_body["phone"]
+      feed.website = request_body["website"]
+      feed.address = request_body["address"]
+      feed.slug = request_body["slug"]
+      feed.feed_url = request_body["rss"]
+      
+      if feed.save
+        serialize(feed)
+      else
+        [500, "could not save"]
+      end
+    end
 
     post "/:feed_id/announcements" do |feed_id|
       halt [401, "unauthorized"] unless auth(Feed.find(feed_id))
