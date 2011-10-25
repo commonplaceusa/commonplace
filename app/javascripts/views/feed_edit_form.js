@@ -22,7 +22,6 @@ var FeedEditFormView = FormView.extend({
     }, {
       success: function() {
         callback();
-        alert(self.model.get("slug"));
         window.location.pathname = self.model.get("url");
       },
       error: function(attribs, response) { self.showError(response); }
@@ -30,7 +29,6 @@ var FeedEditFormView = FormView.extend({
   },
 
   showError: function(response) {
-    console.log(response);
     this.$(".error").text(response.responseText);
     this.$(".error").show();
   },
