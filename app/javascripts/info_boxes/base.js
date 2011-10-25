@@ -51,7 +51,7 @@ var InfoBox = CommonPlace.View.extend({
     this.page = 0;
     this.showProfile(this.options.account);
 
-    if (this.isActive("fixedLeftColumn")) {
+    if (this.isActive("fixedLayout")) {
       setPostBoxTop();
       setProfileBoxBottom();
       setProfileBoxTop();
