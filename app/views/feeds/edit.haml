@@ -3,21 +3,7 @@
 = semantic_form_for @feed, :html => {:multipart => true, :class => "edit_feed"} do |f|
 
   = f.inputs do
-    = f.input :name
-    = f.input :about
     = f.input :avatar, :input_html => {:size => 20}
-    - unless current_community.is_college
-      = f.input :kind, :as => :radio, :collection => Feed.kinds.to_hash
-    = f.input :feed_url, :label => "To pull Announcements from an RSS feed, type in your RSS URL here:", :as => :string
-    = f.input :website, :as => :string
-    = f.input :phone, :as => :string
-    = f.input :address
 
   = f.buttons do
     = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/continue2.png")}
-
-  %li.other-actions
-    = link_to "Change Feed Owner", edit_owner_feed_url(f.object) 
-    &sdot;
-    = link_to "Delete Feed", delete_feed_url(f.object)
-
