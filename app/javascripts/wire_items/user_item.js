@@ -4,7 +4,7 @@ var UserWireItem = WireItem.extend({
   className: "wire-item group-member",
 
   initialize: function(options) {
-    this.attr_accessible(['first_name', 'last_name', 'url', 'avatar_url']);
+    this.attr_accessible(['first_name', 'last_name', 'avatar_url']);
   },
 
   afterRender: function() {
