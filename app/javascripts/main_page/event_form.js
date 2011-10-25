@@ -34,18 +34,14 @@ var EventForm = CommonPlace.View.extend({
       }).toArray()
     }, {
       success: function() { self.render(); },
-      error: function(attribs, response) { self.incomplete(response); }
+      error: function(attribs, response) { self.showError(response); }
     });
   },
 
-  incomplete: function(fields) {
-    var incompleteFields = fields.shift();
-    var self = this;
-    _.each(fields, function(f) {
-      incompleteFields = incompleteFields + " and " + f;
-    });
-    this.$(".incomplete-fields").text(incompleteFields);
-    this.$(".incomplete").show();
+  showError: function(response) {
+    console.log(response);
+    this.$(".error").text(response.responseText);
+    this.$(".error").show();
   },
 
   groups: function() {
