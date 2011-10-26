@@ -16,7 +16,7 @@ class API
       end
     end
 
-    get "/:email" do |email|
+    get "/user_by_email/:email" do |email|
       user = User.find_by_email(email)
       halt [401, "wrong community"] unless current_user.admin
       user.to_json
