@@ -14,9 +14,11 @@ class RSSFeed
 
   def update!
     self.items.each do |item| 
-      RSSAnnouncement.from_rss_item(item, 
-                                    :owner => @feed,
-                                    :community_id => @feed.community_id).save
+      Exceptional.rescue do
+        RSSAnnouncement.from_rss_item(item, 
+                                      :owner => @feed,
+                                      :community_id => @feed.community_id).save
+      end
     end
   end
 
