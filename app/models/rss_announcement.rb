@@ -24,8 +24,7 @@ class RSSAnnouncement < Announcement
   def self.extract_rss_body(body)
     body = self.strip_feedflare(body)
     body = HTMLEntities.new.decode(body)
-    body = McBean.fragment(body).to_markdown
-    
+    body = ReverseMarkdown.new.parse_string(body)
     body
   end
 
