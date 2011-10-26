@@ -67,7 +67,7 @@ class API
       def in_comm(community_id)
         current_user.community.id == community_id.to_i || current_user.admin
       end
-      
+
       NO_CALLBACK = ["no_callback"].to_json
 
     end
