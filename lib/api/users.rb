@@ -19,7 +19,7 @@ class API
     get "/:email" do |email|
       user = User.find_by_email(email)
       halt [401, "wrong community"] unless current_user.admin
-      serialize user
+      serialize user, :full_dump => true
     end
 
     get "/:id" do |id|
