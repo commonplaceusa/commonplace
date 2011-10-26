@@ -32,13 +32,13 @@ function setPostBoxTop() {
   if ($(window).scrollTop() < 60) { 
     $("#post-box").css({top: 85}); 
   } else { 
-    $("#post-box").css({top: 15}); 
+    $("#post-box").css({top: 85}); 
   } 
 }
 
 function setProfileBoxBottom() {
   if ($(document).height() - $(window).scrollTop() - $(window).height() < 65) {
-    $("#info-box").css({bottom: 75});
+    $("#info-box").css({bottom: 15});
   } else {
     $("#info-box").css({bottom: 15});
   }
@@ -62,14 +62,14 @@ function setProfileBoxInfoUpperHeight() {
 
 $(function() {
 
-  if (Features.isActive("fixedLeftColumn")) {
+  if (Features.isActive("fixedLayout")) {
     $(window).scroll(function() {
       setPostBoxTop();
       setProfileBoxBottom();
       setProfileBoxTop();
       setProfileBoxInfoUpperHeight();
     });
-    $("body").addClass("fixedLeftColumn");
+    $("body").addClass("fixedLayout");
   }
   
 });
