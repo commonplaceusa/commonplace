@@ -16,6 +16,12 @@ class API
       end
     end
 
+    get "/:email" do |email|
+      user = User.find_by_email(email)
+      halt [401, "wrong community"] unless current_user.admin
+      serialize user
+    end
+
     get "/:id" do |id|
       user = User.find(id)
       halt [401, "wrong community"] unless in_comm(user.community.id)
