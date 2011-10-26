@@ -160,6 +160,10 @@ class API
       end
     end
 
+    get "/:community_slug/user_count" do |community_slug|
+      serialize(Community.find_by_slug(community_slug).users.count)
+    end
+
 
     get "/:community_id/group-like" do |community_id|
       # only search
