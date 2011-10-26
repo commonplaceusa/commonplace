@@ -18,3 +18,11 @@ geolocate_data_points:
   args: 
   queue: geolocation
   description: "Geolocates bulk entered data points from organizers"
+
+generate_statistics:
+  cron: "00 23 * * *"
+  class: StatisticsAggregator
+  args: 
+  queue: statistics
+  description: "Aggregates community statistics"
+
