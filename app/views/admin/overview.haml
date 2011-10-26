@@ -1,247 +1,75 @@
-= javascript_include_tag "jquery-1.6.1", "highcharts", "date"
-.community{:width => "100%", :style => "border:1px solid black;"}
-  - if Rails.env.production?
-    %h2 App Statistics
-    .app
-      %iframe{:src => "https://heroku.newrelic.com/public/charts/5cuXYFk5Y5G", :width => 500, :height => 300, :scrolling => "no", :frameborder => "no"}
-      %iframe{:src => "https://heroku.newrelic.com/public/charts/kEvDBPRSEe5", :width => 500, :height => 300, :scrolling => "no", :frameborder => "no"}
-      %iframe{:src => "https://heroku.newrelic.com/public/charts/7Ygqo8txgwU", :width => 500, :height => 300, :scrolling => "no", :frameborder => "no"}
+= javascript_include_tag "jquery-1.6.1"
 
-  %h2 Totals
-  .totals
-    Total Users: 
-    = @user_count
-    %br
-    %img{:src => Gchart.pie(:data => @communities.map(&:user_count), :title => "Users by Community", :labels => @communities.map(&:name), :size => "300x200")}
-    %br
-    Total Neighborhood Posts: 
-    = @post_count
-    %br
-    Total Event Posts: 
-    = @event_count
-    %br
-    Total Announcements: 
-    = @announcement_count
-    %br
-    Total Group Posts:
-    = @group_post_count
-    %br
-    Total Private Conversations
-    = @messages_count
-    %br
-    Total Private Messages
-    = @messages_and_replies_count
-    -#%br
-    -#Total Private Messages: 
-    -#= @message_count
-    %br
-    Total Reply Percentage:
-    -#= (@reply_count + @announcement_count + @event_count + @group_post_count + @post_count + @message_count > 0) ? "#{((100*@reply_count) / (@reply_count + @announcement_count + @event_count + @group_post_count + @post_count + @message_count))}%" : "N/A"
-    = (@reply_count + @announcement_count + @event_count + @group_post_count + @post_count > 0) ? "#{((100*@reply_count) / (@reply_count + @announcement_count + @event_count + @group_post_count + @post_count))}%" : "N/A"
-  .registrations
-    %img{:src => Gchart.pie(:data => [@completed_registrations.count, @incomplete_registrations.count], :title => "Total Registration Status", :labels => ["Complete", "Incomplete"], :size => "300x200")}
-    %br
-    Completed Registrations:
-    = @completed_registrations.count
-    %br
-    Incomplete Registrations:
-    = @incomplete_registrations.count
-    %br
-    People Receiving Live Post Emails:
-    = @live_emails
-    %br
-    People Receiving Daily Post Emails:
-    = @daily_emails
-    %br
-    People Not Receiving Post Emails:
-    = @disabled_live_emails
-    %br
-    People Receiving Daily Digest:
-    = @daily_digest_emails
-    %br
-    People Not Receiving Daily Digest:
-    = @disabled_daily_digest_emails
-  .today
-    Today's Neighborhood Posts:
-    = Post.today.size
-    %br
-    Today's Event Posts:
-    = Event.today.size
-    %br
-    Today's Announcements:
-    = Announcement.today.size
-    %br
-    Today's Group Posts:
-    = GroupPost.today.size
-    %br
-    Today's Private Messages:
-    = Message.today.size
-%br
-- @communities.each do |community|
-  - community_user_count = community.users.size
-  .community{:width => "100%", :style => "border: 1px solid black;"}
-    %h2{:style => "text-align: center;"}
-      = community.name
-      = link_to "(csv)", "/admin/#{community.slug}/export_csv"
-    %table
+:css
+  td {
+    border: 3px solid #c3c3c3;
+  }
+  th {
+    border: 3px solid #c3c3c3;
+  }
+  table {
+    border-collapse: collapse;
+  }
+%h2 Community Statistics
+%table
+  %thead
+    %tr
+      %th Statistic
+      - @communities.each do |c|
+        %th= c[0]
+      %th Total
+  %tbody
+    - @communities.first[1].each do |statistic_name, value|
       %tr
-        %th Users
-        %th User Data
-        %th User Engagement
+        %th= statistic_name.titleize
+        - @communities.each do |c|
+          %td= c[1][statistic_name]
+        - if statistic_name.include? "average"
+          %td.average
+        - else
+          %td.total
+%hr
+%h2 Platform Statistics
+%table
+  %tr
+    %th Statistic
+    %th Value
+  - @overall_statistics.each do |name,value|
+    %tr
+      %td= name.titleize
+      %td= value
+%hr
+%h1 Historical Statistics
+- @historical_statistics.each do |community, stats|
+  %h2= community
+  %table
+    %tr
+      %th Statistic
+      - stats.each do |days_ago, data|
+        %th= days_ago.to_i.days.ago.to_date.to_s
+    - stats.first[1].each do |name, val|
       %tr
-        %td{:colspan => "3"}
-          %hr
-      %tr
-        %td{:valign => "top"}
-          Total Users:
-          = community.users.count
-          %br
-          Percentage of Field: 
-          = "#{(100*community.users.count) / community.households.to_i}%"
-          %br
-          User Gains Today:
-          = community.users.today.count
-          %div[community, :user_growth]{:style => "width: 250px;"}
-        %td{:valign => "top"}
-          %table{:border => "1"}
-            %tr
-              %td
-                Total Neighborhood Posts: 
-                = community.posts.count
-                %br
-                Neighborhood Posts This Week:
-                = community.posts.between(7.days.ago, 0.days.ago).count
-                %br
-                Average Per Day:
-                = community.posts.between(7.days.ago, 0.days.ago).count / 7.0
-                %div[community, :neighborhood_post_growth]{:style => "width: 250px;"}
-              %td
-                Total Events:
-                = community.events.size
-                %br
-                Events This Week:
-                = community.events.between(7.days.ago, 0.days.ago).size
-                %br
-                Average Per Day:
-                = community.events.between(7.days.ago, 0.days.ago).size / 7.0
-                %span[community, :event_growth]{:style => "width: 250px;"}
-            %tr
-              %td
-                Total Announcements:
-                = community.announcements.size
-                %br
-                Announcements This Week:
-                = community.announcements.between(7.days.ago,0.days.ago).size
-                %br
-                Average Per Day:
-                = community.announcements.between(7.days.ago,0.days.ago).size / 7.0
-                %span[community, :announcement_growth]{:style => "width: 250px;"}
-              -#%td
-                Total Private Messages:
-                = community.private_messages.size
-                %br
-                Private Messages This Week:
-                = community.private_messages.select { |m| m.created_at < 0.days.ago and m.created_at > 7.days.ago }.size
-                %br
-                Average Per Day:
-                = community.private_messages.select { |m| m.created_at < 0.days.ago and m.created_at > 7.days.ago }.size / 7.0
-                %span[community, :private_message_growth]{:style => "width: 250px;"}
-        %td{:valign => "top"}
-          Users on Main Page: 
-          ?
-          %br
-          Retention of Past Week: 
-          = "#{((100*community.users.logged_in_since(7.days.ago).size) / community_user_count)}%"
-          %br
-          Retention of Past Month:
-          = "#{((100*community.users.logged_in_since(30.days.ago).size) / community_user_count)}%"
-          -#%br
-          -#Value-Adding User Percentage:
-          -#= "#{((100*community.users.select { |u| u.value_adding? }.size) / community_user_count)}%"
-
-%script
-  = "days = #{@days};"
-  var charts = [];
-  $(document).ready(function() {
-  - @communities.each do |community|
-    charts.push(new Highcharts.Chart({
-    chart: {
-    = "renderTo: 'user_growth_community_#{community.id}',"
-    zoomType: 'x'
-    },
-    credits: { enabled: false },
-    title: { text: 'Users over Time' },
-    xAxis: { type: 'datetime' },
-    yAxis: { title: { text: 'Registered Users' } },
-    series: [{
-    name: "Registrations",
-    pointInterval: 3600000 * 24,
-    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
-    type: 'area',
-    data: [
-    - community.registrations_since_n_days_ago(@days).each do |i|
-      = "#{i},"
-    ]
-    }]
-    }));
-
-    charts.push(new Highcharts.Chart({
-    chart: {
-    = "renderTo: 'neighborhood_post_growth_community_#{community.id}',"
-    zoomType: 'x'
-    },
-    credits: { enabled: false },
-    title: { text: 'Neighborhood Posts over Time' },
-    xAxis: { type: 'datetime' },
-    yAxis: { title: { text: 'Neighborhood Posts' } },
-    series: [{
-    name: "New Neighborhood Posts",
-    pointInterval: 3600000 * 24,
-    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
-    type: 'area',
-    data: [
-    - community.since_n_days_ago(@days,community.posts).each do |i|
-      = "#{i},"
-    ]}]}));
-
-    charts.push(new Highcharts.Chart({
-    chart: {
-    = "renderTo: 'event_growth_community_#{community.id}',"
-    zoomType: 'x'
-    },
-    credits: { enabled: false },
-    title: { text: 'Events over Time' },
-    xAxis: { type: 'datetime' },
-    yAxis: { title: { text: 'Events' } },
-    series: [{
-    name: "New Events",
-    pointInterval: 3600000 * 24,
-    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
-    type: 'area',
-    data: [
-    - community.since_n_days_ago(@days,community.events, true).each do |i|
-      = "#{i},"
-    ]}]}));
-
-    charts.push(new Highcharts.Chart({
-    chart: {
-    = "renderTo: 'announcement_growth_community_#{community.id}',"
-    zoomType: 'x'
-    },
-    credits: { enabled: false },
-    title: { text: 'Announcements over Time' },
-    xAxis: { type: 'datetime' },
-    yAxis: { title: { text: 'Announcements' } },
-    series: [{
-    name: "New Announcements",
-    pointInterval: 60*60*24*1000,
-    = "pointStart: Date.UTC(#{@start_year}, #{@start_month}-1, #{@start_day}),"
-    type: 'area',
-    data: [
-    - community.since_n_days_ago(@days,community.announcements, true).each do |i|
-      = "#{i},"
-    ]}]}));
-
+        %th= name.titleize
+        - stats.each do |d, statistics|
+          %td= statistics[name].to_s
+:javascript
+  $(document).ready(function(){
+    findTotals();
   });
 
+  function findTotals() {
+    $("tbody tr").each(function() {
+      row_total = 0;
+      row_count = 0;
+      $("td:not(.total)", this).each(function() {
+        row_total += Number($(this).html());
+        row_count += 1;
+      });
+      $(".total", this).html(roundNumber(row_total, 2));
+      $(".average", this).html(roundNumber(row_total / row_count, 2));
+    });
+  }
 
+  function roundNumber(num, dec) {
+    return Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+  }

@@ -12,6 +12,8 @@ class GroupPost < ActiveRecord::Base
 
   scope :today, where("group_posts.created_at between ? and ?", Date.today, Time.now)
 
+  scope :between, lambda { |start_date, end_date| { :conditions => ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } }
+
   default_scope where(:deleted_at => nil)
 
   def owner

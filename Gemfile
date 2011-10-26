@@ -63,6 +63,7 @@ gem 'sass', '~> 3.1' # used for stylesheets
 # Admin
 gem 'activeadmin' # use as an easy admin tool
 gem 'googlecharts' # used for admin/overview
+gem 'garb' # used to access the Google Analytics API
 
 # Monitoring
 gem 'exceptional' # we use this to notify on exceptions
