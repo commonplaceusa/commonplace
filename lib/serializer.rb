@@ -1,7 +1,10 @@
 module Serializer
-  def self.serialize(o)
+  def self.serialize(o, full_dump = false)
     o = o.results if o.respond_to?(:results)
     o = o.to_a if o.respond_to?(:to_a)
+    if full_dump
+      return ActiveSupport::JSON.encode o
+    end
     as_json = 
       case o
         
