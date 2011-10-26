@@ -5,7 +5,7 @@
     <div class="profile-top">
       <a href="{{url}}" class="gray-button">View Feed Page</a>
       {{^isOwner}}<a href="#" class="gray-button message">Send a Message</a>{{/isOwner}}
-      {{#isOwner}}<a href="{{editUrl}}" class="gray-button">Edit Feed Profile</a>{{/isOwner}}
+      {{#isOwner}}<a href="#" class="gray-button edit-feed">Edit Feed Profile</a>{{/isOwner}}
       {{^isSubscribed}}<a href="#" class="gray-button subscribe">Subscribe</a>{{/isSubscribed}}
       {{#isSubscribed}}<a href="#" class="gray-button unsubscribe">Unsubscribe</a>{{/isSubscribed}}
     </div>
