@@ -5,7 +5,8 @@ var FeedProfileBox = Profile.extend({
   events: {
     "click .message": "showMessageForm",
     "click .subscribe": "subscribe",
-    "click .unsubscribe": "unsubscribe"
+    "click .unsubscribe": "unsubscribe",
+    "click .edit-feed": "showFeedEditForm"
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
@@ -22,6 +23,14 @@ var FeedProfileBox = Profile.extend({
     e.preventDefault();
     var formView = new MessageFormView({
       model: new Message({ messagable: this.model })
+    });
+    formView.render();
+  },
+  
+  showFeedEditForm: function(e) {
+    e.preventDefault();
+    var formView = new FeedEditFormView({
+      model: this.model
     });
     formView.render();
   },
@@ -42,9 +51,7 @@ var FeedProfileBox = Profile.extend({
 
   isOwner: function() { return this.options.account.isFeedOwner(this.model); },
 
-  url: function() { return this.model.get("url"); },
-
-  editUrl: function() { return this.model.link("edit"); }
+  url: function() { return this.model.get("url"); }
   
 });
 
