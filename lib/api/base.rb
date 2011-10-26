@@ -1,6 +1,8 @@
 class API
   
   class Base < Sinatra::Base
+
+    set :raise_errors, true
     
     helpers do
 
