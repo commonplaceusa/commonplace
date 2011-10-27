@@ -211,12 +211,14 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   renderProfile: function(model) {
+    if (model == this.currentModel) { return; }
     this.$profile().show();
     this.$profile_none().hide();
     var profile = this.profileBoxFor(model);
     profile.render();
     this.$profile().replaceWith(profile.el);
     this.changeSchema(model.get("schema"));
+    this.currentModel = model;
   },
   
   renderNone: function() {
