@@ -13,6 +13,21 @@ class API
     get "/" do 
       serialize Account.new(current_account)
     end
+    
+    put "/" do
+      current_account.full_name = request_body["name"]
+      current_account.about = request_body["about"]
+      current_account.interest_list = request_body["interests"]
+      current_account.skill_list = request_body["skills"]
+      current_account.good_list = request_body["goods"]
+      current_account.email = request_body["email"]
+      
+      if current_account.save
+        serialize Account.new(current_account)
+      else
+        [500, "could not save"]
+      end
+    end
 
     post "/subscriptions/feeds" do
       feed = Feed.find(params[:id] || request_body['id'])
