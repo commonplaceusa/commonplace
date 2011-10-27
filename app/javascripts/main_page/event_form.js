@@ -18,6 +18,8 @@ var EventForm = CommonPlace.View.extend({
 
   createEvent: function(e) {
     e.preventDefault();
+    this.$("button").hide();
+    this.$(".spinner").show();
     var self = this;
     this.cleanUpPlaceholders();
     this.collection.create({ // use $.fn.serialize here
@@ -34,7 +36,11 @@ var EventForm = CommonPlace.View.extend({
       }).toArray()
     }, {
       success: function() { self.render(); },
-      error: function(attribs, response) { self.incomplete(response); }
+      error: function(attribs, response) {
+        self.$("button").show();
+        self.$(".spinner").hide();
+        self.incomplete(response);
+      }
     });
   },
 

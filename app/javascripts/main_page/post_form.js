@@ -19,6 +19,9 @@ var PostForm = CommonPlace.View.extend({
     e.preventDefault();
     
     this.cleanUpPlaceholders();
+    
+    this.$(".spinner").show();
+    this.$("button").hide();
 
     var collection = this.collection;
     if ($("[name=commercial]:checked").val() == "yes") {
@@ -31,7 +34,11 @@ var PostForm = CommonPlace.View.extend({
       body: this.$("[name=body]").val()
     }, {
       success: function() { self.render(); },
-      error: function(attribs, response) { self.incomplete(response); }
+      error: function(attribs, response) {
+        self.$(".spinner").hide();
+        self.$("button").show();
+        self.incomplete(response);
+      }
     });
   },
 
