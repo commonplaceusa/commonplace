@@ -5,7 +5,8 @@
     <div class="body reply-body">{{#markdown}}{{body}}{{/markdown}}</div>
   </div>
 
-  <span class="time">{{time}}{{#canEdit}} - <a href="#" class="delete-reply">DELETE</a>{{/canEdit}}</span>
+  <span class="time">{{time}}</span>
+  {{#canEdit}}<a href="#" class="delete-reply">DELETE</a>{{/canEdit}}
 
 </div>
 
