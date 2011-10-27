@@ -29,4 +29,8 @@ class Message < ActiveRecord::Base
     end
   end
   
+  def community
+    user.community
+  end
+  
 end
