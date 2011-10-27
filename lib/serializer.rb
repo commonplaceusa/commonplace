@@ -173,6 +173,7 @@ module Serializer
 
       when Reply
         { 
+        "id" => o.id,
         "schema" => "replies",
         "author" => o.user.name,
         "avatar_url" => o.user.avatar_url(:thumb),
@@ -181,7 +182,8 @@ module Serializer
         "body" => o.body,
         "published_at" => o.created_at.utc,
         "links" => {
-          "author" => "/users/#{o.user_id}"
+          "author" => "/users/#{o.user_id}",
+          "self" => "/replies/#{o.id}"
         }
         }
 
