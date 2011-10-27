@@ -13,7 +13,8 @@ var ReplyWireItem = WireItem.extend({
 
   events: {
     "click .reply-text > .author": "messageUser",
-    "mouseenter": "showProfile"
+    "mouseenter": "showProfile",
+    "click .delete-reply": "deleteReply"
   },
 
   time: function() {
@@ -50,5 +51,16 @@ var ReplyWireItem = WireItem.extend({
       links: { self: this.model.link("author") }
     });
     window.infoBox.showProfile(user);
+  },
+  
+  canEdit: function() {
+    return this.account.canEditReply(this.model);
+  },
+  
+  deleteReply: function(e) {
+    e.preventDefault();
+    var self = this;
+    window.f = this.model;
+    this.model.destroy();
   }
 });
