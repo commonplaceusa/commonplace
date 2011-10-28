@@ -1,0 +1,77 @@
+
+<form>
+
+  <div class="error"></div>
+
+  <ul class="settings">
+    <li><a href="/account/avatar-upload" class="avatar">
+      <img src="{{avatarUrl}}" width="100">
+      <div>Change your picture</div>
+    </a></li>
+    
+    <li><label>
+      <input type="checkbox" name="get-bulletin"
+      {{#getsBulletin}}selected="selected"{{/getsBulletin}}></input>
+      Get a daily bulletin
+    </label></li>
+    
+    <li>
+      <label>Neighborhood Posts:</label>
+      <ul class="get-posts">
+        <li><label>
+          <input type="radio" name="get-posts" value="all"></input>
+          Receive all posts by email
+        </label></li>
+        <li><label>
+          <input type="radio" name="get-posts" value="three"></input>
+          Receive three posts by email per day
+        </label></li>
+        <li><label>
+          <input type="radio" name="get-posts" value="bulletin"></input>
+          Only receive posts in the daily bulletin
+        </label></li>
+        <li><label>
+          <input type="radio" name="get-posts" value="none"></input>
+          Receive no neighborhood posts
+        </label></li>
+      </ul>
+    </li>
+    
+    <li>
+      <a href="/account/delete">Delete my CommonPlace account</a>
+    </li>
+  </ul>
+  
+  <div class="profile">
+    <h1>Update your profile</h1>
+    
+    <label for="full_name">Full Name:</label>
+    <input type="text" name="full_name" value="{{fullName}}">
+    
+    <label for="about">Tell your neighbors a bit about yourself:</label>
+    <textarea name="about" rows="3">{{about}}</textarea>
+    
+    <label for="email">Email Address:</label>
+    <input type="email" name="email" value="{{email}}">
+    
+    <label for="password">Change your password:</label>
+    <input type="text" name="password" class="password">
+    <div class="password-redundant"><input type="text" name="password-redundant"></div>
+    
+    <label>Interests</label>
+    <input type="text">
+    
+    <label>Skills</label>
+    <input type="text">
+    
+    <label>Goods</label>
+    <input type="text">
+  </div>
+  
+  <div class="controls">
+    <button>Update Profile</button>
+  </div>
+  
+</form>
+
+

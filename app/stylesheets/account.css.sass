@@ -1,0 +1,101 @@
+@import core
+@import shared/buttons
+@import header
+@import header
+@import footer
+@import date_picker
+@import shared/replies
+@import shared/wire
+@import shared/form
+@import shared/modal
+@import shared/markdown
+
+body
+  background-color: #eee
+  margin: 0
+
+#main
+  width: 800px
+  margin: auto
+  position: relative
+
+#account-edit
+  margin: auto
+  +lightbox
+  margin-top: 50px
+  margin-bottom: 70px
+  font-family: Rockwell, Georgia, Times, "Times New Roman", serif
+  font-weight: thin
+  
+  h1
+    width: 960px
+    color: #3b6085
+    line-height: 1.2
+    font-size: 24px
+    padding: 0 20px
+    margin: 5px auto 20px
+    text-align: center
+    +text-shadow(#bfc8cf 1px 1px 1px)
+  
+  .settings
+    width: 30%
+    float: right
+    //text-align: left
+    background-color: #AC322F
+    color: white
+    +border-radius(5px)
+    
+    a
+      text-decoration: none
+      color: white
+      &:hover
+        text-decoration: underline
+    
+    li
+      padding: 5px
+      margin: 7px
+      &:hover
+        background-color: #8f2927
+        
+    .get-posts
+      li
+        margin-bottom: 5px
+        font-size: 13px
+    
+    a.avatar
+      text-align: center
+    
+  .password-redundant
+    display: none
+    
+  .profile
+    width: 63%
+    
+    label, input, textarea
+      color: #444545
+      padding: 0px 3px
+      margin: 10px
+      width: 100%
+      font-size: 18px
+      height: 38px
+      +border-radius(5px)
+      +box-shadow(#eee 1px 1px 3px 0 inset)
+      
+  .controls
+    text-align: center
+    
+    button
+      +blue-button
+      
+  .error
+    background-color: #f4e15f
+    border: 2px solid #ffe534
+    +border-radius(3px)
+    color: #363636
+    display: none
+    margin: 20px
+    margin-top: 0
+    padding: 5px
+    font-family: Helvetica, Arial, sans-serif
+    text-align: center
+    font-size: 14px
