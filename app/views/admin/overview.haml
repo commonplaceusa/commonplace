@@ -45,12 +45,12 @@
   %table
     %tr
       %th Statistic
-      - stats.each do |days_ago, data|
+      - stats.each_with_index do |data, days_ago|
         %th= days_ago.to_i.days.ago.to_date.to_s
-    - stats.first[1].each do |name, val|
+    - stats.first.each do |name, val|
       %tr
         %th= name.titleize
-        - stats.each do |d, statistics|
+        - stats.each_with_index do |statistics, d|
           %td= statistics[name].to_s
 :javascript
   $(document).ready(function(){

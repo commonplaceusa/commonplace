@@ -16,7 +16,7 @@ class AdminController < ApplicationController
   def overview
     @communities = ActiveSupport::JSON.decode(Resque.redis.get "statistics:community")
     @overall_statistics = ActiveSupport::JSON.decode(Resque.redis.get "statistics:overall")
-    @historical_statistics = ActiveSupport::JSON.decode(Resque.redis.get "statistics:historical")
+    @historical_statistics = StatisticsAggregator.historical_statistics
     render :layout => nil
   end
 
