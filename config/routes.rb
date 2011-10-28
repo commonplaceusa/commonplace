@@ -65,11 +65,12 @@ Commonplace::Application.routes.draw do
   
   match "/messages/:id", :to => "bootstraps#inbox"
   match "/inbox", :to => "bootstraps#inbox"
+  match "/account", :to => "bootstraps#account"
     
-  resource :account do
+  resource :account, :except => :show do
     member do 
-      get :edit_avatar, :edit_interests, :delete, :profile
-      put :update_avatar, :update_interests, :settings
+      get :edit_avatar, :delete, :profile
+      put :update_avatar, :settings
       post :avatar
     end
   end
