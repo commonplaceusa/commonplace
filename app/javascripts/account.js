@@ -1,0 +1,15 @@
+//= require showdown
+//= require jquery
+//= require jquery-ui
+//= require placeholder
+//= require time_ago_in_words
+//= require underscore
+//= require mustache
+//= require truncator
+//= require json2
+//= require backbone
+//= require autoresize
+//= require views
+//= require models
+//= require_tree ../templates/account
+//= require_tree ./account
