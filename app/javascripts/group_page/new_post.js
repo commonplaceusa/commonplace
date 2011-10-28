@@ -7,7 +7,7 @@ var NewPostView = CommonPlace.View.extend({
   },
 
   afterRender: function() {
-    $('input[placeholder], textarea[placeholder]').placeholder();
+    this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$("textarea").autoResize();
   },
 
@@ -16,7 +16,7 @@ var NewPostView = CommonPlace.View.extend({
   },
 
   events: {
-    "submit form": "postMessage"
+    "click button": "postMessage"
   },
 
   showError: function(response) {
@@ -25,10 +25,10 @@ var NewPostView = CommonPlace.View.extend({
   },
 
   postMessage: function(e) {
-    var $form = $(e.target);
+    e.preventDefault();
+    var $form = this.$("form");
     var self = this;
     this.cleanUpPlaceholders();
-    e.preventDefault();
     this.model.posts.create({
       title: $("[name=title]", $form).val(),
       body: $("[name=body]", $form).val()

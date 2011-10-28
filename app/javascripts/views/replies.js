@@ -15,7 +15,7 @@ var RepliesView = CommonPlace.View.extend({
   }, 
   
   events: {
-    "submit form": "sendReply",
+    "click form button": "sendReply",
     "click .replies-more": "showMoreReplies"
   },
 

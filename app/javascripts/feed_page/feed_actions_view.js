@@ -5,9 +5,9 @@ var FeedActionsView = CommonPlace.View.extend({
   template: "feed_page/feed-actions",
   events: {
     "click #feed-action-nav a": "navigate",
-    "submit .post-announcement form": "postAnnouncement",
-    "submit .post-event form": "postEvent",
-    "submit .invite-subscribers form.invite-by-email": "inviteByEmail",
+    "click .post-announcement button": "postAnnouncement",
+    "click .post-event button": "postEvent",
+    "click .invite-subscribers form.invite-by-email button": "inviteByEmail",
     "change .post-label-selector input": "toggleCheckboxLIClass"
   },
 
@@ -44,7 +44,7 @@ var FeedActionsView = CommonPlace.View.extend({
   },
 
   postAnnouncement: function(e) {
-    var $form = $(e.target);
+    var $form = this.$(".post-announcement form");
     var self = this;
     this.cleanUpPlaceholders();
     e.preventDefault();
@@ -60,7 +60,7 @@ var FeedActionsView = CommonPlace.View.extend({
 
   postEvent: function(e) {
     var self = this;
-    var $form = $(e.target);
+    var $form = this.$(".post-event form");
     e.preventDefault();
     this.cleanUpPlaceholders();
     this.feed.events.create(
@@ -95,7 +95,7 @@ var FeedActionsView = CommonPlace.View.extend({
 
   inviteByEmail: function(e) {
     var self = this;
-    var $form = $(e.target);
+    var $form = this.$(".invite-subscribers form");
     e.preventDefault();
         $.ajax({
           contentType: "application/json",
