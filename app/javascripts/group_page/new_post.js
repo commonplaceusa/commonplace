@@ -19,14 +19,9 @@ var NewPostView = CommonPlace.View.extend({
     "submit form": "postMessage"
   },
 
-  incomplete: function(fields) {
-    var incompleteFields = fields.shift();
-    var self = this;
-    _.each(fields, function(f) {
-      incompleteFields = incompleteFields + " and " + f;
-    });
-    this.$(".incomplete-fields").text(incompleteFields);
-    this.$(".incomplete").show();
+  showError: function(response) {
+    this.$(".error").text(response.responseText);
+    this.$(".error").show();
   },
 
   postMessage: function(e) {
@@ -39,7 +34,7 @@ var NewPostView = CommonPlace.View.extend({
       body: $("[name=body]", $form).val()
     }, {
       success: function() { self.render(); },
-      error: function(attribs, response) { self.incomplete(response); }
+      error: function(attribs, response) { self.showError(response); }
     });
   }
 });

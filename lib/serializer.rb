@@ -173,6 +173,7 @@ module Serializer
 
       when Reply
         { 
+        "id" => o.id,
         "schema" => "replies",
         "author" => o.user.name,
         "avatar_url" => o.user.avatar_url(:thumb),
@@ -181,7 +182,8 @@ module Serializer
         "body" => o.body,
         "published_at" => o.created_at.utc,
         "links" => {
-          "author" => "/users/#{o.user_id}"
+          "author" => "/users/#{o.user_id}",
+          "self" => "/replies/#{o.id}"
         }
         }
 
@@ -196,10 +198,13 @@ module Serializer
         "about" => o.about,
         "avatar_url" => o.avatar_url(:normal),
         "profile_url" => "/feeds/#{o.id}/profile",
+        "rss_url" => o.feed_url,
+        "delete_url" => "/feeds/#{o.id}/delete",
         "tags" => o.tag_list,
         "website" => o.website,
         "phone" => o.phone,
         "address" => o.address,
+        "kind" => o.kind,
         "links" => { 
           "avatar" => {
             "large" => o.avatar_url(:large),

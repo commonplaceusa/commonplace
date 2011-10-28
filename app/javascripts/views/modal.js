@@ -17,12 +17,12 @@ var ModalView = CommonPlace.View.extend({
   centerEl: function() {
     var $el = $(".modal-container");
     var $window = $(window);
-    $el.css({
-      top: (($window.height() - $el.height()) /2) + $window.scrollTop(),
-      left: ($window.width() - $el.width()) /2
-    });
-
-    
+    var scrolled = $window.scrollTop();
+    var top = (($window.height() - $el.height()) /2) + scrolled;
+    top = top < 1 ? 10 : top;
+    top = top < scrolled + 10 ? scrolled + 10 : top;
+    var left = ($window.width() - $el.width()) /2;
+    $el.css({ top: top, left: left });
   },
 
   events: {

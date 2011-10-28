@@ -14,11 +14,21 @@ var Event = Repliable.extend({
   },
 
   validate: function(attribs) {
-    var response = [];
-    if (!attribs.title) { response.push("title"); }
-    if (!attribs.about && !attribs.body) { response.push("body"); }
-    if (!attribs.date && !attribs.occurs_at) { response.push("date"); }
-    if (response.length > 0) { return response; }
+    var missing = [];
+    if (!attribs.title) { missing.push("title"); }
+    if (!attribs.about && !attribs.body) { missing.push("body"); }
+    if (!attribs.date && !attribs.occurs_at) { missing.push("date"); }
+    if (missing.length > 0) {
+      var responseText = "Please fill in the " + missing.shift();
+      _.each(missing, function(field) {
+        responseText = responseText + " and " + field;
+      });
+      var response = {
+        status: 400,
+        responseText: responseText + "."
+      };
+      return response;
+    }
   }
 });
 

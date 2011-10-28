@@ -137,6 +137,10 @@ var Account = Model.extend({
       return post.get('user_id') == this.id;
     }
   },
+  
+  canEditReply: function(reply) {
+    return reply.get("author_id") == this.id || this.get("is_admin");
+  },
 
   canTryFeatures: function() { return this.get('is_admin'); }
 
