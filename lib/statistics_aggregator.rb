@@ -1,12 +1,16 @@
 class StatisticsAggregator
 
   AVERAGE_DAYS = 7.0
-  HISTORICAL_DAYS = 5
+  HISTORICAL_DAYS = 13
   DATA_UNAVAILABLE_MESSAGE = "N/A"
 
   MailGunStatistics = RestClient::Resource.new "https://api:#{$MailgunAPIToken}@api.mailgun.net/v2/#{$MailgunAPIDomain}/stats"
 
   NETWORK_SIZE = User.count
+
+  def self.historical_statistics
+    ActiveSupport::JSON.decode(Resque.redis.get "statistics:historical")
+  end
 
   def self.statistics_for_community_between_days_ago(c, yday, tday)
     community_average_days = StatisticsAggregator.average_days(c) || AVERAGE_DAYS
@@ -17,32 +21,39 @@ class StatisticsAggregator
     result[:percentage_of_field] = DATA_UNAVAILABLE_MESSAGE
 
     result[:neighborhood_posts_today] = c.posts.between(yday.days.ago, tday.days.ago).count
-    result[:average_neighborhood_posts_daily] = (c.posts.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(2)
+    result[:average_neighborhood_posts_daily] = (c.posts.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(3)
 
     result[:announcements_today] = c.announcements.between(yday.days.ago, tday.days.ago).count
-    result[:average_announcements_daily] = (c.announcements.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(2)
+    result[:average_announcements_daily] = (c.announcements.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(3)
 
     result[:events_today] = c.events.between(yday.days.ago, tday.days.ago).count
     result[:average_events_daily] = (c.events.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(2)
 
     result[:private_messages_today] = Message.between(yday.days.ago, tday.days.ago).select { |m| m.user.community == c}.count
-    result[:average_private_messages_daily] = (Message.between(community_average_days.days.ago, tday.days.ago).select { |m| m.user.community == c}.count / community_average_days).round(2)
+    result[:average_private_messages_daily] = (Message.between(community_average_days.days.ago, tday.days.ago).select { |m| m.user.community == c}.count / community_average_days).round(3)
 
     result[:replies_today] = Reply.between(yday.day.ago, tday.days.ago).select { |r| r.user.community == c }.count
-    result[:average_replies_daily] = (Reply.between(AVERAGE_DAYS.days.ago, tday.days.ago).select { |r| r.user.community == c }.count / AVERAGE_DAYS).round(2)
+    result[:average_replies_daily] = (Reply.between(AVERAGE_DAYS.days.ago, tday.days.ago).select { |r| r.user.community == c }.count / AVERAGE_DAYS).round(3)
 
-    result[:group_posts_today] = GroupPost.between(yday.days.ago, tday.days.ago).select{|p| p.user.community == c}.count
-    result[:average_group_posts_daily] = (GroupPost.between(community_average_days.days.ago, tday.days.ago).select{|p| p.user.community == c}.count / community_average_days).round(2)
+    result[:group_posts_today] = c.group_posts.select { |p| p.between?(yday.days.ago, tday.days.ago) }.count
+                                        result[:average_group_posts_daily] = (c.group_posts.select { |p| p.between?(community_average_days.days.ago, tday.days.ago) }.count / community_average_days).round(3)
     result
   end
 
   def self.historical_statistics_for_community(community, days)
-    result = {}
+    result = []
     day_counter = 0
-    while day_counter <= days do
-      # Generate statistics between day_counter+1.days.ago and day_counter.days.ago
-      result[day_counter] = StatisticsAggregator.statistics_for_community_between_days_ago(community, day_counter + 1, day_counter)
-      day_counter += 1
+    # We only need the first day's results as long as a result set exists
+    if StatisticsAggregator.historical_statistics.count >= days
+      result = StatisticsAggregator.historical_statistics[community.name]
+      result.delete(result.last)
+      result.insert(0, StatisticsAggregator.statistics_for_community_between_days_ago(community, 1, 0))
+    else
+      while day_counter <= days do
+        # Generate statistics between day_counter+1.days.ago and day_counter.days.ago
+        result[day_counter] = StatisticsAggregator.statistics_for_community_between_days_ago(community, day_counter + 1, day_counter)
+        day_counter += 1
+      end
     end
     result
   end
@@ -114,7 +125,7 @@ class StatisticsAggregator
   end
 
   def self.email_open_pctg
-    return "#{100 * StatisticsAggregator.emails_opened.to_f / StatisticsAggregator.emails_sent.to_f.round(2)}%"
+    return "#{(100 * StatisticsAggregator.emails_opened.to_f / StatisticsAggregator.emails_sent.to_f).round(2)}%"
   end
 
   def self.first_day(community)
