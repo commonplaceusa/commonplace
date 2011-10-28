@@ -5,7 +5,7 @@ var EventForm = CommonPlace.View.extend({
   className: "create-event",
 
   events: {
-    "submit": "createEvent",
+    "click button": "createEvent",
     "change .post-label-selector input": "toggleCheckboxLIClass"
   },
 

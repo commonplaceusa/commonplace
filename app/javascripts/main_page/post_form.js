@@ -4,7 +4,7 @@ var PostForm = CommonPlace.View.extend({
   className: "create-neighborhood-post",
 
   events: {
-    "submit": "createPost",
+    "click button": "createPost",
     "click [name=commercial][value=yes]": "showPublicityWarning",
     "click [name=commercial][value=no]": "hidePublicityWarning",
     "focusin input, textarea": "onFormFocus"
