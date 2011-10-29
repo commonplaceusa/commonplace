@@ -33,7 +33,7 @@ class StatisticsAggregator
     result[:average_private_messages_daily] = (Message.between(community_average_days.days.ago, tday.days.ago).select { |m| m.user.community == c}.count / community_average_days).round(6)
 
     result[:replies_today] = Reply.between(yday.day.ago, tday.days.ago).select { |r| r.user.community == c }.count
-    result[:average_replies_daily] = (Reply.between(AVERAGE_DAYS.days.ago, tday.days.ago).select { |r| r.user.community == c }.count / AVERAGE_DAYS).round(6)
+    result[:average_replies_daily] = (Reply.between(community_average_days.days.ago, tday.days.ago).select { |r| r.user.community == c }.count / community_average_days).round(6)
 
     result[:group_posts_today] = c.group_posts.select { |p| p.between?(yday.days.ago, tday.days.ago) }.count
     result[:average_group_posts_daily] = (c.group_posts.select { |p| p.between?(community_average_days.days.ago, tday.days.ago) }.count / community_average_days).round(6)
@@ -138,7 +138,7 @@ class StatisticsAggregator
     StatisticsAggregator.first_day(community).upto(DateTime.now) do |day|
       r += 1
     end
-    r
+    r.to_f
   end
 
 end
