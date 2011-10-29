@@ -18,7 +18,7 @@ class StatisticsAggregator
     result[:total_users] = User.between(StatisticsAggregator.first_day(c).to_datetime,tday.days.ago).select { |u| u.community == c}.count
     result[:user_gains_today] = User.between(yday.days.ago.utc, tday.days.ago).select {|u| u.community == c}.count
 
-    result[:percentage_of_field] = DATA_UNAVAILABLE_MESSAGE
+    result[:percentage_of_field] = (result[:total_users] / c.households).round(4)
 
     result[:neighborhood_posts_today] = c.posts.between(yday.days.ago, tday.days.ago).count
     result[:average_neighborhood_posts_daily] = (c.posts.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(3)
