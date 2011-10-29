@@ -43,13 +43,13 @@ class AdminController < ApplicationController
   end
 
   def export_csv
-    csv = "Date,Users,Posts,Events,Announcements"
+    csv = "Date,Users,Posts,Events,Announcements,Private Messages,Group Posts"
     today = DateTime.now
     slug = params[:community]
     community = Community.find_by_slug(slug)
     launch = community.users.sort{ |a,b| a.created_at <=> b.created_at }.first.created_at.to_date
     launch.upto(today).each do |day|
-      csv = "#{csv}\n#{day},#{community.users.between(launch.to_datetime,day.to_datetime).count},#{community.posts.between(launch.to_datetime,day.to_datetime).count},#{community.events.between(launch.to_datetime,day.to_datetime).count},#{community.announcements.between(launch.to_datetime,day.to_datetime).count}"
+      csv = "#{csv}\n#{day},#{community.users.between(launch.to_datetime,day.to_datetime).count},#{community.posts.between(launch.to_datetime,day.to_datetime).count},#{community.events.between(launch.to_datetime,day.to_datetime).count},#{community.announcements.between(launch.to_datetime,day.to_datetime).count},#{community.private_messages.select { |m| m.between?(launch.to_datetime, day.to_datetime)}.count},#{community.group_posts.select { |p| p.between?(launch.to_datetime, day.to_datetime)}.count}"
     end
 
     send_data csv, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{slug}.csv"
