@@ -8,7 +8,8 @@ var FeedHeaderView = CommonPlace.View.extend({
 
   events: {
     "click a.subscribe": "subscribe",
-    "click a.unsubscribe": "unsubscribe"
+    "click a.unsubscribe": "unsubscribe",
+    "click .feed-edit": "openEditModal"
   },
 
   isSubscribed: function() {
@@ -35,6 +36,14 @@ var FeedHeaderView = CommonPlace.View.extend({
     this.account.unsubscribeFromFeed(this.model, function() { self.render(); });
   },
 
-  feedName: function() { return this.model.get('name'); }
+  feedName: function() { return this.model.get('name'); },
+  
+  openEditModal: function(e) {
+    e.preventDefault();
+    var formview = new FeedEditFormView({
+      model: this.model
+    });
+    formview.render();
+  }
      
 });

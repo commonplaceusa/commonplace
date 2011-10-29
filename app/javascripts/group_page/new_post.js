@@ -7,7 +7,7 @@ var NewPostView = CommonPlace.View.extend({
   },
 
   afterRender: function() {
-    $('input[placeholder], textarea[placeholder]').placeholder();
+    this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$("textarea").autoResize();
   },
 
@@ -16,30 +16,25 @@ var NewPostView = CommonPlace.View.extend({
   },
 
   events: {
-    "submit form": "postMessage"
+    "click button": "postMessage"
   },
 
-  incomplete: function(fields) {
-    var incompleteFields = fields.shift();
-    var self = this;
-    _.each(fields, function(f) {
-      incompleteFields = incompleteFields + " and " + f;
-    });
-    this.$(".incomplete-fields").text(incompleteFields);
-    this.$(".incomplete").show();
+  showError: function(response) {
+    this.$(".error").text(response.responseText);
+    this.$(".error").show();
   },
 
   postMessage: function(e) {
-    var $form = $(e.target);
+    e.preventDefault();
+    var $form = this.$("form");
     var self = this;
     this.cleanUpPlaceholders();
-    e.preventDefault();
     this.model.posts.create({
       title: $("[name=title]", $form).val(),
       body: $("[name=body]", $form).val()
     }, {
       success: function() { self.render(); },
-      error: function(attribs, response) { self.incomplete(response); }
+      error: function(attribs, response) { self.showError(response); }
     });
   }
 });
