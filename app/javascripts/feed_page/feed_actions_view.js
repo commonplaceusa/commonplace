@@ -5,9 +5,9 @@ var FeedActionsView = CommonPlace.View.extend({
   template: "feed_page/feed-actions",
   events: {
     "click #feed-action-nav a": "navigate",
-    "submit .post-announcement form": "postAnnouncement",
-    "submit .post-event form": "postEvent",
-    "submit .invite-subscribers form.invite-by-email": "inviteByEmail",
+    "click .post-announcement button": "postAnnouncement",
+    "click .post-event button": "postEvent",
+    "click .invite-subscribers form.invite-by-email button": "inviteByEmail",
     "change .post-label-selector input": "toggleCheckboxLIClass"
   },
 
@@ -29,8 +29,8 @@ var FeedActionsView = CommonPlace.View.extend({
   navigate: function(e) {
     var $target = $(e.target);
     $target.addClass("current").siblings().removeClass("current");
-    $(this.el).children(".tab").removeClass("current").filter("." + $target.attr('href').slice(2)).addClass("current");
-    this.$(".incomplete").hide();
+    $(this.el).children(".tab").removeClass("current").filter("." + $target.attr('href').split("#")[1].slice(1)).addClass("current");
+    this.$(".error").hide();
     e.preventDefault();
   },
 
@@ -38,18 +38,13 @@ var FeedActionsView = CommonPlace.View.extend({
     $(e.target).closest("li").toggleClass("checked");
   },
 
-  incomplete: function(fields) {
-    var incompleteFields = fields.shift();
-    var self = this;
-    _.each(fields, function(f) {
-      incompleteFields = incompleteFields + " and " + f;
-    });
-    this.$(".incomplete-fields").text(incompleteFields);
-    this.$(".incomplete").show();
+  showError: function(response) {
+    this.$(".error").text(response.responseText);
+    this.$(".error").show();
   },
 
   postAnnouncement: function(e) {
-    var $form = $(e.target);
+    var $form = this.$(".post-announcement form");
     var self = this;
     this.cleanUpPlaceholders();
     e.preventDefault();
@@ -59,13 +54,13 @@ var FeedActionsView = CommonPlace.View.extend({
         groups: $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
       }, {
         success: function() { self.render(); },
-        error: function(attribs, response) { self.incomplete(response); }
+        error: function(attribs, response) { self.showError(response); }
       });
   },
 
   postEvent: function(e) {
     var self = this;
-    var $form = $(e.target);
+    var $form = this.$(".post-event form");
     e.preventDefault();
     this.cleanUpPlaceholders();
     this.feed.events.create(
@@ -80,7 +75,7 @@ var FeedActionsView = CommonPlace.View.extend({
         groups:  $("[name=groups]:checked", $form).map(function() { return $(this).val(); }).toArray()
       }, {
         success: function() { self.render(); },
-        error: function(attribs, response) { self.incomplete(response); }
+        error: function(attribs, response) { self.showError(response); }
       });
   },
 
@@ -100,7 +95,7 @@ var FeedActionsView = CommonPlace.View.extend({
 
   inviteByEmail: function(e) {
     var self = this;
-    var $form = $(e.target);
+    var $form = this.$(".invite-subscribers form");
     e.preventDefault();
         $.ajax({
           contentType: "application/json",

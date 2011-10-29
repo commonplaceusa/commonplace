@@ -33,4 +33,8 @@ class Message < ActiveRecord::Base
     start_date <= self.created_at and self.created_at <= end_date
   end
   
+  def community
+    user.community
+  end
+  
 end

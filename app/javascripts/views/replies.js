@@ -5,6 +5,7 @@ var RepliesView = CommonPlace.View.extend({
     var self = this;
     this.account = options.account;
     this.collection.bind("add", function() { self.render(); });
+    this.collection.bind("remove", function() { self.render(); });
   },
   
   afterRender: function() {
@@ -14,7 +15,7 @@ var RepliesView = CommonPlace.View.extend({
   }, 
   
   events: {
-    "submit form": "sendReply",
+    "click form button": "sendReply",
     "click .replies-more": "showMoreReplies"
   },
 
