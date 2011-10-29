@@ -41,7 +41,9 @@
 %hr
 %h1 Historical Statistics
 - @historical_statistics.each do |community, stats|
-  %h2= community
+  %h2
+    = "#{community} -"
+    = link_to "Export CSV", "/admin/export_csv?community=#{Community.find_by_name(community).slug}"
   %table
     %tr
       %th Statistic

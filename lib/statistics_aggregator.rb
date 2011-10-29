@@ -21,22 +21,23 @@ class StatisticsAggregator
     result[:percentage_of_field] = (result[:total_users] / c.households).round(4)
 
     result[:neighborhood_posts_today] = c.posts.between(yday.days.ago, tday.days.ago).count
-    result[:average_neighborhood_posts_daily] = (c.posts.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(3)
+    result[:average_neighborhood_posts_daily] = (c.posts.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(6)
 
     result[:announcements_today] = c.announcements.between(yday.days.ago, tday.days.ago).count
-    result[:average_announcements_daily] = (c.announcements.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(3)
+    result[:average_announcements_daily] = (c.announcements.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(6)
 
     result[:events_today] = c.events.between(yday.days.ago, tday.days.ago).count
-    result[:average_events_daily] = (c.events.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(2)
+    result[:average_events_daily] = (c.events.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(6)
 
     result[:private_messages_today] = Message.between(yday.days.ago, tday.days.ago).select { |m| m.user.community == c}.count
-    result[:average_private_messages_daily] = (Message.between(community_average_days.days.ago, tday.days.ago).select { |m| m.user.community == c}.count / community_average_days).round(3)
+    result[:average_private_messages_daily] = (Message.between(community_average_days.days.ago, tday.days.ago).select { |m| m.user.community == c}.count / community_average_days).round(6)
 
     result[:replies_today] = Reply.between(yday.day.ago, tday.days.ago).select { |r| r.user.community == c }.count
-    result[:average_replies_daily] = (Reply.between(AVERAGE_DAYS.days.ago, tday.days.ago).select { |r| r.user.community == c }.count / AVERAGE_DAYS).round(3)
+    result[:average_replies_daily] = (Reply.between(AVERAGE_DAYS.days.ago, tday.days.ago).select { |r| r.user.community == c }.count / AVERAGE_DAYS).round(6)
 
     result[:group_posts_today] = c.group_posts.select { |p| p.between?(yday.days.ago, tday.days.ago) }.count
-                                        result[:average_group_posts_daily] = (c.group_posts.select { |p| p.between?(community_average_days.days.ago, tday.days.ago) }.count / community_average_days).round(3)
+    result[:average_group_posts_daily] = (c.group_posts.select { |p| p.between?(community_average_days.days.ago, tday.days.ago) }.count / community_average_days).round(6)
+    
     result
   end
 
@@ -66,7 +67,7 @@ class StatisticsAggregator
     communities = {}
     historical = {}
     overall = {}
-    Community.all.select{|c| c.core and c.posts.present?}.each do |c|
+    Community.all.sort.select{|c| c.core and c.posts.present?}.each do |c|
       historical[c.name] = StatisticsAggregator.historical_statistics_for_community(c, HISTORICAL_DAYS)
       communities[c.name] = historical[c.name][0]
     end
