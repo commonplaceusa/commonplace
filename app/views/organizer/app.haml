@@ -333,6 +333,7 @@
   }
 
 #organizer_app
+  %h1= "Your team needs to get #{(1000-current_community.users.count)/(DateTime.new(2011, 12, 15) - DateTime.now).to_i} neighbors on board per day to fulfill your mission."
   #links
     %a{:onclick => "toggle_map();", :style=>"text-decoration: underline; cursor: pointer;"} Neighborhood Canvassing Map
     %br
