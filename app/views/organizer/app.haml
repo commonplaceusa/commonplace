@@ -283,6 +283,11 @@
     hide_all();
     $("#daily_journal").toggle(TOGGLE_OPTS);
   }
+  function toggle_goals()
+  {
+    hide_all();
+    $("#goals").toggle(TOGGLE_OPTS);
+  }
   function hide_all()
   {
     $("#map").hide();
@@ -290,6 +295,7 @@
     $("#google_doc").hide();
     $("#community_referrers").hide();
     $("#daily_journal").hide();
+    $("#goals").hide();
   }
   
   var entry_count = 1;
@@ -333,8 +339,9 @@
   }
 
 #organizer_app
-  %h1= "Your team needs to get #{(1000-current_community.users.count)/(DateTime.new(2011, 12, 15) - DateTime.now).to_i} neighbors on board per day to fulfill your mission."
   #links
+    %a{:onclick => "toggle_goals();", :style => "text-decoration: underline; cursor: pointer;"} Goals
+    %br
     %a{:onclick => "toggle_map();", :style=>"text-decoration: underline; cursor: pointer;"} Neighborhood Canvassing Map
     %br
     %a{:onclick => "toggle_overview();", :style=>"text-decoration: underline; cursor: pointer;"} Overview
@@ -345,6 +352,8 @@
     %br
     %a{:onclick => "toggle_journal();", :style => "text-decoration: underline; cursor: pointer;"} Daily Journal
     %br
+  #goals{:style => "display: none;"}
+    %h1= "Your team needs to get #{(1000-current_community.users.count)/(DateTime.new(2011, 12, 15) - DateTime.now).to_i} neighbors on board per day to fulfill your mission of 1000 neighbors on board before you leave."
   #map{:style => "display: none;"}
     #map_canvas{:style => "width: 1024px; height: 350px;"}
     #map_form
