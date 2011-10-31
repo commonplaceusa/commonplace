@@ -28,6 +28,48 @@ class Feed < ActiveRecord::Base
   has_many :subscriptions, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions, :source => :user, :uniq => true
 
+  acts_as_api
+
+  api_accessible :default do |t|
+    t.add :id
+    t.add lambda {|f| "feeds"}, :as => :schema
+    t.add :slug
+    t.add :user_id
+    t.add lambda {|f| "/pages/#{f.slug}"}, :as => :url
+    t.add :name
+    t.add :about
+    t.add lambda {|f| f.avatar_url(:normal)}, :as => :avatar_url
+    t.add lambda {|f| "/feeds/#{f.id}/profile"}, :as => :profile_url
+    t.add :rss_url, :as => :feed_url
+    t.add lambda {|f| "/feeds/#{f.id}/delete"}, :as => :delete_url
+    t.add :tag_list, :as => :tags
+    t.add :website
+    t.add :phone
+    t.add :address
+    t.add :kind
+    t.add lambda {|f| "/feeds/#{f.id}/#{f.user_id}"}, :as => :messagable_author_url
+    t.add lambda {|f| f.name}, :as => :messagable_author_name
+    t.add :links
+  end
+
+  def links
+    { 
+      "avatar" => {
+        "large" => self.avatar_url(:large),
+        "normal" => self.avatar_url(:normal),
+        "thumb" => self.avatar_url(:thumb)
+      },
+      "announcements" => "/feeds/#{id}/announcements",
+      "events" => "/feeds/#{id}/events",
+      "invites" => "/feeds/#{id}/invites",
+      "messages" => "/feeds/#{id}/messages",
+      "edit" => "/feeds/#{id}/edit",
+      "subscribers" => "/feeds/#{id}/subscribers",
+      "self" => "/feeds/#{id}",
+      "owners" => "/feeds/#{id}/owners"
+    }
+  end
+
   def live_subscribers
     self.subscriptions.all(:conditions => "receive_method = 'Live'").map &:user
   end

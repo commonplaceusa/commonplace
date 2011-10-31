@@ -147,7 +147,29 @@ class User < ActiveRecord::Base
                               }
                             }))
   
+  acts_as_api
 
+  api_accessible :default do |t|
+    t.add :id
+    t.add lambda {|u| "users"}, :as => :schema
+    t.add lambda {|u| u.avatar_url(:normal)}, :as => :avatar_url
+    t.add lambda {|u| "/users/#{u.id}"}, :as => :url
+    t.add :name
+    t.add :first_name
+    t.add :last_name
+    t.add :about
+    t.add :interest_list, :as => :interests
+    t.add :good_list, :as => :goods
+    t.add :skill_list, :as => :skills
+    t.add :links
+  end
+
+  def links
+    { 
+      "messages" => "/users/#{id}/messages",
+      "self" => "/users/#{id}"
+    }
+  end
 
   def avatar_geometry(style = :original)
     @geometry ||= {}
