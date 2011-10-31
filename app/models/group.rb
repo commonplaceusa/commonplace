@@ -22,6 +22,29 @@ class Group < ActiveRecord::Base
   has_many :announcement_cross_postings
   has_many :announcements, :through => :announcement_cross_postings
 
+  acts_as_api
+  
+  api_accessible :default do |t|
+    t.add :id
+    t.add lambda {|g| "groups"}, :as => :schema
+    t.add lambda {|g| "/groups/#{g.id}"}, :as => :url
+    t.add :name
+    t.add :about
+    t.add :avatar_url
+    t.add :slug
+    t.add :links
+  end
+  
+  def links
+    {
+      "posts" => "/groups/#{id}/posts",
+      "members" => "/groups/#{id}/members",
+      "announcements" => "/groups/#{id}/announcements",
+      "events" => "/groups/#{id}/events",
+      "self" => "/groups/#{id}"
+    }
+  end
+
   def avatar_url=(url)
     self.avatar_file_name = url
   end
