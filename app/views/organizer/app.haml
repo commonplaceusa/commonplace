@@ -353,7 +353,7 @@
     %a{:onclick => "toggle_journal();", :style => "text-decoration: underline; cursor: pointer;"} Daily Journal
     %br
   #goals{:style => "display: none;"}
-    %h1= "Your team needs to get #{(1000-current_community.users.count)/(DateTime.new(2011, 12, 15) - DateTime.now).to_i} neighbors on board per day to fulfill your mission of 1000 neighbors on board before you leave."
+    %h1= "Your team needs to get #{(1000-current_community.users.count)/(DateTime.new(2011, 12, 15) - DateTime.now).to_i} neighbors on board per day to fulfill your mission of 1000 neighbors before you leave."
   #map{:style => "display: none;"}
     #map_canvas{:style => "width: 1024px; height: 350px;"}
     #map_form
