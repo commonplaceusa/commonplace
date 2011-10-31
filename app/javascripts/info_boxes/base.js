@@ -96,11 +96,9 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   isAccount: function(model) {
-    if (model.get("id") != this.options.account.id) {
-      return false;
-    } else {
-      return model.get("schema") == "users" || model.get("schema") == "account";
-    }
+    return model &&
+      (model.get("schema") == "users" || model.get("schema") == "account") &&
+      model.id === this.options.account.id;
   },
 
   showProfile: function(model) {
@@ -145,7 +143,7 @@ var InfoBox = CommonPlace.View.extend({
     collection.fetch({
       data: { query: this.currentQuery },
       success: function() {
-        if (collection.length == 0) {
+        if (collection.length === 0) {
           self.$(".remove-search").removeClass("not-empty");
           self.$(".remove-search").addClass("empty");
           self.changeSchema(schema);
