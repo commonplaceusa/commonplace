@@ -10,6 +10,7 @@ gem 'sham_rack' # For using the api in-process
 gem 'faraday' # For using the api in-process
 gem 'rack-cache' # For caching
 gem 'dalli' # memcache client, for caching
+gem 'acts_as_api'
 
 # ActiveRecord
 gem 'sunspot_rails', :git => 'git://github.com/alindeman/sunspot.git' # database search
@@ -98,6 +99,8 @@ group :development, :test do
   gem 'guard-spork'
   gem 'guard-bundler'
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
+  gem 'test_track' # jasmine doesn't support the assset pipeline yet, this helps
+  gem 'jasmine'
 end
 
 group :linux do
