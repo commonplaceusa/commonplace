@@ -21,6 +21,8 @@ class API
       current_account.skill_list = request_body["skills"]
       current_account.good_list = request_body["goods"]
       current_account.email = request_body["email"]
+      current_account.post_receive_method = request_body["neighborhood_posts"]
+      current_account.receive_weekly_digest = request_body["bulletin"]
       
       if current_account.save
         serialize Account.new(current_account)
