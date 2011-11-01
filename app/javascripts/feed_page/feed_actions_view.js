@@ -29,7 +29,10 @@ var FeedActionsView = CommonPlace.View.extend({
   navigate: function(e) {
     var $target = $(e.target);
     $target.addClass("current").siblings().removeClass("current");
-    $(this.el).children(".tab").removeClass("current").filter("." + $target.attr('href').split("#")[1].slice(1)).addClass("current");
+    $(this.el).children(".tab")
+      .removeClass("current")
+      .filter("." + $target.attr('href').split("#")[1].slice(1))
+      .addClass("current");
     this.$(".error").hide();
     e.preventDefault();
   },

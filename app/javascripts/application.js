@@ -21,5 +21,5 @@ if (!window.console || !window.console.log){
     count: function(){},
     trace: function(){},
     info: function(){}
-  }
+  };
 }
