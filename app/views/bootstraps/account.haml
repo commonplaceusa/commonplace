@@ -30,7 +30,7 @@
       %script{ :type => "text/javascript" }
         $(function() {
         $.getJSON("/api/account", function(account_response) {
-        new AccountRouter({ account: new Account(account_response), community: #{serialize(current_community)} });
+        new AccountRouter({ account: new Account(account_response), community: #{serialize(current_community)}, interests: #{$interests.to_json.html_safe}, skills: #{$skills.to_json.html_safe}, goods: #{$goods.to_json.html_safe} });
         Backbone.history.start();
         });
         });
