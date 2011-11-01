@@ -45,6 +45,7 @@ class Community < ActiveRecord::Base
     t.add :id
     t.add :name
     t.add :locale
+    t.add :groups
     t.add :organizer_name, :as => :admin_name
     t.add :organizer_email, :as => :admin_email
     t.add :links
