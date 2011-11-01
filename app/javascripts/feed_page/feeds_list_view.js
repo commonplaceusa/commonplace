@@ -17,7 +17,7 @@ var FeedsListView = CommonPlace.View.extend({
 
   select: function(slug) {
     this.$("li").removeClass("current");
-    this.$("li[data-feed-slug=" + slug + "]").addClass("current");
+    this.$("li[data-feed-slug='" + slug + "']").addClass("current");
   }
 
 });
