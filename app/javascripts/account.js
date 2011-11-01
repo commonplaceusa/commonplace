@@ -9,6 +9,7 @@
 //= require json2
 //= require backbone
 //= require autoresize
+//= require chosen
 //= require views
 //= require models
 //= require_tree ../templates/account

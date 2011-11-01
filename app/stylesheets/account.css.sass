@@ -9,6 +9,7 @@
 @import shared/form
 @import shared/modal
 @import shared/markdown
+@import chosen
 
 body
   background-color: #eee
@@ -40,20 +41,22 @@ body
   .settings
     width: 30%
     float: right
-    //text-align: left
     background-color: #AC322F
     color: white
     +border-radius(5px)
     
     a
       text-decoration: none
+      text-align: center
       color: white
       &:hover
         text-decoration: underline
     
-    li
+    > li
       padding: 5px
       margin: 7px
+      margin-bottom: 15px
+      margin-top: 15px
       &:hover
         background-color: #8f2927
         
@@ -61,6 +64,8 @@ body
       li
         margin-bottom: 5px
         font-size: 13px
+        &:hover
+          text-decoratoin: underline
     
     a.avatar
       text-align: center
@@ -71,7 +76,7 @@ body
   .profile
     width: 63%
     
-    label, input, textarea
+    label, input.normal, textarea
       color: #444545
       padding: 0px 3px
       margin: 10px
@@ -81,21 +86,43 @@ body
       +border-radius(5px)
       +box-shadow(#eee 1px 1px 3px 0 inset)
       
+    .list
+      display: block
+      width: 100%
+      
+    .chzn-choices
+      margin: 10px
+      margin-right: 0
+      width: 100%
+      height: 100px
+      
   .controls
-    text-align: center
+    text-align: right
+    margin-right: -10px
     
     button
       +blue-button
+      margin-top: 30px
+      margin-bottom: 15px
+      margin-right: 0
       
-  .error
-    background-color: #f4e15f
-    border: 2px solid #ffe534
+  .error, .success
+    border: 2px solid
     +border-radius(3px)
     color: #363636
     display: none
-    margin: 20px
-    margin-top: 0
+    margin-bottom: 20px
     padding: 5px
     font-family: Helvetica, Arial, sans-serif
     text-align: center
     font-size: 14px
+    
+  .error
+    background-color: #f4e15f
+    border-color: #ffe534
+    
+  .success
+    background-color: #9FF781
+    border-color: #04B404
+    
+    
