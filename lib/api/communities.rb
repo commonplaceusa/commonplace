@@ -56,7 +56,7 @@ class API
     end
 
     post "/:community_id/events" do |community_id|
-      event = Event.new(:owner => request_body['feed'].present? ? Feed.find(request_body['feed']) : current_account,
+      event = Event.new(:owner => current_account,
                         :name => request_body['title'],
                         :description => request_body['about'],
                         :date => request_body['date'],
