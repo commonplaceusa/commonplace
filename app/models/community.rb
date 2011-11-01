@@ -39,6 +39,40 @@ class Community < ActiveRecord::Base
                     :path => ":rails_root/public/system/community/:id/organizer_avatar.:extension",
                     :default_url => "/avatars/missing.png")
 
+  acts_as_api
+
+  api_accessible :default do |t|
+    t.add :id
+    t.add :name
+    t.add :locale
+    t.add :groups
+    t.add :organizer_name, :as => :admin_name
+    t.add :organizer_email, :as => :admin_email
+    t.add :links
+  end
+
+  def links
+    community_asset_url = "https://s3.amazonaws.com/commonplace-community-assets/#{slug}/"
+    {
+      "launch_letter" => community_asset_url + "launchletter.pdf",
+      "information_sheet" => community_asset_url + "infosheet.pdf",
+      "neighborhood_flyer" => community_asset_url + "neighborflyer.pdf",
+      "all_flyers" => community_asset_url + "archives.zip",
+      "groups" => "/communities/#{id}/groups",
+      "feeds" => "/communities/#{id}/feeds",
+      "posts" => "/communities/#{id}/posts",
+      "events" => "/communities/#{id}/events",
+      "announcements" => "/communities/#{id}/announcements",
+      "group_posts" => "/communities/#{id}/group_posts",
+      "users" => "/communities/#{id}/users",
+      "self" => "/communities/#{id}",
+      "feeds_search" => "/search/community/#{id}/feeds?query=",
+      "users_search" => "/search/community/#{id}/users?query=",
+      "groups_search" => "/search/community/#{id}/groups?query=",
+      "posts_search" => "/search/community/#{id}/posts?query="
+    }
+  end
+
   def self.find_by_name(name)
     where("LOWER(name) = ?", name.downcase).first
   end
