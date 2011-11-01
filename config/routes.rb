@@ -68,7 +68,9 @@ Commonplace::Application.routes.draw do
       post :avatar
     end
   end
-
+  
+  # jasmine test routes
+  mount TestTrack::Engine => "test" unless Rails.env.production?
 
   begin 
     ActiveAdmin.routes(self) 
