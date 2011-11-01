@@ -48,7 +48,6 @@ var InfoBox = CommonPlace.View.extend({
     var self = this;
     this.currentCollection = {};
     this.currentQuery = "";
-    this.page = 0;
     this.showProfile(this.options.account);
 
     if (this.isActive("fixedLayout")) {
@@ -62,12 +61,6 @@ var InfoBox = CommonPlace.View.extend({
         self.setPosition();
       });
     }
-
-    this.$("#info-list-area").scroll(function() {
-      if (this.offsetHeight + $(this).scrollTop() >= this.scrollHeight) {
-        self.nextPage();
-      }
-    });
 
   },
 
@@ -138,8 +131,6 @@ var InfoBox = CommonPlace.View.extend({
       }
     }
 
-    this.page = 0;
-
     collection.fetch({
       data: { query: this.currentQuery },
       success: function() {
@@ -193,22 +184,6 @@ var InfoBox = CommonPlace.View.extend({
     });
   },
 
-  nextPage: function() {
-    var collection = this.currentCollection;
-    if (collection.length < 25) { return; }
-    this.page = this.page + 1;
-    var self = this;
-    collection.fetch({
-      data: {
-        query: this.currentQuery,
-        page: this.page
-      },
-      success: function() {
-        self.renderList(collection, "append");
-      }
-    });
-  },
-
   renderProfile: function(model) {
     if (model == this.currentModel) { return; }
     this.$profile().show();
@@ -224,7 +199,6 @@ var InfoBox = CommonPlace.View.extend({
     this.$profile().hide();
     this.$list().hide();
     this.$profile().hide();
-    this.page = 0;
     var schema = (this.getSchema() == "account" ? "users" : this.getSchema());
     var box = new {
       "users" : UserNoneBox,
