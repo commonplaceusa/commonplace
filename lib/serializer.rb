@@ -212,6 +212,8 @@ module Serializer
         "goods" => o.good_list,
         "skills" => o.skill_list,
         "subscriptions" => o.feeds,
+        "neighborhood_posts" => o.post_receive_method,
+        "bulletin" => o.receive_weekly_digest,
         "about" => o.about,
         "links" => { 
           "feed_subscriptions" => "/account/subscriptions/feeds",
