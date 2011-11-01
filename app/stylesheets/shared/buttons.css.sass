@@ -15,7 +15,7 @@
     color: #aaa
     cursor: not-allowed
     text-shadow: none
-    &:hover, &:active
+    &:hover
       background: #999
       border: 0
       box-shadow: none
@@ -47,14 +47,6 @@
     background: -moz-linear-gradient(top, #e15855 0%, #c23c39 50%, #c23c39 50%, #c23c39 100%)
     background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #e15855), color-stop(0.5, #c23c39), color-stop(0.5, #c23c39), color-stop(1, #c23c39))
     cursor: pointer
-  &:active
-    background: #9d2a27
-    background: -moz-linear-gradient(top, #c23c39 0%, #9d2a27 50%, #9d2a27 50%, #9d2a27 100%)
-    background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #c23c39), color-stop(0.5, #9d2a27), color-stop(0.5, #9d2a27), color-stop(1, #9d2a27))
-    -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4)
-    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4)
-    box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4)
-    top: 2px
 
 @mixin blue-button
   +shiny-button
@@ -80,15 +72,6 @@
     background: -moz-linear-gradient(top, #436383 0%, #2e4b67 50%, #2e4b67 50%, #2e4b67 100%)
     background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #436383), color-stop(0.5, #2e4b67), color-stop(0.5, #2e4b67), color-stop(1, #2e4b67))
     cursor: pointer
-  &:active
-    background: #122232
-    background: -moz-linear-gradient(top, #22405c 0%, #122232 50%, #122232 50%, #122232 100%)
-    background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #22405c), color-stop(0.5, #122232), color-stop(0.5, #122232), color-stop(1, #122232))
-    -moz-box-shadow: inset 0px 0px 0px 1px rgba(27, 51, 74, 0.4)
-    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(27, 51, 74, 0.4)
-    box-shadow: inset 0px 0px 0px 1px rgba(27, 51, 74, 0.4)
-    top: 2px
-
 a
   &:focus
     outline: none
