@@ -55,6 +55,7 @@ class Post < ActiveRecord::Base
       replies.map &:body
     end
     integer :community_id
+    time :created_at
   end
 
 end
