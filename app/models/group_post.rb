@@ -24,6 +24,10 @@ class GroupPost < ActiveRecord::Base
     self.user.community_id
   end
 
+  def community
+    self.user.community
+  end
+
   def between?(start_date, end_date)
     start_date <= self.created_at and self.created_at <= end_date
   end
