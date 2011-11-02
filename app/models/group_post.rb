@@ -36,6 +36,7 @@ class GroupPost < ActiveRecord::Base
     text :subject
     text :body
     integer :community_id
+    time :created_at
   end
 
 end
