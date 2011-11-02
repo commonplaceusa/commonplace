@@ -2,7 +2,9 @@ class API
   
   class Base < Sinatra::Base
 
-    set :raise_errors, true
+    enable :raise_errors
+    enable :logging
+    enable :dump_errors
     
     helpers do
 
@@ -30,10 +32,6 @@ class API
 
       def serialize(thing)
         Serializer::serialize(thing).to_json
-      end
-
-      def logger
-        @logger ||= Logger.new(Rails.root.join("log", "api.log"))
       end
 
       def page
