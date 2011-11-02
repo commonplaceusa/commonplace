@@ -216,6 +216,7 @@ module Serializer
         "bulletin" => o.receive_weekly_digest,
         "about" => o.about,
         "links" => { 
+          "avatar" => "/account/avatar",
           "feed_subscriptions" => "/account/subscriptions/feeds",
           "group_subscriptions" => "/account/subscriptions/groups",
           "mets" => "/account/mets",

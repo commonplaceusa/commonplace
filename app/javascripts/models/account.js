@@ -142,6 +142,20 @@ var Account = Model.extend({
     return reply.get("author_id") == this.id || this.get("is_admin");
   },
 
-  canTryFeatures: function() { return this.get('is_admin'); }
+  canTryFeatures: function() { return this.get('is_admin'); },
+
+  deleteAvatar: function(callback) {
+    var self = this;
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.get('links').avatar,
+      type: "delete",
+      dataType: "json",
+      success: function(account) { 
+        self.set(account);
+        callback && callback();
+      }
+    });
+  }
 
 });
