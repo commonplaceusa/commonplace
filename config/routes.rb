@@ -69,9 +69,8 @@ Commonplace::Application.routes.draw do
     
   resource :account, :except => :show do
     member do 
-      get :edit_avatar, :delete, :profile
-      put :update_avatar, :settings
-      post :avatar
+      get :avatar, :delete
+      put :crop_avatar
     end
   end
   

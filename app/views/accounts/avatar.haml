@@ -1,0 +1,35 @@
+
+#main
+  %h1
+    Crop your avatar
+  = form_for current_user, :url => crop_avatar_account_path, :method => :put, :html => { :class => "crop" } do |f|
+    = image_tag current_user.avatar_url(:original), :id => "cropbox"
+
+
+    - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
+      = f.hidden_field attribute, :id => attribute
+
+    = f.submit :type => "image", :src => asset_path("buttons/continue2.png")
+
+- if Rails.env.production?
+  :javascript
+    mpq.track('Cropping Avatar');
+
+:javascript
+  // Avatar crop
+  var updateCrop = function(coords) {
+    $("#crop_x").val(coords.x);
+    $("#crop_y").val(coords.y);
+    $("#crop_w").val(coords.w);
+    $("#crop_h").val(coords.h);
+  };
+
+  $("form.crop img").load(function() {
+    $("form.crop").css({ width: Math.max($("#cropbox").width(), 420) });
+  });
+
+  $("#cropbox").Jcrop({
+    onChange: updateCrop,
+    onSelect: updateCrop,
+    aspectRatio: 1.0
+  });
