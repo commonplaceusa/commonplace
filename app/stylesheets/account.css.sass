@@ -67,8 +67,37 @@ body
         &:hover
           text-decoratoin: underline
     
-    a.avatar
+    .avatar
       text-align: center
+      display: block
+      font-family: Helvetica, sans-serif
+      font-size: 14px
+
+      img
+        display: block
+        +border-radius(2px)
+        margin: auto
+
+      .avatar-controls 
+        margin: 15px auto
+
+        a 
+          background-color: #555
+          color: white
+          font-weight: bold
+          padding: 5px
+          border-left: 1px solid #888
+
+          &:first-child
+            border-left: 0px
+            +border-left-radius(5px)
+
+          &:last-child
+            +border-right-radius(5px)
+
+          &:hover
+            background-color: #888
+            text-decoration: underline
     
   .password-redundant
     display: none
