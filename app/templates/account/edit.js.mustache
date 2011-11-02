@@ -1,14 +1,21 @@
 
-<form>
+ <form>
 
-  <div class="error"></div>
-  <div class="success">Saved!</div>
+   <div class="error"></div>
+   <div class="success">Saved!</div>
 
-  <ul class="settings">
-    <li><a href="/account/edit_avatar" class="avatar">
-      <div><img src="{{avatarUrl}}" width="100"></div>
-      <div>Change your picture</div>
-    </a></li>
+   <ul class="settings">
+     <li>
+       <div class="avatar">
+         <img src="{{avatarUrl}}" width="150">
+         <div class="avatar-controls">
+           <a class="upload">Change</a
+           ><a class="crop" href="/account/avatar">Crop</a
+           ><a class="delete">Delete</a>
+         </div>
+
+      </div>
+    </li>
 
     <li>
       <label>Neighborhood Posts:</label>

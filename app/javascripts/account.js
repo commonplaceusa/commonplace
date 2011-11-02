@@ -10,6 +10,7 @@
 //= require backbone
 //= require autoresize
 //= require chosen
+//= require ajaxupload
 //= require views
 //= require models
 //= require_tree ../templates/account
