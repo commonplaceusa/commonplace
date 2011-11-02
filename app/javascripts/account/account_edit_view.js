@@ -3,7 +3,8 @@ var AccountEditView = CommonPlace.View.extend({
   id: "account-edit",
   
   events: {
-    "submit": "editAccount"
+    "submit": "editAccount",
+    "click .avatar a.delete": "deleteAvatar"
   },
   
   initialize: function(options) {
@@ -30,6 +31,10 @@ var AccountEditView = CommonPlace.View.extend({
       var option = el.children("[value='" + item + "']");
       option.attr("selected", "selected");
     });
+    
+    this.$("select.list").chosen();
+
+    this.initAvatarUploader(this.$(".avatar .upload"));
   },
   
   editAccount: function(e) {
@@ -94,6 +99,30 @@ var AccountEditView = CommonPlace.View.extend({
   
   skills: function() { return this.skills; },
   
-  goods: function() { return this.goods; }
+  goods: function() { return this.goods; },
+
+  initAvatarUploader: function($el) {
+    var self = this;
+    var uploader = new AjaxUpload($el, {
+      action: "/api" + self.account.link("avatar"),
+      name: 'avatar',
+      data: { },
+      responseType: 'json',
+      onChange: function(file, extension){},
+      onSubmit: function(file, extension) {},
+      onComplete: function(file, response) { 
+        self.account.set(response); 
+        self.render();
+      }
+    });    
+  },
+
+  deleteAvatar: function(e) {
+    var self = this;
+    if (e) { e.preventDefault(); }
+    this.account.deleteAvatar(function() {
+      self.render();
+    });
+  }
 });
 

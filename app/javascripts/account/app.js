@@ -20,9 +20,8 @@ var AccountRouter = Backbone.Router.extend({
       skills: this.skills,
       goods: this.goods
     });
-    editview.render();
     $("#account-edit").replaceWith(editview.el);
-    editview.$("select.list").chosen();
+    editview.render();
   }
 });
 
