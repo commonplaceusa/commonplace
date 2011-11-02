@@ -31,8 +31,10 @@ var PaginatingWire = Wire.extend({
 
   search: function(event) {
     event.preventDefault();
-    this.scope['query'] = this.$('form.search input').val();
-    this.render();
+    this.scope['query'] = this.$("form.search input").val();
+    this.$("ul").empty();
+    var self = this;
+    this.fetchPage(function() { self.appendPage(); });
   },
 
   query: function() {
