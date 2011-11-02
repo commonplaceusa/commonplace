@@ -31,6 +31,19 @@ class API
       end
     end
 
+    post "/avatar" do
+      current_account.avatar = params[:avatar][:tempfile]
+      current_account.avatar.instance_write(:filename, params[:avatar][:filename])
+      current_account.save
+      serialize Account.new(current_account)
+    end
+
+    delete "/avatar" do
+      current_account.avatar = nil
+      current_account.save
+      serialize Account.new(current_account)
+    end
+
     post "/subscriptions/feeds" do
       feed = Feed.find(params[:id] || request_body['id'])
       halt [401, "wrong community"] unless in_comm(feed.community.id)
