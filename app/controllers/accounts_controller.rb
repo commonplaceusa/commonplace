@@ -13,28 +13,12 @@ class AccountsController < ApplicationController
     current_user.destroy
     redirect_to root_url
   end
-  
-  def edit
-    if can? :edit, current_user
-      render :layout => 'application'
-    else
-      redirect_to '/users/sign_in'
-    end
-  end
 
-  def settings
-    if current_user.update_attributes(params[:user])
-      sign_in(current_user, :bypass => true)
-      redirect_to root_url
-    else
-      render :edit
-    end
-  end
+  def avatar ; end
 
-  def update
-    current_user.update_attributes(params[:user])
-    sign_in(current_user, :bypass => true)
-    redirect_to root_url
+  def crop_avatar
+    current_user.update_attributes params[:user]
+    redirect_to "/account"
   end
   
   def learn_more
