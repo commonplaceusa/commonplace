@@ -135,7 +135,7 @@ class API
         search(Feed, params, community_id)
       else
         scope = Community.find(community_id).feeds.reorder("avatar_file_name DESC nulls last, about DESC nulls last")
-        serialize(scope)
+        serialize(paginate(scope))
       end
     end
 
@@ -145,7 +145,7 @@ class API
       if params["query"].present?
         search(Group, params, community_id)
       else
-        serialize(Community.find(community_id).groups)
+        serialize(paginate(Community.find(community_id).groups))
       end
     end
 
@@ -155,7 +155,8 @@ class API
       if params["query"].present?
         search(User, params, community_id)
       else
-        serialize(Community.find(community_id).users)
+        scope = Community.find(community_id).users.reorder("avatar_file_name DESC nulls last, about DESC nulls last")
+        serialize(paginate(scope))
       end
     end
 
