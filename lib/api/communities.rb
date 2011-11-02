@@ -12,8 +12,16 @@ class API
       def search(klass, params, community_id)
         search = Sunspot.search(klass) do
           keywords phrase(params["query"])
-          #paginate(:page => params["page"])
-          paginate(:page => 1)
+          paginate(:page => params["page"])
+          with(:community_id, community_id)
+        end
+        serialize(search)
+      end
+      
+      def chronological(klass, params, community_id)
+        search = Sunspot.search(klass) do
+          order_by(:created_at, :desc)
+          paginate(:page => params["page"], :per_page => params["limit"])
           with(:community_id, community_id)
         end
         serialize(search)
@@ -175,8 +183,12 @@ class API
     get "/:community_id/post-like" do |community_id|
       # only search
       halt [200, {}, "[]"] if params["query"].blank?
-
-      search([Announcement, Event, Post, GroupPost], params, community_id)
+      
+      if params["query"].present?
+        search([Announcement, Event, Post, GroupPost], params, community_id)
+      else
+        chronological([Announcement, Event, Post, GroupPost], params, community_id)
+      end
     end
 
 
