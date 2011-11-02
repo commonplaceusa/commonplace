@@ -63,7 +63,7 @@ var InfoBox = CommonPlace.View.extend({
       });
     }
 
-    this.$("#info-list-area").scroll(function() {
+    this.$("#info-list-area > ul").scroll(function() {
       if (this.offsetHeight + $(this).scrollTop() >= this.scrollHeight) {
         self.nextPage();
       }
@@ -242,7 +242,9 @@ var InfoBox = CommonPlace.View.extend({
     var self = this;
     this.$list().show();
     this.$list_none().hide();
-    this.$("#info-list-area").scrollTop(0);
+    if (collection != this.currentCollection) {
+      this.$("#info-list-area > ul").scrollTop(0);
+    }
     if (options != "append") { this.$list().empty(); }
     collection.each(function (model) {
       var item = new InfoListItem({
