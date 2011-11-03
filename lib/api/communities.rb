@@ -181,9 +181,6 @@ class API
     end
 
     get "/:community_id/post-like" do |community_id|
-      # only search
-      halt [200, {}, "[]"] if params["query"].blank?
-      
       if params["query"].present?
         search([Announcement, Event, Post, GroupPost], params, community_id)
       else
