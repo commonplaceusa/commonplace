@@ -22,8 +22,11 @@ var Wire = CommonPlace.View.extend({
   },
   
   fetchCurrentPage: function(callback) {
+    var data = { limit: this.perPage(), page: this.currentPage() };
+    if (this.currentQuery) { data["query"] = this.currentQuery; }
+    
     this.collection.fetch({
-      data: { limit: this.perPage(), page: this.currentPage() },
+      data: data,
       success: callback
     });
   },
