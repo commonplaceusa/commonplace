@@ -50,7 +50,7 @@ class MailBase < Mustache
   end
   
   def render_html(*args)
-    Premailer.new(render(*args), :with_html_string => true).to_inline_css
+    Premailer.new(render(*args), :with_html_string => true, :inputencoding => 'UTF-8', :replace_html_entities => true).to_inline_css
   end
 
   def styles
