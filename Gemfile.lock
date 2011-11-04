@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/Jberlinsky/premailer.git
+  revision: cb80fdd5edfb091d5f1341db6c654b284265e79c
+  specs:
+    premailer (1.7.3)
+      css_parser (>= 1.1.9)
+      htmlentities (>= 4.0.0)
+
+GIT
   remote: git://github.com/alindeman/sunspot.git
   revision: f69629ccf5921b9c90f08121ed9a76cc05c8cc79
   specs:
@@ -22,14 +30,6 @@ GIT
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-
-GIT
-  remote: git@github.com:Jberlinsky/premailer.git
-  revision: b7fea82dd77046692062edafce22b78ea5ea441b
-  specs:
-    premailer (1.7.3)
-      css_parser (>= 1.1.9)
-      htmlentities (>= 4.0.0)
 
 GEM
   remote: http://rubygems.org/
