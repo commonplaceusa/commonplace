@@ -45,9 +45,11 @@ var Wire = CommonPlace.View.extend({
   },
     
   showMore: function(event) {
+    alert('foo');
+    var self = this;
     event.preventDefault();
     this.nextPage();
-    this.render();
+    this.fetchPage(function() { self.appendPage() });
   },
 
   currentPage: function() {
