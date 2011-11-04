@@ -4,5 +4,6 @@ var PreviewWire = PaginatingWire.extend({
   _defaultPerPage: 5,
   fullWireLink: function() { return this.options.fullWireLink; },
   showMore: function() {}, // passthrough
-  areMore: false
+  areMore: function() { return false; },
+  isRecent: function() { return this.options.isRecent || false; }
 });
