@@ -15,7 +15,7 @@ var RepliesView = CommonPlace.View.extend({
   }, 
   
   events: {
-    "click form button": "sendReply",
+    "keydown form textarea": "sendReply",
     "click .replies-more": "showMoreReplies"
   },
 
@@ -32,8 +32,6 @@ var RepliesView = CommonPlace.View.extend({
       }
 
     });
-
-
   },
 
   pluralizedReplies: function(){
@@ -48,9 +46,11 @@ var RepliesView = CommonPlace.View.extend({
   },
 
   sendReply: function(e) {
-    e.preventDefault();
-    this.cleanUpPlaceholders();
-    this.collection.create({ body: this.$("[name=body]").val()});
+    if (e.which == 13 && !e.shiftKey) {
+      e.preventDefault();
+      this.cleanUpPlaceholders();
+      this.collection.create({ body: this.$("[name=body]").val()});
+    }
   },
 
   showMoreReplies: function(event){
@@ -61,4 +61,3 @@ var RepliesView = CommonPlace.View.extend({
   
   accountAvatarUrl: function() { return this.account.get('avatar_url'); }
 });
-

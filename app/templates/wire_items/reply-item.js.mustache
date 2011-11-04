@@ -1,14 +1,14 @@
 <img class="avatar" src="{{authorAvatarUrl}}" height="30" width="30">
+
 <div class="reply-info">
   <div class="reply-text">
     <span class="author">{{author}}</span>
-    <div class="body reply-body">{{#markdown}}{{body}}{{/markdown}}</div>
+    <div class="body reply-body">
+      {{#markdown}}{{body}}<span class="time">{{time}}</span>{{#canEdit}}<a href="#" class="delete-reply">DELETE</a>{{/canEdit}}{{/markdown}}
+    </div>
+
   </div>
 
-  <span class="time">{{time}}</span>
-  {{#canEdit}}<a href="#" class="delete-reply">DELETE</a>{{/canEdit}}
-
 </div>
-
 
 <div style="clear: both;"></div>
