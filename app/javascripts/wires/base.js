@@ -7,8 +7,8 @@ var Wire = CommonPlace.View.extend({
       this.modelToView = options.modelToView;
     }
 
-    this.scope['limit'] = this.perPage();
-    this.scope['page'] = this.currentPage();
+    this.scope.limit = this.perPage();
+    this.scope.page = options.currentPage || 0;
 
     this.aroundRender = this.fetchPage;
     this.afterRender = this.appendPage;
@@ -18,7 +18,7 @@ var Wire = CommonPlace.View.extend({
     throw new Error("This is an abstract class, use a child of this class");
   },
 
-  scope: {},
+  scope: { },
 
   fetchPage: function(callback) {
     this.collection.fetch({
@@ -45,11 +45,10 @@ var Wire = CommonPlace.View.extend({
   },
     
   showMore: function(event) {
-    alert('foo');
     var self = this;
     event.preventDefault();
     this.nextPage();
-    this.fetchPage(function() { self.appendPage() });
+    this.fetchPage(function() { self.appendPage(); });
   },
 
   currentPage: function() {
