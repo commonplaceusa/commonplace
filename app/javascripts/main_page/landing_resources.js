@@ -28,6 +28,7 @@ var LandingResources = CommonPlace.View.extend({
           el: this.$(".posts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
+          isRecent: true,
           modelToView: function(model) {
             return new PostWireItem({ model: model, account: self.options.account });
           }
@@ -40,6 +41,7 @@ var LandingResources = CommonPlace.View.extend({
           el: this.$(".events.wire"),
           fullWireLink: "#/events",
           emptyMessage: "There are no upcoming events yet. Add some.",
+          isRecent: true,
           modelToView: function(model) {
             return new EventWireItem({ model: model, account: self.options.account });
           }
@@ -52,6 +54,7 @@ var LandingResources = CommonPlace.View.extend({
           el: this.$(".announcements.wire"),
           emptyMessage: "No announcements here yet.",
           fullWireLink: "#/announcements",
+          isRecent: true,
           modelToView: function(model) {
             return new AnnouncementWireItem({ model: model, account: self.options.account });
           }
@@ -64,6 +67,7 @@ var LandingResources = CommonPlace.View.extend({
           el: this.$(".groupPosts.wire"),
           emptyMessage: "No posts here yet.",
           fullWireLink: "#/group_posts",
+          isRecent: true,
           modelToView: function(model) {
             return new GroupPostWireItem({ model: model, account: self.options.account });
           }

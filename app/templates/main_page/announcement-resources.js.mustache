@@ -4,7 +4,10 @@
       <input type="text" value="{{query}}" placeholder="Search"/>
     </form>
   {{/isSearchEnabled}}
-  <h2><a href="#/announcements" class="current">{{#t}}announcements.a{{/t}}</a>
+  <h2><a href="#/announcements" class="current">
+    {{^isRecent}}{{#t}}announcements.a{{/t}}{{/isRecent}}
+    {{#isRecent}}{{#t}}recent-announcements.a{{/t}}{{/isRecent}}
+  </a>
   &sdot;
   <a href="#/feeds">{{#t}}feeds.a{{/t}}</a></h2>
   <div style="clear:both;"></div>
