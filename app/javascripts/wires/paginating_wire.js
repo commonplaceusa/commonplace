@@ -22,7 +22,7 @@ var PaginatingWire = Wire.extend({
   },
 
   nextPage: function() {
-    this._currentPage = (this._currentPage || this.options.currentPage || 0) + 1;
+    this.scope.page = this.scope.page + 1;
   },
 
   debounceSearch: _.debounce(function() {
@@ -31,14 +31,14 @@ var PaginatingWire = Wire.extend({
 
   search: function(event) {
     event.preventDefault();
-    this.scope['query'] = this.$("form.search input").val();
+    this.scope.query = this.$("form.search input").val();
     this.$("ul").empty();
     var self = this;
     this.fetchPage(function() { self.appendPage(); });
   },
 
   query: function() {
-    return this.scope['query'] || '';
+    return this.scope.query || '';
   },
 
   isSearchEnabled: function() { return this.isActive('wireSearch');  }
