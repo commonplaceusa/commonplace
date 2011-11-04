@@ -1,6 +1,6 @@
 
 #info-box
-  margin-top: 12px
+  margin-top: 10px
   background: #2e4b67
   color: white
   font-family: Helvetica, Arial, sans-serif
@@ -16,30 +16,40 @@
     margin: 0
     padding: 0
     list-style: none
-  
-  h2
-    font-size: 12px
-    font-family: Helvetica, Arial, sans-serif
-    text-align: center
-    font-weight: bold
 
   #info-upper
     +border-radius(4px)
     +box-shadow(2px 2px 6px rgba(0, 0, 0, 0.25) inset, 0 0 0 1px rgba(0, 0, 0, 0.24))
     overflow: hidden
-    margin: 15px 0
+    margin: 3px 0 15px
     height: 400px
+
+    .search
+      height: 20px
+      padding: 5px
+        right: 20px
+      color: white
+      background-color: #1c2e40
+      background-image: image-url("shared/icons/search.png") 
+      background-position: center right
+      background-repeat: no-repeat
+      border: 0
+      border-top: 1px solid #28394a
+      width: 128px
     
     #info-list-area
-      width: 33.3337%
+      width: 153px
       float: left
-      height: 100%
-      background-color: rgba(0, 0, 0, 0.39)
       
+      &.searching
+        ul
+          height: 350px
       ul
+        height: 370px
         overflow-x: hidden
-        overflow-y: scroll
-        height: 100%
+        overflow-y: auto
+        border-bottom: 1px solid #101f30
+        background-color: #1c2e40
 
       .remove-search
         text-align: center
@@ -64,10 +74,13 @@
         +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
         
       .none
+        width: 133px
+        background-color: #1c2e40
+        position: absolute
         display: none
-        margin-top: 10px
+        padding: 10px
         text-align: center
-
+      
       li
         padding: 8px
         overflow: hidden
@@ -89,7 +102,7 @@
           strong
             color: white
             display: block
-            
+
     #profile-area
       width: 66.6667%
       float: right
@@ -160,38 +173,7 @@
           background: #ac322f
           +border-radius(4px)
           +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
-          
-  form
-    overflow: hidden
-    margin-bottom: 10px
-    input[type=text]
-      float: left
-      width: 285px
-      +border-radius(4px)
-      border: 0
-      display: block
-      font-size: 12px
-      color: #666
-      line-height: 13px
-      padding: 8px 8px 8px 25px
-      +box-shadow(2px 2px 6px rgba(0, 0, 0, 0.25) inset, 0 0 0 1px rgba(0, 0, 0, 0.24))
-      background: white image-url("shared/icons/search.png") 8px 7px no-repeat
-      &:focus
-        color: #333
-        outline: 0
-    a.invite
-      float: right
-      width: 130px
-      margin: 0
-      text-transform: none
-      font-size: 12px
-      margin-top: 2px
-      line-height: 13px
-      padding: 8px 0
-      height: auto
-      text-align: right
-      background: #cfcfcf image-url("shared/icons/add_person.png") 10px center no-repeat
-      +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.24), 0 1px 0 rgba(255, 255, 255, 0.7) inset)
+
       span
         padding: 0 10px
   a.gray-button
