@@ -6,8 +6,8 @@
   border: none
   width: 94%
   @include border-radius(4px)
-  padding: 10px 3% 9px
-  margin: 0 0 3% 0
+  padding: 10px
+  margin: 0 0 15px 0
   resize: none
   @include box-shadow(0 0 0 1px #8b2324, 2px 2px 5px #ccc inset)
   
@@ -24,18 +24,6 @@
   border: 1px solid #8F2927
 
   padding-bottom: 15px
-
-  h1
-    background-color: #8b2324
-    text-align: center
-    color: #fff
-    +border-top-radius(5px)
-    font-size: 12px
-    padding: 13px
-    font-weight: bold
-    font-family: Helvetica, Arial, sans-serif
-    +text-shadow(rgba(0, 0, 0, 0.75) 1px 1px 0 )
-    +box-shadow(#b53a37 0 1px 0 inset)
 
   .navigation
     float: left
@@ -116,12 +104,9 @@
         +input()
 
       textarea
-        margin-top: 15px
-        width: 285px
-        height: 105px
-        margin-bottom: 0
         +input()
-
+        width: 285px
+        height: 110px
 
       label.radio
         display: inline
