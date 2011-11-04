@@ -39,7 +39,7 @@ var InfoBox = CommonPlace.View.extend({
     "click .filter-tab": "switchTab",
     "click .remove-search": "removeSearch",
     "submit form": "searchFormSubmit",
-    "keyup form input.search": "filterBySearch"
+    "keyup input.search": "filterBySearch"
   },
 
   searchFormSubmit: function(e) { e.preventDefault(); },
@@ -222,7 +222,6 @@ var InfoBox = CommonPlace.View.extend({
   
   renderNone: function() {
     this.$profile().hide();
-    this.$list().hide();
     this.$profile().hide();
     this.page = 0;
     var schema = (this.getSchema() == "account" ? "users" : this.getSchema());
@@ -240,7 +239,6 @@ var InfoBox = CommonPlace.View.extend({
 
   renderList: function(collection, options) {
     var self = this;
-    this.$list().show();
     this.$list_none().hide();
     if (collection != this.currentCollection) {
       this.$("#info-list-area > ul").scrollTop(0);
@@ -259,7 +257,6 @@ var InfoBox = CommonPlace.View.extend({
   changeSchema: function(schema) {
     this.$(".filter-tab").removeClass("current");
     this.$("." + schema + "-filter").addClass("current");
-    this.$("h2").text(this.t(schema + ".h2"));
   },
 
   profileBoxFor: function(model) {
@@ -305,8 +302,9 @@ var InfoBox = CommonPlace.View.extend({
 
   filterBySearch: _.debounce(function(e) {
     e && e.preventDefault();
-    query = this.$("form > input").val();
+    query = this.$("input.search").val();
     if (query) {
+      this.$("#info-list-area").addClass("searching");
       this.$(".remove-search").show();
       this.$(".remove-search").text(query);
       this.currentQuery = query;
@@ -316,6 +314,7 @@ var InfoBox = CommonPlace.View.extend({
 
   removeSearch: function(e) {
     e && e.preventDefault();
+    this.$("#info-list-area").removeClass("searching");
     this.$(".remove-search").hide();
     this.currentQuery = "";
     this.$("form > input").val("");

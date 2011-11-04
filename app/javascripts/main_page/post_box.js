@@ -41,7 +41,6 @@ var PostBox = CommonPlace.View.extend({
 
   showTab: function(tab) { 
     this.$("." + tab).addClass("current"); 
-    this.$("h1").text(this.t(tab + ".h1"));
     _(this.forms()).invoke("render");
   },
     
