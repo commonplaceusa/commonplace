@@ -75,7 +75,7 @@ Commonplace::Application.routes.draw do
   end
   
   # jasmine test routes
-  mount TestTrack::Engine => "test" unless Rails.env.production?
+  mount TestTrack::Engine => "test" unless Rails.env.production? || Rails.env.staging?
 
   begin 
     ActiveAdmin.routes(self) 
