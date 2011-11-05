@@ -1,32 +1,7 @@
 !!! 5
 %html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
   %head
-
-    %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
-    %link{ :href=> 'https://fonts.googleapis.com/css?family=Rokkitt:400,700', :rel =>"stylesheet", :type =>"text/css"}
-
-    %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
-
-    %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
-    %meta{ :name => "description", :content => "The #{params[:community] && current_community.name} CommonPlace is an online community bulletin board for neighbors in #{params[:community] && current_community.name}, designed to make it easy for neighbors and community groups to share and connect." }
-
-
-    %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
-
-    %title= "CommonPlace #{current_community.name}"
-
-
-    = stylesheet_link_tag "main_page"
-    = javascript_include_tag "main_page"
-    
-    = render 'exceptional'
-
-    - if Rails.env.production?
-      %script{:type => "text/javascript"}
-        var mpq = [];
-        mpq.push(["init", "#{$MixpanelAPIToken}"]);
-        (function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
-
+    = render :partial => 'layouts/common_head', :locals => { :javascripts => ["main_page"], :stylesheets => ["main_page"], :title => 'Community', :track => 'Community Home Page' }
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" } #{ current_community.is_college ? "is_college" : ""}"}
 
@@ -38,7 +13,9 @@
 
       - if !current_community.has_launched?
         .prelaunch-notification
-          Hey #{current_user.first_name}, welcome to #{current_community.name} CommonPlace! We're officially launching on #{current_community.launch_date.strftime("%B")} #{current_community.launch_date.day.ordinalize}. In the meantime, help us improve by <a href="/invite">inviting some more neighbors</a>.
+          Hey #{current_user.first_name}, welcome to #{current_community.name} CommonPlace! We're officially
+          launching on #{current_community.launch_date.strftime("%B")} #{current_community.launch_date.day.ordinalize}.
+          In the meantime, help us improve by <a href="/invite">inviting some more neighbors</a>.
 
       - if current_community.slug == "OwossoCorunna"
         .prelaunch-notification
@@ -78,7 +55,5 @@
 
       });
 
-    - if Rails.env.production?
-      %script
-        = "mpq.track('Community Home Page', {'community': '#{current_community.slug}'});"
+
 
