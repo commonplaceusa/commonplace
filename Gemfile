@@ -5,6 +5,7 @@ gem 'rack'
 
 # API
 gem 'sinatra' # Powers the api
+#gem 'sinatra-reloader'
 gem 'rack-contrib'
 gem 'sham_rack' # For using the api in-process
 gem 'faraday' # For using the api in-process

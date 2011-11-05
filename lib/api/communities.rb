@@ -14,6 +14,7 @@ class API
           keywords phrase(params["query"])
           paginate(:page => params["page"].to_i + 1)
           with(:community_id, community_id)
+          yield(self) if block_given?
         end
         serialize(search)
       end
@@ -83,15 +84,13 @@ class API
       end
     end
 
-    # todo: all these GET methods are not so DRY.  could make a common search or not functinon that takes a class name
+    # todo: all these GET methods are not so DRY.  could make a common search or not function that takes a class name
     # would require a lookup to see how to paginate various classes
 
     get "/:community_id/posts" do |community_id|
       last_modified_by_updated_at(Post)
 
       if params["query"].present?
-        #params["limit"] = 1
-        #params["page"] = 1
         search(Post, params, community_id)
       else
         serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
@@ -105,7 +104,9 @@ class API
                      Date.today.beginning_of_day].compact.max)
 
       if params["query"].present?
-        search(Event, params, community_id)
+        search(Event, params, community_id) do |search|
+          search.with(:date).greater_than(Time.now.beginning_of_day)
+        end
       else
         serialize(paginate(Community.find(community_id).events.upcoming.
                              includes(:replies).reorder("date ASC")))
@@ -261,6 +262,6 @@ class API
       kickoff.deliver_user_invite(request_body['emails'], current_account, request_body['message'])
       [200, {}, ""]
     end
-    
+
   end
 end

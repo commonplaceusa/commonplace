@@ -88,7 +88,7 @@ class Event < ActiveRecord::Base
     text :replies do
       replies.map &:body
     end
-    with(:date).greater_than Time.now
+    time :date
     integer :community_id
     time :created_at
   end
