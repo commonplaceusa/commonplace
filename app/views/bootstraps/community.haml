@@ -27,26 +27,21 @@
 
     = render "layouts/bottom_scripts"
 
-    %script
+    :javascript
+      //todo: move to rails helper or erb to allow indentation.
       $(function() {
-      var community = new Community(#{serialize(current_community)});
-      CommonPlace || (CommonPlace = {});
-      CommonPlace.page = "main_page";
-      CommonPlace.community = community;
-      var account =  new Account(#{serialize(Account.new(current_user))});
-
-      window.router = new MainPageRouter({
-      account: account,
-      community: community
+        window.router = new MainPageRouter({
+        account: window.current_account, //todo: remove
+        community: CommonPlace.community //todo: remove
       });
 
-      (new FeatureSwitching({account: account, el: $("#feature-switching")})).render();
+      (new FeatureSwitching({
+        el: $("#feature-switching")
+      })).render();
       
       Backbone.history.start();
 
       window.router.navigate(window.location.pathname, true);
-
-
       });
 
 

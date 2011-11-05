@@ -13,134 +13,152 @@ var CommunityResources = CommonPlace.View.extend({
     community.groupPosts.bind("add", function() { self.switchTab("groupPosts"); });
   },
 
-  afterRender: function() {
-    this.switchTab("landing");
-  },
-
   switchTab: function(tab) {
+    var self = this,
+      $tabContent = self.$(".resources"),
+      views = this.tabs[tab](); // todo simplify
+
     this.$(".tab-button").removeClass("current");
     this.$("." + tab).addClass("current");
 
-    var view = this.tabs[tab](this);
-    view.render();
-    this.$(".resources").replaceWith(view.el);
+    $tabContent.html('');
+    _.each(views, function(view){
+      view.render();
+      $tabContent.append(view.el);
+    });
+
+    if (window['mpq'] !== undefined){ // todo: move this in to helper method under CommonPlace
+      mpq.track('Wire:' + tab, {'community': CommonPlace.community.get('slug') });
+    }
   },
 
   tabs: {
-    landing: function(self) {
-      return new LandingResources({
-        account: self.options.account,
-        community: self.options.community
-      });
+    landing: function() {
+      return [( new LandingResources() )];
     },
-    
-    posts: function(self) {
-      var postsCollection;
-      if (self.options.community.get('locale') == "college") {
-        postsCollection = self.options.account.neighborhoodsPosts();
+
+    posts: function() {
+      var collection; //TODO: DRY this (against landing_resources)
+      if (CommonPlace.community.get('locale') == "college") {
+        collection = current_account.neighborhoodsPosts();
       } else {
-        postsCollection = self.options.community.posts;
+        collection = CommonPlace.community.posts;
       }
 
-      return new self.PaginatingResourceWire({
-        template: "main_page/post-resources",
-        emptyMessage: "No posts here yet",
-        collection: postsCollection,
-        modelToView: function(model) {
-          return new PostWireItem({ model: model, account: self.options.account });
-        }
-      });
+      return [
+        (new WireHeader({
+          template: 'main_page/post-resources' //fixme: DRY this and just past in an initialization arg
+        })),
+        (new PaginatingResourceWire({
+          collection: collection,
+          className: "posts wire",
+          modelToView: function(model) {  //fixme: passage of model not dry
+            return new PostWireItem({ model: model });
+          }
+        }))
+      ];
+
     },
 
-    events: function(self) {
-      return new self.PaginatingResourceWire({
-        template: "main_page/event-resources",
-        emptyMessage: "No events here yet",
-        collection: self.options.community.events,
-        modelToView: function(model) {
-          return new EventWireItem({ model: model, account: self.options.account });
-        }
-      });
-    },
-    
-    announcements: function(self) {
-      return new self.PaginatingResourceWire({
-        template: "main_page/announcement-resources",
-        emptyMessage: "No announcements here yet",
-        collection: self.options.community.announcements,
-        modelToView: function(model) {
-          return new AnnouncementWireItem({ model: model, account: self.options.account });
-        }
-      });
+    events: function() {
+      return [
+        (new WireHeader({
+          template: 'main_page/event-resources'
+        })),
+        (new PaginatingResourceWire({
+          emptyMessage: "No events here yet", //todo: dry this crap..
+          collection: CommonPlace.community.events,
+          className: "events wire",
+          modelToView: function(model) {
+            return new EventWireItem({ model: model });
+          }
+        }))
+      ];
     },
 
-    groupPosts: function(self) {
-      return new self.PaginatingResourceWire({
-        template: "main_page/group-post-resources",
-        emptyMessage: "No posts here yet",
-        collection: self.options.community.groupPosts,
-        modelToView: function(model) {
-          return new GroupPostWireItem({ model: model, account: self.options.account });
-        }
-      });
+    announcements: function() {
+      return [
+        (new WireHeader({
+          template: 'main_page/announcement-resources'
+        })),
+        (new PaginatingResourceWire({
+          emptyMessage: "No announcements here yet", //todo: dry this crap..
+          collection: CommonPlace.community.announcements,
+          className: "announcements wire",
+          modelToView: function(model) {
+            return new AnnouncementWireItem({ model: model });
+          }
+        }))
+      ];
     },
 
-    users: function(self) {
-      return new self.ResourceWire({
-        template: "main_page/directory-resources",
-        emptyMessage: "No posts here yet",
-        collection: self.options.community.users,
-        active: 'users',
-        modelToView: function(model) {
-          return new UserWireItem({ model: model, account: self.options.account });
-        }
-      });
+    groupPosts: function() {
+      return [
+        (new WireHeader({
+          template: "main_page/group-post-resources"
+        })),
+        (new PaginatingResourceWire({
+          emptyMessage: "No posts here yet",
+          collection: CommonPlace.community.groupPosts,
+          className: "groupPosts wire",
+          modelToView: function(model) {
+            return new GroupPostWireItem({ model: model });
+          }
+        }))
+      ];
     },
 
-    groups: function(self) {
-      return new self.ResourceWire({
-        template: "main_page/directory-resources",
-        emptyMessage: "No posts here yet",
-        collection: self.options.community.groups,
-        active: 'groups',
-        modelToView: function(model) {
-          return new GroupWireItem({ model: model, account: self.options.account });
-        }
-      });
+    users: function() {
+      return [
+        (new WireHeader({
+          template: "main_page/directory-resources"
+        })),
+        (new ResourceWire({
+          emptyMessage: "No posts here yet",
+          collection: CommonPlace.community.users,
+          className: "users wire",
+          active: 'users',
+          modelToView: function(model) {
+            return new UserWireItem({ model: model });
+          }
+        }))
+      ];
     },
 
-    feeds: function(self) {
-      return new self.ResourceWire({
-        template: "main_page/directory-resources",
-        emptyMessage: "No posts here yet",
-        collection: self.options.community.feeds,
-        active: 'feeds',
-        modelToView: function(model) {
-          return new FeedWireItem({ model: model, account: self.options.account });
-        }
-      });
+    groups: function() {
+      return [
+        (new WireHeader({
+          template: "main_page/directory-resources"
+        })),
+        (new ResourceWire({
+          emptyMessage: "No posts here yet",
+          collection: CommonPlace.community.groups,
+          className: "users wire",
+          active: 'groups',
+          modelToView: function(model) {
+            return new GroupWireItem({ model: model });
+          }
+        }))
+      ];
+    },
+
+    feeds: function() {
+      return [
+        (new WireHeader({
+          template: "main_page/directory-resources"
+        })),
+        (new ResourceWire({
+          emptyMessage: "No posts here yet",
+          collection: CommonPlace.community.feeds,
+          className: "users wire",
+          active: 'feeds',
+          modelToView: function(model) {
+            return new FeedWireItem({ model: model });
+          }
+        }))
+      ];
     }
   },
-
-  PaginatingResourceWire: PaginatingWire.extend({
-    className: "resources",
-    _defaultPerPage: 15
-  }),
-
-  ResourceWire: Wire.extend(
-    {
-      className: "resources",
-      usersLinkClass: function() {
-        return this.options.active == 'users' ? 'current' : '';
-      },
-      feedsLinkClass: function() {
-        return this.options.active == 'feeds' ? 'current' : '';
-      },
-      groupsLinkClass: function() {
-        return this.options.active == 'groups' ? 'current' : '';
-      }
-    }
-  ),
 
   showPost: function(post) {
     this.showSingleItem(post, GroupPostWireItem);
@@ -159,13 +177,13 @@ var CommunityResources = CommonPlace.View.extend({
     var self = this;
     model.fetch({
       success: function(model) {
-        var item = new ItemView({model: model, account: self.options.account});
+        var item = new ItemView({model: model});
 
         self.$(".tab-button").removeClass("current");
 
         item.render();
 
-        self.$(".resources").html($("<div/>", { 
+        self.$(".resources").html($("<div/>", {
           "class": "wire",
           html: $("<ul/>", {
             "class": "wire-list",

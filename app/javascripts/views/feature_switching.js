@@ -22,7 +22,7 @@ FeatureSwitching = CommonPlace.View.extend({
   },
 
   canTryFeatures: function() {
-    return this.options.account.canTryFeatures();
+    return current_account.canTryFeatures();
   },
 
   toggleFeaturePanel: function(e) { 

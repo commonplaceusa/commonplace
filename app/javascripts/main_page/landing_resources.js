@@ -1,81 +1,83 @@
-var LandingResources = CommonPlace.View.extend({ 
+var LandingResources = CommonPlace.View.extend({
   template: "main_page/landing-resources",
-  className: "resources",
-
-  initialize: function(options) {
-    this.account = options.account;
-    this.community = options.community;
-  },
+  className: "landing-resources",
 
   afterRender: function() {
+    //fixme: invoke should be a function on the enumerable object
     _(this.wires()).invoke("render");
   },
 
   wires: function() {
     var self = this;
-    var postsCollection;
-    if (self.options.community.get('locale') == "college") {
-      postsCollection = self.options.account.neighborhoodsPosts();
+    var collection;    //todo: DRY against communtiy resources
+    if (CommonPlace.community.get('locale') == "college") {
+      collection = current_account.neighborhoodsPosts();
     } else {
-      postsCollection = self.options.community.posts;
+      collection = CommonPlace.community.posts;
     }
     if (!this._wires) {
       this._wires = [
-        (new PreviewWire({
+        (new WireHeader({
           template: 'main_page/post-resources',
-          collection: postsCollection,
-          account: this.account,
+          el: this.$(".posts.wireHeader")
+        })),
+        (new PreviewWire({
+          collection: collection,
           el: this.$(".posts.wire"),
-          fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
           isRecent: true,
           modelToView: function(model) {
-            return new PostWireItem({ model: model, account: self.options.account });
+            return new PostWireItem({ model: model });
           }
-         })),
-        
-        (new PreviewWire({
+        })),
+
+        (new WireHeader({
           template: 'main_page/event-resources',
-          collection: this.community.events,
-          account: this.account,
+          el: this.$(".events.wireHeader")
+        })),
+        (new PreviewWire({
+          collection: CommonPlace.community.events,
           el: this.$(".events.wire"),
-          fullWireLink: "#/events",
           emptyMessage: "There are no upcoming events yet. Add some.",
           isRecent: true,
           modelToView: function(model) {
-            return new EventWireItem({ model: model, account: self.options.account });
+            return new EventWireItem({ model: model });
           }
         })),
-        
-        (new PreviewWire({
+
+        (new WireHeader({
           template: 'main_page/announcement-resources',
-          collection: this.community.announcements,
-          account: this.account,
+          el: this.$(".announcements.wireHeader")
+        })),
+        (new PreviewWire({
+          collection: CommonPlace.community.announcements,
           el: this.$(".announcements.wire"),
           emptyMessage: "No announcements here yet.",
-          fullWireLink: "#/announcements",
           isRecent: true,
           modelToView: function(model) {
-            return new AnnouncementWireItem({ model: model, account: self.options.account });
+            return new AnnouncementWireItem({ model: model });
           }
         })),
-        
-        (new PreviewWire({
+
+        (new WireHeader({
           template: 'main_page/group-post-resources',
-          collection: this.community.groupPosts,
-          account: this.account,
+          el: this.$(".groupPosts.wireHeader")
+        })),
+        (new PreviewWire({
+          collection: CommonPlace.community.groupPosts,
           el: this.$(".groupPosts.wire"),
           emptyMessage: "No posts here yet.",
-          fullWireLink: "#/group_posts",
           isRecent: true,
           modelToView: function(model) {
-            return new GroupPostWireItem({ model: model, account: self.options.account });
+            return new GroupPostWireItem({ model: model });
           }
         }))
       ];
     }
     return this._wires;
   }
-  
+
+
+
 
 });

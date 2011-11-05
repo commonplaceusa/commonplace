@@ -6,7 +6,7 @@ var GroupWireItem = WireItem.extend({
   className: "wire-item feed",
 
   initialize: function() {
-    this.options.account.bind("change", this.render, this);
+    current_account.bind("change", this.render, this);
     this.attr_accessible(['name', 'url', 'avatar_url']);
   },
 
@@ -20,10 +20,10 @@ var GroupWireItem = WireItem.extend({
     window.infoBox.showProfile(this.model);
   },
 
-  subscribe: function() { this.options.account.subscribeToGroup(this.model); },
+  subscribe: function() { current_account.subscribeToGroup(this.model); },
 
-  unsubscribe: function() { this.options.account.unsubscribeFromGroup(this.model); },
+  unsubscribe: function() { current_account.unsubscribeFromGroup(this.model); },
 
-  isSubscribed: function() { return this.options.account.isSubscribedToGroup(this.model); }
+  isSubscribed: function() { return current_account.isSubscribedToGroup(this.model); }
 
 });

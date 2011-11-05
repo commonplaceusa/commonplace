@@ -4,15 +4,13 @@ var AnnouncementWireItem = WireItem.extend({
   className: "wire-item",
 
   initialize: function(options) {
-    this.account = options.account;
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
 
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
-                                        el: this.$(".replies"),
-                                        account: this.account
+                                        el: this.$(".replies")
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -49,8 +47,9 @@ var AnnouncementWireItem = WireItem.extend({
     formview.render();
   },
 
+  // todo: DRY this CRAP
   canEdit: function() {
-    return this.account.canEditAnnouncement(this.model);
+    return current_account.canEditAnnouncement(this.model);
   },
 
   isMore: function() {

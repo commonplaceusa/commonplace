@@ -45,7 +45,9 @@ CommonPlace.View = Backbone.View.extend({
     return path ? makeUrl(path) : makeUrl;
   },
 
-  getTemplate: function() { return this.options.template || this.template; },
+  getTemplate: function() {
+    return this.options.template || this.template;
+  },
 
   t: function(key) {
     var locale = I18N[CommonPlace.community.get('locale')];
@@ -90,7 +92,7 @@ CommonPlace.View = Backbone.View.extend({
 
 var FormView = CommonPlace.View.extend({
   initialize: function(options) {
-    this.template = (this.options.template || this.template);
+    this.template = (this.options.template || this.template); // todo: use getTemplate
     this.modal = new ModalView({form: this.el});
   },
 

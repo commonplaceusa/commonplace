@@ -3,7 +3,6 @@ var RepliesView = CommonPlace.View.extend({
   template: "shared/replies",
   initialize: function(options) {
     var self = this;
-    this.account = options.account;
     this.collection.bind("add", function() { self.render(); });
     this.collection.bind("remove", function() { self.render(); });
   },
@@ -23,7 +22,7 @@ var RepliesView = CommonPlace.View.extend({
   appendReplies: function() {
     var self = this;
     var elements = this.collection.map(function(reply) {
-      var view = new ReplyWireItem({ model: reply, account: self.account });
+      var view = new ReplyWireItem({ model: reply });
       view.render();
       return view.el; 
     });
@@ -52,5 +51,5 @@ var RepliesView = CommonPlace.View.extend({
   
   hideHint: function(e) { this.$(".enter-hint").hide(); },
   
-  accountAvatarUrl: function() { return this.account.get('avatar_url'); }
+  accountAvatarUrl: function() { return current_account.get('avatar_url'); }
 });

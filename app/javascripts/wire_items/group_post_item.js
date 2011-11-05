@@ -4,15 +4,13 @@ var GroupPostWireItem = WireItem.extend({
   className: "wire-item",
 
   initialize: function(options) {
-    this.account = options.account;
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
 
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
-                                        el: this.$(".replies"),
-                                        account: this.account
+                                        el: this.$(".replies")
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -82,7 +80,7 @@ var GroupPostWireItem = WireItem.extend({
     window.infoBox.showProfile(group);
   },
 
-  canEdit: function() { return this.account.canEditGroupPost(this.model); },
+  canEdit: function() { return current_account.canEditGroupPost(this.model); },
 
   editGroupPost: function(e) {
     e && e.preventDefault();
