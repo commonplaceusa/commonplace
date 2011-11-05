@@ -47,7 +47,7 @@ function setProfileBoxBottom() {
 function setProfileBoxTop() {
   var $postBox = $("#post-box");
   $("#info-box").css({
-    top: $postBox.outerHeight() + parseInt($postBox.css("top"),10) + 10
+    top: $postBox.outerHeight() + parseInt($postBox.css("top"),10) + 4
   });
 }
 

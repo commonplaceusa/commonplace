@@ -1,27 +1,29 @@
 <div class="spacing">
   <div class="profile-main">
-    <h3>{{fullName}}</h3>
     <img src="{{avatarUrl}}" width="122" />
     <div class="profile-top">
+      <h3>{{fullName}}</h3>
       <a href="#" class="gray-button message">Send a Message</a>
       {{^hasMet}}<a href="#" class="gray-button meet">Have You Met?</a>{{/hasMet}}
       {{#hasMet}}<a href="#" class="gray-button unmeet">Don't Know Them?</a>{{/hasMet}}
     </div>
   </div>
-  {{#hasAbout}}
+  <ul class="profile-data">
+  {{#hasAbout}}<li>
     <h4>About</h4>
     <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>
-  {{/hasAbout}}
-  {{#hasInterests}}
+  </li>{{/hasAbout}}
+  {{#hasInterests}}<li>
     <h4>Interests</h4>
-    <p class="about">{{interests}}</p>
-  {{/hasInterests}}
-  {{#hasSkills}}
+    <ul> {{#interests}}<li class="interest">{{.}}</li>{{/interests}} </ul>
+  </li>{{/hasInterests}}
+  {{#hasSkills}}<li>
     <h4>Skills</h4>
-    <p class="about">{{skills}}</p>
-  {{/hasSkills}}
-  {{#hasGoods}}
+    <ul> {{#skills}}<li class="interest">{{.}}</li>{{/skills}} </ul>
+  </li>{{/hasSkills}}
+  {{#hasGoods}}<li>
     <h4>Goods</h4>
-    <p class="about">{{goods}}</p>
-  {{/hasGoods}}
+    <ul> {{#goods}}<li class="interest">{{.}}</li>{{/goods}} </ul>
+  </li>{{/hasGoods}}
+  </ul>
 </div>
