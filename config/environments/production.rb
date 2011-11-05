@@ -20,7 +20,7 @@ Commonplace::Application.configure do
   # Full error reports are disabled and caching is turned on
   config.action_controller.perform_caching = true
 
-  #config.action_controller.asset_host = "https://#{Jammit.configuration[:s3_bucket]}.s3.amazonaws.com"
+  config.action_controller.asset_host = "www.commonplaceusa.com"
 
   # Specifies the header that your server uses for sending files
   config.action_dispatch.x_sendfile_header = "X-Sendfile"
