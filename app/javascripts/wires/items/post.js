@@ -1,6 +1,6 @@
 
 var PostWireItem = WireItem.extend({
-  template: "wire_items/post-item",
+  template: "wires/items/post-tpl",
   tagName: "li",
   className: "wire-item",
 
@@ -80,7 +80,7 @@ var PostWireItem = WireItem.extend({
     window.infoBox.showProfile(user);
   },
 
-  canEdit: function() { return current_account.canEditPost(this.model); },
+  canEdit: function() { return CommonPlace.account.canEditPost(this.model); },
 
   editPost: function(e) {
     e.preventDefault();

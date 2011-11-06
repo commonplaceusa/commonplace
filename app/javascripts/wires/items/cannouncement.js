@@ -1,5 +1,5 @@
 var AnnouncementWireItem = WireItem.extend({
-  template: "wire_items/announcement-item",
+  template: "wires/items/announcement-tpl",
   tagName: "li",
   className: "wire-item",
 
@@ -49,7 +49,7 @@ var AnnouncementWireItem = WireItem.extend({
 
   // todo: DRY this CRAP
   canEdit: function() {
-    return current_account.canEditAnnouncement(this.model);
+    return CommonPlace.account.canEditAnnouncement(this.model);
   },
 
   isMore: function() {

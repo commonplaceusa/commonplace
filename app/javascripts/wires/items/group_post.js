@@ -1,5 +1,5 @@
 var GroupPostWireItem = WireItem.extend({
-  template: "wire_items/post-item",
+  template: "wires/items/post-tpl",
   tagName: "li",
   className: "wire-item",
 
@@ -80,7 +80,7 @@ var GroupPostWireItem = WireItem.extend({
     window.infoBox.showProfile(group);
   },
 
-  canEdit: function() { return current_account.canEditGroupPost(this.model); },
+  canEdit: function() { return CommonPlace.account.canEditGroupPost(this.model); },
 
   editGroupPost: function(e) {
     e && e.preventDefault();

@@ -1,5 +1,5 @@
 var EventWireItem = WireItem.extend({
-  template: "wire_items/event-item",
+  template: "wires/items/event-tpl",
   tagName: "li",
   className: "wire-item",
 
@@ -61,7 +61,7 @@ var EventWireItem = WireItem.extend({
   },
 
   // todo: dry this crap against other items
-  canEdit: function() { return current_account.canEditEvent(this.model); },
+  canEdit: function() { return CommonPlace.account.canEditEvent(this.model); },
 
   isMore: function() {
     return !this.allwords;

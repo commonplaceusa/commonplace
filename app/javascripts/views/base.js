@@ -20,6 +20,11 @@ CommonPlace.View = Backbone.View.extend({
   },
 
   renderTemplate: function(templateName, params) {
+    if (templateName.indexOf('/') !== -1){
+    // uncomment this line when we're putting in the effort to deprecate:
+    // console.warn('slashes are deprecated in favor of dots in template names:', templateName)
+      templateName = templateName.replace(/\//g,'.');
+    }
     if (!Templates[templateName]) {
       throw new Error("template '" + templateName + "' does not exist");
     }

@@ -1,12 +1,12 @@
 var GroupWireItem = WireItem.extend({
   // this is line-for-line the same as feed_item. todo: DRY
 
-  template: "wire_items/feed-item",
+  template: "wires/items/feed-tpl",
   tagName: "li",
   className: "wire-item feed",
 
   initialize: function() {
-    current_account.bind("change", this.render, this);
+    CommonPlace.account.bind("change", this.render, this);
     this.attr_accessible(['name', 'url', 'avatar_url']);
   },
 
@@ -20,10 +20,10 @@ var GroupWireItem = WireItem.extend({
     window.infoBox.showProfile(this.model);
   },
 
-  subscribe: function() { current_account.subscribeToGroup(this.model); },
+  subscribe: function() { CommonPlace.account.subscribeToGroup(this.model); },
 
-  unsubscribe: function() { current_account.unsubscribeFromGroup(this.model); },
+  unsubscribe: function() { CommonPlace.account.unsubscribeFromGroup(this.model); },
 
-  isSubscribed: function() { return current_account.isSubscribedToGroup(this.model); }
+  isSubscribed: function() { return CommonPlace.account.isSubscribedToGroup(this.model); }
 
 });
