@@ -40,7 +40,7 @@ var CommunityResources = CommonPlace.View.extend({
     posts: function() {
       var collection; //TODO: DRY this (against landing_resources)
       if (CommonPlace.community.get('locale') == "college") {
-        collection = current_account.neighborhoodsPosts();
+        collection = CommonPlace.account.neighborhoodsPosts();
       } else {
         collection = CommonPlace.community.posts;
       }

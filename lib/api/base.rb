@@ -5,7 +5,7 @@ class API
 
     helpers do
 
-      def current_account
+      def current_user
         @_user ||= if request.env["HTTP_AUTHORIZATION"].present?
           User.find_by_authentication_token(request.env["HTTP_AUTHORIZATION"])
         elsif params['authentication_token'].present?
@@ -15,8 +15,9 @@ class API
         end
       end
 
-      def current_user
-        current_account
+      def current_account
+        # TODO: THIS IS NOT AN ACCOUNT.  REMOVE.
+        current_user
       end
 
       def request_body

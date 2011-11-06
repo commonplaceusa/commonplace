@@ -11,7 +11,7 @@ var LandingResources = CommonPlace.View.extend({
     var self = this;
     var collection;    //todo: DRY against communtiy resources
     if (CommonPlace.community.get('locale') == "college") {
-      collection = current_account.neighborhoodsPosts();
+      collection = CommonPlace.account.neighborhoodsPosts();
     } else {
       collection = CommonPlace.community.posts;
     }

@@ -15,7 +15,7 @@ class window.Wire extends CommonPlace.View
   constructor: (options) ->
     @options = options # todo: can we upgrade this syntax?
     # DRY
-    # todo: move account to a global current_account variable.
+    # todo: move account to a global CommonPlace.account variable.
     #  then: remove from wire options, including modelToView
     #  then: make modelToView simply a class that gets passed in as an option
 

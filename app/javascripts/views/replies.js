@@ -50,6 +50,6 @@ var RepliesView = CommonPlace.View.extend({
   showHint: function(e) { this.$(".enter-hint").show(); },
   
   hideHint: function(e) { this.$(".enter-hint").hide(); },
-  
-  accountAvatarUrl: function() { return current_account.get('avatar_url'); }
+
+  accountAvatarUrl: function() { return CommonPlace.account.get('avatar_url'); }
 });

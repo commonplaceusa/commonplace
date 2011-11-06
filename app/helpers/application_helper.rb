@@ -1,22 +1,40 @@
- module ApplicationHelper
-   
-   def tab_to(name, options = {}, html_options = {}, &block)
-     options, html_options = name, options if block
+module ApplicationHelper
 
-     html_options[:class] ||= ""
-     if current_page?(options) || current_page?(url_for(options) + ".json")
-       html_options[:class] += " selected_nav"
-     end
-     if block
-       link_to(options, html_options, &block)
-     else
-       link_to(name, options, html_options)
-     end
-   end
+  def tab_to(name, options = {}, html_options = {}, &block)
+    options, html_options = name, options if block
 
-   def include_mixpanel
-     key = Rails.env.production? ? $MixpanelAPIToken : 'staging/testing key'
-raw <<script
+    html_options[:class] ||= ""
+    if current_page?(options) || current_page?(url_for(options) + ".json")
+      html_options[:class] += " selected_nav"
+    end
+    if block
+      link_to(options, html_options, &block)
+    else
+      link_to(name, options, html_options)
+    end
+  end
+
+  def include_dummy_console
+    raw <<script
+<script type='text/javascript'>
+//<![CDATA[
+if (window['console'] == undefined || window.console['log'] == undefined){
+  window.console = {
+    log: function(){},
+    warn: function(){},
+    count: function(){},
+    trace: function(){},
+    info: function(){}
+  };
+}
+//]]>
+</script>
+script
+  end
+
+  def include_mixpanel
+    key = Rails.env.production? ? $MixpanelAPIToken : 'staging/testing key'
+    raw <<script
 <script type='text/javascript'>
 //<![CDATA[
 if (window['mpq'] != 'undefined'){
@@ -27,11 +45,11 @@ if (window['mpq'] != 'undefined'){
 //]]>
 </script>
 script
-   end
+  end
 
-   def include_ga
-     key = Rails.env.production? ? 'UA-12807510-2' : 'staging/testing key'
-raw <<script
+  def include_ga
+    key = Rails.env.production? ? 'UA-12807510-2' : 'staging/testing key'
+    raw <<script
 <script type='text/javascript'>
 //<![CDATA[
   var _gaq = _gaq || [];
@@ -46,11 +64,11 @@ raw <<script
 //]]>
 </script>
 script
-   end
+  end
 
-   def include_exceptional
-     key = Rails.env.production? ? '0556a141945715c3deb50a0288ec3bea5417f6bf' : 'staging/testing key'
-raw <<script
+  def include_exceptional
+    key = Rails.env.production? ? '0556a141945715c3deb50a0288ec3bea5417f6bf' : 'staging/testing key'
+    raw <<script
 <script type='text/javascript' src="https://exceptional-js.heroku.com/exceptional.js"></script>
 <script type='text/javascript'>
 //<![CDATA[
@@ -61,10 +79,10 @@ if(window['Exceptional'] !== undefined){
 //]]>
 </script>
 script
-   end
+  end
 
-   def include_commonplace(title = '')
-raw <<script
+  def include_commonplace(title = '')
+    raw <<script
 <script type='text/javascript'>
 //<![CDATA[
   if(window['CommonPlace'] == undefined){
@@ -76,19 +94,23 @@ raw <<script
 //]]>
 </script>
 script
-   end
+  end
 
-   def populate_commonplace
-raw <<script
+  def populate_commonplace
+    account = ''
+
+    if current_user
+      account << "CommonPlace.account = new Account(#{serialize(Account.new(current_user))});"
+    end
+
+      raw <<script
 <script type='text/javascript'>
 //<![CDATA[
-if(window['Community'] !== undefined && window['Account'] !== undefined){
   CommonPlace.community = new Community(#{serialize(current_community)});
-  window.current_account = new Account(#{serialize(Account.new(current_user))});
-}
+  #{account}
 //]]>
 </script>
 script
-   end
+  end
 
 end
