@@ -34,11 +34,7 @@ var PaginatingWire = Wire.extend({
     this.currentQuery = this.$("form.search input").val();
     this.$("ul").empty();
     var self = this;
-    this.fetchPage(function() { self.appendPage(); });
-  },
-
-  query: function() {
-    return this.scope.query || '';
+    this.fetchCurrentPage(function() { self.appendCurrentPage(); });
   },
 
   isSearchEnabled: function() { return this.isActive('wireSearch');  }
