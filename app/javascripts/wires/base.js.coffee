@@ -75,5 +75,4 @@ class window.Wire extends CommonPlace.View
   isSearchEnabled: () ->
     # todo: move this in to a global helper w/ help of handlerbars
     # http://yehudakatz.com/2010/09/09/announcing-handlebars-js/
-#    @isActive('wireSearch')
-    true
+    @isActive('wireSearch')

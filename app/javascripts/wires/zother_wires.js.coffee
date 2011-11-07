@@ -29,7 +29,7 @@ class window.WireHeader extends CommonPlace.View
     @search()
 
   isSearchEnabled: () ->
-    @options.search
+    @isActive('wireSearch') && @options.search
 
   loadCurrent: (event) =>
     window.location = $('a.current', this.el).attr('href')
