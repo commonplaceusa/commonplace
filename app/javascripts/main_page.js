@@ -28,12 +28,12 @@
 //= require_tree ./main_page
 
 
-function setPostBoxTop() { 
-  if ($(window).scrollTop() < 60) { 
-    $("#post-box").css({top: 85}); 
-  } else { 
-    $("#post-box").css({top: 85}); 
-  } 
+function setPostBoxTop() {
+  if ($(window).scrollTop() < 60) {
+    $("#post-box").css({top: 85});
+  } else {
+    $("#post-box").css({top: 85});
+  }
 }
 
 function setProfileBoxBottom() {
@@ -47,14 +47,14 @@ function setProfileBoxBottom() {
 function setProfileBoxTop() {
   var $postBox = $("#post-box");
   $("#info-box").css({
-    top: $postBox.outerHeight() + parseInt($postBox.css("top"),10) + 4
+    top: $postBox.outerHeight() + parseInt($postBox.css("top"), 10) + 4
   });
 }
 
 function setProfileBoxInfoUpperHeight() {
   $("#info-upper").css({
-    height: $("#info-box").height() - 
-      $("#info-box h2").outerHeight() - 
+    height: $("#info-box").height() -
+      $("#info-box h2").outerHeight() -
       $("#info-box form").outerHeight() -
       $("#info-box ul.filter").outerHeight() - 40
   });
