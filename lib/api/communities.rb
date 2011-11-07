@@ -9,26 +9,43 @@ class API
 
     helpers do
 
-      def search(klass, params, community_id)
+      def search(klass, params, community_id, options = nil)
+        p "SEARCHINGS #{klass}, #{options}, #{params}"
+        keywords = phrase(params["query"])
         search = Sunspot.search(klass) do
-          keywords phrase(params["query"])
-          paginate(:page => params["page"].to_i + 1)
+          keywords keywords
+          paginate(:page => params["page"].to_i + 1, :per_page => params["limit"])
           with(:community_id, community_id)
           yield(self) if block_given?
         end
-        serialize(search)
-      end
-      
-      def chronological(klass, params, community_id)
-        search = Sunspot.search(klass) do
-          order_by(:created_at, :desc)
-          paginate(:page => params["page"].to_i + 1, :per_page => params["limit"])
-          with(:community_id, community_id)
+
+        if (options && options[:highlight])
+          # the sunspot highlights feature is for selecting snippets to display.
+          # we just need to gsub in the whole results.
+          # todo: this is a big hack.
+          search.results.each do |result|
+            keywords.each do |keyword|
+              options[:highlight].each do |method|
+                if result.send(method)
+                  if result.send(method).respond_to? :each
+                    result.send(method).each do |reply|
+                      reply.body.gsub!(keyword, "<em class='highlight'>#{keyword}</em>")
+                    end
+                  else
+                    result.send(method).gsub!(keyword, "<em class='highlight'>#{keyword}</em>")
+                  end
+                end
+              end
+            end
+          end
         end
-        serialize(search)
+
+
+        serialize search
       end
 
       def phrase(string)
+        # group quoted words
         string.split('"').each_with_index.map { |object, i|
           i.odd? ? object : object.split(" ")
         }.flatten
@@ -91,9 +108,9 @@ class API
       last_modified_by_updated_at(Post)
 
       if params["query"].present?
-        search(Post, params, community_id)
+        search(Post, params, community_id, {:highlight => [:subject, :body, :replies]})
       else
-        serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
+        serialize paginate Community.find(community_id).posts.includes(:user, :replies)
       end
     end
 
@@ -104,7 +121,7 @@ class API
                      Date.today.beginning_of_day].compact.max)
 
       if params["query"].present?
-        search(Event, params, community_id) do |search|
+        search(Event, params, community_id, {:highlight => [:name, :description, :venue, :address, :replies]}) do |search|
           search.with(:date).greater_than(Time.now.beginning_of_day)
         end
       else
@@ -117,7 +134,7 @@ class API
       last_modified_by_updated_at(Announcement)
 
       if params["query"].present?
-        search(Announcement, params, community_id)
+        search(Announcement, params, community_id, {:highlight => [:subject, :body, :replies]})
       else
         serialize(paginate(Community.find(community_id).announcements.
                              includes(:replies, :owner).
@@ -129,7 +146,7 @@ class API
       last_modified_by_updated_at(GroupPost)
 
       if params["query"].present?
-        search(GroupPost, params, community_id)
+        search(GroupPost, params, community_id, {:highlight => [:subject, :body, :replies]})
       else
         serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
                              includes(:group, :user, :replies => :user).
@@ -185,7 +202,9 @@ class API
       if params["query"].present?
         search([Announcement, Event, Post, GroupPost], params, community_id)
       else
-        chronological([Announcement, Event, Post, GroupPost], params, community_id)
+        search([Announcement, Event, Post, GroupPost], params, community_id) do
+          order_by(:created_at, :desc)
+        end
       end
     end
 

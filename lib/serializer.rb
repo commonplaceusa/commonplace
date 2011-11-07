@@ -32,8 +32,10 @@ module Serializer
         "lat" => o.lat,
         "lng" => o.lng
       }
+
       when User
         o.as_api_response(:default)
+
       when Post
         { 
         "id" => o.id,

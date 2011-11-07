@@ -3,10 +3,8 @@ class window.PaginatingWire extends window.Wire
     super(options)
     @options = options
 
-  events: { #todo: move to markup-declarative events
+  events: {
     "click a.more": "showMore"
-    "keyup form.search input": "debounceSearch" # move to base
-    "submit form.search": "search" # move to base
   }
 
   _defaultPerPage: 10,

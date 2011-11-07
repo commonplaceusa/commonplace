@@ -13,15 +13,15 @@
     </div>
   {{/time}}
 
-  <div class="title">{{title}}</div>
+  <div class="title">{{{title}}}</div>
 
   <div class="author">{{author}}</div>
 
-  <div class="body event-body">{{#markdown}}{{body}}{{/markdown}}</div>
+  <div class="body event-body">{{#markdown}}{{{body}}}{{/markdown}}</div>
   
   <table class="event-location">
-    {{#venue}}<tr><th>Venue:</th><td>{{venue}}</td></tr>{{/venue}}
-    {{#address}}<tr><th>Address:</th><td>{{address}}</td></tr>{{/address}}
+    {{#venue}}<tr><th>Venue:</th><td>{{{venue}}}</td></tr>{{/venue}}
+    {{#address}}<tr><th>Address:</th><td>{{{address}}}</td></tr>{{/address}}
   </table>
 
   <div style="clear:both;"></div>

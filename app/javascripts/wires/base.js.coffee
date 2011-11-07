@@ -31,6 +31,10 @@ class window.Wire extends CommonPlace.View
     @emptyMessage = options.emptyMessage
     @modelToView = options.modelToView
 
+    $(this.el).bind 'search', (eventType, eventData) =>
+      @search(eventData['query'])
+
+
   template: "wires/wire"
 
   aroundRender: (render) ->
@@ -64,16 +68,12 @@ class window.Wire extends CommonPlace.View
   emptyMessage: () ->
     @options.emptyMessage;
 
-  debounceSearch: _.debounce(() =>
-    this.$("form.search").submit()
-  , CommonPlace.autoActionTimeout)
-
-  search: (event) ->
-    event.preventDefault()
-    @scope['query'] = this.$('form.search input').val()
+  search: (query) ->
+    @scope['query'] = query
     @render()
 
   isSearchEnabled: () ->
     # todo: move this in to a global helper w/ help of handlerbars
     # http://yehudakatz.com/2010/09/09/announcing-handlebars-js/
-    @isActive('wireSearch')
+#    @isActive('wireSearch')
+    true

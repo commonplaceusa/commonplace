@@ -8,8 +8,7 @@ var LandingResources = CommonPlace.View.extend({
   },
 
   wires: function() {
-    var self = this;
-    var collection;    //todo: DRY against communtiy resources
+    var collection;
     if (CommonPlace.community.get('locale') == "college") {
       collection = CommonPlace.account.neighborhoodsPosts();
     } else {
@@ -19,6 +18,7 @@ var LandingResources = CommonPlace.View.extend({
       this._wires = [
         (new WireHeader({
           template: 'main_page/post-resources',
+          search: true,
           el: this.$(".posts.wireHeader")
         })),
         (new PreviewWire({

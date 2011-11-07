@@ -47,7 +47,8 @@ var CommunityResources = CommonPlace.View.extend({
 
       return [
         (new WireHeader({
-          template: 'main_page/post-resources' //fixme: DRY this and just past in an initialization arg
+          template: 'main_page/post-resources', //fixme: DRY this and just past in an initialization arg
+          search: true
         })),
         (new PaginatingResourceWire({
           collection: collection,
@@ -63,7 +64,8 @@ var CommunityResources = CommonPlace.View.extend({
     events: function() {
       return [
         (new WireHeader({
-          template: 'main_page/event-resources'
+          template: 'main_page/event-resources',
+          search: true
         })),
         (new PaginatingResourceWire({
           emptyMessage: "No events here yet", //todo: dry this crap..
@@ -79,7 +81,8 @@ var CommunityResources = CommonPlace.View.extend({
     announcements: function() {
       return [
         (new WireHeader({
-          template: 'main_page/announcement-resources'
+          template: 'main_page/announcement-resources',
+          search: true
         })),
         (new PaginatingResourceWire({
           emptyMessage: "No announcements here yet", //todo: dry this crap..
@@ -95,7 +98,8 @@ var CommunityResources = CommonPlace.View.extend({
     groupPosts: function() {
       return [
         (new WireHeader({
-          template: "main_page/group-post-resources"
+          template: "main_page/group-post-resources",
+          search: true
         })),
         (new PaginatingResourceWire({
           emptyMessage: "No posts here yet",
