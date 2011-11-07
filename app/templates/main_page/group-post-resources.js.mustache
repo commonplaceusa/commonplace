@@ -1,6 +1,7 @@
 <div class="sub-navigation">
   {{#isSearchEnabled}}
     <form class="search">
+      <div class="cancelSearch"><span>x</span></div>
       <input type="text" value="{{query}}" placeholder="Search"/>
     </form>
   {{/isSearchEnabled}}
@@ -12,5 +13,3 @@
   <a href="#/groups">{{#t}}groups.a{{/t}}</a></h2>
   <div style="clear:both;"></div>
 </div>
-
-<div class="groupPosts wire">{{>wires.wire}}</div>

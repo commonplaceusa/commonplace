@@ -1,18 +1,16 @@
 var AnnouncementWireItem = WireItem.extend({
-  template: "wire_items/announcement-item",
+  template: "wires/items/announcement-tpl",
   tagName: "li",
   className: "wire-item",
 
   initialize: function(options) {
-    this.account = options.account;
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
 
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
-                                        el: this.$(".replies"),
-                                        account: this.account
+                                        el: this.$(".replies")
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -49,8 +47,9 @@ var AnnouncementWireItem = WireItem.extend({
     formview.render();
   },
 
+  // todo: DRY this CRAP
   canEdit: function() {
-    return this.account.canEditAnnouncement(this.model);
+    return CommonPlace.account.canEditAnnouncement(this.model);
   },
 
   isMore: function() {

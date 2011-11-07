@@ -9,25 +9,20 @@ class API
 
     helpers do
 
-      def search(klass, params, community_id)
+      def search(klass, params, community_id, options = nil)
+        keywords = phrase(params["query"])
         search = Sunspot.search(klass) do
-          keywords phrase(params["query"])
-          paginate(:page => params["page"].to_i + 1)
-          with(:community_id, community_id)
-        end
-        serialize(search)
-      end
-      
-      def chronological(klass, params, community_id)
-        search = Sunspot.search(klass) do
-          order_by(:created_at, :desc)
+          keywords keywords
           paginate(:page => params["page"].to_i + 1, :per_page => params["limit"])
           with(:community_id, community_id)
+          yield(self) if block_given?
         end
-        serialize(search)
+
+        serialize search
       end
 
       def phrase(string)
+        # group quoted words
         string.split('"').each_with_index.map { |object, i|
           i.odd? ? object : object.split(" ")
         }.flatten
@@ -83,18 +78,16 @@ class API
       end
     end
 
-    # todo: all these GET methods are not so DRY.  could make a common search or not functinon that takes a class name
+    # todo: all these GET methods are not so DRY.  could make a common search or not function that takes a class name
     # would require a lookup to see how to paginate various classes
 
     get "/:community_id/posts" do |community_id|
       last_modified_by_updated_at(Post)
 
       if params["query"].present?
-        #params["limit"] = 1
-        #params["page"] = 1
         search(Post, params, community_id)
       else
-        serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
+        serialize paginate Community.find(community_id).posts.includes(:user, :replies)
       end
     end
 
@@ -105,7 +98,9 @@ class API
                      Date.today.beginning_of_day].compact.max)
 
       if params["query"].present?
-        search(Event, params, community_id)
+        search(Event, params, community_id) do |search|
+          search.with(:date).greater_than(Time.now.beginning_of_day)
+        end
       else
         serialize(paginate(Community.find(community_id).events.upcoming.
                              includes(:replies).reorder("date ASC")))
@@ -184,7 +179,9 @@ class API
       if params["query"].present?
         search([Announcement, Event, Post, GroupPost], params, community_id)
       else
-        chronological([Announcement, Event, Post, GroupPost], params, community_id)
+        search([Announcement, Event, Post, GroupPost], params, community_id) do
+          order_by(:created_at, :desc)
+        end
       end
     end
 
@@ -261,6 +258,6 @@ class API
       kickoff.deliver_user_invite(request_body['emails'], current_account, request_body['message'])
       [200, {}, ""]
     end
-    
+
   end
 end

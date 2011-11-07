@@ -1,8 +1,9 @@
 <div class="sub-navigation">
   {{#isSearchEnabled}}
-    <form class="search">
-      <input type="text" value="{{query}}" placeholder="Search"/>
-    </form>
+  <form class="search">
+    <div class="cancelSearch"><span>x</span></div>
+    <input type="text" value="{{query}}" placeholder="Search"/>
+  </form>
   {{/isSearchEnabled}}
   <h2><a href="#/events" class="current">
     {{^isRecent}}{{#t}}events.a{{/t}}{{/isRecent}}
@@ -10,5 +11,3 @@
   </a></h2>
   <div style="clear:both;"></div>
 </div>
-
-<div class="events wire">{{>wires.wire}}</div>

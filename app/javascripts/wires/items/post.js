@@ -1,18 +1,17 @@
-var GroupPostWireItem = WireItem.extend({
-  template: "wire_items/post-item",
+
+var PostWireItem = WireItem.extend({
+  template: "wires/items/post-tpl",
   tagName: "li",
   className: "wire-item",
 
   initialize: function(options) {
-    this.account = options.account;
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
 
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
-                                        el: this.$(".replies"),
-                                        account: this.account
+                                        el: this.$(".replies")
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -43,9 +42,8 @@ var GroupPostWireItem = WireItem.extend({
 
   events: {
     "click div.group-post > .author": "messageUser",
-    "click .moreBody": "loadMore",
-    "mouseenter": "showProfile",
-    "click .editlink": "editGroupPost"
+    "click .editlink": "editPost",
+    "mouseenter": "showProfile"
   },
 
   messageUser: function(e) {
@@ -74,21 +72,21 @@ var GroupPostWireItem = WireItem.extend({
     this.allwords = true;
     this.render();
   },
-  
+
   showProfile: function(e) {
-    var group = new Group({
-      links: { self: this.model.link("group") }
+    var user = new User({
+      links: { self: this.model.link("author") }
     });
-    window.infoBox.showProfile(group);
+    window.infoBox.showProfile(user);
   },
 
-  canEdit: function() { return this.account.canEditGroupPost(this.model); },
+  canEdit: function() { return CommonPlace.account.canEditPost(this.model); },
 
-  editGroupPost: function(e) {
-    e && e.preventDefault();
+  editPost: function(e) {
+    e.preventDefault();
     var formview = new PostFormView({
       model: this.model,
-      template: "shared/group-post-edit-form"
+      template: "shared/post-edit-form"
     });
     formview.render();
   }

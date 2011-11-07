@@ -10,16 +10,6 @@
 //= require chosen
 
 $(function() {
+  // todo: explain what this code does and put it somewhere relevent.
   $("#user_interest_list, #user_good_list, #user_skill_list").chosen();
 });
-
-
-if (!window.console || !window.console.log){
-  window.console = {
-    log: function(){},
-    warn: function(){},
-    count: function(){},
-    trace: function(){},
-    info: function(){}
-  };
-}

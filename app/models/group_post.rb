@@ -1,8 +1,8 @@
 class GroupPost < ActiveRecord::Base
   #track_on_creation
 
-  belongs_to :group
   belongs_to :user
+  belongs_to :group
 
   has_many :replies, :as => :repliable, :order => :created_at
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
@@ -33,8 +33,10 @@ class GroupPost < ActiveRecord::Base
   end
 
   searchable do
-    text :subject
-    text :body
+    text :subject, :body
+    text :replies do
+      replies.map &:body
+    end
     integer :community_id
     time :created_at
   end

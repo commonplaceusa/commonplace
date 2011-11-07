@@ -1,3 +1,3 @@
-//= require wire_items/base
-//= require_tree ./wire_items
-//= require_tree ../templates/wire_items
+//= require      ./wires/items/base
+//= require_tree ./wires/items
+//= require_tree ../templates/wires/items

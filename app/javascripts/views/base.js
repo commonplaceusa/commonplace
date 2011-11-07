@@ -20,6 +20,11 @@ CommonPlace.View = Backbone.View.extend({
   },
 
   renderTemplate: function(templateName, params) {
+    if (templateName.indexOf('/') !== -1){
+    // uncomment this line when we're putting in the effort to deprecate:
+    // console.warn('slashes are deprecated in favor of dots in template names:', templateName)
+      templateName = templateName.replace(/\//g,'.');
+    }
     if (!Templates[templateName]) {
       throw new Error("template '" + templateName + "' does not exist");
     }
@@ -45,7 +50,9 @@ CommonPlace.View = Backbone.View.extend({
     return path ? makeUrl(path) : makeUrl;
   },
 
-  getTemplate: function() { return this.options.template || this.template; },
+  getTemplate: function() {
+    return this.options.template || this.template;
+  },
 
   t: function(key) {
     var locale = I18N[CommonPlace.community.get('locale')];
@@ -90,7 +97,7 @@ CommonPlace.View = Backbone.View.extend({
 
 var FormView = CommonPlace.View.extend({
   initialize: function(options) {
-    this.template = (this.options.template || this.template);
+    this.template = (this.options.template || this.template); // todo: use getTemplate
     this.modal = new ModalView({form: this.el});
   },
 

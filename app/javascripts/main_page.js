@@ -28,12 +28,12 @@
 //= require_tree ./main_page
 
 
-function setPostBoxTop() { 
-  if ($(window).scrollTop() < 60) { 
-    $("#post-box").css({top: 85}); 
-  } else { 
-    $("#post-box").css({top: 85}); 
-  } 
+function setPostBoxTop() {
+  if ($(window).scrollTop() < 60) {
+    $("#post-box").css({top: 85});
+  } else {
+    $("#post-box").css({top: 85});
+  }
 }
 
 function setProfileBoxBottom() {
@@ -47,14 +47,14 @@ function setProfileBoxBottom() {
 function setProfileBoxTop() {
   var $postBox = $("#post-box");
   $("#info-box").css({
-    top: $postBox.outerHeight() + parseInt($postBox.css("top"),10) + 4
+    top: $postBox.outerHeight() + parseInt($postBox.css("top"), 10) + 4
   });
 }
 
 function setProfileBoxInfoUpperHeight() {
   $("#info-upper").css({
-    height: $("#info-box").height() - 
-      $("#info-box h2").outerHeight() - 
+    height: $("#info-box").height() -
+      $("#info-box h2").outerHeight() -
       $("#info-box form").outerHeight() -
       $("#info-box ul.filter").outerHeight() - 40
   });
@@ -63,13 +63,34 @@ function setProfileBoxInfoUpperHeight() {
 $(function() {
 
   if (Features.isActive("fixedLayout")) {
-    $(window).scroll(function() {
+    $('.z2, .z3, .z4').data({fixed:false});
+
+    var adjustView = function() {
+      var $navs = $('.z2, .z3, .z4');
       setPostBoxTop();
       setProfileBoxBottom();
       setProfileBoxTop();
       setProfileBoxInfoUpperHeight();
-    });
+
+      var scrollTop = $(window).scrollTop();
+
+      $navs.each(function() {
+        var $nav = $(this),
+          position = $nav.position().top,
+          fixed = $nav.data('fixed');
+        if ( (scrollTop > position) && !fixed) {
+          $('.sub-navigation', $nav).addClass('fixed')
+          $nav.data({fixed: true});
+        } else if ( (scrollTop < position) && fixed) {
+          $('.sub-navigation', $nav).removeClass('fixed');
+          $nav.data({fixed: false});
+        }
+      });
+
+    };
+
+    $(window).scroll(adjustView).resize(adjustView);
     $("body").addClass("fixedLayout");
   }
-  
+
 });

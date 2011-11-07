@@ -1,5 +1,5 @@
 var UserWireItem = WireItem.extend({
-  template: "wire_items/user-item",
+  template: "wires/items/user-tpl",
   tagName: "li",
   className: "wire-item group-member",
 
