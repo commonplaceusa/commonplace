@@ -23,6 +23,13 @@ GIT
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
 
+GIT
+  remote: https://github.com/archiloque/rest-client.git
+  revision: 4e5bd4893a3df02c82f56c432f746fd1d9c5830c
+  specs:
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -329,8 +336,6 @@ GEM
       redis (>= 2.0.1)
       resque (>= 1.8.0)
       rufus-scheduler
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     rmagick (2.13.1)
     rollout (0.3.0)
     rpm_contrib (2.1.4)
@@ -483,6 +488,7 @@ DEPENDENCIES
   resque (~> 1.19.0)
   resque-exceptional
   resque-scheduler
+  rest-client!
   rmagick
   rollout
   rpm_contrib

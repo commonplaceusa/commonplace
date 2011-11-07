@@ -2,11 +2,6 @@ require 'mustache'
 require 'premailer'
 require 'sass'
 
-Mail.defaults do
-  delivery_method($MailDeliveryMethod,
-                  $MailDeliveryOptions)
-end
-
 class MailBase < Mustache
   include MailUrls
 
@@ -110,19 +105,19 @@ class MailBase < Mustache
 
   def deliver
     if deliver?
-      mail = Mail.deliver(:to => self.to,
-                          :from => self.from,
-                          :reply_to => self.reply_to,
-                          :subject => self.subject,
-                          :content_type => "text/html",
-                          :body => self.render_html,
-                          :charset => 'UTF-8',
-                          :headers => {
-                            "Precedence" => "list",
-                            "Auto-Submitted" => "auto-generated",
-                            "X-Campaign-Id" => community ? community.slug : "administrative",
-                            "X-Mailgun-Tag" => self.tag
-                          })
+      mail = MailGun.deliver($MailDeliveryMethod,
+                             $MailDeliveryOptions,
+                             :to => self.to,
+                             :from => self.from,
+                             :reply_to => self.reply_to,
+                             :subject => self.subject,
+                             :body => self.render_html,
+                             :headers => {
+                               "Auto-Submitted" => "auto-generated",
+                               "Return-Path" => "<>",
+                               "X-Campaign-Id" => community ? community.slug : "administrative",
+                               "X-Mailgun-Tag" => self.tag
+                             })
     end
   end
 
