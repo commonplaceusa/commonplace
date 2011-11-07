@@ -10,7 +10,6 @@ class API
     helpers do
 
       def search(klass, params, community_id, options = nil)
-        p "SEARCHINGS #{klass}, #{options}, #{params}"
         keywords = phrase(params["query"])
         search = Sunspot.search(klass) do
           keywords keywords
@@ -18,28 +17,6 @@ class API
           with(:community_id, community_id)
           yield(self) if block_given?
         end
-
-        if (options && options[:highlight])
-          # the sunspot highlights feature is for selecting snippets to display.
-          # we just need to gsub in the whole results.
-          # todo: this is a big hack.
-          search.results.each do |result|
-            keywords.each do |keyword|
-              options[:highlight].each do |method|
-                if result.send(method)
-                  if result.send(method).respond_to? :each
-                    result.send(method).each do |reply|
-                      reply.body.gsub!(keyword, "<em class='highlight'>#{keyword}</em>")
-                    end
-                  else
-                    result.send(method).gsub!(keyword, "<em class='highlight'>#{keyword}</em>")
-                  end
-                end
-              end
-            end
-          end
-        end
-
 
         serialize search
       end
@@ -108,7 +85,7 @@ class API
       last_modified_by_updated_at(Post)
 
       if params["query"].present?
-        search(Post, params, community_id, {:highlight => [:subject, :body, :replies]})
+        search(Post, params, community_id)
       else
         serialize paginate Community.find(community_id).posts.includes(:user, :replies)
       end
@@ -121,7 +98,7 @@ class API
                      Date.today.beginning_of_day].compact.max)
 
       if params["query"].present?
-        search(Event, params, community_id, {:highlight => [:name, :description, :venue, :address, :replies]}) do |search|
+        search(Event, params, community_id) do |search|
           search.with(:date).greater_than(Time.now.beginning_of_day)
         end
       else
@@ -134,7 +111,7 @@ class API
       last_modified_by_updated_at(Announcement)
 
       if params["query"].present?
-        search(Announcement, params, community_id, {:highlight => [:subject, :body, :replies]})
+        search(Announcement, params, community_id)
       else
         serialize(paginate(Community.find(community_id).announcements.
                              includes(:replies, :owner).
@@ -146,7 +123,7 @@ class API
       last_modified_by_updated_at(GroupPost)
 
       if params["query"].present?
-        search(GroupPost, params, community_id, {:highlight => [:subject, :body, :replies]})
+        search(GroupPost, params, community_id)
       else
         serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
                              includes(:group, :user, :replies => :user).
