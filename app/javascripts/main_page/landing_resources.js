@@ -9,6 +9,12 @@ var LandingResources = CommonPlace.View.extend({
 
   afterRender: function() {
     _(this.wires()).invoke("render");
+    setTimeout(function() {
+      if (Features.isActive("fixedLayout")) {
+        // by removing zindex of the underneath subnav, we may be able to avoid this
+        $('form.search').detach().appendTo($('.landing-resources'));
+      }
+    }, 50);
   },
 
   wires: function() {

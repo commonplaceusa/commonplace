@@ -63,13 +63,34 @@ function setProfileBoxInfoUpperHeight() {
 $(function() {
 
   if (Features.isActive("fixedLayout")) {
-    $(window).scroll(function() {
+    $('.z2, .z3, .z4').data({fixed:false});
+
+    var adjustView = function() {
+      var $navs = $('.z2, .z3, .z4');
       setPostBoxTop();
       setProfileBoxBottom();
       setProfileBoxTop();
       setProfileBoxInfoUpperHeight();
-    });
+
+      var scrollTop = $(window).scrollTop();
+
+      $navs.each(function() {
+        var $nav = $(this),
+          position = $nav.position().top,
+          fixed = $nav.data('fixed');
+        if ( (scrollTop > position) && !fixed) {
+          $('.sub-navigation', $nav).addClass('fixed')
+          $nav.data({fixed: true});
+        } else if ( (scrollTop < position) && fixed) {
+          $('.sub-navigation', $nav).removeClass('fixed');
+          $nav.data({fixed: false});
+        }
+      });
+
+    };
+
+    $(window).scroll(adjustView).resize(adjustView);
     $("body").addClass("fixedLayout");
   }
-  
+
 });
