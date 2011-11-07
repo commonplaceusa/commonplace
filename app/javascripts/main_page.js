@@ -79,7 +79,7 @@ $(function() {
           position = $nav.position().top,
           fixed = $nav.data('fixed');
         if ( (scrollTop > position) && !fixed) {
-          $('.sub-navigation', $nav).addClass('fixed')
+          $('.sub-navigation', $nav).addClass('fixed');
           $nav.data({fixed: true});
         } else if ( (scrollTop < position) && fixed) {
           $('.sub-navigation', $nav).removeClass('fixed');
