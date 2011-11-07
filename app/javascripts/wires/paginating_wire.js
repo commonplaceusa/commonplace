@@ -29,6 +29,8 @@ var PaginatingWire = Wire.extend({
     this.$("form.search").submit();
   }, CommonPlace.autoActionTimeout),
 
+  query: "",
+
   search: function(event) {
     event.preventDefault();
     this.currentQuery = this.$("form.search input").val();
