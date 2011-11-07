@@ -47,7 +47,7 @@ class window.Wire extends CommonPlace.View
     $ul = this.$("ul.wire-list")
     this.collection.each (model) =>
       $ul.append(@modelToView(model).render().el)
-      this.el.highlight(@query())
+      $(this.el).highlight(@query())
 
   scope: {}
 
