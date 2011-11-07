@@ -84,20 +84,27 @@
     height: 30px
     +border-radius(0)
     border: 0
-
-  textarea 
-    font-family: Helvetica, Arial, sans-serif
-    font-size: 12px
-    color: #888
-    background: white
-    border: 1px solid #c3c3c3
-    padding: 8px 10px
-    height: 12px
-    width: 373px
+    
+  .reply-text
     float: right
-    line-height: 14px
-    
-    &:focus
-      outline: none
-      color: #333
-    
+
+    textarea 
+      font-family: Helvetica, Arial, sans-serif
+      font-size: 12px
+      color: #888
+      background: white
+      border: 1px solid #c3c3c3
+      padding: 8px 10px
+      height: 12px
+      width: 373px
+      line-height: 14px
+      
+      &:focus
+        outline: none
+        color: #333
+        
+    .enter-hint
+      display: none
+      font-size: 12px
+      color: #909090
+      

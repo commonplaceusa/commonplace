@@ -15,7 +15,9 @@ var RepliesView = CommonPlace.View.extend({
   }, 
   
   events: {
-    "keydown form textarea": "sendReply"
+    "keydown form textarea": "sendReply",
+    "focus form textarea": "showHint",
+    "blur form textarea": "hideHint"
   },
 
   appendReplies: function() {
@@ -33,12 +35,22 @@ var RepliesView = CommonPlace.View.extend({
   },
 
   sendReply: function(e) {
-    if (e.which == 13 && !e.shiftKey) {
+    this.showHint();
+    if (e.which == 13) {
       e.preventDefault();
-      this.cleanUpPlaceholders();
-      this.collection.create({ body: this.$("[name=body]").val()});
+      if (e.shiftKey) {
+        var form = this.$("[name=body]");
+        form.val(form.val() + "\n");
+      } else {
+        this.cleanUpPlaceholders();
+        this.collection.create({ body: this.$("[name=body]").val()});
+      }
     }
   },
+  
+  showHint: function(e) { this.$(".enter-hint").show(); },
+  
+  hideHint: function(e) { this.$(".enter-hint").hide(); },
   
   accountAvatarUrl: function() { return this.account.get('avatar_url'); }
 });
