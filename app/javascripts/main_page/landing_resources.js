@@ -7,9 +7,18 @@ var LandingResources = CommonPlace.View.extend({
     _(this.wires()).invoke("render");
     setTimeout(function() {
       if (Features.isActive("fixedLayout")) {
-        // by removing zindex of the underneath subnav, we may be able to avoid this
-        $('form.search').detach().appendTo($('.landing-resources'));
+        var dbs = function() {
+          $("form.search").submit();
+        };
       }
+      // by removing zindex of the underneath subnav, we may be able to avoid this
+      $('form.search').detach().appendTo($('.landing-resources')).bind('submit',
+        function() {
+          $(".wire").trigger('search', {query: $('form.search input').val()})
+        }).bind('keyup', function() {
+          console.log('keyup');
+          _.debounce(dbs, CommonPlace.autoActionTimeout);
+        });
     }, 50);
   },
 
