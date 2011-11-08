@@ -137,6 +137,23 @@ class API
       owner = FeedOwner.find(id)
       owner.destroy
     end
+    
+    post "/:feed_id/avatar" do |feed_id|
+      feed = Feed.find(feed_id)
+      halt [401, "unauthorized"] unless auth(feed)
+      feed.avatar = params[:avatar][:tempfile]
+      feed.avatar.instance_write(:filename, params[:avatar][:filename])
+      feed.save
+      serialize feed
+    end
+    
+    delete "/:feed_id/avatar" do |feed_id|
+      feed = Feed.find(feed_id)
+      halt [401, "unauthorized"] unless auth(feed)
+      feed.avatar = nil
+      feed.save
+      serialize feed
+    end
 
   end
 end
