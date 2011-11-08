@@ -51,9 +51,7 @@ var Wire = CommonPlace.View.extend({
   showMore: function(e) {
     var self = this;
     e.preventDefault();
-    console.log(this.currentPage());
     this.nextPage();
-    console.log(this.currentPage());
     this.fetchCurrentPage(function() { self.appendCurrentPage(); });
   },
 
