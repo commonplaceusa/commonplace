@@ -1,5 +1,5 @@
 var InfoListItem = CommonPlace.View.extend({
-  template: "main_page/info-list",
+  template: "main_page.info-list",
   tagName: "li",
   events: {
     "click": "switchProfile"
@@ -29,7 +29,7 @@ var InfoListItem = CommonPlace.View.extend({
 
 var InfoBox = CommonPlace.View.extend({
   id: "info-box",
-  template: "main_page/info-box",
+  template: "main_page.info-box",
   $profile: function() { return this.$("#profile"); },
   $list: function() { return this.$("#info-list"); },
   $profile_none: function() { return this.$("#profile-area > .none"); },
