@@ -52,17 +52,39 @@
   .unimportant
     color: #aaa
     
-  .avatar-link
+  .avatar
     text-align: center
     margin-top: 15px
-    a
-      color: #fff
-      text-decoration: none
-      &:hover
-        text-decoration: underline
+    
     img
       vertical-align: middle
       margin-right: 5px
+      +border-radius(2px)
+      
+    .avatar-controls 
+      margin: 15px auto
+
+      a 
+        background-color: #555
+        color: white
+        font-weight: bold
+        padding: 5px
+        border-left: 1px solid #888
+        margin: 0
+        margin-left: -4px
+        Helvetica, sans-serif
+        text-decoration: none
+
+        &:first-child
+          border-left: 0px
+          +border-left-radius(5px)
+
+        &:last-child
+          +border-right-radius(5px)
+
+        &:hover
+          background-color: #888
+          text-decoration: underline
 
   form
     +form

@@ -14,6 +14,7 @@
 //= require autoresize
 //= require dropkick
 //= require truncator
+//= require ajaxupload
 //= require views
 //= require_tree ../templates/shared
 //= require_tree ../templates/main_page
