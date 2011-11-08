@@ -13,11 +13,12 @@
   <label for="slug">Nickname:</label>
   <input name="slug" value="{{slug}}" type="text">
   
-  <div class="avatar-link">
-    <a href="{{editUrl}}">
+  <div class="avatar">
       <img src="{{avatarUrl}}" width="50" height="50">
-      Edit your photo
-    </a>
+      <div class="avatar-controls">
+        <a class="upload" href="#">Change</a>
+        <a class="crop" href="{{avatarEditUrl}}">Crop</a>
+      </div>
   </div>
   
   <div style="clear: both"></div>

@@ -59,6 +59,7 @@ class Feed < ActiveRecord::Base
         "normal" => self.avatar_url(:normal),
         "thumb" => self.avatar_url(:thumb)
       },
+      "avatar_edit" => "/feeds/#{id}/avatar",
       "announcements" => "/feeds/#{id}/announcements",
       "events" => "/feeds/#{id}/events",
       "invites" => "/feeds/#{id}/invites",
