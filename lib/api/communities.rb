@@ -142,7 +142,7 @@ class API
       if params["query"].present?
         search(Feed, params, community_id)
       else
-        scope = Community.find(community_id).feeds.reorder("avatar_file_name DESC nulls last, about DESC nulls last")
+        scope = Community.find(community_id).feeds.reorder("name ASC")
         serialize(paginate(scope))
       end
     end
@@ -153,7 +153,7 @@ class API
       if params["query"].present?
         search(Group, params, community_id)
       else
-        serialize(paginate(Community.find(community_id).groups))
+        serialize(paginate(Community.find(community_id).groups.reorder("name ASC")))
       end
     end
 
@@ -163,7 +163,7 @@ class API
       if params["query"].present?
         search(User, params, community_id)
       else
-        scope = Community.find(community_id).users.reorder("avatar_file_name DESC nulls last, about DESC nulls last")
+        scope = Community.find(community_id).users.reorder("last_name ASC, first_name ASC")
         serialize(paginate(scope))
       end
     end
