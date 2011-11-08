@@ -1,5 +1,5 @@
 var LandingResources = CommonPlace.View.extend({ 
-  template: "main_page/landing-resources",
+  template: "main_page.landing-resources",
   className: "resources",
 
   initialize: function(options) {

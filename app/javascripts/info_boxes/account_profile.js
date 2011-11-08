@@ -1,5 +1,5 @@
 var AccountProfileBox = Profile.extend({
-  template: "main_page/profiles/account-profile",
+  template: "main_page.profiles.account-profile",
   className: "profile",
 
   comma: function(item) {
