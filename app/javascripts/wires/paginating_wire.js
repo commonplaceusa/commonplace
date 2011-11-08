@@ -22,7 +22,7 @@ var PaginatingWire = Wire.extend({
   },
 
   nextPage: function() {
-    this.scope.page = this.scope.page + 1;
+    this._currentPage = this.currentPage() + 1;
   },
 
   debounceSearch: _.debounce(function() {
