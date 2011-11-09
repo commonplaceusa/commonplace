@@ -1,6 +1,6 @@
 
 var MainPageView = CommonPlace.View.extend({
-  template: "main_page/main-page",
+  template: "main_page.main-page",
   id: "main",
 
   initialize: function(options) {
