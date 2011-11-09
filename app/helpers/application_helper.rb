@@ -97,17 +97,21 @@ script
   end
 
   def populate_commonplace
-    account = ''
+    community = account = ''
 
     if current_user
       account << "CommonPlace.account = new Account(#{serialize(Account.new(current_user))});"
     end
 
+    if current_community
+      community << "CommonPlace.community = new Community(#{serialize(current_community)});"
+    end
+
       raw <<script
 <script type='text/javascript'>
 //<![CDATA[
-  CommonPlace.community = new Community(#{serialize(current_community)});
   #{account}
+  #{community}
 //]]>
 </script>
 script
