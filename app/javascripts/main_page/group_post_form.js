@@ -1,5 +1,5 @@
 var GroupPostForm = CommonPlace.View.extend({
-  template: "main_page/group-post-form",
+  template: "main_page.group-post-form",
   tagName: "form",
   className: "create-group-post",
 
