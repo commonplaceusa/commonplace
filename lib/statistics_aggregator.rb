@@ -12,6 +12,17 @@ class StatisticsAggregator
     ActiveSupport::JSON.decode(Resque.redis.get "statistics:historical")
   end
 
+  def self.generate_user_statistics_csv_for_community(c)
+    csv = "Date,Users"
+    today = DateTime.now
+    launch = c.users.sort{ |a,b| a.created_at <=> b.created_at }.first.created_at.to_date
+    launch.upto(today).each do |day|
+      csv = "#{csv}\n#{day},#{c.users.between(launch.to_datetime,day.to_datetime).count}"
+    end
+    csv
+  end
+
+
   def self.statistics_for_community_between_days_ago(c, yday, tday)
     community_average_days = StatisticsAggregator.average_days(c) || AVERAGE_DAYS
     result = {}
