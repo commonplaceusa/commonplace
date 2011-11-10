@@ -37,7 +37,8 @@ var AnnouncementWireItem = WireItem.extend({
   
   events: {
     "click .editlink": "editAnnouncement",
-    "mouseenter": "showProfile"
+    "mouseenter": "showProfile",
+    "click .announcement > .author": "messageUser"
   },
 
   editAnnouncement: function(e) {
@@ -65,6 +66,29 @@ var AnnouncementWireItem = WireItem.extend({
 
   showProfile: function(e) {
     window.infoBox.showProfile(this.model.author());
+  },
+  
+  isFeed: function() { return this.model.get("owner_type") == "Feed"; },
+  
+  feedUrl: function() { return this.model.get("feed_url"); },
+  
+  messageUser: function(e) {
+    if (!this.isFeed()) {
+      e && e.preventDefault();
+      var user = new User({
+        links: {
+          self: this.model.get("user_url")
+        }
+      });
+      user.fetch({
+        success: function() {
+          var formview = new MessageFormView({
+            model: new Message({messagable: user})
+          });
+          formview.render();
+        }
+      });
+    }
   }
     
 });
