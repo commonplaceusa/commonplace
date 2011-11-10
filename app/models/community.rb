@@ -1,6 +1,6 @@
 class Community < ActiveRecord::Base
 
-  serialize :discount_busineses
+  serialize :discount_businesses
   has_many :feeds
   has_many :neighborhoods, :order => :created_at
   has_many(:announcements,
