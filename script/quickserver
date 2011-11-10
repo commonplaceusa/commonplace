@@ -1,0 +1,5 @@
+#!/bin/bash
+# todo: find a way to hide redis output
+redis-server /usr/local/etc/redis.conf &
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start &
+rails s

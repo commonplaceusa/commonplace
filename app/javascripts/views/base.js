@@ -58,6 +58,7 @@ CommonPlace.View = Backbone.View.extend({
     var locale = I18N[CommonPlace.community.get('locale')];
     if (!locale) { throw new Error("Unknown locale"); }
     var templateTexts = locale[this.getTemplate()] || {};
+      console.log(this, this.getTemplate());
     var translate = function(key, render) {
       render || (render = function(t) { return t; });
       var text = templateTexts[key];

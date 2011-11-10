@@ -11,8 +11,8 @@ module Tilt
     def evaluate(scope, locals, &block)
       <<-END
       (function() {
-      this.I18N || (this.I18N = {});
-      this.I18N[#{scope.logical_path.inspect}] = #{data};
+        this.I18N || (this.I18N = {});
+        this.I18N[#{scope.logical_path.inspect}] = #{data};
       })(this);
       END
     end

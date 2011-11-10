@@ -50,6 +50,13 @@ class window.WireHeader extends CommonPlace.View
   stopPropagation: (event) ->
     event.stopPropagation()
 
+  text: () ->
+    @options.text
+
+  link: () ->
+    @options.link
+
+
 
 
 

@@ -1,3 +1,5 @@
+//# todo: can we have this fallback on english translations?
+
 {
   "main_page/post-box": {
     "create-neighborhood-post.h1": "Say something to your fellow students",
@@ -22,22 +24,12 @@
     "users.a": "Directory"
   },
 
-  "main_page/post-resources": {
-    "posts.a": "Recent Hall Posts"
-  },
 
-  "main_page/event-resources": {
-    "events.a": "Upcoming Campus Events"
-  },
-
-  "main_page/announcement-resources": {
-    "announcements.a": "Recent Campus Announcements",
-    "feeds.a": "Campus Feeds"
-  },
-
-  "main_page/group-post-resources": {
-    "group-posts.a": "Discussion Group Posts",
-    "groups.a": "Discussion Groups"
+  "wire/header":{
+    "posts": "Neighborhood Posts",
+    "events": "Community Events",
+    "announcements": "Announcements",
+    "groupPosts": "Group Posts"
   },
 
   "main_page/feed-resources": {

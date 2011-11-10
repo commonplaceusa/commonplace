@@ -22,26 +22,11 @@
     "users.a": "Directory"
   },
 
-  "main_page/post-resources": {
-    "posts.a": "Neighborhood Posts",
-    "recent-posts.a": "Recent Neighborhood Posts"
-  },
-
-  "main_page/event-resources": {
-    "events.a": "Community Events",
-    "recent-events.a": "Upcoming Events"
-  },
-
-  "main_page/announcement-resources": {
-    "announcements.a": "Announcements",
-    "recent-announcements.a": "Recent Announcements",
-    "feeds.a": "Feeds"
-  },
-
-  "main_page/group-post-resources": {
-    "group-posts.a": "Group Posts",
-    "recent-group-posts.a": "Recent Group Posts",
-    "groups.a": "Groups"
+  "wire.header":{
+    "posts": "Neighborhood Posts",
+    "events": "Community Events",
+    "announcements": "Announcements",
+    "groupPosts": "Group Posts"
   },
 
   "main_page/directory-resources": {

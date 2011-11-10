@@ -17,7 +17,8 @@ var LandingResources = CommonPlace.View.extend({
     if (!this._wires) {
       this._wires = [
         (new WireHeader({
-          template: 'main_page/post-resources',
+          link: '/#posts',
+          text: this.t('posts'),
           search: true,
           el: this.$(".posts.wireHeader")
         })),
@@ -32,7 +33,8 @@ var LandingResources = CommonPlace.View.extend({
         })),
 
         (new WireHeader({
-          template: 'main_page/event-resources',
+          link: '/#events',
+          text: this.t('events'),
           el: this.$(".events.wireHeader")
         })),
         (new PreviewWire({
@@ -46,7 +48,8 @@ var LandingResources = CommonPlace.View.extend({
         })),
 
         (new WireHeader({
-          template: 'main_page/announcement-resources',
+          link: '/#announcements',
+          text: this.t('announcements'),
           el: this.$(".announcements.wireHeader")
         })),
         (new PreviewWire({
@@ -60,7 +63,8 @@ var LandingResources = CommonPlace.View.extend({
         })),
 
         (new WireHeader({
-          template: 'main_page/group-post-resources',
+          link: '/#groupPosts',
+          text: this.t('group-posts'),
           el: this.$(".groupPosts.wireHeader")
         })),
         (new PreviewWire({
