@@ -56,7 +56,7 @@ CommonPlace.parseDate = function(date_str) {
 $(function() {
   $.preLoadImages("/assets/loading.gif");
 
-
+    //todo: this code block is duplicated in lib.js
   $('form.formtastic.feed input:text, form.formtastic.feed textarea').keydown(function(e) {
     var $input = $(e.currentTarget);
     setTimeout(function() {

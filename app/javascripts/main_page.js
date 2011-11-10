@@ -60,37 +60,42 @@ function setProfileBoxInfoUpperHeight() {
   });
 }
 
+
+
 $(function() {
 
-  if (Features.isActive("fixedLayout")) {
-    $('.z2, .z3, .z4').data({fixed:false});
+    if (Features.isActive("fixedLayout")) {
+        var $navs = $('.z2, .z3, .z4').data({fixed:false});
 
-    var adjustView = function() {
-      var $navs = $('.z2, .z3, .z4');
-      setPostBoxTop();
-      setProfileBoxBottom();
-      setProfileBoxTop();
-      setProfileBoxInfoUpperHeight();
+        window.adjustView = function() {
+            var scrollTop = $(window).scrollTop();
 
-      var scrollTop = $(window).scrollTop();
+            setPostBoxTop();
+            setProfileBoxBottom();
+            setProfileBoxTop();
+            setProfileBoxInfoUpperHeight();
 
-      $navs.each(function() {
-        var $nav = $(this),
-          position = $nav.position().top,
-          fixed = $nav.data('fixed');
-        if ( (scrollTop > position) && !fixed) {
-          $('.sub-navigation', $nav).addClass('fixed')
-          $nav.data({fixed: true});
-        } else if ( (scrollTop < position) && fixed) {
-          $('.sub-navigation', $nav).removeClass('fixed');
-          $nav.data({fixed: false});
-        }
-      });
+            $navs.each(function() {
+                // sticky wire headers
+                var $nav = $(this),
+                    position = $nav.position().top,
+                    fixed = $nav.data('fixed');
+                if ((scrollTop > position) && !fixed) {
+                    $('.sub-navigation', $nav).addClass('fixed')
+                    $nav.data({fixed: true});
+                } else if ((scrollTop < position) && fixed) {
+                    $('.sub-navigation', $nav).removeClass('fixed');
+                    $nav.data({fixed: false});
+                }
+            });
 
-    };
+        };
 
-    $(window).scroll(adjustView).resize(adjustView);
-    $("body").addClass("fixedLayout");
-  }
+
+        $("body").addClass("fixedLayout");
+
+        adjustView();
+        $(window).scroll(adjustView).resize(adjustView);
+    }
 
 });

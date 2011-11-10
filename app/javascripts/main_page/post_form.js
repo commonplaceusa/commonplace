@@ -12,7 +12,6 @@ var PostForm = CommonPlace.View.extend({
 
   afterRender: function() {
     this.$('input[placeholder], textarea[placeholder]').placeholder();
-    this.$("textarea").autoResize();
   },
   
   createPost: function(e) {
@@ -49,22 +48,33 @@ var PostForm = CommonPlace.View.extend({
 
   showPublicityWarning: function() {
     this.$("p.warning").show();
+    window.adjustView();
   },
 
   hidePublicityWarning: function() {
     this.$("p.warning").hide();
+    window.adjustView();
   },
 
-  onFormFocus: function() {
-    $moreInputs = this.$(".on-focus");
-    if (!$moreInputs.is(":visible")) {
-      $moreInputs.show("blind", 
-                       // animate to it's natural height (set explicitly to
-                       // avoid choppiness)
-                       { height: $moreInputs.actual('height') }, 
-                       // set height back to auto so the element can
-                       // naturally expand/contract
-                       function() { $moreInputs.css({height: "auto"}); });
+    onFormFocus: function() {
+        $moreInputs = this.$(".on-focus");
+        if (!$moreInputs.is(":visible")) {
+
+            // animate to it's natural height (set explicitly to
+            // avoid choppiness)
+            var height = $moreInputs.actual('height') + 'px';
+            $moreInputs.css({height:'0px'}).show().animate(
+                { height: height },
+                {
+                    step: window.adjustView,
+                    complete: function() {
+                        // set height back to auto so the element can
+                        // naturally expand/contract
+                        $moreInputs.css({height: "auto"});
+                        console.log('done');
+                    }
+                });
+        }
+
     }
-  }
 });

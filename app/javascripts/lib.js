@@ -77,7 +77,7 @@ CommonPlace.parseDate = function(date_str) {
 $(function() {
 
 
-
+    //todo: this code block is duplicated in app.js
   $('form.formtastic.feed input:text, form.formtastic.feed textarea').keydown(function(e) {
     var $input = $(e.currentTarget);
     setTimeout(function() {

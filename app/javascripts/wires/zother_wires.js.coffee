@@ -38,6 +38,7 @@ class window.WireHeader extends CommonPlace.View
   cancelSearch: (event) =>
     event.preventDefault()
     $('form.search input').val('').focus()
+    $('.cancelSearch', @options.$searchForm).hide()
     @search()
 
   isSearchEnabled: () ->
