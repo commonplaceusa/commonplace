@@ -32,10 +32,5 @@
 = include_ga
 = include_exceptional
 
-- if params[:first].present? and current_user.is_facebook_user
-  -# fixme: what does this do?              # invite page only!
-  :javascript
-    $(document).ready(function() { facebook_invite(); });
-
 / [if IE]
   = javascript_include_tag "https://html5shiv.googlecode.com/svn/trunk/html5.js"
