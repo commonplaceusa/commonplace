@@ -42,7 +42,7 @@ var GroupPostWireItem = WireItem.extend({
   },
 
   events: {
-    "click div.group-post > .author": "messageUser",
+    "click div.group-post > .author > .person": "messageUser",
     "click .moreBody": "loadMore",
     "mouseenter": "showProfile",
     "click .editlink": "editGroupPost"
@@ -91,6 +91,10 @@ var GroupPostWireItem = WireItem.extend({
       template: "shared/group-post-edit-form"
     });
     formview.render();
-  }
+  },
+  
+  group: function() { return this.model.get("group"); },
+  
+  groupUrl: function() { return this.model.get("group_url"); }
 
 });

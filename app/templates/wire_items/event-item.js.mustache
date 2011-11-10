@@ -15,7 +15,9 @@
 
   <div class="title">{{title}}</div>
 
-  <div class="author">{{author}}</div>
+  <div class="author">
+    <a {{#isFeed}}href="{{feedUrl}}"{{/isFeed}}>{{author}}</a>
+  </div>
 
   <div class="body event-body">{{#markdown}}{{body}}{{/markdown}}</div>
   
