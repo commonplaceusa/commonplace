@@ -1,6 +1,7 @@
 function onABCommComplete() {
   text = "";
-  $($("textarea#invite_email").val().split(", ")).each(function(index, value) { text += value.replace(/(.*)<(.*)>/, "$2") + ", "; });
+  $($("textarea#invite_email").val().split(", "))
+    .each(function(index, value) { text += value.replace(/(.*)<(.*)>/, "$2") + ", "; });
   $("textarea#invite_email").val(text.substring(0, text.length-2));
 }
 
@@ -16,10 +17,10 @@ $(function(){
   $('input[placeholder], textarea[placeholder]').placeholder();
   $('textarea').autoResize();
 
-  $("#invite_email_input").removeClass("optional")
-  $("#invite_body_input").removeClass("optional")
-  $("#invite_email_input").addClass("required")
-  $("#invite_body_input").removeClass("required")
+  $("#invite_email_input").removeClass("optional");
+  $("#invite_body_input").removeClass("optional");
+  $("#invite_email_input").addClass("required");
+  $("#invite_body_input").removeClass("required");
 
   $("form#new_invite").submit(function(e) {
     e.preventDefault();
@@ -34,13 +35,15 @@ $(function(){
       success: function() {
         $("#new_invite #invite_email").val("");
         $("#new_invite #invite_body").val("");
-        $("form#new_invite").append($('<p class="confirm" style="color: white; margin: 15px auto 0; text-align: center;">Invites sent. Send some more!</p>'));        
+        $("form#new_invite").append($('<p class="confirm" ' +
+                                      'style="color: white; ' +
+                                      'margin: 15px auto 0; ' +
+                                      'text-align: center;">' +
+                                      'Invites sent. Send some more!'+
+                                      '</p>'));        
       }
 
     });
-    
-
-
   });
 
 });
