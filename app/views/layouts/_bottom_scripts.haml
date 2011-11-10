@@ -24,12 +24,3 @@
         window.onload = (typeof window.onload != 'function') ?
           loadChartbeat : function() { oldonload(); loadChartbeat(); };
       })();
-
--# JQuery Magic
--# fixme: this should go somewhere with context and no magic
-:javascript
-  $(document).ready(function() {
-    $('textarea').autoResize();
-    // FIXME: this code is non-DRY confusing crap:  Appears many times w/o apparent reason.
-    $('input[placeholder], textarea[placeholder]').placeholder();
-  });
