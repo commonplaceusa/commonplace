@@ -39,6 +39,12 @@
       - if !current_community.has_launched?
         .prelaunch-notification
           Hey #{current_user.first_name}, welcome to #{current_community.name} CommonPlace! We're officially launching on #{current_community.launch_date.strftime("%B")} #{current_community.launch_date.day.ordinalize}. In the meantime, help us improve by <a href="/invite">inviting some more neighbors</a>.
+
+      - if current_community.slug == "OwossoCorunna"
+        .prelaunch-notification
+          <a href="https://www.ourcommonplace.com/pages/civicart2011">
+          Click here to vote for Civic Art 2011!
+          </a>
       
       #feature-switching
           
