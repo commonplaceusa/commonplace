@@ -7,6 +7,19 @@ GIT
       htmlentities (>= 4.0.0)
 
 GIT
+  remote: git://github.com/alindeman/sunspot.git
+  revision: f69629ccf5921b9c90f08121ed9a76cc05c8cc79
+  specs:
+    sunspot (1.3.0.rc3)
+      escape (= 0.0.4)
+      pr_geohash (~> 1.0)
+      rsolr (= 1.0.2)
+    sunspot_rails (1.3.0.rc3)
+      nokogiri
+      sunspot (= 1.3.0.rc3)
+    sunspot_solr (1.3.0.rc3)
+
+GIT
   remote: git://github.com/jnicklas/capybara.git
   revision: c466a2bc8b61d5879b488d607350072019034224
   specs:
@@ -381,14 +394,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sunspot (1.3.0.rc6)
-      escape (= 0.0.4)
-      pr_geohash (~> 1.0)
-      rsolr (= 1.0.2)
-    sunspot_rails (1.3.0.rc6)
-      nokogiri
-      sunspot (= 1.3.0.rc6)
-    sunspot_solr (1.3.0.rc6)
     system_timer (1.2.4)
     systemu (2.2.0)
     term-ansicolor (1.0.6)
@@ -495,7 +500,7 @@ DEPENDENCIES
   sham_rack
   sinatra
   spork
-  sunspot_rails (= 1.3.0.rc6)
+  sunspot_rails!
   sunspot_solr
   system_timer
   test_track
