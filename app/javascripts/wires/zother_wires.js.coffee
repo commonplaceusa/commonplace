@@ -6,18 +6,30 @@ class window.WireHeader extends CommonPlace.View
     super(options)
     @options = options
 
+  template: 'wires.header'
+
   events:{
-    "keyup form.search input": "debounceSearch"
-    "submit form.search": "search"
-    "click .cancelSearch": "cancelSearch"
     "click .sub-navigation": "loadCurrent"
-    "click form.search": "stopPropagation"
   }
 
-  debounceSearch: _.debounce () =>
-    # todo: make this.$ functional for coffee classes.
-    $("form.search").submit()
-  , CommonPlace.autoActionTimeout
+  afterRender: () ->
+    # bind events so that form can be moved in the dom.
+    @options.$searchForm = @$("form.search")
+    @options.submiter = _.debounce(() =>
+      @options.$searchForm.submit()
+    , CommonPlace.autoActionTimeout)
+
+    @$('.cancelSearch').bind 'click', @cancelSearch
+    @options.$searchForm
+      .bind('keyup', @autoSearch) # in coffee, be sure to use prens when chaining
+      .bind('submit', @search)
+
+  autoSearch: () =>
+    if  $('input', @options.$searchForm) == ''
+      $('.cancelSearch', @options.$searchForm).hide()
+    else
+      $('.cancelSearch', @options.$searchForm).show()
+    @options.submiter.apply(this)
 
   search: () => # don't require a passed event
     $(".wire").trigger('search',{query: $('form.search input').val()})

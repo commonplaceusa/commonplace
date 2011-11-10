@@ -27,6 +27,11 @@ var CommunityResources = CommonPlace.View.extend({
       $tabContent.append(view.el);
     });
 
+    if (tab == 'landing'){
+      $('form.search').detach().appendTo($('.landing-resources'))
+    }
+
+
     if (window['mpq'] !== undefined){ // todo: move this in to helper method under CommonPlace
       mpq.track('Wire:' + tab, {'community': CommonPlace.community.get('slug') });
     }

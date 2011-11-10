@@ -5,21 +5,6 @@ var LandingResources = CommonPlace.View.extend({
   afterRender: function() {
     //fixme: invoke should be a function on the enumerable object
     _(this.wires()).invoke("render");
-    setTimeout(function() {
-      if (Features.isActive("fixedLayout")) {
-        var dbs = function() {
-          $("form.search").submit();
-        };
-      }
-      // by removing zindex of the underneath subnav, we may be able to avoid this
-      $('form.search').detach().appendTo($('.landing-resources')).bind('submit',
-        function() {
-          $(".wire").trigger('search', {query: $('form.search input').val()})
-        }).bind('keyup', function() {
-          console.log('keyup');
-          _.debounce(dbs, CommonPlace.autoActionTimeout);
-        });
-    }, 50);
   },
 
   wires: function() {

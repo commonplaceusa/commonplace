@@ -11,13 +11,9 @@
       border: 1px solid #e8e8e8
         left: 0
         right: 0
-        top: 0
 
       cursor: pointer
       padding: 5px 10px
-
-      &:first-child 
-        border-top: 0
 
       h2
         font-size: 20px
@@ -39,7 +35,7 @@
       cursor: default
 
       input[type=text]
-        width: 133px
+        width: 144px
         +border-radius(4px)
         border: 0
         display: block
@@ -47,7 +43,7 @@
         color: #666
         line-height: 13px
         padding: 6px 25px 4px 25px
-        +box-shadow(2px 2px 6px rgba(0, 0, 0, 0.25) inset, 0 0 0 1px rgba(0, 0, 0, 0.24))
+        +box-shadow(0px 0px 2px rgba(0,0,0,0.25) inset,0 0 0 0 rgba(0,0,0,0.24))
         background: white image-url("shared/icons/search.png") 8px 7px no-repeat
         &:focus
           color: #333
@@ -55,6 +51,7 @@
 
       .cancelSearch
         position: absolute
+        display: none
         font-family: "Helvetica"
         top: 6px
         right: 6px
@@ -110,4 +107,4 @@ body.fixedLayout
           position: fixed
           z-index: 9
           top: 130px
-          margin-left: 300px
+          margin-left: 288px
