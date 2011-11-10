@@ -154,10 +154,12 @@ Commonplace::Application.routes.draw do
 
 
   unauthenticated do
+
+    match '/whereami', :to => 'site#whereami'
     
     root :to => "site#index"
     match "/invite", :to => "accounts#facebook_invite"
-    match "/:community", :to => "registrations#new", :via => :get
+    match "/:community", :to => "registrations#new", :via => :get, :as => :community_landing
 
     match "/:community/learn_more", :to => "accounts#learn_more", :via => :get
 
