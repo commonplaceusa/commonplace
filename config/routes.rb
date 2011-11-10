@@ -109,10 +109,7 @@ Commonplace::Application.routes.draw do
     end
     match "/send_invite", :to => "accounts#send_invite"
     match "/invite", :to => "accounts#facebook_invite", :as => :invites
-
-    # Community routes 
-    
-    match "/:community/good_neighbor_discount", :to => "communities#good_neighbor_discount"
+    match "/good_neighbor_discount", :to => "communities#good_neighbor_discount"
     
 
     resources :organizer do
