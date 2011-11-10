@@ -14,7 +14,7 @@ function add_to_friends_of_commonplace(email) {
 $(function(){
 
   $('input[placeholder], textarea[placeholder]').placeholder();
-
+  $('textarea').autoResize();
 
   $("#invite_email_input").removeClass("optional")
   $("#invite_body_input").removeClass("optional")
