@@ -5,7 +5,12 @@ class RegistrationsController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create, :facebook_new, :mobile_new]
 
   def new
-    session["devise.community"] = current_community.id
+    if current_community
+      session["devise.community"] = current_community.id
+    else
+      @request = Request.new()
+      render 'site/index', :layout => 'starter_site'
+    end
   end
 
   def mobile_new
