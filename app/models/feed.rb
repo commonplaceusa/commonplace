@@ -145,6 +145,10 @@ class Feed < ActiveRecord::Base
     feed_kinds
   end
 
+  def self.subscriber_count_email_trigger
+    10
+  end
+
   def slug
     read_attribute(:slug).blank? ? id : read_attribute(:slug)
   end
