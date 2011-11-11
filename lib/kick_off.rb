@@ -59,6 +59,10 @@ class KickOff
     end
   end
 
+  def deliver_n_feed_subscribers_notification(feed_id)
+    enqueue(NSubscribersFeedNotification, feed_id)
+  end
+
   
   def deliver_group_post(post)
     # We're delivering a post to subscribers of the group
