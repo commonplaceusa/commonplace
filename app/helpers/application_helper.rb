@@ -101,9 +101,6 @@ script
 
     if current_user
       account << "CommonPlace.account = new Account(#{serialize(Account.new(current_user))});"
-    end
-
-    if current_community
       community << "CommonPlace.community = new Community(#{serialize(current_community)});"
     end
 
