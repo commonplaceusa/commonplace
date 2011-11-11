@@ -12,15 +12,9 @@
         = link_to "FAQ", faq_path(current_community)
       &sdot;
       = link_to "About", about_url, :target => :blank
-      -# TODO Uncomment this if it *isn't* causing timeouts
-      -# - if params[:community]
-      -#   - if logged_in?
-      -#     - if $rollout.active?(:good_neighbor_discount, current_user)
-      -#       &sdot;
-      -#       = link_to "Good Neighbor Discount", "/#{current_community.slug}/good_neighbor_discount/"
-      - if params[:community]
+      - if logged_in? && current_community.discount_businesses.present?
         &sdot;
-        = link_to "Terms", terms_path(current_community)
+        = link_to "Good Neighbor Discount", "/good_neighbor_discount"
       - if params[:community]
         &sdot;
         = link_to "Privacy Policy", privacy_path(current_community)

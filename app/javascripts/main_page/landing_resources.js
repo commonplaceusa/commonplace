@@ -1,5 +1,5 @@
 var LandingResources = CommonPlace.View.extend({ 
-  template: "main_page/landing-resources",
+  template: "main_page.landing-resources",
   className: "resources",
 
   initialize: function(options) {
@@ -28,7 +28,7 @@ var LandingResources = CommonPlace.View.extend({
     if (!this._wires) {
       this._wires = [
         (new PreviewWire({
-          template: 'main_page/post-resources',
+          template: 'main_page.post-resources',
           collection: postsCollection,
           account: this.account,
           el: this.$(".posts.wire"),
@@ -41,7 +41,7 @@ var LandingResources = CommonPlace.View.extend({
          })),
         
         (new PreviewWire({
-          template: 'main_page/event-resources',
+          template: 'main_page.event-resources',
           collection: this.community.events,
           account: this.account,
           el: this.$(".events.wire"),
@@ -54,7 +54,7 @@ var LandingResources = CommonPlace.View.extend({
         })),
         
         (new PreviewWire({
-          template: 'main_page/announcement-resources',
+          template: 'main_page.announcement-resources',
           collection: this.community.announcements,
           account: this.account,
           el: this.$(".announcements.wire"),
@@ -67,7 +67,7 @@ var LandingResources = CommonPlace.View.extend({
         })),
         
         (new PreviewWire({
-          template: 'main_page/group-post-resources',
+          template: 'main_page.group-post-resources',
           collection: this.community.groupPosts,
           account: this.account,
           el: this.$(".groupPosts.wire"),

@@ -1,5 +1,5 @@
 var UserProfileBox = Profile.extend({
-  template: "main_page/profiles/user-profile",
+  template: "main_page.profiles.user-profile",
   className: "profile",
 
   events: {

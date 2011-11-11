@@ -1,5 +1,5 @@
 var AccountEditView = CommonPlace.View.extend({
-  template: "account/edit",
+  template: "account.edit",
   id: "account-edit",
   
   events: {

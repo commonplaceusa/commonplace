@@ -1,3 +1,4 @@
+$text: #738392
 
 #info-box
   margin-top: 12px
@@ -28,7 +29,8 @@
       height: 20px
       padding: 5px
         right: 20px
-      color: white
+        top: 3px
+      color: $text
       background-color: #1c2e40
       background-image: image-url("search-blue.png") 
       background-position: 95% center
@@ -38,6 +40,9 @@
       width: 128px
       &:focus
         outline: 0
+
+      &::-webkit-input-placeholder, &::-moz-placeholder
+        color: $text
     
     #info-list-area
       width: 153px
@@ -86,6 +91,7 @@
       li
         padding: 8px
         overflow: hidden
+        cursor: pointer
         
         
         &:hover, &.current
@@ -93,7 +99,7 @@
           cursor:pointer
 
         a
-          color: #738392
+          color: $text
           text-decoration: none
           img
             float: left
@@ -237,6 +243,6 @@ body.fixedLayout
   
 #info-list::-webkit-scrollbar-thumb:vertical
   width: 6px
-  background-color: #738392
+  background-color: $text
   -webkit-border-radius: 3px
 

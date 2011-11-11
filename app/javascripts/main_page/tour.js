@@ -33,15 +33,15 @@ var Tour = CommonPlace.View.extend({
   first_name: function() { return this.account.get('short_name'); },
 
   welcome: function() {
-    this.template = "main_page/tour/welcome";
-    this.$("#tour").html(this.renderTemplate("main_page/tour/welcome", this))
+    this.template = "main_page.tour.welcome";
+    this.$("#tour").html(this.renderTemplate("main_page.tour.welcome", this))
       .attr('class','welcome');
   },
 
   wire: function() {
     this.cleanUp();
-    this.template = "main_page/tour/wire";
-    this.$("#tour").html(this.renderTemplate("main_page/tour/wire", this))
+    this.template = "main_page.tour.wire";
+    this.$("#tour").html(this.renderTemplate("main_page.tour.wire", this))
       .attr('class','wire');
     this.removeShadows("#community-resources");
     this.raise("#community-resources");
@@ -50,8 +50,8 @@ var Tour = CommonPlace.View.extend({
 
   profile: function() {
     this.cleanUp();
-    this.template = "main_page/tour/profile";
-    this.$("#tour").html(this.renderTemplate("main_page/tour/profile", this))
+    this.template = "main_page.tour.profile";
+    this.$("#tour").html(this.renderTemplate("main_page.tour.profile", this))
       .attr('class','profile');
     this.raise("#info-box");
     $.scrollTo(250, 700);
@@ -59,8 +59,8 @@ var Tour = CommonPlace.View.extend({
 
   feed: function() {
     this.cleanUp();
-    this.template = "main_page/tour/feed";
-    this.$("#tour").html(this.renderTemplate("main_page/tour/feed", this))
+    this.template = "main_page.tour.feed";
+    this.$("#tour").html(this.renderTemplate("main_page.tour.feed", this))
       .attr('class', 'feed');
     this.raise("#header");
     $.scrollTo(0, 0);
@@ -68,8 +68,8 @@ var Tour = CommonPlace.View.extend({
 
   post: function() {
     this.cleanUp();
-    this.template = "main_page/tour/post";
-    this.$("#tour").html(this.renderTemplate("main_page/tour/post", this))
+    this.template = "main_page.tour.post";
+    this.$("#tour").html(this.renderTemplate("main_page.tour.post", this))
       .attr('class','post');
     this.removeShadows("#post-box");
     this.raise("#post-box");

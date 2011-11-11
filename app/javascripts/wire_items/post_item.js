@@ -91,6 +91,8 @@ var PostWireItem = WireItem.extend({
       template: "shared/post-edit-form"
     });
     formview.render();
-  }
+  },
+  
+  group: function() { return false; }
 
 });

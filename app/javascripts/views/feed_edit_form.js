@@ -1,11 +1,17 @@
 var FeedEditFormView = FormView.extend({
   template: "shared/feed-edit-form",
+  
+  events: {
+    "click #modal-shadow": "exit",
+    "click .avatar-controls .remove": "removeAvatar"
+  },
 
   afterRender: function() {
     this.modal.render();
     var kind = this.model.get("kind");
     this.$("[name=kind] [value="+kind+"]").attr("selected", "selected");
     this.$("select.kind_list").dropkick();
+    this.initAvatarUploader(this.$(".avatar .upload"));
   },
 
   save: function(callback) {
@@ -46,7 +52,7 @@ var FeedEditFormView = FormView.extend({
   },
   
   rss: function() {
-    return this.model.get("rss_url");
+    return this.model.get("rss_url") || "";
   },
   
   website: function() {
@@ -71,6 +77,32 @@ var FeedEditFormView = FormView.extend({
   
   editUrl: function() {
     return this.model.link("edit");
+  },
+  
+  avatarEditUrl: function() { return this.model.link("avatar_edit"); },
+  
+  initAvatarUploader: function($el) {
+    var self = this;
+    var uploader = new AjaxUpload($el, {
+      action: "/api" + self.model.link("avatar_edit"),
+      name: 'avatar',
+      data: { },
+      responseType: 'json',
+      onChange: function(file, extension){},
+      onSubmit: function(file, extension) {},
+      onComplete: function(file, response) { 
+        self.model.set(response); 
+        self.render();
+      }
+    });    
+  },
+
+  removeAvatar: function(e) {
+    var self = this;
+    e && e.preventDefault();
+    this.model.deleteAvatar(function() {
+      self.render();
+    });
   }
 });
 
