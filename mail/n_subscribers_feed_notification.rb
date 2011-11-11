@@ -9,7 +9,7 @@ class NSubscribersFeedNotification < MailBase
   end
 
   def subject
-    "Your CommonPlace Feed has #{self.number_of_subscribers} Subscribers!"
+    "#{self.feed_name} has #{self.number_of_subscribers} subscribers on the #{self.community_name} CommonPlace!"
   end
 
   def first_name
