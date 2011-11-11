@@ -1,5 +1,5 @@
 var FeedProfileBox = Profile.extend({
-  template: "main_page/profiles/feed-profile",
+  template: "main_page.profiles.feed-profile",
   className: "profile",
 
   events: {

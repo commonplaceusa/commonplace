@@ -15,6 +15,8 @@ user = User.create!(:first_name => "test", :last_name => "dev",
                     :email => "test@example.com", :address => "221B Baker St.",
                     :password => "password", :neighborhood => neighborhood,
                      :community => community)
+
+community.add_default_groups
 user.admin = true
 user.save!
 post = Post.create(:body => "This is a test post",
@@ -25,3 +27,4 @@ post.save
 
 event = Event.create(:name => "Test Event", :description => "Event for testing", :owner => User.find(:first), :date => Time.now, :start_time => Time.now, :end_time => (Time.now + 60*60*24*3))
 event.save
+

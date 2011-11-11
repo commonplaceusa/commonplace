@@ -1,35 +1,9 @@
 !!! 5
 %html
   %head
-    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
-    %meta{ :name => "description", :content => "CommonPlace helps you share and connect with your neighbors." }
-    %meta{ :name => "keywords", :content => "CommonPlace, CommonPlace USA" }
-    %link{ :href => '/favicon.png', :rel => "icon", :type => "image/png" }
-    %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
-    %link{ :href=> 'https://fonts.googleapis.com/css?family=Rokkitt:400,700', :rel =>"stylesheet", :type =>"text/css"}
-    %title CommonPlace
-    / %script{ :type => 'text/javascript', :src => 'http://code.jquery.com/jquery-1.4.2.min.js' }
-    
-    = javascript_include_tag "jquery-1.6.1"
-  
-    / [if IE]
-      = javascript_include_tag "https://html5shiv.googlecode.com/svn/trunk/html5.js"        
-    = javascript_include_tag "starter_site"
-    = stylesheet_link_tag "starter_site"
+    = render :partial => 'layouts/common_head', :locals => { :javascripts => ["jquery-1.6.1", "starter_site"], :stylesheets => ["starter_site"] }
 
 
-    :javascript
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-12807510-2']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    
-  
   %body
 
     .nav.page-navigation

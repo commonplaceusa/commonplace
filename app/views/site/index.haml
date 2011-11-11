@@ -127,3 +127,7 @@
     var b=document.getElementsByTagName('script')[0];
     a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0004/8420.js";
     a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+
+  - if Rails.env.production?
+    :javascript
+      mpq.track('Index Page', {'community': '#{current_community.slug}'});

@@ -1,9 +1,7 @@
 !!! 5
 %html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
   %head
-    = render 'layouts/common_head'
-    = stylesheet_link_tag "application"
-
+    = render :partial => 'layouts/common_head', :locals => { :javascripts => ["application"], :stylesheets => ["application"] }
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
 
@@ -14,6 +12,8 @@
       = render 'layouts/header'
 
       = yield
+
+      #sticky-footer
 
     = render "layouts/footer"
 

@@ -21,6 +21,20 @@ var Feed = Model.extend({
       };
       return response;
     }
+  },
+  
+  deleteAvatar: function(callback) {
+    var self = this;
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.get('links').avatar_edit,
+      type: "delete",
+      dataType: "json",
+      success: function(account) { 
+        self.set(account);
+        callback && callback();
+      }
+    });
   }
 });
 

@@ -1,17 +1,12 @@
 - if Rails.env.production?
-  -# JQuery Placeholder
-  %script
-    $(function(){$('input[placeholder], textarea[placeholder]').placeholder();});
-    
   -# Mixpanel metrics
   - if current_user.try(:email).present?
-    %script
+    :javascript
       mpq.identify("#{current_user.email}");
       mpq.register({'email': '#{current_user.email}', 'community': '#{current_community.slug}', 'referral_source': '#{current_user.referral_source ? current_user.referral_source.gsub("'","") : ''}'});
       mpq.name_tag("#{current_user.full_name} - #{current_user.email}");
 
   -# Chartbeat
-
   :javascript
     var _sf_async_config={uid:25400,domain:"ourcommonplace.com"};
     (function(){
@@ -29,22 +24,3 @@
         window.onload = (typeof window.onload != 'function') ?
           loadChartbeat : function() { oldonload(); loadChartbeat(); };
       })();
-
-  -# Google analytics
-  :javascript
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-12888551-3']);
-    _gaq.push(['_trackPageview']);
-    
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
--# JQuery Magic
-
-:javascript
-  $(document).ready(function() {
-    $('textarea').autoResize();
-  });

@@ -1,16 +1,7 @@
 !!! 5
 %html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
   %head
-    %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
-    %link{ :href=> 'https://fonts.googleapis.com/css?family=Rokkitt:400,700', :rel =>"stylesheet", :type =>"text/css"}
-    %title Your CommonPlace Inbox
-
-    %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
-    = stylesheet_link_tag "inbox"
-    :javascript
-      CommonPlace = {};
-
-    = render 'exceptional'
+    = render :partial => 'layouts/common_head', :locals => { :javascripts => ["inbox"], :stylesheets => ["inbox"], :title => 'Inbox', :track => 'Inbox' }
 
   %body
     #sticky-wrapper
@@ -26,14 +17,12 @@
       = render 'layouts/footer'
 
 
-      = javascript_include_tag "inbox"
-
-      %script{ :type => "text/javascript" }
+      :javascript
         $(function() {
-        $.getJSON("/api/account", function(account_response) {
-        new InboxRouter({ account: new Account(account_response), community: #{serialize(current_community)} });
-        Backbone.history.start();
-        });
+          $.getJSON("/api/account", function(account_response) {
+            new InboxRouter({ account: new Account(account_response), community: #{serialize(current_community)} });
+            Backbone.history.start();
+          });
         });
 
 
