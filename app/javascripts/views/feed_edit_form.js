@@ -3,7 +3,8 @@ var FeedEditFormView = FormView.extend({
   
   events: {
     "click #modal-shadow": "exit",
-    "click .avatar-controls .remove": "removeAvatar"
+    "click .avatar-controls .remove": "removeAvatar",
+    "click .controls button": "send"
   },
 
   afterRender: function() {
