@@ -6,7 +6,7 @@
 @import feeds
 @import password_resets
 @import faq
-
+@import good_neighbor_discount
 #footer_grad
   height: 10px
   width: 100%
@@ -33,7 +33,7 @@ footer, #footer
   clear: both
 
 body.application
-  background: #cee7fe image-url('neighborhood-bg.png') repeat-x center bottom
+  background-color: #cee7fe
   +serif
 
   #sticky-wrapper
@@ -471,3 +471,5 @@ form.formtastic.user
   label
     margin-top: 8px
     width: 150px
+
++sticky_footer(54px, "#sticky-wrapper", "#sticky-footer", "#footer")

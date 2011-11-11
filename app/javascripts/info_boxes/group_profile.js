@@ -1,5 +1,5 @@
 var GroupProfileBox = Profile.extend({
-  template: "main_page/profiles/group-profile",
+  template: "main_page.profiles.group-profile",
   className: "profile",
 
   events: {

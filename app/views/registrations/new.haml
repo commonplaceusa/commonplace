@@ -27,7 +27,7 @@
       - if current_community.is_college
         = f.select :address, college_dorms_for_school(current_community)
       - else
-        = f.input :address, :hint => "", :input_html => {:placeholder => "Street address"}
+        = f.input :address, :hint => "* This is to verify you live in #{current_community.name}.  We will not share it with anyone.", :input_html => {:placeholder => "Street address"}
       = f.input :facebook_uid, :as => :hidden
       = f.input :community_id, :as => :hidden
     = f.buttons do 

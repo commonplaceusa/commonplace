@@ -1,5 +1,5 @@
 var InfoListItem = CommonPlace.View.extend({
-  template: "main_page/info-list",
+  template: "main_page.info-list",
   tagName: "li",
   events: {
     "click": "switchProfile"
@@ -29,7 +29,7 @@ var InfoListItem = CommonPlace.View.extend({
 
 var InfoBox = CommonPlace.View.extend({
   id: "info-box",
-  template: "main_page/info-box",
+  template: "main_page.info-box",
   $profile: function() { return this.$("#profile"); },
   $list: function() { return this.$("#info-list"); },
   $profile_none: function() { return this.$("#profile-area > .none"); },
@@ -44,7 +44,15 @@ var InfoBox = CommonPlace.View.extend({
 
   searchFormSubmit: function(e) { e.preventDefault(); },
 
-  afterRender: function() {
+    // Prevents duplicate ajax requests. the throttler must be re-created for every load.
+    nextPageTrigger: function() {
+        var self = this;
+        this.nextPageThrottled = _.once(function() {
+            self.nextPage();
+        });
+    },
+
+    afterRender: function() {
     var self = this;
     this.currentCollection = {};
     this.currentQuery = "";
@@ -63,9 +71,12 @@ var InfoBox = CommonPlace.View.extend({
       });
     }
 
-    this.$("#info-list-area > ul").scroll(function() {
-      if (this.offsetHeight + $(this).scrollTop() >= this.scrollHeight) {
-        self.nextPage();
+      self.nextPageTrigger();
+
+      this.$("#info-list-area > ul").scroll(function() {
+        // start loading before we get to the end
+      if ( (this.offsetHeight + $(this).scrollTop()) >= (this.scrollHeight - 150) ) {
+         self.nextPageThrottled();
       }
     });
 
@@ -195,18 +206,21 @@ var InfoBox = CommonPlace.View.extend({
 
   nextPage: function() {
     var collection = this.currentCollection;
-    if (collection.length < 25) { return; }
-    this.page = this.page + 1;
-    var self = this;
-    collection.fetch({
-      data: {
-        query: this.currentQuery,
-        page: this.page
-      },
-      success: function() {
-        self.renderList(collection, "append");
-      }
-    });
+      if (collection.length < 25) { return; }
+      this.page = this.page + 1;
+      var self = this;
+      collection.fetch({
+          data: {
+              query: this.currentQuery,
+              page: this.page
+          },
+          success: function() {
+              self.renderList(collection, "append");
+          },
+          complete: function() {
+              self.nextPageTrigger();
+          }
+      });
   },
 
   renderProfile: function(model) {

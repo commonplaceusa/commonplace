@@ -10,6 +10,7 @@
 //= require autoresize
 //= require dropkick
 //= require truncator
+//= require ajaxupload
 //= require views
 //= require models
 //= require_tree ../templates/shared
