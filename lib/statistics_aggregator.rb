@@ -22,11 +22,22 @@ class StatisticsAggregator
     csv
   end
 
+  def self.generate_statistics_csv_for_community(c)
+    csv = "Date,Users,Posts,Events,Announcements,Private Messages,Group Posts"
+    today = DateTime.now
+    community = c
+    launch = community.users.sort{ |a,b| a.created_at <=> b.created_at }.first.created_at.to_date
+    launch.upto(today).each do |day|
+      csv = "#{csv}\n#{day},#{community.users.between(launch.to_datetime,day.to_datetime).count},#{community.posts.between(launch.to_datetime,day.to_datetime).count},#{community.events.between(launch.to_datetime,day.to_datetime).count},#{community.announcements.between(launch.to_datetime,day.to_datetime).count},#{community.private_messages.select { |m| m.between?(launch.to_datetime, day.to_datetime)}.count},#{community.group_posts.select { |p| p.between?(launch.to_datetime, day.to_datetime)}.count}"
+    end
+    csv
+  end
+
 
   def self.statistics_for_community_between_days_ago(c, yday, tday)
     community_average_days = StatisticsAggregator.average_days(c) || AVERAGE_DAYS
     result = {}
-    result[:total_users] = User.between(StatisticsAggregator.first_day(c).to_datetime,tday.days.ago).select { |u| u.community == c}.count
+    result[:total_users] = User.between(c.launch_date,tday.days.ago).select { |u| u.community == c}.count
     result[:user_gains_today] = User.between(yday.days.ago.utc, tday.days.ago).select {|u| u.community == c}.count
 
     result[:percentage_of_field] = (result[:total_users] / c.households.to_f).round(4)
@@ -140,16 +151,8 @@ class StatisticsAggregator
     return "#{(100 * StatisticsAggregator.emails_opened.to_f / StatisticsAggregator.emails_sent.to_f).round(2)}%"
   end
 
-  def self.first_day(community)
-    community.posts.last.created_at.to_date
-  end
-
   def self.average_days(community)
-    r = 0
-    StatisticsAggregator.first_day(community).upto(DateTime.now) do |day|
-      r += 1
-    end
-    r.to_f
+    (DateTime.now - community.launch_date.to_date).to_i
   end
 
 end
