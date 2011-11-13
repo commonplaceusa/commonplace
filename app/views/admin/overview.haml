@@ -24,7 +24,7 @@
         %th= statistic_name.titleize
         - @communities.each do |c|
           %td= c[1][statistic_name]
-        - if statistic_name.include? "average"
+        - if statistic_name.include? "average" or statistic_name.include? "percentage"
           %td.average
         - else
           %td.total
