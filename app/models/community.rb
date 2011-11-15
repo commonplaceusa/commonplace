@@ -44,13 +44,14 @@ class Community < ActiveRecord::Base
   acts_as_api
 
   api_accessible :default do |t|
-    t.add :id
-    t.add :name
-    t.add :locale
     t.add :groups
+    t.add :id
+    t.add :links
+    t.add :locale
+    t.add :name
     t.add :organizer_name, :as => :admin_name
     t.add :organizer_email, :as => :admin_email
-    t.add :links
+    t.add :slug
   end
 
   def links

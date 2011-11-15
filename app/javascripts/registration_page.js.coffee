@@ -25,12 +25,12 @@ validation_messages = {
 
 form_initializers = { # takes a selector and returns an initialized .step
   '#step2': (data) ->
+    mpq.track 'Password entry', {'community': CommonPlace.community_attrs['slug'] } # track is asynchronous
     this.find('.registrar_name').html(data['first_name']).end()
 
   '#step3': (data) -> # avatar
-    console.log 'setting image from these args', data                    `
+    mpq.track 'Cropping Avatar', {'community': CommonPlace.community_attrs['slug'] }
     unless data['avatar']
-      console.log 'sending step 4 instead'
       return initialize_step '#step4'
 
     this.find('#cropbox').attr 'src', data['avatar']
@@ -50,10 +50,12 @@ form_initializers = { # takes a selector and returns an initialized .step
     this
 
   '#step4': (data) -> # feeds
+    mpq.track 'Add feeds', {'community': CommonPlace.community_attrs['slug'] }
     return initialize_step '#step5' if $("#feeds_container .feed").length == 0
     this
 
   '#step5': (data) -> # groups
+    mpq.track 'Add groups', {'community': CommonPlace.community_attrs['slug'] }
     if $("#groups_container .group").length == 0
       window.location = '/#tour'
       return false
