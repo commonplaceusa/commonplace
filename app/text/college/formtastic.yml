@@ -6,14 +6,14 @@ college:
     labels:
       user:
         full_name: "Full Name:"
+        address: "Street Address*:"
         email: "Email Address:"
-        password: "Create a Password*:"
+        password: "Create a Password (required)"
         about: "Tell your fellow students a bit about yourself:"
-        interest_list: "Add some interests:"
+        interest_list: "Add some interests"
         offer_list: "Do you have any goods and skills you can share with your hallmates?"
         referral_source: "How did you find out about CommonPlace?"
-        address: "Street Address*:"
-        avatar: "Add a photo:"
+        avatar: "Add a photo"
         edit:
           password: "Change your password:"
         receive_posts: Get new hall posts in emails

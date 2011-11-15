@@ -5,15 +5,15 @@ en:
 
     labels:
       user:
-        full_name: "Full Name:"
-        email: "Email Address:"
-        password: "Create a Password*:"
-        about: "Tell your neighbors a bit about yourself:"
-        interest_list: "Add some interests:"
+        full_name: "Full Name"
+        email: "Email Address"
+        password: "Create a Password"
+        about: "Tell your neighbors a bit about yourself"
+        interest_list: "Add some interests"
         offer_list: "Do you have any goods and skills you can share with your neighbors?"
         referral_source: "How did you find out about CommonPlace?"
-        address: "Street Address*:"
-        avatar: "Add a photo:"
+        address: "Street Address"
+        avatar: "Add a photo"
         edit:
           password: "Change your password:"
         receive_posts: Get new neighborhood posts in emails

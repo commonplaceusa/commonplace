@@ -3,12 +3,12 @@ class UsersOmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
 
     if @user = User.find_for_facebook_oauth(env["omniauth.auth"])
+      # account already exists
       sign_in_and_redirect @user, :event => :authentication
     else
-      @_community = Community.find(session["devise.community"])
-      @registration = 
-        Registration.new(User.new_from_facebook({:community_id => session["devise.community"]}, env["omniauth.auth"]))
-      render "registrations/facebook_new", :layout => "registration"
+      # account registration
+      @user = User.new_from_facebook( {:community_id => session["devise.community"]}, env["omniauth.auth"] )
+      render "registrations/new", :layout => "registration"
     end
   end
 
@@ -18,10 +18,4 @@ class UsersOmniauthCallbacksController < Devise::OmniauthCallbacksController
            :layout => false)
   end
 
-  protected
-
-  def registration 
-    @registration ||= 
-      Registration.new(current_user || User.new(:community => current_community))
-  end
 end

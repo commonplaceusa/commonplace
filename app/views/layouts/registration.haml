@@ -1,5 +1,5 @@
 !!! 5
-%html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
+%html{}
   %head
     %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
     %link{ :href=> 'https://fonts.googleapis.com/css?family=Rokkitt:400,700', :rel =>"stylesheet", :type =>"text/css"}
@@ -7,6 +7,7 @@
     %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
     %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
     %meta{ :name => "description", :content => "The #{params[:community] && current_community.name} CommonPlace is an online community bulletin board for neighbors in #{params[:community] && current_community.name}, designed to make it easy for neighbors and community groups to share and connect." }
+    = csrf_meta_tag
 
     %title= "CommonPlace #{ params[:community] && current_community.name}"
 
@@ -26,12 +27,11 @@
       CommonPlace = {};
   %body
 
-  #wrapper
     = render 'layouts/registration_header'
 
-    = yield    
+    #main
+      = yield
 
-    #wrapper-footer
 
 
   = render "layouts/footer"

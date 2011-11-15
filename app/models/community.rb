@@ -130,12 +130,12 @@ class Community < ActiveRecord::Base
     private_messages.select { |message| message.created_at > DateTime.now.at_beginning_of_day and message.created_at < DateTime.now }
   end
 
-  def completed_registrations
+  def completed_registrations # todo - rename to fully_registered_users (this is not a Registration)
     # A registration is complete if the user has updated their data after the initial creation (incl. setting a password)
     User.where("created_at < updated_at AND community_id = ?", self.id)
   end
 
-  def incomplete_registrations
+  def incomplete_registrations # todo - rename to partially_registered_users (this is not a Registration)
     User.where("created_at >= updated_at AND community_id = ?", self.id)
   end
 

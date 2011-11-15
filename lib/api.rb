@@ -17,14 +17,15 @@ class API
       map("/communities") { run Communities }
       map("/events") { run Events }
       map("/feeds") { run Feeds }
-      map("/users") { run Users }
       map("/group_posts") { run GroupPosts }
       map("/groups") { run Groups }
       map("/messages") { run Messages }
       map("/neighborhoods") { run Neighborhoods }
       map("/posts") { run Posts }
-      map("/search/community") { run Search }
+      map("/registrations") { run Registrations }
       map("/replies") { run Replies }
+      map("/search/community") { run Search }
+      map("/users") { run Users }
 
       map("/") { run lambda {|env|  [404, {}, ["Invalid Request"]] } }
     end

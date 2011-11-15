@@ -1,0 +1,48 @@
+<%= semantic_form_for @user, :as => :registration, :url => '/registration' do |f| %>
+
+    <% if @from_facebook %>
+        <h4>
+          Add your street address
+        </h4>
+    <% else %>
+        <h4>
+          Register Now
+        </h4>
+        <div style="text-align: center;">
+          <a href="<%= user_omniauth_authorize_path(:facebook, :state => current_community.id) %>" class="facebook_connect">
+            <%= image_tag "buttons/facebook-sign-up.png" %>
+          </a>
+        </div>
+
+        <div class="or">
+          &mdash;&nbsp; or &nbsp;&mdash;
+        </div>
+    <% end %>
+
+    <%= f.inputs do %>
+        <%= f.input :full_name,
+                    :label_html => {:style => "display: none;"},
+                    :input_html => {:placeholder => "Full name",
+                                    :class=> "required"} %>
+        <%= f.input :email,
+                    :label_html => {:style => "display: none;"},
+                    :input_html => {:placeholder => "Email address",
+                                    :type => "text",
+                                    :class=> "required email"} %>
+        <% if current_community.is_college %>
+            <%= f.select :address, college_dorms_for_school(current_community) %>
+        <% else %>
+            <%= f.input :address,
+                        :hint => false,
+                        :label_html => {:style => "display: none;"},
+                        :input_html => {:placeholder => "Street address",
+                                        :'data-fieldhelp' => "This is to verify that you live in #{current_community.name}. We will not share it with anyone.",
+                                        :class=> "required"} %>
+        <% end %>
+        <%= f.input :facebook_uid, :as => :hidden %>
+        <%= f.input :community_id, :as => :hidden %>
+    <% end %>
+
+    <a href="#step2" data-action="submit" class="formbutton big">SIGN ME UP!</a>
+
+<% end %>
