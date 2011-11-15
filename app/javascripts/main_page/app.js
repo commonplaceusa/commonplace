@@ -7,10 +7,7 @@ var MainPageView = CommonPlace.View.extend({
     this.account = this.options.account;
     this.community = this.options.community;
     
-    this.postBox = new PostBox({ 
-      account: this.account,
-      community: this.community
-    });
+    this.postBox = new PostBox();
 
     this.lists = new CommunityResources({
       account: this.account,

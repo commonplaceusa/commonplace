@@ -37,6 +37,7 @@ var PaginatingWire = Wire.extend({
     this.$("ul").empty();
     var self = this;
     this.fetchCurrentPage(function() { self.appendCurrentPage(); });
+    mpq.track('wire-search', {query: this.currentQuery})
   },
 
   isSearchEnabled: function() { return this.isActive('wireSearch');  }

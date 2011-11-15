@@ -29,7 +29,7 @@
 = include_mixpanel
 - if track.present?
   :javascript
-    mpq.track('#{track}', {'community': '#{current_community.try(:slug)}'});
+    mpq.track('#{track}');
 
 = include_ga
 = include_exceptional

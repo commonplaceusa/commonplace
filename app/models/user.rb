@@ -163,6 +163,7 @@ class User < ActiveRecord::Base
     t.add :good_list, :as => :goods
     t.add :skill_list, :as => :skills
     t.add :links
+    t.add :referral_source
   end
 
   def links

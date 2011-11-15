@@ -41,6 +41,17 @@ if (window['mpq'] != 'undefined'){
   var mpq = [];
   mpq.push(["init", "#{$MixpanelAPIToken}"]);
   (function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
+
+  if (CommonPlace.community_attrs){
+    mpq.register({'community': CommonPlace.community_attrs.slug});
+  }
+
+  if (CommonPlace.account_attrs){
+    mpq.identify(CommonPlace.account_attrs.email);
+    mpq.register({'email': CommonPlace.account_attrs.email,
+                  'referral_source': CommonPlace.account_attrs.referral_source});
+    mpq.name_tag(CommonPlace.account_attrs.name + ' - ' + CommonPlace.account_attrs.email);
+  }
 }
 //]]>
 </script>
@@ -100,13 +111,13 @@ script
     community = ''
     account = ''
 
-    if current_user
-      account << "CommonPlace.account_attrs = #{serialize(Account.new(current_user))};\n"
-      account << "if (window.Account) CommonPlace.account = new Account(CommonPlace.account_attrs);"
-    end
     if current_community
       community << "CommonPlace.community_attrs = #{serialize(current_community)};\n"
       community << "if (window.Community) CommonPlace.community = new Community(CommonPlace.community_attrs);"
+    end
+    if current_user
+      account << "CommonPlace.account_attrs = #{serialize(Account.new(current_user))};\n"
+      account << "if (window.Account) CommonPlace.account = new Account(CommonPlace.account_attrs);"
     end
 
     raw <<script
