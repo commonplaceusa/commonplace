@@ -81,13 +81,6 @@ $ () -> # dom ready
   # todo: move somewhere more generic
   $('input[placeholder], textarea[placeholder]').placeholder()
 
-  # header sign-in
-  # todo: move somewhere more generic
-  $('#sign_in_button').click ()  ->
-    $(this).toggleClass("open")
-    $(this).siblings("#sign_in_form").children("form").slideToggle()
-
-
   $('a[data-action=submit]').click (event) ->
     unless $(this).hasClass('disabled')
       $(this).closest('form').submit()
@@ -129,7 +122,7 @@ $ () -> # dom ready
     $("#file_input_fix input").val($(this).val().replace(/^.*\\/,""))
 
 
-  $("[data-phauxCheckbox]").each () ->
+  $("[data-phauxCheckbox]").each () -> # todo: test
     $checkbox = $("input:checkbox", this);
     $phauxCheckbox = $(this)
     $(this).closest('.label').bind 'click', () ->

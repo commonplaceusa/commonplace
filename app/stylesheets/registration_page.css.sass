@@ -5,13 +5,15 @@
 @import logged_out_header
 @import neutral_notification
 
+$pageWidth: 832px
+
 body
   // Todo: can we DRY this?
   font-family: Rockwell,Georgia,Times,"Times New Roman",serif
   background-color: #cee7fe
 
 #header #nav_wrapper
-  width: 843px
+  width: $pageWidth
 
 #main
   width: 100%
@@ -83,7 +85,7 @@ form.crop
     width: 16.7%
 
     .wrap
-      width: 884px
+      width: $pageWidth
       margin: 0px auto
 
   #step2, #step3, #step4, #step5
