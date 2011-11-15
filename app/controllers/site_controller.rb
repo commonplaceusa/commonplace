@@ -40,9 +40,15 @@ class SiteController < ApplicationController
     if community
       redirect_to community_landing_path(community.slug)
     else
-      @request = Request.new({community_name: "#{location['city']}, #{location['region_code']}"})
+      render :text => "<pre>#{location.inspect.gsub(',', ",\n")}</pre><br/><pre>#{request.env.inspect.gsub(',', ",\n")}</pre>"
+      return
+
+      options = {}
+      if city = location['city'] && state = location['region_code']
+        options.merge({community_name: "#{city}, #{state}" })
+      end
+      @request = Request.new(options)
       render 'site/index', :layout => 'starter_site'
-      #render :text => "no community: <a href='#{root_path}'>#{root_path}</a><br/><br/><pre>#{location.to_yaml}</pre>"
     end
   end
   
