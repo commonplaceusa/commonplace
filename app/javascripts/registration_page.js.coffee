@@ -28,7 +28,7 @@ form_initializers = { # takes a selector and returns an initialized .step
     this.find('.registrar_name').html(data['first_name']).end()
 
   '#step3': (data) -> # avatar
-    console.log 'setting image from these args', data
+    console.log 'setting image from these args', data                    `
     unless data['avatar']
       console.log 'sending step 4 instead'
       return initialize_step '#step4'

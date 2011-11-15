@@ -1,30 +1,8 @@
 !!! 5
 %html{}
   %head
-    %link{ :href=> 'https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css', :rel =>"stylesheet", :type =>"text/css"}
-    %link{ :href=> 'https://fonts.googleapis.com/css?family=Rokkitt:400,700', :rel =>"stylesheet", :type =>"text/css"}
+    = render :partial => 'layouts/common_head', :locals => { :javascripts => ["registration_page"], :stylesheets => ["registration_page"] }
 
-    %meta{ :content => "text/html;charset=utf-8", "http-equiv" => "Content-Type" }
-    %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
-    %meta{ :name => "description", :content => "The #{params[:community] && current_community.name} CommonPlace is an online community bulletin board for neighbors in #{params[:community] && current_community.name}, designed to make it easy for neighbors and community groups to share and connect." }
-    = csrf_meta_tag
-
-    %title= "CommonPlace #{ params[:community] && current_community.name}"
-
-    %link{ :href => image_path('favicon.png'), :rel => "icon", :type => "image/png" }
-    = stylesheet_link_tag "registration_page"
-    = javascript_include_tag "https://exceptional-js.heroku.com/exceptional.js"
-    %script{:type => 'text/javascript'}
-      Exceptional.setHost('exceptional-api.heroku.com');
-      Exceptional.setKey('0556a141945715c3deb50a0288ec3bea5417f6bf');
-
-    %script{:type => "text/javascript"}
-      var mpq = [];
-      mpq.push(["init", "#{$MixpanelAPIToken}"]);
-      (function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
-    = stylesheet_link_tag "registration_page"
-    :javascript
-      CommonPlace = {};
   %body
 
     = render 'layouts/registration_header'
@@ -35,8 +13,3 @@
 
 
   = render "layouts/footer"
-
-  = javascript_include_tag "registration_page"
-
-
-

@@ -108,3 +108,13 @@ daily_bulletin:
   new-feed-action-title: Register a Community Feed
   new-feed-action-body: |
     Are you part of a campus organization or cause that wants to send announcements and events through {{community_name}}'s CommonPlace?
+
+n_subscribers_feed_notification:
+  body: |
+    <p>Dear {{first_name}},</p>
+    <p>Your organization feed -- {{feed_name}} -- recently gained its {{number_of_subscribers}}th subscriber! We hope your {{feed_name}}'s feed can continue to gain subscribers and be a useful tool to get the word out about announcements and events.</p>
+    <p>Please help give back to the community-building network by inviting neighbors to CommonPlace.  The more {{community_name}} residents on CommonPlace, the better a tool CommonPlace is for community engagement... and the more neighbors there are who can see {{feed_name}}'s announcements!</p>
+    <p>{{invitation_link}}</p>
+    <p>Invite neighbors on board to help make CommonPlace an even better place to share and connect with your neighbors!</p>
+    <p>Thanks for being a great neighbor,</p>
+    <p>The {{community_name}} CommonPlace Team</p>

@@ -207,4 +207,9 @@ class Community < ActiveRecord::Base
     self.users.count
   end
 
+  def discount_businesses
+    # Stub to fix undefined method error temporarily
+    []
+  end
+
 end
