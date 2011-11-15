@@ -5,7 +5,7 @@
           <div class="group label">
             <%= image_tag(group.avatar_url) %>
             <div class="unchecked" data-phauxCheckbox="true">
-              <input class="feedId" name="feed_ids[]" value="<%= feed.id.to_s %>" type="checkbox">
+              <input class="groupId" name="group_ids[]" value="<%= group.id.to_s %>" type="checkbox">
             </div>
             <h3><%= group.name %></h3>
 
