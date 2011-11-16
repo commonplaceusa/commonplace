@@ -27,7 +27,11 @@ var Wire = CommonPlace.View.extend({
     var self = this;
     var $ul = this.$("ul.wire-list");
     this.collection.each(function(model) {
-      var view = new self.options.itemView({model: model, account: CommonPlace.account, community: CommonPlace.community});
+      var view = new self.options.itemView({ 
+        model: model, 
+        account: CommonPlace.account, 
+        community: CommonPlace.community
+      });
       $ul.append(view.render().el);
     });
   },
@@ -48,15 +52,11 @@ var Wire = CommonPlace.View.extend({
     this.fetchCurrentPage(function() { self.appendCurrentPage(); });
   },
   
-  
-  
-  
-  
-  
   events: {
     "click a.more": "showMore",
     "keyup form.search input": "debounceSearch",
-    "submit form.search": "search"
+    "submit form.search": "search",
+    "click form.search input.complete": "cancelSearch"
   },
 
   currentPage: function() {
@@ -84,11 +84,24 @@ var Wire = CommonPlace.View.extend({
   query: "",
 
   search: function(event) {
-    event.preventDefault();
-    this.currentQuery = this.$("form.search input").val();
+    if (event) { event.preventDefault(); }
+    var $input = this.$("form.search input");
+    this.currentQuery = $input.val();
     this.$("ul").empty();
+    $input.removeClass("complete").addClass("waiting");
     var self = this;
-    this.fetchCurrentPage(function() { self.appendCurrentPage(); });
+    this.fetchCurrentPage(function() { 
+      self.appendCurrentPage(); 
+      $input.removeClass("waiting");
+      if ($input.val() !== "") { $input.addClass("complete"); }
+    });
+  },
+
+  cancelSearch: function(e) { 
+    if (e.offsetX < 20) { // clicked on icon
+      this.$("form.search input").val("");
+      this.search();
+    }      
   },
 
   isSearchEnabled: function() { return this.isActive('wireSearch');  }
