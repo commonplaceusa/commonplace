@@ -48,7 +48,7 @@ class API
       feed = Feed.find(params[:id] || request_body['id'])
       halt [401, "wrong community"] unless in_comm(feed.community.id)
       current_account.feeds << feed
-      if feed.users.count == Feed.subscriber_count_email_trigger + 1
+      if feed.subscribers.count == Feed.subscriber_count_email_trigger + 1
         deliver_n_feed_subscribers_notification(feed.id)
       end
       serialize(Account.new(current_account))
