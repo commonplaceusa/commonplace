@@ -23,56 +23,48 @@ var GroupSubresourcesView = CommonPlace.View.extend({
 
   showGroupPosts: function() {
     var account = this.account;
-    var wireView = new PaginatingWire({
+    var wireView = new Wire({
       collection: this.groupPostsCollection,
       account: this.account,
       el: this.$(".group-posts .wire"),
       emptyMessage: "No posts here yet",
-      modelToView: function(model) {
-        return new GroupPostWireItem({ model: model, account: account });
-      }
+      itemView: GroupPostWireItem
     });
     wireView.render();
   },
 
   showGroupMembers: function() {
     var account = this.account;
-    var wireView = new PaginatingWire({
+    var wireView = new Wire({
       collection: this.groupMembersCollection,
       account: this.account,
       el: this.$(".group-members .wire"),
       emptyMessage: "No members yet",
-      modelToView: function(model) {
-        return new UserWireItem({ model: model, account: account });
-      }
+      itemView: UserWireItem
     });
     wireView.render();
   },
 
   showAnnouncements: function() {
     var account = this.account;
-    var wireView = new PaginatingWire({
+    var wireView = new Wire({
       collection: this.groupAnnouncementsCollection,
       account: this.account,
       el: this.$(".group-announcements .wire"),
       emptyMessage: "No announcements here yet",
-      modelToView: function(model) {
-        return new AnnouncementWireItem({ model: model, account: account });
-      }
+      itemView: AnnouncementWireItem
     });
     wireView.render();
   },
 
   showEvents: function() {
     var account = this.account;
-    var wireView = new PaginatingWire({
+    var wireView = new Wire({
       collection: this.groupEventsCollection,
       account: this.account,
       el: this.$(".group-events .wire"),
       emptyMessage: "No events here yet",
-      modelToView: function(model) {
-        return new EventWireItem({ model: model, account: account });
-      }
+      itemView: EventWireItem
     });
     wireView.render();
   },
