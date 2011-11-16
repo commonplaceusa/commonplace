@@ -46,9 +46,7 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.post-resources",
         emptyMessage: "No posts here yet",
         collection: postsCollection,
-        modelToView: function(model) {
-          return new PostWireItem({ model: model, account: self.options.account });
-        }
+        itemView: PostWireItem
       });
     },
 
@@ -57,9 +55,7 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.event-resources",
         emptyMessage: "No events here yet",
         collection: self.options.community.events,
-        modelToView: function(model) {
-          return new EventWireItem({ model: model, account: self.options.account });
-        }
+        itemView: EventWireItem
       });
     },
     
@@ -68,9 +64,7 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.announcement-resources",
         emptyMessage: "No announcements here yet",
         collection: self.options.community.announcements,
-        modelToView: function(model) {
-          return new AnnouncementWireItem({ model: model, account: self.options.account });
-        }
+        itemView: AnnouncementWireItem
       });
     },
 
@@ -79,9 +73,7 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.group-post-resources",
         emptyMessage: "No posts here yet",
         collection: self.options.community.groupPosts,
-        modelToView: function(model) {
-          return new GroupPostWireItem({ model: model, account: self.options.account });
-        }
+        itemView: GroupPostWireItem
       });
     },
 
@@ -91,9 +83,7 @@ var CommunityResources = CommonPlace.View.extend({
         emptyMessage: "No posts here yet",
         collection: self.options.community.users,
         active: 'users',
-        modelToView: function(model) {
-          return new UserWireItem({ model: model, account: self.options.account });
-        }
+        itemView: UserWireItem
       });
     },
 
@@ -103,9 +93,7 @@ var CommunityResources = CommonPlace.View.extend({
         emptyMessage: "No posts here yet",
         collection: self.options.community.groups,
         active: 'groups',
-        modelToView: function(model) {
-          return new GroupWireItem({ model: model, account: self.options.account });
-        }
+        itemView: GroupWireItem
       });
     },
 
@@ -115,14 +103,12 @@ var CommunityResources = CommonPlace.View.extend({
         emptyMessage: "No posts here yet",
         collection: self.options.community.feeds,
         active: 'feeds',
-        modelToView: function(model) {
-          return new FeedWireItem({ model: model, account: self.options.account });
-        }
+        itemView: FeedWireItem
       });
     }
   },
 
-  PaginatingResourceWire: PaginatingWire.extend({
+  PaginatingResourceWire: Wire.extend({
     className: "resources",
     _defaultPerPage: 15
   }),

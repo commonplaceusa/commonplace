@@ -2,11 +2,7 @@ var Wire = CommonPlace.View.extend({
   className: "wire",
   template: "wires/wire",
 
-  initialize: function(options) { 
-    if ($.isFunction(options.modelToView)) {
-      this.modelToView = options.modelToView;
-    }
-  },
+  initialize: function(options) {},
 
   aroundRender: function(render) {
     var self = this;
@@ -16,10 +12,6 @@ var Wire = CommonPlace.View.extend({
   },
 
   afterRender: function() { this.appendCurrentPage(); },
-
-  modelToView: function() { 
-    throw new Error("This is an abstract class, use a child of this class");
-  },
   
   fetchCurrentPage: function(callback) {
     var data = { limit: this.perPage(), page: this.currentPage() };
@@ -35,7 +27,8 @@ var Wire = CommonPlace.View.extend({
     var self = this;
     var $ul = this.$("ul.wire-list");
     this.collection.each(function(model) {
-      $ul.append(self.modelToView(model).render().el);
+      var view = new self.options.itemView({model: model, account: CommonPlace.account, community: CommonPlace.community});
+      $ul.append(view.render().el);
     });
   },
 
@@ -54,13 +47,50 @@ var Wire = CommonPlace.View.extend({
     this.nextPage();
     this.fetchCurrentPage(function() { self.appendCurrentPage(); });
   },
-
-  currentPage: function() {
-    return 0;
+  
+  
+  
+  
+  
+  
+  events: {
+    "click a.more": "showMore",
+    "keyup form.search input": "debounceSearch",
+    "submit form.search": "search"
   },
 
+  currentPage: function() {
+    return (this._currentPage || this.options.currentPage || 0);
+  },
+
+  areMore: function() {
+    return this.collection.length >= this.perPage();
+  },
+
+  _defaultPerPage: 10,
+
   perPage: function() {
-    return 0;
-  }
+    return (this.options.perPage || this._defaultPerPage);
+  },
+
+  nextPage: function() {
+    this._currentPage = this.currentPage() + 1;
+  },
+
+  debounceSearch: _.debounce(function() {
+    this.$("form.search").submit();
+  }, CommonPlace.autoActionTimeout),
+
+  query: "",
+
+  search: function(event) {
+    event.preventDefault();
+    this.currentQuery = this.$("form.search input").val();
+    this.$("ul").empty();
+    var self = this;
+    this.fetchCurrentPage(function() { self.appendCurrentPage(); });
+  },
+
+  isSearchEnabled: function() { return this.isActive('wireSearch');  }
 
 });
