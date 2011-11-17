@@ -27,12 +27,10 @@ var Wire = CommonPlace.View.extend({
       && $window.scrollTop() < $el.offset().top + $el.height();
     }
   
-    var $end = self.$(".end");
+    var $end = this.$(".end");
     if (isOnScreen($end) && this.$(".loading:visible").length < 1) {
-      var $loading = self.$(".end > .loading");
-      $loading.show();
+      this.$(".loading").show();
       this.showMore();
-      $loading.hide();
     }
   },
   
@@ -40,13 +38,18 @@ var Wire = CommonPlace.View.extend({
     var data = { limit: this.perPage(), page: this.currentPage() };
     if (this.currentQuery) { data.query = this.currentQuery; }
     
+    var self = this;
     this.collection.fetch({
       data: data,
-      success: callback
+      success: callback,
+      error: function(a, b) {
+        self.$(".loading").text("Sorry, couldn't load.");
+      }
     });
   },
 
   appendCurrentPage: function() {
+    this.$(".loading").hide();
     var self = this;
     var $ul = this.$("ul.wire-list");
     this.collection.each(function(model) {
@@ -58,15 +61,10 @@ var Wire = CommonPlace.View.extend({
       $ul.append(view.render().el);
     });
   },
-
   
-  isEmpty: function() {
-    return this.collection.isEmpty();  },
+  isEmpty: function() { return this.collection.isEmpty(); },
 
-  emptyMessage: function() {
-    return this.options.emptyMessage;
-  },
-    
+  emptyMessage: function() { return this.options.emptyMessage; },
 
   showMore: function(e) {
     var self = this;
@@ -76,7 +74,6 @@ var Wire = CommonPlace.View.extend({
   },
   
   events: {
-    "click a.more": "showMore",
     "keyup form.search input": "debounceSearch",
     "submit form.search": "search",
     "click form.search input.complete": "cancelSearch"
