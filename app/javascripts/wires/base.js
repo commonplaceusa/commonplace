@@ -11,7 +11,30 @@ var Wire = CommonPlace.View.extend({
     });
   },
 
-  afterRender: function() { this.appendCurrentPage(); },
+  afterRender: function() {
+    this.appendCurrentPage();
+    
+    var self = this;
+    $(window).scroll(function() { self.onScroll(); });
+  },
+  
+  onScroll: function() {
+  
+    var isOnScreen = function($el) {
+      var $window = $(window);
+      if ($($el).length < 1) { return false; }
+      return $window.scrollTop() + $window.height() > $el.offset().top
+      && $window.scrollTop() < $el.offset().top + $el.height();
+    }
+  
+    var $end = self.$(".end");
+    if (isOnScreen($end) && this.$(".loading:visible").length < 1) {
+      var $loading = self.$(".end > .loading");
+      $loading.show();
+      this.showMore();
+      $loading.hide();
+    }
+  },
   
   fetchCurrentPage: function(callback) {
     var data = { limit: this.perPage(), page: this.currentPage() };
@@ -47,7 +70,7 @@ var Wire = CommonPlace.View.extend({
 
   showMore: function(e) {
     var self = this;
-    e.preventDefault();
+    e && e.preventDefault();
     this.nextPage();
     this.fetchCurrentPage(function() { self.appendCurrentPage(); });
   },
