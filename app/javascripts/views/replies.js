@@ -17,21 +17,34 @@ var RepliesView = CommonPlace.View.extend({
   events: {
     "keydown form textarea": "sendReply",
     "focus form textarea": "showHint",
-    "blur form textarea": "hideHint"
+    "blur form textarea": "hideHint",
+    "click .replies-more": "showMoreReplies"
   },
 
   appendReplies: function() {
     var self = this;
-    var elements = this.collection.map(function(reply) {
-      var view = new ReplyWireItem({ model: reply, account: self.account });
-      view.render();
-      return view.el; 
+    var $ul = this.$("ul.reply-list");
+
+    this.collection.each(function(reply, index) {
+      var replyview = new ReplyWireItem({ model: reply, account: self.account });
+
+      $ul.append(replyview.render().el);
+      if (index < self.hiddenReplyCount() ){
+        $(replyview.el).hide();
+      }
+
     });
-    this.$("ul.reply-list").append(elements);
   },
 
   pluralizedReplies: function(){
       return (this.hiddenReplyCount() > 1) ? 'replies' : 'reply';
+  },
+
+  hiddenReplyCount: function() {
+    if (!this._hiddenReplyCount) {
+      this._hiddenReplyCount = (this.collection.length > 2) ? this.collection.length - 3 : 0;
+    }
+    return this._hiddenReplyCount;
   },
 
   sendReply: function(e) {
@@ -46,6 +59,12 @@ var RepliesView = CommonPlace.View.extend({
         this.collection.create({ body: this.$("[name=body]").val()});
       }
     }
+  },
+
+  showMoreReplies: function(event){
+    event.preventDefault();
+    this.$('.reply-item').show();
+    this.$('.replies-more').hide();
   },
   
   showHint: function(e) { this.$(".enter-hint").show(); },
