@@ -7,7 +7,7 @@ class PasswordResetsController < Devise::PasswordsController
     
     if user
       user.send_reset_password_instructions
-      flash[:notice] = "An email will be sent to #{self.resource.email} containing password reset instructions"
+      flash[:notice] = "An email will be sent to #{user.email} containing password reset instructions"
       redirect_to new_user_session_url
     else 
       render :new
