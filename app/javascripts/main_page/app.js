@@ -55,6 +55,7 @@ var MainPageRouter = Backbone.Router.extend({
     this.infoBox = this.view.infoBox;
 
     $("#main").replaceWith(this.view.el);
+    CommonPlace.layout.reset();
   },
 
   routes: {
