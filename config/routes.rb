@@ -40,6 +40,7 @@ Commonplace::Application.routes.draw do
   match "/admin/overview_no_render" => "admin#overview_no_render"
   match "/admin/clipboard" => "admin#clipboard"
   match "/admin/show_referrers" => "admin#show_referrers"
+  match "/admin/show_requests" => "admin#show_requests"
   match "/admin/map" => "admin#map"
 
   # Blog and Starter Site routes

@@ -6,4 +6,5 @@ class RequestsController < ApplicationController
     @request.save
     redirect_to('/')
   end
+
 end

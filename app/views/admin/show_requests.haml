@@ -1,0 +1,46 @@
+:css
+  table {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  td {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    text-align: center;
+  }
+  
+  h1 {
+    margin: 20px auto;
+    font-size: 28px;
+    color: blue;
+  }
+
+.requests
+  %h1 Community Requests
+  %table
+    %tr
+      %th{:width => "10%"} Date
+      %th Community Name
+      %th Requester Name
+      %th Requester Email
+      %th Sponsoring Organization
+    - @requests.each do |r|
+      %tr
+        %td= r.created_at.getlocal.to_date
+        %td= r.community_name
+        %td= r.name
+        %td= r.email
+        %td= r.sponsor_organization
