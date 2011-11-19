@@ -94,9 +94,9 @@ class StatisticsAggregator
       communities[c.name] = historical[c.name][0]
     end
 
-    overall[:page_views_today] = GoogleAnalytics::Pageviews.results(profile, :start_date => 1.day.ago, :end_date => 0.days.ago).first.pageviews.to_i
-    overall[:page_views_this_week] = GoogleAnalytics::Pageviews.results(profile, :start_date => 7.days.ago, :end_date => 0.days.ago).first.pageviews.to_i
-    overall[:average_page_views_per_day] = (GoogleAnalytics::Pageviews.results(profile, :start_date => AVERAGE_DAYS.day.ago, :end_date => 0.days.ago).first.pageviews.to_i / AVERAGE_DAYS).round(2)
+    overall[:page_views_today] = DATA_UNAVAILABLE_MESSAGE
+    overall[:page_views_this_week] = DATA_UNAVAILABLE_MESSAGE
+    overall[:average_page_views_per_day] = DATA_UNAVAILABLE_MESSAGE
 
     overall[:unique_platform_visits_today] = DATA_UNAVAILABLE_MESSAGE
     overall[:average_number_of_visitors_daily] = DATA_UNAVAILABLE_MESSAGE
