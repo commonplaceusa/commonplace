@@ -37,7 +37,7 @@ class StatisticsAggregator
   def self.statistics_for_community_between_days_ago(c, yday, tday)
     community_average_days = StatisticsAggregator.average_days(c) || AVERAGE_DAYS
     result = {}
-    result[:total_users] = User.between(c.launch_date,tday.days.ago).select { |u| u.community == c}.count
+    result[:total_users] = User.between(c.launch_date.to_datetime,tday.days.ago).select { |u| u.community == c}.count
     result[:user_gains_today] = User.between(yday.days.ago.utc, tday.days.ago).select {|u| u.community == c}.count
 
     result[:percentage_of_field] = (result[:total_users] / c.households.to_f).round(4)
