@@ -7,7 +7,8 @@ var PostForm = CommonPlace.View.extend({
     "click button": "createPost",
     "click [name=commercial][value=yes]": "showPublicityWarning",
     "click [name=commercial][value=no]": "hidePublicityWarning",
-    "focusin input, textarea": "onFormFocus"
+    "focusin input, textarea": "onFormFocus",
+    "keydown textarea": "resetLayout"
   },
 
   afterRender: function() {
@@ -58,13 +59,27 @@ var PostForm = CommonPlace.View.extend({
   onFormFocus: function() {
     $moreInputs = this.$(".on-focus");
     if (!$moreInputs.is(":visible")) {
-      $moreInputs.show("blind", 
-                       // animate to it's natural height (set explicitly to
-                       // avoid choppiness)
-                       { height: $moreInputs.actual('height') }, 
-                       // set height back to auto so the element can
-                       // naturally expand/contract
-                       function() { $moreInputs.css({height: "auto"}); });
+      var naturalHeight = $moreInputs.actual('height');
+      $moreInputs.css({ height: 0 });
+      $moreInputs.show();
+      $moreInputs.animate(
+        // animate to it's natural height (set explicitly to
+        // avoid choppiness)
+        { height: naturalHeight },
+        // set height back to auto so the element can
+        // naturally expand/contract
+        {
+          complete: function() { 
+            $moreInputs.css({height: "auto"}); 
+            CommonPlace.layout.reset();
+          }, 
+          step: function() {
+            CommonPlace.layout.reset();
+          }
+        }
+      );
     }
-  }
+  },
+
+  resetLayout: function() { CommonPlace.layout.reset(); }
 });

@@ -214,26 +214,51 @@ $text: #738392
     padding: 15px
 
 body.fixedLayout
-
-  #info-upper
-    position: relative
-
-    #info-list-area
+  #info-box
+    #info-upper
+      position: absolute
+      top: 10px
+      bottom: 25px
+      left: 10px
+      right: 10px
       height: auto
-      position: absolute
-      top: 0
-      bottom: 0
 
-    #profile-area
-      overflow-y: scroll
-      overflow-x: hidden
-      position: absolute
-      top: 0
-      bottom: 0
-      right: 0
+      #info-list-area
+        height: auto
+        position: absolute
+        top: 0
+        bottom: 0
 
-      .profile-top
-        width: 120px
+        #info-list
+          height: auto
+          position: absolute
+          top: 0
+          bottom: 30px
+          left: 0 
+          right: 0
+            
+
+        input.search
+          position: absolute
+          bottom: 0
+          
+          
+      #profile-area
+        position: absolute
+        overflow-y: scroll
+        overflow-x: hidden
+        top: 0
+        bottom: 0
+        right: 0
+
+        .profile-top
+          width: 120px
+
+    ul.filter
+      position: absolute
+      bottom: 5px
+      left: 10px
+      right: 10px
         
 #info-list::-webkit-scrollbar
   width: 6px
