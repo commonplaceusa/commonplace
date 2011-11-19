@@ -4,7 +4,7 @@ gem 'rails', "~> 3.1.0"
 gem 'rack' 
 
 # API
-gem 'sinatra' # Powers the api
+gem 'sinatra'
 gem 'rack-contrib'
 gem 'sham_rack' # For using the api in-process
 gem 'faraday' # For using the api in-process
@@ -88,6 +88,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'taps', :git => 'https://github.com/dabio/taps.git'
   gem 'guard-jslint-on-rails'
   gem 'rails-dev-tweaks', '~> 0.5.0' # Don't reload the code when serving assets
   gem 'factory_girl' # we use factory_girl to generate models for tests
