@@ -20,6 +20,10 @@ class GroupPostNotification < PostNotification
     "#{poster_name} just posted to #{group_name}"
   end
 
+  def reply_to
+    "reply+group_post_#{post.id}@ourcommonplace.com"
+  end
+
   def poster
     @post.user
   end
