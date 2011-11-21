@@ -107,8 +107,10 @@ script
       raw <<script
 <script type='text/javascript'>
 //<![CDATA[
+$(document).ready(function(){
   #{account}
   #{community}
+});
 //]]>
 </script>
 script

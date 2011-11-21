@@ -90,6 +90,10 @@ end
 group :development, :test do
   gem 'taps', :git => 'https://github.com/dabio/taps.git'
   gem 'guard-jslint-on-rails'
+  gem 'guard-rails-assets'
+  gem 'guard-rspec'
+  gem 'guard-sass'
+  
   gem 'rails-dev-tweaks', '~> 0.5.0' # Don't reload the code when serving assets
   gem 'factory_girl' # we use factory_girl to generate models for tests
   gem 'forgery' # we use forgery to generate data for tests
@@ -110,7 +114,8 @@ group :linux do
 end
 
 group :osx do
-
+  gem 'rb-fsevent'
+  gem 'growl_notify'
 end
 
 group :test do
