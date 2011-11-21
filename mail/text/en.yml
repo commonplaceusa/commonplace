@@ -55,6 +55,8 @@ invitation:
     <p class="quote">"{{message}}"</p>
     {{/message}}
 
+    <p>You can join the {{community_name}} CommonPlace by visiting {{community_register_url}}</p>
+
 n_subscribers_feed_notification:
   body: |
     <p>Dear {{first_name}},</p>
