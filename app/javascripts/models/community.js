@@ -1,21 +1,31 @@
  
 var Community = Model.extend({
   initialize: function() {
-    this.posts = new Posts([], { uri: this.link("posts") });
-    this.events = new Events([], { uri: this.link("events") });
-    this.announcements = new Announcements([], { uri: this.link("announcements") });
-    this.groupPosts = new GroupPosts([], { uri: this.link("group_posts") });
-    this.users = new Users([], { uri: this.link("users") });
-    this.feeds = new Feeds([], { uri: this.link("feeds") });
-    this.groups = new Groups([], { uri: this.link("groups") });
+    this.posts = this.setup(Posts, "posts");
+    this.events = this.setup(Events, "events");
+    this.announcements = this.setup(Announcements, "announcements");
+    this.groupPosts = this.setup(GroupPosts, "group_posts");
+    this.users = this.setup(Users, "users");
+    this.feeds = this.setup(Feeds, "feeds");
+    this.groups = this.setup(Groups, "groups");
     this.search = {
-      users: new Users([], { uri: this.link("users_search") }),
-      feeds: new Feeds([], { uri: this.link("feeds_search") }),
-      groups: new Groups([], { uri: this.link("groups_search") }),
-      groupPosts: new GroupPosts([], {uri: this.link("groupPosts_search")}),
-      posts: new Posts([], {uri: this.link("posts_search")}),
-      announcements: new Announcements([], {uri: this.link("announcements_search")}),
-      events: new Events([], {uri: this.link("events_search")})
-    };
+      users: this.setup(Users, "users"),
+      feeds: this.setup(Feeds, "feeds"),
+      groups: this.setup(Groups, "groups"),
+      groupPosts: this.setup(GroupPosts, "group_posts"),
+      posts: this.setup(Posts, "posts"),
+      announcements: this.setup(Announcements, "announcements"),
+      events: this.setup(Events, "events")
+    }
+    this.categories = {
+      neighborhood: this.setup(Posts, "posts_neighborhood"),
+      offers: this.setup(Posts, "posts_offers"),
+      help: this.setup(Posts, "posts_help"),
+      publicity: this.setup(Posts, "posts_publicity"),
+      other: this.setup(Posts, "posts_other")
+  },
+  
+  setup: function(collectionClass, url) {
+    return new collectionClass([], { uri: this.link(url) });
   }
 });
