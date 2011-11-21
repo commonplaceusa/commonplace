@@ -114,8 +114,8 @@ group :linux do
 end
 
 group :osx do
-  gem 'rb-fsevent'
-  gem 'growl_notify'
+  #gem 'rb-fsevent'
+  #gem 'growl_notify'
 end
 
 group :test do
