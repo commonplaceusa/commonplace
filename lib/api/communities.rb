@@ -50,7 +50,8 @@ class API
       post = Post.new(:user => current_account,
                       :community_id => community_id,
                       :subject => request_body['title'],
-                      :body => request_body['body'])
+                      :body => request_body['body'],
+                      :category => request_body["category"])
       if post.save
         kickoff.deliver_post(post)
         serialize(post)
