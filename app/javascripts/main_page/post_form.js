@@ -12,7 +12,8 @@ var PostForm = CommonPlace.View.extend({
   afterRender: function() {
     this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$("textarea").autoResize();
-    this.$("select.category").dropkick();
+    // dropkick isn't playing well with optgroups
+    //this.$("select.category").dropkick();
   },
   
   createPost: function(e) {
@@ -22,15 +23,37 @@ var PostForm = CommonPlace.View.extend({
     
     this.$(".spinner").show();
     this.$("button").hide();
-
-    var self = this;
-    this.collection.create({
+    
+    var data = {
       title: this.$("[name=title]").val(),
-      body: this.$("[name=body]").val(),
-      category: this.$("[name=category]").val()
-    }, {
-      success: function() { 
-        self.render(); 
+      body: this.$("[name=body]").val()
+    }
+    
+    var isGroupPost = this.$("[name=category]").val() == "discussion";
+    var groups = CommonPlace.community.groups;
+    var self = this;
+    
+    if (isGroupPost) {
+      var groupId = this.$("[name=type] option:selected").attr("data-group-id");
+      groups.fetch({
+        success: function() {
+          var group = groups.find(function(g) {
+            return g.id == groupId;
+          });
+          self.sendPost(group.posts, data);
+        }
+      });
+    } else {
+      data["category"] = this.$("[name=category]").val();
+      this.sendPost(this.collection, data);
+    }
+  },
+  
+  sendPost: function(postCollection, data) {
+    var self = this;
+    postCollection.create(data, {
+      success: function() {
+        self.render();
         self.resetLayout();
       },
       error: function(attribs, response) {
@@ -71,5 +94,7 @@ var PostForm = CommonPlace.View.extend({
     }
   },
 
-  resetLayout: function() { CommonPlace.layout.reset(); }
+  resetLayout: function() { CommonPlace.layout.reset(); },
+  
+  groups: function() { return this.options.community.get('groups'); }
 });
