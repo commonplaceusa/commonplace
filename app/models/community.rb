@@ -72,7 +72,7 @@ class Community < ActiveRecord::Base
       "posts_offers" => "/communities/#{id}/posts/offers",
       "posts_help" => "/communities/#{id}/posts/help",
       "posts_publicity" => "/communities/#{id}/posts/publicity",
-      "posts_other" => "communities/#{id}/posts/other"
+      "posts_other" => "/communities/#{id}/posts/other"
     }
   end
 

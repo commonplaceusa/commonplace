@@ -23,6 +23,7 @@ var Community = Model.extend({
       help: this.setup(Posts, "posts_help"),
       publicity: this.setup(Posts, "posts_publicity"),
       other: this.setup(Posts, "posts_other")
+    }
   },
   
   setup: function(collectionClass, url) {
