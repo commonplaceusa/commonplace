@@ -29,14 +29,69 @@ var LandingResources = CommonPlace.View.extend({
       this._wires = [
         (new PreviewWire({
           template: 'main_page.post-resources',
-          collection: postsCollection,
+          collection: CommonPlace.community.categories.neighborhood,
           account: this.account,
-          el: this.$(".posts.wire"),
+          el: this.$(".neighborhoodPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
           isRecent: true,
-          itemView: PostWireItem
-         })),
+          itemView: PostWireItem,
+          modelToView: function(model) {
+            return new PostWireItem({ model: model, account: self.options.account });
+          }
+        })),
+        
+        (new PreviewWire({
+          template: 'main_page.post-offer-resources',
+          collection: CommonPlace.community.categories.offers,
+          account: this.account,
+          el: this.$(".offerPosts.wire"),
+          fullWireLink: "#/posts",
+          emptyMessage: "No offers here yet.",
+          isRecent: true,
+          modelToView: function(model) {
+            return new PostWireItem({ model: model, account: self.options.account });
+          }
+        })),
+        
+        (new PreviewWire({
+          template: 'main_page.post-help-resources',
+          collection: CommonPlace.community.categories.help,
+          account: this.account,
+          el: this.$(".helpPosts.wire"),
+          fullWireLink: "#/posts",
+          emptyMessage: "No help requests here yet.",
+          isRecent: true,
+          modelToView: function(model) {
+            return new PostWireItem({ model: model, account: self.options.account });
+          }
+        })),
+        
+        (new PreviewWire({
+          template: 'main_page.post-publicity-resources',
+          collection: CommonPlace.community.categories.publicity,
+          account: this.account,
+          el: this.$(".publicityPosts.wire"),
+          fullWireLink: "#/posts",
+          emptyMessage: "No posts here yet.",
+          isRecent: true,
+          modelToView: function(model) {
+            return new PostWireItem({ model: model, account: self.options.account });
+          }
+        })),
+        
+        (new PreviewWire({
+          template: 'main_page.post-other-resources',
+          collection: CommonPlace.community.categories.other,
+          account: this.account,
+          el: this.$(".otherPosts.wire"),
+          fullWireLink: "#/posts",
+          emptyMessage: "No posts here yet.",
+          isRecent: true,
+          modelToView: function(model) {
+            return new PostWireItem({ model: model, account: self.options.account });
+          }
+        })),
         
         (new PreviewWire({
           template: 'main_page.event-resources',

@@ -48,6 +48,7 @@ module Serializer
         "user_id" => o.user_id,
         "replies" => serialize(o.replies.to_a),
         "last_activity" => o.last_activity.utc,
+        "category" => o.category,
         "links" => {
           "author" => "/users/#{o.user_id}",
           "replies" => "/posts/#{o.id}/replies",
