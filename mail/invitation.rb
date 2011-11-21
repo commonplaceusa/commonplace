@@ -26,6 +26,10 @@ class Invitation < MailBase
     inviter.community
   end
 
+  def community_register_url
+    "http://#{user.community.slug}.OurCommonPlace.com/"
+  end
+
   def community_name
     community.name
   end
