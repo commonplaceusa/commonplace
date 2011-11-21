@@ -68,10 +68,11 @@ class Community < ActiveRecord::Base
       "group_posts" => "/communities/#{id}/group_posts",
       "users" => "/communities/#{id}/users",
       "self" => "/communities/#{id}",
-      "feeds_search" => "/search/community/#{id}/feeds?query=",
-      "users_search" => "/search/community/#{id}/users?query=",
-      "groups_search" => "/search/community/#{id}/groups?query=",
-      "posts_search" => "/search/community/#{id}/posts?query="
+      "posts_neighborhood" => "/communities/#{id}/posts/neighborhood",
+      "posts_offers" => "/communities/#{id}/posts/offers",
+      "posts_help" => "/communities/#{id}/posts/help",
+      "posts_publicity" => "/communities/#{id}/posts/publicity",
+      "posts_other" => "communities/#{id}/posts/other"
     }
   end
 
