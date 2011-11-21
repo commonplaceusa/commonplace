@@ -57,6 +57,7 @@ class Post < ActiveRecord::Base
     end
     integer :community_id
     time :created_at
+    string :category
   end
 
 end

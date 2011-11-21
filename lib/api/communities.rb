@@ -104,6 +104,22 @@ class API
         serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
       end
     end
+    
+    get "/:community_id/posts/:category" do |community_id, category|
+      last_modified_by_updated_at(Post)
+      
+      if params["query"].present?
+        search(Post, params, community_id) do |search|
+          search.with(:category, category)
+        end
+      else
+        serialize(paginate(
+          Community.find(community_id).posts.
+          where(:category => category).
+          includes(:user, :replies)
+        ))
+      end
+    end
 
     get "/:community_id/events" do |community_id|
       last_modified([Event.unscoped.reorder("updated_at DESC").
