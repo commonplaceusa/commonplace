@@ -36,10 +36,6 @@ class Post < ActiveRecord::Base
     "Neighborhood Post"
   end
   
-  def category
-    super || "Announcement"
-  end
-  
   def owner
     self.user
   end
