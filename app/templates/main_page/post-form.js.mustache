@@ -5,19 +5,17 @@
 <textarea name="body" placeholder="Post a message to your neighbors"></textarea>
 
 <div class="on-focus">
-  <label>{{#t}}publicity.label{{/t}}</label>
-
-  <label class="radio">
-    <input type="radio" name="commercial" value="yes">
-    Yes
+  <label class="category">
+    What type of post is this?
+    <select name="category" class="category dk">
+      <option value="neighborhood">Sharing neighborhood info</option>
+      <option value="offers">Offering something</option>
+      <option value="help">Looking for help</option>
+      <option value="publicity">Publicizing a business or organization</option>
+      <option value="discussion">Discussion topic</option>
+      <option value="other">Other</option>
+    </select>
   </label>
-
-  <label class="radio">
-    <input type="radio" name="commercial" value="no" checked="yes">
-    No
-  </label>
-
-  <p class="warning">{{#t}}publicity.warning{{/t}}</p>
 
   <button>Post Now</button>
   <div class="spinner"></div>
