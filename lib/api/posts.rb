@@ -15,8 +15,9 @@ class API
       unless post.present?
         [404, "errors"]
       end
-      post.subject = request_body['title']
-      post.body    = request_body['body']
+      post.subject  = request_body['title']
+      post.body     = request_body['body']
+      post.category = request_body["category"]
 
       if auth(post) and post.save
         serialize(post)
