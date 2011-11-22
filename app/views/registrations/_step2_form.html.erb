@@ -1,0 +1,73 @@
+<!-- <a href="<%#= user_omniauth_authorize_path(:facebook, :state => current_community.id) %>" class="facebook_connect">
+  <%#= image_tag "buttons/facebook-sign-up.png" %>
+</a>
+
+<div class="or">
+  &mdash;&nbsp; or &nbsp;&mdash;
+</div> -->
+
+<%= semantic_form_for @user,
+                      :as => :registration,
+                      :url => '/api/registrations/add_profile',
+                      :html => {:multipart => true} do |f| %>
+    <%= f.inputs do %>
+
+        <% unless @user.is_facebook_user  %>
+            <%= f.input :password,
+                        :required => true,
+                        :input_html => {:class => 'required'} %>
+
+        <% end %>
+
+        <% if @user.is_facebook_user  %>
+            <img src="<%= @user.avatar_url %>"
+                 alt=""
+                 style="vertical-align:middle;float:left;width: 100px"/>
+            <%= f.input :avatar, :input_html => {:size => 25},
+                        :wrapper_html => {:class => "facebook"},
+                        :label => "Upload a different photo?:" %>
+            <div style="clear: both; height: 10px"></div>
+        <% else %>
+            <%= f.input :avatar, :input_html => {:size => 25} %>
+        <% end %>
+
+        <%= f.input :about %>
+        <%= f.input :interest_list,
+                    :as => :select,
+                    :collection => $interests,
+                    :multiple => true,
+                    :input_html => {"data-placeholder" => "Select some interests", "data-chosen" => 'true'},
+                    :label => "Select some interests to share with your neighbors:" %>
+        <%= f.input :skill_list,
+                    :as => :select,
+                    :collection => $skills,
+                    :multiple => true,
+                    :input_html => {"data-placeholder" => "Select some skills", "data-chosen" => 'true'},
+                    :label => "Select some skills you can share with your neighbors:" %>
+        <%= f.input :good_list,
+                    :as => :select,
+                    :collection => $goods,
+                    :multiple => true,
+                    :input_html => {"data-placeholder" => "Select some goods", "data-chosen" => 'true'},
+                    :label => "Select some goods you can share with your neighbors:" %>
+        <%= f.input :referral_source,
+                    :as => :select,
+                    :collection => [ # todo: i18n... later
+                            "Flyer at my door",
+                            "Someone knocked on my door",
+                            "In a meeting with #{current_community.organizer_name}",
+                            "At a table or booth at an event",
+                            "In an email",
+                            "On Facebook or Twitter",
+                            "On another website",
+                            "In the news",
+                            "Word of mouth",
+                            "Other"
+                    ] %>
+        <%= f.input :referral_metadata %>
+
+    <% end %>
+
+    <%# http://en.wikipedia.org/wiki/Geometric_Shapes %>
+    <a href="#step3" data-action="submit" class="formbutton big">Continue.. &nbsp; &#9654;</a>
+<% end %>

@@ -28,10 +28,7 @@ var CommunityResources = CommonPlace.View.extend({
 
   tabs: {
     landing: function(self) {
-      return new LandingResources({
-        account: self.options.account,
-        community: self.options.community
-      });
+      return new LandingResources();
     },
     
     posts: function(self) {

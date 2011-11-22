@@ -1,21 +1,28 @@
 class API
   
   class Base < Sinatra::Base
+    def public_api
+      false
+    end
 
     enable :raise_errors
     enable :logging
     enable :dump_errors
-    
+
+    before do
+      cache_control :public, :must_revalidate, :max_age => 0
+      content_type :json
+      authorize! unless public_api
+    end
+
     helpers do
 
       def current_account
-        @_user ||= if request.env["HTTP_AUTHORIZATION"].present?
-                     User.find_by_authentication_token(request.env["HTTP_AUTHORIZATION"])
-                   elsif params['authentication_token'].present?
-                     User.find_by_authentication_token(params[:authentication_token])
-                   else
-                     User.find_by_authentication_token(request.cookies['authentication_token'])
-                   end
+        token = request.env["HTTP_AUTHORIZATION"] ||
+                params['authentication_token'] ||
+                request.cookies['authentication_token']
+
+        @_user ||= User.find_by_authentication_token token
       end
 
       def current_user
@@ -68,12 +75,6 @@ class API
 
       NO_CALLBACK = ["no_callback"].to_json
 
-    end
-
-    before do 
-      cache_control :public, :must_revalidate, :max_age => 0
-      content_type :json
-      authorize!
     end
 
   end

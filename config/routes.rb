@@ -5,17 +5,7 @@ Commonplace::Application.routes.draw do
   match "/corunna" => redirect { "/owossocorunna" }
   match "/owosso" => redirect { "/owossocorunna" }
 
-  constraints :subdomain => "m" do
-    match "/:community" => "registrations#mobile_new"
-    match "/registration/profile" => "registrations#mobile_profile"
-  end
-
-  resource :registration, :only => [:new, :create] do
-    member do
-      get :profile, :avatar, :feeds, :groups
-      put :add_profile, :crop_avatar, :add_feeds, :add_groups
-    end
-  end
+  resource :registration, :only => [:new, :create]
 
   resources :feed_registrations, :only => [:new, :create] do
     member do
@@ -166,8 +156,6 @@ Commonplace::Application.routes.draw do
 
 
     resources :password_resets
-
-    match "/:community/registrations", :via => :post, :to => "registrations#create", :as => "create_registration"
 
     # Invitations
     resource :account do

@@ -1,10 +1,23 @@
 //= require chosen
 @import core
+@import 'shared/buttons'
+@import 'mixins'
 @import logged_out_header
 @import neutral_notification
+
+$pageWidth: 832px
+
 body
+  // Todo: can we DRY this?
   font-family: Rockwell,Georgia,Times,"Times New Roman",serif
   background-color: #cee7fe
+
+#header #nav_wrapper
+  width: $pageWidth
+
+#main
+  width: 100%
+  overflow-x: hidden
 
 .prelaunch-notification
   +neutral-notification
@@ -20,9 +33,8 @@ h1
   line-height: 1.2
   +text-shadow(#bfc8cf 1px 1px 1px)
 
-#registration_information
+.registration_information
   float: left
-  margin-left: 58px
   margin-right: 40px
   width: 370px
   position: relative
@@ -30,274 +42,370 @@ h1
   li 
     +inline-block
     +starBullet
-    font-size: 16px
+    font-size: 17px
     padding-left: 35px
 
   #learnmore
     position: relative
     left: 210px
 
-#main
-  form
-    margin-right: 75px
+
+.redbox
+  +redlightbox
+  position: relative
+  float: left
+  width: 372px
+  margin: 0px auto 10px
+  color: white
+  margin-bottom: 280px // allow scroll past footer
+
+
+  .fader
+    position: absolute
+    width: 100%
+    height: 100%
+    left: 0
+    background-color: #000
+    opacity: 0.3
+    z-index: 10
+    +border-radius(5px)
+    display: none
+
+form.crop
+  +redlightbox
+  text-align: center
+
+.slider
+  width: 600%
+
+  & > div
+    vertical-align: top
+    display: inline-block
     position: relative
-    float: left
-    margin-bottom: 250px
+    width: 16.7%
+
+    .wrap
+      width: $pageWidth
+      margin: 0px auto
+
+  #step2, #step3, #step4, #step5
+    display: none
+
+  #step1 input
+    margin-top: 20px
+
+
+  #step1.disabled > .fader, #step2.disabled > .fader, #step3.disabled > .fader
     display: block
+
+  li
     position: relative
-    margin: 0px auto 10px
-    +redlightbox
-    padding-left: 35px
-    width: 380px
-    z-index: 2
 
-    .facebook
-      float: right
-      margin-right: 16px
-
-    h4
-      text-align: left
-      margin-top: 7px
-      color: #FFFFFF
-      font-weight: bold
-      font-size: 20px
-      text-shadow: #000000 2px 2px 2px
-      padding-bottom: 4px
-      letter-spacing: 1px
-      word-spacing: 2px
-    select#user_address
-      width: 366px
-      height: 23px
-      margin-top: 20px
-      font-size: 18px
-      +serif
-      font-weight: 300
-      display: block
-    fieldset.inputs
-      margin-bottom: 10px
-    ol > li
-      margin: 5px 0px
-      width: 360px
     label
-      display: none
-      color: #898989
-    ol > li > input[type=text], input[type=password]
-      +border-radius(5px)
-      +box-shadow(#ccc 1px 1px 2px 0 inset)
-      border: 1px solid #ccc
-      padding: 3px 5px
-      font-size: 18px
-      font-weight: 300
-      width: 350px
-      display: block
-      +serif
-      margin-top: 20px
-        
-
-    fieldset.buttons
-      margin-left: auto
-      margin-right: auto
-
-      #user_submit
-        margin-top: 5px
-        width: 366px 
-        
-    .inline-errors
-      width: 360px
-      margin: 0px 0px 0px 0px
-      padding: 0px
-      text-align: right
-      font-size: 11px
-      color: #FFFFFF
-
-    .inline-hints
-      width: 360px
-      margin: 5px 0px 3px 0px
-      padding: 0px
-      text-align: right
-      font-size: 12px
-      color: #FFFFFF
-
-  form.add_profile
-
-    .chzn-container
-      margin-top: 5px
-
-    #user_avatar_input
-      position: relative
-      min-height: 54px
-
-    #user_avatar
-      cursor: pointer
-      position: relative
-      left: 145px
-      +opacity(0)
-      z-index: 2
-      position: absolute
-      top: 25px
-      height: 30px
-
-    #file_input_fix
-      position: absolute
-      width: 360px
-      margin: 0px 0px 15px
-
-    #file_style_fix
-      height: 27px
-
-    #browse_button
-      position: absolute
-      top: 5px
-      right: -12px
-      padding: 5px
-      height: 17px
-      width: 80px
-      color: white
-      background: #808080
-      border: 1px solid #666666
-      +border-radius(0 5px 5px 0)
-      +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
-      cursor: pointer
-
-    .facebook
-      width: 265px
-      #file_input_fix
-        width: 240px
-      #file_style_fix
-        width: 200px
-      label
-        width: 220px
-      #user_avatar
-        left: 0
-
-    ol > li
-      margin: 10px 0
-      padding: 0px 0px
-      width: 355px
-    
-      > select[multiple]
-        width: 365px
-
-      > input[type=text], > input[type=password], 
-      > textarea, #file_style_fix
-        border: 1px solid #ccc
-        +border-radius(5px)
-        +box-shadow(#ccc 1px 1px 2px 0 inset)
-        font-size: 22px
-        +serif
-        padding: 0 5px
-        width: 350px
-        margin: 5px 0
-
-
-
-    textarea
-      height: 70px
-        
-    label
-      display: block
-      text-align: left
-      color: #FFFFFF
       font-weight: 600
       font-size: 14px
       text-shadow: #000000 1px 1px 1px
-
-    
-    #user_referral_metadata_input
-      display: none
-
-
-  form.crop
-    margin: auto
-    float: none
-    padding: 25px
-    
-    .jcrop-holder
-      margin: auto
-      
-    input[type=image]
-      margin: 20px auto 0
       display: block
-
-  form.add_feeds, form.add_groups
-    h2
-      display: block
-      text-align: left
-      color: #fff
-      font-weight: bold
-      font-size: 18px
-      text-shadow: #000000 0px -2px 2px
       margin-bottom: 3px
+      margin-top: 20px
 
-    input[type=image]
-      margin: auto
-      display: block
-    input[type=checkbox]
+    .fieldhelp-control, .fieldhelp-tooltip
+      background-color: rgba(0,0,0,0.8) //todo: old browsers
+      color: white
+      padding: 1px
+      text-align: center
+      border: 1px solid #666
+      color: #ddd
+      cursor: default
+
+    .fieldhelp-control
+      position: absolute
+      top: 24px
+      right: 6px
+      width: 18px
+      height: 18px
+      +border-radius(18px)
+
+    .fieldhelp-tooltip
+      position: absolute
+      z-index: 2
+      top: 21px
+      left: -245px
+      width: 268px
+      +border-radius(3px)
       display: none
 
-    #feeds_container, #groups_container 
-      width: 390px
-      height: 240px
-      margin: 10px 0
-      overflow-y: scroll
-      overflow-x: hidden
-      .feed
-        height: 30px
-        h3
-          margin-top: 6px
-      .feed, .group
-        width: 350px
-        padding: 10px
-        margin: 0px 0px 4px
-        +border-radius(5px)
-        background: white
+    .field_spinner
+      position: absolute
+      right: 15px
+      top: 26px
 
-        &:hover
-          background-color: #fffdf0
-          cursor: pointer
-        h3
-          color: $cpBlue
-          font-size: 16px
-          margin-left: 40px
-        img
-          float: left
-          margin-right: 5px
-          height: 30px
-          width: 30px
-        p
-          font-size: 13px
-          margin-right: 30px
-          margin-left: 40px
-          line-height: 1.3
+      &.available
+        right: 9px
+        top: 20px
+        color: green
 
-        .unchecked, .checked
-          float: right
-          height: 20px
-          width: 20px
-          margin-left: 5px
-          margin-top: 5px
-        .unchecked
-          background: image-url('check-off.png')
-        .checked
-          background: image-url('check-on.png')
-    
+      &.unavailable
+        right: 9px
+        bottom: 10px
+        color: red
 
-#wrapper
-  #main
-    width: 960px
-    margin: auto
+  h4
+    font-weight: bold
+    font-size: 20px
+    text-shadow: #000000 2px 2px 2px
+    letter-spacing: 1px
+    word-spacing: 2px
+    text-align: center
+
+  .facebook_connect img
+    //display: block
+    margin: 20px auto
+
+  .or
+    text-align: center
+    font-weight: normal
+    font-style: italic
+
+  input[type=text], input[type=password], textarea, #file_style_fix, select
+    +border-radius(5px)
+    +box-shadow(#ccc 1px 1px 2px 0 inset)
+    border: 1px solid #ccc
+    padding: 3px 5px
+    font-size: 18px
+    font-weight: 300
+    color: black
+    width: 362px
+
+  .chzn-container, select
+    width: 372px
+
+    &.fieldHelp
+      padding-right: 27px
+      width: 339px
+    &.error
+      border: 1px solid red
+
+  textarea
+    height: 70px
+
+  label.error
+    padding-top: 1px
+    text-align: right
+    font-size: 11px
+    margin-top: 0
+
+  .inline-hints
+    width: 360px
+    margin: 5px 0px 3px 0px
+    padding: 0px
+    text-align: right
+    font-size: 12px
+
+
+
+  .formbutton
+    +styled-button
+    display: block
+    text-align: center
+    text-decoration: none
+    font-size: 1em
+    +border-radius(7px)
+    width: 336px
+    font-weight: bold
+    color: #1B334A
     position: relative
-    z-index: 1000
 
-@include sticky-footer(230px, "#wrapper", "#wrapper-footer", "#footer")
+    // gradient from http://www.colorzilla.com/gradient-editor/#ffffff+0,f8f8f8+50,f4f4f4+51,ffffff+100Custom
+    background: #f6f8f9 /* Old browsers */
+    background: -moz-linear-gradient(top,  #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%) /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f8f9), color-stop(50%,#e5ebee), color-stop(51%,#d7dee3), color-stop(100%,#f5f7f9)) /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #f6f8f9 0%,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%) /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f6f8f9 0%,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%) /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f6f8f9 0%,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%) /* IE10+ */
+    background: linear-gradient(top,  #f6f8f9 0%,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%) /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=0 ) /* IE6-9 */
+
+    &.big
+      padding: 10px 0
+      width: 100%
+      font-size: 1.2em
+      margin-top: 20px
+
+      .spinner
+        position: absolute
+        top: 20px
+        left: 24px
+
+    &:hover
+      background-color: #f3f5f7 // Old browsers
+      @include filter-gradient(#f3f5f7, #f0f4f8, vertical) // IE6-9
+      @include background-image(linear-gradient(top,  #f3f5f7 0%,#dce2e6 95%,#f0f4f8 100%))
+
+    &.disabled
+      cursor: default
+      background-color: #aab8c6 // Old browsers
+      @include filter-gradient(#aab8c6, #9db7d1, vertical) // IE6-9
+      @include background-image(linear-gradient(top,  #aab8c6 0%,#9bacb7 95%,#9db7d1 100%))
+
+
+
+// dropdowns for skills/interests/goods
+.chzn-container
+  color: black
+  width: 100%
+
+#registration_avatar_input
+  position: relative
+  min-height: 54px
+
+#registration_avatar
+  cursor: pointer
+  position: relative
+  left: 282px
+  +opacity(0)
+  position: absolute
+  top: 17px
+  height: 30px
+  width: 90px
+  z-index: 1
+
+#file_input_fix
+  position: absolute
+  width: 360px
+  margin: 0px 0px 15px
+
+#file_style_fix
+  height: 27px
+
+#browse_button
+  position: absolute
+  top: 0px
+  right: -14px
+  padding: 5px
+  height: 17px
+  width: 80px
+  background: #808080
+  border: 1px solid #666666
+  +border-radius(0 5px 5px 0)
+  +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
+
+#step2 form
+
+  .facebook
+    width: 265px
+    float: right
+    #file_input_fix
+      width: 252px
+    #file_style_fix
+      width: 248px
+    label
+      width: 220px
+    #registration_avatar
+      left: 174px
+      top: 37px
+
+    //#browse_button
+    //  right: -24px
+
+  input[type=text], input[type=password], textarea
+    padding-top: 0px
+    padding-bottom: 0px
+
+  #registration_referral_metadata_input
+    display: none
+
+
+form.crop
+  margin: auto
+  float: none
+  padding: 24px
+
+  .jcrop-holder
+    margin: auto
+
+  input[type=image]
+    margin: 20px auto 0
+    display: block
+
+form.add_feeds, form.add_groups
+  h2
+    display: block
+    text-align: left
+    font-weight: bold
+    font-size: 18px
+    text-shadow: #000000 0px -2px 2px
+    margin-bottom: 3px
+
+  input[type=image]
+    margin: auto
+    display: block
+
+div[data-phauxCheckbox]
+  float: right
+  height: 20px
+  width: 20px
+  margin-left: 5px
+  margin-top: 5px
+  &.unchecked
+    background: image-url('check-off.png')
+  &.checked
+    background: image-url('check-on.png')
+  input[type=checkbox]
+    display: none
+
+#feeds_container, #groups_container
+  width: 390px
+  height: 240px
+  margin: 10px 0
+  overflow-y: auto
+  overflow-x: hidden
+  .feed
+    height: 30px
+    h3
+      margin-top: 6px
+  .feed, .group
+    width: 350px
+    padding: 10px
+    margin: 0px 0px 4px
+    +border-radius(5px)
+    background: white
+
+    &:hover
+      background-color: #fffdf0
+      cursor: pointer
+    h3
+      color: $cpBlue
+      font-size: 16px
+      margin-left: 40px
+    img
+      float: left
+      margin-right: 5px
+      height: 30px
+      width: 30px
+    p
+      font-size: 13px
+      margin-right: 30px
+      margin-left: 40px
+      line-height: 1.3
+
+
+#step2_bullets
+  margin-top: 40px
+
 
 #footer
+  position: fixed
+  bottom: 0
+  width: 100%
+
   background: transparent image-url('houses.png') repeat-x center bottom
   height: 20px
   padding: 200px 50px 10px
   color: #ADD794
   +sans
   font-size: 0.8em
+  z-index: -1
   .left_text
     color: #ADD794
     float: left

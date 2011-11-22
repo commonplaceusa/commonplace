@@ -39,7 +39,6 @@ var Wire = CommonPlace.View.extend({
     });
   },
 
-  
   isEmpty: function() {
     return this.collection.isEmpty();  },
 
@@ -47,7 +46,6 @@ var Wire = CommonPlace.View.extend({
     return this.options.emptyMessage;
   },
     
-
   showMore: function(e) {
     var self = this;
     e.preventDefault();

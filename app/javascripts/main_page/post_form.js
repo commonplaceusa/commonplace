@@ -26,7 +26,7 @@ var PostForm = CommonPlace.View.extend({
 
     var collection = this.collection;
     if ($("[name=commercial]:checked").val() == "yes") {
-      collection = this.options.community.announcements;
+      collection = CommonPlace.community.announcements;
     }
 
     var self = this;
@@ -34,7 +34,10 @@ var PostForm = CommonPlace.View.extend({
       title: this.$("[name=title]").val(),
       body: this.$("[name=body]").val()
     }, {
-      success: function() { self.render(); },
+      success: function() {
+          self.render();
+          mpq.track('created post');
+      },
       error: function(attribs, response) {
         self.$(".spinner").hide();
         self.$("button").show();

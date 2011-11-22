@@ -4,7 +4,7 @@ var GroupPostForm = CommonPlace.View.extend({
   className: "create-group-post",
 
   groups: function() {
-    return _.map(this.options.community.get('groups'), function(g, i) {
+    return _.map(CommonPlace.community.get('groups'), function(g, i) {
       g['class'] = ((i % 2) === 0) ? "even" : "odd";
       return g;
     });

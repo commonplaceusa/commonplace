@@ -3,11 +3,6 @@ var PostBox = CommonPlace.View.extend({
   template: "main_page.post-box",
   id: "post-box",
   
-  initialize: function(options) {
-    this.community = options.community;
-    this.account = options.account;
-  },
-
   afterRender: function() {
     var self = this;
     _(this.forms()).each(function(view) {
@@ -18,16 +13,9 @@ var PostBox = CommonPlace.View.extend({
 
   forms: function() {
     this._forms || (this._forms = [
-      (new PostForm({ collection: this.community.posts,
-                      community: this.community })),
-
-      (new EventForm({ collection: this.community.events,
-                       community: this.community
-                     })),
-      (new GroupPostForm({ collection: this.community.groupPosts,
-                           community: this.community 
-                         }))
-      
+      (new PostForm({ collection: CommonPlace.community.posts })),
+      (new EventForm({ collection: CommonPlace.community.events})),
+      (new GroupPostForm({ collection: CommonPlace.community.groupPosts}))
     ]);
     return this._forms;
   },
@@ -37,6 +25,7 @@ var PostBox = CommonPlace.View.extend({
     this.$tabForms().removeClass("current");
     this.$tabButtons().removeClass("current");
     this.showTab(tab);
+    mpq.track('postbox-tab: ' + tab);
   },
 
   showTab: function(tab) { 
@@ -49,11 +38,11 @@ var PostBox = CommonPlace.View.extend({
 
   $tabButtons: function() { return this.$("a.tab-button"); },
 
-  accountHasFeeds: function() { return this.account.get('feeds').length > 0; },
+  accountHasFeeds: function() { return CommonPlace.account.get('feeds').length > 0; },
 
   firstFeedUrl: function() {
-    if (this.account.get('feeds')[0]) {
-      return "/pages/" + this.account.get('feeds')[0].id;
+    if (CommonPlace.account.get('feeds')[0]) {
+      return "/pages/" + CommonPlace.account.get('feeds')[0].id;
     } else {
       return "/feed-registrations/new";
     }

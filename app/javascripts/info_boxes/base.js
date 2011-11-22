@@ -288,6 +288,7 @@ var InfoBox = CommonPlace.View.extend({
       this.$(".remove-search").text(query);
       this.currentQuery = query;
       this.showList(this.getSchema());
+      mpq.track('infobox-search', {query: query})
     } else { this.removeSearch(); }
   }, 500),
 

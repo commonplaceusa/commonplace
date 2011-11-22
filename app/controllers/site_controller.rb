@@ -24,6 +24,7 @@ class SiteController < ApplicationController
       http.request(req)
     }
     location = JSON.parse(res.body)
+    # 66.31.47.137 :
     # {"city":"Cambridge",
     # "region_code":"MA",
     # "region_name":"Massachusetts",
@@ -37,9 +38,17 @@ class SiteController < ApplicationController
     community = Community.find_by_slug(location["city"])
 
     if community
-      render :text => "your community: #{community.name}, <a href='#{community_landing_path(community.slug)}'>#{community_landing_path(community.slug)}</a>"
+      redirect_to community_landing_path(community.slug)
     else
-      render :text => "no community: <a href='#{root_path}'>#{root_path}</a><br/><br/><pre>#{location.to_yaml}</pre>"
+      render :text => "<pre>#{location.inspect.gsub(',', ",\n")}</pre><br/><pre>#{request.env.inspect.gsub(',', ",\n")}</pre>"
+      return
+
+      options = {}
+      if city = location['city'] && state = location['region_code']
+        options.merge({community_name: "#{city}, #{state}" })
+      end
+      @request = Request.new(options)
+      render 'site/index', :layout => 'starter_site'
     end
   end
   

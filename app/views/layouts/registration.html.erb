@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%= render :partial => 'layouts/common_head',
+               :locals => {
+                       :javascripts => ["registration_page"],
+                       :stylesheets => ["registration_page"],
+                       :track => "Community Registration Page"} %>
+</head>
+<body>
+
+<%= render 'layouts/header' %>
+
+<div id="main">
+  <%= yield %>
+</div>
+
+<%= render "layouts/footer" %>
+
+</body>
+</html>

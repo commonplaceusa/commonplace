@@ -190,7 +190,7 @@ module Serializer
 
       when Group
         o.as_api_response(:default)
-      when Account
+      when Account # todo: use as_api_response
         {
         "id" => o.id,
         "schema" => "account",
@@ -216,6 +216,7 @@ module Serializer
         "neighborhood_posts" => o.post_receive_method,
         "bulletin" => o.receive_weekly_digest,
         "about" => o.about,
+        "referral_source" => o.referral_source,
         "links" => { 
           "avatar" => "/account/avatar",
           "feed_subscriptions" => "/account/subscriptions/feeds",

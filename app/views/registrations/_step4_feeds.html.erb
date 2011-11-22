@@ -1,0 +1,21 @@
+<%= form_tag '/api/registrations/add_feeds', :class => "registration add_feeds" do %>
+
+    <h2>Stay in the Loop!</h2>
+    <div id="feeds_container">
+      <% current_community.feeds.each do |feed| %>
+          <div class="feed label">
+            <%= image_tag(feed.avatar_url(:thumb)) %>
+            <div class="unchecked" data-phauxCheckbox="true">
+              <input class="feedId" name="feed_ids[]" value="<%= feed.id.to_s %>" type="checkbox">
+            </div>
+            <h3><%= feed.name %></h3>
+          </div>
+      <% end %>
+    </div>
+
+    <a href="#step5" data-action="submit" class="formbutton big">Almsot Done.. &#9654;</a>
+
+<% end %>
+
+<%# preload checked image.  todo: sprite %>
+<div class="checked" style="opacity: 0; position: fixed; top: -100px; left: -100px"></div>

@@ -1,0 +1,17 @@
+<%= form_tag '/api/registrations/add_groups', :remote => false, :id => "add_groups", :class => "registration add_groups" do %>
+    <h2>Subscribe to some groups:</h2>
+    <div id="groups_container">
+      <% current_community.groups.each do |group| %>
+          <div class="group label">
+            <%= image_tag(group.avatar_url) %>
+            <div class="unchecked" data-phauxCheckbox="true">
+              <input class="groupId" name="group_ids[]" value="<%= group.id.to_s %>" type="checkbox">
+            </div>
+            <h3><%= group.name %></h3>
+
+            <p><%= group.about %></p>
+          </div>
+      <% end %>
+    </div>
+    <a href="#" data-action="submit" class="formbutton big">Done!</a>
+<% end %>

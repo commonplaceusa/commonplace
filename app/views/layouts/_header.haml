@@ -31,9 +31,9 @@
     #nav_wrapper
       :javascript
         $(function() {
-        $('#sign_in_button').click(function() {
-        $("#header form.user").slideToggle();
-        });
+          $('#sign_in_button').click(function() {
+            $("#header form.user").slideToggle();
+          });
         });
 
       %ul{:id=>"user_sign_in"}
@@ -51,3 +51,5 @@
           = image_tag "logo2.png", :alt => 'CommonPlace'
     
   .clear
+
+

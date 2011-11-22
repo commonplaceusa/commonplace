@@ -35,7 +35,10 @@ var EventForm = CommonPlace.View.extend({
         return $(this).val(); 
       }).toArray()
     }, {
-      success: function() { self.render(); },
+      success: function() {
+          self.render();
+          mpq.track('created event');
+      },
       error: function(attribs, response) {
         self.$("button").show();
         self.$(".spinner").hide();
@@ -50,7 +53,7 @@ var EventForm = CommonPlace.View.extend({
   },
 
   groups: function() {
-    return this.options.community.get('groups');
+    return CommonPlace.community.get('groups');
   },
 
   toggleCheckboxLIClass: function(e) {

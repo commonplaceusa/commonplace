@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   validates_presence_of :address, :on => :create, :unless => :is_transitional_user, :message => "Please provide a street address so CommonPlace can verify that you live in our community."
   validates_presence_of :address, :on => :update
   
-
+  # todo: first_name is validated on line 89 also
   validates_presence_of :first_name, :unless => :is_transitional_user 
   validate :validate_first_and_last_names, :unless => :is_transitional_user
 
@@ -86,6 +86,7 @@ class User < ActiveRecord::Base
     self.community and self.community.is_college
   end
 
+  # todo: first_name is validated on line 50 also
   validates_presence_of :first_name, :last_name
 
   def self.find_by_email(email)
@@ -162,6 +163,7 @@ class User < ActiveRecord::Base
     t.add :good_list, :as => :goods
     t.add :skill_list, :as => :skills
     t.add :links
+    t.add :referral_source
   end
 
   def links
