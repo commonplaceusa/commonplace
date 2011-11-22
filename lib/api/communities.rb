@@ -129,7 +129,7 @@ class API
         search(GroupPost, params, community_id)
       else
         serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
-                             includes(:group, :user, :replies => :user).
+                             includes(:group, :user).
                              where(:groups => {:community_id => community_id})))
       end
     end
