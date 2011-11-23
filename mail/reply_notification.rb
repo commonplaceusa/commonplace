@@ -5,11 +5,7 @@ class ReplyNotification < MailBase
   end
 
   def subject
-    if @user.community.is_college
-      "#{replier_name} just replied to a hall board post on CommonPlace"
-    else
-      "#{replier_name} just replied to message on CommonPlace"
-    end
+    subject_line
   end
 
   def community
@@ -77,9 +73,14 @@ class ReplyNotification < MailBase
   end
   
   def subject_line
+    if @user.community.is_college
+      post_subject = "a hall board post"
+    else
+      post_subject = "a post"
+    end
     post_type = case repliable
                 when Message then "a private message"
-                when Post then "a post"
+                when Post then post_subject
                 when Event then "an event"
                 when Announcement then "an announcement"
                 end
