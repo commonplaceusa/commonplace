@@ -92,6 +92,11 @@ class User < ActiveRecord::Base
     where("LOWER(users.email) = ?", email.downcase).first
   end
 
+  def self.find_by_full_name(full_name)
+    name = full_name.split(" ")
+    where("LOWER(users.last_name) = ? AND LOWER(users.first_name) = ?", full_name.last, full_name.first)
+  end
+
   has_many :attendances, :dependent => :destroy
 
   has_many :events, :through => :attendances
