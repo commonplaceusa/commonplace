@@ -8,6 +8,7 @@ var LandingResources = CommonPlace.View.extend({
   },
 
   afterRender: function() {
+    this._sortCountdown = 0;
     _(this.wires()).invoke("render");
     setTimeout(function() {
       if (Features.isActive("fixedLayout")) {
@@ -36,6 +37,7 @@ var LandingResources = CommonPlace.View.extend({
           emptyMessage: "No posts here yet.",
           isRecent: true,
           itemView: PostWireItem,
+          callback: function() { self.sortWires(); },
           modelToView: function(model) {
             return new PostWireItem({ model: model, account: self.options.account });
           }
@@ -49,6 +51,7 @@ var LandingResources = CommonPlace.View.extend({
           fullWireLink: "#/posts",
           emptyMessage: "No offers here yet.",
           isRecent: true,
+          callback: function() { self.sortWires(); },
           modelToView: function(model) {
             return new PostWireItem({ model: model, account: self.options.account });
           }
@@ -62,6 +65,7 @@ var LandingResources = CommonPlace.View.extend({
           fullWireLink: "#/posts",
           emptyMessage: "No help requests here yet.",
           isRecent: true,
+          callback: function() { self.sortWires(); },
           modelToView: function(model) {
             return new PostWireItem({ model: model, account: self.options.account });
           }
@@ -75,6 +79,7 @@ var LandingResources = CommonPlace.View.extend({
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
           isRecent: true,
+          callback: function() { self.sortWires(); },
           modelToView: function(model) {
             return new PostWireItem({ model: model, account: self.options.account });
           }
@@ -88,6 +93,7 @@ var LandingResources = CommonPlace.View.extend({
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
           isRecent: true,
+          callback: function() { self.sortWires(); },
           modelToView: function(model) {
             return new PostWireItem({ model: model, account: self.options.account });
           }
@@ -101,7 +107,11 @@ var LandingResources = CommonPlace.View.extend({
           fullWireLink: "#/events",
           emptyMessage: "There are no upcoming events yet. Add some.",
           isRecent: true,
-          itemView: EventWireItem
+          itemView: EventWireItem,
+          callback: function() { self.sortWires(); },
+          modelToView: function(model) {
+            return new EventWireItem({ model: model, account: self.options.account });
+          }
         })),
         
         (new PreviewWire({
@@ -112,7 +122,11 @@ var LandingResources = CommonPlace.View.extend({
           emptyMessage: "No announcements here yet.",
           fullWireLink: "#/announcements",
           isRecent: true,
-          itemView: AnnouncementWireItem
+          itemView: AnnouncementWireItem,
+          callback: function() { self.sortWires(); },
+          modelToView: function(model) {
+            return new AnnouncementWireItem({ model: model, account: self.options.account });
+          }
         })),
         
         (new PreviewWire({
@@ -123,12 +137,48 @@ var LandingResources = CommonPlace.View.extend({
           emptyMessage: "No posts here yet.",
           fullWireLink: "#/group_posts",
           isRecent: true,
-          itemView: GroupPostWireItem
+          itemView: GroupPostWireItem,
+          callback: function() { self.sortWires(); },
+          modelToView: function(model) {
+            return new GroupPostWireItem({ model: model, account: self.options.account });
+          }
         }))
       ];
     }
     return this._wires;
-  }
+  },
   
+  sortWiresOld: function() {
+    var self = this;
+    var sorted = this._wires;
+    sorted = _.sortBy(this._wires, function(wire) {
+      console.log(wire.collection.at(1));
+      return wire.collection.first().get("updated_at");
+    });
+    $(this.el).empty();
+    _.each(sorted, function(wire) {
+      console.log(wire);
+      $(this.el).append(wire.el);
+      wire.render();
+    });
+  },
+  
+  sortWires: function() {
+    this._sortCountdown++;
+    var self = this;
+    if (this._sortCountdown == this._wires.length) {
+      var self = this;
+      var sorted = _.sortBy(this._wires, function(wire) {
+        var first = wire.collection.first();
+        return first ? first.get("published_at") : "0";
+      });
+      //$(this.el).empty();
+      _.each(sorted, function(wire) {
+        var first = wire.collection.first();
+        console.log(first ? first.get("published_at") : 0);
+        wire.el.detach().appendTo(self.el);
+      });
+    }
+  }
 
 });
