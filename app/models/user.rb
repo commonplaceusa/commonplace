@@ -97,6 +97,12 @@ class User < ActiveRecord::Base
     where("LOWER(users.last_name) = ? AND LOWER(users.first_name) = ?", full_name.last, full_name.first)
   end
 
+  def reset_password(new_password = "cp123")
+    self.password = new_password
+    self.password_confirmation = new_password
+    self.save
+  end
+
   has_many :attendances, :dependent => :destroy
 
   has_many :events, :through => :attendances
