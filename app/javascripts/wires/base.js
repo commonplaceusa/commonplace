@@ -16,6 +16,11 @@ var Wire = CommonPlace.View.extend({
     
     var self = this;
     $(window).scroll(function() { self.onScroll(); });
+    this.options.callback && this.options.callback();
+  },
+
+  modelToView: function() { 
+    throw new Error("This is an abstract class, use a child of this class");
   },
   
   onScroll: _.debounce(function() {
