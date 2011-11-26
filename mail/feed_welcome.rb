@@ -54,4 +54,8 @@ class FeedWelcome < MailBase
     "feed_welcome"
   end
 
+  def deliver?
+    true
+  end
+
 end
