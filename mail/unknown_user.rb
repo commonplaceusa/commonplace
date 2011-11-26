@@ -12,4 +12,8 @@ class UnknownUser < MailBase
     'unknown_user'
   end
 
+  def deliver?
+    true
+  end
+
 end

@@ -32,4 +32,8 @@ class UnknownAddress < MailBase
     'unknown_address'
   end
 
+  def deliver?
+    true
+  end
+
 end

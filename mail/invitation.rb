@@ -54,4 +54,8 @@ class Invitation < MailBase
     'invitation'
   end
 
+  def deliver?
+    true
+  end
+
 end

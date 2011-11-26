@@ -19,4 +19,8 @@ class FeedInvitation < Invitation
     'feed_invitation'
   end
 
+  def deliver?
+    true
+  end
+
 end

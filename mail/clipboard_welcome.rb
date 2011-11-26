@@ -45,4 +45,8 @@ class ClipboardWelcome < MailBase
     'clipboard_welcome'
   end
 
+  def deliver?
+    true
+  end
+
 end

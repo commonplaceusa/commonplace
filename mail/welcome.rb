@@ -33,4 +33,8 @@ class Welcome < MailBase
     'welcome'
   end
 
+  def deliver?
+    true
+  end
+
 end
