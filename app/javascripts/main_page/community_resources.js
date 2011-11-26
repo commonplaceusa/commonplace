@@ -28,10 +28,14 @@ var CommunityResources = CommonPlace.View.extend({
 
   tabs: {
     landing: function(self) {
-      return new LandingResources({
-        account: self.options.account,
-        community: self.options.community
-      });
+      if (Features.isActive("dynamicLanding")) {
+        return new DynamicLandingResources({});
+      } else {
+        return new LandingResources({
+          account: self.options.account,
+          community: self.options.community
+        });
+      }
     },
     
     posts: function(self) {

@@ -44,7 +44,8 @@ FeatureSwitcher = function(features, backend) {
 
 Features = new FeatureSwitcher({
   wireSearch: false,
-  fixedLayout: false
+  fixedLayout: false,
+  dynamicLanding: false
 }, window.sessionStorage || { 
   setItem: function(name, value) {},
   getItem: function(name) { return false; }
