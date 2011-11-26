@@ -28,3 +28,5 @@ Repliable = Model.extend({
     return this._replies;
   }
 });
+
+Repliables = Collection.extend({ model: Repliable });
