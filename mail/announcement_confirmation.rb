@@ -36,4 +36,8 @@ class AnnouncementConfirmation < MailBase
     'announcement_confirmation'
   end
 
+  def deliver?
+    true
+  end
+
 end

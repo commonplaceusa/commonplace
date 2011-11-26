@@ -33,4 +33,8 @@ class AdminQuestion < MailBase
     "#{name} <#{sender}>"
   end
 
+  def deliver?
+    true
+  end
+
 end

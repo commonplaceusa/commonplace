@@ -39,4 +39,8 @@ class NSubscribersFeedNotification < MailBase
   def tag
     'feed_subscriber_notification'
   end
+
+  def deliver?
+    true
+  end
 end

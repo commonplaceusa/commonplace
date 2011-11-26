@@ -25,7 +25,7 @@ class Registration
   def first_name
     user.first_name
   end
-  
+
   def from_facebook?
     user.is_facebook_user
   end

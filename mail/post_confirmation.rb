@@ -36,4 +36,8 @@ class PostConfirmation < MailBase
     'post_confirmation'
   end
 
+  def deliver?
+    true
+  end
+
 end

@@ -36,4 +36,8 @@ class PasswordReset < MailBase
     'password_reset'
   end
 
+  def deliver?
+    true
+  end
+
 end

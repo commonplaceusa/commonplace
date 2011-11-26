@@ -36,4 +36,8 @@ class NoFeedPermission < MailBase
     'no_permissions'
   end
 
+  def deliver?
+    true
+  end
+
 end
