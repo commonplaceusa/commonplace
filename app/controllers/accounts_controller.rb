@@ -67,5 +67,21 @@ class AccountsController < ApplicationController
   def profile
     authorize! :update, User
   end
-  
+
+  def disable_email
+    user = User.find_by_email(params[:recipient])
+    # MIXPANEL
+    user.post_receive_method = "Never"
+    user.save
+  end
+
+  private
+
+  def verify_mailgun(api_key, token, timestamp, signature)
+    require 'openssl'
+    return signature == OpenSSL::HMAC.hexdigest(
+      OpenSSL::Digest::Digest.new('sha256'),
+      api_key,
+      '%s%s' % [timestamp, token])
+  end
 end
