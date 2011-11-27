@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
 
   protect_from_forgery :except => :update
 
-  before_filter :authenticate_user!, :except => :learn_more
+  before_filter :authenticate_user!, :except => [:learn_more, :disable_email]
 
   def delete
   end
@@ -69,10 +69,18 @@ class AccountsController < ApplicationController
   end
 
   def disable_email
-    user = User.find_by_email(params[:recipient])
-    # MIXPANEL
-    user.post_receive_method = "Never"
-    user.save
+    begin
+      if verify_mailgun($MailgunAPIToken, params[:token], params[:timestamp], params[:signature])
+        user = User.find_by_email(params[:recipient])
+        # MIXPANEL
+        user.post_receive_method = "Never"
+        user.save
+        render :nothing => true
+      end
+    rescue
+    ensure
+      render :nothing => true
+    end
   end
 
   private
