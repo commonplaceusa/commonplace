@@ -143,6 +143,7 @@ Commonplace::Application.routes.draw do
 
 
   match "/account/make_focp", :to => "accounts#make_focp"
+  match "/account/disable_email", :to => "accounts#disable_email"
 
 
   # explicitly list paths that we want the main_page js app to handle
