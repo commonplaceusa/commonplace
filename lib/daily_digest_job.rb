@@ -1,4 +1,5 @@
 class DailyDigestJob
+  extend HerokuResqueAutoScale
   @queue = :daily_digest
 
   def self.perform

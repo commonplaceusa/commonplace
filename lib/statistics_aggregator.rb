@@ -1,4 +1,5 @@
 class StatisticsAggregator
+  extend HerokuResqueAutoScale
 
   AVERAGE_DAYS = 7.0
   HISTORICAL_DAYS = 13

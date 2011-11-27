@@ -1,4 +1,5 @@
 class CommunityDailyBulletinJob
+  extend HerokuResqueAutoScale
   @queue = :community_daily_bulletin
 
   def self.perform(community_id, date)
