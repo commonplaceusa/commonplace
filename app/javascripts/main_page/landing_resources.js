@@ -8,7 +8,6 @@ var LandingResources = CommonPlace.View.extend({
   },
 
   afterRender: function() {
-    this._sortCountdown = 0;
     _(this.wires()).invoke("render");
     setTimeout(function() {
       if (Features.isActive("fixedLayout")) {
@@ -30,74 +29,17 @@ var LandingResources = CommonPlace.View.extend({
       this._wires = [
         (new PreviewWire({
           template: 'main_page.post-resources',
-          collection: CommonPlace.community.categories.neighborhood,
+          collection: postsCollection,
           account: this.account,
-          el: this.$(".neighborhoodPosts.wire"),
+          el: this.$(".posts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
           isRecent: true,
           itemView: PostWireItem,
-          callback: function() { self.sortWires(); },
           modelToView: function(model) {
             return new PostWireItem({ model: model, account: self.options.account });
           }
-        })),
-        
-        (new PreviewWire({
-          template: 'main_page.post-offer-resources',
-          collection: CommonPlace.community.categories.offers,
-          account: this.account,
-          el: this.$(".offerPosts.wire"),
-          fullWireLink: "#/posts",
-          emptyMessage: "No offers here yet.",
-          isRecent: true,
-          callback: function() { self.sortWires(); },
-          modelToView: function(model) {
-            return new PostWireItem({ model: model, account: self.options.account });
-          }
-        })),
-        
-        (new PreviewWire({
-          template: 'main_page.post-help-resources',
-          collection: CommonPlace.community.categories.help,
-          account: this.account,
-          el: this.$(".helpPosts.wire"),
-          fullWireLink: "#/posts",
-          emptyMessage: "No help requests here yet.",
-          isRecent: true,
-          callback: function() { self.sortWires(); },
-          modelToView: function(model) {
-            return new PostWireItem({ model: model, account: self.options.account });
-          }
-        })),
-        
-        (new PreviewWire({
-          template: 'main_page.post-publicity-resources',
-          collection: CommonPlace.community.categories.publicity,
-          account: this.account,
-          el: this.$(".publicityPosts.wire"),
-          fullWireLink: "#/posts",
-          emptyMessage: "No posts here yet.",
-          isRecent: true,
-          callback: function() { self.sortWires(); },
-          modelToView: function(model) {
-            return new PostWireItem({ model: model, account: self.options.account });
-          }
-        })),
-        
-        (new PreviewWire({
-          template: 'main_page.post-other-resources',
-          collection: CommonPlace.community.categories.other,
-          account: this.account,
-          el: this.$(".otherPosts.wire"),
-          fullWireLink: "#/posts",
-          emptyMessage: "No posts here yet.",
-          isRecent: true,
-          callback: function() { self.sortWires(); },
-          modelToView: function(model) {
-            return new PostWireItem({ model: model, account: self.options.account });
-          }
-        })),
+         })),
         
         (new PreviewWire({
           template: 'main_page.event-resources',
@@ -108,7 +50,6 @@ var LandingResources = CommonPlace.View.extend({
           emptyMessage: "There are no upcoming events yet. Add some.",
           isRecent: true,
           itemView: EventWireItem,
-          callback: function() { self.sortWires(); },
           modelToView: function(model) {
             return new EventWireItem({ model: model, account: self.options.account });
           }
@@ -123,7 +64,6 @@ var LandingResources = CommonPlace.View.extend({
           fullWireLink: "#/announcements",
           isRecent: true,
           itemView: AnnouncementWireItem,
-          callback: function() { self.sortWires(); },
           modelToView: function(model) {
             return new AnnouncementWireItem({ model: model, account: self.options.account });
           }
@@ -138,7 +78,6 @@ var LandingResources = CommonPlace.View.extend({
           fullWireLink: "#/group_posts",
           isRecent: true,
           itemView: GroupPostWireItem,
-          callback: function() { self.sortWires(); },
           modelToView: function(model) {
             return new GroupPostWireItem({ model: model, account: self.options.account });
           }
@@ -146,22 +85,7 @@ var LandingResources = CommonPlace.View.extend({
       ];
     }
     return this._wires;
-  },
-  
-  sortWires: function() {
-    this._sortCountdown++;
-    var self = this;
-    if (this._sortCountdown == this._wires.length) {
-      var self = this;
-      var sorted = _.sortBy(this._wires, function(wire) {
-        var first = wire.collection.first();
-        return first ? parseDate(first.get("published_at")) : "0";
-      });
-      _.each(sorted, function(wire) {
-        var first = wire.collection.first();
-        wire.el.detach().appendTo(self.el);
-      });
-    }
   }
+  
 
 });
