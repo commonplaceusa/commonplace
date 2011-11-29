@@ -40,4 +40,8 @@ class PasswordReset < MailBase
     true
   end
 
+  def self.queue
+    :password_resets
+  end
+
 end
