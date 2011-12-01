@@ -49,8 +49,7 @@ var CommunityResources = CommonPlace.View.extend({
       return new self.PaginatingResourceWire({
         template: "main_page.post-resources",
         emptyMessage: "No posts here yet",
-        collection: postsCollection,
-        itemView: PostWireItem
+        collection: postsCollection
       });
     },
 
@@ -58,8 +57,7 @@ var CommunityResources = CommonPlace.View.extend({
       return new self.PaginatingResourceWire({
         template: "main_page.event-resources",
         emptyMessage: "No events here yet",
-        collection: self.options.community.events,
-        itemView: EventWireItem
+        collection: self.options.community.events
       });
     },
     
@@ -67,8 +65,7 @@ var CommunityResources = CommonPlace.View.extend({
       return new self.PaginatingResourceWire({
         template: "main_page.announcement-resources",
         emptyMessage: "No announcements here yet",
-        collection: self.options.community.announcements,
-        itemView: AnnouncementWireItem
+        collection: self.options.community.announcements
       });
     },
 
@@ -76,8 +73,7 @@ var CommunityResources = CommonPlace.View.extend({
       return new self.PaginatingResourceWire({
         template: "main_page.group-post-resources",
         emptyMessage: "No posts here yet",
-        collection: self.options.community.groupPosts,
-        itemView: GroupPostWireItem
+        collection: self.options.community.groupPosts
       });
     },
 
@@ -86,8 +82,7 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.directory-resources",
         emptyMessage: "No posts here yet",
         collection: self.options.community.users,
-        active: 'users',
-        itemView: UserWireItem
+        active: 'users'
       });
     },
 
@@ -96,8 +91,7 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.directory-resources",
         emptyMessage: "No posts here yet",
         collection: self.options.community.groups,
-        active: 'groups',
-        itemView: GroupWireItem
+        active: 'groups'
       });
     },
 
@@ -106,8 +100,7 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.directory-resources",
         emptyMessage: "No posts here yet",
         collection: self.options.community.feeds,
-        active: 'feeds',
-        itemView: FeedWireItem
+        active: 'feeds'
       });
     }
   },

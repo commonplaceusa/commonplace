@@ -27,8 +27,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
       collection: this.groupPostsCollection,
       account: this.account,
       el: this.$(".group-posts .wire"),
-      emptyMessage: "No posts here yet",
-      itemView: GroupPostWireItem
+      emptyMessage: "No posts here yet"
     });
     wireView.render();
   },
@@ -39,8 +38,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
       collection: this.groupMembersCollection,
       account: this.account,
       el: this.$(".group-members .wire"),
-      emptyMessage: "No members yet",
-      itemView: UserWireItem
+      emptyMessage: "No members yet"
     });
     wireView.render();
   },
@@ -51,8 +49,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
       collection: this.groupAnnouncementsCollection,
       account: this.account,
       el: this.$(".group-announcements .wire"),
-      emptyMessage: "No announcements here yet",
-      itemView: AnnouncementWireItem
+      emptyMessage: "No announcements here yet"
     });
     wireView.render();
   },
@@ -63,8 +60,7 @@ var GroupSubresourcesView = CommonPlace.View.extend({
       collection: this.groupEventsCollection,
       account: this.account,
       el: this.$(".group-events .wire"),
-      emptyMessage: "No events here yet",
-      itemView: EventWireItem
+      emptyMessage: "No events here yet"
     });
     wireView.render();
   },

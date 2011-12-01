@@ -3,7 +3,7 @@ var Wire = CommonPlace.View.extend({
   template: "wires/wire",
 
   initialize: function(options) {},
-
+  
   aroundRender: function(render) {
     var self = this;
     this.fetchCurrentPage(function() {
@@ -17,10 +17,6 @@ var Wire = CommonPlace.View.extend({
     var self = this;
     $(window).scroll(function() { self.onScroll(); });
     this.options.callback && this.options.callback();
-  },
-
-  modelToView: function() { 
-    throw new Error("This is an abstract class, use a child of this class");
   },
   
   onScroll: _.debounce(function() {
@@ -64,13 +60,21 @@ var Wire = CommonPlace.View.extend({
     var self = this;
     var $ul = this.$("ul.wire-list");
     this.collection.each(function(model) {
-      var view = new self.options.itemView({ 
-        model: model, 
-        account: CommonPlace.account, 
-        community: CommonPlace.community
-      });
-      $ul.append(view.render().el);
+      $ul.append(self.schemaToView(model).render().el);
     });
+  },
+  
+  schemaToView: function(model) {
+    var schema = model.get("schema");
+    return new {
+      "events": EventWireItem,
+      "announcements": AnnouncementWireItem,
+      "posts": PostWireItem,
+      "group_posts": GroupPostWireItem,
+      "feeds": FeedWireItem,
+      "users": UserWireItem,
+      "groups": GroupWireItem
+    }[schema]({model: model});
   },
   
   isEmpty: function() { return this.collection.isEmpty(); },

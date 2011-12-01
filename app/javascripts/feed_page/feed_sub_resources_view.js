@@ -25,8 +25,7 @@ var FeedSubResourcesView = CommonPlace.View.extend({
       collection: this.announcementsCollection,
       account: this.account,
       el: this.$(".feed-announcements .wire"),
-      emptyMessage: "No announcements here yet",
-      itemView: AnnouncementWireItem
+      emptyMessage: "No announcements here yet"
     });
     wireView.render();
   },
@@ -37,8 +36,7 @@ var FeedSubResourcesView = CommonPlace.View.extend({
       collection: this.eventsCollection,
       account: this.account,
       el: this.$(".feed-events .wire"),
-      emptyMessage: "No events here yet",
-      itemView: EventWireItem
+      emptyMessage: "No events here yet"
     });
     wireView.render();
   },
@@ -49,8 +47,7 @@ var FeedSubResourcesView = CommonPlace.View.extend({
       collection: this.subscribersCollection,
       account: this.account,
       el: this.$(".feed-subscribers .wire"),
-      emptyMessage: "No subscribers yet",
-      itemView: UserWireItem
+      emptyMessage: "No subscribers yet"
     });
     wireView.render();
   },
