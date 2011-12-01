@@ -38,7 +38,4 @@
 
   %div{:style=>"clear: both;"}
 
-- if Rails.env.production?
-  %script
-    = "mpq.track('Community Registration Page', {'community': '#{current_community.slug}'});"
-
+= mixpanel_track("Community Registration Page")

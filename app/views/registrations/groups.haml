@@ -19,7 +19,6 @@
           %input{:class =>"groupId", :name => "group_ids[]", :value => group.id.to_s, :type =>"checkbox"}
     %input{:type => "image", :src => asset_path("buttons/continue2.png")}
 
-- if Rails.env.production?
-  %script
-    = "mpq.track('Add groups', {'community': '#{current_community.slug}'});"
+= mixpanel_track("Add groups")
+
     
