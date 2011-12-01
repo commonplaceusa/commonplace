@@ -8,10 +8,7 @@
   = "var slug = '#{current_community.slug}';"
   = "var message = '#{t(".facebook.invitation", :community => current_community.name, :slug => current_community.slug)}';"
 
-
-- if Rails.env.production?
-  :javascript
-    mpq.track('Visited invitation page', {'community': '#{current_community.slug}'});
+= mixpanel_track("Visited invitation page")
 
 :javascript
 

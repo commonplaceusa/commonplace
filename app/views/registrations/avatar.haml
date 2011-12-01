@@ -11,6 +11,5 @@
 
     = f.submit :type => "image", :src => asset_path("buttons/continue2.png")
 
-- if Rails.env.production?
-  :javascript
-    mpq.track('Cropping Avatar');
+= mixpanel_track("Cropping Avatar")
+

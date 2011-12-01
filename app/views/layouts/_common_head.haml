@@ -26,9 +26,7 @@
 = populate_commonplace # this could be moved to the footer.
 
 = include_mixpanel
-- if track.present?
-  :javascript
-    mpq.track('#{track}', {'community': '#{current_community.try(:slug)}'});
+= mixpanel_track(track)
 
 = include_ga
 = include_exceptional
