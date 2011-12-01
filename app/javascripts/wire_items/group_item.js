@@ -6,7 +6,8 @@ var GroupWireItem = WireItem.extend({
   className: "wire-item feed",
 
   initialize: function() {
-    this.options.account.bind("change", this.render, this);
+    this.account = CommonPlace.account;
+    this.account.bind("change", this.render, this);
     this.attr_accessible(['name', 'url', 'avatar_url']);
   },
 

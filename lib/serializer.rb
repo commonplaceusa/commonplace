@@ -138,6 +138,7 @@ module Serializer
       when Message
         {
         "id" => o.id,
+        "schema" => "messages",
         "type" => o.messagable_type,
         "url" => "/users/#{o.messagable_id}/messages/#{o.id}",
         "published_at" => o.created_at.utc,

@@ -23,10 +23,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
       collection: CommonPlace.community.events,
       el: this.$(".events.wire"),
       fullWireLink: "#/events",
-      emptyMessage: "There are no upcoming events yet. Add some.",
-      modelToView: function(model) {
-        return new EventWireItem({ model: model, account: CommonPlace.account });
-      }
+      emptyMessage: "There are no upcoming events yet. Add some."
     });
     
     this._events.render();
@@ -46,10 +43,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
           el: this.$(".neighborhoodPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
-          callback: function() { self.displayPreviews(); },
-          modelToView: function(model) {
-            return new PostWireItem({ model: model, account: CommonPlace.account });
-          }
+          callback: function() { self.displayPreviews(); }
         })),
         
         (new LandingPreview({
@@ -58,10 +52,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
           el: this.$(".offerPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No offers here yet.",
-          callback: function() { self.displayPreviews(); },
-          modelToView: function(model) {
-            return new PostWireItem({ model: model, account: CommonPlace.account });
-          }
+          callback: function() { self.displayPreviews(); }
         })),
         
         (new LandingPreview({
@@ -70,10 +61,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
           el: this.$(".helpPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No help requests here yet.",
-          callback: function() { self.displayPreviews(); },
-          modelToView: function(model) {
-            return new PostWireItem({ model: model, account: CommonPlace.account });
-          }
+          callback: function() { self.displayPreviews(); }
         })),
         
         (new LandingPreview({
@@ -82,10 +70,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
           el: this.$(".publicityPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
-          callback: function() { self.displayPreviews(); },
-          modelToView: function(model) {
-            return new PostWireItem({ model: model, account: CommonPlace.account });
-          }
+          callback: function() { self.displayPreviews(); }
         })),
         
         (new LandingPreview({
@@ -94,10 +79,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
           el: this.$(".otherPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
-          callback: function() { self.displayPreviews(); },
-          modelToView: function(model) {
-            return new PostWireItem({ model: model, account: CommonPlace.account });
-          }
+          callback: function() { self.displayPreviews(); }
         })),
         
         (new LandingPreview({
@@ -106,10 +88,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
           el: this.$(".announcements.wire"),
           emptyMessage: "No announcements here yet.",
           fullWireLink: "#/announcements",
-          callback: function() { self.displayPreviews(); },
-          modelToView: function(model) {
-            return new AnnouncementWireItem({ model: model, account: CommonPlace.account });
-          }
+          callback: function() { self.displayPreviews(); }
         })),
         
         (new LandingPreview({
@@ -118,10 +97,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
           el: this.$(".groupPosts.wire"),
           emptyMessage: "No posts here yet.",
           fullWireLink: "#/group_posts",
-          callback: function() { self.displayPreviews(); },
-          modelToView: function(model) {
-            return new GroupPostWireItem({ model: model, account: CommonPlace.account });
-          }
+          callback: function() { self.displayPreviews(); }
         }))
       ];
     }

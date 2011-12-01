@@ -5,7 +5,7 @@ var PostWireItem = WireItem.extend({
   className: "wire-item",
 
   initialize: function(options) {
-    this.account = options.account;
+    this.account = CommonPlace.account;
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },

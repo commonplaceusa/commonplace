@@ -9,9 +9,9 @@ var MessageWireItem = WireItem.extend({
   },
 
   initialize: function(options) {
-    this.account = options.account;
+    this.account = CommonPlace.account;
     this.model = options.model;
-    this.community = options.community;
+    this.community = CommonPlace.community;
   },
 
   afterRender: function() {
