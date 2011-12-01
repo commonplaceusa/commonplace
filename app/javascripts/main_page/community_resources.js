@@ -13,10 +13,6 @@ var CommunityResources = CommonPlace.View.extend({
     community.groupPosts.bind("add", function() { self.switchTab("groupPosts"); });
   },
 
-  afterRender: function() {
-    this.switchTab("landing");
-  },
-
   switchTab: function(tab) {
     this.$(".tab-button").removeClass("current");
     this.$("." + tab).addClass("current");
