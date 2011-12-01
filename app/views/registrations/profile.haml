@@ -27,6 +27,4 @@
     = f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/continue2.png")}
 
-- if Rails.env.production?
-  %script
-    = "mpq.track('Password entry', {'community': '#{current_community.slug}'});"
+= mixpanel_track("Password entry")

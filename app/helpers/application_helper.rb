@@ -47,6 +47,17 @@ if (window['mpq'] != 'undefined'){
 script
   end
 
+  def mixpanel_track(action, options = {})
+    options.reverse_merge!(community: current_community.try(:slug))
+    if Rails.env.production?
+      raw <<END
+<script type="text/javascript">
+  mpq.track("#{action}", #{ options.to_json  });
+</script>
+END
+    end
+  end
+
   def include_ga
     key = Rails.env.production? ? 'UA-12807510-2' : 'staging/testing key'
     raw <<script
