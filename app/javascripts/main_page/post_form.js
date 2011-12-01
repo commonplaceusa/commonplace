@@ -34,7 +34,7 @@ var PostForm = CommonPlace.View.extend({
     var self = this;
     
     if (isGroupPost) {
-      var groupId = this.$("[name=type] option:selected").attr("data-group-id");
+      var groupId = this.$("[name=category] option:selected").attr("data-group-id");
       groups.fetch({
         success: function() {
           var group = groups.find(function(g) {
