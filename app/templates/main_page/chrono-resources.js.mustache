@@ -1,0 +1,13 @@
+<div class="sub-navigation">
+  {{#isSearchEnabled}}
+    <form class="search">
+      <input type="text" value="{{query}}" placeholder="Search"/>
+    </form>
+  {{/isSearchEnabled}}
+  <h2>
+    Chronological Timeline of Post-Likes
+  </h2>
+  <div style="clear:both;"></div>
+</div>
+
+<div class="chrono wire">{{>wires.wire}}</div>
