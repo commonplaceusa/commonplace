@@ -4,17 +4,6 @@ var DynamicLandingResources = CommonPlace.View.extend({
   
   afterRender: function() {
     this._sortCountdown = 0;
-    // fetch the collections
-    // remove the top three posts from each
-    // if there are no posts, shunt that collection's previewwire in an emptybox
-    // sort the three-collections by date of first post's reply or first post
-    // render and append those three-collections
-    // fetch the chrono collection for the bottom
-    // remove all posts in three-collections from the chrono
-    // append the chrono to the bottom
-    // when we hit bottom, add to the chrono while removing all posts in three-collections
-    
-    //this.chrono = new PaginatingWire();
     
     var self = this;
     
@@ -27,6 +16,17 @@ var DynamicLandingResources = CommonPlace.View.extend({
     });
     
     this._events.render();
+    
+    if (Features.isActive("chronoResource")) {
+      this._chrono = new PaginatingWire({
+        template: "main_page.chrono-resources",
+        collection: CommonPlace.community.postlikes,
+        el: this.$(".chrono.wire"),
+        emptyMessage: "No posts here yet."
+      });
+      
+      this._chrono.render();
+    }
     
     _.each(this.wires(), function(wire) {
       wire.render();
