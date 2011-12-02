@@ -42,6 +42,7 @@ var PostLikes = Model.extend({
     var self = this;
     $.getJSON(this.uri, options.data, function(data) {
       self.models = _.map(data, function(d) { return self.toModel(d); });
+      self.removeDupes();
       self.length = data.length;
       options.success && options.success();
     });
@@ -66,16 +67,18 @@ var PostLikes = Model.extend({
   length: 0,
   
   isEmpty: function() {
-    console.log(this.models.length);
     return this.models.length == 0;
   },
   
-  remove: function(targets) {
+  setDupes: function(dupes) { this.duplicates = dupes; },
+  
+  removeDupes: function() {
+    var self = this;
     this.models = _.filter(this.models, function(model) {
-      var isTarget = _.any(targets, function(target) {
-        return target.id == model.id && target.get("schema") == model.get("schema");
+      var isDupe = _.any(self.duplicates, function(dupe) {
+        return dupe.id == model.id && dupe.get("schema") == model.get("schema");
       });
-      return !isTarget;
+      return !isDupe;
     });
     this.length = this.models.length;
   }

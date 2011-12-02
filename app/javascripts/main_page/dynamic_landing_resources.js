@@ -17,17 +17,6 @@ var DynamicLandingResources = CommonPlace.View.extend({
     
     this._events.render();
     
-    if (Features.isActive("chronoResource")) {
-      this._chrono = new PaginatingWire({
-        template: "main_page.chrono-resources",
-        collection: CommonPlace.community.postlikes,
-        el: this.$(".chrono.wire"),
-        emptyMessage: "No posts here yet."
-      });
-      
-      this._chrono.render();
-    }
-    
     _.each(this.wires(), function(wire) {
       wire.render();
     });
@@ -107,8 +96,13 @@ var DynamicLandingResources = CommonPlace.View.extend({
   displayPreviews: function() {
     this._sortCountdown++;
     
-    if (this._sortCountdown++ == this._wires.length) {
-      var sorted = _.filter(this._wires, function(wire) { return wire.collection.length > 0; });
+    if (this._sortCountdown == this._wires.length) {
+      var duplicates = [];
+      
+      var sorted = _.filter(this._wires, function(wire) {
+        duplicates.push(wire.collection.models);
+        return wire.collection.length > 0;
+      });
       
       if (sorted.length > 0) {
         sorted = _.sortBy(sorted, function(wire) {
@@ -126,6 +120,20 @@ var DynamicLandingResources = CommonPlace.View.extend({
           wire.el.detach();
           self.$(".populated").append(wire.el);
         });
+        
+        if (Features.isActive("chronoResource")) {
+          this._chrono = new PaginatingWire({
+            template: "main_page.chrono-resources",
+            collection: CommonPlace.community.postlikes,
+            el: this.$(".chrono.wire"),
+            emptyMessage: "No posts here yet.",
+            perPage: 22
+          });
+          
+          duplicates.push(this._events.collection.models);
+          this._chrono.collection.setDupes(_.flatten(duplicates));
+          this._chrono.render();
+        }
       }
     }
   } 
