@@ -66,7 +66,7 @@ Commonplace::Application.routes.draw do
   
   match "/messages/:id", :to => "bootstraps#inbox"
   match "/inbox", :to => "bootstraps#inbox"
-  match "/account", :to => "bootstraps#account"
+  match "/account", :to => "bootstraps#account", :via => :get
     
   resource :account, :except => :show do
     member do 

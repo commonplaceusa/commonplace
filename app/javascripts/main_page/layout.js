@@ -2,9 +2,14 @@
 var FixedLayout = function() {
   function adjustProfileBox() {
     var $postBox = $("#post-box");
-    $("#info-box").css({
+    var $infoBox = $("#info-box");
+    $infoBox.css({
       top: $postBox.outerHeight() + parseInt($postBox.css("top"),10) + 4
     });
+    $infoBox.show();
+    if ($infoBox.height() < 20) { 
+      $infoBox.hide();
+    }
   }
 
   $(window).scroll(adjustProfileBox).resize(adjustProfileBox);
