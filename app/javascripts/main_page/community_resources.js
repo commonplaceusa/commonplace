@@ -86,7 +86,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
 
     users: function(self) {
-      return new self.ResourceWire({
+      return new self.PaginatingResourceWire({
         template: "main_page.directory-resources",
         emptyMessage: "No posts here yet",
         collection: self.options.community.users,
