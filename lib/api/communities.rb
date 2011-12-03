@@ -28,6 +28,16 @@ class API
         serialize(search)
       end
 
+      def event_search(params, community_id)
+        search = Sunspot.search(Event) do
+          order_by(:date, :desc)
+          paginate(:page => params["page"].to_i + 1)
+          with(:community_id, community_id)
+          yield(self) if block_given?
+        end
+        serialize(search)
+      end
+
       def phrase(string)
         string.split('"').each_with_index.map { |object, i|
           i.odd? ? object : object.split(" ")
@@ -101,7 +111,7 @@ class API
                      Date.today.beginning_of_day].compact.max)
 
       if params["query"].present?
-        search(Event, params, community_id) do |search|
+        event_search(params, community_id) do |search|
           search.with(:date).greater_than(Time.now.beginning_of_day)
         end
       else
