@@ -19,6 +19,10 @@ var PostForm = CommonPlace.View.extend({
   createPost: function(e) {
     e.preventDefault();
     
+    if (this.$("[name=category]").val() == "none") {
+      return this.showError({ responseText: "Please tell us where to post this." });
+    }
+    
     this.cleanUpPlaceholders();
     
     this.$(".spinner").show();
