@@ -1,6 +1,7 @@
 //= require slugify.js
 //= require jquery.js
 //= require jcrop.js
+//= require_tree ./shared
 
 $(function() {
   $("<div/>", { id: "file_input_fix" })

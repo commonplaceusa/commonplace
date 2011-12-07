@@ -1,3 +1,4 @@
+//= require_tree ./shared
 function onABCommComplete() {
   text = "";
   $($("textarea#invite_email").val().split(", "))

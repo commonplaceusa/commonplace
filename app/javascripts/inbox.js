@@ -13,6 +13,7 @@
 //= require models
 //= require_tree ../templates/shared
 //= require_tree ../templates/inbox
+//= require_tree ./shared
 //= require wires
 //= require wire_items
 //= require inbox/app

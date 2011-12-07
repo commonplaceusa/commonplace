@@ -15,3 +15,4 @@
 //= require models
 //= require_tree ../templates/account
 //= require_tree ./account
+//= require_tree ./shared
