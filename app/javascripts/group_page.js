@@ -17,3 +17,4 @@
 //= require wires
 //= require wire_items
 //= require_tree ./group_page
+//= require_tree ./shared

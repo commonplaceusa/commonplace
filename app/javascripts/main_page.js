@@ -27,7 +27,7 @@
 //= require wires
 //= require wire_items
 //= require_tree ./main_page
-
+//= require_tree ./shared
 
 $(function() {
   
