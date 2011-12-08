@@ -40,7 +40,7 @@ class Feed < ActiveRecord::Base
     t.add :about
     t.add lambda {|f| f.avatar_url(:normal)}, :as => :avatar_url
     t.add lambda {|f| "/feeds/#{f.id}/profile"}, :as => :profile_url
-    t.add :rss_url, :as => :feed_url
+    t.add :feed_url, :as => :rss
     t.add lambda {|f| "/feeds/#{f.id}/delete"}, :as => :delete_url
     t.add :tag_list, :as => :tags
     t.add :website

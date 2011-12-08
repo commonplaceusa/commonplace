@@ -53,7 +53,7 @@ var FeedEditFormView = FormView.extend({
   },
   
   rss: function() {
-    return this.model.get("rss_url") || "";
+    return this.model.get("rss");
   },
   
   website: function() {
