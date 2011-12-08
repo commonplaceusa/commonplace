@@ -1,4 +1,4 @@
-module MailUrls
+module MailUrl
 
   def url(path)
     if path.start_with?("http")
@@ -61,7 +61,7 @@ module MailUrls
   end
 
   def settings_url
-    url("/account/edit")
+    url("/account")
   end
 
   def faq_url
