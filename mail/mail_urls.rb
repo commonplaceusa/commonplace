@@ -1,4 +1,4 @@
-module MailUrl
+module MailUrls
 
   def url(path)
     if path.start_with?("http")
