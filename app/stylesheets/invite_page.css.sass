@@ -1,0 +1,107 @@
+
+@mixin social-button($background-image)
+  display: block
+  background-repeat: no-repeat
+  background-image: image-url($background-image)
+  width: 360px
+  height: 42px  
+  margin: auto
+
+body.invite
+  #planewrapper
+    margin: 0px auto 10px
+    text-align: center
+  #plane
+    width: 960px
+    background-image:  image-url('invite/plane.png')
+    background-repeat: no-repeat  
+    background-position: 114px 10px
+    padding-top: 25px
+    padding-bottom: 25px
+    margin: 0px auto    
+    text-align: center
+
+  h1
+    color: #172b3f
+    line-height: 25px
+    font-weight: bold
+    font-size: 40px
+    text-align: center
+    margin-left: -5px
+
+
+  p.subh1
+    color: #71879a
+    line-height: 1.2
+    font-weight: bold
+    font-size: 22px
+    text-align: center
+    margin-top: 15px
+
+
+  h2
+    color: #FFFFFF
+    line-height: 1em
+    font-weight: bold
+    font-size: 23px
+    text-shadow: #631e1c 2px 2px 0px
+    text-align: left
+    margin-bottom: 5px
+    
+  p.subh2
+    color: #000000
+    font-size:  17px
+    text-align: left
+    text-shadow: #a94946 1px 1px 0px
+    font-weight: normal
+    line-height: 1.25em
+    padding: 5px 0 17px 0
+
+  ul.invite-methods li
+
+    +redlightbox
+    width: 380px
+    margin: 20px auto
+    margin-bottom: 40px
+    font-family: Rockwell, Georgia, Times, serif
+
+  .find-on-facebook-button
+    +social-button("invite/findneighbors.png")
+      
+  .share-on-facebook-button
+    +social-button("invite/facebookinvite.png")
+
+
+  .share-on-twitter-button
+    +social-button("invite/twitterinv.png")
+    margin-top: 10px
+
+  p.option-separator
+    text-align: center
+
+  .import-contacts-from-email-button
+    +social-button("contacts-from-email-btn.jpg")
+    margin-bottom: 10px
+
+  p.confirm
+    color: #fff
+    margin: 15px auto 0
+    text-align: center
+    display: none
+
+  textarea
+    display: block
+    margin: auto
+    width: 335px
+    padding: 8px 10px 8px
+    font-size: 14px
+    border: 1px solid #982c28
+    +border-radius(5px)
+    +box-shadow(#1B0A1C 1px 1px 6px 0px inset)
+    +serif
+    margin-top: 14px
+    margin-bottom: 14px
+
+  input[type=image]
+    display: block
+    margin: auto

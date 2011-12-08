@@ -11,7 +11,7 @@
             %span.notif= current_user.unread
         - else
           = tab_to "Inbox", "/inbox"
-        = tab_to "Invite Neighbors", "/account/facebook_invite"
+        = tab_to "Invite Neighbors", "/invite"
         .user-feeds
           - if current_user.managable_feeds.count > 0
             %h4 Your Feeds

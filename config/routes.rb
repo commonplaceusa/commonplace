@@ -97,21 +97,11 @@ Commonplace::Application.routes.draw do
   end
 
 
-
+  match "/invite", :to => "communities#invite", :as => :invites
+  match "/good_neighbor_discount", :to => "communities#good_neighbor_discount"
   authenticated do
 
     match 'logout' => 'user_sessions#destroy'
-
-    # Invitations
-    resource :account do
-      member do
-        get :facebook_invite
-      end
-    end
-    match "/send_invite", :to => "accounts#send_invite"
-    match "/invite", :to => "accounts#facebook_invite", :as => :invites
-    match "/good_neighbor_discount", :to => "communities#good_neighbor_discount"
-    
 
     resources :organizer do
       collection do
@@ -160,7 +150,6 @@ Commonplace::Application.routes.draw do
     match '/whereami', :to => 'site#whereami'
     
     root :to => "site#index"
-    match "/invite", :to => "accounts#facebook_invite"
     match "/:community", :to => "registrations#new", :via => :get, :as => :community_landing
 
     match "/:community/learn_more", :to => "accounts#learn_more", :via => :get
@@ -170,14 +159,6 @@ Commonplace::Application.routes.draw do
 
     match "/:community/registrations", :via => :post, :to => "registrations#create", :as => "create_registration"
 
-    # Invitations
-    resource :account do
-      member do
-        get :facebook_invite
-      end
-    end
-    
-    
   end
 
   match '/:nil_community', :to => "bootstraps#community"

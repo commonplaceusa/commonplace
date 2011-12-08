@@ -37,7 +37,7 @@ module MailUrls
   end
 
   def new_invites_url
-    url("/invites/new")
+    url("/invite")
   end
 
   def new_feed_url

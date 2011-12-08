@@ -1,14 +1,25 @@
+//= require json2
 //= require showdown
-//= require jquery-1.6.1
+//= require jquery
 //= require jquery-ui
-//= require jquery/underscore
-//= require jquery/mustache
-//= require jquery/json2
-//= require jquery/backbone
-//= require_tree ./jquery/
-//= require facebook
-//= require chosen
+//= require actual
+//= require underscore
+//= require mustache
+//= require backbone
+//= require autoresize
+//= require dropkick
+//= require truncator
+//= require ajaxupload
+//= require placeholder
+//= require time_ago_in_words
+//= require scrollTo
 
-$(function() {
-  $("#user_interest_list, #user_good_list, #user_skill_list").chosen();
-});
+//= require config
+//= require feature_switches
+
+//= require views
+//= require models
+
+//= require_tree ./shared
+
+//= require invite_page

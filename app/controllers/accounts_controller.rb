@@ -25,17 +25,6 @@ class AccountsController < ApplicationController
     render :layout => false
   end
 
-  def facebook_invite
-    # Twitter doesn't like https...
-    unless logged_in?
-      raise CanCan::AccessDenied
-    end
-    if request.ssl?
-      redirect_to :protocol => "http://"
-    end
-    @invitation = Invite.new
-  end
-
   def make_focp
     user = User.find_by_email(params[:email])
     slug = user.community.slug
