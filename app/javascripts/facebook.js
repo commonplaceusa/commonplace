@@ -27,28 +27,3 @@ function facebook_invite() {
       });
 }
 
-function inviteLoginCallback(fb_message, fb_slug) {
-    FB.ui({
-        method: 'apprequests',
-        message: fb_message,
-        data: fb_slug,
-        display: 'iframe'
-    });
-}
-
-function invite_friends(fb_message, fb_slug) {
-    fbEnsureInit(
-        function(){
-            FB.login(
-                function() {
-                    inviteLoginCallback(
-                        fb_message,
-                        fb_slug
-                    );
-                },
-                {perms:'read_stream,publish_stream,offline_access'}
-            );
-        }
-    );
-}
-

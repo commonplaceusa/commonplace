@@ -1,0 +1,62 @@
+
+#main
+  #planewrapper
+    #plane
+      %h1 Make CommonPlace Better!
+      %p.subh1 Improve CommonPlace by inviting people you know.
+
+  %ul.invite-methods
+    
+    %li
+      %h2 1. Invite neighbors by Facebook
+      %p.subh2 Find your neighbors on Facebook and invite them to join you on CommonPlace!
+      = link_to "", "#",  :class => "find-on-facebook-button", :data => { message: "I joined The #{current_community.name} CommonPlace, a new online community bulletin board for neighbors in #{current_community.name}. You should join too at: www.#{current_community.slug}.OurCommonPlace.com.", slug: current_community.slug }
+
+    %li
+      %h2 2. Share on Facebook and Twitter
+      %p.subh2 Let your friends and followers know you are on CommonPlace.
+      = link_to "", "#", :class => "share-on-facebook-button", :data => { name: "Register for The #{current_community.name} CommonPlace", url: "https://www.ourcommonplace.com/#{current_community.slug}", picture: "https://www.ourcommonplace.com/assets/logo-pin.png", caption: "The #{current_community.name} CommonPlace is a new online community bulletin board for neighbors in #{current_community.name}.", description: "Join your neighbors at https://www.ourcommonplace.com/#{current_community.slug}.", message:  "I joined The #{current_community.name} CommonPlace, a new online community bulletin board for neighbors in #{current_community.name}. You should join too at: www.#{current_community.slug}.OurCommonPlace.com." }
+
+      = link_to "", twitter_share_url(current_community), :class => "share-on-twitter-button", :target => "_blank"
+
+    %li
+      %h2 3. Invite neighbors by email
+      %p.subh2 Invite your neighbors by adding their email addresses and writing a short message. 
+
+      = link_to "", "#", :class => "import-contacts-from-email-button"
+
+      %p.option-separator OR
+
+      %form.send-invites{ "data-community-id" => current_community.id }
+        %p.confirm Invites sent. Send some more!
+
+        %textarea{ id: "invite_emails", name: "email", placeholder: "Enter email addresses here (separated by commas)", rows: 4 }
+
+        %textarea{ name: "body", placeholder: "Include a message about why you love CommonPlace", rows: 6 }
+
+        %input{ type: "image", src: asset_path("invite/neighborinvite.png") }
+
+
+
+%script{ type: "text/javascript" }
+  window.fbAsyncInit = function() {
+  FB.init({
+  appId : "#{($FacebookConfig || {})['app_id']}",
+  status : true,
+  cookie : true,
+  xfbml  : true
+  });
+  fbApiInit = true;
+  };
+  (function() {
+  var e = document.createElement('script');
+  e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+  e.async = true;
+  document.getElementById('fb-root').appendChild(e);
+  }());
+ 
+= mixpanel_track("Visited invitation page")
+= javascript_include_tag "https://www.plaxo.com/css/m/js/util.js"
+= javascript_include_tag "https://www.plaxo.com/css/m/js/basic.js"
+= javascript_include_tag "https://www.plaxo.com/css/m/js/abc_launcher.js"
+

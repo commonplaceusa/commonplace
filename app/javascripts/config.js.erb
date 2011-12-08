@@ -1,0 +1,6 @@
+if (!window.CommonPlace) { window.CommonPlace = {}; }
+
+_.extend(CommonPlace, {
+  autoActionTimeout: 500,
+  facebookAppId: "<%= $FacebookConfig.try(:fetch, 'app_id') %>"
+});
