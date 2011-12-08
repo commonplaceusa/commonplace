@@ -77,21 +77,21 @@
     #2
       %h2{ :class => "section_head"} Platform Functionality
       #2_1
-        %h3{ :class => "item_head"} "What's the difference between a neighborhood post and an announcement?"
+        %h3{ :class => "item_head"} What's the difference between a neighborhood post and an announcement?
         .answer
           %p A neighborhood post is meant to be a neighborly post from an individual to their neighbors, like requests ("Can we borrow a ladder?"), offers ("I'm giving away maternity clothes"), questions ("Anyone know a good electrician?"), and personal, non-commercial updates ("We just had a baby!").
           %p A community announcement is the place for publicity to the whole town and commercial announcements.  If you want to announce that you do tax preparation or are an SAT tutor, post it as a community announcement.  If you are seeking donations for your cause or volunteers for your fair, post it as a community announcement.  If you are an organization, city service or business that will posting many community announcements, consider starting a "Community Feed" so that you can post as the organization or business, and so that people can subscribe to your announcements.
           %p In short, neighborhood posts are for neighbor-to-neighbor requests, offers, questions and updates while community announcements are for town-wide publicity and commercial use.
       #2_2
-        %h3{ :class => "item_head"} "What's a Community Feed?"
+        %h3{ :class => "item_head"} What's a Community Feed?
         .answer
           %p Any organization, business, city service or cause can create a "Community Feed" on CommonPlace.  This allows you to send out announcements and events to the community from your organization.  For example, if you are the President of the PTA, you could create a PTA "Community Feed" and then send out announcements and events which would show up as coming from the PTA, as opposed to from an individual.  In addition, people can subscribe to your community feed and thus receive your announcements and events by email.
       #2_3
-        %h3{ :class => "item_head"} "What is my 'neighborhood' on CommonPlace?"
+        %h3{ :class => "item_head"} What is my 'neighborhood' on CommonPlace?
         .answer
           %p Each town on CommonPlace is split into neighborhoods of roughly 700 residences each.  When you write a neighborhood post, it is emailed immediately to those who are in your neighborhood.  Everyone else in town will receive that post at the end of the day in a daily digest, under "Posts Around Town."  For specific information about your neighborhood's borders, email your community CommonPlace organizer at #{current_community.organizer_email}.
       #2_4
-        %h3{:class => "item_head"} "How do email notifications work on CommonPlace?"
+        %h3{:class => "item_head"} How do email notifications work on CommonPlace?
         .answer
           %p Everything on CommonPlace - events, announcements and neighborhood posts - can be sent out in live emails (as they are posted), compiled into daily digest and/or compiled into a weekly bulletin.
           %p The community weekly bulletin is a compilation of all announcements posted to CommonPlace that week as well as the next two weeks of upcoming events.
@@ -99,47 +99,47 @@
           %p All posts from your neighborhood are, by default, emailed to you live.  You can also select to receive announcements and events from certain community feeds immediately as they are posted.
           %p If you ever want to change your email notification settings, feel free to go to the #{link_to "settings page", "/account"}."
       #2_5
-        %h3{ :class => "item_head"} "If you ever want to change your email notification settings, feel free to go to the #{link_to "settings page", "/account"}."
+        %h3{ :class => "item_head"} How do I change my email notification settings?
         .answer
           %p If you post announcements and events to CommonPlace, they not only are immediately posted to CommonPlace for everyone in town to see - they are also emailed to everyone every week in the community weekly bulletin.  If you have an organization, city service, business or cause in #{current_community.name}, consider starting a Community Feed, which will allow you to send out announcements and events from your feed name. 
       #2_6
-        %h3{ :class => "item_head"} "What about privacy?"
+        %h3{ :class => "item_head"} What about privacy?
         .answer
           %p CommonPlace is a closed network, meaning nothing you ever post or share on CommonPlace can be Googled-- one has to register and log in to see the information. 
           %p CommonPlace is all about sharing public, community information -- only share on CommonPlace what you would want your neighbors to see. 
       #2_7
-        %h3{ :class => "item_head"} "Why do I have to input my full name when I register?"
+        %h3{ :class => "item_head"} Why do I have to input my full name when I register?
         .answer
           %p When researching internet platforms while building CommonPlace, we noted that internet anonymity quickly leads to vandalism and unproductive web communication.  By associating posts with names, it ensures healthy, productive and neighborly interaction on CommonPlace.  Plus, we have already had cases of people meeting in person and saying, "Oh, wow, you must be Janet - I saw your post on CommonPlace!  Great to meet you!"
       #2_8
-        %h3{ :class => "item_head"} "Why do I have to input my street address when I register?"
+        %h3{ :class => "item_head"} Why do I have to input my street address when I register?
         .answer
           %p This allows us to place you into the right neighborhood and to ensure you live in the correct CommonPlace town. 
     
     #3
       %h2{ :class => "section_head"} How do I... ?
       #3_1
-        %h3{ :class => "item_head"} "How do I invite one of my neighbors to #{current_community.name}'s CommonPlace?"
+        %h3{ :class => "item_head"} How do I invite one of my neighbors to #{current_community.name}'s CommonPlace?
         .answer
           %p Fill out our #{link_to "invite form", "/invite"} - thanks for being a good neighbor!
       #3_2
-        %h3{ :class => "item_head"} "How do I post to CommonPlace?"
+        %h3{ :class => "item_head"} How do I post to CommonPlace?
         .answer
           %p Everything involving posting to CommonPlace is in the red box in the upper left hand corner of the mainpage, after you log in.
       #3_3
-        %h3{:class => "item_head"} "How do I create a community feed?"
+        %h3{:class => "item_head"} How do I create a community feed?
         .answer
           %p Create a community feed #{link_to "here", new_feed_registration_url}.
       #3_4
-        %h3{:class => "item_head"} "How do I retrieve my lost password?"
+        %h3{:class => "item_head"} How do I retrieve my lost password?
         .answer
           %p Click #{link_to "here", new_password_reset_url} to receive your lost password.
       #3_5
-        %h3{:class => "item_head"} "How do I report a bug?"
+        %h3{:class => "item_head"} How do I report a bug?
         .answer
           %p Fill out the form below to report a bug.  Thanks for being on the look out!
       #3_6
-        %h3{:class => "item_head"} "How do I help out with the CommonPlace movement in #{current_community.name}?"
+        %h3{:class => "item_head"} How do I help out with the CommonPlace movement in #{current_community.name}?
         .answer
           %p We are always looking for volunteers who believe in our mission of bringing local communities closer together.  If you're interested, email #{current_community.name}'s lead CommonPlace organizer, #{current_community.organizer_name}, at #{current_community.organizer_email}.
 
