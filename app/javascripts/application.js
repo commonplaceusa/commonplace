@@ -23,3 +23,4 @@
 //= require_tree ./shared
 
 //= require invite_page
+//= require faq
