@@ -1,0 +1,29 @@
+#feature-switching {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  font-family: Helvetica; }
+  #feature-switching a.feature-panel-toggle {
+    background-color: white;
+    padding: 5px 5px 5px 20px;
+    display: block;
+    background-image: image-url("blue-arrow-up.png");
+    background-position: 5px center;
+    background-repeat: no-repeat; }
+    #feature-switching a.feature-panel-toggle.shown {
+      background-image: image-url("blue-arrow-down.png"); }
+  #feature-switching div.feature-panel {
+    border-top: 1px solid #fafafa;
+    display: none;
+    background-color: white;
+    padding-bottom: 5px; }
+    #feature-switching div.feature-panel li {
+      padding: 10px 0; }
+    #feature-switching div.feature-panel button {
+      display: block;
+      width: 90%;
+      margin: auto; }
+
+body.fixedLayout #feature-switching {
+  position: fixed;
+  top: 65px; }

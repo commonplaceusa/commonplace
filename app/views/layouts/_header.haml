@@ -1,29 +1,58 @@
 #header
   - if logged_in?
     #nav_wrapper
-      .nav
-        = tab_to "Home", "/#{current_community.slug}"
-        - if current_user.admin?
-          = tab_to "Stats", "#", {:onclick => "$('#admin_bar').toggle('slow');"}
-        - if current_user.unread > 0
-          %a{:href => "/inbox"}
-            %span Inbox
-            %span.notif= current_user.unread
-        - else
-          = tab_to "Inbox", "/inbox"
-        = tab_to "Invite Neighbors", "/account/facebook_invite"
-        .user-feeds
-          - if current_user.managable_feeds.count > 0
-            %h4 Your Feeds
-            %ul
-              - current_user.managable_feeds.each do |feed|
-                %li= link_to feed.name, "/pages/#{feed.slug.blank? ? feed.id : feed.slug}"
-              %li= link_to 'Create a feed', new_feed_registration_url
-          - else
-            %h4
-              = link_to((t "feeds.register"), new_feed_registration_url)
-        = tab_to "Settings", "/account"
-        = tab_to "Logout", "/users/sign_out"
+      %ul{:class=>"nav"}
+        %li{:class=>"my-activity selected-nav"} 
+          %div{:class=>"number"} 432
+          %a(title=@link){:href => @link} My Activity
+          %ul{:class=>"my-activity-sub"}
+            %p 
+              This is a record of all the ways you've helped your neighbors on CommonPlace.  Since June 2009, you've earned
+              %span{:class=>"red"} 31 
+              'Good Neighbor' points.
+            .sub-left
+              %h4 Personal Activity
+              %li 
+                %span{:class=>"sub-title"}Posts to neighbors 
+                %span{:class=>"sub-notif"} 3
+              %li 
+                %span{:class=>"sub-title"}Replies to neighbors 
+                %span{:class=>"sub-notif"} 5
+              %li 
+                %span{:class=>"sub-title"}Events posted 
+                %span{:class=>"sub-notif"} 3
+              %li 
+                %span{:class=>"sub-title"}Invites sent 
+                %span{:class=>"sub-notif"} 3
+              %li 
+                %span{:class=>"sub-title"}Shares on Facebook 
+                %span{:class=>"sub-notif"} 9
+            .sub-right 
+              %h4 Town Activity
+              %li
+                %span{:class=>"sub-title"}Total Neighbors 
+                %span{:class=>"sub-notif"} 113
+              %li 
+                %span{:class=>"sub-title"}New neighbors This Week 
+                %span{:class=>"sub-notif"} 14
+              %li 
+                %span{:class=>"sub-title"}Posts this week 
+                %span{:class=>"sub-notif"} 54
+              %li 
+                %span{:class=>"sub-title"}Events this week 
+                %span{:class=>"sub-notif"} 8
+              %li 
+                %span{:class=>"sub-title"}Visits to CommonPlace 
+                %span{:class=>"sub-notif"} 2k
+        %li{:class=>"invite"}
+          %div{:class=>"letter"}
+          %a(title=@link){:href => @link} Invite
+        %li{:class=>"inbox"}
+          %div{:class=>"file"}
+          %a(title=@link){:href => @link} Inbox
+        %li{:class=>"account"}
+          %div{:class=>"icon"}
+          %a(title=@link){:href => @link} Hi, Max!
       = link_to "/", :id => "logo" do
         = image_tag "logo2.png", :alt => 'CommonPlace'
         %span.community= current_community.name

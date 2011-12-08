@@ -1,0 +1,22 @@
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6, .markdown a, .markdown p, .markdown ul, .markdown ol, .markdown hr, .markdown strong, .markdown em, .markdown blockquote, .markdown code, .markdown pre {
+  background-color: none;
+  border: none;
+  word-wrap: break-word;
+  font-size: inherit;
+  font-weight: inherit; }
+.markdown a {
+  color: #b7403c; }
+.markdown ul {
+  margin-top: 0;
+  margin-left: 10px;
+  clear: left; }
+  .markdown ul li {
+    list-style-type: disc; }
+.markdown ol {
+  margin-top: 0;
+  margin-left: 10px;
+  clear: left; }
+  .markdown ol li {
+    list-style-type: upper-roman; }
+.markdown hr {
+  display: none; }

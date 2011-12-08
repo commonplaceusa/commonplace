@@ -26,17 +26,16 @@ div#header, header
       img
         vertical-align: bottom
     nav, .nav
-      padding: 14px 0 12px 0
       float: right
       display: inline
+      width: 434px
       a, .disabled_link
-        vertical-align: top
-        font-size: 14px
-        letter-spacing: .5px
-        padding: 3px 10px
-        color: #cee7fe
-        font-weight: normal
-        font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+        font-size: 12px
+        letter-spacing: .7px
+        padding: 3px 0 3px 11px
+        color: #8faac2
+        font-weight: bold
+        font-family: Helvetica, sans-serif
         text-decoration: none
         +text-shadow(#000 1px 1px 0px)
         .notif
@@ -47,15 +46,145 @@ div#header, header
           padding: 0 5px
         span
           vertical-align: top
-      a.selected_nav
+      li
+        margin-top: -6px
+        height: 30px
+        vertical-align: middle
+        padding-top: 12px
+        float: left
+        margin-right: 16px
+      li.my-activity 
+        width: 127px
+        .my-activity-sub
+          display: none
+          background: white
+          color: #505250
+          width: 410px 
+          margin-top: 14px
+          padding: 10px
+          font-family: Helvetica, Sans Serif
+          font-size: 13px
+          position: relative
+          left: -304px
+          height: 255px
+          border: 1px solid #d7d7d7
+          border-top: 0px
+          -webkit-border-bottom-right-radius: 5px
+          -webkit-border-bottom-left-radius: 5px
+          -webkit-border-top-left-radius: 5px
+          -moz-border-radius-bottomright: 5px
+          -moz-border-radius-topleft: 5px
+          -moz-border-radius-bottomleft: 5px
+          border-bottom-right-radius: 5px
+          border-top-left-radius: 5px
+          border-bottom-left-radius: 5px
+          li
+            padding: 5px 0 5px 0
+            margin: 0
+            height: auto
+            line-height: 20px
+            width: 100%
+            border-bottom: 1px solid #bac0c6
+          li:hover
+            background: #E3E7EB
+          p
+            line-height: 19px
+            margin-bottom: 13px
+          .red
+            color: #AC322F
+            font-weight: bold
+          h4
+            font-size: 11px
+            font-weight: bold
+            text-transform: uppercase
+            border-bottom: 3px solid #abb1b7
+            padding-bottom: 7px
+            color: #3B3B3B
+          .sub-left
+            float: left
+            width: 195px
+            line-height: 10px
+            font-size: 12px
+          .sub-right
+            float: right
+            width: 195px
+            padding-left: 10px  
+            font-size: 12px
+            line-height: 10px
+          .sub-title 
+            padding-left: 5px
+            font-weight: bold
+            color: #1B334A
+          .sub-notif
+            float: right
+            font-weight: bold
+            color: #AC322F
+            background: #e3e7eb
+            padding: 0 4px   
+      li.my-activity:hover
+        width: 127px
+        ul.my-activity-sub
+          display:block 
+      li.selected-nav
+        background: #14273a
         color: #fff
-        background: #2e4b67
+        border: #0f1e2d 1px solid
         +border-radius(5px)
-        cursor: default
+      li.selected-nav:hover
+        background: white
+        color: #1B334A
+        border: white 1px solid
+        border: 1px solid #d7d7d7
+        border-bottom: 0px
+        +border-radius(5px 5px 0 0)     
+        a 
+          text-shadow: none
+          color: #1B334A
+        .my-activity-sub
+          display: block
+        
+      li.invite
+        width: 79px
+        a
+          padding: 3px 0px 3px 9px
+      li.inbox
+        width: 72px
+      li.account
+        width: 90px
+        margin-right: 0px
+      .number 
+        background: image-url('text-bubble.png') no-repeat
+        color: #ac322f
+        font-family: Helvetica
+        font-size: 13px
+        text-shadow: 1px white
+        margin-left: 9px
+        font-weight: bold
+        float: left
+        width: 32px
+        height: 24px
+        padding-top: 3px
+        text-align: center
+      .letter
+        background: image-url('mail.png') no-repeat
+        height: 25px
+        width: 28px
+        float: left
+        margin-top: -5px
+      .file
+        background: image-url('file.png') no-repeat
+        height: 25px
+        width: 21px
+        float: left
+      .icon
+        background: image-url('icon.png') no-repeat
+        height: 25px
+        width: 21px
+        float: left
+        margin-top: -2px
+        border-radisu: 5px
       a:hover
-        color: #fff
-        background: #2e4b67
-        +border-radius(5px)
+      
       div.user-feeds
         display: inline
         position: relative
@@ -124,6 +253,7 @@ div#header, header
   .border
     border: 1px solid #ccc
     +border-radius(5px)
+    
 
 body.application.logged_out
   div#header, header
@@ -319,3 +449,8 @@ body.application.logged_out
         font-family: Rockwell, Georgia, serif
         font-size: 11px
         +text-shadow(#454545 1px 1px 0px)
+#main 
+  display: none
+  
+#wrapper
+  margin-bottom: 1000px

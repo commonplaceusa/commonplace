@@ -1,0 +1,87 @@
+/*
+Syntax error: Undefined mixin 'text-shadow'.
+        on line 20 of app/stylesheets/main_page/community_resources_navigation.css.sass, in `text-shadow'
+        from line 20 of app/stylesheets/main_page/community_resources_navigation.css.sass
+
+15:       padding: 5px 0 7px
+16:       line-height: 1.2em
+17:       padding: 6px 2px 6px 3px
+18:       font-weight: bold
+19:       font-family: Helvetica, Arial, sans-serif
+20:       +text-shadow(black 1px 1px 0)
+21:       font-size: 12px
+22:       background: #ac322f
+23:       +border-radius(4px 4px 0 0)
+24:       +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
+25:     
+
+Backtrace:
+app/stylesheets/main_page/community_resources_navigation.css.sass:20:in `text-shadow'
+app/stylesheets/main_page/community_resources_navigation.css.sass:20
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:169:in `visit_mixin'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:235:in `visit_rule'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:235:in `visit_rule'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:235:in `visit_rule'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:47:in `visit_root'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/tree/root_node.rb:20:in `render'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/engine.rb:293:in `_render'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/engine.rb:240:in `render'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:319:in `update_stylesheet'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:181:in `block (2 levels) in update_stylesheets'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:175:in `each'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:175:in `block in update_stylesheets'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:173:in `each'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:173:in `update_stylesheets'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:214:in `watch'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/plugin.rb:111:in `method_missing'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/exec.rb:408:in `watch_or_update'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/exec.rb:294:in `process_result'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/exec.rb:41:in `parse'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/lib/sass/exec.rb:21:in `parse!'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.7/bin/sass:8:in `<top (required)>'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/bin/sass:19:in `load'
+/Users/joshlewis/.rvm/gems/ruby-1.9.3-p0/bin/sass:19:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined mixin 'text-shadow'.\A         on line 20 of app/stylesheets/main_page/community_resources_navigation.css.sass, in `text-shadow'\A         from line 20 of app/stylesheets/main_page/community_resources_navigation.css.sass\A \A 15:       padding: 5px 0 7px\A 16:       line-height: 1.2em\A 17:       padding: 6px 2px 6px 3px\A 18:       font-weight: bold\A 19:       font-family: Helvetica, Arial, sans-serif\A 20:       +text-shadow(black 1px 1px 0)\A 21:       font-size: 12px\A 22:       background: #ac322f\A 23:       +border-radius(4px 4px 0 0)\A 24:       +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)\A 25:     "; }
