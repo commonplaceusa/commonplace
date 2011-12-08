@@ -13,6 +13,7 @@
 //= require placeholder
 //= require time_ago_in_words
 //= require scrollTo
+//= require jcrop
 
 //= require config
 //= require feature_switches
