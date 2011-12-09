@@ -56,6 +56,18 @@ var MainPageRouter = Backbone.Router.extend({
 
     $("#main").replaceWith(this.view.el);
     CommonPlace.layout.reset();
+    
+    var community = CommonPlace.community;
+    var self = this;
+    var postlikes = [community.posts, community.events, community.groupPosts, community.announcements];
+    community.groups.fetch({
+      success: function() {
+        community.groups.each(function(group) { postlikes.push(group.posts); });
+        _.each(postlikes, function(postlike) {
+          postlike.bind("add", function() { self.navigate("/", true); });
+        });
+      }
+    });
   },
 
   routes: {
