@@ -18,7 +18,7 @@ class API
         end
         serialize(search)
       end
-      
+
       def chronological(klass, params, community_id)
         search = Sunspot.search(klass) do
           order_by(:created_at, :desc)
@@ -40,7 +40,7 @@ class API
 
       def phrase(string)
         string.split('"').each_with_index.map { |object, i|
-          i.odd? ? object : object.split(" ")
+          i.odd? ? %{"#{object}"} : object.split(" ")
         }.flatten
       end
 

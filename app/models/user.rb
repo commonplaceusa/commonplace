@@ -354,8 +354,9 @@ WHERE
   end
 
   searchable do
-    text :first_name
-    text :last_name
+    text :user_name do
+      full_name
+    end
     text :about
     text :skills
     text :goods
