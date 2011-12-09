@@ -1,43 +1,18 @@
 $(function(){ 
   if ($("body").hasClass("faq")) {
-    var sidebar = $('#sections_picker');
-    var top = sidebar.offset().top;
-    var main;
-    $(window).resize(function (event){
-      var ypos = $(this).scrollTop();
-      main = $('#main').offset().left;
-      main += $('#main').width();
-      main -= sidebar.width();
-      main += 80;
-      if(ypos <= 3772){
-        if (ypos+40 >= top) {
-          sidebar.css({position: "fixed", left: main, top: "30px"});
-        }
-        else{
-          sidebar.css({position: "absolute", left: "", top: "30px"});
-        }
+    var setSidebarPosition = function(e) {
+      var $sidebar = $('#sections_picker');
+      var $main = $("#main");
+      var leftOffset = $main.offset().left + $main.outerWidth() - 80;
+
+      if ($(this).scrollTop() + 40 <= $main.offset().top) {
+        $sidebar.css({position: "absolute", left: ""});
       }
       else{
-        sidebar.css({position: "absolute", top: "3637px", left:""});
-      } 
-    });
-    $(window).scroll(function (event) {
-      var ypos = $(this).scrollTop();
-      main = $('#main').offset().left;
-      main += $('#main').width();
-      main -= sidebar.width();
-      main += 80;
-      if(ypos <= 3772){
-        if (ypos+40 >= top) {
-          sidebar.css({position: "fixed", left: main, top: "30px"});
-        }
-        else{
-          sidebar.css({position: "absolute", left: "", top: "30px"});
-        }
+        $sidebar.css({position: "fixed", left: leftOffset});
       }
-      else{
-        sidebar.css({position: "absolute", top: "3637px", left:""});
-      }
-    });
+    };
+
+    $(window).scroll(setSidebarPosition).resize(setSidebarPosition);
   } 
 });
