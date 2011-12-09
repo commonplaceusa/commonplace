@@ -88,6 +88,9 @@ class Event < ActiveRecord::Base
     text :replies do
       replies.map &:body
     end
+    text :author_name do
+      owner.name
+    end
     time :date
     integer :community_id
     time :created_at

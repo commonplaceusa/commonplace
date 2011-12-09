@@ -45,6 +45,9 @@ class Announcement < ActiveRecord::Base
     text :replies do
       replies.map &:body
     end
+    text :author_name do
+      owner.name
+    end
     integer :community_id
     time :created_at
   end
