@@ -50,6 +50,9 @@ class Post < ActiveRecord::Base
 
   searchable do
     text :subject, :body
+    text :author_name do
+      user.full_name
+    end
     text :replies do
       replies.map &:body
     end
