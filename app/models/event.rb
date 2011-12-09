@@ -88,6 +88,9 @@ class Event < ActiveRecord::Base
     text :replies do
       replies.map &:body
     end
+    text :reply_author do
+      replies.map { |r| r.user.name }
+    end
     text :author_name do
       owner.name
     end

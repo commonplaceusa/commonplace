@@ -56,6 +56,9 @@ class Post < ActiveRecord::Base
     text :replies do
       replies.map &:body
     end
+    text :reply_author do
+      replies.map { |r| r.user.name }
+    end
     integer :community_id
     time :created_at
   end
