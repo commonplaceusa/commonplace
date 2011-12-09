@@ -143,6 +143,7 @@ GEM
       multipart-post (~> 1.1.0)
       rack (>= 1.1.0, < 2)
     fastercsv (1.5.4)
+    fattr (2.2.0)
     ffi (1.0.9)
     foreman (0.22.0)
       term-ansicolor (~> 1.0.5)
@@ -190,6 +191,7 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
+    highline (1.6.8)
     hike (1.2.1)
     hirefireapp (0.0.5)
     htmlentities (4.3.0)
@@ -280,6 +282,8 @@ GEM
       oa-more (= 0.3.0)
       oa-oauth (= 0.3.0)
       oa-openid (= 0.3.0)
+    options (2.3.0)
+      fattr
     orm_adapter (0.0.5)
     paperclip (2.4.4)
       activerecord (>= 2.3.0)
@@ -293,6 +297,9 @@ GEM
       activerecord (~> 3.0)
     polyglot (0.3.2)
     pr_geohash (1.0.0)
+    progress_bar (0.4.0)
+      highline (~> 1.6.1)
+      options (~> 2.3.0)
     pry (0.9.6)
       coderay (>= 0.9.8)
       method_source (>= 0.6.5)
@@ -498,6 +505,7 @@ DEPENDENCIES
   permanent_records
   pg
   premailer!
+  progress_bar
   pry
   rack
   rack-cache

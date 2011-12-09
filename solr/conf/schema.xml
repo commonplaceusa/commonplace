@@ -29,21 +29,21 @@
 
  PERFORMANCE NOTE: this schema includes many optional features and should not
  be used for benchmarking.  To improve performance one could
-  - set stored="false" for all fields possible (esp large fields) when you
+  = set stored="false" for all fields possible (esp large fields) when you
     only need to search on the field but don't need to return the original
     value.
-  - set indexed="false" if you don't need to search on the field, but only
+  = set indexed="false" if you don't need to search on the field, but only
     return the field as a result of searching on other indexed fields.
-  - remove all unneeded copyField statements
-  - for best index size and searching performance, set "index" to false
+  = remove all unneeded copyField statements
+  = for best index size and searching performance, set "index" to false
     for all general text fields, use copyField to copy them to the
     catchall "text" field, and use that for searching.
-  - For maximum indexing performance, use the StreamingUpdateSolrServer
+  = For maximum indexing performance, use the StreamingUpdateSolrServer
     java client.
-  - Remember to run the JVM in server mode, and use a higher logging level
+  = Remember to run the JVM in server mode, and use a higher logging level
     that avoids logging every request
 -->
-<schema name="sunspot" version="1.0">
+<schema name="Sunspot 1.1.0 for Ruby on Rails" version="1.0">
   <types>
     <!-- field type definitions. The "name" attribute is
        just a label to be used by field definitions.  The "class"

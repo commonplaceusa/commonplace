@@ -106,6 +106,7 @@ group :development, :test do
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
   gem 'test_track' # jasmine doesn't support the assset pipeline yet, this helps
   gem 'jasmine'
+  gem 'progress_bar'
 end
 
 group :linux do

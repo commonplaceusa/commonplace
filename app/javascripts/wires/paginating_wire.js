@@ -27,6 +27,7 @@ var PaginatingWire = Wire.extend({
   },
 
   debounceSearch: _.debounce(function() {
+                    console.log("SEARCH");
     this.$("form.search").submit();
   }, CommonPlace.autoActionTimeout),
 
