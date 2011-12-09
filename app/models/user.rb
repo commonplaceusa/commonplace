@@ -339,6 +339,10 @@ class User < ActiveRecord::Base
     self.post_receive_method == "Three"
   end
 
+  def meets_limitation_requirement?
+    self.emails_sent <= 3
+  end
+
   def inbox
     Message.where(<<WHERE, self.id, self.id)
     ("messages"."user_id" = ? AND

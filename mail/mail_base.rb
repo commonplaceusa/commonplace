@@ -89,13 +89,16 @@ class MailBase < Mustache
     unless limited?
       true
     else
-      increase_email_count
-      meets_limitation_requirement
+      if defined? user
+        true
+      else
+        user.meets_limitation_requirement?
+      end
     end
   end
 
   def limited?
-    unless user
+    unless defined? user
       true
     else
       user.emails_are_limited?
@@ -103,18 +106,15 @@ class MailBase < Mustache
   end
 
   def increase_email_count
-    if user
+    if defined? user
       user.emails_sent += 1
       user.save
     end
   end
 
-  def meets_limitation_requirement
-    user && user.emails_sent <= 3
-  end
-
   def deliver
     if deliver?
+      increase_email_count
       mail = Mail.deliver(:to => self.to,
                           :from => self.from,
                           :reply_to => self.reply_to,
