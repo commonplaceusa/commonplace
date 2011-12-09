@@ -37,10 +37,11 @@ var PaginatingWire = Wire.extend({
     var $input = this.$("form.search input");
     this.currentQuery = $input.val();
     this.$("ul").empty();
-    $input.removeClass("complete");
+    $input.removeClass("complete").addClass("waiting");
     var self = this;
     this.fetchCurrentPage(function() { 
       self.appendCurrentPage(); 
+      $input.removeClass("waiting");
       if ($input.val() !== "") { $input.addClass("complete"); }
     });
   },
