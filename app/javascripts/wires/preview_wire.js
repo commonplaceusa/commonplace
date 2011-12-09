@@ -1,5 +1,5 @@
 
-var PreviewWire = PaginatingWire.extend({
+var PreviewWire = Wire.extend({
   template: "wires/preview-wire",
   _defaultPerPage: 5,
   fullWireLink: function() { return this.options.fullWireLink; },

@@ -1,5 +1,5 @@
 
-var MessageWire = PaginatingWire.extend({
+var MessageWire = Wire.extend({
   template: "inbox/message-list",
   id: "message-list",
   
@@ -8,6 +8,7 @@ var MessageWire = PaginatingWire.extend({
     this.community = options.community;
     this.collection = options.collection;
     this.options.perPage = 5;
+    this.itemView = MessageWireItem;
   },
 
   afterRender: function() {    
@@ -20,14 +21,6 @@ var MessageWire = PaginatingWire.extend({
       });
       messageview.render();
       self.$(".list").append(messageview.el);
-    });
-  },
-
-  modelToView: function(model) {
-    return new MessageWireItem({
-      account: this.account,
-      community: this.community,
-      model: model  
     });
   }
 });
