@@ -21,11 +21,14 @@ var Wire = CommonPlace.View.extend({
   onScroll: function() {
   
     var isOnScreen = function($el) {
+      if ($el.length < 1) { return false; }
       var $window = $(window);
-      if ($($el).length < 1) { return false; }
-      return $window.scrollTop() + $window.height() > $el.offset().top
-      && $window.scrollTop() < $el.offset().top + $el.height();
-    }
+      var windowOffset = $(window).scrollTop();
+      var elOffset = $el.offset().top;
+
+      return (elOffset < $window.scrollTop() + $window.height() &&
+              $window.scrollTop() < elOffset + $el.height());
+    };
   
     var $end = this.$(".end");
     if (isOnScreen($end) && this.$(".loading:visible").length < 1) {
