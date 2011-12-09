@@ -4,7 +4,8 @@ var PaginatingWire = Wire.extend({
   events: {
     "click a.more": "showMore",
     "keyup form.search input": "debounceSearch",
-    "submit form.search": "search"
+    "submit form.search": "search",
+    "click form.search input.complete": "cancelSearch"
   },
 
   currentPage: function() {
@@ -32,11 +33,23 @@ var PaginatingWire = Wire.extend({
   query: "",
 
   search: function(event) {
-    event.preventDefault();
-    this.currentQuery = this.$("form.search input").val();
+    if (event) { event.preventDefault(); }
+    var $input = this.$("form.search input");
+    this.currentQuery = $input.val();
     this.$("ul").empty();
+    $input.removeClass("complete");
     var self = this;
-    this.fetchCurrentPage(function() { self.appendCurrentPage(); });
+    this.fetchCurrentPage(function() { 
+      self.appendCurrentPage(); 
+      if ($input.val() !== "") { $input.addClass("complete"); }
+    });
+  },
+
+  cancelSearch: function(e) { 
+    if (e.offsetX < 20) { // clicked on icon
+      this.$("form.search input").val("");
+      this.search();
+    }      
   },
 
   isSearchEnabled: function() { return this.isActive('wireSearch');  }
