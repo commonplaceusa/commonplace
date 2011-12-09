@@ -6,11 +6,6 @@ var CommunityResources = CommonPlace.View.extend({
   initialize: function(options) {
     var self = this;
     var community = this.options.community;
-
-    community.posts.bind("add", function() { self.switchTab("posts"); });
-    community.announcements.bind("add", function() { self.switchTab("announcements"); });
-    community.events.bind("add", function() { self.switchTab("events"); });
-    community.groupPosts.bind("add", function() { self.switchTab("groupPosts"); });
   },
 
   switchTab: function(tab) {
