@@ -1,10 +1,15 @@
 <div class="sub-navigation">
+  {{#isSearchEnabled}}
+    <form class="search">
+      <input type="text" value="{{query}}" placeholder="Search"/>
+    </form>
+  {{/isSearchEnabled}}
   <h2>
-    <a href="#/users" class="{{usersLinkClass}}">{{#t}}users.a{{/t}}</a>
+    <a href="#/users">{{#t}}users.a{{/t}}</a>
     &sdot;
-    <a href="#/feeds" class="{{feedsLinkClass}}">{{#t}}feeds.a{{/t}}</a>
+    <a href="#/feeds">{{#t}}feeds.a{{/t}}</a>
     &sdot;
-    <a href="#/groups" class="{{groupsLinkClass}}">{{#t}}groups.a{{/t}}</a>
+    <a href="#/groups">{{#t}}groups.a{{/t}}</a>
   </h2>
 </div>
 

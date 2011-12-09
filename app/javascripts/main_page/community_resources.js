@@ -98,7 +98,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
 
     groups: function(self) {
-      return new self.ResourceWire({
+      return new self.PaginatingResourceWire({
         template: "main_page.directory-resources",
         emptyMessage: "No posts here yet",
         collection: self.options.community.groups,
@@ -110,7 +110,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
 
     feeds: function(self) {
-      return new self.ResourceWire({
+      return new self.PaginatingResourceWire({
         template: "main_page.directory-resources",
         emptyMessage: "No posts here yet",
         collection: self.options.community.feeds,
@@ -126,21 +126,6 @@ var CommunityResources = CommonPlace.View.extend({
     className: "resources",
     _defaultPerPage: 15
   }),
-
-  ResourceWire: Wire.extend(
-    {
-      className: "resources",
-      usersLinkClass: function() {
-        return this.options.active == 'users' ? 'current' : '';
-      },
-      feedsLinkClass: function() {
-        return this.options.active == 'feeds' ? 'current' : '';
-      },
-      groupsLinkClass: function() {
-        return this.options.active == 'groups' ? 'current' : '';
-      }
-    }
-  ),
 
   showPost: function(post) {
     this.showSingleItem(post, GroupPostWireItem);
