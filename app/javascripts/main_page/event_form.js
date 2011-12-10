@@ -6,7 +6,8 @@ var EventForm = CommonPlace.View.extend({
 
   events: {
     "click button": "createEvent",
-    "change .post-label-selector input": "toggleCheckboxLIClass"
+    "change .post-label-selector input": "toggleCheckboxLIClass",
+    "keydown textarea": "resetLayout"
   },
 
   afterRender: function() {
@@ -56,6 +57,8 @@ var EventForm = CommonPlace.View.extend({
   toggleCheckboxLIClass: function(e) {
     $(e.target).closest("li").toggleClass("checked");
   },
+
+  resetLayout: function() { CommonPlace.layout.reset(); },
 
   time_values: _.flatten(
     _.map(
