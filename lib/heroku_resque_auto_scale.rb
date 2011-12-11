@@ -23,12 +23,8 @@ else
       end
     end
 
-    def after_perform_scale_down(*args)
-      # Nothing fancy, just shut everything down if we have no jobs
-      Scaler.workers = 1 if Scaler.job_count.zero?
-    end
-
-    def before_perform_scale_up(*args)
+    def after_perform_scale_up(*args)
+      Logger.new(STDERR).debug "Scaling..."
       [
        {
          :workers => 1, # This many workers
@@ -58,7 +54,9 @@ else
         if Scaler.job_count >= scale_info[:job_count]
           # Set the number of workers unless they are already set to a level we want. Don't scale down here!
           if Scaler.workers <= scale_info[:workers]
+            Logger.new(STDERR).info "Scaling to #{scale_info[:workers]} workers"
             Scaler.workers = scale_info[:workers]
+            Logger.new(STDERR).info "...Done!"
           end
           break # We've set or ensured that the worker count is high enough
         end
