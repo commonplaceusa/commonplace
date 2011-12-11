@@ -25,7 +25,7 @@ else
 
     def after_perform_scale_down(*args)
       # Nothing fancy, just shut everything down if we have no jobs
-      Scaler.workers = 0 if Scaler.job_count.zero?
+      Scaler.workers = 1 if Scaler.job_count.zero?
     end
 
     def before_perform_scale_up(*args)
