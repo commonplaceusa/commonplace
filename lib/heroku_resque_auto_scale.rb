@@ -1,6 +1,9 @@
 require 'heroku'
 
-if !Rails.env.production? and false
+# ENABLE_AUTO_SCALER = Rails.env.production?
+ENABLE_AUTO_SCALER = false
+
+unless ENABLE_AUTO_SCALER
   module HerokuResqueAutoScale
   end
 else
