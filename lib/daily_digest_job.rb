@@ -1,5 +1,6 @@
 class DailyDigestJob
   @queue = :daily_digest
+  extend HerokuResqueAutoScale
 
   def self.perform
     date = DateTime.now.utc.to_s(:db)
