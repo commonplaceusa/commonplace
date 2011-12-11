@@ -28,7 +28,7 @@ else
       Scaler.workers = 0 if Scaler.job_count.zero?
     end
 
-    def after_enqueue_scale_up(*args)
+    def before_perform_scale_up(*args)
       [
        {
          :workers => 1, # This many workers
