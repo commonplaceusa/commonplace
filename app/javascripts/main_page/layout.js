@@ -3,9 +3,19 @@ var FixedLayout = function() {
   function adjustProfileBox() {
     var $postBox = $("#post-box");
     var $infoBox = $("#info-box");
+
+    if ($(window).width() < 990) {
+      $("#left-column").hide();
+      $("#right-column").css({ float: "none", marginLeft: "auto", marginRight: "auto" });
+    } else {
+      $("#left-column").show();
+      $("#right-column").css({ float: '', marginLeft: '', marginRight: '' });
+    }
+    
     $infoBox.css({
       top: $postBox.outerHeight() + parseInt($postBox.css("top"),10) + 4
     });
+
     $infoBox.show();
     if ($infoBox.height() < 20) { 
       $infoBox.hide();

@@ -34,7 +34,10 @@ var PostForm = CommonPlace.View.extend({
       title: this.$("[name=title]").val(),
       body: this.$("[name=body]").val()
     }, {
-      success: function() { self.render(); },
+      success: function() { 
+        self.render(); 
+        self.resetLayout();
+      },
       error: function(attribs, response) {
         self.$(".spinner").hide();
         self.$("button").show();
