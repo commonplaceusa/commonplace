@@ -14,45 +14,87 @@
               since you signed up October 2010.
             .sub-left
               %h4 Personal Activity
+              %span.this-week This Week
+              %span.all-time All Time
               %li 
-                %span{:class=>"sub-title"}Posts to neighbors 
-                %span{:class=>"sub-notif"} 3
-                %span{:class=>"sub-notif"} 45
+                %span{:class=>"sub-title"}My posts
+                %span{:class=>"sub-notif one"} 123
+                %span{:class=>"sub-notif two"} 34
               %li 
-                %span{:class=>"sub-title"}Replies to neighbors 
-                %span{:class=>"sub-notif"} 5
+                %span{:class=>"sub-title"}My replies
+                %span{:class=>"sub-notif one"} 233
+                %span{:class=>"sub-notif two"} 4
+              %li 
+                %span{:class=>"sub-title"}Neighbors thanked
+                %span{:class=>"sub-notif one"} 3
+                %span{:class=>"sub-notif two"} 6
+              %li 
+                %span{:class=>"sub-title"}Replies received
+                %span{:class=>"sub-notif one"} 5
+                %span{:class=>"sub-notif two"} 6
+              %li 
+                %span{:class=>"sub-title"}Thanks received
+                %span{:class=>"sub-notif one"} 5
+                %span{:class=>"sub-notif two"} 6
               %li 
                 %span{:class=>"sub-title"}Events posted 
-                %span{:class=>"sub-notif"} 3
+                %span{:class=>"sub-notif one"} 54
+                %span{:class=>"sub-notif two"} 3
+              %li 
+                %span{:class=>"sub-title"}Number of site visits 
+                %span{:class=>"sub-notif one"} 55
+                %span{:class=>"sub-notif two"} 3
               %li 
                 %span{:class=>"sub-title"}Invites sent 
-                %span{:class=>"sub-notif"} 3
+                %span{:class=>"sub-notif one"} 44
+                %span{:class=>"sub-notif two"} 5
               %li 
                 %span{:class=>"sub-title"}Shares on Facebook 
-                %span{:class=>"sub-notif"} 9
+                %span{:class=>"sub-notif one"} 73
+                %span{:class=>"sub-notif two"} 7
+              %li.total
+                %span.sub-total-title Total
+                %span.sub-total-all 455
+                %span.sub-total-week 455
             .sub-right 
               %h4 Town Activity
+              %span.this-week This Week
+              %span.all-time All Time
               %li
-                %span{:class=>"sub-title"}Total Neighbors 
-                %span{:class=>"sub-notif"} 113
+                %span{:class=>"sub-title"}Neighbors registered
+                %span{:class=>"sub-notif one"} 12
+                %span{:class=>"sub-notif two"} 1
               %li 
-                %span{:class=>"sub-title"}New neighbors
-                %span{:class=>"sub-notif"} 14
+                %span{:class=>"sub-title"}Total posts
+                %span{:class=>"sub-notif one"} 36
+                %span{:class=>"sub-notif two"} 4
               %li 
-                %span{:class=>"sub-title"}Posts
-                %span{:class=>"sub-notif"} 54
+                %span{:class=>"sub-title"}Total events
+                %span{:class=>"sub-notif one"} 46
+                %span{:class=>"sub-notif two"} 7
               %li 
-                %span{:class=>"sub-title"}Events
-                %span{:class=>"sub-notif"} 8
+                %span{:class=>"sub-title"}Total replies  
+                %span{:class=>"sub-notif one"} 45
+                %span{:class=>"sub-notif two"} 2
               %li 
-                %span{:class=>"sub-title"}Visits to CommonPlace 
-                %span{:class=>"sub-notif"} 2k
+                %span{:class=>"sub-title"}Total thanks
+                %span{:class=>"sub-notif one"} 23
+                %span{:class=>"sub-notif two"} 2
               %li 
-                %span{:class=>"sub-title"}Average posts  
-                %span{:class=>"sub-notif"} 23
+                %span{:class=>"sub-title"}Average replies / user
+                %span{:class=>"sub-notif one"} 54
+                %span{:class=>"sub-notif two"} 243
               %li 
-                %span{:class=>"sub-title"}Average replies  
-                %span{:class=>"sub-notif"} 54
+                %span{:class=>"sub-title"}Average posts / user
+                %span{:class=>"sub-notif one"} 3
+                %span{:class=>"sub-notif two"} 43
+              %li.community-percent
+                %p 
+                  How many households in City are on CommonPlace?
+                  %span.invite Invite more!
+                .percent-layer
+                = image_tag("house.png")
+                %span.percent 21%
         %li{:class=>"invite"}
           %div{:class=>"letter"}
           %a(title=@link){:href => @link} Invite
