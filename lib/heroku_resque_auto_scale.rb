@@ -1,6 +1,6 @@
 require 'heroku'
 
-unless Rails.env.production?
+if !Rails.env.production? and false
   module HerokuResqueAutoScale
   end
 else
