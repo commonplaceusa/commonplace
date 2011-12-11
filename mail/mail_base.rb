@@ -8,6 +8,7 @@ Mail.defaults do
 end
 
 class MailBase < Mustache
+  extend HerokuResqueAutoScale
   include MailUrls
 
   def self.underscore(classified = name)
