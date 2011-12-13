@@ -52,6 +52,7 @@ class Community < ActiveRecord::Base
     t.add :organizer_name, :as => :admin_name
     t.add :organizer_email, :as => :admin_email
     t.add :links
+    t.add :discount_businesses
   end
 
   def links
@@ -210,11 +211,6 @@ class Community < ActiveRecord::Base
   
   def user_count
     self.users.count
-  end
-
-  def discount_businesses
-    # Stub to fix undefined method error temporarily
-    []
   end
 
 end

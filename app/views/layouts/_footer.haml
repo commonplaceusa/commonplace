@@ -14,7 +14,7 @@
       = link_to "About", about_url, :target => :blank
       - if logged_in? && current_community.discount_businesses.present?
         &sdot;
-        = link_to "Good Neighbor Discount", "/good_neighbor_discount"
+        = link_to "Good Neighbor Discount", "/#{current_community.slug}/discount", data: { remote: true }
       - if params[:community]
         &sdot;
         = link_to "Privacy Policy", privacy_path(current_community)

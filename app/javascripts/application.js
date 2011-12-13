@@ -29,6 +29,8 @@
 
 //= require invite_page
 //= require faq_page
+//= require discount_page
+
 //= require application_initialization
 
 var Application = Backbone.Router.extend({
@@ -36,7 +38,8 @@ var Application = Backbone.Router.extend({
   initialize: function() { 
     this.pages = {
       faq: new FaqPage({ el: $("#main") }),
-      invite: new InvitePage({ el: $("#main") })
+      invite: new InvitePage({ el: $("#main") }),
+      discount: new DiscountPage({ el: $("#main") })
     }; 
 
     _.invoke(this.pages, "unbind");
@@ -44,12 +47,15 @@ var Application = Backbone.Router.extend({
 
   routes: {
     ":community/faq": "faq",
-    ":community/invite": "invite"
+    ":community/invite": "invite",
+    ":community/discount": "discount"
   },
 
   faq: function() { this.showPage("faq"); },
 
   invite: function() { this.showPage("invite"); },
+
+  discount: function() { this.showPage("discount"); },
 
   showPage: function(name) {
     var page = this.pages[name];

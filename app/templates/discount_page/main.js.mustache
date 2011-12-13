@@ -1,0 +1,23 @@
+<div id="planewrapper">
+  <div id="plane">
+    <h1>The CommonPlace</h1>
+    <h2>Good Neighbor Discount</h2>
+  </div>
+</div>
+
+<div id="gbox">
+  <h1>Use at these participating businesses:</h1>
+</div>
+
+<div id="businessinformation">
+  <ul id="infolist1">
+    {{#businesses}}
+      <li>{{.}}</li>
+    {{/businesses}}
+  </ul>
+</div>
+
+<div id="footerinfo">
+  <h3>{{community_name}} businesses are offering members of CommonPlace a
+    "Good Neighbor Discount." Ask at the register for details.</h3>
+</div>
