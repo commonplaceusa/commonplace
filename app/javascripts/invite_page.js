@@ -1,18 +1,9 @@
-//= require_tree ./shared
-
-function onABCommComplete() {
-  text = "";
-  $($("textarea#invite_email").val().split(", "))
-    .each(function(index, value) { text += value.replace(/(.*)<(.*)>/, "$2") + ", "; });
-  $("textarea#invite_email").val(text.substring(0, text.length-2));
-}
-
-var InvitePage = Backbone.View.extend({
+var InvitePage = CommonPlace.View.extend({
+  template: "invite_page/main",
   
-  render: function() {
+  afterRender: function() {
     this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$('textarea').autoResize();
-    return this;
   },
 
   events: {
@@ -62,7 +53,7 @@ var InvitePage = Backbone.View.extend({
     $.ajax({
       type: "POST",
       dataType: "json",
-      url: "/api/communities/" + $form.attr("data-community-id") + "/invites",
+      url: "/api" + CommonPlace.community.link("invites"),
       data: JSON.stringify({
         emails: $("[name=email]", $form).val().split(/,\s*/),
         message: $("[name=body]", $form).val()
@@ -73,17 +64,15 @@ var InvitePage = Backbone.View.extend({
         $("p.confirm", $form).show().delay(1000).fadeOut();
       }
     });
-  }
+  },
+
+  community_name: function() { return CommonPlace.community.get('name'); },
+  
+  community_slug: function() { return CommonPlace.community.get('slug'); },
+
+
+
+  bind: function() { $(this.el).addClass("invite"); },
+  unbind: function() { $(this.el).removeClass("invite"); }
+
 });
-
-// Initialization
-
-$(function() {
-  if ($("body").hasClass("invite")) {
-    var view = new InvitePage({el: $("#main")});
-    window.view = view;
-    view.render();
-  }
-});
-
-

@@ -97,7 +97,6 @@ Commonplace::Application.routes.draw do
   end
 
 
-  match "/invite", :to => "communities#invite", :as => :invites
   match "/good_neighbor_discount", :to => "communities#good_neighbor_discount"
   authenticated do
 
@@ -121,13 +120,15 @@ Commonplace::Application.routes.draw do
 
   end
 
+  match "/invite", :to => "bootstraps#application"
+
   scope "/:community" do
     match 'about' => 'site#about'
     match 'privacy' => 'site#privacy', :as => :privacy
     match 'terms' => 'site#terms', :as => :terms
     match 'dmca' => 'site#dmca', :as => :dmca
-    match "faq", :to => "communities#faq", :as => :faq, :via => :get
-    match "faq", :to => "communities#send_faq", :via => :post
+    match 'invite', :to => "bootstraps#application", :as => :invites
+    match "faq", :to => "bootstraps#application", :as => :faq, :via => :get
   end
   
 

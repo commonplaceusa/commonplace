@@ -13,4 +13,6 @@ class BootstrapsController < ApplicationController
 
   def group ; end
 
+  def application ; end
+
 end
