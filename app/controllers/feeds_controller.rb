@@ -1,4 +1,4 @@
-class FeedsController < CommunitiesController
+class FeedsController < ApplicationController
   before_filter :load
 
   def delete
