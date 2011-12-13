@@ -66,12 +66,6 @@ var InvitePage = CommonPlace.View.extend({
     });
   },
 
-  community_name: function() { return CommonPlace.community.get('name'); },
-  
-  community_slug: function() { return CommonPlace.community.get('slug'); },
-
-
-
   bind: function() { $(this.el).addClass("invite"); },
   unbind: function() { $(this.el).removeClass("invite"); }
 

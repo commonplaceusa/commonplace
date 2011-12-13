@@ -120,7 +120,6 @@ Commonplace::Application.routes.draw do
 
   end
 
-  match "/invite", :to => "bootstraps#application"
   scope "/:community" do
     match 'about' => 'site#about'
     match 'privacy' => 'site#privacy', :as => :privacy

@@ -37,7 +37,7 @@ module MailUrls
   end
 
   def new_invites_url
-    url("/invite")
+    url("/#{community.slug}/invite")
   end
 
   def new_feed_url
@@ -65,7 +65,7 @@ module MailUrls
   end
 
   def faq_url
-    url("/faq")
+    url("/#{community.slug}/faq")
   end
 
   def feed_profile(feed)
