@@ -30,14 +30,6 @@ var FaqPage = CommonPlace.View.extend({
     }
   },
 
-  community: function() { return CommonPlace.community.get('name'); },
-
-  organizer: function() { return CommonPlace.community.get('admin_name'); },
-  
-  organizer_email: function() { return CommonPlace.community.get('admin_email'); },
-
-  community_slug: function() { return CommonPlace.community.get('slug'); },
-
   sendQuestion: function(e) {
     e.preventDefault();
     var $form = this.$("form.ask-question");

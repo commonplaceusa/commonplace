@@ -122,5 +122,14 @@ var FormView = CommonPlace.View.extend({
     e && e.preventDefault();
     var self = this;
     this.remove(function() { self.modal.exit(); });
-  }
+  },
+
+  community_name: function() { return CommonPlace.community.get('name'); },
+
+  organizer: function() { return CommonPlace.community.get('admin_name'); },
+  
+  organizer_email: function() { return CommonPlace.community.get('admin_email'); },
+
+  community_slug: function() { return CommonPlace.community.get('slug'); }
+
 });
