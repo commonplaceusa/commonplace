@@ -18,7 +18,7 @@ var Wire = CommonPlace.View.extend({
     $(window).scroll(function() { self.onScroll(); });
   },
   
-  onScroll: function() {
+  onScroll: _.debounce(function() {
   
     var isOnScreen = function($el) {
       if ($el.length < 1) { return false; }
@@ -31,11 +31,14 @@ var Wire = CommonPlace.View.extend({
     };
   
     var $end = this.$(".end");
-    if (isOnScreen($end) && this.$(".loading:visible").length < 1) {
+
+    // Autoloading pages is limited to 3 pages until we figure out how to
+    // make links in the footer accessible
+    if (isOnScreen($end) && this.$(".loading:visible").length < 1 && this.currentPage() < 3) {
       this.$(".loading").show();
       this.showMore();
     }
-  },
+  }, CommonPlace.autoActionTimeout),
   
   fetchCurrentPage: function(callback) {
     var data = { limit: this.perPage(), page: this.currentPage() };
