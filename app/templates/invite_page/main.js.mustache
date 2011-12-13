@@ -1,0 +1,49 @@
+<div id="planewrapper">
+  <div id="plane">
+    <h1>Make CommonPlace Better!</h1>
+    <p class="subh1">Improve CommonPlace by inviting people you know.</p>
+  </div>
+</div>
+
+<ul class="invite-methods">
+
+  <li>
+      <h2>1. Invite neighbors by Facebook</h2>
+      <p class="subh2">Find your neighbors on Facebook and invite them to join you on CommonPlace!</p>
+      <a href="#" class="find-on-facebook-button"
+        data-message="I joined The {{community_name}} CommonPlace, a new online community bulletin board for neighbors in {{community_name}}. You should join too at: www.{{community_slug}}.OurCommonPlace.com."
+        data-slug="{{community_slug}}"></a>
+    </li>
+    <li>
+      <h2>2. Share on Facebook and Twitter</h2>
+      <p class="subh2">Let your friends and followers know you are on CommonPlace.</p>
+      <a href="#" class="share-on-facebook-button"
+        data-name="Register for The {{community_name}} CommonPlace"
+        data-url="https://www.ourcommonplace.com/{{community_slug}}"
+        data-picture="https://www.ourcommonplace.com/assets/logo-pin.png"
+        data-caption="The {{community_name}} CommonPlace is a new online community bulletin board for neighbors in {{community_name}}."
+        data-description="Join your neighbors at https://www.ourcommonplace.com/{{community_slug}}."
+        data-message="I joined The {{community_name}} CommonPlace, a new online community bulletin board for neighbors in {{community_name}}. You should join too at: www.{{community_slug}}.OurCommonPlace.com.">
+      </a>
+      <a href="http://twitter.com/share?url=http://{{community_slug}}.OurCommonPlace.com&text=Hey neighbors! If you live in {{community_name}}, check out {{community_names}}'s CommonPlace, a new local community bulletin board:&count=horizontal"
+        class="share-on-twitter-button" target="_blank">
+      </a>
+    </li>
+    <li>
+      <h2>3. Invite neighbors by email</h2>
+      <p class="subh2">Invite your neighbors by adding their email addresses and writing a short message.</p>
+
+      <a href="#" class="import-contacts-from-email-button"></a>
+
+      <p class="option-separator">OR</p>
+
+      <form class="send-invites">
+        <p class="confirm">Invites sent. Send some more!</p>
+
+        <textarea id="invite_emails" name="email" placeholder="Enter email addresses here (separated by commas)" rows="4"></textarea>
+
+        <textarea name="body" placeholder="Include a message about why you love CommonPlace" rows="6"></textarea>
+
+        <button></button>
+    </li>
+</ul>

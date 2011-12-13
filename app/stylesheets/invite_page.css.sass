@@ -7,7 +7,7 @@
   height: 42px  
   margin: auto
 
-body.invite
+#main.invite
   #planewrapper
     margin: 0px auto 10px
     text-align: center
@@ -83,25 +83,30 @@ body.invite
     +social-button("contacts-from-email-btn.jpg")
     margin-bottom: 10px
 
-  p.confirm
-    color: #fff
-    margin: 15px auto 0
-    text-align: center
-    display: none
+  form.send-invites
+    p.confirm
+      color: #fff
+      margin: 15px auto 0
+      text-align: center
+      display: none
 
-  textarea
-    display: block
-    margin: auto
-    width: 335px
-    padding: 8px 10px 8px
-    font-size: 14px
-    border: 1px solid #982c28
-    +border-radius(5px)
-    +box-shadow(#1B0A1C 1px 1px 6px 0px inset)
-    +serif
-    margin-top: 14px
-    margin-bottom: 14px
+    textarea
+      display: block
+      margin: auto
+      width: 335px
+      padding: 8px 10px 8px
+      font-size: 14px
+      border: 1px solid #982c28
+      +border-radius(5px)
+      +box-shadow(#1B0A1C 1px 1px 6px 0px inset)
+      +serif
+      margin-top: 14px
+      margin-bottom: 14px
 
-  input[type=image]
-    display: block
-    margin: auto
+    button
+      width: 355px
+      display: block
+      margin: auto
+      background-image: image-url("invite/neighborinvite.png")
+      border: 0
+      height: 41px

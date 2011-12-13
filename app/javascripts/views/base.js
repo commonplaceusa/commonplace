@@ -82,7 +82,10 @@ CommonPlace.View = Backbone.View.extend({
 
   isActive: function(feature) {
     return window.Features.isActive(feature);
-  }
+  },
+
+  bind: $.noop,
+  unbind: $.noop
 
 });
 

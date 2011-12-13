@@ -46,6 +46,10 @@ class API
 
     end
 
+    get "/:community_slug" do |community_slug|
+      serialize(Community.find_by_slug(community_slug))
+    end
+
     post "/:community_id/posts" do |community_id|
       post = Post.new(:user => current_account,
                       :community_id => community_id,
@@ -283,8 +287,17 @@ class API
     end
 
     post "/:community_id/invites" do |community_id|
-      kickoff.deliver_user_invite(request_body['emails'], current_account, request_body['message'])
-      [200, {}, ""]
+      kickoff.deliver_user_invite(request_body['emails'], 
+                                  current_account, 
+                                  request_body['message'])
+      [ 200, {}, "" ]
+    end
+
+    post "/:community_id/questions" do |community_id|
+      kickoff.deliver_admin_question(request_body['email'],
+                                     request_body['message'],
+                                     request_body['name'])
+      [ 200, {}, "" ]
     end
 
   end

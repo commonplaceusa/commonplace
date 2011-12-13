@@ -46,6 +46,7 @@ class Community < ActiveRecord::Base
   api_accessible :default do |t|
     t.add :id
     t.add :name
+    t.add :slug
     t.add :locale
     t.add :groups
     t.add :organizer_name, :as => :admin_name
@@ -73,7 +74,9 @@ class Community < ActiveRecord::Base
       "posts_offers" => "/communities/#{id}/posts/offers",
       "posts_help" => "/communities/#{id}/posts/help",
       "posts_publicity" => "/communities/#{id}/posts/publicity",
-      "posts_other" => "/communities/#{id}/posts/other"
+      "posts_other" => "/communities/#{id}/posts/other",
+      "invites" => "/communities/#{id}/invites",
+      "questions" => "/communities/#{id}/questions"
     }
   end
 

@@ -11,7 +11,7 @@
             %span.notif= current_user.unread
         - else
           = tab_to "Inbox", "/inbox"
-        = tab_to "Invite Neighbors", "/invite"
+        = tab_to "Invite Neighbors", "/#{current_community.slug}/invite", data: { remote: true }
         .user-feeds
           - if current_user.managable_feeds.count > 0
             %h4 Your Feeds

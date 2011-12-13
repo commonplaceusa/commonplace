@@ -9,7 +9,7 @@
         = mail_to "FAQ@CommonPlaceUSA.com", "Questions?  Email FAQ@CommonPlaceUsa.com"
       - if params[:community]
         &sdot;
-        = link_to "FAQ", faq_path(current_community)
+        = link_to "FAQ", faq_path(current_community), data: { remote: true }
       &sdot;
       = link_to "About", about_url, :target => :blank
       - if logged_in? && current_community.discount_businesses.present?
