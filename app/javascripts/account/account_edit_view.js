@@ -24,17 +24,19 @@ var AccountEditView = CommonPlace.View.extend({
     this.populateSelected(this.account.get("interests"), this.$("[name=interests]"));
     this.populateSelected(this.account.get("skills"), this.$("[name=skills]"));
     this.populateSelected(this.account.get("goods"), this.$("[name=goods]"));
+    this.$("select.list").chosen();
+
+    this.initAvatarUploader(this.$(".avatar .upload"));
+
   },
   
   populateSelected: function(list, el) {
     _.each(list, function(item) {
       var option = el.children("[value='" + item + "']");
+
       option.attr("selected", "selected");
     });
     
-    this.$("select.list").chosen();
-
-    this.initAvatarUploader(this.$(".avatar .upload"));
   },
   
   editAccount: function(e) {
