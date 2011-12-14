@@ -27,10 +27,13 @@
 
 //= require_tree ./shared
 //= require_tree ../templates
+//= require en
+//= require college
 
 //= require invite_page
 //= require faq_page
 //= require discount_page
+//= require community_page
 
 //= require application_initialization
 
@@ -40,23 +43,108 @@ var Application = Backbone.Router.extend({
     this.pages = {
       faq: new FaqPage({ el: $("#main") }),
       invite: new InvitePage({ el: $("#main") }),
-      discount: new DiscountPage({ el: $("#main") })
+      discount: new DiscountPage({ el: $("#main") }),
+      community: new CommunityPage({ el: $("#main") })
     }; 
 
     _.invoke(this.pages, "unbind");
   },
 
   routes: {
-    ":community/faq": "faq",
-    ":community/invite": "invite",
-    ":community/discount": "discount"
+    "faq": "faq",
+    "invite": "invite",
+    "discount": "discount",
+
+    "/": "community",
+    "": "community",
+    "list/:tab": "communityWire",
+    "post/:tab": "communityPostBox",
+
+    "show/posts/:id": "showPost",
+    "show/events/:id": "showEvent",
+    "show/group_posts/:id": "showGroupPost",
+    "show/announcements/:id": "showAnnouncement",
+
+    "message/user/:id": "messageUser",
+    "message/feed/:id": "messageFeed",
+    
+    "tour": "tour"
   },
+
 
   faq: function() { this.showPage("faq"); },
 
   invite: function() { this.showPage("invite"); },
 
   discount: function() { this.showPage("discount"); },
+
+  community: function() { this.showPage("community"); },
+
+  communityWire: function(tab) {
+    this.showPage("community");
+    this.pages.community.lists.switchTab(tab);
+  },
+
+  communityPostBox: function(tab) {
+    this.showPage("community");
+    this.postBox.switchTab(tab);
+  },
+
+  showPost: function(id) {
+    this.showPage("community");
+    this.lists.showPost(new Post({links: {self: "/posts/" + id}}));
+  },
+
+  showEvent: function(id) {
+    this.showPage("community");
+    this.lists.showEvent(new Event({links: {self: "/events/" + id }}));
+  },
+
+  showGroupPost: function(id) {
+    this.showPage("community");
+    this.lists.showGroupPost(new GroupPost({links: {self: "/group_posts/" + id}}));
+  },
+
+  showAnnouncement: function(id) {
+    this.showPage("community");
+    this.lists.showAnnouncement(new Event({links: {self: "/announcements/" + id}}));
+  },
+
+  messageUser: function(id) {
+    this.showPage("community");
+    var user = new User({ links: { self: "/users/" + id } });
+    user.fetch({ 
+      success: function() {
+        var form = new MessageFormView({
+          model: new Message({ messagable: user })
+        });
+        form.render();
+      } 
+    });
+  },
+
+  messageFeed: function(id) {
+    this.showPage("community");
+    var feed = new Feed({ links: { self: "/feeds/" + id } });
+    feed.fetch({
+      success: function() {
+        var form = new MessageFormView({
+          model: new Message({ messagable: feed })
+        });
+        form.render();
+      }
+    });
+  },
+
+  tour: function() {
+    this.showPage("community");
+    var tour = new Tour({ 
+      el: $("#main"), 
+      account: CommonPlace.account, 
+      community: CommonPlace.community 
+    });
+    tour.render();
+  },
 
   showPage: function(name) {
     var page = this.pages[name];
