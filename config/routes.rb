@@ -119,7 +119,7 @@ Commonplace::Application.routes.draw do
     match "/groups/:slug", :to => "bootstraps#group"
 
   end
-
+  match '/:community', :to => "bootstraps#application"
   scope "/:community" do
     match 'about' => 'site#about'
     match 'privacy' => 'site#privacy', :as => :privacy
@@ -128,13 +128,15 @@ Commonplace::Application.routes.draw do
     match 'invite', :to => "bootstraps#application", :as => :invites
     match "faq", :to => "bootstraps#application", :as => :faq, :via => :get
     match "discount", :to => "bootstraps#application"
+    match "tour", :to => "bootstraps#application"
+    match "list/:tab", :to => "bootstraps#application"
+    match "post/:tab", :to => "bootstraps#application"
+    match "message/:type/:id", :to => "bootstraps#application"
+    match "show/:type/:id", :to => "bootstraps#application"
   end
   
-
-
   match "/account/make_focp", :to => "accounts#make_focp"
   match "/account/disable_email", :to => "accounts#disable_email"
-
 
   # explicitly list paths that we want the main_page js app to handle
   ["/posts(/:id)", "/users(/:id)", "/events(/:id)", "/feeds",
@@ -161,5 +163,5 @@ Commonplace::Application.routes.draw do
 
   end
 
-  match '/:nil_community', :to => "bootstraps#community"
+
 end
