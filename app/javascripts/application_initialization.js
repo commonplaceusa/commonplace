@@ -22,8 +22,7 @@ $(function() {
 
   $("body").delegate("a[data-remote]", "click", function(e) { 
     e.preventDefault();
-
-    Backbone.history.navigate(e.target.pathname.replace(/^\//,""), true);
+    Backbone.history.navigate(e.currentTarget.pathname.replace(/^\//,""), true);
   });
   var communitySlug = window.location.pathname.split("/")[1];
   var getCommunity = $.getJSON("/api/communities/" + communitySlug, 
