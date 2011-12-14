@@ -61,9 +61,10 @@
           +background-image(linear-gradient(#22405d 0%, #182e43 50%))
           +box-shadow(#1e3851 0 0 0 1px inset, #112130 0 0 0 1px)
 
-      img 
+      .icon
         float: left
         margin-right: 6px
+        background-repeat: no-repeat
 
       &:hover
         +background-image(linear-gradient(#c03032 0%, #972627 50%))
@@ -73,7 +74,23 @@
         top: 2px
         +background-image(linear-gradient(#9f2829 0%, #832122 50%))
         +box-shadow(#932526 0 0 0 1px inset, #6e1c1d 0 0 0 1px)
-        
+
+      &.create-group-post .icon
+        background-image: image-url("main_page/group-post-tab-icon.png")
+        width: 27px
+        height: 25px
+      &.create-event .icon
+        background-image: image-url("main_page/event-tab-icon.png")
+        width: 27px
+        height: 26px
+      &.create-neighborhood-post .icon
+        background-image: image-url("main_page/neighborhood-post-tab-icon.png")
+        width: 22px
+        height: 29px
+      &.create-announcement .icon
+        background-image: image-url("main_page/announcement-tab-icon.png")
+        width: 25px
+        height: 24px
   .form-container
     float: left
     margin-left: 15px
