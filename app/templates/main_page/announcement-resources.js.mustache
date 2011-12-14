@@ -5,12 +5,12 @@
       <div class="cancel"></div>
     </form>
   {{/isSearchEnabled}}
-  <h2><a href="#/announcements" class="current">
+  <h2><a href="/list/announcements" class="current" data-remote>
     {{^isRecent}}{{#t}}announcements.a{{/t}}{{/isRecent}}
     {{#isRecent}}{{#t}}recent-announcements.a{{/t}}{{/isRecent}}
   </a>
   &sdot;
-  <a href="#/feeds">{{#t}}feeds.a{{/t}}</a></h2>
+  <a href="/list/feeds" data-remote>{{#t}}feeds.a{{/t}}</a></h2>
   <div style="clear:both;"></div>
 </div>
 <div class="no-results"><p>There were no results</p></div>

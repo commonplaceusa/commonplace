@@ -9,12 +9,12 @@
         = mail_to "FAQ@CommonPlaceUSA.com", "Questions?  Email FAQ@CommonPlaceUsa.com"
       - if params[:community]
         &sdot;
-        = link_to "FAQ", faq_path(current_community), data: { remote: true }
+        = link_to "FAQ", "/faq", data: { remote: true }
       &sdot;
       = link_to "About", about_url, :target => :blank
       - if logged_in? && current_community.discount_businesses.present?
         &sdot;
-        = link_to "Good Neighbor Discount", "/#{current_community.slug}/discount", data: { remote: true }
+        = link_to "Good Neighbor Discount", "/discount", data: { remote: true }
       - if params[:community]
         &sdot;
         = link_to "Privacy Policy", privacy_path(current_community)

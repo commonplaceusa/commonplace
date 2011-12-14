@@ -2,7 +2,7 @@
   - if logged_in?
     #nav_wrapper
       .nav
-        = tab_to "Home", "/#{current_community.slug}"
+        = tab_to "Home", "/", data: { remote: true }
         - if current_user.admin?
           = tab_to "Stats", "#", {:onclick => "$('#admin_bar').toggle('slow');"}
         - if current_user.unread > 0
@@ -11,7 +11,7 @@
             %span.notif= current_user.unread
         - else
           = tab_to "Inbox", "/inbox"
-        = tab_to "Invite Neighbors", "/#{current_community.slug}/invite", data: { remote: true }
+        = tab_to "Invite Neighbors", "/invite", data: { remote: true }
         .user-feeds
           - if current_user.managable_feeds.count > 0
             %h4 Your Feeds
@@ -24,7 +24,7 @@
               = link_to((t "feeds.register"), new_feed_registration_url)
         = tab_to "Settings", "/account"
         = tab_to "Logout", "/users/sign_out"
-      = link_to "/", :id => "logo" do
+      = link_to "/", id: "logo", data: { remote: true } do
         = image_tag "logo2.png", :alt => 'CommonPlace'
         %span.community= current_community.name
   - else
