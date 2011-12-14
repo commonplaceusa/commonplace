@@ -5,7 +5,7 @@
       <div class="cancel"></div>
     </form>
   {{/isSearchEnabled}}
-  <h2><a href="#/posts" class="current">
+  <h2><a href="/list/posts" class="current" data-remote>
     {{^isRecent}}{{#t}}posts.a{{/t}}{{/isRecent}}
     {{#isRecent}}{{#t}}recent-posts.a{{/t}}{{/isRecent}}
   </a></h2>

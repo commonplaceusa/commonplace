@@ -5,12 +5,12 @@
       <div class="cancel"></div>
     </form>
   {{/isSearchEnabled}}
-  <h2><a href="#/groupPosts" class="current">
+  <h2><a href="/list/groupPosts" class="current" data-remote>
     {{^isRecent}}{{#t}}group-posts.a{{/t}}{{/isRecent}}
     {{#isRecent}}{{#t}}recent-group-posts.a{{/t}}{{/isRecent}}
   </a>
   &sdot;
-  <a href="#/groups">{{#t}}groups.a{{/t}}</a></h2>
+  <a href="/list/groups" data-remote>{{#t}}groups.a{{/t}}</a></h2>
   <div style="clear:both;"></div>
 </div>
 
