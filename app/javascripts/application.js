@@ -51,24 +51,24 @@ var Application = Backbone.Router.extend({
   },
 
   routes: {
-    "faq": "faq",
-    "invite": "invite",
-    "discount": "discount",
+    "/faq": "faq",
+    "/invite": "invite",
+    "/discount": "discount",
 
     "/": "community",
     "": "community",
-    "list/:tab": "communityWire",
-    "share/:tab": "communityPostBox",
+    "/list/:tab": "communityWire",
+    "/share/:tab": "communityPostBox",
 
-    "show/posts/:id": "showPost",
-    "show/events/:id": "showEvent",
-    "show/group_posts/:id": "showGroupPost",
-    "show/announcements/:id": "showAnnouncement",
+    "/show/posts/:id": "showPost",
+    "/show/events/:id": "showEvent",
+    "/show/group_posts/:id": "showGroupPost",
+    "/show/announcements/:id": "showAnnouncement",
 
-    "message/user/:id": "messageUser",
-    "message/feed/:id": "messageFeed",
+    "/message/user/:id": "messageUser",
+    "/message/feed/:id": "messageFeed",
     
-    "tour": "tour"
+    "/tour": "tour"
   },
 
 

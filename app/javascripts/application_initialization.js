@@ -22,7 +22,9 @@ $(function() {
 
   $("body").delegate("a[data-remote]", "click", function(e) { 
     e.preventDefault();
-    Backbone.history.navigate(e.currentTarget.pathname.replace(/^\//,""), true);
+    var fragment = e.currentTarget.pathname;
+    if (!(/^\//).test(fragment)) { fragment = "/" + fragment; } // IE fix
+    Backbone.history.navigate(fragment, true);
   });
   var communitySlug = window.location.pathname.split("/")[1];
   var getCommunity = $.getJSON("/api/communities/" + communitySlug, 
@@ -37,7 +39,7 @@ $(function() {
 
   $.when(getAccount, getCommunity).then(function() {
     window.app = new Application();
-    Backbone.history.start({ pushState: true, root: "/" + communitySlug + "/" });
+    Backbone.history.start({ pushState: true, root: "/" + communitySlug });
   });
 
   (function() {
