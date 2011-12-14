@@ -22,11 +22,22 @@ var FixedLayout = function() {
     }
   }
 
-  $(window).scroll(adjustProfileBox).resize(adjustProfileBox);
+
 
   this.reset = function() {
     adjustProfileBox();
   };
+
+  this.bind = function() {
+    $(window)
+      .bind("scroll.communityLayout", adjustProfileBox)
+      .bind("resize.communityLayout", adjustProfileBox);
+  };
+
+  this.unbind = function() {
+    $(window).unbind(".communityLayout" + this.cid);
+  };
+  
 };
 
 var StaticLayout = function() {
@@ -55,8 +66,13 @@ var StaticLayout = function() {
     }
 
   }
-  
-  $(window).scroll(setInfoBoxPosition);
+  this.bind = function() {
+    $(window).bind("scroll.communityLayout", setInfoBoxPosition);
+  };
 
+  this.unbind = function() {
+    $(window).unbind(".communityLayout");
+  };
+    
   this.reset = $.noop;
 };

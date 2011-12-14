@@ -18,16 +18,17 @@ function fbAsyncInit() {
 
 $(function() {
 
-  window.app = new Application();
 
-  $("body").delegate("a[data-remote=true]", "click", function(e) { 
+
+  $("body").delegate("a[data-remote]", "click", function(e) { 
     e.preventDefault();
-    Backbone.history.navigate($(e.target).attr('href').slice(1), true);
+
+    Backbone.history.navigate(e.target.pathname.replace(/^\//,""), true);
   });
   var communitySlug = window.location.pathname.split("/")[1];
-  
   var getCommunity = $.getJSON("/api/communities/" + communitySlug, 
                                function(r) {
+
                                  CommonPlace.community = new Community(r);
                                });
 
@@ -36,7 +37,8 @@ $(function() {
   });
 
   $.when(getAccount, getCommunity).then(function() {
-    Backbone.history.start({ pushState: true });
+    window.app = new Application();
+    Backbone.history.start({ pushState: true, root: "/" + communitySlug + "/" });
   });
 
   (function() {
