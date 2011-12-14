@@ -82,7 +82,7 @@ var Wire = CommonPlace.View.extend({
   events: {
     "keyup form.search input": "debounceSearch",
     "submit form.search": "search",
-    "click form.search input.complete": "cancelSearch"
+    "click form.search .cancel": "cancelSearch"
   },
 
   currentPage: function() {
@@ -112,22 +112,22 @@ var Wire = CommonPlace.View.extend({
   search: function(event) {
     if (event) { event.preventDefault(); }
     var $input = this.$("form.search input");
+    var $cancel = this.$("form.search .cancel");
     this.currentQuery = $input.val();
     this.$("ul").empty();
-    $input.removeClass("complete").addClass("waiting");
+    $cancel.addClass("waiting").show();
     var self = this;
     this.fetchCurrentPage(function() { 
       self.appendCurrentPage(); 
-      $input.removeClass("waiting");
-      if ($input.val() !== "") { $input.addClass("complete"); }
+      $cancel.removeClass("waiting");
+      if ($("form.search input").val() == "") { $cancel.hide(); }
     });
   },
 
   cancelSearch: function(e) { 
-    if (e.offsetX < 20) { // clicked on icon
-      this.$("form.search input").val("");
-      this.search();
-    }      
+    this.$("form.search input").val("");
+    this.$("form.search .cancel").hide();
+    this.search();
   },
 
   isSearchEnabled: function() { return this.isActive('wireSearch');  }
