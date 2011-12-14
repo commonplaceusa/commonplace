@@ -16,6 +16,6 @@ var Community = Model.extend({
       posts: new Posts([], {uri: this.link("posts_search")}),
       announcements: new Announcements([], {uri: this.link("announcements_search")}),
       events: new Events([], {uri: this.link("events_search")})
-    }
+    };
   }
 });
