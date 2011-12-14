@@ -1,41 +1,24 @@
-@import core
-@import header
-@import shared/buttons
-@import footer
-@import date_picker
-@import neutral_notification
 @import tour
 @import admin_bar
-@import shared/wire
-@import shared/replies
-@import shared/form
-@import shared/modal
-@import shared/markdown
-@import shared/dropkick_selects
 @import main_page/post_box
 @import main_page/community_resources
 @import main_page/profile_box
-@import shared/feature_switching
-
-body
-  background-color: #cee7fe
-  font-family: Rockwell,Georgia,Times,"Times New Roman",serif
 
 .prelaunch-notification
   +neutral-notification
 
-#main
+#main.community
   width: 990px
   margin: 10px auto 0
 
-#left-column, #right-column
-  width: 490px
-  float: left
+  #left-column, #right-column
+    width: 490px
+    float: left
 
-#right-column
-  margin-left: 10px
+  #right-column
+    margin-left: 10px
 
-body.fixedLayout
+body.fixedLayout #main.community
   #header
     position: fixed
     top: 0
