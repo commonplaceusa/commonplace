@@ -2,25 +2,35 @@
 
   <div class="navigation">
 
-    <a href="#/new-neighborhood-post"
-      class="create-neighborhood-post tab-button">
+    <a
+      href="/share/post"
+      data-remote
+      class="create-neighborhood-post tab-button post">
       <img src="<%= asset_path "main_page/neighborhood-post-tab-icon.png" %>">
       {{#t}}create-neighborhood-post.a{{/t}}
     </a>
 
     {{#accountHasFeeds}}
-      <a href="{{firstFeedUrl}}" class="create-announcement tab-button">
+      <a
+        href="{{firstFeedUrl}}"
+        class="create-announcement tab-button announcement">
         <img src="<%= asset_path "main_page/announcement-tab-icon.png" %>">
         {{#t}}create-announcement.a{{/t}}
       </a>
     {{/accountHasFeeds}}
 
-    <a href="#/new-event" class="create-event tab-button">
+    <a
+      href="/share/event"
+      class="create-event tab-button event"
+      data-remote>
       <img src="<%= asset_path "main_page/event-tab-icon.png" %>">
       {{#t}}create-event.a{{/t}}
     </a>
 
-    <a href="#/new-group-post" class="create-group-post tab-button">
+    <a
+      href="/share/groupPost"
+      class="create-group-post tab-button groupPost"
+      data-remote>
       <img src="<%= asset_path "main_page/group-post-tab-icon.png" %>">
       {{#t}}create-group-post.a{{/t}}
     </a>

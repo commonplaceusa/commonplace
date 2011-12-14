@@ -1,7 +1,7 @@
 var PostForm = CommonPlace.View.extend({
   template: "main_page.post-form",
   tagName: "form",
-  className: "create-neighborhood-post",
+  className: "create-neighborhood-post post",
 
   events: {
     "click button": "createPost",

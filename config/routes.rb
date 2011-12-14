@@ -130,7 +130,7 @@ Commonplace::Application.routes.draw do
     match "discount", :to => "bootstraps#application"
     match "tour", :to => "bootstraps#application"
     match "list/:tab", :to => "bootstraps#application"
-    match "post/:tab", :to => "bootstraps#application"
+    match "share/:tab", :to => "bootstraps#application"
     match "message/:type/:id", :to => "bootstraps#application"
     match "show/:type/:id", :to => "bootstraps#application"
   end
