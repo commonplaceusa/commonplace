@@ -7,7 +7,9 @@ class BootstrapsController < ApplicationController
   
   before_filter :authenticate_user!
 
-  def community ; end
+  def community 
+    redirect_to "/#{current_community.slug}"
+  end
 
   def feed ; end
 
