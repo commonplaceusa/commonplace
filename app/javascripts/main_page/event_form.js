@@ -2,7 +2,7 @@
 var EventForm = CommonPlace.View.extend({
   template: "main_page.event-form",
   tagName: "form",
-  className: "create-event",
+  className: "create-event event",
 
   events: {
     "click button": "createEvent",

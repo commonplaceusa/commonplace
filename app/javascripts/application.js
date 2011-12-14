@@ -58,7 +58,7 @@ var Application = Backbone.Router.extend({
     "/": "community",
     "": "community",
     "list/:tab": "communityWire",
-    "post/:tab": "communityPostBox",
+    "share/:tab": "communityPostBox",
 
     "show/posts/:id": "showPost",
     "show/events/:id": "showEvent",
@@ -87,7 +87,7 @@ var Application = Backbone.Router.extend({
 
   communityPostBox: function(tab) {
     this.showPage("community");
-    this.postBox.switchTab(tab);
+    this.pages.community.postBox.switchTab(tab);
   },
 
   showPost: function(id) {
