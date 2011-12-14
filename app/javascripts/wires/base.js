@@ -121,6 +121,8 @@ var Wire = CommonPlace.View.extend({
       self.appendCurrentPage(); 
       $cancel.removeClass("waiting");
       if ($("form.search input").val() == "") { $cancel.hide(); }
+      if (self.collection.length == 0) { self.$(".no-results").show(); }
+      else { self.$(".no-results").hide(); }
     });
   },
 
