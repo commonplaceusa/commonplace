@@ -48,9 +48,17 @@
         &:focus
           color: #333
           outline: 0
-            
-        &.complete
-          background-image: image-url("shared/icons/cancel.png")
+        
+      .cancel
+        height: 25px
+        width: 25px
+        top: 7px
+        cursor: pointer
+        display: none
+        right: -5px
+        position: absolute
+        background-image: image-url("shared/icons/cancel.png")
+        background-repeat: no-repeat
         &.waiting
           background-image: image-url("shared/icons/waiting.gif")
           
