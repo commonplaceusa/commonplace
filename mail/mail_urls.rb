@@ -12,6 +12,10 @@ module MailUrls
     end
   end
 
+  def community_url(path)
+    url("/#{community.slug}/#{path}")
+  end
+
   def asset_url(path)
     if path.start_with?("http")
       path
@@ -25,19 +29,19 @@ module MailUrls
   end
 
   def new_event_url
-    url("/new-event")
+    community_url("/share/event")
   end
 
   def new_announcement_url
-    url("/new-post")
+    community_url("/share/announcement")
   end
 
   def new_post_url
-    url("/new-post")
+    url("/share/post")
   end
 
   def new_invites_url
-    url("/#{community.slug}/invite")
+    community_url("/invite")
   end
 
   def new_feed_url
@@ -45,7 +49,7 @@ module MailUrls
   end
 
   def new_group_post_url
-    url("/new-group-post")
+    community_url("/share/groupPost")
   end
 
   def starter_site_url
@@ -65,7 +69,7 @@ module MailUrls
   end
 
   def faq_url
-    url("/#{community.slug}/faq")
+    community_url("/faq")
   end
 
   def feed_profile(feed)
