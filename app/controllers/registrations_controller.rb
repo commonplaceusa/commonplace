@@ -77,7 +77,7 @@ class RegistrationsController < ApplicationController
 
   def add_groups
     registration.add_groups(params[:group_ids])
-    redirect_to(root_url + "#/tour")
+    redirect_to("/#{current_community.slug}/tour")
   end
 
   protected
