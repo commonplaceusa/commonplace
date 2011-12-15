@@ -60,10 +60,10 @@ var Application = Backbone.Router.extend({
     "/list/:tab": "communityWire",
     "/share/:tab": "communityPostBox",
 
-    "/show/posts/:id": "showPost",
-    "/show/events/:id": "showEvent",
-    "/show/group_posts/:id": "showGroupPost",
-    "/show/announcements/:id": "showAnnouncement",
+    "/show/post/:id": "showPost",
+    "/show/event/:id": "showEvent",
+    "/show/groupPost/:id": "showGroupPost",
+    "/show/announcement/:id": "showAnnouncement",
 
     "/message/user/:id": "messageUser",
     "/message/feed/:id": "messageFeed",
@@ -92,22 +92,22 @@ var Application = Backbone.Router.extend({
 
   showPost: function(id) {
     this.showPage("community");
-    this.lists.showPost(new Post({links: {self: "/posts/" + id}}));
+    this.pages.community.lists.showPost(new Post({links: {self: "/posts/" + id}}));
   },
 
   showEvent: function(id) {
     this.showPage("community");
-    this.lists.showEvent(new Event({links: {self: "/events/" + id }}));
+    this.pages.community.lists.showEvent(new Event({links: {self: "/events/" + id }}));
   },
 
   showGroupPost: function(id) {
     this.showPage("community");
-    this.lists.showGroupPost(new GroupPost({links: {self: "/group_posts/" + id}}));
+    this.pages.community.lists.showGroupPost(new GroupPost({links: {self: "/group_posts/" + id}}));
   },
 
   showAnnouncement: function(id) {
     this.showPage("community");
-    this.lists.showAnnouncement(new Event({links: {self: "/announcements/" + id}}));
+    this.pages.community.lists.showAnnouncement(new Announcement({links: {self: "/announcements/" + id}}));
   },
 
   messageUser: function(id) {
