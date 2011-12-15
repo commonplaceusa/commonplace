@@ -122,7 +122,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
         });
         
         if (Features.isActive("chronoResource")) {
-          this._chrono = new PaginatingWire({
+          this._chrono = new Wire({
             template: "main_page.chrono-resources",
             collection: CommonPlace.community.postlikes,
             el: this.$(".chrono.wire"),
@@ -139,7 +139,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
   } 
 });
 
-var LandingPreview = PaginatingWire.extend({
+var LandingPreview = PreviewWire.extend({
   template: "wires.preview-wire",
   _defaultPerPage: 3,
   fullWireLink: function() { return this.options.fullWireLink; },
