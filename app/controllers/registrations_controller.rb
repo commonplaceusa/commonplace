@@ -18,7 +18,7 @@ class RegistrationsController < ApplicationController
     @user = current_user
   end
 
-  def create # necessary for devise sign_in method
+  def create # could be handled by warden in the api now.
     # assume xhr
     unless params[:registration].present?
       render :json => {message: 'No information sent'}

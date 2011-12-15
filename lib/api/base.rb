@@ -1,5 +1,5 @@
 class API
-  
+
   class Base < Sinatra::Base
     def public_api
       false
@@ -16,25 +16,31 @@ class API
     end
 
     helpers do
+      # warden is well designed for cross-app authentication
+      # http://guides.rubyonrails.org/security.html
 
-      def current_account
-        token = request.env["HTTP_AUTHORIZATION"] ||
-                params['authentication_token'] ||
-                request.cookies['authentication_token']
+      # https://github.com/hassox/warden/wiki/Overview
+      # https://github.com/hassox/warden/wiki/Setup
 
-        @_user ||= User.find_by_authentication_token token
+      # http://alex.cloudware.it/2010/04/sinatra-warden-catch.html
+
+      def warden
+        env['warden']
       end
 
       def current_user
-        current_account
+        p "current user detected: #{warden.user(:user)}"
+        @_user ||= warden.user(:user)
+      end
+
+      alias :current_account :current_user # todo: deprecate current_account (an Account is something else)
+
+      def authorize!
+        halt [401, "not logged in"] unless warden.authenticated?(:user)
       end
 
       def request_body
         @_request_body ||= JSON.parse(request.body.read.to_s)
-      end
-
-      def authorize!
-        halt [401, "not logged in"] unless current_user
       end
 
       def serialize(thing)
@@ -59,10 +65,7 @@ class API
 
       def last_modified_by_updated_at(scope)
         # sets last modified header for this request to that of the newest record
-        last_modified(scope.unscoped
-                        .reorder("updated_at DESC")
-                        .select('updated_at')
-                        .first.try(&:updated_at))
+        last_modified(scope.unscoped.reorder("updated_at DESC").select('updated_at').first.try(&:updated_at))
       end
 
       def jsonp(callback, data)
@@ -78,5 +81,5 @@ class API
     end
 
   end
-  
+
 end
