@@ -71,8 +71,28 @@ var LandingResources = CommonPlace.View.extend({
     return this._wires;
   },
   
-  stickHeader: function() {},
+  stickHeader: function() {
+    var landing_top = $(this.el).offset().top + $(window).scrollTop();
+
+    var wires_below_header = _.filter(this._wires, function(wire) {
+      var wire_bottom = wire.el.offset().top + wire.el.height();
+      return wire_bottom >= landing_top;
+    });
+    
+    var top_wire = wires_below_header.shift();
+    
+    if (top_wire != this.headerWire) {
+      this.unstickHeader();
+      top_wire.header.detach().appendTo($("#community-resources .sticky-header"));
+      this.headerWire = top_wire;
+    }
+  },
   
-  unstickHeader: function() {}
+  unstickHeader: function() {
+    if (this.headerWire) {
+      this.headerWire.header.detach().prependTo(this.headerWire.el);
+      $("#community-resources .sticky-header").empty();
+    }
+  }
 
 });
