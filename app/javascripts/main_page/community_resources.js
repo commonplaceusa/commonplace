@@ -18,10 +18,6 @@ var CommunityResources = CommonPlace.View.extend({
   switchTab: function(tab) {
     this.$(".tab-button").removeClass("current");
     this.$("." + tab).addClass("current");
-    
-    if (Features.isActive("fixedLayout") && this.view) {
-      this.view.unstickHeader();
-    }
 
     this.view = this.tabs[tab](this);
     this.view.render();
@@ -116,8 +112,13 @@ var CommunityResources = CommonPlace.View.extend({
     _defaultPerPage: 15,
     
     stickHeader: function() {
-      this.unstickHeader();
-      this.header.detach().appendTo($("#community-resources .sticky-header"));
+      if (this.header) {
+        this.unstickHeader();
+        this.header.detach().appendTo($("#community-resources .sticky-header"));
+      } else {
+        var self = this;
+        this.options.callback = function() { self.stickHeader(); }
+      }
     },
     
     unstickHeader: function() {
