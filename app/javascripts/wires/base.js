@@ -18,11 +18,9 @@ var Wire = CommonPlace.View.extend({
     
     this.header = this.$(".sub-navigation");
     
-    if (Features.isActive("wireSearch") && Features.isActive("fixedLayout")) {
-      this.header.find("form.search").bind("keyup", function() { self.debounceSearch(); });
-      this.header.find("form.search input").bind("submit", function() { self.search(); });
-      this.header.find("form.search .cancel").bind("click", function() { self.cancelSearch(); });
-    }
+    this.header.find("form.search").bind("keyup", function() { self.debounceSearch(); });
+    this.header.find("form.search input").bind("submit", function() { self.search(); });
+    this.header.find("form.search .cancel").bind("click", function() { self.cancelSearch(); });
     
     $(window).scroll(function() { self.onScroll(); });
     

@@ -121,7 +121,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
     
     unstickHeader: function() {
-      this.header.detach().prependTo(this.el);
+      if (this.header) { this.header.detach().prependTo(this.el); }
       $("#community-resources .sticky-header").empty();
     }
   }),
