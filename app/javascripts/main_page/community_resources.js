@@ -115,9 +115,15 @@ var CommunityResources = CommonPlace.View.extend({
     className: "resources",
     _defaultPerPage: 15,
     
-    stickHeader: function() {},
+    stickHeader: function() {
+      this.unstickHeader();
+      this.header.detach().appendTo($("#community-resources .sticky-header"));
+    },
     
-    unstickHeader: function() {}
+    unstickHeader: function() {
+      this.header.detach().prependTo(this.el);
+      $("#community-resources .sticky-header").empty();
+    }
   }),
 
   showPost: function(post) {
