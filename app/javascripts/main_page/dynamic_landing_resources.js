@@ -5,8 +5,6 @@ var DynamicLandingResources = CommonPlace.View.extend({
   afterRender: function() {
     this._sortCountdown = 0;
     
-    console.log("twice?");
-    
     var self = this;
     
     this._events = new LandingPreview({
@@ -145,7 +143,6 @@ var DynamicLandingResources = CommonPlace.View.extend({
   },
   
   stickHeader: function(ready) {
-    if (ready && this._ready) { console.log("shouldn't happen"); }
     if (ready || this._ready) {
       this._ready = true;
       var landing_top = $(this.el).offset().top + $(window).scrollTop();
@@ -162,7 +159,6 @@ var DynamicLandingResources = CommonPlace.View.extend({
       
       if (top_wire != this.headerWire) {
         this.unstickHeader();
-        top_wire.header = top_wire.$(".sub-navigation");
         top_wire.header.detach().appendTo($("#community-resources .sticky-header"));
         this.headerWire = top_wire;
       }
