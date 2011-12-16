@@ -7,14 +7,29 @@ var CommunityResources = CommonPlace.View.extend({
     var self = this;
     var community = this.options.community;
   },
+  
+  afterRender: function() {
+    var self = this;
+    if (Features.isActive("fixedLayout")) {
+      $(window).scroll(function() { self.view.stickHeader(); });
+    }
+  },
 
   switchTab: function(tab) {
     this.$(".tab-button").removeClass("current");
     this.$("." + tab).addClass("current");
+    
+    if (Features.isActive("fixedLayout") && this.view) {
+      this.view.unstickHeader();
+    }
 
-    var view = this.tabs[tab](this);
-    view.render();
-    this.$(".resources").replaceWith(view.el);
+    this.view = this.tabs[tab](this);
+    this.view.render();
+    this.$(".resources").replaceWith(this.view.el);
+    
+    if (Features.isActive("fixedLayout")) {
+      this.view.stickHeader();
+    }
   },
 
   tabs: {
@@ -98,7 +113,11 @@ var CommunityResources = CommonPlace.View.extend({
 
   PaginatingResourceWire: Wire.extend({
     className: "resources",
-    _defaultPerPage: 15
+    _defaultPerPage: 15,
+    
+    stickHeader: function() {},
+    
+    unstickHeader: function() {}
   }),
 
   showPost: function(post) {

@@ -69,7 +69,10 @@ var LandingResources = CommonPlace.View.extend({
       ];
     }
     return this._wires;
-  }
+  },
   
+  stickHeader: function() {},
+  
+  unstickHeader: function() {}
 
 });
