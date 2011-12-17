@@ -71,7 +71,7 @@ var CommunityResources = CommonPlace.View.extend({
       });
     },
 
-    groupPosts: function(self) {
+    group_posts: function(self) {
       return new self.PaginatingResourceWire({
         template: "main_page.group-post-resources",
         emptyMessage: "No posts here yet",

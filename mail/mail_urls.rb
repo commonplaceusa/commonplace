@@ -45,7 +45,7 @@ module MailUrls
   end
 
   def show_group_post_url(id)
-    community_url("/show/groupPost/#{id}")
+    community_url("/show/group_post/#{id}")
   end
 
   def message_feed_url(id)
@@ -81,7 +81,7 @@ module MailUrls
   end
 
   def new_group_post_url
-    community_url("/share/groupPost")
+    community_url("/share/group_post")
   end
 
   def starter_site_url
