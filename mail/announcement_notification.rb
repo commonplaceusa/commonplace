@@ -44,13 +44,13 @@ class AnnouncementNotification < PostNotification
   end
 
   def announcement_url
-    url("/announcements/#{announcement.id}")
+    community_url("/show/announcement/#{announcement.id}")
   end
 
   def new_message_url
     case poster
-    when User then url("/users/#{poster.id}/messages/new")
-    when Feed then url("/feeds/#{poster.id}/messages/new")
+    when User then url("/message/user/#{poster.id}")
+    when Feed then url("/message/feed/#{poster.id}")
     else root_url
     end
   end

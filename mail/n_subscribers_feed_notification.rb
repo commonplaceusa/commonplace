@@ -29,7 +29,7 @@ class NSubscribersFeedNotification < MailBase
   end
 
   def invitation_link
-    "http://#{community.slug}.ourcommonplace.com/invite"
+    new_invites_url
   end
 
   def number_of_subscribers

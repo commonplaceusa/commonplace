@@ -45,11 +45,11 @@ class PostNotification < MailBase
   end
 
   def post_url
-    url("/posts/#{post.id}")
+    show_post_url(post.id)
   end
 
   def new_message_url
-    url("/users/#{poster.id}/messages/new")
+    message_user_url(poster.id)
   end
 
   def post_subject
@@ -65,7 +65,7 @@ class PostNotification < MailBase
   end
 
   def poster_url
-    url("/users/#{poster.id}")
+    community_url("/")
   end
 
   def user_name

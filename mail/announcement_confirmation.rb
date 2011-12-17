@@ -21,7 +21,7 @@ class AnnouncementConfirmation < MailBase
   end
 
   def announcement_url
-    url("/announcements/#{announcement.id}")
+    show_announcement_url(@announcement.id)
   end
 
   def community

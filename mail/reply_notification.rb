@@ -53,11 +53,17 @@ class ReplyNotification < MailBase
   end
   
   def new_message_url
-    url("/users/#{replier.id}/messages/new")
+    message_user_url(replier.id)
   end
 
   def repliable_url
-    url("/#{repliable.class.name.downcase.pluralize}/#{repliable.id}")
+    case repliable
+    when Event then show_event_url(repliable.id)
+    when GroupPost then show_group_post_url(repliable.id)
+    when Announcement then show_announcement_url(repliable.id)
+    when Post then show_post_url(repliable.id)
+    when Message then show_message_url(repliable.id)
+    end
   end
 
   def replier_name
