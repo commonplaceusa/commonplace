@@ -62,7 +62,7 @@ var Application = Backbone.Router.extend({
 
     "/show/post/:id": "showPost",
     "/show/event/:id": "showEvent",
-    "/show/groupPost/:id": "showGroupPost",
+    "/show/group_post/:id": "showGroupPost",
     "/show/announcement/:id": "showAnnouncement",
 
     "/message/user/:id": "messageUser",

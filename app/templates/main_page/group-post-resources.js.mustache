@@ -5,7 +5,7 @@
       <div class="cancel"></div>
     </form>
   {{/isSearchEnabled}}
-  <h2><a href="/list/groupPosts" class="current" data-remote>
+  <h2><a href="/list/group_posts" class="current" data-remote>
     {{^isRecent}}{{#t}}group-posts.a{{/t}}{{/isRecent}}
     {{#isRecent}}{{#t}}recent-group-posts.a{{/t}}{{/isRecent}}
   </a>
@@ -15,4 +15,4 @@
 </div>
 
 <div class="no-results"><p>There were no results</p></div>
-<div class="groupPosts wire">{{>wires.wire}}</div>
+<div class="groupPosts wire group_posts">{{>wires.wire}}</div>
