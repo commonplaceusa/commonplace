@@ -21,7 +21,7 @@ class PostConfirmation < MailBase
   end
 
   def post_url
-    url("/posts/#{post.id}")
+    show_post_url(post.id)
   end
 
   def community

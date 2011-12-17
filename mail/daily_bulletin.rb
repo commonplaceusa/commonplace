@@ -60,8 +60,8 @@ class DailyBulletin < MailBase
           reply['avatar_url'] = asset_url(reply['avatar_url'])
         }
         post['avatar_url'] = asset_url(post['avatar_url'])
-        post['url'] = url(post['url'])
-        post['new_message_url'] = url(post['author_url'] + "/messages/new")
+        post['url'] = show_post_url(post['id'])
+        post['new_message_url'] = message_user_url(post['user_id'])
       end
     end
   end
@@ -78,7 +78,7 @@ class DailyBulletin < MailBase
           reply['avatar_url'] = asset_url(reply['avatar_url'])
         }
         announcement['avatar_url'] = asset_url(announcement['avatar_url'])
-        announcement['url'] = url(announcement['url'])
+        announcement['url'] = show_announcement_url(announcement['id'])
       end
     end
   end
@@ -97,7 +97,7 @@ class DailyBulletin < MailBase
         }
         event["short_month"] = event['occurs_on'].strftime("%b")
         event["day"] = event['occurs_on'].strftime("%d")
-        event['url'] = url(event['url'])
+        event['url'] = show_event_url(event['id'])
       end
     end
   end

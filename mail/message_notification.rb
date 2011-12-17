@@ -45,7 +45,7 @@ class MessageNotification < PostNotification
   end
 
   def new_message_url
-    url("/users/#{sender.id}/messages/new")
+    message_user_url(sender.id)
   end
 
   def message_subject
@@ -61,7 +61,7 @@ class MessageNotification < PostNotification
   end
 
   def sender_url
-    url("/users/#{sender.id}")
+    show_user_url(sender.id)
   end
 
   def user_name

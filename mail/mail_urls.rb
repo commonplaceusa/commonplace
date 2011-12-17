@@ -24,8 +24,40 @@ module MailUrls
     end
   end
 
+  def show_announcement_url(id)
+    community_url("/show/announcement/#{id}")
+  end
+
+  def show_user_url(id)
+    community_url("/show/user/#{id}")
+  end
+
+  def show_feed_url(id)
+    community_url("/show/feed/#{id}")
+  end
+
+  def show_post_url(id)
+    community_url("/show/post/#{id}")
+  end
+
+  def show_event_url(id)
+    community_url("/show/event/#{id}")
+  end
+
+  def show_group_post_url(id)
+    community_url("/show/groupPost/#{id}")
+  end
+
+  def message_feed_url(id)
+    community_url("/message/feed/#{id}")
+  end
+
+  def message_user_url(id)
+    community_url("/message/user/#{id}")
+  end
+
   def subscribe_url
-    url("/feeds")
+    community_url("/list/feeds")
   end
 
   def new_event_url
@@ -37,7 +69,7 @@ module MailUrls
   end
 
   def new_post_url
-    url("/share/post")
+    community_url("/share/post")
   end
 
   def new_invites_url

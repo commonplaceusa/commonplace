@@ -49,7 +49,7 @@ class GroupPostNotification < PostNotification
   end
 
   def post_url
-    url("/group_posts/#{post.id}")
+    show_group_post_url(post.id)
   end
 
   def post_subject
