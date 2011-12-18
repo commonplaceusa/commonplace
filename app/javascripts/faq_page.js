@@ -12,12 +12,12 @@ var FaqPage = CommonPlace.View.extend({
             this.setSidebarPosition)
       .bind("scroll.delegateEvents" + this.cid,
             this.setSidebarPosition);
-    $(this.el).addClass("faq");
+    $("body").addClass("faq");
   },
 
   unbind: function() {
     $(window).unbind(".delegateEvents" + this.cid);
-    $(this.el).removeClass("faq");
+    $("body").removeClass("faq");
   },
 
   setSidebarPosition: function() {

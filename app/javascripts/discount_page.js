@@ -5,6 +5,6 @@ var DiscountPage = CommonPlace.View.extend({
     return CommonPlace.community.get('discount_businesses');
   },
   
-  bind: function() { this.el.addClass("discount"); },
-  unbind: function() { this.el.removeClass("discount"); }
+  bind: function() { $("body").addClass("discount"); },
+  unbind: function() { $("body").removeClass("discount"); }
 });
