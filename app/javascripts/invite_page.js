@@ -66,7 +66,7 @@ var InvitePage = CommonPlace.View.extend({
     });
   },
 
-  bind: function() { $(this.el).addClass("invite"); },
-  unbind: function() { $(this.el).removeClass("invite"); }
+  bind: function() { $("body").addClass("invite"); },
+  unbind: function() { $("body").removeClass("invite"); }
 
 });

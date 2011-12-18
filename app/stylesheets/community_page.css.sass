@@ -7,9 +7,10 @@
 .prelaunch-notification
   +neutral-notification
 
-#main.community
-  width: 990px
-  margin: 10px auto 0
+body.community 
+  #main
+    width: 990px
+    margin: 10px auto 0
 
   #left-column, #right-column
     width: 490px
@@ -18,7 +19,7 @@
   #right-column
     margin-left: 10px
 
-body.fixedLayout #main.community
+body.fixedLayout.community 
   #header
     position: fixed
     top: 0
@@ -27,14 +28,13 @@ body.fixedLayout #main.community
     z-index: 1000
   #footer 
     display: none
-  #left-column, #right-column
-    float: none
 
   #right-column
     margin-left: 0
     float: right
 
   #left-column
+    float: none
     position: absolute
     top: 15px
     bottom: 15px

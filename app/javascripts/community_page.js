@@ -36,12 +36,12 @@ var CommunityPage = CommonPlace.View.extend({
   },
 
   bind: function() { 
-    this.el.addClass("community");
+    $("body").addClass("community");
     CommonPlace.layout.bind();
   },
 
   unbind: function() {
-    this.el.removeClass("community");
+    $("body").removeClass("community");
     CommonPlace.layout.unbind();
   }
 
