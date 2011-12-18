@@ -78,7 +78,10 @@ var Application = Backbone.Router.extend({
 
   discount: function() { this.showPage("discount"); },
 
-  community: function() { this.showPage("community"); },
+  community: function() { 
+    this.showPage("community"); 
+    this.pages.community.lists.switchTab("landing");
+  },
 
   communityWire: function(tab) {
     this.showPage("community");
