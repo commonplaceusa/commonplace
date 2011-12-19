@@ -1,13 +1,24 @@
 {{#hiddenReplyCount}}
-<a class="replies-more" href="#">Show {{hiddenReplyCount}} more {{pluralizedReplies}}</a>
+<a class="replies-more" href="#">View All Replies <span class="small">&#x25BC;</span></a>
 {{/hiddenReplyCount}}
 <ul class="reply-list"></ul>
 
-<form class="new-reply">
+<ul class="thank-share">
+ <li class="reply-link">Reply</li> <span class="dot">&bull;</span>
+ <li> Thank Ashley</li> <span class="dot">&bull;</span>
+ <li class="share-link">Share</li>
+</ul>
+<p class="ts-text">6 people <span class="people-thanked">thanked Ashley</span></p>
+<div class="comment">
+<form class="new-reply clear">
   <img class="avatar" src="{{accountAvatarUrl}}" height="30" width="30">
   <div class="reply-text">
     <textarea name="body" placeholder="Write your reply here..."></textarea>
-    <div class="enter-hint">Press Enter to submit, and press Shift-Enter to start a new line</div>
   </div>
+      <div class="submit-c">
+    Send
+    </div>
+
   <div style="clear: both;"></div>
 </form>
+</div>

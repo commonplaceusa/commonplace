@@ -104,6 +104,15 @@
         %li{:class=>"account"}
           %div{:class=>"icon"}
           %a(href="/account") Hi, Max!
+          %ul.account-sub
+            %li
+              %a Account Settings
+            %li
+              %a Profile Settings
+            %li
+              %a Privacy Policy
+            %li 
+              %a Sign Out
       = link_to "/", :id => "logo", :data => { :remote => true } do
         = image_tag "logo2.png", :alt => 'CommonPlace'
         %span.community= current_community.name

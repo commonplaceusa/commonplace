@@ -32,7 +32,7 @@
       a, .disabled_link
         font-size: 12px
         letter-spacing: .7px
-        padding: 3px 0 3px 11px
+        padding: 3px 0 3px 10px
         color: #8faac2
         font-weight: bold
         font-family: Helvetica, sans-serif
@@ -72,6 +72,7 @@
           +border-bottom-right-radius(5px)
           +border-top-left-radius(5px)
           +border-bottom-left-radius(5px)
+          z-index: 9999
           li
             padding: 5px 0 5px 0
             margin: 0
@@ -220,10 +221,51 @@
       li.inbox
         width: 72px
       li.account
-        width: 90px
+        width: 94px
         margin-right: 0px
+        ul.account-sub
+          display: none
+          background: white
+          color: #505250
+          width: 107px
+          margin-top: 14px
+          padding: 10px
+          font-family: Helvetica, Sans Serif
+          font-size: 13px
+          position: relative
+          left: -34px
+          height: 111px
+          border: 1px solid #d7d7d7
+          border-top: 0px
+          +border-bottom-right-radius(5px)
+          +border-top-left-radius(5px)
+          +border-bottom-left-radius(5px)
+          z-index: 9999
+          li
+            margin-top: 0
+            height: auto
+            a
+              margin: 0
+              padding: 0
+              font-weight: normal
+              color: #5C5D5C
+              &:hover
+                color: #292A29              
+        &:hover
+          background: white
+          color: #1B334A
+          border: white 1px solid
+          border: 1px solid #d7d7d7
+          border-bottom: 0px
+          +border-radius(5px 5px 0 0)
+          ul.account-sub
+            display: block
+          a 
+            text-shadow: none
+            color: #1B334A
+        
       .number 
-        background: image-url('text-bubble.png') no-repeat
+        background: #dddddd
         color: #ac322f
         font-family: Helvetica
         font-size: 13px
@@ -231,9 +273,8 @@
         margin-left: 9px
         font-weight: bold
         float: left
-        width: 32px
-        height: 24px
-        padding-top: 3px
+        padding: 3px 5px
+        +border-radius(3px)
         text-align: center
       .letter
         background: image-url('mail.png') no-repeat
@@ -253,6 +294,7 @@
         float: left
         margin-top: -2px
         border-radius: 5px
+        margin-left: 8px
       a:hover
       
       div.user-feeds
@@ -519,5 +561,3 @@ body.application.logged_out
         font-family: Rockwell, Georgia, serif
         font-size: 11px
         +text-shadow(#454545 1px 1px 0px)
-#wrapper
-  margin-bottom: 1000px

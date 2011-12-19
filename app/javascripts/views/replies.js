@@ -67,9 +67,12 @@ var RepliesView = CommonPlace.View.extend({
     this.$('.replies-more').hide();
   },
   
-  showHint: function(e) { this.$(".enter-hint").show(); },
+  showHint: function(e) { this.$(".submit-c").show(); },
   
-  hideHint: function(e) { this.$(".enter-hint").hide(); },
+  hideHint: function(e) { this.$(".submit-c").hide(); },
   
   accountAvatarUrl: function() { return this.account.get('avatar_url'); }
+  
+
+    
 });
