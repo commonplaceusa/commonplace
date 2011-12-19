@@ -7,25 +7,23 @@
       
     .sub-navigation
       background-color: #F8F8F8
-      border: 1px solid #e8e8e8
-        left: 0
-        right: 0
-        top: 0
-
-      padding: 5px 10px
+      padding: 9px 10px
 
       &:first-child 
         border-top: 0
 
       h2
         font-size: 20px
-        padding: 4px
-
+        padding: 0
+        margin-top: 5px
+        color: #666666
+        font-size: 18px
         a
           text-decoration: none
           color: #949494
           &.current
-            color: #062A48
+            color: #666666
+
 
     .no-results
       display: none
@@ -40,21 +38,25 @@
       cursor: default
 
       input[type=text]
-        width: 133px
+        width: 146px
         +border-radius(4px)
         border: 0
         display: block
         font-size: 12px
-        color: #666
+        color: #333
         line-height: 13px
-        padding: 6px 25px 4px 25px
-        +box-shadow(2px 2px 6px rgba(0, 0, 0, 0.25) inset, 0 0 0 1px rgba(0, 0, 0, 0.24))
+        padding: 6px 38px 4px 10px
         background: white 8px 7px no-repeat
-        background-image: image-url("shared/icons/search.png")
+        background-image: image-url("icons/search.png")
+        background-position: 171px
+        border: solid 1px #c3c3c3
         &:focus
           color: #333
           outline: 0
-        
+
+      input[placeholder]
+        color: #333 
+
       .cancel
         height: 25px
         width: 25px
@@ -150,9 +152,11 @@ body.fixedLayout
 
         .wire
           padding-top: 38px
+          border: 0 !important
 
         .sub-navigation
           width: 468px
+          background: #f0f0f0
           position: absolute
           &.fixed
             position: fixed
