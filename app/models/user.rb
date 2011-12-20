@@ -35,7 +35,8 @@ class User < ActiveRecord::Base
 
   belongs_to :community
   belongs_to :neighborhood  
-
+  has_many :thanks
+  
   def organizer_data_points
     OrganizerDataPoint.find_all_by_organizer_id(self.id)
   end

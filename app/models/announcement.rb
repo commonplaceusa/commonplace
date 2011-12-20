@@ -6,7 +6,10 @@ class Announcement < ActiveRecord::Base
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
   belongs_to :owner, :polymorphic => true
   belongs_to :community
-
+  
+  has_many :thanks, :as => :thankable
+  
+  
   has_many :announcement_cross_postings
   has_many :groups, :through => :announcement_cross_postings
 
