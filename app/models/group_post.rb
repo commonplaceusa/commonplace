@@ -6,6 +6,7 @@ class GroupPost < ActiveRecord::Base
 
   has_many :replies, :as => :repliable, :order => :created_at
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
+  has_many :thanks, :as => :thankable
 
   validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
