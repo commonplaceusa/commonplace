@@ -1,8 +1,21 @@
 <div class="spacing">
   <div class="profile-main">
+    <h3>{{fullName}}</h3>
+    <p class="mini-desc">"Mini-description text or status goes here"</p>
     <img src="{{avatarUrl}}" width="122" />
     <div class="profile-top">
-      <h3>{{fullName}}</h3>
+      <p>
+      <span class="profile-number">23</span><br />
+      <span class="profile-title">Posts</span><br />
+      </p>
+      <p>
+      <span class="profile-number">18</span><br />
+      <span class="profile-title">Thanks</span><br />
+      </p>
+      <p>
+      <span class="profile-number">433</span><br />
+      <span class="profile-title">Neighbors Met</span>
+      </p>
       <a href="#" class="gray-button message">Send a Message</a>
       {{^hasMet}}<a href="#" class="gray-button meet">Have You Met?</a>{{/hasMet}}
       {{#hasMet}}<a href="#" class="gray-button unmeet">Don't Know Them?</a>{{/hasMet}}
