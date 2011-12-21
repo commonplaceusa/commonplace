@@ -115,7 +115,7 @@
             %li
               %a(href="/#{current_community.slug}/privacy") Privacy Policy
             %li 
-              %a Sign Out
+              %a(href="/users/sign_out") Sign Out
       = link_to "/#{current_community.slug}", :id => "logo", :data => { :remote => true } do
         = image_tag "logo2.png", :alt => 'CommonPlace'
         %span.community= current_community.name
