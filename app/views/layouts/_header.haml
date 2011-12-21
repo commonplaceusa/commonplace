@@ -100,7 +100,7 @@
           %a(href="/#{current_community.slug}/invite" data-remote) Invite
         %li{:class=>"inbox"}
           %div{:class=>"file"}
-          %a{ href: "/inbox" } Inbox
+          %a(href="/#{current_community.slug}/inbox" data-remote) Inbox
         %li{:class=>"account"}
           = image_tag current_user.avatar_url(:thumb), size: "22x22", class: "avatar"
           %a(href="/account") Hi, #{current_user.first_name}!

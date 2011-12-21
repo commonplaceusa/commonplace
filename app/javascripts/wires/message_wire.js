@@ -4,8 +4,6 @@ var MessageWire = Wire.extend({
   id: "message-list",
   
   initialize: function(options) {
-    this.account = options.account;
-    this.community = options.community;
     this.collection = options.collection;
     this.options.perPage = 5;
     this.itemView = MessageWireItem;
@@ -15,8 +13,8 @@ var MessageWire = Wire.extend({
     var self = this;
     this.collection.each(function(msg) {
       var messageview = new MessageWireItem({
-        account: self.account,
-        community: self.community,
+        account: CommonPlace.account,
+        community: CommonPlace.community,
         model: msg
       });
       messageview.render();

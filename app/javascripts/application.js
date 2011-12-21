@@ -34,6 +34,9 @@
 //= require faq_page
 //= require discount_page
 //= require community_page
+//= require inbox_page
+//= require feed_inbox_page
+//= require outbox_page
 
 //= require application_initialization
 
@@ -44,7 +47,10 @@ var Application = Backbone.Router.extend({
       faq: new FaqPage({ el: $("#main") }),
       invite: new InvitePage({ el: $("#main") }),
       discount: new DiscountPage({ el: $("#main") }),
-      community: new CommunityPage({ el: $("#main") })
+      community: new CommunityPage({ el: $("#main") }),
+      inbox: new InboxPage({ el: $("#main") }),
+      outbox: new OutboxPage({ el: $("#main") }),
+      feed_inbox: new FeedInboxPage({ el: $("#main") })
     }; 
 
     _.invoke(this.pages, "unbind");
@@ -67,6 +73,11 @@ var Application = Backbone.Router.extend({
 
     "/message/user/:id": "messageUser",
     "/message/feed/:id": "messageFeed",
+
+    "/inbox": "inbox",
+    "/outbox": "outbox",
+    "/feed_inbox": "feed_inbox",
+
     
     "/tour": "tour"
   },
@@ -138,6 +149,12 @@ var Application = Backbone.Router.extend({
       }
     });
   },
+
+  inbox: function() { this.showPage("inbox"); },
+
+  outbox: function() { this.showPage("outbox"); },
+
+  feed_inbox: function() { this.showPage("feed_inbox"); },
 
   tour: function() {
     this.showPage("community");
