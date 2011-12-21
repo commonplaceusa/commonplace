@@ -64,8 +64,7 @@ Commonplace::Application.routes.draw do
 
   match "/pages/:id" => "bootstraps#feed"
   
-  match "/messages/:id", :to => "bootstraps#inbox"
-  match "/inbox", :to => "bootstraps#inbox"
+
   match "/account", :to => "bootstraps#account", :via => :get
     
   resource :account, :except => :show do
@@ -133,6 +132,9 @@ Commonplace::Application.routes.draw do
     match "share/:tab", :to => "bootstraps#application"
     match "message/:type/:id", :to => "bootstraps#application"
     match "show/:type/:id", :to => "bootstraps#application"
+    match "inbox", :to => "bootstraps#application"
+    match "outbox", :to => "bootstraps#application"
+    match "feed_inbox", :to => "bootstraps#application"
   end
   
   match "/account/make_focp", :to => "accounts#make_focp"

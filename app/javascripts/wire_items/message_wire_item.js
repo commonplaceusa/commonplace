@@ -8,17 +8,12 @@ var MessageWireItem = WireItem.extend({
     "click a.person": "sendMessageToUser"
   },
 
-  initialize: function(options) {
-    this.account = CommonPlace.account;
-    this.model = options.model;
-    this.community = CommonPlace.community;
-  },
 
   afterRender: function() {
     var repliesView = new RepliesView({
       collection: this.model.replies(),
       el: this.$(".replies"),
-      account: this.account
+      account: CommonPlace.account
     });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -78,6 +73,6 @@ var MessageWireItem = WireItem.extend({
 
   isFeed: function() { return this.model.get("type") == "Feed"; },
 
-  isSent: function() { return this.model.get("author_id") == this.account.id; }
+  isSent: function() { return this.model.get("author_id") == CommonPlace.account.id; }
 
 });

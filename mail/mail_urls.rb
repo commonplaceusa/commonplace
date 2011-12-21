@@ -44,6 +44,10 @@ module MailUrls
     community_url("/show/event/#{id}")
   end
 
+  def show_message_url(id)
+    community_url("/inbox")
+  end
+
   def show_group_post_url(id)
     community_url("/show/group_post/#{id}")
   end
