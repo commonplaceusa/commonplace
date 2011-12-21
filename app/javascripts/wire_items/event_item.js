@@ -4,7 +4,6 @@ var EventWireItem = WireItem.extend({
   className: "wire-item",
 
   initialize: function(options) {
-    this.account = CommonPlace.account;
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
@@ -12,7 +11,7 @@ var EventWireItem = WireItem.extend({
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
                                         el: this.$(".replies"),
-                                        account: this.account
+                                        account: CommonPlace.account
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -63,7 +62,7 @@ var EventWireItem = WireItem.extend({
     formview.render();
   },
 
-  canEdit: function() { return this.account.canEditEvent(this.model); },
+  canEdit: function() { return CommonPlace.account.canEditEvent(this.model); },
 
   isMore: function() {
     return !this.allwords;

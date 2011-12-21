@@ -6,8 +6,7 @@ var GroupWireItem = WireItem.extend({
   className: "wire-item feed",
 
   initialize: function() {
-    this.account = CommonPlace.account;
-    this.account.bind("change", this.render, this);
+    CommonPlace.account.bind("change", this.render, this);
     this.attr_accessible(['name', 'url', 'avatar_url']);
   },
 
@@ -21,10 +20,10 @@ var GroupWireItem = WireItem.extend({
     window.infoBox.showProfile(this.model);
   },
 
-  subscribe: function() { this.options.account.subscribeToGroup(this.model); },
+  subscribe: function() { CommonPlace.account.subscribeToGroup(this.model); },
 
-  unsubscribe: function() { this.options.account.unsubscribeFromGroup(this.model); },
+  unsubscribe: function() { CommonPlace.account.unsubscribeFromGroup(this.model); },
 
-  isSubscribed: function() { return this.options.account.isSubscribedToGroup(this.model); }
+  isSubscribed: function() { return CommonPlace.account.isSubscribedToGroup(this.model); }
 
 });

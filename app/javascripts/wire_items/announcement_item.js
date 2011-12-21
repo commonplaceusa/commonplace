@@ -4,7 +4,6 @@ var AnnouncementWireItem = WireItem.extend({
   className: "wire-item",
 
   initialize: function(options) {
-    this.account = CommonPlace.account;
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
@@ -12,7 +11,7 @@ var AnnouncementWireItem = WireItem.extend({
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
                                         el: this.$(".replies"),
-                                        account: this.account
+                                        account: CommonPlace.account
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -51,7 +50,7 @@ var AnnouncementWireItem = WireItem.extend({
   },
 
   canEdit: function() {
-    return this.account.canEditAnnouncement(this.model);
+    return CommonPlace.account.canEditAnnouncement(this.model);
   },
 
   isMore: function() {

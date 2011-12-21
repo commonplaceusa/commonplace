@@ -3,7 +3,6 @@ var ReplyWireItem = WireItem.extend({
   className: 'reply-item',
   template: "wire_items/reply-item",
   initialize: function(options) {
-    this.account = CommonPlace.account;
     this.model = options.model;
   },
 
@@ -36,7 +35,7 @@ var ReplyWireItem = WireItem.extend({
   messageUser: function(e) {
     if (e) { e.preventDefault(); }
 
-    if (this.model.get("author_id") != this.account.id) {
+    if (this.model.get("author_id") != CommonPlace.account.id) {
       this.model.user(function(user) {
         var formview = new MessageFormView({
           model: new Message({messagable: user})
@@ -54,7 +53,7 @@ var ReplyWireItem = WireItem.extend({
   },
   
   canEdit: function() {
-    return this.account.canEditReply(this.model);
+    return CommonPlace.account.canEditReply(this.model);
   },
   
   deleteReply: function(e) {
