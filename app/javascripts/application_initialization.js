@@ -18,15 +18,15 @@ function fbAsyncInit() {
 
 $(function() {
 
-
+  var communitySlug = window.location.pathname.split("/")[1];
 
   $("body").delegate("a[data-remote]", "click", function(e) { 
     e.preventDefault();
-    var fragment = e.currentTarget.pathname;
+    var fragment = e.currentTarget.pathname.replace(new RegExp("/" + communitySlug, "i"), "");
     if (!(/^\//).test(fragment)) { fragment = "/" + fragment; } // IE fix
     Backbone.history.navigate(fragment, true);
   });
-  var communitySlug = window.location.pathname.split("/")[1];
+
   var getCommunity = $.getJSON("/api/communities/" + communitySlug, 
                                function(r) {
 
