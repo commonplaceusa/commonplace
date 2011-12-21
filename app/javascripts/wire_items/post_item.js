@@ -5,7 +5,6 @@ var PostWireItem = WireItem.extend({
   className: "wire-item",
 
   initialize: function(options) {
-    this.account = CommonPlace.account;
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
   },
@@ -13,7 +12,7 @@ var PostWireItem = WireItem.extend({
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
                                         el: this.$(".replies"),
-                                        account: this.account
+                                        account: CommonPlace.account
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -82,7 +81,7 @@ var PostWireItem = WireItem.extend({
     window.infoBox.showProfile(user);
   },
 
-  canEdit: function() { return this.account.canEditPost(this.model); },
+  canEdit: function() { return CommonPlace.account.canEditPost(this.model); },
 
   editPost: function(e) {
     e.preventDefault();
