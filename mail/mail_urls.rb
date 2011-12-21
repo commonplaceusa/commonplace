@@ -101,7 +101,7 @@ module MailUrls
   end
 
   def settings_url
-    url("/account")
+    community_url("/account")
   end
 
   def faq_url

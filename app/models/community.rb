@@ -53,6 +53,9 @@ class Community < ActiveRecord::Base
     t.add :organizer_email, :as => :admin_email
     t.add :links
     t.add :discount_businesses
+    t.add lambda {|c| $goods }, :as => :goods
+    t.add lambda {|c| $skills }, :as => :skills
+    t.add lambda {|c| $interests }, :as => :interests
   end
 
   def links

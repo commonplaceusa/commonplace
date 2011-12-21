@@ -1,29 +1,26 @@
-var AccountEditView = CommonPlace.View.extend({
-  template: "account.edit",
-  id: "account-edit",
-  
+
+var AccountPage = CommonPlace.View.extend({
+  template: "account_page/main",
+
   events: {
     "submit": "editAccount",
     "click .avatar a.delete": "deleteAvatar"
   },
-  
-  initialize: function(options) {
-    this.account = options.account;
-    this.community = options.community;
-    this.interests = options.interests;
-    this.skills = options.skills;
-    this.goods = options.goods;
+
+  initialize: function() {
+    this.model = CommonPlace.account;
   },
+
   
   afterRender: function() {
     this.$(".about").autoResize();
     
-    var get_posts = this.account.get("neighborhood_posts");
+    var get_posts = this.model.get("neighborhood_posts");
     this.$("[name=get-posts][value='" + get_posts + "']").attr("checked", "checked");
     
-    this.populateSelected(this.account.get("interests"), this.$("[name=interests]"));
-    this.populateSelected(this.account.get("skills"), this.$("[name=skills]"));
-    this.populateSelected(this.account.get("goods"), this.$("[name=goods]"));
+    this.populateSelected(this.model.get("interests"), this.$("[name=interests]"));
+    this.populateSelected(this.model.get("skills"), this.$("[name=skills]"));
+    this.populateSelected(this.model.get("goods"), this.$("[name=goods]"));
     this.$("select.list").chosen();
 
     this.initAvatarUploader(this.$(".avatar .upload"));
@@ -67,7 +64,7 @@ var AccountEditView = CommonPlace.View.extend({
       }
     }
     
-    this.account.save(changes, {
+    this.model.save(changes, {
       success: function() { self.showSuccess(); },
       error: function(m, response) { self.showError(response); }
     });
@@ -89,31 +86,31 @@ var AccountEditView = CommonPlace.View.extend({
     $(window).scrollTop(0);
   },
   
-  fullName: function() { return this.account.get("name"); },
+  fullName: function() { return this.model.get("name"); },
   
-  about: function() { return this.account.get("about"); },
+  about: function() { return this.model.get("about"); },
   
-  email: function() { return this.account.get("email"); },
+  email: function() { return this.model.get("email"); },
   
-  avatarUrl: function() { return this.account.get("avatar_url"); },
+  avatarUrl: function() { return this.model.get("avatar_url"); },
   
-  interests: function() { return this.interests; },
+  interests: function() { return CommonPlace.community.get('interests'); },
   
-  skills: function() { return this.skills; },
+  skills: function() { return CommonPlace.community.get('skills'); },
   
-  goods: function() { return this.goods; },
+  goods: function() { return CommonPlace.community.get('goods'); },
 
   initAvatarUploader: function($el) {
     var self = this;
     var uploader = new AjaxUpload($el, {
-      action: "/api" + self.account.link("avatar"),
+      action: "/api" + self.model.link("avatar"),
       name: 'avatar',
       data: { },
       responseType: 'json',
       onChange: function(file, extension){},
       onSubmit: function(file, extension) {},
       onComplete: function(file, response) { 
-        self.account.set(response); 
+        self.model.set(response); 
         self.render();
       }
     });    
@@ -122,9 +119,16 @@ var AccountEditView = CommonPlace.View.extend({
   deleteAvatar: function(e) {
     var self = this;
     if (e) { e.preventDefault(); }
-    this.account.deleteAvatar(function() {
+    this.model.deleteAvatar(function() {
       self.render();
     });
+  },
+
+  bind: function() {
+    $("body").addClass("account");
+  },
+
+  unbind: function() { 
+    $("body").removeClass("account");
   }
 });
-

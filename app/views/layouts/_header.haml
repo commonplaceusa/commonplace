@@ -103,10 +103,10 @@
           %a(href="/#{current_community.slug}/inbox" data-remote) Inbox
         %li{:class=>"account"}
           = image_tag current_user.avatar_url(:thumb), size: "22x22", class: "avatar"
-          %a(href="/account") Hi, #{current_user.first_name}!
+          %a(href="/#{current_community.slug}/account" data-remote) Hi, #{current_user.first_name}!
           %ul.account-sub
             %li
-              %a(href="/account") Account Settings
+              %a(href="/#{current_community.slug}/account" data-remote) Account Settings
             %li
               %a(href="/#{current_community.slug}/faq" data-remote) FAQ
             - if current_community.discount_businesses.present?
