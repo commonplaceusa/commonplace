@@ -1,0 +1,91 @@
+<div id="account-edit">
+  <form>
+
+    <div class="error"></div>
+    <div class="success">Saved!</div>
+
+    <ul class="settings">
+      <li>
+        <div class="avatar">
+          <img src="{{avatarUrl}}" width="150">
+          <div class="avatar-controls">
+           <a class="upload">Change</a
+           ><a class="crop" href="/account/avatar">Crop</a
+           ><a class="delete">Delete</a>
+          </div>
+
+        </div>
+      </li>
+
+      <li>
+        <label>Neighborhood Posts:</label>
+        <ul class="get-posts">
+          <li><label>
+            <input type="radio" name="get-posts" value="Live"></input>
+            Receive all posts by email
+          </label></li>
+          <li><label>
+            <input type="radio" name="get-posts" value="Three"></input>
+            Receive three posts by email per day
+          </label></li>
+          <li><label>
+            <input type="radio" name="get-posts" value="Daily"></input>
+            Only receive posts in the daily bulletin
+          </label></li>
+          <li><label>
+            <input type="radio" name="get-posts" value="Never"></input>
+            Receive no neighborhood posts
+          </label></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/account/delete"><div>Delete my account</div></a>
+      </li>
+    </ul>
+
+    <div class="profile">
+      <h1>Update your profile</h1>
+
+      <label for="full_name">Full Name:</label>
+      <input type="text" name="full_name" value="{{fullName}}" class="normal">
+
+      <label for="about">Tell your neighbors a bit about yourself:</label>
+      <textarea name="about" rows="3" class="about">{{about}}</textarea>
+
+      <label for="email">Email Address:</label>
+      <input type="email" name="email" value="{{email}}" class="normal">
+
+      <div><label for="interests">Interests</label>
+      <select name="interests" class="list" multiple="true" data-placeholder="Select some interests">
+        {{#interests}}
+          <option value="{{.}}">{{.}}</option>
+        {{/interests}}
+      </select>
+
+      <div><label for="skills">Skills</label>
+      <select name="skills" class="list" multiple="true" data-placeholder="Select some skills">
+        {{#skills}}
+          <option value="{{.}}">{{.}}</option>
+        {{/skills}}
+      </select>
+
+      <div><label for="goods">Goods</label>
+      <select name="goods" class="list" multiple="true" data-placeholder="Select some goods">
+        {{#goods}}
+          <option value="{{.}}">{{.}}</option>
+        {{/goods}}
+      </select>
+
+      <label for="password" class="show-password">Change your password:</label>
+      <input type="password" name="password" class="password normal">
+      <label for="password-redundant">Confirm your password:</label>
+      <input type="password" name="password-redundant" class="normal">
+
+      <div class="controls">
+        <button>Update Profile</button>
+      </div>
+      </div>
+
+  </form>
+</div>

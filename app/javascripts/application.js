@@ -15,6 +15,7 @@
 //= require scrollTo
 //= require jcrop
 //= require plaxo
+//= require chosen
 
 //= require config
 //= require feature_switches
@@ -37,6 +38,7 @@
 //= require inbox_page
 //= require feed_inbox_page
 //= require outbox_page
+//= require account_page
 
 //= require application_initialization
 
@@ -50,7 +52,8 @@ var Application = Backbone.Router.extend({
       community: new CommunityPage({ el: $("#main") }),
       inbox: new InboxPage({ el: $("#main") }),
       outbox: new OutboxPage({ el: $("#main") }),
-      feed_inbox: new FeedInboxPage({ el: $("#main") })
+      feed_inbox: new FeedInboxPage({ el: $("#main") }),
+      account: new AccountPage({ el: $("#main") })
     }; 
 
     _.invoke(this.pages, "unbind");
@@ -78,6 +81,7 @@ var Application = Backbone.Router.extend({
     "/outbox": "outbox",
     "/feed_inbox": "feed_inbox",
 
+    "/account": "account",
     
     "/tour": "tour"
   },
@@ -155,6 +159,8 @@ var Application = Backbone.Router.extend({
   outbox: function() { this.showPage("outbox"); },
 
   feed_inbox: function() { this.showPage("feed_inbox"); },
+
+  account: function() { this.showPage("account"); },
 
   tour: function() {
     this.showPage("community");
