@@ -62,10 +62,10 @@ var InfoBox = CommonPlace.View.extend({
       self.nextPageTrigger();
 
       this.$("#info-list-area > ul").scroll(function() {
-        // start loading before we get to the end
-      if ( (this.offsetHeight + $(this).scrollTop()) >= (this.scrollHeight - 150) ) {
-         self.nextPageThrottled();
-      }
+        // start loading when the scrollbar is halfway down
+      if ($(this).scrollTop() > (this.scrollHeight / 2)) {
+        self.nextPageThrottled();
+      } 
     });
 
   },
@@ -181,8 +181,9 @@ var InfoBox = CommonPlace.View.extend({
           },
           success: function() {
               self.renderList(collection, "append");
+              self.nextPageTrigger();
           },
-          complete: function() {
+          error: function() {
               self.nextPageTrigger();
           }
       });
