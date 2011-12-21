@@ -98,8 +98,6 @@ Commonplace::Application.routes.draw do
 
   authenticated do
 
-    match 'logout' => 'user_sessions#destroy'
-
     resources :organizer do
       collection do
         get :map, :app
