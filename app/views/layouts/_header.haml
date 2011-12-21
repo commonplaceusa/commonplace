@@ -102,8 +102,8 @@
           %div{:class=>"file"}
           %a{ href: "/inbox" } Inbox
         %li{:class=>"account"}
-          %div{:class=>"icon"}
-          %a(href="/account") Hi, Max!
+          = image_tag current_user.avatar_url(:thumb), size: "22x22", class: "avatar"
+          %a(href="/account") Hi, #{current_user.first_name}!
           %ul.account-sub
             %li
               %a(href="/account") Account Settings
