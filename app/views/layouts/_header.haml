@@ -91,13 +91,13 @@
               %li.community-percent
                 %p 
                   How many households in City are on CommonPlace?
-                  %span.invite Invite more!
+                  %a(href="/#{current_community.slug}/invite" class="invite" data-remote) Invite more!
                 .percent-layer
                 = image_tag("house.png")
                 %span.percent 21%
         %li{:class=>"invite"}
           %div{:class=>"letter"}
-          %a(href="/invite" data-remote) Invite
+          %a(href="/#{current_community.slug}/invite" data-remote) Invite
         %li{:class=>"inbox"}
           %div{:class=>"file"}
           %a{ href: "/inbox" } Inbox
@@ -106,14 +106,17 @@
           %a(href="/account") Hi, Max!
           %ul.account-sub
             %li
-              %a Account Settings
+              %a(href="/account") Account Settings
             %li
-              %a Profile Settings
+              %a(href="/#{current_community.slug}/faq" data-remote) FAQ
+            - if current_community.discount_businesses.present?
+              %li
+                %a(href="/#{current_community.slug}/discount" data-remote) Good Neighbor Discount
             %li
               %a Privacy Policy
             %li 
               %a Sign Out
-      = link_to "/", :id => "logo", :data => { :remote => true } do
+      = link_to "/#{current_community.slug}", :id => "logo", :data => { :remote => true } do
         = image_tag "logo2.png", :alt => 'CommonPlace'
         %span.community= current_community.name
   - else
