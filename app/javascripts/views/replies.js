@@ -15,9 +15,9 @@ var RepliesView = CommonPlace.View.extend({
   }, 
   
   events: {
-    "keydown form textarea": "sendReply",
-    "focus form textarea": "showHint",
-    "blur form textarea": "hideHint",
+    "focus form textarea": "showButton",
+    "blur form textarea": "hideButton",
+    "click form .submit-c": "sendReply",
     "click .replies-more": "showMoreReplies"
   },
 
@@ -47,17 +47,10 @@ var RepliesView = CommonPlace.View.extend({
     return this._hiddenReplyCount;
   },
 
-  sendReply: function(e) {
-    this.showHint();
-    if (e.which == 13) {
-      e.preventDefault();
-      if (e.shiftKey) {
-        var form = this.$("[name=body]");
-        form.val(form.val() + "\n");
-      } else {
-        this.cleanUpPlaceholders();
-        this.collection.create({ body: this.$("[name=body]").val()});
-      }
+  sendReply: function() {
+    if (this.$("form textarea").val()) {
+      this.cleanUpPlaceholders();
+      this.collection.create({ body: this.$("[name=body]").val()});
     }
   },
 
@@ -67,9 +60,11 @@ var RepliesView = CommonPlace.View.extend({
     this.$('.replies-more').hide();
   },
   
-  showHint: function(e) { this.$(".submit-c").show(); },
+  showButton: function(e) { this.$(".submit-c").show(); },
   
-  hideHint: function(e) { this.$(".submit-c").hide(); },
+  hideButton: function(e) { 
+    if (!this.$("form textarea").val()) { this.$(".submit-c").hide(); }
+  },
   
   accountAvatarUrl: function() { return this.account.get('avatar_url'); }
   
