@@ -146,11 +146,12 @@ var DynamicLandingResources = CommonPlace.View.extend({
     if (ready || this._ready) {
       this._ready = true;
       var landing_top = $(this.el).offset().top + $(window).scrollTop();
+      var landing_bottom = landing_top + this.$(".sticky-header").height();
       var wires_below_header = _.flatten([this._wires, this._events, this._chrono]);
       
       wires_below_header = _.filter(wires_below_header, function(wire) {
         var wire_bottom = wire.el.offset().top + wire.el.height();
-        return wire_bottom >= landing_top;
+        return wire_bottom >= landing_bottom;
       });
       
       var top_wire = _.sortBy(wires_below_header, function(wire) {
@@ -159,7 +160,8 @@ var DynamicLandingResources = CommonPlace.View.extend({
       
       if (top_wire != this.headerWire) {
         this.unstickHeader();
-        top_wire.header.detach().appendTo($("#community-resources .sticky-header"));
+        var sticky = top_wire.header.clone(true);
+        sticky.appendTo($("#community-resources .sticky-header"));
         this.headerWire = top_wire;
       }
     }
@@ -167,7 +169,6 @@ var DynamicLandingResources = CommonPlace.View.extend({
   
   unstickHeader: function() {
     if (this._ready && this.headerWire) {
-      this.headerWire.header.detach().prependTo(this.headerWire.el);
       $("#community-resources .sticky-header").empty();
     }
   }
