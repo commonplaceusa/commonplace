@@ -61,6 +61,20 @@ class API
         [400, "errors"]
       end
     end
-
+    
+	get "/:id/thanks" do |id|
+		post = Post.find(id)
+		halt [401, "wrong community"] unless in_comm(post.community.id)
+		halt [400, "errors: already thanked"] unless post.thanks.index {|t| t.user == current_account } == nil
+		thank = Thank.new(:thankable => post,
+						:user => current_account)
+		if thank.save
+		  serialize(post)
+		else
+		  [400, "errors: #{post.errors.full_messages.to_s}"]
+		end
+	end
+		
+			
   end
 end
