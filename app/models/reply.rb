@@ -10,5 +10,9 @@ class Reply < ActiveRecord::Base
 
   scope :between, lambda { |start_date, end_date| { :conditions => ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } }
 
+  scope :today, :conditions => ["replies.created_at between ? and ?", DateTime.now.at_beginning_of_day, Time.now]
+
+  scope :this_week, :conditions => ["replies.created_at between ? and ?", DateTime.now.at_beginning_of_week, Time.now]
+
 
 end

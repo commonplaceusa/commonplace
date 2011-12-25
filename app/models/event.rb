@@ -28,6 +28,7 @@ class Event < ActiveRecord::Base
   }
   scope :past, :conditions => ["events.date < ?", Time.now.utc]
   scope :today, :conditions => ["events.created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
+  scope :this_week, :conditions => ["events.created_at between ? and ?", DateTime.now.at_beginning_of_week, Time.now]
   scope :up_to, lambda { |end_date| { :conditions => ["events.created_at <= ?", end_date.utc] } }
 
   scope :created_on, lambda { |date| { :conditions => ["events.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }

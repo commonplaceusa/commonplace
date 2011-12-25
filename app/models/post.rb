@@ -29,6 +29,8 @@ class Post < ActiveRecord::Base
 
   scope :today, :conditions => ["posts.created_at between ? and ?", DateTime.now.at_beginning_of_day, Time.now]
 
+  scope :this_week, :conditions => ["posts.created_at between ? and ?", DateTime.now.at_beginning_of_week, Time.now]
+
   def self.deleted
     self.unscoped.where('deleted_at IS NOT NULL')
   end
