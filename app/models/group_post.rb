@@ -12,6 +12,7 @@ class GroupPost < ActiveRecord::Base
   validates_presence_of :body, :message => "Please enter some text for your post"
 
   scope :today, where("group_posts.created_at between ? and ?", Date.today, Time.now)
+  scope :this_week, where("group_posts.created_at between ? and ?", DateTime.now.at_beginning_of_week, DateTime.now)
 
   scope :between, lambda { |start_date, end_date| { :conditions => ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } }
 

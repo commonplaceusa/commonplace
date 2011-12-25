@@ -216,4 +216,12 @@ class Community < ActiveRecord::Base
     self.users.count
   end
 
+  def replies
+    self.users.map(&:replies).flatten
+  end
+
+  def replies_this_week
+    self.users.map(&:replies).flatten.select{ |r| r.created_at >= DateTime.now.beginning_of_week }
+  end
+
 end

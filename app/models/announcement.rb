@@ -25,6 +25,8 @@ class Announcement < ActiveRecord::Base
 
   scope :today, :conditions => ["announcements.created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
 
+  scope :this_week, :conditions => ["announcements.created_at between ? and ?", DateTime.now.at_beginning_of_week, DateTime.now]
+
   default_scope where(:deleted_at => nil)
 
   def feed

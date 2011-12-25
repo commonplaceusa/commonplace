@@ -62,6 +62,8 @@ class User < ActiveRecord::Base
 
   scope :today, { :conditions => ["created_at between ? and ?", DateTime.now.utc.beginning_of_day, DateTime.now.utc.end_of_day] }
 
+  scope :this_week, { :conditions => ["created_at between ? and ?", DateTime.now.utc.beginning_of_week, DateTime.now.utc.end_of_day] }
+
   scope :up_to, lambda { |end_date| { :conditions => ["created_at <= ?", end_date.utc] } }
 
   scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }
@@ -430,6 +432,22 @@ WHERE
   def checked_inbox!
     self.last_checked_inbox = DateTime.now
     self.save :validate => false
+  end
+
+  def invitations_this_week
+    Invite.this_week.select { |i| i.inviter_id == self.id }
+  end
+
+  def all_invitations
+    Invite.find_all_by_inviter_id(self.id)
+  end
+
+  def replies_received
+    (self.posts.map(&:replies) + self.events.map(&:replies) + self.announcements.map(&:replies) + self.group_posts.map(&:replies)).flatten
+  end
+
+  def replies_received_this_week
+    (self.posts.this_week.map(&:replies) + self.events.this_week.map(&:replies) + self.announcements.this_week.map(&:replies) + self.group_posts.this_week.map(&:replies)).flatten
   end
 
   private
