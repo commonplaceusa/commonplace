@@ -6,7 +6,9 @@ var PostForm = CommonPlace.View.extend({
   events: {
     "click button": "createPost",
     "focusin input, textarea": "onFormFocus",
-    "keydown textarea": "resetLayout"
+    "keydown textarea": "resetLayout",
+    "focusin select": "hideLabel",
+    "click select": "hideLabel"
   },
 
   afterRender: function() {
@@ -100,5 +102,7 @@ var PostForm = CommonPlace.View.extend({
 
   resetLayout: function() { CommonPlace.layout.reset(); },
   
-  groups: function() { return this.options.community.get('groups'); }
+  groups: function() { return this.options.community.get('groups'); },
+
+  hideLabel: function(e) { $("option.label", e.target).hide(); }
 });
