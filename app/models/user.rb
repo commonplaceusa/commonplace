@@ -450,6 +450,12 @@ WHERE
     (self.posts.this_week.map(&:replies) + self.events.this_week.map(&:replies) + self.announcements.this_week.map(&:replies) + self.group_posts.this_week.map(&:replies)).flatten
   end
 
+  searchable do
+    text :name do
+      self.name
+    end
+  end
+
   private
 
   def is_transitional_user

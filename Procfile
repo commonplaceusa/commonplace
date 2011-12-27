@@ -3,3 +3,4 @@ worker: QUEUE=* bundle exec rake resque:work --trace
 delayed_job_worker: bundle exec rake jobs:work
 clock: bundle exec rake resque:scheduler
 sunspot: bundle exec rake sunspot:solr:run
+stats: bundle exec ruby lib/stats_server.rb run
