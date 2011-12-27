@@ -3,14 +3,14 @@
     #nav_wrapper
       %ul{:class=>"nav"}
         %li{:class=>"my-activity selected-nav"} 
-          %div{:class=>"number"} 432
+          %div.week-cpcredits{:class=>"number"}= current_user.weekly_cpcredits
           %a(title=@link){:href => @link} My Activity
           %ul{:class=>"my-activity-sub"}
             %p 
               This is a record of all the ways you've helped your neighbors on CommonPlace.  You've earned
-              -#%span{:class=>"red"}= current_user.cp_credits_this_week
+              %span.week-cpcredits{:class=>"red"}= current_user.weekly_cpcredits
               'Good Neighbor' points this week, and
-              -#%span{:class=>"red"}= current_user.cp_credits_all_time
+              %span.all-cpcredits{:class=>"red"}= current_user.all_cpcredits
               since you signed up 
               %span{:class=>"red"}= current_user.created_at.strftime '%B %Y'
             .sub-left
@@ -25,38 +25,38 @@
                 %span{:class=>"sub-title"}My replies
                 %span{:class=>"sub-notif one"}= current_user.replies.count
                 %span{:class=>"sub-notif two"}= current_user.replies.this_week.count
-              %li 
-                %span{:class=>"sub-title"}Neighbors thanked
-                %span{:class=>"sub-notif one"} -1
-                %span{:class=>"sub-notif two"} -2
+              -#%li 
+                -%span{:class=>"sub-title"}Neighbors thanked
+                -%span{:class=>"sub-notif one"} -1
+                -%span{:class=>"sub-notif two"} -2
               %li 
                 %span{:class=>"sub-title"}Replies received
                 %span{:class=>"sub-notif one"}= current_user.replies_received.count
                 %span{:class=>"sub-notif two"}= current_user.replies_received_this_week.count
-              %li 
-                %span{:class=>"sub-title"}Thanks received
-                %span{:class=>"sub-notif one"} -1
-                %span{:class=>"sub-notif two"} -2
+              -#%li 
+                -#%span{:class=>"sub-title"}Thanks received
+                -#%span{:class=>"sub-notif one"} -1
+                -#%span{:class=>"sub-notif two"} -2
               %li 
                 %span{:class=>"sub-title"}Events posted 
                 %span{:class=>"sub-notif one"}= current_user.events.count
                 %span{:class=>"sub-notif two"}= current_user.events.this_week.count
               -#%li 
-                %span{:class=>"sub-title"}Number of site visits 
-                %span{:class=>"sub-notif one"} -1
-                %span{:class=>"sub-notif two"} -2
+                -#%span{:class=>"sub-title"}Number of site visits 
+                -#%span{:class=>"sub-notif one"} -1
+                -#%span{:class=>"sub-notif two"} -2
               %li 
                 %span{:class=>"sub-title"}Invites sent 
                 %span{:class=>"sub-notif one"}= current_user.all_invitations.count
                 %span{:class=>"sub-notif two"}= current_user.invitations_this_week.count
-              %li 
-                %span{:class=>"sub-title"}Shares on Facebook 
-                %span{:class=>"sub-notif one"} -1
-                %span{:class=>"sub-notif two"} -2
+              -#%li 
+                -#%span{:class=>"sub-title"}Shares on Facebook 
+                -#%span{:class=>"sub-notif one"} -1
+                -#%span{:class=>"sub-notif two"} -2
               %li.total
                 %span.sub-total-title Total
-                -#%span.sub-total-all= current_user.cp_credits_this_week
-                -#%span.sub-total-week= current_user.cp_credits_all_time
+                %span.sub-total-all.all-cpcredits= current_user.all_cpcredits
+                %span.sub-total-week.week-cpcredits= current_user.weekly_cpcredits
             .sub-right 
               %h4 Town Activity
               %span.this-week This Week
@@ -77,10 +77,10 @@
                 %span{:class=>"sub-title"}Total replies  
                 %span{:class=>"sub-notif one"}= current_community.replies.count
                 %span{:class=>"sub-notif two"}= current_community.replies_this_week.count
-              %li 
-                %span{:class=>"sub-title"}Total thanks
-                %span{:class=>"sub-notif one"} -1
-                %span{:class=>"sub-notif two"} -2
+              -#%li 
+                -%span{:class=>"sub-title"}Total thanks
+                -%span{:class=>"sub-notif one"} -1
+                -%span{:class=>"sub-notif two"} -2
               %li 
                 %span{:class=>"sub-title"}Average replies / user
                 %span{:class=>"sub-notif one"}= 100 * current_community.replies.count / current_community.users.count

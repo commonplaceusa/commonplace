@@ -1,3 +1,4 @@
+
 - if Rails.env.production?
   -# Mixpanel metrics
   - if current_user.try(:email).present?
@@ -24,3 +25,5 @@
         window.onload = (typeof window.onload != 'function') ?
           loadChartbeat : function() { oldonload(); loadChartbeat(); };
       })();
+
+  

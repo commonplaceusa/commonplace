@@ -450,6 +450,14 @@ WHERE
     (self.posts.this_week.map(&:replies) + self.events.this_week.map(&:replies) + self.announcements.this_week.map(&:replies) + self.group_posts.this_week.map(&:replies)).flatten
   end
 
+  def weekly_cpcredits
+    self.posts.this_week.count + self.replies.this_week.count + self.replies_received_this_week.count + self.events.this_week.count + self.invitations_this_week.count
+  end
+
+  def all_cpcredits
+    self.posts.count + self.replies.count + self.replies_received.count + self.events.count + self.all_invitations.count
+  end
+
   searchable do
     text :name do
       self.name
