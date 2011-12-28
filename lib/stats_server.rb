@@ -80,4 +80,4 @@ FnordMetric.namespace :commonplace do
 
 end
 
-FnordMetric.standalone
+FnordMetric.run(:web_interface => ["0.0.0.0", 4242])
