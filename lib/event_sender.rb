@@ -9,9 +9,10 @@ class EventSender
     #Resque.redis.lpush("fnordmetric-queue", uuid)
     #Resque.redis.set("fnordmetric-event-#{uuid}", event)
     #Resque.redis.expire("fnordmetric-event-#{uuid}", 60)
-    event = { :_type => event_type }.merge(options).to_json
+    event = { :_type => event_type }.merge(options).to_query
     server = ENV['metrics_server'] || 'localhost'
-    `echo '#{event}' | nc #{server} 1337`
+    #`echo '#{event}' | nc #{server} 1337`
+    `curl -X POST -d "#{event}" http://localhost:4242/events`
   end
 
   def self.user_visited_main_page
