@@ -1,6 +1,14 @@
 class EventSender
+  @queue = :statistics_events
   def initialize(queuer = Resque)
     @queuer = queuer
+  end
+
+  def self.perform(event_object)
+    server = ENV['metrics_server'] || 'localhost'
+    #RestClient.post "http://#{server}:4242/events", event_object
+    event = event_object.to_json
+    `echo '#{event}' | nc #{server} 1337`
   end
 
   def self.send_event(event_type, options = {})
@@ -9,9 +17,10 @@ class EventSender
     #Resque.redis.lpush("fnordmetric-queue", uuid)
     #Resque.redis.set("fnordmetric-event-#{uuid}", event)
     #Resque.redis.expire("fnordmetric-event-#{uuid}", 60)
-    event = { :_type => event_type }.merge(options).to_query
-    server = ENV['metrics_server'] || 'localhost'
-    `echo '#{event}' | nc #{server} 1337`
+    Resque.enqueue(EventSender, { :_type => event_type }.merge(options))
+    #event = { :_type => event_type }.merge(options).to_query
+    #server = ENV['metrics_server'] || 'localhost'
+    #`echo '#{event}' | nc #{server} 1337`
     #`curl -X POST -d "#{event}" http://#{server}:4242/events`
   end
 
