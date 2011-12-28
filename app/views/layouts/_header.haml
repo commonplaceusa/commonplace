@@ -102,6 +102,18 @@
         %li{:class=>"inbox"}
           %div{:class=>"file"}
           %a(href="/#{current_community.slug}/inbox" data-remote) Inbox
+          .inbox-sub
+            .inbox-left
+              %ul.inbox-nav
+                %li.inbox-current Inbox
+                %li Sent
+            .inbox-right
+              .message-cont
+                = image_tag("avatar.jpg")
+                %a.title Cool new UI
+                .author John doe
+                .message-preview
+                  %p Hey man, just wanted to let you know this is a cool message box.
         %li{:class=>"account"}
           = image_tag current_user.avatar_url(:thumb), size: "22x22", class: "avatar"
           %a(href="/#{current_community.slug}/account" data-remote) Hi, #{current_user.first_name}!
