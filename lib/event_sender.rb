@@ -10,7 +10,7 @@ class EventSender
     #Resque.redis.set("fnordmetric-event-#{uuid}", event)
     #Resque.redis.expire("fnordmetric-event-#{uuid}", 60)
     event = { :_type => event_type }.merge(options).to_json
-    `echo '#{event}' | nc localhost 1337`
+    `echo '#{event}' | nc 107.20.208.98 1337`
   end
 
   def self.user_visited_main_page
