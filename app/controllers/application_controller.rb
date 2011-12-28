@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :api, :serialize
   
-  before_filter :domain_redirect, :set_locale, :set_api_token
+  before_filter :domain_redirect, :set_locale, :set_api_token, :log_pageview
   
   rescue_from CanCan::AccessDenied do |exception|
     store_location
@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
     if logged_in?
       cookies['authentication_token'] = current_user.authentication_token
     end
+  end
+
+  def log_pageview
+    EventSender.page_view(request.url, session['session_id'])
   end
 
   def serialize(thing)

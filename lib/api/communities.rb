@@ -11,7 +11,7 @@ class API
 
       def search(klass, params, community_id)
         search = Sunspot.search(klass) do
-          keywords phrase(params["query"])
+          keywords phrase(params["query"]), :highlight => true
           paginate(:page => params["page"].to_i + 1)
           with(:community_id, community_id)
           yield(self) if block_given?
