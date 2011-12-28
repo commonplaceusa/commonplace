@@ -218,6 +218,33 @@
           padding: 3px 0px 3px 9px
       li.inbox
         width: 72px
+        .inbox-sub
+          display: none
+          width: 500px
+          +border-radius(5px 0 5px 5px)
+          font-family: Helvetica, Tahoma, Sans-Serif
+          overflow-x: hidden
+          position: relative
+          left: -425px
+          z-index: 9999
+          height: 250px
+          padding: 10px
+          background: white
+          .inbox-left
+            float: left
+            width: 110px
+            .inbox-nav
+              li
+                margin: 0
+                padding: 0
+                float: left
+                font-size: 11px
+                height: 11px
+                font-weight: bold
+                text-transform: uppercase
+              
+          .inbox-right
+            float: right
     
       li.account
         width: 94px
@@ -226,30 +253,35 @@
           display: none
           background: white
           color: #505250
-          width: 107px
+          width: 145px
           margin-top: 14px
-          padding: 10px
           font-family: Helvetica, Sans Serif
           font-size: 13px
           position: relative
-          left: -34px
+          left: -52px
+          height: 111px
           border: 1px solid #d7d7d7
           border-top: 0px
           +border-bottom-right-radius(5px)
           +border-top-left-radius(5px)
           +border-bottom-left-radius(5px)
           z-index: 9999
+          padding: 10px 0
           li
             margin-top: 0
             height: auto
             float: none
+            width: 125px
+            padding: 0 10px
+            margin-right: 0
+            padding: 8px 10px
+            &:hover
+              background: #E8E8E8
+              color: #333
             a
               margin: 0
               padding: 0
               font-weight: normal
-              color: #5C5D5C
-              &:hover
-                color: #292A29              
         &:hover
           background: white
           color: #1B334A
