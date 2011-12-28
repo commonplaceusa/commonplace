@@ -9,12 +9,30 @@ class API
 
     helpers do
 
-      def search(klass, params, community_id)
+      def search(klass, params, community_id, options=nil)
+        keywords = phrase(params["query"])
         search = Sunspot.search(klass) do
-          keywords phrase(params["query"]), :highlight => true
+          keywords keywords, :highlight => true
           paginate(:page => params["page"].to_i + 1)
           with(:community_id, community_id)
           yield(self) if block_given?
+        end
+        if (options && options[:highlight])
+          search.results.each do |result|
+            keywords.each do |keyword|
+              options[:highlight].each do |method|
+                if result.send(method)
+                  if result.send(method).respond_to? :each
+                    result.send(method).each do |reply|
+                      reply.body.gsub!(keyword, "<em class='highlight'>#{keyword}</em>")
+                    end
+                  else
+                    result.send(method).gsub!(keyword, "<em class='highlight'>#{keyword}</em>")
+                  end
+                end
+              end
+            end
+          end
         end
         serialize(search)
       end
@@ -103,7 +121,7 @@ class API
       last_modified_by_updated_at(Post)
 
       if params["query"].present?
-        search(Post, params, community_id)
+        search(Post, params, community_id, { :highlight => [:subject, :body, :replies]})
       else
         serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
       end
