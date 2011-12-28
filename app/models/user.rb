@@ -464,6 +464,11 @@ WHERE
     end
   end
 
+  Warden::Manager.after_authentication do |user, auth, opts|
+    EventSender.associate_name(user.name, auth.session['session_id'])
+    EventSender.associate_picture(user.avatar.url, auth.session['session_id'])
+  end
+
   private
 
   def is_transitional_user

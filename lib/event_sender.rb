@@ -10,10 +10,23 @@ class EventSender
     #Resque.redis.set("fnordmetric-event-#{uuid}", event)
     #Resque.redis.expire("fnordmetric-event-#{uuid}", 60)
     event = { :_type => event_type }.merge(options).to_json
-    `echo '#{event}' | nc 107.20.208.98 1337`
+    server = ENV['metrics_server'] || 'localhost'
+    `echo '#{event}' | nc #{server} 1337`
   end
 
   def self.user_visited_main_page
     EventSender.send_event("user_signed_in")
+  end
+
+  def self.page_view(page_name, session_token)
+    EventSender.send_event("_pageview", { :url => page_name, :_session => session_token })
+  end
+
+  def self.associate_name(user_name, session_token)
+    EventSender.send_event("_set_name", { :name => user_name, :_session => session_token })
+  end
+
+  def self.associate_picture(user_picture_url, session_token)
+    EventSender.send_event("_set_picture", { :url => user_picture_url, :_session => session_token })
   end
 end
