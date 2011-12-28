@@ -34,3 +34,4 @@ log/*.log
 .rvmrc
 log/sunspot-solr-development.log.1
 sunspot-solr.pid
+*.pyc
