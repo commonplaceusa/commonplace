@@ -3,8 +3,6 @@ class Neighborhood < ActiveRecord::Base
 
   has_many :users
 
-  reverse_geocoded_by :latitude, :longitude
-
   belongs_to :community
 
   serialize :bounds, Array
