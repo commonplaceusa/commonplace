@@ -167,7 +167,7 @@ GEM
     garb (0.9.1)
       activesupport (>= 2.2.0)
       crack (>= 0.1.6)
-    geocoder (1.0.4)
+    geocoder (1.0.5)
     glebm-geokit (1.5.2)
     googlecharts (1.6.7)
     guard (0.7.0)
@@ -504,7 +504,7 @@ DEPENDENCIES
   formtastic
   fuubar
   garb
-  geocoder
+  geocoder (~> 1.0.5)
   glebm-geokit
   googlecharts
   guard
