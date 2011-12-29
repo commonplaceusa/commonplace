@@ -19,7 +19,7 @@ gem 'pg' # for postgres
 gem 'permanent_records' # adds soft-delete if a model has a deleted_at column
 gem 'paperclip', "~> 2.4.4" # we use this to store avatars
 gem 'rmagick' # we use this to crop avatars
-gem 'geocoder' # we use geocoder to find user latlngs from addresses
+gem 'geocoder', '~> 1.0.5' # we use geocoder to find user latlngs from addresses
 gem 'glebm-geokit', :require => 'geokit' # use this to find latlngs from address again. try to remove in favor of geocoder
 
 # Deployment
