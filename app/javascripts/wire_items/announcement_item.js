@@ -29,9 +29,15 @@ var AnnouncementWireItem = WireItem.extend({
   title: function() { return this.model.get('title'); },
   
   author: function() { return this.model.get('author'); },
+
+  first_name: function() { return this.model.get('first_name'); },
   
   body: function() {
     return this.model.get("body");
+  },
+
+  numThanks: function() {
+    return this.model.get("thanks").length;
   },
   
   events: {
