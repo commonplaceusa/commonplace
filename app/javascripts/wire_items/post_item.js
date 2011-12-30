@@ -52,7 +52,8 @@ var PostWireItem = WireItem.extend({
   events: {
     "click div.group-post > .author": "messageUser",
     "click .editlink": "editPost",
-    "mouseenter": "showProfile"
+    "mouseenter": "showProfile",
+    "click .thank-link": "thank"
   },
 
   messageUser: function(e) {
@@ -98,6 +99,16 @@ var PostWireItem = WireItem.extend({
       template: "shared/post-edit-form"
     });
     formview.render();
+  },
+
+  thank: function() {
+    $.ajax({
+      url: "/api/posts/" + this.model.get("id") + "/thank",
+      type: "POST",
+      success: function() {
+        this.model.fetch();
+      }
+    });
   },
   
   group: function() { return false; }
