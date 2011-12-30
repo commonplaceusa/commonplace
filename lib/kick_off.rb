@@ -165,6 +165,10 @@ class KickOff
     enqueue(FeedWelcome, feed.id)
   end
 
+  def deliver_thank_notification(thank)
+    # TODO: Implement
+  end
+
   private
   
   def enqueue(*args)
