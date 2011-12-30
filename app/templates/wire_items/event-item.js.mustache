@@ -13,13 +13,13 @@
     </div>
   {{/time}}
 
-  <div class="title">{{title}}</div>
+  <div class="title">{{{title}}}</div>
 
   <div class="author">
-    <a {{#isFeed}}href="{{feedUrl}}"{{/isFeed}}>{{author}}</a>
+    <a {{#isFeed}}href="{{feedUrl}}"{{/isFeed}}>{{{author}}}</a>
   </div>
 
-  <div class="body event-body">{{#markdown}}{{body}}{{/markdown}}</div>
+  <div class="body event-body">{{#markdown}}{{{body}}}{{/markdown}}</div>
   
   <table class="event-location">
     {{#venue}}<tr><th>Venue:</th><td>{{venue}}</td></tr>{{/venue}}
