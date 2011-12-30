@@ -19,7 +19,7 @@ module Serializer
 
       when Thank
       {
-        "name" => User.find(o.user_id).first_name
+        "name" => User.find(o.user_id).name
       }
 
       when NamedPoint
@@ -74,6 +74,7 @@ module Serializer
         "date" => o.date.to_time.utc,
         "title" => o.name,
         "author" => o.owner.name,
+        "first_name" => o.user.first_name,
         "body" => o.description,
         "tags" => o.tag_list,
         "starts_at" => o.start_time.try(:strftime, "%l:%M%P"),
@@ -103,6 +104,7 @@ module Serializer
         "avatar_url" => o.owner.avatar_url(:thumb),
         "author_url" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
         "author" => o.owner.name,
+        "first_name" => o.user.first_name,
         "user_id" => o.user_id,
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "feed_url" => o.owner_type == "Feed" ? "/pages/#{o.owner.slug}" : nil,
@@ -126,6 +128,7 @@ module Serializer
         "url" => "/group_posts/#{o.id}",
         "published_at" => o.created_at.utc,
         "author" => o.user.name,
+        "first_name" => o.user.first_name,
         "avatar_url" => o.group.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
         "group" => o.group.name,
