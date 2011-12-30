@@ -102,11 +102,12 @@ var PostWireItem = WireItem.extend({
   },
 
   thank: function() {
+    var self = this;
     $.ajax({
       url: "/api/posts/" + this.model.get("id") + "/thank",
       type: "POST",
       success: function() {
-        this.model.fetch();
+        self.$(".thank_count").html(self.numThanks() + 1);
       }
     });
   },

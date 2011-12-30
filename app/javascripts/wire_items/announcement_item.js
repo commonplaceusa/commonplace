@@ -43,7 +43,8 @@ var AnnouncementWireItem = WireItem.extend({
   events: {
     "click .editlink": "editAnnouncement",
     "mouseenter": "showProfile",
-    "click .announcement > .author": "messageUser"
+    "click .announcement > .author": "messageUser",
+    "click .thank-link": "thank"
   },
 
   editAnnouncement: function(e) {
@@ -94,6 +95,6 @@ var AnnouncementWireItem = WireItem.extend({
         }
       });
     }
-  }
-    
+  },
+
 });
