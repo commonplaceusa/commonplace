@@ -10,7 +10,7 @@ var CommunityResources = CommonPlace.View.extend({
   
   afterRender: function() {
     var self = this;
-    if (Features.isActive("fixedLayout")) {
+    if (Features.isActive("2012Release")) {
       $(window).scroll(function() { self.view.stickHeader(); });
     }
   },
@@ -23,14 +23,14 @@ var CommunityResources = CommonPlace.View.extend({
     this.view.render();
     this.$(".resources").replaceWith(this.view.el);
     
-    if (Features.isActive("fixedLayout")) {
+    if (Features.isActive("2012Release")) {
       this.view.stickHeader();
     }
   },
 
   tabs: {
     landing: function(self) {
-      if (Features.isActive("dynamicLanding")) {
+      if (Features.isActive("2012Release")) {
         return new DynamicLandingResources({});
       } else {
         return new LandingResources({

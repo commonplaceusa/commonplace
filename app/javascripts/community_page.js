@@ -50,7 +50,7 @@ var CommunityPage = CommonPlace.View.extend({
 
 $(function() {
   
-  if (Features.isActive("fixedLayout")) {
+  if (Features.isActive("2012Release")) {
     $("body").addClass("fixedLayout");
     CommonPlace.layout = new FixedLayout();
   } else {
