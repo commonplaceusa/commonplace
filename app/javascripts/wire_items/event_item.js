@@ -57,7 +57,8 @@ var EventWireItem = WireItem.extend({
   events: {
     "click .editlink": "editEvent",
     "mouseenter": "showProfile",
-    "click .event > .author": "messageUser"
+    "click .event > .author": "messageUser",
+    "click .thank-link": "thank"
   },
 
   editEvent: function(e) {
