@@ -24,7 +24,8 @@ var Post = Repliable.extend({
       };
       return response;
     }
-  }
+  },
+
 });
 
 var Posts = Collection.extend({ model: Post });

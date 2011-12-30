@@ -17,6 +17,11 @@ module Serializer
       when Array
         o.map {|t| serialize t }
 
+      when Thank
+      {
+        "name" => User.find(o.user_id).first_name
+      }
+
       when NamedPoint
       {
         "lat" => o.lat,
@@ -43,17 +48,19 @@ module Serializer
         "url" => "/posts/#{o.id}",
         "title" => o.subject,
         "author" => o.user.name,
+        "first_name" => o.user.first_name,
         "body" => o.body,
         "author_url" => "/users/#{o.user_id}",
         "user_id" => o.user_id,
         "replies" => serialize(o.replies.to_a),
+        "thanks" => serialize(o.thanks.to_a),
         "last_activity" => o.last_activity.utc,
         "category" => o.category,
         "links" => {
           "author" => "/users/#{o.user_id}",
           "replies" => "/posts/#{o.id}/replies",
           "self" => "/posts/#{o.id}"
-        }
+        },
       }
 
       when Event
@@ -83,7 +90,8 @@ module Serializer
           "replies" => "/events/#{o.id}/replies",
           "self" => "/events/#{o.id}",
           "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
-        }
+        },
+        "thanks" => o.thanks
       }
 
       when Announcement
@@ -107,8 +115,8 @@ module Serializer
           "replies" => "/announcements/#{o.id}/replies",
           "self" => "/announcements/#{o.id}",
           "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
-        }
-
+        },
+        "thanks" => o.thanks
       }
 
       when GroupPost
@@ -132,7 +140,8 @@ module Serializer
           "author" => "/users/#{o.user_id}",
           "group" => "/groups/#{o.group_id}",
           "self" => "/group_posts/#{o.id}"
-        }
+        },
+          "thanks" => o.thanks
         }
 
       when Message
