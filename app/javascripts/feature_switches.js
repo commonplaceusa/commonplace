@@ -43,10 +43,7 @@ FeatureSwitcher = function(features, backend) {
 };
 
 Features = new FeatureSwitcher({
-  wireSearch: false,
-  fixedLayout: false,
-  dynamicLanding: false,
-  chronoResource: false
+  "2012Release": false
 }, window.sessionStorage || { 
   setItem: function(name, value) {},
   getItem: function(name) { return false; }

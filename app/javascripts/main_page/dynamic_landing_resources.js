@@ -121,7 +121,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
           self.$(".populated").append(wire.el);
         });
         
-        if (Features.isActive("chronoResource")) {
+        if (Features.isActive("2012Release")) {
           this._chrono = new Wire({
             template: "main_page.chrono-resources",
             collection: CommonPlace.community.postlikes,
@@ -135,7 +135,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
           this._chrono.render();
         }
         
-        if (Features.isActive("fixedLayout")) {
+        if (Features.isActive("2012Release")) {
           this.stickHeader(true);
         }
       }
