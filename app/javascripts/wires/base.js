@@ -149,6 +149,6 @@ var Wire = CommonPlace.View.extend({
     this.search();
   },
 
-  isSearchEnabled: function() { return this.isActive('wireSearch');  }
+  isSearchEnabled: function() { return this.isActive('2012Release');  }
 
 });
