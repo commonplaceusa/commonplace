@@ -19,7 +19,7 @@ module Serializer
 
       when Thank
       {
-        "name" => User.find(o.user_id).name
+        "name" => o.user.name
       }
 
       when NamedPoint
@@ -60,7 +60,7 @@ module Serializer
           "author" => "/users/#{o.user_id}",
           "replies" => "/posts/#{o.id}/replies",
           "self" => "/posts/#{o.id}"
-        },
+        }
       }
 
       when Event
