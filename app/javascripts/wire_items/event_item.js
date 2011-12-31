@@ -107,6 +107,17 @@ var EventWireItem = WireItem.extend({
         }
       });
     }
+  },
+
+  thank: function() {
+    var self = this;
+    $.ajax({
+      url: "/api/events/" + this.model.get("id") + "/thank",
+      type: "POST",
+      success: function() {
+        self.$(".thank_count").html(self.numThanks() + 1);
+      }
+    });
   }
 
 });
