@@ -50,16 +50,7 @@ class API
     end
 
     post "/:id/thank" do |id|
-      post = GroupPost.find(id)
-      halt [401, "wrong community"] unless in_comm(post.community.id)
-      thank = Thank.new(:user_id => current_account.id,
-                         :thankable_id => id,
-                         :thankable_type => "GroupPost")
-      if thank.save
-        kickoff.deliver_thank_notification(thank)
-      else
-        [400, "errors"]
-      end
+      thank(GroupPost, id)
     end
 
     post "/:id/replies" do |id|
@@ -76,20 +67,5 @@ class API
         [400, "errors"]
       end
     end
-    
-    get "/:id/thanks" do |id|
-		group_post = GroupPost.find(id)
-		halt [401, "wrong community"] unless in_comm(group_post.community.id)
-		halt [400, "errors: already thanked"] unless group_post.thanks.index {|t| t.user == current_account } == nil
-		thank = Thank.new(:thankable => group_post,
-						:user => current_account)
-		if thank.save
-		  serialize(group_post)
-		else
-		  [400, "errors: #{post.errors.full_messages.to_s}"]
-		end
-	end
-
-
   end
 end

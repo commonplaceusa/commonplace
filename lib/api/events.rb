@@ -60,16 +60,7 @@ class API
     end
 
     post "/:id/thank" do |id|
-      event = Event.find(id)
-      halt [401, "wrong community"] unless in_comm(event.community.id)
-      thank = Thank.new(:user_id => current_account.id,
-                         :thankable_id => id,
-                         :thankable_type => "Event")
-      if thank.save
-        kickoff.deliver_thank_notification(thank)
-      else
-        [400, "errors"]
-      end
+      thank(Event, id)
     end
 
     post "/:id/replies" do |id|
@@ -86,19 +77,5 @@ class API
         [400, "errors"]
       end
     end
-
-	get "/:id/thanks" do |id|
-		event = Event.find(id)
-		halt [401, "wrong community"] unless in_comm(event.community.id)
-		halt [400, "errors: already thanked"] unless event.thanks.index {|t| t.user == current_account } == nil
-		thank = Thank.new(:thankable => event,
-						:user => current_account)
-		if thank.save
-		  serialize(event)
-		else
-		  [400, "errors: #{post.errors.full_messages.to_s}"]
-		end
-	end
-
   end
 end
