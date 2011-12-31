@@ -36,15 +36,24 @@ var GroupPostWireItem = WireItem.extend({
     return this.model.get("author");
   },
 
+  first_name: function() {
+    return this.model.get('first_name');
+  },
+
   body: function() {
       return this.model.get("body");
+  },
+
+  numThanks: function() {
+      return this.model.get("thanks").length;
   },
 
   events: {
     "click div.group-post > .author > .person": "messageUser",
     "click .moreBody": "loadMore",
     "mouseenter": "showProfile",
-    "click .editlink": "editGroupPost"
+    "click .editlink": "editGroupPost",
+    "click .thank-link": "thank"
   },
 
   messageUser: function(e) {

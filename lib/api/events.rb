@@ -59,6 +59,19 @@ class API
       serialize event
     end
 
+    post "/:id/thank" do |id|
+      event = Event.find(id)
+      halt [401, "wrong community"] unless in_comm(event.community.id)
+      thank = Thank.new(:user_id => current_account.id,
+                         :thankable_id => id,
+                         :thankable_type => "Event")
+      if thank.save
+        kickoff.deliver_thank_notification(thank)
+      else
+        [400, "errors"]
+      end
+    end
+
     post "/:id/replies" do |id|
       event = Event.find(id)
       halt [401, "wrong community"] unless in_comm(event.community.id)

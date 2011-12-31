@@ -3,4 +3,6 @@ class Thank < ActiveRecord::Base
   belongs_to :user
   belongs_to :thankable, :polymorphic => true
 
+  scope :this_week, :conditions => ["created_at between ? and ?", DateTime.now.at_beginning_of_week, Time.now]
+
 end

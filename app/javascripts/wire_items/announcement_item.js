@@ -29,15 +29,22 @@ var AnnouncementWireItem = WireItem.extend({
   title: function() { return this.model.get('title'); },
   
   author: function() { return this.model.get('author'); },
+
+  first_name: function() { return this.model.get('first_name'); },
   
   body: function() {
     return this.model.get("body");
+  },
+
+  numThanks: function() {
+    return this.model.get("thanks").length;
   },
   
   events: {
     "click .editlink": "editAnnouncement",
     "mouseenter": "showProfile",
-    "click .announcement > .author": "messageUser"
+    "click .announcement > .author": "messageUser",
+    "click .thank-link": "thank"
   },
 
   editAnnouncement: function(e) {
@@ -88,6 +95,6 @@ var AnnouncementWireItem = WireItem.extend({
         }
       });
     }
-  }
-    
+  },
+
 });
