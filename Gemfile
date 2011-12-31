@@ -27,7 +27,8 @@ gem 'thin' # lighter than mongrel, faster than webrick
 
 # Authentication
 gem 'devise' # used for authentication
-gem 'omniauth', "0.3.0" # used for authentication with facebook
+gem 'omniauth' # used for authentication with facebook
+gem 'omniauth-facebook'
 gem 'uuid' # used in app/controllers/admin_controller.rb, could be refactored/removed?
 
 # Authorization
@@ -41,7 +42,6 @@ gem 'redis' # for queueing with resque
 gem 'redis-namespace', :require => false # resque wants it, we don't need to require it
 gem 'mcbean' # We use this to pull data from rss feeds for import
 gem 'redcarpet' # We use this to format user messages in emails
-
 
 # Jobs
 gem 'resque', "~> 1.19.0" # use this to queue worker processes
