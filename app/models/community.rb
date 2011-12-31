@@ -224,4 +224,8 @@ class Community < ActiveRecord::Base
     self.users.map(&:replies).flatten.select{ |r| r.created_at >= DateTime.now.beginning_of_week }
   end
 
+  def wire
+    CommunityWire.new(self)
+  end
+
 end
