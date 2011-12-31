@@ -66,6 +66,21 @@ class API
         current_user.community.id == community_id.to_i || current_user.admin
       end
 
+      def thank(scope, id)
+        post = scope.find(id)
+        halt [401, "wrong community"] unless in_comm(post.community.id)
+        halt [400, "errors: already thanked"] unless post.thanks.index { |t| t.user.id == current_account.id } == nil
+        thank = Thank.new(:user_id => current_account.id,
+                         :thankable_id => id,
+                         :thankable_type => scope.to_s)
+        if thank.save
+          kickoff.deliver_thank_notification(thank)
+          serialize post
+        else
+          [400, "errors"]
+        end
+      end
+
       NO_CALLBACK = ["no_callback"].to_json
 
     end

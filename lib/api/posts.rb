@@ -48,18 +48,7 @@ class API
     end
 
     post "/:id/thank" do |id|
-      post = Post.find(id)
-      halt [401, "wrong community"] unless in_comm(post.community.id)
-      halt [400, "errors: already thanked"] unless post.thanks.index { |t| t.user.id == current_account.id } == nil
-      thank = Thank.new(:user_id => current_account.id,
-                         :thankable_id => id,
-                         :thankable_type => "Post")
-      if thank.save
-        kickoff.deliver_thank_notification(thank)
-        serialize post
-      else
-        [400, "errors"]
-      end
+      thank(Post, id)
     end
 
     post "/:id/replies" do |id|
