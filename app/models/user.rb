@@ -450,12 +450,24 @@ WHERE
     (self.posts.this_week.map(&:replies) + self.events.this_week.map(&:replies) + self.announcements.this_week.map(&:replies) + self.group_posts.this_week.map(&:replies)).flatten
   end
 
+  def posted_content
+    self.posts + self.events + self.announcements + self.group_posts
+  end
+
+  def thanks_received
+    self.posted_content.map(&:thanks).flatten
+  end
+
+  def thanks_received_this_week
+    self.posted_content.map{ |content| content.thanks.this_week }.flatten
+  end
+
   def weekly_cpcredits
-    self.posts.this_week.count + self.replies.this_week.count + self.replies_received_this_week.count + self.events.this_week.count + self.invitations_this_week.count
+    self.posts.this_week.count + self.replies.this_week.count + self.replies_received_this_week.count + self.events.this_week.count + self.invitations_this_week.count + self.thanks.this_week.count + self.thanks_received_this_week.count
   end
 
   def all_cpcredits
-    self.posts.count + self.replies.count + self.replies_received.count + self.events.count + self.all_invitations.count
+    self.posts.count + self.replies.count + self.replies_received.count + self.events.count + self.all_invitations.count + self.thanks.count + self.thanks_received.count
   end
 
   searchable do

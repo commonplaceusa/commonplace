@@ -25,18 +25,18 @@
                 %span{:class=>"sub-title"}My replies
                 %span{:class=>"sub-notif one"}= current_user.replies.count
                 %span{:class=>"sub-notif two"}= current_user.replies.this_week.count
-              -#%li 
-                -%span{:class=>"sub-title"}Neighbors thanked
-                -%span{:class=>"sub-notif one"} -1
-                -%span{:class=>"sub-notif two"} -2
+              %li 
+                %span{:class=>"sub-title"}Neighbors thanked
+                %span{:class=>"sub-notif one"}= current_user.thanks.count
+                %span{:class=>"sub-notif two"}= current_user.thanks.this_week.count
               %li 
                 %span{:class=>"sub-title"}Replies received
                 %span{:class=>"sub-notif one"}= current_user.replies_received.count
                 %span{:class=>"sub-notif two"}= current_user.replies_received_this_week.count
-              -#%li 
-                -#%span{:class=>"sub-title"}Thanks received
-                -#%span{:class=>"sub-notif one"} -1
-                -#%span{:class=>"sub-notif two"} -2
+              %li 
+                %span{:class=>"sub-title"}Thanks received
+                %span{:class=>"sub-notif one"}= current_user.thanks_received.count
+                %span{:class=>"sub-notif two"}= current_user.thanks_received_this_week.count
               %li 
                 %span{:class=>"sub-title"}Events posted 
                 %span{:class=>"sub-notif one"}= current_user.events.count
