@@ -144,10 +144,7 @@ class API
     end
 
     get "/:community_id/events" do |community_id|
-      last_modified([Event.unscoped.reorder("updated_at DESC").
-                       select('updated_at').
-                       first.try(&:updated_at),
-                     Date.today.beginning_of_day].compact.max)
+      last_modified_by_updated_at(Event)
 
       if params["query"].present?
         event_search(params, community_id) do |search|
