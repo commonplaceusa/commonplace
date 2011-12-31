@@ -17,6 +17,11 @@ module Serializer
       when Array
         o.map {|t| serialize t }
 
+      when Thank
+      {
+        "name" => o.user.name
+      }
+
       when NamedPoint
       {
         "lat" => o.lat,
@@ -43,10 +48,12 @@ module Serializer
         "url" => "/posts/#{o.id}",
         "title" => o.subject,
         "author" => o.user.name,
+        "first_name" => o.user.first_name,
         "body" => o.body,
         "author_url" => "/users/#{o.user_id}",
         "user_id" => o.user_id,
         "replies" => serialize(o.replies.to_a),
+        "thanks" => serialize(o.thanks.to_a),
         "last_activity" => o.last_activity.utc,
         "category" => o.category,
         "links" => {
@@ -67,6 +74,7 @@ module Serializer
         "date" => o.date.to_time.utc,
         "title" => o.name,
         "author" => o.owner.name,
+        "first_name" => o.user.first_name,
         "body" => o.description,
         "tags" => o.tag_list,
         "starts_at" => o.start_time.try(:strftime, "%l:%M%P"),
@@ -79,6 +87,7 @@ module Serializer
         "user_url" => o.owner_type == "User" ? "/users/#{o.owner_id}" : nil,
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
+        "thanks" => serialize(o.thanks.to_a),
         "links" => {
           "replies" => "/events/#{o.id}/replies",
           "self" => "/events/#{o.id}",
@@ -95,6 +104,7 @@ module Serializer
         "avatar_url" => o.owner.avatar_url(:thumb),
         "author_url" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
         "author" => o.owner.name,
+        "first_name" => o.user.first_name,
         "user_id" => o.user_id,
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "feed_url" => o.owner_type == "Feed" ? "/pages/#{o.owner.slug}" : nil,
@@ -103,12 +113,12 @@ module Serializer
         "body" => o.body,
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
+        "thanks" => serialize(o.thanks.to_a),
         "links" => {
           "replies" => "/announcements/#{o.id}/replies",
           "self" => "/announcements/#{o.id}",
           "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
         }
-
       }
 
       when GroupPost
@@ -118,6 +128,7 @@ module Serializer
         "url" => "/group_posts/#{o.id}",
         "published_at" => o.created_at.utc,
         "author" => o.user.name,
+        "first_name" => o.user.first_name,
         "avatar_url" => o.group.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
         "group" => o.group.name,
@@ -127,6 +138,7 @@ module Serializer
         "title" => o.subject,
         "body" => o.body,
         "replies" => serialize(o.replies.to_a),
+        "thanks" => serialize(o.thanks.to_a),
         "links" => {
           "replies" => "/group_posts/#{o.id}/replies",
           "author" => "/users/#{o.user_id}",

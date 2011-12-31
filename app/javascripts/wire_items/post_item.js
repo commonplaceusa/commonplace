@@ -37,14 +37,23 @@ var PostWireItem = WireItem.extend({
     return this.model.get("author");
   },
 
+  first_name: function() {
+    return this.model.get("first_name");
+  },
+
   body: function() {
       return this.model.get("body");
+  },
+
+  numThanks: function() {
+      return this.model.get("thanks").length;
   },
 
   events: {
     "click div.group-post > .author": "messageUser",
     "click .editlink": "editPost",
-    "mouseenter": "showProfile"
+    "mouseenter": "showProfile",
+    "click .thank-link": "thank"
   },
 
   messageUser: function(e) {
@@ -90,6 +99,17 @@ var PostWireItem = WireItem.extend({
       template: "shared/post-edit-form"
     });
     formview.render();
+  },
+
+  thank: function() {
+    var self = this;
+    $.ajax({
+      url: "/api/posts/" + this.model.get("id") + "/thank",
+      type: "POST",
+      success: function() {
+        self.$(".thank_count").html(self.numThanks() + 1);
+      }
+    });
   },
   
   group: function() { return false; }

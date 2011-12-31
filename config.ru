@@ -14,10 +14,10 @@ app = Rack::Builder.new do
     use Rack::Timeout
     Rack::Timeout.timeout = 15 # seconds
 
-    use(Rack::Cache,
-        :verbose     => true,
-        :metastore   => Dalli::Client.new,
-        :entitystore => Dalli::Client.new)
+    #use(Rack::Cache,
+    #    :verbose     => true,
+    #    :metastore   => Dalli::Client.new,
+    #    :entitystore => Dalli::Client.new)
   end
 
   map("/api") { 

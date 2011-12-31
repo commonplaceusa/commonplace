@@ -34,14 +34,21 @@ var EventWireItem = WireItem.extend({
 
   author: function() { return this.model.get('author'); },
 
+  first_name: function() { return this.model.get('first_name'); },
+
   venue: function() { return this.model.get('venue'); },
 
   address: function() { return this.model.get('address'); },
+
 
   time: function() { return this.model.get('starts_at'); },
 
   body: function() {
       return this.model.get("body");
+  },
+
+  numThanks: function() {
+      return this.model.get("thanks").length;
   },
 
   monthAbbrevs: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -50,7 +57,8 @@ var EventWireItem = WireItem.extend({
   events: {
     "click .editlink": "editEvent",
     "mouseenter": "showProfile",
-    "click .event > .author": "messageUser"
+    "click .event > .author": "messageUser",
+    "click .thank-link": "thank"
   },
 
   editEvent: function(e) {
