@@ -87,12 +87,12 @@ module Serializer
         "user_url" => o.owner_type == "User" ? "/users/#{o.owner_id}" : nil,
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
+        "thanks" => serialize(o.thanks.to_a),
         "links" => {
           "replies" => "/events/#{o.id}/replies",
           "self" => "/events/#{o.id}",
           "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
-        },
-        "thanks" => o.thanks
+        }
       }
 
       when Announcement
@@ -113,12 +113,12 @@ module Serializer
         "body" => o.body,
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
+        "thanks" => serialize(o.thanks.to_a),
         "links" => {
           "replies" => "/announcements/#{o.id}/replies",
           "self" => "/announcements/#{o.id}",
           "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
-        },
-        "thanks" => o.thanks
+        }
       }
 
       when GroupPost
@@ -138,13 +138,13 @@ module Serializer
         "title" => o.subject,
         "body" => o.body,
         "replies" => serialize(o.replies.to_a),
+        "thanks" => serialize(o.thanks.to_a),
         "links" => {
           "replies" => "/group_posts/#{o.id}/replies",
           "author" => "/users/#{o.user_id}",
           "group" => "/groups/#{o.group_id}",
           "self" => "/group_posts/#{o.id}"
-        },
-          "thanks" => o.thanks
+        }
         }
 
       when Message
