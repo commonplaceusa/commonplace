@@ -68,6 +68,10 @@ class API
       serialize(Community.find_by_slug(community_slug))
     end
 
+    get "/:community_id/wire" do |community_id|
+      serialize(Community.find(community_id).wire)
+    end
+    
     post "/:community_id/posts" do |community_id|
       post = Post.new(:user => current_account,
                       :community_id => community_id,

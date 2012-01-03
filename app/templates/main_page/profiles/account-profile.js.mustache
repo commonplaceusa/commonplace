@@ -3,38 +3,43 @@
     <h3>{{fullName}}</h3>
     <p class="mini-desc">"Mini-description text or status goes here"</p>
     <img src="{{avatarUrl}}" width="122" />
+    <div class="image-overlay">
+    </div>
     <div class="profile-top">
       <p>
-      <span class="profile-number">23</span><br />
-      <span class="profile-title">Posts</span><br />
+        <span class="profile-number">23</span><br />
+        <span class="profile-title">Posts</span><br />
       </p>
       <p>
-      <span class="profile-number">18</span><br />
-      <span class="profile-title">Thanks</span><br />
+        <span class="profile-number">18</span><br />
+        <span class="profile-title">Replies</span><br />
       </p>
       <p>
-      <span class="profile-number">433</span><br />
-      <span class="profile-title">Neighbors Met</span>
+        <span class="profile-number">433</span><br />
+        <span class="profile-title">Neighbors Met</span>
       </p>
-      <a href="/{{community_slug}}/account" class="gray-button edit" data-remote>Edit My Profile</a>
+      <div class="box-links">
+        <a href="/account" class="gray-button edit">Edit My Profile</a>
+      </div>
     </div>
+
   </div>
   <ul class="profile-data">
-  {{#hasAbout}}<li>
-    <h4>About</h4>
-    <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>
-  </li>{{/hasAbout}}
-  {{#hasInterests}}<li>
-    <h4>Interests</h4>
-    <ul> {{#interests}}<li class="interest">{{.}}</li>{{/interests}} </ul>
-  </li>{{/hasInterests}}
-  {{#hasSkills}}<li>
-    <h4>Skills</h4>
-    <ul> {{#skills}}<li class="interest">{{.}}</li>{{/skills}} </ul>
-  </li>{{/hasSkills}}
-  {{#hasGoods}}<li>
-    <h4>Goods</h4>
-    <ul> {{#goods}}<li class="interest">{{.}}</li>{{/goods}} </ul>
-  </li>{{/hasGoods}}
+    {{#hasAbout}}<li>
+      <h4>About</h4>
+      <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>
+    </li>{{/hasAbout}}
+    {{#hasInterests}}<li>
+      <h4>Interests</h4>
+      <ul> {{#interests}}<li class="interest">{{.}}</li>{{/interests}} </ul>
+    </li>{{/hasInterests}}
+    {{#hasSkills}}<li>
+      <h4>Skills</h4>
+      <ul> {{#skills}}<li class="interest">{{.}}</li>{{/skills}} </ul>
+    </li>{{/hasSkills}}
+    {{#hasGoods}}<li>
+      <h4>Goods</h4>
+      <ul> {{#goods}}<li class="interest">{{.}}</li>{{/goods}} </ul>
+    </li>{{/hasGoods}}
   </ul>
 </div>
