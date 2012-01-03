@@ -24,10 +24,10 @@ class API
                 if result.send(method)
                   if result.send(method).respond_to? :each
                     result.send(method).each do |reply|
-                      reply.body.gsub!(keyword, "<em class='highlight'>#{keyword}</em>")
+                      reply.body.gsub!(keyword, "<span class='highlight'>#{keyword}</span>")
                     end
                   else
-                    result.send(method).gsub!(keyword, "<em class='highlight'>#{keyword}</em>")
+                    result.send(method).gsub!(keyword, "<span class='highlight'>#{keyword}</span>")
                   end
                 end
               end
