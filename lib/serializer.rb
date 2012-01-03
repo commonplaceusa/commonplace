@@ -246,6 +246,17 @@ module Serializer
 
       when Community
         o.as_api_response(:default)
+      when CommunityWire
+        { "events" => serialize(o.events),
+        "neighborhood" => serialize(o.neighborhood),
+        "offers" => serialize(o.offers),
+        "help" => serialize(o.help),
+        "publicity" => serialize(o.publicity),
+        "group" => serialize(o.publicity),
+        "announcements" => serialize(o.announcements),
+        "other" => serialize(o.other),
+        "past" => serialize(o.past)
+      }
       end
 
     as_json
