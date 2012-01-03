@@ -20,6 +20,10 @@ var UserProfileBox = Profile.extend({
   
   about: function() { return this.model.get('about'); },
 
+  post_count: function() { return this.model.get('post_count'); },
+
+  reply_count: function() { return this.model.get('reply_count'); },
+
   interests: function() { return _.map(this.model.get('interests'), this.comma); },
 
   skills: function() { return _.map(this.model.get("skills"), this.comma); },
