@@ -176,6 +176,8 @@ class User < ActiveRecord::Base
     t.add :good_list, :as => :goods
     t.add :skill_list, :as => :skills
     t.add :links
+    t.add lambda {|u| u.posts.count}, :as => :post_count
+    t.add lambda {|u| u.replies.count}, :as => :reply_count
   end
 
   def links
