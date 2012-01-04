@@ -216,6 +216,13 @@ class API
       end
     end
 
+    get "/:community_id/users/featured" do |community_id|
+      last_modified_by_updated_at(User)
+
+      Community.find(community_id).users.reorder("last_name ASC, first_name ASC").select { |u| u.avatar.present? and u.about.present? and u.interests.present? and u.goods.present? }
+      serialize(paginate(scope))
+    end
+
     get "/:community_slug/user_count" do |community_slug|
       serialize(Community.find_by_slug(community_slug).users.count)
     end
