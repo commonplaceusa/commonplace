@@ -6,7 +6,8 @@ var WireItem = CommonPlace.View.extend({
       type: "POST",
       success: function() {
         self.$(".thank_count").html(self.numThanks() + 1);
+        self.$(".thank-link").html("Thanked!");
       }
     });
-  },
+  }
 });
