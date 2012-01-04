@@ -39,7 +39,7 @@ class API
 
       def chronological(klass, params, community_id)
         search = Sunspot.search(klass) do
-          order_by(:created_at, :desc)
+          order_by(:created_at, :asc)
           paginate(:page => params["page"].to_i + 1, :per_page => params["limit"])
           with(:community_id, community_id)
         end
