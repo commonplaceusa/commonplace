@@ -101,17 +101,6 @@ var PostWireItem = WireItem.extend({
     formview.render();
   },
 
-  thank: function() {
-    var self = this;
-    $.ajax({
-      url: "/api/posts/" + this.model.get("id") + "/thank",
-      type: "POST",
-      success: function() {
-        self.$(".thank_count").html(self.numThanks() + 1);
-      }
-    });
-  },
-  
   group: function() { return false; }
 
 });
