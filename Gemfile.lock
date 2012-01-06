@@ -106,7 +106,7 @@ GEM
     creole (0.4.2)
     css_parser (1.2.5)
       addressable
-    daemons (1.1.4)
+    daemons (1.1.5)
     dalli (1.1.2)
     database_cleaner (0.6.7)
     delayed_job (2.1.4)
@@ -134,14 +134,14 @@ GEM
     fastercsv (1.5.4)
     fattr (2.2.0)
     ffi (1.0.9)
-    fnordmetric (0.5.2)
+    fnordmetric (0.5.9)
+      activesupport
       bson_ext (>= 1.4.0)
       em-hiredis
       eventmachine
       haml
+      i18n
       json
-      mongo (>= 1.4.0)
-      mongoid (>= 2.2.0)
       rack
       rack-test
       redis (>= 2.2.2)
@@ -188,7 +188,7 @@ GEM
       guard (>= 0.2.2)
       spork (>= 0.8.4)
     guid (0.1.1)
-    haml (3.1.3)
+    haml (3.1.4)
     has_scope (0.5.1)
     hashie (1.2.0)
     heroku (2.14.0)
@@ -212,7 +212,7 @@ GEM
       selenium-webdriver (>= 0.1.3)
     jasmine-core (1.1.0)
     jslint_on_rails (1.0.7)
-    json (1.6.1)
+    json (1.6.4)
     json_pure (1.6.1)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
@@ -243,12 +243,6 @@ GEM
     method_source (0.6.5)
       ruby_parser (>= 2.0.5)
     mime-types (1.17.2)
-    mongo (1.5.2)
-      bson (= 1.5.2)
-    mongoid (2.3.4)
-      activemodel (~> 3.1)
-      mongo (~> 1.3)
-      tzinfo (~> 0.3.22)
     multi_json (1.0.4)
     multipart-post (1.1.4)
     mustache (0.99.4)
@@ -418,7 +412,7 @@ GEM
       rails (~> 3.1.0)
     therubyracer (0.9.4)
       libv8 (~> 3.3.10)
-    thin (1.2.11)
+    thin (1.3.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
