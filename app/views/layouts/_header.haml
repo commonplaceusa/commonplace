@@ -7,7 +7,7 @@
           %a(title=@link){:href => @link} My Activity
           %ul{:class=>"my-activity-sub"}
             %p 
-              This is a record of all the ways you've helped your neighbors on CommonPlace.  You've earned
+              You've earned
               %span.week-cpcredits{:class=>"red"}= current_user.weekly_cpcredits
               'Good Neighbor' points this week, and
               %span.all-cpcredits{:class=>"red"}= current_user.all_cpcredits
@@ -22,10 +22,6 @@
                 %span{:class=>"sub-notif one"}= current_user.posts.count
                 %span{:class=>"sub-notif two"}= current_user.posts.this_week.count
               %li 
-                %span{:class=>"sub-title"}My replies
-                %span{:class=>"sub-notif one"}= current_user.replies.count
-                %span{:class=>"sub-notif two"}= current_user.replies.this_week.count
-              %li 
                 %span{:class=>"sub-title"}Neighbors thanked
                 %span{:class=>"sub-notif one"}= current_user.thanks.count
                 %span{:class=>"sub-notif two"}= current_user.thanks.this_week.count
@@ -37,10 +33,6 @@
                 %span{:class=>"sub-title"}Thanks received
                 %span{:class=>"sub-notif one"}= current_user.thanks_received.count
                 %span{:class=>"sub-notif two"}= current_user.thanks_received_this_week.count
-              %li 
-                %span{:class=>"sub-title"}Events posted 
-                %span{:class=>"sub-notif one"}= current_user.events.count
-                %span{:class=>"sub-notif two"}= current_user.events.this_week.count
               -#%li 
                 -#%span{:class=>"sub-title"}Number of site visits 
                 -#%span{:class=>"sub-notif one"} -1
@@ -69,14 +61,6 @@
                 %span{:class=>"sub-title"}Total posts
                 %span{:class=>"sub-notif one"}= current_community.posts.count
                 %span{:class=>"sub-notif two"}= current_community.posts.this_week.count
-              %li 
-                %span{:class=>"sub-title"}Total events
-                %span{:class=>"sub-notif one"}= current_community.events.count
-                %span{:class=>"sub-notif two"}= current_community.events.this_week.count
-              %li 
-                %span{:class=>"sub-title"}Total replies  
-                %span{:class=>"sub-notif one"}= current_community.replies.count
-                %span{:class=>"sub-notif two"}= current_community.replies_this_week.count
               -#%li 
                 -%span{:class=>"sub-title"}Total thanks
                 -%span{:class=>"sub-notif one"} -1
