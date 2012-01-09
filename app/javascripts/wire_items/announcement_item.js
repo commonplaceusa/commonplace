@@ -95,6 +95,6 @@ var AnnouncementWireItem = WireItem.extend({
         }
       });
     }
-  },
+  }
 
 });

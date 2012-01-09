@@ -1,6 +1,5 @@
 .wire 
   background-color: white
-  border-bottom: solid 1px #bebebe
   
   .end
     margin: 0px 10px 10px
@@ -27,7 +26,7 @@
 .wire-item
   position: relative
   border-top: 1px solid #bebebe
-  padding: 12px 10px 15px 10px
+  padding: 73px 10px 15px 10px
   .title, .author, .body, .message-user 
     margin-left: 62px
   .body
@@ -72,11 +71,12 @@
     float: right
     color: #888
     font-family: Helvetica, sans-serif
-    font-size: 11px
+    font-size: 10px
     font-weight: normal
     a
       color: #ac322f
       text-decoration: none
+      font-weight: bold
   .avatar
     float: left
     width: 50px                           
@@ -86,8 +86,9 @@
     +border-radius(3px)                   
 
   .thank-share
-    margin-left: 41px
-    width: 184px
+    margin-left: 63px
+    width: 220px
+    font-family: helvetica, tahoma, sans-serif
     margin-top: 20px
     li
       display: inline
@@ -102,13 +103,16 @@
       font-weight: bold
       font-size: 10px
       color: #666
+    .reply-link
+      text-decoration: underline
 
   .ts-text
-    width: 157px
+    width: 200px
     font-size: 11px
     float: right
     margin-top: -12px
     text-align: right
+    font-family: Helvetica
   .people-thanked
     color: #1B334A
     font-weight: bold
@@ -158,7 +162,7 @@
     display: block
     margin-top: 10px
     padding: 5px 
-
+  
 
   button.subscribe, button.unsubscribe
     +blue-button
@@ -188,3 +192,6 @@
       padding-bottom: 5px
     td
       color: $textColor
+      
+group-post:first
+  margin-top: 60px
