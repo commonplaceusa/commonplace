@@ -229,6 +229,8 @@ module Serializer
         "subscriptions" => o.feeds,
         "neighborhood_posts" => o.post_receive_method,
         "bulletin" => o.receive_weekly_digest,
+        "post_count" => o.posts.count,
+        "reply_count" => o.replies.count,
         "about" => o.about,
         "links" => { 
           "avatar" => "/account/avatar",
