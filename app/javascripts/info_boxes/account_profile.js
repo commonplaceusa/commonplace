@@ -30,6 +30,10 @@ var AccountProfileBox = Profile.extend({
 
   hasGoods: function() { return this.model.get("goods").length > 0; },
 
-  hasAbout: function() { return this.model.get("about") != undefined; }
+  hasAbout: function() { return this.model.get("about") != undefined; },
+  
+  post_count: function() { return this.model.get('post_count'); },
+
+  reply_count: function() { return this.model.get('reply_count'); }
   
 });
