@@ -224,6 +224,13 @@ class API
       scope = Community.find(community_id).users.featured.reorder("last_name ASC, first_name ASC")
       serialize(paginate(scope))
     end
+    
+    get "/:community_id/feeds/featured" do |community_id|
+      last_modified_by_updated_at(Feed)
+      
+      scope = Community.find(community_id).feeds.featured.reorder("name ASC")
+      serialize paginate(scope)
+    end
 
     get "/:community_slug/user_count" do |community_slug|
       serialize(Community.find_by_slug(community_slug).users.count)

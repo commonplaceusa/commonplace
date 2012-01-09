@@ -273,7 +273,7 @@ var InfoBox = CommonPlace.View.extend({
                  search: this.options.community.search.groups
                },
       "feeds": { profileBox: FeedProfileBox, 
-                collection: this.options.community.feeds,
+                collection: this.options.community.featuredFeeds,
                 search: this.options.community.search.feeds
               } 
     }[type];    
