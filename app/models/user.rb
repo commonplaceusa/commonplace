@@ -68,6 +68,8 @@ class User < ActiveRecord::Base
 
   scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }
 
+  scope :featured, { :conditions => ["about != '' AND goods != '' AND interests != ''"] }
+
   def facebook_user?
     facebook_uid
   end
