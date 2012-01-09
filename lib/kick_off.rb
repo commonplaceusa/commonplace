@@ -169,6 +169,10 @@ class KickOff
     # TODO: Implement
   end
 
+  def deliver_share_notification(user, sender, recipient)
+    # TODO: Implement
+  end
+
   private
   
   def enqueue(*args)
