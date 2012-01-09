@@ -9,6 +9,7 @@ var Community = Model.extend({
     this.users = this.setup(Users, "users");
     this.featuredUsers = this.setup(Users, "featured_users");
     this.feeds = this.setup(Feeds, "feeds");
+    this.featuredFeeds = this.setup(Feeds, "featured_feeds");
     this.groups = this.setup(Groups, "groups");
     this.search = {
       users: this.setup(Users, "users"),
