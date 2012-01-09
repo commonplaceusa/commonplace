@@ -73,6 +73,7 @@ class Community < ActiveRecord::Base
       "group_posts" => "/communities/#{id}/group_posts",
       "post_likes" => "/communities/#{id}/post-like",
       "users" => "/communities/#{id}/users",
+      "featured_users" => "/communities/#{id}/users/featured",
       "self" => "/communities/#{id}",
       "posts_neighborhood" => "/communities/#{id}/posts/neighborhood",
       "posts_offers" => "/communities/#{id}/posts/offers",
