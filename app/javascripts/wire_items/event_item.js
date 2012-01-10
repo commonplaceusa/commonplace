@@ -16,6 +16,8 @@ var EventWireItem = WireItem.extend({
     repliesView.render();
     this.model.bind("change", this.render, this);
     this.$(".event-body").truncate({max_length: 450});
+    if (this.thanked())
+      this.set_thanked(false, this);
   },
 
   short_month_name: function() { 
