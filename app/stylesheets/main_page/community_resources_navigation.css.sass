@@ -10,7 +10,6 @@
       display: block
       float: left
       color: #fff
-      margin-left: 4px
       text-align: center
       padding: 5px 0 7px
       line-height: 1.2em
@@ -20,35 +19,45 @@
       +text-shadow(black 1px 1px 0)
       font-size: 12px
       background: #ac322f
-      +border-radius(4px 4px 0 0)
       +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
+      margin-top: 7px
     
       &:first-child
         margin-left: 0
-        
+        +border-radius(4px 0 0 0)
+      
       &.posts
-        width: 108px
+        width: 111px
 
       &.events
-        width: 86px
+        width: 90px
 
       &.announcements
-        width: 110px
+        width: 113px
 
       &.groupPosts
-        width: 80px
+        width: 83px
 
       &.users
-        width: 70px
+        width: 73px
         height: 15px
-        padding: 10px 0 15px
+        padding: 10px 0 15px 0
+        +border-radius(0 4px 0 0)
+      
+      
+      &.users &.current
+        padding: 15px 0 13px
 
       &.current, &:hover
         color: #1B334A
-        background-color: #e0e0e0
+        background-color: #dedede
         +text-shadow(#fff 1px 1px 0)
         +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
         z-index: 20
+        +border-radius(4px 4px 0 0)
+        margin-top: 3px
+        padding-bottom: 8px
+        padding-top: 8px
         
     .nav-under
       clear: both
