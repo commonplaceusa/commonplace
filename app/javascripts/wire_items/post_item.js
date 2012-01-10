@@ -19,6 +19,8 @@ var PostWireItem = WireItem.extend({
     var self = this;
     repliesView.collection.bind("add", function() { self.render(); });
     this.$(".post-body").truncate({max_length: 450});
+    if (this.thanked())
+      this.set_thanked(false, this);
   },
 
   publishedAt: function() {
@@ -49,11 +51,22 @@ var PostWireItem = WireItem.extend({
       return this.model.get("thanks").length;
   },
 
+  share: function(e) {
+    if (e)
+      e.preventDefault();
+    var shareView = new ShareView({ model: this.model,
+                                    el: this.$(".replies"),
+                                    account: CommonPlace.account
+                                  });
+     shareView.render();
+   },
+
   events: {
     "click div.group-post > .author": "messageUser",
     "click .editlink": "editPost",
     "mouseenter": "showProfile",
-    "click .thank-link": "thank"
+    "click .thank-link": "thank",
+    "click share-link": "share"
   },
 
   messageUser: function(e) {

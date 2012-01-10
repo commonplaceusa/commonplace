@@ -18,6 +18,8 @@ var GroupPostWireItem = WireItem.extend({
     var self = this;
     repliesView.collection.bind("add", function() { self.render(); });
     this.$(".post-body").truncate({max_length: 450});
+    if (this.thanked())
+      this.set_thanked(false, this);
   },
 
   publishedAt: function() {
