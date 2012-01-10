@@ -3,7 +3,7 @@ var AccountPage = CommonPlace.View.extend({
   template: "account_page/main",
 
   events: {
-    "submit": "editAccount",
+    "click .controls button": "editAccount",
     "click .avatar a.delete": "deleteAvatar"
   },
 
