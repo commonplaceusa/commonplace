@@ -52,8 +52,7 @@ var PostWireItem = WireItem.extend({
   },
 
   share: function(e) {
-    if (e)
-      e.preventDefault();
+    if (e) { e.preventDefault(); }
     var shareView = new ShareView({ model: this.model,
                                     el: this.$(".replies"),
                                     account: CommonPlace.account
@@ -61,12 +60,18 @@ var PostWireItem = WireItem.extend({
      shareView.render();
    },
 
+  reply: function(e) {
+    if (e) { e.preventDefault(); }
+    this.render();
+  },
+
   events: {
     "click div.group-post > .author": "messageUser",
     "click .editlink": "editPost",
     "mouseenter": "showProfile",
     "click .thank-link": "thank",
-    "click share-link": "share"
+    "click .share-link": "share",
+    "click .reply-link": "reply"
   },
 
   messageUser: function(e) {
