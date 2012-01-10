@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }
 
   # HACK HACK HACK avatar_url should not be hardcoded like this
-  scope :featured, { :conditions => ["about != '' AND goods != '' AND interests != '' AND avatar_url != 'https://s3.amazonaws.com/commonplace-avatars-production/missing.png'"] }
+  scope :featured, { :conditions => ["about != '' AND goods != '' AND interests != ''"] }
 
   def facebook_user?
     facebook_uid
