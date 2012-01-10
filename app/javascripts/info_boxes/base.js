@@ -105,8 +105,10 @@ var InfoBox = CommonPlace.View.extend({
   showList: function(schema, model) {
     var self = this;
 
-    var partial = this.currentQuery ? this.options.community.search : this.options.community;
-    var collection = (schema == "account") ? partial.users : partial[schema];
+    //var partial = this.currentQuery ? this.options.community.search : this.options.community;
+    //var collection = (schema == "account") ? partial.users : partial[schema];
+    
+    var collection = this.currentQuery ? this.config(schema).search : this.config(schema).collection;
 
     if (schema == "account") {
       if ( (model && this.isAccount(model)) || !model) {
@@ -127,8 +129,10 @@ var InfoBox = CommonPlace.View.extend({
           if (self.currentQuery) {
             self.$list().empty();
           } else {
-            collection = self.options.community;
-            collection = (schema == "account") ? collection.users : collection[schema];
+            //collection = self.options.community;
+            //collection = (schema == "account") ? collection.users : collection[schema];
+            
+            collection = self.config(schema).collection;
 
             collection.fetch({
               success: function() {
@@ -257,11 +261,11 @@ var InfoBox = CommonPlace.View.extend({
   config: function(type) {
     return {
       "account": { profileBox: AccountProfileBox, 
-                   collection: this.options.community.users,
+                   collection: this.options.community.featuredUsers,
                    search: this.options.community.search.users
                  },
       "users":  { profileBox: UserProfileBox, 
-                 collection: this.options.community.users,
+                 collection: this.options.community.featuredUsers,
                  search: this.options.community.search.users
                },
       "groups": { profileBox: GroupProfileBox, 
@@ -269,7 +273,7 @@ var InfoBox = CommonPlace.View.extend({
                  search: this.options.community.search.groups
                },
       "feeds": { profileBox: FeedProfileBox, 
-                collection: this.options.community.feeds,
+                collection: this.options.community.featuredFeeds,
                 search: this.options.community.search.feeds
               } 
     }[type];    

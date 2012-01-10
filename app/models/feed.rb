@@ -6,6 +6,8 @@ class Feed < ActiveRecord::Base
   validates_attachment_presence :avatar
 
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
+  
+  scope :featured, { :conditions => ["about != '' AND address != ''"] }
 
   before_validation(:on => :create) do
     if self.slug?
