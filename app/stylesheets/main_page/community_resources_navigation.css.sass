@@ -44,9 +44,8 @@
         padding: 10px 0 15px 0
         +border-radius(0 4px 0 0)
       
-      
-      &.users &.current
-        padding: 15px 0 13px
+      &.users.current, &.users:hover
+        padding: 15px 0 13px 0
 
       &.current, &:hover
         color: #585858
@@ -58,6 +57,7 @@
         text-shadow: none
         padding-bottom: 8px
         padding-top: 8px
+      
         
     .nav-under
       clear: both
