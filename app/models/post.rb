@@ -31,6 +31,10 @@ class Post < ActiveRecord::Base
 
   scope :this_week, :conditions => ["posts.created_at between ? and ?", DateTime.now.at_beginning_of_week, Time.now]
 
+  def replied_at
+    read_attribute(:replied_at) == nil ? self.updated_at : read_attribute(:replied_at)
+  end
+
   def self.deleted
     self.unscoped.where('deleted_at IS NOT NULL')
   end

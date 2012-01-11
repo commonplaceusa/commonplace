@@ -85,16 +85,16 @@ class API
     
     get "/inbox" do
       checked_inbox()
-      serialize(paginate(current_account.inbox.reorder("updated_at DESC")))
+      serialize(paginate(current_account.inbox.reorder("replied_at DESC")))
     end
 
     get "/inbox/sent" do
-      serialize(paginate(current_account.sent_messages.reorder("updated_at DESC")))
+      serialize(paginate(current_account.sent_messages.reorder("replied_at DESC")))
     end
 
     get "/inbox/feeds" do
       checked_inbox()
-      serialize(paginate(current_account.feed_messages.reorder("updated_at DESC")))
+      serialize(paginate(current_account.feed_messages.reorder("replied_at DESC")))
     end
 
   end
