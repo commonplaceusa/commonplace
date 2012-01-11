@@ -12,6 +12,10 @@ class Message < ActiveRecord::Base
 
   scope :between, lambda { |start_date, end_date| { :conditions => ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } }
   
+  def replied_at
+    read_attribute(:replied_at) == nil ? self.updated_at : read_attribute(:replied_at)
+  end
+
   def long_id
     IDEncoder.to_long_id(self.id)
   end
