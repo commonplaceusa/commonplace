@@ -1,5 +1,5 @@
 
-if Rails.env.development? || Rails.env.test?
+if Rails.env.development? || Rails.env.test? || Rails.env.staging?
   Sunspot.session = Sunspot::SessionProxy::SilentFailSessionProxy.new(Sunspot.session)
 end
 
