@@ -476,6 +476,13 @@ WHERE
   def all_cpcredits
     self.posts.count + self.replies.count + self.replies_received.count + self.events.count + self.all_invitations.count + self.thanks.count + self.thanks_received.count
   end
+  
+  def featured
+    [
+      self.sent_messages.where("messagable_type = 'User'").map {|m| m.messagable}.uniq.reverse.take(10),
+      self.community.users.featured.take(10)
+    ].flatten.sort_by! {|u| u.all_cpcredits }.uniq.reverse.take(15)
+  end
 
   searchable do
     text :name do
