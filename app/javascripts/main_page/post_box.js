@@ -1,5 +1,5 @@
 
-var PostBox = CommonPlace.View.extend({
+var PostBoxOld = CommonPlace.View.extend({
   template: "main_page.post-box",
   id: "post-box",
   
@@ -60,11 +60,45 @@ var PostBox = CommonPlace.View.extend({
   }
 });
     
-
-      
-      
+var PostBox = CommonPlace.View.extend({
+  template: "main_page.post-box",
+  id: "post-box",
   
-
+  afterRender: function() {
+    this.temp = {}
+    this.showTab("nothing");
+  },
   
-
+  switchTab: function(tab) {
+    this.temp = {
+      title: this.$("form input[name=title]").val(),
+      body: this.$("form input[name=body]").val()
+    }
+    this.showTab(tab);
+  },
+  
+  showTab: function(tab) {
+    this.$("li." + tab).addClass("current");
+    
+    var view = this.tabs[tab]();
+    view.render();
+    $(view.el).addClass("current"); // to be removed b/c we don't use .current anymore
+    this.$("form").replaceWith(view.el);
+    
+    CommonPlace.layout.reset();
+  },
+  
+  tabs: {
+    nothing: function() { return new PostForm(); },
+    event: function() { return new EventForm(); },
+    neighborhood: function() { return new PostForm(); },
+    publicity: function() { return new PostForm(); },
+    offers: function() { return new PostForm(); },
+    group_post: function() { return new GroupForm(); },
+    help: function() { return new PostForm(); },
+    other: function() { return new PostForm(); }
+  }
+  
+  
+});
 
