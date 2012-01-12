@@ -19,6 +19,14 @@ var ShareView = CommonPlace.View.extend({
     return(CommonPlace.community.get("links")["base"] + "/show/" + this.model.get("schema") + "/" + this.model.get("id"));
   },
 
+  item_name: function() {
+    return this.model.get("title");
+  },
+
+  community_name: function() {
+    return CommonPlace.community.get("name");
+  },
+
   events: {
     "click .share-e": "showEmailShare",
     "click .share-f": "shareFacebook",
