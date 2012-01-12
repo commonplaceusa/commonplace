@@ -1,49 +1,30 @@
 <div class="wrapper">
 
   <div class="navigation">
-
-    <!--<a
-      href="/{{community_slug}}/share/post"
-      data-remote
-      class="create-neighborhood-post tab-button post">
-      <div class="icon"></div>
-      {{#t}}create-neighborhood-post.a{{/t}}
-    </a>
-
-    {{#accountHasFeeds}}
-      <a
-        href="{{firstFeedUrl}}"
-        class="create-announcement tab-button announcement">
-        <div class="icon"></div>
-        {{#t}}create-announcement.a{{/t}}
-      </a>
-    {{/accountHasFeeds}}
-
-    <a
-      href="/{{community_slug}}/share/event"
-      class="create-event tab-button event"
-      data-remote>
-      <div class="icon"></div>
-      {{#t}}create-event.a{{/t}}
-    </a>
-
-    <a
-      href="/{{community_slug}}/share/group_post"
-      class="create-group-post tab-button groupPost group_post"
-      data-remote>
-      <div class="icon"></div>
-      {{#t}}create-group-post.a{{/t}}
-    </a>-->
     
     <ul>
       <li class="nothing"></li>
-      <li class="post">Share Neighborly News</li>
-      <li class="publicity">Publicize a Business or Service</li>
-      <li class="event">Post an Event</li>
-      <li class="group">Group Post</li>
-      <li class="help">Make A Request</li>
-      <li class="offers">Sell Something</li>
-      <li class="other">Other</li>
+      <li class="post">
+        <a href="/{{community_slug}}/share/post" data-tab="post">Share Neighborly News</a>
+      </li>
+      <li class="publicity">
+        <a href="/{{community_slug}}/share/publicity" data-tab="publicity">Publicize a Business or Service</a>
+      </li>
+      <li class="event">
+        <a href="/{{community_slug}}/share/event" data-tab="event">Post an Event</a>
+      </li>
+      <li class="group">
+        <a href="/{{community_slug}}/share/group" data-tab="group">Group Post</a>
+      </li>
+      <li class="help">
+        <a href="/{{community_slug}}/share/help" data-tab="help">Make A Request</a>
+      </li>
+      <li class="offers">
+        <a href="/{{community_slug}}/share/offers" data-tab="offers">Sell Something</a>
+      </li>
+      <li class="other">
+        <a href="/{{community_slug}}/share/other" data-tab="other">Other</a>
+      </li>
     </ul>
 
   </div>
