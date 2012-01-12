@@ -2,19 +2,19 @@
 	<ul class="share-nav">
 		<li class="share-e">Email</li>
 		<li class="share-f"
-      data-name="NAME"
+      data-name="{{item_name}}"
       data-url="{{share_url}}"
       data-picture="{{avatar_url}}"
-      data-caption="CAPTION"
-      data-description="DESCRIPTION"
-      data-message="MESSAGE">Facebook</li>
+      data-caption="Join {{community_name}} CommonPlace to share with your neighborhood."
+      data-description=""
+      data-message="Check out this post from my neighbors...">Facebook</li>
 		<li class="share-t"
       data-url="{{share_url}}" 
-      data-message="MESSAGE">Twitter</li>
+      data-message="Check out this post from my neighbors on the {{community_name}} CommonPlace:">Twitter</li>
 	</ul>
 	<div id="share-email" style="display: none;">
     <form class="share-email">
-      <input name="share-email" placeholder="Enter Your Email Here"></input>
+      <input name="share-email" placeholder="Enter email addresses to share with your friends"></input>
       <div class="email-button">
       Share
       </div>
