@@ -25,23 +25,23 @@ module MailUrls
   end
 
   def show_announcement_url(id)
-    community_url("/show/announcement/#{id}")
+    community_url("/show/announcements/#{id}")
   end
 
   def show_user_url(id)
-    community_url("/show/user/#{id}")
+    community_url("/show/users/#{id}")
   end
 
   def show_feed_url(id)
-    community_url("/show/feed/#{id}")
+    community_url("/show/feeds/#{id}")
   end
 
   def show_post_url(id)
-    community_url("/show/post/#{id}")
+    community_url("/show/posts/#{id}")
   end
 
   def show_event_url(id)
-    community_url("/show/event/#{id}")
+    community_url("/show/events/#{id}")
   end
 
   def show_message_url(id)
@@ -49,15 +49,15 @@ module MailUrls
   end
 
   def show_group_post_url(id)
-    community_url("/show/group_post/#{id}")
+    community_url("/show/group_posts/#{id}")
   end
 
   def message_feed_url(id)
-    community_url("/message/feed/#{id}")
+    community_url("/message/feeds/#{id}")
   end
 
   def message_user_url(id)
-    community_url("/message/user/#{id}")
+    community_url("/message/users/#{id}")
   end
 
   def subscribe_url
