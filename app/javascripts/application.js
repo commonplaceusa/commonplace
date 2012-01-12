@@ -69,13 +69,13 @@ var Application = Backbone.Router.extend({
     "/list/:tab": "communityWire",
     "/share/:tab": "communityPostBox",
 
-    "/show/post/:id": "showPost",
-    "/show/event/:id": "showEvent",
-    "/show/group_post/:id": "showGroupPost",
-    "/show/announcement/:id": "showAnnouncement",
+    "/show/posts/:id": "showPost",
+    "/show/events/:id": "showEvent",
+    "/show/group_posts/:id": "showGroupPost",
+    "/show/announcements/:id": "showAnnouncement",
 
-    "/message/user/:id": "messageUser",
-    "/message/feed/:id": "messageFeed",
+    "/message/users/:id": "messageUser",
+    "/message/feeds/:id": "messageFeed",
 
     "/inbox": "inbox",
     "/outbox": "outbox",
