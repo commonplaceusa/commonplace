@@ -328,6 +328,13 @@ class API
       [ 200, {}, "" ]
     end
 
+    post "/:community_id/shares" do |community_id|
+      scope = request_body['data_type'].chop.camelize.constantize
+      item = scope.find(request_body['id'])
+      kickoff.deliver_share_notification(current_account, item, request_body['email'])
+      [ 200, {}, "" ]
+    end
+
     post "/:community_id/questions" do |community_id|
       kickoff.deliver_admin_question(request_body['email'],
                                      request_body['message'],

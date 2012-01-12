@@ -169,7 +169,7 @@ class KickOff
     # TODO: Implement
   end
 
-  def deliver_share_notification(user, sender, recipient)
+  def deliver_share_notification(user, item, recipient_email)
     # TODO: Implement
   end
 
