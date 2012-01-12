@@ -242,7 +242,8 @@ module Serializer
           "inbox" => "/account/inbox",
           "sent" => "/account/inbox/sent",
           "feed_messages" => "/account/inbox/feeds",
-          "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts"
+          "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts",
+          "featured_users" => "/account/featured"
         }
         }
 

@@ -261,11 +261,11 @@ var InfoBox = CommonPlace.View.extend({
   config: function(type) {
     return {
       "account": { profileBox: AccountProfileBox, 
-                   collection: this.options.community.featuredUsers,
+                   collection: CommonPlace.account.featuredUsers,
                    search: this.options.community.search.users
                  },
       "users":  { profileBox: UserProfileBox, 
-                 collection: this.options.community.featuredUsers,
+                 collection: CommonPlace.account.featuredUsers,
                  search: this.options.community.search.users
                },
       "groups": { profileBox: GroupProfileBox, 
