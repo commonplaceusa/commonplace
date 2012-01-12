@@ -5,21 +5,6 @@
 <textarea name="body" placeholder="Post a message to your neighbors"></textarea>
 
 <div class="on-focus">
-  <label class="category">
-    <select name="category" class="category dk">
-      <option class="label" value="none" selected="selected">Tell us where to post this</option>
-      <option value="neighborhood">Neighborhood info</option>
-      <option value="offers">Offering something</option>
-      <option value="help">Looking for help</option>
-      <option value="publicity">Publicizing a business or organization</option>
-      <optgroup label="General discussion topic">
-        {{#groups}}
-          <option value="discussion" data-group-id="{{id}}">{{name}}</option>
-        {{/groups}}
-      </optgroup>
-      <option value="other">Other</option>
-    </select>
-  </label>
 
   <button>Post Now</button>
   <div class="spinner"></div>
