@@ -61,6 +61,7 @@ class Community < ActiveRecord::Base
   def links
     community_asset_url = "https://s3.amazonaws.com/commonplace-community-assets/#{slug}/"
     {
+      "base" => "http://#{ENV['domain'] || 'localhost:3000'}/#{slug}",
       "launch_letter" => community_asset_url + "launchletter.pdf",
       "information_sheet" => community_asset_url + "infosheet.pdf",
       "neighborhood_flyer" => community_asset_url + "neighborflyer.pdf",
