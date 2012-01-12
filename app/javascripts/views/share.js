@@ -2,7 +2,6 @@ var ShareView = CommonPlace.View.extend({
   className: "share",
   template: "shared/share",
   initialize: function(options) {
-    var self = this;
     this.account = options.account;
   },
   
@@ -27,12 +26,6 @@ var ShareView = CommonPlace.View.extend({
     "click .email-button": "submitEmail"
   },
 
-  shared: function() {
-    console.log("Hiding");
-    this.$(".share").hide();
-    console.log("Done!");
-  },
-
   shareFacebook: function(e) {
     e.preventDefault();
     console.log("Sharing on Facebook");
@@ -46,7 +39,6 @@ var ShareView = CommonPlace.View.extend({
       description: $link.attr("data-description"),
       message: $link.attr("data-message")
     }, $.noop);
-    this.shared();
   },
 
   shareTwitter: function(e) {
@@ -57,7 +49,6 @@ var ShareView = CommonPlace.View.extend({
     console.log("Sharing on Twitter");
     var share_url = "http://twitter.com/share?url=" + url + "&text=" + text + "&count=horizontal";
     window.open(share_url, "cp_share");
-    this.shared();
   },
 
   showEmailShare: function(e) {
@@ -71,7 +62,6 @@ var ShareView = CommonPlace.View.extend({
       e.preventDefault();
     console.log("Submitting the share via e-mail");
     var $form = this.$("form");
-    var self = this;
     $.ajax({
       type: "POST",
       dataType: "json",
@@ -84,11 +74,9 @@ var ShareView = CommonPlace.View.extend({
       success: function() {
         $("[name=share-email", $form).val("");
         $form.hide();
-        self.shared();
       },
       failure: function() {
         $form.hide();
-        self.shared();
       }
     });
   }
