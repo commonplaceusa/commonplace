@@ -10,7 +10,10 @@ var ShareView = CommonPlace.View.extend({
   }, 
 
   avatar_url: function() {
-    return this.model.get("avatar_url");
+    var url = this.model.get("avatar_url");
+    if (url == "https://s3.amazonaws.com/commonplace-avatars-production/missing.png")
+      return "https://www.ourcommonplace.com/assets/logo-pin.png";
+    return url;
   },
 
   share_url: function() {
