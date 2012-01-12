@@ -18,6 +18,10 @@ class GroupPost < ActiveRecord::Base
 
   default_scope where(:deleted_at => nil)
 
+  def replied_at
+    read_attribute(:replied_at) == nil ? self.updated_at : read_attribute(:replied_at)
+  end
+
   def owner
     self.user
   end

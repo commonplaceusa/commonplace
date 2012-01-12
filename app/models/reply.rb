@@ -1,7 +1,8 @@
 class Reply < ActiveRecord::Base
   #track_on_creation
   
-  belongs_to :repliable, :polymorphic => true, :touch => true
+  belongs_to :repliable, :polymorphic => true
+  after_create :touch_repliable_replied_at
   belongs_to :user
   
   validates_presence_of :repliable
@@ -14,5 +15,8 @@ class Reply < ActiveRecord::Base
 
   scope :this_week, :conditions => ["replies.created_at between ? and ?", DateTime.now.at_beginning_of_week, Time.now]
 
+  def touch_repliable_replied_at
+    self.repliable.replied_at = Time.zone.now
+  end
 
 end

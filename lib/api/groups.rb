@@ -26,7 +26,7 @@ class API
     end
 
     get "/:group_id/posts" do |group_id|
-      scope = Group.find(group_id).group_posts.reorder("updated_at DESC")
+      scope = Group.find(group_id).group_posts.reorder("replied_at DESC")
       serialize( paginate(scope) )
     end
 
@@ -41,7 +41,7 @@ class API
     end
 
     get "/:group_id/announcements" do |group_id|
-      scope = Group.find(group_id).announcements.reorder("updated_at DESC")
+      scope = Group.find(group_id).announcements.reorder("replied_at DESC")
       serialize( paginate(scope) )
     end
 
