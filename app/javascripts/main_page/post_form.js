@@ -35,24 +35,8 @@ var PostForm = CommonPlace.View.extend({
       body: this.$("[name=body]").val()
     }
     
-    var isGroupPost = this.$("[name=category]").val() == "discussion";
-    var groups = CommonPlace.community.groups;
-    var self = this;
-    
-    if (isGroupPost) {
-      var groupId = this.$("[name=category] option:selected").attr("data-group-id");
-      groups.fetch({
-        success: function() {
-          var group = groups.find(function(g) {
-            return g.id == groupId;
-          });
-          self.sendPost(group.posts, data);
-        }
-      });
-    } else {
-      data["category"] = this.$("[name=category]").val();
-      this.sendPost(this.collection, data);
-    }
+    data["category"] = this.$("[name=category]").val();
+    this.sendPost(this.collection, data);
   },
   
   sendPost: function(postCollection, data) {
@@ -102,7 +86,5 @@ var PostForm = CommonPlace.View.extend({
 
   resetLayout: function() { CommonPlace.layout.reset(); },
   
-  groups: function() { return this.options.community.get('groups'); },
-
   hideLabel: function(e) { $("option.label", e.target).hide(); }
 });
