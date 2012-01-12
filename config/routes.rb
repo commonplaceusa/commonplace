@@ -114,26 +114,28 @@ Commonplace::Application.routes.draw do
 
     match "/groups/:slug", :to => "bootstraps#group"
 
+    match '/:community', :to => "bootstraps#application"
+    scope "/:community" do
+      match 'about' => 'site#about'
+      match 'privacy' => 'site#privacy', :as => :privacy
+      match 'terms' => 'site#terms', :as => :terms
+      match 'dmca' => 'site#dmca', :as => :dmca
+      match 'invite', :to => "bootstraps#application", :as => :invites
+      match "faq", :to => "bootstraps#application", :as => :faq, :via => :get
+      match "discount", :to => "bootstraps#application"
+      match "tour", :to => "bootstraps#application"
+      match "list/:tab", :to => "bootstraps#application"
+      match "share/:tab", :to => "bootstraps#application"
+      match "message/:type/:id", :to => "bootstraps#application"
+      match "show/:type/:id", :to => "bootstraps#application"
+      match "inbox", :to => "bootstraps#application"
+      match "outbox", :to => "bootstraps#application"
+      match "feed_inbox", :to => "bootstraps#application"
+      match "account", :to => "bootstraps#application"
+    end
+
   end
-  match '/:community', :to => "bootstraps#application"
-  scope "/:community" do
-    match 'about' => 'site#about'
-    match 'privacy' => 'site#privacy', :as => :privacy
-    match 'terms' => 'site#terms', :as => :terms
-    match 'dmca' => 'site#dmca', :as => :dmca
-    match 'invite', :to => "bootstraps#application", :as => :invites
-    match "faq", :to => "bootstraps#application", :as => :faq, :via => :get
-    match "discount", :to => "bootstraps#application"
-    match "tour", :to => "bootstraps#application"
-    match "list/:tab", :to => "bootstraps#application"
-    match "share/:tab", :to => "bootstraps#application"
-    match "message/:type/:id", :to => "bootstraps#application"
-    match "show/:type/:id", :to => "bootstraps#application"
-    match "inbox", :to => "bootstraps#application"
-    match "outbox", :to => "bootstraps#application"
-    match "feed_inbox", :to => "bootstraps#application"
-    match "account", :to => "bootstraps#application"
-  end
+
   
   match "/account/make_focp", :to => "accounts#make_focp"
   match "/account/disable_email", :to => "accounts#disable_email"
