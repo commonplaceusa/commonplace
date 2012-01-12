@@ -1,13 +1,23 @@
 <div class="share">
 	<ul class="share-nav">
 		<li class="share-e">Email</li>
-		<li class="share-f">Facebook</li>
-		<li class="share-t">Twitter</li>
+		<li class="share-f"
+      data-name="NAME"
+      data-url="URL"
+      data-picture="PICTURE"
+      data-caption="CAPTION"
+      data-description="DESCRIPTION"
+      data-message="MESSAGE">Facebook</li>
+		<li class="share-t"
+      data-url="URL" 
+      data-message="MESSAGE">Twitter</li>
 	</ul>
-	<div id="share-email">
-		<input name="body" placeholder="Enter Your Email Here"></input>
-		<div class="email-button">
-		Share
-		</div>
+	<div id="share-email" style="display: none;">
+    <form class="share-email">
+      <input name="share-email" placeholder="Enter Your Email Here"></input>
+      <div class="email-button">
+      Share
+      </div>
+    </form>
 	</div>
 </div>
