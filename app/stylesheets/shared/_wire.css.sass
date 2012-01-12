@@ -99,12 +99,17 @@
       &:hover 
         text-decoration: underline
         cursor: pointer
+      &.thanked-post
+        color: #bebebe
+        &:hover
+          text-decoration: none
     .dot 
       font-weight: bold
       font-size: 10px
       color: #666
     .reply-link
       text-decoration: underline
+  
   #share-email
     input
       margin-top: 10px 
@@ -141,9 +146,8 @@
   .people-thanked
     color: #1B334A
     font-weight: bold
-  .thanked-post, &:hover
-    color: #e5e5e5
-    font-decoration: none
+  
+    
     
 
   .share
