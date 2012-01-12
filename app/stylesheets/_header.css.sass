@@ -26,9 +26,8 @@
       img
         vertical-align: bottom
     .nav
+      margin-right: 11px
       float: right
-      display: inline
-      width: 434px
       a, .disabled_link
         font-size: 12px
         letter-spacing: .7px
@@ -54,8 +53,10 @@
         float: left
         margin-right: 16px
       li.my-activity 
-        width: 127px
+        position: relative
+        padding-right: 9px
         .my-activity-sub
+          position: absolute
           display: none
           background: white
           color: #505250
@@ -64,8 +65,7 @@
           padding: 10px
           font-family: Helvetica, Sans Serif
           font-size: 13px
-          position: relative
-          left: -134px
+          right: -1px
           height: 535px
           border: 1px solid #d7d7d7
           border-top: 0px
@@ -193,8 +193,8 @@
             width: 27px
             text-align: center !important
       li.my-activity:hover
-        width: 127px
         cursor: pointer
+        border: 1px solid #d7d7d7
         ul.my-activity-sub
           display:block 
       li.selected-nav
@@ -214,11 +214,9 @@
           display: block
         
       li.invite
-        width: 79px
         a
           padding: 3px 0px 3px 9px
       li.inbox
-        width: 72px
         .inbox-sub
           display: none
           width: 500px
@@ -248,9 +246,12 @@
             float: right
     
       li.account
-        width: 94px
+        position: relative
         margin-right: 0px
+        border: 1px solid transparent
+        padding-right: 8px
         ul.account-sub
+          position: absolute
           display: none
           background: white
           color: #505250
@@ -258,8 +259,7 @@
           margin-top: 14px
           font-family: Helvetica, Sans Serif
           font-size: 13px
-          position: relative
-          left: -52px
+          right: -1px
           height: 111px
           border: 1px solid #d7d7d7
           border-top: 0px
