@@ -1,6 +1,10 @@
 
 var Account = Model.extend({
 
+  initialize: function() {
+    this.featuredUsers = new Users([], { uri: this.link("featured_users") });
+  },
+
   neighborhoodsPosts: function() {
     return new Posts([], { uri: this.link('neighborhoods_posts') });
   },
