@@ -12,7 +12,7 @@ var ShareView = CommonPlace.View.extend({
   avatar_url: function() {
     var url = this.model.get("avatar_url");
     if (url == "https://s3.amazonaws.com/commonplace-avatars-production/missing.png")
-      return "https://www.ourcommonplace.com/assets/logo-pin.png";
+      return "https://www.ourcommonplace.com/images/logo-pin.png";
     return url;
   },
 
