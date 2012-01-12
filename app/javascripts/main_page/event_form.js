@@ -51,7 +51,7 @@ var EventForm = CommonPlace.View.extend({
   },
 
   groups: function() {
-    return this.options.community.get('groups');
+    return CommonPlace.community.get('groups');
   },
 
   toggleCheckboxLIClass: function(e) {

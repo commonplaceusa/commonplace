@@ -64,15 +64,26 @@ var PostBox = CommonPlace.View.extend({
   template: "main_page.post-box",
   id: "post-box",
   
+  events: {
+    "click .navigation a": "clickTab"
+  },
+  
   afterRender: function() {
     this.temp = {}
     this.showTab("nothing");
   },
   
+  clickTab: function(e) {
+    e.preventDefault();
+    // DETERMINE WHAT TO DO WITH URLS WHEN WE CLICK
+    this.switchTab($(e.target).attr("data-tab"));
+  },
+  
   switchTab: function(tab) {
     this.temp = {
       title: this.$("form input[name=title]").val(),
-      body: this.$("form input[name=body]").val()
+      body: this.$("form textarea[name=body]").val() ||
+            this.$("form textarea[name=about]").val()
     }
     this.showTab(tab);
   },
@@ -82,8 +93,14 @@ var PostBox = CommonPlace.View.extend({
     
     var view = this.tabs[tab]();
     view.render();
-    $(view.el).addClass("current"); // to be removed b/c we don't use .current anymore
+    $(view.el).addClass("current"); // to be removed, we don't need to use .current anymore
     this.$("form").replaceWith(view.el);
+    
+    if (this.temp) {
+      this.$("form input[name=title]").val(this.temp.title);
+      this.$("form textarea[name=body]").val(this.temp.body);
+      this.$("form textarea[name=about]").val(this.temp.body);
+    }
     
     CommonPlace.layout.reset();
   },
@@ -91,10 +108,10 @@ var PostBox = CommonPlace.View.extend({
   tabs: {
     nothing: function() { return new PostForm(); },
     event: function() { return new EventForm(); },
-    neighborhood: function() { return new PostForm(); },
+    post: function() { return new PostForm(); },
     publicity: function() { return new PostForm(); },
     offers: function() { return new PostForm(); },
-    group_post: function() { return new GroupForm(); },
+    group: function() { return new GroupForm(); },
     help: function() { return new PostForm(); },
     other: function() { return new PostForm(); }
   }
