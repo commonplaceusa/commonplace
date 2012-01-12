@@ -50,12 +50,12 @@ class API
         request.env["kickoff"] ||= KickOff.new
       end
 
-      def last_modified_by_updated_at(scope)
+      def last_modified_by_replied_at(scope)
         # sets last modified header for this request to that of the newest record
         last_modified([(scope.unscoped + Thank.all)
-                        .sort{|a,b| b.updated_at <=> a.updated_at}
-                        .select{|a| a.updated_at}
-                        .first.try(&:updated_at), Date.today.beginning_of_day].compact.max)
+                        .sort{|a,b| b.replied_at <=> a.replied_at}
+                        .select{|a| a.replied_at}
+                        .first.try(&:replied_at), Date.today.beginning_of_day].compact.max)
       end
 
       def jsonp(callback, data)

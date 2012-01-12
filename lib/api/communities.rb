@@ -122,7 +122,7 @@ class API
     end
 
     get "/:community_id/posts" do |community_id|
-      last_modified_by_updated_at(Post)
+      last_modified_by_replied_at(Post)
 
       if params["query"].present?
         search(Post, params, community_id, { :highlight => [:subject, :body, :replies]})
@@ -132,7 +132,7 @@ class API
     end
     
     get "/:community_id/posts/:category" do |community_id, category|
-      last_modified_by_updated_at(Post)
+      last_modified_by_replied_at(Post)
       
       if params["query"].present?
         search(Post, params, community_id) do |search|
@@ -148,7 +148,7 @@ class API
     end
 
     get "/:community_id/events" do |community_id|
-      last_modified_by_updated_at(Event)
+      last_modified_by_replied_at(Event)
 
       if params["query"].present?
         event_search(params, community_id) do |search|
@@ -161,31 +161,31 @@ class API
     end
 
     get "/:community_id/announcements" do |community_id|
-      last_modified_by_updated_at(Announcement)
+      last_modified_by_replied_at(Announcement)
 
       if params["query"].present?
         search(Announcement, params, community_id)
       else
         serialize(paginate(Community.find(community_id).announcements.
                              includes(:replies, :owner).
-                             reorder("updated_at DESC")))
+                             reorder("replied_at DESC")))
       end
     end
 
     get "/:community_id/group_posts" do |community_id|
-      last_modified_by_updated_at(GroupPost)
+      last_modified_by_replied_at(GroupPost)
 
       if params["query"].present?
         search(GroupPost, params, community_id)
       else
-        serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
+        serialize(paginate(GroupPost.order("group_posts.replied_at DESC").
                              includes(:group, :user).
                              where(:groups => {:community_id => community_id})))
       end
     end
 
     get "/:community_id/feeds" do |community_id|
-      last_modified_by_updated_at(Feed)
+      last_modified_by_replied_at(Feed)
 
       if params["query"].present?
         search(Feed, params, community_id)
@@ -196,7 +196,7 @@ class API
     end
 
     get "/:community_id/groups" do |community_id|
-      last_modified_by_updated_at(Group)
+      last_modified_by_replied_at(Group)
 
       if params["query"].present?
         search(Group, params, community_id)
@@ -206,7 +206,7 @@ class API
     end
 
     get "/:community_id/users" do |community_id|
-      last_modified_by_updated_at(User)
+      last_modified_by_replied_at(User)
 
       if params["query"].present?
         search(User, params, community_id)
@@ -217,7 +217,7 @@ class API
     end
 
     get "/:community_id/users/featured" do |community_id|
-      last_modified_by_updated_at(User)
+      last_modified_by_replied_at(User)
 
       # TODO: Sort by CP Credits
 
@@ -226,7 +226,7 @@ class API
     end
     
     get "/:community_id/feeds/featured" do |community_id|
-      last_modified_by_updated_at(Feed)
+      last_modified_by_replied_at(Feed)
       
       scope = Community.find(community_id).feeds.featured.reorder("name ASC")
       serialize paginate(scope)
