@@ -9,6 +9,10 @@ var ShareView = CommonPlace.View.extend({
   afterRender: function() {
   }, 
 
+  avatar_url: function() {
+    return this.model.get("avatar_url");
+  },
+
   share_url: function() {
     return(CommonPlace.community.get("links")["base"] + "/show/" + this.model.get("schema") + "/" + this.model.get("id"));
   },
