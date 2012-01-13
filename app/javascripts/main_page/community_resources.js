@@ -5,7 +5,7 @@ var CommunityResources = CommonPlace.View.extend({
   
   afterRender: function() {
     var self = this;
-    this.searchForm = new CommunitySearchForm();
+    this.searchForm = new self.SearchForm();
     this.searchForm.render();
     $(this.searchForm.el).prependTo(this.$(".sticky"));
     $(window).scroll(function() { self.stickHeader(); });
@@ -17,109 +17,101 @@ var CommunityResources = CommonPlace.View.extend({
     this.$(".tab-button").removeClass("current");
     this.$("." + tab).addClass("current");
 
-    this.view = this.tabs[tab](this, function() {
-      (self.currentQuery) ? self.search() : self.showTab();
-    });
+    this.view = this.tabs[tab](this);
+    
+    (self.currentQuery) ? self.search() : self.showTab();
   },
   
   showTab: function() {
     this.$(".resources").empty();
     this.unstickHeader();
     this.countdown = 0;
+    this.count = 0;
+    var self = this;
     
-    _.each(this.view.resources(), function(wire) {
+    this.view.resources(function(wire) {
+      self.count++;
       wire.render();
-      $(wire.el).appendTo(this.$(".resources"));
+      $(wire.el).appendTo(self.$(".resources"));
     });
   },
   
-  makeTab: function(wire, callback) {
-    return new ResourceTab({
-      wire: wire,
-      callback: callback
-    });
-  },
-
   tabs: {
     landing: function(self) { return new DynamicLandingResources(); },
     
     posts: function(self) {
-      var wire = new ResourceWire({
+      var wire = new self.ResourceWire({
         template: "main_page.post-resources",
         emptyMessage: "No posts here yet.",
         collection: CommonPlace.community.posts,
         callback: function() { self.stickHeader(); }
       });
-      return self.makeTab(wire, callback);
+      return self.makeTab(wire);
     },
     
     events: function(self) {
-      var wire = new ResourceWire({
+      var wire = new self.ResourceWire({
         template: "main_page.event-resources",
         emptyMessage: "No events here yet.",
         collection: CommonPlace.community.events,
         callback: function() { self.stickHeader(); }
       });
-      return self.makeTab(wire, callback);
+      return self.makeTab(wire);
     },
     
     announcements: function(self) {
-      var wire = new ResourceWire({
+      var wire = new self.ResourceWire({
         template: "main_page.announcement-resources",
         emptyMessage: "No announcements here yet.",
         collection: CommonPlace.community.announcements,
         callback: function() { self.stickHeader(); }
       });
-      return self.makeTab(wire, callback);
+      return self.makeTab(wire);
     },
     
-    group_posts: function(self, callback) {
+    group_posts: function(self) {
       var wire = new self.ResourceWire({
         template: "main_page.group-post-resources",
         emptyMessage: "No posts here yet.",
         collection: CommonPlace.community.groupPosts,
         callback: function() { self.stickHeader(); }
       });
-      return self.makeTab(wire, callback);
+      return self.makeTab(wire);
     },
     
     groups: function(self) {
-      var wire = new ResourceWire({
+      var wire = new self.ResourceWire({
         template: "main_page.directory-resources",
         emptyMessage: "No groups here yet.",
         collection: CommonPlace.community.groups,
         callback: function() { self.stickHeader(); },
         active: "groups"
       });
-      return self.makeTab(wire, callback);
+      return self.makeTab(wire);
     },
     
     feeds: function(self) {
-      var wire = new ResourceWire({
+      var wire = new self.ResourceWire({
         template: "main_page.directory-resources",
         emptyMessage: "No feeds here yet.",
         collection: CommonPlace.community.feeds,
         callback: function() { self.stickHeader(); },
         active: "feeds"
       });
-      return self.makeTab(wire, callback);
+      return self.makeTab(wire);
     },
     
     users: function(self) {
-      var wire = new ResourceWire({
+      var wire = new self.ResourceWire({
         template: "main_page.directory-resources",
         emptyMessage: "No users here yet.",
         collection: CommonPlace.community.users,
         callback: function() { self.stickHeader(); },
         active: "users"
       });
-      return self.makeTab(wire, callback);
+      return self.makeTab(wire);
     }
   },
-  
-  ResourceWire: Wire.extend({
-    _defaultPerPage: 15
-  }),
   
   // single item view overhaul is yet to be determined
 
@@ -174,13 +166,18 @@ var CommunityResources = CommonPlace.View.extend({
   stickHeader: function(ready) {
     if (!this._ready) {
       this.countdown++;
-      this._ready = (this.countdown == this.view.resources().length);
+      this._ready = (this.countdown == this.count);
       return;
     }
     
     var landing_top = this.$(".resources").offset().top + $(window).scrollTop();
     var landing_bottom = landing_top + this.$(".sticky .header").height();
-    var wires_below_header = this.view.resources();
+    var wires_below_header = [];
+    var self = this;
+    
+    this.view.resources(function(wire) {
+      wires_below_header.push(wire);
+    });
     
     if (!this.$(".sticky .header").height()) {
       landing_bottom += _.first(wires_below_header).header.height();
@@ -203,30 +200,39 @@ var CommunityResources = CommonPlace.View.extend({
     }
   },
   
-  unstickHeader: function() { this.$(".sticky .header").empty(); }
+  unstickHeader: function() { this.$(".sticky .header").empty(); },
+  
+  
+  
+  
+  makeTab: function(wire) { return new this.ResourceTab({ wire: wire }); },
+  
+  ResourceWire: Wire.extend({ _defaultPerPage: 15 }),
+  
+  ResourceTab: CommonPlace.View.extend({
+    initialize: function(options) {
+      this._wires = [];
+      this._wires.push(options.wire);
+    },
+    
+    resources: function(callback) {
+      _.each(this._wires, function(wire) { callback(wire); });
+    },
+    
+    search: function(query) {
+      _.each(this._wires, function(wire) {
+        wire.currentQuery = query;
+      });
+    },
+    
+    cancelSearch: function() { this.search(""); }
+  }),
+
+  SearchForm: CommonPlace.View.extend({
+    template: "main_page.community-search-form",
+    tagName: "form",
+    className: "search"
+  })
   
 });
 
-var ResourceTab = CommonPlace.View.extend({
-  initialize: function(options) {
-    this._wires = [];
-    this._wires.push(options.wire);
-    options.callback();
-  },
-  
-  resources: function() { return this._wires; },
-  
-  search: function(query) {
-    _.each(this._wires, function(wire) {
-      wire.currentQuery = query;
-    });
-  },
-  
-  cancelSearch: function() { this.search(""); }
-});
-
-var CommunitySearchForm = CommonPlace.View.extend({
-  template: "main_page.community-search-form",
-  tagName: "form",
-  className: "search"
-});
