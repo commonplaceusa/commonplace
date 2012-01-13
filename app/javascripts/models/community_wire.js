@@ -17,5 +17,9 @@ var CommunityWire = Model.extend({
       if (callback) { callback() };
     });
   },
+  
+  all: function() { return [
+    this.neighborhood, this.offers, this.help, this.publicity, this.other, this.announcements, this.groupPosts, this.events];
+  }
 });
 
