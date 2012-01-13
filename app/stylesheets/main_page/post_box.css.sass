@@ -26,69 +26,36 @@
     margin-left: 15px
     width: 140px
     padding-bottom: 10px
-
-    a.tab-button
+    
+    ul
+      margin-top: 15px
+      position: absolute
+      top: 0
+      bottom: 12px
+      overflow-y: scroll
+      overflow-x: hidden
+      +border-radius(3px)
+      +box-shadow(inset 0 0 5px #242424)
+      width: 140px
+      background: #982926
+    li
+      padding: 10px
       display: block
       cursor: pointer
       color: white
-      font-family: Rokkitt, Rockwell
+      font-family: Tahoma, Helvetica, serif
       text-decoration: none
-      padding: 10px 0 10px 6px
-      font-size: 15px
-      margin-top: 15px
+      font-size: 12px
       line-height: 1em
       border: none
-      font-weight: bold
-      +border-radius(5px)
-
-      background: #8B2324
-      +background-image(linear-gradient(#b42d2f 0%, #8b2324 50%))
-      +text-shadow(#4e1414 0 -1px 0)
-      +box-shadow(#a82a2b 0 0 0 1px inset, #6e1c1d 0 0 0 1px, #4e1414 0 5px 6px -4px)
-
-      &.current
-        background: #1B334A
-        +background-image(linear-gradient(#294d6f 0%, #1b334a 50%))
+      border-bottom: #3a1411 1px solid
+      text-shadow: 0 0 1px grey
+      &:first-child
+        margin-top: 0
+      &:hover, &.current
+        background: #192f44    
+  
       
-        +text-shadow(#070C12 0 -1px 0)
-        +box-shadow(#254564 0 0 0 1px inset, #112130 0 0 0 1px, #070c12 0 5px 6px -4px)
-        &:hover
-          +background-image(linear-gradient(#2d547b 0%, #1f3b55 50%))
-
-        &:active
-          +background-image(linear-gradient(#22405d 0%, #182e43 50%))
-          +box-shadow(#1e3851 0 0 0 1px inset, #112130 0 0 0 1px)
-
-      .icon
-        float: left
-        margin-right: 6px
-        background-repeat: no-repeat
-
-      &:hover
-        +background-image(linear-gradient(#c03032 0%, #972627 50%))
-
-      &:active
-        position: relative
-        top: 2px
-        +background-image(linear-gradient(#9f2829 0%, #832122 50%))
-        +box-shadow(#932526 0 0 0 1px inset, #6e1c1d 0 0 0 1px)
-
-      &.create-group-post .icon
-        background-image: image-url("main_page/group-post-tab-icon.png")
-        width: 27px
-        height: 25px
-      &.create-event .icon
-        background-image: image-url("main_page/event-tab-icon.png")
-        width: 27px
-        height: 26px
-      &.create-neighborhood-post .icon
-        background-image: image-url("main_page/neighborhood-post-tab-icon.png")
-        width: 22px
-        height: 29px
-      &.create-announcement .icon
-        background-image: image-url("main_page/announcement-tab-icon.png")
-        width: 25px
-        height: 24px
   .form-container
     float: left
     margin-left: 15px
