@@ -22,8 +22,6 @@ var GroupPostForm = CommonPlace.View.extend({
   afterRender: function() {
     this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$("textarea").autoResize();
-    // dropkick isn't playing well with optgroups
-    //this.$("select.category").dropkick();
   },
   
   createPost: function(e) {
