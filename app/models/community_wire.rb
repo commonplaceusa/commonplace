@@ -43,20 +43,6 @@ class CommunityWire
     @community.posts.where(category: 'other').limit(3)
   end
 
-  def past
-    other_posts = [:events, :neighborhood, :offers, :help, 
-      :publicity, :group, :announcements, :other].flat_map {|m| self.send(m) }
-    id = @community.id
-    past_posts = Sunspot.search([Announcement, Event, GroupPost, Post]) do 
-      order_by(:created_at, :desc)
-      paginate(page: 1, per_page: other_posts.size + 3)
-      with(:community_id, id)
-    end
-
-    # return past_posts without posts that will be shown in a previous group
-    past_posts.results - other_posts 
-  end
-
   acts_as_api
   
   api_accessible :default do |t|

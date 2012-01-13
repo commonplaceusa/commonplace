@@ -5,30 +5,32 @@ var DynamicLandingResources = CommonPlace.View.extend({
   afterRender: function() {
     this._sortCountdown = 0;
     
-    var self = this;
+    this.raw = new CommunityWire({ uri: CommonPlace.community.link("landing_wires")});
     
+    var self = this;
+    this.raw.fetch({}, function() {
+      _.each(self.wires(), function(wire) {
+        wire.render();
+      });
+    });
+  },
+  
+  wires: function(raw) {
     this._events = new LandingPreview({
-      template: 'main_page.event-resources',
-      collection: CommonPlace.community.events,
+      template: "main_page.event-resources",
+      collection: this.raw.events,
       el: this.$(".events.wire"),
       fullWireLink: "#/events",
       emptyMessage: "There are no upcoming events yet. Add some."
     });
-    
     this._events.render();
     
-    _.each(this.wires(), function(wire) {
-      wire.render();
-    });
-  },
-  
-  wires: function() {
     var self = this;
     if (!this._wires) {
       this._wires = [
         (new LandingPreview({
-          template: 'main_page.post-resources',
-          collection: CommonPlace.community.categories.neighborhood,
+          template: "main_page.post-resources",
+          collection: this.raw.neighborhood,
           el: this.$(".neighborhoodPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
@@ -36,8 +38,8 @@ var DynamicLandingResources = CommonPlace.View.extend({
         })),
         
         (new LandingPreview({
-          template: 'main_page.post-offer-resources',
-          collection: CommonPlace.community.categories.offers,
+          template: "main_page.post-offer-resources",
+          collection: this.raw.offers,
           el: this.$(".offerPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No offers here yet.",
@@ -45,8 +47,8 @@ var DynamicLandingResources = CommonPlace.View.extend({
         })),
         
         (new LandingPreview({
-          template: 'main_page.post-help-resources',
-          collection: CommonPlace.community.categories.help,
+          template: "main_page.post-help-resources",
+          collection: this.raw.help,
           el: this.$(".helpPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No help requests here yet.",
@@ -54,8 +56,8 @@ var DynamicLandingResources = CommonPlace.View.extend({
         })),
         
         (new LandingPreview({
-          template: 'main_page.post-publicity-resources',
-          collection: CommonPlace.community.categories.publicity,
+          template: "main_page.post-publicity-resources",
+          collection: this.raw.publicity,
           el: this.$(".publicityPosts.wire"),
           fullWireLink: "#/posts",
           emptyMessage: "No posts here yet.",
@@ -63,29 +65,29 @@ var DynamicLandingResources = CommonPlace.View.extend({
         })),
         
         (new LandingPreview({
-          template: 'main_page.post-other-resources',
-          collection: CommonPlace.community.categories.other,
+          template: "main_page.post-other-resources",
+          collection: this.raw.other,
           el: this.$(".otherPosts.wire"),
           fullWireLink: "#/posts",
-          emptyMessage: "No posts here yet.",
+          emptyMessage: "No offers here yet.",
           callback: function() { self.displayPreviews(); }
         })),
         
         (new LandingPreview({
-          template: 'main_page.announcement-resources',
-          collection: CommonPlace.community.announcements,
+          template: "main_page.announcement-resources",
+          collection: this.raw.announcements,
           el: this.$(".announcements.wire"),
-          emptyMessage: "No announcements here yet.",
           fullWireLink: "#/announcements",
+          emptyMessage: "No announcements here yet.",
           callback: function() { self.displayPreviews(); }
         })),
         
         (new LandingPreview({
-          template: 'main_page.group-post-resources',
-          collection: CommonPlace.community.groupPosts,
+          template: "main_page.group-post-resources",
+          collection: this.raw.groupPosts,
           el: this.$(".groupPosts.wire"),
-          emptyMessage: "No posts here yet.",
           fullWireLink: "#/group_posts",
+          emptyMessage: "No offers here yet.",
           callback: function() { self.displayPreviews(); }
         }))
       ];
@@ -95,6 +97,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
   
   displayPreviews: function() {
     this._sortCountdown++;
+    var self = this;
     
     if (this._sortCountdown == this._wires.length) {
       var duplicates = [];
@@ -115,30 +118,26 @@ var DynamicLandingResources = CommonPlace.View.extend({
         first.el.detach();
         this.$(".populated").prepend(first.el);
         
-        var self = this;
-        _.each(sorted, function(wire) {
+        
+        _.each(sorted. function(wire) {
           wire.el.detach();
           self.$(".populated").append(wire.el);
         });
         
-        if (Features.isActive("2012Release")) {
-          this._chrono = new Wire({
-            template: "main_page.chrono-resources",
-            collection: CommonPlace.community.postlikes,
-            el: this.$(".chrono.wire"),
-            emptyMessage: "No posts here yet.",
-            perPage: 22
-          });
-          
-          duplicates.push(this._events.collection.models);
-          this._chrono.collection.setDupes(_.flatten(duplicates));
-          this._chrono.render();
-        }
+        this._chrono = new Wire({
+          template: "main_page.chrono-resources",
+          collection: CommonPlace.community.postlikes,
+          el: this.$(".chrono.wire"),
+          emptyMessage: "No posts here yet.",
+          perPage: 22
+        });
         
-        if (Features.isActive("2012Release")) {
-          this.stickHeader(true);
-        }
+        duplicates.push(this._events.collection.models);
+        this._chrono.collection.setDupes(_.flatten(duplicates));
+        this._chrono.render();
       }
+      
+      this.stickHeader(true);
     }
   },
   
@@ -154,7 +153,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
         return wire_bottom >= landing_bottom;
       });
       
-      var top_wire = _.sortBy(wires_below_header, function(wire) {
+      var top_wire = ->sortedBy(wires_below_header, function(wire) {
         return wire.el.offset().top;
       }).shift();
       
@@ -171,12 +170,17 @@ var DynamicLandingResources = CommonPlace.View.extend({
     if (this._ready && this.headerWire) {
       $("#community-resources .sticky-header").empty();
     }
-  }
+  },
+  
+  search: function() {},
+  
+  cancelSearch: function() {}
 });
 
 var LandingPreview = PreviewWire.extend({
   template: "wires.preview-wire",
   _defaultPerPage: 3,
+  aroundRender: function(render) { render(); },
   fullWireLink: function() { return this.options.fullWireLink; },
   showMore: function() {},
   areMore: function() { return false; },
