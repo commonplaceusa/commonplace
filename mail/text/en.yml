@@ -2,6 +2,9 @@
 post_notification:
   intro: Hi {{user_name}}, <br> {{poster_name}} just posted to your neighborhood board on CommonPlace.
 
+share_notification:
+  intro: "Hi! <br> Your friend {{sharer_name}} wanted you to see this {{data_type}} on the {{community_name}} CommonPlace. <br> CommonPlace is an online bulletin board for the Falls Church community. <br> Sign up here: www.FallsChurch.OurCommonPlace.com <br> You may see the post below."
+
 welcome: 
   intro: We are happy to hear you have joined your neighbors on {{community_name}}'s CommonPlace, a new web platform for local community engagement here in {{community_name}}.  {{community_name}}'s CommonPlace is like an online bulletin for people who live in {{community_name}}, designed to make it really easy for you to share requests, offers and other information with your neighbors and to stay up-to-date with what's happening in {{community_name}}.
 
@@ -122,3 +125,4 @@ help_a_neighbor_out:
   post-action-title: Post to Your Neighborhood
   post-action-body: |
     Need to borrow a ladder? Lost a cat? Offering up vegetables from your garden? Share it with your neighbors!
+
