@@ -21,10 +21,6 @@ var PostForm = CommonPlace.View.extend({
   createPost: function(e) {
     e.preventDefault();
     
-    if (this.$("[name=category]").val() == "none") {
-      return this.showError({ responseText: "Please tell us where to post this." });
-    }
-    
     this.cleanUpPlaceholders();
     
     this.$(".spinner").show();
@@ -35,8 +31,7 @@ var PostForm = CommonPlace.View.extend({
       body: this.$("[name=body]").val()
     }
     
-    data["category"] = this.$("[name=category]").val();
-    this.sendPost(this.collection, data);
+    this.sendPost(CommonPlace.community.posts, data);
   },
   
   sendPost: function(postCollection, data) {
