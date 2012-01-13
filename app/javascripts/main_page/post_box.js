@@ -30,6 +30,8 @@ var PostBox = CommonPlace.View.extend({
   showTab: function(tab, e) {
     var view;
     
+    this.$("li.current").removeClass("current");
+    
     if (tab == "group" && e) {
       var group_id = $(e.target).attr("data-group-id");
       $(e.target).addClass("current")
