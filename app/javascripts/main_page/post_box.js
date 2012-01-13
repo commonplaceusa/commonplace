@@ -55,11 +55,11 @@ var PostBox = CommonPlace.View.extend({
   tabs: {
     nothing: function() { return new PostForm(); },
     event: function() { return new EventForm(); },
-    post: function() { return new PostForm(); },
-    publicity: function() { return new PostForm(); },
-    offers: function() { return new PostForm(); },
-    help: function() { return new PostForm(); },
-    other: function() { return new PostForm(); },
+    post: function() { return new PostForm({ category: "neighborhood" }); },
+    publicity: function() { return new PostForm({ category: "publicity" }); },
+    offers: function() { return new PostForm({ category: "offers" }); },
+    help: function() { return new PostForm({ category: "help" }); },
+    other: function() { return new PostForm({ category: "other" }); },
     group: function(id) { return new GroupPostForm({ group_id: id }); }
   },
   
