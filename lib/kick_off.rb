@@ -171,6 +171,7 @@ class KickOff
 
   def deliver_share_notification(user, item, recipient_email)
     # TODO: Implement
+    enqueue(ShareNotification, user, item, recipient_email)
   end
 
   private
