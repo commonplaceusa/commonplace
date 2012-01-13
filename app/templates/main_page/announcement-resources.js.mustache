@@ -1,10 +1,4 @@
 <div class="sub-navigation">
-  {{#isSearchEnabled}}
-    <form class="search">
-      <input type="text" value="{{query}}" placeholder="Search"/>
-      <div class="cancel"></div>
-    </form>
-  {{/isSearchEnabled}}
   <h2><a href="/{{community_slug}}/list/announcements" class="current" data-remote>
     {{^isRecent}}{{#t}}announcements.a{{/t}}{{/isRecent}}
     {{#isRecent}}{{#t}}recent-announcements.a{{/t}}{{/isRecent}}
