@@ -42,7 +42,6 @@ var PostBox = CommonPlace.View.extend({
     }
     
     view.render();
-    $(view.el).addClass("current"); // to be removed, we don't need to use .current anymore
     this.$("form").replaceWith(view.el);
     
     if (this.temp) {
