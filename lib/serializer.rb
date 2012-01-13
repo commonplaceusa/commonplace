@@ -255,10 +255,9 @@ module Serializer
         "offers" => serialize(o.offers),
         "help" => serialize(o.help),
         "publicity" => serialize(o.publicity),
-        "group" => serialize(o.publicity),
+        "group" => serialize(o.group),
         "announcements" => serialize(o.announcements),
-        "other" => serialize(o.other),
-        "past" => serialize(o.past)
+        "other" => serialize(o.other)
       }
       end
 
