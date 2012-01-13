@@ -153,7 +153,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
         return wire_bottom >= landing_bottom;
       });
       
-      var top_wire = ->sortedBy(wires_below_header, function(wire) {
+      var top_wire = _.sortBy(wires_below_header, function(wire) {
         return wire.el.offset().top;
       }).shift();
       
