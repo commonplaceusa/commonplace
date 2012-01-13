@@ -4,26 +4,30 @@
     
     <ul>
       <li class="nothing"></li>
-      <li class="post">
-        <a href="/{{community_slug}}/share/post" data-tab="post">Share Neighborly News</a>
+      <li class="post" data-tab="post">
+        Share Neighborly News
       </li>
-      <li class="publicity">
-        <a href="/{{community_slug}}/share/publicity" data-tab="publicity">Publicize a Business or Service</a>
+      <li class="publicity" data-tab="publicity">
+        Publicize a Business or Service
       </li>
-      <li class="event">
-        <a href="/{{community_slug}}/share/event" data-tab="event">Post an Event</a>
+      <li class="event" data-tab="event">
+        Post an Event
       </li>
-      <li class="group">
-        <a href="/{{community_slug}}/share/group" data-tab="group">Group Post</a>
+      <li class="help" data-tab="help">
+        Make A Request
       </li>
-      <li class="help">
-        <a href="/{{community_slug}}/share/help" data-tab="help">Make A Request</a>
+      <li class="offers" data-tab="offers">
+        Sell Something
       </li>
-      <li class="offers">
-        <a href="/{{community_slug}}/share/offers" data-tab="offers">Sell Something</a>
+      
+      {{#groups}}
+      <li class="group" data-tab="group" data-group-id="{{id}}">
+          {{name}}
       </li>
-      <li class="other">
-        <a href="/{{community_slug}}/share/other" data-tab="other">Other</a>
+      {{/groups}}
+      
+      <li class="other" data-tab="other">
+        Other
       </li>
     </ul>
 
