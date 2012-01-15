@@ -1,13 +1,14 @@
-<div class="error"></div>
 
-<input name="title" type="text" placeholder="Group Post Title">
+<ul class="group-select">
 
-<textarea name="body" placeholder="Post a message to people interested in {{group_name}}"></textarea>
+  {{#groups}}
+    <li>
+      <a class="{{class}}" href="/groups/{{id}}">
+        <img src="{{avatar_url}}" width="50" height="50">
+        <span>{{name}}</span>
+      </a>
+    </li>
+  {{/groups}}
 
-<div class="on-focus">
+</ul>
 
-  <button>Post Now</button>
-  <div class="spinner"></div>
-
-  <div style="clear: both"></div>
-</div>
