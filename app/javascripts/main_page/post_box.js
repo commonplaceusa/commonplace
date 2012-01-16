@@ -19,10 +19,12 @@ var PostBox = CommonPlace.View.extend({
   },
   
   switchTab: function(tab, e) {
-    this.temp = {
-      title: this.$("form input[name=title]").val(),
-      body: this.$("form textarea[name=body]").val() ||
-            this.$("form textarea[name=about]").val()
+    if (this.$("form input").length) {
+      this.temp = {
+        title: this.$("form input[name=title]").val(),
+        body: this.$("form textarea[name=body]").val() ||
+              this.$("form textarea[name=about]").val()
+      }
     }
     this.showTab(tab, e);
   },
@@ -32,14 +34,8 @@ var PostBox = CommonPlace.View.extend({
     
     this.$("li.current").removeClass("current");
     
-    if (tab == "group" && e) {
-      var group_id = $(e.target).attr("data-group-id");
-      $(e.target).addClass("current")
-      view = this.tabs[tab](group_id);
-    } else {
-      this.$("li." + tab).addClass("current");
-      view = this.tabs[tab]();
-    }
+    this.$("li." + tab).addClass("current");
+    view = this.tabs[tab]();
     
     view.render();
     this.$("form").replaceWith(view.el);
@@ -61,7 +57,7 @@ var PostBox = CommonPlace.View.extend({
     offers: function() { return new PostForm({ category: "offers" }); },
     help: function() { return new PostForm({ category: "help" }); },
     other: function() { return new PostForm({ category: "other" }); },
-    group: function(id) { return new GroupPostForm({ group_id: id }); }
+    group: function() { return new GroupPostForm(); }
   },
   
   groups: function() {
