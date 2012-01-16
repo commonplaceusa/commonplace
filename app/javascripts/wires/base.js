@@ -7,6 +7,7 @@ var Wire = CommonPlace.View.extend({
   aroundRender: function(render) {
     var self = this;
     this.fetchCurrentPage(function() {
+      console.log("is this being called in the searches that work?");
       render();
     });
   },
