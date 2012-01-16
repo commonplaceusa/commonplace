@@ -4,7 +4,7 @@
   color: #888
   background: white
   border: none
-  width: 295px
+  width: 288px
   @include border-radius(4px)
   padding: 10px
   margin: 0 0 10px 0
@@ -77,7 +77,7 @@
     float: left
     margin-left: 10px
     margin-top: 10px
-    width: 305px
+    width: 298px
 
     form
       +form
@@ -92,15 +92,17 @@
         font-family: Helvetica, Arial, sans-serif
         font-size: 14px
         margin-bottom: 10px
+        width: 295px
 
       input[type=text]
-        width: 295px
+        width: 288px
         +input()
 
       textarea
         +input()
-        width: 295px
+        width: 288px
         height: 115px
+        margin-bottom: 0
 
       label.radio
         display: inline
@@ -150,14 +152,23 @@
             display: none
 
       button
-        margin-top: 15px
-        font-size: 18px
-        padding: 15px 15px
-        margin-bottom: 15px
+        font-size: 11px
+        padding: 7px
+        margin-bottom: 8px
+        background: rgb(38,59,83)
+        border: none
+        box-shadow: none
+        cursor: pointer
+        +border-radius(3px)
+        float: right
+        margin-right: 0
+        color: white
+        text-transform: uppercase
       
       .on-focus
         display: none
-        margin-top: 15px
+        margin-top: 8px
+        width: 308px
 
       input.date
         position: relative
