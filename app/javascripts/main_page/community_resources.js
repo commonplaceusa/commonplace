@@ -30,6 +30,7 @@ var CommunityResources = CommonPlace.View.extend({
   showTab: function() {
     this.$(".resources").empty();
     this.unstickHeader();
+    this._ready = false;
     this.countdown = 0;
     this.count = 0;
     var self = this;
@@ -38,11 +39,17 @@ var CommunityResources = CommonPlace.View.extend({
       self.count++;
       wire.render();
       $(wire.el).appendTo(self.$(".resources"));
+      //self.setZ(wire, 20 + (self.count*2));
+      if (!wire.header) { console.log("the header doesn't exist yet"); }
     });
   },
   
   tabs: {
-    landing: function(self) { return new DynamicLandingResources(); },
+    landing: function(self) {
+      return new DynamicLandingResources({
+        callback: function() { self.stickHeader(); }
+      });
+    },
     
     posts: function(self) {
       var wire = new self.ResourceWire({
@@ -177,8 +184,8 @@ var CommunityResources = CommonPlace.View.extend({
       return;
     }
     
-    var landing_top = this.$(".resources").offset().top + $(window).scrollTop();
-    var landing_bottom = landing_top + this.$(".sticky .header").height();
+    var sticky_top = this.$(".sticky").offset().top;
+    var sticky_bottom = sticky_top + this.$(".sticky").height();
     var wires_below_header = [];
     var self = this;
     
@@ -186,33 +193,31 @@ var CommunityResources = CommonPlace.View.extend({
       wires_below_header.push(wire);
     });
     
-    if (_.isEmpty(wires_below_header)) {
-      console.log("I'm not sure why this is empty");
-      return;
-    }
-    
     if (!this.$(".sticky .header").height()) {
-      landing_bottom += _.first(wires_below_header).header.height();
+      sticky_bottom += _.first(wires_below_header).header.height();
     }
     
     wires_below_header = _.filter(wires_below_header, function(wire) {
       var wire_bottom = $(wire.el).offset().top + $(wire.el).height();
-      return wire_bottom >= landing_bottom;
+      return wire_bottom >= sticky_bottom;
     });
-    
-    var top_wire = _.sortBy(wires_below_header, function(wire) {
-      return $(wire.el).offset().top;
-    }).shift();
+        
+    var top_wire = wires_below_header.shift();
     
     if (top_wire != this.headerWire) {
       this.unstickHeader();
-      var sticky = top_wire.header.clone(true);
-      sticky.appendTo(this.$(".sticky .header"));
+      var clone = top_wire.header.clone(true);
+      clone.appendTo(this.$(".sticky .header"));
+      //this.$(".sticky").css({ "z-index": this.getZ(top_wire) + 1 });
       this.headerWire = top_wire;
     }
   },
   
   unstickHeader: function() { this.$(".sticky .header").empty(); },
+  
+  getZ: function(wire) { return parseInt(wire.header.css("z-index")); },
+  
+  setZ: function(wire, index) { wire.header.css({ "z-index": index }); },
   
   
   
