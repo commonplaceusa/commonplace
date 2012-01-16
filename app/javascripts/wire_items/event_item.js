@@ -60,7 +60,10 @@ var EventWireItem = WireItem.extend({
     "click .editlink": "editEvent",
     "mouseenter": "showProfile",
     "click .event > .author": "messageUser",
-    "click .thank-link": "thank"
+    "click .thank-link": "thank",
+    "click .share-link": "share",
+    "click .reply-link": "reply",
+    "blur": "removeFocus"
   },
 
   editEvent: function(e) {
@@ -120,6 +123,28 @@ var EventWireItem = WireItem.extend({
         self.$(".thank_count").html(self.numThanks() + 1);
       }
     });
+  },
+  
+  share: function(e) {
+    if (e) { e.preventDefault(); }
+    this.removeFocus();
+    this.$(".share-link").addClass("current");
+    var shareView = new ShareView({ model: this.model,
+                                    el: this.$(".replies"),
+                                    account: CommonPlace.account
+                                  });
+     shareView.render();
+   },
+
+  reply: function(e) {
+    if (e) { e.preventDefault(); }
+    this.removeFocus();
+    this.$(".reply-link").addClass("current");
+    this.render();
+  },
+  
+  removeFocus: function() {
+    this.$(".thank-share .current").removeClass("current");
   }
 
 });

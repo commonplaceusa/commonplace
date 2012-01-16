@@ -46,7 +46,10 @@ var AnnouncementWireItem = WireItem.extend({
     "click .editlink": "editAnnouncement",
     "mouseenter": "showProfile",
     "click .announcement > .author": "messageUser",
-    "click .thank-link": "thank"
+    "click .thank-link": "thank",
+    "click .share-link": "share",
+    "click .reply-link": "reply",
+    "blur": "removeFocus"
   },
 
   editAnnouncement: function(e) {
@@ -97,6 +100,28 @@ var AnnouncementWireItem = WireItem.extend({
         }
       });
     }
+  },
+  
+  share: function(e) {
+    if (e) { e.preventDefault(); }
+    this.removeFocus();
+    this.$(".share-link").addClass("current");
+    var shareView = new ShareView({ model: this.model,
+                                    el: this.$(".replies"),
+                                    account: CommonPlace.account
+                                  });
+     shareView.render();
+   },
+
+  reply: function(e) {
+    if (e) { e.preventDefault(); }
+    this.removeFocus();
+    this.$(".reply-link").addClass("current");
+    this.render();
+  },
+  
+  removeFocus: function() {
+    this.$(".thank-share .current").removeClass("current");
   }
 
 });
