@@ -4,18 +4,25 @@ var DynamicLandingResources = CommonPlace.View.extend({
   
   initialize: function() {
     this.raw = new CommunityWire({ uri: CommonPlace.community.link("landing_wires")});
+    this.postlikes = new PostLikes([], { uri: CommonPlace.community.link("post_likes") });
     this._wires = [];
   },
   
   resources: function(callback) {
     var self = this;
     
-    if (_.isEmpty(this._wires)) {
+    if (this.currentQuery) {
+      this.postlikes.fetch({ query: this.currentQuery }, function() {
+        self.makeSearch();
+        self.resources(callback);
+      });
+    } else if (_.isEmpty(this._wires)) {
       this.raw.fetch({}, function() {
         self.makeWires();
         self.resources(callback);
       });
     } else {
+      if (!this._wires.length) { console.log("what"); }
       _.each(this._wires, function(wire) { callback(wire); });
     }
   },
@@ -101,13 +108,29 @@ var DynamicLandingResources = CommonPlace.View.extend({
     _.each(self.raw.all(), function(collection) { duplicates.push(collection.models); })
     chrono.collection.setDupes(_.flatten(duplicates));
     
+    self._wires = [];
     self._wires.push(first);
     self._wires.push(events)
     self._wires.push(sorted);
     self._wires.push(empty);
     self._wires.push(chrono);
     self._wires = _.flatten(self._wires);
-  }
+  },
+  
+  makeSearch: function() {
+    var searchWire = new Wire({
+      template: "main_page.chrono-resources",
+      collection: this.postlikes,
+      emptyMessage: "No results.",
+      perPage: 22
+    });
+    this._wires = [];
+    this._wires.push(searchWire);
+  },
+  
+  search: function(query) { this.currentQuery = query; },
+  
+  cancelSearch: function() { this.currentQuery = ""; }
 });
 
 var LandingPreview = PreviewWire.extend({
