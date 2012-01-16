@@ -16,6 +16,7 @@ var WireItem = CommonPlace.View.extend({
   },
 
   thank: function() {
+    this.$(".thank-share .current").removeClass("current");
     if (this.thanked())
       return;
     var self = this;
