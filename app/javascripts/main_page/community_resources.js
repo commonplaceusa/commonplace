@@ -3,6 +3,11 @@ var CommunityResources = CommonPlace.View.extend({
   template: "main_page.community-resources",
   id: "community-resources",
   
+  events: {
+    "submit .sticky form": "search",
+    "keyup .sticky input": "debounceSearch"
+  },
+  
   afterRender: function() {
     var self = this;
     this.searchForm = new self.SearchForm();
@@ -157,10 +162,12 @@ var CommunityResources = CommonPlace.View.extend({
     if (event) { event.preventDefault(); }
     this.currentQuery = this.$(".sticky form.search input").val();
     this.view.search(this.currentQuery);
+    this.showTab();
   },
   
   cancelSearch: function(e) {
     this.view.cancelSearch();
+    this.showTab();
   },
   
   stickHeader: function(ready) {
@@ -178,6 +185,11 @@ var CommunityResources = CommonPlace.View.extend({
     this.view.resources(function(wire) {
       wires_below_header.push(wire);
     });
+    
+    if (_.isEmpty(wires_below_header)) {
+      console.log("I'm not sure why this is empty");
+      return;
+    }
     
     if (!this.$(".sticky .header").height()) {
       landing_bottom += _.first(wires_below_header).header.height();
