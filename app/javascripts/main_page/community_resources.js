@@ -38,9 +38,10 @@ var CommunityResources = CommonPlace.View.extend({
     this.view.resources(function(wire) {
       self.count++;
       wire.render();
+      if (self.currentQuery) { $(wire.el).highlight(self.currentQuery); }
       $(wire.el).appendTo(self.$(".resources"));
       //self.setZ(wire, 20 + (self.count*2));
-      if (!wire.header) { console.log("the header doesn't exist yet"); }
+      // can't do zindexing yet because header hasn't been rendered
     });
   },
   
