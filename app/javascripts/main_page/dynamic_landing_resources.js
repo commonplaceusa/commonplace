@@ -2,27 +2,32 @@ var DynamicLandingResources = CommonPlace.View.extend({
   template: "main_page.dynamic-landing-resources",
   className: "resources",
   
-  initialize: function() {
+  initialize: function(options) {
     this.raw = new CommunityWire({ uri: CommonPlace.community.link("landing_wires")});
     this.postlikes = new PostLikes([], { uri: CommonPlace.community.link("post_likes") });
     this._wires = [];
+    this.callback = options.callback;
   },
   
   resources: function(callback) {
     var self = this;
     
-    if (this.currentQuery) {
-      this.postlikes.fetch({ query: this.currentQuery }, function() {
-        self.makeSearch();
-        self.resources(callback);
-      });
-    } else if (_.isEmpty(this._wires)) {
-      this.raw.fetch({}, function() {
-        self.makeWires();
-        self.resources(callback);
-      });
+    if (_.isEmpty(this._wires)) {
+      if (this.currentQuery) {
+        this.postlikes.fetch({
+          data: { query: this.currentQuery },
+          success: function() {
+            self.makeSearch();
+            self.resources(callback);
+          }
+        });
+      } else {
+        this.raw.fetch({}, function() {
+          self.makeWires();
+          self.resources(callback);
+        });
+      }
     } else {
-      if (!this._wires.length) { console.log("what"); }
       _.each(this._wires, function(wire) { callback(wire); });
     }
   },
@@ -34,43 +39,50 @@ var DynamicLandingResources = CommonPlace.View.extend({
         template: "main_page.post-resources",
         collection: self.raw.neighborhood,
         fullWireLink: "#/posts",
-        emptyMessage: "No posts here yet."
+        emptyMessage: "No posts here yet.",
+        callback: self.callback
       })),
       (new LandingPreview({
         template: "main_page.post-offer-resources",
         collection: self.raw.offers,
         fullWireLink: "#/posts",
-        emptyMessage: "No offers here yet."
+        emptyMessage: "No offers here yet.",
+        callback: self.callback
       })),
       (new LandingPreview({
         template: "main_page.post-help-resources",
         collection: self.raw.help,
         fullWireLink: "#/posts",
-        emptyMessage: "No help requests here yet."
+        emptyMessage: "No help requests here yet.",
+        callback: self.callback
       })),
       (new LandingPreview({
         template: "main_page.post-publicity-resources",
         collection: self.raw.publicity,
         fullWireLink: "#/posts",
-        emptyMessage: "No posts here yet."
+        emptyMessage: "No posts here yet.",
+        callback: self.callback
       })),
       (new LandingPreview({
         template: "main_page.post-other-resources",
         collection: self.raw.other,
         fullWireLink: "#/posts",
-        emptyMessage: "No posts here yet."
+        emptyMessage: "No posts here yet.",
+        callback: self.callback
       })),
       (new LandingPreview({
         template: "main_page.announcement-resources",
         collection: self.raw.announcements,
         fullWireLink: "#/announcements",
-        emptyMessage: "No announcements here yet."
+        emptyMessage: "No announcements here yet.",
+        callback: self.callback
       })),
       (new LandingPreview({
         template: "main_page.group-post-resources",
         collection: self.raw.groupPosts,
         fullWireLink: "#/groupPosts",
-        emptyMessage: "No posts here yet."
+        emptyMessage: "No posts here yet.",
+        callback: self.callback
       }))
     ];
     
@@ -95,14 +107,16 @@ var DynamicLandingResources = CommonPlace.View.extend({
       template: "main_page.event-resources",
       collection: self.raw.events,
       fullWireLink: "#/events",
-      emptyMessage: "No events here yet."
+      emptyMessage: "No events here yet.",
+      callback: self.callback
     });
     
     var chrono = new Wire({
       template: "main_page.chrono-resources",
       collection: CommonPlace.community.postlikes,
       emptyMessage: "No posts here yet.",
-      perPage: 22
+      perPage: 22,
+      callback: self.callback
     });
     
     _.each(self.raw.all(), function(collection) { duplicates.push(collection.models); })
@@ -118,6 +132,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
   },
   
   makeSearch: function() {
+    console.log("I bet this is the second fetch");
     var searchWire = new Wire({
       template: "main_page.chrono-resources",
       collection: this.postlikes,
@@ -128,9 +143,13 @@ var DynamicLandingResources = CommonPlace.View.extend({
     this._wires.push(searchWire);
   },
   
-  search: function(query) { this.currentQuery = query; },
+  search: function(query) {
+    console.log(query);
+    this.currentQuery = query;
+    this._wires = [];
+  },
   
-  cancelSearch: function() { this.currentQuery = ""; }
+  cancelSearch: function() { this.search(""); }
 });
 
 var LandingPreview = PreviewWire.extend({
