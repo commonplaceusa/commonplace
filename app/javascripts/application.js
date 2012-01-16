@@ -16,6 +16,7 @@
 //= require jcrop
 //= require plaxo
 //= require chosen
+//= require highlight-3
 
 //= require config
 //= require feature_switches
