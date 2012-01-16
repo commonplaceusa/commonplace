@@ -53,7 +53,7 @@ var PostWireItem = WireItem.extend({
 
   share: function(e) {
     if (e) { e.preventDefault(); }
-    this.$(".thank-share .current").removeClass("current");
+    this.removeFocus();
     this.$(".share-link").addClass("current");
     var shareView = new ShareView({ model: this.model,
                                     el: this.$(".replies"),
@@ -64,7 +64,7 @@ var PostWireItem = WireItem.extend({
 
   reply: function(e) {
     if (e) { e.preventDefault(); }
-    this.$(".thank-share .current").removeClass("current");
+    this.removeFocus();
     this.$(".reply-link").addClass("current");
     this.render();
   },
