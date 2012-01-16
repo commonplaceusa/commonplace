@@ -132,19 +132,18 @@ var DynamicLandingResources = CommonPlace.View.extend({
   },
   
   makeSearch: function() {
-    console.log("I bet this is the second fetch");
     var searchWire = new Wire({
       template: "main_page.chrono-resources",
       collection: this.postlikes,
       emptyMessage: "No results.",
       perPage: 22
     });
+    searchWire.currentQuery = this.currentQuery;
     this._wires = [];
     this._wires.push(searchWire);
   },
   
   search: function(query) {
-    console.log(query);
     this.currentQuery = query;
     this._wires = [];
   },
