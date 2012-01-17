@@ -2,6 +2,7 @@
 //= require showdown
 //= require jquery
 //= require jquery-ui
+//= require jquery-getimagedata
 //= require actual
 //= require underscore
 //= require mustache
