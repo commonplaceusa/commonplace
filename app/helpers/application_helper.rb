@@ -52,17 +52,27 @@ script
     raw <<script
 <div id="fb-root"></div>
 <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '#{facebook_app_id}', // App ID
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true  // parse XFBML
-    });
-    console.log("FB INIT");
+  //window.fbAsyncInit = function() {
+  //  FB.init({
+  //    appId      : '#{facebook_app_id}', // App ID
+  //    status     : true, // check login status
+  //    cookie     : true, // enable cookies to allow the server to access the session
+  //    xfbml      : true  // parse XFBML
+  //  });
+  //  console.log("FB INIT");
 
     // Additional initialization code here
-  };
+  //};
+  $(document).ready(function() {
+    console.log("Initizlizing");
+    FB.init({
+      appId: '#{facebook_app_id}',
+      status: true,
+      cookie: true,
+      xfbml: true
+    });
+    console.log("Initialized FB");
+  });
 
   // Load the SDK Asynchronously
   (function(d){
