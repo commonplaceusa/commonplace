@@ -51,6 +51,7 @@ script
     facebook_app_id = $FacebookConfig["app_id"]
     raw <<script
 <div id="fb-root"></div>
+<script src="//connect.facebook.net/en_US/all.js"></script>
 <script>
   //window.fbAsyncInit = function() {
   //  FB.init({
@@ -63,24 +64,13 @@ script
 
     // Additional initialization code here
   //};
-  $(document).ready(function() {
-    console.log("Initizlizing");
-    FB.init({
-      appId: '#{facebook_app_id}',
-      status: true,
-      cookie: true,
-      xfbml: true
-    });
-    console.log("Initialized FB");
+  FB.init({
+    appId: '#{facebook_app_id}',
+    status: true,
+    cookie: true,
+    xfbml: true
   });
-
-  // Load the SDK Asynchronously
-  (function(d){
-     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     d.getElementsByTagName('head')[0].appendChild(js);
-   }(document));
+  console.log("Initialized FB");
 </script>
 script
   end
