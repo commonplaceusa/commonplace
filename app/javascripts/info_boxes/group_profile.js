@@ -31,15 +31,3 @@ var GroupProfileBox = Profile.extend({
   
 });
 
-var GroupNoneBox = CommonPlace.View.extend({
-  template: "main_page/profiles/group-none",
-  className: "none",
-  
-  initialize: function(options) {
-    this.community = options.community;
-  },
-  
-  query: function() { return window.infoBox.currentQuery; },
-  
-  email: function() { return this.community.get("admin_email"); }
-});
