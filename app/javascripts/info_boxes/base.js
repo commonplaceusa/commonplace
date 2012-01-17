@@ -62,6 +62,8 @@ var InfoBox = CommonPlace.View.extend({
       self.nextPageTrigger();
 
       this.$("#info-list-area > ul").scroll(function() {
+        if (!self.currentQuery) { return; } // paginate only on search
+        
         // start loading when the scrollbar is halfway down
       if ($(this).scrollTop() > (this.scrollHeight / 2)) {
         self.nextPageThrottled();
