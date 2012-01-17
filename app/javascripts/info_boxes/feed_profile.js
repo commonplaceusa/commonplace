@@ -55,8 +55,3 @@ var FeedProfileBox = Profile.extend({
   
 });
 
-var FeedNoneBox = CommonPlace.View.extend({
-  template: "main_page/profiles/feed-none",
-  className: "none",
-  query: function() { return window.infoBox.currentQuery; }
-});
