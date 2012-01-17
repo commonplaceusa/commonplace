@@ -480,8 +480,8 @@ WHERE
   def featured
     [
       self.sent_messages.where("messagable_type = 'User'").map {|m| m.messagable}.uniq.reverse.take(10),
-      self.community.users.featured.take(10)
-    ].flatten.sort_by! {|u| u.all_cpcredits }.uniq.reverse.take(15)
+      self.community.users.featured.take(45)
+    ].flatten.sort_by! {|u| u.all_cpcredits }.uniq.reverse.take(50)
   end
 
   searchable do
