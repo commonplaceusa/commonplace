@@ -47,33 +47,6 @@ if (window['mpq'] != 'undefined'){
 script
   end
 
-  def include_facebook
-    facebook_app_id = $FacebookConfig["app_id"]
-    raw <<script
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '#{facebook_app_id}', // App ID
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true  // parse XFBML
-    });
-    window.fbApiInit = true;
-    console.log("DONE");
-  };
-
-  // Load the SDK Asynchronously
-  (function(d){
-     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     d.getElementsByTagName('head')[0].appendChild(js);
-   }(document));
-</script>
-script
-  end
-
   def mixpanel_track(action, options = {})
     options.reverse_merge!(community: current_community.try(:slug))
     if Rails.env.production?
