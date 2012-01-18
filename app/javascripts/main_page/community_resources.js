@@ -25,7 +25,7 @@ var CommunityResources = CommonPlace.View.extend({
 
     this.view = this.tabs[tab](this);
     
-    if (single) { this.view.single(single); }
+    if (single) { this.view.singleItem(single); }
     
     (self.currentQuery) ? self.search() : self.showTab();
   },
@@ -231,7 +231,7 @@ var CommunityResources = CommonPlace.View.extend({
       this.wire.search(query);
     },
     
-    single: function(wire) { this.single = wire; },
+    singleItem: function(wire) { this.single = wire; },
     
     cancelSearch: function() { this.search(""); }
   }),
