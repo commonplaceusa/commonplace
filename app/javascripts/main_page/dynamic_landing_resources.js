@@ -136,9 +136,10 @@ var DynamicLandingResources = CommonPlace.View.extend({
       template: "main_page.chrono-resources",
       collection: this.postlikes,
       emptyMessage: "No results.",
-      perPage: 22
+      perPage: 22,
+      callback: this.callback
     });
-    searchWire.currentQuery = this.currentQuery;
+    searchWire.search(this.currentQuery);
     this._wires = [];
     this._wires.push(searchWire);
   },
