@@ -52,10 +52,14 @@ class API
 
       def last_modified_by_replied_at(scope)
         # sets last modified header for this request to that of the newest record
-        last_modified([(scope.unscoped + Thank.all)
-                        .sort{|a,b| b.replied_at <=> a.replied_at}
-                        .select{|a| a.replied_at}
-                        .first.try(&:replied_at), Date.today.beginning_of_day].compact.max)
+        last_modified_item = scope.unscoped.order("GREATEST(replied_at, updated_at) DESC").first
+        last_thank = Thank.order("created_at DESC").first
+
+        last_modified([
+            last_modified_item.replied_at, 
+            last_modified_item.updated_at,
+            last_thank.created_at,
+            Date.today.beginning_of_day].compact.max)
       end
 
       def jsonp(callback, data)

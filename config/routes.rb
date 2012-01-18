@@ -4,6 +4,7 @@ Commonplace::Application.routes.draw do
   # Community specific redirects
   match "/corunna" => redirect { "/owossocorunna" }
   match "/owosso" => redirect { "/owossocorunna" }
+  match "/style_guide" => "bootstraps#style_guide"
 
   constraints :subdomain => "m" do
     match "/:community" => "registrations#mobile_new"

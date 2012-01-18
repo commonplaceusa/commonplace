@@ -53,6 +53,8 @@ var PostWireItem = WireItem.extend({
 
   share: function(e) {
     if (e) { e.preventDefault(); }
+    this.removeFocus();
+    this.$(".share-link").addClass("current");
     var shareView = new ShareView({ model: this.model,
                                     el: this.$(".replies"),
                                     account: CommonPlace.account
@@ -62,6 +64,8 @@ var PostWireItem = WireItem.extend({
 
   reply: function(e) {
     if (e) { e.preventDefault(); }
+    this.removeFocus();
+    this.$(".reply-link").addClass("current");
     this.render();
   },
 
@@ -71,7 +75,8 @@ var PostWireItem = WireItem.extend({
     "mouseenter": "showProfile",
     "click .thank-link": "thank",
     "click .share-link": "share",
-    "click .reply-link": "reply"
+    "click .reply-link": "reply",
+    "blur": "removeFocus"
   },
 
   messageUser: function(e) {
@@ -119,6 +124,10 @@ var PostWireItem = WireItem.extend({
     formview.render();
   },
 
-  group: function() { return false; }
+  group: function() { return false; },
+  
+  removeFocus: function() {
+    this.$(".thank-share .current").removeClass("current");
+  }
 
 });

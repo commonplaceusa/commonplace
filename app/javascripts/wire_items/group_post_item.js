@@ -55,7 +55,10 @@ var GroupPostWireItem = WireItem.extend({
     "click .moreBody": "loadMore",
     "mouseenter": "showProfile",
     "click .editlink": "editGroupPost",
-    "click .thank-link": "thank"
+    "click .thank-link": "thank",
+    "click .share-link": "share",
+    "click .reply-link": "reply",
+    "blur": "removeFocus"
   },
 
   messageUser: function(e) {
@@ -105,6 +108,28 @@ var GroupPostWireItem = WireItem.extend({
   
   group: function() { return this.model.get("group"); },
   
-  groupUrl: function() { return this.model.get("group_url"); }
+  groupUrl: function() { return this.model.get("group_url"); },
+  
+  share: function(e) {
+    if (e) { e.preventDefault(); }
+    this.removeFocus();
+    this.$(".share-link").addClass("current");
+    var shareView = new ShareView({ model: this.model,
+                                    el: this.$(".replies"),
+                                    account: CommonPlace.account
+                                  });
+     shareView.render();
+   },
+
+  reply: function(e) {
+    if (e) { e.preventDefault(); }
+    this.removeFocus();
+    this.$(".reply-link").addClass("current");
+    this.render();
+  },
+  
+  removeFocus: function() {
+    this.$(".thank-share .current").removeClass("current");
+  }
 
 });
