@@ -20,7 +20,7 @@ function facebook_connect_post_registration(success, failure) {
           $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/api/users/" + CommonPlace.account.get("id") + "/update_avatar_and_fb_auth",
+            url: "/api/user/" + CommonPlace.account.get("id") + "/update_avatar_and_fb_auth",
             data: JSON.stringify({
               fb_username: response.username,
               fb_auth_token: auth_token
