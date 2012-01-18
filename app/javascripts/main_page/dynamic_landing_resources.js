@@ -2,181 +2,160 @@ var DynamicLandingResources = CommonPlace.View.extend({
   template: "main_page.dynamic-landing-resources",
   className: "resources",
   
-  afterRender: function() {
-    this._sortCountdown = 0;
-    
+  initialize: function(options) {
+    this.raw = new CommunityWire({ uri: CommonPlace.community.link("landing_wires")});
+    this.postlikes = new PostLikes([], { uri: CommonPlace.community.link("post_likes") });
+    this._wires = [];
+    this.callback = options.callback;
+  },
+  
+  resources: function(callback) {
     var self = this;
     
-    this._events = new LandingPreview({
-      template: 'main_page.event-resources',
-      collection: CommonPlace.community.events,
-      el: this.$(".events.wire"),
+    if (_.isEmpty(this._wires)) {
+      if (this.currentQuery) {
+        this.postlikes.fetch({
+          data: { query: this.currentQuery },
+          success: function() {
+            self.makeSearch();
+            self.resources(callback);
+          }
+        });
+      } else {
+        this.raw.fetch({}, function() {
+          self.makeWires();
+          self.resources(callback);
+        });
+      }
+    } else {
+      _.each(this._wires, function(wire) { callback(wire); });
+    }
+  },
+  
+  makeWires: function() {
+    var self = this;
+    var unfiltered = [
+      (new LandingPreview({
+        template: "main_page.post-resources",
+        collection: self.raw.neighborhood,
+        fullWireLink: "#/posts",
+        emptyMessage: "No posts here yet.",
+        callback: self.callback
+      })),
+      (new LandingPreview({
+        template: "main_page.post-offer-resources",
+        collection: self.raw.offers,
+        fullWireLink: "#/posts",
+        emptyMessage: "No offers here yet.",
+        callback: self.callback
+      })),
+      (new LandingPreview({
+        template: "main_page.post-help-resources",
+        collection: self.raw.help,
+        fullWireLink: "#/posts",
+        emptyMessage: "No help requests here yet.",
+        callback: self.callback
+      })),
+      (new LandingPreview({
+        template: "main_page.post-publicity-resources",
+        collection: self.raw.publicity,
+        fullWireLink: "#/posts",
+        emptyMessage: "No posts here yet.",
+        callback: self.callback
+      })),
+      (new LandingPreview({
+        template: "main_page.post-other-resources",
+        collection: self.raw.other,
+        fullWireLink: "#/posts",
+        emptyMessage: "No posts here yet.",
+        callback: self.callback
+      })),
+      (new LandingPreview({
+        template: "main_page.announcement-resources",
+        collection: self.raw.announcements,
+        fullWireLink: "#/announcements",
+        emptyMessage: "No announcements here yet.",
+        callback: self.callback
+      })),
+      (new LandingPreview({
+        template: "main_page.group-post-resources",
+        collection: self.raw.groupPosts,
+        fullWireLink: "#/groupPosts",
+        emptyMessage: "No posts here yet.",
+        callback: self.callback
+      }))
+    ];
+    
+    var duplicates = [];
+    var sorted = _.filter(unfiltered, function(wire) {
+      return wire.collection.length > 0;
+    });
+    
+    var empty = _.filter(unfiltered, function(wire) {
+      return !wire.collection.length;
+    });
+    
+    sorted = _.sortBy(sorted, function(wire) {
+      return parseDate(wire.collection.first().get("published_at"));
+    });
+    
+    sorted.reverse();
+    
+    var first = sorted.shift();
+    
+    var events = new LandingPreview({
+      template: "main_page.event-resources",
+      collection: self.raw.events,
       fullWireLink: "#/events",
-      emptyMessage: "There are no upcoming events yet. Add some."
+      emptyMessage: "No events here yet.",
+      callback: self.callback
     });
     
-    this._events.render();
-    
-    _.each(this.wires(), function(wire) {
-      wire.render();
+    var chrono = new Wire({
+      template: "main_page.chrono-resources",
+      collection: CommonPlace.community.postlikes,
+      emptyMessage: "No posts here yet.",
+      perPage: 22,
+      callback: self.callback
     });
-  },
-  
-  wires: function() {
-    var self = this;
-    if (!this._wires) {
-      this._wires = [
-        (new LandingPreview({
-          template: 'main_page.post-resources',
-          collection: CommonPlace.community.categories.neighborhood,
-          el: this.$(".neighborhoodPosts.wire"),
-          fullWireLink: "#/posts",
-          emptyMessage: "No posts here yet.",
-          callback: function() { self.displayPreviews(); }
-        })),
-        
-        (new LandingPreview({
-          template: 'main_page.post-offer-resources',
-          collection: CommonPlace.community.categories.offers,
-          el: this.$(".offerPosts.wire"),
-          fullWireLink: "#/posts",
-          emptyMessage: "No offers here yet.",
-          callback: function() { self.displayPreviews(); }
-        })),
-        
-        (new LandingPreview({
-          template: 'main_page.post-help-resources',
-          collection: CommonPlace.community.categories.help,
-          el: this.$(".helpPosts.wire"),
-          fullWireLink: "#/posts",
-          emptyMessage: "No help requests here yet.",
-          callback: function() { self.displayPreviews(); }
-        })),
-        
-        (new LandingPreview({
-          template: 'main_page.post-publicity-resources',
-          collection: CommonPlace.community.categories.publicity,
-          el: this.$(".publicityPosts.wire"),
-          fullWireLink: "#/posts",
-          emptyMessage: "No posts here yet.",
-          callback: function() { self.displayPreviews(); }
-        })),
-        
-        (new LandingPreview({
-          template: 'main_page.post-other-resources',
-          collection: CommonPlace.community.categories.other,
-          el: this.$(".otherPosts.wire"),
-          fullWireLink: "#/posts",
-          emptyMessage: "No posts here yet.",
-          callback: function() { self.displayPreviews(); }
-        })),
-        
-        (new LandingPreview({
-          template: 'main_page.announcement-resources',
-          collection: CommonPlace.community.announcements,
-          el: this.$(".announcements.wire"),
-          emptyMessage: "No announcements here yet.",
-          fullWireLink: "#/announcements",
-          callback: function() { self.displayPreviews(); }
-        })),
-        
-        (new LandingPreview({
-          template: 'main_page.group-post-resources',
-          collection: CommonPlace.community.groupPosts,
-          el: this.$(".groupPosts.wire"),
-          emptyMessage: "No posts here yet.",
-          fullWireLink: "#/group_posts",
-          callback: function() { self.displayPreviews(); }
-        }))
-      ];
-    }
-    return this._wires;
-  },
-  
-  displayPreviews: function() {
-    this._sortCountdown++;
     
-    if (this._sortCountdown == this._wires.length) {
-      var duplicates = [];
-      
-      var sorted = _.filter(this._wires, function(wire) {
-        duplicates.push(wire.collection.models);
-        return wire.collection.length > 0;
-      });
-      
-      if (sorted.length > 0) {
-        sorted = _.sortBy(sorted, function(wire) {
-          return parseDate(wire.collection.first().get("published_at"));
-        });
-        
-        sorted.reverse(); // underscore is sorting it in reverse
-        
-        var first = sorted.shift();
-        first.el.detach();
-        this.$(".populated").prepend(first.el);
-        
-        var self = this;
-        _.each(sorted, function(wire) {
-          wire.el.detach();
-          self.$(".populated").append(wire.el);
-        });
-        
-        if (Features.isActive("2012Release")) {
-          this._chrono = new Wire({
-            template: "main_page.chrono-resources",
-            collection: CommonPlace.community.postlikes,
-            el: this.$(".chrono.wire"),
-            emptyMessage: "No posts here yet.",
-            perPage: 22
-          });
-          
-          duplicates.push(this._events.collection.models);
-          this._chrono.collection.setDupes(_.flatten(duplicates));
-          this._chrono.render();
-        }
-        
-        if (Features.isActive("2012Release")) {
-          this.stickHeader(true);
-        }
-      }
-    }
+    _.each(self.raw.all(), function(collection) { duplicates.push(collection.models); })
+    chrono.collection.setDupes(_.flatten(duplicates));
+    
+    self._wires = [];
+    self._wires.push(first);
+    self._wires.push(events)
+    self._wires.push(sorted);
+    self._wires.push(empty);
+    self._wires.push(chrono);
+    self._wires = _.flatten(self._wires);
   },
   
-  stickHeader: function(ready) {
-    if (ready || this._ready) {
-      this._ready = true;
-      var landing_top = $(this.el).offset().top + $(window).scrollTop();
-      var landing_bottom = landing_top + this.$(".sticky-header").height();
-      var wires_below_header = _.flatten([this._wires, this._events, this._chrono]);
-      
-      wires_below_header = _.filter(wires_below_header, function(wire) {
-        var wire_bottom = wire.el.offset().top + wire.el.height();
-        return wire_bottom >= landing_bottom;
-      });
-      
-      var top_wire = _.sortBy(wires_below_header, function(wire) {
-        return wire.el.offset().top;
-      }).shift();
-      
-      if (top_wire != this.headerWire) {
-        this.unstickHeader();
-        var sticky = top_wire.header.clone(true);
-        sticky.appendTo($("#community-resources .sticky-header"));
-        this.headerWire = top_wire;
-      }
-    }
+  makeSearch: function() {
+    var searchWire = new Wire({
+      template: "main_page.chrono-search-resources",
+      collection: this.postlikes,
+      emptyMessage: "No results.",
+      perPage: 22,
+      callback: this.callback
+    });
+    searchWire.search(this.currentQuery);
+    this._wires = [];
+    this._wires.push(searchWire);
   },
   
-  unstickHeader: function() {
-    if (this._ready && this.headerWire) {
-      $("#community-resources .sticky-header").empty();
-    }
-  }
+  search: function(query) {
+    this.currentQuery = query;
+    this._wires = [];
+  },
+  
+  cancelSearch: function() { this.search(""); }
 });
 
 var LandingPreview = PreviewWire.extend({
   template: "wires.preview-wire",
   _defaultPerPage: 3,
+  aroundRender: function(render) { render(); },
   fullWireLink: function() { return this.options.fullWireLink; },
   showMore: function() {},
   areMore: function() { return false; },

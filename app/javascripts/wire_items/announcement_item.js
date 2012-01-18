@@ -45,6 +45,7 @@ var AnnouncementWireItem = WireItem.extend({
   events: {
     "click .editlink": "editAnnouncement",
     "mouseenter": "showProfile",
+    "mouseenter .announcement": "showProfile",
     "click .announcement > .author": "messageUser",
     "click .thank-link": "thank",
     "click .share-link": "share",

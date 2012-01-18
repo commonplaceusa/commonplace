@@ -34,6 +34,7 @@
     text-align: center
 
   form.search
+    margin: 10px 10px 0
     float: right
     width: auto
     position: relative
@@ -55,6 +56,8 @@
       &:focus
         color: #333
         outline: 0
+      &.active
+        background-image: none
 
     input[placeholder]
       color: #333 
@@ -80,12 +83,12 @@ body.fixedLayout
     top: 48px
     background-color: #cee7fe
     padding-top: 20px
-    z-index: 22
+    z-index: 40
   #community-resources
-    .sticky-header
+    .sticky
       position: fixed
-      top: 115px
-      z-index: 20
+      top: 114px
+      z-index: 30
       width: 488px
       height: 45px
       border: 1px solid #bebebe

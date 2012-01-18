@@ -58,6 +58,7 @@ $text: #738392
         overflow-y: auto
         border-bottom: 1px solid #101f30
         background-color: #1c2e40
+        z-index: 9
 
       .remove-search
         text-align: center
@@ -88,6 +89,8 @@ $text: #738392
         display: none
         padding: 10px
         text-align: center
+        z-index: 10
+        margin-top: 30px
       
       li
         padding: 8px
@@ -119,6 +122,9 @@ $text: #738392
       overflow: auto
       color: #444
       height: 100%
+      
+      .highlight
+        background-color: #efefaa
       
       .none
         display: none
@@ -246,15 +252,15 @@ body.fixedLayout
         #info-list
           height: auto
           position: absolute
-          top: 0
-          bottom: 30px
+          top: 30px
+          bottom: 0
           left: 0 
           right: 0
             
 
         input.search
           position: absolute
-          bottom: 0
+          top: 0
           
           
       #profile-area

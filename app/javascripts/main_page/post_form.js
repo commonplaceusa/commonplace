@@ -14,16 +14,10 @@ var PostForm = CommonPlace.View.extend({
   afterRender: function() {
     this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$("textarea").autoResize();
-    // dropkick isn't playing well with optgroups
-    //this.$("select.category").dropkick();
   },
   
   createPost: function(e) {
     e.preventDefault();
-    
-    if (this.$("[name=category]").val() == "none") {
-      return this.showError({ responseText: "Please tell us where to post this." });
-    }
     
     this.cleanUpPlaceholders();
     
@@ -32,27 +26,11 @@ var PostForm = CommonPlace.View.extend({
     
     var data = {
       title: this.$("[name=title]").val(),
-      body: this.$("[name=body]").val()
+      body: this.$("[name=body]").val(),
+      category: this.options.category
     }
     
-    var isGroupPost = this.$("[name=category]").val() == "discussion";
-    var groups = CommonPlace.community.groups;
-    var self = this;
-    
-    if (isGroupPost) {
-      var groupId = this.$("[name=category] option:selected").attr("data-group-id");
-      groups.fetch({
-        success: function() {
-          var group = groups.find(function(g) {
-            return g.id == groupId;
-          });
-          self.sendPost(group.posts, data);
-        }
-      });
-    } else {
-      data["category"] = this.$("[name=category]").val();
-      this.sendPost(this.collection, data);
-    }
+    this.sendPost(CommonPlace.community.posts, data);
   },
   
   sendPost: function(postCollection, data) {
@@ -102,7 +80,5 @@ var PostForm = CommonPlace.View.extend({
 
   resetLayout: function() { CommonPlace.layout.reset(); },
   
-  groups: function() { return this.options.community.get('groups'); },
-
   hideLabel: function(e) { $("option.label", e.target).hide(); }
 });

@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }
 
   # HACK HACK HACK avatar_url should not be hardcoded like this
-  scope :featured, { :conditions => ["about != '' AND goods != '' AND interests != ''"] }
+  scope :featured, { :conditions => ["about != '' OR goods != '' OR interests != ''"] }
 
   def facebook_user?
     facebook_uid
@@ -475,6 +475,13 @@ WHERE
 
   def all_cpcredits
     self.posts.count + self.replies.count + self.replies_received.count + self.events.count + self.all_invitations.count + self.thanks.count + self.thanks_received.count
+  end
+  
+  def featured
+    [
+      self.sent_messages.where("messagable_type = 'User'").map {|m| m.messagable}.uniq.reverse.take(10),
+      self.community.users.featured.take(45)
+    ].flatten.sort_by! {|u| u.all_cpcredits }.uniq.reverse.take(50)
   end
 
   searchable do
