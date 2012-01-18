@@ -168,10 +168,8 @@ var InfoBox = CommonPlace.View.extend({
         model = firstIsAccount ? collection.at(1) : collection.first();
       }
     }
-    console.log("showinglist");
     model.fetch({
       success: function() {
-        console.log("success");
         self.renderProfile(model);
       }
     });
@@ -198,7 +196,7 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   renderProfile: function(model) {
-    if (model == this.currentModel) { console.log("same model"); return; }
+    if (this.isCurrentModel(model)) { return; }
     this.$profile().show();
     this.$profile_none().hide();
     var profile = this.profileBoxFor(model);
@@ -278,6 +276,13 @@ var InfoBox = CommonPlace.View.extend({
                 search: CommonPlace.community.grouplikes
               } 
     }[type];    
+  },
+  
+  isCurrentModel: function(model) {
+    if (!this.currentModel) { return false; }
+    if (this.currentModel == model) { return true; }
+    return (this.currentModel.id == model.id &&
+            this.currentModel.get("schema") == model.get("schema"));
   },
 
   switchTab: function(e) {
