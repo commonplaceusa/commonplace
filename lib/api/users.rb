@@ -16,7 +16,7 @@ class API
       end
     end
 
-    post "/users/:id/update_avatar_and_fb_auth" do |id|
+    post "/:id/update_avatar_and_fb_auth" do |id|
       user = User.find(id)
       halt [401, "wrong community"] unless in_comm(user.community.id)
       # Update the user object
