@@ -5,7 +5,8 @@ var CommunityResources = CommonPlace.View.extend({
   
   events: {
     "submit .sticky form": "search",
-    "keyup .sticky input": "debounceSearch"
+    "keyup .sticky input": "debounceSearch",
+    "click .sticky .cancel": "cancelSearch"
   },
   
   afterRender: function() {
@@ -37,7 +38,6 @@ var CommunityResources = CommonPlace.View.extend({
     this.view.resources(function(wire) {
       self.count++;
       wire.render();
-      if (self.currentQuery) { $(wire.el).highlight(self.currentQuery); }
       $(wire.el).appendTo(self.$(".resources"));
     });
   },
@@ -166,13 +166,25 @@ var CommunityResources = CommonPlace.View.extend({
   search: function(event) {
     if (event) { event.preventDefault(); }
     this.currentQuery = this.$(".sticky form.search input").val();
-    this.view.search(this.currentQuery);
-    this.showTab();
+    if (this.currentQuery) {
+      this.view.search(this.currentQuery);
+      this.showTab();
+      $(".sticky form.search input").addClass("active");
+      $(".sticky .cancel").show();
+      $(".sticky .cancel").addClass("waiting");
+    } else {
+      this.cancelSearch();
+    }
   },
   
   cancelSearch: function(e) {
+    this.currentQuery = "";
+    this.$(".sticky form.search input").val("");
     this.view.cancelSearch();
     this.showTab();
+    $(".sticky form.search input").removeClass("active");
+    $(".sticky .cancel").hide();
+    $(".resources").removeHighlight();
   },
   
   stickHeader: function(ready) {
@@ -182,6 +194,10 @@ var CommunityResources = CommonPlace.View.extend({
     }).last();
 
     $sticky_header.html(current_subnav.clone());
+    
+    if (this.currentQuery) {
+      $(".sticky .cancel").removeClass("waiting");
+    }
   },
   
   makeTab: function(wire) { return new this.ResourceTab({ wire: wire }); },
@@ -200,7 +216,7 @@ var CommunityResources = CommonPlace.View.extend({
     
     search: function(query) {
       _.each(this._wires, function(wire) {
-        wire.currentQuery = query;
+        wire.search(query);
       });
     },
     
