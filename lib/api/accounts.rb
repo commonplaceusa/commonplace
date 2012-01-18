@@ -96,6 +96,10 @@ class API
       checked_inbox()
       serialize(paginate(current_account.feed_messages.reorder("replied_at DESC")))
     end
+    
+    get "/featured" do
+      serialize current_account.featured
+    end
 
     post "/:id/update_avatar_and_fb_auth" do |id|
       user = User.find(id)

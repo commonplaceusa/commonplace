@@ -17,23 +17,6 @@ class API
           with(:community_id, community_id)
           yield(self) if block_given?
         end
-        if (options && options[:highlight])
-          search.results.each do |result|
-            keywords.each do |keyword|
-              options[:highlight].each do |method|
-                if result.send(method)
-                  if result.send(method).respond_to? :each
-                    result.send(method).each do |reply|
-                      reply.body.gsub!(keyword, "<span class='highlight'>#{keyword}</span>")
-                    end
-                  else
-                    result.send(method).gsub!(keyword, "<span class='highlight'>#{keyword}</span>")
-                  end
-                end
-              end
-            end
-          end
-        end
         serialize(search)
       end
 

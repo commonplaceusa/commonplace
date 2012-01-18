@@ -242,7 +242,8 @@ module Serializer
           "inbox" => "/account/inbox",
           "sent" => "/account/inbox/sent",
           "feed_messages" => "/account/inbox/feeds",
-          "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts"
+          "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts",
+          "featured_users" => "/account/featured"
         }
         }
 
@@ -254,10 +255,9 @@ module Serializer
         "offers" => serialize(o.offers),
         "help" => serialize(o.help),
         "publicity" => serialize(o.publicity),
-        "group" => serialize(o.publicity),
+        "group" => serialize(o.group),
         "announcements" => serialize(o.announcements),
-        "other" => serialize(o.other),
-        "past" => serialize(o.past)
+        "other" => serialize(o.other)
       }
       end
 

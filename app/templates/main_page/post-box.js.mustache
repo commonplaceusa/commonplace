@@ -1,43 +1,43 @@
 <div class="wrapper">
 
   <div class="navigation">
+    
+    <h3 class="postbox-head">Pick a topic:</h3>
 
-    <a
-      href="/{{community_slug}}/share/post"
-      data-remote
-      class="create-neighborhood-post tab-button post">
-      <div class="icon"></div>
-      {{#t}}create-neighborhood-post.a{{/t}}
-    </a>
+    <ul>
+      <li class="post" data-tab="post">
+        Share Neighborly News
+      </li>
+      <li class="offers" data-tab="offers">
+        Sell Something or Give it Away
+      </li>
+      <li class="help" data-tab="help">
+        Make A Request or Ask a Question
+      </li>   
+      <li class="event" data-tab="event">
+        Post an Event
+      </li>      
+      <li class="publicity" data-tab="publicity">
+        Publicize a Business or Organization
+      </li>
 
-    {{#accountHasFeeds}}
-      <a
-        href="{{firstFeedUrl}}"
-        class="create-announcement tab-button announcement">
-        <div class="icon"></div>
-        {{#t}}create-announcement.a{{/t}}
-      </a>
-    {{/accountHasFeeds}}
 
-    <a
-      href="/{{community_slug}}/share/event"
-      class="create-event tab-button event"
-      data-remote>
-      <div class="icon"></div>
-      {{#t}}create-event.a{{/t}}
-    </a>
 
-    <a
-      href="/{{community_slug}}/share/group_post"
-      class="create-group-post tab-button groupPost group_post"
-      data-remote>
-      <div class="icon"></div>
-      {{#t}}create-group-post.a{{/t}}
-    </a>
+      <li class="group" data-tab="group">
+        Discussion Groups
+      </li>      
+      
+      <li class="other" data-tab="other">
+        Other
+      </li>
+            <li class="nothing"></li>
+
+    </ul>
 
   </div>
 
   <div class="form-container">
+    <form></form>
   </div>
 
   <div style="clear: both;"></div>

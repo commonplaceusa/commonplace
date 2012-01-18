@@ -23,7 +23,7 @@ var EventForm = CommonPlace.View.extend({
     this.$(".spinner").show();
     var self = this;
     this.cleanUpPlaceholders();
-    this.collection.create({ // use $.fn.serialize here
+    CommonPlace.community.events.create({ // use $.fn.serialize here
       title:   this.$("[name=title]").val(),
       about:   this.$("[name=about]").val(),
       date:    this.$("[name=date]").val(),
@@ -51,7 +51,7 @@ var EventForm = CommonPlace.View.extend({
   },
 
   groups: function() {
-    return this.options.community.get('groups');
+    return CommonPlace.community.get('groups');
   },
 
   toggleCheckboxLIClass: function(e) {

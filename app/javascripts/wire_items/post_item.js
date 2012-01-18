@@ -73,6 +73,8 @@ var PostWireItem = WireItem.extend({
     "click div.group-post > .author": "messageUser",
     "click .editlink": "editPost",
     "mouseenter": "showProfile",
+    "mouseenter .post": "showProfile",
+    "mouseenter .thank-share": "showProfile",
     "click .thank-link": "thank",
     "click .share-link": "share",
     "click .reply-link": "reply",

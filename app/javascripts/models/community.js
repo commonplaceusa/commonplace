@@ -11,6 +11,7 @@ var Community = Model.extend({
     this.feeds = this.setup(Feeds, "feeds");
     this.featuredFeeds = this.setup(Feeds, "featured_feeds");
     this.groups = this.setup(Groups, "groups");
+    this.grouplikes = this.setup(GroupLikes, "group_likes");
     this.search = {
       users: this.setup(Users, "users"),
       feeds: this.setup(Feeds, "feeds"),

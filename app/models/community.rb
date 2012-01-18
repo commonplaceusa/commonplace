@@ -73,6 +73,7 @@ class Community < ActiveRecord::Base
       "announcements" => "/communities/#{id}/announcements",
       "group_posts" => "/communities/#{id}/group_posts",
       "post_likes" => "/communities/#{id}/post-like",
+      "group_likes" => "/communities/#{id}/group-like",
       "users" => "/communities/#{id}/users",
       "featured_users" => "/communities/#{id}/users/featured",
       "featured_feeds" => "/communities/#{id}/feeds/featured",
@@ -84,7 +85,8 @@ class Community < ActiveRecord::Base
       "posts_other" => "/communities/#{id}/posts/other",
       "invites" => "/communities/#{id}/invites",
       "questions" => "/communities/#{id}/questions",
-      "shares" => "/communities/#{id}/shares"
+      "shares" => "/communities/#{id}/shares",
+      "landing_wires" => "/communities/#{id}/wire"
     }
   end
 
