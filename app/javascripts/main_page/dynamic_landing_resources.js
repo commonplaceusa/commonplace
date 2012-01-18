@@ -133,7 +133,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
   
   makeSearch: function() {
     var searchWire = new Wire({
-      template: "main_page.chrono-resources",
+      template: "main_page.chrono-search-resources",
       collection: this.postlikes,
       emptyMessage: "No results.",
       perPage: 22,
