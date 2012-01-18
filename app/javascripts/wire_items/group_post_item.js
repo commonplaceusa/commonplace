@@ -54,6 +54,7 @@ var GroupPostWireItem = WireItem.extend({
     "click div.group-post > .author > .person": "messageUser",
     "click .moreBody": "loadMore",
     "mouseenter": "showProfile",
+    "mouseenter .group-post": "showProfile",
     "click .editlink": "editGroupPost",
     "click .thank-link": "thank",
     "click .share-link": "share",
