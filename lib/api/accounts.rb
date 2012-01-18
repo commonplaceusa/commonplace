@@ -97,5 +97,17 @@ class API
       serialize(paginate(current_account.feed_messages.reorder("replied_at DESC")))
     end
 
+    post "/:id/update_avatar_and_fb_auth" do |id|
+      user = User.find(id)
+      halt [401, "unauthorized"] unless ??
+      user.metadata['fb_access_token'] = request_body['fb_auth_token']
+      user.facebook_uid = request_body['fb_username']
+      if user.save
+        [200, ""]
+      else
+        [400, "errors"]
+      end
+    end
+
   end
 end
