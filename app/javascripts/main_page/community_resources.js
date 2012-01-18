@@ -17,7 +17,7 @@ var CommunityResources = CommonPlace.View.extend({
     $(window).scroll(function() { self.stickHeader(); });
   },
 
-  switchTab: function(tab) {
+  switchTab: function(tab, single) {
     var self = this;
     
     this.$(".tab-button").removeClass("current");
@@ -25,18 +25,16 @@ var CommunityResources = CommonPlace.View.extend({
 
     this.view = this.tabs[tab](this);
     
+    if (single) { this.view.single(single); }
+    
     (self.currentQuery) ? self.search() : self.showTab();
   },
   
   showTab: function() {
     this.$(".resources").empty();
-    this._ready = false;
-    this.countdown = 0;
-    this.count = 0;
     var self = this;
     
     this.view.resources(function(wire) {
-      self.count++;
       wire.render();
       $(wire.el).appendTo(self.$(".resources"));
     });
@@ -123,41 +121,58 @@ var CommunityResources = CommonPlace.View.extend({
     }
   },
   
-  // single item view overhaul is yet to be determined
-
-  /**showPost: function(post) {
-    this.showSingleItem(post, GroupPostWireItem);
-  },
-  showAnnouncement: function(announcement) {
-    this.showSingleItem(announcement, AnnouncementWireItem);
-  },
-  showEvent: function(event) {
-    this.showSingleItem(event, EventWireItem);
-  },
-  showGroupPost: function(groupPost) {
-    this.showSingleItem(groupPost, GroupPostWireItem);
-  },
-
-  showSingleItem: function(model, ItemView) {
+  showPost: function(post) {
     var self = this;
-    model.fetch({
-      success: function(model) {
-        var item = new ItemView({model: model, account: self.options.account});
-
-        self.$(".tab-button").removeClass("current");
-
-        item.render();
-
-        self.$(".resources").html($("<div/>", { 
-          "class": "wire",
-          html: $("<ul/>", {
-            "class": "wire-list",
-            html: item.el
-          })
-        }));
-      }
+    post.fetch({ success: function() {
+      self.showSingleItem(post, Posts, {
+        template: "main_page.post-resources",
+        fullWireLink: "#/posts",
+        tab: "posts"
+      });
+    }});
+  },
+  
+  showAnnouncement: function(announcement) {
+    var self = this;
+    announcement.fetch({ success: function() {
+      self.showSingleItem(announcement, Announcements, {
+        template: "main_page.announcement-resources",
+        fullWireLink: "#/announcements",
+        tab: "announcements"
+      });
+    }});
+  },
+  
+  showEvent: function(event) {
+    var self = this;
+    event.fetch({ success: function() {
+      self.showSingleItem(event, Events, {
+        template: "main_page.event-resources",
+        fullWireLink: "#/events",
+        tab: "events"
+      });
+    }});
+  },
+  
+  showGroupPost: function(post) {
+    var self = this;
+    post.fetch({ success: function() {
+      self.showSingleItem(post, GroupPosts, {
+        template: "main_page.group-post-resources",
+        fullWireLink: "#/groupPosts",
+        tab: "group_posts"
+      });
+    }});
+  },
+  
+  showSingleItem: function(model, kind, options) {
+    var wire = new LandingPreview({
+      template: options.template,
+      collection: new kind([model], { uri: model.link("self") }),
+      fullWireLink: options.fullWireLink
     });
-  }**/
+    this.switchTab(options.tab, wire);
+  },
   
   debounceSearch: _.debounce(function() {
     this.search();
@@ -195,9 +210,7 @@ var CommunityResources = CommonPlace.View.extend({
 
     $sticky_header.html(current_subnav.clone());
     
-    if (this.currentQuery) {
-      $(".sticky .cancel").removeClass("waiting");
-    }
+    if (this.currentQuery) { $(".sticky .cancel").removeClass("waiting"); }
   },
   
   makeTab: function(wire) { return new this.ResourceTab({ wire: wire }); },
@@ -206,19 +219,19 @@ var CommunityResources = CommonPlace.View.extend({
   
   ResourceTab: CommonPlace.View.extend({
     initialize: function(options) {
-      this._wires = [];
-      this._wires.push(options.wire);
+      this.wire = options.wire;
     },
     
     resources: function(callback) {
-      _.each(this._wires, function(wire) { callback(wire); });
+      (this.single) ? callback(this.single) : callback(this.wire);
     },
     
     search: function(query) {
-      _.each(this._wires, function(wire) {
-        wire.search(query);
-      });
+      if (this.single) { this.single = null; }
+      this.wire.search(query);
     },
+    
+    single: function(wire) { this.single = wire; },
     
     cancelSearch: function() { this.search(""); }
   }),
