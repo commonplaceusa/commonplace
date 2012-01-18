@@ -39,6 +39,8 @@
 //= require feed_inbox_page
 //= require outbox_page
 //= require account_page
+//
+//= require facebook
 
 //= require application_initialization
 
