@@ -21,23 +21,23 @@
 
   "main_page.post-resources": {
     "posts.a": "Neighborhood Posts",
-    "recent-posts.a": "Neighborhood Posts",
+    "recent-posts.a": "Neighborhood News",
   },
   
   "main_page.post-offer-resources": {
-    "offer-posts.a": "Recent Offers",
+    "offer-posts.a": "Offers",
   },
   
   "main_page.post-help-resources": {
-    "help-posts.a": "Recent Help Requests",
+    "help-posts.a": "Requests",
   },
   
   "main_page.post-publicity-resources": {
-    "publicity-posts.a": "Recent Publicity Posts",
+    "publicity-posts.a": "Publicity Announcements",
   },
   
   "main_page.post-other-resources": {
-    "other-posts.a": "Other Recent Posts"
+    "other-posts.a": "Other"
   },
 
   "main_page.event-resources": {
@@ -47,13 +47,13 @@
 
   "main_page.announcement-resources": {
     "announcements.a": "Announcements",
-    "recent-announcements.a": "Recent Announcements",
+    "recent-announcements.a": "Announcements",
     "feeds.a": "Feeds"
   },
 
   "main_page.group-post-resources": {
     "group-posts.a": "Group Posts",
-    "recent-group-posts.a": "Recent Group Posts",
+    "recent-group-posts.a": "Discussion Topics",
     "groups.a": "Groups"
   },
 
