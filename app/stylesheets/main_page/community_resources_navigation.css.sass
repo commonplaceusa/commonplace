@@ -21,10 +21,11 @@
       background: #ac322f
       +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.2) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
       margin-top: 7px
+      +border-radius(4px 4px 0 0)
     
       &:first-child
         margin-left: 0
-        +border-radius(4px 0 0 0)
+        +border-radius(4px 4px 0 0)
       
       &.posts
         width: 111px
@@ -42,14 +43,15 @@
         width: 73px
         height: 15px
         padding: 10px 0 15px 0
-        +border-radius(0 4px 0 0)
+        +border-radius(4px 4px 0 0)
       
       &.users.current, &.users:hover
         padding: 15px 0 13px 0
 
       &.current, &:hover
-        color: #585858
-        background-color: #efefef
+        color: #172739
+        +text-shadow(#d7d7d7 1px 1px 0)
+        background-color: #f3f3f3
         +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.2) inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
         z-index: 20
         +border-radius(4px 4px 0 0)

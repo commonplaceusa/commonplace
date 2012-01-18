@@ -100,7 +100,7 @@
                   %p Hey man, just wanted to let you know this is a cool message box.
         %li{:class=>"account"}
           = image_tag current_user.avatar_url(:thumb), size: "22x22", class: "avatar"
-          %a(href="/#{current_community.slug}/account" data-remote) Hi, #{current_user.first_name}!
+          %a(href="/#{current_community.slug}/account" data-remote) Hi, #{truncate current_user.first_name, :length=>8}!
           %ul.account-sub
             %li
               %a(href="/#{current_community.slug}/account" data-remote) Account Settings

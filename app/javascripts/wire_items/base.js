@@ -5,7 +5,7 @@ var WireItem = CommonPlace.View.extend({
       scope.$(".thank_count").html(scope.numThanks() + 1);
     }
     scope.$(".thank-link").html("Thanked!");
-    scope.$(".thank-link").css("color", "#888");
+    scope.$(".thank-link").addClass("thanked-post");
   },
 
   thanked: function() {
@@ -16,6 +16,7 @@ var WireItem = CommonPlace.View.extend({
   },
 
   thank: function() {
+    this.$(".thank-share .current").removeClass("current");
     if (this.thanked())
       return;
     var self = this;
