@@ -6,10 +6,7 @@ var Wire = CommonPlace.View.extend({
   
   aroundRender: function(render) {
     var self = this;
-    this.fetchCurrentPage(function() {
-      render();
-      if (self.currentQuery) { self.$(".body").highlight(self.currentQuery); }
-    });
+    this.fetchCurrentPage(function() { render(); });
   },
 
   afterRender: function() {
@@ -65,7 +62,13 @@ var Wire = CommonPlace.View.extend({
     var self = this;
     var $ul = this.$("ul.wire-list");
     this.collection.each(function(model) {
-      $ul.append(self.schemaToView(model).render().el);
+      var view = self.schemaToView(model);
+      $ul.append(view.render().el);
+      if (self.currentQuery) {
+        view.$(".title").highlight(self.currentQuery);
+        view.$(".author").highlight(self.currentQuery);
+        view.$(".body").highlight(self.currentQuery);
+      }
     });
   },
   
@@ -109,6 +112,13 @@ var Wire = CommonPlace.View.extend({
 
   nextPage: function() {
     this._currentPage = this.currentPage() + 1;
+  },
+  
+  search: function(query) { this.currentQuery = query; },
+  
+  cancelSearch: function() {
+    $(this.el).removeHighlight();
+    this.currentQuery = "";
   },
 
   isSearchEnabled: function() { return this.isActive('2012Release');  }
