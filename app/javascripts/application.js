@@ -60,6 +60,8 @@ var Application = Backbone.Router.extend({
     }; 
 
     _.invoke(this.pages, "unbind");
+    
+    this.bindNewPosts();
   },
 
   routes: {
@@ -184,6 +186,15 @@ var Application = Backbone.Router.extend({
       this.currentPage.render();
       window.scrollTo(0,0);
     }
+  },
+  
+  bindNewPosts: function() {
+    var self = this;
+    var community = CommonPlace.community;
+    var postlikes = [community.posts, community.events, community.groupPosts, community.announcements];
+    _.each(postlikes, function(postlike) {
+      postlike.bind("add", function() { self.navigate("/", true); });
+    });
   }
   
 });
