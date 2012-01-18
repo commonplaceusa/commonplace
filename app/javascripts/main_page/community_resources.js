@@ -29,7 +29,6 @@ var CommunityResources = CommonPlace.View.extend({
   
   showTab: function() {
     this.$(".resources").empty();
-    this.unstickHeader();
     this._ready = false;
     this.countdown = 0;
     this.count = 0;
@@ -40,8 +39,6 @@ var CommunityResources = CommonPlace.View.extend({
       wire.render();
       if (self.currentQuery) { $(wire.el).highlight(self.currentQuery); }
       $(wire.el).appendTo(self.$(".resources"));
-      //self.setZ(wire, 20 + (self.count*2));
-      // can't do zindexing yet because header hasn't been rendered
     });
   },
   
@@ -179,49 +176,13 @@ var CommunityResources = CommonPlace.View.extend({
   },
   
   stickHeader: function(ready) {
-    if (!this._ready) {
-      this.countdown++;
-      this._ready = (this.countdown == this.count);
-      return;
-    }
-    
-    var sticky_top = this.$(".sticky").offset().top;
-    var sticky_bottom = sticky_top + this.$(".sticky").height();
-    var wires_below_header = [];
-    var self = this;
-    
-    this.view.resources(function(wire) {
-      wires_below_header.push(wire);
-    });
-    
-    if (!this.$(".sticky .header").height()) {
-      sticky_bottom += _.first(wires_below_header).header.height();
-    }
-    
-    wires_below_header = _.filter(wires_below_header, function(wire) {
-      var wire_bottom = $(wire.el).offset().top + $(wire.el).height();
-      return wire_bottom >= sticky_bottom;
-    });
-        
-    var top_wire = wires_below_header.shift();
-    
-    if (top_wire != this.headerWire) {
-      this.unstickHeader();
-      var clone = top_wire.header.clone(true);
-      clone.appendTo(this.$(".sticky .header"));
-      //this.$(".sticky").css({ "z-index": this.getZ(top_wire) + 1 });
-      this.headerWire = top_wire;
-    }
+    var $sticky_header = this.$(".sticky .header");
+    var current_subnav = this.$(".resources .sub-navigation").filter(function() {
+      return $(this).offset().top <= $sticky_header.offset().top;
+    }).last();
+
+    $sticky_header.html(current_subnav.clone());
   },
-  
-  unstickHeader: function() { this.$(".sticky .header").empty(); },
-  
-  getZ: function(wire) { return parseInt(wire.header.css("z-index")); },
-  
-  setZ: function(wire, index) { wire.header.css({ "z-index": index }); },
-  
-  
-  
   
   makeTab: function(wire) { return new this.ResourceTab({ wire: wire }); },
   
