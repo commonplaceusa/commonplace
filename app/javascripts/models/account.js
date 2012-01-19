@@ -29,7 +29,7 @@ var Account = Model.extend({
       dataType: "json",
       success: function(account) { 
         self.set(account);
-        callback && callback();
+        if (callback) { callback(); }
       }
     });
   },
@@ -43,7 +43,7 @@ var Account = Model.extend({
       dataType: "json",
       success: function(account) { 
         self.set(account);
-        callback && callback();
+        if (callback) { callback(); }
       }
     });
   },
@@ -62,7 +62,7 @@ var Account = Model.extend({
       dataType: "json",
       success: function(account) {
         self.set(account);
-        callback && callback();
+        if (callback) { callback(); }
       }
     });
   },
@@ -76,7 +76,7 @@ var Account = Model.extend({
       dataType: "json",
       success: function(account) {
         self.set(account);
-        callback && callback();
+        if (callback) { callback(); }
       }
     });
   },
@@ -91,7 +91,7 @@ var Account = Model.extend({
       dataType: "json",
       success: function(account) {
         self.set(account);
-        callback && callback();
+        if (callback) { callback(); }
       },
       failure: function(account) {      }
     });
@@ -107,7 +107,7 @@ var Account = Model.extend({
       dataType: "json",
       success: function(account) {
         self.set(account);
-        callback && callback();
+        if (callback) { callback(); }
       }
     });
   },
@@ -157,7 +157,23 @@ var Account = Model.extend({
       dataType: "json",
       success: function(account) { 
         self.set(account);
-        callback && callback();
+        if (callback)
+          callback();
+      }
+    });
+  },
+
+  set_metadata: function(key, value, callback) {
+    var self = this;
+    $.ajax({
+      contentType: "application/json",
+      url: "/api/account/metadata",
+      type: "post",
+      data: JSON.stringify({ key: key, value: value }),
+      dataType: "json",
+      success: function(account) {
+        self.set(account);
+        if (callback) { callback(); }
       }
     });
   }
