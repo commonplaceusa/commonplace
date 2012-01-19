@@ -44,6 +44,13 @@ class API
       serialize Account.new(current_account)
     end
 
+     post "/metadata" do
+       k = request_body['key']
+       current_account.metadata[k] = request_body['value']
+       current_account.save
+       serialize Account.new(current_account)
+     end
+
     post "/subscriptions/feeds" do
       feed = Feed.find(params[:id] || request_body['id'])
       halt [401, "wrong community"] unless in_comm(feed.community.id)
@@ -103,7 +110,7 @@ class API
 
     post "/:id/update_avatar_and_fb_auth" do |id|
       user = User.find(id)
-      halt [401, "unauthorized"] unless ??
+      halt [401, "unauthorized"] unless current_account.id == user.id
       user.metadata['fb_access_token'] = request_body['fb_auth_token']
       user.facebook_uid = request_body['fb_username']
       if user.save
