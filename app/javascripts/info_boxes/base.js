@@ -67,7 +67,7 @@ var InfoBox = CommonPlace.View.extend({
         // start loading when the scrollbar is halfway down
       if ($(this).scrollTop() > (this.scrollHeight / 2)) {
         self.nextPageThrottled();
-      } 
+      }
     });
 
   },
@@ -204,6 +204,7 @@ var InfoBox = CommonPlace.View.extend({
     profile.render();
     this.$profile().replaceWith(profile.el);
     this.changeSchema(model.get("schema"));
+    if (!this.currentModel) { CommonPlace.layout.reset(); }
     this.currentModel = model;
   },
   
