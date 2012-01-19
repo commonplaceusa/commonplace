@@ -38,6 +38,8 @@ var CommunityResources = CommonPlace.View.extend({
       wire.render();
       $(wire.el).appendTo(self.$(".resources"));
     });
+    
+    this.stickHeader();
   },
   
   tabs: {
@@ -166,10 +168,12 @@ var CommunityResources = CommonPlace.View.extend({
   },
   
   showSingleItem: function(model, kind, options) {
+    var self = this;
     var wire = new LandingPreview({
       template: options.template,
       collection: new kind([model], { uri: model.link("self") }),
-      fullWireLink: options.fullWireLink
+      fullWireLink: options.fullWireLink,
+      callback: function() { self.stickHeader(); }
     });
     this.switchTab(options.tab, wire);
   },
@@ -202,12 +206,11 @@ var CommunityResources = CommonPlace.View.extend({
     $(".resources").removeHighlight();
   },
   
-  stickHeader: function(ready) {
+  stickHeader: function() {
     var $sticky_header = this.$(".sticky .header");
     var current_subnav = this.$(".resources .sub-navigation").filter(function() {
       return $(this).offset().top <= $sticky_header.offset().top;
     }).last();
-
     $sticky_header.html(current_subnav.clone());
     
     if (this.currentQuery) { $(".sticky .cancel").removeClass("waiting"); }
