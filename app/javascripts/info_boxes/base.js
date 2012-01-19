@@ -200,13 +200,11 @@ var InfoBox = CommonPlace.View.extend({
     this.$profile().show();
     this.$profile_none().hide();
     var profile = this.profileBoxFor(model);
+    profile.search(this.currentQuery);
     profile.render();
     this.$profile().replaceWith(profile.el);
     this.changeSchema(model.get("schema"));
     this.currentModel = model;
-    if (this.currentQuery && $().highlight) {
-      this.$(".profile").highlight(this.currentQuery);
-    }
   },
   
   renderNone: function() {
@@ -331,7 +329,14 @@ var Profile = CommonPlace.View.extend({
     this.model.fetch({
       success: render
     });
-  }
+  },
+  
+  afterRender: function() {
+    $(this.el).removeHighlight();
+    if (this.currentQuery) { $(this.el).highlight(this.currentQuery); }
+  },
+  
+  search: function(query) { this.currentQuery = query; }
 });
 
 var SearchNoneBox = CommonPlace.View.extend({
