@@ -25,6 +25,14 @@ var CommunityResources = CommonPlace.View.extend({
 
     this.view = this.tabs[tab](this);
     
+    this.searchForm.$(".active").removeClass("active");
+    this.searchForm.$("input").hide();
+    if (_.include(["users", "groups", "feeds"], tab)) {
+      this.searchForm.$(".directory-search").show().addClass("active");
+    } else {
+      this.searchForm.$(".post-search").show().addClass("active");
+    }
+    
     if (single) { this.view.singleItem(single); }
     
     (self.currentQuery) ? self.search() : self.showTab();
@@ -184,7 +192,7 @@ var CommunityResources = CommonPlace.View.extend({
   
   search: function(event) {
     if (event) { event.preventDefault(); }
-    this.currentQuery = this.$(".sticky form.search input").val();
+    this.currentQuery = this.$(".sticky form.search input.active").val();
     if (this.currentQuery) {
       this.view.search(this.currentQuery);
       this.showTab();
