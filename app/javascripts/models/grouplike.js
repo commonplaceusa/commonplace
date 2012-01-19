@@ -36,6 +36,10 @@ var GroupLikes = Model.extend({
   
   first: function() {
     return _.first(this.models);
+  },
+  
+  at: function(index) {
+    return this.models[index];
   }
   
 });
