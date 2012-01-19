@@ -484,6 +484,16 @@ WHERE
     ].flatten.sort_by! {|u| u.all_cpcredits }.uniq.reverse.take(50)
   end
 
+  def nag_banner_text
+    if !self.community.has_launched?
+      "Hey #{self.first_name}, welcome to #{self.community.name} CommonPlace! We're officially launching on #{self.community.launch_date.strftime("%B")} #{self.community.launch_date.day.ordinalize}. In the meantime, help us improve by <a href='/#{self.community.slug}/invite'>inviting some more neighbors</a>."
+    elsif !self.avatar.file? and !self.metadata[:closed_facebook_nag]
+      "Add a photo to your profile. <a href='javascript: facebook_connect_post_registration(function() { CommonPlace.account.set_metadata('completed_facebook_nag', true, function() { $('.prelaunch-notification').hide(); })}), function() { })'>Connect with Facebook</a>."
+    else
+      nil
+    end
+  end
+
   searchable do
     text :name do
       self.name
