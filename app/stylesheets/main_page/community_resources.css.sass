@@ -39,6 +39,11 @@
     width: auto
     position: relative
     cursor: default
+    
+    .search-switch
+      display: none
+      &.active
+        display: block
 
     input[type=text]
       width: 146px
@@ -48,7 +53,7 @@
       font-size: 12px
       color: #333
       line-height: 13px
-      padding: 6px 38px 4px 10px
+      padding: 5px 38px 5px 10px
       background: white 8px 7px no-repeat
       background-image: image-url("icons/search.png")
       background-position: 171px
@@ -65,7 +70,7 @@
     .cancel
       height: 25px
       width: 25px
-      top: 7px
+      top: 8px
       cursor: pointer
       display: none
       right: -5px
