@@ -135,7 +135,6 @@ var DynamicLandingResources = CommonPlace.View.extend({
     });
     searchWire.search(this.currentQuery);
     this._wires = [searchWire];
-    this._wires.push(searchWire);
   },
   
   search: function(query) {
