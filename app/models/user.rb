@@ -495,7 +495,7 @@ WHERE
       javascript = <<js
 facebook_connect_post_registration(function() {
   CommonPlace.account.set_metadata("completed_facebook_nag", true, function() {
-    $(".prelaunch-notification").hide();
+    $(".important-notification").hide();
   });
 }, function() { });
 js
