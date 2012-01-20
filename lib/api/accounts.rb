@@ -111,7 +111,7 @@ class API
     post "/:id/update_avatar_and_fb_auth" do |id|
       user = User.find(id)
       halt [401, "unauthorized"] unless current_account.id == user.id
-      user.metadata['fb_access_token'] = request_body['fb_auth_token']
+      user.private_metadata['fb_access_token'] = request_body['fb_auth_token']
       user.facebook_uid = request_body['fb_username']
       if user.save
         [200, ""]

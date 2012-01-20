@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
 
   serialize :metadata, Hash
+  serialize :private_metadata, Hash
 
   #track_on_creation
   include Geokit::Geocoders
