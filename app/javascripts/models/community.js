@@ -26,7 +26,8 @@ var Community = Model.extend({
       offers: this.setup(Posts, "posts_offers"),
       help: this.setup(Posts, "posts_help"),
       publicity: this.setup(Posts, "posts_publicity"),
-      other: this.setup(Posts, "posts_other")
+      other: this.setup(Posts, "posts_other"),
+      meetups: this.setup(Posts, "posts_meetups")
     }
   },
   
