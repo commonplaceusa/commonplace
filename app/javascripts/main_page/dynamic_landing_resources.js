@@ -122,13 +122,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
     _.each(self.raw.all(), function(collection) { duplicates.push(collection.models); })
     chrono.collection.setDupes(_.flatten(duplicates));
     
-    self._wires = [];
-    self._wires.push(first);
-    self._wires.push(events)
-    self._wires.push(sorted);
-    self._wires.push(empty);
-    self._wires.push(chrono);
-    self._wires = _.flatten(self._wires);
+    self._wires = _.flatten([first, events, sorted, chrono]);
   },
   
   makeSearch: function() {
@@ -140,8 +134,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
       callback: this.callback
     });
     searchWire.search(this.currentQuery);
-    this._wires = [];
-    this._wires.push(searchWire);
+    this._wires = [searchWire];
   },
   
   search: function(query) {
