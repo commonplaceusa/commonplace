@@ -23,7 +23,7 @@ var FixedLayout = function() {
   };
 
   function dealWithNag() {
-    var nag_height = parseInt($(".prelaunch-notification:visible").outerHeight());
+    var nag_height = parseInt($(".important-notification:visible").outerHeight());
     if (!nag_height) { nag_height = 0; }
     $("#left-column").css({ top: 15 + nag_height });
     $("#post-box").css({ top: 75 + nag_height });
