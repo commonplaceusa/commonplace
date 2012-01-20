@@ -33,3 +33,9 @@ reset_emails_sent:
   queue: database
   description: "Resets the email_count"
 
+recalculate_cp_credits:
+  every: 1hr
+  class: CpCreditsCalculator
+  args:
+  queue: credits
+  description: "Checks for invalidated users and recalculates their CP Credits"
