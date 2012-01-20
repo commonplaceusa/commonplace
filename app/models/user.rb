@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }
 
   # HACK HACK HACK avatar_url should not be hardcoded like this
-  scope :pretty, { :conditions => ["about != '' OR goods != '' OR interests != '' OR avatar_file_name != ''"] }
+  scope :pretty, { :conditions => ["about != '' OR goods != '' OR interests != '' OR avatar_file_name IS NOT NULL"] }
   
   scope :have_sent_messages, lambda {|user| joins(:received_messages).where(messages: { user_id: user.id }) }
 
@@ -482,9 +482,10 @@ WHERE
   
   def featured
     [
-      self.sent_messages.where("messagable_type = 'User'").map {|m| m.messagable}.uniq.reverse.take(10),
-      self.community.users.pretty.take(45)
-    ].flatten.sort_by! {|u| u.all_cpcredits }.uniq.reverse.take(50)
+      self.community.users.reorder("calculated_cp_credits DESC").take(150),
+      self.community.users.pretty.take(100),
+      self.sent_messages.where("messagable_type = 'User'").map {|m| m.messagable}.uniq.take(100)
+    ].flatten.sort_by! {|u| u.all_cpcredits }.uniq.reverse.take(150)
   end
 
   def nag_banner_text

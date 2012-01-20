@@ -20,11 +20,20 @@ var FixedLayout = function() {
     if ($infoBox.height() < 20) { 
       $infoBox.hide();
     }
-  }
+  };
 
-
+  function dealWithNag() {
+    var nag_height = parseInt($(".prelaunch-notification:visible").outerHeight());
+    if (!nag_height) { nag_height = 0; }
+    $("#left-column").css({ top: 15 + nag_height });
+    $("#post-box").css({ top: 75 + nag_height });
+    $("#community-resources .navigation").css({ top: 48 + nag_height });
+    $("#community-resources .sticky").css({ top: 114 + nag_height });
+    $(".resources").css({ "margin-top": 104 + nag_height });
+  };
 
   this.reset = function() {
+    dealWithNag();
     adjustProfileBox();
   };
 
