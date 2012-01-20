@@ -79,14 +79,12 @@ var PostWireItem = WireItem.extend({
 
   reply: function(e) {
     if (e) { e.preventDefault(); }
-    if (this.in_reply_state) {
-      this.$(".reply-text-entry").focus();
-    }
-    else {
+    if (!this.in_reply_state) {
       this.removeFocus();
       this.$(".reply-link").addClass("current");
       this.render();
     }
+    this.$(".reply-text-entry").focus();
     this.in_reply_state = true;
   },
 
