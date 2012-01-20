@@ -27,5 +27,36 @@ var WireItem = CommonPlace.View.extend({
         self.set_thanked(true, self);
       }
     });
+  },
+
+  share: function(e) {
+    if (e) { e.preventDefault(); }
+    this.in_reply_state = false;
+    this.removeFocus();
+    this.$(".share-link").addClass("current");
+    var shareView = new ShareView({ model: this.model,
+                                    el: this.$(".replies"),
+                                    account: CommonPlace.account
+                                  });
+     shareView.render();
+   },
+
+  reply: function(e) {
+    if (e) { e.preventDefault(); }
+    if (!this.in_reply_state) {
+      this.removeFocus();
+      this.$(".reply-link").addClass("current");
+      var repliesView = new RepliesView({ collection: this.model.replies(),
+                                      el: this.$(".replies"),
+                                      account: CommonPlace.account
+                                    });
+      repliesView.render();
+    }
+    this.$(".reply-text-entry").focus();
+    this.in_reply_state = true;
+  },
+  
+  removeFocus: function() {
+    this.$(".thank-share .current").removeClass("current");
   }
 });
