@@ -6,6 +6,7 @@ var GroupPostWireItem = WireItem.extend({
   initialize: function(options) {
     var self = this;
     this.model.bind("destroy", function() { self.remove(); });
+    this.in_reply_state = true;
   },
 
   afterRender: function() {
@@ -113,6 +114,7 @@ var GroupPostWireItem = WireItem.extend({
   
   share: function(e) {
     if (e) { e.preventDefault(); }
+    this.in_reply_state = false;
     this.removeFocus();
     this.$(".share-link").addClass("current");
     var shareView = new ShareView({ model: this.model,
@@ -124,9 +126,13 @@ var GroupPostWireItem = WireItem.extend({
 
   reply: function(e) {
     if (e) { e.preventDefault(); }
-    this.removeFocus();
-    this.$(".reply-link").addClass("current");
-    this.render();
+    if (!this.in_reply_state) {
+      this.removeFocus();
+      this.$(".reply-link").addClass("current");
+      this.render();
+    }
+    this.$(".reply-text-entry").focus();
+    this.in_reply_state = true;
   },
   
   removeFocus: function() {
