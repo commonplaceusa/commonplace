@@ -58,7 +58,8 @@ var PostBox = CommonPlace.View.extend({
     offers: function() { return new PostForm({ category: "offers" }); },
     help: function() { return new PostForm({ category: "help" }); },
     other: function() { return new PostForm({ category: "other" }); },
-    group: function() { return new GroupPostForm(); }
+    group: function() { return new GroupPostForm(); },
+    meetups: function() { return new PostForm({ category: "meetups" }); }
   },
   
   groups: function() {
