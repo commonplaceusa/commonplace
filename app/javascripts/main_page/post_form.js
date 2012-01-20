@@ -1,5 +1,5 @@
 var PostForm = CommonPlace.View.extend({
-  template: "main_page.post-form",
+  template: "main_page.forms.post-form",
   tagName: "form",
   className: "create-neighborhood-post post",
 
@@ -12,6 +12,10 @@ var PostForm = CommonPlace.View.extend({
     "focusout input, textarea": "onFormBlur",
     "mouseenter": "mouseEnter",
     "mouseleave": "mouseLeave"
+  },
+  
+  initialize: function(options) {
+    if (options) { this.template = options.template || this.template; }
   },
 
   afterRender: function() {
@@ -97,3 +101,4 @@ var PostForm = CommonPlace.View.extend({
   
   hideLabel: function(e) { $("option.label", e.target).hide(); }
 });
+
