@@ -31,7 +31,7 @@ var PostForm = CommonPlace.View.extend({
       title: this.$("[name=title]").val(),
       body: this.$("[name=body]").val(),
       category: this.options.category
-    }
+    };
     
     this.sendPost(CommonPlace.community.posts, data);
   },
@@ -75,9 +75,13 @@ var PostForm = CommonPlace.View.extend({
         //}
       //);
     }
+    CommonPlace.account.clicked_post_box(function() {
+      $("#first_post_tooltip").show();
+    });
   },
   
   onFormBlur: function() {
+    $("#first_post_tooltip").hide();
     if (!this.focused) {
       this.$(".on-focus").hide();
       this.resetLayout();
