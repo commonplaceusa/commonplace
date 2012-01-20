@@ -8,7 +8,10 @@ var PostForm = CommonPlace.View.extend({
     "focusin input, textarea": "onFormFocus",
     "keydown textarea": "resetLayout",
     "focusin select": "hideLabel",
-    "click select": "hideLabel"
+    "click select": "hideLabel",
+    "focusout input, textarea": "onFormBlur",
+    "mouseenter": "mouseEnter",
+    "mouseleave": "mouseLeave"
   },
 
   afterRender: function() {
@@ -77,6 +80,17 @@ var PostForm = CommonPlace.View.extend({
       );
     }
   },
+  
+  onFormBlur: function() {
+    if (!this.focused) {
+      this.$(".on-focus").hide();
+      this.resetLayout();
+    }
+  },
+  
+  mouseEnter: function() { this.focused = true; },
+  
+  mouseLeave: function() { this.focused = false; },
 
   resetLayout: function() { CommonPlace.layout.reset(); },
   
