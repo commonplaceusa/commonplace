@@ -55,7 +55,7 @@ var AnnouncementWireItem = WireItem.extend({
   },
 
   editAnnouncement: function(e) {
-    e && e.preventDefault();
+    if (e) { e.preventDefault(); }
     var formview = new PostFormView({
       model: this.model,
       template: "shared/announcement-edit-form"
@@ -87,7 +87,7 @@ var AnnouncementWireItem = WireItem.extend({
   
   messageUser: function(e) {
     if (!this.isFeed()) {
-      e && e.preventDefault();
+      if (e) { e.preventDefault(); }
       var user = new User({
         links: {
           self: this.model.get("user_url")
@@ -104,31 +104,4 @@ var AnnouncementWireItem = WireItem.extend({
     }
   },
   
-  share: function(e) {
-    if (e) { e.preventDefault(); }
-    this.in_reply_state = false;
-    this.removeFocus();
-    this.$(".share-link").addClass("current");
-    var shareView = new ShareView({ model: this.model,
-                                    el: this.$(".replies"),
-                                    account: CommonPlace.account
-                                  });
-     shareView.render();
-   },
-
-  reply: function(e) {
-    if (e) { e.preventDefault(); }
-    if (!this.in_reply_state) {
-      this.removeFocus();
-      this.$(".reply-link").addClass("current");
-      this.render();
-    }
-    this.$(".reply-text-entry").focus();
-    this.in_reply_state = true;
-  },
-  
-  removeFocus: function() {
-    this.$(".thank-share .current").removeClass("current");
-  }
-
 });
