@@ -61,8 +61,12 @@ class MailBase < Mustache
     Sass::Engine.for_file(style_file, :syntax => :scss).render if style_file
   end
 
-  def markdown(text = "")
-    Redcarpet.new(text).to_html
+  def markdown(text = nil)
+    _markdown = lambda do |text|
+      rendered_text = Mustache.render(text, self)
+      RedCarpet::Markdown.new(MailMarkdown).render(text) rescue "<div class='p'>#{rendered_text}</div>"
+    end
+    text ? _markdown.call(text) : _markdown
   end
 
   def from
