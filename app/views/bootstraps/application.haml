@@ -20,7 +20,7 @@
       = render 'layouts/header'
 
       - if current_user.nag_banner_text != nil
-        .prelaunch-notification
+        .important-notification
           != current_user.nag_banner_text
 
       #feature-switching
