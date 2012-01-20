@@ -496,10 +496,15 @@ WHERE
 facebook_connect_post_registration(function() {
   CommonPlace.account.set_metadata("completed_facebook_nag", true, function() {
     $(".important-notification").hide();
+    CommonPlace.layout.reset();
   });
 }, function() { });
 js
-      "Add a photo to your profile now! <a href='javascript: #{javascript}'>Connect with Facebook</a>."
+      cancel = <<js
+$(".important-notification").hide();
+CommonPlace.layout.reset();
+js
+      "<a href='javascript: #{cancel}' class='cancel'></a>Add a photo to your profile now! <a href='javascript: #{javascript}'>Connect with Facebook</a>."
     else
       nil
     end
