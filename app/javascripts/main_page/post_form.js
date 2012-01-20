@@ -62,22 +62,18 @@ var PostForm = CommonPlace.View.extend({
       var naturalHeight = $moreInputs.actual('height');
       $moreInputs.css({ height: 0 });
       $moreInputs.show();
-      $moreInputs.animate(
-        // animate to it's natural height (set explicitly to
-        // avoid choppiness)
-        { height: naturalHeight },
-        // set height back to auto so the element can
-        // naturally expand/contract
-        {
-          complete: function() { 
-            $moreInputs.css({height: "auto"}); 
-            CommonPlace.layout.reset();
-          }, 
-          step: function() {
-            CommonPlace.layout.reset();
-          }
-        }
-      );
+      //$moreInputs.animate(
+        //{ height: naturalHeight },
+        //{
+        //  complete: function() { 
+        //    $moreInputs.css({height: "auto"}); 
+        //    CommonPlace.layout.reset();
+        //  }, 
+        //  step: function() {
+        //    CommonPlace.layout.reset();
+        //  }
+        //}
+      //);
     }
   },
   
