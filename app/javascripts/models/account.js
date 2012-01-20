@@ -176,6 +176,13 @@ var Account = Model.extend({
         if (callback) { callback(); }
       }
     });
+  },
+
+  clicked_post_box: function(first_click_callback) {
+    if (!(this.get("metadata").has_used_postbox)) {
+      if (first_click_callback) { first_click_callback(); }
+      this.set_metadata('has_used_postbox', true, function() { });
+    }
   }
 
 });
