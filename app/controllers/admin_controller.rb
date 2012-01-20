@@ -51,4 +51,9 @@ class AdminController < ApplicationController
   end
   def show_referrers ; end
   def map ; end
+
+  def become
+    sign_in(:user, User.find(params[:id]))
+    redirect_to root_url
+  end
 end
