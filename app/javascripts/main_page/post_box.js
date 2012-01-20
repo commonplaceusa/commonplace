@@ -53,13 +53,31 @@ var PostBox = CommonPlace.View.extend({
   tabs: {
     nothing: function() { return new PostForm(); },
     event: function() { return new EventForm(); },
-    post: function() { return new PostForm({ category: "neighborhood" }); },
-    publicity: function() { return new PostForm({ category: "publicity" }); },
-    offers: function() { return new PostForm({ category: "offers" }); },
-    help: function() { return new PostForm({ category: "help" }); },
-    other: function() { return new PostForm({ category: "other" }); },
+    post: function() { return new PostForm({
+      category: "neighborhood",
+      template: "main_page.forms.post-neighborhood-form"
+    }); },
+    publicity: function() { return new PostForm({
+      category: "publicity",
+      template: "main_page.forms.post-publicity-form",
+    }); },
+    offers: function() { return new PostForm({
+      category: "offers",
+      template: "main_page.forms.post-offer-form"
+    }); },
+    help: function() { return new PostForm({
+      category: "help",
+      template: "main_page.forms.post-help-form"
+    }); },
+    other: function() { return new PostForm({
+      category: "other",
+      template: "main_page.forms.post-form"
+    }); },
     group: function() { return new GroupPostForm(); },
-    meetups: function() { return new PostForm({ category: "meetups" }); }
+    meetups: function() { return new PostForm({
+      category: "meetups",
+      template: "main_page.forms.post-meetup-form"
+    }); }
   },
   
   groups: function() {
