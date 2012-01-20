@@ -74,6 +74,7 @@ var PostForm = CommonPlace.View.extend({
         //  }
         //}
       //);
+      CommonPlace.layout.reset();
     }
     CommonPlace.account.clicked_post_box(function() {
       $("#first_post_tooltip").show();
