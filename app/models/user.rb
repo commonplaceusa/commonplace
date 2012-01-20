@@ -497,7 +497,7 @@ facebook_connect_post_registration(function() {
   });
 }, function() { });
 js
-      "Add a photo to your profile. <a href='javascript: #{javascript}'>Connect with Facebook</a>."
+      "Add a photo to your profile now! <a href='javascript: #{javascript}'>Connect with Facebook</a>."
     else
       nil
     end
