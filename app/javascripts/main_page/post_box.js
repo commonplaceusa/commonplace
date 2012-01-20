@@ -16,6 +16,7 @@ var PostBox = CommonPlace.View.extend({
     e.preventDefault();
     // DETERMINE WHAT TO DO WITH URLS WHEN WE CLICK
     this.switchTab($(e.target).attr("data-tab"), e);
+    $("#first_post_tooltip").hide();
   },
   
   switchTab: function(tab, e) {
