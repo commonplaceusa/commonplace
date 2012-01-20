@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121214142) do
+ActiveRecord::Schema.define(:version => 20120120152821) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20111121214142) do
     t.integer  "owner_id"
     t.string   "tweet_id"
     t.datetime "deleted_at"
+    t.datetime "replied_at"
   end
 
   create_table "archived_posts", :id => false, :force => true do |t|
@@ -150,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20111121214142) do
     t.string   "host_group_name"
     t.integer  "community_id"
     t.datetime "deleted_at"
+    t.datetime "replied_at"
   end
 
   create_table "feed_owners", :force => true do |t|
@@ -190,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20111121214142) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.datetime "replied_at"
   end
 
   create_table "groups", :force => true do |t|
@@ -253,6 +256,7 @@ ActiveRecord::Schema.define(:version => 20111121214142) do
     t.integer  "messagable_id"
     t.string   "messagable_type"
     t.boolean  "archived"
+    t.datetime "replied_at"
   end
 
   create_table "mets", :force => true do |t|
@@ -294,6 +298,7 @@ ActiveRecord::Schema.define(:version => 20111121214142) do
     t.boolean  "sent_to_community"
     t.boolean  "published",         :default => true
     t.datetime "deleted_at"
+    t.datetime "replied_at"
   end
 
   create_table "referrals", :force => true do |t|
@@ -407,7 +412,7 @@ ActiveRecord::Schema.define(:version => 20111121214142) do
     t.datetime "last_checked_inbox"
     t.text     "metadata"
     t.integer  "calculated_cp_credits"
-    t.boolean  "cp_credits_are_valid"
+    t.boolean  "cp_credits_are_valid",             :default => false
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
