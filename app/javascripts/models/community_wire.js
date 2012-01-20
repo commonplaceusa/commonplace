@@ -14,12 +14,13 @@ var CommunityWire = Model.extend({
       self.announcements = new Announcements(response["announcements"], CommonPlace.community.announcements);
       self.groupPosts = new GroupPosts(response["group"], CommonPlace.community.groupPosts);
       self.events = new Events(response["events"], CommonPlace.community.events);
+      self.meetups = new Posts(response["meetups"], CommonPlace.community.categories.meetups);
       if (callback) { callback() };
     });
   },
   
   all: function() { return [
-    this.neighborhood, this.offers, this.help, this.publicity, this.other, this.announcements, this.groupPosts, this.events];
+    this.neighborhood, this.offers, this.help, this.publicity, this.other, this.announcements, this.groupPosts, this.events, this.meetups];
   }
 });
 

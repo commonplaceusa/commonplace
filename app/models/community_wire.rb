@@ -29,6 +29,10 @@ class CommunityWire
   def publicity
     @community.posts.where(category: 'publicity').limit(3)
   end
+  
+  def meetups
+    @community.posts.where(category: "meetups").limit(3)
+  end
 
   def group
     GroupPost.order("group_posts.updated_at DESC").includes(:group).
@@ -55,6 +59,7 @@ class CommunityWire
     t.add :announcements
     t.add :other
     t.add :past
+    t.add :meetups
   end
   
 end
