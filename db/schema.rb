@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219232121) do
+ActiveRecord::Schema.define(:version => 20111121214142) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -245,15 +245,14 @@ ActiveRecord::Schema.define(:version => 20111219232121) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "user_id",                            :null => false
-    t.text     "body",                               :null => false
+    t.integer  "user_id",         :null => false
+    t.text     "body",            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subject"
     t.integer  "messagable_id"
     t.string   "messagable_type"
     t.boolean  "archived"
-    t.boolean  "checked",         :default => false
   end
 
   create_table "mets", :force => true do |t|
@@ -406,6 +405,9 @@ ActiveRecord::Schema.define(:version => 20111219232121) do
     t.text     "skills"
     t.boolean  "attempted_geolocating"
     t.datetime "last_checked_inbox"
+    t.text     "metadata"
+    t.integer  "calculated_cp_credits"
+    t.boolean  "cp_credits_are_valid"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
