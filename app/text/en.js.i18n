@@ -39,6 +39,10 @@
   "main_page.post-other-resources": {
     "other-posts.a": "Other"
   },
+  
+  "main_page.post-meetup-resources": {
+    "meetup-posts.a": "Meetups"
+  },
 
   "main_page.event-resources": {
     "events.a": "Community Events",

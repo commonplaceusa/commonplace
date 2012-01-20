@@ -83,6 +83,13 @@ var DynamicLandingResources = CommonPlace.View.extend({
         fullWireLink: "#/groupPosts",
         emptyMessage: "No posts here yet.",
         callback: self.callback
+      })),
+      (new LandingPreview({
+        template: "main_page.post-meetup-resources",
+        collection: self.raw.meetups,
+        fullWireLink: "#/posts",
+        emptyMessage: "No meetups here yet.",
+        callback: self.callback
       }))
     ];
     

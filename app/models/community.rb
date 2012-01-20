@@ -83,6 +83,7 @@ class Community < ActiveRecord::Base
       "posts_help" => "/communities/#{id}/posts/help",
       "posts_publicity" => "/communities/#{id}/posts/publicity",
       "posts_other" => "/communities/#{id}/posts/other",
+      "posts_meetups" => "/communities/#{id}/posts/meetups",
       "invites" => "/communities/#{id}/invites",
       "questions" => "/communities/#{id}/questions",
       "shares" => "/communities/#{id}/shares",
