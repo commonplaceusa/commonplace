@@ -41,7 +41,7 @@ gem 'aws-s3', :require => 'aws/s3' # storing avatars and stuff
 gem 'redis' # for queueing with resque 
 gem 'redis-namespace', :require => false # resque wants it, we don't need to require it
 gem 'mcbean' # We use this to pull data from rss feeds for import
-gem 'redcarpet' # We use this to format user messages in emails
+gem 'redcarpet', "~> 2.0.1" # We use this to format user messages in emails
 
 
 # Jobs
