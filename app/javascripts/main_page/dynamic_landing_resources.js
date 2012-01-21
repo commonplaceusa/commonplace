@@ -129,7 +129,11 @@ var DynamicLandingResources = CommonPlace.View.extend({
     _.each(self.raw.all(), function(collection) { duplicates.push(collection.models); })
     chrono.collection.setDupes(_.flatten(duplicates));
     
-    self._wires = _.flatten([first, events, sorted, chrono]);
+    self._wires = [first];
+    if (events.collection.length) { self._wires.push(events); }
+    self._wires.push(sorted);
+    self._wires.push(chrono);
+    self._wires = _.flatten(self._wires);
   },
   
   makeSearch: function() {
