@@ -67,8 +67,8 @@
                 -%span{:class=>"sub-notif two"} -2
               %li 
                 %span{:class=>"sub-title"}Average replies / user
-                %span{:class=>"sub-notif one"}= 100 * current_community.replies.count / current_community.users.count
-                %span{:class=>"sub-notif two"}= 100 * current_community.replies_this_week.count / current_community.users.count
+                %span{:class=>"sub-notif one"}= 100 * current_community.total_replies / current_community.users.count
+                %span{:class=>"sub-notif two"}= 100 * current_community.replies_this_week / current_community.users.count
               %li 
                 %span{:class=>"sub-title"}Average posts / user
                 %span{:class=>"sub-notif one"}= 100 * current_community.posts.count / current_community.users.count
