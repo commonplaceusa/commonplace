@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
 
   delegate :neighborhood, :to => :user
   
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   belongs_to :community
 
   has_many :replies, :as => :repliable, :order => :created_at
