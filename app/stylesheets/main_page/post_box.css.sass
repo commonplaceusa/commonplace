@@ -10,7 +10,7 @@
   margin: 0 0 10px 0
   resize: none
   @include box-shadow(0 0 0 1px #8b2324, 2px 2px 5px #ccc inset)
-  
+
   &:focus
     outline: none
     color: #333
@@ -26,7 +26,7 @@
     margin-left: 10px
     width: 147px
     padding-bottom: 10px
-    
+
     h3.postbox-head
       color: white
       font-family: Helvetica, Arial, sans-serif
@@ -40,8 +40,8 @@
       width: 127px
       border: #142434 1px solid
         bottom: 1px
-      
-    
+
+
     ul
       overflow-y: scroll
       overflow-x: hidden
@@ -73,12 +73,27 @@
       &.nothing
         display: none
 
-  #first_post_tooltip
+  #invalid_post_tooltip
     position: absolute
-    left: 0
-    top: 200px
-  
-      
+    left: 10px
+    top: 190px
+    height: 30px
+    display: none
+
+  #invalid_post_text
+    position: absolute
+    top: 20px
+    left: 110px
+    width: 200px
+    vertical-align: top
+    color: white
+    font-weight: bold
+    line-height: 1.2em
+    font-family: Helvetica, Arial, sans-serif
+    text-shadow: black, 1px, 1px, 0
+    font-size: 12px
+
+
   .form-container
     float: left
     margin-left: 10px
@@ -122,11 +137,11 @@
         margin-top: 15px
         height: 125px
         overflow-y: scroll
-    
+
         li 
           &:first-child
             margin-top: 0px
-          
+
           margin-top: 10px
           margin-right: 10px
           padding: 7px 5px 3px
@@ -135,10 +150,10 @@
           background-image: image-url("feed_page/check-off.png")
           background-repeat: no-repeat
           background-position: 252px 7px
-    
+
           &.checked
             background-image: image-url("feed_page/check-on.png")
-            
+
           label
             display: block
             font-size: 18px
@@ -146,14 +161,14 @@
             color: #333
             margin: 0
             padding: 0
-          
+
           img 
             position: relative
             top: -3px
             vertical-align: middle
             margin-right: 5px
             border: 0
-    
+
           input
             display: none
 
@@ -170,7 +185,7 @@
         margin-right: 0
         color: white
         text-transform: uppercase
-      
+
       .on-focus
         display: none
         margin-top: 8px
@@ -179,7 +194,7 @@
       input.date
         position: relative
         z-index: 10000
-        
+
       .spinner
         display: none
         background-image: image-url("loading.gif")
@@ -208,7 +223,7 @@
 
           &.odd
             background-color: #EEE
-            
+
           &.even
 
 
@@ -223,10 +238,7 @@
             display: block
             width: 230px
             margin-top: 10px
-            
+
       .group-post-inputs
         display: none
-
-      
-
 
