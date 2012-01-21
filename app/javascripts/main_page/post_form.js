@@ -31,21 +31,22 @@ var PostForm = CommonPlace.View.extend({
     this.$(".spinner").show();
     this.$("button").hide();
 
-    console.log("Category: " + this.options.category);
-
     // Category not specified
-    if (false) { // TODO: Change
+    if (this.options.category === undefined) {
       // Show a notification
-      $("#post-box").block({ message: null });
+      $("#invalid_post_tooltip").show();
+      this.$(".spinner").hide();
+      this.$("button").show();
     }
-    
-    var data = {
-      title: this.$("[name=title]").val(),
-      body: this.$("[name=body]").val(),
-      category: this.options.category
-    };
-    
-    this.sendPost(CommonPlace.community.posts, data);
+
+    else {
+      var data = {
+        title: this.$("[name=title]").val(),
+        body: this.$("[name=body]").val(),
+        category: this.options.category
+      };
+      this.sendPost(CommonPlace.community.posts, data);
+    }
   },
   
   sendPost: function(postCollection, data) {
@@ -88,13 +89,13 @@ var PostForm = CommonPlace.View.extend({
       //);
       CommonPlace.layout.reset();
     }
-    CommonPlace.account.clicked_post_box(function() {
-      $("#first_post_tooltip").show();
-    });
+    //CommonPlace.account.clicked_post_box(function() {
+    //  $("#invalid_post_tooltip").show();
+    //});
   },
   
   onFormBlur: function() {
-    $("#first_post_tooltip").hide();
+    $("#invalid_post_tooltip").hide();
     if (!this.focused) {
       this.$(".on-focus").hide();
       this.resetLayout();
