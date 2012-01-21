@@ -110,7 +110,7 @@ var Application = Backbone.Router.extend({
   },
 
   communityPostBox: function(tab) {
-    this.showPage("community");
+    this.community();
     this.pages.community.postBox.switchTab(tab);
   },
 
