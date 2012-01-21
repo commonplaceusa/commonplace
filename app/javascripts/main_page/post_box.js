@@ -48,6 +48,8 @@ var PostBox = CommonPlace.View.extend({
     }
     
     CommonPlace.layout.reset();
+    
+    this.showWire(tab);
   },
   
   tabs: {
@@ -82,6 +84,16 @@ var PostBox = CommonPlace.View.extend({
   
   groups: function() {
     return CommonPlace.community.get("groups");
+  },
+  
+  showWire: function(tab) {
+    if (tab != "nothing") {
+      var wire = $(".resources .sub-navigation." + tab);
+      if (wire.length) {
+        var offset = wire.offset().top;
+        $(window).scrollTo(offset - parseInt($("#community-resources .sticky").css("top")));
+      }
+    }
   }
   
   
