@@ -2,6 +2,7 @@
 //= require showdown
 //= require jquery
 //= require jquery-ui
+//= require jquery-blockUI
 //= require actual
 //= require underscore
 //= require mustache
