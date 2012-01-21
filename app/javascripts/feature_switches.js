@@ -43,7 +43,7 @@ FeatureSwitcher = function(features, backend) {
 };
 
 Features = new FeatureSwitcher({
-  "2012Release": false
+  "2012Release": true
 }, window.sessionStorage || { 
   setItem: function(name, value) {},
   getItem: function(name) { return false; }
