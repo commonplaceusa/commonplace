@@ -3,7 +3,7 @@ class Reply < ActiveRecord::Base
   
   belongs_to :repliable, :polymorphic => true
   after_create :touch_repliable_replied_at
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   
   validates_presence_of :repliable
   validates_presence_of :user
