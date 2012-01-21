@@ -51,6 +51,14 @@ class Post < ActiveRecord::Base
     ([self.created_at] + self.replies.map(&:created_at)).max
   end
 
+  def profile_history_humanize
+    begin
+      "#{self.owner.name} posted '#{self.subject}'"
+    rescue
+      nil
+    end
+  end
+
   searchable do
     text :subject, :body
     text :author_name do

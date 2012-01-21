@@ -19,4 +19,12 @@ class Reply < ActiveRecord::Base
     self.repliable.replied_at = Time.zone.now
   end
 
+  def profile_history_humanize
+    begin
+      "#{self.user.name} replied to '#{self.repliable.subject}'"
+    rescue
+      nil
+    end
+  end
+
 end

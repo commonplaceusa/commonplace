@@ -38,6 +38,14 @@ class GroupPost < ActiveRecord::Base
     start_date <= self.created_at and self.created_at <= end_date
   end
 
+  def profile_history_humanize
+    begin
+      "#{self.owner.name} posted '#{self.subject}' to the group '#{self.group.name}'"
+    rescue
+      nil
+    end
+  end
+
   searchable do
     text :subject, :body
     text :replies do
