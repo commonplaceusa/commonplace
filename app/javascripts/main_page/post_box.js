@@ -32,6 +32,7 @@ var PostBox = CommonPlace.View.extend({
   
   showTab: function(tab, e) {
     var view;
+    $("#invalid_post_tooltip").hide();
     
     this.$("li.current").removeClass("current");
     
