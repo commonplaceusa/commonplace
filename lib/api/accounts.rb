@@ -120,5 +120,9 @@ class API
       end
     end
 
+    get "/history" do
+      serialize(current_account.profile_history)
+    end
+
   end
 end

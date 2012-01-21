@@ -49,6 +49,14 @@ class Announcement < ActiveRecord::Base
     user.id
   end
 
+  def profile_history_humanize
+    begin
+      "#{self.user.name} announced that '#{self.subject}'"
+    rescue
+      nil
+    end
+  end
+
   searchable do
     text :subject, :body
     text :replies do
