@@ -30,6 +30,14 @@ var PostForm = CommonPlace.View.extend({
     
     this.$(".spinner").show();
     this.$("button").hide();
+
+    console.log("Category: " + this.options.category);
+
+    // Category not specified
+    if (false) { // TODO: Change
+      // Show a notification
+      $("#post-box").block({ message: null });
+    }
     
     var data = {
       title: this.$("[name=title]").val(),
