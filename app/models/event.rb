@@ -78,6 +78,14 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def profile_history_humanize
+    begin
+      "#{self.user.name} posted the event '#{self.name}'"
+    rescue
+      nil
+    end
+  end
+
   def user_id
     user.id
   end
