@@ -223,12 +223,14 @@ class Community < ActiveRecord::Base
     self.users.count
   end
 
-  def replies
-    self.users.map(&:replies).flatten
+  def total_replies
+    self.users.sum("replies_count")
   end
 
   def replies_this_week
-    self.users.map(&:replies).flatten.select{ |r| r.created_at >= DateTime.now.beginning_of_week }
+    Reply.joins(:user)
+      .where(:users => { :community_id => self.id })
+      .where("replies.created_at >= ?", DateTime.now.beginning_of_week).count
   end
 
   def wire
