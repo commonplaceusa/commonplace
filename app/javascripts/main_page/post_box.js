@@ -35,8 +35,11 @@ var PostBox = CommonPlace.View.extend({
     
     this.$("li.current").removeClass("current");
     
+    if (tab == "announcement") { tab = "publicity"; }
+    if (tab == "group_post") { tab = "group"; }
+    
     this.$("li." + tab).addClass("current");
-    view = this.tabs[tab]();
+    view = this.tabs[tab](this);
     
     view.render();
     this.$("form").replaceWith(view.el);
