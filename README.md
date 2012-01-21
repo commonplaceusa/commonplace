@@ -55,8 +55,20 @@ Getting Started
 Run the server with `bundle exec foreman start` or `bundle exec rails s thin`
 
 Run sunspot with `bundle exec sunspot-solr run`
+And reindex with `bundle exec rake sunspot:solr:reindex`
 
 Go to [http://localhost:5000/test](http://localhost:5000/test) and login with test@example.com:password
+
+Staging
+----
+
+[commonplace-staging.herokuapp.com](http://commonplace-staging.herokuapp.com) is the URL for staging hosted on Heroku (there are also personal stagings - they do not have Sunspot available).
+
+Set the remote with `git remote add staging git@heroku.com:commonplace-staging.git`
+
+Push to staging with `git push -f staging`
+
+Push a branch to staging with `git push -f staging branch-name:master`
 
 TDD
 ----
