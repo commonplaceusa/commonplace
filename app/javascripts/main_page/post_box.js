@@ -8,7 +8,7 @@ var PostBox = CommonPlace.View.extend({
   },
   
   afterRender: function() {
-    this.temp = {}
+    this.temp = {};
     this.showTab("nothing");
   },
   
@@ -25,7 +25,7 @@ var PostBox = CommonPlace.View.extend({
         title: this.$("form input[name=title]").val(),
         body: this.$("form textarea[name=body]").val() ||
               this.$("form textarea[name=about]").val()
-      }
+      };
     }
     this.showTab(tab, e);
   },
@@ -54,6 +54,8 @@ var PostBox = CommonPlace.View.extend({
     CommonPlace.layout.reset();
     
     this.showWire(tab);
+
+    view.onFormFocus();
   },
   
   tabs: {
@@ -65,7 +67,7 @@ var PostBox = CommonPlace.View.extend({
     }); },
     publicity: function() { return new PostForm({
       category: "publicity",
-      template: "main_page.forms.post-publicity-form",
+      template: "main_page.forms.post-publicity-form"
     }); },
     offers: function() { return new PostForm({
       category: "offers",
