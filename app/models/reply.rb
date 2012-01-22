@@ -21,7 +21,7 @@ class Reply < ActiveRecord::Base
 
   def profile_history_humanize
     begin
-      "#{self.user.name} replied to '#{self.repliable.subject}'"
+      "#{self.user.first_name} replied to '#{self.repliable.subject}'"
     rescue
       nil
     end
