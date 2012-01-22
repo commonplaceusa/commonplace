@@ -6,6 +6,10 @@ var AccountProfileBox = Profile.extend({
     return " " + item;
   },
 
+  newline: function(item) {
+    return "<br />" + item;
+  },
+
   avatarUrl: function() { return this.model.get('avatar_url'); },
 
   fullName: function() { return this.model.get("name"); },
@@ -21,6 +25,8 @@ var AccountProfileBox = Profile.extend({
   goods: function() { return _.map(this.model.get("goods"), this.comma); },
 
   subscriptions: function() { return this.model.get('subscriptions'); },
+
+  history: function() { return _.map(this.model.get('history'), this.newline); },
   
   groups: function() { return ""; },
 
@@ -30,7 +36,9 @@ var AccountProfileBox = Profile.extend({
 
   hasGoods: function() { return this.model.get("goods").length > 0; },
 
-  hasAbout: function() { return this.model.get("about") != undefined; },
+  hasAbout: function() { return this.model.get("about") !== undefined; },
+
+  hasHistory: function() { return this.model.get("history").length > 0; },
   
   post_count: function() { return this.model.get('post_count'); },
 
