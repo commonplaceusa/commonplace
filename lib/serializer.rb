@@ -245,7 +245,8 @@ module Serializer
           "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts",
           "featured_users" => "/account/featured"
         },
-        "metadata" => o.metadata
+        "metadata" => o.metadata,
+        "history" => o.profile_history_humanized
         }
 
       when Community

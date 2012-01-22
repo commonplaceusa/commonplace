@@ -40,7 +40,7 @@ class GroupPost < ActiveRecord::Base
 
   def profile_history_humanize
     begin
-      "#{self.owner.name} posted '#{self.subject}' to the group '#{self.group.name}'"
+      "#{self.owner.first_name} posted '#{self.subject}' to the group '#{self.group.name}'"
     rescue
       nil
     end
