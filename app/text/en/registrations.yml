@@ -2,14 +2,14 @@ en:
   registrations:
     new:
       h1: Plug Into the %{community} Community
-      li1: CommonPlace is an online bulletin board for the town of %{community} residents.
-      li2: Sign up to share community announcements with your neighbors and receive short updates about what's happening in town.
-      li3: 735 neighbors have joined since December 24, 2011 and they've posted 148 needs, events, questions, and announcements to the community. Don't miss out! 
+      li1: CommonPlace is an online bulletin board for the town of %{community}.
+      li2: Sign up to share with your neighbors and receive short updates about what's happening in town.
+      li3: 735 Marquette residents have joined since May 2011. They've posted 148 needs, events, questions, and announcements to the community. Don't miss out! 
 
 
       li1fb: You are now connected to CommonPlace through Facebook. Please verify that you live in %{community} by providing your street address.
 
-      li2fb: Your street address will not be shared with anyone. It is only used to verify that you live in %{community}.
+      li2fb: This verifies you live in %{community}. We won't share it with anyone. 
       
     profile:
       h1: Fill out your community profile
