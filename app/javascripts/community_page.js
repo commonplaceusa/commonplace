@@ -6,7 +6,9 @@ var CommunityPage = CommonPlace.View.extend({
   initialize: function(options) {
     this.account = CommonPlace.account;
     this.community = CommonPlace.community;
-    
+
+    var profileDisplayer = new ProfileDisplayer({});    
+
     this.postBox = new PostBox({ 
       account: this.account,
       community: this.community
@@ -14,17 +16,17 @@ var CommunityPage = CommonPlace.View.extend({
 
     this.lists = new CommunityResources({
       account: this.account,
-      community: this.community
+      community: this.community,
+      showProfile: function(p) { profileDisplayer.show(p); }
     });
 
-    this.infoBox = new InfoBox({
-      account: this.account,
-      community: this.community
+    this.profileBox = new ProfileBox({
+      profileDisplayer: profileDisplayer
     });
 
-    CommonPlace.infoBox = this.infoBox;
+    CommonPlace.profileBox = this.profileBox;
 
-    this.views = [this.postBox, this.lists, this.infoBox];
+    this.views = [this.postBox, this.lists, this.profileBox];
   },
 
   afterRender: function() {
@@ -59,33 +61,3 @@ $(function() {
 
 });
 
-//= require json2
-//= require showdown
-//= require jquery
-//= require jquery-ui
-//= require actual
-//= require underscore
-//= require config
-//= require feature_switches
-//= require placeholder
-//= require time_ago_in_words
-//= require scrollTo
-//= require mustache
-//= require backbone
-//= require autoresize
-//= require dropkick
-//= require truncator
-//= require ajaxupload
-//= require views
-//= require_tree ../templates/shared
-//= require_tree ../templates/main_page
-//= require info_boxes
-//= require models
-//= require en
-//= require college
-//= require main_page/app
-//= require info_boxes
-//= require wires
-//= require wire_items
-
-//= require_tree ./shared

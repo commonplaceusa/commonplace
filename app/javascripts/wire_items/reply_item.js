@@ -3,7 +3,6 @@ var ReplyWireItem = WireItem.extend({
   className: 'reply-item',
   template: "wire_items/reply-item",
   initialize: function(options) {
-    this.model = options.model;
   },
 
   afterRender: function() {
@@ -49,7 +48,7 @@ var ReplyWireItem = WireItem.extend({
     var user = new User({
       links: { self: this.model.link("author") }
     });
-    CommonPlace.infoBox.showProfile(user);
+    this.options.showProfile(user);
   },
   
   canEdit: function() {
