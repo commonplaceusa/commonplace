@@ -22,7 +22,7 @@ var InfoListItem = CommonPlace.View.extend({
     $(this.el).siblings().removeClass("current");
     $(this.el).addClass("current");
     e.preventDefault();
-    window.infoBox.showList(window.infoBox.getSchema(), this.model);
+    CommonPlace.infoBox.showList(CommonPlace.infoBox.getSchema(), this.model);
   }
   
 });
@@ -140,7 +140,7 @@ var InfoBox = CommonPlace.View.extend({
             //collection = (schema == "account") ? collection.users : collection[schema];
             
             collection = self.config(schema).collection;
-
+            console.log("why would this ever be called?");
             collection.fetch({
               success: function() {
                 self.showFetchedList(collection, model);

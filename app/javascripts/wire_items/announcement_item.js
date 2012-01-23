@@ -78,7 +78,7 @@ var AnnouncementWireItem = WireItem.extend({
   },
 
   showProfile: function(e) {
-    window.infoBox.showProfile(this.model.author());
+    CommonPlace.infoBox.showProfile(this.model.author());
   },
   
   isFeed: function() { return this.model.get("owner_type") == "Feed"; },

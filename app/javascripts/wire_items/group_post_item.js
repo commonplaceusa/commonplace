@@ -94,7 +94,7 @@ var GroupPostWireItem = WireItem.extend({
     var group = new Group({
       links: { self: this.model.link("group") }
     });
-    window.infoBox.showProfile(group);
+    CommonPlace.infoBox.showProfile(group);
   },
 
   canEdit: function() { return CommonPlace.account.canEditGroupPost(this.model); },
