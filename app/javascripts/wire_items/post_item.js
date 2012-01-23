@@ -26,7 +26,7 @@ var PostWireItem = WireItem.extend({
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
                                         el: this.$(".replies"),
-                                        account: CommonPlace.account
+                                        showProfile: this.options.showProfile
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -108,7 +108,7 @@ var PostWireItem = WireItem.extend({
     var user = new User({
       links: { self: this.model.link("author") }
     });
-    CommonPlace.infoBox.showProfile(user);
+    this.options.showProfile(user);
   },
 
   canEdit: function() { return CommonPlace.account.canEditPost(this.model); },

@@ -1,5 +1,5 @@
-var UserProfileBox = Profile.extend({
-  template: "main_page.profiles.user-profile",
+var UserProfile = CommonPlace.View.extend({
+  template: "main_page.user-profile",
   className: "profile",
 
   events: {
@@ -70,7 +70,7 @@ var UserProfileBox = Profile.extend({
     this.render();
   },
 
-  hasMet: function() { return this.options.account.hasMetUser(this.model); }
+  hasMet: function() { return CommonPlace.account.hasMetUser(this.model); }
   
 });
 
