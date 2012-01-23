@@ -215,9 +215,18 @@ var CommunityResources = CommonPlace.View.extend({
   
   stickHeader: function() {
     var $sticky_header = this.$(".sticky .header");
+    var sticky_bottom = $sticky_header.offset().top + $sticky_header.outerHeight();
+    
     var current_subnav = this.$(".resources .sub-navigation").filter(function() {
-      return $(this).offset().top <= $sticky_header.offset().top;
+      if (!$sticky_header.height()) {
+        return $(this).offset().top <= $sticky_header.offset().top;
+      } else {
+        var $nav_text = $(this).children("h2");
+        var nav_text_bottom = $nav_text.offset().top + $nav_text.height();
+        return nav_text_bottom <= sticky_bottom;
+      }
     }).last();
+    
     $sticky_header.html(current_subnav.clone());
     
     if (this.currentQuery) { $(".sticky .cancel").removeClass("waiting"); }
