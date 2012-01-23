@@ -81,27 +81,32 @@ var InfoBox = CommonPlace.View.extend({
 
   showProfile: function(model) {
     var self = this;
-
-    this.$(".remove-search").hide();
+    if (this.isCurrentModel(model)) {
+      this.showFetchedProfile(model);
+    } else {
+      model.fetch({
+        success: function() { self.showFetchedProfile(model); }
+      });
+    }
+  },
+  
+  showFetchedProfile: function(model) {
+    var self = this;
+    if (this.isAccount(model)) { model = CommonPlace.account; }
+    this.currentCollection = this.collectionFor(model);
+    
+    this.renderProfile(model);
+    
+    if (this.currentCollection.length && !this.currentQuery) {
+      this.renderList(this.currentCollection);
+    } else {
+      this.currentCollection.fetch({
+        success: function() { self.renderList(self.currentCollection); }
+      });
+    }
+    
     this.currentQuery = "";
-
-    model.fetch({
-      success: function() {
-        if (self.isAccount(model)) { model = self.options.account; }
-
-        self.renderProfile(model);
-
-        self.currentQuery = "";
-        self.$("input").val(self.currentQuery);
-
-        self.currentCollection = self.collectionFor(model);
-        self.currentCollection.fetch({
-          success: function() {
-            self.renderList(self.currentCollection);
-          }
-        });
-      }
-    });
+    this.$("input").val("");
   },
 
   showList: function(schema, model) {
@@ -212,7 +217,7 @@ var InfoBox = CommonPlace.View.extend({
     this.$profile().hide();
     this.$profile().hide();
     this.page = 0;
-    var box = new SearchNoneBox();
+    var box = new SearchNoneBox({ query: this.currentQuery });
     box.render();
     this.$profile_none().replaceWith(box.el);
     this.$profile_none().show();
@@ -285,7 +290,7 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   switchTab: function(e) {
-    e && e.preventDefault();
+    if (e) { e.preventDefault(); }
     var schema = this.getSchema($(e.target));
     if (schema == "account") {
       this.removeSearch();
@@ -296,24 +301,23 @@ var InfoBox = CommonPlace.View.extend({
   },
 
   filterBySearch: _.debounce(function(e) {
-    e && e.preventDefault();
+    if (e) { e.preventDefault(); }
     query = this.$("input.search").val();
     if (query) {
       this.$("#info-list-area").addClass("searching");
       this.$(".remove-search").show();
       this.$(".remove-search").text(query);
       this.currentQuery = query;
-      this.showList(this.getSchema());
     } else { this.removeSearch(); }
+    this.showList(this.getSchema());
   }, 500),
 
   removeSearch: function(e) {
-    e && e.preventDefault();
+    if (e) { e.preventDefault(); }
     this.$("#info-list-area").removeClass("searching");
     this.$(".remove-search").hide();
     this.currentQuery = "";
     this.$("input").val("");
-    this.showList(this.getSchema());
   },
 
   getSchema: function(el) {
@@ -343,5 +347,8 @@ var Profile = CommonPlace.View.extend({
 var SearchNoneBox = CommonPlace.View.extend({
   template: "main_page/profiles/search-none",
   className: "none",
-  query: function() { return window.infoBox.currentQuery; }
+  
+  initialize: function(options) { this.currentQuery = options.query; },
+  
+  query: function() { return this.currentQuery; }
 });
