@@ -55,7 +55,7 @@ var PostBox = CommonPlace.View.extend({
     
     this.showWire(tab);
 
-    view.onFormFocus();
+    if (view.onFormFocus) { view.onFormFocus(); }
   },
   
   tabs: {
