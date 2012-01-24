@@ -12,10 +12,11 @@ var GroupView = CommonPlace.View.extend({
     profile = new GroupProfileView({model: group});
     header = new GroupHeaderView({model: group, account: this.account});
     newpost = new NewPostView({model: group, account: this.account});
-    nav = new GroupNavView({model: group});
     subresources = new GroupSubresourcesView({model: group, account: this.account});
-
-    nav.bind("switchTab", function(tab) { subresources.switchTab(tab); });
+    nav = new GroupNavView({
+      model: group,
+      switchTab: function(tab) { subresources.switchTab(tab); }
+    });
 
     this.subviews = [profile, header, newpost, nav, subresources];
 
