@@ -108,7 +108,8 @@ script
   end
 
   def populate_commonplace
-    community = account = ''
+    account = ''
+    community = ''
 
     if current_user
       account << "CommonPlace.account = new Account(#{serialize(Account.new(current_user))});"
