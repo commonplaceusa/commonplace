@@ -47,7 +47,7 @@ class AdminController < ApplicationController
   end
 
   def download_csv
-    @communities = Community.all
+    @communities = Community.all.reject { |c| Resque.redis.get("statistics:csv:#{c.slug}").nil? }
   end
 
   def show_requests
