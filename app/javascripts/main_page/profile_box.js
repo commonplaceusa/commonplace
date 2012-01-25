@@ -40,7 +40,7 @@ var ProfileBox = CommonPlace.View.extend({
     this.lists.clearSearch();
   },
 
-  search: function() {
+  search: _.debounce(function() {
     var search_term = this.$("#profile-box-search input.search").val();
     if (search_term === "") {
       this.removeSearch()
@@ -48,7 +48,7 @@ var ProfileBox = CommonPlace.View.extend({
       this.lists.showSearch(search_term, { showProfile: true });
       this.$(".filters a").removeClass("current");
     }
-  },
+  }, 500),
 
   removeSearch: function() { 
     this.lists.clearSearch(); 
