@@ -2,7 +2,7 @@ var Wire = CommonPlace.View.extend({
   className: "wire",
   template: "wires/wire",
 
-  initialize: function(options) {},
+  initialize: function(options) { this.options.showProfile = this.options.showProfile || $.noop; },
   
   aroundRender: function(render) {
     var self = this;
@@ -82,7 +82,7 @@ var Wire = CommonPlace.View.extend({
       "feeds": FeedWireItem,
       "users": UserWireItem,
       "groups": GroupWireItem
-    }[schema]({model: model});
+    }[schema]({model: model, showProfile: this.options.showProfile });
   },
   
   isEmpty: function() { return this.collection.isEmpty(); },

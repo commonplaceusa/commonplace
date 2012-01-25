@@ -14,7 +14,7 @@ var Tour = CommonPlace.View.extend({
     "click a.feed-tour" : "feed",
     "click a.post-tour" : "post",
     "click #tour-shadow" : "end",
-    "click #info-box, #community-resources, #post-box" : "end"
+    "click #profile-box, #community-resources, #post-box" : "end"
   },
 
   initialize: function(options) { 
@@ -53,7 +53,7 @@ var Tour = CommonPlace.View.extend({
     this.template = "main_page.tour.profile";
     this.$("#tour").html(this.renderTemplate("main_page.tour.profile", this))
       .attr('class','profile');
-    this.raise("#info-box");
+    this.raise("#profile-box");
     $.scrollTo(250, 700);
   },
 

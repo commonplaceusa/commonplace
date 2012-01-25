@@ -24,7 +24,6 @@
 
 //= require views
 //= require models
-//= require info_boxes
 //= require wires
 //= require wire_items
 

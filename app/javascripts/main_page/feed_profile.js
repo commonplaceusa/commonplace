@@ -1,5 +1,5 @@
-var FeedProfileBox = Profile.extend({
-  template: "main_page.profiles.feed-profile",
+var FeedProfile = CommonPlace.View.extend({
+  template: "main_page.feed-profile",
   className: "profile",
 
   events: {
@@ -37,19 +37,19 @@ var FeedProfileBox = Profile.extend({
 
   subscribe: function(e) {
     e.preventDefault();
-    this.options.account.subscribeToFeed(this.model);
+    CommonPlace.account.subscribeToFeed(this.model);
     this.render();
   },
 
   unsubscribe: function(e) {
     e.preventDefault();
-    this.options.account.unsubscribeFromFeed(this.model);
+    CommonPlace.account.unsubscribeFromFeed(this.model);
     this.render();
   },
 
-  isSubscribed: function() { return this.options.account.isSubscribedToFeed(this.model); },
+  isSubscribed: function() { return CommonPlace.account.isSubscribedToFeed(this.model); },
 
-  isOwner: function() { return this.options.account.isFeedOwner(this.model); },
+  isOwner: function() { return CommonPlace.account.isFeedOwner(this.model); },
 
   url: function() { return this.model.get("url"); }
   
