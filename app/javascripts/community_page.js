@@ -35,6 +35,7 @@ var CommunityPage = CommonPlace.View.extend({
       view.render();
       self.$("#" + view.id).replaceWith(view.el);
     });
+    CommonPlace.layout.reset();
   },
 
   bind: function() { 
