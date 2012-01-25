@@ -52,7 +52,8 @@ var CommunityResources = CommonPlace.View.extend({
   tabs: {
     landing: function(self) {
       return new DynamicLandingResources({
-        callback: function() { self.stickHeader(); }
+        callback: function() { self.stickHeader(); },
+        showProfile: self.options.showProfile
       });
     },
     

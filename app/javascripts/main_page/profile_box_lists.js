@@ -33,7 +33,9 @@ var ProfileBoxLists = CommonPlace.View.extend({
     var views = this.currentList.map(function(item) {
       return new ProfileBoxListItem({ 
         model: item, 
-        showProfile: self.options.showProfile 
+        showProfile: function(profile) { 
+          self.options.showProfile(profile, { highlight: self.currentQuery });
+        }
       });
     });
     
@@ -60,7 +62,6 @@ var ProfileBoxLists = CommonPlace.View.extend({
       success: _.bind(function() { 
         if (this.currentList.length === 0) {
           this.$("#profile-box-failed-search").show();
-          console.log(this.currentQuery);
           this.options.showProfile(new ClientSideModel({ 
             schema: "failed_search",
             id: this.currentQuery,
@@ -72,6 +73,9 @@ var ProfileBoxLists = CommonPlace.View.extend({
     });
   },
 
-  clearSearch: function() { this.$("#profile-box-search input.search").val(""); }
+  clearSearch: function() { 
+    this.$("#profile-box-search input.search").val(""); 
+    this.currentQuery = "";
+  }
   
 });
