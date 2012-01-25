@@ -50,6 +50,10 @@ class AdminController < ApplicationController
     @communities = Community.all.reject { |c| Resque.redis.get("statistics:csv:#{c.slug}").nil? }
   end
 
+  def generate_csvs
+    Resque.enqueue(StatisticsCsvGenerator)
+  end
+
   def show_requests
     @requests = Request.all.sort{ |a,b| a.created_at <=> b.created_at }
   end
