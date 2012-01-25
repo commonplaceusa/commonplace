@@ -2,8 +2,7 @@ var RepliesView = CommonPlace.View.extend({
   className: "replies",
   template: "shared/replies",
   initialize: function(options) {
-    var self = this;
-    this.account = options.account;
+    var self = this; 
     this.collection.bind("add", function() { self.render(); });
     this.collection.bind("remove", function() { self.render(); });
   },
@@ -26,7 +25,10 @@ var RepliesView = CommonPlace.View.extend({
     var $ul = this.$("ul.reply-list");
 
     this.collection.each(function(reply, index) {
-      var replyview = new ReplyWireItem({ model: reply, account: self.account });
+      var replyview = new ReplyWireItem({ 
+        model: reply, 
+        showProfile: self.options.showProfile 
+      });
 
       $ul.append(replyview.render().el);
       if (index < self.hiddenReplyCount() ){
@@ -66,7 +68,7 @@ var RepliesView = CommonPlace.View.extend({
     if (!this.$("form textarea").val()) { this.$(".submit-c").hide(); }
   },
   
-  accountAvatarUrl: function() { return this.account.get('avatar_url'); }
+  accountAvatarUrl: function() { return CommonPlace.account.get('avatar_url'); }
   
 
     

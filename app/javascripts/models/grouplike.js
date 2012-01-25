@@ -18,6 +18,10 @@ var GroupLikes = Model.extend({
       callback(model);
     });
   },
+
+  map: function(f) {
+    return _.map(this.models, f);
+  },
   
   toModel: function(data) {
     var x = new {

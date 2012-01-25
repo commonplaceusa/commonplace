@@ -1,5 +1,5 @@
-var GroupProfileBox = Profile.extend({
-  template: "main_page.profiles.group-profile",
+var GroupProfile = CommonPlace.View.extend({
+  template: "main_page.group-profile",
   className: "profile",
 
   events: {
@@ -15,17 +15,17 @@ var GroupProfileBox = Profile.extend({
 
   subscribe: function(e) {
     e.preventDefault();
-    this.options.account.subscribeToGroup(this.model);
+    CommonPlace.account.subscribeToGroup(this.model);
     this.render();
   },
 
   unsubscribe: function(e) {
     e.preventDefault();
-    this.options.account.unsubscribeFromGroup(this.model);
+    CommonPlace.account.unsubscribeFromGroup(this.model);
     this.render();
   },
 
-  isSubscribed: function() { return this.options.account.isSubscribedToGroup(this.model); },
+  isSubscribed: function() { return CommonPlace.account.isSubscribedToGroup(this.model); },
 
   url: function() { return this.model.get("url"); }
   
