@@ -12,6 +12,10 @@ var UserProfileBox = Profile.extend({
     return " " + item;
   },
 
+  newline: function(item) {
+    return "<br />" + item;
+  },
+
   avatarUrl: function() { return this.model.get('avatar_url'); },
   
   fullName: function() { return this.model.get("name"); },
@@ -19,6 +23,8 @@ var UserProfileBox = Profile.extend({
   shortName: function() { return this.model.get("first_name"); },
   
   about: function() { return this.model.get('about'); },
+
+  hasHistory: function() { return this.model.get("history").length > 0; },
 
   post_count: function() { return this.model.get('post_count'); },
 
@@ -29,6 +35,8 @@ var UserProfileBox = Profile.extend({
   skills: function() { return _.map(this.model.get("skills"), this.comma); },
 
   goods: function() { return _.map(this.model.get("goods"), this.comma); },
+
+  history: function() { return _.map(this.model.get('history'), this.newline); },
 
   subscriptions: function() { return this.model.get('subscriptions'); },
   
