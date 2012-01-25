@@ -17,6 +17,11 @@ var FeedPageRouter = Backbone.Router.extend({
 
   show: function(slug) {
     var self = this;
+    
+    var header = new HeaderView();
+    header.render();
+    $("#header").replaceWith(header.el);
+    
     $.getJSON("/api" + this.community.links.groups, function(groups) {
       self.feedsList.select(slug);
       $.getJSON("/api/feeds/" + slug, function(response) {

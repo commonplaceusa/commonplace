@@ -247,6 +247,7 @@ module Serializer
         "reply_count" => o.replies.count,
         "about" => o.about,
         "facebook_user" => o.facebook_user? ? true : false,
+        "activity" => serialize(o.activity),
         "links" => {
           "avatar" => "/account/avatar",
           "crop" => "/account/crop",
@@ -290,7 +291,21 @@ module Serializer
         else
           o.as_api_response(:error)
         end
-      
+
+      when Activity
+        {
+          "posts" => o.posts,
+          "credits" => o.credits,
+          "thanks" => o.thanks,
+          "replies" => o.replies,
+          "received_thanks" => o.received_thanks,
+          "invites" => o.invites,
+          "community_users" => o.community_users,
+          "community_posts" => o.community_posts,
+          "community_replies" => o.community_replies,
+          "households" => o.households,
+          "created_at" => o.created_at
+        }
       else
         o
       end
