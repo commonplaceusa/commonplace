@@ -482,11 +482,18 @@ WHERE
   end
   
   def featured
-    [
-      self.community.users.reorder("calculated_cp_credits DESC").take(150),
-      self.community.users.pretty.take(100),
-      self.sent_messages.where("messagable_type = 'User'").map {|m| m.messagable}.uniq.take(100)
-    ].flatten.sort_by! {|u| u.all_cpcredits }.uniq.reverse.take(150)
+    average_cp_credits = self.community.users.average("calculated_cp_credits")
+    self.community.users.joins(:received_messages)
+      .order("calculated_cp_credits DESC")
+      .limit(150)
+      .where(<<CONDITION, self.id, average_cp_credits).uniq
+about != '' 
+OR goods != '' 
+OR interests != '' 
+OR messages.user_id = ?
+OR avatar_file_name IS NOT NULL 
+OR calculated_cp_credits >= ?
+CONDITION
   end
 
   def nag_banner_text
@@ -498,7 +505,7 @@ facebook_connect_post_registration(function() {
   CommonPlace.account.set_metadata("completed_facebook_nag", true, function() {
     $(".important-notification").hide();
     CommonPlace.layout.reset();
-    window.infoBox.renderProfile(CommonPlace.account);
+    CommonPlace.infoBox.renderProfile(CommonPlace.account);
   });
 }, function() { });
 js

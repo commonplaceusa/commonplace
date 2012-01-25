@@ -94,11 +94,16 @@ var PostForm = CommonPlace.View.extend({
     //});
   },
   
-  onFormBlur: function() {
+  onFormBlur: function(e) {
     $("#invalid_post_tooltip").hide();
     if (!this.focused) {
       this.$(".on-focus").hide();
       this.resetLayout();
+    }
+    if (!$(e.target).val() || $(e.target).val() == $(e.target).attr("placeholder")) {
+      $(e.target).removeClass("filled");
+    } else {
+      $(e.target).addClass("filled");
     }
   },
   

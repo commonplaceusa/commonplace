@@ -7,7 +7,8 @@ var EventForm = CommonPlace.View.extend({
   events: {
     "click button": "createEvent",
     "change .post-label-selector input": "toggleCheckboxLIClass",
-    "keydown textarea": "resetLayout"
+    "keydown textarea": "resetLayout",
+    "focusout input, textarea": "onFormBlur"
   },
 
   afterRender: function() {
@@ -15,6 +16,10 @@ var EventForm = CommonPlace.View.extend({
     this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$("textarea").autoResize();
     this.$("select.time").dropkick();
+    var self = this;
+    this.$("input.date").bind("change", function() {
+      self.onFormBlur({ target: self.$("input.date") });
+    });
   },
 
   createEvent: function(e) {
@@ -77,5 +82,13 @@ var EventForm = CommonPlace.View.extend({
         );
       }
     )
-  )
+  ),
+  
+  onFormBlur: function(e) {
+    if (!$(e.target).val() || $(e.target).val() == $(e.target).attr("placeholder")) {
+      $(e.target).removeClass("filled");
+    } else {
+      $(e.target).addClass("filled");
+    }
+  }
 });

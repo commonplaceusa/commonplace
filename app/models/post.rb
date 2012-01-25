@@ -53,7 +53,7 @@ class Post < ActiveRecord::Base
 
   def profile_history_humanize
     begin
-      "#{self.owner.first_name} posted '#{self.subject}'"
+      "#{self.owner.first_name} posted '#{BackboneAdapter.link(self, self.subject)}'"
     rescue
       nil
     end

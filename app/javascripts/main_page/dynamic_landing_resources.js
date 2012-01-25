@@ -40,56 +40,64 @@ var DynamicLandingResources = CommonPlace.View.extend({
         collection: self.raw.neighborhood,
         fullWireLink: "#/posts",
         emptyMessage: "No posts here yet.",
-        callback: self.callback
+        callback: self.callback,
+        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-offer-resources",
         collection: self.raw.offers,
         fullWireLink: "#/posts",
         emptyMessage: "No offers here yet.",
-        callback: self.callback
+        callback: self.callback,
+        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-help-resources",
         collection: self.raw.help,
         fullWireLink: "#/posts",
         emptyMessage: "No help requests here yet.",
-        callback: self.callback
+        callback: self.callback,
+        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-publicity-resources",
         collection: self.raw.publicity,
         fullWireLink: "#/posts",
         emptyMessage: "No posts here yet.",
-        callback: self.callback
+        callback: self.callback,
+        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-other-resources",
         collection: self.raw.other,
         fullWireLink: "#/posts",
         emptyMessage: "No posts here yet.",
-        callback: self.callback
+        callback: self.callback,
+        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.announcement-resources",
         collection: self.raw.announcements,
         fullWireLink: "#/announcements",
         emptyMessage: "No announcements here yet.",
-        callback: self.callback
+        callback: self.callback,
+        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.group-post-resources",
         collection: self.raw.groupPosts,
         fullWireLink: "#/groupPosts",
         emptyMessage: "No posts here yet.",
-        callback: self.callback
+        callback: self.callback,
+        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-meetup-resources",
         collection: self.raw.meetups,
         fullWireLink: "#/posts",
         emptyMessage: "No meetups here yet.",
-        callback: self.callback
+        callback: self.callback,
+        showProfile: self.options.showProfile
       }))
     ];
     
@@ -115,7 +123,8 @@ var DynamicLandingResources = CommonPlace.View.extend({
       collection: self.raw.events,
       fullWireLink: "#/events",
       emptyMessage: "No events here yet.",
-      callback: self.callback
+      callback: self.callback,
+      showProfile: self.options.showProfile
     });
     
     var chrono = new Wire({
@@ -123,7 +132,8 @@ var DynamicLandingResources = CommonPlace.View.extend({
       collection: CommonPlace.community.postlikes,
       emptyMessage: "No posts here yet.",
       perPage: 22,
-      callback: self.callback
+      callback: self.callback,
+      showProfile: self.options.showProfile
     });
     
     _.each(self.raw.all(), function(collection) { duplicates.push(collection.models); })
@@ -142,7 +152,8 @@ var DynamicLandingResources = CommonPlace.View.extend({
       collection: this.postlikes,
       emptyMessage: "No results.",
       perPage: 22,
-      callback: this.callback
+      callback: this.callback,
+      showProfile: this.options.showProfile
     });
     searchWire.search(this.currentQuery);
     this._wires = [searchWire];

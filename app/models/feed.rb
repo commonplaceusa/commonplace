@@ -7,7 +7,7 @@ class Feed < ActiveRecord::Base
 
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
   
-  scope :featured, { :conditions => ["about != '' AND address != ''"] }
+  scope :featured, { :conditions => ["about != '' OR address != ''"] }
 
   before_validation(:on => :create) do
     if self.slug?

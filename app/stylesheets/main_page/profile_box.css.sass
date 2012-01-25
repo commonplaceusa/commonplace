@@ -1,13 +1,14 @@
 $text: #738392
 
-#info-box
+#profile-box
   margin-top: 12px
   background: rgb(41,59,83)
   margin-left: 1px
   color: white
   font-family: Helvetica, Arial, sans-serif
   font-size: 12px
-  padding: 15px
+  padding: 10px
+  width: 465px
   padding-bottom: 5px
   +border-radius(4px)
   +box-shadow(4px 4px 2px rgba(46, 75, 103, 0.1), 0 0 0 1px #1b334a, 0 1px 0 rgba(70, 117, 161, 0.7) inset)
@@ -19,79 +20,66 @@ $text: #738392
     padding: 0
     list-style: none
 
-  #info-upper
-    +border-radius(4px)
-    +box-shadow(2px 2px 6px rgba(0, 0, 0, 0.25) inset, 0 0 0 1px rgba(0, 0, 0, 0.24))
-    overflow: hidden
-    margin: 3px 0 10px
-    height: 400px
-
-    .search
-      height: 20px
-      padding: 5px
-        right: 20px
-        top: 3px
-      color: $text
-      background-color: #1c2e40
-      background-image: image-url("search-blue.png") 
-      background-position: 95% center
-      background-repeat: no-repeat
-      border: 0
-      border-top: 1px solid #28394a
-      width: 128px
-      &:focus
-        outline: 0
-
-      &::-webkit-input-placeholder, &::-moz-placeholder
-        color: $text
-    
-    #info-list-area
-      width: 153px
+  .filters
+    margin: 0 0 14px 0
+    div.label
+      padding-top: 5px
+      margin-right: 6px
+      font-weight: bold
       float: left
-      
-      &.searching
-        ul
-          height: 350px
-      ul
-        height: 370px
-        overflow-x: hidden
-        overflow-y: auto
-        border-bottom: 1px solid #101f30
-        background-color: #1c2e40
-        z-index: 9
-
-      .remove-search
-        text-align: center
-        font-weight: bold
-        text-transform: none
-        color: #cee7fe
-        text-decoration: none
-        padding: 4px 8px
-        +text-shadow(black 1px 1px 0)
+    a
+      margin-left: 5px
+      font-weight: bold
+      float: left
+      display: block
+      color: #cee7fe
+      text-decoration: none
+      padding: 4px 8px
+      +text-shadow(black 1px 1px 0)
+      &.current, &:hover
+        background: #ac322f
         +border-radius(4px)
-        display: none
-        background-image: image-url("delete_grey.png")
-        background-position: center right
-        background-repeat: no-repeat
-
-      .empty
-        background-color: #888
-        +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #888 inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
-
-      .not-empty
-        background-color: #ac322f
         +box-shadow(0 0 0 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0 #ac322f inset, 0 2px 1px rgba(255, 255, 255, 0.2) inset)
-        
-      .none
-        width: 133px
+
+  #profile-box-lists
+    width: 153px
+    position: absolute
+    background-color: #1C2E40
+    top: 40px
+    bottom: 10px
+
+    #profile-box-search
+      border-bottom: 2px solid #293B53
+      .search
+        height: 20px
+        padding: 5px
+        padding-right: 20px
+        color: $text
         background-color: #1c2e40
-        position: absolute
-        display: none
-        padding: 10px
-        text-align: center
-        z-index: 10
-        margin-top: 30px
-      
+        background-image: image-url("search-blue.png") 
+        background-position: 95% center
+        background-repeat: no-repeat
+        width: 128px
+        border: 0
+        &:focus
+          outline: 0
+
+        &::-webkit-input-placeholder, &::-moz-placeholder
+          color: $text
+
+    #profile-box-failed-search
+      padding: 10px
+      text-align: center
+      margin-top: 30px
+      display: none
+
+    #profile-box-results
+      position: absolute
+      top: 32px
+      bottom: 0
+      left: 0
+      right: 0
+      overflow-y: auto
       li
         padding: 8px
         overflow: hidden
@@ -110,22 +98,30 @@ $text: #738392
             margin-right: 5px
           p
             float: right
-            width: 91px
+            width: 80px
           strong
             color: white
             display: block
 
-    #profile-area
+  #profile-box-profile
+    width: 310px
+    position: absolute
+    background-color: #fff
+    top: 40px
+    bottom: 10px
+    right: 10px
+  
+    .profile
       width: 307px
       float: right
       background: white
       overflow: auto
       color: #444
       height: 100%
-      
+   
       .highlight
         background-color: #efefaa
-      
+   
       .none
         display: none
       a
@@ -140,7 +136,7 @@ $text: #738392
         overflow: hidden
       .box-links 
         margin-bottom: 10px
-
+  
       .profile-top
         width: 47%
         padding-right: 1px
@@ -186,6 +182,8 @@ $text: #738392
         color: #1c2e40
         margin-left: 4px
         line-height: 1.4
+        a
+          color: #1B334A
       p.mini-desc
         margin-bottom: 20px
         color: #666
@@ -200,16 +198,10 @@ $text: #738392
     .profile-top
       p
         margin-bottom: 6px
-  
-  ul.filter
-    margin: 0 0 14px 0
-    &:after
-      content: "."
+    a.gray-button
       display: block
-      height: 0
-      clear: both
-      visibility: hidden
-    li
+      line-height: 20px
+      color: #ac322f
       text-transform: uppercase
       font-weight: bold
       float: left

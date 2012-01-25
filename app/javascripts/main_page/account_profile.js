@@ -1,5 +1,5 @@
-var AccountProfileBox = Profile.extend({
-  template: "main_page.profiles.account-profile",
+var AccountProfile = CommonPlace.View.extend({
+  template: "main_page.account-profile",
   className: "profile",
 
   comma: function(item) {
