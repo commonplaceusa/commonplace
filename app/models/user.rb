@@ -541,6 +541,10 @@ js
       self.name
     end
   end
+  
+  def activity
+    Activity.new(self)
+  end
 
   def validation_errors
     UserErrors.new(self)
@@ -551,5 +555,5 @@ js
   def is_transitional_user
     transitional_user
   end
-
+  
 end

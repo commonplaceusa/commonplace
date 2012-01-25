@@ -52,6 +52,9 @@
 var Application = Backbone.Router.extend({
 
   initialize: function() {
+    var header = new HeaderView({ el: $("#header") });
+    header.render();
+
     this.pages = {
       faq: new FaqPage({ el: $("#main") }),
       invite: new InvitePage({ el: $("#main") }),

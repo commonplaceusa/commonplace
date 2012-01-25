@@ -44,7 +44,9 @@ FeatureSwitcher = function(features, backend) {
 
 Features = new FeatureSwitcher({
   "2012Release": true,
-  "post_subwinnow": false
+  "post_subwinnow": false,
+  "CPCreditsHeaderView": false
+  
 }, window.sessionStorage || { 
   setItem: function(name, value) {},
   getItem: function(name) { return false; }

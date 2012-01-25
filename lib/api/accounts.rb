@@ -166,6 +166,10 @@ class API
     get "/history" do
       serialize(current_account.profile_history)
     end
+    
+    get "/activity" do
+      serialize(current_account.activity)
+    end
 
   end
 end

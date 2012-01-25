@@ -1,0 +1,37 @@
+<ul>
+  {{#showActivity}}
+    <li class="my-activity"></li>
+  {{/showActivity}}
+  <li class="invite">
+    <div class="letter"></div>
+    <a href="{{invite_url}}" data-remote">Invite<a>
+  </li>
+  <li class="inbox">
+    <div class="file"></div>
+    <a href="{{inbox_url}}">Inbox</a>
+  </li>
+  <li class="account">
+
+    <img src="{{avatar_url}}" width="22" height="22" class="avatar">
+    <a href="{{account_url}}" data-remote>Hi, {{short_name}}!</a>
+
+    <ul class="account-sub">
+      <li><a href="{{account_url}}" data-remote>Account Settings</a></li>
+
+      {{#feeds}}
+        <li><a href="/pages/{{slug}}">{{name}}</a></li>
+      {{/feeds}}
+
+      <li><a href="/feed_registrations/new">Register a Feed</a></li>
+      <li><a href="{{faq_url}}" data-remote>FAQ</a></li>
+
+      {{#neighbor_discount_url}}
+        <li><a href="{{neighbor_discount_url}}" data-remote>Good Neighbor Discount</a></li>
+      {{/neighbor_discount_url}}
+
+      <li><a href="{{privacy_url}}">Privacy Policy</a></li>
+      <li><a href="/users/sign_out">Sign Out</a></li>
+    </ul>
+
+  </li>
+</ul>
