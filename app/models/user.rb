@@ -498,7 +498,7 @@ facebook_connect_post_registration(function() {
   CommonPlace.account.set_metadata("completed_facebook_nag", true, function() {
     $(".important-notification").hide();
     CommonPlace.layout.reset();
-    window.infoBox.renderProfile(CommonPlace.account);
+    CommonPlace.infoBox.renderProfile(CommonPlace.account);
   });
 }, function() { });
 js

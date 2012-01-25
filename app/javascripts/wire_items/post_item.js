@@ -108,7 +108,7 @@ var PostWireItem = WireItem.extend({
     var user = new User({
       links: { self: this.model.link("author") }
     });
-    window.infoBox.showProfile(user);
+    CommonPlace.infoBox.showProfile(user);
   },
 
   canEdit: function() { return CommonPlace.account.canEditPost(this.model); },

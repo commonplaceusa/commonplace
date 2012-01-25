@@ -17,7 +17,7 @@ var GroupWireItem = WireItem.extend({
   },
 
   showProfile: function(e) {
-    window.infoBox.showProfile(this.model);
+    CommonPlace.infoBox.showProfile(this.model);
   },
 
   subscribe: function() { CommonPlace.account.subscribeToGroup(this.model); },

@@ -49,7 +49,7 @@ var ReplyWireItem = WireItem.extend({
     var user = new User({
       links: { self: this.model.link("author") }
     });
-    window.infoBox.showProfile(user);
+    CommonPlace.infoBox.showProfile(user);
   },
   
   canEdit: function() {
@@ -59,7 +59,6 @@ var ReplyWireItem = WireItem.extend({
   deleteReply: function(e) {
     e.preventDefault();
     var self = this;
-    window.f = this.model;
     this.model.destroy();
   }
 });

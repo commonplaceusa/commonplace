@@ -11,7 +11,7 @@
   resize: none
   @include box-shadow(0 0 0 1px #8b2324, 2px 2px 5px #ccc inset)
 
-  &:focus
+  &:focus, &.filled
     outline: none
     color: #333
 
@@ -118,6 +118,8 @@
       input[type=text]
         width: 288px
         +input()
+        &.date
+          margin-top: 10px
 
       textarea
         +input()
@@ -135,7 +137,9 @@
 
       .post-label-selector
         margin-top: 15px
+        margin-bottom: 10px
         height: 125px
+        width: 305px
         overflow-y: scroll
 
         li 
