@@ -195,6 +195,10 @@ class Community < ActiveRecord::Base
     end
   end
 
+  def user_growth_since_launch_as_csv
+    StatisticsAggregator.generate_statistics_for_community(c)
+  end
+
   def launch_date
     self.read_attribute(:launch_date) || self.created_at
   end

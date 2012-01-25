@@ -46,6 +46,10 @@ class AdminController < ApplicationController
     send_data StatisticsAggregator.generate_statistics_csv_for_community(Community.find_by_slug(params[:community])), :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{slug}.csv"
   end
 
+  def download_csv
+    @communities = Community.all
+  end
+
   def show_requests
     @requests = Request.all.sort{ |a,b| a.created_at <=> b.created_at }
   end

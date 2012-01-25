@@ -42,6 +42,7 @@ Commonplace::Application.routes.draw do
   match "/admin/show_referrers" => "admin#show_referrers"
   match "/admin/show_requests" => "admin#show_requests"
   match "/admin/map" => "admin#map"
+  match "/admin/download_csv" => "admin#download_csv"
 
   # Blog and Starter Site routes
   resources :requests, :only => [:new, :create]
