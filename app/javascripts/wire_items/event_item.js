@@ -12,7 +12,7 @@ var EventWireItem = WireItem.extend({
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
                                         el: this.$(".replies"),
-                                        account: CommonPlace.account
+                                        showProfile: this.options.showProfile
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -90,7 +90,7 @@ var EventWireItem = WireItem.extend({
   },
 
   showProfile: function(e) {
-    window.infoBox.showProfile(this.model.author());
+    this.options.showProfile(this.model.author());
   },
   
   isFeed: function() { return this.model.get("owner_type") == "Feed"; },

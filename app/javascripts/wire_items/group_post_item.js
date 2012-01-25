@@ -12,7 +12,7 @@ var GroupPostWireItem = WireItem.extend({
   afterRender: function() {
     var repliesView = new RepliesView({ collection: this.model.replies(),
                                         el: this.$(".replies"),
-                                        account: CommonPlace.account
+                                        showProfile: this.options.showProfile
                                       });
     repliesView.render();
     this.model.bind("change", this.render, this);
@@ -94,7 +94,7 @@ var GroupPostWireItem = WireItem.extend({
     var group = new Group({
       links: { self: this.model.link("group") }
     });
-    window.infoBox.showProfile(group);
+    this.options.showProfile(group);
   },
 
   canEdit: function() { return CommonPlace.account.canEditGroupPost(this.model); },

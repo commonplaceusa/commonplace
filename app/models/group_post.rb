@@ -40,7 +40,7 @@ class GroupPost < ActiveRecord::Base
 
   def profile_history_humanize
     begin
-      "#{self.owner.first_name} posted '#{self.subject}' to '#{self.group.name}'"
+      "#{self.owner.first_name} posted '#{BackboneAdapter.link(self, self.subject)}' to '#{self.group.name}'"
     rescue
       nil
     end

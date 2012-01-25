@@ -2,7 +2,7 @@
 var FixedLayout = function() {
   function adjustProfileBox() {
     var $postBox = $("#post-box");
-    var $infoBox = $("#info-box");
+    var $infoBox = $("#profile-box");
 
     if ($(window).width() < 990) {
       $("#left-column").hide();
@@ -51,7 +51,7 @@ var FixedLayout = function() {
 
 var StaticLayout = function() {
   function setInfoBoxPosition() {
-    var $el = $("#info-box");
+    var $el = $("#profile-box");
     $el.css({ width: $el.width() });
     if ($el.css("position") == "fixed") { $el.css({ top: 0, bottom: "auto" }); }
     var marginTop = parseInt($el.css("margin-top"), 10);

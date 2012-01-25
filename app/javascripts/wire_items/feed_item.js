@@ -16,7 +16,7 @@ var FeedWireItem = WireItem.extend({
   },
 
   showProfile: function(callback) {
-    window.infoBox.showProfile(this.model);
+    this.options.showProfile(this.model);
   },
 
   subscribe: function() { CommonPlace.account.subscribeToFeed(this.model); },

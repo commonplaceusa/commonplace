@@ -56,9 +56,9 @@ class API
         last_thank = Thank.order("created_at DESC").first
 
         last_modified([
-            last_modified_item.replied_at, 
-            last_modified_item.updated_at,
-            last_thank.created_at,
+            last_modified_item.try(:replied_at),
+            last_modified_item.try(:updated_at),
+            last_thank.try(:created_at),
             Date.today.beginning_of_day].compact.max)
       end
 

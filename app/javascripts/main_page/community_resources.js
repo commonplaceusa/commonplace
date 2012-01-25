@@ -52,7 +52,8 @@ var CommunityResources = CommonPlace.View.extend({
   tabs: {
     landing: function(self) {
       return new DynamicLandingResources({
-        callback: function() { self.stickHeader(); }
+        callback: function() { self.stickHeader(); },
+        showProfile: self.options.showProfile
       });
     },
     
@@ -61,7 +62,8 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.post-resources",
         emptyMessage: "No posts here yet.",
         collection: CommonPlace.community.posts,
-        callback: function() { self.stickHeader(); }
+        callback: function() { self.stickHeader(); },
+        showProfile: self.options.showProfile
       });
       return self.makeTab(wire);
     },
@@ -71,7 +73,8 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.event-resources",
         emptyMessage: "No events here yet.",
         collection: CommonPlace.community.events,
-        callback: function() { self.stickHeader(); }
+        callback: function() { self.stickHeader(); },
+        showProfile: self.options.showProfile
       });
       return self.makeTab(wire);
     },
@@ -81,7 +84,8 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.announcement-resources",
         emptyMessage: "No announcements here yet.",
         collection: CommonPlace.community.announcements,
-        callback: function() { self.stickHeader(); }
+        callback: function() { self.stickHeader(); },
+        showProfile: self.options.showProfile
       });
       return self.makeTab(wire);
     },
@@ -91,7 +95,8 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.group-post-resources",
         emptyMessage: "No posts here yet.",
         collection: CommonPlace.community.groupPosts,
-        callback: function() { self.stickHeader(); }
+        callback: function() { self.stickHeader(); },
+        showProfile: self.options.showProfile
       });
       return self.makeTab(wire);
     },
@@ -102,7 +107,8 @@ var CommunityResources = CommonPlace.View.extend({
         emptyMessage: "No groups here yet.",
         collection: CommonPlace.community.groups,
         callback: function() { self.stickHeader(); },
-        active: "groups"
+        active: "groups",
+        showProfile: self.options.showProfile
       });
       return self.makeTab(wire);
     },
@@ -113,7 +119,8 @@ var CommunityResources = CommonPlace.View.extend({
         emptyMessage: "No feeds here yet.",
         collection: CommonPlace.community.feeds,
         callback: function() { self.stickHeader(); },
-        active: "feeds"
+        active: "feeds",
+        showProfile: self.options.showProfile
       });
       return self.makeTab(wire);
     },
@@ -124,7 +131,8 @@ var CommunityResources = CommonPlace.View.extend({
         emptyMessage: "No users here yet.",
         collection: CommonPlace.community.users,
         callback: function() { self.stickHeader(); },
-        active: "users"
+        active: "users",
+        showProfile: self.options.showProfile
       });
       return self.makeTab(wire);
     }
@@ -215,9 +223,18 @@ var CommunityResources = CommonPlace.View.extend({
   
   stickHeader: function() {
     var $sticky_header = this.$(".sticky .header");
+    var sticky_bottom = $sticky_header.offset().top + $sticky_header.outerHeight();
+    
     var current_subnav = this.$(".resources .sub-navigation").filter(function() {
-      return $(this).offset().top <= $sticky_header.offset().top;
+      if (!$sticky_header.height()) {
+        return $(this).offset().top <= $sticky_header.offset().top;
+      } else {
+        var $nav_text = $(this).children("h2");
+        var nav_text_bottom = $nav_text.offset().top + $nav_text.height();
+        return nav_text_bottom <= sticky_bottom;
+      }
     }).last();
+    
     $sticky_header.html(current_subnav.clone());
     
     if (this.currentQuery) { $(".sticky .cancel").removeClass("waiting"); }

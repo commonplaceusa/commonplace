@@ -26,7 +26,7 @@ var UserWireItem = WireItem.extend({
   },
 
   showProfile: function(e) {
-    window.infoBox.showProfile(this.model);
+    this.options.showProfile(this.model);
   }
 
 });
