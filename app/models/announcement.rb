@@ -51,7 +51,7 @@ class Announcement < ActiveRecord::Base
 
   def profile_history_humanize
     begin
-      "#{self.user.first_name} announced that '#{self.subject}'"
+      "#{self.user.first_name} announced that '#{BackboneAdapter.link(self, self.subject)}'"
     rescue
       nil
     end
