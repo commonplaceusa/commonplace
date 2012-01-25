@@ -11,7 +11,7 @@ var ProfileDisplayer = Backbone.View.extend({
     $(this.el).empty().append(profile.el);
   },
   
-  show: function(profile_model) {
+  show: function(profile_model, options) {
     var self = this;
     profile_model.fetch({
       success: function() {
@@ -26,9 +26,17 @@ var ProfileDisplayer = Backbone.View.extend({
             profile_model.id) {
           self.current_profile_model = profile_model;
           self.render();
+
+          if (options && options.highlight) {
+            self.highlight(options.highlight);
+          }
         }
       }
     });
+  },
+
+  highlight: function(text) {
+    $(this.el).highlight(text);
   },
 
   toProfile: function(profilable) {
