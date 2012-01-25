@@ -22,7 +22,7 @@ var CommunityPage = CommonPlace.View.extend({
       community: this.community
     });
 
-    window.infoBox = this.infoBox;
+    CommonPlace.infoBox = this.infoBox;
 
     this.views = [this.postBox, this.lists, this.infoBox];
   },
