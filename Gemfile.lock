@@ -250,9 +250,17 @@ GEM
     mustache (0.99.4)
     newrelic_rpm (3.1.2)
     nokogiri (1.5.0)
+    oauth2 (0.5.2)
+      faraday (~> 0.7)
+      multi_json (~> 1.0)
     omniauth (1.0.2)
       hashie (~> 1.2)
       rack
+    omniauth-facebook (1.1.0)
+      omniauth-oauth2 (~> 1.0.0)
+    omniauth-oauth2 (1.0.0)
+      oauth2 (~> 0.5.0)
+      omniauth (~> 1.0)
     options (2.3.0)
       fattr
     orm_adapter (0.0.6)
@@ -480,6 +488,7 @@ DEPENDENCIES
   mustache
   newrelic_rpm
   omniauth
+  omniauth-facebook
   paperclip (~> 2.4.4)
   permanent_records
   pg
