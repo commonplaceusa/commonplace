@@ -48,6 +48,7 @@ class AdminController < ApplicationController
 
   def download_csv
     @communities = Community.all.select { |c| Resque.redis.get("statistics:csv:#{c.slug}").present? }
+    @date = Resque.redis.get("statistics:csv:meta:date")
   end
 
   def generate_csvs
