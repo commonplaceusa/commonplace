@@ -36,6 +36,11 @@ var Tour = CommonPlace.View.extend({
     this.template = "main_page.tour.welcome";
     this.$("#tour").html(this.renderTemplate("main_page.tour.welcome", this))
       .attr('class','welcome');
+    this.$("#tour").css({ 
+      top: ($(window).height() - this.$("#tour").outerHeight()) /2,
+      left: ($(window).width() - this.$("#tour").outerWidth()) / 2 
+    });
+    
   },
 
   wire: function() {
@@ -43,9 +48,9 @@ var Tour = CommonPlace.View.extend({
     this.template = "main_page.tour.wire";
     this.$("#tour").html(this.renderTemplate("main_page.tour.wire", this))
       .attr('class','wire');
+    this.$("#tour").css({ left: $("#main").offset().left });
     this.removeShadows("#community-resources");
     this.raise("#community-resources");
-    $.scrollTo(20, 700);
   },
 
   profile: function() {
@@ -53,8 +58,11 @@ var Tour = CommonPlace.View.extend({
     this.template = "main_page.tour.profile";
     this.$("#tour").html(this.renderTemplate("main_page.tour.profile", this))
       .attr('class','profile');
+    this.$("#tour").css({ 
+      left: $("#main").offset().left + $("#profile-box").outerWidth() + 10,
+      top: $("#profile-box").offset().top
+    });
     this.raise("#profile-box");
-    $.scrollTo(250, 700);
   },
 
   feed: function() {
@@ -62,8 +70,10 @@ var Tour = CommonPlace.View.extend({
     this.template = "main_page.tour.feed";
     this.$("#tour").html(this.renderTemplate("main_page.tour.feed", this))
       .attr('class', 'feed');
+    this.$("#tour").css({
+      top: $("#header").outerHeight()
+    });
     this.raise("#header");
-    $.scrollTo(0, 0);
   },
 
   post: function() {
@@ -73,7 +83,6 @@ var Tour = CommonPlace.View.extend({
       .attr('class','post');
     this.removeShadows("#post-box");
     this.raise("#post-box");
-    $.scrollTo(0, 700);
   },
 
   end: function() {
@@ -83,7 +92,7 @@ var Tour = CommonPlace.View.extend({
   },
 
   raise: function(el) {
-    $(el).css({zIndex: this.overlayLevel + 1, position: "relative"});
+    $(el).css({zIndex: this.overlayLevel + 1 });
     this.changedElements.push(el);
   },
   
@@ -97,6 +106,7 @@ var Tour = CommonPlace.View.extend({
   cleanUp: function() {
     _(this.changedElements).each(function(e) { $(e).attr('style', ""); });
     this.changedElements = [];
+    CommonPlace.layout.reset();
   }
 
 });
