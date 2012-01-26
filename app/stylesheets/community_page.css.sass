@@ -4,12 +4,10 @@
 @import main_page/community_resources
 @import main_page/profile_box
 
+
+
 .important-notification
   +neutral-notification
-  position: fixed
-  top: 65px
-  left: 0
-  right: 0
   z-index: 100
   
   .cancel
@@ -32,6 +30,13 @@ body.community
     margin-left: 10px
 
 body.fixedLayout.community 
+
+  .important-notification
+    position: fixed
+    top: 65px
+    left: 0
+    right: 0
+
   #header
     position: fixed
     top: 0
