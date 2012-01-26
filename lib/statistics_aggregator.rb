@@ -23,13 +23,24 @@ class StatisticsAggregator
   end
 
   def self.generate_statistics_csv_for_community(c)
-    if Resque.redis.get("statistics:csv:#{c.slug}").nil?
+    unless Resque.redis.get("statistics:csv:#{c.slug}").present?
       csv = "Date,Users,Posts,Events,Announcements,Private Messages,Group Posts"
       today = DateTime.now
       community = c
       launch = community.launch_date.to_date || community.users.sort{ |a,b| a.created_at <=> b.created_at }.first.created_at.to_date
       launch.upto(today).each do |day|
-        csv = "#{csv}\n#{day},#{community.users.between(launch.to_datetime,day.to_datetime).count},#{community.posts.between(launch.to_datetime,day.to_datetime).count},#{community.events.between(launch.to_datetime,day.to_datetime).count},#{community.announcements.between(launch.to_datetime,day.to_datetime).count},#{community.private_messages.select { |m| m.between?(launch.to_datetime, day.to_datetime)}.count},#{community.group_posts.select { |p| p.between?(launch.to_datetime, day.to_datetime)}.count}"
+        reply_count = 0
+        replies = community.repliables
+        replies.each do |reply_set|
+          reply_count += reply_set.select{ |repliable| repliable.between?(launch.to_datetime, day.to_datetime) }.count
+        end
+        user_count = community.users.between(launch.to_datetime, day.to_datetime).count
+        post_count = community.posts.between(launch.to_datetime, day.to_datetime).count
+        event_count = community.events.between(launch.to_datetime, day.to_datetime).count
+        announcement_count = community.announcements.between(launch.to_datetime, day.to_datetime).count
+        private_message_count = community.private_messages.select { |m| m.between?(launch.to_datetime, day.to_datetime) }.count
+        group_post_count = community.group_posts.select { |p| p.between?(launch.to_datetime, day.to_datetime) }.count
+        csv = "#{csv}\n#{day},#{user_count},#{post_count},#{event_count},#{announcement_count},#{private_message_count},#{group_post_count},#{reply_count}"
       end
       Resque.redis.set("statistics:csv:#{c.slug}", csv)
       csv

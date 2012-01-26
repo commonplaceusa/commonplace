@@ -89,6 +89,10 @@ class Event < ActiveRecord::Base
   def user_id
     user.id
   end
+
+  def between?(start_date, end_date)
+    start_date <= self.created_at and self.created_at <= end_date
+  end
   
   def long_id
     IDEncoder.to_long_id(self.id)

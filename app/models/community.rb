@@ -231,6 +231,10 @@ class Community < ActiveRecord::Base
     self.users.sum("replies_count")
   end
 
+  def repliables
+    [self.posts + self.events + self.announcements + self.private_messages + self.group_posts]
+  end
+
   def replies_this_week
     Reply.joins(:user)
       .where(:users => { :community_id => self.id })
