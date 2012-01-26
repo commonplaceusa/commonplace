@@ -28,6 +28,7 @@ gem 'thin' # lighter than mongrel, faster than webrick
 # Authentication
 gem 'devise' # used for authentication
 gem 'omniauth' # used for authentication with facebook
+gem 'omniauth-facebook' # Facebook strategy for OmniAuth
 gem 'uuid' # used in app/controllers/admin_controller.rb, could be refactored/removed?
 
 # Authorization
