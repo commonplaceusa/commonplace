@@ -49,6 +49,10 @@ class Announcement < ActiveRecord::Base
     user.id
   end
 
+  def between?(start_date, end_date)
+    start_date <= self.created_at and self.created_at <= end_date
+  end
+
   def profile_history_humanize
     begin
       "#{self.user.first_name} announced that '#{BackboneAdapter.link(self, self.subject)}'"
