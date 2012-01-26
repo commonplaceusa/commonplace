@@ -104,6 +104,11 @@
           %ul.account-sub
             %li
               %a(href="/#{current_community.slug}/account" data-remote) Account Settings
+            - current_user.feed_owners.each do |feed_owner|
+              %li
+                %a(href="/pages/#{feed_owner.feed.slug}") #{feed_owner.feed.name}
+            %li
+              %a(href="/feed_registrations/new") Register a Feed
             %li
               %a(href="/#{current_community.slug}/faq" data-remote) FAQ
             - if current_community.discount_businesses.present?
