@@ -3,6 +3,12 @@ var WireItem = CommonPlace.View.extend({
   set_thanked: function(increment, scope) {
     if (increment) {
       scope.$(".thank_count").html(scope.numThanks() + 1);
+      
+      var thanksList = this.model.get("thanks").unshift({
+        name: CommonPlace.account.get("name"),
+        avatar_url: CommonPlace.account.get("avatar_url")
+      });
+      this.model.set({ thanks: thanksList });
     }
     scope.$(".thank-link").html("Thanked!");
     scope.$(".thank-link").addClass("thanked-post");
