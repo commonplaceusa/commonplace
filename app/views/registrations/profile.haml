@@ -10,7 +10,10 @@
     = f.inputs do 
       - unless registration.from_facebook?
         = f.input :password, :required => true, :hint => t(".password_hint")
-
+        %div.facebook-second
+          %h4 If you have Facebook, why not connect?
+          = link_to user_omniauth_authorize_path(:facebook), :class => "facebook"  do 
+            = image_tag "buttons/facebookconnect.png"
       - if registration.from_facebook?
         %img{:src => registration.avatar_url, :style => "vertical-align:middle;float:left;", :width => "100px"}
         = f.input :avatar, :input_html => {:size => 25}, :wrapper_html => { :class => "facebook"} , :label => "Upload a different photo?:"
