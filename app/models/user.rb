@@ -484,14 +484,14 @@ WHERE
   def featured
     average_cp_credits = self.community.users.average("calculated_cp_credits")
     self.community.users.joins(:received_messages)
-      .order("calculated_cp_credits DESC")
+      .reorder("calculated_cp_credits DESC")
       .limit(150)
       .where(<<CONDITION, self.id, average_cp_credits).uniq
-about != '' 
-OR goods != '' 
-OR interests != '' 
+about != ''
+OR goods != ''
+OR interests != ''
 OR messages.user_id = ?
-OR avatar_file_name IS NOT NULL 
+OR avatar_file_name IS NOT NULL
 OR calculated_cp_credits >= ?
 CONDITION
   end
