@@ -191,6 +191,7 @@ var CommunityResources = CommonPlace.View.extend({
       callback: function() { self.stickHeader(); }
     });
     this.switchTab(options.tab, wire);
+    $(window).scrollTo(0);
   },
   
   debounceSearch: _.debounce(function() {
