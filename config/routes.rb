@@ -75,9 +75,6 @@ Commonplace::Application.routes.draw do
     end
   end
   
-  # jasmine test routes
-  mount TestTrack::Engine => "test-js" unless Rails.env.production? || Rails.env.staging?
-
   begin 
     ActiveAdmin.routes(self) 
     devise_for :admin_users, ActiveAdmin::Devise.config
