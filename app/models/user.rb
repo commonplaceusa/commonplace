@@ -485,7 +485,6 @@ WHERE
     average_cp_credits = self.community.users.average("calculated_cp_credits")
     self.community.users.joins(:received_messages)
       .reorder("calculated_cp_credits DESC")
-      .limit(150)
       .where(<<CONDITION, self.id, average_cp_credits).uniq
 about != ''
 OR goods != ''
