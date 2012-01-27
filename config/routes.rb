@@ -97,13 +97,6 @@ Commonplace::Application.routes.draw do
 
   authenticated do
 
-    resources :organizer do
-      collection do
-        get :map, :app
-        post :add
-      end
-    end
-
     match '/?community=:community', :to => "bootstraps#community"
 
 
