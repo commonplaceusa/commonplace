@@ -105,7 +105,7 @@ class API
     end
     
     get "/featured" do
-      serialize current_account.featured
+      serialize(paginate(current_account.featured))
     end
 
     post "/:id/update_avatar_and_fb_auth" do |id|

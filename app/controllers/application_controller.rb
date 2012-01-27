@@ -37,10 +37,6 @@ class ApplicationController < ActionController::Base
     Serializer::serialize(thing).to_json.html_safe
   end
 
-  def cp_client
-    @_cp_client ||= CPClient.new(:host => "http://commonplace.api", :api_key => current_user.authentication_token)
-  end
-  
   def translate_with(options = {})
     @default_translate_options ||= {}
     @default_translate_options.merge!(options)
