@@ -2,7 +2,7 @@ en:
   registrations:
     new:
       h1: Plug Into the %{community} Community
-      li1: The %{community} CommonPlace is an online bulletin board for %{community} residents.  It's designed to make it really easy to share and connect with your neighbors and civic leaders.
+      li1: The %{community} CommonPlace is an online bulletin board for %{community} residents.
       li2: Sign up to share with your neighbors and receive short updates about what's happening in town.
       li3: 343 neighbors and 44 community organizations have joined %{community}’s CommonPlace and they have shared 100 needs, events, questions, and announcements with the community. Don’t miss out! 
 
