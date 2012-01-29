@@ -9,9 +9,9 @@ var CommunityWire = Model.extend({
       self.neighborhood = new Posts(response["neighborhood"], CommonPlace.community.categories.neighborhood);
       self.offers = new Posts(response["offers"], CommonPlace.community.categories.offers);
       self.help = new Posts(response["help"], CommonPlace.community.categories.help);
-      self.publicity = new Posts(response["publicity"], CommonPlace.community.categories.publicity);
+      self.publicity = new PostLikes(response["publicity"], CommonPlace.community.categories.publicity);
       self.other = new Posts(response["other"], CommonPlace.community.other);
-      self.announcements = new Announcements(response["announcements"], CommonPlace.community.announcements);
+
       self.groupPosts = new GroupPosts(response["group"], CommonPlace.community.groupPosts);
       self.events = new Events(response["events"], CommonPlace.community.events);
       self.meetups = new Posts(response["meetups"], CommonPlace.community.categories.meetups);
@@ -20,7 +20,7 @@ var CommunityWire = Model.extend({
   },
   
   all: function() { return [
-    this.neighborhood, this.offers, this.help, this.publicity, this.other, this.announcements, this.groupPosts, this.events, this.meetups];
+    this.neighborhood, this.offers, this.help, this.publicity, this.other, this.groupPosts, this.events, this.meetups];
   }
 });
 
