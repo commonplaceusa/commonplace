@@ -27,7 +27,8 @@ class CommunityWire
   end
 
   def publicity
-    @community.posts.where(category: 'publicity').limit(3)
+    [ @community.posts.where(category: 'publicity').limit(3),
+      @community.announcements.reorder("GREATEST(replied_at, created_at) DESC").limit(3) ].flatten.sort {|a,b| [b.replied_at, b.created_at].compact.max <=> [a.replied_at, a.created_at].compact.max }
   end
   
   def meetups
@@ -37,10 +38,6 @@ class CommunityWire
   def group
     GroupPost.order("group_posts.updated_at DESC").includes(:group).
       where(groups: { community_id: @community.id }).limit(3)
-  end
-
-  def announcements
-    @community.announcements.reorder("updated_at DESC").limit(3)
   end
 
   def other

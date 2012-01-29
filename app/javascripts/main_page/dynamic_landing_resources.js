@@ -76,14 +76,6 @@ var DynamicLandingResources = CommonPlace.View.extend({
         showProfile: self.options.showProfile
       })),
       (new LandingPreview({
-        template: "main_page.announcement-resources",
-        collection: self.raw.announcements,
-        fullWireLink: "#/announcements",
-        emptyMessage: "No announcements here yet.",
-        callback: self.callback,
-        showProfile: self.options.showProfile
-      })),
-      (new LandingPreview({
         template: "main_page.group-post-resources",
         collection: self.raw.groupPosts,
         fullWireLink: "#/groupPosts",
