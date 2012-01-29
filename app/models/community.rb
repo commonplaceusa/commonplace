@@ -228,7 +228,7 @@ class Community < ActiveRecord::Base
   end
 
   def total_replies
-    self.users.sum("replies_count")
+    self.users.sum("replies_count").to_i
   end
 
   def repliables
