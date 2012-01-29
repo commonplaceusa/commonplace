@@ -16,7 +16,8 @@ class Reply < ActiveRecord::Base
   scope :this_week, :conditions => ["replies.created_at between ? and ?", DateTime.now.at_beginning_of_week, Time.now]
 
   def touch_repliable_replied_at
-    self.repliable.replied_at = Time.zone.now
+    self.repliable.update_attribute(:replied_at, DateTime.now)
+    
   end
 
   def profile_history_humanize
