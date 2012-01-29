@@ -1,0 +1,18 @@
+<div class="thanks-list">
+	<ul>
+	  {{#users}}
+	    <li class="reply-item">
+	      <img src="{{avatar_url}}" class="avatar" height="30" width="30">
+	      <div class="reply-info">
+	        <div class="reply-text">
+	          <span class="author">{{name}}</span>
+	          <span class="body">thanked this post</span>
+          </div>
+        </div>
+        <div style="clear:both"></div>
+	    </li>
+	  {{/users}}
+	</ul>
+</div>
+
+<div style="clear:both"></div>

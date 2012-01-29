@@ -26,6 +26,13 @@
       <li class="group" data-tab="group">
         Discussion Group
       </li>
+      
+      {{#feeds}}
+        <li class="feed-{{id}}" data-tab="feed-{{id}}">
+          {{name}}
+        </li>
+      {{/feeds}}
+      
       <li class="other" data-tab="other">
         Other
       </li>

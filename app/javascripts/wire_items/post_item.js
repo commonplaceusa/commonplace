@@ -74,7 +74,8 @@ var PostWireItem = WireItem.extend({
     "click .thank-link": "thank",
     "click .share-link": "share",
     "click .reply-link": "reply",
-    "blur": "removeFocus"
+    "blur": "removeFocus",
+    "click .ts-text": "showThanks"
   },
 
   messageUser: function(e) {

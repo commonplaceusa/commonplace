@@ -47,21 +47,37 @@ $(function() {
 
   // Avatar crop
   var updateCrop = function(coords) {
-    $("#crop_x").val(coords.x);
-    $("#crop_y").val(coords.y);
-    $("#crop_w").val(coords.w);
-    $("#crop_h").val(coords.h);
+    var $img = $("img#cropbox");
+    var scale = $img[0].width / $img.width();
+    if (scale) {
+      $("#crop_x").val(coords.x * scale);
+      $("#crop_y").val(coords.y * scale);
+      $("#crop_w").val(coords.w * scale);
+      $("#crop_h").val(coords.h * scale);
+    }
   };
 
   $("form.crop img").load(function() {
-    $("form.crop").css({ width: Math.max($("#cropbox").width(), 420) });
+    var $img = $("form.crop img");
+    var scale = Math.max(
+      380 / $img.width(),
+      320 / $img.height()
+    );
+    $("form.crop").css({
+      width: Math.floor($img.width() * scale),
+      height: Math.floor( ($img.height() * scale) + 50)
+    });
+    $img.css({
+      width:  Math.floor($img.width()  * scale),
+      height: Math.floor($img.height() * scale)
+    });
+    $img.Jcrop({
+      onChange: updateCrop,
+      onSelect: updateCrop,
+      aspectRatio: 1.0
+    });
   });
 
-  $("#cropbox").Jcrop({
-    onChange: updateCrop,
-    onSelect: updateCrop,
-    aspectRatio: 1.0
-  });
 
   // add feeds and add groups
   $('.add_groups .group, .add_feeds .feed').click(function(){

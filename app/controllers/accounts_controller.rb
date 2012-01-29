@@ -18,7 +18,7 @@ class AccountsController < ApplicationController
 
   def crop_avatar
     current_user.update_attributes params[:user]
-    redirect_to "/account"
+    redirect_to "/" + current_user.community.slug + "/account"
   end
   
   def learn_more

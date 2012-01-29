@@ -51,6 +51,10 @@ class Post < ActiveRecord::Base
     ([self.created_at] + self.replies.map(&:created_at)).max
   end
 
+  def between?(start_date, end_date)
+    start_date <= self.created_at and self.created_at <= end_date
+  end
+
   def profile_history_humanize
     begin
       "#{self.owner.first_name} posted '#{BackboneAdapter.link(self, self.subject)}'"

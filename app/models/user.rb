@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-  devise :database_authenticatable, :encryptable, :token_authenticatable, :recoverable, :omniauthable, :omniauth_providers => [:facebook]
+  devise :trackable, :database_authenticatable, :encryptable, :token_authenticatable, :recoverable, :omniauthable, :omniauth_providers => [:facebook]
 
   def self.find_for_facebook_oauth(access_token)
     User.find_by_facebook_uid(access_token["uid"])
@@ -484,14 +484,13 @@ WHERE
   def featured
     average_cp_credits = self.community.users.average("calculated_cp_credits")
     self.community.users.joins(:received_messages)
-      .order("calculated_cp_credits DESC")
-      .limit(150)
+      .reorder("calculated_cp_credits DESC")
       .where(<<CONDITION, self.id, average_cp_credits).uniq
-about != '' 
-OR goods != '' 
-OR interests != '' 
+about != ''
+OR goods != ''
+OR interests != ''
 OR messages.user_id = ?
-OR avatar_file_name IS NOT NULL 
+OR avatar_file_name IS NOT NULL
 OR calculated_cp_credits >= ?
 CONDITION
   end

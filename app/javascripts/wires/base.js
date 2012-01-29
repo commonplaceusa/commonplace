@@ -35,9 +35,7 @@ var Wire = CommonPlace.View.extend({
   
     var $end = this.$(".end");
 
-    // Autoloading pages is limited to 3 pages until we figure out how to
-    // make links in the footer accessible
-    if (isOnScreen($end) && this.$(".loading:visible").length < 1 && this.currentPage() < 3) {
+    if (isOnScreen($end) && this.$(".loading:visible").length < 1) {
       this.$(".loading").show();
       this.showMore();
     }

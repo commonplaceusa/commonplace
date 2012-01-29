@@ -42,6 +42,10 @@ var AccountProfile = CommonPlace.View.extend({
   
   post_count: function() { return this.model.get('post_count'); },
 
-  reply_count: function() { return this.model.get('reply_count'); }
+  reply_count: function() { return this.model.get('reply_count'); },
+  
+  editUrl: function() {
+    return "/" + CommonPlace.community.get("slug") + "/account";
+  }
   
 });
