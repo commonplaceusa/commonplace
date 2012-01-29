@@ -258,7 +258,6 @@ module Serializer
         "help" => serialize(o.help),
         "publicity" => serialize(o.publicity),
         "group" => serialize(o.group),
-        "announcements" => serialize(o.announcements),
         "other" => serialize(o.other),
         "meetups" => serialize(o.meetups)
       }
