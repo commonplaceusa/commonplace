@@ -1,7 +1,7 @@
 source :gemcutter
 
-gem 'rails', "~> 3.1.0"
-gem 'rack', "1.3.6"
+gem 'rails', "~> 3.2.0"
+gem 'sass-rails'
 
 # API
 gem 'sinatra'
@@ -27,7 +27,8 @@ gem 'thin' # lighter than mongrel, faster than webrick
 
 # Authentication
 gem 'devise' # used for authentication
-gem 'omniauth', "0.3.0" # used for authentication with facebook
+gem 'omniauth' # used for authentication with facebook
+gem 'omniauth-facebook' # Facebook strategy for OmniAuth
 gem 'uuid' # used in app/controllers/admin_controller.rb, could be refactored/removed?
 
 # Authorization
@@ -59,10 +60,11 @@ gem 'premailer', :git => "git://github.com/Jberlinsky/premailer.git" # we use th
 gem 'sanitize' # used in app/controllers/posts_controller.rb (which is dead code) ! remove
 gem 'haml', '~> 3.1' # used for view templates
 gem 'formtastic' # used for view templates
-gem 'sass', '~> 3.1' # used for stylesheets
+gem 'sass' # used for stylesheets
 
 # Admin
-gem 'activeadmin' # use as an easy admin tool
+gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git' # use as an easy admin tool
+gem 'meta_search',    '>= 1.1.0.pre'
 gem 'googlecharts' # used for admin/overview
 gem 'garb' # used to access the Google Analytics API
 gem 'fnordmetric', '>= 0.5.1' # we use this to counter Mixpanel
@@ -83,8 +85,6 @@ gem 'heroku' # access heroku api
 gem 'rack-timeout' # Timeout requests that take too long
 
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
   gem 'compass', '0.12.alpha.0'
 end
@@ -96,7 +96,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-sass'
   
-  gem 'rails-dev-tweaks', '~> 0.5.0' # Don't reload the code when serving assets
+  #gem 'rails-dev-tweaks', '~> 0.5.2' # Don't reload the code when serving assets
   gem 'factory_girl' # we use factory_girl to generate models for tests
   gem 'forgery' # we use forgery to generate data for tests
   gem 'foreman' # we use foreman to start all the processes we need for development
@@ -106,7 +106,6 @@ group :development, :test do
   gem 'guard-spork'
   gem 'guard-bundler'
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
-  gem 'test_track' # jasmine doesn't support the assset pipeline yet, this helps
   gem 'jasmine'
   gem 'progress_bar'
 end

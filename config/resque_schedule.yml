@@ -39,3 +39,10 @@ recalculate_cp_credits:
   args:
   queue: credits
   description: "Checks for invalidated users and recalculates their CP Credits"
+
+compute_statistics_csv:
+  cron: "0 0 * * *"
+  class: StatisticsCsvGenerator
+  args: 
+  queue: statistics
+  description: "Generates Excel files for Max"

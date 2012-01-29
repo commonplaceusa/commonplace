@@ -53,7 +53,7 @@ module Serializer
         "author_url" => "/users/#{o.user_id}",
         "user_id" => o.user_id,
         "replies" => serialize(o.replies.to_a),
-        "thanks" => serialize(o.thanks.to_a),
+        "thanks" => o.thanks.map {|t| {:name => t.user.name, :avatar_url => t.user.avatar_url(:normal) } },
         "last_activity" => o.last_activity.utc,
         "category" => o.category,
         "links" => {
@@ -87,7 +87,7 @@ module Serializer
         "user_url" => o.owner_type == "User" ? "/users/#{o.owner_id}" : nil,
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
-        "thanks" => serialize(o.thanks.to_a),
+        "thanks" => o.thanks.map {|t| {:name => t.user.name, :avatar_url => t.user.avatar_url(:normal) } },
         "links" => {
           "replies" => "/events/#{o.id}/replies",
           "self" => "/events/#{o.id}",
@@ -113,7 +113,7 @@ module Serializer
         "body" => o.body,
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
-        "thanks" => serialize(o.thanks.to_a),
+        "thanks" => o.thanks.map {|t| {:name => t.user.name, :avatar_url => t.user.avatar_url(:normal) } },
         "links" => {
           "replies" => "/announcements/#{o.id}/replies",
           "self" => "/announcements/#{o.id}",
@@ -138,7 +138,7 @@ module Serializer
         "title" => o.subject,
         "body" => o.body,
         "replies" => serialize(o.replies.to_a),
-        "thanks" => serialize(o.thanks.to_a),
+        "thanks" => o.thanks.map {|t| {:name => t.user.name, :avatar_url => t.user.avatar_url(:normal) } },
         "links" => {
           "replies" => "/group_posts/#{o.id}/replies",
           "author" => "/users/#{o.user_id}",
@@ -258,7 +258,6 @@ module Serializer
         "help" => serialize(o.help),
         "publicity" => serialize(o.publicity),
         "group" => serialize(o.group),
-        "announcements" => serialize(o.announcements),
         "other" => serialize(o.other),
         "meetups" => serialize(o.meetups)
       }

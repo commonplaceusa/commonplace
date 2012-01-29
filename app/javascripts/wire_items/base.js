@@ -3,6 +3,12 @@ var WireItem = CommonPlace.View.extend({
   set_thanked: function(increment, scope) {
     if (increment) {
       scope.$(".thank_count").html(scope.numThanks() + 1);
+      
+      var thanksList = this.model.get("thanks").unshift({
+        name: CommonPlace.account.get("name"),
+        avatar_url: CommonPlace.account.get("avatar_url")
+      });
+      this.model.set({ thanks: thanksList });
     }
     scope.$(".thank-link").html("Thanked!");
     scope.$(".thank-link").addClass("thanked-post");
@@ -25,13 +31,26 @@ var WireItem = CommonPlace.View.extend({
       type: "POST",
       success: function() {
         self.set_thanked(true, self);
+        self.showThanks();
       }
     });
+  },
+  
+  showThanks: function(e) {
+    if (e) { e.preventDefault(); }
+    if (!_.isEmpty(this.model.get("thanks"))) {
+      this.removeFocus();
+      var thanksView = new ThanksView({ model: this.model,
+                                        el: this.$(".replies")
+                                      });
+      thanksView.render();
+      this.state = "thanks";
+    }
   },
 
   share: function(e) {
     if (e) { e.preventDefault(); }
-    this.in_reply_state = false;
+    this.state = "share";
     this.removeFocus();
     this.$(".share-link").addClass("current");
     var shareView = new ShareView({ model: this.model,
@@ -43,7 +62,7 @@ var WireItem = CommonPlace.View.extend({
 
   reply: function(e) {
     if (e) { e.preventDefault(); }
-    if (!this.in_reply_state) {
+    if (this.state != "reply") {
       this.removeFocus();
       this.$(".reply-link").addClass("current");
       var repliesView = new RepliesView({ collection: this.model.replies(),
@@ -53,7 +72,7 @@ var WireItem = CommonPlace.View.extend({
       repliesView.render();
     }
     this.$(".reply-text-entry").focus();
-    this.in_reply_state = true;
+    this.state = "reply";
   },
   
   removeFocus: function() {

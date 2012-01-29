@@ -168,7 +168,7 @@ var Application = Backbone.Router.extend({
   account: function() { this.showPage("account"); },
 
   tour: function() {
-    this.showPage("community");
+    this.community();
     var tour = new Tour({ 
       el: $("#main"), 
       account: CommonPlace.account, 

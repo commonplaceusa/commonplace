@@ -228,7 +228,11 @@ class Community < ActiveRecord::Base
   end
 
   def total_replies
-    self.users.sum("replies_count")
+    self.users.sum("replies_count").to_i
+  end
+
+  def repliables
+    [self.posts + self.events + self.announcements + self.private_messages + self.group_posts]
   end
 
   def replies_this_week
