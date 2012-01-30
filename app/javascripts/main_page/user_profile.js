@@ -61,13 +61,13 @@ var UserProfile = CommonPlace.View.extend({
 
   meet: function(e) {
     e.preventDefault();
-    this.options.account.meetUser(this.model);
+    CommonPlace.account.meetUser(this.model);
     this.render();
   },
 
   unmeet: function(e) {
     e.preventDefault();
-    this.options.account.unmeetUser(this.model);
+    CommonPlace.account.unmeetUser(this.model);
     this.render();
   },
 
