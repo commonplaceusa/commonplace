@@ -186,7 +186,7 @@ class User < ActiveRecord::Base
     t.add :links
     t.add lambda {|u| u.posts.count}, :as => :post_count
     t.add lambda {|u| u.replies.count}, :as => :reply_count
-    t.add lambda {|u| u.profile_history_humanized}, :as => :history
+    t.add lambda {|u| u.profile_history }, :as => :history
   end
 
   def links
@@ -519,20 +519,18 @@ js
   end
 
   def profile_history_elements
-    self.posts + self.events + self.announcements + self.group_posts + self.replies
-  end
-
-  def profile_history_humanized
-    # Combine everything. Sort it by date, most recent first. Profit.
-    self.profile_history.map(&:profile_history_humanize).compact
+    self.posts + 
+      self.direct_events + 
+      self.announcements + 
+      self.group_posts + 
+      self.replies.where("repliable_type != 'Message'")
   end
 
   def profile_history
-    begin
-      self.profile_history_elements.sort_by(&:created_at).reverse.uniq.compact
-    rescue
-      []
-    end
+    self.profile_history_elements
+      .sort_by(&:created_at)
+      .reverse
+      .map {|e| e.as_api_response(:history) }
   end
 
   searchable do

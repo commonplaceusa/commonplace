@@ -6,15 +6,11 @@ var AccountProfile = CommonPlace.View.extend({
     return " " + item;
   },
 
-  newline: function(item) {
-    return "<br />" + item;
-  },
-
   avatarUrl: function() { return this.model.get('avatar_url'); },
 
   fullName: function() { return this.model.get("name"); },
   
-  shortName: function() { return this.model.get("first_name"); },
+  shortName: function() { return this.model.get("short_name"); },
   
   about: function() { return this.model.get('about'); },
 
@@ -26,7 +22,12 @@ var AccountProfile = CommonPlace.View.extend({
 
   subscriptions: function() { return this.model.get('subscriptions'); },
 
-  history: function() { return _.map(this.model.get('history'), this.newline); },
+  history: function() { 
+    var self = this;
+    return _.map(this.model.get('history'), function(h) { 
+      return new ProfileHistoryItem({ model: h, name: self.shortName() }) 
+    }); 
+  },
   
   groups: function() { return ""; },
 

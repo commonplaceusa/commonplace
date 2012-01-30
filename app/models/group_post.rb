@@ -38,12 +38,13 @@ class GroupPost < ActiveRecord::Base
     start_date <= self.created_at and self.created_at <= end_date
   end
 
-  def profile_history_humanize
-    begin
-      "#{self.owner.first_name} posted '#{BackboneAdapter.link(self, self.subject)}' to '#{self.group.name}'"
-    rescue
-      nil
-    end
+  acts_as_api
+
+  api_accessible :history do |t|
+    t.add :id
+    t.add ->(m) { "group_posts" }, :as => :schema
+    t.add :subject, :as => :title
+    t.add ->(m) { m.group.name }, :as => :group_name
   end
 
   searchable do

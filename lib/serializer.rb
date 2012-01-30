@@ -246,7 +246,7 @@ module Serializer
           "featured_users" => "/account/featured"
         },
         "metadata" => o.metadata,
-        "history" => o.profile_history_humanized
+        "history" => o.profile_history
         }
 
       when Community
