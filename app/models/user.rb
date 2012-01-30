@@ -481,18 +481,11 @@ WHERE
     self.posts.count + self.replies.count + self.replies_received.count + self.events.count + self.all_invitations.count + self.thanks.count + self.thanks_received.count
   end
   
-  def featured
-    average_cp_credits = self.community.users.average("calculated_cp_credits")
-    self.community.users.joins(:received_messages)
-      .reorder("calculated_cp_credits DESC")
-      .where(<<CONDITION, self.id, average_cp_credits).uniq
-about != ''
-OR goods != ''
-OR interests != ''
-OR messages.user_id = ?
-OR avatar_file_name IS NOT NULL
-OR calculated_cp_credits >= ?
-CONDITION
+  def featured # not user-relevant yet
+    self.community.users.reorder("
+      (Case When avatar_file_name IS NOT NULL Then 1 Else 0 End)
+      + (Case When about != '' OR goods != '' OR interests != '' Then 1 Else 0 End) DESC")
+    .order("calculated_cp_credits DESC")
   end
 
   def nag_banner_text
