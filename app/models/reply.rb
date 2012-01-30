@@ -20,12 +20,13 @@ class Reply < ActiveRecord::Base
     
   end
 
-  def profile_history_humanize
-    begin
-      "#{self.user.first_name} replied to '#{BackboneAdapter.link(self, self.repliable.subject)}'"
-    rescue
-      nil
-    end
+  acts_as_api 
+  
+  api_accessible :history do |t|
+    t.add :id
+    t.add ->(m) { "replies" }, :as => :schema
+    t.add ->(m) { m.repliable.subject }, :as => :title
+    t.add ->(m) { m.repliable.class.name.downcase.pluralize }, :as => :repliable_schema
+    t.add :repliable_id
   end
-
 end

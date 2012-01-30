@@ -53,12 +53,12 @@ class Announcement < ActiveRecord::Base
     start_date <= self.created_at and self.created_at <= end_date
   end
 
-  def profile_history_humanize
-    begin
-      "#{self.user.first_name} announced that '#{BackboneAdapter.link(self, self.subject)}'"
-    rescue
-      nil
-    end
+  acts_as_api
+
+  api_accessible :history do |t|
+    t.add :id
+    t.add ->(m) { "announcements" }, :as => :schema
+    t.add :subject, :as => :title
   end
 
   searchable do

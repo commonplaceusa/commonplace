@@ -35,6 +35,14 @@ class Event < ActiveRecord::Base
 
   default_scope where(:deleted_at => nil)
 
+  acts_as_api
+
+  api_accessible :history do |t|
+    t.add :id
+    t.add ->(m) { "events" }, :as => :schema
+    t.add :name, :as => :title
+  end
+
   def replied_at
     read_attribute(:replied_at) == nil ? self.updated_at : read_attribute(:replied_at)
   end
@@ -75,14 +83,6 @@ class Event < ActiveRecord::Base
     case owner
       when User then owner
       when Feed then owner.user
-    end
-  end
-
-  def profile_history_humanize
-    begin
-      "#{self.user.first_name} posted the event '#{BackboneAdapter.link(self, self.name)}'"
-    rescue
-      nil
     end
   end
 

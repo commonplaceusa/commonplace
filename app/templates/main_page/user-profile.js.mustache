@@ -38,8 +38,10 @@
     <ul> {{#goods}}<li class="interest">{{.}}</li>{{/goods}} </ul>
   </li>{{/hasGoods}}
   {{#hasHistory}}<li>
-    <h4>Community Activity</li>
-    <ul> {{#history}}<li class="history">{{{.}}}</li>{{/history}} </ul>
+    <h4>Community Activity</h4><br>
+    <ul class="history">
+      {{#history}}<li>{{{to_html}}}</li>{{/history}}
+    </ul>
   </li>{{/hasHistory}}
   </ul>
 </div>
