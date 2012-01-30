@@ -9,9 +9,8 @@
             %p 
               Your community activity this week:
               %span.week-cpcredits{:class=>"red"}= current_user.weekly_cpcredits
-              . Your community activity since you signed up in 
-              %span{:class=>"red"}= current_user.created_at.strftime '%B %Y'
-              : 
+              Your community activity since you signed up in 
+              %span{:class=>"red"} #{current_user.created_at.strftime '%B %Y'}:
               %span.all-cpcredits{:class=>"red"}= current_user.all_cpcredits
             .sub-left
               %h4 Personal Activity
