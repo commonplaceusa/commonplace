@@ -1,4 +1,5 @@
 var ProfileBoxLists = CommonPlace.View.extend({
+  id: "profile-box-lists",
   
   initialize: function() {
     

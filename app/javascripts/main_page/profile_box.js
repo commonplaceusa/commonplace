@@ -13,6 +13,10 @@ var ProfileBox = CommonPlace.View.extend({
     });
 
     this.$("#profile-box-profile").replaceWith(this.profileDisplayer.el);
+    this.profileDisplayer.bind("shown", _.bind(function(shown) {
+      this.switchFilterClass(shown.get('schema'));
+      this.lists.showList(shown.get('schema'));
+    }, this));
     this.profileDisplayer.render();
     this.lists.showList("account");
   },
@@ -22,7 +26,12 @@ var ProfileBox = CommonPlace.View.extend({
     "click .remove-search": "removeSearch",
     "keyup input.search": "search"
   },
-
+  
+  switchFilterClass: function(schema) {
+    this.$(".filters a").removeClass("current");
+    this.$(".filters a." + schema + "-filter").addClass("current");    
+  },
+  
   switchFilter: function(e) {
     e.preventDefault();
 
@@ -35,8 +44,7 @@ var ProfileBox = CommonPlace.View.extend({
       this.lists.showList(schema, { showProfile: true });
     }
 
-    this.$(".filters a").removeClass("current");
-    $(e.target).addClass("current");
+    this.switchFilterClass(schema);
     this.lists.clearSearch();
   },
 
