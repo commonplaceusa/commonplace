@@ -7,7 +7,9 @@ class Feed < ActiveRecord::Base
 
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
   
-  scope :featured, { :conditions => ["about != '' OR address != ''"] }
+  scope :featured, reorder("
+    (Case When about != '' OR address != '' Then 1 Else 0 End)
+    + Case When avatar_file_name IS NOT NULL Then 1 Else 0 End DESC")
 
   before_validation(:on => :create) do
     if self.slug?
