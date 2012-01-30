@@ -1,6 +1,8 @@
 // a fake collection for post-likes, because the id #'s collide
 var PostLikes = Model.extend({
-  initialize: function(blank, options) {
+  initialize: function(models, options) {
+    this.models = _.map(models, this.toModel);
+    this.length = models.length;
     this.uri = "/api" + options.uri;
   },
   
@@ -37,6 +39,8 @@ var PostLikes = Model.extend({
   },
   
   setDupes: function(dupes) { this.duplicates = dupes; },
+
+  first: function() { return this.models[0]; },
   
   removeDupes: function() {
     var self = this;
