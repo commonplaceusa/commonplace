@@ -100,7 +100,6 @@ group :development, :test do
   gem 'factory_girl' # we use factory_girl to generate models for tests
   gem 'forgery' # we use forgery to generate data for tests
   gem 'foreman' # we use foreman to start all the processes we need for development
-  gem 'pry' # for when IRB is not enough
   gem 'guard' # because doing things manually is for suckers
   gem 'guard-rspec'
   gem 'guard-spork'
