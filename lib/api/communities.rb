@@ -194,7 +194,7 @@ class API
     end
 
     get "/:community_id/feeds/featured" do |community_id|
-      scope = Community.find(community_id).feeds.featured.reorder("name ASC")
+      scope = Community.find(community_id).feeds.featured.order("name ASC")
       serialize paginate(scope)
     end
 
