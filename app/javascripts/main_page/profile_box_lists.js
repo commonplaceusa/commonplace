@@ -9,11 +9,22 @@ var ProfileBoxLists = CommonPlace.View.extend({
       "groups": CommonPlace.community.groups,
       "account": CommonPlace.account.featuredUsers
     };
+    
+    var self = this;
+    this.nextPageTrigger();
+    this.page = 0;
+    
+    this.$("#profile-box-results").scroll(function() {
+      if ($(this).scrollTop() + (2 * $(this).height()) > this.scrollHeight) {
+        self.nextPageThrottled();
+      }
+    });
   },
 
   showList: function(list_name, options) {
     this.clearSearch();
     this.$("#profile-box-failed-search").hide();
+    this.page = 0;
     var list = this.lists[list_name];
     if (this.currentList !== list) {
       this.currentList = list;
@@ -23,6 +34,7 @@ var ProfileBoxLists = CommonPlace.View.extend({
 
   showSearch: function(search_term, options) {
     this.$("#profile-box-failed-search").hide();
+    this.page = 0;
     this.currentList = CommonPlace.community.grouplikes;
     this.currentQuery = search_term;
     this.fetchAndRenderCurrentSearch(options);
@@ -42,7 +54,13 @@ var ProfileBoxLists = CommonPlace.View.extend({
     });
     
     _.invoke(views, "render");
-    this.$("#profile-box-results ul").empty().append(_.pluck(views, "el"));
+    
+    var $results = this.$("#profile-box-results ul");
+    if (!options || !options.nextPage) {
+      $results.empty();
+    }
+    
+    $results.append(_.pluck(views, "el"));
     
     if (options && options.showProfile) {
       this.clickFirstLI();
@@ -78,6 +96,31 @@ var ProfileBoxLists = CommonPlace.View.extend({
   clearSearch: function() { 
     this.$("#profile-box-search input.search").val(""); 
     this.currentQuery = "";
+  },
+  
+  nextPageTrigger: function() {
+    var self = this;
+    this.nextPageThrottled = _.once(function() {
+      self.nextPage();
+    });
+  },
+  
+  nextPage: function() {
+    if (this.currentList.length < 25) { return; }
+    this.page++;
+    this.currentList.fetch({
+      data: {
+        query: this.currentQuery,
+        page: this.page
+      },
+      success: _.bind(function() {
+        this.renderCurrentList({ nextPage: true });
+        this.nextPageTrigger();
+      }, this),
+      error: _.bind(function() {
+        this.nextPageTrigger();
+      }, this)
+    });
   }
   
 });
