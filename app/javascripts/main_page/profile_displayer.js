@@ -31,7 +31,7 @@ var ProfileDisplayer = Backbone.View.extend({
             self.highlight(options.highlight);
           }
 
-          self.trigger("shown", profile_model);
+          self.trigger("shown", profile_model, options);
         }
       }
     });

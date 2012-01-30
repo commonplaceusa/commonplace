@@ -17,7 +17,7 @@ var CommunityPage = CommonPlace.View.extend({
     this.lists = new CommunityResources({
       account: this.account,
       community: this.community,
-      showProfile: function(p) { profileDisplayer.show(p); }
+      showProfile: function(p) { profileDisplayer.show(p, { from_wire: true }); }
     });
 
     this.profileBox = new ProfileBox({

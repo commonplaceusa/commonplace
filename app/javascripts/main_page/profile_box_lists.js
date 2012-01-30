@@ -12,6 +12,7 @@ var ProfileBoxLists = CommonPlace.View.extend({
   },
 
   showList: function(list_name, options) {
+    this.clearSearch();
     this.$("#profile-box-failed-search").hide();
     var list = this.lists[list_name];
     if (this.currentList !== list) {
