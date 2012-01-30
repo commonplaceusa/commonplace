@@ -1,12 +1,16 @@
+{{#hiddenThanksCount}}
+<a class="replies-more" href="#">View All Thanks <span class="small">&#x25BC;</span></a>
+{{/hiddenThanksCount}}
+
 <div class="thanks-list">
 	<ul>
 	  {{#users}}
-	    <li class="reply-item">
+	    <li class="reply-item" data-thanker-link="{{thanker_link}}">
 	      <img src="{{avatar_url}}" class="avatar" height="30" width="30">
 	      <div class="reply-info">
 	        <div class="reply-text">
-	          <span class="author">{{name}}</span>
-	          <span class="body">thanked this post</span>
+	          <span class="author">{{thanker}}</span>
+	          <span class="body">thanked <span class="thankable"></span></span>
           </div>
         </div>
         <div style="clear:both"></div>
