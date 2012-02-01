@@ -192,7 +192,8 @@ class User < ActiveRecord::Base
   def links
     { 
       "messages" => "/users/#{id}/messages",
-      "self" => "/users/#{id}"
+      "self" => "/users/#{id}",
+      "postlikes" => "/users/#{id}/postlikes"
     }
   end
 

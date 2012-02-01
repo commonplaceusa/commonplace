@@ -196,6 +196,21 @@ var CommunityResources = CommonPlace.View.extend({
     $(window).scrollTo(0);
   },
   
+  showUserWire: function(user) {
+    var self = this;
+    user.fetch({ success: function() {
+      var collection = new PostLikes([], { uri: user.link("postlikes") });
+      var wire = new Wire({
+        template: "main_page.user-wire-resources",
+        collection: collection,
+        emptyMessage: "No posts here yet.",
+        callback: function() { self.stickHeader(); }
+      });
+      self.switchTab("users", wire);
+      $(window).scrollTo(0);
+    }});
+  },
+  
   debounceSearch: _.debounce(function() {
     this.search();
   }, CommonPlace.autoActionTimeout),

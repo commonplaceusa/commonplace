@@ -59,6 +59,7 @@ class GroupPost < ActiveRecord::Base
       replies.map { |r| r.user.name }
     end
     integer :community_id
+    integer :user_id
     time :created_at
   end
 

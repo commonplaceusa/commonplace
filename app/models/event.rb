@@ -115,6 +115,7 @@ class Event < ActiveRecord::Base
     end
     time :date
     integer :community_id
+    integer :user_id
     time :created_at
   end
   
