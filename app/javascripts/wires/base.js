@@ -17,6 +17,8 @@ var Wire = CommonPlace.View.extend({
     this.header = this.$(".sub-navigation");
     
     $(window).scroll(function() { self.onScroll(); });
+
+    CommonPlace.layout && CommonPlace.layout.reset();
     
     this.options.callback && this.options.callback();
   },
