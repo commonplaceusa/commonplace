@@ -15,7 +15,7 @@ var ProfileBoxLists = CommonPlace.View.extend({
     this.page = 0;
     
     this.$("#profile-box-results").scroll(function() {
-      if ($(this).scrollTop() > ((4 * this.scrollHeight) / 7)) {
+      if ($(this).scrollTop() > ((5 * this.scrollHeight) / 9)) {
         self.nextPageThrottled();
       }
     });
