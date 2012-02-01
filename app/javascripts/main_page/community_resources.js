@@ -11,7 +11,7 @@ var CommunityResources = CommonPlace.View.extend({
   
   afterRender: function() {
     var self = this;
-    this.searchForm = new self.SearchForm();
+    this.searchForm = new this.SearchForm();
     this.searchForm.render();
     $(this.searchForm.el).prependTo(this.$(".sticky"));
     $(window).scroll(function() { self.stickHeader(); });
@@ -39,6 +39,7 @@ var CommunityResources = CommonPlace.View.extend({
   
   showTab: function() {
     this.$(".resources").empty();
+    this.$(".resources").append(this.loading());
     var self = this;
     
     this.view.resources(function(wire) {
@@ -46,7 +47,7 @@ var CommunityResources = CommonPlace.View.extend({
       $(wire.el).appendTo(self.$(".resources"));
     });
     
-    this.stickHeader();
+    this.stickHeader(true);
   },
   
   tabs: {
@@ -222,9 +223,11 @@ var CommunityResources = CommonPlace.View.extend({
     $(".resources").removeHighlight();
   },
   
-  stickHeader: function() {
+  stickHeader: function(isFirst) {
     var $sticky_header = this.$(".sticky .header");
     var sticky_bottom = $sticky_header.offset().top + $sticky_header.outerHeight();
+    
+    if (!isFirst) { this.$(".resources .loading-resource").remove(); }
     
     var current_subnav = this.$(".resources .sub-navigation").filter(function() {
       if (!$sticky_header.height()) {
@@ -242,6 +245,12 @@ var CommunityResources = CommonPlace.View.extend({
   },
   
   makeTab: function(wire) { return new this.ResourceTab({ wire: wire }); },
+  
+  loading: function() {
+    var view = new this.LoadingResource();
+    view.render();
+    return view.el;
+  },
   
   ResourceWire: Wire.extend({ _defaultPerPage: 15 }),
   
@@ -268,6 +277,11 @@ var CommunityResources = CommonPlace.View.extend({
     template: "main_page.community-search-form",
     tagName: "form",
     className: "search"
+  }),
+  
+  LoadingResource: CommonPlace.View.extend({
+    template: "main_page.loading-resource",
+    className: "loading-resource"
   })
   
 });
