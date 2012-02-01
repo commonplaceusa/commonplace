@@ -78,6 +78,7 @@ var Application = Backbone.Router.extend({
     "/show/events/:id": "showEvent",
     "/show/group_posts/:id": "showGroupPost",
     "/show/announcements/:id": "showAnnouncement",
+    "/show/users/:id": "showUserWire",
 
     "/message/users/:id": "messageUser",
     "/message/feeds/:id": "messageFeed",
@@ -131,6 +132,11 @@ var Application = Backbone.Router.extend({
   showAnnouncement: function(id) {
     this.showPage("community");
     this.pages.community.lists.showAnnouncement(new Announcement({links: {self: "/announcements/" + id}}));
+  },
+  
+  showUserWire: function(id) {
+    this.showPage("community");
+    this.pages.community.lists.showUserWire(new User({links: {self: "/users/" + id}}));
   },
 
   messageUser: function(id) {

@@ -27,6 +27,19 @@ class API
       halt [401, "wrong community"] unless in_comm(user.community.id)
       serialize user
     end
+    
+    get "/:user_id/postlikes" do |user_id|
+      user = User.find(user_id)
+      halt [401, "wrong community"] unless in_comm(user.community.id)
+      
+      search = Sunspot.search([Announcement, Post, GroupPost, Event]) do
+        order_by(:created_at, :desc)
+        paginate(:page => params["page"].to_i + 1, :per_page => params["limit"])
+        with(:community_id, user.community.id)
+        with(:user_id, user_id)
+      end
+      serialize(search)
+    end
 
   end
 end
