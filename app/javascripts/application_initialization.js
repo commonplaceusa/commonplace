@@ -22,8 +22,7 @@ $(function() {
 
   $("body").delegate("a[data-remote]", "click", function(e) { 
     e.preventDefault();
-    var fragment = e.currentTarget.pathname.replace(new RegExp("/" + communitySlug, "i"), "");
-    if (!(/^\//).test(fragment)) { fragment = "/" + fragment; } // IE fix
+    var fragment = e.currentTarget.pathname.replace(new RegExp("/?" + communitySlug, "i"), "")
     Backbone.history.navigate(fragment, true);
   });
 
