@@ -63,9 +63,11 @@ var Wire = CommonPlace.View.extend({
       var view = self.schemaToView(model);
       $ul.append(view.render().el);
       if (self.currentQuery) {
-        view.$(".title").highlight(self.currentQuery);
-        view.$(".author").highlight(self.currentQuery);
-        view.$(".body").highlight(self.currentQuery);
+        _.each(self.currentQuery.split(" "), function(query) {
+          view.$(".title").highlight(query);
+          view.$(".author").highlight(query);
+          view.$(".body").highlight(query);
+        });
       }
     });
   },
