@@ -20,8 +20,8 @@ var Wire = CommonPlace.View.extend({
 
     CommonPlace.layout && CommonPlace.layout.reset();
     
-    if (this.currentUser) {
-      this.$(".sub-navigation .username").text(this.currentUser);
+    if (!_.isEmpty(this.currentUser)) {
+      this.$(".sub-navigation .username").text(this.currentUser.get("first_name"));
     }
     
     this.options.callback && this.options.callback();
@@ -75,10 +75,11 @@ var Wire = CommonPlace.View.extend({
           view.$(".body").highlight(query);
         });
       }
-      if (self.currentUser) {
-        view.$(".title").highlight(self.currentUser);
-        view.$(".author").highlight(self.currentUser);
-        view.$(".body").highlight(self.currentUser);
+      if (!_.isEmpty(self.currentUser)) {
+        var fullName = self.currentUser.get("name");
+        view.$(".title").highlight(fullName);
+        view.$(".author").highlight(fullName);
+        view.$(".body").highlight(fullName);
       }
     });
   },
@@ -127,18 +128,18 @@ var Wire = CommonPlace.View.extend({
   
   search: function(query) {
     this.currentQuery = query;
-    this.currentUser = "";
+    this.currentUser = {};
   },
   
-  searchUser: function(query) {
-    this.currentUser = query;
+  searchUser: function(model) {
+    this.currentUser = model;
     this.currentQuery = "";
   },
   
   cancelSearch: function() {
     $(this.el).removeHighlight();
     this.currentQuery = "";
-    this.currentUser = "";
+    this.currentUser = {};
   },
 
   isSearchEnabled: function() { return this.isActive('2012Release');  }
