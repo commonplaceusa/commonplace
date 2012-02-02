@@ -21,6 +21,7 @@ var ProfileBox = CommonPlace.View.extend({
     }, this));
     this.profileDisplayer.render();
     this.lists.showList("account");
+    this.$("[placeholder]").placeholder();
   },
 
   events: {
