@@ -1,6 +1,8 @@
 @import community_resources_navigation
 
 #community-resources
+  position: relative
+
   .resources
     background-color: white
     border: 1px solid #bebebe
@@ -42,10 +44,10 @@
 
   form.search
     margin: 10px 10px 0
-    float: right
     width: auto
-    position: relative
+    position: absolute
     cursor: default
+    right: 0px
     
     .search-switch
       display: none
@@ -90,12 +92,19 @@
 
 
 body.fixedLayout
+  #community-resources-spacer
+    z-index: 40
+    position: fixed
+    top: 65px
+    width: 490px
+    height: 50px
+    background-color: #cee7fe
+
   #community-resources > .navigation
     position: fixed
-    top: 48px
-    background-color: #cee7fe
-    padding-top: 20px
     z-index: 40
+    margin-top: 20px
+
   #community-resources
     .sticky
       position: fixed

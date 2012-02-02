@@ -30,17 +30,25 @@ var FixedLayout = function() {
     $("#community-resources .navigation").css({ top: 48 + nag_height });
     $("#community-resources .sticky").css({ top: 114 + nag_height });
     $(".resources").css({ "margin-top": 104 + nag_height });
-  };
+  }
+
+  function adjustWireElementsHorizontally() {
+    var left = $("#community-resources").offset().left;
+    $("#community-resources .navigation").css({ left: left });
+    $("#community-resources .sticky").css({ left: left });
+    $("#community-resources-spacer").css({ left: left });
+  }
 
   this.reset = function() {
+    adjustWireElementsHorizontally();
     dealWithNag();
     adjustProfileBox();
   };
 
   this.bind = function() {
     $(window)
-      .bind("scroll.communityLayout", adjustProfileBox)
-      .bind("resize.communityLayout", adjustProfileBox);
+      .bind("scroll.communityLayout", this.reset)
+      .bind("resize.communityLayout", this.reset);
   };
 
   this.unbind = function() {

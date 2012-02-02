@@ -69,3 +69,25 @@
       background-color: #bebebe
       z-index: 10
       margin-bottom: -1px
+
+.oldIE
+  #community-resources
+    .navigation
+      a.tab-button
+        &:first-child
+          border-left: 0
+        border-left: 1px solid #8D3330
+
+        &.events
+          width: 89px
+        &.announcements
+          width: 112px
+        &.groupPosts
+          width: 82px
+        &.users
+          width: 72px
+        &:hover, &.current
+          border-left-width: 0
+          padding-left: 4px
+          &:first-child
+            padding-left: 0

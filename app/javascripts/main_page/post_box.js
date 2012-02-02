@@ -21,11 +21,15 @@ var PostBox = CommonPlace.View.extend({
   
   switchTab: function(tab, e) {
     if (this.$("form input").length) {
-      this.temp = {
-        title: this.$("form input[name=title]").val(),
-        body: this.$("form textarea[name=body]").val() ||
-              this.$("form textarea[name=about]").val()
-      };
+      var $title = this.$("[name=title]");
+      var $body = this.$("[name=body], [name=about]");
+      this.temp = {};
+      if ($title.attr('placeholder') != $title.val()) {
+        this.temp.title = $title.val();
+      }
+      if ($body.attr('placeholder') != $body.val()) {
+        this.temp.body = $body.val();
+      }
     }
     this.showTab(tab, e);
   },
@@ -44,16 +48,18 @@ var PostBox = CommonPlace.View.extend({
     
     view.render();
     this.$("form").replaceWith(view.el);
-    
+
     if (this.temp) {
       this.$("form input[name=title]").val(this.temp.title);
       this.$("form textarea[name=body]").val(this.temp.body);
       this.$("form textarea[name=about]").val(this.temp.body);
     }
-    
+    this.$("[placeholder]").placeholder();    
     CommonPlace.layout.reset();
     
     this.showWire(tab);
+
+
 
     if (view.onFormFocus) { view.onFormFocus(); }
   },
