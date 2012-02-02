@@ -16,7 +16,8 @@
     "events.a": "Community<br> Events",
     "announcements.a": "Community<br> Announcements",
     "groupPosts.a": "Group<br> Posts",
-    "users.a": "Directory"
+    "users.a": "Directory",
+    "allPosts.a": "All Posts"
   },
 
   "main_page.post-resources": {

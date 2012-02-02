@@ -9,10 +9,10 @@ class API
 
     helpers do
 
-      def search(klass, params, community_id, options=nil)
+      def search(klass, params, community_id)
         keywords = phrase(params["query"])
         search = Sunspot.search(klass) do
-          keywords keywords, :highlight => true
+          keywords keywords
           paginate(:page => params["page"].to_i + 1)
           with(:community_id, community_id)
           yield(self) if block_given?
@@ -108,9 +108,20 @@ class API
       last_modified_by_replied_at(Post)
 
       if params["query"].present?
-        search(Post, params, community_id, { :highlight => [:subject, :body, :replies]})
+        search(Post, params, community_id)
       else
         serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
+      end
+    end
+    
+    get "/:community_id/posts_and_group_posts" do |community_id|
+      last_modified_by_replied_at(Post)
+      last_modified_by_replied_at(GroupPost)
+      
+      if params["query"].present?
+        search([Post, GroupPost], params, community_id)
+      else
+        chronological([Post, GroupPost], params, community_id)
       end
     end
     

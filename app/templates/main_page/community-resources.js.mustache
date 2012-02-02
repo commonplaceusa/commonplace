@@ -1,5 +1,12 @@
 <div class="navigation">
   <a
+    href="/{{community_slug}}/list/all_posts"
+    data-remote
+    class="tab-button allPosts all_posts">
+    {{#t}}allPosts.a{{/t}}
+  </a>
+  
+  <a
     href="/{{community_slug}}/list/posts"
     data-remote
     class="tab-button posts">
@@ -18,13 +25,6 @@
     data-remote
     class="tab-button announcements">
     {{#t}}announcements.a{{/t}}
-  </a>
-
-  <a
-    href="/{{community_slug}}/list/group_posts"
-    data-remote
-    class="tab-button groupPosts group_posts">
-    {{#t}}groupPosts.a{{/t}}
   </a>
 
   <a
