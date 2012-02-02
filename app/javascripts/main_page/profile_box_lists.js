@@ -39,9 +39,7 @@ var ProfileBoxLists = CommonPlace.View.extend({
     this.currentQuery = search_term;
     this.fetchAndRenderCurrentSearch(options);
   },
-
-  clickFirstLI: function() { this.$("li").first().click(); },
-
+  
   renderCurrentList: function(options) {
     var self = this;
     var views = this.currentList.map(function(item) {
@@ -63,7 +61,7 @@ var ProfileBoxLists = CommonPlace.View.extend({
     $results.append(_.pluck(views, "el"));
     
     if (options && options.showProfile) {
-      this.clickFirstLI();
+      _.first(views).showProfile();
     }
   },
 

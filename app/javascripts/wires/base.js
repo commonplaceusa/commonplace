@@ -71,6 +71,11 @@ var Wire = CommonPlace.View.extend({
           view.$(".body").highlight(query);
         });
       }
+      if (self.currentUser) {
+        view.$(".title").highlight(self.currentUser);
+        view.$(".author").highlight(self.currentUser);
+        view.$(".body").highlight(self.currentUser);
+      }
     });
   },
   
@@ -116,11 +121,20 @@ var Wire = CommonPlace.View.extend({
     this._currentPage = this.currentPage() + 1;
   },
   
-  search: function(query) { this.currentQuery = query; },
+  search: function(query) {
+    this.currentQuery = query;
+    this.currentUser = "";
+  },
+  
+  searchUser: function(query) {
+    this.currentUser = query;
+    this.currentQuery = "";
+  },
   
   cancelSearch: function() {
     $(this.el).removeHighlight();
     this.currentQuery = "";
+    this.currentUser = "";
   },
 
   isSearchEnabled: function() { return this.isActive('2012Release');  }
