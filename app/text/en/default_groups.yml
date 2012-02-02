@@ -15,7 +15,7 @@ en:
       avatar: "/assets/group-icons/music-arts.png"
       slug: MusicAndArts
 
-    - name: Gardening and Home Improvement
+    - name: Gardening & Home Improvement
       about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a %{community_name} Martha Stewart? "
       avatar: "/assets/group-icons/gardening-home-improvement.png"
       slug: HomeAndGarden
@@ -45,7 +45,7 @@ en:
       avatar: "/assets/group-icons/sports-recreation.png"
       slug: SportsAndRec
 
-    - name: City Problem Solving and Ideas
+    - name: City Problem Solving & Ideas
       about: Have a big idea about how to help make %{community_name} better. Join up and get the discussion going!
       avatar: "/assets/group-icons/city-problem-solving.png"
       slug: City
