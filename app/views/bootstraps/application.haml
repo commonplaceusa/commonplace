@@ -35,3 +35,5 @@
     = include_exceptional
     = include_mixpanel
     = javascript_include_tag :application
+    /[if lt IE 9]
+      <script type="text/javascript">$(function() { $("body").addClass("oldIE") });</script>
