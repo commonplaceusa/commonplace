@@ -30,7 +30,9 @@ class API
       end
 
       def event_search(params, community_id)
+        keywords = phrase(params["query"])
         search = Sunspot.search(Event) do
+          keywords keywords
           order_by(:date, :desc)
           paginate(:page => params["page"].to_i + 1)
           with(:community_id, community_id)
