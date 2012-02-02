@@ -20,6 +20,10 @@ var Wire = CommonPlace.View.extend({
 
     CommonPlace.layout && CommonPlace.layout.reset();
     
+    if (this.currentUser) {
+      this.$(".sub-navigation .username").text(this.currentUser);
+    }
+    
     this.options.callback && this.options.callback();
   },
   
