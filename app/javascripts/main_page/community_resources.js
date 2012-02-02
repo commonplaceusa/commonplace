@@ -206,7 +206,7 @@ var CommunityResources = CommonPlace.View.extend({
         emptyMessage: "No posts here yet.",
         callback: function() { self.stickHeader(); }
       });
-      wire.searchUser(user.get("name"));
+      wire.searchUser(user);
       self.switchTab("all_posts", wire);
       $(window).scrollTo(0);
     }});
