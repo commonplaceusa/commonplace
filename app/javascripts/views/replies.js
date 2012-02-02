@@ -42,6 +42,10 @@ var RepliesView = CommonPlace.View.extend({
       return (this.hiddenReplyCount() > 1) ? 'replies' : 'reply';
   },
 
+  replyCount: function() {
+    return this.collection.length;
+  },
+
   hiddenReplyCount: function() {
     if (!this._hiddenReplyCount) {
       this._hiddenReplyCount = (this.collection.length > 2) ? this.collection.length - 3 : 0;
