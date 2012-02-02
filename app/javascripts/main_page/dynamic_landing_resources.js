@@ -6,13 +6,16 @@ var DynamicLandingResources = CommonPlace.View.extend({
     this.raw = new CommunityWire({ uri: CommonPlace.community.link("landing_wires")});
     this.postlikes = new PostLikes([], { uri: CommonPlace.community.link("post_likes") });
     this._wires = [];
+    this.single = {};
     this.callback = options.callback;
   },
   
   resources: function(callback) {
     var self = this;
     
-    if (_.isEmpty(this._wires)) {
+    if (!_.isEmpty(this.single) && !this.currentQuery) {
+      callback(this.single);
+    } else if (_.isEmpty(this._wires)) {
       if (this.currentQuery) {
         this.postlikes.fetch({
           data: { query: this.currentQuery },
@@ -154,9 +157,12 @@ var DynamicLandingResources = CommonPlace.View.extend({
   search: function(query) {
     this.currentQuery = query;
     this._wires = [];
+    this.single = {};
   },
   
-  cancelSearch: function() { this.search(""); }
+  cancelSearch: function() { this.search(""); },
+  
+  singleWire: function(wire) { this.single = wire; }
 });
 
 var LandingPreview = PreviewWire.extend({

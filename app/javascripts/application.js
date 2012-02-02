@@ -101,7 +101,7 @@ var Application = Backbone.Router.extend({
 
   community: function() { 
     this.showPage("community"); 
-    this.pages.community.lists.switchTab("landing");
+    this.pages.community.lists.switchTab("all_posts");
   },
 
   communityWire: function(tab) {
