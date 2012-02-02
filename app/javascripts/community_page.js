@@ -4,6 +4,7 @@ var CommunityPage = CommonPlace.View.extend({
   id: "main",
 
   initialize: function(options) {
+    var self = this;
     this.account = CommonPlace.account;
     this.community = CommonPlace.community;
 
