@@ -305,7 +305,7 @@ class User < ActiveRecord::Base
   end
 
   def value_adding?
-    (self.posts.size >= 1 || self.announcements.size >= 1 || self.events.size >= 1)
+    self.posts.count > 0 or self.announcements.count > 0 or self.direct_events.count > 0 or self.group_posts.count > 0
   end
 
   def normalized_address
@@ -492,7 +492,7 @@ WHERE
   def nag_banner_text
     if !self.community.has_launched?
       "Hey #{self.first_name}, welcome to #{self.community.name} CommonPlace! We're officially launching on #{self.community.launch_date.strftime("%B")} #{self.community.launch_date.day.ordinalize}. In the meantime, help us improve by <a href='/#{self.community.slug}/invite'>inviting some more neighbors</a>."
-    elsif !self.avatar.file? and !self.metadata["closed_facebook_nag"] and !self.metadata["completed_facebook_nag"]
+    elsif !self.avatar.file? and !self.metadata["closed_facebook_nag"] and !self.metadata["completed_facebook_nag"] and (self.value_adding? or self.replies.count > 0)
       javascript = <<js
 facebook_connect_post_registration(function() {
   CommonPlace.account.set_metadata("completed_facebook_nag", true, function() {
