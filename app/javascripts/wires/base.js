@@ -68,19 +68,8 @@ var Wire = CommonPlace.View.extend({
     this.collection.each(function(model) {
       var view = self.schemaToView(model);
       $ul.append(view.render().el);
-      if (self.currentQuery) {
-        _.each(self.currentQuery.split(" "), function(query) {
-          view.$(".title").highlight(query);
-          view.$(".author").highlight(query);
-          view.$(".body").highlight(query);
-        });
-      }
-      if (!_.isEmpty(self.currentUser)) {
-        var fullName = self.currentUser.get("name");
-        view.$(".title").highlight(fullName);
-        view.$(".author").highlight(fullName);
-        view.$(".body").highlight(fullName);
-      }
+      self.highlightSearch(view);
+      self.highlightUser(view, model);
     });
   },
   
@@ -140,6 +129,29 @@ var Wire = CommonPlace.View.extend({
     $(this.el).removeHighlight();
     this.currentQuery = "";
     this.currentUser = {};
+  },
+  
+  highlightSearch: function(view) {
+    if (this.currentQuery) {
+      _.each(this.currentQuery.split(" "), function(query) {
+        view.$(".title").highlight(query);
+        view.$(".author").highlight(query);
+        view.$(".body").highlight(query);
+      });
+    }
+  },
+  
+  highlightUser: function(view, model) {
+    if (!_.isEmpty(this.currentUser)) {
+      var fullName = this.currentUser.get("name");
+      view.$(".title").highlight(fullName);
+      view.$(".author").highlight(fullName);
+      view.$(".body").highlight(fullName);
+      if (model.get("schema") == "announcements" &&
+          model.get("user_id") == this.currentUser.id) {
+            view.$(".announcement .author").highlight(model.get("author"));
+      }
+    }
   },
 
   isSearchEnabled: function() { return this.isActive('2012Release');  }
