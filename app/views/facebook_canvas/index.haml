@@ -1,2 +1,3 @@
 = javascript_include_tag "application"
-= link_to(image_tag("http://www.ourcommonplace.com/images/join-commonplace.png"),"https://www.ourcommonplace.com/#{@slug}", :target => "_top", :id => "join", :style => "display: none;")
+%a{:href => "https://www.ourcommonplace.com/#{@slug}", :target => "_top"}
+  %img{:src => "http://www.ourcommonplace.com/images/join-commonplace.png"}
