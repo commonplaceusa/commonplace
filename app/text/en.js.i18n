@@ -26,11 +26,11 @@
   },
   
   "main_page.post-offer-resources": {
-    "offer-posts.a": "Offers",
+    "offer-posts.a": "Recent Offers",
   },
   
   "main_page.post-help-resources": {
-    "help-posts.a": "Requests",
+    "help-posts.a": "Recent Requests",
   },
   
   "main_page.post-publicity-resources": {
