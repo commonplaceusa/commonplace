@@ -1,15 +1,2 @@
 = javascript_include_tag "application"
-= javascript_include_tag "https://connect.facebook.net/en_US/all.js#xfbml=1"
-%script
-  $(document).ready(function() {
-  FB.init({
-  appId : "#{($FacebookConfig || {})['app_id']}",
-  status : true,
-  cookie : true,
-  xfbml  : true
-  });
-  s = FB.getSession();
-  = "FB.api('/#{@request_id}?access_token=#{@application_token}', 'GET', {access_token: '#{@application_token}'}, function(r) { $('#join').attr('href','http://www.ourcommonplace.com/' + r.data); $('#join').show(); });"
-  });
-= link_to(image_tag("http://www.ourcommonplace.com/images/join-commonplace.png"),"https://www.ourcommonplace.com/", :target => "_top", :id => "join", :style => "display: none;")
-#fb-root
+= link_to(image_tag("http://www.ourcommonplace.com/images/join-commonplace.png"),"https://www.ourcommonplace.com/#{@slug}", :target => "_top", :id => "join", :style => "display: none;")
