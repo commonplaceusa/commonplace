@@ -76,6 +76,9 @@ class Post < ActiveRecord::Base
     end
     integer :community_id
     integer :user_id
+    integer :reply_author_ids, :multiple => true do
+      replies.map { |r| r.user.id }
+    end
     time :created_at
     string :category
   end
