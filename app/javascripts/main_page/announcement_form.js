@@ -48,6 +48,7 @@ var AnnouncementForm = CommonPlace.View.extend({
       success: function() {
         self.render();
         self.resetLayout();
+        CommonPlace.community.announcements.trigger("add");
       },
       error: function(attribs, response) {
         self.$(".spinner").hide();
