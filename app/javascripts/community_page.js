@@ -24,8 +24,10 @@ var CommunityPage = CommonPlace.View.extend({
     this.profileBox = new ProfileBox({
       profileDisplayer: profileDisplayer
     });
-
-    CommonPlace.profileBox = this.profileBox;
+    
+    profileDisplayer.highlightSingleUser = function(user) {
+      self.lists.highlightSingleUser(user);
+    }
 
     this.views = [this.postBox, this.lists, this.profileBox];
   },
