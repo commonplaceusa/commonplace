@@ -1,6 +1,10 @@
 var AccountProfile = CommonPlace.View.extend({
   template: "main_page.account-profile",
   className: "profile",
+  
+  events: {
+    "click ul.history a": "showHistoricalItem"
+  },
 
   comma: function(item) {
     return " " + item;
@@ -47,6 +51,10 @@ var AccountProfile = CommonPlace.View.extend({
   
   editUrl: function() {
     return "/" + CommonPlace.community.get("slug") + "/account";
+  },
+  
+  showHistoricalItem: function() {
+    this.options.highlightSingleUser(this.model);
   }
   
 });

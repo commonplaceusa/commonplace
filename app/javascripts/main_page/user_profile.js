@@ -5,7 +5,8 @@ var UserProfile = CommonPlace.View.extend({
   events: {
     "click .message": "showMessageForm",
     "click .meet": "meet",
-    "click .unmeet": "unmeet"
+    "click .unmeet": "unmeet",
+    "click ul.history a": "showHistoricalItem"
   },
 
   comma: function(item) {
@@ -71,7 +72,11 @@ var UserProfile = CommonPlace.View.extend({
     this.render();
   },
 
-  hasMet: function() { return CommonPlace.account.hasMetUser(this.model); }
+  hasMet: function() { return CommonPlace.account.hasMetUser(this.model); },
+  
+  showHistoricalItem: function() {
+    this.options.highlightSingleUser(this.model);
+  }
   
 });
 

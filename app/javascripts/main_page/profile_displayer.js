@@ -48,7 +48,10 @@ var ProfileDisplayer = Backbone.View.extend({
       feeds: FeedProfile,
       groups: GroupProfile,
       failed_search: FailedSearch
-    }[profilable.get('schema')])({ model: profilable });
+    }[profilable.get('schema')])({
+      model: profilable,
+      highlightSingleUser: this.highlightSingleUser
+    });
   }
   
 });

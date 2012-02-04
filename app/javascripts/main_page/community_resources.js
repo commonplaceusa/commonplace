@@ -184,6 +184,8 @@ var CommunityResources = CommonPlace.View.extend({
     }});
   },
   
+  highlightSingleUser: function(user) { this.singleUser = user; },
+  
   showSingleItem: function(model, kind, options) {
     var self = this;
     var wire = new LandingPreview({
@@ -192,6 +194,10 @@ var CommunityResources = CommonPlace.View.extend({
       fullWireLink: options.fullWireLink,
       callback: function() { self.stickHeader(); }
     });
+    if (!_.isEmpty(this.singleUser)) {
+      wire.searchUser(this.singleUser);
+      this.singleUser = {};
+    }
     this.switchTab(options.tab, wire);
     $(window).scrollTo(0);
   },
