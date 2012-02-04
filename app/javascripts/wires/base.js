@@ -147,9 +147,12 @@ var Wire = CommonPlace.View.extend({
       view.$(".title").highlight(fullName);
       view.$(".author").highlight(fullName);
       view.$(".body").highlight(fullName);
-      if (model.get("schema") == "announcements" &&
-          model.get("user_id") == this.currentUser.id) {
-            view.$(".announcement .author").highlight(model.get("author"));
+      if (model.get("user_id") == this.currentUser.id) {
+        if (model.get("schema") == "announcements") {
+          view.$(".announcement .author").highlight(model.get("author"));
+        }
+      } else {
+        view.$(".replies-more").click();
       }
     }
   },

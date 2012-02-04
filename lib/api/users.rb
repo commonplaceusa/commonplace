@@ -36,7 +36,10 @@ class API
         order_by(:created_at, :desc)
         paginate(:page => params["page"].to_i + 1, :per_page => params["limit"])
         with(:community_id, user.community.id)
-        with(:user_id, user_id)
+        any_of do
+          with(:user_id, user_id)
+          with(:reply_author_ids, user_id)
+        end
       end
       serialize(search)
     end

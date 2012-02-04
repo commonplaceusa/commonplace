@@ -60,6 +60,9 @@ class GroupPost < ActiveRecord::Base
     end
     integer :community_id
     integer :user_id
+    integer :reply_author_ids, :multiple => true do
+      replies.map { |r| r.user.id }
+    end
     time :created_at
   end
 
