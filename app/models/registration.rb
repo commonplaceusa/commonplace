@@ -2,6 +2,9 @@ class Registration
 
   def initialize(user)
     @user = user
+    if user.calculated_cp_credits.nil?
+      user.calculated_cp_credits = 0
+    end
   end
 
   attr_reader :user
