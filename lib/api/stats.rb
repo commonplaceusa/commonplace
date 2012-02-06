@@ -3,7 +3,7 @@ class API
     get "/" do
       # Return global statistics aggregate
       stats_by_community = {}
-      Community.all.each do |community|
+      Community.all.select { |c| c.core }.each do |community|
         stats_by_community[community.slug] = StatisticsAggregator.generate_hashed_statistics_for_community(community)
       end
       #stats_by_community["global"] = {}
