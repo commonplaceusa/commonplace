@@ -13,7 +13,7 @@ module MailUrls
   end
 
   def community_url(path)
-    url("/#{community.slug}/#{path}")
+    url("/#{community.slug}#{path}")
   end
 
   def asset_url(path)
