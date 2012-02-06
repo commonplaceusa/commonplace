@@ -53,6 +53,10 @@ var EventWireItem = WireItem.extend({
   numThanks: function() {
       return this.model.get("thanks").length;
   },
+  
+  peoplePerson: function() {
+    return (this.model.get("thanks").length == 1) ? "person" : "people";
+  },
 
   monthAbbrevs: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                  "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],

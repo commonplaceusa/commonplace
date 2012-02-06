@@ -43,6 +43,10 @@ var AnnouncementWireItem = WireItem.extend({
     return this.model.get("thanks").length;
   },
   
+  peoplePerson: function() {
+    return (this.model.get("thanks").length == 1) ? "person" : "people";
+  },
+  
   events: {
     "click .editlink": "editAnnouncement",
     "mouseenter": "showProfile",
