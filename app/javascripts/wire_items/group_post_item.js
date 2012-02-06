@@ -50,6 +50,10 @@ var GroupPostWireItem = WireItem.extend({
   numThanks: function() {
       return this.model.get("thanks").length;
   },
+  
+  peoplePerson: function() {
+    return (this.model.get("thanks").length == 1) ? "person" : "people";
+  },
 
   events: {
     "click div.group-post > .author > .person": "messageUser",

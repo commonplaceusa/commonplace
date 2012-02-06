@@ -4,6 +4,10 @@ var WireItem = CommonPlace.View.extend({
     if (increment) {
       scope.$(".thank_count").html(scope.numThanks() + 1);
       
+      if (scope.numThanks() < 1) {
+        scope.$(".people_person").html("person");
+      }
+      
       var thanksList = this.model.get("thanks").push({
         thanker: CommonPlace.account.get("name"),
         avatar_url: CommonPlace.account.get("avatar_url"),
