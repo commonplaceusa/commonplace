@@ -9,11 +9,7 @@ class PostNotification < MailBase
   end
 
   def subject
-    if @post.community.is_college
-      "#{author_name} just posted to your hall board on CommonPlace"
-    else
-      "#{author_name} just posted to our neighborhood on CommonPlace"
-    end
+    "#{author_name} just posted to your neighborhood on CommonPlace"
   end
 
   def header_image_url
