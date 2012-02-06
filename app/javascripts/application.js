@@ -3,6 +3,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery-blockUI
+//= require highcharts
 //= require actual
 //= require underscore
 //= require mustache
@@ -40,6 +41,7 @@
 //= require feed_inbox_page
 //= require outbox_page
 //= require account_page
+//= require stats_page
 //
 //= require facebook
 
@@ -56,7 +58,8 @@ var Application = Backbone.Router.extend({
       inbox: new InboxPage({ el: $("#main") }),
       outbox: new OutboxPage({ el: $("#main") }),
       feed_inbox: new FeedInboxPage({ el: $("#main") }),
-      account: new AccountPage({ el: $("#main") })
+      account: new AccountPage({ el: $("#main") }),
+      stats: new StatsPage({ el: $("#main") })
     }; 
 
     _.invoke(this.pages, "unbind");
@@ -88,9 +91,12 @@ var Application = Backbone.Router.extend({
 
     "/account": "account",
     
-    "/tour": "tour"
+    "/tour": "tour",
+
+    "/stats": "stats"
   },
 
+  stats: function() { if (CommonPlace.account.get("is_admin")) { this.showPage("stats"); } else { this.community(); } },
 
   faq: function() { this.showPage("faq"); },
 
