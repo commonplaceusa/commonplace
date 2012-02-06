@@ -14,7 +14,10 @@
       <p>
       <div class="box-links">
       <a href="#" class="gray-button message">Send a Message</a>
-      {{^hasMet}}<a href="#" class="gray-button meet">Have You Met?</a>{{/hasMet}}
+      {{^hasMet}}
+        <a href="#" class="gray-button meet">Have You Met?</a>
+        <a class="gray-button just-met" style="display: none;">You've Met!</a>
+      {{/hasMet}}
       {{#hasMet}}<a href="#" class="gray-button unmeet">Don't Know Them?</a>{{/hasMet}}
   </div>
     </div>

@@ -63,13 +63,15 @@ var UserProfile = CommonPlace.View.extend({
   meet: function(e) {
     e.preventDefault();
     CommonPlace.account.meetUser(this.model);
-    this.render();
+    this.$(".just-met").show();
+    this.$(".meet").hide();
   },
 
   unmeet: function(e) {
     e.preventDefault();
-    CommonPlace.account.unmeetUser(this.model);
-    this.render();
+    CommonPlace.account.unmeetUser(this.model, _.bind(function() {
+      this.render();
+    }, this));
   },
 
   hasMet: function() { return CommonPlace.account.hasMetUser(this.model); },
