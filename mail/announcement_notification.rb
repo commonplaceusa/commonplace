@@ -1,82 +1,37 @@
 class AnnouncementNotification < PostNotification
-  
+
+  self.template_file = PostNotification.template_file
+
   def initialize(announcement_id, user_id)
-    @announcement, @user = Announcement.find(announcement_id), User.find(user_id)
+    @post, @user = Announcement.find(announcement_id), User.find(user_id)
   end
 
   def subject
-    "#{poster_name} just posted an announcement to CommonPlace"
-  end
-
-  def announcement
-    @announcement
+    "#{author_name} posted an new announcement on CommonPlace"
   end
 
   def reply_to
-    "reply+announcement_#{announcement.id}@ourcommonplace.com"
+    "reply+announcement_#{post.id}@ourcommonplace.com"
   end
 
-  def user
-    @user
-  end
-
-  def poster
-    @announcement.owner
-  end
-
-  def community
-    @announcement.community
+  def author
+    @post.owner
   end
     
-  def community_name
-    community.name
+  def short_author_name
+    author_name
   end
 
-  def poster_name
-    poster.name
-  end
-
-  def short_poster_name
-    case poster
-    when User then poster.first_name
-    when Feed then poster.name
-    end
-  end
-
-  def announcement_url
-    community_url("/show/announcement/#{announcement.id}")
+  def post_url
+    show_announcement_url(post.id)
   end
 
   def new_message_url
-    case poster
-    when User then url("/message/user/#{poster.id}")
-    when Feed then url("/message/feed/#{poster.id}")
-    else root_url
-    end
+    message_feed_url(author.id)
   end
 
-  def announcement_subject
-    announcement.subject
-  end
-
-  def announcement_body
-    markdown(announcement.body)
-  end
-
-  def poster_avatar_url
-    poster.avatar_url
-  end
-
-  def poster_url
-    case poster
-    when User then url("/users/#{poster.id}")
-    when Feed then url("/feeds/#{poster.id}")
-    else root_url
-    end
-  end
-
-  def user_name
-    user.name
+  def author_url
+    url("/feeds/#{author.id}")
   end
 
   def tag
