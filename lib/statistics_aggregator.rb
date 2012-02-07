@@ -3,9 +3,46 @@ class StatisticsAggregator
 
   MailGunStatistics = RestClient::Resource.new "https://api:#{$MailgunAPIToken}@api.mailgun.net/v2/#{$MailgunAPIDomain}/stats"
 
+  def self.csv_headers
+    "Date,UsersTotal,PostsTotal,EventsTotal,AnnouncementsTotal,PrivateMessagesTotal,GroupPostsTotal,UsersLoggedInOverPast3Months,UsersActiveOverPast30Days,UsersPostingOverPast3Months,UsersGainedDaily"
+  end
+
+  def self.user_total_count(scope, start_date, end_date)
+    scope.between(start_date, end_date).count
+  end
+
+  def self.logged_in_in_past_30_days(scope, reference_date)
+    scope.select { |u| u.last_sign_in_at and u.last_sign_in_at < reference_date and u.last_sign_in_at > reference_date - 30.days }.count
+  end
+
+  def self.csv_statistics_globally
+    unless Resque.redis.get("statistics:csv:global").present?
+      launch = [Post.first, Event.first, Announcement.first, GroupPost.first].sort_by(&:created_at).first.created_at.to_datetime
+      today = DateTime.now
+      launch.upto(today).each do |day|
+        user_count = StatisticsAggregator.user_total_count(User, launch.to_datetime, day.to_datetime)
+        logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(User.all, day.to_datetime)
+        daily_bulletin_opens_on_date = 0
+        users_engaged_in_past_30_days = 0
+        users_posted_in_past_30_days = User.all.select { |u| u.posted_content.present? and u.posted_content.sort_by { |c| c.created_at }.last.created_at > 30.days.ago }.count
+        users_gained = User.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
+        post_count = Post.between(launch.to_datetime, day.to_datetime).count
+        event_count = Event.between(launch.to_datetime, day.to_datetime).count
+        announcement_count = Announcement.between(launch.to_datetime, day.to_datetime).count
+        private_message_count = Message.all.select { |m| m.between?(launch.to_datetime, day.to_datetime) }.count
+        group_post_count = GroupPost.all.select { |p| p.between?(launch.to_datetime, day.to_datetime) }.count
+        csv = "#{csv}\n#{day.strftime("%m/%d/%Y")},#{user_count},#{post_count},#{event_count},#{announcement_count},#{private_message_count},#{group_post_count},#{logged_in_in_past_30_days},#{users_engaged_in_past_30_days},#{users_posted_in_past_30_days},#{users_gained}"
+      end
+      Resque.redis.set("statistics:csv:global", csv)
+      csv
+    else
+      Resque.redis.get("statistics:csv:global")
+    end
+  end
+
   def self.generate_statistics_csv_for_community(c)
     unless Resque.redis.get("statistics:csv:#{c.slug}").present?
-      csv = "Date,UsersTotal,PostsTotal,EventsTotal,AnnouncementsTotal,PrivateMessagesTotal,GroupPostsTotal,UsersLoggedInOverPast3Months,UsersActiveOverPast30Days,UsersPostingOverPast3Months,UsersGainedDaily"
+      csv = StatisticsAggregator.csv_headers
       today = DateTime.now
       community = c
       launch = community.launch_date.to_date || community.users.sort{ |a,b| a.created_at <=> b.created_at }.first.created_at.to_date
@@ -15,11 +52,11 @@ class StatisticsAggregator
         #replies.each do |reply_set|
         #  reply_count += reply_set.select{ |repliable| repliable.between?(launch.to_datetime, day.to_datetime) }.count
         #end
-        user_count = community.users.between(launch.to_datetime, day.to_datetime).count
-        logged_in_in_past_30_days = community.users.select { |u| u.last_sign_in_at and u.last_sign_in_at < day.to_datetime and u.last_sign_in_at > day.to_datetime - 30.days }.count
+        user_count = StatisticsAggregator.user_total_count(community.users, launch.to_datetime, day.to_datetime)
+        logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(community.users, day.to_datetime)
         daily_bulletin_opens_on_date = 0
         users_engaged_in_past_30_days = 0
-        users_posted_in_past_30_days = 0
+        users_posted_in_past_30_days = community.users.select { |u| u.posted_content.present? and u.posted_content.sort_by { |c| c.created_at }.last.created_at > 30.days.ago }.count
         users_gained = community.users.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
         post_count = community.posts.between(launch.to_datetime, day.to_datetime).count
         event_count = community.events.between(launch.to_datetime, day.to_datetime).count
@@ -33,6 +70,19 @@ class StatisticsAggregator
       csv
     else
       Resque.redis.get("statistics:csv:#{c.slug}")
+    end
+  end
+
+  def self.generate_hashed_statistics_globally
+    unless Resque.redis.get("statistics:hashed:global").present?
+      data = CSV.parse(StatisticsAggregator.csv_statistics_globally)
+      headers = data.shift.map &:to_s
+      string_data = data.map { |row| row.map(&:to_s) }
+      array_of_hashes = string_data.map { |row| Hash[*headers.zip(row).flatten] }
+      Resque.redis.set("statistics:hashed:global", ActiveSupport::JSON.encode(array_of_hashes))
+      array_of_hashes
+    else
+      Resque.redis.get("statistics:hashed:global")
     end
   end
 
