@@ -35,6 +35,7 @@ class API
       map("/replies") { run Replies }
       map("/registration") { run Registrations }
       map("/stats") { run Stats }
+      map("/registration") { run Registrations }
 
       map("/") { run lambda {|env|  [404, {}, ["Invalid Request"]] } }
     end
