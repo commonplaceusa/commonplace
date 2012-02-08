@@ -130,16 +130,24 @@ class Community < ActiveRecord::Base
   end
 
   # Convenience accessors for some mapped values
-  def group_posts
-    self.groups.map(&:group_posts).flatten
+  def group_posts(options = {})
+    if options[:between].present?
+      self.groups.map { |g| g.group_posts.between(options[:between][0], options[:between][1]) }.flatten
+    else
+      self.groups.map(&:group_posts).flatten
+    end
   end
 
   def group_posts_today
     group_posts.select { |post| post.created_at > DateTime.now.at_beginning_of_day and post.created_at < DateTime.now }
   end
 
-  def private_messages
-    self.users.map(&:messages).flatten
+  def private_messages(options = {})
+    if options[:between].present?
+      Message.between(options[:between][0], options[:between][1]).select { |m| m.community == self }
+    else
+      Message.all.select { |m| m.community == self }
+    end
   end
 
   def private_messages_today
