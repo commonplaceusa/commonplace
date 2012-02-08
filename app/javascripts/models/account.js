@@ -22,11 +22,12 @@ var Account = Model.extend({
   },
 
   subscribeToFeed: function(feed, callback) {
+    var feed_ids = (_.isArray(feed)) ? feed : feed.id;
     var self = this;
     $.ajax({
       contentType: "application/json",
       url: "/api" + this.get('links').feed_subscriptions,
-      data: JSON.stringify({ id: feed.id }),
+      data: JSON.stringify({ id: feed_ids }),
       type: "post",
       dataType: "json",
       success: function(account) { 
@@ -55,11 +56,12 @@ var Account = Model.extend({
   },
 
   subscribeToGroup: function(group, callback) {
+    var group_ids = (_.isArray(group)) ? group : group.id;
     var self = this;
     $.ajax({
       contentType: "application/json",
       url: "/api" + this.get("links").group_subscriptions,
-      data: JSON.stringify({ id: group.id }),
+      data: JSON.stringify({ id: group_ids }),
       type: "post",
       dataType: "json",
       success: function(account) {
