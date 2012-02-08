@@ -2,7 +2,7 @@ var RegisterFeedListView = CommonPlace.View.extend({
   template: "registration.feed",
   
   events: {
-    "click a.continue": "submit"
+    "click input.continue": "submit"
   },
   
   afterRender: function() {
