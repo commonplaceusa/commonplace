@@ -245,5 +245,9 @@ class Community < ActiveRecord::Base
   def wire
     CommunityWire.new(self)
   end
+  
+  def exterior
+    CommunityExterior.new(self)
+  end
 
 end

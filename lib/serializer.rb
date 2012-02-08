@@ -40,7 +40,16 @@ module Serializer
         "lng" => o.lng
       }
       when User
-        o.as_api_response(:default)
+        if o.valid?
+          o.as_api_response(:default)
+        else
+          {
+            "success" => "false",
+            "email" => o.errors["email"],
+            "full_name" => o.errors["full_name"],
+            "address" => o.errors["address"]
+          }
+        end
       when Post
         { 
         "id" => o.id,
@@ -263,8 +272,12 @@ module Serializer
         "other" => serialize(o.other),
         "meetups" => serialize(o.meetups)
       }
+      
+      when CommunityExterior
+        o.as_api_response(:default)
+      
       end
-
+      
     as_json
   end
 end
