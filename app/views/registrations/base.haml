@@ -1,0 +1,14 @@
+- if !current_community.has_launched?
+  .important-notification
+    Welcome to #{current_community.name} CommonPlace! We're officially launching on #{current_community.launch_date.strftime("%B")} #{current_community.launch_date.day.ordinalize} but you can be first to get a sneak peek. Sign up below to test it out.
+
+#main
+  #registration-modal
+  
+  %div{:style=>"clear: both;"}
+  
+  :javascript
+    new RegistrationRouter({ communityExterior: #{serialize current_community.exterior} });
+    Backbone.history.start();
+
+= mixpanel_track("Community Registration Page")
