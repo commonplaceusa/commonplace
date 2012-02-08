@@ -1,5 +1,5 @@
 class API
-  class Replies < Base
+  class Replies < Authorized
   
     helpers do
     
