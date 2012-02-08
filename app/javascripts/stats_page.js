@@ -48,8 +48,6 @@ var StatsPage = CommonPlace.View.extend({
     for (community in this.statistics) {
       var slug = this.statistics[community][0];
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), 30);
-      console.log("Got for community " + slug);
-      console.log(community_stats);
       var first_date = Date.parse(community_stats[0].Date);
 
       $("#user_count").append("<div class='user_count_graph' id='user_count_graph_" + slug + "'></div>");
@@ -72,6 +70,7 @@ var StatsPage = CommonPlace.View.extend({
           title: {
             text: 'Users'
           },
+          min: 0
         },
         tooltip: {
           enabled: true
@@ -119,22 +118,19 @@ var StatsPage = CommonPlace.View.extend({
 
       new Highcharts.Chart({
         chart: {
-          renderTo: 'user_growth_graph_' + slug
-
+          renderTo: 'user_growth_graph_' + slug,
+          defaultSeriesType: 'column'
         },
         title: {
           text: 'Users Gained for ' + slug
         },
         xAxis: {
-          type: 'datetime',
-          title: {
-            text: null
-          }
+          categories: _.map(community_stats, function(stat) { return stat.Date } )
         },
         yAxis: {
           title: {
             text: 'Users'
-          },
+          }
         },
         tooltip: {
           enabled: true
@@ -145,8 +141,8 @@ var StatsPage = CommonPlace.View.extend({
 
         series: [{
           name: 'Users',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
+          //pointInterval: 24*3600*1000,
+          //pointStart: first_date,
           data: _.map(community_stats, function(stat) { return parseInt(stat.UsersGainedDaily); })
         }],
         credits: { enabled: false }
@@ -162,7 +158,7 @@ var StatsPage = CommonPlace.View.extend({
       new Highcharts.Chart({
         chart: {
           renderTo: 'content_posting_graph_' + slug,
-          defaultSeriesType: 'area'
+          defaultSeriesType: 'column'
         },
         title: {
           text: 'Total Posted Content for ' + slug
@@ -178,6 +174,7 @@ var StatsPage = CommonPlace.View.extend({
            title: {
               text: 'Content'
            },
+           min: 0
         },
         plotOptions: {
            area: {
@@ -186,20 +183,24 @@ var StatsPage = CommonPlace.View.extend({
         },
         series: [{
            name: 'Posts',
-           data: _.map(community_stats, function(stat) { return parseInt(stat.PostsTotal); })
+           data: _.map(community_stats, function(stat) { return parseInt(stat.PostsToday); })
         }, {
            name: 'Events',
-           data: _.map(community_stats, function(stat) { return parseInt(stat.EventsTotal); })
+           data: _.map(community_stats, function(stat) { return parseInt(stat.EventsToday); })
         }, {
            name: 'Group Posts',
-           data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostsTotal); })
+           data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostsToday); })
         }, {
            name: 'Announcements',
-           data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementsTotal); })
+           data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementsToday); })
         }, {
           name: 'Private Messages',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.PrivateMessagesTotal); })
-        }]
+          data: _.map(community_stats, function(stat) { return parseInt(stat.PrivateMessagesToday); })
+        }, {
+          name: 'Cumulative',
+          data: _.map(community_stats, function(stat) { return parseInt(stat.PostsToday) + parseInt(stat.EventsToday) + parseInt(stat.GroupPostsToday) + parseInt(stat.AnnouncementsToday) + parseInt(stat.PrivateMessagesToday); })
+        }],
+        credits: { enabled: false }
       });
     }
   },
