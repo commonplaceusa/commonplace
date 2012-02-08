@@ -11,13 +11,6 @@ Commonplace::Application.routes.draw do
     match "/registration/profile" => "registrations#mobile_profile"
   end
 
-  resource :registration, :only => [:new, :create] do
-    member do
-      get :profile, :avatar, :feeds, :groups
-      put :add_profile, :crop_avatar, :add_feeds, :add_groups
-    end
-  end
-
   resources :feed_registrations, :only => [:new, :create] do
     member do
       get :profile, :avatar, :subscribers
@@ -146,7 +139,7 @@ Commonplace::Application.routes.draw do
     match '/whereami', :to => 'site#whereami'
     
     root :to => "site#index"
-    match "/:community", :to => "registrations#new", :via => :get, :as => :community_landing
+    match "/:community", :to => "registrations#base" #, :via => :get, :as => :community_landing
 
     match "/:community/learn_more", :to => "accounts#learn_more", :via => :get
 
