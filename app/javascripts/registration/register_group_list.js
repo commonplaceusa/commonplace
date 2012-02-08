@@ -2,7 +2,7 @@ var RegisterGroupListView = CommonPlace.View.extend({
   template: "registration.group",
   
   events: {
-    "click a.continue": "submit"
+    "click input.continue": "submit"
   },
 
   afterRender: function() {
