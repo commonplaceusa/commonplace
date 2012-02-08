@@ -187,6 +187,7 @@ class User < ActiveRecord::Base
     t.add lambda {|u| u.posts.count}, :as => :post_count
     t.add lambda {|u| u.replies.count}, :as => :reply_count
     t.add lambda {|u| u.profile_history }, :as => :history
+    t.add lambda {|u| "true" }, :as => :success
   end
 
   def links
