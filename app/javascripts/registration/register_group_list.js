@@ -15,9 +15,13 @@ var RegisterGroupListView = CommonPlace.View.extend({
     if (e) { e.preventDefault(); }
     
     var groups = _.map(this.$("input:checked"), function(group) { return $(group).val(); });
-    CommonPlace.account.subscribeToGroup(groups, _.bind(function() {
+    if (_.isEmpty(groups)) {
       this.options.completion();
-    }, this));
+    } else {
+      CommonPlace.account.subscribeToGroup(groups, _.bind(function() {
+        this.options.completion();
+      }, this));
+    }
   },
 
   appendGroupsList: function(groups) {

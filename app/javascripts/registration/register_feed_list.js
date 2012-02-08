@@ -15,9 +15,13 @@ var RegisterFeedListView = CommonPlace.View.extend({
     if (e) { e.preventDefault(); }
     
     var feeds = _.map(this.$("input:checked"), function(feed) { return $(feed).val(); });
-    CommonPlace.account.subscribeToFeed(feeds, _.bind(function() {
+    if (_.isEmpty(feeds)) {
       this.options.nextPage("group");
-    }, this));
+    } else {
+      CommonPlace.account.subscribeToFeed(feeds, _.bind(function() {
+        this.options.nextPage("group");
+      }, this));
+    }
   },
     
   appendFeedsList: function(feeds) {
