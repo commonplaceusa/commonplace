@@ -103,6 +103,8 @@ var RegistrationModal = CommonPlace.View.extend({
     var $current = this.$("#current-registration-page");
     var dimensions = this.dimensions($current);
     
+    $current.css({ position: "fixed" });
+    
     $current.animate(
       { opacity: 0, left: 0 - $current.width() },
       {
@@ -115,6 +117,7 @@ var RegistrationModal = CommonPlace.View.extend({
         
         complete: function() {
           $current.empty();
+          $current.css({ position: "static" });
           $current.hide();
         }
       }
@@ -125,6 +128,9 @@ var RegistrationModal = CommonPlace.View.extend({
     var $next = this.$("#next-registration-page");
     var $window = $(window);
     var $current = this.$("#current-registration-page");
+    var $pagewidth = this.$("#pagewidth");
+    
+    $pagewidth.css({ position: "fixed" });
     $next.show();
     $next.append(el);
     
@@ -149,8 +155,12 @@ var RegistrationModal = CommonPlace.View.extend({
         complete: _.bind(function() {
           $current.html($next.children("div").detach());
           $current.show();
-          $current.css({ opacity: 1 });
+          $current.css({
+            opacity: 1,
+            position: "static"
+          });
           this.centerEl();
+          $pagewidth.css({ position: "static" });
           $next.empty();
           $next.hide();
         }, this)
@@ -165,7 +175,7 @@ var RegistrationModal = CommonPlace.View.extend({
     top = top < 1 ? 10 : top;
     top = top < scrolled + 10 ? scrolled + 10 : top;
     var left = ($window.width() - $el.width()) /2;
-    return { left: left, top: top };
+    return { left: left, top: $("#main").offset().top };
   },
   
   exit: function() {
