@@ -183,6 +183,8 @@ var Account = Model.extend({
       if (first_click_callback) { first_click_callback(); }
       this.set_metadata('has_used_postbox', true, function() { });
     }
-  }
+  },
+  
+  isAuth: function() { return !_.isEmpty(this.attributes); }
 
 });
