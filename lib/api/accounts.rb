@@ -52,12 +52,19 @@ class API
      end
 
     post "/subscriptions/feeds" do
-      feed = Feed.find(params[:id] || request_body['id'])
-      halt [401, "wrong community"] unless in_comm(feed.community.id)
-      current_account.feeds << feed
-      if feed.subscribers.count == Feed.subscriber_count_email_trigger + 1 and account.community_id == 7
-        deliver_n_feed_subscribers_notification(feed.id)
+      feeds = [params[:id] || request_body["id"]].flatten.map do |feed_id|
+        feed = Feed.find(feed_id)
+        halt [401, "wrong community"] unless in_comm(feed.community.id)
+        feed
       end
+      
+      feeds.each do |feed|
+        current_account.feeds << feed
+        if feed.subscribers.count == Feed.subscriber_count_email_trigger + 1 and account.community_id == 7
+          deliver_n_feed_subscribers_notification(feed.id)
+        end
+      end
+      
       serialize(Account.new(current_account))
     end
 
@@ -67,9 +74,16 @@ class API
     end
     
     post "/subscriptions/groups" do
-      group = Group.find(params[:id] || request_body['id'])
-      halt [401, "wrong community"] unless in_comm(group.community.id)
-      current_account.groups << group
+      groups = [params[:id] || request_body["id"]].flatten.map do |group_id|
+        group = Group.find(group_id)
+        halt [401, "wrong community"] unless in_comm(group.community.id)
+        group
+      end
+      
+      groups.each do |group|
+        current_account.groups << group
+      end
+      
       serialize(Account.new(current_account))
     end
 
