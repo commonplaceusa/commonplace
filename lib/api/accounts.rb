@@ -1,5 +1,5 @@
 class API
-  class Accounts < Base
+  class Accounts < Authorized
 
     helpers do
 
