@@ -73,6 +73,7 @@ class CommunityExterior
   def links
     {
       "self" => "/registration/#{id}",
+      "tour" => "/#{slug}/tour",
       "registration" => {
         "validate" => "/registration/#{id}/validate",
         "new" => "/registration/#{id}/new"

@@ -2,7 +2,9 @@
 var Account = Model.extend({
 
   initialize: function() {
-    this.featuredUsers = new Users([], { uri: this.link("featured_users") });
+    if (this.isAuth()) {
+      this.featuredUsers = new Users([], { uri: this.link("featured_users") });
+    }
   },
 
   neighborhoodsPosts: function() {
