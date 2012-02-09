@@ -19,7 +19,7 @@
         <span class="hint">* Required field.</span>
         
         <div class="to-facebook">
-          <h4>If you have Facebook, why not connect?</h4>
+          <h4>Connect with Facebook to add photos and password!</h4>
           <input type="image" src="/assets/buttons/facebookconnect.png">
         </div>
       </li>
@@ -43,19 +43,19 @@
       <textarea name="about" rows="3"></textarea>
     </li>
     <li>
-      <label for="interests">Interests</label>
+      <label for="interests">My interests</label>
       <select name="interests" class="list" multiple="true" data-placeholder="Select some interests">
         {{#interests}} <option value="{{.}}">{{.}}</option> {{/interests}}
       </select>
     </li>
     <li>
-      <label for="skills">Skills</label>
+      <label for="skills">My skills</label>
       <select name="skills" class="list" multiple="true" data-placeholder="Select some skills">
         {{#skills}} <option value="{{.}}">{{.}}</option> {{/skills}}
       </select>
     </li>
     <li>
-      <label for="goods">Goods</label>
+      <label for="goods">My goods</label>
       <select name="goods" class="list" multiple="true" data-placeholder="Select some goods">
         {{#goods}} <option value="{{.}}">{{.}}</option> {{/goods}}
       </select>
