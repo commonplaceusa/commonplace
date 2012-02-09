@@ -168,7 +168,6 @@ var Account = Model.extend({
   },
   
   cropAvatar: function(coords, callback) {
-    console.log(coords);
     $.ajax({
       contentType: "application/json",
       url: "/api" + this.get("links").crop,

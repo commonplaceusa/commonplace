@@ -11,7 +11,7 @@
     
   #pagewidth
     overflow-x: hidden
-    overflow-y: hidden
+    overflow-y: auto
     position: fixed
     top: 0
     bottom: 0
@@ -124,27 +124,27 @@
           font-weight: 600
           text-shadow: black 1px 1px 1px
           
-      .avatar_file_fix
-        position: absolute
-      .avatar_file_browse
-        position: absolute
-        top: 2px
-        right: 0px
+      a.avatar_file_browse
+        display: block
         padding: 8px
         height: 11px
         width: 80px
-        color: white
-        background: gray
-        border: 1px solid #666
-        +border-top-right-radius(5px)
-        +border-bottom-right-radius(5px)
+        color: #1b334a
+        border: 1px solid #5c0a09
+        +border-radius(5px)
         cursor: pointer
         line-height: 10px
         padding-left: 8px
-        a
-          text-decoration: none
-      .avatar_li
-        min-height: 54px
+        text-decoration: none
+        text-align: center
+        width: 165px
+        margin-top: 6px
+        &.hover
+          +box-shadow(inset 2px 2px 0 #e0e0e0, inset -2px -2px 0 #e0e0e0, 0 1px 1px #5c0a09)
+          background-color: #bdbdbd
+        &:not(.hover)
+          +box-shadow(inset 2px 2px 0 white, inset -2px 0 0 white, inset 0 -2px 0 #bdbdbd, 0 1px 2px #5c0a09)
+          background-color: #e0e0e0
         
       > input[type=image]
         margin-top: 10px
@@ -215,10 +215,28 @@
       font-size: 12px
       color: #FFFFFF
       
-    input.sign_up
-      margin-top: 5px
-      margin-left: auto
-      margin-right: auto
+    input.grey-button
+      display: block
+      padding: 4px
+      height: 42px
+      width: 380px
+      color: #1b334a
+      text-align: center
+      border: 1px solid #5c0a09
+      +border-radius(5px)
+      cursor: pointer
+      text-decoration: none
+      margin-top: 12px
+      font-weight: bold
+      font-size: 22px
+      font-family: Rockwell, Georgia, Times, "Times New Roman", serif
+      padding-bottom: 18px
+      &:hover
+        +box-shadow(inset 2px 2px 0 #e0e0e0, inset -2px -2px 0 #e0e0e0, 0 1px 1px #5c0a09)
+        background-color: #bdbdbd
+      &:not(:hover)
+        +box-shadow(inset 2px 2px 0 white, inset -2px 0 0 white, inset 0 -2px 0 #bdbdbd, 0 1px 2px #5c0a09)
+        background-color: #e0e0e0
       
     #user_avatar_input
       position: relative

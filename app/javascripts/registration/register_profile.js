@@ -6,9 +6,10 @@ var RegisterProfileView = CommonPlace.View.extend({
   },
   
   initialize: function(options) {
-    this.data = options.data;
+    this.data = options.data || {};
     this.nextPage = options.nextPage;
     this.communityExterior = options.communityExterior;
+    this.hasAvatarFile = false;
   },
   
   afterRender: function() {
@@ -40,7 +41,7 @@ var RegisterProfileView = CommonPlace.View.extend({
       _.bind(function(response) {
         if (response.success == "true" || response.id) {
           CommonPlace.account = new Account(response);
-          if (this.$("input[name=avatar_file]").val()) {
+          if (this.hasAvatarFile) {
             this.avatarUploader.submit();
           } else {
             this.nextPage("feed");
@@ -66,9 +67,7 @@ var RegisterProfileView = CommonPlace.View.extend({
       data: { },
       responseType: 'json',
       autoSubmit: false,
-      onChange: function(file, extension){
-        self.$("input[name=avatar_file]").val(file);
-      },
+      onChange: function() { self.toggleAvatar(); },
       onSubmit: function(file, extension) {},
       onComplete: function(file, response) { 
         CommonPlace.account.set(response); 
@@ -76,6 +75,8 @@ var RegisterProfileView = CommonPlace.View.extend({
       }
     });
   },
+  
+  toggleAvatar: function() { this.hasAvatarFile = true; },
   
   initReferralQuestions: function() {
     this.$("select[name=referral_source]").bind("change", _.bind(function() {
