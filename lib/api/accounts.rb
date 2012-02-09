@@ -69,9 +69,6 @@ class API
       
       feeds.each do |feed|
         current_account.feeds << feed
-        if feed.subscribers.count == Feed.subscriber_count_email_trigger + 1 and account.community_id == 7
-          deliver_n_feed_subscribers_notification(feed.id)
-        end
       end
       
       serialize(Account.new(current_account))
