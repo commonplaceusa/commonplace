@@ -40,6 +40,13 @@ var RegisterFeedListView = CommonPlace.View.extend({
     }, this));
     
     this.options.slideIn(this.el);
+    
+    var height = 0;
+    this.$(".feeds_container li").each(function(index) {
+      if (index == 4) { return false; }
+      height = height + $(this).outerHeight(true);
+    });
+    this.$("ul").height(height);
   },
   
   FeedItem: CommonPlace.View.extend({
@@ -61,8 +68,10 @@ var RegisterFeedListView = CommonPlace.View.extend({
       var $checkbox = this.$("input[type=checkbox]");
       if ($checkbox.attr("checked")) {
         $checkbox.removeAttr("checked");
+        this.$(".check").removeClass("checked");
       } else {
         $checkbox.attr("checked", "checked");
+        this.$(".check").addClass("checked");
       }
     }
   })
