@@ -12,23 +12,9 @@ var RegisterProfileView = CommonPlace.View.extend({
   },
   
   afterRender: function() {
-    this.$("select[name=referral_source]").bind("change", _.bind(function() {
-      var question = {
-        "At a table or booth at an event": "What was the event?",
-        "In an email": "Who was the email from?",
-        "On Facebook or Twitter": "From what person or organization?",
-        "On another website": "What website?",
-        "In the news": "From which news source?",
-        "Word of mouth": "From what person or organization?",
-        "Other": "Where?"
-      }[this.$("select[name=referral_source] option:selected").val()];
-      if (question) {
-        this.$(".referral_metadata_li").show();
-        this.$(".referral_metadata_li label").html(question);
-      } else {
-        this.$(".referral_metadata_li").hide();
-      }
-    }, this));
+    this.initReferralQuestions();
+    
+    this.initAvatarUploader(this.$(".avatar_file_browse"));
     
     this.options.slideIn(this.el);
   },
@@ -53,10 +39,12 @@ var RegisterProfileView = CommonPlace.View.extend({
       this.data,
       _.bind(function(response) {
         if (response.success == "true" || response.id) {
-          // do the avatar
-          // modify the page so that if we refresh, we're logged in
           CommonPlace.account = new Account(response);
-          this.nextPage("feed");
+          if (this.$("input[name=avatar_file]").val()) {
+            this.avatarUploader.submit();
+          } else {
+            this.nextPage("feed");
+          }
         }
       }, this)
     );
@@ -68,5 +56,44 @@ var RegisterProfileView = CommonPlace.View.extend({
   
   goods: function() { return this.communityExterior.goods; },
   
-  referrers: function() { return this.communityExterior.referral_sources; }
+  referrers: function() { return this.communityExterior.referral_sources; },
+  
+  initAvatarUploader: function($el) {
+    var self = this;
+    this.avatarUploader = new AjaxUpload($el, {
+      action: "/api" + this.communityExterior.links.registration.avatar,
+      name: 'avatar',
+      data: { },
+      responseType: 'json',
+      autoSubmit: false,
+      onChange: function(file, extension){
+        self.$("input[name=avatar_file]").val(file);
+      },
+      onSubmit: function(file, extension) {},
+      onComplete: function(file, response) { 
+        CommonPlace.account.set(response); 
+        self.nextPage("crop");
+      }
+    });
+  },
+  
+  initReferralQuestions: function() {
+    this.$("select[name=referral_source]").bind("change", _.bind(function() {
+      var question = {
+        "At a table or booth at an event": "What was the event?",
+        "In an email": "Who was the email from?",
+        "On Facebook or Twitter": "From what person or organization?",
+        "On another website": "What website?",
+        "In the news": "From which news source?",
+        "Word of mouth": "From what person or organization?",
+        "Other": "Where?"
+      }[this.$("select[name=referral_source] option:selected").val()];
+      if (question) {
+        this.$(".referral_metadata_li").show();
+        this.$(".referral_metadata_li label").html(question);
+      } else {
+        this.$(".referral_metadata_li").hide();
+      }
+    }, this));
+  }
 });

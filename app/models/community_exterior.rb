@@ -76,7 +76,8 @@ class CommunityExterior
       "tour" => "/#{slug}/tour",
       "registration" => {
         "validate" => "/registration/#{id}/validate",
-        "new" => "/registration/#{id}/new"
+        "new" => "/registration/#{id}/new",
+        "avatar" => "/account/avatar"
       }
     }
   end
