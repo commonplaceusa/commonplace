@@ -40,6 +40,7 @@ var RegistrationModal = CommonPlace.View.extend({
   
   afterRender: function() {
     this.communityExterior = this.options.communityExterior;
+    this.firstSlide = true;
     this.showPage("new_user");
   },
   
@@ -47,7 +48,7 @@ var RegistrationModal = CommonPlace.View.extend({
     var self = this;
     var nextPage = function(next, data) { self.showPage(next, data); }
     
-    this.slideOut();
+    if (!this.firstSlide) { this.slideOut(); }
     
     var view = {
       new_user: function() {
@@ -105,22 +106,13 @@ var RegistrationModal = CommonPlace.View.extend({
     
     $current.css({ position: "fixed" });
     
-    $current.animate(
+    this.slide($current,
       { opacity: 0, left: 0 - $current.width() },
-      {
-        step: _.bind(function() {
-          $current.css({
-            left: parseInt($current.css("left")) - 10,
-            opacity: parseFloat($current.css("opacity")) - 0.04
-          });
-        }, this),
-        
-        complete: function() {
-          $current.empty();
-          $current.css({ position: "static" });
-          $current.hide();
-        }
-      }
+      _.bind(function() {
+        $current.empty();
+        $current.css({ position: "static" });
+        $current.hide();
+      }, this)
     );
   },
   
@@ -142,30 +134,35 @@ var RegistrationModal = CommonPlace.View.extend({
       opacity: 0
     });
     
-    $next.animate(
-      { opacity: 1, left: dimensions.left },
-      {
-        step: _.bind(function() {
-          $next.css({
-            left: parseInt($next.css("left")) - 10,
-            opacity: parseFloat($next.css("opacity")) + 0.04
-          });
-        }, this),
-        
-        complete: _.bind(function() {
-          $current.html($next.children("div").detach());
-          $current.show();
-          $current.css({
-            opacity: 1,
-            position: "static"
-          });
-          this.centerEl();
-          $pagewidth.css({ position: "static" });
-          $next.empty();
-          $next.hide();
-        }, this)
+    this.slide($next, { opacity: 1, left: dimensions.left }, _.bind(function() {
+      $current.html($next.children("div").detach());
+      $current.show();
+      $current.css({
+        opacity: 1,
+        position: "static"
+      });
+      this.centerEl();
+      $pagewidth.css({ position: "static" });
+      $next.empty();
+      $next.hide();
+    }, this));
+  },
+  
+  slide: function($el, ending, complete) {
+    if (this.firstSlide) {
+      $el.css(ending);
+      return complete();
+    }
+    $el.animate(ending, {
+      complete: complete,
+      step: function() {
+        var opacityChange = (ending.opacity == 1) ? 0.04 : -0.04;
+        $el.css({
+          left: parseInt($el.css("left")) - 10,
+          opacity: parseFloat($next.css("opacity")) + opacityChange
+        });
       }
-    );
+    });
   },
   
   dimensions: function($el) {
