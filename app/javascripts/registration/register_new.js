@@ -2,8 +2,7 @@ var RegisterNewUserView = CommonPlace.View.extend({
   template: "registration.new",
   
   events: {
-    "click input.sign_up": "submit",
-    "focusin input.has_hint": "showHint"
+    "click input.sign_up": "submit"
   },
   
   afterRender: function() { this.options.slideIn(this.el); },
@@ -40,7 +39,5 @@ var RegisterNewUserView = CommonPlace.View.extend({
       if (valid) { this.options.nextPage("profile", data); }
       
     }, this));
-  },
-  
-  showHint: function() { this.$(".hint").show(); }
+  }
 });
