@@ -43,6 +43,15 @@ class API
       current_account.save
       serialize Account.new(current_account)
     end
+    
+    put "/crop" do
+      current_user.crop_x = request_body["crop_x"]
+      current_user.crop_y = request_body["crop_y"]
+      current_user.crop_w = request_body["crop_w"]
+      current_user.crop_h = request_body["crop_h"]
+      current_user.save
+      serialize Account.new(current_user)
+    end
 
      post "/metadata" do
        k = request_body['key']

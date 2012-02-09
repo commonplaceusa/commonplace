@@ -166,6 +166,26 @@ var Account = Model.extend({
       }
     });
   },
+  
+  cropAvatar: function(coords, callback) {
+    console.log(coords);
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.get("links").crop,
+      type: "put",
+      dataType: "json",
+      data: JSON.stringify({
+        crop_x: coords.crop_x,
+        crop_y: coords.crop_y,
+        crop_w: coords.crop_w,
+        crop_h: coords.crop_h
+      }),
+      success: _.bind(function(account) {
+        this.set(account);
+        if (callback) { callback(); }
+      }, this)
+    });
+  },
 
   set_metadata: function(key, value, callback) {
     var self = this;

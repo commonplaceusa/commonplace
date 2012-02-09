@@ -9,6 +9,7 @@
 //= require dropkick
 //= require ajaxupload
 //= require chosen
+//= require jcrop
 //= require views
 //= require models
 //= require_tree ../templates/shared
