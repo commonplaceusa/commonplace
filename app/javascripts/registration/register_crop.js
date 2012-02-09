@@ -12,17 +12,17 @@ var RegisterCropView = CommonPlace.View.extend({
     this.coords = {};
     
     $img.load(_.bind(function() {
-      this.scale = Math.max(
+      var scale = Math.max(
         380.0 / $img.width(),
         300.0 / $img.height()
       );
       this.$("form").css({
-        width: Math.floor($img.width() * this.scale),
-        height: Math.floor( ($img.height() * this.scale) + 50)
+        width: Math.floor($img.width() * scale),
+        height: Math.floor( ($img.height() * scale) + 50)
       });
       $img.css({
-        width: Math.floor($img.width() * this.scale),
-        height: Math.floor($img.height() * this.scale)
+        width: Math.floor($img.width() * scale),
+        height: Math.floor($img.height() * scale)
       });
       $img.Jcrop({
         onChange: function(coords) { self.updateCrop(coords); },
@@ -35,11 +35,15 @@ var RegisterCropView = CommonPlace.View.extend({
   avatar_url: function() { return CommonPlace.account.get("avatar_original"); },
   
   updateCrop: function(coords) {
-    this.coords = {
-      crop_x: coords.x * this.scale,
-      crop_y: coords.y * this.scale,
-      crop_w: coords.w * this.scale,
-      crop_h: coords.h * this.scale
+    var $img = this.$("img#cropbox");
+    var scale = $img[0].width / $img.width();
+    if (scale) {
+      this.coords = {
+        crop_x: coords.x * scale,
+        crop_y: coords.y * scale,
+        crop_w: coords.w * scale,
+        crop_h: coords.h * scale
+      }
     }
   },
   
