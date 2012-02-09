@@ -220,6 +220,7 @@ module Serializer
         "id" => o.id,
         "schema" => "account",
         "avatar_url" => o.avatar_url(:normal),
+        "avatar_original" => o.avatar_url(:original),
         "feed_subscriptions" => o.feed_subscriptions,
         "group_subscriptions" => o.group_subscriptions,
         "is_admin" => o.is_admin,
@@ -245,6 +246,7 @@ module Serializer
         "about" => o.about,
         "links" => { 
           "avatar" => "/account/avatar",
+          "crop" => "/account/crop",
           "feed_subscriptions" => "/account/subscriptions/feeds",
           "group_subscriptions" => "/account/subscriptions/groups",
           "mets" => "/account/mets",
