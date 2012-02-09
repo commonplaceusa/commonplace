@@ -18,6 +18,11 @@ var RegisterProfileView = CommonPlace.View.extend({
     this.initAvatarUploader(this.$(".avatar_file_browse"));
     
     this.options.slideIn(this.el);
+    
+    this.$("select.list").chosen().change({}, function() {
+      var clickable = $(this).parent("li").children("div").children("ul");
+      clickable.click();
+    });
   },
   
   community_name: function() { return this.communityExterior.name; },

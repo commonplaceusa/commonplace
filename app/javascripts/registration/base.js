@@ -91,8 +91,6 @@ var RegistrationModal = CommonPlace.View.extend({
     }[page]();
     
     view.render();
-    
-    this.$("select.list").chosen();
   },
   
   centerEl: function() {
