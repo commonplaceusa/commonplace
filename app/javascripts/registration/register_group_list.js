@@ -34,6 +34,13 @@ var RegisterGroupListView = CommonPlace.View.extend({
     }, this));
     
     this.options.slideIn(this.el);
+    
+    var height = 0;
+    this.$(".groups_container li").each(function(index) {
+      if (index == 3) { return false; }
+      height = height + $(this).outerHeight(true);
+    });
+    this.$("ul").height(height + "px");
   },
   
   GroupItem: CommonPlace.View.extend({
@@ -57,8 +64,10 @@ var RegisterGroupListView = CommonPlace.View.extend({
       var $checkbox = this.$("input[type=checkbox]");
       if ($checkbox.attr("checked")) {
         $checkbox.removeAttr("checked");
+        this.$(".check").removeClass("checked");
       } else {
         $checkbox.attr("checked", "checked");
+        this.$(".check").addClass("checked");
       }
     }
   })
