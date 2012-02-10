@@ -30,6 +30,8 @@ var RegisterProfileView = CommonPlace.View.extend({
   
   community_name: function() { return this.communityExterior.name; },
   
+  facebook: function() { return this.communityExterior.links.facebook; },
+  
   submit: function(e) {
     if (e) { e.preventDefault(); }
     this.data.password = this.$("input[name=password]").val();
@@ -84,7 +86,10 @@ var RegisterProfileView = CommonPlace.View.extend({
     });
   },
   
-  toggleAvatar: function() { this.hasAvatarFile = true; },
+  toggleAvatar: function() {
+    this.hasAvatarFile = true;
+    this.$("a.avatar_file_browse").html("Added a photo ✓");
+  },
   
   initReferralQuestions: function() {
     this.$("select[name=referral_source]").bind("change", _.bind(function() {
