@@ -2,7 +2,8 @@ var RegisterFacebookView = CommonPlace.View.extend({
   template: "registration.facebook",
   
   events: {
-    "click input.sign_up": "submit"
+    "click input.sign_up": "submit",
+    "submit form": "submit"
   },
   
   afterRender: function() {

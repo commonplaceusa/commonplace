@@ -2,7 +2,8 @@ var RegisterProfileView = CommonPlace.View.extend({
   template: "registration.profile",
   
   events: {
-    "click input.continue": "submit"
+    "click input.continue": "submit",
+    "submit form": "submit"
   },
   
   initialize: function(options) {
@@ -18,6 +19,8 @@ var RegisterProfileView = CommonPlace.View.extend({
     this.initAvatarUploader(this.$(".avatar_file_browse"));
     
     this.options.slideIn(this.el);
+    
+    this.$("textarea").autoResize();
     
     this.$("select.list").chosen().change({}, function() {
       var clickable = $(this).parent("li").children("div").children("ul");
