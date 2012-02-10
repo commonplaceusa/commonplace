@@ -6,13 +6,25 @@ var RegisterNewUserView = CommonPlace.View.extend({
     "submit form": "submit"
   },
   
-  afterRender: function() { this.options.slideIn(this.el); },
+  initialize: function(options) {
+    this.communityExterior = options.communityExterior;
+    this.statistics = this.communityExterior.statistics;
+  },
   
-  community_name: function() { return this.options.communityExterior.name; },
+  afterRender: function() {
+    this.options.slideIn(this.el);
+  },
   
-  learn_more: function() {},
+  community_name: function() { return this.communityExterior.name; },
   
-  facebook: function() {},
+  learn_more: function() { return this.communityExterior.links.learn_more },
+  
+  facebook: function() { return this.communityExterior.links.facebook },
+  
+  created_at: function() { return this.statistics.created_at },
+  neighbors: function() { return this.statistics.neighbors },
+  feeds: function() { return this.statistics.feeds },
+  postlikes: function() { return this.statistics.postlikes },
   
   submit: function(e) {
     if (e) { e.preventDefault(); }

@@ -74,11 +74,21 @@ class CommunityExterior
     {
       "self" => "/registration/#{id}",
       "tour" => "/#{slug}/tour",
+      "learn_more" => "/#{slug}/learn_more",
       "registration" => {
         "validate" => "/registration/#{id}/validate",
         "new" => "/registration/#{id}/new",
         "avatar" => "/account/avatar"
       }
+    }
+  end
+  
+  def statistics
+    {
+      "created_at" => @community.created_at.strftime("%B %Y"),
+      "neighbors" => @community.users.count,
+      "feeds" => @community.feeds.count,
+      "postlikes" => @community.posts.count + @community.events.count + @community.announcements.count + @community.group_posts.count
     }
   end
   
@@ -95,6 +105,7 @@ class CommunityExterior
     t.add :feeds
     t.add :groups
     t.add :links
+    t.add :statistics
   end
   
 end
