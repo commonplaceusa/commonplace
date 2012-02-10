@@ -26,17 +26,11 @@ var RegisterFeedListView = CommonPlace.View.extend({
     
   appendFeedsList: function(feeds) {
     var $ul = this.$("ul.feeds_container");
-    var referrer = this.options.referrer;
     
     _.each(feeds, _.bind(function(feed) {
       var itemView = new this.FeedItem({ model: feed });
       itemView.render();
-      if (referrer && referrer.get("schema") == "feeds" && referrer.id == feed.id) {
-        $ul.prepend(itemView.el);
-        shownReferrer = true;
-      } else {
-        $ul.append(itemView.el);
-      }
+      $ul.append(itemView.el);
     }, this));
     
     this.options.slideIn(this.el);

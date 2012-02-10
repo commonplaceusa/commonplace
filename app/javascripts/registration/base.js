@@ -75,7 +75,6 @@ var RegistrationModal = CommonPlace.View.extend({
       feed: function() {
         return new RegisterFeedListView({
           nextPage: nextPage,
-          referrer: self.options.referrer,
           slideIn: function(el) { self.slideIn(el); },
           communityExterior: self.communityExterior
         });
@@ -83,7 +82,6 @@ var RegistrationModal = CommonPlace.View.extend({
       group: function() {
         return new RegisterGroupListView({
           completion: self.options.completion,
-          referrer: self.options.referrer,
           slideIn: function(el) { self.slideIn(el); },
           communityExterior: self.communityExterior
         });
