@@ -9,6 +9,6 @@
   
   :javascript
     new RegistrationRouter({ communityExterior: #{serialize current_community.exterior} });
-    Backbone.history.start();
+    Backbone.history.start({ pushState: true, root: "/" + #{serialize current_community.slug} });
 
 = mixpanel_track("Community Registration Page")

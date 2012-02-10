@@ -2,12 +2,15 @@
 var RegistrationRouter = Backbone.Router.extend({
 
   routes: {
+    "": "new_user",
+    "/": "new_user",
     "/new": "new_user",
     "/profile": "profile",
     "/avatar": "crop",
     "/crop": "crop",
     "/feeds": "feed",
-    "/groups": "group"
+    "/groups": "group",
+    "/facebook": "facebook"
   },
   
   initialize: function(options) {
@@ -23,10 +26,11 @@ var RegistrationRouter = Backbone.Router.extend({
   },
   
   new_user: function() { this.modal.showPage("new_user"); },
-  profile: function() { this.modal.showPage("profile"); },
+  profile: function() { console.log("asdf");this.modal.showPage("profile"); },
   crop: function() { this.modal.showPage("crop"); },
   feed: function() { this.modal.showPage("feed"); },
-  group: function() { this.modal.showPage("group"); }
+  group: function() { this.modal.showPage("group"); },
+  facebook: function() { this.modal.showPage("facebook"); }
 });
 
 // modal view
@@ -41,7 +45,6 @@ var RegistrationModal = CommonPlace.View.extend({
   afterRender: function() {
     this.communityExterior = this.options.communityExterior;
     this.firstSlide = true;
-    this.showPage("new_user");
   },
   
   showPage: function(page, data) {
@@ -82,6 +85,12 @@ var RegistrationModal = CommonPlace.View.extend({
       group: function() {
         return new RegisterGroupListView({
           completion: self.options.completion,
+          slideIn: function(el) { self.slideIn(el); },
+          communityExterior: self.communityExterior
+        });
+      },
+      facebook: function() {
+        return new RegisterFacebookView({
           slideIn: function(el) { self.slideIn(el); },
           communityExterior: self.communityExterior
         });

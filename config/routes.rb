@@ -139,7 +139,15 @@ Commonplace::Application.routes.draw do
     match '/whereami', :to => 'site#whereami'
     
     root :to => "site#index"
-    match "/:community", :to => "registrations#base" #, :via => :get, :as => :community_landing
+    match "/:community", :to => "registrations#base"
+    scope "/:community" do
+      match "/new", :to => "registrations#base"
+      match "/profile", :to => "registrations#base"
+      match "/feeds", :to => "registrations#base"
+      match "/groups", :to => "registrations#base"
+      match "/crop", :to => "registrations#base"
+      match "/facebook", :to => "registrations#base"
+    end
 
     match "/:community/learn_more", :to => "accounts#learn_more", :via => :get
 
