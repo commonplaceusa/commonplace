@@ -2,7 +2,8 @@ var RegisterCropView = CommonPlace.View.extend({
   template: "registration.crop",
   
   events: {
-    "click input.continue": "submit"
+    "click input.continue": "submit",
+    "submit form": "submit"
   },
   
   afterRender: function() {

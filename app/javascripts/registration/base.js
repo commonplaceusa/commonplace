@@ -26,7 +26,7 @@ var RegistrationRouter = Backbone.Router.extend({
   },
   
   new_user: function() { this.modal.showPage("new_user"); },
-  profile: function() { console.log("asdf");this.modal.showPage("profile"); },
+  profile: function() { this.modal.showPage("profile"); },
   crop: function() { this.modal.showPage("crop"); },
   feed: function() { this.modal.showPage("feed"); },
   group: function() { this.modal.showPage("group"); },

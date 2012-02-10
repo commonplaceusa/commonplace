@@ -52,11 +52,10 @@
       font-family: Helvetica
       font-weight: lighter
       line-height: 1.4
-
-    .learnmore
-      position: relative
-      left: 34px
       
+    .learn-more
+      padding-left: 35px
+
   form
     margin-right: 75px
     position: relative
@@ -68,8 +67,11 @@
     padding: 30px
     width: 380px
     
-    &.new_user
+    &.new_user, &.user_facebook
       width: 380px
+      
+      > ul
+        margin-top: 20px
       
       > ul > li
         width: 380px
@@ -80,14 +82,12 @@
           +border-radius(5px)
           +box-shadow(#ccc 1px 1px 2px 0 inset)
           border: 1px solid #ccc
-          padding: 3px 5px
+          padding: 5px 5px
           font-size: 18px
           font-weight: 300
           display: block
           font-family: Helvetica, sans-serif
           margin-top: 10px
-          &:first
-            margin-top: 25px
         
       .or
         font-family: Helvetica
@@ -219,9 +219,6 @@
           
           
 
-    .facebook
-      float: right
-
     h4
       text-align: left
       color: #FFFFFF
@@ -287,45 +284,6 @@
         +box-shadow(inset 2px 2px 0 white, inset -2px 0 0 white, inset 0 -2px 0 #bdbdbd, 0 1px 2px #5c0a09)
         background-color: #e0e0e0
       
-    #user_avatar_input
-      position: relative
-      min-height: 54px
-
-    #user_avatar
-      cursor: pointer
-      position: relative
-      left: 145px
-      +opacity(0)
-      z-index: 2
-      position: absolute
-      top: 25px
-      height: 30px
-
-    #file_input_fix
-      position: absolute
-      width: 380px
-      margin: 0px 0px 15px
-
-    #file_style_fix
-      height: 27px
-
-    .browse_button
-      position: absolute
-      top: 5px
-      right: -12px
-      padding: 5px
-      height: 17px
-      width: 80px
-      color: white
-      background: #808080
-      border: 1px solid #666666
-      +border-radius(0 5px 5px 0)
-      +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
-      cursor: pointer
-
-    textarea
-      height: 70px
-        
     #user_referral_metadata_input
       display: none
 
