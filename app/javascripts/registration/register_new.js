@@ -2,7 +2,8 @@ var RegisterNewUserView = CommonPlace.View.extend({
   template: "registration.new",
   
   events: {
-    "click input.sign_up": "submit"
+    "click input.sign_up": "submit",
+    "submit form": "submit"
   },
   
   afterRender: function() { this.options.slideIn(this.el); },

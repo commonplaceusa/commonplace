@@ -49,6 +49,9 @@
       +starBullet
       font-size: 16px
       padding-left: 35px
+      font-family: Helvetica
+      font-weight: lighter
+      line-height: 1.4
 
     .learnmore
       position: relative
@@ -81,10 +84,19 @@
           font-size: 18px
           font-weight: 300
           display: block
-          +serif
+          font-family: Helvetica, sans-serif
           margin-top: 10px
-      > input[type=image]
-        width: 380px
+          &:first
+            margin-top: 25px
+        
+      .or
+        font-family: Helvetica
+        font-size: 17px
+        text-shadow: none
+        font-weight: lighter
+        
+      input.facebook
+        float: right
         
     &.user_profile
       width: 380px
@@ -310,18 +322,6 @@
       +border-radius(0 5px 5px 0)
       +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
       cursor: pointer
-
-    .facebook
-      width: 265px
-      margin: 0
-      #file_input_fix
-        width: 240px
-      #file_style_fix
-        width: 200px
-      label
-        width: 220px
-      #user_avatar
-        left: 0
 
     textarea
       height: 70px
