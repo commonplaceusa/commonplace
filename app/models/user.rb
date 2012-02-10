@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
 
   def self.new_from_facebook(params, facebook_data)
     User.new(params).tap do |user|
-      user.email = facebook_data["user_info"]["email"]
-      user.full_name = facebook_data["user_info"]["name"]
+      user.email = facebook_data["info"]["email"]
+      user.full_name = facebook_data["info"]["name"]
       user.facebook_uid = facebook_data["uid"]
     end
   end
