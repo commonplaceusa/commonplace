@@ -47,6 +47,7 @@ function facebook_connect_registration(options) {
           var data = {
             full_name: response.name,
             fb_auth_token: auth_token,
+            fb_uid: response.id,
             email: response.email
           }
           options.success(data);
