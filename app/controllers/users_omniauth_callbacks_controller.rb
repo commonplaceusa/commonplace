@@ -6,9 +6,10 @@ class UsersOmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, :event => :authentication
     else
       @_community = Community.find(session["devise.community"])
-      @registration = 
-        Registration.new(User.new_from_facebook({:community_id => session["devise.community"]}, env["omniauth.auth"]))
-      render "registrations/facebook_new", :layout => "registration"
+      user = User.new_from_facebook({:community_id => session["devise.community"]}, env["omniauth.auth"])
+      user.save
+      warden.set_user(user, :scope => :user)
+      render "#{@_community.slug}/facebook", :layout => "registration#base"
     end
   end
 
