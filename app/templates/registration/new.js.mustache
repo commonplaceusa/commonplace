@@ -15,20 +15,20 @@
 
 <form class="new_user">
   <h4>
-    <input type="image" class="facebook" src="/assets/facebookconnect.png" href="{{faceboook}}">
-    Register Now <span class="or">or</span>
+    <a class="facebook" href="{{faceboook}}">Facebook</a>
+    Register Now <span class="or"> or</span>
   </h4>
   <ul>
     <li>
-      <input type="text" name="full_name" placeholder="Full name">
+      <input class="name" type="text" name="full_name" placeholder="Full name">
       <span class="error full_name"></span>
     </li>
     <li>
-      <input type="text" name="email" placeholder="Email address">
+      <input class="mail" type="text" name="email" placeholder="Email address">
       <span class="error email"></span>
     </li>
     <li>
-      <input type="text" name="street_address" class="has_hint" placeholder="Street address">
+      <input class="address" type="text" name="street_address" class="has_hint" placeholder="Street address">
       <div class="error address"></div>
     </li>
   </ul>
