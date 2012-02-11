@@ -3,13 +3,17 @@ var RegisterProfileView = CommonPlace.View.extend({
   
   events: {
     "click input.continue": "submit",
-    "submit form": "submit"
+    "submit form": "submit",
+    "click input.facebook": "facebook"
   },
   
   initialize: function(options) {
     this.data = options.data || {};
     this.nextPage = options.nextPage;
     this.communityExterior = options.communityExterior;
+    if (data.isFacebook) {
+      this.template = "registration.facebook_profile";
+    }
     this.hasAvatarFile = false;
   },
   
@@ -30,8 +34,6 @@ var RegisterProfileView = CommonPlace.View.extend({
   
   community_name: function() { return this.communityExterior.name; },
   
-  facebook: function() { return this.communityExterior.links.facebook; },
-  
   submit: function(e) {
     if (e) { e.preventDefault(); }
     this.data.password = this.$("input[name=password]").val();
@@ -45,20 +47,17 @@ var RegisterProfileView = CommonPlace.View.extend({
     this.data.referral_source = this.$("select[name=referral_source]").val();
     this.data.referral_metadata = this.$("input[name=referral_metadata]").val();
     
-    $.post(
-      "/api" + this.communityExterior.links.registration["new"],
-      this.data,
-      _.bind(function(response) {
-        if (response.success == "true" || response.id) {
-          CommonPlace.account = new Account(response);
-          if (this.hasAvatarFile) {
-            this.avatarUploader.submit();
-          } else {
-            this.nextPage("feed");
-          }
+    var new_api = this.communityExterior.links.registration[(this.data.isFacebook) ? "facebook" : "new"];
+    $.post(new_api, this.data, _.bind(function(response) {
+      if (response.success == "true" || response.id) {
+        CommonPlace.account = new Account(response);
+        if (this.hasAvatarFile) {
+          this.avatarUploader.submit();
+        } else {
+          this.nextPage("feed");
         }
-      }, this)
-    );
+      }
+    }, this));
   },
   
   skills: function() { return this.communityExterior.skills; },
@@ -109,5 +108,15 @@ var RegisterProfileView = CommonPlace.View.extend({
         this.$(".referral_metadata_li").hide();
       }
     }, this));
+  },
+  
+  facebook: function(e) {
+    if (e) { e.preventDefault(); }
+    facebook_connect_registration({
+      success: _.bind(function(data) {
+        data.isFacebook = true;
+        this.nextPage("new_user", data);
+      }, this)
+    });
   }
 });

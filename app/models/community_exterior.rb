@@ -78,7 +78,8 @@ class CommunityExterior
       "registration" => {
         "validate" => "/registration/#{id}/validate",
         "new" => "/registration/#{id}/new",
-        "avatar" => "/account/avatar"
+        "avatar" => "/account/avatar",
+        "facebook" => "/registration/#{id}/facebook"
       }
     }
   end

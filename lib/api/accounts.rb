@@ -127,12 +127,10 @@ class API
     get "/featured" do
       serialize(paginate(current_account.featured))
     end
-
-    post "/:id/update_avatar_and_fb_auth" do |id|
-      user = User.find(id)
-      halt [401, "unauthorized"] unless current_account.id == user.id
-      user.private_metadata['fb_access_token'] = request_body['fb_auth_token']
-      user.facebook_uid = request_body['fb_username']
+    
+    post "/facebook" do
+      current_user.private_metadata["fb_access_token"] = request_body["fb_auth_token"]
+      current_user.facebook_uid = request_body["fb_uid"]
       if user.save
         [200, ""]
       else

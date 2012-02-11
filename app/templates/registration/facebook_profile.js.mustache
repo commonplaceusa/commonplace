@@ -11,41 +11,29 @@
 
 <form class="user_profile">
   <ul>
-    <li class="text">
-      <div class="to-facebook">
-        <h4>Connect with Facebook to add photos and password!</h4>
-        <input type="image" class="facebook" src="/assets/buttons/facebookconnect.png" alt="Connect with Facebook">
-      </div>
-      <div class="not-facebook">
-        <div>
-          <label for="password">Create a password*:</label>
-          <input type="password" name="password">
-          <div class="error"></div>
-          <span class="hint">* Required field.</span>
-        </div>
-        <div>
-          <a href="#" class="avatar_file_browse">Add a photo…</a>
-        </div>
-      </div>
+    <li class="text avatar_li">
+      <label for="avatar_file">Upload a different photo?:</label>
+      <img src="{{facebook_avatar_url}}" width="100px">
+      <input type="text" name="avatar_file">
     </li>
     <li class="text">
       <label for="about">Tell your neighbors a bit about yourself:</label>
       <textarea name="about" rows="3"></textarea>
     </li>
     <li>
-      <label for="interests">Share interests with my neighborhood:</label>
+      <label for="interests">My interests</label>
       <select name="interests" class="list" multiple="true" data-placeholder="Select some interests">
         {{#interests}} <option value="{{.}}">{{.}}</option> {{/interests}}
       </select>
     </li>
     <li>
-      <label for="skills">Share skills with my neighborhood:</label>
+      <label for="skills">My skills</label>
       <select name="skills" class="list" multiple="true" data-placeholder="Select some skills">
         {{#skills}} <option value="{{.}}">{{.}}</option> {{/skills}}
       </select>
     </li>
     <li>
-      <label for="goods">Share goods with my neighborhood:</label>
+      <label for="goods">My goods</label>
       <select name="goods" class="list" multiple="true" data-placeholder="Select some goods">
         {{#goods}} <option value="{{.}}">{{.}}</option> {{/goods}}
       </select>
