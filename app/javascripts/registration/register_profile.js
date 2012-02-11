@@ -11,7 +11,7 @@ var RegisterProfileView = CommonPlace.View.extend({
     this.data = options.data || {};
     this.nextPage = options.nextPage;
     this.communityExterior = options.communityExterior;
-    if (data.isFacebook) {
+    if (this.data.isFacebook) {
       this.template = "registration.facebook_profile";
     }
     this.hasAvatarFile = false;
@@ -48,7 +48,7 @@ var RegisterProfileView = CommonPlace.View.extend({
     this.data.referral_metadata = this.$("input[name=referral_metadata]").val();
     
     var new_api = this.communityExterior.links.registration[(this.data.isFacebook) ? "facebook" : "new"];
-    $.post(new_api, this.data, _.bind(function(response) {
+    $.post(new_api, JSON.stringify(this.data), _.bind(function(response) {
       if (response.success == "true" || response.id) {
         CommonPlace.account = new Account(response);
         if (this.hasAvatarFile) {

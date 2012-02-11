@@ -9,7 +9,7 @@ var RegistrationRouter = Backbone.Router.extend({
     "/avatar": "crop",
     "/crop": "crop",
     "/feeds": "feed",
-    "/groups": "group"
+    "/groups": "group",
   },
   
   initialize: function(options) {
