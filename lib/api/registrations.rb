@@ -26,6 +26,7 @@ class API
         user.good_list = params["goods"]
         user.referral_source = params["referral_source"]
         user.referral_metadata = params["referral_metadata"]
+        user.calculated_cp_credits = 0
         
         user.save
         warden.set_user(user, :scope => :user)
@@ -34,6 +35,21 @@ class API
         serialize user
       end
       
+    end
+    
+    post "/:community_id/facebook" do |community_id|
+      halt [401, "already logged in"] if warden.authenticated?(:user)
+      
+      user = User.(:full_name => params["full_name"],
+                   :email => params["email"],
+                   :community_id => community_id)
+                   
+      #set the user metadata to reflect the facebook info
+      
+      if user.save
+        warden.set_user(user, :scope => :user)
+      end
+      serialize Account.new(current_user)
     end
     
     get "/:community_id" do |community_id|

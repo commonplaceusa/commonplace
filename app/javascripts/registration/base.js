@@ -9,11 +9,12 @@ var RegistrationRouter = Backbone.Router.extend({
     "/avatar": "crop",
     "/crop": "crop",
     "/feeds": "feed",
-    "/groups": "group",
-    "/facebook": "facebook"
+    "/groups": "group"
   },
   
   initialize: function(options) {
+    this.initFacebook();
+  
     this.modal = new RegistrationModal({
       communityExterior: options.communityExterior,
       template: "registration.modal",
@@ -30,7 +31,13 @@ var RegistrationRouter = Backbone.Router.extend({
   crop: function() { this.modal.showPage("crop"); },
   feed: function() { this.modal.showPage("feed"); },
   group: function() { this.modal.showPage("group"); },
-  facebook: function() { this.modal.showPage("facebook"); }
+  
+  initFacebook: function() {
+    var e = document.createElement('script');
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    e.async = true;
+    document.getElementById('fb-root').appendChild(e);
+  }
 });
 
 // modal view
@@ -85,12 +92,6 @@ var RegistrationModal = CommonPlace.View.extend({
       group: function() {
         return new RegisterGroupListView({
           completion: self.options.completion,
-          slideIn: function(el) { self.slideIn(el); },
-          communityExterior: self.communityExterior
-        });
-      },
-      facebook: function() {
-        return new RegisterFacebookView({
           slideIn: function(el) { self.slideIn(el); },
           communityExterior: self.communityExterior
         });

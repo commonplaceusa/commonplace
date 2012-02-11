@@ -10,6 +10,8 @@
 //= require ajaxupload
 //= require chosen
 //= require jcrop
+//= require config
+//= require facebook
 //= require views
 //= require models
 //= require_tree ../templates/shared

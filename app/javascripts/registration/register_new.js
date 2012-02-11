@@ -3,24 +3,31 @@ var RegisterNewUserView = CommonPlace.View.extend({
   
   events: {
     "click input.sign_up": "submit",
-    "submit form": "submit"
+    "submit form": "submit",
+    "click input.facebook": "facebook"
   },
   
   initialize: function(options) {
     this.communityExterior = options.communityExterior;
     this.statistics = this.communityExterior.statistics;
+    if (options.data) {
+      this.data = options.data;
+      if (this.data.isFacebook) { this.template = "registration.facebook"; }
+    } else {
+      this.data = { isFacebook: false };
+    }
   },
   
   afterRender: function() {
+    if (this.data.isFacebook) {
+      this.$("input[name=full_name]").val(this.data.full_name);
+      this.$("input[name=email]").val(this.data.email);
+    }
     this.options.slideIn(this.el);
   },
   
   community_name: function() { return this.communityExterior.name; },
-  
   learn_more: function() { return this.communityExterior.links.learn_more },
-  
-  facebook: function() { return this.communityExterior.links.facebook },
-  
   created_at: function() { return this.statistics.created_at },
   neighbors: function() { return this.statistics.neighbors },
   feeds: function() { return this.statistics.feeds },
@@ -29,13 +36,12 @@ var RegisterNewUserView = CommonPlace.View.extend({
   submit: function(e) {
     if (e) { e.preventDefault(); }
     
-    var data = {
-      full_name: this.$("input[name=full_name]").val(),
-      email: this.$("input[name=email]").val(),
-      address: this.$("input[name=street_address]").val()
-    };
+    this.data.full_name = this.$("input[name=full_name]").val();
+    this.data.email = this.$("input[name=email]").val();
+    this.data.address = this.$("input[name=street_address]").val();
     
-    $.get("/api/registration/1/validate", data, _.bind(function(response) {
+    var validate_api = "/api" + this.communityExterior.links.registration.validate;
+    $.get(validate_api, JSON.stringify(this.data), _.bind(function(response) {
       this.$(".error").hide();
       var valid = true;
       
@@ -49,8 +55,21 @@ var RegisterNewUserView = CommonPlace.View.extend({
         }
       }, this));
         
-      if (valid) { this.options.nextPage("profile", data); }
+      if (valid) { this.options.nextPage("profile", this.data); }
       
     }, this));
+  },
+  
+  facebook: function(e) {
+    if (e) { e.preventDefault(); }
+    
+    facebook_connect_registration({
+      success: _.bind(function(data) {
+        this.data = data;
+        this.data.isFacebook = true;
+        this.template = "registration.facebook";
+        this.render();
+      }, this)
+    });
   }
 });
