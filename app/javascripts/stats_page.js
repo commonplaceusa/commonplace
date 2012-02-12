@@ -597,6 +597,50 @@ var StatsPage = CommonPlace.View.extend({
       var slug = this.statistics[community][0];
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), 30);
 
+      $("#replies_and_private_messages").append(this.liHiderFor("replies_and_private_messages_graph_" + slug, slug));
+      $("#replies_and_private_messages").append("<li class='graph full " + slug + " replies_and_private_messages_graph' id='replies_and_private_messages_graph_" + slug + "'></li>");
+
+      new Highcharts.Chart({
+        chart: {
+         renderTo: "replies_and_private_messages_graph_" + slug
+        },
+        title: {
+           text: 'Content vs. Private Messages - ' + slug
+        },
+        tooltip: {
+           formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+           }
+        },
+        plotOptions: {
+           pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                 enabled: true,
+                 //color: Highcharts.theme.textColor || '#000000',
+                 //connectorColor: Highcharts.theme.textColor || '#000000',
+                 formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                 }
+              }
+           }
+        },
+        series: [{
+           type: 'pie',
+           name: 'Private Messages',
+           data: [
+              ['No Message',       1 - _.last(community_stats).PostReceivedMessageTotal / _.last(community_stats).PostsTotal],
+              ['Received Message', _.last(community_stats).PostReceivedMessageTotal / _.last(community_stats).PostsTotal]
+           ]
+        }]
+      });
+    }
+
+    for (community in this.statistics) {
+      var slug = this.statistics[community][0];
+      var community_stats = _.last(JSON.parse(this.statistics[community][1]), 30);
+
       $("#post_content").append("<h2 class='header' data-hider='post_content_list_" + slug + "'>Posts for " + slug + "</h2>")
       $("#post_content").append("<ul class='post_content_list' id='post_content_list_" + slug + "' style='display: none;'></ul>");
 

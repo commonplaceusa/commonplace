@@ -46,7 +46,8 @@ class StatisticsAggregator
       "GroupPostEmailsClickedToday",
       "AnnouncementEmailsSentToday",
       "AnnouncementEmailsOpenedToday",
-      "AnnouncementEmailsClickedToday"].join(",")
+      "AnnouncementEmailsClickedToday",
+      "PostReceivedMessageTotal"].join(",")
   end
 
   def self.user_total_count(scope, start_date, end_date)
@@ -122,6 +123,9 @@ class StatisticsAggregator
         announcement_emails_sent_today = StatisticsAggregator.extract_mailgun_count("sent", "announcement", day)
         announcement_emails_opened_today = StatisticsAggregator.extract_mailgun_count("opened", "announcement", day)
         announcement_email_clicks_today = StatisticsAggregator.extract_mailgun_count("clicks", "announcement", day)
+
+        posts_received_message_response = 0
+
         csv_arr = [day.strftime("%m/%d/%Y"),
          user_count,
          post_count,
@@ -162,7 +166,8 @@ class StatisticsAggregator
          group_post_email_clicks_today,
          announcement_emails_sent_today,
          announcement_emails_opened_today,
-         announcement_email_clicks_today
+         announcement_email_clicks_today,
+         posts_received_message_response
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
@@ -233,6 +238,8 @@ class StatisticsAggregator
         announcement_emails_opened_today = 0 # TODO: Tilford's tracking
         announcement_email_clicks_today = 0 # TODO: Tilford's tracking
 
+        posts_received_message_response = 0
+
         csv_arr = [day.strftime("%m/%d/%Y"),
          user_count,
          post_count,
@@ -273,7 +280,8 @@ class StatisticsAggregator
          group_post_email_clicks_today,
          announcement_emails_sent_today,
          announcement_emails_opened_today,
-         announcement_email_clicks_today
+         announcement_email_clicks_today,
+         posts_received_message_response
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
