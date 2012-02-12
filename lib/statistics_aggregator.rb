@@ -1,10 +1,52 @@
 class StatisticsAggregator
   require 'csv'
+  require 'cgi'
 
-  MailGunStatistics = RestClient::Resource.new "https://api:#{$MailgunAPIToken}@api.mailgun.net/v2/#{$MailgunAPIDomain}/stats"
+  MailGunStatistics = ActiveSupport::JSON.decode(RestClient::Resource.new("https://api:#{$MailgunAPIToken}@api.mailgun.net/v2/#{$MailgunAPIDomain}/stats").get)
+  STATISTIC_DAYS = 30
 
   def self.csv_headers
-    "Date,UsersTotal,PostsTotal,EventsTotal,AnnouncementsTotal,PrivateMessagesTotal,GroupPostsTotal,UsersLoggedInOverPast3Months,UsersActiveOverPast30Days,UsersPostingOverPast3Months,UsersGainedDaily,PostsToday,EventsToday,AnnouncementsToday,GroupPostsToday,PrivateMessagesToday"
+    ["Date",
+      "UsersTotal",
+      "PostsTotal",
+      "EventsTotal",
+      "AnnouncementsTotal",
+      "PrivateMessagesTotal",
+      "GroupPostsTotal",
+      "RepliesTotal",
+      "UsersLoggedInOverPast3Months",
+      "UsersActiveOverPast30Days",
+      "UsersPostingOverPast3Months",
+      "UsersGainedDaily",
+      "PostsToday",
+      "EventsToday",
+      "AnnouncementsToday",
+      "GroupPostsToday",
+      "PrivateMessagesToday",
+      "FeedAnnouncementsToday",
+      "FeedEventsToday",
+      "FeedsPostingToday",
+      "PctgFeedsEdited",
+      "PctgFeedsStreaming",
+      "PctgFeedsPostedEvent",
+      "PctgFeedsPostedAnnouncement",
+      "TodaysPosts",
+      "PostsRepliedToToday",
+      "EventsRepliedToToday",
+      "AnnouncementsRepliedToToday",
+      "GroupPostsRepliedToToday",
+      "DailyBulletinsSentToday",
+      "DailyBulletinsOpenedToday",
+      "DailyBulletinsClickedToday",
+      "NeighborhoodPostEmailsSentToday",
+      "NeighborhoodPostEmailsOpenedToday",
+      "NeighborhoodPostEmailsClickedToday",
+      "GroupPostEmailsSentToday",
+      "GroupPostEmailsOpenedToday",
+      "GroupPostEmailsClickedToday",
+      "AnnouncementEmailsSentToday",
+      "AnnouncementEmailsOpenedToday",
+      "AnnouncementEmailsClickedToday"].join(",")
   end
 
   def self.user_total_count(scope, start_date, end_date)
@@ -15,19 +57,35 @@ class StatisticsAggregator
     scope.select { |u| u.last_sign_in_at and u.last_sign_in_at < reference_date and u.last_sign_in_at > reference_date - 30.days }.count
   end
 
+  def self.extract_mailgun_count(event, tag, day)
+    ret = 0
+    begin
+      MailGunStatistics["items"].select { |i|
+        i["event"] and i["created_at"] and i["event"] == event and
+          Date.parse(i["created_at"]) == day }.each { |e| ret += (e["tags"][tag] || 0) }
+    rescue
+      ret = 0
+    end
+    return ret
+  end
+
   def self.csv_statistics_globally
+    puts "Processing globally"
     unless Resque.redis.get("statistics:csv:global").present?
+      t1 = Time.now
       #launch = [Post.first, Event.first, Announcement.first, GroupPost.first].sort_by(&:created_at).first.created_at.to_datetime
       csv = StatisticsAggregator.csv_headers
       community_launch = Community.first.launch_date.to_date
-      launch = 2.days.ago.to_date 
+      launch = STATISTIC_DAYS.days.ago.to_date 
       today = DateTime.now
       launch.upto(today).each do |day|
+        reply_count = Reply.between(community_launch.to_datetime, day.to_datetime).count
         user_count = StatisticsAggregator.user_total_count(User, community_launch.to_datetime, day.to_datetime)
         logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(User.all, day.to_datetime)
-        daily_bulletin_opens_on_date = 0
+        daily_bulletin_opens_on_date = StatisticsAggregator.extract_mailgun_count("opened", "daily_bulletin", day)
         users_engaged_in_past_30_days = 0
-        users_posted_in_past_30_days = User.all.select { |u| u.posted_content.present? and u.posted_content.sort_by { |c| c.created_at }.last.created_at > 30.days.ago }.count
+        #users_posted_in_past_30_days = User.all.select { |u| u.posted_content.present? and u.posted_content.sort_by { |c| c.created_at }.last.created_at > 30.days.ago }.count
+        users_posted_in_past_30_days = 0
         users_gained = User.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
         post_count = Post.between(community_launch.to_datetime, day.to_datetime).count
         event_count = Event.between(community_launch.to_datetime, day.to_datetime).count
@@ -39,8 +97,76 @@ class StatisticsAggregator
         announcements_today = Announcement.between(day.to_datetime - 1.day, day.to_datetime).count
         private_messages_today = Message.between(day.to_datetime - 1.day, day.to_datetime).count
         group_posts_today = GroupPost.between(day.to_datetime - 1.day, day.to_datetime).count
-        csv = "#{csv}\n#{day.strftime("%m/%d/%Y")},#{user_count},#{post_count},#{event_count},#{announcement_count},#{private_message_count},#{group_post_count},#{logged_in_in_past_30_days},#{users_engaged_in_past_30_days},#{users_posted_in_past_30_days},#{users_gained},#{posts_today},#{events_today},#{announcements_today},#{group_posts_today},#{private_messages_today}"
+        feed_announcements_today = Announcement.between(day.to_datetime - 1.day, day.to_datetime).select { |a| a.owner.is_a? Feed }.count
+        feed_events_today = Event.between(day.to_datetime - 1.day, day.to_datetime).select { |e| e.owner.is_a? Feed }.count
+        #feeds_posting_today = Feed.all.select { |f| f.posted_between?(day.to_datetime - 1.day, day.to_datetime) }.count
+        feeds_posting_today = 0
+        feeds_editing_profile_in_past_month = Feed.updated_between(day.to_datetime - 1.month, day.to_datetime).count * 100 / Feed.count
+        feeds_streaming_input = 0 * 100 / Feed.count
+        feeds_posting_event_in_past_month = Event.between(day.to_datetime - 1.month, day.to_datetime).select { |e| e.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / Feed.count
+        feeds_posting_announcement_in_past_month = Announcement.between(day.to_datetime - 1.month, day.to_datetime).select { |a| a.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / Feed.count
+        todays_posts = []
+        posts_replied_to_today = Post.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
+        events_replied_to_today = Event.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
+        announcements_replied_to_today = Announcement.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
+        group_posts_replied_to_today = GroupPost.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
+        daily_bulletins_sent_today = StatisticsAggregator.extract_mailgun_count("sent", "daily_bulletin", day)
+        daily_bulletins_opened_today = daily_bulletin_opens_on_date
+        daily_bulletin_clicks_today = StatisticsAggregator.extract_mailgun_count("clicks", "daily_bulletin", day)
+        neighborhood_post_emails_sent_today = StatisticsAggregator.extract_mailgun_count("sent", "post", day)
+        neighborhood_post_emails_opened_today = StatisticsAggregator.extract_mailgun_count("opened", "post", day)
+        neighborhood_post_email_clicks_today = StatisticsAggregator.extract_mailgun_count("clicks", "post", day)
+        group_post_emails_sent_today = StatisticsAggregator.extract_mailgun_count("sent", "group_post", day)
+        group_post_emails_opened_today = StatisticsAggregator.extract_mailgun_count("opened", "group_post", day)
+        group_post_email_clicks_today = StatisticsAggregator.extract_mailgun_count("clicks", "group_post", day)
+        announcement_emails_sent_today = StatisticsAggregator.extract_mailgun_count("sent", "announcement", day)
+        announcement_emails_opened_today = StatisticsAggregator.extract_mailgun_count("opened", "announcement", day)
+        announcement_email_clicks_today = StatisticsAggregator.extract_mailgun_count("clicks", "announcement", day)
+        csv_arr = [day.strftime("%m/%d/%Y"),
+         user_count,
+         post_count,
+         event_count,
+         announcement_count,
+         private_message_count,
+         group_post_count,
+         reply_count,
+         logged_in_in_past_30_days,
+         users_engaged_in_past_30_days,
+         users_posted_in_past_30_days,
+         users_gained,
+         posts_today,
+         events_today,
+         announcements_today,
+         group_posts_today,
+         private_messages_today,
+         feed_announcements_today,
+         feed_events_today,
+         feeds_posting_today,
+         feeds_editing_profile_in_past_month,
+         feeds_streaming_input,
+         feeds_posting_event_in_past_month,
+         feeds_posting_announcement_in_past_month,
+         todays_posts.join(";--;"),
+         posts_replied_to_today,
+         events_replied_to_today,
+         announcements_replied_to_today,
+         group_posts_replied_to_today,
+         daily_bulletins_sent_today,
+         daily_bulletins_opened_today,
+         daily_bulletin_clicks_today,
+         neighborhood_post_emails_sent_today,
+         neighborhood_post_emails_opened_today,
+         neighborhood_post_email_clicks_today,
+         group_post_emails_sent_today,
+         group_post_emails_opened_today,
+         group_post_email_clicks_today,
+         announcement_emails_sent_today,
+         announcement_emails_opened_today,
+         announcement_email_clicks_today
+        ]
+        csv = "#{csv}\n#{csv_arr.join(',')}"
       end
+      puts "Completed in #{Time.now - t1} seconds"
       Resque.redis.set("statistics:csv:global", csv)
       csv
     else
@@ -49,18 +175,20 @@ class StatisticsAggregator
   end
 
   def self.generate_statistics_csv_for_community(c)
+    puts "Processing #{c.slug}"
+    t1 = Time.now
     unless Resque.redis.get("statistics:csv:#{c.slug}").present?
       csv = StatisticsAggregator.csv_headers
       today = DateTime.now
       community = c
       community_launch = community.launch_date.to_date || community.users.sort { |a,b| a.created_at <=> b.created_at }.first.created_at.to_date
-      launch = [community_launch, 2.days.ago.to_date].max
+      launch = [community_launch, STATISTIC_DAYS.days.ago.to_date].max
       launch.upto(today).each do |day|
-        #reply_count = 0
-        #replies = community.repliables
-        #replies.each do |reply_set|
-        #  reply_count += reply_set.select{ |repliable| repliable.between?(launch.to_datetime, day.to_datetime) }.count
-        #end
+        reply_count = 0
+        replies = community.repliables
+        replies.each do |reply_set|
+          reply_count += reply_set.select{ |repliable| repliable.between?(launch.to_datetime, day.to_datetime) }.count
+        end
         user_count = StatisticsAggregator.user_total_count(community.users, community_launch.to_datetime, day.to_datetime)
         logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(community.users, day.to_datetime)
         daily_bulletin_opens_on_date = 0
@@ -70,16 +198,87 @@ class StatisticsAggregator
         post_count = community.posts.between(community_launch.to_datetime, day.to_datetime).count
         event_count = community.events.between(community_launch.to_datetime, day.to_datetime).count
         announcement_count = community.announcements.between(community_launch.to_datetime, day.to_datetime).count
-        private_message_count = community.private_messages({:between => [community_launch.to_datetime, day.to_datetime]}).count
-        group_post_count = community.group_posts({:between => [community_launch.to_datetime, day.to_datetime]}).count
+        private_message_count = community.private_messages.between(community_launch.to_datetime, day.to_datetime).count
+        group_post_count = community.group_posts.between(community_launch.to_datetime, day.to_datetime).count
         posts_today = community.posts.between(day.to_datetime - 1.day, day.to_datetime).count
         events_today = community.events.between(day.to_datetime - 1.day, day.to_datetime).count
         announcements_today = community.announcements.between(day.to_datetime - 1.day, day.to_datetime).count
-        private_messages_today = community.private_messages({:between => [day.to_datetime - 1.day, day.to_datetime]}).count
-        group_posts_today = community.group_posts({:between => [day.to_datetime - 1.day, day.to_datetime]}).count
-        #csv = "#{csv}\n#{day.strftime("%m/%d/%Y")},#{user_count},#{post_count},#{event_count},#{announcement_count},#{private_message_count},#{group_post_count},#{reply_count}"
-        csv = "#{csv}\n#{day.strftime("%m/%d/%Y")},#{user_count},#{post_count},#{event_count},#{announcement_count},#{private_message_count},#{group_post_count},#{logged_in_in_past_30_days},#{users_engaged_in_past_30_days},#{users_posted_in_past_30_days},#{users_gained},#{posts_today},#{events_today},#{announcements_today},#{group_posts_today},#{private_messages_today}"
+        private_messages_today = community.private_messages.between(day.to_datetime - 1.day, day.to_datetime).count
+        group_posts_today = community.group_posts.between(day.to_datetime - 1.day, day.to_datetime).count
+        feed_announcements_today = community.announcements.between(day.to_datetime - 1.day, day.to_datetime).select { |a| a.owner.is_a? Feed }.count
+        feed_events_today = community.events.between(day.to_datetime - 1.day, day.to_datetime).select { |e| e.owner.is_a? Feed }.count
+        feeds_posting_today = community.feeds.select { |f| f.posted_between?(day.to_datetime - 1.day, day.to_datetime) }.count
+        feeds_editing_profile_in_past_month = community.feeds.updated_between(day.to_datetime - 1.month, day.to_datetime).count * 100 / community.feeds.count
+        feeds_streaming_input = 0 * 100 / community.feeds.count
+        feeds_posting_event_in_past_month = community.events.between(day.to_datetime - 1.month, day.to_datetime).select { |e| e.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / community.feeds.count
+        feeds_posting_announcement_in_past_month = community.announcements.between(day.to_datetime - 1.month, day.to_datetime).select { |a| a.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / community.feeds.count
+        todays_posts = community.posts.between(day.to_datetime - 1.day, day.to_datetime).map{ |p| CGI::escapeHTML(p.subject) }
+        posts_replied_to_today = community.posts.between(day.to_datetime - 1.month, day.to_datetime).select(&:has_reply).count
+        events_replied_to_today = community.events.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
+        announcements_replied_to_today = community.announcements.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
+        group_posts_replied_to_today = community.group_posts.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
+        daily_bulletins_sent_today = 0 # TODO: Tilford's tracking
+        daily_bulletins_opened_today = 0 # TODO: Tilford's tracking
+        daily_bulletin_clicks_today = 0 # TODO: Tilford's tracking
+
+        neighborhood_post_emails_sent_today = 0 # TODO: Tilford's tracking
+        neighborhood_post_emails_opened_today = 0 # TODO: Tilford's tracking
+        neighborhood_post_email_clicks_today = 0 # TODO: Tilford's tracking
+
+        group_post_emails_sent_today = 0 # TODO: Tilford's tracking
+        group_post_emails_opened_today = 0 # TODO: Tilford's tracking
+        group_post_email_clicks_today = 0 # TODO: Tilford's tracking
+
+        announcement_emails_sent_today = 0 # TODO: Tilford's tracking
+        announcement_emails_opened_today = 0 # TODO: Tilford's tracking
+        announcement_email_clicks_today = 0 # TODO: Tilford's tracking
+
+        csv_arr = [day.strftime("%m/%d/%Y"),
+         user_count,
+         post_count,
+         event_count,
+         announcement_count,
+         private_message_count,
+         group_post_count,
+         reply_count,
+         logged_in_in_past_30_days,
+         users_engaged_in_past_30_days,
+         users_posted_in_past_30_days,
+         users_gained,
+         posts_today,
+         events_today,
+         announcements_today,
+         group_posts_today,
+         private_messages_today,
+         feed_announcements_today,
+         feed_events_today,
+         feeds_posting_today,
+         feeds_editing_profile_in_past_month,
+         feeds_streaming_input,
+         feeds_posting_event_in_past_month,
+         feeds_posting_announcement_in_past_month,
+         todays_posts.join(";--;"),
+         posts_replied_to_today,
+         events_replied_to_today,
+         announcements_replied_to_today,
+         group_posts_replied_to_today,
+         daily_bulletins_sent_today,
+         daily_bulletins_opened_today,
+         daily_bulletin_clicks_today,
+         neighborhood_post_emails_sent_today,
+         neighborhood_post_emails_opened_today,
+         neighborhood_post_email_clicks_today,
+         group_post_emails_sent_today,
+         group_post_emails_opened_today,
+         group_post_email_clicks_today,
+         announcement_emails_sent_today,
+         announcement_emails_opened_today,
+         announcement_email_clicks_today
+        ]
+        csv = "#{csv}\n#{csv_arr.join(',')}"
       end
+      t2 = Time.now
+      puts "Took #{t2 - t1} seconds"
       Resque.redis.set("statistics:csv:#{c.slug}", csv)
       csv
     else
@@ -102,7 +301,6 @@ class StatisticsAggregator
 
   def self.generate_hashed_statistics_for_community(c)
     unless Resque.redis.get("statistics:hashed:#{c.slug}").present?
-      #csv = CSV.new(StatisticsAggregator.csv_statistics_for_community(c), {})
       data = CSV.parse(StatisticsAggregator.csv_statistics_for_community(c))
       headers = data.shift.map &:to_s
       string_data = data.map { |row| row.map(&:to_s) }
@@ -118,32 +316,4 @@ class StatisticsAggregator
     Resque.redis.get("statistics:csv:#{community.slug}")
   end
 
-  def self.statistics_for_community_between_days_ago(c, yday, tday)
-    community_average_days = StatisticsAggregator.average_days(c) || AVERAGE_DAYS
-    result = {}
-    result[:total_users] = User.between(c.launch_date.to_datetime,tday.days.ago).select { |u| u.community == c}.count
-    result[:user_gains_today] = User.between(yday.days.ago.utc, tday.days.ago).select {|u| u.community == c}.count
-
-    result[:percentage_of_field] = (result[:total_users] / c.households.to_f).round(4)
-
-    result[:neighborhood_posts_today] = c.posts.between(yday.days.ago, tday.days.ago).count
-    result[:average_neighborhood_posts_daily] = (c.posts.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(6)
-
-    result[:announcements_today] = c.announcements.between(yday.days.ago, tday.days.ago).count
-    result[:average_announcements_daily] = (c.announcements.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(6)
-
-    result[:events_today] = c.events.between(yday.days.ago, tday.days.ago).count
-    result[:average_events_daily] = (c.events.between(community_average_days.days.ago, tday.days.ago).count / community_average_days).round(6)
-
-    result[:private_messages_today] = Message.between(yday.days.ago, tday.days.ago).select { |m| m.user.community == c}.count
-    result[:average_private_messages_daily] = (Message.between(community_average_days.days.ago, tday.days.ago).select { |m| m.user.community == c}.count / community_average_days).round(6)
-
-    result[:replies_today] = Reply.between(yday.day.ago, tday.days.ago).select { |r| r.user.community == c }.count
-    result[:average_replies_daily] = (Reply.between(community_average_days.days.ago, tday.days.ago).select { |r| r.user.community == c }.count / community_average_days).round(6)
-
-    result[:group_posts_today] = c.group_posts.select { |p| p.between?(yday.days.ago, tday.days.ago) }.count
-    result[:average_group_posts_daily] = (c.group_posts.select { |p| p.between?(community_average_days.days.ago, tday.days.ago) }.count / community_average_days).round(6)
-    
-    result
-  end
 end
