@@ -14,9 +14,13 @@ class GroupPost < ActiveRecord::Base
   scope :today, where("group_posts.created_at between ? and ?", Date.today, Time.now)
   scope :this_week, where("group_posts.created_at between ? and ?", DateTime.now.at_beginning_of_week, DateTime.now)
 
-  scope :between, lambda { |start_date, end_date| { :conditions => ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } }
+  scope :between, lambda { |start_date, end_date| { :conditions => ["? <= group_posts.created_at AND group_posts.created_at < ?", start_date.utc, end_date.utc] } }
 
   default_scope where(:deleted_at => nil)
+
+  def has_reply
+    self.replies.present?
+  end
 
   def replied_at
     read_attribute(:replied_at) == nil ? self.updated_at : read_attribute(:replied_at)

@@ -10,7 +10,7 @@ class AdminQuestion < MailBase
   end
 
   def tag
-    "question"
+    'question'
   end
 
   def sender
