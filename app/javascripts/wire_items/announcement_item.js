@@ -40,7 +40,9 @@ var AnnouncementWireItem = WireItem.extend({
   },
 
   numThanks: function() {
-    return this.model.get("thanks").length;
+    return _.filter(this.model.get("thanks"), function(thank) {
+      return thank.thankable_type != "Reply";
+    }).length;
   },
   
   peoplePerson: function() {

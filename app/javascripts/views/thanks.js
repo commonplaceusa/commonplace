@@ -1,9 +1,8 @@
-var ThanksView = CommonPlace.View.extend({
+var ThanksListView = CommonPlace.View.extend({
   className: "replies",
   template: "shared.thanks",
   
   events: {
-    "mouseenter li": "showProfile",
     "click .replies-more": "showAll"
   },
   
@@ -12,28 +11,23 @@ var ThanksView = CommonPlace.View.extend({
   },
   
   afterRender: function() {
-    var self = this;
-    _.each(this.thanks, function(thank, index) {
-      if (index < self.hiddenThanksCount()) {
-        self.$("li").eq(index).hide();
+    _.each(this.thanks, _.bind(function(thank, index) {
+      var item = new this.ThanksItemView({
+        model: thank,
+        showProfile: this.options.showProfile
+      });
+      item.render();
+      this.$("ul").append(item.el);
+      if (index < this.hiddenThanksCount()) {
+        $(item.el).hide();
       }
-    });
-    this.$(".thankable").text(this.model.get("author"));
-  },
-  
-  users: function() { return this.thanks; },
-  
-  showProfile: function(e) {
-    var user = new User({
-      links: { self: $(e.currentTarget).attr("data-thanker-link") }
-    });
-    this.options.showProfile(user);
+    }, this));
   },
   
   showAll: function(e) {
     if (e) { e.preventDefault(); }
     this.$(".replies-more").hide();
-    this.$(".reply-item").show();
+    this.$("li").show();
   },
   
   hiddenThanksCount: function() {
@@ -41,5 +35,26 @@ var ThanksView = CommonPlace.View.extend({
       this._hidden = (this.thanks.length > 2) ? this.thanks.length - 3 : 0;
     }
     return this._hidden;
-  }
+  },
+  
+  ThanksItemView: CommonPlace.View.extend({
+    template: "shared.thanks-item",
+    tagName: "li",
+    className: "reply-item",
+    
+    events: {
+      "mouseenter": "showProfile"
+    },
+    
+    avatar_url: function() { return this.model.avatar_url; },
+    thanker: function() { return this.model.thanker; },
+    thankable_author: function() { return this.model.thankable_author; },
+    
+    isReply: function() { return this.model.thankable_type == "Reply"; },
+    
+    showProfile: function() {
+      var user = new User({ links: { self: this.model.thanker_link } });
+      this.options.showProfile(user);
+    }
+  })
 });
