@@ -16,5 +16,11 @@ class StatisticsCsvGenerator
     end
     StatisticsAggregator.csv_statistics_globally if globally
     StatisticsAggregator.generate_hashed_statistics_globally if globally
+
+    # Notify the team that graphs are ready
+    k = KickOff.new
+    AdminUser.all.each do |admin|
+      k.deliver_statistics_ready_notification(admin)
+    end
   end
 end
