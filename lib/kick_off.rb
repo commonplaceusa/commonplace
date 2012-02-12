@@ -174,6 +174,10 @@ class KickOff
     enqueue(ShareNotification, user, item, recipient_email)
   end
 
+  def deliver_statistics_ready_notification(admin_user)
+    enqueue(StatisticsReadyNotification, admin_user.email, User.find_by_email(admin_user.email).name || "CommonPlace Admin")
+  end
+
   private
   
   def enqueue(*args)
