@@ -114,6 +114,7 @@ Commonplace::Application.routes.draw do
       match 'dmca' => 'site#dmca', :as => :dmca
       match 'invite', :to => "bootstraps#application", :as => :invites
       match "faq", :to => "bootstraps#application", :as => :faq, :via => :get
+      match "stats", :to => "bootstraps#application", :as => :stats, :via => :get
       match "discount", :to => "bootstraps#application"
       match "tour", :to => "bootstraps#application"
       match "list/:tab", :to => "bootstraps#application"
