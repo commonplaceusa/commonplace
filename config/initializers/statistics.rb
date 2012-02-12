@@ -1,6 +1,6 @@
 $MixpanelAPIToken = ENV['mixpanel_token']
 $MailgunAPIToken = ENV['mail_api_key']
-$MailgunAPIDomain = ENV['domain']
+$MailgunAPIDomain = ENV['mail_domain']
 
 $GoogleAnalyticsAPILogin = ENV['google_analytics_login']
 $GoogleAnalyticsAPIPassword = ENV['google_analytics_password']
