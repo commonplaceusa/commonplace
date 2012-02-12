@@ -10,6 +10,7 @@ var RegistrationRouter = Backbone.Router.extend({
     "/crop": "crop",
     "/feeds": "feed",
     "/groups": "group",
+    "/neighbors": "neighbors"
   },
   
   initialize: function(options) {
@@ -31,6 +32,7 @@ var RegistrationRouter = Backbone.Router.extend({
   crop: function() { this.modal.showPage("crop"); },
   feed: function() { this.modal.showPage("feed"); },
   group: function() { this.modal.showPage("group"); },
+  neighbors: function() { this.modal.showPage("neighbors"); },
   
   initFacebook: function() {
     var e = document.createElement('script');
@@ -91,6 +93,13 @@ var RegistrationModal = CommonPlace.View.extend({
       },
       group: function() {
         return new RegisterGroupListView({
+          completion: self.options.completion,
+          slideIn: function(el) { self.slideIn(el); },
+          communityExterior: self.communityExterior
+        });
+      },
+      neighbors: function() {
+        return new RegisterNeighborsView({
           completion: self.options.completion,
           slideIn: function(el) { self.slideIn(el); },
           communityExterior: self.communityExterior
