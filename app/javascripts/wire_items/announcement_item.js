@@ -14,7 +14,7 @@ var AnnouncementWireItem = WireItem.extend({
     this.repliesView = {};
     this.reply();
     this.$(".announcement-body").truncate({max_length: 450});
-    if (this.thanked()) { this.set_thanked(false, this); }
+    this.checkThanked();
   },
   
   publishedAt: function() {
@@ -36,9 +36,7 @@ var AnnouncementWireItem = WireItem.extend({
   },
 
   numThanks: function() {
-    return _.filter(this.model.get("thanks"), function(thank) {
-      return thank.thankable_type != "Reply";
-    }).length;
+    return this.directThanks().length;
   },
   
   peoplePerson: function() {
