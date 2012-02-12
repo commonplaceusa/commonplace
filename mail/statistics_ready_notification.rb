@@ -14,7 +14,7 @@ class StatisticsReadyNotification < MailBase
   end
 
   def subject
-    "Welcome to #{community_name}'s CommonPlace!"
+    "CommonPlace Statistics Prepared!"
   end
 
   def tag

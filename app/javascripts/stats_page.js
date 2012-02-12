@@ -3,7 +3,8 @@ var StatsPage = CommonPlace.View.extend({
   template: "stats_page/main",
 
   events: {
-    "click .header": "toggleDisplay"
+    "click .header": "toggleDisplay",
+    "click .subheader": "toggleDisplay"
   },
 
   statistics: {},
@@ -15,7 +16,7 @@ var StatsPage = CommonPlace.View.extend({
 
   toggleDisplay: function(e) {
     var selector = "#" + $(e.target).attr("data-hider");
-    $(selector).toggle();
+    $(selector).toggle("slow");
   },
 
   loadStatistics: function() {
@@ -33,6 +34,8 @@ var StatsPage = CommonPlace.View.extend({
           url: "/api/stats/",
           success: function(response) {
             self.populateStatistics(response);
+            $(".graph").hide();
+            $(".global").show("slow");
             $.unblockUI();
           },
           failure: function(response) {
@@ -50,11 +53,16 @@ var StatsPage = CommonPlace.View.extend({
     this.loadStatistics();
   },
 
+  liHiderFor: function(id, text) {
+    return "<li class='subheader' data-hider='" + id + "'>" + text + "</li>";
+  },
+
   populateStatistics: function(json_data) {
     console.log(json_data);
     this.statistics = json_data;
 
-    $("#user_count").append("<div class='graph full global user_count_graph' id='user_count_graph_cumulative'></div>");
+    $("#user_count").append(this.liHiderFor('user_count_graph_cumulative', 'Cumulative User Count'));
+    $("#user_count").append("<li class='graph full global user_count_graph' id='user_count_graph_cumulative'></li>");
     var c = new Highcharts.Chart({
       chart: {
         renderTo: 'user_count_graph_cumulative'
@@ -95,7 +103,8 @@ var StatsPage = CommonPlace.View.extend({
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
       var first_date = Date.parse(community_stats[0].Date);
 
-      $("#user_count").append("<div class='graph full user_count_graph' id='user_count_graph_" + slug + "'></div>");
+      $("#user_count").append(this.liHiderFor("user_count_graph_" + slug, slug));
+      $("#user_count").append("<li class='graph full " + slug + " user_count_graph' id='user_count_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
@@ -158,7 +167,8 @@ var StatsPage = CommonPlace.View.extend({
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
       var first_date = Date.parse(community_stats[0].Date);
 
-      $("#user_gains").append("<div class='graph full user_growth_graph' id='user_growth_graph_" + slug + "'></div>");
+      $("#user_gains").append(this.liHiderFor("user_growth_graph_" + slug, slug));
+      $("#user_gains").append("<li class='graph full " + slug + " user_growth_graph' id='user_growth_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
@@ -197,7 +207,8 @@ var StatsPage = CommonPlace.View.extend({
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
       var first_date = Date.parse(community_stats[0].Date);
 
-      $("#content_posting").append("<div class='graph full content_posting_graph' id='content_posting_graph_" + slug + "'></div>");
+      $("#content_posting").append(this.liHiderFor("content_posting_graph_" + slug, slug));
+      $("#content_posting").append("<li class='graph full " + slug + " content_posting_graph' id='content_posting_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
@@ -257,7 +268,8 @@ var StatsPage = CommonPlace.View.extend({
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
       var first_date = Date.parse(community_stats[0].Date);
 
-      $("#feed_posting").append("<div class='graph full feed_posting_graph' id='feed_posting_graph_" + slug + "'></div>");
+      $("#feed_posting").append(this.liHiderFor("feed_posting_graph_" + slug, slug));
+      $("#feed_posting").append("<li class='graph full " + slug + " feed_posting_graph' id='feed_posting_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
@@ -308,7 +320,8 @@ var StatsPage = CommonPlace.View.extend({
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
       var first_date = Date.parse(community_stats[0].Date);
 
-      $("#feed_engagement").append("<div class='graph full feed_engagement_graph' id='feed_engagement_graph_" + slug + "'></div>");
+      $("#feed_engagement").append(this.liHiderFor("feed_engagement_graph_" + slug, slug));
+      $("#feed_engagement").append("<li class='graph full " + slug + " feed_engagement_graph' id='feed_engagement_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
@@ -364,7 +377,8 @@ var StatsPage = CommonPlace.View.extend({
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), 14);
       var first_date = Date.parse(community_stats[0].Date);
 
-      $("#replies_to_content").append("<div class='graph full replies_to_content_graph' id='replies_to_content_graph_" + slug + "'></div>");
+      $("#replies_to_content").append(this.liHiderFor("replies_to_content_graph_" + slug, slug));
+      $("#replies_to_content").append("<li class='graph full " + slug + " replies_to_content_graph' id='replies_to_content_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
@@ -458,7 +472,7 @@ var StatsPage = CommonPlace.View.extend({
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), 7);
       var first_date = Date.parse(community_stats[0].Date);
 
-      $("#email_opens").append("<div class='graph full email_opens_graph' id='email_opens_graph_" + slug + "'></div>");
+      $("#email_opens").append("<li class='graph full " + slug + " email_opens_graph' id='email_opens_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
