@@ -23,5 +23,9 @@ class API
       end
     end
     
+    post "/:id/thank" do |id|
+      thank(Reply, id)
+    end
+    
   end
 end

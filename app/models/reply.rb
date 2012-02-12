@@ -8,6 +8,8 @@ class Reply < ActiveRecord::Base
   validates_presence_of :repliable
   validates_presence_of :user
   validates_presence_of :body
+  
+  has_many :thanks, :as => :thankable
 
   scope :between, lambda { |start_date, end_date| { :conditions => ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } }
 
@@ -18,6 +20,10 @@ class Reply < ActiveRecord::Base
   def touch_repliable_replied_at
     self.repliable.update_attribute(:replied_at, DateTime.now)
     
+  end
+  
+  def community
+    self.repliable.community
   end
 
   acts_as_api 
