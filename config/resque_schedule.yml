@@ -45,4 +45,4 @@ compute_statistics_csv:
   class: StatisticsCsvGenerator
   args: 
   queue: statistics
-  description: "Generates Excel files for Max"
+  description: "Generates Excel files for stats"
