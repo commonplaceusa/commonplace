@@ -20,6 +20,16 @@ class Feed < ActiveRecord::Base
     true
   end
 
+  def posted_between?(start_date, end_date)
+    (self.events.present? and self.events.last.created_at >= start_date and self.events.last.created_at <= end_date) or
+      (self.announcements.present? and self.announcements.last.created_at >= start_date and self.announcements.last.created_at <= end_date)
+  end
+
+  scope :updated_between, lambda { |start_date, end_date| 
+    { :conditions => 
+      ["? <= updated_at AND updated_at < ?", start_date.utc, end_date.utc] } 
+  }
+
   belongs_to :community
   has_many :feed_owners
   has_many :owners, :through => :feed_owners, :class_name => "User", :source => :user

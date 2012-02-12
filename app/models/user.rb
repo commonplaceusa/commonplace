@@ -141,6 +141,8 @@ class User < ActiveRecord::Base
 
   has_many :received_messages, :as => :messagable, :class_name => "Message", :dependent => :destroy
 
+  has_many :messages
+
   has_many :mets, :foreign_key => "requester_id"
   
   has_many :people, :through => :mets, :source => "requestee"
