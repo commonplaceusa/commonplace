@@ -43,6 +43,10 @@ class Event < ActiveRecord::Base
     t.add :name, :as => :title
   end
 
+  def has_reply
+    self.replies.present?
+  end
+
   def replied_at
     read_attribute(:replied_at) == nil ? self.updated_at : read_attribute(:replied_at)
   end

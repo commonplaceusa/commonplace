@@ -6,9 +6,9 @@ class Message < ActiveRecord::Base
 
   has_many :replies, :as => :repliable, :order => :created_at
 
-  scope :today, :conditions => ["created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
+  scope :today, :conditions => ["messages.created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
 
-  scope :between, lambda { |start_date, end_date| { :conditions => ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } }
+  scope :between, lambda { |start_date, end_date| { :conditions => ["? <= messages.created_at AND messages.created_at < ?", start_date.utc, end_date.utc] } }
   
   def replied_at
     read_attribute(:replied_at) == nil ? self.updated_at : read_attribute(:replied_at)
