@@ -10,12 +10,8 @@ var MessageWireItem = WireItem.extend({
 
 
   afterRender: function() {
-    var repliesView = new RepliesView({
-      collection: this.model.replies(),
-      el: this.$(".replies"),
-      account: CommonPlace.account
-    });
-    repliesView.render();
+    this.repliesView = {};
+    this.reply();
     this.model.bind("change", this.render, this);
   },
 

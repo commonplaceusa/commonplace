@@ -44,11 +44,12 @@ var WireItem = CommonPlace.View.extend({
     if (e) { e.preventDefault(); }
     if (!_.isEmpty(this.model.get("thanks"))) {
       this.removeFocus();
+      this.$(".replies-area").empty();
       var thanksView = new ThanksListView({ model: this.model,
-                                        el: this.$(".replies"),
                                         showProfile: this.options.showProfile
                                       });
       thanksView.render();
+      this.$(".replies-area").append(thanksView.el);
       this.state = "thanks";
     }
   },
@@ -57,27 +58,34 @@ var WireItem = CommonPlace.View.extend({
     if (e) { e.preventDefault(); }
     this.state = "share";
     this.removeFocus();
+    this.$(".replies-area").empty();
     this.$(".share-link").addClass("current");
     var shareView = new ShareView({ model: this.model,
-                                    el: this.$(".replies"),
                                     account: CommonPlace.account
                                   });
      shareView.render();
+     this.$(".replies-area").append(shareView.el);
    },
 
   reply: function(e) {
     if (e) { e.preventDefault(); }
-    if (this.state != "reply") {
+    var isFirst = _.isEmpty(this.repliesView);
+    if (this.state != "reply" || isFirst) {
       this.removeFocus();
       this.$(".reply-link").addClass("current");
-      var repliesView = new RepliesView({ collection: this.model.replies(),
-                                      el: this.$(".replies"),
-                                      account: CommonPlace.account
-                                    });
-      repliesView.render();
+      this.$(".replies-area").empty();
+      this.repliesView = new RepliesView({
+        collection: this.model.replies(),
+        showProfile: this.options.showProfile
+      });
+      this.repliesView.collection.bind("add", _.bind(function() { this.render(); }, this));
+      this.repliesView.render();
+      this.$(".replies-area").append(this.repliesView.el);
     }
-    this.$(".reply-text-entry").focus();
-    this.state = "reply";
+    if (!isFirst) {
+      this.$(".reply-text-entry").focus();
+      this.state = "reply";
+    }
   },
   
   removeFocus: function() {
