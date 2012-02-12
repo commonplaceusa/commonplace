@@ -10,17 +10,11 @@ var GroupPostWireItem = WireItem.extend({
   },
 
   afterRender: function() {
-    var repliesView = new RepliesView({ collection: this.model.replies(),
-                                        el: this.$(".replies"),
-                                        showProfile: this.options.showProfile
-                                      });
-    repliesView.render();
     this.model.bind("change", this.render, this);
-    var self = this;
-    repliesView.collection.bind("add", function() { self.render(); });
+    this.repliesView = {};
+    this.reply();
     this.$(".post-body").truncate({max_length: 450});
-    if (this.thanked())
-      this.set_thanked(false, this);
+    if (this.thanked()) { this.set_thanked(false, this); }
   },
 
   publishedAt: function() {

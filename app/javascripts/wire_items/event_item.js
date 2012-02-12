@@ -10,15 +10,11 @@ var EventWireItem = WireItem.extend({
   },
 
   afterRender: function() {
-    var repliesView = new RepliesView({ collection: this.model.replies(),
-                                        el: this.$(".replies"),
-                                        showProfile: this.options.showProfile
-                                      });
-    repliesView.render();
     this.model.bind("change", this.render, this);
+    this.repliesView = {};
+    this.reply();
     this.$(".event-body").truncate({max_length: 450});
-    if (this.thanked())
-      this.set_thanked(false, this);
+    if (this.thanked()) { this.set_thanked(false, this); }
   },
 
   short_month_name: function() { 

@@ -1,5 +1,5 @@
 var ThanksListView = CommonPlace.View.extend({
-  className: "replies",
+  className: "thanks",
   template: "shared.thanks",
   
   events: {
