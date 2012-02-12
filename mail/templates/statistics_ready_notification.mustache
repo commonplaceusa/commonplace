@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+  <body>
+    <table id="body">
+
+      {{< header }}
+
+      <tr>
+        <td>
+          <p>Hi {{short_user_name}},</p>
+
+          <p>CommonPlace statistics have been generated. Please check them out at <a href="http://www.commonplaceusa.com/CommonPlace/stats">CommonPlace Stats</a></p>
+
+          <p>Cheers, <br> The CommonPlace Friendly Robot</p>
+
+        </td>
+
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< legal }}
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>
