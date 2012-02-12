@@ -84,16 +84,9 @@ var RegistrationModal = CommonPlace.View.extend({
           slideIn: function(el) { self.slideIn(el); }
         });
       },
-      feed: function() {
-        return new RegisterFeedListView({
-          nextPage: nextPage,
-          slideIn: function(el) { self.slideIn(el); },
-          communityExterior: self.communityExterior
-        });
-      },
       group: function() {
         return new RegisterGroupListView({
-          completion: self.options.completion,
+          nextPage: nextPage,
           slideIn: function(el) { self.slideIn(el); },
           communityExterior: self.communityExterior
         });
