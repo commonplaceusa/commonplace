@@ -175,7 +175,8 @@ class KickOff
   end
 
   def deliver_statistics_ready_notification(admin_user)
-    enqueue(StatisticsReadyNotification, admin_user.email, User.find_by_email(admin_user.email).name || "CommonPlace Admin")
+    name = User.find_by_email(admin_user.email) ? User.find_by_email(admin_user.email).first_name : "Admin"
+    enqueue(StatisticsReadyNotification, admin_user.email, name)
   end
 
   private
