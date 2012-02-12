@@ -188,6 +188,7 @@ module Serializer
         "author_id" => o.user.id,
         "body" => o.body,
         "published_at" => o.created_at.utc,
+        "thanks" => serialize(o.thanks.to_a),
         "links" => {
           "author" => "/users/#{o.user_id}",
           "self" => "/replies/#{o.id}",

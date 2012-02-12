@@ -14,7 +14,7 @@ var GroupPostWireItem = WireItem.extend({
     this.repliesView = {};
     this.reply();
     this.$(".post-body").truncate({max_length: 450});
-    if (this.thanked()) { this.set_thanked(false, this); }
+    this.checkThanked();
   },
 
   publishedAt: function() {
@@ -42,9 +42,7 @@ var GroupPostWireItem = WireItem.extend({
   },
 
   numThanks: function() {
-    return _.filter(this.model.get("thanks"), function(thank) {
-      return thank.thankable_type != "Reply";
-    }).length;
+    return this.directThanks();
   },
   
   peoplePerson: function() {

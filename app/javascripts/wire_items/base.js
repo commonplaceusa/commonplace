@@ -1,27 +1,21 @@
 var WireItem = CommonPlace.View.extend({
 
-  set_thanked: function(increment, scope) {
-    if (increment) {
-      scope.$(".thank_count").html(scope.numThanks() + 1);
-      
-      if (scope.numThanks() < 1) {
-        scope.$(".people_person").html("person");
-      }
-      
-      var thanksList = this.model.get("thanks").push({
-        thanker: CommonPlace.account.get("name"),
-        avatar_url: CommonPlace.account.get("avatar_url"),
-        thanker_link: "/api" + CommonPlace.account.link("self")
-      });
-      this.model.set({ thanks: thanksList });
+  checkThanked: function() {
+    if (this.thanked()) {
+      this.$(".thank-link").html("Thanked!");
+      this.$(".thank-link").addClass("thanked-post");
     }
-    scope.$(".thank-link").html("Thanked!");
-    scope.$(".thank-link").addClass("thanked-post");
   },
-
+  
   thanked: function() {
-    var thanks = _.map(this.model.get("thanks"), function(thank) { return thank.thanker; });
+    var thanks = _.map(this.directThanks(), function(thank) { return thank.thanker; });
     return _.include(thanks, CommonPlace.account.get("name"));
+  },
+  
+  directThanks: function() {
+    return _.filter(this.model.get("thanks"), function(t) {
+      return t.thankable_type != "Reply";
+    });
   },
 
   thank: function() {
@@ -29,15 +23,11 @@ var WireItem = CommonPlace.View.extend({
     if (this.thanked()) {
       return this.showThanks();
     }
-    var self = this;
-    $.ajax({
-      url: "/api/" + this.model.get("schema") + "/" + this.model.get("id") + "/thank",
-      type: "POST",
-      success: function() {
-        self.set_thanked(true, self);
-        self.showThanks();
-      }
-    });
+    $.post("/api" + this.model.link("thank"), _.bind(function(response) {
+      this.model.set(response);
+      this.render();
+      this.showThanks();
+    }, this));
   },
   
   showThanks: function(e) {
@@ -45,9 +35,10 @@ var WireItem = CommonPlace.View.extend({
     if (!_.isEmpty(this.model.get("thanks"))) {
       this.removeFocus();
       this.$(".replies-area").empty();
-      var thanksView = new ThanksListView({ model: this.model,
-                                        showProfile: this.options.showProfile
-                                      });
+      var thanksView = new ThanksListView({
+        model: this.model,
+        showProfile: this.options.showProfile
+      });
       thanksView.render();
       this.$(".replies-area").append(thanksView.el);
       this.state = "thanks";
@@ -76,9 +67,13 @@ var WireItem = CommonPlace.View.extend({
       this.$(".replies-area").empty();
       this.repliesView = new RepliesView({
         collection: this.model.replies(),
-        showProfile: this.options.showProfile
+        showProfile: this.options.showProfile,
+        thankReply: _.bind(function(response) {
+          this.model.set(response);
+          this.render();
+        }, this)
       });
-      this.repliesView.collection.bind("add", _.bind(function() { this.render(); }, this));
+      this.repliesView.collection.bind("change", _.bind(function() { this.render(); }, this));
       this.repliesView.render();
       this.$(".replies-area").append(this.repliesView.el);
     }
