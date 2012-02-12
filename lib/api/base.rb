@@ -78,7 +78,6 @@ class API
                          :thankable_id => id,
                          :thankable_type => scope.to_s)
         if thank.save
-          kickoff.deliver_thank_notification(thank)
           serialize post
         else
           [400, "errors"]
