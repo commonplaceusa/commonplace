@@ -147,6 +147,7 @@ Commonplace::Application.routes.draw do
       match "/groups", :to => "registrations#base"
       match "/crop", :to => "registrations#base"
       match "/facebook", :to => "registrations#base"
+      match "/neighbors", :to => "registrations#base"
     end
 
     match "/:community/learn_more", :to => "accounts#learn_more", :via => :get
