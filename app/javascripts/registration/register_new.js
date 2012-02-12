@@ -4,7 +4,7 @@ var RegisterNewUserView = CommonPlace.View.extend({
   events: {
     "click input.sign_up": "submit",
     "submit form": "submit",
-    "click input.facebook": "facebook"
+    "click img.facebook": "facebook"
   },
   
   initialize: function(options) {
@@ -41,7 +41,7 @@ var RegisterNewUserView = CommonPlace.View.extend({
     this.data.address = this.$("input[name=street_address]").val();
     
     var validate_api = "/api" + this.communityExterior.links.registration.validate;
-    $.get(validate_api, JSON.stringify(this.data), _.bind(function(response) {
+    $.getJSON(validate_api, this.data, _.bind(function(response) {
       this.$(".error").hide();
       var valid = true;
       
