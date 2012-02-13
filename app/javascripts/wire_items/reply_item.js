@@ -64,16 +64,20 @@ var ReplyWireItem = WireItem.extend({
   
   numThanks: function() { return this.model.get("thanks").length; },
   
+  hasThanks: function() { return this.model.get("thanks").length > 0; },
+  
+  hasThanked: function() {
+    return _.any(this.model.get("thanks"), function(thank) {
+      return thank.thanker == CommonPlace.account.get("name");
+    });
+  },
+  
   canThank: function() {
-    if (this.model.get("author_id") == CommonPlace.account.id) { return false; }
-    var thanks = _.map(this.model.get("thanks"), function(thank) { return thank.thanker; });
-    return !_.include(thanks, CommonPlace.account.get("name"));
+    return this.model.get("author_id") != CommonPlace.account.id;
   },
   
   thankReply: function(e) {
     if (e) { e.preventDefault(); }
     $.post("/api" + this.model.link("thank"), this.options.thankReply);
-  },
-  
-  block: true
+  }
 });

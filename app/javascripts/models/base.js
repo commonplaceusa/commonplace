@@ -19,13 +19,9 @@ Collection = Backbone.Collection.extend({
 
 Repliable = Model.extend({
   replies: function() {
-    this._replies = this._replies || 
-      new Replies(_.map(this.get('replies'), 
-                        function (reply) {
-                          return new Reply(reply);
-                        }), 
-                  { uri: this.link("replies") });
-    return this._replies;
+    return new Replies(_.map(this.get("replies"), function(reply) {
+      return new Reply(reply);
+    }), { uri: this.link("replies") });
   }
 });
 
