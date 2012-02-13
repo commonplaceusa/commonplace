@@ -5,6 +5,10 @@ var RegisterGroupListView = CommonPlace.View.extend({
     "click input.continue": "submit",
     "submit form": "submit"
   },
+  
+  initialize: function(options) {
+    if (!CommonPlace.account.isAuth()) { options.nextPage("new_user"); },
+  },
 
   afterRender: function() {
     var groups = this.options.communityExterior.grouplikes;

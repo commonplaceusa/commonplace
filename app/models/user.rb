@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
     return true
   end
   
-  validates_presence_of :password, :if => :validate_password?
+  validates_presence_of :encrypted_password, :if => :validate_password?
 
   validates_presence_of :email
   validates_uniqueness_of :email
