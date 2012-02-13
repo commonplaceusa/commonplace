@@ -105,6 +105,10 @@ class Event < ActiveRecord::Base
   def self.find_by_long_id(long_id)
     Event.find(IDEncoder.from_long_id(long_id))
   end
+  
+  def all_thanks
+    (self.thanks + self.replies.map(&:thanks)).flatten.sort_by {|t| t.created_at }
+  end
 
   searchable do
     text :name, :description, :venue, :address
