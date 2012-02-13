@@ -67,8 +67,6 @@ gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git' # use as
 gem 'meta_search',    '>= 1.1.0.pre'
 gem 'googlecharts' # used for admin/overview
 gem 'garb' # used to access the Google Analytics API
-gem 'fnordmetric', '>= 0.5.1' # we use this to counter Mixpanel
-gem 'guid' # generate GUIDs for fnordmetric
 
 # Monitoring
 gem 'exceptional' # we use this to notify on exceptions
