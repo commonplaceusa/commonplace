@@ -1,5 +1,5 @@
 class API
-  class Search < Base
+  class Search < Authorized
 
     before "/:community_id/*" do |community_id, stuff|
       halt [401, "wrong community"] unless in_comm(params[:community_id])

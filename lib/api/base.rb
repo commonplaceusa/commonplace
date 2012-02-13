@@ -8,18 +8,15 @@ class API
     
     helpers do
 
-      def current_account
-        @_user ||= if request.env["HTTP_AUTHORIZATION"].present?
-                     User.find_by_authentication_token(request.env["HTTP_AUTHORIZATION"])
-                   elsif params['authentication_token'].present?
-                     User.find_by_authentication_token(params[:authentication_token])
-                   else
-                     User.find_by_authentication_token(request.cookies['authentication_token'])
-                   end
-      end
-
       def current_user
-        current_account
+        p "current user detected: #{warden.user(:user)}"
+        @_user ||= warden.user(:user)
+      end
+      
+      alias :current_account :current_user
+      
+      def warden
+        env["warden"]
       end
 
       def request_body
@@ -27,7 +24,7 @@ class API
       end
 
       def authorize!
-        halt [401, "not logged in"] unless current_user
+        halt [401, "not logged in"] unless warden.authenticated?(:user)
       end
 
       def serialize(thing)
@@ -95,9 +92,20 @@ class API
     before do 
       cache_control :public, :must_revalidate, :max_age => 0
       content_type :json
-      authorize!
     end
 
+  end
+  
+  class Authorized < Base
+  
+    before do
+      authorize!
+    end
+  
+  end
+  
+  class Unauthorized < Base
+  
   end
   
 end

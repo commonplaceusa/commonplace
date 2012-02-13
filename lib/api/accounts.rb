@@ -1,5 +1,5 @@
 class API
-  class Accounts < Base
+  class Accounts < Authorized
 
     helpers do
 
@@ -43,6 +43,15 @@ class API
       current_account.save
       serialize Account.new(current_account)
     end
+    
+    put "/crop" do
+      current_user.crop_x = request_body["crop_x"]
+      current_user.crop_y = request_body["crop_y"]
+      current_user.crop_w = request_body["crop_w"]
+      current_user.crop_h = request_body["crop_h"]
+      current_user.save
+      serialize Account.new(current_user)
+    end
 
      post "/metadata" do
        k = request_body['key']
@@ -52,12 +61,16 @@ class API
      end
 
     post "/subscriptions/feeds" do
-      feed = Feed.find(params[:id] || request_body['id'])
-      halt [401, "wrong community"] unless in_comm(feed.community.id)
-      current_account.feeds << feed
-      if feed.subscribers.count == Feed.subscriber_count_email_trigger + 1 and account.community_id == 7
-        deliver_n_feed_subscribers_notification(feed.id)
+      feeds = [params[:id] || request_body["id"]].flatten.map do |feed_id|
+        feed = Feed.find(feed_id)
+        halt [401, "wrong community"] unless in_comm(feed.community.id)
+        feed
       end
+      
+      feeds.each do |feed|
+        current_account.feeds << feed
+      end
+      
       serialize(Account.new(current_account))
     end
 
@@ -67,9 +80,16 @@ class API
     end
     
     post "/subscriptions/groups" do
-      group = Group.find(params[:id] || request_body['id'])
-      halt [401, "wrong community"] unless in_comm(group.community.id)
-      current_account.groups << group
+      groups = [params[:id] || request_body["id"]].flatten.map do |group_id|
+        group = Group.find(group_id)
+        halt [401, "wrong community"] unless in_comm(group.community.id)
+        group
+      end
+      
+      groups.each do |group|
+        current_account.groups << group
+      end
+      
       serialize(Account.new(current_account))
     end
 
@@ -107,12 +127,10 @@ class API
     get "/featured" do
       serialize(paginate(current_account.featured))
     end
-
-    post "/:id/update_avatar_and_fb_auth" do |id|
-      user = User.find(id)
-      halt [401, "unauthorized"] unless current_account.id == user.id
-      user.private_metadata['fb_access_token'] = request_body['fb_auth_token']
-      user.facebook_uid = request_body['fb_username']
+    
+    post "/facebook" do
+      current_user.private_metadata["fb_access_token"] = request_body["fb_auth_token"]
+      current_user.facebook_uid = request_body["fb_uid"]
       if user.save
         [200, ""]
       else

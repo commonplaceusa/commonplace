@@ -42,7 +42,17 @@ module Serializer
         "lng" => o.lng
       }
       when User
-        o.as_api_response(:default)
+        if o.valid?
+          o.as_api_response(:default)
+        else
+          {
+            "success" => "false",
+            "email" => o.errors["email"],
+            "full_name" => o.errors["full_name"],
+            "address" => o.errors["address"],
+            "password" => o.errors["encrypted_password"]
+          }
+        end
       when Post
         { 
         "id" => o.id,
@@ -219,6 +229,7 @@ module Serializer
         "id" => o.id,
         "schema" => "account",
         "avatar_url" => o.avatar_url(:normal),
+        "avatar_original" => o.avatar_url(:original),
         "feed_subscriptions" => o.feed_subscriptions,
         "group_subscriptions" => o.group_subscriptions,
         "is_admin" => o.is_admin,
@@ -244,6 +255,7 @@ module Serializer
         "about" => o.about,
         "links" => { 
           "avatar" => "/account/avatar",
+          "crop" => "/account/crop",
           "feed_subscriptions" => "/account/subscriptions/feeds",
           "group_subscriptions" => "/account/subscriptions/groups",
           "mets" => "/account/mets",
@@ -271,8 +283,12 @@ module Serializer
         "other" => serialize(o.other),
         "meetups" => serialize(o.meetups)
       }
+      
+      when CommunityExterior
+        o.as_api_response(:default)
+      
       end
-
+      
     as_json
   end
 end

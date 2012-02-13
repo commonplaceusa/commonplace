@@ -1,5 +1,5 @@
 class API
-  class Messages < Base
+  class Messages < Authorized
 
     post "/:id/replies" do |id|
       message = Message.find(id)

@@ -1,5 +1,5 @@
 class API
-  class Feeds < Base
+  class Feeds < Authorized
 
     before "/:feed_id/*" do |feed_id, stuff|
       feed = feed_id =~ /[^\d]/ ? Feed.find_by_slug(feed_id) : Feed.find(feed_id)
