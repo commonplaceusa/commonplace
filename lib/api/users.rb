@@ -1,5 +1,5 @@
 class API
-  class Users < Base
+  class Users < Authorized
 
     post "/:id/messages" do |id|
       user = User.find(id)

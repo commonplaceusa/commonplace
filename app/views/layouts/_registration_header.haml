@@ -1,6 +1,13 @@
 #header
 
   #nav_wrapper
+    :javascript
+      $(function() {
+      $('#sign_in_button').click(function() {
+      $(this).toggleClass("open");
+      $(this).siblings("#sign_in_form").children("form").toggle();
+      });
+      });
     %ul{:id=>"user_sign_in"}
       %li Have an Account?
       %li{:id=>"sign_in_button", :class=>"remove_border"} Sign in

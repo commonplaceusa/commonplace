@@ -2,7 +2,9 @@
 var Account = Model.extend({
 
   initialize: function() {
-    this.featuredUsers = new Users([], { uri: this.link("featured_users") });
+    if (this.isAuth()) {
+      this.featuredUsers = new Users([], { uri: this.link("featured_users") });
+    }
   },
 
   neighborhoodsPosts: function() {
@@ -20,11 +22,12 @@ var Account = Model.extend({
   },
 
   subscribeToFeed: function(feed, callback) {
+    var feed_ids = (_.isArray(feed)) ? feed : feed.id;
     var self = this;
     $.ajax({
       contentType: "application/json",
       url: "/api" + this.get('links').feed_subscriptions,
-      data: JSON.stringify({ id: feed.id }),
+      data: JSON.stringify({ id: feed_ids }),
       type: "post",
       dataType: "json",
       success: function(account) { 
@@ -53,11 +56,12 @@ var Account = Model.extend({
   },
 
   subscribeToGroup: function(group, callback) {
+    var group_ids = (_.isArray(group)) ? group : group.id;
     var self = this;
     $.ajax({
       contentType: "application/json",
       url: "/api" + this.get("links").group_subscriptions,
-      data: JSON.stringify({ id: group.id }),
+      data: JSON.stringify({ id: group_ids }),
       type: "post",
       dataType: "json",
       success: function(account) {
@@ -162,6 +166,25 @@ var Account = Model.extend({
       }
     });
   },
+  
+  cropAvatar: function(coords, callback) {
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.get("links").crop,
+      type: "put",
+      dataType: "json",
+      data: JSON.stringify({
+        crop_x: coords.crop_x,
+        crop_y: coords.crop_y,
+        crop_w: coords.crop_w,
+        crop_h: coords.crop_h
+      }),
+      success: _.bind(function(account) {
+        this.set(account);
+        if (callback) { callback(); }
+      }, this)
+    });
+  },
 
   set_metadata: function(key, value, callback) {
     var self = this;
@@ -183,6 +206,8 @@ var Account = Model.extend({
       if (first_click_callback) { first_click_callback(); }
       this.set_metadata('has_used_postbox', true, function() { });
     }
-  }
+  },
+  
+  isAuth: function() { return !_.isEmpty(this.attributes); }
 
 });

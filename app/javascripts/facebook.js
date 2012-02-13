@@ -20,9 +20,9 @@ function facebook_connect_post_registration(success, failure) {
           $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/api/account/" + CommonPlace.account.get("id") + "/update_avatar_and_fb_auth",
+            url: "/api/account/facebook",
             data: JSON.stringify({
-              fb_username: response.username,
+              fb_uid: response.id,
               fb_auth_token: auth_token
             }),
             success: function() {
@@ -36,4 +36,33 @@ function facebook_connect_post_registration(success, failure) {
       }
     }, { scope: 'read_friendlists,offline_access' });
   });
+}
+
+function facebook_connect_registration(options) {
+  fbEnsureInit(function() {
+    FB.login(function(loginResponse) {
+      if (loginResponse.authResponse) {
+        var auth_token = loginResponse.authResponse.accessToken;
+        FB.api("/me", function(response) {
+          var data = {
+            full_name: response.name,
+            fb_auth_token: auth_token,
+            fb_uid: response.id,
+            email: response.email
+          }
+          options.success(data);
+        });
+      }
+    }, { scope: "read_friendlists,offline_access" });
+  });
+}
+
+function fbAsyncInit() {
+  FB.init({
+    appId : CommonPlace.facebookAppId,
+    status : true,
+    cookie : true,
+    xfbml  : true
+  });
+  fbApiInit = true;
 }

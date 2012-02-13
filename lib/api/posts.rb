@@ -1,5 +1,5 @@
 class API
-  class Posts < Base
+  class Posts < Authorized
 
     helpers do
     

@@ -1,5 +1,5 @@
 class API
-  class Announcements < Base
+  class Announcements < Authorized
 
     helpers do
 

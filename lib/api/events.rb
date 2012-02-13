@@ -1,5 +1,5 @@
 class API
-  class Events < Base
+  class Events < Authorized
 
     helpers do
 

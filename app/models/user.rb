@@ -86,6 +86,8 @@ class User < ActiveRecord::Base
     end
     return true
   end
+  
+  validates_presence_of :encrypted_password, :if => :validate_password?
 
   validates_presence_of :email
   validates_uniqueness_of :email
@@ -189,6 +191,7 @@ class User < ActiveRecord::Base
     t.add lambda {|u| u.posts.count}, :as => :post_count
     t.add lambda {|u| u.replies.count}, :as => :reply_count
     t.add lambda {|u| u.profile_history }, :as => :history
+    t.add lambda {|u| "true" }, :as => :success
   end
 
   def links
