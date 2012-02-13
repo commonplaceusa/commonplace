@@ -7,7 +7,7 @@ var RegisterGroupListView = CommonPlace.View.extend({
   },
   
   initialize: function(options) {
-    if (!CommonPlace.account.isAuth()) { options.nextPage("new_user"); },
+    if (!CommonPlace.account.isAuth()) { options.nextPage("new_user"); }
   },
 
   afterRender: function() {
