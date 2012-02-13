@@ -33,24 +33,18 @@ class CommunityExterior
   def skills
     $skills
   end
-
-  def feeds
-    @community.feeds.featured.map do |feed|
-      {
-        "id" => feed.id,
-        "name" => feed.name,
-        "avatar_url" => feed.avatar_url(:normal)
-      }
+  
+  def grouplikes
+    combo = [@community.feeds.featured, @community.groups].flatten.sort_by do |grouplike|
+      grouplike.subscribers.count
     end
-  end
-
-  def groups
-    @community.groups.map do |group|
+    combo.reverse.map do |grouplike|
       {
-        "id" => group.id,
-        "name" => group.name,
-        "avatar_url" => group.avatar_url,
-        "about" => group.about
+        "id" => grouplike.id,
+        "name" => grouplike.name,
+        "avatar_url" => (grouplike.class == Feed) ? grouplike.avatar_url(:normal) : grouplike.avatar_url,
+        "about" => grouplike.about,
+        "schema" => (grouplike.class == Feed) ? "feeds" : "groups"
       }
     end
   end
@@ -103,8 +97,7 @@ class CommunityExterior
     t.add :goods
     t.add :skills
     t.add :referral_sources
-    t.add :feeds
-    t.add :groups
+    t.add :grouplikes
     t.add :links
     t.add :statistics
   end
