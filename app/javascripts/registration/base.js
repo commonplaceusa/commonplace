@@ -26,7 +26,8 @@ var RegistrationRouter = Backbone.Router.extend({
     });
     this.modal.render();
     
-    window.modal = this;
+    var communitySlug = window.location.pathname.split("/")[1];
+    Backbone.history.start({ pushState: true, root: "/" + communitySlug });
   },
   
   new_user: function() { this.modal.showPage("new_user"); },
@@ -61,8 +62,6 @@ var RegistrationModal = CommonPlace.View.extend({
   showPage: function(page, data) {
     var self = this;
     var nextPage = function(next, data) { self.showPage(next, data); }
-    
-    console.log("showpage: ",page,data);
     
     if (!this.firstSlide) { this.slideOut(); }
     
