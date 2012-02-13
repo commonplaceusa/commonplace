@@ -10,5 +10,16 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     this.options.slideIn(this.el);
   },
   
-  submit: function() {}
+  submit: function() {},
+  
+  NeighborItemView: CommonPlace.View.extend({
+    template: "registration.user-item",
+    tagName: "td",
+    
+    avatar_url: function() { return "/assets/block.png"; },
+    first_name: function() { return "Joshles"; },
+    last_name: function() { return "Lewis"; },
+    
+    isUser: function() { return false; }
+  })
 });
