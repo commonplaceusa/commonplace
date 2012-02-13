@@ -10,12 +10,10 @@ var RegisterNewUserView = CommonPlace.View.extend({
   initialize: function(options) {
     this.communityExterior = options.communityExterior;
     this.statistics = this.communityExterior.statistics;
-    if (options.data) {
+    if (options.data && options.data.isFacebook) {
       this.data = options.data;
-      if (this.data.isFacebook) { this.template = "registration.facebook"; }
-    } else {
-      this.data = { isFacebook: false };
-    }
+      this.template = "registration.facebook";
+    } else { this.data = { isFacebook: false }; }
   },
   
   afterRender: function() {

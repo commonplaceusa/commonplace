@@ -25,6 +25,8 @@ var RegistrationRouter = Backbone.Router.extend({
       el: $("#registration-modal")
     });
     this.modal.render();
+    
+    window.modal = this;
   },
   
   new_user: function() { this.modal.showPage("new_user"); },
@@ -60,6 +62,8 @@ var RegistrationModal = CommonPlace.View.extend({
     var self = this;
     var nextPage = function(next, data) { self.showPage(next, data); }
     
+    console.log("showpage: ",page,data);
+    
     if (!this.firstSlide) { this.slideOut(); }
     
     var view = {
@@ -67,7 +71,8 @@ var RegistrationModal = CommonPlace.View.extend({
         return new RegisterNewUserView({
           nextPage: nextPage,
           slideIn: function(el) { self.slideIn(el); },
-          communityExterior: self.communityExterior
+          communityExterior: self.communityExterior,
+          data: data
         });
       },
       profile: function() {

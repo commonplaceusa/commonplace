@@ -39,8 +39,9 @@ class API
     post "/:community_id/facebook" do |community_id|
       halt [401, "already logged in"] if warden.authenticated?(:user)
       
-      user = User.(:full_name => params["full_name"],
+      user = User.new(:full_name => params["full_name"],
                    :email => params["email"],
+                   :address => params["address"],
                    :community_id => community_id)
                    
       user.private_metadata["fb_access_token"] = params["fb_auth_token"]

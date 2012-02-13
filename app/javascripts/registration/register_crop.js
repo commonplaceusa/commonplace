@@ -6,6 +6,10 @@ var RegisterCropView = CommonPlace.View.extend({
     "submit form": "submit"
   },
   
+  initialize: function(options) {
+    if (!CommonPlace.account.isAuth()) { options.nextPage("new_user"); }
+  },
+  
   afterRender: function() {
     this.options.slideIn(this.el);
     var $img = this.$("img#cropbox");

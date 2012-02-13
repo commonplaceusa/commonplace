@@ -47,7 +47,8 @@ module Serializer
             "success" => "false",
             "email" => o.errors["email"],
             "full_name" => o.errors["full_name"],
-            "address" => o.errors["address"]
+            "address" => o.errors["address"],
+            "password" => o.errors["encrypted_password"]
           }
         end
       when Post
