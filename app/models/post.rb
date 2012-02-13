@@ -58,6 +58,10 @@ class Post < ActiveRecord::Base
   def between?(start_date, end_date)
     start_date <= self.created_at and self.created_at <= end_date
   end
+  
+  def all_thanks
+    (self.thanks + self.replies.map(&:thanks)).flatten.sort_by {|t| t.created_at }
+  end
 
   acts_as_api
 

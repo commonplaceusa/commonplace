@@ -21,7 +21,9 @@ module Serializer
         {
           "thanker" => o.user.name,
           "avatar_url" => o.user.avatar_url(:normal),
-          "thanker_link" => "/users/#{o.user_id}"
+          "thanker_link" => "/users/#{o.user_id}",
+          "thankable_type" => o.thankable_type,
+          "thankable_author" => o.thankable.user.name
         }
 
       when NamedPoint
@@ -55,13 +57,14 @@ module Serializer
         "author_url" => "/users/#{o.user_id}",
         "user_id" => o.user_id,
         "replies" => serialize(o.replies.to_a),
-        "thanks" => serialize(o.thanks.to_a),
+        "thanks" => serialize(o.all_thanks.to_a),
         "last_activity" => o.last_activity.utc,
         "category" => o.category,
         "links" => {
           "author" => "/users/#{o.user_id}",
           "replies" => "/posts/#{o.id}/replies",
-          "self" => "/posts/#{o.id}"
+          "self" => "/posts/#{o.id}",
+          "thank" => "/posts/#{o.id}/thank"
         }
       }
 
@@ -89,11 +92,12 @@ module Serializer
         "user_url" => o.owner_type == "User" ? "/users/#{o.owner_id}" : nil,
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
-        "thanks" => serialize(o.thanks.to_a),
+        "thanks" => serialize(o.all_thanks.to_a),
         "links" => {
           "replies" => "/events/#{o.id}/replies",
           "self" => "/events/#{o.id}",
-          "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
+          "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
+          "thank" => "/events/#{o.id}/thank"
         }
       }
 
@@ -115,11 +119,12 @@ module Serializer
         "body" => o.body,
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
-        "thanks" => serialize(o.thanks.to_a),
+        "thanks" => serialize(o.all_thanks.to_a),
         "links" => {
           "replies" => "/announcements/#{o.id}/replies",
           "self" => "/announcements/#{o.id}",
-          "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}"
+          "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
+          "thank" => "/announcements/#{o.id}/thank"
         }
       }
 
@@ -140,12 +145,13 @@ module Serializer
         "title" => o.subject,
         "body" => o.body,
         "replies" => serialize(o.replies.to_a),
-        "thanks" => serialize(o.thanks.to_a),
+        "thanks" => serialize(o.all_thanks.to_a),
         "links" => {
           "replies" => "/group_posts/#{o.id}/replies",
           "author" => "/users/#{o.user_id}",
           "group" => "/groups/#{o.group_id}",
-          "self" => "/group_posts/#{o.id}"
+          "self" => "/group_posts/#{o.id}",
+          "thank" => "/group_posts/#{o.id}/thank"
         }
         }
         
@@ -182,9 +188,11 @@ module Serializer
         "author_id" => o.user.id,
         "body" => o.body,
         "published_at" => o.created_at.utc,
+        "thanks" => serialize(o.thanks.to_a),
         "links" => {
           "author" => "/users/#{o.user_id}",
-          "self" => "/replies/#{o.id}"
+          "self" => "/replies/#{o.id}",
+          "thank" => "/replies/#{o.id}/thank"
         }
         }
 

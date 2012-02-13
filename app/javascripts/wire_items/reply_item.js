@@ -12,7 +12,8 @@ var ReplyWireItem = WireItem.extend({
   events: {
     "click .reply-text > .author": "messageUser",
     "mouseenter": "showProfile",
-    "click .delete-reply": "deleteReply"
+    "click .delete-reply": "deleteReply",
+    "click .thank-reply": "thankReply"
   },
 
   time: function() {
@@ -59,5 +60,24 @@ var ReplyWireItem = WireItem.extend({
     e.preventDefault();
     var self = this;
     this.model.destroy();
+  },
+  
+  numThanks: function() { return this.model.get("thanks").length; },
+  
+  hasThanks: function() { return this.model.get("thanks").length > 0; },
+  
+  hasThanked: function() {
+    return _.any(this.model.get("thanks"), function(thank) {
+      return thank.thanker == CommonPlace.account.get("name");
+    });
+  },
+  
+  canThank: function() {
+    return this.model.get("author_id") != CommonPlace.account.id;
+  },
+  
+  thankReply: function(e) {
+    if (e) { e.preventDefault(); }
+    $.post("/api" + this.model.link("thank"), this.options.thankReply);
   }
 });
