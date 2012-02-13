@@ -27,7 +27,7 @@
 
   &:hover
 
-    a.delete-reply, a.thank-reply
+    a.delete-reply, a.thank-reply, .thanked-reply
       display: inline
   .avatar 
     float: left
@@ -71,16 +71,21 @@
   
 
 
-  a.delete-reply, a.thank-reply
+  a.delete-reply, a.thank-reply, .thanked-reply
     display: none
     font-size: 10px
     margin-left: 5px
     padding-right: 10px
     text-decoration: none
-    color: #b7403c
     font-weight: bold
+      
+  a.delete-reply, a.thank-reply
+    color: #b7403c
     &:hover
       text-decoration: underline
+    
+  .thanked-reply
+    color: #bebebe
 
 .replies form.new-reply
   margin-top: 13px

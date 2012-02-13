@@ -4,18 +4,15 @@
   <div class="reply-text">
     <span class="author">{{author}}</span>
     <div class="body reply-body">
-      {{#block}}
       {{#markdown}}{{body}}<span class="time">{{time}}</span>{{/markdown}}
       <div class="controls">
-        <span class="thanks_count">{{numThanks}} thanks</span>
-        {{#canThank}}<a href="#" class="thank-reply">THANK</a>{{/canThank}}
+        {{#hasThanks}}<span class="thanks_count">{{numThanks}} thanks</span>{{/hasThanks}}
+        {{#canThank}}
+          {{#hasThanked}}<span class="thanked-reply">THANKED!</span>{{/hasThanked}}
+          {{^hasThanked}}<a href="#" class="thank-reply">THANK</a>{{/hasThanked}}
+        {{/canThank}}
         {{#canEdit}}<a href="#" class="delete-reply">DELETE</a>{{/canEdit}}
       </div>
-      {{/block}}
-      
-      {{^block}}
-      {{#markdown}}{{body}}<span class="time">{{time}},</span> <span class="thanks_count">{{numThanks}} thanks</span> {{#canThank}}<a href="#" class="thank-reply">THANK</a> {{/canThank}}{{#canEdit}}<a href="#" class="delete-reply">DELETE</a>{{/canEdit}}{{/markdown}}
-      {{/block}}
     </div>
 
   </div>
