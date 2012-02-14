@@ -54,7 +54,12 @@
       line-height: 1.4
       
     .learn-more
-      padding-left: 35px
+      font-size: 12px
+      font-weight: bold
+      text-decoration: none
+      color: #1B334A
+      &:hover
+        text-decoration: underline
 
   form
     margin-right: 75px
@@ -87,33 +92,34 @@
           font-weight: 300
           display: block
           font-family: Helvetica, sans-serif
-          margin-top: 10px
-      
-      input.name
-        background: image-url('icons/user.png') no-repeat white
-        background-position: 353px
-      input.mail
-        background: image-url('icons/mail.png') no-repeat white
-        background-position: 351px
-      input.address
-        background: image-url('icons/home.png') no-repeat white
-        background-position: 350px
-      
-        
-      .or
-        font-family: Helvetica
-        font-size: 17px
-        text-shadow: none
-        font-weight: lighter
-        
-      a.facebook
-        float: right
-        width: 158px
-        height: 27px
-        background: image-url('facebookconnect.png')
-        text-indent: -9999px
-        border: 0
-        margin-top: 3px
+          margin-top: 10px      
+      .new-top
+        width: 380px
+        padding-bottom: 24px
+        .or
+          font-family: Helvetica
+          font-size: 17px
+          text-shadow: none
+          float: left
+          font-weight: lighter
+          margin-left: 11px
+          margin-top: 6px
+          color: white
+          
+        a.facebook
+          float: right
+          width: 158px
+          height: 27px
+          background: image-url('facebookconnect.png')
+          text-indent: -9999px
+          border: 0
+          margin-top: 3px
+        img
+          float: right
+          margin-right: 0
+        h4
+          float: left
+         
         
     &.user_profile
       width: 380px
@@ -368,37 +374,37 @@
     background: #ac322f
     -webkit-border-radius: 5px
     overflow-y: scroll
-    height: 504px
+    height: 385px
 
-  table 
-    font-family: Helvetica
-    font-size: 13px
-    border-spacing: 10px
-    border-collapse: separate
-    -webkit-border-radius: 5px
-    border: 1px solid #511311
-    background: white
-
-
-  img 
-    float: left
-    margin-right: 10px
-
-  td 
-    width: 150px
-    padding: 10px
-    margin-top: 14px
-    border: 1px solid #dadada
-    border-collapse: collapse
-
-  td.selected, td:hover 
-    background: #fef8ce
-
-
-  .lName
-    margin-top: 3px
-
-  .oC 
-    font-size: 10px
-    margin-top: 11px
-    color: #ac322f
+    table 
+      font-family: Helvetica
+      font-size: 13px
+      border-spacing: 10px
+      border-collapse: separate
+      -webkit-border-radius: 5px
+      border: 1px solid #511311
+      background: white
+  
+  
+    img 
+      float: left
+      margin-right: 10px
+  
+    td 
+      width: 150px
+      padding: 10px
+      margin-top: 14px
+      border: 1px solid #dadada
+      border-collapse: collapse
+  
+    td.selected, td:hover 
+      background: #fef8ce
+  
+  
+    .lName
+      margin-top: 3px
+  
+    .oC 
+      font-size: 10px
+      margin-top: 11px
+      color: #ac322f
