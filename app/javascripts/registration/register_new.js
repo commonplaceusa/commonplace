@@ -17,11 +17,14 @@ var RegisterNewUserView = CommonPlace.View.extend({
   },
   
   afterRender: function() {
+    this.options.slideIn(this.el);
     if (this.data.isFacebook) {
       this.$("input[name=full_name]").val(this.data.full_name);
       this.$("input[name=email]").val(this.data.email);
+      this.$("input[name=street_address]").focus();
+    } else {
+      this.$("input[name=full_name]").focus();
     }
-    this.options.slideIn(this.el);
   },
   
   community_name: function() { return this.communityExterior.name; },
