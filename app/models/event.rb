@@ -8,18 +8,18 @@ class Event < ActiveRecord::Base
   validates_uniqueness_of :source_feed_id, :if => Proc.new { |event| event.owner_type == "Feed" && event.source_feed_id }
 
   has_many :referrals
-  has_many :replies, :as => :repliable, :order => :created_at
+  has_many :replies, :as => :repliable, :order => :created_at, :dependent => :destroy
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
   has_many :attendances
   has_many :attendees, :through => :attendances, :source => :user
   belongs_to :owner, :polymorphic => true
   belongs_to :community
   
-  has_many :thanks, :as => :thankable
+  has_many :thanks, :as => :thankable, :dependent => :destroy
 
   has_many :invites, :as => :inviter
 
-  has_many :event_cross_postings
+  has_many :event_cross_postings, :dependent => :destroy
   has_many :groups, :through => :event_cross_postings
 
   scope :upcoming, lambda { { :conditions => ["? <= events.date", Time.now.beginning_of_day.utc] } }

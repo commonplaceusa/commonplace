@@ -2,15 +2,15 @@ class Announcement < ActiveRecord::Base
   #track_on_creation
 
 
-  has_many :replies, :as => :repliable, :order => :created_at
+  has_many :replies, :as => :repliable, :order => :created_at, :dependent => :destroy
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
   belongs_to :owner, :polymorphic => true
   belongs_to :community
   
-  has_many :thanks, :as => :thankable
+  has_many :thanks, :as => :thankable, :dependent => :destroy
   
   
-  has_many :announcement_cross_postings
+  has_many :announcement_cross_postings, :dependent => :destroy
   has_many :groups, :through => :announcement_cross_postings
 
   validates_presence_of :subject, :body
