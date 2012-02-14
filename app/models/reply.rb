@@ -9,7 +9,7 @@ class Reply < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :body
   
-  has_many :thanks, :as => :thankable
+  has_many :thanks, :as => :thankable, :dependent => :destroy
 
   scope :between, lambda { |start_date, end_date| { :conditions => ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } }
 

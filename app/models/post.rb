@@ -8,9 +8,9 @@ class Post < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   belongs_to :community
 
-  has_many :replies, :as => :repliable, :order => :created_at
+  has_many :replies, :as => :repliable, :order => :created_at, :dependent => :destroy
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
-  has_many :thanks, :as => :thankable
+  has_many :thanks, :as => :thankable, :dependent => :destroy
   validates_presence_of :user, :community
   validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
