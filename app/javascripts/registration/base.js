@@ -160,16 +160,7 @@ var RegistrationModal = CommonPlace.View.extend({
       this.firstSlide = false;
       return complete();
     }
-    $el.animate(ending, {
-      complete: complete,
-      step: function() {
-        var opacityChange = (ending.opacity == 1) ? 0.04 : -0.04;
-        $el.css({
-          left: parseInt($el.css("left")) - 10,
-          opacity: parseFloat($el.css("opacity")) + opacityChange
-        });
-      }
-    });
+    $el.animate(ending, 800, complete);
   },
   
   dimensions: function($el) {
