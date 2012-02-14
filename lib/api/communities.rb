@@ -58,7 +58,7 @@ class API
     end
 
     get "/:community_id/residents" do |community_id|
-      Community.find(community_id).residents.to_json
+      Community.find(community_id).residents.to_a.to_json
     end
 
     post "/:community_id/posts" do |community_id|
