@@ -19,7 +19,7 @@ var RegistrationRouter = Backbone.Router.extend({
     this.modal = new RegistrationModal({
       communityExterior: options.communityExterior,
       template: "registration.modal",
-      completion: function() {
+      finish: function() {
         window.location.pathname = options.communityExterior.links.tour;
       },
       el: $("#registration-modal")
@@ -85,21 +85,24 @@ var RegistrationModal = CommonPlace.View.extend({
       crop: function() {
         return new RegisterCropView({
           nextPage: nextPage,
-          slideIn: function(el) { self.slideIn(el); }
+          slideIn: function(el) { self.slideIn(el); },
+          data: data
         });
       },
       group: function() {
         return new RegisterGroupListView({
           nextPage: nextPage,
           slideIn: function(el) { self.slideIn(el); },
-          communityExterior: self.communityExterior
+          communityExterior: self.communityExterior,
+          data: data
         });
       },
       neighbors: function() {
         return new RegisterNeighborsView({
-          completion: self.options.completion,
+          finish: self.options.finish,
           slideIn: function(el) { self.slideIn(el); },
-          communityExterior: self.communityExterior
+          communityExterior: self.communityExterior,
+          data: data
         });
       }
     }[page]();
