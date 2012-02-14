@@ -52,7 +52,7 @@ var RegisterGroupListView = CommonPlace.View.extend({
   
   finish: function() {
     if (this._finished) {
-      this.options.nextPage("neighbors");
+      this.options.nextPage("neighbors", this.options.data);
     } else { this._finished = true; }
   },
   

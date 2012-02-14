@@ -26,7 +26,7 @@ function facebook_connect_post_registration(success, failure) {
               fb_auth_token: auth_token
             }),
             success: function() {
-              success();
+              success(response);
             },
             failure: function() {
               failure();
@@ -48,7 +48,8 @@ function facebook_connect_registration(options) {
             full_name: response.name,
             fb_auth_token: auth_token,
             fb_uid: response.id,
-            email: response.email
+            email: response.email,
+            friends: response.friends
           }
           options.success(data);
         });
