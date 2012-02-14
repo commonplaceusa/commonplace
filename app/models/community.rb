@@ -248,4 +248,8 @@ class Community < ActiveRecord::Base
     CommunityExterior.new(self)
   end
 
+  def residents
+    $community_residents[self.id.to_s]
+  end
+
 end

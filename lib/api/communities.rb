@@ -56,7 +56,11 @@ class API
     get "/:community_id/wire" do |community_id|
       serialize(Community.find(community_id).wire)
     end
-    
+
+    get "/:community_id/residents" do |community_id|
+      Community.find(community_id).residents.to_json
+    end
+
     post "/:community_id/posts" do |community_id|
       post = Post.new(:user => current_account,
                       :community_id => community_id,
