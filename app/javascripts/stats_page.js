@@ -95,7 +95,8 @@ var StatsPage = CommonPlace.View.extend({
           data: _.map(statistics, function(stat) { return parseInt(stat.UsersTotal); })
         };
         return options;
-      })
+      }),
+      credits: { enabled: true; }
     });
 
     for (community in this.statistics) {
