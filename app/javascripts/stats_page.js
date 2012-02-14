@@ -413,8 +413,8 @@ var StatsPage = CommonPlace.View.extend({
           }
         },
         series: [{
-          name: 'Posts Made',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.PostsToday); }),
+          name: 'Posts No Reply',
+          data: _.map(community_stats, function(stat) { return parseInt(stat.PostsToday) - parseInt(stat.PostsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
@@ -425,8 +425,8 @@ var StatsPage = CommonPlace.View.extend({
           pointStart: first_date,
           stack: 'posts'
         }, {
-          name: 'Events Made',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.EventsToday); }),
+          name: 'Events No Reply',
+          data: _.map(community_stats, function(stat) { return parseInt(stat.EventsToday) - parseInt(stat.EventsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'events'
@@ -437,8 +437,8 @@ var StatsPage = CommonPlace.View.extend({
           pointStart: first_date,
           stack: 'events'
         }, {
-          name: 'Anouncements Made',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementsToday); }),
+          name: 'Anouncements No Reply',
+          data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementsToday) - parseInt(stat.AnnouncementsRepliedToToday);; }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'announcements'
@@ -449,8 +449,8 @@ var StatsPage = CommonPlace.View.extend({
           pointStart: first_date,
           stack: 'announcements'
         }, {
-          name: 'GroupPosts Made',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostsToday); }),
+          name: 'GroupPosts No Reply',
+          data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostsToday) - parseInt(stat.GroupPostsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'group_posts'
@@ -487,7 +487,7 @@ var StatsPage = CommonPlace.View.extend({
           columns: ['Sent', 'Opened'],
           /*labels: {
             formatter: function() {
-              
+
             }
           }*/
           type: 'datetime'
