@@ -11,9 +11,9 @@ function fbEnsureInit(callback) {
 function facebook_connect_post_registration(success, failure) {
   // Pulls an avatar and access token
   fbEnsureInit(function() {
-    FB.login(function(response) {
-      if (response.authResponse) {
-        var auth_token = response.authResponse.accessToken;
+    FB.login(function(loginResponse) {
+      if (loginResponse.authResponse) {
+        var auth_token = loginResponse.authResponse.accessToken;
         FB.api("/me", function(response) {
           // Set the avatar in the API
           // Store the offline access token via the API
@@ -25,12 +25,8 @@ function facebook_connect_post_registration(success, failure) {
               fb_uid: response.id,
               fb_auth_token: auth_token
             }),
-            success: function() {
-              success(response);
-            },
-            failure: function() {
-              failure();
-            }
+            success: function() { success(response); },
+            failure: function() { failure(); }
           });
         });
       }
