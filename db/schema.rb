@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120127214955) do
+ActiveRecord::Schema.define(:version => 20120214212337) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -182,7 +182,6 @@ ActiveRecord::Schema.define(:version => 20120127214955) do
     t.string   "slug"
     t.string   "twitter_name"
     t.integer  "kind"
-    t.string   "password"
   end
 
   create_table "group_posts", :force => true do |t|
@@ -337,13 +336,6 @@ ActiveRecord::Schema.define(:version => 20120127214955) do
     t.string   "receive_method", :default => "Daily"
   end
 
-  create_table "swipes", :force => true do |t|
-    t.integer  "feed_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -366,8 +358,8 @@ ActiveRecord::Schema.define(:version => 20120127214955) do
     t.integer  "user_id"
     t.integer  "thankable_id"
     t.string   "thankable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "tweets", :force => true do |t|
@@ -418,10 +410,6 @@ ActiveRecord::Schema.define(:version => 20120127214955) do
     t.text     "skills"
     t.boolean  "attempted_geolocating"
     t.datetime "last_checked_inbox"
-    t.text     "metadata"
-    t.integer  "calculated_cp_credits"
-    t.boolean  "cp_credits_are_valid",             :default => false
-    t.text     "private_metadata"
     t.integer  "replies_count"
     t.integer  "posts_count"
     t.integer  "sign_in_count",                    :default => 0
@@ -429,7 +417,10 @@ ActiveRecord::Schema.define(:version => 20120127214955) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "card_id"
+    t.text     "private_metadata"
+    t.integer  "calculated_cp_credits"
+    t.boolean  "cp_credits_are_valid",             :default => false
+    t.text     "metadata"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
