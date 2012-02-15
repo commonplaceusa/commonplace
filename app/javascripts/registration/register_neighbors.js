@@ -9,7 +9,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   },
   
   initialize: function(options) {
-    this.page = 0;
+    this.page = 0; // this is a change
   },
   
   afterRender: function() {
@@ -34,8 +34,8 @@ var RegisterNeighborsView = CommonPlace.View.extend({
       { page: this.page },
       _.bind(function(response) {
         
-        if (response.length == 0) {
-          if (this.page == 0) { this.options.finish(); }
+        if (!response.length) {
+          if (!this.page) { this.options.finish(); }
         } else {
           this.page++;
           var neighbors = [];
@@ -69,7 +69,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     _.each(neighbors, _.bind(function(itemView, index) {
       itemView.render();
       
-      if (index % 2 == 0) { $row = $($table[0].insertRow(-1)); }
+      if (index % 2 === 0) { $row = $($table[0].insertRow(-1)); }
       $row.append(itemView.el);
     }, this));
     this.nextPageTrigger();
@@ -77,7 +77,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   
   submit: function() {
     var neighbors = _.map(this.$("input[name=neighbors_list]:checked"), function(neighbor) {
-      return { name: $(neighbor).val(); }
+      return { name: $(neighbor).val() };
     });
     if (neighbors.length) {
       $.post("/api" + CommonPlace.account.link("neighbors"), neighbors, _.bind(function() {
