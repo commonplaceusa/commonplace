@@ -33,6 +33,7 @@ var RegisterProfileView = CommonPlace.View.extend({
   },
   
   community_name: function() { return this.communityExterior.name; },
+  user_name: function() { return this.data.full_name.split(" ")[0]; },
   
   submit: function(e) {
     if (e) { e.preventDefault(); }

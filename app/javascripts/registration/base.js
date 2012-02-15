@@ -120,7 +120,7 @@ var RegistrationModal = CommonPlace.View.extend({
     var dimensions = this.dimensions($current);
     
     this.slide($current,
-      { opacity: 0, left: 0 - $current.width() },
+      { left: 0 - $current.width() },
       function() {
         $current.empty();
         $current.hide();
@@ -141,16 +141,12 @@ var RegistrationModal = CommonPlace.View.extend({
     var dimensions = this.dimensions($next);
     
     $next.css({
-      left: $window.width(),
-      opacity: 0
+      left: $window.width()
     });
     
-    this.slide($next, { opacity: 1, left: dimensions.left }, _.bind(function() {
+    this.slide($next, { left: dimensions.left }, _.bind(function() {
       $current.html($next.children("div").detach());
       $current.show();
-      $current.css({
-        opacity: 1
-      });
       this.centerEl();
       $next.empty();
       $next.hide();
