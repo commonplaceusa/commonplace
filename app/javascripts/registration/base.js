@@ -94,7 +94,8 @@ var RegistrationModal = CommonPlace.View.extend({
           nextPage: nextPage,
           slideIn: function(el) { self.slideIn(el); },
           communityExterior: self.communityExterior,
-          data: data
+          data: data,
+          finish: self.options.finish
         });
       },
       neighbors: function() {

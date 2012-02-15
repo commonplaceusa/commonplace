@@ -10,7 +10,6 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   
   initialize: function(options) {
     this.page = 0;
-    if (!options.communityExterior.has_residents_list) { return options.finish(); }
   },
   
   afterRender: function() {
@@ -35,9 +34,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
       { page: this.page },
       _.bind(function(response) {
         
-        if (!response.length) {
-          if (!this.page) { this.options.finish(); }
-        } else {
+        if (response.length) {
           this.page++;
           var neighbors = [];
           _.each(response, _.bind(function(neighbor) {
@@ -60,7 +57,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   appendPage: function(neighbors) {
     var $row;
     var $table = this.$("table");
-    var $lastRow = $table.children("tr").last();
+    var $lastRow = $(_.last($table[0].rows));
     if (this.page && $table[0].rows.length && $lastRow[0].cells.length == 1) {
       var itemView = neighbors.shift();
       itemView.render();
@@ -133,7 +130,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
       if ($checkbox.attr("checked")) {
         $checkbox.removeAttr("checked");
       } else { $checkbox.attr("checked", "checked"); }
-      $checkbox.toggleClass("checked");
+      $(this.el).toggleClass("checked");
     }
   })
 });
