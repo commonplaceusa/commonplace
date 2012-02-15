@@ -14,10 +14,21 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   
   afterRender: function() {
     this.options.slideIn(this.el);
-    this.getPage();
+    this.nextPageTrigger();
+    var self = this;
+    
+    this.$(".neighbor_finder").scroll(function() {
+      if ($(this).scrollTop() > (2 * this.scrollHeight / 3)) { self.nextPageThrottled(); }
+    });
+    
+    this.nextPageThrottled();
   },
   
-  getPage: function() {
+  nextPageTrigger: function() {
+    this.nextPageThrottled = _.once(_.bind(function() { this.nextPage(); }, this));
+  },
+  
+  nextPage: function() {
     $.getJSON(
       "/api" + this.options.communityExterior.links.registration.residents,
       { page: this.page },
@@ -61,6 +72,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
       if (index % 2 == 0) { $row = $($table[0].insertRow(-1)); }
       $row.append(itemView.el);
     }, this));
+    this.nextPageTrigger();
   },
   
   submit: function() {
