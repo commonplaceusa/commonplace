@@ -58,7 +58,8 @@ class API
     end
 
     get "/:community_id/residents" do |community_id|
-      Community.find(community_id).residents.to_a.to_json
+      residents = Community.find(community_id).residents
+      residents.to_a.slice(params["page"].to_i * params["limit"].to_i, params["limit"].to_i).to_a.to_json
     end
 
     post "/:community_id/posts" do |community_id|
