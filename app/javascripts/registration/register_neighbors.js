@@ -31,7 +31,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   nextPage: function() {
     $.getJSON(
       "/api" + this.options.communityExterior.links.registration.residents,
-      { page: this.page },
+      { page: this.page, limit: 50 },
       _.bind(function(response) {
         
         if (response.length) {
