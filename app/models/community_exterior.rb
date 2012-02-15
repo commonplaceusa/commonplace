@@ -34,6 +34,10 @@ class CommunityExterior
     $skills
   end
   
+  def has_residents_list
+    @community.residents.nil?
+  end
+  
   def grouplikes
     combo = [@community.feeds.featured, @community.groups].flatten.sort_by do |grouplike|
       grouplike.subscribers.count
@@ -101,6 +105,7 @@ class CommunityExterior
     t.add :grouplikes
     t.add :links
     t.add :statistics
+    t.add :has_residents_list
   end
   
 end

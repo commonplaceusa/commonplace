@@ -9,7 +9,8 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   },
   
   initialize: function(options) {
-    this.page = 0; // this is a change
+    this.page = 0;
+    if (!options.communityExterior.has_residents_list) { return options.finish(); }
   },
   
   afterRender: function() {
