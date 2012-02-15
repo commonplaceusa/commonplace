@@ -54,7 +54,7 @@ var RegisterProfileView = CommonPlace.View.extend({
         if (this.hasAvatarFile) {
           this.avatarUploader.submit();
         } else {
-          this.nextPage("group");
+          this.nextPage("group", this.data);
         }
       }
     }, this));
@@ -80,7 +80,7 @@ var RegisterProfileView = CommonPlace.View.extend({
       onSubmit: function(file, extension) {},
       onComplete: function(file, response) { 
         CommonPlace.account.set(response); 
-        self.nextPage("crop");
+        self.nextPage("crop", this.data);
       }
     });
   },

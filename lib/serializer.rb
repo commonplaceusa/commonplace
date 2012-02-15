@@ -265,7 +265,8 @@ module Serializer
           "sent" => "/account/inbox/sent",
           "feed_messages" => "/account/inbox/feeds",
           "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts",
-          "featured_users" => "/account/featured"
+          "featured_users" => "/account/featured",
+          "neighbors" => "/account/neighbors"
         },
         "metadata" => o.metadata,
         "history" => o.profile_history
