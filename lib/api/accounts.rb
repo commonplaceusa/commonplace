@@ -110,6 +110,10 @@ class API
       serialize(Account.new(current_account))
     end
     
+    post "/neighbors" do
+      #stub
+    end
+    
     get "/inbox" do
       checked_inbox()
       serialize(paginate(current_account.inbox.reorder("replied_at DESC")))
