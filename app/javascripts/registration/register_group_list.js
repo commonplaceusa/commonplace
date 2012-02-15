@@ -48,7 +48,11 @@ var RegisterGroupListView = CommonPlace.View.extend({
   
   finish: function() {
     if (this._finished) {
-      this.options.nextPage("neighbors", this.options.data);
+      if (this.options.communityExterior.has_residents_list) {
+        this.options.nextPage("neighbors", this.options.data);
+      } else {
+        this.options.finish();
+      }
     } else { this._finished = true; }
   },
   
