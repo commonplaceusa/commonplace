@@ -35,7 +35,7 @@ class CommunityExterior
   end
   
   def has_residents_list
-    @community.residents.nil?
+    !@community.residents.nil?
   end
   
   def grouplikes
