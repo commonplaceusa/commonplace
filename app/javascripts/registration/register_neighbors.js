@@ -44,7 +44,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
           var neighbors = [];
           _.each(response, _.bind(function(neighbor) {
             
-            var isFacebookUser = this.isFacebookUser(neighbor.first_name + neighbor.last_name);
+            var isFacebookUser = this.isFacebookUser(neighbor.first_name + " " + neighbor.last_name);
             var itemView = new this.NeighborItemView({
               model: neighbor,
               isFacebook: isFacebookUser
