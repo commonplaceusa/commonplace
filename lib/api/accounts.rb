@@ -31,6 +31,11 @@ class API
       end
     end
 
+    delete "/" do
+      current_account.destroy
+      [200]
+    end
+
     post "/avatar" do
       current_account.avatar = params[:avatar][:tempfile]
       current_account.avatar.instance_write(:filename, params[:avatar][:filename])

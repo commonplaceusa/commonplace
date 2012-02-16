@@ -6,14 +6,6 @@ class AccountsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:learn_more, :disable_email]
 
-  def delete
-  end
-
-  def destroy
-    current_user.destroy
-    redirect_to root_url
-  end
-
   def avatar ; end
 
   def crop_avatar
@@ -51,10 +43,6 @@ class AccountsController < ApplicationController
     con.start { |http| http.request(req) }
 
     render :nothing => true
-  end
-
-  def profile
-    authorize! :update, User
   end
 
   def disable_email

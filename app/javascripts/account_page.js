@@ -1,10 +1,11 @@
-
+//= require_tree ./account_page
 var AccountPage = CommonPlace.View.extend({
   template: "account_page/main",
 
   events: {
     "click .controls button": "editAccount",
-    "click .avatar a.delete": "deleteAvatar"
+    "click .avatar a.delete": "deleteAvatar",
+    "click .delete-account": "confirmDeleteAccount"
   },
 
   initialize: function() {
@@ -122,6 +123,16 @@ var AccountPage = CommonPlace.View.extend({
     this.model.deleteAvatar(function() {
       self.render();
     });
+  },
+
+  confirmDeleteAccount: function(e) {
+    if (e) { e.preventDefault(); }
+    var form = new DeleteAccountForm();
+    form.render();
+    var modal = new ModalView({
+      form: form.el
+    });
+    modal.render();
   },
 
   bind: function() {
