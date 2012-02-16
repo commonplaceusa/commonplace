@@ -8,49 +8,51 @@ function fbEnsureInit(callback) {
     }
 }
 
-function facebook_connect_post_registration(success, failure) {
-  // Pulls an avatar and access token
+function fbConnect(api, scope, callback) {
   fbEnsureInit(function() {
     FB.login(function(loginResponse) {
       if (loginResponse.authResponse) {
         var auth_token = loginResponse.authResponse.accessToken;
-        FB.api("/me", function(response) {
-          // Set the avatar in the API
-          // Store the offline access token via the API
-          $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "/api/account/facebook",
-            data: JSON.stringify({
-              fb_uid: response.id,
-              fb_auth_token: auth_token
-            }),
-            success: function() { success(response); },
-            failure: function() { failure(); }
-          });
+        FB.api(api, function(response) {
+          callback(auth_token, response);
         });
       }
-    }, { scope: 'read_friendlists,offline_access' });
+    }, { scope: scope });
+  });
+}
+
+function facebook_connect_post_registration(success, failure) {
+  fbConnect("/me", "read_friendlists,offline_access", function(auth_token, response) {
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "/api/account/facebook",
+      data: JSON.stringify({
+        fb_uid: response.id,
+        fb_auth_token: auth_token
+      }),
+      success: function() { success(); },
+      failure: function() { failure(); }
+    });
   });
 }
 
 function facebook_connect_registration(options) {
-  fbEnsureInit(function() {
-    FB.login(function(loginResponse) {
-      if (loginResponse.authResponse) {
-        var auth_token = loginResponse.authResponse.accessToken;
-        FB.api("/me", function(response) {
-          var data = {
-            full_name: response.name,
-            fb_auth_token: auth_token,
-            fb_uid: response.id,
-            email: response.email,
-            friends: response.friends
-          }
-          options.success(data);
-        });
-      }
-    }, { scope: "read_friendlists,offline_access" });
+  fbConnect("/me", "offline_access,email", function(auth_token, response) {
+    var data = {
+      full_name: response.name,
+      fb_auth_token: auth_token,
+      fb_uid: response.id,
+      email: response.email
+    };
+    options.success(data);
+  });
+}
+
+function facebook_connect_friends(options) {
+  fbConnect("/me/friends", "user_relationships", function(auth_token, response) {
+    var friends = response.data;
+    options.success(friends);
   });
 }
 

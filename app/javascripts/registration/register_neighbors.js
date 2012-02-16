@@ -9,6 +9,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   },
   
   initialize: function(options) {
+    if (options.data.isFacebook && !options.data.friends) { this.facebook(); }
     this.page = 0;
   },
   
@@ -87,8 +88,8 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   facebook: function(e) {
     if (e) { e.preventDefault(); }
     
-    facebook_connect_post_registration({
-      success: _.bind(function(response) {
+    facebook_connect_friends({
+      success: _.bind(function(friends) {
         var data = {
           isFacebook: true,
           friends: response.friends
