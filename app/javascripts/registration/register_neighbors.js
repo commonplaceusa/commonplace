@@ -18,7 +18,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     var self = this;
     
     this.$(".neighbor_finder").scroll(function() {
-      if (($(this).scrollTop() + 10) > (this.scrollHeight - $(this).height)) { self.nextPageThrottled(); }
+      if (($(this).scrollTop() + 10) > (this.scrollHeight - $(this).height())) { self.nextPageThrottled(); }
     });
     
     if (this.data.isFacebook) {
@@ -98,7 +98,6 @@ var RegisterNeighborsView = CommonPlace.View.extend({
           isFacebook: true,
           friends: friends
         };
-        console.log(this.data);
         this.$("tr").remove();
         this.page = 0;
         this.nextPageTrigger();
@@ -112,7 +111,6 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     var result = _.any(this.data.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
-    console.log(result, name);
     return result;
   },
   
