@@ -45,28 +45,4 @@ class AccountsController < ApplicationController
     render :nothing => true
   end
 
-  def disable_email
-    begin
-      if verify_mailgun($MailgunAPIToken, params[:token], params[:timestamp], params[:signature])
-        user = User.find_by_email(params[:recipient])
-        # MIXPANEL
-        user.post_receive_method = "Never"
-        user.save
-        render :nothing => true
-      end
-    rescue
-    ensure
-      render :nothing => true
-    end
-  end
-
-  private
-
-  def verify_mailgun(api_key, token, timestamp, signature)
-    require 'openssl'
-    return signature == OpenSSL::HMAC.hexdigest(
-      OpenSSL::Digest::Digest.new('sha256'),
-      api_key,
-      '%s%s' % [timestamp, token])
-  end
 end

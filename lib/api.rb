@@ -1,7 +1,7 @@
 require 'rack/contrib/jsonp'
 %w{ base accounts announcements communities events
     feeds users group_posts groups messages
-    neighborhoods posts registrations }.each do |path|
+    neighborhoods posts registrations integration }.each do |path|
   require Rails.root.join("lib", "api", path)
 end
 
@@ -35,6 +35,8 @@ class API
       map("/replies") { run Replies }
       map("/stats") { run Stats }
       map("/registration") { run Registrations }
+
+      map("/integration") { run Integration }
 
       map("/") { run lambda {|env|  [404, {}, ["Invalid Request"]] } }
     end
