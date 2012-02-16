@@ -96,7 +96,7 @@ var StatsPage = CommonPlace.View.extend({
         };
         return options;
       }),
-      credits: { enabled: true; }
+      credits: { enabled: true }
     });
 
     for (community in this.statistics) {
