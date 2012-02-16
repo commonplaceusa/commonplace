@@ -9,20 +9,24 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   },
   
   initialize: function(options) {
-    if (options.data.isFacebook && !options.data.friends) { this.facebook(); }
     this.page = 0;
+    this.data = options.data;
   },
   
   afterRender: function() {
     this.options.slideIn(this.el);
-    this.nextPageTrigger();
     var self = this;
     
     this.$(".neighbor_finder").scroll(function() {
-      if ($(this).scrollTop() > (2 * this.scrollHeight / 3)) { self.nextPageThrottled(); }
+      if (($(this).scrollTop() + 10) > (this.scrollHeight - $(this).height)) { self.nextPageThrottled(); }
     });
     
-    this.nextPageThrottled();
+    if (this.data.isFacebook) {
+      this.facebook();
+    } else {
+      this.nextPageTrigger();
+      this.nextPageThrottled();
+    }
   },
   
   nextPageTrigger: function() {
@@ -90,20 +94,26 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     
     facebook_connect_friends({
       success: _.bind(function(friends) {
-        var data = {
+        this.data = {
           isFacebook: true,
-          friends: response.friends
+          friends: friends
         };
-        this.nextPage("neighbors", data);
+        console.log(this.data);
+        this.$("tr").remove();
+        this.page = 0;
+        this.nextPageTrigger();
+        this.nextPageThrottled();
       }, this)
     });
   },
   
   isFacebookUser: function(name) {
-    if (!this.options.data || !this.options.data.isFacebook) { return false; }
-    return _.any(this.options.data.friends, function(friend) {
+    if (!this.data || !this.data.isFacebook) { return false; }
+    var result = _.any(this.data.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
+    console.log(result, name);
+    return result;
   },
   
   email: function(e) {
