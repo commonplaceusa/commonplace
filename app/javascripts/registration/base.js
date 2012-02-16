@@ -103,7 +103,8 @@ var RegistrationModal = CommonPlace.View.extend({
           finish: self.options.finish,
           slideIn: function(el) { self.slideIn(el); },
           communityExterior: self.communityExterior,
-          data: data
+          data: data,
+          nextPage: nextPage
         });
       }
     }[page]();
