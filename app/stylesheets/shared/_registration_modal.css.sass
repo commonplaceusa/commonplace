@@ -60,6 +60,22 @@
       color: #1B334A
       &:hover
         text-decoration: underline
+        
+    li.buttons
+      background: none
+      a
+        background: #AC322F
+        font-size: 12px
+        padding: 8px 10px 8px 28px
+        color: white
+        +border-radius(4px) 
+        border: 1px solid #872523
+        font-family: Rockwell, Sans-serif
+        font-weight: normal
+        text-shadow: #070C12 0 1px 0
+        background: #AC322F image-url('uncheck.png') no-repeat
+        background-position: 5px 6px
+        cursor: pointer
 
   form
     margin-right: 75px
@@ -243,11 +259,66 @@
             &.checked
               background: image-url('check-on.png')
               background-repeat: none
+              
+    &.find_neighbors
+      width: 380px
+      float: right
+      
+      .neighbor_finder
+        width: 380px
+        background: #ac322f
+        -webkit-border-radius: 5px
+        overflow-y: scroll
+        height: 385px
+
+        table 
+          font-family: Helvetica
+          font-size: 13px
+          border-spacing: 10px
+          border-collapse: separate
+          -webkit-border-radius: 5px
+          border: 1px solid #511311
+          background: white
+          
+          td
+            width: 150px
+            padding: 10px
+            margin-top: 14px
+            border: 1px solid #dadada
+            border-collapse: collapse
+            &.checked, &:hover
+              background: #fef8ce
+              cursor: pointer
+            img
+              float: left
+              margin-right: 10px
+            .lName
+              margin-top: 3px
+            .oC
+              font-size: 10px
+              margin-top: 11px
+              color: #ac322f
+            input[type=checkbox]
+              display: none
+              
+    &.crop
+      margin: auto
+      float: none
+      padding: 25px
+      
+      .jcrop-holder
+        margin: auto
+        
+      input[type=image]
+        margin: 20px auto 0
+        display: block
           
           
           
           
           
+
+
 
     h4
       text-align: left
@@ -321,18 +392,6 @@
       display: none
 
 
-  form.crop
-    margin: auto
-    float: none
-    padding: 25px
-    
-    .jcrop-holder
-      margin: auto
-      
-    input[type=image]
-      margin: 20px auto 0
-      display: block
-
   form.add_feeds, form.add_groups
     h2
       display: block
@@ -349,65 +408,3 @@
     input[type=checkbox]
       display: none
       
-  form.find_neighbors
-    width: 380px
-    float: right
-    
-  li.buttons
-    background: none
-    a
-      background: #AC322F
-      font-size: 12px
-      padding: 8px 10px 8px 28px
-      color: white
-      +border-radius(4px) 
-      border: 1px solid #872523
-      font-family: Rockwell, Sans-serif
-      font-weight: normal
-      text-shadow: #070C12 0 1px 0
-      background: #AC322F image-url('uncheck.png') no-repeat
-      background-position: 5px 6px
-      cursor: pointer
-        
-  .neighbor_finder
-    width: 380px
-    background: #ac322f
-    -webkit-border-radius: 5px
-    overflow-y: scroll
-    height: 385px
-
-    table 
-      font-family: Helvetica
-      font-size: 13px
-      border-spacing: 10px
-      border-collapse: separate
-      -webkit-border-radius: 5px
-      border: 1px solid #511311
-      background: white
-  
-  
-    img 
-      float: left
-      margin-right: 10px
-  
-    td 
-      width: 150px
-      padding: 10px
-      margin-top: 14px
-      border: 1px solid #dadada
-      border-collapse: collapse
-  
-    td.checked, td:hover 
-      background: #fef8ce
-  
-  
-    .lName
-      margin-top: 3px
-  
-    .oC 
-      font-size: 10px
-      margin-top: 11px
-      color: #ac322f
-      
-    input[type=checkbox]
-      display: none
