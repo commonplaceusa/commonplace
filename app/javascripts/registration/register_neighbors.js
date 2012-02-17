@@ -44,7 +44,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
           var neighbors = [];
           _.each(response, _.bind(function(neighbor) {
             
-            var fbUser = this.isFacebookUser(neighbor.first_name + " " + neighbor.last_name);
+            var fbUser = this.getFacebookUser(neighbor.first_name + " " + neighbor.last_name);
             var itemView = new this.NeighborItemView({
               model: neighbor,
               fbUser: fbUser
@@ -107,7 +107,6 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   },
   
   getFacebookUser: function(name) {
-    if (!this.data || !this.data.isFacebook) { return false; }
     return _.find(this.data.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
@@ -129,9 +128,9 @@ var RegisterNeighborsView = CommonPlace.View.extend({
         this.check();
         facebook_connect_user_picture({
           id: this.options.fbUser.id,
-          success: function(url) {
+          success: _.bind(function(url) {
             this.$("img").attr("src", url);
-          }
+          }, this)
         });
       }
     },
