@@ -22,6 +22,31 @@
         %input{:name => "submit", :type => "submit", :class => "grey-button sign_up", :value => "SIGN ME UP!"}
            
     .clear
+    
+#blurbs
+  .grid-12
+    %h3 The Initiative
+    %p CommonPlace is a web platform for local community engagement.
+    
+    %p Our technology is designed to make it really easy for neighbors and community leaders to share information about local events, neighborhood needs or community announcements with the folks who live in their town.
+    
+    %p CommonPlace works with communities across the country. We’d love to work with yours! If you’re interested in bringing CommonPlace to your town, contact Organizing@CommonPlaceUSA.com and fill out the form to the right.    
+  .clear
+  .ourtech.grid-12
+    = image_tag "screenshot.png", :alt=>"Screenshot"
+    %h3 Our Technology
+    %p Our technology is designed to make it really easy for neighbors and community leaders to share information about local events, neighborhood needs or community announcements with the folks who live in their town.
+  .organizing.grid-12
+    %h3 Organizing
+    %p CommonPlace is a web platform for local community engagement.
+    
+    %p Our technology is designed to make it really easy for neighbors and community leaders to share information about local events, neighborhood needs or community announcements with the folks who live in their town.
+    
+    %p CommonPlace works with communities across the country. We’d love to work with yours! If you’re interested in bringing CommonPlace to your town, contact Organizing@CommonPlaceUSA.com and fill out the form to the right.    
+  .clear
+ 
+
+    
 #middle
   .grid-12
     #heart
@@ -31,9 +56,9 @@
         CommonPlace!
   .clear
 #end
-  #scroller
+  #quotes
     .items
-      .grid-4.rotate
+      .grid-4
         %p
           "I love getting to know my neighbors better, and it has led me to talk in person to neighbors I might not have ever crossed paths with by starting communications through a posting." 
         = image_tag "starter_site/user1.png", :alt=>"Julie Paradiso"
@@ -43,7 +68,7 @@
           %br
           Falls Church, VA
           
-      .grid-4.rotate
+      .grid-4
         %p
           "I've posted on and responded to Falls Church CommonPlace posts.  People attended a community event I promoted.  I found work through it.  And I scored a free perfect-condition TV from it." 
         = image_tag "starter_site/person5.png", :alt=>"Debra Z. Roth"
@@ -52,7 +77,7 @@
           Neighbor
           %br
           Falls Church, VA
-      .grid-4.rotate
+      .grid-4
         %p
           "It really makes living in Falls Church feel more neighborly because it increases interaction with people we sometimes have been living a long side of for a long time."
         = image_tag "starter_site/user1.png", :alt=>"Julie Read"
@@ -61,7 +86,7 @@
           Neighbor
           %br
           Falls Church, VA
-      .grid-4.rotate
+      .grid-4
         %p
           "CommonPlace has been a wonderful addition to the Falls Church Community.  Don't know how we got along before without it." 
         = image_tag "starter_site/person6.png", :alt=>"Barry Buschow"
@@ -70,7 +95,7 @@
           Civic Leader
           %br
           Falls Church, VA
-      .grid-4.rotate
+      .grid-4
         %p
           "I have used CommonPlace several times in the past 2 months.  I love the site. [...] I feel part of a dynamic community by being able to use CommonPlace so easily."
         = image_tag "starter_site/user1.png", :alt=>"James Kestell"
@@ -79,7 +104,7 @@
           Neighbor
           %br
           Falls Church, VA
-      .grid-4.rotate
+      .grid-4
         %p
           "CommonPlace provides a great way to reconnect with neighbors, exchange ideas and resources" 
         = image_tag "starter_site/user1.png", :alt=>"Ariadne Autor"
