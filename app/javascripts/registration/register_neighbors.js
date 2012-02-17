@@ -44,12 +44,12 @@ var RegisterNeighborsView = CommonPlace.View.extend({
           var neighbors = [];
           _.each(response, _.bind(function(neighbor) {
             
-            var isFacebookUser = this.isFacebookUser(neighbor.first_name + " " + neighbor.last_name);
+            var fbUser = this.isFacebookUser(neighbor.first_name + " " + neighbor.last_name);
             var itemView = new this.NeighborItemView({
               model: neighbor,
-              isFacebook: isFacebookUser
+              fbUser: fbUser
             });
-            (isFacebookUser) ? neighbors.unshift(itemView) : neighbors.push(itemView);
+            (!_.isEmpty(fbUser)) ? neighbors.unshift(itemView) : neighbors.push(itemView);
             
           }, this));
           this.appendPage(neighbors);
@@ -106,12 +106,11 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     });
   },
   
-  isFacebookUser: function(name) {
+  getFacebookUser: function(name) {
     if (!this.data || !this.data.isFacebook) { return false; }
-    var result = _.any(this.data.friends, function(friend) {
+    return _.find(this.data.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
-    return result;
   },
   
   email: function(e) {
@@ -126,12 +125,22 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     events: { "click": "check" },
     
     afterRender: function() {
-      if (this.options.isFacebook) { this.check(); }
+      if (this.isFacebook()) {
+        this.check();
+        facebook_connect_user_picture({
+          id: this.options.fbUser.id,
+          success: function(url) {
+            this.$("img").attr("src", url);
+          }
+        });
+      }
     },
     
     avatar_url: function() { return "/assets/block.png"; },
     first_name: function() { return this.model.first_name; },
     last_name: function() { return this.model.last_name; },
+    
+    isFacebook: function() { return !_.isEmpty(this.options.fbUser); },
     
     check: function(e) {
       if (e) { e.preventDefault(); }

@@ -56,6 +56,12 @@ function facebook_connect_friends(options) {
   });
 }
 
+function facebook_connect_user_picture(options) {
+  fbConnect("/" + options.id + "/picture?type=square", "", function(auth_token, response) {
+    options.success(response);
+  });
+}
+
 function fbAsyncInit() {
   FB.init({
     appId : CommonPlace.facebookAppId,
