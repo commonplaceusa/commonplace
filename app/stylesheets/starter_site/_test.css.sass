@@ -186,30 +186,26 @@ body
       font-size: 22px
       line-height: 29px
     #heart
-      margin: 50px 0px 30px 0px
+      margin: 50px 0px 10px 0px
       font-size: 2.5em
       h3
-        +text-shadow(#000 2px 2px 0px)
-    .border
-      clear: both
-      background: image-url('starter_site/border.jpg') repeat-x
-      height: 30px
+        +text-shadow(#cdcdcd 2px 2px 0px)
+        color: #1b334a
     .items
       padding: 30px 0px 20px
     .bottom
       border-top: 1px solid #304962
       border-bottom: none !important
-    .rotate
-      background: image-url('starter_site/bubble2.png') no-repeat
+    #quotes
       p
         display: block
-        height: 145px
+        height: 190px
         width: 263px
         color: #555
-        padding: 10px
-        margin: 0 10px 40px
+        padding: 14px
         font-style: italic
         line-height: 26px
+        background: image-url('quote.png') no-repeat
         font-size: 16px
         letter-spacing: .5px
       img
@@ -220,14 +216,36 @@ body
         line-height: 16px
         +text-shadow(#122334 2px 2p, 0px)
         font-weight: normal
+        color: #1b334a
+        margin-top: 5px
       h5
-        color: #83a1be
+        color: #ac322f
         font-size: 13px
         padding-top: 5px
         font-weight: normal
         line-height: 18px
-        +text-shadow(#122334 2px 2px 0px)
-  
+        margin-bottom: 40px
+        
+#blurbs
+  margin-top: 50px
+  h3
+    color: #1b334a
+    font-size: 25px
+  p
+    color: #262626
+    margin-top: .5em
+    font-size: 16px
+    font-family: Rockwell
+    line-height: 25px
+    font-weight: lighter
+  .ourtech
+    margin-top: 50px
+    img
+      float: left
+      margin: 10px 30px 10px 0
+      +box-shadow(#cdcdcd 0 0px 13px 4px)
+  .organizing
+    margin-top: 50px
 
 #footer
   background: #0c1c2c
