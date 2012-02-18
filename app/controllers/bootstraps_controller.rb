@@ -5,7 +5,7 @@ class BootstrapsController < ApplicationController
 
   layout false
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :registration
 
   def community 
     EventSender.user_visited_main_page
@@ -17,5 +17,7 @@ class BootstrapsController < ApplicationController
   def group ; end
 
   def application ; end
+
+  def registration ; end
 
 end
