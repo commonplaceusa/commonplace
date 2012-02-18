@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <%= stylesheet_link_tag "organizer_app" %>
+  </head>
+
+
+  <body>
+
+    <div id="main">
+      
+      <div id="file-picker">
+        <div id="file-picker-filters">
+
+          <div>
+            <label>
+              <input type="checkbox" name="on-commonplace-filter">
+              On CommonPlace
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input type="checkbox" name="on-commonplace-filter">
+              Has Leverage
+            </label>
+          </div>
+
+        </div>
+        
+        <ul id="file-picker-list">
+          
+        </ul>
+
+      </div>
+
+      <div id="file-viewer">
+        <div class="name"></div>
+      </div>
+    </div>
+
+    <%= javascript_include_tag :organizer_app %>
+    
+    <script type="text/javascript">
+      
+      $(function() {
+      
+        var community = window.location.pathname.replace(/^\/organizer_app\//, "");
+
+        var files = new OrganizerApp.Files([], { community: community });
+
+        files.fetch({ 
+          success: function() {
+            var main = new OrganizerApp.Main({ el: $("#main"), collection: files });
+            main.render();
+          }
+        });
+
+      });
+    </script>
+
+  </body>
+
+</html>

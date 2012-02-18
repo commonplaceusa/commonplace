@@ -20,4 +20,6 @@ class BootstrapsController < ApplicationController
 
   def registration ; end
 
+  def organizer_app ; end
+
 end

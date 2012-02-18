@@ -6,6 +6,8 @@ Commonplace::Application.routes.draw do
   match "/owosso" => redirect { "/owossocorunna" }
   match "/style_guide" => "bootstraps#style_guide"
 
+  match "/organizer_app/:id" => "bootstraps#organizer_app"
+
   resources :feed_registrations, :only => [:new, :create] do
     member do
       get :profile, :avatar, :subscribers
