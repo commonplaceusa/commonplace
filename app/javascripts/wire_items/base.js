@@ -72,7 +72,7 @@ var WireItem = CommonPlace.View.extend({
           this.model.set(response);
         }, this)
       });
-      this.repliesView.collection.bind("change", _.bind(function() { this.render(); }, this));
+      this.repliesView.collection.on("change", _.bind(function() { this.render(); }, this));
       this.repliesView.render();
       this.$(".replies-area").append(this.repliesView.el);
     }

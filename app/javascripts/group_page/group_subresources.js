@@ -11,10 +11,10 @@ var GroupSubresourcesView = CommonPlace.View.extend({
     this.groupAnnouncementsCollection = this.group.announcements;
     this.groupEventsCollection = this.group.events;
     this.currentTab = options.current || "showGroupPosts";
-    this.group.posts.bind("add", function() { self.switchTab("showGroupPosts"); }, this);
-    this.group.members.bind("add", function() { self.switchTab("showGroupMembers"); }, this);
-    this.group.announcements.bind("add", function() { self.switchTab("showAnnouncements"); }, this);
-    this.group.events.bind("add", function() { self.switchTab("showEvents"); }, this);
+    this.group.posts.on("add", function() { self.switchTab("showGroupPosts"); }, this);
+    this.group.members.on("add", function() { self.switchTab("showGroupMembers"); }, this);
+    this.group.announcements.on("add", function() { self.switchTab("showAnnouncements"); }, this);
+    this.group.events.on("add", function() { self.switchTab("showEvents"); }, this);
   },
 
   afterRender: function() {

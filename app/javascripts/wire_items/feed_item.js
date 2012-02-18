@@ -5,7 +5,7 @@ var FeedWireItem = WireItem.extend({
   className: "wire-item feed",
 
   initialize: function() {
-    CommonPlace.account.bind("change", this.render, this);
+    CommonPlace.account.on("change", this.render, this);
     this.attr_accessible(['name', 'url', 'avatar_url']);
   },
 

@@ -12,7 +12,7 @@ var MessageWireItem = WireItem.extend({
   afterRender: function() {
     this.repliesView = {};
     this.reply();
-    this.model.bind("change", this.render, this);
+    this.model.on("change", this.render, this);
   },
 
   avatarUrl: function() {

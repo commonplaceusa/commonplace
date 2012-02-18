@@ -13,7 +13,7 @@ var ProfileBox = CommonPlace.View.extend({
     });
 
     this.$("#profile-box-profile").replaceWith(this.profileDisplayer.el);
-    this.profileDisplayer.bind("shown", _.bind(function(shown, options) {
+    this.profileDisplayer.on("shown", _.bind(function(shown, options) {
       this.switchFilterClass(shown.get('schema'));
       if (options && options.from_wire) {
         this.lists.showList(shown.get('schema'));

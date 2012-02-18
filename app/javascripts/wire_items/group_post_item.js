@@ -5,12 +5,12 @@ var GroupPostWireItem = WireItem.extend({
 
   initialize: function(options) {
     var self = this;
-    this.model.bind("destroy", function() { self.remove(); });
+    this.model.on("destroy", function() { self.remove(); });
     this.in_reply_state = true;
   },
 
   afterRender: function() {
-    this.model.bind("change", this.render, this);
+    this.model.on("change", this.render, this);
     this.repliesView = {};
     this.reply();
     this.$(".post-body").truncate({max_length: 450});
