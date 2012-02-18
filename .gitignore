@@ -35,3 +35,5 @@ log/*.log
 log/sunspot-solr-development.log.1
 sunspot-solr.pid
 *.pyc
+neo4j
+
