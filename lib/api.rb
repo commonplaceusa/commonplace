@@ -54,7 +54,6 @@ class Warden::SessionSerializer
   def serialize(record)
    klass = record.class
    array = klass.serialize_into_session(record)
-   p "serializing in to session #{record}, #{klass}, #{array}"
    array.unshift(klass.name)
   end
   
@@ -62,7 +61,6 @@ class Warden::SessionSerializer
     klass, *args = keys
     
     begin
-      p "deserialized: #{keys}, #{klass}"
       ActiveSupport::Inflector.constantize(klass).serialize_from_session(*args)
     rescue NameError => e
       if e.message =~ /uninitialized constant/
