@@ -13,6 +13,7 @@ class API
         keywords = phrase(params["query"])
         search = Sunspot.search(klass) do
           keywords keywords
+          order_by(:created_at, :desc)
           paginate(:page => params["page"].to_i + 1)
           with(:community_id, community_id)
           yield(self) if block_given?
