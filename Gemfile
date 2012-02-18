@@ -3,6 +3,9 @@ source :gemcutter
 gem 'rails', "~> 3.2.0"
 gem 'sass-rails'
 
+# NEO4J
+gem "neography"
+
 # API
 gem 'sinatra'
 gem 'rack-contrib'
