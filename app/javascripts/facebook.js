@@ -38,7 +38,7 @@ function facebook_connect_post_registration(success, failure) {
 }
 
 function facebook_connect_registration(options) {
-  fbConnect("/me", "offline_access,email,user_relationships", function(auth_token, response) {
+  fbConnect("/me", "offline_access,email", function(auth_token, response) {
     var data = {
       full_name: response.name,
       fb_auth_token: auth_token,
@@ -50,7 +50,7 @@ function facebook_connect_registration(options) {
 }
 
 function facebook_connect_friends(options) {
-  fbConnect("/me/friends", "user_relationships", function(auth_token, response) {
+  fbConnect("/me/friends", "", function(auth_token, response) {
     var friends = response.data;
     options.success(friends);
   });
