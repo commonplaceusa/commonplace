@@ -9,7 +9,6 @@ class API
     helpers do
 
       def current_user
-        p "current user detected: #{warden.user(:user)}"
         @_user ||= warden.user(:user)
       end
       
