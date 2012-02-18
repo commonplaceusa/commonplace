@@ -58,10 +58,31 @@ class API
       serialize(Community.find(community_id).wire)
     end
 
+
     get "/:community_id/residents" do |community_id|
       residents = Community.find(community_id).residents
       residents.to_a.slice(params["page"].to_i * params["limit"].to_i, params["limit"].to_i).to_a.to_json
     end
+
+    get "/:community_id/files" do |community_id|
+      Community.find(community_id).residents.to_a.to_json
+    end
+
+    get "/:community_id/files" do
+      community = CommunityFile.find(params[:community_id])
+      community.files.to_json
+    end
+
+    post "/:community_id/files" do
+      community = CommunityFile.find(params[:community_id])
+      neighbor = community.create_resident(params)
+      neighbor.to_json
+    end
+
+    put "/:community_id/files/:file_id" do
+      ResidentFile.find(params[:file_id]).update(params).to_json
+    end
+
 
     post "/:community_id/posts" do |community_id|
       post = Post.new(:user => current_account,
