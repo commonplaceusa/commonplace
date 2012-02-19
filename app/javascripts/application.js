@@ -42,6 +42,7 @@
 //= require outbox_page
 //= require account_page
 //= require stats_page
+//= require find_my_neighbors_page
 //
 //= require facebook
 
@@ -59,7 +60,8 @@ var Application = Backbone.Router.extend({
       outbox: new OutboxPage({ el: $("#main") }),
       feed_inbox: new FeedInboxPage({ el: $("#main") }),
       account: new AccountPage({ el: $("#main") }),
-      stats: new StatsPage({ el: $("#main") })
+      stats: new StatsPage({ el: $("#main") }),
+      find_neighbors: new FindMyNeighborsPage({ el: $("#main") })
     }; 
 
     _.invoke(this.pages, "unbind");
@@ -94,7 +96,9 @@ var Application = Backbone.Router.extend({
     
     "/tour": "tour",
 
-    "/stats": "stats"
+    "/stats": "stats",
+    
+    "find_neighbors": "find_neighbors"
   },
 
   stats: function() { if (CommonPlace.account.get("is_admin")) { this.showPage("stats"); } else { this.community(); } },
@@ -104,6 +108,8 @@ var Application = Backbone.Router.extend({
   invite: function() { this.showPage("invite"); },
 
   discount: function() { this.showPage("discount"); },
+  
+  find_neighbors: function() { this.showPage("find_neighbors"); },
 
   community: function() { 
     this.showPage("community"); 
