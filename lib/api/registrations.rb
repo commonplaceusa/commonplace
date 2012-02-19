@@ -5,6 +5,7 @@ class API
       user = User.new(:full_name => params["full_name"],
                       :email => params["email"],
                       :address => params["address"],
+                      :facebook_uid => params["fb_uid"],
                       :community_id => community_id)
       
       serialize user
