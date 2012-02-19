@@ -73,6 +73,7 @@ class CommunityExterior
       "self" => "/registration/#{id}",
       "tour" => "/#{slug}/tour",
       "learn_more" => "/#{slug}/learn_more",
+      "facebook_login" => "/users/auth/facebook",
       "registration" => {
         "validate" => "/registration/#{id}/validate",
         "new" => "/registration/#{id}/new",

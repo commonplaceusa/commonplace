@@ -46,18 +46,21 @@ var RegisterNewUserView = CommonPlace.View.extend({
       this.$(".error").hide();
       var valid = true;
       
-      _.each(["full_name", "email", "address"], _.bind(function(field) {
-        if (!_.isEmpty(response[field])) {
-          var error = this.$(".error." + field);
-          var errorText = _.reduce(response[field], function(a, b) { return a + " and " + b; });
-          error.text(errorText);
-          error.show();
-          valid = false;
-        }
-      }, this));
-        
-      if (valid) { this.options.nextPage("profile", this.data); }
-      
+      if (!_.isEmpty(response.facebook)) {
+        window.location.pathname = this.communityExterior.links.facebook_login;
+      } else {
+        _.each(["full_name", "email", "address"], _.bind(function(field) {
+          if (!_.isEmpty(response[field])) {
+            var error = this.$(".error." + field);
+            var errorText = _.reduce(response[field], function(a, b) { return a + " and " + b; });
+            error.text(errorText);
+            error.show();
+            valid = false;
+          }
+        }, this));
+          
+        if (valid) { this.options.nextPage("profile", this.data); }
+      }
     }, this));
   },
   

@@ -50,7 +50,8 @@ module Serializer
             "email" => o.errors["email"],
             "full_name" => o.errors["full_name"],
             "address" => o.errors["address"],
-            "password" => o.errors["encrypted_password"]
+            "password" => o.errors["encrypted_password"],
+            "facebook" => o.errors["facebook_uid"]
           }
         end
       when Post

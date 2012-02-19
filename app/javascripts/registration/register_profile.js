@@ -20,7 +20,9 @@ var RegisterProfileView = CommonPlace.View.extend({
   afterRender: function() {
     this.initReferralQuestions();
     
-    this.initAvatarUploader(this.$(".avatar_file_browse"));
+    if (!this.data.isFacebook) {
+      this.initAvatarUploader(this.$(".avatar_file_browse"));
+    }
     
     this.options.slideIn(this.el);
     
@@ -52,7 +54,7 @@ var RegisterProfileView = CommonPlace.View.extend({
     $.post(new_api, this.data, _.bind(function(response) {
       if (response.success == "true" || response.id) {
         CommonPlace.account = new Account(response);
-        if (this.hasAvatarFile) {
+        if (this.hasAvatarFile && !this.data.isFacebook) {
           this.avatarUploader.submit();
         } else {
           this.nextPage("group", this.data);
