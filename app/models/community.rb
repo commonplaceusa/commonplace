@@ -91,7 +91,8 @@ class Community < ActiveRecord::Base
       "invites" => "/communities/#{id}/invites",
       "questions" => "/communities/#{id}/questions",
       "shares" => "/communities/#{id}/shares",
-      "landing_wires" => "/communities/#{id}/wire"
+      "landing_wires" => "/communities/#{id}/wire",
+      "residents" => "/communities/#{id}/residents"
     }
   end
 

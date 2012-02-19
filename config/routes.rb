@@ -115,6 +115,7 @@ Commonplace::Application.routes.draw do
       match "outbox", :to => "bootstraps#application"
       match "feed_inbox", :to => "bootstraps#application"
       match "account", :to => "bootstraps#application"
+      match "find_neighbors", :to => "bootstraps#application"
     end
 
   end
