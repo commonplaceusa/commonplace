@@ -4,13 +4,13 @@ var RegistrationRouter = Backbone.Router.extend({
   routes: {
     "": "new_user",
     "/": "new_user",
-    "/new": "new_user",
-    "/profile": "profile",
-    "/avatar": "crop",
-    "/crop": "crop",
-    "/feeds": "feed",
-    "/groups": "group",
-    "/neighbors": "neighbors"
+    "new": "new_user",
+    "profile": "profile",
+    "avatar": "crop",
+    "crop": "crop",
+    "feeds": "feed",
+    "groups": "group",
+    "neighbors": "neighbors"
   },
   
   initialize: function(options) {
