@@ -60,7 +60,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
     
     posts: function(self) {
-      var wire = new self.ResourceWire({
+      var wire = new self.PostLikeWire({
         template: "main_page.post-resources",
         emptyMessage: "No posts here yet.",
         collection: CommonPlace.community.postsAndGroupPosts,
@@ -71,7 +71,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
     
     events: function(self) {
-      var wire = new self.ResourceWire({
+      var wire = new self.PostLikeWire({
         template: "main_page.event-resources",
         emptyMessage: "No events here yet.",
         collection: CommonPlace.community.events,
@@ -82,7 +82,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
     
     announcements: function(self) {
-      var wire = new self.ResourceWire({
+      var wire = new self.PostLikeWire({
         template: "main_page.announcement-resources",
         emptyMessage: "No announcements here yet.",
         collection: CommonPlace.community.announcements,
@@ -93,7 +93,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
     
     group_posts: function(self) {
-      var wire = new self.ResourceWire({
+      var wire = new self.PostLikeWire({
         template: "main_page.group-post-resources",
         emptyMessage: "No posts here yet.",
         collection: CommonPlace.community.groupPosts,
@@ -104,7 +104,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
     
     groups: function(self) {
-      var wire = new self.ResourceWire({
+      var wire = new self.GroupLikeWire({
         template: "main_page.directory-resources",
         emptyMessage: "No groups here yet.",
         collection: CommonPlace.community.groups,
@@ -116,7 +116,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
     
     feeds: function(self) {
-      var wire = new self.ResourceWire({
+      var wire = new self.GroupLikeWire({
         template: "main_page.directory-resources",
         emptyMessage: "No feeds here yet.",
         collection: CommonPlace.community.feeds,
@@ -128,7 +128,7 @@ var CommunityResources = CommonPlace.View.extend({
     },
     
     users: function(self) {
-      var wire = new self.ResourceWire({
+      var wire = new self.GroupLikeWire({
         template: "main_page.directory-resources",
         emptyMessage: "No users here yet.",
         collection: CommonPlace.community.users,
@@ -275,7 +275,9 @@ var CommunityResources = CommonPlace.View.extend({
     return view.el;
   },
   
-  ResourceWire: Wire.extend({ _defaultPerPage: 15 }),
+  PostLikeWire: Wire.extend({ _defaultPerPage: 15 }),
+  
+  GroupLikeWire: Wire.extend({ _defaultPerPage: 50 }),
   
   ResourceTab: CommonPlace.View.extend({
     initialize: function(options) {
