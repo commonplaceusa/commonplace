@@ -15,26 +15,26 @@ import_feeds_rss:
 geolocate_data_points:
   cron: "0 0 * * *"
   class: AddressGeolocator
-  args: 
+  args:
   queue: geolocation
   description: "Geolocates bulk entered data points from organizers"
 
 generate_statistics:
   cron: "00 23 * * *"
   class: StatisticsAggregator
-  args: 
+  args:
   queue: statistics
   description: "Aggregates community statistics"
 
 reset_emails_sent:
   cron: "0 0 * * *"
   class: EmailCountResetter
-  args: 
+  args:
   queue: database
   description: "Resets the email_count"
 
 recalculate_cp_credits:
-  every: 1hr
+  cron: "0 * * * *"
   class: CpCreditsCalculator
   args:
   queue: credits
@@ -43,6 +43,6 @@ recalculate_cp_credits:
 compute_statistics_csv:
   cron: "0 0 * * *"
   class: StatisticsCsvGenerator
-  args: 
+  args:
   queue: statistics
   description: "Generates Excel files for stats"
