@@ -37,14 +37,12 @@ var FeedProfile = CommonPlace.View.extend({
 
   subscribe: function(e) {
     e.preventDefault();
-    CommonPlace.account.subscribeToFeed(this.model);
-    this.render();
+    CommonPlace.account.subscribeToFeed(this.model, _.bind(function() { this.render(); }, this));
   },
 
   unsubscribe: function(e) {
     e.preventDefault();
-    CommonPlace.account.unsubscribeFromFeed(this.model);
-    this.render();
+    CommonPlace.account.unsubscribeFromFeed(this.model, _.bind(function() { this.render(); }, this));
   },
 
   isSubscribed: function() { return CommonPlace.account.isSubscribedToFeed(this.model); },

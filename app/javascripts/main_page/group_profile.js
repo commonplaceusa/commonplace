@@ -15,14 +15,12 @@ var GroupProfile = CommonPlace.View.extend({
 
   subscribe: function(e) {
     e.preventDefault();
-    CommonPlace.account.subscribeToGroup(this.model);
-    this.render();
+    CommonPlace.account.subscribeToGroup(this.model, _.bind(function() { this.render(); }, this));
   },
 
   unsubscribe: function(e) {
     e.preventDefault();
-    CommonPlace.account.unsubscribeFromGroup(this.model);
-    this.render();
+    CommonPlace.account.unsubscribeFromGroup(this.model, _.bind(function() { this.render(); }, this));
   },
 
   isSubscribed: function() { return CommonPlace.account.isSubscribedToGroup(this.model); },
