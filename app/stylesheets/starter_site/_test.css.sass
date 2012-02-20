@@ -120,24 +120,65 @@ body
       
       
   #main
+    #map-sec
+      h3
+        color: #AC322F
+        font-size: 22px
+        width: 240px
+        font-weight: normal
+        float: left
+        height: 50px
+        margin-bottom: 20px
+      #map
+        
+    
     font-family: "Rockwell",Georgia,Times,serif
     padding: 20px 0
     #nominate
       background: #ac322f
-      height: 400px
+      height: 344px
       +border-radius(5px)
       h3
         font-size: 28px
         line-height: 30px
         color: #062834
       input, textarea
-        width: 400px
-        margin: 0px auto
-      label
-        float: left
-        text-align: left
-        font-size: 13px
-        padding: 10px 0px 3px 0px
+        width: 407px
+        +border-radius(5px)
+        +box-shadow(#ccc 1px 1px 2px 0 inset)
+        border: 1px solid #ccc
+        padding: 5px 5px
+        font-size: 18px
+        font-weight: 300
+        display: block
+        font-family: Helvetica, sans-serif
+        margin: 10px auto 0 auto
+      input.grey-button
+        display: block
+        padding: 4px
+        height: 42px
+        width: 417px
+        color: white
+        text-align: center
+        +border-radius(5px)
+        cursor: pointer
+        text-decoration: none
+        margin-top: 20px
+        font-weight: bold
+        font-size: 21px
+        font-family: Rockwell, Georgia, Times, "Times New Roman", serif
+        background: #8B2324
+        +background-image(linear-gradient(#294D6F 0%,#1B334A 50%))
+        +box-shadow(#254564 0 0 0 1px inset,#112130 0 0 0 1px,#070c12 0 5px 6px -4px)
+        border: none
+        text-shadow: #070C12 0 -1px 0
+        letter-spacing: 1px
+        &:hover
+          +background-image(linear-gradient(#2D547B 0%,#1F3B55 50%))
+        &:active
+          +background-image(linear-gradient(#22405D 0%,#182E43 50%))
+          +box-shadow(#1e3851 0 0 0 1px inset,#112130 0 0 0 1px)
+                
     #nominate-padding
       margin: 20px
     #leading

@@ -1,57 +1,25 @@
 #first
   .container-12
-    #tabsmenu.grid-6
-      %ul.tabs
-        %li#ini
-          %a{:href=>"#", :class=>"current"}="The Initiative"
-        %li#tec
-          %a{:href=>"#"}="Our Technology"
-        %li#org
-          %a{:href=>"#"}="Organizing"
-      .panes
-        #init
-          %h3="The Initiative"
-          %p
-            CommonPlace is a web platform for local community engagement.
-          %p
-            Our technology is designed to make it really easy for neighbors and community leaders to share information about local events, neighborhood needs or community announcements with the folks who live in their town.
-          %p
-            CommonPlace works with communities across the country. We’d love to work with yours! If you’re interested in bringing CommonPlace to your town, contact 
-            =mail_to("Organizing@CommonPlaceUSA.com", "Organizing@CommonPlaceUSA.com")
-            and fill out the form to the right.
-        #tech
-          %h3="Our Technology"
-          #slides_wrapper
-            .slide_info="Post Messages to Your Town"
-            #slides
-              = image_tag "starter_site/screenshot1.png", :alt=>"Registering is Easy", :class=>"active", :height=>"248", :width=>"420px"
-              = image_tag "starter_site/screenshot4.png", :alt=>"Post Messages to Your Town", :height=>"248", :width=>"420px"
-              = image_tag "starter_site/screenshot3.png", :alt=>"Start Receiving Emails from your Neighbors", :height=>"248", :width=>"420px"
-          %p#startSlides
-            Start Slideshow
-        #organ
-          %h3="Organizing"
-          %p
-            Interested in bringing CommonPlace to your town?
-          %p
-            For our community partners, we provide:
-          %ul
-            %li="A fully hosted CommonPlace platform"
-            %li="A full time staff person on-the-ground in your community, helping to organize around the CommonPlace platform"
-            %li="Customer service"
-            %li="Lifetime feature updates"
+    #map-sec.grid-6
+      %h3.towns These Towns Are Using CommonPlace:
+      %select
+        %option Place
+        %option Place
+        %option Place
+        
+      #map
+        = image_tag "map.png", :alt=>"Heart"
+    
     #nominate.grid-6
       #nominate-padding
         %p#leading="Want CommonPlace?"
         %h3="Nominate Your Town:"
-        = semantic_form_for @request do |f|
-          = f.inputs do
-            = f.input :community_name, :label=>"Name of Community:"
-            = f.input :name, :label => "Your name:"
-            = f.input :email, :label => "Your email:"
-            = f.input :sponsor_organization, :label => "Sponsoring organization:"
-          = f.buttons do
-            = f.commit_button :label => "Submit Now"
+      %form{:name => "nominate"}
+        %input{:name => "request_community_name", :placeholder => "Name of Community"}
+        %input{:name => "request_name", :placeholder => "Your Name"}
+        %input{:name => "request_email", :placeholder => "Your Email"}
+        %input{:name => "request_sponsor_organization", :placeholder => "Sponsoring Organization"}
+        %input{:name => "submit", :type => "submit", :class => "grey-button sign_up", :value => "SIGN ME UP!"}
            
     .clear
 #middle
