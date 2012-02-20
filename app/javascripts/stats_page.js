@@ -517,19 +517,19 @@ var StatsPage = CommonPlace.View.extend({
 
         series: [{
           name: 'Posts Sent',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsSentToday); }),
+          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsSentToday) - parseInt(stat.NeighborhoodPostEmailsClickedToday) - parseInt(stat.NeighborhoodPostEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
         }, {
           name: 'Posts Clicked',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsClickedToday); }),
+          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsClickedToday) - parseInt(stat.NeighborhoodPostEmailsSentToday) - parseInt(stat.NeighborhoodPostEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
         }, {
           name: 'Posts Opened',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsOpenedToday); }),
+          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsOpenedToday) - parseInt(stat.NeighborhoodPostEmailsSentToday) - parseInt(stat.NeighborhoodPostEmailsClickedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'

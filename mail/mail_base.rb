@@ -31,7 +31,7 @@ class MailBase < Mustache
   def text
     @text ||= YAML.load_file(File.join(File.dirname(__FILE__), "text", "#{community.locale}.yml"))[self.underscored_name]
   end
-  
+
   def self.render_html(*args, &block)
     if block_given?
       new(*args, &block).render
@@ -48,14 +48,24 @@ class MailBase < Mustache
       text[key] ? render(text[key]) : key
     end
   end
-  
+
+  def insert_tracking_pixel(html, pixel_html)
+    html.gsub('</body>', "#{pixel_html}</body>")
+  end
+
   def render_html(*args)
-    Premailer.new(render(*args), :with_html_string => true, :inputencoding => 'UTF-8', :replace_html_entities => true).to_inline_css
+    inlined = Premailer.new(render(*args), :with_html_string => true, :inputencoding => 'UTF-8', :replace_html_entities => true).to_inline_css
+    self.insert_tracking_pixel(inlined, EmailTracker.create_with_tracking_pixel({
+        :recipient_email => self.to,
+        :subject => self.subject,
+        :body => inlined,
+        :tag_list => self.tag_list
+    }))
   end
 
   def styles
-    style_file = self.class.ancestors.map { |klass| 
-      File.join(File.dirname(__FILE__), "stylesheets/#{MailBase.underscore(klass.name)}.scss") 
+    style_file = self.class.ancestors.map { |klass|
+      File.join(File.dirname(__FILE__), "stylesheets/#{MailBase.underscore(klass.name)}.scss")
     }.find {|filename| File.exist?(filename) }
 
     Sass::Engine.for_file(style_file, :syntax => :scss).render if style_file
@@ -77,7 +87,7 @@ class MailBase < Mustache
     nil
   end
 
-  def to 
+  def to
     user.email
   end
 
@@ -116,6 +126,10 @@ class MailBase < Mustache
     end
   end
 
+  def tag_list
+    ""
+  end
+
   def deliver
     if deliver?
       increase_email_count
@@ -135,7 +149,7 @@ class MailBase < Mustache
     end
   end
 
-  def self.queue 
+  def self.queue
     :notifications
   end
 
@@ -146,7 +160,7 @@ class MailBase < Mustache
   def self.after_perform_heroku(*args)
     ActiveRecord::Base.connection.disconnect!
   end
-  
+
   def self.on_failure_heroku(e, *args)
     ActiveRecord::Base.connection.disconnect!
   end
