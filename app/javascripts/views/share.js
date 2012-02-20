@@ -4,9 +4,9 @@ var ShareView = CommonPlace.View.extend({
   initialize: function(options) {
     this.account = options.account;
   },
-  
+
   afterRender: function() {
-  }, 
+  },
 
   avatar_url: function() {
     var url = this.model.get("avatar_url");
@@ -52,10 +52,9 @@ var ShareView = CommonPlace.View.extend({
   shareTwitter: function(e) {
     e.preventDefault();
     var $link = $(e.target);
-    var url = $link.attr("data-url");
+    var url = encodeURIComponent($link.attr("data-url"));
     var text = $link.attr("data-message");
-    console.log("Sharing on Twitter");
-    var share_url = "http://twitter.com/share?url=" + url + "&text=" + text + "&count=horizontal";
+    var share_url = "https://twitter.com/intent/tweet?url=" + url + "&text=" + text + "&count=horizontal";
     window.open(share_url, "cp_share");
   },
 
