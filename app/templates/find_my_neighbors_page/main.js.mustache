@@ -3,23 +3,24 @@
 
   <div class="registration_information">
     <ul>
-      <li>Click the names of people you know</li>
-      <li>Check your Facebook friends:</li>
+      <li>Click the names of the people you know on the residents list to the right. We'll add them to your profile as "people I know"!</li>
+      <li>Use Facebook to quickly find your friends in town:</li>
       <li class="buttons">
-        <a class="facebook">Facebook</a>
+        <img src="/assets/buttons/facebookconnect.png" alt="Connect with Facebook">
       </li>
-
+      <li class="can_contact">
+        Do you mind if we invite your friends to join you on CommonPlace?
+      </li>
+      <li class="buttons">
+        <label><input type="checkbox" name="can_contact" checked="checked"> Invite them!</label>
+        <label class="right">   <input type="checkbox" name="cannot_contact"> I do mind.</label>
+      </li>
     </ul>
   </div>
 
   <form>
     <div class="neighbor_finder">
       <table></table>
-    </div>
-    
-    <div class="can_contact">
-      <input type="checkbox" name="can_contact">
-      <label for="can_contact">I want CommonPlace to contact these people as part of its community organization efforts:</label>
     </div>
     
     <input type="submit" class="grey-button continue" value="Continue...">

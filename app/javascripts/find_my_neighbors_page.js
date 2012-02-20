@@ -12,7 +12,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     this.page = 0;
     
     this.$(".neighbor_finder").scroll(function() {
-      if (($(this).scrollTop() + 10) > (this.scrollHeight - $(this).height())) { self.nextPageThrottled(); }
+      if (($(this).scrollTop() + 10) > (2 * this.scrollHeight / 3)) { self.nextPageThrottled(); }
     });
     
     this.nextPageTrigger();
@@ -26,7 +26,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   nextPage: function() {
     $.getJSON(
       "/api" + CommonPlace.community.link("residents"),
-      { page: this.page, limit: 50 },
+      { page: this.page, limit: 100 },
       _.bind(function(response) {
         
         if (response.length) {
@@ -68,15 +68,21 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     this.nextPageTrigger();
   },
   
-  submit: function() {
-    var neighbors = _.map(this.$("input[name=neighbors_list]:checked"), function(neighbor) {
-      return { name: $(neighbor).val() };
-    });
-    if (neighbors.length) {
-      $.post("/api" + CommonPlace.account.link("neighbors"), neighbors, _.bind(function() {
-        this.options.finish();
+  submit: function(e) {
+    if (e) { e.preventDefault(); }
+    
+    var data = {
+      neighbors: _.map(this.$("input[name=neighbors_list]:checked"), function(neighbor) {
+        return { name: $(neighbor).val() };
+      }),
+      can_contact: (this.$("input[name=can_contact]").attr("checked")) ? true : false
+    };
+    
+    if (data.neighbors.length) {
+      $.post("/api" + CommonPlace.account.link("neighbors"), data, _.bind(function() {
+        this.finish()
       }, this));
-    } else { this.options.finish(); }
+    } else { this.finish(); }
   },
   
   facebook: function(e) {
@@ -97,6 +103,10 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     return _.find(this.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
+  },
+  
+  finish: function() {
+    // redirect to the community's main page
   },
   
   NeighborItemView: CommonPlace.View.extend({
