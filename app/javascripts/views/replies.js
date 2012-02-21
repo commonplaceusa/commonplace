@@ -28,7 +28,8 @@ var RepliesView = CommonPlace.View.extend({
       var replyview = new ReplyWireItem({ 
         model: reply, 
         showProfile: self.options.showProfile ,
-        thankReply: self.options.thankReply
+        thankReply: self.options.thankReply,
+        showThanks: self.options.showThanks
       });
 
       $ul.append(replyview.render().el);

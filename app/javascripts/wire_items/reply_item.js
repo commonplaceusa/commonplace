@@ -14,7 +14,8 @@ var ReplyWireItem = WireItem.extend({
     "click .reply-text > .author": "messageUser",
     "mouseenter": "showProfile",
     "click .delete-reply": "deleteReply",
-    "click .thank-reply": "thankReply"
+    "click .thank-reply": "thankReply",
+    "click .thanks_count": "showThanks"
   },
 
   time: function() {
@@ -86,5 +87,10 @@ var ReplyWireItem = WireItem.extend({
   thankReply: function(e) {
     if (e) { e.preventDefault(); }
     $.post("/api" + this.model.link("thank"), this.options.thankReply);
+  },
+  
+  showThanks: function(e) {
+    if (e) { e.preventDefault(); }
+    this.options.showThanks();
   }
 });
