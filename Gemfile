@@ -25,6 +25,10 @@ gem 'rmagick' # we use this to crop avatars
 gem 'geocoder', '~> 1.0.5' # we use geocoder to find user latlngs from addresses
 gem 'glebm-geokit', :require => 'geokit' # use this to find latlngs from address again. try to remove in favor of geocoder
 
+# MongoDB
+gem 'bson_ext'
+gem 'mongo_mapper' # used to represent site visits
+
 # Deployment
 gem 'thin' # lighter than mongrel, faster than webrick
 
@@ -41,7 +45,7 @@ gem 'cancan' # Authorization, see app/models/ability.rb, should be refactored/re
 gem 'aws-s3', :require => 'aws/s3' # storing avatars and stuff
 
 # Worker Jobs
-gem 'redis' # for queueing with resque 
+gem 'redis' # for queueing with resque
 gem 'redis-namespace', :require => false # resque wants it, we don't need to require it
 gem 'mcbean' # We use this to pull data from rss feeds for import
 gem 'redcarpet', "~> 2.0.1" # We use this to format user messages in emails
@@ -96,7 +100,7 @@ group :development, :test do
   gem 'guard-rails-assets'
   gem 'guard-rspec'
   gem 'guard-sass'
-  
+
   #gem 'rails-dev-tweaks', '~> 0.5.2' # Don't reload the code when serving assets
   gem 'factory_girl' # we use factory_girl to generate models for tests
   gem 'forgery' # we use forgery to generate data for tests
@@ -128,7 +132,7 @@ group :test do
   gem 'rspec-rr' # we use rspec-rr for integration between rspec and rr
   gem 'webmock' # we use webmock to mock google maps and other apis
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git' # we use capybara for integration testing
-  gem 'launchy' # we use launchy to launch a browser during integration testing 
+  gem 'launchy' # we use launchy to launch a browser during integration testing
   gem 'database_cleaner' # we use database_cleaner to clean the database between tests
   gem 'jasmine' # we use jasmine for javascript tests
 end

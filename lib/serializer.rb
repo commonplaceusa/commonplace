@@ -2,9 +2,9 @@ module Serializer
   def self.serialize(o, full_dump = false)
     o = o.results if o.respond_to?(:results)
     o = o.to_a if o.respond_to?(:to_a)
-    as_json = 
+    as_json =
       case o
-        
+
       when String
         o
 
@@ -55,7 +55,7 @@ module Serializer
           }
         end
       when Post
-        { 
+        {
         "id" => o.id,
         "schema" => "posts",
         "avatar_url" => o.user.avatar_url(:thumb),
@@ -80,7 +80,7 @@ module Serializer
       }
 
       when Event
-        { 
+        {
         "id" => o.id,
         "schema" => "events",
         "published_at" => o.created_at.utc,
@@ -113,7 +113,7 @@ module Serializer
       }
 
       when Announcement
-        { 
+        {
         "id" => o.id,
         "schema" => "announcements",
         "url" => "/announcements/#{o.id}",
@@ -140,7 +140,7 @@ module Serializer
       }
 
       when GroupPost
-        { 
+        {
         "id" => o.id,
         "schema" => "group_posts",
         "url" => "/group_posts/#{o.id}",
@@ -165,7 +165,7 @@ module Serializer
           "thank" => "/group_posts/#{o.id}/thank"
         }
         }
-        
+
       when Message
         {
         "id" => o.id,
@@ -190,7 +190,7 @@ module Serializer
         }
 
       when Reply
-        { 
+        {
         "id" => o.id,
         "schema" => "replies",
         "author" => o.user.name,
@@ -244,7 +244,7 @@ module Serializer
         "mets" => o.mets,
         "announcements" => o.announcements,
         "group_posts" => o.group_posts,
-        "neighborhood" => o.neighborhood, 
+        "neighborhood" => o.neighborhood,
         "interests" => o.interest_list,
         "goods" => o.good_list,
         "skills" => o.skill_list,
@@ -254,7 +254,7 @@ module Serializer
         "post_count" => o.posts.count,
         "reply_count" => o.replies.count,
         "about" => o.about,
-        "links" => { 
+        "links" => {
           "avatar" => "/account/avatar",
           "crop" => "/account/crop",
           "feed_subscriptions" => "/account/subscriptions/feeds",
@@ -270,7 +270,8 @@ module Serializer
           "neighbors" => "/account/neighbors"
         },
         "metadata" => o.metadata,
-        "history" => o.profile_history
+        "history" => o.profile_history,
+        "current_sign_in_ip" => o.current_sign_in_ip
         }
 
       when Community
@@ -285,12 +286,12 @@ module Serializer
         "other" => serialize(o.other),
         "meetups" => serialize(o.meetups)
       }
-      
+
       when CommunityExterior
         o.as_api_response(:default)
-      
+
       end
-      
+
     as_json
   end
 end

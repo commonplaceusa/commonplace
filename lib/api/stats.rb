@@ -19,5 +19,22 @@ class API
       # Return community statistics aggregate
       serialize StatisticsAggregator.generate_hashed_statistics_for_community(community)
     end
+
+    post "/create_session" do
+      serialize SiteVisit.create(
+          :ip_address => request_body['ip_address'],
+          :path => request_body['path'],
+          :commonplace_account_id => request_body['commonplace_account_id']
+      ).id.to_s
+    end
+
+    post "/update_session" do
+      serialize SiteVisit.create(
+          :original_visit_id => request_body['id'],
+          :ip_address => request_body['ip_address'],
+          :path => request_body['path'],
+          :commonplace_account_id => request_body['commonplace_account_id']
+      ).id.to_s
+    end
   end
 end
