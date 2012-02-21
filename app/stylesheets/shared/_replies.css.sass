@@ -26,9 +26,11 @@
   padding: 0
 
   &:hover
-
     a.delete-reply, a.thank-reply, .thanked-reply
-      display: inline
+      color: #b7403c
+    .thanked-reply
+      color: #bebebe
+      
   .avatar 
     float: left
     width: 30px
@@ -68,11 +70,12 @@
     color: #243248
     font-size: 12px
     margin-left: 5px
+    white-space: nowrap
   
 
 
   a.delete-reply, a.thank-reply, .thanked-reply
-    display: none
+    display: inline
     font-size: 10px
     margin-left: 5px
     padding-right: 10px
@@ -80,12 +83,15 @@
     font-weight: bold
       
   a.delete-reply, a.thank-reply
-    color: #b7403c
+    color: white
     &:hover
       text-decoration: underline
     
   .thanked-reply
-    color: #bebebe
+    color: white
+    
+  .controls
+    white-space: nowrap
 
 .replies form.new-reply
   margin-top: 13px
