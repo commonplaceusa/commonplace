@@ -14,7 +14,7 @@ var CommunityResources = CommonPlace.View.extend({
     this.searchForm = new this.SearchForm();
     this.searchForm.render();
     $(this.searchForm.el).prependTo(this.$(".sticky"));
-    $(window).scroll(function() { self.stickHeader(); });
+    $(window).scroll(function() { self.stickHeader(true); });
     this.$("[placeholder]").placeholder();
   },
 
@@ -265,6 +265,8 @@ var CommunityResources = CommonPlace.View.extend({
     $sticky_header.html(current_subnav.clone());
     
     if (this.currentQuery) { $(".sticky .cancel").removeClass("waiting"); }
+    
+    CommonPlace.layout.reset();
   },
   
   makeTab: function(wire) { return new this.ResourceTab({ wire: wire }); },
