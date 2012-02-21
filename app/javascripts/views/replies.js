@@ -3,8 +3,7 @@ var RepliesView = CommonPlace.View.extend({
   template: "shared/replies",
   initialize: function(options) {
     var self = this; 
-    this.collection.on("add", function() { self.render(); });
-    this.collection.on("remove", function() { self.render(); });
+    this.collection.on("sync", function() { self.render(); });
   },
   
   afterRender: function() {

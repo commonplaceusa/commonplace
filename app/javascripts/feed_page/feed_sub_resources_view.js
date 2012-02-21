@@ -10,9 +10,9 @@ var FeedSubResourcesView = CommonPlace.View.extend({
     this.eventsCollection = this.feed.events;
     this.subscribersCollection = this.feed.subscribers;
     this.currentTab = options.current || "showAnnouncements";
-    this.feed.events.on("add", function() { this.switchTab("showEvents"); }, this);
-    this.feed.announcements.on("add", function() { this.switchTab("showAnnouncements"); }, this);
-    this.feed.subscribers.on("add", function() { this.switchTab("showSubscribers"); }, this);
+    this.feed.events.on("sync", function() { this.switchTab("showEvents"); }, this);
+    this.feed.announcements.on("sync", function() { this.switchTab("showAnnouncements"); }, this);
+    this.feed.subscribers.on("sync", function() { this.switchTab("showSubscribers"); }, this);
   },
 
   afterRender: function() {

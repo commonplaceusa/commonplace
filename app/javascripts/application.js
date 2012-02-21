@@ -242,7 +242,7 @@ var Application = Backbone.Router.extend({
     var community = CommonPlace.community;
     var postlikes = [community.posts, community.events, community.groupPosts, community.announcements];
     _.each(postlikes, function(postlike) {
-      postlike.on("add", function() {
+      postlike.on("sync", function() {
         self.navigate("/", true);
         self.community();
       });
