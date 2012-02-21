@@ -33,10 +33,6 @@ class Announcement < ActiveRecord::Base
     self.replies.present?
   end
 
-  def replied_at
-    read_attribute(:replied_at) == nil ? self.updated_at : read_attribute(:replied_at)
-  end
-
   def feed
     self.owner
   end
