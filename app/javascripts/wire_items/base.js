@@ -70,6 +70,9 @@ var WireItem = CommonPlace.View.extend({
         showProfile: this.options.showProfile,
         thankReply: _.bind(function(response) {
           this.model.set(response);
+        }, this),
+        showThanks: _.bind(function() {
+          this.showThanks();
         }, this)
       });
       this.repliesView.collection.on("change", _.bind(function() { this.render(); }, this));
