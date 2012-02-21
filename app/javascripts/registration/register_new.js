@@ -20,7 +20,9 @@ var RegisterNewUserView = CommonPlace.View.extend({
     this.options.slideIn(this.el);
     if (this.data.isFacebook) {
       this.$("input[name=full_name]").val(this.data.full_name);
-      this.$("input[name=email]").val(this.data.email);
+      if (this.isRealEmail()) {
+        this.$("input[name=email]").val(this.data.email);
+      }
       this.$("input[name=street_address]").focus();
     } else {
       this.$("input[name=full_name]").focus();
@@ -76,5 +78,10 @@ var RegisterNewUserView = CommonPlace.View.extend({
         this.render();
       }, this)
     });
+  },
+  
+  isRealEmail: function() {
+    if (!this.data || !this.data.email) { return false; }
+    return this.email.search("proxymail") > -1;
   }
 });
