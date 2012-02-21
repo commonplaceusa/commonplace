@@ -44,13 +44,18 @@ Getting Started
 
 10. Install Postgres
   * `sudo apt-get install postgresql libpq-dev`
+  
+11. Install MongoDB
+  * `sudo apt-get install mongodb`
 
-11. `bundle install`
-12. `cp config/database.yml.example config/database.yml`
-13. Authenticate for the database
+12. `bundle install`
+13. `cp config/database.yml.example config/database.yml`
+14. Authenticate for the database
   * `sudo su postgres`
   * `createuser `username
-14. `bundle exec rake db:setup`
+15. Add the initial test community with `bundle exec rake db:setup`
+
+Run mongodb with `sudo mongodb start`
 
 Run the server with `bundle exec foreman start` or `bundle exec rails s thin`
 
