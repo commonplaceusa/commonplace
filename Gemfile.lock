@@ -89,6 +89,9 @@ GEM
     bcrypt-ruby (3.0.1)
     bourbon (1.3.6)
       sass (>= 3.1)
+    bson (1.5.2)
+    bson_ext (1.5.2)
+      bson (= 1.5.2)
     builder (3.0.0)
     cancan (1.6.7)
     childprocess (0.3.1)
@@ -226,6 +229,12 @@ GEM
       activesupport (~> 3.1)
       polyamorous (~> 0.5.0)
     mime-types (1.17.2)
+    mongo (1.5.2)
+      bson (= 1.5.2)
+    mongo_mapper (0.11.0)
+      activemodel (~> 3.0)
+      activesupport (~> 3.0)
+      plucky (~> 0.4.0)
     multi_json (1.0.4)
     multipart-post (1.1.5)
     mustache (0.99.4)
@@ -260,6 +269,8 @@ GEM
     permanent_records (2.1.2)
       activerecord
     pg (0.13.1)
+    plucky (0.4.4)
+      mongo (~> 1.5)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -419,6 +430,7 @@ DEPENDENCIES
   activeadmin!
   acts_as_api
   aws-s3
+  bson_ext
   cancan
   capybara!
   compass (= 0.12.alpha.0)
@@ -454,6 +466,7 @@ DEPENDENCIES
   mail
   mcbean
   meta_search (>= 1.1.0.pre)
+  mongo_mapper
   mustache
   neography
   newrelic_rpm
