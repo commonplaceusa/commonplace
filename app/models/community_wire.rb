@@ -27,8 +27,9 @@ class CommunityWire
   end
 
   def publicity
-    [ @community.posts.where(category: 'publicity').limit(3),
-      @community.announcements.reorder("GREATEST(replied_at, created_at) DESC").limit(3) ].flatten.sort {|a,b| [b.replied_at, b.created_at].compact.max <=> [a.replied_at, a.created_at].compact.max }.take(3)
+    list = (@community.posts.where(category: 'publicity').limit(3) +
+      @community.announcements.reorder("GREATEST(replied_at, created_at) DESC").limit(3))
+      .sort {|a,b| [b.replied_at, b.created_at].compact.max <=> [a.replied_at, a.created_at].compact.max }.take(3) 
   end
   
   def meetups
