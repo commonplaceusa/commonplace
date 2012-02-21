@@ -13,6 +13,17 @@ class API
         keywords = phrase(params["query"])
         search = Sunspot.search(klass) do
           keywords keywords
+          paginate(:page => params["page"].to_i + 1)
+          with(:community_id, community_id)
+          yield(self) if block_given?
+        end
+        serialize(search)
+      end
+      
+      def chronological_search(klass, params, community_id)
+        keywords = phrase(params["query"])
+        search = Sunspot.search(klass) do
+          keywords keywords
           order_by(:created_at, :desc)
           paginate(:page => params["page"].to_i + 1)
           with(:community_id, community_id)
@@ -20,7 +31,7 @@ class API
         end
         serialize(search)
       end
-
+      
       def chronological(klass, params, community_id)
         search = Sunspot.search(klass) do
           order_by(:created_at, :desc)
@@ -137,7 +148,7 @@ class API
       last_modified_by_replied_at(Post)
 
       if params["query"].present?
-        search(Post, params, community_id)
+        chronological_search(Post, params, community_id)
       else
         serialize(paginate(Community.find(community_id).posts.includes(:user, :replies)))
       end
@@ -148,7 +159,7 @@ class API
       last_modified_by_replied_at(GroupPost)
       
       if params["query"].present?
-        search([Post, GroupPost], params, community_id)
+        chronological_search([Post, GroupPost], params, community_id)
       else
         chronological([Post, GroupPost], params, community_id)
       end
@@ -158,7 +169,7 @@ class API
       last_modified_by_replied_at(Post)
       
       if params["query"].present?
-        search(Post, params, community_id) do |search|
+        chronological_search(Post, params, community_id) do |search|
           search.with(:category, category)
         end
       else
@@ -187,7 +198,7 @@ class API
       last_modified_by_replied_at(Announcement)
 
       if params["query"].present?
-        search(Announcement, params, community_id)
+        chronological_search(Announcement, params, community_id)
       else
         serialize(paginate(Community.find(community_id).announcements.
                              includes(:replies, :owner).
@@ -199,7 +210,7 @@ class API
       last_modified_by_replied_at(GroupPost)
 
       if params["query"].present?
-        search(GroupPost, params, community_id)
+        chronological_search(GroupPost, params, community_id)
       else
         serialize(paginate(GroupPost.order("group_posts.replied_at DESC").
                              includes(:group, :user).
@@ -252,7 +263,7 @@ class API
 
     get "/:community_id/post-like" do |community_id|
       if params["query"].present?
-        search([Announcement, Event, Post, GroupPost], params, community_id)
+        chronological_search([Announcement, Event, Post, GroupPost], params, community_id)
       else
         chronological([Announcement, Event, Post, GroupPost], params, community_id)
       end
