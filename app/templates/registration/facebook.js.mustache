@@ -2,8 +2,15 @@
 
 <div class="registration_information">
   <ul>
-    <li>To complete your registration, fill out your street address so we can verify you live in town. </li>
-    <li>If you want, feel free to adjust your display name and contact email as well.</li>
+    {{#isRealEmail}}
+      <li>To complete your registration, fill out your street address so we can verify you live in town. </li>
+      <li>If you want, feel free to adjust your display name and contact email as well.</li>
+    {{/isRealEmail}}
+    {{^isRealEmail}}
+      <li>To complete your registration, fill out your email so we can contact you...</li>
+      <li>...and fill out your street address so we can verify you live in town.
+      <li>If you want, feel free to adjust your display name as well.</li>
+    {{/isRealEmail}}
   </ul>
 </div>
 
