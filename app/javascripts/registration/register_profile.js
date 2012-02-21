@@ -125,7 +125,9 @@ var RegisterProfileView = CommonPlace.View.extend({
     facebook_connect_avatar({
       success: _.bind(function(data) {
         this.data.isFacebook = true;
-        this.nextPage("profile", _.extend(this.data, data));
+        this.data = _.extend(this.data, data);
+        this.template = "registration.facebook_profile";
+        this.render();
       }, this)
     });
   }

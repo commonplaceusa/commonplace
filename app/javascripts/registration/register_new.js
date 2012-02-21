@@ -82,6 +82,6 @@ var RegisterNewUserView = CommonPlace.View.extend({
   
   isRealEmail: function() {
     if (!this.data || !this.data.email) { return false; }
-    return this.email.search("proxymail") > -1;
+    return this.data.email.search("proxymail") > -1;
   }
 });
