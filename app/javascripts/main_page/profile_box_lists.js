@@ -60,7 +60,7 @@ var ProfileBoxLists = CommonPlace.View.extend({
     
     $results.append(_.pluck(views, "el"));
     
-    if (options && options.showProfile) {
+    if (views.length && options && options.showProfile) {
       _.first(views).showProfile();
     }
   },
@@ -86,7 +86,8 @@ var ProfileBoxLists = CommonPlace.View.extend({
             query: this.currentQuery
           }));
         } 
-        this.renderCurrentList(options); 
+        this.renderCurrentList(options);
+        this.options.removeSearchSpinner();
       }, this)
     });
   },

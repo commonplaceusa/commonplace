@@ -58,7 +58,6 @@ $text: #738392
         padding-right: 20px
         color: $text
         background-color: #1c2e40
-        background-image: image-url("search-blue.png") 
         background-position: 95% center
         background-repeat: no-repeat
         width: 128px
@@ -68,6 +67,12 @@ $text: #738392
 
         &::-webkit-input-placeholder, &::-moz-placeholder
           color: $text
+          
+        &.loading
+          background-image: image-url("shared/icons/waiting-white.gif")
+          
+        &:not(.loading)
+          background-image: image-url("search-blue.png")
 
     #profile-box-failed-search
       padding: 10px
