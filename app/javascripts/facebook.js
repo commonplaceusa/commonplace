@@ -49,6 +49,19 @@ function facebook_connect_registration(options) {
   });
 }
 
+function facebook_connect_avatar(options) {
+  fbConnect("/me", "offline_access", function(auth_token, response) {
+    var data = {
+      fb_auth_token: auth_token,
+      fb_uid: response.id
+    }
+    FB.api("/me/picture", "", function(avatar_url) {
+      data.avatar_url = avatar_url;
+      options.success(data);
+    });
+  });
+}
+
 function facebook_connect_friends(options) {
   fbConnect("/me/friends", "", function(auth_token, response) {
     var friends = response.data;

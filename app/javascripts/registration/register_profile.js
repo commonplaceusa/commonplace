@@ -35,7 +35,14 @@ var RegisterProfileView = CommonPlace.View.extend({
   },
   
   community_name: function() { return this.communityExterior.name; },
-  user_name: function() { return this.data.full_name.split(" ")[0]; },
+  
+  user_name: function() {
+    return (this.data.full_name) ? this.data.full_name.split(" ")[0] : "";
+  },
+  
+  avatar_url: function() {
+    return (this.data.avatar_url) ? this.data.avatar_url : "";
+  },
   
   submit: function(e) {
     if (e) { e.preventDefault(); }
@@ -115,10 +122,10 @@ var RegisterProfileView = CommonPlace.View.extend({
   
   facebook: function(e) {
     if (e) { e.preventDefault(); }
-    facebook_connect_registration({
+    facebook_connect_avatar({
       success: _.bind(function(data) {
-        data.isFacebook = true;
-        this.nextPage("new_user", data);
+        this.data.isFacebook = true;
+        this.nextPage("profile", _.extend(this.data, data));
       }, this)
     });
   }
