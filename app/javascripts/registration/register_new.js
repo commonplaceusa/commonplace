@@ -25,6 +25,7 @@ var RegisterNewUserView = CommonPlace.View.extend({
     } else {
       this.$("input[name=full_name]").focus();
     }
+    this.$("input[placeholder]").placeholder();
   },
   
   community_name: function() { return this.communityExterior.name; },
