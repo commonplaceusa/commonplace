@@ -7,6 +7,7 @@ var ReplyWireItem = WireItem.extend({
 
   afterRender: function() {
     this.$(".reply-body").truncate({max_length: 450});
+    this.$(".markdown p").append(this.$(".controls"));
   },
 
   events: {
@@ -22,6 +23,10 @@ var ReplyWireItem = WireItem.extend({
 
   author: function() {
     return this.model.get("author");
+  },
+  
+  first_name: function() {
+    return this.author().split(" ")[0];
   },
 
   authorAvatarUrl: function() {
@@ -64,7 +69,9 @@ var ReplyWireItem = WireItem.extend({
   
   numThanks: function() { return this.model.get("thanks").length; },
   
-  hasThanks: function() { return this.model.get("thanks").length > 0; },
+  hasThanks: function() { return this.numThanks() > 0; },
+  
+  peoplePerson: function() { return (this.numThanks() == 1) ? "person" : "people"; },
   
   hasThanked: function() {
     return _.any(this.model.get("thanks"), function(thank) {
