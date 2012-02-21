@@ -5,7 +5,9 @@ ProfileHistoryItem = CommonPlace.View.extend({
     return this.renderTemplate(template, 
                                _.extend({}, 
                                         this.model, 
-                                        { name: this.options.name })
+                                        { name: this.options.name,
+                                          slug: CommonPlace.community.get('slug')
+                                        })
                               )
   }
 
