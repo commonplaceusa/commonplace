@@ -9,7 +9,8 @@ var ProfileBox = CommonPlace.View.extend({
   afterRender: function() {
     this.lists = new ProfileBoxLists({ 
       el: this.$("#profile-box-lists"), 
-      showProfile: _.bind(this.profileDisplayer.show, this.profileDisplayer)
+      showProfile: _.bind(this.profileDisplayer.show, this.profileDisplayer),
+      removeSearchSpinner: _.bind(this.removeSearchSpinner, this)
     });
 
     this.$("#profile-box-profile").replaceWith(this.profileDisplayer.el);
@@ -53,8 +54,10 @@ var ProfileBox = CommonPlace.View.extend({
 
   search: _.debounce(function() {
     var search_term = this.$("#profile-box-search input.search").val();
+    this.$(".search").addClass("loading");
     if (search_term === "") {
-      this.removeSearch()
+      this.removeSearch();
+      this.removeSearchSpinner();
     } else {
       this.lists.showSearch(search_term, { showProfile: true });
       this.$(".filters a").removeClass("current");
@@ -64,7 +67,9 @@ var ProfileBox = CommonPlace.View.extend({
   removeSearch: function() { 
     this.lists.clearSearch(); 
     this.$(".filters a.account-filter").click() 
-  }
+  },
+  
+  removeSearchSpinner: function() { this.$(".search").removeClass("loading"); }
   
 
 });
