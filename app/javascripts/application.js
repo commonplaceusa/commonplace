@@ -50,7 +50,7 @@
 
 var Application = Backbone.Router.extend({
 
-  initialize: function() {
+  initialize: function() { 
     this.pages = {
       faq: new FaqPage({ el: $("#main") }),
       invite: new InvitePage({ el: $("#main") }),
@@ -62,109 +62,109 @@ var Application = Backbone.Router.extend({
       account: new AccountPage({ el: $("#main") }),
       stats: new StatsPage({ el: $("#main") }),
       find_neighbors: new FindMyNeighborsPage({ el: $("#main") })
-    };
+    }; 
 
     _.invoke(this.pages, "unbind");
-
+    
     this.bindNewPosts();
   },
 
   routes: {
-    "/faq": "faq",
-    "/invite": "invite",
-    "/discount": "discount",
+    ":community/faq": "faq",
+    ":community/invite": "invite",
+    ":community/discount": "discount",
 
-    "/": "community",
+    ":community": "community",
     "": "community",
-    "/list/:tab": "communityWire",
-    "/share/:tab": "communityPostBox",
+    ":community/list/:tab": "communityWire",
+    ":community/share/:tab": "communityPostBox",
 
-    "/show/posts/:id": "showPost",
-    "/show/events/:id": "showEvent",
-    "/show/group_posts/:id": "showGroupPost",
-    "/show/announcements/:id": "showAnnouncement",
-    "/show/users/:id": "showUserWire",
+    ":community/show/posts/:id": "showPost",
+    ":community/show/events/:id": "showEvent",
+    ":community/show/group_posts/:id": "showGroupPost",
+    ":community/show/announcements/:id": "showAnnouncement",
+    ":community/show/users/:id": "showUserWire",
 
-    "/message/users/:id": "messageUser",
-    "/message/feeds/:id": "messageFeed",
+    ":community/message/users/:id": "messageUser",
+    ":community/message/feeds/:id": "messageFeed",
 
-    "/inbox": "inbox",
-    "/outbox": "outbox",
-    "/feed_inbox": "feed_inbox",
+    ":community/inbox": "inbox",
+    ":community/outbox": "outbox",
+    ":community/feed_inbox": "feed_inbox",
 
-    "/account": "account",
+    ":community/account": "account",
+    
+    ":community/tour": "tour",
 
-    "/tour": "tour",
-
-    "/stats": "stats",
-
-    "find_neighbors": "find_neighbors"
+    ":community/stats": "stats",
+    
+    ":community/find_neighbors": "find_neighbors"
   },
 
-  stats: function() { if (CommonPlace.account.get("is_admin")) { this.showPage("stats"); } else { this.community(); } },
+  stats: function(c) { if (CommonPlace.account.get("is_admin")) { this.showPage("stats"); } else { this.community(); } },
 
-  faq: function() { this.showPage("faq"); },
+  faq: function(c) { this.showPage("faq"); },
 
-  invite: function() { this.showPage("invite"); },
+  invite: function(c) { this.showPage("invite"); },
 
-  discount: function() { this.showPage("discount"); },
+  discount: function(c) { this.showPage("discount"); },
+  
+  find_neighbors: function(c) { this.showPage("find_neighbors"); },
 
-  find_neighbors: function() { this.showPage("find_neighbors"); },
-
-  community: function() {
-    this.showPage("community");
+  community: function(c) { 
+    this.showPage("community"); 
     this.pages.community.lists.switchTab("all_posts");
   },
 
-  communityWire: function(tab) {
+  communityWire: function(c, tab) {
     this.showPage("community");
     this.pages.community.lists.switchTab(tab);
   },
 
-  communityPostBox: function(tab) {
+  communityPostBox: function(c, tab) {
     this.community();
     this.pages.community.postBox.switchTab(tab);
   },
 
-  showPost: function(id) {
+  showPost: function(c, id) {
     this.showPage("community");
     this.pages.community.lists.showPost(new Post({links: {self: "/posts/" + id}}));
   },
 
-  showEvent: function(id) {
+  showEvent: function(c, id) {
     this.showPage("community");
     this.pages.community.lists.showEvent(new Event({links: {self: "/events/" + id }}));
   },
 
-  showGroupPost: function(id) {
+  showGroupPost: function(c, id) {
     this.showPage("community");
     this.pages.community.lists.showGroupPost(new GroupPost({links: {self: "/group_posts/" + id}}));
   },
 
-  showAnnouncement: function(id) {
+  showAnnouncement: function(c, id) {
     this.showPage("community");
     this.pages.community.lists.showAnnouncement(new Announcement({links: {self: "/announcements/" + id}}));
   },
-
-  showUserWire: function(id) {
+  
+  showUserWire: function(c, id) {
     this.showPage("community");
     this.pages.community.lists.showUserWire(new User({links: {self: "/users/" + id}}));
   },
 
-  messageUser: function(id) {
+  messageUser: function(c, id) {
     this.showPage("community");
     var user = new User({ links: { self: "/users/" + id } });
-    user.fetch({
+    user.fetch({ 
       success: function() {
         var form = new MessageFormView({
           model: new Message({ messagable: user })
         });
         form.render();
-      }
+      } 
     });
   },
 
-  messageFeed: function(id) {
+  messageFeed: function(c, id) {
     this.showPage("community");
     var feed = new Feed({ links: { self: "/feeds/" + id } });
     feed.fetch({
@@ -177,20 +177,20 @@ var Application = Backbone.Router.extend({
     });
   },
 
-  inbox: function() { this.showPage("inbox"); },
+  inbox: function(c) { this.showPage("inbox"); },
 
-  outbox: function() { this.showPage("outbox"); },
+  outbox: function(c) { this.showPage("outbox"); },
 
-  feed_inbox: function() { this.showPage("feed_inbox"); },
+  feed_inbox: function(c) { this.showPage("feed_inbox"); },
 
-  account: function() { this.showPage("account"); },
+  account: function(c) { this.showPage("account"); },
 
-  tour: function() {
+  tour: function(c) {
     this.community();
-    var tour = new Tour({
-      el: $("#main"),
-      account: CommonPlace.account,
-      community: CommonPlace.community
+    var tour = new Tour({ 
+      el: $("#main"), 
+      account: CommonPlace.account, 
+      community: CommonPlace.community 
     });
     tour.render();
   },
@@ -223,7 +223,7 @@ var Application = Backbone.Router.extend({
       });
     }
   },
-
+  
   showPage: function(name) {
     // LOG THE PAGE VISIT!
     this.log_visit(name);
@@ -236,7 +236,7 @@ var Application = Backbone.Router.extend({
       window.scrollTo(0,0);
     }
   },
-
+  
   bindNewPosts: function() {
     var self = this;
     var community = CommonPlace.community;
@@ -248,5 +248,5 @@ var Application = Backbone.Router.extend({
       });
     });
   }
-
+  
 });
