@@ -116,4 +116,8 @@ module MailUrls
     url("/inbox")
   end
 
+  def copyright_year
+    DateTime.now.strftime("%Y")
+  end
+
 end
