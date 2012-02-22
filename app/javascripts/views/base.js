@@ -47,7 +47,7 @@ CommonPlace.View = Backbone.View.extend({
       self.beforeRender();
       $(self.el).html(self.renderTemplate(self.getTemplate(), self));
       self.afterRender();
-      this.logVisit();
+      self.logVisit();
     });
     return this;
   },
