@@ -3,3 +3,4 @@
 //= require starter_site/bubbles
 //= require starter_site/tabs
 //= require starter_site/slideshow
+//= require dropkick

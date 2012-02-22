@@ -24,4 +24,5 @@ jQuery.fn.submitWithAjax = function() {
 
 $(document).ready(function() {
   $('form.ajax_submit').submitWithAjax();
+  $("select").dropkick();
 });
