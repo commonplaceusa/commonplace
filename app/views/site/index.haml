@@ -2,42 +2,42 @@
   .container-12
     #map-sec.grid-6
       %h3.towns These Towns Are Using CommonPlace:
-      %select
-        %option Harrisonburg, VA
-        %option Chelmsford, MA
-        %option Warwick, NY
-        %option Vienna, VA
-        %option Marquette, MI
-        %option Clarkson, GA
-        %option Burnsville, MN
-        %option Owosso/Corunna, MI
-        %option Golden Valley, MN
-        %option Grove Hall, MA
+      %select{:name => "start", :class => "default dk" }
+        %option{:value => "harrisonburg"} Harrisonburg, VA
+        %option{:value => "chelmsford"} Chelmsford, MA
+        %option{:value => "warwick"} Warwick, NY
+        %option{:value => "vienna"} Vienna, VA
+        %option{:value => "marquette"} Marquette, MI
+        %option{:value => "clarkston"} Clarkson, GA
+        %option{:value => "burnsville"} Burnsville, MN
+        %option{:value => "owosso"} Owosso/Corunna, MI
+        %option{:value => "goldenvalley"} Golden Valley, MN
+        %option{:value => "grovehall"} Grove Hall, MA
         
       #map
         = image_tag "us-map.png", :alt=>"CommonPlace Map"
         .star.community1
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://marquette.ourcommonplace.com'
         .star.community2
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://burnsville.ourcommonplace.com'
         .star.community3
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://goldenvalley.ourcommonplace.com'
         .star.community4
           = image_tag "star.png", :alt=>"Star"
         .star.community5
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://warwick.ourcommonplace.com'
         .star.community6
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://grovehall.ourcommonplace.com'
         .star.community7
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://chelmsford.ourcommonplace.com'
         .star.community8
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://clarkston.ourcommonplace.com'
         .star.community9
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://harrisonburg.ourcommonplace.com'
         .star.community10
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://vienna.ourcommonplace.com'
         .star.community11
-          = image_tag "star.png", :alt=>"Star"
+          = link_to image_tag( 'star.png'), 'http://fallschurch.ourcommonplace.com'
 
 
     #nominate.grid-6
@@ -152,3 +152,4 @@
     var b=document.getElementsByTagName('script')[0];
     a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0004/8420.js";
     a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+    $("select").bind("change", function() { window.location.pathname = $(this).val(); });
