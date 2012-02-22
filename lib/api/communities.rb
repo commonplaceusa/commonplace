@@ -32,6 +32,17 @@ class API
         serialize(search)
       end
       
+      def auth_search(klass, params)
+        keywords = phrase(params["query"])
+        search = Sunspot.search(klass) do
+          keywords keywords
+          order_by(:created_at, :desc)
+          paginate(:page => params["page"].to_i + 1)
+          yield(self) if block_given?
+        end
+        serialize(search)
+      end
+      
       def chronological(klass, params, community_id)
         search = Sunspot.search(klass) do
           order_by(:created_at, :desc)
@@ -242,7 +253,11 @@ class API
 
     get "/:community_id/users" do |community_id|
       if params["query"].present?
-        search(User, params, community_id)
+        if current_user.admin
+          auth_search(User, params)
+        else
+          search(User, params, community_id)
+        end
       else
         scope = Community.find(community_id).users.reorder("last_name ASC, first_name ASC")
         serialize(paginate(scope))
@@ -262,8 +277,12 @@ class API
     get "/:community_id/group-like" do |community_id|
       # only search
       halt [200, {}, "[]"] if params["query"].blank?
-
-      search([Feed, Group, User], params, community_id)
+      
+      if current_user.admin
+        auth_search([Feed, Group, User], params)
+      else
+        search([Feed, Group, User], params, community_id)
+      end
     end
 
     get "/:community_id/post-like" do |community_id|
