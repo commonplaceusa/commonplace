@@ -28,7 +28,7 @@ class API
       ).id.to_s
     end
 
-    post "/update_session" do
+    put "/update_session" do
       serialize SiteVisit.create(
           :original_visit_id => request_body['id'],
           :ip_address => request_body['ip_address'],
