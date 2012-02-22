@@ -8,7 +8,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     "submit form": "submit",
     "click a.facebook": "facebook",
     "keyup input.search": "debounceSearch",
-    "click .remove_search": "removeSearch"
+    "click .remove_search": "removeSearch",
+    "click input.contact": "toggleContact"
   },
 
   afterRender: function() {
@@ -182,6 +183,11 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     if (!this.$(".neighbor_finder").scrollTop()) {
       this.$(".neighbor_finder").scrollTo(this.currentScroll);
     }
+  },
+  
+  toggleContact: function(e) {
+    this.$("input.contact").removeAttr("checked");
+    $(e.currentTarget).attr("checked", "checked");
   },
 
   finish: function() {
