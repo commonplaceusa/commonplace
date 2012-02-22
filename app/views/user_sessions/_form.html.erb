@@ -1,0 +1,28 @@
+<%= form_tag "/users/sign_in", :class => "formtastic user" do %>
+  <fieldset class="inputs">
+    <ol>
+      <li class="string input required stringish" id="user_email_input">
+        <label class="lable" for="user_email">Email Address:</label>
+        <input id="user_email" name="user[email]" type="text">
+      </li>
+
+      <li class="password input required stringish" id="user_password_input">
+        <label class=" label" for="user_password">Enter a Password:</label>
+        <input id="user_password" name="user[password]" type="password">
+      </li>
+    </ol>
+  </fieldset>
+  <fieldset class="buttons">
+    <ol>
+      <li class="commit button">
+        <input class="submit" name="commit" src="<%= asset_path("buttons/login.png") %>" type="image" value="Submit User">
+      </li>
+      <li class="facebook">
+        <%= link_to user_omniauth_authorize_path(:facebook) do %>
+          <%= image_tag "login.png" %>
+        <% end %>
+      </li>
+    </ol>
+  </fieldset>
+  <%= link_to "Forgot your password?", new_user_password_url, :class => "forgot-password" %>
+<% end %>
