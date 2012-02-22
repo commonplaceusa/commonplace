@@ -45,7 +45,10 @@ function facebook_connect_registration(options) {
       fb_uid: response.id,
       email: response.email
     };
-    options.success(data);
+    FB.api("/me/picture?type=normal", function(avatar_url) {
+      data.avatar_url = avatar_url;
+      options.success(data);
+    });
   });
 }
 
@@ -55,7 +58,7 @@ function facebook_connect_avatar(options) {
       fb_auth_token: auth_token,
       fb_uid: response.id
     }
-    FB.api("/me/picture", "", function(avatar_url) {
+    FB.api("/me/picture?type=normal", function(avatar_url) {
       data.avatar_url = avatar_url;
       options.success(data);
     });
