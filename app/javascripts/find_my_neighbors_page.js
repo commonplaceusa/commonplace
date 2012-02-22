@@ -32,6 +32,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   },
 
   nextPage: function() {
+    this.$(".remove_search").removeClass("inactive");
+    this.$(".remove_search").removeClass("active");
+    this.$(".remove_search").addClass("loading");
     $.getJSON(
       "/api" + CommonPlace.community.link("residents"),
       { page: this.page, limit: 100 },
@@ -101,6 +104,13 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     }, this));
     
     this.nextPageTrigger();
+    
+    this.$(".remove_search").removeClass("loading");
+    if (this.currentQuery) {
+      this.$(".remove_search").addClass("active");
+    } else {
+      this.$(".remove_search").addClass("inactive");
+    }
   },
   
   appendCell: function($table, el) {
@@ -161,6 +171,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   }, CommonPlace.autoActionTimeout),
   
   search: function() {
+    this.$(".remove_search").removeClass("inactive");
+    this.$(".remove_search").removeClass("active");
+    this.$(".remove_search").addClass("loading");
     this.currentQuery = this.$("input[name=search]").val();
     if (!this.currentQuery) {
       this.removeSearch();
@@ -183,6 +196,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     if (!this.$(".neighbor_finder").scrollTop()) {
       this.$(".neighbor_finder").scrollTo(this.currentScroll);
     }
+    
+    this.$(".remove_search").removeClass("active");
+    this.$(".remove_search").addClass("inactive");
   },
   
   toggleContact: function(e) {
