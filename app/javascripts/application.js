@@ -50,7 +50,7 @@
 
 var Application = Backbone.Router.extend({
 
-  initialize: function() { 
+  initialize: function() {
     this.pages = {
       faq: new FaqPage({ el: $("#main") }),
       invite: new InvitePage({ el: $("#main") }),
@@ -62,10 +62,10 @@ var Application = Backbone.Router.extend({
       account: new AccountPage({ el: $("#main") }),
       stats: new StatsPage({ el: $("#main") }),
       find_neighbors: new FindMyNeighborsPage({ el: $("#main") })
-    }; 
+    };
 
     _.invoke(this.pages, "unbind");
-    
+
     this.bindNewPosts();
   },
 
@@ -93,11 +93,11 @@ var Application = Backbone.Router.extend({
     ":community/feed_inbox": "feed_inbox",
 
     ":community/account": "account",
-    
+
     ":community/tour": "tour",
 
     ":community/stats": "stats",
-    
+
     ":community/find_neighbors": "find_neighbors"
   },
 
@@ -108,11 +108,11 @@ var Application = Backbone.Router.extend({
   invite: function(c) { this.showPage("invite"); },
 
   discount: function(c) { this.showPage("discount"); },
-  
+
   find_neighbors: function(c) { this.showPage("find_neighbors"); },
 
-  community: function(c) { 
-    this.showPage("community"); 
+  community: function(c) {
+    this.showPage("community");
     this.pages.community.lists.switchTab("all_posts");
   },
 
@@ -145,7 +145,7 @@ var Application = Backbone.Router.extend({
     this.showPage("community");
     this.pages.community.lists.showAnnouncement(new Announcement({links: {self: "/announcements/" + id}}));
   },
-  
+
   showUserWire: function(c, id) {
     this.showPage("community");
     this.pages.community.lists.showUserWire(new User({links: {self: "/users/" + id}}));
@@ -154,13 +154,13 @@ var Application = Backbone.Router.extend({
   messageUser: function(c, id) {
     this.showPage("community");
     var user = new User({ links: { self: "/users/" + id } });
-    user.fetch({ 
+    user.fetch({
       success: function() {
         var form = new MessageFormView({
           model: new Message({ messagable: user })
         });
         form.render();
-      } 
+      }
     });
   },
 
@@ -187,10 +187,10 @@ var Application = Backbone.Router.extend({
 
   tour: function(c) {
     this.community();
-    var tour = new Tour({ 
-      el: $("#main"), 
-      account: CommonPlace.account, 
-      community: CommonPlace.community 
+    var tour = new Tour({
+      el: $("#main"),
+      account: CommonPlace.account,
+      community: CommonPlace.community
     });
     tour.render();
   },
@@ -205,7 +205,8 @@ var Application = Backbone.Router.extend({
         data: JSON.stringify({
           path: page_name,
           ip_address: CommonPlace.account.get("current_sign_in_ip"),
-          original_visit_id: CommonPlace.visit_id
+          original_visit_id: CommonPlace.visit_id,
+          commonplace_account_id: CommonPlace.account.get("id")
         })
       });
     } else {
@@ -217,15 +218,15 @@ var Application = Backbone.Router.extend({
         url: "/api/stats/create_session",
         data: JSON.stringify({
           path: page_name,
-          ip_address: CommonPlace.account.get("current_sign_in_ip")
+          ip_address: CommonPlace.account.get("current_sign_in_ip"),
+          commonplace_account_id: CommonPlace.account.get("id")
         }),
         success: function(response) { CommonPlace.visit_id = response; }
       });
     }
   },
-  
+
   showPage: function(name) {
-    // LOG THE PAGE VISIT!
     this.log_visit(name);
     var page = this.pages[name];
     if (this.currentPage != page) {
@@ -236,7 +237,7 @@ var Application = Backbone.Router.extend({
       window.scrollTo(0,0);
     }
   },
-  
+
   bindNewPosts: function() {
     var self = this;
     var community = CommonPlace.community;
@@ -248,5 +249,5 @@ var Application = Backbone.Router.extend({
       });
     });
   }
-  
+
 });
