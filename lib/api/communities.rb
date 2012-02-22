@@ -71,8 +71,13 @@ class API
 
 
     get "/:community_id/residents" do |community_id|
-      residents = Community.find(community_id).residents
-      residents.to_a.slice(params["page"].to_i * params["limit"].to_i, params["limit"].to_i).to_a.to_json
+      if params["query"].present?
+        residents = Community.find(community_id).residents
+        residents.to_a.slice(params["page"].to_i * params["limit"].to_i, params["limit"].to_i).to_a.to_json
+      else
+        residents = Community.find(community_id).residents
+        residents.to_a.slice(params["page"].to_i * params["limit"].to_i, params["limit"].to_i).to_a.to_json
+      end
     end
 
     get "/:community_id/files" do |community_id|
