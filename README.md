@@ -59,7 +59,7 @@ Getting Started
   * `createuser `username
 16. Add the initial test community with `bundle exec rake db:setup`
 
-Run mongodb with `sudo mongodb start`
+Run mongodb with `sudo start mongodb`
 
 Run the server with `bundle exec foreman start` or `bundle exec rails s thin`
 
