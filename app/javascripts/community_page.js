@@ -2,15 +2,17 @@
 var CommunityPage = CommonPlace.View.extend({
   template: "main_page.main-page",
   id: "main",
+  track: true,
+  page_name: "community",
 
   initialize: function(options) {
     var self = this;
     this.account = CommonPlace.account;
     this.community = CommonPlace.community;
 
-    var profileDisplayer = new ProfileDisplayer({});    
+    var profileDisplayer = new ProfileDisplayer({});
 
-    this.postBox = new PostBox({ 
+    this.postBox = new PostBox({
       account: this.account,
       community: this.community
     });
@@ -24,7 +26,7 @@ var CommunityPage = CommonPlace.View.extend({
     this.profileBox = new ProfileBox({
       profileDisplayer: profileDisplayer
     });
-    
+
     profileDisplayer.highlightSingleUser = function(user) {
       self.lists.highlightSingleUser(user);
     }
@@ -41,7 +43,7 @@ var CommunityPage = CommonPlace.View.extend({
     CommonPlace.layout.reset();
   },
 
-  bind: function() { 
+  bind: function() {
     $("body").addClass("community");
     CommonPlace.layout.bind();
   },
@@ -55,7 +57,7 @@ var CommunityPage = CommonPlace.View.extend({
 
 
 $(function() {
-  
+
   if (Features.isActive("2012Release")) {
     $("body").addClass("fixedLayout");
     CommonPlace.layout = new FixedLayout();

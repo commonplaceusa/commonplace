@@ -1,6 +1,8 @@
 
 var InboxPage = CommonPlace.View.extend({
   template: "inbox_page/main",
+  track: true,
+  page_name: "inbox",
 
   initialize: function() {
     this.collection = new Messages([], { uri: CommonPlace.account.link("inbox") });
@@ -20,7 +22,7 @@ var InboxPage = CommonPlace.View.extend({
     });
   },
 
-  bind: function() { 
+  bind: function() {
     $("body").addClass("inbox");
     CommonPlace.layout.bind();
   },

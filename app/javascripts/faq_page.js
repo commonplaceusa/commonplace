@@ -1,6 +1,8 @@
 
 var FaqPage = CommonPlace.View.extend({
   template: "faq_page/main",
+  track: true,
+  page_name: "faq",
 
   events: {
     "submit form.ask-question": "sendQuestion"
@@ -8,7 +10,7 @@ var FaqPage = CommonPlace.View.extend({
 
   bind: function() {
     $(window)
-      .bind("resize.delegateEvents" + this.cid, 
+      .bind("resize.delegateEvents" + this.cid,
             this.setSidebarPosition)
       .bind("scroll.delegateEvents" + this.cid,
             this.setSidebarPosition);

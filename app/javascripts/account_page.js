@@ -1,6 +1,8 @@
 //= require_tree ./account_page
 var AccountPage = CommonPlace.View.extend({
   template: "account_page/main",
+  track: true,
+  page_name: "account",
 
   events: {
     "click .controls button": "editAccount",
@@ -12,13 +14,13 @@ var AccountPage = CommonPlace.View.extend({
     this.model = CommonPlace.account;
   },
 
-  
+
   afterRender: function() {
     this.$(".about").autoResize();
-    
+
     var get_posts = this.model.get("neighborhood_posts");
     this.$("[name=get-posts][value='" + get_posts + "']").attr("checked", "checked");
-    
+
     this.populateSelected(this.model.get("interests"), this.$("[name=interests]"));
     this.populateSelected(this.model.get("skills"), this.$("[name=skills]"));
     this.populateSelected(this.model.get("goods"), this.$("[name=goods]"));
@@ -27,20 +29,20 @@ var AccountPage = CommonPlace.View.extend({
     this.initAvatarUploader(this.$(".avatar .upload"));
 
   },
-  
+
   populateSelected: function(list, el) {
     _.each(list, function(item) {
       var option = el.children("[value='" + item + "']");
 
       option.attr("selected", "selected");
     });
-    
+
   },
-  
+
   editAccount: function(e) {
     e && e.preventDefault();
     var self = this;
-    
+
     var changes = {
       name: this.$("[name=full_name]").val(),
       about: this.$("[name=about]").val(),
@@ -50,7 +52,7 @@ var AccountPage = CommonPlace.View.extend({
       goods: this.$("[name=goods]").val(),
       neighborhood_posts: this.$("[name=get-posts]:checked").val()
     };
-    
+
     if (this.$("[name=password]").val()) {
       var pass = this.$("[name=password]").val();
       var redundant = this.$("[name=password-redundant]").val();
@@ -64,14 +66,14 @@ var AccountPage = CommonPlace.View.extend({
         return;
       }
     }
-    
+
     this.model.save(changes, {
       success: function() { self.showSuccess(); },
       error: function(m, response) { self.showError(response); }
     });
 
   },
-  
+
   showSuccess: function() {
     this.render();
     this.$("select.list").chosen();
@@ -79,26 +81,26 @@ var AccountPage = CommonPlace.View.extend({
     this.$(".error").hide();
     $(window).scrollTop(0);
   },
-  
+
   showError: function(response) {
     this.$(".error").text(response.responseText);
     this.$(".error").show();
     this.$(".success").hide();
     $(window).scrollTop(0);
   },
-  
+
   fullName: function() { return this.model.get("name"); },
-  
+
   about: function() { return this.model.get("about"); },
-  
+
   email: function() { return this.model.get("email"); },
-  
+
   avatarUrl: function() { return this.model.get("avatar_url"); },
-  
+
   interests: function() { return CommonPlace.community.get('interests'); },
-  
+
   skills: function() { return CommonPlace.community.get('skills'); },
-  
+
   goods: function() { return CommonPlace.community.get('goods'); },
 
   initAvatarUploader: function($el) {
@@ -110,11 +112,11 @@ var AccountPage = CommonPlace.View.extend({
       responseType: 'json',
       onChange: function(file, extension){},
       onSubmit: function(file, extension) {},
-      onComplete: function(file, response) { 
-        self.model.set(response); 
+      onComplete: function(file, response) {
+        self.model.set(response);
         self.render();
       }
-    });    
+    });
   },
 
   deleteAvatar: function(e) {
@@ -139,7 +141,7 @@ var AccountPage = CommonPlace.View.extend({
     $("body").addClass("account");
   },
 
-  unbind: function() { 
+  unbind: function() {
     $("body").removeClass("account");
   }
 });
