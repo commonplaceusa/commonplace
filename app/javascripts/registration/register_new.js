@@ -18,16 +18,16 @@ var RegisterNewUserView = CommonPlace.View.extend({
   
   afterRender: function() {
     this.options.slideIn(this.el);
+    
     if (this.data.isFacebook) {
       this.$("input[name=full_name]").val(this.data.full_name);
-      if (this.isRealEmail()) {
-        this.$("input[name=email]").val(this.data.email);
-      }
-      this.$("input[name=street_address]").focus();
-    } else {
-      this.$("input[name=full_name]").focus();
+      if (this.isRealEmail()) { this.$("input[name=email]").val(this.data.email); }
     }
+    
     this.$("input[placeholder]").placeholder();
+    
+    var focus = (this.data.isFacebook) ? (this.isRealEmail() ? "street_address" : "email") : "full_name";
+    this.$("input[name=" + focus + "]").focus();
   },
   
   community_name: function() { return this.communityExterior.name; },
@@ -82,6 +82,6 @@ var RegisterNewUserView = CommonPlace.View.extend({
   
   isRealEmail: function() {
     if (!this.data || !this.data.email) { return false; }
-    return this.data.email.search("proxymail") > -1;
+    return this.data.email.search("proxymail") == -1;
   }
 });

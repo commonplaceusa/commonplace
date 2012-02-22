@@ -15,7 +15,8 @@
 </div>
 
 <form class="user_facebook">
-  <h4>Add your street address</h4>
+  {{#isRealEmail}}<h4>Add your street address</h4>{{/isRealEmail}}
+  {{^isRealEmail}}<h4>Add your email and street address</h4>{{/isRealEmail}}
   <ul>
     <li>
       <input type="text" name="full_name" placeholder="Full name">
