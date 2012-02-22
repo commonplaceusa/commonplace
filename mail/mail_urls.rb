@@ -16,6 +16,10 @@ module MailUrls
     url("/#{community.slug}#{path}")
   end
 
+  def community_home_url(path)
+    community_url("")
+  end
+
   def asset_url(path)
     if path.start_with?("http")
       path
