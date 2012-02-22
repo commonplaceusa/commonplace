@@ -1,6 +1,8 @@
 var InvitePage = CommonPlace.View.extend({
   template: "invite_page/main",
-  
+  track: true,
+  page_name: "invite",
+
   afterRender: function() {
     this.$('input[placeholder], textarea[placeholder]').placeholder();
     this.$('textarea').autoResize();

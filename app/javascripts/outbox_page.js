@@ -1,6 +1,8 @@
 
 var OutboxPage = CommonPlace.View.extend({
   template: "outbox_page/main",
+  track: true,
+  page_name: "outbox",
 
   initialize: function() {
     this.collection = new Messages([], { uri: CommonPlace.account.link("sent") });
@@ -20,7 +22,7 @@ var OutboxPage = CommonPlace.View.extend({
     });
   },
 
-  bind: function() { 
+  bind: function() {
     $("body").addClass("inbox");
     CommonPlace.layout.bind();
   },
