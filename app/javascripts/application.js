@@ -195,39 +195,7 @@ var Application = Backbone.Router.extend({
     tour.render();
   },
 
-  log_visit: function(page_name) {
-    if (CommonPlace.visit_id) {
-      // UPDATE
-      $.ajax({
-        type: "PUT",
-        dataType: "json",
-        url: "/api/stats/update_session",
-        data: JSON.stringify({
-          path: page_name,
-          ip_address: CommonPlace.account.get("current_sign_in_ip"),
-          original_visit_id: CommonPlace.visit_id,
-          commonplace_account_id: CommonPlace.account.get("id")
-        })
-      });
-    } else {
-      // CREATE SESSION
-      // SAVE SESSION DATA IN CommonPlace.visit_id
-      $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "/api/stats/create_session",
-        data: JSON.stringify({
-          path: page_name,
-          ip_address: CommonPlace.account.get("current_sign_in_ip"),
-          commonplace_account_id: CommonPlace.account.get("id")
-        }),
-        success: function(response) { CommonPlace.visit_id = response; }
-      });
-    }
-  },
-
   showPage: function(name) {
-    this.log_visit(name);
     var page = this.pages[name];
     if (this.currentPage != page) {
       if (this.currentPage) { this.currentPage.unbind(); }
