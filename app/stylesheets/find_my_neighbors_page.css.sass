@@ -119,8 +119,35 @@
       font-size: 14px
       text-shadow: #000000 1px 1px 1px
       margin-bottom: 5px
+      
+    input.search
+      width: 366px
+      +border-radius(5px)
+      +box-shadow(#ccc 1px 1px 2px 0 inset)
+      border: 1px solid #ccc
+      padding: 5px 5px
+      font-size: 18px
+      font-weight: 300
+      display: block
+      font-family: Helvetica, sans-serif
+      
+    .remove_search
+      position: absolute
+      top: 43px
+      right: 30px
+      width: 25px
+      height: 25px
+      background-repeat: no-repeat
+      &.loading
+        background-image: image-url("shared/icons/waiting.gif")
+      &.active
+        background-image: image-url("shared/icons/cancel.png")
+        cursor: pointer
+      &.inactive
+        background-image: image-url("icons/search.png")
     
     .neighbor_finder, .search_finder
+      margin-top: 10px
       width: 380px
       background: #ac322f
       -webkit-border-radius: 5px
