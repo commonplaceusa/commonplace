@@ -36,24 +36,28 @@ Getting Started
 5.  `git clone git@github.com:commonplaceusa/commonplace.git`
 6.  `cd commonplace`
 7.  `gem install bundler`
-8.  Install Redis
+8. If on OSX, install Homebrew
+9.  Install Redis
   * `sudo apt-get install redis-server`
+  * `brew install redis`
 
-9.  Install ImageMagick 
+10.  Install ImageMagick
   * `sudo apt-get install imagemagick libmagick9-dev`
 
-10. Install Postgres
+11. Install Postgres
   * `sudo apt-get install postgresql libpq-dev`
-  
-11. Install MongoDB
-  * `sudo apt-get install mongodb`
+  * `brew install postgres`
 
-12. `bundle install`
-13. `cp config/database.yml.example config/database.yml`
-14. Authenticate for the database
+12. Install MongoDB
+  * `sudo apt-get install mongodb`
+  * `brew install mongodb`
+
+13. `bundle install`
+14. `cp config/database.yml.example config/database.yml`
+15. Authenticate for the database
   * `sudo su postgres`
   * `createuser `username
-15. Add the initial test community with `bundle exec rake db:setup`
+16. Add the initial test community with `bundle exec rake db:setup`
 
 Run mongodb with `sudo mongodb start`
 
