@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery-ui
 //= require placeholder
+//= require modernizr
 //= require underscore
 //= require mustache
 //= require json2
