@@ -9,6 +9,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     "click img.facebook": "facebook",
     "keyup input.search": "debounceSearch",
     "click .remove_search": "removeSearch",
+    "click .no_results": "removeSearch",
     "click input.contact": "toggleContact"
   },
 
@@ -17,6 +18,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     this.page = 0;
     this.currentQuery = "";
     
+    this.$(".no_results").hide();
     this.$(".search_finder").hide();
 
     this.$(".neighbor_finder").scroll(function() {
@@ -32,9 +34,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   },
 
   nextPage: function() {
-    this.$(".remove_search").removeClass("inactive");
-    this.$(".remove_search").removeClass("active");
-    this.$(".remove_search").addClass("loading");
+    this.showGif("loading");
     $.getJSON(
       "/api" + CommonPlace.community.link("residents"),
       { page: this.page, limit: 100 },
@@ -84,7 +84,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
           }, this));
           this.appendPage(neighbors);
         } else {
-          // fill the table with a no-results notice
+          this.$(".no_results").show();
+          this.$(".query").text(this.currentQuery);
+          this.showGif("active");
         }
       }, this)
     );
@@ -105,12 +107,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     
     this.nextPageTrigger();
     
-    this.$(".remove_search").removeClass("loading");
-    if (this.currentQuery) {
-      this.$(".remove_search").addClass("active");
-    } else {
-      this.$(".remove_search").addClass("inactive");
-    }
+    this.showGif( this.currentQuery ? "active" : "inactive" );
   },
   
   appendCell: function($table, el) {
@@ -174,9 +171,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   }, CommonPlace.autoActionTimeout),
   
   search: function() {
-    this.$(".remove_search").removeClass("inactive");
-    this.$(".remove_search").removeClass("active");
-    this.$(".remove_search").addClass("loading");
+    this.showGif("loading");
+    this.$(".no_results").hide();
     this.currentQuery = this.$("input[name=search]").val();
     if (!this.currentQuery) {
       this.removeSearch();
@@ -200,13 +196,19 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       this.$(".neighbor_finder").scrollTo(this.currentScroll);
     }
     
-    this.$(".remove_search").removeClass("active");
-    this.$(".remove_search").addClass("inactive");
+    this.showGif("inactive");
   },
   
   toggleContact: function(e) {
     this.$("input.contact").removeAttr("checked");
     $(e.currentTarget).attr("checked", "checked");
+  },
+  
+  showGif: function(className) {
+    this.$(".remove_search").removeClass("inactive");
+    this.$(".remove_search").removeClass("active");
+    this.$(".remove_search").removeClass("loading");
+    this.$(".remove_search").addClass(className);
   },
 
   finish: function() {
