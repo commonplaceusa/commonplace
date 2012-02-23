@@ -137,10 +137,16 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     };
 
     if (data.neighbors.length) {
-      $.post("/api" + CommonPlace.account.link("neighbors"), data, _.bind(function() {
-        this.finish()
-      }, this));
-    } else { this.finish(); }
+      $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/api" + CommonPlace.account.link("neighbors"), 
+        data: JSON.stringify(data), 
+        success: _.bind(function() { this.finish(); }, this),
+      });
+    } else { 
+      this.finish(); 
+    }
   },
 
   facebook: function(e) {

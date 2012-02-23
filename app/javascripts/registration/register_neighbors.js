@@ -130,10 +130,16 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     };
 
     if (data.neighbors.length) {
-      $.post("/api" + CommonPlace.account.link("neighbors"), data, _.bind(function() {
-        this.finish()
-      }, this));
-    } else { this.finish(); }
+      $.ajax({
+        type: "POST",
+        url: "/api" + CommonPlace.account.link("neighbors"), 
+        data: JSON.stringify(data), 
+        contentType: "application/json",
+        success: _.bind(function() { this.finish(); }, this),
+      });
+    } else { 
+      this.finish(); 
+    }
   },
   
   facebook: function(e) {

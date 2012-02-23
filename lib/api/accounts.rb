@@ -116,7 +116,18 @@ class API
     end
     
     post "/neighbors" do
-      #stub
+      request_body["neighbors"].each do |neighbor|
+        first_name, last_name = neighbor["name"].split(" ", 2)
+        resident = current_user.community
+          .residents
+          .find_by_first_name_and_last_name(first_name,last_name)
+
+        resident.metadata[:friends] ||= []
+        resident.metadata[:friends] << current_user.name
+        resident.metadata[:can_contact] ||= request_body["can_contact"]
+        resident.save
+      end
+      halt 200
     end
     
     get "/inbox" do
