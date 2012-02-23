@@ -30,7 +30,9 @@ var RegisterNewUserView = CommonPlace.View.extend({
     }
     
     var focus = (this.data.isFacebook) ? (this.isRealEmail() ? "street_address" : "email") : "full_name";
-    this.$("input[name=" + focus + "]").focus();
+    if (Modernizr.input.placeholder) {
+      this.$("input[name=" + focus + "]").focus();
+    }
   },
   
   community_name: function() { return this.communityExterior.name; },
