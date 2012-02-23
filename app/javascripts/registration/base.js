@@ -89,6 +89,14 @@ var RegistrationModal = CommonPlace.View.extend({
           data: data
         });
       },
+      feed: function() {
+        return new RegisterFeedListView({
+          nextPage: nextPage,
+          slideIn: function(el) { self.slideIn(el); },
+          communityExterior: self.communityExterior,
+          data: data
+        });
+      },
       group: function() {
         return new RegisterGroupListView({
           nextPage: nextPage,
