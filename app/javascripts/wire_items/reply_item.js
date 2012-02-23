@@ -7,7 +7,7 @@ var ReplyWireItem = WireItem.extend({
 
   afterRender: function() {
     this.$(".reply-body").truncate({max_length: 450});
-    this.$(".markdown p").append(this.$(".controls"));
+    this.$(".markdown p").last().append(this.$(".controls"));
   },
 
   events: {
