@@ -120,10 +120,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   submit: function(e) {
     if (e) { e.preventDefault(); }
     
-    if (this.currentQuery) {
-      this.removeSearch();
-      this.submit();
-    }
+    if (this.currentQuery) { this.removeSearch(); }
 
     var data = {
       neighbors: _.map(this.$(".neighbor_finder input[name=neighbors_list]:checked"), function(neighbor) {
