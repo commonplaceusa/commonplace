@@ -7,6 +7,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     "click img.facebook": "facebook",
     "keyup input.search": "debounceSearch",
     "click .remove_search": "removeSearch",
+    "click .no_results": "removeSearch",
     "click input.contact": "toggleContact"
   },
   
@@ -15,6 +16,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     this.page = 0;
     this.currentQuery = "";
     
+    this.$(".no_results").hide();
     this.$(".search_finder").hide();
     
     this.$(".neighbor_finder").scroll(function() {
@@ -82,7 +84,9 @@ var RegisterNeighborsView = CommonPlace.View.extend({
           }, this));
           this.appendPage(neighbors);
         } else {
-          // fill the table with a no-results notice
+          this.$(".no_results").show();
+          this.$(".query").text(this.currentQuery);
+          this.showGif("active");
         }
       }, this)
     );
@@ -174,6 +178,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   }, CommonPlace.autoActionTimeout),
   
   search: function() {
+    this.$(".no_results").hide();
     this.showGif("loading");
     this.currentQuery = this.$("input[name=search]").val();
     if (!this.currentQuery) {
