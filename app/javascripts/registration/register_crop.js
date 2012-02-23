@@ -51,7 +51,7 @@ var RegisterCropView = CommonPlace.View.extend({
   submit: function(e) {
     if (e) { e.preventDefault(); }
     CommonPlace.account.cropAvatar(this.coords, _.bind(function() {
-      this.options.nextPage("group", this.options.data);
+      this.options.nextPage("feed", this.options.data);
     }, this));
   }
 });

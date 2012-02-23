@@ -53,6 +53,27 @@ class CommunityExterior
     end
   end
   
+  def feeds
+    @community.feeds.featured.map do |feed|
+      {
+        "id" => feed.id,
+        "name" => feed.name,
+        "avatar_url" => feed.avatar_url(:normal)
+      }
+    end
+  end
+  
+  def groups
+    @community.groups.map do |group|
+      {
+        "id" => group.id,
+        "name" => group.name,
+        "avatar_url" => group.avatar_url,
+        "about" => group.about
+      }
+    end
+  end
+  
   def referral_sources
     [
       "Flyer at my door",
@@ -103,7 +124,8 @@ class CommunityExterior
     t.add :goods
     t.add :skills
     t.add :referral_sources
-    t.add :grouplikes
+    t.add :feeds
+    t.add :groups
     t.add :links
     t.add :statistics
     t.add :has_residents_list

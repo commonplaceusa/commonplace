@@ -64,7 +64,7 @@ var RegisterProfileView = CommonPlace.View.extend({
         if (this.hasAvatarFile && !this.data.isFacebook) {
           this.avatarUploader.submit();
         } else {
-          this.nextPage("group", this.data);
+          this.nextPage("feed", this.data);
         }
       }
     }, this));

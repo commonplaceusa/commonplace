@@ -1,5 +1,5 @@
-var RegisterGroupListView = CommonPlace.View.extend({
-  template: "registration.group",
+var RegisterFeedListView = CommonPlace.View.extend({
+  template: "registration.feed",
   
   events: {
     "click input.continue": "submit",
@@ -7,11 +7,11 @@ var RegisterGroupListView = CommonPlace.View.extend({
   },
 
   afterRender: function() {
-    var groups = this.options.communityExterior.groups;
-    var $ul = this.$("ul.groups_container");
+    var feeds = this.options.communityExterior.feeds;
+    var $ul = this.$("ul.feeds_container");
     
-    _.each(groups, _.bind(function(group) {
-      var itemView = new this.GroupItem({ model: group });
+    _.each(feeds, _.bind(function(feed) {
+      var itemView = new this.FeedItem({ model: feed });
       itemView.render();
       $ul.append(itemView.el);
     }, this));
@@ -19,8 +19,8 @@ var RegisterGroupListView = CommonPlace.View.extend({
     this.options.slideIn(this.el);
     
     var height = 0;
-    this.$(".groups_container li").each(function(index) {
-      if (index == 3) { return false; }
+    this.$(".feeds_container li").each(function(index) {
+      if (index == 4) { return false; }
       height = height + $(this).outerHeight(true);
     });
     this.$("ul").height(height + "px");
@@ -31,24 +31,20 @@ var RegisterGroupListView = CommonPlace.View.extend({
   submit: function(e) {
     if (e) { e.preventDefault(); }
     
-    var groups = _.map(this.$("input[name=groups_list]:checked"), function(group) { return $(group).val(); });
-    if (_.isEmpty(groups)) {
+    var feeds = _.map(this.$("input[name=feeds_list]:checked"), function(feed) { return $(feed).val(); });
+    if (_.isEmpty(feeds)) {
       this.finish();
     } else {
-      CommonPlace.account.subscribeToGroup(groups, _.bind(function() { this.finish(); }, this));
+      CommonPlace.account.subscribeToFeed(feeds, _.bind(function() { this.finish(); }, this));
     }
   },
   
   finish: function() {
-    if (this.options.communityExterior.has_residents_list) {
-      this.options.nextPage("neighbors", this.options.data);
-    } else {
-      this.options.finish();
-    }
+    this.options.nextPage("group", this.options.data);
   },
   
-  GroupItem: CommonPlace.View.extend({
-    template: "registration.group-item",
+  FeedItem: CommonPlace.View.extend({
+    template: "registration.feed-item",
     tagName: "li",
     
     events: { "click": "check" },
@@ -56,9 +52,10 @@ var RegisterGroupListView = CommonPlace.View.extend({
     initialize: function(options) { this.model = options.model; },
     
     avatar_url: function() { return this.model.avatar_url; },
-    group_id: function() { return this.model.id; },
-    group_name: function() { return this.model.name; },
-    about: function() { return this.model.about; },
+    
+    feed_id: function() { return this.model.id; },
+    
+    feed_name: function() { return this.model.name; },
     
     check: function(e) {
       if (e) { e.preventDefault(); }
