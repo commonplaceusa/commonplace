@@ -1,0 +1,22 @@
+!!! 5
+%html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
+  %head
+    = render :partial => 'layouts/common_head', :locals => { :javascripts => ["art_project"], :stylesheets => ["art_project"] }
+
+  %body
+
+  #wrapper
+    = render 'layouts/registration_header'
+
+    #main
+      #fb-root
+  
+      %div{:style=>"clear: both;"}
+  
+      :javascript
+        var project = new ArtProjectView({ communityExterior: #{serialize current_community.exterior} });
+        project.render();
+
+    #wrapper-footer
+
+  = render "layouts/footer"

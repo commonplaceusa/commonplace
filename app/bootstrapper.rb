@@ -83,6 +83,11 @@ class Bootstrapper < Sinatra::Base
     haml :learn_more
   end
 
+  get ":community/art_project" do
+    @community = Community.find_by_slug(params[:community])
+    erb :art_project
+  end
+
   get %r{([\w]+)/register.*} do 
     @community = Community.find_by_slug(params[:captures].first)
     erb :register

@@ -1,0 +1,56 @@
+@import core
+@import logged_out_header
+@import neutral_notification
+
+#art_project
+  h2
+    font-size: 30px
+  h1
+    font-size: 50px
+    font-weight: bold
+
+
+
+
+
+
+
+
+
+
+body
+  font-family: Rockwell,Georgia,Times,"Times New Roman",serif
+  background-color: #cee7fe
+
+.important-notification
+  +neutral-notification
+
+#wrapper
+  #main
+    width: 960px
+    margin: auto
+    position: relative
+    z-index: 1000
+
+@include sticky-footer(230px, "#wrapper", "#wrapper-footer", "#footer")
+
+#footer
+  background: transparent image-url('footer-houses.png') repeat-x center bottom
+  height: 20px
+  padding: 200px 50px 10px
+  color: #ADD794
+  +sans
+  font-size: 0.8em
+  .left_text
+    color: #ADD794
+    float: left
+  .right_text
+    color: #ADD794
+    float: right
+  a
+    color: #BFF4A0
+    font-weight: bold
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+      
