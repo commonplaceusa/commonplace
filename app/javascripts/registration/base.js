@@ -62,6 +62,7 @@ var RegistrationModal = CommonPlace.View.extend({
   showPage: function(page, data) {
     var self = this;
     var nextPage = function(next, data) { self.showPage(next, data); }
+    var slideIn = function(el, callback) { self.slideIn(el, callback); }
     
     if (!this.firstSlide) { this.slideOut(); }
     
@@ -69,7 +70,7 @@ var RegistrationModal = CommonPlace.View.extend({
       new_user: function() {
         return new RegisterNewUserView({
           nextPage: nextPage,
-          slideIn: function(el) { self.slideIn(el); },
+          slideIn: slideIn,
           communityExterior: self.communityExterior,
           data: data
         });
@@ -78,21 +79,21 @@ var RegistrationModal = CommonPlace.View.extend({
         return new RegisterProfileView({
           nextPage: nextPage,
           data: data,
-          slideIn: function(el) { self.slideIn(el); },
+          slideIn: slideIn,
           communityExterior: self.communityExterior
         });
       },
       crop: function() {
         return new RegisterCropView({
           nextPage: nextPage,
-          slideIn: function(el) { self.slideIn(el); },
+          slideIn: slideIn,
           data: data
         });
       },
       feed: function() {
         return new RegisterFeedListView({
           nextPage: nextPage,
-          slideIn: function(el) { self.slideIn(el); },
+          slideIn: slideIn,
           communityExterior: self.communityExterior,
           data: data
         });
@@ -100,7 +101,7 @@ var RegistrationModal = CommonPlace.View.extend({
       group: function() {
         return new RegisterGroupListView({
           nextPage: nextPage,
-          slideIn: function(el) { self.slideIn(el); },
+          slideIn: slideIn,
           communityExterior: self.communityExterior,
           data: data,
           finish: self.options.finish
@@ -109,7 +110,7 @@ var RegistrationModal = CommonPlace.View.extend({
       neighbors: function() {
         return new RegisterNeighborsView({
           finish: self.options.finish,
-          slideIn: function(el) { self.slideIn(el); },
+          slideIn: slideIn,
           communityExterior: self.communityExterior,
           data: data,
           nextPage: nextPage
@@ -138,7 +139,7 @@ var RegistrationModal = CommonPlace.View.extend({
     );
   },
   
-  slideIn: function(el) {
+  slideIn: function(el, callback) {
     var $next = this.$("#next-registration-page");
     var $window = $(window);
     var $current = this.$("#current-registration-page");
@@ -160,6 +161,7 @@ var RegistrationModal = CommonPlace.View.extend({
       this.centerEl();
       $next.empty();
       $next.hide();
+      if (callback) { callback(); }
     }, this));
   },
   

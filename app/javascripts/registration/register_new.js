@@ -17,17 +17,17 @@ var RegisterNewUserView = CommonPlace.View.extend({
   },
   
   afterRender: function() {
-    this.options.slideIn(this.el);
+    this.options.slideIn(this.el, _.bind(function() {
+      var focus = (this.data.isFacebook) ? (this.isRealEmail() ? "street_address" : "email") : "full_name";
+      this.$("input[name=" + focus + "]").focus();
+    }, this));
+    
+    this.$("input[placeholder]").placeholder();
     
     if (this.data.isFacebook) {
       this.$("input[name=full_name]").val(this.data.full_name);
       if (this.isRealEmail()) { this.$("input[name=email]").val(this.data.email); }
     }
-    
-    this.$("input[placeholder]").placeholder();
-    
-    var focus = (this.data.isFacebook) ? (this.isRealEmail() ? "street_address" : "email") : "full_name";
-    this.$("input[name=" + focus + "]").focus();
   },
   
   community_name: function() { return this.communityExterior.name; },
