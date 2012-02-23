@@ -6,7 +6,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   events: {
     "click input.continue": "submit",
     "submit form": "submit",
-    "click a.facebook": "facebook",
+    "click img.facebook": "facebook",
     "keyup input.search": "debounceSearch",
     "click .remove_search": "removeSearch",
     "click input.contact": "toggleContact"
