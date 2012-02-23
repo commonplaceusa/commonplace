@@ -280,20 +280,46 @@
       width: 380px
       float: right
       
-      .neighbor_finder
+      input.search
+        width: 366px
+        +border-radius(5px)
+        +box-shadow(#ccc 1px 1px 2px 0 inset)
+        border: 1px solid #ccc
+        padding: 5px 5px
+        font-size: 18px
+        font-weight: 300
+        display: block
+        font-family: Helvetica, sans-serif
+      
+      .remove_search
+        position: absolute
+        top: 43px
+        right: 30px
+        width: 25px
+        height: 25px
+        background-repeat: no-repeat
+        &.loading
+          background-image: image-url("shared/icons/waiting.gif")
+        &.active
+          background-image: image-url("shared/icons/cancel.png")
+          cursor: pointer
+        &.inactive
+          background-image: image-url("icons/search.png")
+      
+      .neighbor_finder, .search_finder
+        margin-top: 10px
         width: 380px
         background: #ac322f
-        -webkit-border-radius: 5px
         overflow-y: scroll
-        height: 385px
-
+        height: 340px
+        +border-radius(5px)
+        border: 1px solid black
+        
         table 
           font-family: Helvetica
           font-size: 13px
           border-spacing: 10px
           border-collapse: separate
-          -webkit-border-radius: 5px
-          border: 1px solid #511311
           background: white
           
           td
@@ -305,6 +331,9 @@
             &.checked, &:hover
               background: #fef8ce
               cursor: pointer
+            &.checked
+              border: 1px solid #ffe534
+              +box-shadow(#bbb 2px 2px 2px)
             img
               float: left
               margin-right: 10px
