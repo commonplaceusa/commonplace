@@ -41,7 +41,10 @@ var EventForm = CommonPlace.View.extend({
         return $(this).val(); 
       }).toArray()
     }, {
-      success: function() { self.render(); },
+      success: function() {
+        CommonPlace.community.events.trigger("sync");
+        self.render();
+      },
       error: function(attribs, response) {
         self.$("button").show();
         self.$(".spinner").hide();

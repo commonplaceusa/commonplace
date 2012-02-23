@@ -53,6 +53,7 @@ var PostForm = CommonPlace.View.extend({
     var self = this;
     postCollection.create(data, {
       success: function() {
+        postCollection.trigger("sync");
         self.render();
         self.resetLayout();
       },
