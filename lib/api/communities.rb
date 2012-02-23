@@ -92,9 +92,8 @@ class API
         residents = residents.where(<<CONDITION,terms)
 upper(first_name || ' ' || last_name)::tsvector @@ tsquery(upper(?))
 CONDITION
+        residents = residents.limit(params["limit"].to_i)
       end
-      residents = residents.offset(params["page"].to_i * params["limit"].to_i)
-      residents = residents.limit(params["limit"].to_i)
       serialize residents
     end
 

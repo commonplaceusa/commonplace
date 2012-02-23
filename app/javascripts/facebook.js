@@ -73,7 +73,7 @@ function facebook_connect_friends(options) {
 }
 
 function facebook_connect_user_picture(options) {
-  fbConnect("/" + options.id + "/picture?type=square", "", function(auth_token, response) {
+  FB.api("/" + options.id + "/picture?type=square", function(response) {
     options.success(response);
   });
 }

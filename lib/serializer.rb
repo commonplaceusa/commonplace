@@ -257,6 +257,7 @@ module Serializer
         "post_count" => o.posts.count,
         "reply_count" => o.replies.count,
         "about" => o.about,
+        "facebook_user" => o.facebook_user? ? true : false,
         "links" => {
           "avatar" => "/account/avatar",
           "crop" => "/account/crop",
