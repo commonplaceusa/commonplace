@@ -88,7 +88,10 @@ class API
     get "/:community_id/residents" do |community_id|
       residents = Community.find(community_id).residents
       if params["query"].present?
-        residents = residents.where("first_name ILIKE ? OR last_name ILIKE ?", "%#{params["query"]}%", "%#{params["query"]}%")
+        terms = params["query"].split(" ").join(" | ")
+        residents = residents.where(<<CONDITION,terms)
+upper(first_name || ' ' || last_name)::tsvector @@ tsquery(upper(?))
+CONDITION
       end
       residents = residents.offset(params["page"].to_i * params["limit"].to_i)
       residents = residents.limit(params["limit"].to_i)
