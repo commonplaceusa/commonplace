@@ -24,7 +24,10 @@ var RegisterProfileView = CommonPlace.View.extend({
       this.initAvatarUploader(this.$(".avatar_file_browse"));
     }
     
-    this.options.slideIn(this.el);
+    if (!this.current) {
+      this.options.slideIn(this.el);
+      this.current = true;
+    }
     
     this.$("textarea").autoResize();
     
