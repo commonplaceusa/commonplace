@@ -70,6 +70,10 @@ class API
         }.flatten
       end
 
+      def neo
+        @_neography_rest ||= Neography::Rest.new
+      end
+
     end
 
     get "/:community_slug" do |community_slug|
@@ -82,13 +86,13 @@ class API
 
 
     get "/:community_id/residents" do |community_id|
+      residents = Community.find(community_id).residents
       if params["query"].present?
-        residents = Community.find(community_id).residents
-        residents.to_a.slice(params["page"].to_i * params["limit"].to_i, params["limit"].to_i).to_a.to_json
-      else
-        residents = Community.find(community_id).residents
-        residents.to_a.slice(params["page"].to_i * params["limit"].to_i, params["limit"].to_i).to_a.to_json
+        residents = residents.where("first_name ILIKE ? OR last_name ILIKE ?", "%#{params["query"]}%", "%#{params["query"]}%")
       end
+      residents = residents.offset(params["page"].to_i * params["limit"].to_i)
+      residents = residents.limit(params["limit"].to_i)
+      serialize residents
     end
 
     get "/:community_id/files" do |community_id|
