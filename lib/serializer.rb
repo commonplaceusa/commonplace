@@ -34,6 +34,9 @@ module Serializer
         "address" => o.address
       }
 
+      when Resident
+        { "first_name" => o.first_name, "last_name" => o.last_name }
+
       when OrganizerDataPoint
       {
         "address" => o.address,
