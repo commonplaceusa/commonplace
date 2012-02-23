@@ -204,7 +204,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   },
 
   finish: function() {
-    // redirect to the community's main page
+    window.location.pathname = "/" + CommonPlace.community.get("slug");
   },
 
   NeighborItemView: CommonPlace.View.extend({
