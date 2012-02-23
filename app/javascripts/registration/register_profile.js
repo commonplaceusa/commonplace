@@ -46,6 +46,7 @@ var RegisterProfileView = CommonPlace.View.extend({
   
   submit: function(e) {
     if (e) { e.preventDefault(); }
+    this.$(".error").hide();
     this.data.password = this.$("input[name=password]").val();
     this.data.about = this.$("textarea[name=about]").val();
     
@@ -65,6 +66,13 @@ var RegisterProfileView = CommonPlace.View.extend({
           this.avatarUploader.submit();
         } else {
           this.nextPage("feed", this.data);
+        }
+      } else {
+        if (!_.isEmpty(response.facebook)) {
+          window.location.pathname = this.communityExterior.links.facebook_login;
+        } else if (!_.isEmpty(response.password)) {
+          this.$(".error").text(response.password[0]);
+          this.$(".error").show();
         }
       }
     }, this));
