@@ -8,7 +8,6 @@ var DeleteAccountForm = CommonPlace.View.extend({
   deleteAccount: function() {
     CommonPlace.account.destroy({ 
       success: function() {
-        alert("success");
         window.location.href = "/" + CommonPlace.community.get('slug');
       }
     });
