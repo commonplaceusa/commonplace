@@ -6,7 +6,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     "submit form": "submit",
     "click img.facebook": "facebook",
     "keyup input.search": "debounceSearch",
-    "click .remove_search": "removeSearch",
+    "click .remove_search.active": "removeSearch",
     "click .no_results": "removeSearch",
     "click input.contact": "toggleContact"
   },
