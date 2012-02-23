@@ -5,28 +5,26 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     "click input.continue": "submit",
     "submit form": "submit",
     "click a.facebook": "facebook",
-    "click a.email": "email"
-  },
-  
-  initialize: function(options) {
-    this.page = 0;
-    this.data = options.data;
+    "keyup input.search": "debounceSearch",
+    "click .remove_search": "removeSearch",
+    "click input.contact": "toggleContact"
   },
   
   afterRender: function() {
-    this.options.slideIn(this.el);
     var self = this;
+    this.page = 0;
+    this.currentQuery = "";
+    
+    this.$(".search_finder").hide();
     
     this.$(".neighbor_finder").scroll(function() {
-      if (($(this).scrollTop() + 10) > (this.scrollHeight - $(this).height())) { self.nextPageThrottled(); }
+      if (($(this).scrollTop() + 30) > (this.scrollHeight - $(this).height())) { self.nextPageThrottled(); }
     });
     
-    if (this.data.isFacebook) {
-      this.facebook();
-    } else {
-      this.nextPageTrigger();
-      this.nextPageThrottled();
-    }
+    this.nextPageTrigger();
+    this.nextPageThrottled();
+    
+    this.options.slideIn(this.el);
   },
   
   nextPageTrigger: function() {
@@ -34,9 +32,10 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   },
   
   nextPage: function() {
+    this.showGif("loading");
     $.getJSON(
       "/api" + this.options.communityExterior.links.registration.residents,
-      { page: this.page, limit: 50 },
+      { page: this.page, limit: 100 },
       _.bind(function(response) {
         
         if (response.length) {
@@ -47,7 +46,8 @@ var RegisterNeighborsView = CommonPlace.View.extend({
             var fbUser = this.getFacebookUser(neighbor.first_name + " " + neighbor.last_name);
             var itemView = new this.NeighborItemView({
               model: neighbor,
-              fbUser: fbUser
+              fbUser: fbUser,
+              search: false
             });
             (!_.isEmpty(fbUser)) ? neighbors.unshift(itemView) : neighbors.push(itemView);
             
@@ -59,46 +59,98 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     );
   },
   
-  appendPage: function(neighbors) {
-    var $row;
-    var $table = this.$("table");
-    var $lastRow = $(_.last($table[0].rows));
-    if (this.page && $table[0].rows.length && $lastRow[0].cells.length == 1) {
-      var itemView = neighbors.shift();
-      itemView.render();
-      $lastRow.append(itemView.el);
-    }
-    
-    _.each(neighbors, _.bind(function(itemView, index) {
-      itemView.render();
-      
-      if (index % 2 === 0) { $row = $($table[0].insertRow(-1)); }
-      $row.append(itemView.el);
-    }, this));
-    this.nextPageTrigger();
+  searchPage: function() {
+    $.getJSON(
+      "/api" + this.options.communityExterior.links.registration.residents,
+      { limit: 100, query: this.currentQuery },
+      _.bind(function(response) {
+        if (response.length) {
+          var neighbors = [];
+          _.each(response, _.bind(function(neighbor) {
+            var fbUser = this.getFacebookUser(neighbor.first_name + " " + neighbor.last_name);
+            var itemView = new this.NeighborItemView({
+              model: neighbor,
+              fbUser: fbUser,
+              search: true,
+              addFromSearch: _.bind(function(el) {
+                this.appendCell($(".neighbor_finder table"), el);
+                this.removeSearch();
+                this.$(".neighbor_finder").scrollTo(el);
+              }, this)
+            });
+            (!_.isEmpty(fbUser)) ? neighbors.unshift(itemView) : neighbors.push(itemView);
+          }, this));
+          this.appendPage(neighbors);
+        } else {
+          // fill the table with a no-results notice
+        }
+      }, this)
+    );
   },
   
-  submit: function() {
-    var neighbors = _.map(this.$("input[name=neighbors_list]:checked"), function(neighbor) {
-      return { name: $(neighbor).val() };
-    });
-    if (neighbors.length) {
-      $.post("/api" + CommonPlace.account.link("neighbors"), neighbors, _.bind(function() {
-        this.options.finish();
+  appendPage: function(neighbors) {
+    var $table;
+    if (this.currentQuery) {
+      $table = this.$(".search_finder table");
+    } else {
+      $table = this.$(".neighbor_finder table");
+    }
+    
+    _.each(neighbors, _.bind(function(itemView) {
+      itemView.render();
+      this.appendCell($table, itemView.el);
+    }, this));
+    
+    this.nextPageTrigger();
+    
+    this.$(".remove_search").removeClass("loading");
+    if (this.currentQuery) {
+      this.$(".remove_search").addClass("active");
+    } else {
+      this.$(".remove_search").addClass("inactive");
+    }
+  },
+  
+  appendCell: function($table, el) {
+    var $row;
+    var $lastRow = $(_.last($table[0].rows));
+    
+    if ($table[0].rows.length && $lastRow[0].cells.length == 1) {
+      $row = $lastRow;
+    } else { $row = $($table[0].insertRow(-1)); }
+    
+    $row.append(el);
+  },
+  
+  submit: function(e) {
+    if (e) { e.preventDefault(); }
+    
+    if (this.currentQuery) {
+      this.removeSearch();
+      this.submit();
+    }
+
+    var data = {
+      neighbors: _.map(this.$(".neighbor_finder input[name=neighbors_list]:checked"), function(neighbor) {
+        return { name: $(neighbor).val() };
+      }),
+      can_contact: (this.$("input[name=can_contact]").attr("checked")) ? true : false
+    };
+
+    if (data.neighbors.length) {
+      $.post("/api" + CommonPlace.account.link("neighbors"), data, _.bind(function() {
+        this.finish()
       }, this));
-    } else { this.options.finish(); }
+    } else { this.finish(); }
   },
   
   facebook: function(e) {
     if (e) { e.preventDefault(); }
-    
+
     facebook_connect_friends({
       success: _.bind(function(friends) {
-        this.data = {
-          isFacebook: true,
-          friends: friends
-        };
-        this.$("tr").remove();
+        this.friends = friends;
+        this.$("table").empty();
         this.page = 0;
         this.nextPageTrigger();
         this.nextPageThrottled();
@@ -107,18 +159,62 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   },
   
   getFacebookUser: function(name) {
-    return _.find(this.data.friends, function(friend) {
+    return _.find(this.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
   },
   
-  email: function(e) {
-    if (e) { e.preventDefault(); }
-    console.log("pulling from email is being deferred");
+  showGif: function(className) {
+    this.$(".remove_search").removeClass("inactive");
+    this.$(".remove_search").removeClass("active");
+    this.$(".remove_search").removeClass("loading");
+    this.$(".remove_search").addClass(className);
   },
   
+  debounceSearch: _.debounce(function() {
+    this.search();
+  }, CommonPlace.autoActionTimeout),
+  
+  search: function() {
+    this.$(".remove_search").removeClass("inactive");
+    this.$(".remove_search").removeClass("active");
+    this.$(".remove_search").addClass("loading");
+    this.currentQuery = this.$("input[name=search]").val();
+    if (!this.currentQuery) {
+      this.removeSearch();
+    } else {
+      this.currentScroll = this.$(".neighbor_finder").scrollTop();
+      this.$(".neighbor_finder").hide();
+      this.$(".search_finder").show();
+      this.$(".search_finder table").empty();
+      this.searchPage();
+    }
+  },
+  
+  removeSearch: function(e) {
+    if (e) { e.preventDefault(); }
+    
+    this.currentQuery = "";
+    this.$("input[name=search]").val("");
+    this.$(".search_finder").hide();
+    this.$(".neighbor_finder").show();
+    if (!this.$(".neighbor_finder").scrollTop()) {
+      this.$(".neighbor_finder").scrollTo(this.currentScroll);
+    }
+    
+    this.$(".remove_search").removeClass("active");
+    this.$(".remove_search").addClass("inactive");
+  },
+  
+  toggleContact: function(e) {
+    this.$("input.contact").removeAttr("checked");
+    $(e.currentTarget).attr("checked", "checked");
+  },
+  
+  finish: function() { this.options.finish(); },
+  
   NeighborItemView: CommonPlace.View.extend({
-    template: "registration.user-item",
+    template: "registration.neighbor-item",
     tagName: "td",
     
     events: { "click": "check" },
@@ -143,6 +239,12 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     
     check: function(e) {
       if (e) { e.preventDefault(); }
+      
+      if (this.options.search) {
+        this.options.search = false;
+        this.options.addFromSearch(this.el);
+      }
+      
       var $checkbox = this.$("input[type=checkbox]");
       if ($checkbox.attr("checked")) {
         $checkbox.removeAttr("checked");

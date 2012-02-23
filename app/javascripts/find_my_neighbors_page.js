@@ -152,7 +152,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     facebook_connect_friends({
       success: _.bind(function(friends) {
         this.friends = friends;
-        this.$("tr").remove();
+        this.$("table").empty();
         this.page = 0;
         this.nextPageTrigger();
         this.nextPageThrottled();

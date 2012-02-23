@@ -10,6 +10,7 @@
 //= require ajaxupload
 //= require chosen
 //= require jcrop
+//= require scrollTo
 //= require config
 //= require facebook
 //= require views
