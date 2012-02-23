@@ -57,7 +57,13 @@ var RepliesView = CommonPlace.View.extend({
   sendReply: function() {
     if (this.$("form textarea").val()) {
       this.cleanUpPlaceholders();
-      this.collection.create({ body: this.$("[name=body]").val()});
+      this.collection.create(
+        { body: this.$("[name=body]").val() },
+        {
+          success: _.bind(function() { this.collection.trigger("sync"); }, this),
+          wait: true
+        }
+      );
     }
   },
 
