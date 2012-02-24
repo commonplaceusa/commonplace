@@ -44,7 +44,7 @@ $(function() {
       el: $("#feature-switching")})
     ).render();
 
-    Backbone.history.start({ pushState: true });
+    Backbone.history.start({ pushState: Modernizr.history });
   });
 
   (function() {

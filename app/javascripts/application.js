@@ -19,6 +19,7 @@
 //= require plaxo
 //= require chosen
 //= require highlight-3
+//= require modernizr
 
 //= require config
 //= require feature_switches
