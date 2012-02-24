@@ -159,6 +159,6 @@ var Wire = CommonPlace.View.extend({
 
   isSearchEnabled: function() { return this.isActive('2012Release');  },
 
-  isInAllWire: function() { return this.options.isInAllWire || false; }
+  isInAllWire: function() { return (this.isActive('post_subwinnow') && this.options.isInAllWire) || false; }
 
 });
