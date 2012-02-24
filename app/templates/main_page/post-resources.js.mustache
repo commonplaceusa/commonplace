@@ -1,20 +1,24 @@
 <div class="sub-navigation post">
-  <h2 class="smaller">
-  <!--<a href="/{{community_slug}}/list/posts" class="current" data-remote>
-    {{^isRecent}}{{#t}}posts.a{{/t}}{{/isRecent}}
-    {{#isRecent}}{{#t}}recent-posts.a{{/t}}{{/isRecent}}
-  </a>-->
-  <a href="/{{community_slug}}/list/neighborhood" data-remote>{{#t}}neighborhood.a{{/t}}</a>
-  &sdot;
-  <a href="/{{community_slug}}/list/help" data-remote>{{#t}}help.a{{/t}}</a>
-  &sdot;
-  <a href="/{{community_slug}}/list/offers" data-remote>{{#t}}offers.a{{/t}}</a>
-  &sdot;
-  <a href="/{{community_slug}}/list/publicity" data-remote>{{#t}}publicity.a{{/t}}</a>
-  &sdot;
-  <a href="/{{community_slug}}/list/meetup" data-remote>{{#t}}meetup.a{{/t}}</a>
-  &sdot;
-  <a href="/{{community_slug}}/list/other" data-remote>{{#t}}other.a{{/t}}</a>
+  <h2 {{#isInAllWire}}class="smaller"{{/isInAllWire}}>
+  {{^isInAllWire}}
+    <a href="/{{community_slug}}/list/posts" class="current" data-remote>
+      {{^isRecent}}{{#t}}posts.a{{/t}}{{/isRecent}}
+      {{#isRecent}}{{#t}}recent-posts.a{{/t}}{{/isRecent}}
+    </a>
+  {{/isInAllWire}}
+  {{#isInAllWire}}
+    <a href="/{{community_slug}}/list/neighborhood" data-remote>{{#t}}neighborhood.a{{/t}}</a>
+    &sdot;
+    <a href="/{{community_slug}}/list/help" data-remote>{{#t}}help.a{{/t}}</a>
+    &sdot;
+    <a href="/{{community_slug}}/list/offers" data-remote>{{#t}}offers.a{{/t}}</a>
+    &sdot;
+    <a href="/{{community_slug}}/list/publicity" data-remote>{{#t}}publicity.a{{/t}}</a>
+    &sdot;
+    <a href="/{{community_slug}}/list/meetup" data-remote>{{#t}}meetup.a{{/t}}</a>
+    &sdot;
+    <a href="/{{community_slug}}/list/other" data-remote>{{#t}}other.a{{/t}}</a>
+  {{/isInAllWire}}
   </h2>
   <div style="clear:both;"></div>
 </div>

@@ -157,6 +157,8 @@ var Wire = CommonPlace.View.extend({
     }
   },
 
-  isSearchEnabled: function() { return this.isActive('2012Release');  }
+  isSearchEnabled: function() { return this.isActive('2012Release');  },
+
+  isInAllWire: function() { return this.options.isInAllWire || false; }
 
 });

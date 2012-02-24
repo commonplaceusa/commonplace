@@ -78,7 +78,8 @@ var CommunityResources = CommonPlace.View.extend({
         emptyMessage: "No posts here yet.",
         collection: CommonPlace.community.postsAndGroupPosts,
         callback: function() { self.stickHeader(); },
-        showProfile: self.options.showProfile
+        showProfile: self.options.showProfile,
+        isInAllWire: true
       });
       return self.makeTab(wire);
     },
