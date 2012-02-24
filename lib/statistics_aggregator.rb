@@ -275,14 +275,19 @@ class StatisticsAggregator
         announcement_emails_opened_today = 0 # TODO: Tilford's tracking
         announcement_email_clicks_today = 0 # TODO: Tilford's tracking
 
-        users_added_data_past_6_months = community.users.select { |u| u.posted_content.last and u.posted_content.last.created_at < day and u.posted_content.last.created_at > day - 6.months }.count
-        users_posted_neighborhood_post_past_6_months = community.users.select { |u| u.posts.last and u.posts.last.created_at < day and u.posts.last.created_at > day - 6.months }.count
+        users_added_data_past_6_months = community.users.joins(:posts).joins(:events).joins(:group_posts).joins(:announcements).
+          where("((select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) +
+                  (select count(id) from events where events.owner_id = users.id and events.created_at > ? and events.created_at < ?) +
+                  (select count(id) from group_posts where group_posts.user_id = users.id and group_posts.created_at > ? and group_posts.created_at < ?) +
+                  (select count(id) from announcements where announcements.owner_id = users.id and announcements.created_at > ? and announcements.created_at < ?)) > 0",
+               *Array.new(8) {|i| i.even? ? day - 6.months : day }).count
+        users_posted_neighborhood_post_past_6_months = community.users.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
         users_replied_past_6_months = community.users.joins(:replies).where("(select count(id) from replies where user_id = users.id AND ? < replies.created_at AND replies.created_at < ?) > 0", day - 6.months, day).count
-        users_posted_event_past_6_months = community.users.select { |u| u.events.last and u.events.last.created_at < day and u.events.last.created_at > day - 6.months }.count
-        users_posted_announcement_past_6_months = community.users.select { |u| u.announcements.last and u.announcements.last.created_at < day and u.announcements.last.created_at > day - 6.months }.count
-        users_posted_group_post_past_6_months = community.users.select { |u| u.group_posts.last and u.group_posts.last.created_at < day and u.group_posts.last.created_at > day - 6.months }.count
+        users_posted_event_past_6_months = community.users.joins(:events).where("(select count(id) from events where events.owner_id = users.id and events.created_at > ? and events.created_at < ?) > 0", day - 6.months, day).count
+        users_posted_announcement_past_6_months = community.users.joins(:announcements).where("(select count(id) from announcements where announcements.owner_id = users.id and announcements.created_at > ? and announcements.created_at < ?) > 0", day - 6.months, day).count
+        users_posted_group_post_past_6_months = community.users.joins(:group_posts).where("(select count(id) from group_posts where group_posts.user_id = users.id and group_posts.created_at > ? and group_posts.created_at < ?) > 0", day - 6.months, day).count
         users_private_messaged_past_6_months = community.users.joins(:messages).where("(select count(id) from messages where user_id = users.id AND ? < messages.created_at AND messages.created_at < ?) > 0", day - 6.months, day).count
-        users_updated_profile_past_6_months = community.users.select { |u| u.updated_at < day and u.updated_at > day - 6.months }.count
+        users.updated_profile_past_6_months = community.users.where("updated_at > ? and updated_at < ?", day - 6.months, day).count
         users_thanked_past_6_months = community.users.joins(:thanks).where("(select count(id) from thanks where user_id = users.id AND ? < thanks.created_at AND thanks.created_at < ?) > 0", day - 6.months, day).count
         users_metted_past_6_months = community.users.joins(:mets).where("(select count(id) from mets where (requestee_id = users.id OR requester_id = users.id) AND ? < mets.created_at AND mets.created_at < ?) > 0", day - 6.months, day).count
 
