@@ -9,7 +9,11 @@ class Migrate2011To2012 < ActiveRecord::Migration
 
     say_with_time "making users trackable" do
       change_table(:users) do |t|
-        t.trackable
+        t.integer  :sign_in_count, :default => 0
+        t.datetime :current_sign_in_at
+        t.datetime :last_sign_in_at
+        t.string   :current_sign_in_ip
+        t.string   :last_sign_in_ip
       end
     end
 
@@ -78,7 +82,11 @@ class Migrate2011To2012 < ActiveRecord::Migration
     end
 
     say_with_time "making users untrackable" do 
-      remove_column :users, :trackable
+      remove_column :users,  :sign_in_count
+      remove_column :users, :current_sign_in_at
+      remove_column :users, :last_sign_in_at
+      remove_column :users, :current_sign_in_ip
+      remove_column :users, :last_sign_in_ip
     end
 
     say_with_time "removing private metadata" do
