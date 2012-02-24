@@ -8,7 +8,6 @@ class BootstrapsController < ApplicationController
   before_filter :authenticate_user!, :except => :registration
 
   def community 
-    EventSender.user_visited_main_page
     redirect_to "/#{current_community.slug}"
   end
 
