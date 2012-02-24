@@ -24,5 +24,7 @@ jQuery.fn.submitWithAjax = function() {
 
 $(document).ready(function() {
   $('form.ajax_submit').submitWithAjax();
-  $("select").dropkick();
+  $("select").dropkick({
+    change: function(value) { window.location.pathname = value; }
+  });
 });
