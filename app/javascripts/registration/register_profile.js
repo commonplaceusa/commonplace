@@ -1,5 +1,6 @@
-var RegisterProfileView = CommonPlace.View.extend({
+var RegisterProfileView = RegistrationModalPage.extend({
   template: "registration.profile",
+  facebookTemplate: "registration.facebook_profile",
   
   events: {
     "click input.continue": "submit",
@@ -7,17 +8,8 @@ var RegisterProfileView = CommonPlace.View.extend({
     "click img.facebook": "facebook"
   },
   
-  initialize: function(options) {
-    this.data = options.data || {};
-    this.nextPage = options.nextPage;
-    this.communityExterior = options.communityExterior;
-    if (this.data.isFacebook) {
-      this.template = "registration.facebook_profile";
-    }
-    this.hasAvatarFile = false;
-  },
-  
   afterRender: function() {
+    this.hasAvatarFile = false;
     this.initReferralQuestions();
     
     if (!this.data.isFacebook) {
@@ -25,7 +17,7 @@ var RegisterProfileView = CommonPlace.View.extend({
     }
     
     if (!this.current) {
-      this.options.slideIn(this.el);
+      this.slideIn(this.el);
       this.current = true;
     }
     

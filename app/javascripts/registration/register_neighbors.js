@@ -1,4 +1,4 @@
-var RegisterNeighborsView = CommonPlace.View.extend({
+var RegisterNeighborsView = RegistrationModalPage.extend({
   template: "registration.neighbors",
   
   events: {
@@ -24,13 +24,13 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     });
     this.nextPageTrigger();
     
-    this.options.slideIn(this.el, _.bind(function() {
+    this.slideIn(this.el, _.bind(function() {
       $.getJSON(
-        "/api" + this.options.communityExterior.links.registration.residents, {},
+        "/api" + this.communityExterior.links.registration.residents, {},
         _.bind(function(response) {
           if (response.length) {
             this.neighbors = response;
-            this.generate(this.options.data.isFacebook);
+            this.generate(this.data.isFacebook);
           }
         }, this)
       );
@@ -38,7 +38,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
   },
   
   nextPageTrigger: function() {
-    this.nextPageThrottled = _.once(_.bind(function() { this.nextPage(); }, this));
+    this.nextPageThrottled = _.once(_.bind(function() { this.nextNeighborsPage(); }, this));
   },
   
   generate: function(checkFacebook) {
@@ -73,7 +73,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     }
   },
   
-  nextPage: function() {
+  nextNeighborsPage: function() {
     if (_.isEmpty(this.items)) { return; }
     this.showGif("loading");
     
@@ -159,7 +159,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
       this.$(".search_finder").show();
       this.$(".search_finder table").empty();
       $.getJSON(
-        "/api" + this.options.communityExterior.links.registration.residents,
+        "/api" + this.communityExterior.links.registration.residents,
         { limit: 100, query: this.currentQuery },
         _.bind(function(response) {
           this.showGif("active");
@@ -213,7 +213,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     $(e.currentTarget).attr("checked", "checked");
   },
   
-  finish: function() { this.options.finish(); },
+  finish: function() { this.complete(); },
   
   NeighborItemView: CommonPlace.View.extend({
     template: "registration.neighbor-item",

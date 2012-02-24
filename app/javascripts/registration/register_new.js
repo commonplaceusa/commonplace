@@ -1,5 +1,6 @@
-var RegisterNewUserView = CommonPlace.View.extend({
+var RegisterNewUserView = RegistrationModalPage.extend({
   template: "registration.new",
+  facebookTemplate: "registration.facebook",
   
   events: {
     "click input.sign_up": "submit",
@@ -7,18 +8,9 @@ var RegisterNewUserView = CommonPlace.View.extend({
     "click img.facebook": "facebook"
   },
   
-  initialize: function(options) {
-    this.communityExterior = options.communityExterior;
-    this.statistics = this.communityExterior.statistics;
-    if (options.data && options.data.isFacebook) {
-      this.data = options.data;
-      this.template = "registration.facebook";
-    } else { this.data = { isFacebook: false }; }
-  },
-  
   afterRender: function() {
     if (!this.current) {
-      this.options.slideIn(this.el);
+      this.slideIn(this.el);
       this.current = true;
     }
     
@@ -37,10 +29,10 @@ var RegisterNewUserView = CommonPlace.View.extend({
   
   community_name: function() { return this.communityExterior.name; },
   learn_more: function() { return this.communityExterior.links.learn_more },
-  created_at: function() { return this.statistics.created_at },
-  neighbors: function() { return this.statistics.neighbors },
-  feeds: function() { return this.statistics.feeds },
-  postlikes: function() { return this.statistics.postlikes },
+  created_at: function() { return this.communityExterior.statistics.created_at },
+  neighbors: function() { return this.communityExterior.statistics.neighbors },
+  feeds: function() { return this.communityExterior.statistics.feeds },
+  postlikes: function() { return this.communityExterior.statistics.postlikes },
   
   submit: function(e) {
     if (e) { e.preventDefault(); }
@@ -67,7 +59,7 @@ var RegisterNewUserView = CommonPlace.View.extend({
           }
         }, this));
           
-        if (valid) { this.options.nextPage("profile", this.data); }
+        if (valid) { this.nextPage("profile", this.data); }
       }
     }, this));
   },
@@ -79,7 +71,7 @@ var RegisterNewUserView = CommonPlace.View.extend({
       success: _.bind(function(data) {
         this.data = data;
         this.data.isFacebook = true;
-        this.template = "registration.facebook";
+        this.template = this.facebookTemplate;
         this.render();
       }, this)
     });

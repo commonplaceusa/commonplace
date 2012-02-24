@@ -1,4 +1,4 @@
-var RegisterCropView = CommonPlace.View.extend({
+var RegisterCropView = RegistrationModalPage.extend({
   template: "registration.crop",
   
   events: {
@@ -7,7 +7,7 @@ var RegisterCropView = CommonPlace.View.extend({
   },
   
   afterRender: function() {
-    this.options.slideIn(this.el);
+    this.slideIn(this.el);
     var $img = this.$("img#cropbox");
     var self = this;
     this.coords = {};
@@ -51,7 +51,7 @@ var RegisterCropView = CommonPlace.View.extend({
   submit: function(e) {
     if (e) { e.preventDefault(); }
     CommonPlace.account.cropAvatar(this.coords, _.bind(function() {
-      this.options.nextPage("feed", this.options.data);
+      this.nextPage("feed", this.data);
     }, this));
   }
 });
