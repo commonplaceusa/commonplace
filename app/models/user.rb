@@ -382,6 +382,7 @@ WHERE
     text :goods
     text :interests
     integer :community_id
+    time :created_at
   end
 
   def skill_list
