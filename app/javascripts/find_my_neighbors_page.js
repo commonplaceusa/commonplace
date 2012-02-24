@@ -49,6 +49,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       });
     } else {
       this.items = [];
+      this.limit = 0;
       _.each(this.neighbors, _.bind(function(neighbor) {
         var fbUser = this.getFacebookUser(neighbor.first_name + " " + neighbor.last_name);
         var itemView = new this.NeighborItemView({
@@ -56,9 +57,15 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
           fbUser: fbUser,
           search: false
         });
-        (!_.isEmpty(fbUser)) ? this.items.unshift(itemView) : this.items.push(itemView);
+        if (_.isEmpty(fbUser)) {
+          this.items.push(itemView);
+        } else {
+          this.items.unshift(itemView);
+          this.limit++;
+        }
       }, this));
       this.remaining = _.clone(this.items);
+      this.limit += 100;
       this.nextPageThrottled();
     }
   },
@@ -68,8 +75,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     
     this.showGif("loading");
     
-    var currentItems = _.first(this.remaining, 100);
-    this.remaining = _.rest(this.remaining, 100);
+    var currentItems = _.first(this.remaining, this.limit);
+    this.remaining = _.rest(this.remaining, this.limit);
     _.each(currentItems, _.bind(function(itemView, index) {
       itemView.render();
       this.appendCell(this.$(".neighbor_finder table"), itemView.el);
