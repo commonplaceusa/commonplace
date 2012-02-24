@@ -16,7 +16,7 @@ module MailUrls
     url("/#{community.slug}#{path}")
   end
 
-  def community_home_url(path)
+  def community_home_url
     community_url("")
   end
 
