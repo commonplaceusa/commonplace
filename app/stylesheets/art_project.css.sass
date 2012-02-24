@@ -3,13 +3,80 @@
 @import neutral_notification
 
 #art_project
-  h2
-    font-size: 30px
-  h1
-    font-size: 50px
-    font-weight: bold
-
-
+  .plane_header 
+    background: image-url('plane.png') no-repeat
+    height: 112px
+    background-position: center
+    margin-top: 10px
+    padding-right: 162px
+    padding-top: 30px
+    text-align: center
+    h2
+      font-size: 25px
+      color: #ac322f
+    h1
+      font-size: 45px
+      font-weight: bold
+      margin-top: 3px
+      color: #172b3f
+  .how
+    h3
+      text-align: center
+      font-size: 23px
+      text-shadow: white 1px 1px 0
+      color: #1b334a
+    .left
+      float: left
+      width: 470px
+      dl
+        margin-top: 25px
+        dt
+          font-size: 17px
+          color: #AC322F
+        dd
+          font-size: 13px
+          margin-bottom: 35px
+          margin-top: 8px
+          margin-left: 18px
+          line-height: 19px
+          color: #172b3f
+    .right
+      margin-top: 25px
+      width: 430px
+      background: #ac322f
+      height: 350px
+      +border-radius(6px)
+      float: right
+      padding: 12px
+      h4
+        color: white
+        font-size: 19px
+      h3
+        color: #172b3f
+        font-size: 23px
+        margin: 10px 0
+        text-shadow: none
+        text-align: left
+        font-weight: bold
+      form
+        margin-top: 15px
+        input[type="text"]
+          box-shadow: #cccccc 1px 1px 2px 0 inset
+          padding: 7px
+          font-size: 14px
+          +border-radius(5px)
+          width: 418px
+          margin-bottom: 12px
+          border: 1px solid #511311
+        label
+          color: white
+          text-shadow: 0 1px 0px black
+        p
+          font-size: 12px
+          margin-bottom: 11px
+        
+#footer
+  margin-top: 500px
 
 
 
