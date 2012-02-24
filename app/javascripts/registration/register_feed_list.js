@@ -1,4 +1,4 @@
-var RegisterFeedListView = CommonPlace.View.extend({
+var RegisterFeedListView = RegistrationModalPage.extend({
   template: "registration.feed",
   
   events: {
@@ -7,7 +7,7 @@ var RegisterFeedListView = CommonPlace.View.extend({
   },
 
   afterRender: function() {
-    var feeds = this.options.communityExterior.feeds;
+    var feeds = this.communityExterior.feeds;
     var $ul = this.$("ul.feeds_container");
     
     _.each(feeds, _.bind(function(feed) {
@@ -16,7 +16,7 @@ var RegisterFeedListView = CommonPlace.View.extend({
       $ul.append(itemView.el);
     }, this));
     
-    this.options.slideIn(this.el);
+    this.slideIn(this.el);
     
     var height = 0;
     this.$(".feeds_container li").each(function(index) {
@@ -26,7 +26,7 @@ var RegisterFeedListView = CommonPlace.View.extend({
     this.$("ul").height(height + "px");
   },
   
-  community_name: function() { return this.options.communityExterior.name; },
+  community_name: function() { return this.communityExterior.name; },
   
   submit: function(e) {
     if (e) { e.preventDefault(); }
@@ -40,7 +40,7 @@ var RegisterFeedListView = CommonPlace.View.extend({
   },
   
   finish: function() {
-    this.options.nextPage("group", this.options.data);
+    this.nextPage("group", this.data);
   },
   
   FeedItem: CommonPlace.View.extend({

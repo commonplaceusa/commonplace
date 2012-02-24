@@ -19,7 +19,7 @@ var RegistrationRouter = Backbone.Router.extend({
     this.modal = new RegistrationModal({
       communityExterior: options.communityExterior,
       template: "registration.modal",
-      finish: function() {
+      complete: function() {
         window.location.pathname = options.communityExterior.links.tour;
       },
       el: $("#registration-modal")
@@ -104,12 +104,12 @@ var RegistrationModal = CommonPlace.View.extend({
           slideIn: slideIn,
           communityExterior: self.communityExterior,
           data: data,
-          finish: self.options.finish
+          complete: self.options.complete
         });
       },
       neighbors: function() {
         return new RegisterNeighborsView({
-          finish: self.options.finish,
+          complete: self.options.complete,
           slideIn: slideIn,
           communityExterior: self.communityExterior,
           data: data,
@@ -183,4 +183,18 @@ var RegistrationModal = CommonPlace.View.extend({
     $(this.el).remove();
   }
   
+});
+
+var RegistrationModalPage = CommonPlace.View.extend({
+  initialize: function(options) {
+    this.data = options.data || { isFacebook: false };
+    this.communityExterior = options.communityExterior;
+    this.slideIn = options.slideIn;
+    this.nextPage = options.nextPage;
+    this.complete = options.complete;
+    
+    if (options.data && options.data.isFacebook && this.facebookTemplate) {
+      this.template = this.facebookTemplate;
+    }
+  }
 });

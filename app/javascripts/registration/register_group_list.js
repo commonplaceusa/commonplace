@@ -1,4 +1,4 @@
-var RegisterGroupListView = CommonPlace.View.extend({
+var RegisterGroupListView = RegistrationModalPage.extend({
   template: "registration.group",
   
   events: {
@@ -7,7 +7,7 @@ var RegisterGroupListView = CommonPlace.View.extend({
   },
 
   afterRender: function() {
-    var groups = this.options.communityExterior.groups;
+    var groups = this.communityExterior.groups;
     var $ul = this.$("ul.groups_container");
     
     _.each(groups, _.bind(function(group) {
@@ -16,7 +16,7 @@ var RegisterGroupListView = CommonPlace.View.extend({
       $ul.append(itemView.el);
     }, this));
     
-    this.options.slideIn(this.el);
+    this.slideIn(this.el);
     
     var height = 0;
     this.$(".groups_container li").each(function(index) {
@@ -26,7 +26,7 @@ var RegisterGroupListView = CommonPlace.View.extend({
     this.$("ul").height(height + "px");
   },
   
-  community_name: function() { return this.options.communityExterior.name; },
+  community_name: function() { return this.communityExterior.name; },
   
   submit: function(e) {
     if (e) { e.preventDefault(); }
@@ -40,10 +40,10 @@ var RegisterGroupListView = CommonPlace.View.extend({
   },
   
   finish: function() {
-    if (this.options.communityExterior.has_residents_list) {
-      this.options.nextPage("neighbors", this.options.data);
+    if (this.communityExterior.has_residents_list) {
+      this.nextPage("neighbors", this.data);
     } else {
-      this.options.finish();
+      this.complete();
     }
   },
   
