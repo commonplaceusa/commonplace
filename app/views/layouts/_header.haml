@@ -2,7 +2,7 @@
   - if logged_in?
     #nav_wrapper
       %ul{:class=>"nav"}
-        %li{:class=>"my-activity selected-nav"} 
+        %li{:class=>"my-activity selected-nav", :style=>"display:none;"} 
           %div.week-cpcredits{:class=>"number"}= current_user.weekly_cpcredits
           %a(title=@link){:href => @link} My Activity
           %ul{:class=>"my-activity-sub"}
