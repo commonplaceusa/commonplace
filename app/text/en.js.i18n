@@ -22,13 +22,7 @@
 
   "main_page.post-resources": {
     "posts.a": "Neighborhood Posts",
-    "recent-posts.a": "Neighborhood News",
-    "neighborhood.a": "Posts",
-    "help.a": "Help",
-    "offers.a": "Offers",
-    "publicity.a": "Publicity",
-    "meetup.a": "Meetup",
-    "other.a": "Other"
+    "recent-posts.a": "Neighborhood Updates",
   },
   
   "main_page.post-offer-resources": {

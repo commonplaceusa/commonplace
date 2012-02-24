@@ -37,19 +37,6 @@ var CommunityResources = CommonPlace.View.extend({
     
     (self.currentQuery) ? self.search() : self.showTab();
   },
-
-  winnowToCollection: function(collection_name) {
-    var self = this;
-
-    this.view = this.tabs[collection_name](this);
-    this.$(".search-switch").removeClass("active");
-
-    if (_.include([], collection_name)) {
-      this.$(".post-search").addClass("active");
-    }
-
-    (self.currentQuery) ? self.search() : self.showTab();
-  },
   
   showTab: function() {
     this.$(".resources").empty();
@@ -77,72 +64,6 @@ var CommunityResources = CommonPlace.View.extend({
         template: "main_page.post-resources",
         emptyMessage: "No posts here yet.",
         collection: CommonPlace.community.postsAndGroupPosts,
-        callback: function() { self.stickHeader(); },
-        showProfile: self.options.showProfile
-      });
-      return self.makeTab(wire);
-    },
-
-    neighborhood: function(self) {
-      var wire = new self.PostLikeWire({
-        template: "main_page.post-resources",
-        emptyMessage: "No posts here yet.",
-        collection: CommonPlace.community.categories["neighborhood"],
-        callback: function() { self.stickHeader(); },
-        showProfile: self.options.showProfile
-      });
-      return self.makeTab(wire);
-    },
-
-    help: function(self) {
-      var wire = new self.PostLikeWire({
-        template: "main_page.post-resources",
-        emptyMessage: "No posts here yet.",
-        collection: CommonPlace.community.categories["help"],
-        callback: function() { self.stickHeader(); },
-        showProfile: self.options.showProfile
-      });
-      return self.makeTab(wire);
-    },
-
-    offers: function(self) {
-      var wire = new self.PostLikeWire({
-        template: "main_page.post-resources",
-        emptyMessage: "No posts here yet.",
-        collection: CommonPlace.community.categories["offers"],
-        callback: function() { self.stickHeader(); },
-        showProfile: self.options.showProfile
-      });
-      return self.makeTab(wire);
-    },
-
-    publicity: function(self) {
-      var wire = new self.PostLikeWire({
-        template: "main_page.post-resources",
-        emptyMessage: "No posts here yet.",
-        collection: CommonPlace.community.categories["publicity"],
-        callback: function() { self.stickHeader(); },
-        showProfile: self.options.showProfile
-      });
-      return self.makeTab(wire);
-    },
-
-    meetup: function(self) {
-      var wire = new self.PostLikeWire({
-        template: "main_page.post-resources",
-        emptyMessage: "No posts here yet.",
-        collection: CommonPlace.community.categories["meetups"],
-        callback: function() { self.stickHeader(); },
-        showProfile: self.options.showProfile
-      });
-      return self.makeTab(wire);
-    },
-
-    other: function(self) {
-      var wire = new self.PostLikeWire({
-        template: "main_page.post-resources",
-        emptyMessage: "No posts here yet.",
-        collection: CommonPlace.community.categories["other"],
         callback: function() { self.stickHeader(); },
         showProfile: self.options.showProfile
       });

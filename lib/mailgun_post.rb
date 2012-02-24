@@ -46,7 +46,7 @@ class MailgunPost
       if self.personalized_filters.has_key?(from)
         self.personalized_filters[from].call(params['body-html'])
       else
-        self.strip_email_body(params['stripped-text'])
+        self..strip_email_body(params['stripped-text'])
       end
   end
 

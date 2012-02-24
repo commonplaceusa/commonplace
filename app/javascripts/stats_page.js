@@ -84,7 +84,7 @@ var StatsPage = CommonPlace.View.extend({
       },
       tooltip: { enabled: true },
       legend: { enabled: true },
-      series: _.map(_.reject(this.statistics, function(raw_stat) { return raw_stat[0] == "global"; }), function(raw_stats) {
+      series: _.map(_.reject(this.statistics, function(raw_stat) { return raw_stat[0] == "global" }), function(raw_stats) {
         var slug = raw_stats[0];
         var statistics = _.last(JSON.parse(raw_stats[1]), 30);
         var first_date = Date.parse(statistics[0].Date);
@@ -359,7 +359,7 @@ var StatsPage = CommonPlace.View.extend({
           pointStart: first_date,
           data: _.map(community_stats, function(stat) { return parseInt(stat.PctgFeedsStreaming); })
         }, {
-          name: 'Pctg of Feeds who Posted an Event',
+          name: 'Pctf of Feeds who Posted an Event',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           data: _.map(community_stats, function(stat) { return parseInt(stat.PctgFeedsPostedEvent); })
@@ -639,92 +639,6 @@ var StatsPage = CommonPlace.View.extend({
 
     for (community in this.statistics) {
       var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
-      var first_date = Date.parse(community_stats[0].Date);
-
-      $("#user_historical_engagement").append(this.liHiderFor("user_historical_engagement_graph_" + slug, slug));
-      $("#user_historical_engagement").append("<li class='graph full " + slug + " user_historical_engagement_graph' id='user_historical_engagement_graph_" + slug + "'></li>");
-
-      new Highcharts.Chart({
-        chart: {
-          renderTo: 'user_historical_engagement_graph_' + slug
-        },
-        title: {
-          text: 'User Historical Engagement for ' + slug
-        },
-        xAxis: {
-          type: 'datetime',
-          title: {
-            text: null
-          }
-        },
-        yAxis: {
-          min: 0
-        },
-        tooltip: {
-          enabled: true
-        },
-        legend: {
-          enabled: true
-        },
-
-        series: [{
-          name: 'User Added Data',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersAddedDataPast6Months); })
-        }, {
-          name: 'Neighborhood Post',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostedNeighborhoodPostPast6Months); })
-        }, {
-          name: 'Reply',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersRepliedPast6Months); })
-        }, {
-          name: 'Event',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostedEventPast6Months); })
-        }, {
-          name: 'Announcement',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostedAnnouncementPast6Months); })
-        }, {
-          name: 'Posted to Group',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostedGroupPostPast6Months); })
-        }, {
-          name: 'Private Messaged',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPrivateMessagedPast6Months); })
-        }, {
-          name: 'Updated Profile',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersUpdatedProfilePast6Months); })
-        }, {
-          name: 'Thanked',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersThankedPast6Months); })
-        }, {
-          name: 'Metted',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersMettedPast6Months); })
-        }],
-        credits: { enabled: false }
-      });
-    }
-
-    for (community in this.statistics) {
-      var slug = this.statistics[community][0];
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), 30);
 
       $("#post_content").append("<h2 class='header' data-hider='post_content_list_" + slug + "'>Posts for " + slug + "</h2>")
@@ -748,6 +662,6 @@ var StatsPage = CommonPlace.View.extend({
     this.$(".error").show();
     this.$(".success").hide();
     $(window).scrollTop(0);
-  }
+  },
 
 });
