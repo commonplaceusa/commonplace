@@ -13,11 +13,6 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
   
   afterRender: function() {
     var self = this;
-    this.currentQuery = "";
-    
-    this.$(".no_results").hide();
-    this.$(".search_finder").hide();
-    this.$(".initial_load").show();
     
     this.$(".neighbor_finder").scroll(function() {
       if (($(this).scrollTop() + 30) > (5 * this.scrollHeight / 7)) { self.nextPageThrottled(); }
@@ -42,6 +37,12 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
   },
   
   generate: function(checkFacebook) {
+    this.currentQuery = "";
+    this.$(".no_results").hide();
+    this.$(".search_finder").hide();
+    this.$(".neighbor_finder table").empty();
+    this.$("initial_load").show();
+    
     if (checkFacebook) {
       facebook_connect_friends({
         success: _.bind(function(friends) {
@@ -67,7 +68,6 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
         }
       }, this));
       this.limit += 100;
-      this.$(".neighbor_finder table").empty();
       this.$(".initial_load").hide();
       this.nextPageThrottled();
     }
