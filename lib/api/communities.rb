@@ -224,7 +224,7 @@ CONDITION
       else
         serialize(paginate(Community.find(community_id).announcements.
                              includes(:replies, :owner).
-                             reorder("replied_at DESC")))
+                             reorder("replied_at ASC")))
       end
     end
 
