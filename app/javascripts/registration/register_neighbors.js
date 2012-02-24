@@ -159,7 +159,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
       this.$(".search_finder").show();
       this.$(".search_finder table").empty();
       $.getJSON(
-        "/api" + this.communityExterior.links.registration.residents,
+        "/api" + this.options.communityExterior.links.registration.residents,
         { limit: 100, query: this.currentQuery },
         _.bind(function(response) {
           this.showGif("active");
