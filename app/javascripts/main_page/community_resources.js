@@ -79,7 +79,7 @@ var CommunityResources = CommonPlace.View.extend({
         collection: CommonPlace.community.postsAndGroupPosts,
         callback: function() { self.stickHeader(); },
         showProfile: self.options.showProfile,
-        isInAllWire: true
+        isNotInAllWire: true
       });
       return self.makeTab(wire);
     },
