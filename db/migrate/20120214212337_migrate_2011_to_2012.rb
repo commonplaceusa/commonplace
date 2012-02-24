@@ -113,6 +113,8 @@ class Migrate2011To2012 < ActiveRecord::Migration
     end
 
     say_with_time "Publicity Posts become Announcements" do
+      Announcement.reset_column_information
+      Post.reset_column_information
       Post.where(category: "publicity").each do |post|
         Announcement.create!(
           :community_id => post.community_id,
