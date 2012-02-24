@@ -17,6 +17,7 @@ var RegisterNeighborsView = CommonPlace.View.extend({
     
     this.$(".no_results").hide();
     this.$(".search_finder").hide();
+    this.$(".initial_load").show();
     
     this.$(".neighbor_finder").scroll(function() {
       if (($(this).scrollTop() + 30) > (5 * this.scrollHeight / 7)) { self.nextPageThrottled(); }
@@ -66,6 +67,8 @@ var RegisterNeighborsView = CommonPlace.View.extend({
         }
       }, this));
       this.limit += 100;
+      this.$(".neighbor_finder table").empty();
+      this.$(".initial_load").hide();
       this.nextPageThrottled();
     }
   },
