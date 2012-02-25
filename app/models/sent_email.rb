@@ -1,4 +1,4 @@
-class SiteVisit
+class SiteEmail
   include MongoMapper::Document
 
   key :recipient_email, String, :required => true
