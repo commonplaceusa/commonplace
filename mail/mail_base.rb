@@ -127,7 +127,7 @@ class MailBase < Mustache
   end
 
   def tag_list
-    ""
+    self.tag
   end
 
   def deliver

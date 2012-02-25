@@ -7,7 +7,7 @@ class SentEmail
   key :status, String
   key :body, String
 
-  key :opened_at, Date
+  key :opened_at, DateTime
 
   timestamps!
 end

@@ -13,6 +13,10 @@ class StatisticsReadyNotification < MailBase
     @name
   end
 
+  def user
+    User.find_by_email(@email)
+  end
+
   def subject
     "CommonPlace Statistics Prepared!"
   end
