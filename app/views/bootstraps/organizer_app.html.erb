@@ -6,6 +6,7 @@
     <%= stylesheet_link_tag "organizer_app" %>
   </head>
 
+  <!--name id-->
 
   <body>
 
@@ -16,15 +17,29 @@
 
           <div>
             <label>
-              <input type="checkbox" name="on-commonplace-filter">
+              <input id="on_commonplace" type="checkbox" name="on-commonplace-filter">
               On CommonPlace
             </label>
           </div>
 
           <div>
             <label>
-              <input type="checkbox" name="on-commonplace-filter">
-              Has Leverage
+              <input id="has_friends_on_commonplace" type="checkbox" name="on-commonplace-filter">
+              Has friends on CommonPlace
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input id="in_commonplace_organization" type="checkbox" name="on-commonplace-filter">
+              In CommonPlace organization
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input id="have_dropped_flyers" type="checkbox" name="on-commonplace-filter">
+              Have dropped flyers
             </label>
           </div>
 
@@ -37,7 +52,6 @@
       </div>
 
       <div id="file-viewer">
-        <div class="name"></div>
       </div>
     </div>
 
