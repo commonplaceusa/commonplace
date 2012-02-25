@@ -59,7 +59,8 @@ class MailBase < Mustache
         :recipient_email => self.to,
         :subject => self.subject,
         :body => inlined,
-        :tag_list => self.tag_list
+        :tag_list => self.tag_list,
+        :originating_community_id => self.community.id || 0
     }))
   end
 
