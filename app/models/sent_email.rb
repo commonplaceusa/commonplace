@@ -6,6 +6,7 @@ class SentEmail
   key :tag_list, String
   key :status, String
   key :body, String
+  key :originating_community_id, Integer
 
   key :opened_at, DateTime
 
