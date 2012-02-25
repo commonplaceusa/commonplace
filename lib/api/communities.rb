@@ -97,13 +97,10 @@ CONDITION
       serialize residents
     end
 
-    get "/:community_id/files" do |community_id|
-      Community.find(community_id).residents.to_a.to_json
-    end
-
     get "/:community_id/files" do
-      community = CommunityFile.find(params[:community_id])
-      community.files.to_json
+      #community = CommunityFile.find(params[:community_id])
+      #community.files.to_json
+      [{ name: "Max", on_commonplace: true, has_friends_on_commonplace: true, in_commonplace_organization: true, have_dropped_flyers: true }, {name: "John Smith", on_commonplace: true, has_friends_on_commonplace: true, in_commonplace_organization: false, have_dropped_flyers: true}, {name: "Carl Gao", on_commonplace: false, has_friends_on_commonplace: false, in_commonplace_organization: false, have_dropped_flyers: true}].to_json
     end
 
     post "/:community_id/files" do

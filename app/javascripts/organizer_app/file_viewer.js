@@ -1,16 +1,19 @@
 
-OrganizerApp.FileViewer = Backbone.View.extend({
+OrganizerApp.FileViewer = CommonPlace.View.extend({
 
-
-  render: function() {
-    if (this.model) {
-      this.$(".name").text(this.model.get('name'));
-    }
-  },
+  template: "organizer_app.file-viewer",
 
   show: function(model) {
     this.model = model;
     this.render();
+  },
+
+  name: function() {
+    return this.model.get('name');
+  },
+
+  address: function() {
+    return this.model.get('address');
   }
 
 });
