@@ -592,7 +592,7 @@ var StatsPage = CommonPlace.View.extend({
         credits: { enabled: false }
       });
     }
-
+    /*
     for (community in this.statistics) {
       var slug = this.statistics[community][0];
       var community_stats = _.last(JSON.parse(this.statistics[community][1]), 30);
@@ -635,7 +635,7 @@ var StatsPage = CommonPlace.View.extend({
            ]
         }]
       });
-    }
+    }*/
 
     for (community in this.statistics) {
       var slug = this.statistics[community][0];
