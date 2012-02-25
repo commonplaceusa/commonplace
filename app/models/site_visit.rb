@@ -8,6 +8,8 @@ class SiteVisit
   key :commonplace_account_id, Integer
   key :original_visit_id, Integer
 
+  key :community_id, Integer
+
   key :time_left, Date
 
   timestamps!
