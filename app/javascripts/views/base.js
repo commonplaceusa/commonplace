@@ -19,7 +19,8 @@ CommonPlace.View = Backbone.View.extend({
             path: this.page_name,
             ip_address: CommonPlace.account.get("current_sign_in_ip"),
             original_visit_id: CommonPlace.visit_id,
-            commonplace_account_id: CommonPlace.account.get("id")
+            commonplace_account_id: CommonPlace.account.get("id"),
+            community_id: CommonPlace.community.get("id")
           })
         });
       } else {
@@ -32,7 +33,8 @@ CommonPlace.View = Backbone.View.extend({
           data: JSON.stringify({
             path: this.page_name,
             ip_address: CommonPlace.account.get("current_sign_in_ip"),
-            commonplace_account_id: CommonPlace.account.get("id")
+            commonplace_account_id: CommonPlace.account.get("id"),
+            community_id: CommonPlace.community.get("id")
           }),
           success: function(response) { CommonPlace.visit_id = response; }
         });
@@ -132,7 +134,7 @@ CommonPlace.View = Backbone.View.extend({
 
   organizer_email: function() { return CommonPlace.community.get('admin_email'); },
 
-  community_slug: function() { return CommonPlace.community.get('slug'); },
+  community_slug: function() { return CommonPlace.community.get('slug'); }
 
 });
 
