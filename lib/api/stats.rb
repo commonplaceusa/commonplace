@@ -36,5 +36,23 @@ class API
           :commonplace_account_id => request_body['commonplace_account_id']
       ).id.to_s
     end
+
+    put "/create_email" do
+      sent_email = SentEmail.create(
+        :recipient_email => request_body['recipient_email'],
+        :subject => request_body['subject'],
+        :tag_list => request_body['tag_list'],
+        :status => :sent,
+        :body => request_body['body']
+      )
+      sent_email.id.to_s
+    end
+
+    get "/email_opened/:id" do |id|
+      sent_email = SentEmail.find(id)
+      sent_email.opened_at = DateTime.now
+      sent_email.status = :opened
+      sent_email.save
+    end
   end
 end
