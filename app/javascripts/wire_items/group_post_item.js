@@ -42,7 +42,7 @@ var GroupPostWireItem = WireItem.extend({
   },
 
   numThanks: function() {
-    return this.directThanks();
+    return this.directThanks().length;
   },
   
   peoplePerson: function() {
