@@ -43,12 +43,12 @@ compute_statistics_csv:
 scale_up_for_daily_digest:
   cron: "45 20 * * *"
   class: HerokuResque::WorkerScaler
-  args: 10
+  args: 100
   queue: server_management
   description: "Ramps up available dynos for daily digest mailings"
 
 scale_down_post_daily_digest:
-  cron: "00 23 * * *"
+  cron: "45 21 * * *"
   class: HerokuResque::WorkerScaler
   args: 2
   queue: server_management

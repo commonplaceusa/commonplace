@@ -181,7 +181,10 @@ var StatsPage = CommonPlace.View.extend({
           text: 'Users Gained for ' + slug
         },
         xAxis: {
-          categories: _.map(community_stats, function(stat) { return stat.Date } )
+          type: 'datetime',
+          title: {
+            text: null
+          }
         },
         yAxis: {
           title: {
@@ -239,7 +242,7 @@ var StatsPage = CommonPlace.View.extend({
            column: {
              stacking: 'normal',
              dataLabels: {
-               enabled: true
+               enabled: false
              }
            }
         },
@@ -409,7 +412,7 @@ var StatsPage = CommonPlace.View.extend({
           column: {
             stacking: 'normal',
             dataLabels: {
-              enabled: true
+              enabled: false
             }
           }
         },
@@ -510,7 +513,7 @@ var StatsPage = CommonPlace.View.extend({
           column: {
             stacking: 'normal',
             dataLabels: {
-              enabled: true
+              enabled: false
             }
           }
         },
