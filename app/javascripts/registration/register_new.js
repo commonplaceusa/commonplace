@@ -21,10 +21,6 @@ var RegisterNewUserView = RegistrationModalPage.extend({
       if (this.isRealEmail()) { this.$("input[name=email]").val(this.data.email); }
     }
     
-    var focus = (this.data.isFacebook) ? (this.isRealEmail() ? "street_address" : "email") : "full_name";
-    if (Modernizr.input.placeholder) {
-      this.$("input[name=" + focus + "]").focus();
-    }
   },
   
   community_name: function() { return this.communityExterior.name; },
