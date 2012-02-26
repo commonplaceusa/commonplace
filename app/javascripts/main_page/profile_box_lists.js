@@ -42,6 +42,7 @@ var ProfileBoxLists = CommonPlace.View.extend({
   
   renderCurrentList: function(options) {
     var self = this;
+    this.removeListSpinner();
     var views = this.currentList.map(function(item) {
       return new ProfileBoxListItem({ 
         model: item, 
@@ -68,6 +69,7 @@ var ProfileBoxLists = CommonPlace.View.extend({
   fetchAndRenderCurrentList: function(options) {
     var _render = _.bind(function() { this.renderCurrentList(options); }, this);
     if (this.currentList.length === 0) {
+      this.showListSpinner();
       this.currentList.fetch({ success: _render });
     } else {
       _render();
@@ -75,6 +77,7 @@ var ProfileBoxLists = CommonPlace.View.extend({
   },
 
   fetchAndRenderCurrentSearch: function(options) {
+    this.showListSpinner();
     CommonPlace.community.grouplikes.fetch({
       data: { query: this.currentQuery },
       success: _.bind(function() { 
@@ -120,6 +123,16 @@ var ProfileBoxLists = CommonPlace.View.extend({
         this.nextPageTrigger();
       }, this)
     });
+  },
+  
+  showListSpinner: function() {
+    var spinner = $("<div/>");
+    spinner.addClass("loading-list");
+    this.$("#profile-box-results ul").append(spinner);
+  },
+  
+  removeListSpinner: function() {
+    this.$(".loading-list").remove();
   }
   
 });
