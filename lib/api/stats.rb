@@ -43,14 +43,14 @@ class API
         :subject => request_body['subject'],
         :tag_list => request_body['tag_list'],
         :status => :sent,
-        :body => request_body['body']
+        :body => request_body['body'],
+        :originating_community_id => request_body['originating_community_id']
       )
       sent_email.id.to_s
     end
 
     get "/email_opened/:id" do |id|
       sent_email = SentEmail.find(id)
-      sent_email.opened_at = DateTime.now
       sent_email.status = :opened
       sent_email.save
     end
