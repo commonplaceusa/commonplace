@@ -132,16 +132,16 @@ class API
     
     get "/inbox" do
       checked_inbox()
-      serialize(paginate(current_account.inbox.reorder("replied_at DESC")))
+      serialize(paginate(current_account.inbox.reorder("GREATEST(replied_at, created_at) DESC")))
     end
 
     get "/inbox/sent" do
-      serialize(paginate(current_account.sent_messages.reorder("replied_at DESC")))
+      serialize(paginate(current_account.sent_messages.reorder("GREATEST(replied_at, created_at) DESC")))
     end
 
     get "/inbox/feeds" do
       checked_inbox()
-      serialize(paginate(current_account.feed_messages.reorder("replied_at DESC")))
+      serialize(paginate(current_account.feed_messages.reorder("GREATEST(replied_at, created_at) DESC")))
     end
     
     get "/featured" do
