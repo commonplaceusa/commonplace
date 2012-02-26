@@ -39,7 +39,7 @@ var DynamicLandingResources = CommonPlace.View.extend({
     var self = this;
     var unfiltered = [
       (new LandingPreview({
-        template: "main_page.post-resources",
+        template: "main_page.post-neighborhood-resources",
         collection: self.raw.neighborhood,
         fullWireLink: "#/posts",
         emptyMessage: "No posts here yet.",

@@ -15,6 +15,7 @@ var EventWireItem = WireItem.extend({
     this.reply();
     this.$(".event-body").truncate({max_length: 450});
     this.checkThanked();
+    if (this.numThanks() === 0) { this.$(".ts-text").hide(); }
   },
 
   short_month_name: function() { 
