@@ -41,14 +41,14 @@ compute_statistics_csv:
   description: "Generates Excel files for stats"
 
 scale_up_for_daily_digest:
-  cron: "00 16 * * *"
+  cron: "45 20 * * *"
   class: HerokuResque::WorkerScaler
   args: 10
   queue: server_management
   description: "Ramps up available dynos for daily digest mailings"
 
 scale_down_post_daily_digest:
-  cron: "00 18 * * *"
+  cron: "00 23 * * *"
   class: HerokuResque::WorkerScaler
   args: 2
   queue: server_management
