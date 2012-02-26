@@ -142,13 +142,15 @@ class StatisticsAggregator
                   (select count(id) from announcements where announcements.owner_id = users.id and announcements.created_at > ? and announcements.created_at < ?)) > 0",
                *Array.new(8) {|i| i.even? ? day - 6.months : day }).count
         users_posted_neighborhood_post_past_6_months = User.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
-        users_replied_past_6_months = User.joins(:replies).where("(select count(id) from replies where user_id = users.id AND ? < replies.created_at AND replies.created_at < ?) > 0", day - 6.months, day).count
-        users_posted_event_past_6_months = User.joins(:events).where("(select count(id) from events where events.owner_id = users.id and events.created_at > ? and events.created_at < ?) > 0", day - 6.months, day).count
-        users_posted_announcement_past_6_months = User.joins(:announcements).where("(select count(id) from announcements where announcements.owner_id = users.id and announcements.created_at > ? and announcements.created_at < ?) > 0", day - 6.months, day).count
-        users_posted_group_post_past_6_months = User.joins(:group_posts).where("(select count(id) from group_posts where group_posts.user_id = users.id and group_posts.created_at > ? and group_posts.created_at < ?) > 0", day - 6.months, day).count
-        users_private_messaged_past_6_months = User.joins(:messages).where("(select count(id) from messages where user_id = users.id AND ? < messages.created_at AND messages.created_at < ?) > 0", day - 6.months, day).count
+        users_replied_past_6_months = User.find(Reply.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
+        users_posted_event_past_6_months = User.find(Event.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id)).count
+        users_posted_announcement_past_6_months = User.find(Announcement.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id)).count
+        users_posted_group_post_past_6_months = User.find(GroupPost.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
+        users_private_messaged_past_6_months = User.find(Message.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
         users_updated_profile_past_6_months = User.where("updated_at > ? and updated_at < ?", day - 6.months, day).count
-        users_thanked_past_6_months = User.joins(:thanks).where("(select count(id) from thanks where user_id = users.id AND ? < thanks.created_at AND thanks.created_at < ?) > 0", day - 6.months, day).count
+
+        users_thanked_past_6_months = User.find(Thank.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
+
         users_metted_past_6_months = User.joins(:mets).where("(select count(id) from mets where (requestee_id = users.id OR requester_id = users.id) AND ? < mets.created_at AND mets.created_at < ?) > 0", day - 6.months, day).count
 
         posts_received_message_response = 0
@@ -275,20 +277,28 @@ class StatisticsAggregator
         announcement_emails_opened_today = 0 # TODO: Tilford's tracking
         announcement_email_clicks_today = 0 # TODO: Tilford's tracking
 
-        users_added_data_past_6_months = community.users.joins(:posts).joins(:events).joins(:group_posts).joins(:announcements).
-          where("((select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) +
-                  (select count(id) from events where events.owner_id = users.id and events.created_at > ? and events.created_at < ?) +
-                  (select count(id) from group_posts where group_posts.user_id = users.id and group_posts.created_at > ? and group_posts.created_at < ?) +
-                  (select count(id) from announcements where announcements.owner_id = users.id and announcements.created_at > ? and announcements.created_at < ?)) > 0",
-               *Array.new(8) {|i| i.even? ? day - 6.months : day }).count
-        users_posted_neighborhood_post_past_6_months = community.users.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
-        users_replied_past_6_months = community.users.joins(:replies).where("(select count(id) from replies where user_id = users.id AND ? < replies.created_at AND replies.created_at < ?) > 0", day - 6.months, day).count
-        users_posted_event_past_6_months = community.users.joins(:events).where("(select count(id) from events where events.owner_id = users.id and events.created_at > ? and events.created_at < ?) > 0", day - 6.months, day).count
-        users_posted_announcement_past_6_months = community.users.joins(:announcements).where("(select count(id) from announcements where announcements.owner_id = users.id and announcements.created_at > ? and announcements.created_at < ?) > 0", day - 6.months, day).count
-        users_posted_group_post_past_6_months = community.users.joins(:group_posts).where("(select count(id) from group_posts where group_posts.user_id = users.id and group_posts.created_at > ? and group_posts.created_at < ?) > 0", day - 6.months, day).count
-        users_private_messaged_past_6_months = community.users.joins(:messages).where("(select count(id) from messages where user_id = users.id AND ? < messages.created_at AND messages.created_at < ?) > 0", day - 6.months, day).count
+        users_added_data_past_6_months = [
+          community.posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          community.events.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          community.group_posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          community.announcements.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
+        #users_added_data_past_6_months = community.users.joins(:posts).joins(:events).joins(:group_posts).joins(:announcements).
+        #  where("((select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) +
+        #          (select count(id) from events where events.owner_id = users.id and events.created_at > ? and events.created_at < ?) +
+        #          (select count(id) from group_posts where group_posts.user_id = users.id and group_posts.created_at > ? and group_posts.created_at < ?) +
+        #          (select count(id) from announcements where announcements.owner_id = users.id and announcements.created_at > ? and announcements.created_at < ?)) > 0",
+        #       *Array.new(8) {|i| i.even? ? day - 6.months : day }).count
+        users_posted_neighborhood_post_past_6_months = User.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
+        users_replied_past_6_months = 0 #User.find(community.replies.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
+        users_posted_event_past_6_months = 0 #User.find(community.events.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id).uniq).count
+        users_posted_announcement_past_6_months = User.find(community.announcements.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).pluck(:owner_id).uniq).count
+        users_posted_group_post_past_6_months = User.find(community.group_posts.where("? < group_posts.created_at and group_posts.created_at < ?", day - 6.months, day).pluck(:user_id).uniq).count
+        users_private_messaged_past_6_months = User.find(community.messages.where("? < messages.created_at and messages.created_at < ?", day - 6.months, day).pluck(:user_id).uniq).count
         users_updated_profile_past_6_months = community.users.where("updated_at > ? and updated_at < ?", day - 6.months, day).count
-        users_thanked_past_6_months = community.users.joins(:thanks).where("(select count(id) from thanks where user_id = users.id AND ? < thanks.created_at AND thanks.created_at < ?) > 0", day - 6.months, day).count
+
+        users_thanked_past_6_months = 0 #User.find(community.thanks.where("? < thanks.created_at and thanks.created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
+
         users_metted_past_6_months = community.users.joins(:mets).where("(select count(id) from mets where (requestee_id = users.id OR requester_id = users.id) AND ? < mets.created_at AND mets.created_at < ?) > 0", day - 6.months, day).count
 
         posts_received_message_response = 0

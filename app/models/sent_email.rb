@@ -8,7 +8,5 @@ class SentEmail
   key :body, String
   key :originating_community_id, Integer
 
-  key :opened_at, DateTime
-
   timestamps!
 end
