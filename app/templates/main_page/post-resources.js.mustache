@@ -2,8 +2,7 @@
   <h2 {{#isInAllWire}}class="smaller"{{/isInAllWire}}>
   {{^isInAllWire}}
     <a href="/{{community_slug}}/list/posts" class="current" data-remote>
-      {{^isRecent}}{{#t}}posts.a{{/t}}{{/isRecent}}
-      {{#isRecent}}{{#t}}recent-posts.a{{/t}}{{/isRecent}}
+      {{#t}}posts.a{{/t}}
     </a>
   {{/isInAllWire}}
   {{#isInAllWire}}

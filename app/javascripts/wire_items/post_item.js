@@ -29,6 +29,7 @@ var PostWireItem = WireItem.extend({
     this.reply();
     this.$(".post-body").truncate({max_length: 450});
     this.checkThanked();
+    if (this.numThanks() === 0) { this.$(".ts-text").hide(); }
   },
 
   publishedAt: function() {
