@@ -16,9 +16,7 @@ var Wire = CommonPlace.View.extend({
     
     this.header = this.$(".sub-navigation");
     
-    $(window).scroll(function() { self.onScroll(); });
-
-    CommonPlace.layout && CommonPlace.layout.reset();
+    $(window).on("scroll.wire", function() { self.onScroll(); });
     
     if (!_.isEmpty(this.currentUser)) {
       this.$(".sub-navigation .username").text(this.currentUser.get("first_name"));
@@ -82,7 +80,8 @@ var Wire = CommonPlace.View.extend({
       "group_posts": GroupPostWireItem,
       "feeds": FeedWireItem,
       "users": UserWireItem,
-      "groups": GroupWireItem
+      "groups": GroupWireItem,
+      "messages": MessageWireItem
     }[schema]({model: model, showProfile: this.options.showProfile });
   },
   

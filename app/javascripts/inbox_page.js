@@ -12,19 +12,18 @@ var InboxPage = CommonPlace.View.extend({
     var self = this;
     this.$("#inbox-nav .inbox").addClass("current");
     this.collection.fetch({
-      success: function() {
-        var listview = new MessageWire({
-          collection: self.collection,
-          el: self.$("#message-list")
+      success: _.bind(function() {
+        this.listview = new MessageWire({
+          collection: this.collection,
+          el: this.$("#message-list")
         });
-        listview.render();
-      }
+        this.listview.render();
+      }, this)
     });
   },
 
   bind: function() {
     $("body").addClass("inbox");
-    CommonPlace.layout.bind();
   },
 
   unbind: function() {
