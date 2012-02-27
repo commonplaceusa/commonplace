@@ -1,6 +1,8 @@
 class StatisticsCsvGenerator
   # TODO: This should be independent of StatisticsAggregator
   #
+  @queue = :statistics
+
   def self.perform(globally = true)
     Community.all.each do |c|
       Resque.redis.set("statistics:csv:#{c.slug}", nil)

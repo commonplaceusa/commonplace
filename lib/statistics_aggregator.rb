@@ -114,6 +114,8 @@ class StatisticsAggregator
         announcement_emails_sent_today = SentEmail.count('$and' => [{:main_tag => "announcement"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
         announcement_emails_opened_today = SentEmail.count('$and' => [{:main_tag => "announcement"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
 
+        email_open_times = SentEmail.where(:status => 'opened').map { |email| email.updated_at.hour }.count
+
         users_added_data_past_6_months = [
           Post.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           Event.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
@@ -245,6 +247,8 @@ class StatisticsAggregator
         group_post_emails_opened_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "group_post"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
         announcement_emails_sent_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "announcement"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
         announcement_emails_opened_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "announcement"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
+
+        email_open_times = SentEmail.where('$and' => [{:originating_community_id => community.id}, {:status => 'opened'}]).map { |email| email.updated_at.hour }.count
 
         users_added_data_past_6_months = [
           community.posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
