@@ -84,7 +84,8 @@ class Feed < ActiveRecord::Base
       "edit" => "/feeds/#{id}/edit",
       "subscribers" => "/feeds/#{id}/subscribers",
       "self" => "/feeds/#{id}",
-      "owners" => "/feeds/#{id}/owners"
+      "owners" => "/feeds/#{id}/owners",
+      "swipes" => "/feeds/#{id}/swipes"
     }
   end
 

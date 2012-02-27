@@ -260,7 +260,8 @@ module Serializer
           "feed_messages" => "/account/inbox/feeds",
           "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts",
           "featured_users" => "/account/featured",
-          "neighbors" => "/account/neighbors"
+          "neighbors" => "/account/neighbors",
+          "swipes" => "/account/swipes"
         },
         "metadata" => o.metadata,
         "history" => o.profile_history,
@@ -282,6 +283,14 @@ module Serializer
 
       when CommunityExterior
         o.as_api_response(:default)
+        
+      when Swipe
+        if o.success
+          o.as_api_response(:default)
+        else
+          o.as_api_response(:error)
+        end
+      
       else
         o
       end
