@@ -6,8 +6,13 @@ class Swipe < ActiveRecord::Base
   
   validates_presence_of :feed
   validates_presence_of :user
+  validate :validate_password
   
   attr_accessor :feed_pwd
+  
+  def validate_password
+    errors.add(:feed_pwd, "invalid password") if self.feed.nil? or self.feed_pwd != self.feed.password
+  end
   
   def success
     self.persisted? and self.feed_pwd == self.feed.password

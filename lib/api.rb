@@ -1,7 +1,7 @@
 require 'rack/contrib/jsonp'
 %w{ base accounts announcements communities events
     feeds users group_posts groups messages
-    neighborhoods posts registrations integration }.each do |path|
+    neighborhoods posts registrations integration swipes }.each do |path|
   require Rails.root.join("lib", "api", path)
 end
 
@@ -35,6 +35,7 @@ class API
       map("/replies") { run Replies }
       map("/stats") { run Stats }
       map("/registration") { run Registrations }
+      map("/swipe") { run Swipes }
 
       map("/integration") { run Integration }
 
