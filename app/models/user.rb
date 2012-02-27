@@ -539,6 +539,10 @@ js
     end
   end
 
+  def validation_errors
+    UserErrors.new(self)
+  end
+
   private
 
   def is_transitional_user
