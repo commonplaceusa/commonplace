@@ -13,7 +13,7 @@
     $(this).each(function() {
 
       var content_length = $.trim(squeeze($(this).text())).length;
-      if (content_length <= opts.max_length)
+      if (content_length <= opts.max_length + opts.min_hidden)
         return;  // bail early if not overlong
 
       var actual_max_length = opts.max_length - opts.more.length - 3;  // 3 for " ()"
@@ -39,6 +39,7 @@
   // length of 10 would truncate "1234567890" to "12 (â€¦more)".
   $.fn.truncate.defaults = {
     max_length: 100,
+    min_hidden: 200,
     more: '…more',
     less: 'less',
     show_less: false
