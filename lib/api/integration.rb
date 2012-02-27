@@ -13,14 +13,15 @@ class API
     end
     
     before /^\/mailgun/ do
-      unless authentic_mailgun?(params[:token], params[:timestamp], params[:signature])
+      if Rails.env.production? && 
+          !authentic_mailgun?(params[:token], params[:timestamp], params[:signature])
         halt 200
       end
     end
     
     post "/mailgun/posts" do
       begin
-        MailgunPost.new(params).save
+        MailgunPost.new(request_body).save
       ensure
         halt 200
       end

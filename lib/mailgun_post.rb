@@ -5,11 +5,11 @@ class MailgunPost
   end
 
   def to
-    @to ||= Mail::Address.new(@params[:recipient]).address.slice(/^[^@]*/)
+    @to ||= Mail::Address.new(@params['recipient']).address.slice(/^[^@]*/)
   end
 
   def from
-    @from ||= Mail::Address.new(params[:from]).address
+    @from ||= Mail::Address.new(@params['from']).address
   end
 
   def personalized_filters
@@ -44,9 +44,9 @@ class MailgunPost
   def body_text
     @body_text ||=
       if self.personalized_filters.has_key?(from)
-        self.personalized_filters[from].call(params['body-html'])
+        self.personalized_filters[from].call(@params['body-html'])
       else
-        self.strip_email_body(params['stripped-text'])
+        self.strip_email_body(@params['stripped-text'])
       end
   end
 
@@ -56,7 +56,7 @@ class MailgunPost
   end
 
   def filter_out_of_office
-    if params['stripped-text'].match(out_of_office_regexp)
+    if @params['stripped-text'].match(out_of_office_regexp)
       render :nothing => true
       return false
     end
