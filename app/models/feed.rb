@@ -41,6 +41,9 @@ class Feed < ActiveRecord::Base
 
   has_many :subscriptions, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions, :source => :user, :uniq => true
+  
+  has_many :swipes
+  has_many :swiped_visitors, :through => :swipes, :class_name => "User", :source => :user
 
   acts_as_api
 
