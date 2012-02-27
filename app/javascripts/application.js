@@ -102,7 +102,13 @@ var Application = Backbone.Router.extend({
     ":community/find_neighbors": "find_neighbors"
   },
 
-  stats: function(c) { if (CommonPlace.account.get("is_admin")) { this.showPage("stats"); } else { this.community(); } },
+  stats: function(c) { 
+    if (CommonPlace.account.get("is_admin")) { 
+      this.showPage("stats"); 
+    } else { 
+      this.community(); 
+    } 
+  },
 
   faq: function(c) { this.showPage("faq"); },
 
