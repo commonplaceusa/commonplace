@@ -17,7 +17,15 @@ class BootstrapsController < ApplicationController
 
   def application ; end
 
-  def registration ; end
+  def registration 
+    if current_community.nil?
+      render(
+        :file => Rails.root.join("public", "404.html"), 
+        :layout => false, 
+        :status => 404
+        )
+    end
+  end
 
   def organizer_app ; end
 
