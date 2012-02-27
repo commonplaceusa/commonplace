@@ -2,7 +2,6 @@ class StatisticsAggregator
   require 'csv'
   require 'cgi'
 
-  MailGunStatistics = ActiveSupport::JSON.decode(RestClient::Resource.new("https://api:#{$MailgunAPIToken}@api.mailgun.net/v2/#{$MailgunAPIDomain}/stats").get)
   STATISTIC_DAYS = 30
 
   def self.csv_headers
@@ -37,16 +36,12 @@ class StatisticsAggregator
       "GroupPostsRepliedToToday",
       "DailyBulletinsSentToday",
       "DailyBulletinsOpenedToday",
-      "DailyBulletinsClickedToday",
       "NeighborhoodPostEmailsSentToday",
       "NeighborhoodPostEmailsOpenedToday",
-      "NeighborhoodPostEmailsClickedToday",
       "GroupPostEmailsSentToday",
       "GroupPostEmailsOpenedToday",
-      "GroupPostEmailsClickedToday",
       "AnnouncementEmailsSentToday",
       "AnnouncementEmailsOpenedToday",
-      "AnnouncementEmailsClickedToday",
       "PostReceivedMessageTotal",
       "UsersAddedDataPast6Months",
       "UsersPostedNeighborhoodPostPast6Months",
@@ -69,18 +64,6 @@ class StatisticsAggregator
     scope.select { |u| u.last_sign_in_at and u.last_sign_in_at < reference_date and u.last_sign_in_at > reference_date - 30.days }.count
   end
 
-  def self.extract_mailgun_count(event, tag, day)
-    ret = 0
-    begin
-      MailGunStatistics["items"].select { |i|
-        i["event"] and i["created_at"] and i["event"] == event and
-          Date.parse(i["created_at"]) == day }.each { |e| ret += (e["tags"][tag] || 0) }
-    rescue
-      ret = 0
-    end
-    return ret
-  end
-
   def self.csv_statistics_globally
     puts "Processing globally"
     unless Resque.redis.get("statistics:csv:global").present?
@@ -94,7 +77,6 @@ class StatisticsAggregator
         reply_count = Reply.between(community_launch.to_datetime, day.to_datetime).count
         user_count = StatisticsAggregator.user_total_count(User, community_launch.to_datetime, day.to_datetime)
         logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(User.all, day.to_datetime)
-        daily_bulletin_opens_on_date = StatisticsAggregator.extract_mailgun_count("opened", "daily_bulletin", day)
         users_engaged_in_past_30_days = 0
         #users_posted_in_past_30_days = User.all.select { |u| u.posted_content.present? and u.posted_content.sort_by { |c| c.created_at }.last.created_at > 30.days.ago }.count
         users_posted_in_past_30_days = 0
@@ -122,25 +104,22 @@ class StatisticsAggregator
         events_replied_to_today = Event.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         announcements_replied_to_today = Announcement.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         group_posts_replied_to_today = GroupPost.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
-        daily_bulletins_sent_today = StatisticsAggregator.extract_mailgun_count("sent", "daily_bulletin", day)
-        daily_bulletins_opened_today = daily_bulletin_opens_on_date
-        daily_bulletin_clicks_today = StatisticsAggregator.extract_mailgun_count("clicks", "daily_bulletin", day)
-        neighborhood_post_emails_sent_today = StatisticsAggregator.extract_mailgun_count("sent", "post", day)
-        neighborhood_post_emails_opened_today = StatisticsAggregator.extract_mailgun_count("opened", "post", day)
-        neighborhood_post_email_clicks_today = StatisticsAggregator.extract_mailgun_count("clicks", "post", day)
-        group_post_emails_sent_today = StatisticsAggregator.extract_mailgun_count("sent", "group_post", day)
-        group_post_emails_opened_today = StatisticsAggregator.extract_mailgun_count("opened", "group_post", day)
-        group_post_email_clicks_today = StatisticsAggregator.extract_mailgun_count("clicks", "group_post", day)
-        announcement_emails_sent_today = StatisticsAggregator.extract_mailgun_count("sent", "announcement", day)
-        announcement_emails_opened_today = StatisticsAggregator.extract_mailgun_count("opened", "announcement", day)
-        announcement_email_clicks_today = StatisticsAggregator.extract_mailgun_count("clicks", "announcement", day)
+        daily_bulletins_sent_today = SentEmail.count('$and' => [{:main_tag => "daily_bulletin"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
+        daily_bulletins_opened_today = SentEmail.count('$and' => [{:main_tag => "daily_bulletin"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
+        daily_bulletin_opens_on_date = daily_bulletins_opened_today
+        neighborhood_post_emails_sent_today = SentEmail.count('$and' => [{:main_tag => "post"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
+        neighborhood_post_emails_opened_today = SentEmail.count('$and' => [{:main_tag => "post"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
+        group_post_emails_sent_today = SentEmail.count('$and' => [{:main_tag => "group_post"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
+        group_post_emails_opened_today = SentEmail.count('$and' => [{:main_tag => "group_post"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
+        announcement_emails_sent_today = SentEmail.count('$and' => [{:main_tag => "announcement"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
+        announcement_emails_opened_today = SentEmail.count('$and' => [{:main_tag => "announcement"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
 
-        users_added_data_past_6_months = User.joins(:posts).joins(:events).joins(:group_posts).joins(:announcements).
-          where("((select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) +
-                  (select count(id) from events where events.owner_id = users.id and events.created_at > ? and events.created_at < ?) +
-                  (select count(id) from group_posts where group_posts.user_id = users.id and group_posts.created_at > ? and group_posts.created_at < ?) +
-                  (select count(id) from announcements where announcements.owner_id = users.id and announcements.created_at > ? and announcements.created_at < ?)) > 0",
-               *Array.new(8) {|i| i.even? ? day - 6.months : day }).count
+        users_added_data_past_6_months = [
+          Post.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          Event.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          GroupPost.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          Announcement.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
         users_posted_neighborhood_post_past_6_months = User.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
         users_replied_past_6_months = User.find(Reply.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
         users_posted_event_past_6_months = User.find(Event.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id)).count
@@ -186,16 +165,12 @@ class StatisticsAggregator
          group_posts_replied_to_today,
          daily_bulletins_sent_today,
          daily_bulletins_opened_today,
-         daily_bulletin_clicks_today,
          neighborhood_post_emails_sent_today,
          neighborhood_post_emails_opened_today,
-         neighborhood_post_email_clicks_today,
          group_post_emails_sent_today,
          group_post_emails_opened_today,
-         group_post_email_clicks_today,
          announcement_emails_sent_today,
          announcement_emails_opened_today,
-         announcement_email_clicks_today,
          posts_received_message_response,
          users_added_data_past_6_months,
          users_posted_neighborhood_post_past_6_months,
@@ -261,21 +236,15 @@ class StatisticsAggregator
         events_replied_to_today = community.events.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         announcements_replied_to_today = community.announcements.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         group_posts_replied_to_today = community.group_posts.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
-        daily_bulletins_sent_today = 0 # TODO: Tilford's tracking
-        daily_bulletins_opened_today = 0 # TODO: Tilford's tracking
-        daily_bulletin_clicks_today = 0 # TODO: Tilford's tracking
 
-        neighborhood_post_emails_sent_today = 0 # TODO: Tilford's tracking
-        neighborhood_post_emails_opened_today = 0 # TODO: Tilford's tracking
-        neighborhood_post_email_clicks_today = 0 # TODO: Tilford's tracking
-
-        group_post_emails_sent_today = 0 # TODO: Tilford's tracking
-        group_post_emails_opened_today = 0 # TODO: Tilford's tracking
-        group_post_email_clicks_today = 0 # TODO: Tilford's tracking
-
-        announcement_emails_sent_today = 0 # TODO: Tilford's tracking
-        announcement_emails_opened_today = 0 # TODO: Tilford's tracking
-        announcement_email_clicks_today = 0 # TODO: Tilford's tracking
+        daily_bulletins_sent_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "daily_bulletin"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
+        daily_bulletins_opened_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "daily_bulletin"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
+        neighborhood_post_emails_sent_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "post"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
+        neighborhood_post_emails_opened_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "post"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
+        group_post_emails_sent_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "group_post"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
+        group_post_emails_opened_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "group_post"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
+        announcement_emails_sent_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "announcement"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
+        announcement_emails_opened_today = SentEmail.count('$and' => [{:originating_community_id => community.id}, {:main_tag => "announcement"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
 
         users_added_data_past_6_months = [
           community.posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
@@ -283,12 +252,6 @@ class StatisticsAggregator
           community.group_posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           community.announcements.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
-        #users_added_data_past_6_months = community.users.joins(:posts).joins(:events).joins(:group_posts).joins(:announcements).
-        #  where("((select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) +
-        #          (select count(id) from events where events.owner_id = users.id and events.created_at > ? and events.created_at < ?) +
-        #          (select count(id) from group_posts where group_posts.user_id = users.id and group_posts.created_at > ? and group_posts.created_at < ?) +
-        #          (select count(id) from announcements where announcements.owner_id = users.id and announcements.created_at > ? and announcements.created_at < ?)) > 0",
-        #       *Array.new(8) {|i| i.even? ? day - 6.months : day }).count
         users_posted_neighborhood_post_past_6_months = User.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
         users_replied_past_6_months = 0 #User.find(community.replies.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
         users_posted_event_past_6_months = 0 #User.find(community.events.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id).uniq).count
@@ -334,16 +297,12 @@ class StatisticsAggregator
          group_posts_replied_to_today,
          daily_bulletins_sent_today,
          daily_bulletins_opened_today,
-         daily_bulletin_clicks_today,
          neighborhood_post_emails_sent_today,
          neighborhood_post_emails_opened_today,
-         neighborhood_post_email_clicks_today,
          group_post_emails_sent_today,
          group_post_emails_opened_today,
-         group_post_email_clicks_today,
          announcement_emails_sent_today,
          announcement_emails_opened_today,
-         announcement_email_clicks_today,
          posts_received_message_response,
          users_added_data_past_6_months,
          users_posted_neighborhood_post_past_6_months,
