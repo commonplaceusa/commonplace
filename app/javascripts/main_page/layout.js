@@ -52,7 +52,7 @@ var FixedLayout = function() {
   };
 
   this.unbind = function() {
-    $(window).unbind(".communityLayout" + this.cid);
+    $(window).unbind(".communityLayout");
   };
   
 };

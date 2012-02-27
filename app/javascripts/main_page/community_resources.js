@@ -14,7 +14,7 @@ var CommunityResources = CommonPlace.View.extend({
     this.searchForm = new this.SearchForm();
     this.searchForm.render();
     $(this.searchForm.el).prependTo(this.$(".sticky"));
-    $(window).scroll(function() { self.stickHeader(true); });
+    $(window).on("scroll.communityLayout", function() { self.stickHeader(true); });
     this.$("[placeholder]").placeholder();
   },
 
