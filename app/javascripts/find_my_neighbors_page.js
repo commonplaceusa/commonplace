@@ -23,7 +23,6 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   afterRender: function() {
     var self = this;
     this.currentQuery = "";
-    this.added = [];
     
     this.$(".no_results").hide();
     this.$(".search_finder").hide();
@@ -138,10 +137,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
 
     var data = {
       neighbors: _.map(this.$(".neighbor_finder input[name=neighbors_list]:checked"), function(neighbor) {
-        return { name: $(neighbor).val() };
-      }),
-      added: _.map(this.added, function(neighbor) {
-        return { name: neighbor.full_name, email: neighbor.email }
+        return { name: $(neighbor).attr("data-name"), email: $(neighbor).attr("data-email") };
       }),
       can_contact: (this.$("input[name=can_contact]").attr("checked")) ? true : false
     };
@@ -279,7 +275,6 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       last_name: _.last(full_name.split(" ")),
       email: email
     }
-    this.added.push(neighbor);
     
     var itemView = this.generateItem(neighbor, false);
     itemView.render();
@@ -318,6 +313,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     avatar_url: function() { return "/assets/block.png"; },
     first_name: function() { return this.model.first_name; },
     last_name: function() { return this.model.last_name; },
+    email: function() { return this.model.email; },
 
     isFacebook: function() { return this._isFacebook; },
 
