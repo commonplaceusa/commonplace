@@ -28,7 +28,6 @@ var InboxPage = CommonPlace.View.extend({
 
   unbind: function() {
     $("body").removeClass("inbox");
-    CommonPlace.layout.unbind();
   }
 
 });
