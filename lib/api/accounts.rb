@@ -120,10 +120,11 @@ class API
         first_name, last_name = neighbor["name"].split(" ", 2)
         resident = current_user.community
           .residents
-          .find_by_first_name_and_last_name(first_name,last_name)
+          .find_or_create_by_first_name_and_last_name(first_name,last_name)
 
         resident.metadata[:friends] ||= []
         resident.metadata[:friends] << current_user.name
+        resident.metadata[:email] ||= neighbor["email"]
         resident.metadata[:can_contact] ||= request_body["can_contact"]
         resident.save
       end
