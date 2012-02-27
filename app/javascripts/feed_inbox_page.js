@@ -24,12 +24,10 @@ var FeedInboxPage = CommonPlace.View.extend({
 
   bind: function() {
     $("body").addClass("inbox");
-    CommonPlace.layout.bind();
   },
 
   unbind: function() {
     $("body").removeClass("inbox");
-    CommonPlace.layout.unbind();
   }
 
 });
