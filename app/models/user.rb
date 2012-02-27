@@ -40,6 +40,9 @@ class User < ActiveRecord::Base
   belongs_to :neighborhood  
   has_many :thanks
   
+  has_many :swipes
+  has_many :swiped_feeds, :through => :swipes, :class_name => "Feed", :source => :feed
+  
   def organizer_data_points
     OrganizerDataPoint.find_all_by_organizer_id(self.id)
   end

@@ -1,5 +1,5 @@
 class API
-  class Feeds < Authorized
+  class Feeds < Unauthorized
 
     before "/:feed_id/*" do |feed_id, stuff|
       feed = feed_id =~ /[^\d]/ ? Feed.find_by_slug(feed_id) : Feed.find(feed_id)
@@ -9,6 +9,7 @@ class API
     helpers do
 
       def auth(feed)
+        authorize!
         feed.get_feed_owner(current_account) or current_account.admin
       end
 
@@ -16,8 +17,8 @@ class API
     
     put "/:feed_id" do |feed_id|
       feed = Feed.find(feed_id)
-      halt [404, "errors"] unless feed.present?
       halt [401, "unauthorized"] unless auth(feed)
+      halt [404, "errors"] unless feed.present?
       
       feed.name = request_body["name"]
       feed.about = request_body["about"]
@@ -93,6 +94,7 @@ class API
     end
 
     post "/:feed_id/messages" do |feed_id|
+      authorize!
       message = Message.new(:subject => request_body['subject'],
                             :body => request_body['body'],
                             :messagable_type => "Feed",
@@ -110,6 +112,7 @@ class API
     end
 
     get "/:feed_id/owners" do |feed_id|
+      authorize!
       if Feed.find(feed_id).get_feed_owner(current_user)
         serialize(Feed.find(feed_id).feed_owners)
       else
