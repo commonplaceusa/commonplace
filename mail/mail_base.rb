@@ -60,6 +60,7 @@ class MailBase < Mustache
         :subject => self.subject,
         :body => inlined,
         :tag_list => self.tag_list,
+        :tag => self.tag,
         :originating_community_id => self.community.id || 0
     }))
   end
