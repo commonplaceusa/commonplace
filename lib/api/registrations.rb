@@ -8,7 +8,7 @@ class API
                       :facebook_uid => params["fb_uid"],
                       :community_id => community_id)
       
-      serialize user
+      serialize user.validation_errors
     end
     
     post "/:community_id/new" do |community_id|
@@ -33,7 +33,7 @@ class API
         warden.set_user(user, :scope => :user)
         serialize Account.new(current_user)
       else
-        serialize user
+        serialize user.validation_errors
       end
     end
     
@@ -59,9 +59,9 @@ class API
         
         user.save
         warden.set_user(user, :scope => :user)
-        serialize Account.new(current_user)
+        serialize Account.new(user)
       else
-        serialize user
+        serialize user.validation_errors
       end
     end
     

@@ -45,18 +45,7 @@ module Serializer
         "lng" => o.lng
       }
       when User
-        if o.valid?
-          o.as_api_response(:default)
-        else
-          {
-            "success" => "false",
-            "email" => o.errors["email"],
-            "full_name" => o.errors["full_name"],
-            "address" => o.errors["address"],
-            "password" => o.errors["encrypted_password"],
-            "facebook" => o.errors["facebook_uid"]
-          }
-        end
+        o.as_api_response(:default)
       when Post
         {
         "id" => o.id,
@@ -293,7 +282,8 @@ module Serializer
 
       when CommunityExterior
         o.as_api_response(:default)
-
+      else
+        o
       end
 
     as_json
