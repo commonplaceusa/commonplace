@@ -34,6 +34,7 @@ var WireItem = CommonPlace.View.extend({
     if (e) { e.preventDefault(); }
     if (!_.isEmpty(this.model.get("thanks"))) {
       this.removeFocus();
+      this.$(".thank-link").addClass("current");
       this.$(".replies-area").empty();
       var thanksView = new ThanksListView({
         model: this.model,
