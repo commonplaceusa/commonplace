@@ -8,6 +8,15 @@
       <li class="buttons">
         <img src="/assets/buttons/facebookconnect.png" alt="Connect with Facebook" class="facebook">
       </li>
+      <li>
+        Are we missing anyone? <a href="#" class="show_add_neighbor">Add their name to the list.</a>
+        <form class="add">
+          <input type="text" name="name" placeholder="Name">
+          <input type="text" name="email" placeholder="Email">
+          <input type="submit" class="add_neighbor" value="Add This Person">
+          <div class="error">Please enter a valid name and email address.</div>
+        </form>
+      </li>
       <li class="can_contact">
         Do you mind if we invite your friends to join you on CommonPlace?
       </li>
@@ -15,10 +24,13 @@
         <label><input type="checkbox" name="can_contact" checked="checked" class="contact"> Invite them!</label>
         <label class="right">   <input type="checkbox" name="cannot_contact" class="contact"> I do mind.</label>
       </li>
+      <li class="neighbor_count_li">
+        You know <span class="neighbor_count">0</span> <span class="plural">neighbors</span>.
+      </li>
     </ul>
   </div>
 
-  <form>
+  <form class="list">
     <div class="search_area">
       <input type="text" name="search" class="search">
       <span class="remove_search inactive"></span>
@@ -34,6 +46,6 @@
       <div class="no_results">No people matched: <span class="query"></span></div>
     </div>
     
-    <input type="submit" class="grey-button continue" value="Continue...">
+    <input type="submit" class="grey-button continue" value="Submit">
   </form>
 </div>

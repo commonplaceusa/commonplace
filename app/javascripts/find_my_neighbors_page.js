@@ -4,22 +4,34 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   page_name: "find_my_neighbors",
 
   events: {
-    "click input.continue": "submit",
-    "submit form": "submit",
     "click img.facebook": "facebook",
-    "keyup input.search": "debounceSearch",
-    "click .remove_search.active": "removeSearch",
-    "click .no_results": "removeSearch",
-    "click input.contact": "toggleContact"
+    
+    "click .show_add_neighbor": "toggleAddNeighbor",
+    "click form.add input.add_neighbor": "addNeighbor",
+    "submit form.add": "addNeighbor",
+    
+    "click input.contact": "toggleContact",
+    
+    "keyup form.list input.search": "debounceSearch",
+    "click form.list .remove_search.active": "removeSearch",
+    "click form.list .no_results": "removeSearch",
+    
+    "click form.list input.continue": "submit",
+    "submit form.list": "submit"
   },
   
   afterRender: function() {
     var self = this;
     this.currentQuery = "";
+    this.added = [];
     
     this.$(".no_results").hide();
     this.$(".search_finder").hide();
     this.$(".initial_load").show();
+    this.$(".neighbor_count_li").hide();
+    this.$("form.add").hide();
+    this.$("form.add .error").hide();
+    
     this.nextPageTrigger();
     this.$(".neighbor_finder").scroll(function() {
       if (($(this).scrollTop() + 30) > (5 * this.scrollHeight / 7)) { self.nextPageThrottled(); }
@@ -52,40 +64,59 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       this.items = [];
       this.limit = 0;
       _.each(this.neighbors, _.bind(function(neighbor) {
-        var fbUser = this.getFacebookUser(neighbor.first_name + " " + neighbor.last_name);
-        var itemView = new this.NeighborItemView({
-          model: neighbor,
-          fbUser: fbUser,
-          search: false
-        });
-        if (_.isEmpty(fbUser)) {
+        var itemView = this.generateItem(neighbor, false);
+        if (!itemView.isFacebook()) {
           this.items.push(itemView);
         } else {
           this.items.unshift(itemView);
           this.limit++;
         }
       }, this));
-      this.remaining = _.clone(this.items);
       this.limit += 100;
       this.$(".neighbor_finder table").empty();
       this.$(".initial_load").hide();
       this.nextPageThrottled();
     }
   },
+  
+  generateItem: function(neighbor, isSearch) {
+    var fbUser = this.getFacebookUser(neighbor);
+    var addFromSearch;
+    
+    if (isSearch) {
+      addFromSearch = _.bind(function(el) {
+        this.appendCell(this.$(".neighbor_finder table"), el);
+        this.removeSearch();
+        this.$(".neighbor_finder").scrollTo(el);
+      }, this);
+    } else {
+      addFromSearch = function() {};
+    }
+    
+    var itemView = new this.NeighborItemView({
+      model: neighbor,
+      fbUser: fbUser,
+      search: isSearch,
+      showCount: _.bind(function() { this.showCount(); }, this),
+      addFromSearch: addFromSearch
+    });
+    return itemView;
+  },
 
   nextPage: function() {
-    if (_.isEmpty(this.remaining)) { return; }
+    if (_.isEmpty(this.items)) { return; }
     
     this.showGif("loading");
     
-    var currentItems = _.first(this.remaining, this.limit);
-    this.remaining = _.rest(this.remaining, this.limit);
+    var currentItems = _.first(this.items, this.limit);
+    this.items = _.rest(this.items, this.limit);
     _.each(currentItems, _.bind(function(itemView, index) {
       itemView.render();
       this.appendCell(this.$(".neighbor_finder table"), itemView.el);
     }, this));
     this.nextPageTrigger();
     
+    this.showCount();
     this.showGif("inactive");
   },
   
@@ -109,6 +140,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       neighbors: _.map(this.$(".neighbor_finder input[name=neighbors_list]:checked"), function(neighbor) {
         return { name: $(neighbor).val() };
       }),
+      added: _.map(this.added, function(neighbor) {
+        return { name: neighbor.full_name, email: neighbor.email }
+      }),
       can_contact: (this.$("input[name=can_contact]").attr("checked")) ? true : false
     };
 
@@ -131,7 +165,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     this.generate(true);
   },
 
-  getFacebookUser: function(name) {
+  getFacebookUser: function(neighbor) {
+    var name = neighbor.first_name + " " + neighbor.last_name;
     return _.find(this.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
@@ -168,18 +203,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         } else {
           var results = [];
           _.each(response, _.bind(function(neighbor) {
-            var fbUser = this.getFacebookUser(neighbor.first_name + " " + neighbor.last_name);
-            var itemView = new this.NeighborItemView({
-              model: neighbor,
-              fbUser: fbUser,
-              search: true,
-              addFromSearch: _.bind(function(el) {
-                this.appendCell(this.$(".neighbor_finder table"), el);
-                this.removeSearch();
-                this.$(".neighbor_finder").scrollTo(el);
-              }, this)
-            });
-            (!_.isEmpty(fbUser)) ? results.unshift(itemView) : results.push(itemView);
+            var itemView = this.generateItem(neighbor, true);
+            (!itemView.isFacebook()) ? results.unshift(itemView) : results.push(itemView);
           }, this));
           _.each(results, _.bind(function(itemView) {
             itemView.render();
@@ -215,6 +240,54 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     this.$(".remove_search").removeClass("loading");
     this.$(".remove_search").addClass(className);
   },
+  
+  showCount: function() {
+    var count = this.$(".neighbor_finder input[name=neighbors_list]:checked").length;
+    if (count) {
+      this.$(".neighbor_count_li").show();
+      this.$(".neighbor_count").text(count);
+      this.$(".neighbor_count_li .plural").text( count === 1 ? "neighbor" : "neighbors" );
+    } else {
+      this.$(".neighbor_count_li").hide();
+    }
+  },
+  
+  toggleAddNeighbor: function(e) {
+    if (e) { e.preventDefault(); }
+    
+    if (this.$("form.add:visible").length) {
+      this.$("form.add").hide();
+    } else {
+      this.$("form.add").show();
+      this.$("form.add .error").hide();
+    }
+  },
+  
+  addNeighbor: function(e) {
+    if (e) { e.preventDefault(); }
+    
+    this.$("form.add .error").hide();
+    var full_name = this.$("form.add input[name=name]").val();
+    var email = this.$("form.add input[name=email]").val();
+    if (!full_name || !email || full_name.split(" ").length < 2 || !_.last(full_name.split(" "))) {
+      return this.$("form.add .error").show();
+    }
+    
+    var neighbor = {
+      full_name: full_name,
+      first_name: _.first(full_name.split(" ")),
+      last_name: _.last(full_name.split(" ")),
+      email: email
+    }
+    this.added.push(neighbor);
+    
+    var itemView = this.generateItem(neighbor, false);
+    itemView.render();
+    this.appendCell(this.$(".neighbor_finder table"), itemView.el);
+    itemView.check();
+    this.$(".neighbor_finder").scrollTo(itemView.el);
+    this.$("form.add input[type=text]").val("");
+  },
 
   finish: function() {
     window.location.pathname = "/" + CommonPlace.community.get("slug");
@@ -225,6 +298,10 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     tagName: "td",
 
     events: { "click": "check" },
+    
+    initialize: function(options) {
+      this._isFacebook = !_.isEmpty(this.options.fbUser);
+    },
 
     afterRender: function() {
       if (this.isFacebook()) {
@@ -242,7 +319,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     first_name: function() { return this.model.first_name; },
     last_name: function() { return this.model.last_name; },
 
-    isFacebook: function() { return !_.isEmpty(this.options.fbUser); },
+    isFacebook: function() { return this._isFacebook; },
 
     check: function(e) {
       if (e) { e.preventDefault(); }
@@ -257,6 +334,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         $checkbox.removeAttr("checked");
       } else { $checkbox.attr("checked", "checked"); }
       $(this.el).toggleClass("checked");
+      
+      this.options.showCount();
     }
   })
 });
