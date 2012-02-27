@@ -148,7 +148,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         contentType: "application/json",
         url: "/api" + CommonPlace.account.link("neighbors"), 
         data: JSON.stringify(data), 
-        success: _.bind(function() { this.finish(); }, this),
+        success: _.bind(function() { this.finish(); }, this)
       });
     } else { 
       this.finish(); 

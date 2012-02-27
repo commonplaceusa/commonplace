@@ -117,7 +117,7 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
         url: "/api" + CommonPlace.account.link("neighbors"), 
         data: JSON.stringify(data), 
         contentType: "application/json",
-        success: _.bind(function() { this.finish(); }, this),
+        success: _.bind(function() { this.finish(); }, this)
       });
     } else { 
       this.finish(); 
