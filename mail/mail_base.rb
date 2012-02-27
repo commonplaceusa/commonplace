@@ -57,8 +57,7 @@ class MailBase < Mustache
     inlined = Premailer.new(render(*args), :with_html_string => true, :inputencoding => 'UTF-8', :replace_html_entities => true).to_inline_css
     self.insert_tracking_pixel(inlined, EmailTracker.create_with_tracking_pixel({
         :recipient_email => self.to,
-        :subject => self.subject,
-        :body => inlined,
+        :email_type => self.class.name,
         :tag_list => self.tag_list,
         :main_tag => self.tag,
         :originating_community_id => self.community.id || 0
