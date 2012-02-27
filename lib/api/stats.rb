@@ -40,11 +40,10 @@ class API
     put "/create_email" do
       sent_email = SentEmail.create(
         :recipient_email => request_body['recipient_email'],
-        :subject => request_body['subject'],
         :tag_list => request_body['tag_list'],
         :status => :sent,
-        :body => request_body['body'],
-        :originating_community_id => request_body['originating_community_id']
+        :originating_community_id => request_body['originating_community_id'],
+        :main_tag => request_body['tag']
       )
       sent_email.id.to_s
     end
@@ -52,6 +51,7 @@ class API
     get "/email_opened/:id" do |id|
       sent_email = SentEmail.find(id)
       sent_email.status = :opened
+      sent_email.updated_at = DateTime.now
       sent_email.save
     end
   end
