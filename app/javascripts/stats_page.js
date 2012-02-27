@@ -138,11 +138,6 @@ var StatsPage = CommonPlace.View.extend({
         },
 
         series: [{
-          name: 'Users',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return 100; })
-        }, {
           name: 'Users Active over Past 30 Days',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
