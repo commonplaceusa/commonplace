@@ -58,7 +58,6 @@ var StatsPage = CommonPlace.View.extend({
   },
 
   populateStatistics: function(json_data) {
-    console.log(json_data);
     this.statistics = json_data;
 
     $("#user_count").append(this.liHiderFor('user_count_graph_cumulative', 'Cumulative User Count'));

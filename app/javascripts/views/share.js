@@ -36,7 +36,6 @@ var ShareView = CommonPlace.View.extend({
 
   shareFacebook: function(e) {
     e.preventDefault();
-    console.log("Sharing on Facebook");
     var $link = $(e.target);
     FB.ui({
       method: 'feed',
@@ -60,14 +59,12 @@ var ShareView = CommonPlace.View.extend({
 
   showEmailShare: function(e) {
     e.preventDefault();
-    console.log("Showing email");
     this.$("#share-email").show();
   },
 
   submitEmail: function(e) {
     if (e)
       e.preventDefault();
-    console.log("Submitting the share via e-mail");
     var $form = this.$("form");
     $.ajax({
       type: "POST",
