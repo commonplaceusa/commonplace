@@ -130,6 +130,10 @@ class API
       halt 200
     end
     
+    get "/swipes" do
+      serialize(paginate(current_user.swipes))
+    end
+    
     get "/inbox" do
       checked_inbox()
       serialize(paginate(current_account.inbox.reorder("GREATEST(replied_at, created_at) DESC")))

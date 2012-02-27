@@ -119,6 +119,10 @@ class API
         [401, "unauthorized"]
       end
     end
+    
+    get "/:feed_id/swipes" do |feed_id|
+      serialize(paginate(Feed.find(feed_id).swipes))
+    end
 
     post "/:feed_id/owners" do |feed_id|
       feed = Feed.find(feed_id)
