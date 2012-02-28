@@ -87,8 +87,6 @@ Commonplace::Application.routes.draw do
 
   authenticated do
 
-    match '/?community=:community', :to => "bootstraps#community"
-
 
     resources :password_resets
 
@@ -126,19 +124,8 @@ Commonplace::Application.routes.draw do
   match "/account/make_focp", :to => "accounts#make_focp"
   match "/account/disable_email", :to => "accounts#disable_email"
 
-  # explicitly list paths that we want the main_page js app to handle
-  ["/posts(/:id)", "/users(/:id)", "/events(/:id)", "/feeds",
-   "/announcements(/:id)", "/group_posts(/:/id)", "/groups(/:id)",
-   "/users/:id/messages/new", "/feeds/:id/messages/new", "/new-event",
-   "/new-group-post", "/new-announcement", "/new-neighborhood-post"].each do |s|
-    match s, :to => "bootstraps#community", :via => :get, :as => :community
-  end
-
-
   unauthenticated do
 
-    match '/whereami', :to => 'site#whereami'
-    
     root :to => "site#index"
     match "/:community", :to => "bootstraps#registration"
     scope "/:community" do
