@@ -9,11 +9,19 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
   },
 
   name: function() {
-    return this.model.get('name');
+    var name = this.model.get('name');
+    if (name == undefined)
+      return "No name";
+    else
+      return name;
   },
 
   address: function() {
-    return this.model.get('address');
+    var address = this.model.get('address');
+    if (address == undefined)
+      return "No address in our records";
+    else
+      return address;
   }
 
 });
