@@ -12,6 +12,8 @@ var HeaderView = CommonPlace.View.extend({
     }
     nav.render();
     this.$(".nav").replaceWith(nav.el);
-  }
+  },
+
+  root_url: function() { return "/" + CommonPlace.community.get('slug'); }
   
 });
