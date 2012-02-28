@@ -3,6 +3,9 @@ var GroupPageRouter = Backbone.Router.extend({
   routes: {},
 
   initialize: function(options) {
+    var header = new HeaderView({ el: $("#header") });
+    header.render();
+
     this.account = new Account(options.account);
     this.community = options.community;
     this.group = options.group;
