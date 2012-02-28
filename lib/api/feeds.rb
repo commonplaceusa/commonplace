@@ -54,7 +54,7 @@ class API
 
     get "/:feed_id/announcements" do |feed_id|
       scope = Announcement.where("owner_id = ? AND owner_type = ?", feed_id, "Feed")
-      serialize(paginate(scope.includes(:replies, :owner).reorder("replied_at ASC")))
+      serialize(paginate(scope.includes(:replies, :owner).reorder("GREATEST(replied_at,created_at) DESC")))
     end
 
     post "/:feed_id/events" do |feed_id|
