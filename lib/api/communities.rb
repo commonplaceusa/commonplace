@@ -70,6 +70,10 @@ class API
         }.flatten
       end
 
+      def neo
+        @_neography_rest ||= Neography::Rest.new
+      end
+
     end
 
     get "/:community_slug" do |community_slug|
@@ -95,6 +99,20 @@ CONDITION
 
     get "/:community_id/files" do |community_id|
       serialize Community.find(community_id).residents
+    end
+
+    post "/:community_id/files" do
+      community = CommunityFile.find(params[:community_id])
+      neighbor = community.create_resident(params)
+      neighbor.to_json
+    end
+
+    put "/:community_id/files/:file_id" do
+      ResidentFile.find(params[:file_id]).update(params).to_json
+    end
+
+    post "/:community_id/files/:id/logs" do
+      Resident.find(params[:id]) #TODO: Add to logs
     end
 
     post "/:community_id/posts" do |community_id|

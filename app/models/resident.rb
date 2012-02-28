@@ -20,4 +20,13 @@ class Resident < ActiveRecord::Base
   def have_dropped_flyers?
     [false, true].sample
   end
+
+  def add_log(log)
+    
+  end
+
+  def logs
+    ["Bought a cow.", "Borrowed a babysitter.", "Hoed the lawn."]
+  end
+
 end
