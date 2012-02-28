@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120227204412) do
+ActiveRecord::Schema.define(:version => 20120228143600) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -438,6 +438,7 @@ ActiveRecord::Schema.define(:version => 20120227204412) do
     t.boolean  "cp_credits_are_valid",             :default => false
     t.text     "metadata"
     t.integer  "card_id"
+    t.datetime "reset_password_sent_at"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
