@@ -17,7 +17,7 @@ OrganizerApp.FilePicker = Backbone.View.extend({
   render: function() {
     this.$("#file-picker-list").append(
       this.collection.map(_.bind(function(model) {
-        return $("<li/>", { text: model.get('name'), data: { model: model } })[0];
+        return $("<li/>", { text: model.full_name(), data: { model: model } })[0];
       }, this)));
   },
 
