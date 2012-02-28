@@ -428,7 +428,7 @@ WHERE
   end
 
   def send_reset_password_instructions
-    generate_reset_password_token! if should_generate_token?
+    generate_reset_password_token! if should_generate_reset_token?
     kickoff.deliver_password_reset(self)
   end
 
