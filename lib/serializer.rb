@@ -35,7 +35,9 @@ module Serializer
       }
 
       when Resident
-        { "first_name" => o.first_name, 
+        { 
+        "id" => o.id,
+        "first_name" => o.first_name, 
         "last_name" => o.last_name,
         "on_commonplace" => o.on_commonplace?,
         "friends_on_commonplace" => o.friends_on_commonplace?,
