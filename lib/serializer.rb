@@ -35,7 +35,13 @@ module Serializer
       }
 
       when Resident
-        { "first_name" => o.first_name, "last_name" => o.last_name }
+        { "first_name" => o.first_name, 
+        "last_name" => o.last_name,
+        "on_commonplace" => o.on_commonplace?,
+        "friends_on_commonplace" => o.friends_on_commonplace?,
+        "in_commonplace_organization" => o.in_commonplace_organization?,
+        "have_dropped_flyers" => o.have_dropped_flyers?
+      }
 
       when OrganizerDataPoint
       {
