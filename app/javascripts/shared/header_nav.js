@@ -2,12 +2,6 @@ var HeaderNav = CommonPlace.View.extend({
   template: "shared.header-nav",
   className: "nav",
 
-  afterRender: function() {
-    var activity = new HeaderActivity();
-    activity.render();
-    this.$("li.my-activity").replaceWith(activity.el);
-  },
-  
   slug: function() { return CommonPlace.community.get("slug"); },
   
   invite_url: function() { return "/" + this.slug() + "/invite"; },
