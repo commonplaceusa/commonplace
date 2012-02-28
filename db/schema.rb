@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228143600) do
+ActiveRecord::Schema.define(:version => 20120214212337) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -182,7 +182,6 @@ ActiveRecord::Schema.define(:version => 20120228143600) do
     t.string   "slug"
     t.string   "twitter_name"
     t.integer  "kind"
-    t.string   "password"
   end
 
   create_table "group_posts", :force => true do |t|
@@ -329,27 +328,12 @@ ActiveRecord::Schema.define(:version => 20120228143600) do
     t.datetime "updated_at"
   end
 
-  create_table "residents", :force => true do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.text    "metadata"
-    t.integer "user_id"
-    t.integer "community_id"
-  end
-
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id",                             :null => false
     t.integer  "feed_id",                             :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "receive_method", :default => "Daily"
-  end
-
-  create_table "swipes", :force => true do |t|
-    t.integer  "feed_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "taggings", :force => true do |t|
@@ -437,8 +421,6 @@ ActiveRecord::Schema.define(:version => 20120228143600) do
     t.integer  "calculated_cp_credits"
     t.boolean  "cp_credits_are_valid",             :default => false
     t.text     "metadata"
-    t.integer  "card_id"
-    t.datetime "reset_password_sent_at"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

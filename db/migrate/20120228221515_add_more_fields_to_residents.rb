@@ -1,0 +1,4 @@
+class AddMoreFieldsToResidents < ActiveRecord::Migration
+  def change
+  end
+end
