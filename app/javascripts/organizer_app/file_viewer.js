@@ -8,8 +8,8 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     this.render();
   },
 
-  name: function() {
-    var name = this.model.get('name');
+  full_name: function() {
+    var name = this.model.full_name();
     if (name == undefined)
       return "No name";
     else
