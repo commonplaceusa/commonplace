@@ -18,13 +18,13 @@ module Serializer
         o.map {|t| serialize t }
 
       when Thank
-        {
-          "thanker" => o.user.name,
-          "avatar_url" => o.user.avatar_url(:normal),
-          "thanker_link" => "/users/#{o.user_id}",
-          "thankable_type" => o.thankable_type,
-          "thankable_author" => o.thankable.user.name
-        }
+      {
+        "thanker" => o.user.name,
+        "avatar_url" => o.user.avatar_url(:normal),
+        "thanker_link" => "/users/#{o.user_id}",
+        "thankable_type" => o.thankable_type,
+        "thankable_author" => o.thankable.user.name
+      }
 
       when NamedPoint
       {
@@ -35,14 +35,15 @@ module Serializer
       }
 
       when Resident
-        { 
+      { 
         "id" => o.id,
         "first_name" => o.first_name, 
         "last_name" => o.last_name,
         "on_commonplace" => o.on_commonplace?,
         "friends_on_commonplace" => o.friends_on_commonplace?,
         "in_commonplace_organization" => o.in_commonplace_organization?,
-        "have_dropped_flyers" => o.have_dropped_flyers?
+        "have_dropped_flyers" => o.have_dropped_flyers?,
+        "logs" => o.logs
       }
 
       when OrganizerDataPoint
