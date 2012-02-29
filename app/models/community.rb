@@ -200,7 +200,7 @@ class Community < ActiveRecord::Base
   end
 
   def locale
-    (self.is_college) ? :college : :en
+    :en
   end
 
   def posts_for_user(user)

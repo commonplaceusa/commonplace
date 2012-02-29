@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :api, :serialize
   
-  before_filter :domain_redirect, :set_locale, :set_api_token
+  before_filter :domain_redirect, :set_api_token
   
   rescue_from CanCan::AccessDenied do |exception|
     store_location
@@ -95,13 +95,6 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     user_signed_in?
-  end
-
-  def set_locale
-    if current_community.present?
-      I18n.default_locale = :en
-      I18n.locale = current_community.locale
-    end
   end
 
 end
