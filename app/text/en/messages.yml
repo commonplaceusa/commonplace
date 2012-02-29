@@ -1,7 +1,0 @@
-en:
-  messages:
-    index:
-      h2: Your Inbox
-    show:
-      to_index: "Back to inbox"
-      archive: "Archive"
