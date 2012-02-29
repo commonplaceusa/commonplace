@@ -31,8 +31,8 @@ function facebook_connect_post_registration(success, failure) {
         fb_uid: response.id,
         fb_auth_token: auth_token
       }),
-      success: function() { success(); },
-      failure: function() { failure(); }
+      success: function() { if (success) { success(); } },
+      failure: function() { if (failure) { failure(); } }
     });
   });
 }

@@ -54,6 +54,14 @@ var Application = Backbone.Router.extend({
   initialize: function() {
     var header = new HeaderView({ el: $("#header") });
     header.render();
+    
+    if (!CommonPlace.account.get("metadata")['completed_facebook_nag'] &&
+        !CommonPlace.account.get('facebook_user')) {
+      var nag = new FacebookNag({ el: $("#notification") });
+      nag.render();
+    } else {
+      $("#notification").hide();
+    }
 
     this.pages = {
       faq: new FaqPage({ el: $("#main") }),
