@@ -498,28 +498,6 @@ WHERE
     .order("calculated_cp_credits DESC")
   end
 
-  def nag_banner_text
-    if !self.community.has_launched?
-      "Hey #{self.first_name}, welcome to #{self.community.name} CommonPlace! We're officially launching on #{self.community.launch_date.strftime("%B")} #{self.community.launch_date.day.ordinalize}. In the meantime, help us improve by <a href='/#{self.community.slug}/invite'>inviting some more neighbors</a>."
-    elsif !self.avatar.file? and !self.metadata["closed_facebook_nag"] and !self.metadata["completed_facebook_nag"] and (self.value_adding? or self.replies.count > 0)
-      javascript = <<js
-facebook_connect_post_registration(function() {
-  CommonPlace.account.set_metadata("completed_facebook_nag", true, function() {
-    $(".important-notification").hide();
-    CommonPlace.layout.reset();
-    CommonPlace.infoBox.renderProfile(CommonPlace.account);
-  });
-}, function() { });
-js
-      cancel = <<js
-$(".important-notification").hide();
-CommonPlace.layout.reset();
-js
-      "<a href='javascript: #{cancel}' class='cancel'></a>Add a photo to your profile now! <a href='javascript: #{javascript}'>Connect with Facebook</a>."
-    else
-      nil
-    end
-  end
 
   def profile_history_elements
     self.posts + 
