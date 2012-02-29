@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
   scope :have_sent_messages, lambda {|user| joins(:received_messages).where(messages: { user_id: user.id }) }
 
   def facebook_user?
-    facebook_uid
+    self.facebook_uid?
   end
   
   def validate_password?
