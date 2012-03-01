@@ -138,7 +138,7 @@ var StatsPage = CommonPlace.View.extend({
         },
 
         series: [{
-          name: 'Users Active over Past 30 Days',
+          name: 'Users Engaging over Past 30 Days',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           data: _.map(community_stats, function(stat) { return parseInt(stat.UsersActiveOverPast30Days) / parseInt(stat.UsersTotal) * 100; })
