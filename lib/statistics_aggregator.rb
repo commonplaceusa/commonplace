@@ -52,7 +52,11 @@ class StatisticsAggregator
       "UsersPrivateMessagedPast6Months",
       "UsersUpdatedProfilePast6Months",
       "UsersThankedPast6Months",
-      "UsersMettedPast6Months"
+      "UsersMettedPast6Months",
+      "OffersPosted",
+      "RequestsPosted",
+      "MeetUpsPosted",
+      "ConversationsPosted"
     ].join(",")
   end
 
@@ -77,9 +81,24 @@ class StatisticsAggregator
         reply_count = Reply.between(community_launch.to_datetime, day.to_datetime).count
         user_count = StatisticsAggregator.user_total_count(User, community_launch.to_datetime, day.to_datetime)
         logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(User.all, day.to_datetime)
-        users_engaged_in_past_30_days = 0
-        #users_posted_in_past_30_days = User.all.select { |u| u.posted_content.present? and u.posted_content.sort_by { |c| c.created_at }.last.created_at > 30.days.ago }.count
-        users_posted_in_past_30_days = 0
+        users_engaged_in_past_30_days = [
+          Post.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          Event.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          GroupPost.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          Announcement.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          Reply.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          Met.between((day - 6.months).to_datetime, day.to_datetime).pluck(:requestee_id).uniq,
+          Met.between((day - 6.months).to_datetime, day.to_datetime).pluck(:requester_id).uniq,
+          Message.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          Subscription.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
+        users_posted_in_past_30_days = [
+          Post.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          Event.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          GroupPost.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          Announcement.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
+        puts "#{__LINE__}: #{Time.now - t1}"
         users_gained = User.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
         post_count = Post.between(community_launch.to_datetime, day.to_datetime).count
         event_count = Event.between(community_launch.to_datetime, day.to_datetime).count
@@ -100,13 +119,15 @@ class StatisticsAggregator
         feeds_posting_event_in_past_month = Event.between(day.to_datetime - 1.month, day.to_datetime).select { |e| e.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / Feed.count
         feeds_posting_announcement_in_past_month = Announcement.between(day.to_datetime - 1.month, day.to_datetime).select { |a| a.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / Feed.count
         todays_posts = []
+        puts "#{__LINE__}: #{Time.now - t1}"
         posts_replied_to_today = Post.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         events_replied_to_today = Event.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         announcements_replied_to_today = Announcement.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         group_posts_replied_to_today = GroupPost.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
+        puts "#{__LINE__}: #{Time.now - t1}"
+
         daily_bulletins_sent_today = SentEmail.count('$and' => [{:main_tag => "daily_bulletin"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
         daily_bulletins_opened_today = SentEmail.count('$and' => [{:main_tag => "daily_bulletin"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
-        daily_bulletin_opens_on_date = daily_bulletins_opened_today
         neighborhood_post_emails_sent_today = SentEmail.count('$and' => [{:main_tag => "post"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
         neighborhood_post_emails_opened_today = SentEmail.count('$and' => [{:main_tag => "post"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
         group_post_emails_sent_today = SentEmail.count('$and' => [{:main_tag => "group_post"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
@@ -114,6 +135,7 @@ class StatisticsAggregator
         announcement_emails_sent_today = SentEmail.count('$and' => [{:main_tag => "announcement"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
         announcement_emails_opened_today = SentEmail.count('$and' => [{:main_tag => "announcement"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
 
+        puts "#{__LINE__}: #{Time.now - t1}"
         email_open_times = SentEmail.where(:status => 'opened').map { |email| email.updated_at.hour }.count
 
         users_added_data_past_6_months = [
@@ -122,19 +144,34 @@ class StatisticsAggregator
           GroupPost.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           Announcement.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
-        users_posted_neighborhood_post_past_6_months = User.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
+        puts "#{__LINE__}: #{Time.now - t1}"
+        users_posted_neighborhood_post_past_6_months = 0 # BOTTLENECK: User.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
+        puts "#{__LINE__}: #{Time.now - t1}"
         users_replied_past_6_months = User.find(Reply.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
+        puts "#{__LINE__}: #{Time.now - t1}"
         users_posted_event_past_6_months = User.find(Event.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id)).count
+        puts "#{__LINE__}: #{Time.now - t1}"
         users_posted_announcement_past_6_months = User.find(Announcement.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id)).count
+        puts "#{__LINE__}: #{Time.now - t1}"
         users_posted_group_post_past_6_months = User.find(GroupPost.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
+        puts "#{__LINE__}: #{Time.now - t1}"
         users_private_messaged_past_6_months = User.find(Message.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
+        puts "#{__LINE__}: #{Time.now - t1}"
         users_updated_profile_past_6_months = User.where("updated_at > ? and updated_at < ?", day - 6.months, day).count
+        puts "#{__LINE__}: #{Time.now - t1}"
 
         users_thanked_past_6_months = User.find(Thank.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
+        puts "#{__LINE__}: #{Time.now - t1}"
 
         users_metted_past_6_months = User.joins(:mets).where("(select count(id) from mets where (requestee_id = users.id OR requester_id = users.id) AND ? < mets.created_at AND mets.created_at < ?) > 0", day - 6.months, day).count
+        puts "#{__LINE__}: #{Time.now - t1}"
 
         posts_received_message_response = 0
+
+        offers_posted = Post.count("category = 'offers'")
+        requests_posted = Post.count("category = 'help'")
+        meetups_posted = Post.count("category = 'meetups'")
+        conversations_posted = Post.count("category = 'neighborhood'")
 
         csv_arr = [day.strftime("%m/%d/%Y"),
          user_count,
@@ -183,7 +220,11 @@ class StatisticsAggregator
          users_private_messaged_past_6_months,
          users_updated_profile_past_6_months,
          users_thanked_past_6_months,
-         users_metted_past_6_months
+         users_metted_past_6_months,
+         offers_posted,
+         requests_posted,
+         meetups_posted,
+         conversations_posted
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
@@ -212,9 +253,23 @@ class StatisticsAggregator
         end
         user_count = StatisticsAggregator.user_total_count(community.users, community_launch.to_datetime, day.to_datetime)
         logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(community.users, day.to_datetime)
-        daily_bulletin_opens_on_date = 0
-        users_engaged_in_past_30_days = 0
-        users_posted_in_past_30_days = community.users.select { |u| u.posted_content.present? and u.posted_content.sort_by { |c| c.created_at }.last.created_at > 30.days.ago }.count
+        users_engaged_in_past_30_days = [
+          community.posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          community.events.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          community.group_posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          community.announcements.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          Reply.joins(:user).between((day - 6.months).to_datetime, day.to_datetime).where("users.community_id = ?", community.id).pluck(:user_id).uniq,
+          community.mets.between((day - 6.months).to_datetime, day.to_datetime).pluck(:requestee_id).uniq,
+          community.mets.between((day - 6.months).to_datetime, day.to_datetime).pluck(:requester_id).uniq,
+          community.messages.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          community.subscriptions.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
+        users_posted_in_past_30_days = [
+          community.posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          community.events.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          community.group_posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
+          community.announcements.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
         users_gained = community.users.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
         post_count = community.posts.between(community_launch.to_datetime, day.to_datetime).count
         event_count = community.events.between(community_launch.to_datetime, day.to_datetime).count
@@ -256,7 +311,7 @@ class StatisticsAggregator
           community.group_posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           community.announcements.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
-        users_posted_neighborhood_post_past_6_months = User.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
+        users_posted_neighborhood_post_past_6_months = 0 #HUGE BOTTLENECK: User.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
         users_replied_past_6_months = 0 #User.find(community.replies.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
         users_posted_event_past_6_months = 0 #User.find(community.events.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id).uniq).count
         users_posted_announcement_past_6_months = User.find(community.announcements.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).pluck(:owner_id).uniq).count
@@ -269,6 +324,11 @@ class StatisticsAggregator
         users_metted_past_6_months = community.users.joins(:mets).where("(select count(id) from mets where (requestee_id = users.id OR requester_id = users.id) AND ? < mets.created_at AND mets.created_at < ?) > 0", day - 6.months, day).count
 
         posts_received_message_response = 0
+
+        offers_posted = community.posts.where("category = 'offers'").count
+        requests_posted = community.posts.where("category = 'help'").count
+        meetups_posted = community.posts.where("category = 'meetups'").count
+        conversations_posted = community.posts.where("category = 'neighborhood'").count
 
         csv_arr = [day.strftime("%m/%d/%Y"),
          user_count,
@@ -317,7 +377,11 @@ class StatisticsAggregator
          users_private_messaged_past_6_months,
          users_updated_profile_past_6_months,
          users_thanked_past_6_months,
-         users_metted_past_6_months
+         users_metted_past_6_months,
+         offers_posted,
+         requests_posted,
+         meetups_posted,
+         conversations_posted
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
