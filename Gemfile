@@ -6,8 +6,6 @@ gem 'sass-rails'
 # API
 gem 'sinatra'
 gem 'rack-contrib'
-gem 'sham_rack' # For using the api in-process
-gem 'faraday' # For using the api in-process
 gem 'rack-cache' # For caching
 gem 'dalli' # memcache client, for caching
 gem 'acts_as_api'

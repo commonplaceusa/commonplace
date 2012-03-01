@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_community
   helper_method 'logged_in?'
 
-  helper_method :api, :serialize
+  helper_method :serialize
   
   before_filter :domain_redirect, :set_api_token
   
