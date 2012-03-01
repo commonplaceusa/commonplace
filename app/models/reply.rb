@@ -11,7 +11,7 @@ class Reply < ActiveRecord::Base
   
   has_many :thanks, :as => :thankable, :dependent => :destroy
 
-  scope :between, lambda { |start_date, end_date| { :conditions => ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } }
+  scope :between, lambda { |start_date, end_date| { :conditions => ["? <= replies.created_at AND replies.created_at < ?", start_date.utc, end_date.utc] } }
 
   scope :today, :conditions => ["replies.created_at between ? and ?", DateTime.now.at_beginning_of_day, Time.now]
 
