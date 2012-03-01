@@ -70,10 +70,6 @@ class API
         }.flatten
       end
 
-      def neo
-        @_neography_rest ||= Neography::Rest.new
-      end
-
     end
 
     get "/:community_slug" do |community_slug|
@@ -98,22 +94,8 @@ CONDITION
     end
 
     get "/:community_id/files" do |community_id|
-      #community = CommunityFile.find(params[:community_id])
-      #community.files.to_json
       serialize Community.find(community_id).residents
-      #[{ name: "Max", address: "1337 Innovation Blvd", on_commonplace: true, friends_on_commonplace: true, in_commonplace_organization: true, have_dropped_flyers: true }, {name: "John Smith", on_commonplace: true, friends_on_commonplace: true, in_commonplace_organization: false, have_dropped_flyers: true}, {name: "Carl Gao", address: "1444 Harvard Yard Mail Center", on_commonplace: false, friends_on_commonplace: false, in_commonplace_organization: false, have_dropped_flyers: true}].to_json
     end
-
-    post "/:community_id/files" do
-      community = CommunityFile.find(params[:community_id])
-      neighbor = community.create_resident(params)
-      neighbor.to_json
-    end
-
-    put "/:community_id/files/:file_id" do
-      ResidentFile.find(params[:file_id]).update(params).to_json
-    end
-
 
     post "/:community_id/posts" do |community_id|
       post = Post.new(:user => current_account,
