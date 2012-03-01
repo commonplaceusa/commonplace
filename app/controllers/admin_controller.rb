@@ -43,7 +43,11 @@ class AdminController < ApplicationController
   end
 
   def export_csv
-    send_data StatisticsAggregator.generate_statistics_csv_for_community(Community.find_by_slug(params[:community])), :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{params[:community]}.csv"
+    if params[:community] == "global"
+      send_data StatisticsAggregator.csv_statistics_globally, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{params[:community]}.csv"
+    else
+      send_data StatisticsAggregator.generate_statistics_csv_for_community(Community.find_by_slug(params[:community])), :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{params[:community]}.csv"
+    end
   end
 
   def download_csv
