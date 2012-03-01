@@ -21,7 +21,7 @@
 
           %h3 1. Sign Up
           
-          %p= t ".signup1"
+          %p= t ".signup1", :community => current_community.name
 
           %p= t ".signup2"
 
@@ -60,7 +60,7 @@
             %li= t ".post2"
             %li= t ".post3"
             %li= t ".post4"
-            %li= t ".post5"    
+            %li= t ".post5", community: current_community.name    
 
           %div{:style => "clear: both;"}
           
