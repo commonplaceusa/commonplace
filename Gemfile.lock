@@ -184,8 +184,6 @@ GEM
     hike (1.2.1)
     hirefireapp (0.0.6)
     htmlentities (4.3.1)
-    httparty (0.7.8)
-      crack (= 0.1.8)
     i18n (0.6.0)
     inherited_resources (1.3.0)
       has_scope (~> 0.5.0)
@@ -238,12 +236,6 @@ GEM
     multi_json (1.0.4)
     multipart-post (1.1.5)
     mustache (0.99.4)
-    neography (0.0.22)
-      httparty (~> 0.7.8)
-      json
-      os
-      rake (>= 0.8.7)
-      rubyzip
     newrelic_rpm (3.3.2)
     nokogiri (1.5.0)
     oauth2 (0.5.2)
@@ -260,7 +252,6 @@ GEM
     options (2.3.0)
       fattr
     orm_adapter (0.0.6)
-    os (0.9.6)
     paperclip (2.4.5)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -468,7 +459,6 @@ DEPENDENCIES
   meta_search (>= 1.1.0.pre)
   mongo_mapper
   mustache
-  neography
   newrelic_rpm
   omniauth
   omniauth-facebook
