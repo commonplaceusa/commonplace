@@ -32,7 +32,6 @@
 //= require_tree ./shared
 //= require_tree ../templates
 //= require en
-//= require college
 
 //= require invite_page
 //= require faq_page
