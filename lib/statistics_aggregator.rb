@@ -52,7 +52,11 @@ class StatisticsAggregator
       "UsersPrivateMessagedPast6Months",
       "UsersUpdatedProfilePast6Months",
       "UsersThankedPast6Months",
-      "UsersMettedPast6Months"
+      "UsersMettedPast6Months",
+      "OffersPosted",
+      "RequestsPosted",
+      "MeetUpsPosted",
+      "ConversationsPosted"
     ].join(",")
   end
 
@@ -270,6 +274,11 @@ class StatisticsAggregator
 
         posts_received_message_response = 0
 
+        offers_posted = community.posts.where("category = 'offers'").count
+        requests_posted = community.posts.where("category = 'help'").count
+        meetups_posted = community.posts.where("category = 'meetups'").count
+        conversations_posted = community.posts.where("category = 'neighborhood'").count
+
         csv_arr = [day.strftime("%m/%d/%Y"),
          user_count,
          post_count,
@@ -317,7 +326,11 @@ class StatisticsAggregator
          users_private_messaged_past_6_months,
          users_updated_profile_past_6_months,
          users_thanked_past_6_months,
-         users_metted_past_6_months
+         users_metted_past_6_months,
+         offers_posted,
+         requests_posted,
+         meetups_posted,
+         conversations_posted
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end

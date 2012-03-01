@@ -152,6 +152,11 @@ var StatsPage = CommonPlace.View.extend({
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostingOverPast3Months) / parseInt(stat.UsersTotal) * 100; })
+        }, {
+          name: 'Daily Bulletins Opened',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsOpenedToday) / parseInt(stat.UsersTotal) * 100; })
         }],
         credits: { enabled: false }
       });
@@ -168,7 +173,6 @@ var StatsPage = CommonPlace.View.extend({
       new Highcharts.Chart({
         chart: {
           renderTo: 'user_growth_graph_' + slug,
-          zoomType: 'x',
           defaultSeriesType: 'column'
         },
         title: {
@@ -194,6 +198,8 @@ var StatsPage = CommonPlace.View.extend({
 
         series: [{
           name: 'Users Gained',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
           data: _.map(community_stats, function(stat) { return parseInt(stat.UsersGainedDaily); })
         }],
         credits: { enabled: false }
@@ -315,7 +321,7 @@ var StatsPage = CommonPlace.View.extend({
 
     for (community in this.statistics) {
       var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days / 2);
       var first_date = Date.parse(community_stats[0].Date);
 
       $("#feed_engagement").append(this.liHiderFor("feed_engagement_graph_" + slug, slug));
@@ -589,50 +595,6 @@ var StatsPage = CommonPlace.View.extend({
         credits: { enabled: false }
       });
     }
-    /*
-    for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), 30);
-
-      $("#replies_and_private_messages").append(this.liHiderFor("replies_and_private_messages_graph_" + slug, slug));
-      $("#replies_and_private_messages").append("<li class='graph full " + slug + " replies_and_private_messages_graph' id='replies_and_private_messages_graph_" + slug + "'></li>");
-
-      new Highcharts.Chart({
-        chart: {
-         renderTo: "replies_and_private_messages_graph_" + slug
-        },
-        title: {
-           text: 'Content vs. Private Messages - ' + slug
-        },
-        tooltip: {
-           formatter: function() {
-              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
-           }
-        },
-        plotOptions: {
-           pie: {
-              allowPointSelect: true,
-              cursor: 'pointer',
-              dataLabels: {
-                 enabled: true,
-                 //color: Highcharts.theme.textColor || '#000000',
-                 //connectorColor: Highcharts.theme.textColor || '#000000',
-                 formatter: function() {
-                    return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
-                 }
-              }
-           }
-        },
-        series: [{
-           type: 'pie',
-           name: 'Private Messages',
-           data: [
-              ['No Message',       1 - _.last(community_stats).PostReceivedMessageTotal / _.last(community_stats).PostsTotal],
-              ['Received Message', _.last(community_stats).PostReceivedMessageTotal / _.last(community_stats).PostsTotal]
-           ]
-        }]
-      });
-    }*/
 
     for (community in this.statistics) {
       var slug = this.statistics[community][0];
@@ -719,6 +681,61 @@ var StatsPage = CommonPlace.View.extend({
         credits: { enabled: false }
       });
     }
+
+    for (community in this.statistics) {
+      var slug = this.statistics[community][0];
+      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      var first_date = Date.parse(community_stats[0].Date);
+
+      $("#neighborhood_post_types").append(this.liHiderFor("neighborhood_post_types_graph_" + slug, slug));
+      $("#neighborhood_post_types").append("<li class='graph full " + slug + " neighborhood_post_types_graph' id='neighborhood_post_types_graph_" + slug + "'></li>");
+
+      new Highcharts.Chart({
+        chart: {
+          renderTo: 'neighborhood_post_types_graph_' + slug
+        },
+        title: {
+          text: 'Neighborhood Post Types for ' + slug
+        },
+        xAxis: {
+          type: 'datetime',
+          title: {
+            text: null
+          }
+        },
+        yAxis: {
+          min: 0
+        },
+        tooltip: {
+          enabled: true
+        },
+        legend: {
+          enabled: true
+        },
+
+        series: [{
+          name: 'Offers',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return parseInt(stat.OffersPosted); })
+        },{
+          name: 'Requests',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return parseInt(stat.RequestsPosted); })
+        },{
+          name: 'Meetups',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return parseInt(stat.MeetUpsPosted); })
+        },{
+          name: 'Conversations',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return parseInt(stat.ConversationsPosted); })
+        }],
+        credits: { enabled: false }
+      });
 
     for (community in this.statistics) {
       var slug = this.statistics[community][0];
