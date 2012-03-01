@@ -11,7 +11,6 @@ class Community < ActiveRecord::Base
            :include => [:replies])
 
   has_many :users, :order => "last_name, first_name"
-  has_many :mets, :through => :users
   has_many :residents
   def organizers
     self.users.select { |u| u.admin }
@@ -21,7 +20,6 @@ class Community < ActiveRecord::Base
   has_many :group_posts, :through => :groups
 
   has_many :messages, :through => :users
-  has_many :subscriptions, :through => :users
 
   has_many(:posts, 
            :order => "posts.updated_at DESC",
