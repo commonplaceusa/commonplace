@@ -64,7 +64,8 @@ var StatsPage = CommonPlace.View.extend({
     $("#user_count").append("<li class='graph full global user_count_graph' id='user_count_graph_cumulative'></li>");
     var c = new Highcharts.Chart({
       chart: {
-        renderTo: 'user_count_graph_cumulative'
+        renderTo: 'user_count_graph_cumulative',
+        defaultSeriesType: 'column'
       },
       title: {
         text: 'User Counts across Communities'
@@ -81,6 +82,18 @@ var StatsPage = CommonPlace.View.extend({
         },
         min: 0
       },
+
+      plotOptions: {
+         area: {
+            pointStart: first_date
+         },
+         column: {
+           stacking: 'normal',
+           dataLabels: {
+             enabled: false
+           }
+         }
+      },
       tooltip: { enabled: true },
       legend: { enabled: true },
       series: _.map(_.reject(this.statistics, function(raw_stat) { return raw_stat[0] == "global"; }), function(raw_stats) {
@@ -91,7 +104,7 @@ var StatsPage = CommonPlace.View.extend({
           name: slug,
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(statistics, function(stat) { return parseInt(stat.UsersTotal); })
+          data: _.map(statistics, function(stat) { return Number(stat.UsersTotal); })
         };
         return options;
       }),
@@ -141,31 +154,31 @@ var StatsPage = CommonPlace.View.extend({
           name: 'Users Engaging over Past 30 Days',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersActiveOverPast30Days) / parseInt(stat.UsersTotal) * 100; })
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersActiveOverPast30Days) / Number(stat.UsersTotal) * 100; })
         }, {
           name: 'Users Logged In over Past 3 Months',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersLoggedInOverPast3Months) / parseInt(stat.UsersTotal) * 100; })
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersLoggedInOverPast3Months) / Number(stat.UsersTotal) * 100; })
         }, {
           name: 'Users Posting over Past 3 Months',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostingOverPast3Months) / parseInt(stat.UsersTotal) * 100; })
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersPostingOverPast3Months) / Number(stat.UsersTotal) * 100; })
         }, {
           name: 'Daily Bulletins Opened',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsOpenedToday) / parseInt(stat.UsersTotal) * 100; })
+          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsOpenedToday) / Number(stat.UsersTotal) * 100; })
         }],
         credits: { enabled: false }
       });
     }
 
     for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
-      var first_date = Date.parse(community_stats[0].Date);
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      first_date = Date.parse(community_stats[0].Date);
 
       $("#user_gains").append(this.liHiderFor("user_growth_graph_" + slug, slug));
       $("#user_gains").append("<li class='graph full " + slug + " user_growth_graph' id='user_growth_graph_" + slug + "'></li>");
@@ -200,16 +213,16 @@ var StatsPage = CommonPlace.View.extend({
           name: 'Users Gained',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersGainedDaily); })
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersGainedDaily); })
         }],
         credits: { enabled: false }
       });
     }
 
     for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
-      var first_date = Date.parse(community_stats[0].Date);
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      first_date = Date.parse(community_stats[0].Date);
 
       $("#content_posting").append(this.liHiderFor("content_posting_graph_" + slug, slug));
       $("#content_posting").append("<li class='graph full " + slug + " content_posting_graph' id='content_posting_graph_" + slug + "'></li>");
@@ -249,28 +262,28 @@ var StatsPage = CommonPlace.View.extend({
 
         series: [{
            name: 'Posts',
-           data: _.map(community_stats, function(stat) { return parseInt(stat.PostsToday); })
+           data: _.map(community_stats, function(stat) { return Number(stat.PostsToday); })
         }, {
            name: 'Events',
-           data: _.map(community_stats, function(stat) { return parseInt(stat.EventsToday); })
+           data: _.map(community_stats, function(stat) { return Number(stat.EventsToday); })
         }, {
            name: 'Group Posts',
-           data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostsToday); })
+           data: _.map(community_stats, function(stat) { return Number(stat.GroupPostsToday); })
         }, {
            name: 'Announcements',
-           data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementsToday); })
+           data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementsToday); })
         }, {
           name: 'Private Messages',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.PrivateMessagesToday); })
+          data: _.map(community_stats, function(stat) { return Number(stat.PrivateMessagesToday); })
         }],
         credits: { enabled: false }
       });
     }
 
     for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
-      var first_date = Date.parse(community_stats[0].Date);
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      first_date = Date.parse(community_stats[0].Date);
 
       $("#feed_posting").append(this.liHiderFor("feed_posting_graph_" + slug, slug));
       $("#feed_posting").append("<li class='graph full " + slug + " feed_posting_graph' id='feed_posting_graph_" + slug + "'></li>");
@@ -303,26 +316,26 @@ var StatsPage = CommonPlace.View.extend({
           name: 'Feed Announcements Today',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.FeedAnnouncementsToday); })
+          data: _.map(community_stats, function(stat) { return Number(stat.FeedAnnouncementsToday); })
         }, {
           name: 'Feed Events Today',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.FeedEventsToday); })
+          data: _.map(community_stats, function(stat) { return Number(stat.FeedEventsToday); })
         }, {
           name: 'Feeds Posting Today',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.FeedsPostingToday); })
+          data: _.map(community_stats, function(stat) { return Number(stat.FeedsPostingToday); })
         }],
         credits: { enabled: false }
       });
     }
 
     for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days / 2);
-      var first_date = Date.parse(community_stats[0].Date);
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days / 2);
+      first_date = Date.parse(community_stats[0].Date);
 
       $("#feed_engagement").append(this.liHiderFor("feed_engagement_graph_" + slug, slug));
       $("#feed_engagement").append("<li class='graph full " + slug + " feed_engagement_graph' id='feed_engagement_graph_" + slug + "'></li>");
@@ -355,31 +368,31 @@ var StatsPage = CommonPlace.View.extend({
           name: 'Pctg of Feeds Edited',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.PctgFeedsEdited); })
+          data: _.map(community_stats, function(stat) { return Number(stat.PctgFeedsEdited); })
         }, {
           name: 'Pctg of Feeds Streaming',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.PctgFeedsStreaming); })
+          data: _.map(community_stats, function(stat) { return Number(stat.PctgFeedsStreaming); })
         }, {
           name: 'Pctg of Feeds who Posted an Event',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.PctgFeedsPostedEvent); })
+          data: _.map(community_stats, function(stat) { return Number(stat.PctgFeedsPostedEvent); })
         }, {
           name: 'Pctg of Feeds who Posted an Announcement',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.PctgFeedsPostedAnnouncement); })
+          data: _.map(community_stats, function(stat) { return Number(stat.PctgFeedsPostedAnnouncement); })
         }],
         credits: { enabled: false }
       });
     }
 
     for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), 14);
-      var first_date = Date.parse(community_stats[0].Date);
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), 14);
+      first_date = Date.parse(community_stats[0].Date);
 
       $("#replies_to_content").append(this.liHiderFor("replies_to_content_graph_" + slug, slug));
       $("#replies_to_content").append("<li class='graph full " + slug + " replies_to_content_graph' id='replies_to_content_graph_" + slug + "'></li>");
@@ -418,49 +431,49 @@ var StatsPage = CommonPlace.View.extend({
         },
         series: [{
           name: 'Posts No Reply',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.PostsToday) - parseInt(stat.PostsRepliedToToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.PostsToday) - Number(stat.PostsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
         }, {
           name: 'Posts Replied To',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.PostsRepliedToToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.PostsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
         }, {
           name: 'Events No Reply',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.EventsToday) - parseInt(stat.EventsRepliedToToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.EventsToday) - Number(stat.EventsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'events'
         }, {
           name: 'Events Replied To',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.EventsRepliedToToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.EventsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'events'
         }, {
           name: 'Anouncements No Reply',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementsToday) - parseInt(stat.AnnouncementsRepliedToToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementsToday) - Number(stat.AnnouncementsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'announcements'
         }, {
           name: 'Announcements Replied To',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementsRepliedToToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'announcements'
         }, {
           name: 'GroupPosts No Reply',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostsToday) - parseInt(stat.GroupPostsRepliedToToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.GroupPostsToday) - Number(stat.GroupPostsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'group_posts'
         }, {
           name: 'GroupPosts Replied To',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostsRepliedToToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.GroupPostsRepliedToToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'group_posts'
@@ -471,10 +484,9 @@ var StatsPage = CommonPlace.View.extend({
 
 
     for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      if (slug != "global") continue;
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), 7);
-      var first_date = Date.parse(community_stats[0].Date);
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), 7);
+      first_date = Date.parse(community_stats[0].Date);
 
       $("#email_opens").append("<li class='graph full " + slug + " email_opens_graph' id='email_opens_graph_" + slug + "'></li>");
 
@@ -488,7 +500,7 @@ var StatsPage = CommonPlace.View.extend({
           text: 'Email Statistics for ' + slug
         },
         xAxis: {
-          columns: ['Sent', 'Opened'],
+          //columns: ['Sent', 'Opened'],
           /*labels: {
             formatter: function() {
 
@@ -520,73 +532,73 @@ var StatsPage = CommonPlace.View.extend({
 
         series: [{
           name: 'Posts Sent',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsSentToday) - parseInt(stat.NeighborhoodPostEmailsClickedToday) - parseInt(stat.NeighborhoodPostEmailsOpenedToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsSentToday) - Number(stat.NeighborhoodPostEmailsClickedToday) - Number(stat.NeighborhoodPostEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
         }, {
           name: 'Posts Clicked',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsClickedToday) - parseInt(stat.NeighborhoodPostEmailsSentToday) - parseInt(stat.NeighborhoodPostEmailsOpenedToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsClickedToday) - Number(stat.NeighborhoodPostEmailsSentToday) - Number(stat.NeighborhoodPostEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
         }, {
           name: 'Posts Opened',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.NeighborhoodPostEmailsOpenedToday) - parseInt(stat.NeighborhoodPostEmailsSentToday) - parseInt(stat.NeighborhoodPostEmailsClickedToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsOpenedToday) - Number(stat.NeighborhoodPostEmailsSentToday) - Number(stat.NeighborhoodPostEmailsClickedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
         }, {
           name: 'Daily Bulletin Sent',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.DailyBulletinsSentToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.DailyBulletinsSentToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'daily_bulletin'
         }, {
           name: 'Daily Bulletin Clicks',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.DailyBulletinsClickedToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.DailyBulletinsClickedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'daily_bulletin'
         }, {
           name: 'Daily Bulletin Opened',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.DailyBulletinsOpenedToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.DailyBulletinsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'daily_bulletin'
         }, {
           name: 'Group Posts Sent',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostEmailsSentToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.GroupPostEmailsSentToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'group_posts'
         }, {
           name: 'Group Posts Opened',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostEmailsOpenedToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.GroupPostEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'group_posts'
         }, {
           name: 'Group Posts Clicked',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.GroupPostEmailsClickedToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.GroupPostEmailsClickedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'group_posts'
         }, {
           name: 'Announcements Sent',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementEmailsSentToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementEmailsSentToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'announcements'
         }, {
           name: 'Announcements Opened',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementEmailsOpenedToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'announcements'
         }, {
           name: 'Announcements Clicked',
-          data: _.map(community_stats, function(stat) { return parseInt(stat.AnnouncementEmailsClickedToday); }),
+          data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementEmailsClickedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'announcements'
@@ -597,9 +609,9 @@ var StatsPage = CommonPlace.View.extend({
     }
 
     for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
-      var first_date = Date.parse(community_stats[0].Date);
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      first_date = Date.parse(community_stats[0].Date);
 
       $("#user_historical_engagement").append(this.liHiderFor("user_historical_engagement_graph_" + slug, slug));
       $("#user_historical_engagement").append("<li class='graph full " + slug + " user_historical_engagement_graph' id='user_historical_engagement_graph_" + slug + "'></li>");
@@ -618,7 +630,8 @@ var StatsPage = CommonPlace.View.extend({
           }
         },
         yAxis: {
-          min: 0
+          min: 0,
+          max: 100
         },
         tooltip: {
           enabled: true
@@ -631,68 +644,69 @@ var StatsPage = CommonPlace.View.extend({
           name: 'User Added Data',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersAddedDataPast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersAddedDataPast6Months) / Number(stat.UsersTotal); })
         }, {
           name: 'Neighborhood Post',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostedNeighborhoodPostPast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersPostedNeighborhoodPostPast6Months) / Number(stat.UsersTotal); })
         }, {
           name: 'Reply',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersRepliedPast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersRepliedPast6Months) / Number(stat.UsersTotal); })
         }, {
           name: 'Event',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostedEventPast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersPostedEventPast6Months) / Number(stat.UsersTotal); })
         }, {
           name: 'Announcement',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostedAnnouncementPast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersPostedAnnouncementPast6Months) / Number(stat.UsersTotal); })
         }, {
           name: 'Posted to Group',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPostedGroupPostPast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersPostedGroupPostPast6Months) / Number(stat.UsersTotal); })
         }, {
           name: 'Private Messaged',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersPrivateMessagedPast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersPrivateMessagedPast6Months) / Number(stat.UsersTotal); })
         }, {
           name: 'Updated Profile',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersUpdatedProfilePast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersUpdatedProfilePast6Months) / Number(stat.UsersTotal); })
         }, {
           name: 'Thanked',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersThankedPast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersThankedPast6Months) / Number(stat.UsersTotal); })
         }, {
           name: 'Metted',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.UsersMettedPast6Months); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersMettedPast6Months) / Number(stat.UsersTotal); })
         }],
         credits: { enabled: false }
       });
     }
 
     for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
-      var first_date = Date.parse(community_stats[0].Date);
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      first_date = Date.parse(community_stats[0].Date);
 
       $("#neighborhood_post_types").append(this.liHiderFor("neighborhood_post_types_graph_" + slug, slug));
       $("#neighborhood_post_types").append("<li class='graph full " + slug + " neighborhood_post_types_graph' id='neighborhood_post_types_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
-          renderTo: 'neighborhood_post_types_graph_' + slug
+          renderTo: 'neighborhood_post_types_graph_' + slug,
+          defaultSeriesType: 'column'
         },
         title: {
           text: 'Neighborhood Post Types for ' + slug
@@ -713,41 +727,39 @@ var StatsPage = CommonPlace.View.extend({
           enabled: true
         },
 
+        plotOptions: {
+          column: {
+            stacking: 'normal',
+            dataLabels: {
+              enabled: false
+            }
+          }
+        },
+
         series: [{
           name: 'Offers',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.OffersPosted); })
+          data: _.map(community_stats, function(stat) { return Number(stat.OffersPosted); })
         },{
           name: 'Requests',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.RequestsPosted); })
+          data: _.map(community_stats, function(stat) { return Number(stat.RequestsPosted); })
         },{
           name: 'Meetups',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.MeetUpsPosted); })
+          data: _.map(community_stats, function(stat) { return Number(stat.MeetUpsPosted); })
         },{
           name: 'Conversations',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return parseInt(stat.ConversationsPosted); })
+          data: _.map(community_stats, function(stat) { return Number(stat.ConversationsPosted); })
         }],
         credits: { enabled: false }
       });
 
-    }
-
-    for (community in this.statistics) {
-      var slug = this.statistics[community][0];
-      var community_stats = _.last(JSON.parse(this.statistics[community][1]), 30);
-
-      $("#post_content").append("<h2 class='header' data-hider='post_content_list_" + slug + "'>Posts for " + slug + "</h2>");
-      $("#post_content").append("<ul class='post_content_list' id='post_content_list_" + slug + "' style='display: none;'></ul>");
-
-      var todays_posts = _.last(community_stats).TodaysPosts.split(";--;");
-      _.each(todays_posts, function(post_name) { $("#post_content_list_" + slug).append("<li>" + post_name + "</li>"); });
     }
   },
 
