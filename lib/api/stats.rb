@@ -24,7 +24,8 @@ class API
       serialize SiteVisit.create(
           :ip_address => request_body['ip_address'],
           :path => request_body['path'],
-          :commonplace_account_id => request_body['commonplace_account_id']
+          :commonplace_account_id => request_body['commonplace_account_id'],
+          :community_id => request_body['community_id']
       ).id.to_s
     end
 
@@ -33,7 +34,8 @@ class API
           :original_visit_id => request_body['id'],
           :ip_address => request_body['ip_address'],
           :path => request_body['path'],
-          :commonplace_account_id => request_body['commonplace_account_id']
+          :commonplace_account_id => request_body['commonplace_account_id'],
+          :community_id => request_body['community_id']
       ).id.to_s
     end
 
