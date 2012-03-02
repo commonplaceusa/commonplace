@@ -151,7 +151,7 @@ var StatsPage = CommonPlace.View.extend({
         },
 
         series: [{
-          name: 'Users Engaging over Past 30 Days',
+          name: 'Users Engaging over Past 3 Months',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           data: _.map(community_stats, function(stat) { return Number(stat.UsersActiveOverPast30Days) / Number(stat.UsersTotal) * 100; })
@@ -170,6 +170,136 @@ var StatsPage = CommonPlace.View.extend({
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsOpenedToday) / Number(stat.UsersTotal) * 100; })
+        }],
+        credits: { enabled: false }
+      });
+    }
+
+    for (community in this.statistics) {
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      first_date = Date.parse(community_stats[0].Date);
+
+      $("#daily_network_engagement").append(this.liHiderFor("daily_network_engagement_graph_" + slug, slug));
+      $("#daily_network_engagement").append("<li class='graph full " + slug + " daily_network_engagement_graph' id='daily_network_engagement_" + slug + "'></li>");
+
+      new Highcharts.Chart({
+        chart: {
+          renderTo: 'daily_network_engagement_graph_' + slug
+        },
+        title: {
+          text: 'Daily Network Engagement'
+        },
+        xAxis: {
+          type: 'datetime',
+          title: {
+            text: null
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Percentage'
+          }
+        },
+        tooltip: {
+          enabled: true
+        },
+        legend: {
+          enabled: false
+        },
+        series: [{
+        
+        }],
+        credits: { enabled: false }
+      });
+    }
+
+    for (community in this.statistics) {
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      first_date = Date.parse(community_stats[0].Date);
+
+      $("#network_engagement").append(this.liHiderFor("network_engagement_graph_" + slug, slug));
+      $("#network_engagement").append("<li class='graph full " + slug + " network_engagement_graph' id='network_engagement_" + slug + "'></li>");
+
+      new Highcharts.Chart({
+        chart: {
+          renderTo: 'network_engagement_graph_' + slug
+        },
+        title: {
+          text: 'Network Engagement'
+        },
+        xAxis: {
+          type: 'datetime',
+          title: {
+            text: null
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Percentage'
+          }
+        },
+        tooltip: {
+          enabled: true
+        },
+        legend: {
+          enabled: false
+        },
+        series: [{
+          name: 'Percentage of Neighbors who Visited Site',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersVisitedToday) / Number(stat.UsersTotal); })
+        }, {
+          name: 'Percentage of Neighbors who Visited Site in Past Week',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersVisitedInPastWeek) / Number(stat.UsersTotal); })
+        }, {
+          name: 'Percentage of Neighbors who Visited Site in Past Month',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersVisitedInPastMonth) / Number(stat.UsersTotal); })
+        }],
+        credits: { enabled: false }
+      });
+    }
+
+    for (community in this.statistics) {
+      slug = this.statistics[community][0];
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+      first_date = Date.parse(community_stats[0].Date);
+
+      $("#levels_of_engagement").append(this.liHiderFor("levels_of_engagement_graph_" + slug, slug));
+      $("#levels_of_engagement").append("<li class='graph full " + slug + " levels_of_engagement_graph' id='levels_of_engagement_" + slug + "'></li>");
+
+      new Highcharts.Chart({
+        chart: {
+          renderTo: 'levels_of_engagement_graph_' + slug
+        },
+        title: {
+          text: 'Levels of Engagement'
+        },
+        xAxis: {
+          type: 'datetime',
+          title: {
+            text: null
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Percentage'
+          }
+        },
+        tooltip: {
+          enabled: true
+        },
+        legend: {
+          enabled: false
+        },
+        series: [{
+        
         }],
         credits: { enabled: false }
       });
@@ -494,13 +624,11 @@ var StatsPage = CommonPlace.View.extend({
         chart: {
           renderTo: 'email_opens_graph_' + slug,
           defaultSeriesType: 'column'
-          //zoomable: 'x'
         },
         title: {
           text: 'Email Statistics for ' + slug
         },
         xAxis: {
-          //columns: ['Sent', 'Opened'],
           type: 'datetime'
         },
         yAxis: {
@@ -524,7 +652,6 @@ var StatsPage = CommonPlace.View.extend({
             }
           }
         },
-
         series: [{
           name: 'Post Unopened',
           data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsSentToday) - Number(stat.NeighborhoodPostEmailsOpenedToday); }),
@@ -609,7 +736,6 @@ var StatsPage = CommonPlace.View.extend({
         legend: {
           enabled: true
         },
-
         series: [{
           name: 'User Added Data',
           pointInterval: 24*3600*1000,

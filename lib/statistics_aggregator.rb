@@ -55,7 +55,10 @@ class StatisticsAggregator
       "OffersPosted",
       "RequestsPosted",
       "MeetUpsPosted",
-      "ConversationsPosted"
+      "ConversationsPosted",
+      "UsersVisitedToday",
+      "UsersVisitedInPastWeek",
+      "UsersVisitedInPastMonth"
     ].join(",")
   end
 
@@ -95,7 +98,8 @@ class StatisticsAggregator
           Post.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           Event.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
           GroupPost.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
-          Announcement.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
+          Announcement.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          Reply.joins(:user).between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
         puts "#{__LINE__}: #{Time.now - t1}"
         users_gained = User.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
@@ -142,24 +146,15 @@ class StatisticsAggregator
           GroupPost.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           Announcement.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
-        puts "#{__LINE__}: #{Time.now - t1}"
         users_posted_neighborhood_post_past_6_months = 0 # BOTTLENECK: User.joins(:posts).where("(select count(id) from posts where posts.user_id = users.id and posts.created_at > ? and posts.created_at < ?) > 0", day - 6.months, day).count
-        puts "#{__LINE__}: #{Time.now - t1}"
         users_replied_past_6_months = User.find(Reply.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
-        puts "#{__LINE__}: #{Time.now - t1}"
         users_posted_event_past_6_months = User.find(Event.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id)).count
-        puts "#{__LINE__}: #{Time.now - t1}"
         users_posted_announcement_past_6_months = User.find(Announcement.where("owner_type = 'User' and ? < created_at and created_at < ?", day - 6.months, day).uniq(:owner_id).pluck(:owner_id)).count
-        puts "#{__LINE__}: #{Time.now - t1}"
         users_posted_group_post_past_6_months = User.find(GroupPost.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
-        puts "#{__LINE__}: #{Time.now - t1}"
         users_private_messaged_past_6_months = User.find(Message.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
-        puts "#{__LINE__}: #{Time.now - t1}"
         users_updated_profile_past_6_months = User.where("updated_at > ? and updated_at < ?", day - 6.months, day).count
-        puts "#{__LINE__}: #{Time.now - t1}"
 
         users_thanked_past_6_months = User.find(Thank.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
-        puts "#{__LINE__}: #{Time.now - t1}"
 
         users_metted_past_6_months = User.joins(:mets).where("(select count(id) from mets where (requestee_id = users.id OR requester_id = users.id) AND ? < mets.created_at AND mets.created_at < ?) > 0", day - 6.months, day).count
         puts "#{__LINE__}: #{Time.now - t1}"
@@ -170,6 +165,10 @@ class StatisticsAggregator
         requests_posted = Post.where("category = 'help'").between((day - 1.day).to_datetime, day.to_datetime).count
         meetups_posted = Post.where("category = 'meetups'").between((day - 1.day).to_datetime, day.to_datetime).count
         conversations_posted = Post.where("category = 'neighborhood'").between((day - 1.day).to_datetime, day.to_datetime).count
+
+        users_visited_today = SiteVisit.find(:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}).pluck(:commonplace_account_id).uniq.count
+        users_visited_past_week = SiteVisit.find(:created_at => {'$gt' => day.to_time - 1.week, '$lt' => day.to_time}).pluck(:commonplace_account_id).uniq.count
+        users_visited_past_month = SiteVisit.find(:created_at => {'$gt' => day.to_time - 1.month, '$lt' => day.to_time}).pluck(:commonplace_account_id).uniq.count
 
         csv_arr = [day.strftime("%m/%d/%Y"),
          user_count,
@@ -221,7 +220,10 @@ class StatisticsAggregator
          offers_posted,
          requests_posted,
          meetups_posted,
-         conversations_posted
+         conversations_posted,
+         users_visited_today,
+         users_visited_past_week,
+         users_visited_past_month
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
@@ -265,7 +267,8 @@ class StatisticsAggregator
           community.posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           community.events.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
           community.group_posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
-          community.announcements.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq
+          community.announcements.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          Reply.joins(:user).between((day - 6.months).to_datetime, day.to_datetime).where("users.community_id = ?", community.id).pluck(:user_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
         users_gained = community.users.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
         post_count = community.posts.between(community_launch.to_datetime, day.to_datetime).count
@@ -326,6 +329,10 @@ class StatisticsAggregator
         meetups_posted = community.posts.where("category = 'meetups'").between((day - 1.day).to_datetime, day.to_datetime).count
         conversations_posted = community.posts.where("category = 'neighborhood'").between((day - 1.day).to_datetime, day.to_datetime).count
 
+        users_visited_today = SiteVisit.find('$and' => [{:community_id => community.id}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}]).pluck(:commonplace_account_id).uniq.count
+        users_visited_past_week = SiteVisit.find('$and' => [{:community_id => community.id}, {:created_at => {'$gt' => day.to_time - 1.week, '$lt' => day.to_time}}]).pluck(:commonplace_account_id).uniq.count
+        users_visited_past_month = SiteVisit.find('$and' => [{:community_id => community.id}, {:created_at => {'$gt' => day.to_time - 1.month, '$lt' => day.to_time}}]).pluck(:commonplace_account_id).uniq.count
+
         csv_arr = [day.strftime("%m/%d/%Y"),
          user_count,
          post_count,
@@ -376,7 +383,10 @@ class StatisticsAggregator
          offers_posted,
          requests_posted,
          meetups_posted,
-         conversations_posted
+         conversations_posted,
+         users_visited_today,
+         users_visited_past_week,
+         users_visited_past_month
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
