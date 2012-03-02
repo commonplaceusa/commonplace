@@ -493,31 +493,26 @@ var StatsPage = CommonPlace.View.extend({
       new Highcharts.Chart({
         chart: {
           renderTo: 'email_opens_graph_' + slug,
-          defaultSeriesType: 'column',
-          zoomable: 'x'
+          defaultSeriesType: 'column'
+          //zoomable: 'x'
         },
         title: {
           text: 'Email Statistics for ' + slug
         },
         xAxis: {
           //columns: ['Sent', 'Opened'],
-          /*labels: {
-            formatter: function() {
-
-            }
-          }*/
           type: 'datetime'
         },
         yAxis: {
           min: 0
         },
         tooltip: {
-         formatter: function() {
+          formatter: function() {
             return ''+
                 this.series.name +': '+ this.y +' ('+ Math.round(this.percentage) +'%)';
-         }
-      },
-      legend: {
+          }
+        },
+        legend: {
           enabled: true
         },
 
@@ -531,32 +526,20 @@ var StatsPage = CommonPlace.View.extend({
         },
 
         series: [{
-          name: 'Posts Sent',
-          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsSentToday) - Number(stat.NeighborhoodPostEmailsClickedToday) - Number(stat.NeighborhoodPostEmailsOpenedToday); }),
+          name: 'Post Unopened',
+          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsSentToday) - Number(stat.NeighborhoodPostEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
         }, {
-          name: 'Posts Clicked',
-          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsClickedToday) - Number(stat.NeighborhoodPostEmailsSentToday) - Number(stat.NeighborhoodPostEmailsOpenedToday); }),
+          name: 'Post Opened',
+          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'posts'
         }, {
-          name: 'Posts Opened',
-          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsOpenedToday) - Number(stat.NeighborhoodPostEmailsSentToday) - Number(stat.NeighborhoodPostEmailsClickedToday); }),
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          stack: 'posts'
-        }, {
-          name: 'Daily Bulletin Sent',
-          data: _.map(community_stats, function(stat) { return Number(stat.DailyBulletinsSentToday); }),
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          stack: 'daily_bulletin'
-        }, {
-          name: 'Daily Bulletin Clicks',
-          data: _.map(community_stats, function(stat) { return Number(stat.DailyBulletinsClickedToday); }),
+          name: 'Daily Bulletin Unopened',
+          data: _.map(community_stats, function(stat) { return Number(stat.DailyBulletinsSentToday) - Number(stat.DailyBulletinsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'daily_bulletin'
@@ -567,43 +550,30 @@ var StatsPage = CommonPlace.View.extend({
           pointStart: first_date,
           stack: 'daily_bulletin'
         }, {
-          name: 'Group Posts Sent',
-          data: _.map(community_stats, function(stat) { return Number(stat.GroupPostEmailsSentToday); }),
+          name: 'Group Post Unopened',
+          data: _.map(community_stats, function(stat) { return Number(stat.GroupPostEmailsSentToday) - Number(stat.GroupPostEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'group_posts'
         }, {
-          name: 'Group Posts Opened',
+          name: 'Group Post Opened',
           data: _.map(community_stats, function(stat) { return Number(stat.GroupPostEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'group_posts'
         }, {
-          name: 'Group Posts Clicked',
-          data: _.map(community_stats, function(stat) { return Number(stat.GroupPostEmailsClickedToday); }),
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          stack: 'group_posts'
-        }, {
-          name: 'Announcements Sent',
-          data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementEmailsSentToday); }),
+          name: 'Announcement Unopened',
+          data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementEmailsSentToday) - Number(stat.AnnouncementEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'announcements'
         }, {
-          name: 'Announcements Opened',
+          name: 'Announcement Opened',
           data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementEmailsOpenedToday); }),
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           stack: 'announcements'
-        }, {
-          name: 'Announcements Clicked',
-          data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementEmailsClickedToday); }),
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          stack: 'announcements'
-        }
-        ],
+        }],
         credits: { enabled: false }
       });
     }
