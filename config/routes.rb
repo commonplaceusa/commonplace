@@ -1,6 +1,8 @@
 
 Commonplace::Application.routes.draw do
 
+  match "/mobile" => "bootstraps#mobile"
+
   # Community specific redirects
   match "/corunna" => redirect { "/owossocorunna" }
   match "/owosso" => redirect { "/owossocorunna" }
