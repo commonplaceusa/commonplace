@@ -6,6 +6,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
   show: function(model) {
     this.model = model;
     this.render();
+    this.model.addLog();
   },
 
   full_name: function() {
