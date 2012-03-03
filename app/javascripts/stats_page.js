@@ -229,18 +229,18 @@ var StatsPage = CommonPlace.View.extend({
           name: 'Percentage of Users who Adjusted Something',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: []
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersActiveToday) / Number(stat.UsersTotal); })
         }, {
           name: 'Percentage of Users who Posted/Replied/Messaged',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: []
-        }, {
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersPostingToday) / Number(stat.UsersTotal); })
+        }/*, {
           name: 'Percentage of Users who did anything',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           data: []
-        }],
+        }*/],
         credits: { enabled: false }
       });
     }
@@ -409,7 +409,7 @@ var StatsPage = CommonPlace.View.extend({
         enabled: true
       },
       legend: {
-        enabled: false
+        enabled: true
       },
 
       series: _.map(_.reject(this.statistics, function(raw_stat) { return raw_stat[0] == "global"; }), function(raw_stats) {
@@ -485,6 +485,9 @@ var StatsPage = CommonPlace.View.extend({
         }, {
           name: 'Private Messages',
           data: _.map(community_stats, function(stat) { return Number(stat.PrivateMessagesToday); })
+        }, {
+          name: 'Private Message Replies',
+          data: _.map(community_stats, function(stat) { return Number(stat.PrivateMessageRepliesToday); })
         }],
         credits: { enabled: false }
       });

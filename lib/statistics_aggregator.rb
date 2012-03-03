@@ -15,13 +15,16 @@ class StatisticsAggregator
       "RepliesTotal",
       "UsersLoggedInOverPast3Months",
       "UsersActiveOverPast30Days",
+      "UsersActiveToday",
       "UsersPostingOverPast3Months",
+      "UsersPostingToday",
       "UsersGainedDaily",
       "PostsToday",
       "EventsToday",
       "AnnouncementsToday",
       "GroupPostsToday",
       "PrivateMessagesToday",
+      "PrivateMessageRepliesToday",
       "FeedAnnouncementsToday",
       "FeedEventsToday",
       "FeedsPostingToday",
@@ -73,14 +76,14 @@ class StatisticsAggregator
     scope.select { |u| u.last_sign_in_at and u.last_sign_in_at < reference_date and u.last_sign_in_at > reference_date - 30.days }.count
   end
 
-  def self.csv_statistics_globally
+  def self.csv_statistics_globally(num_days = STATISTIC_DAYS)
     puts "Processing globally"
     unless Resque.redis.get("statistics:csv:global").present?
       t1 = Time.now
       #launch = [Post.first, Event.first, Announcement.first, GroupPost.first].sort_by(&:created_at).first.created_at.to_datetime
       csv = StatisticsAggregator.csv_headers
       community_launch = Community.first.launch_date.to_date
-      launch = STATISTIC_DAYS.days.ago.to_date 
+      launch = num_days.days.ago.to_date 
       today = DateTime.now
       launch.upto(today).each do |day|
         reply_count = Reply.between(community_launch.to_datetime, day.to_datetime).count
@@ -97,6 +100,17 @@ class StatisticsAggregator
           Message.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           Subscription.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
+        users_active_today = [
+          Post.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          Event.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          GroupPost.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          Announcement.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          Reply.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          Met.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:requestee_id).uniq,
+          Met.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:requester_id).uniq,
+          Message.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          Subscription.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
         users_posted_in_past_30_days = [
           Post.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           Event.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
@@ -104,17 +118,26 @@ class StatisticsAggregator
           Announcement.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
           Reply.joins(:user).between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
+        users_posted_today = [
+          Post.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          Event.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          GroupPost.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          Announcement.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          Reply.joins(:user).between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
         puts "#{__LINE__}: #{Time.now - t1}"
         users_gained = User.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
         post_count = Post.between(community_launch.to_datetime, day.to_datetime).count
         event_count = Event.between(community_launch.to_datetime, day.to_datetime).count
         announcement_count = Announcement.between(community_launch.to_datetime, day.to_datetime).count
         private_message_count = Message.between(community_launch.to_datetime, day.to_datetime).count
+        
         group_post_count = GroupPost.between(community_launch.to_datetime, day.to_datetime).count
         posts_today = Post.between(day.to_datetime - 1.day, day.to_datetime).count
         events_today = Event.between(day.to_datetime - 1.day, day.to_datetime).count
         announcements_today = Announcement.between(day.to_datetime - 1.day, day.to_datetime).count
         private_messages_today = Message.between(day.to_datetime - 1.day, day.to_datetime).count
+        private_message_replies_today = Reply.where("replies.repliable_type = 'Message'").between(day.to_datetime - 1.day, day.to_datetime).count
         group_posts_today = GroupPost.between(day.to_datetime - 1.day, day.to_datetime).count
         feed_announcements_today = Announcement.between(day.to_datetime - 1.day, day.to_datetime).select { |a| a.owner.is_a? Feed }.count
         feed_events_today = Event.between(day.to_datetime - 1.day, day.to_datetime).select { |e| e.owner.is_a? Feed }.count
@@ -124,12 +147,10 @@ class StatisticsAggregator
         feeds_streaming_input = 0 * 100 / Feed.count
         feeds_posting_event_in_past_month = Event.between(day.to_datetime - 1.month, day.to_datetime).select { |e| e.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / Feed.count
         feeds_posting_announcement_in_past_month = Announcement.between(day.to_datetime - 1.month, day.to_datetime).select { |a| a.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / Feed.count
-        puts "#{__LINE__}: #{Time.now - t1}"
         posts_replied_to_today = Post.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         events_replied_to_today = Event.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         announcements_replied_to_today = Announcement.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
         group_posts_replied_to_today = GroupPost.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
-        puts "#{__LINE__}: #{Time.now - t1}"
 
         daily_bulletins_sent_today = SentEmail.count('$and' => [{:tag_list => "daily_bulletin"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
         daily_bulletins_opened_today = SentEmail.count('$and' => [{:tag_list => "daily_bulletin"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
@@ -140,7 +161,6 @@ class StatisticsAggregator
         announcement_emails_sent_today = SentEmail.count('$and' => [{:tag_list => "announcement"},{:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}])
         announcement_emails_opened_today = SentEmail.count('$and' => [{:tag_list => "announcement"}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}, {:status => 'opened'}])
 
-        puts "#{__LINE__}: #{Time.now - t1}"
         email_open_times = SentEmail.where(:status => 'opened').map { |email| email.updated_at.hour }.count
 
         users_added_data_past_6_months = [
@@ -181,7 +201,6 @@ class StatisticsAggregator
           end
           if previous.present? and current.commonplace_account_id == previous.commonplace_account_id
             if current.created_at > day - 1.week and previous.created_at > day - 1.week
-              # We are in range :)
               user_visits[current.commonplace_account_id] += 1
             end
           end
@@ -202,13 +221,16 @@ class StatisticsAggregator
          reply_count,
          logged_in_in_past_30_days,
          users_engaged_in_past_30_days,
+         users_active_today,
          users_posted_in_past_30_days,
+         users_posted_today,
          users_gained,
          posts_today,
          events_today,
          announcements_today,
          group_posts_today,
          private_messages_today,
+         private_message_replies_today,
          feed_announcements_today,
          feed_events_today,
          feeds_posting_today,
@@ -260,7 +282,7 @@ class StatisticsAggregator
     end
   end
 
-  def self.generate_statistics_csv_for_community(c)
+  def self.generate_statistics_csv_for_community(c, num_days = STATISTIC_DAYS)
     puts "Processing #{c.slug}"
     t1 = Time.now
     unless Resque.redis.get("statistics:csv:#{c.slug}").present?
@@ -268,7 +290,7 @@ class StatisticsAggregator
       today = DateTime.now
       community = c
       community_launch = community.launch_date.to_date || community.users.sort { |a,b| a.created_at <=> b.created_at }.first.created_at.to_date
-      launch = [community_launch, STATISTIC_DAYS.days.ago.to_date].max
+      launch = [community_launch, num_days.days.ago.to_date].max
       launch.upto(today).each do |day|
         reply_count = 0
         replies = community.repliables
@@ -288,12 +310,30 @@ class StatisticsAggregator
           community.messages.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           community.subscriptions.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
+        users_active_today = [
+          community.posts.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          community.events.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          community.group_posts.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          community.announcements.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          Reply.joins(:user).between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("users.community_id = ?", community.id).pluck(:user_id).uniq,
+          community.mets.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:requestee_id).uniq,
+          community.mets.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:requester_id).uniq,
+          community.messages.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          community.subscriptions.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
         users_posted_in_past_30_days = [
           community.posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           community.events.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
           community.group_posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           community.announcements.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
           Reply.joins(:user).between((day - 6.months).to_datetime, day.to_datetime).where("users.community_id = ?", community.id).pluck(:user_id).uniq
+        ].reduce { |ids, more_ids| ids | more_ids }.size
+        users_posted_today = [
+          community.posts.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          community.events.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          community.group_posts.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq,
+          community.announcements.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("owner_type = 'User'").pluck(:owner_id).uniq,
+          Reply.joins(:user).between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("users.community_id = ?", community.id).pluck(:user_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
         users_gained = community.users.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
         post_count = community.posts.between(community_launch.to_datetime, day.to_datetime).count
@@ -305,6 +345,7 @@ class StatisticsAggregator
         events_today = community.events.between(day.to_datetime - 1.day, day.to_datetime).count
         announcements_today = community.announcements.between(day.to_datetime - 1.day, day.to_datetime).count
         private_messages_today = community.private_messages.between(day.to_datetime - 1.day, day.to_datetime).count
+        private_message_replies_today = Reply.joins(:user).where("users.community_id = ? and replies.repliable_type = 'Message'", community.id).between(day.to_datetime - 1.day, day.to_datetime).count
         group_posts_today = community.group_posts.between(day.to_datetime - 1.day, day.to_datetime).count
         feed_announcements_today = community.announcements.between(day.to_datetime - 1.day, day.to_datetime).select { |a| a.owner.is_a? Feed }.count
         feed_events_today = community.events.between(day.to_datetime - 1.day, day.to_datetime).select { |e| e.owner.is_a? Feed }.count
@@ -387,7 +428,9 @@ class StatisticsAggregator
          reply_count,
          logged_in_in_past_30_days,
          users_engaged_in_past_30_days,
+         users_active_today,
          users_posted_in_past_30_days,
+         users_posted_today,
          users_gained,
          posts_today,
          events_today,
