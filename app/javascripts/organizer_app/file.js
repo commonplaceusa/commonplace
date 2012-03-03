@@ -5,7 +5,21 @@ OrganizerApp.File = Backbone.Model.extend({
   },
 
   addLog: function() {
-    console.log(this.url());
+    url = this.url() + "/logs";
+    text = $("#log-text").val();
+	$.ajax({
+		type: 'POST',
+		url: url,
+		data: text,
+		cache: 'false',
+		success: function(response){		
+            console.log("ajax success");
+            $("#person-viewer").append("<br />" + text);
+		},
+        error: function(response){
+            console.log("ajax error");
+        }
+	});
   }
 });
 
