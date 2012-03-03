@@ -3,7 +3,7 @@ class StatisticsCsvGenerator
   #
   @queue = :statistics
 
-  def self.perform(globally = true)
+  def self.perform(days = 30, globally = true)
     Community.all.each do |c|
       Resque.redis.set("statistics:csv:#{c.slug}", nil)
       Resque.redis.set("statistics:hashed:#{c.slug}", nil)
@@ -13,10 +13,10 @@ class StatisticsCsvGenerator
     Resque.redis.set("statistics:csv:meta:date", Date.today.to_s)
     Resque.redis.set("statistics:hashed:meta:date", Date.today.to_s)
     Community.all.select { |c| c.core }.each do |c|
-      StatisticsAggregator.generate_statistics_csv_for_community(c)
+      StatisticsAggregator.generate_statistics_csv_for_community(c, days)
       StatisticsAggregator.generate_hashed_statistics_for_community(c)
     end
-    StatisticsAggregator.csv_statistics_globally if globally
+    StatisticsAggregator.csv_statistics_globally(days) if globally
     StatisticsAggregator.generate_hashed_statistics_globally if globally
 
   end
