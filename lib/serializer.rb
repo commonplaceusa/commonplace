@@ -35,7 +35,7 @@ module Serializer
       }
 
       when Resident
-        { 
+      { 
         "id" => o.id,
         "first_name" => o.first_name, 
         "last_name" => o.last_name,
