@@ -17,6 +17,7 @@ class StatisticsAggregator
       "UsersActiveOverPast30Days",
       "UsersPostingOverPast3Months",
       "UsersGainedDaily",
+      "PostsToday",
       "EventsToday",
       "AnnouncementsToday",
       "GroupPostsToday",
@@ -28,7 +29,6 @@ class StatisticsAggregator
       "PctgFeedsStreaming",
       "PctgFeedsPostedEvent",
       "PctgFeedsPostedAnnouncement",
-      "TodaysPosts",
       "PostsRepliedToToday",
       "EventsRepliedToToday",
       "AnnouncementsRepliedToToday",
@@ -58,7 +58,10 @@ class StatisticsAggregator
       "ConversationsPosted",
       "UsersVisitedToday",
       "UsersVisitedInPastWeek",
-      "UsersVisitedInPastMonth"
+      "UsersVisitedInPastMonth",
+      "UsersReturnedOnceInPastWeek",
+      "UsersReturnedTwiceInPastWeek",
+      "UsersReturnedThreeOrMoreTimesInPastWeek"
     ].join(",")
   end
 
@@ -166,9 +169,28 @@ class StatisticsAggregator
         meetups_posted = Post.where("category = 'meetups'").between((day - 1.day).to_datetime, day.to_datetime).count
         conversations_posted = Post.where("category = 'neighborhood'").between((day - 1.day).to_datetime, day.to_datetime).count
 
-        users_visited_today = SiteVisit.find(:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}).pluck(:commonplace_account_id).uniq.count
-        users_visited_past_week = SiteVisit.find(:created_at => {'$gt' => day.to_time - 1.week, '$lt' => day.to_time}).pluck(:commonplace_account_id).uniq.count
-        users_visited_past_month = SiteVisit.find(:created_at => {'$gt' => day.to_time - 1.month, '$lt' => day.to_time}).pluck(:commonplace_account_id).uniq.count
+        users_visited_today = SiteVisit.where(:created_at => {'$gt' => day.to_time.beginning_of_day, '$lt' => day.to_time.end_of_day}).all.map(&:commonplace_account_id).uniq.count
+        users_visited_past_week = SiteVisit.where(:created_at => {'$gt' => day.to_time - 1.week, '$lt' => day.to_time.end_of_day}).all.map(&:commonplace_account_id).uniq.count
+        users_visited_past_month = SiteVisit.where(:created_at => {'$gt' => day.to_time - 1.month, '$lt' => day.to_time.end_of_day}).all.map(&:commonplace_account_id).uniq.count
+
+        previous = nil
+        user_visits = []
+        SiteVisit.where('$and' => [{:created_at => {'$gt' => day.to_time.beginning_of_day, '$lt' => day.to_time.end_of_day}}, {:commonplace_account_id => {'$exists' => true}}]).sort(:commonplace_account_id).each do |current|
+          unless user_visits[current.commonplace_account_id]
+            user_visits[current.commonplace_account_id] = 0
+          end
+          if previous.present? and current.commonplace_account_id == previous.commonplace_account_id
+            if current.created_at > day - 1.week and previous.created_at > day - 1.week
+              # We are in range :)
+              user_visits[current.commonplace_account_id] += 1
+            end
+          end
+          previous = current
+        end
+        user_visits.compact!
+        users_returned_once_in_past_week = user_visits.select{ |v| v == 1 }.count
+        users_returned_twice_in_past_week = user_visits.select{ |v| v == 2 }.count
+        users_returned_three_or_more_times_in_past_week = user_visits.select{ |v| v >= 3 }.count
 
         csv_arr = [day.strftime("%m/%d/%Y"),
          user_count,
@@ -223,7 +245,10 @@ class StatisticsAggregator
          conversations_posted,
          users_visited_today,
          users_visited_past_week,
-         users_visited_past_month
+         users_visited_past_month,
+         users_returned_once_in_past_week,
+         users_returned_twice_in_past_week,
+         users_returned_three_or_more_times_in_past_week
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
@@ -329,9 +354,28 @@ class StatisticsAggregator
         meetups_posted = community.posts.where("category = 'meetups'").between((day - 1.day).to_datetime, day.to_datetime).count
         conversations_posted = community.posts.where("category = 'neighborhood'").between((day - 1.day).to_datetime, day.to_datetime).count
 
-        users_visited_today = SiteVisit.find('$and' => [{:community_id => community.id}, {:created_at => {'$gt' => day.to_time - 1.day, '$lt' => day.to_time}}]).pluck(:commonplace_account_id).uniq.count
-        users_visited_past_week = SiteVisit.find('$and' => [{:community_id => community.id}, {:created_at => {'$gt' => day.to_time - 1.week, '$lt' => day.to_time}}]).pluck(:commonplace_account_id).uniq.count
-        users_visited_past_month = SiteVisit.find('$and' => [{:community_id => community.id}, {:created_at => {'$gt' => day.to_time - 1.month, '$lt' => day.to_time}}]).pluck(:commonplace_account_id).uniq.count
+        users_visited_today = SiteVisit.where('$and' => [{:community_id => community.id}, {:created_at => {'$gt' => day.to_time.beginning_of_day, '$lt' => day.to_time.end_of_day}}]).all.map(&:commonplace_account_id).uniq.count
+        users_visited_past_week = SiteVisit.where('$and' => [{:community_id => community.id}, {:created_at => {'$gt' => day.to_time - 1.week, '$lt' => day.to_time.end_of_day}}]).all.map(&:commonplace_account_id).uniq.count
+        users_visited_past_month = SiteVisit.where('$and' => [{:community_id => community.id}, {:created_at => {'$gt' => day.to_time - 1.month, '$lt' => day.to_time.end_of_day}}]).all.map(&:commonplace_account_id).uniq.count
+
+        previous = nil
+        user_visits = []
+        SiteVisit.where('$and' => [{:community_id => community.id},{:commonplace_account_id => {'$exists' => true}}, {:created_at => {'$gt' => day.to_time.beginning_of_day, '$lt' => day.to_time.end_of_day}}]).sort(:commonplace_account_id).each do |current|
+          unless user_visits[current.commonplace_account_id]
+            user_visits[current.commonplace_account_id] = 0
+          end
+          if previous.present? and current.commonplace_account_id == previous.commonplace_account_id
+            if current.created_at > day - 1.week and previous.created_at > day - 1.week
+              # We are in range :)
+              user_visits[current.commonplace_account_id] += 1
+            end
+          end
+          previous = current
+        end
+        user_visits.compact!
+        users_returned_once_in_past_week = user_visits.select{ |v| v == 1 }.count
+        users_returned_twice_in_past_week = user_visits.select{ |v| v == 2 }.count
+        users_returned_three_or_more_times_in_past_week = user_visits.select{ |v| v >= 3 }.count
 
         csv_arr = [day.strftime("%m/%d/%Y"),
          user_count,
@@ -386,7 +430,10 @@ class StatisticsAggregator
          conversations_posted,
          users_visited_today,
          users_visited_past_week,
-         users_visited_past_month
+         users_visited_past_month,
+         users_returned_once_in_past_week,
+         users_returned_twice_in_past_week,
+         users_returned_three_or_more_times_in_past_week
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end

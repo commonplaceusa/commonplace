@@ -173,6 +173,7 @@ var StatsPage = CommonPlace.View.extend({
         }],
         credits: { enabled: false }
       });
+
     }
 
     for (community in this.statistics) {
@@ -181,7 +182,7 @@ var StatsPage = CommonPlace.View.extend({
       first_date = Date.parse(community_stats[0].Date);
 
       $("#daily_network_engagement").append(this.liHiderFor("daily_network_engagement_graph_" + slug, slug));
-      $("#daily_network_engagement").append("<li class='graph full " + slug + " daily_network_engagement_graph' id='daily_network_engagement_" + slug + "'></li>");
+      $("#daily_network_engagement").append("<li class='graph full " + slug + " daily_network_engagement_graph' id='daily_network_engagement_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
@@ -199,16 +200,46 @@ var StatsPage = CommonPlace.View.extend({
         yAxis: {
           title: {
             text: 'Percentage'
-          }
+          },
+          min: 0,
+          max: 100
         },
         tooltip: {
           enabled: true
         },
         legend: {
-          enabled: false
+          enabled: true
         },
         series: [{
-        
+          name: 'Percentage of Users who Opened Daily Bulletin',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.DailyBulletinsOpenedToday) / Number(stat.UsersTotal); })
+        }, {
+          name: 'Percentage of Users who Opened Post Email',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.NeighborhoodPostEmailsOpenedToday) / Number(stat.UsersTotal); })
+        }, {
+          name: 'Percentage of Users who Visited Platform',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersVisitedToday) / Number(stat.UsersTotal); })
+        }, {
+          name: 'Percentage of Users who Adjusted Something',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: []
+        }, {
+          name: 'Percentage of Users who Posted/Replied/Messaged',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: []
+        }, {
+          name: 'Percentage of Users who did anything',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: []
         }],
         credits: { enabled: false }
       });
@@ -220,7 +251,7 @@ var StatsPage = CommonPlace.View.extend({
       first_date = Date.parse(community_stats[0].Date);
 
       $("#network_engagement").append(this.liHiderFor("network_engagement_graph_" + slug, slug));
-      $("#network_engagement").append("<li class='graph full " + slug + " network_engagement_graph' id='network_engagement_" + slug + "'></li>");
+      $("#network_engagement").append("<li class='graph full " + slug + " network_engagement_graph' id='network_engagement_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
@@ -238,29 +269,31 @@ var StatsPage = CommonPlace.View.extend({
         yAxis: {
           title: {
             text: 'Percentage'
-          }
+          },
+          min: 0,
+          max: 100
         },
         tooltip: {
           enabled: true
         },
         legend: {
-          enabled: false
+          enabled: true
         },
         series: [{
           name: 'Percentage of Neighbors who Visited Site',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.UsersVisitedToday) / Number(stat.UsersTotal); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersVisitedToday) / Number(stat.UsersTotal); })
         }, {
           name: 'Percentage of Neighbors who Visited Site in Past Week',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.UsersVisitedInPastWeek) / Number(stat.UsersTotal); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersVisitedInPastWeek) / Number(stat.UsersTotal); })
         }, {
           name: 'Percentage of Neighbors who Visited Site in Past Month',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.UsersVisitedInPastMonth) / Number(stat.UsersTotal); })
+          data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersVisitedInPastMonth) / Number(stat.UsersTotal); })
         }],
         credits: { enabled: false }
       });
@@ -272,11 +305,12 @@ var StatsPage = CommonPlace.View.extend({
       first_date = Date.parse(community_stats[0].Date);
 
       $("#levels_of_engagement").append(this.liHiderFor("levels_of_engagement_graph_" + slug, slug));
-      $("#levels_of_engagement").append("<li class='graph full " + slug + " levels_of_engagement_graph' id='levels_of_engagement_" + slug + "'></li>");
+      $("#levels_of_engagement").append("<li class='graph full " + slug + " levels_of_engagement_graph' id='levels_of_engagement_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
         chart: {
-          renderTo: 'levels_of_engagement_graph_' + slug
+          renderTo: 'levels_of_engagement_graph_' + slug,
+          defaultSeriesType: 'column'
         },
         title: {
           text: 'Levels of Engagement'
@@ -290,64 +324,110 @@ var StatsPage = CommonPlace.View.extend({
         yAxis: {
           title: {
             text: 'Percentage'
-          }
+          },
+          min: 0,
+          max: 100
         },
         tooltip: {
           enabled: true
         },
         legend: {
-          enabled: false
-        },
-        series: [{
-        
-        }],
-        credits: { enabled: false }
-      });
-    }
-
-    for (community in this.statistics) {
-      slug = this.statistics[community][0];
-      community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
-      first_date = Date.parse(community_stats[0].Date);
-
-      $("#user_gains").append(this.liHiderFor("user_growth_graph_" + slug, slug));
-      $("#user_gains").append("<li class='graph full " + slug + " user_growth_graph' id='user_growth_graph_" + slug + "'></li>");
-
-      new Highcharts.Chart({
-        chart: {
-          renderTo: 'user_growth_graph_' + slug,
-          defaultSeriesType: 'column'
-        },
-        title: {
-          text: 'Users Gained for ' + slug
-        },
-        xAxis: {
-          type: 'datetime',
-          title: {
-            text: null
-          }
-        },
-        yAxis: {
-          title: {
-            text: 'Users'
-          }
-        },
-        tooltip: {
           enabled: true
         },
-        legend: {
-          enabled: false
-        },
-
         series: [{
-          name: 'Users Gained',
+          name: 'Visited 0 Times in Past Week',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.UsersGainedDaily); })
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersTotal) - Number(stat.UsersReturnedOnceInPastWeek) - Number(stat.UsersReturnedTwiceInPastWeek) - Number(stat.UsersReturnedThreeOrMoreTimesInPastWeek); })
+        }, {
+          name: 'Visited 1 Time in Past Week',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersReturnedOnceInPastWeek); })
+        }, {
+          name: 'Visited 2 Times in Past Week',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersReturnedTwiceInPastWeek); })
+        }, {
+          name: 'Visited 3+ Times in Past Week',
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(community_stats, function(stat) { return Number(stat.UsersReturnedThreeOrMoreTimesInPastWeek); })
         }],
         credits: { enabled: false }
       });
     }
+
+    community = 0;
+    slug = this.statistics[community][0];
+    community_stats = _.last(JSON.parse(this.statistics[community][1]), this.statistic_days);
+    first_date = Date.parse(community_stats[0].Date);
+
+    $("#user_gains").append(this.liHiderFor("user_growth_graph_" + slug, slug));
+    $("#user_gains").append("<li class='graph full " + slug + " user_growth_graph' id='user_growth_graph_" + slug + "'></li>");
+
+    new Highcharts.Chart({
+      chart: {
+        renderTo: 'user_growth_graph_' + slug,
+        defaultSeriesType: 'column'
+      },
+      title: {
+        text: 'Users Gained for ' + slug
+      },
+      xAxis: {
+        type: 'datetime',
+        title: {
+          text: null
+        }
+      },
+      xAxis: {
+        type: 'datetime',
+        title: {
+          text: null
+        }
+      },
+      yAxis: {
+        title: {
+          text: 'Users'
+        },
+        min: 0
+      },
+
+      plotOptions: {
+         area: {
+            pointStart: first_date
+         },
+         column: {
+           stacking: 'normal',
+           dataLabels: {
+             enabled: false
+           }
+         }
+      },
+      tooltip: {
+        enabled: true
+      },
+      legend: {
+        enabled: false
+      },
+
+      series: _.map(_.reject(this.statistics, function(raw_stat) { return raw_stat[0] == "global"; }), function(raw_stats) {
+        var slug = raw_stats[0];
+        console.log("Working with " + slug);
+        var statistics = _.last(JSON.parse(raw_stats[1]), 30);
+        var first_date = Date.parse(statistics[0].Date);
+        var options = {
+          name: slug,
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(statistics, function(stat) { return Number(stat.UsersGainedDaily); })
+        };
+        console.log(_.map(statistics, function(stat) { return Number(stat.UsersGainedDaily); }));
+        return options;
+      }),
+      credits: { enabled: false }
+    });
 
     for (community in this.statistics) {
       slug = this.statistics[community][0];
@@ -366,11 +446,11 @@ var StatsPage = CommonPlace.View.extend({
           text: 'Total Posted Content for ' + slug
         },
         xAxis: {
-           labels: {
-              formatter: function() {
-                return null;
-              }
-           }
+           //labels: {
+           //   formatter: function() {
+           //     return null;
+           //   }
+           //}
         },
         yAxis: {
            title: {
@@ -608,7 +688,7 @@ var StatsPage = CommonPlace.View.extend({
           pointStart: first_date,
           stack: 'group_posts'
         }],
-        credits: { enabled: true }
+        credits: { enabled: false }
       });
     }
 
