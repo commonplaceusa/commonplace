@@ -1,0 +1,24 @@
+@mixin button
+  display: block
+  padding: 4px
+  height: 42px
+  width: 417px
+  color: white
+  text-align: center
+  +border-radius(5px)
+  cursor: pointer
+  text-decoration: none
+  font-weight: bold
+  font-size: 21px
+  font-family: Rockwell, Georgia, Times, "Times New Roman", serif
+  background: #8B2324
+  +background-image(linear-gradient(#294D6F 0%,#1B334A 50%))
+  +box-shadow(#254564 0 0 0 1px inset,#112130 0 0 0 1px,#070c12 0 5px 6px -4px)
+  border: none
+  text-shadow: #070C12 0 -1px 0
+  letter-spacing: 1px
+  &:hover
+    +background-image(linear-gradient(#2D547B 0%,#1F3B55 50%))
+  &:active
+    +background-image(linear-gradient(#22405D 0%,#182E43 50%))
+    +box-shadow(#1e3851 0 0 0 1px inset,#112130 0 0 0 1px)
