@@ -437,6 +437,7 @@ class StatisticsAggregator
          announcements_today,
          group_posts_today,
          private_messages_today,
+         private_message_replies_today,
          feed_announcements_today,
          feed_events_today,
          feeds_posting_today,
