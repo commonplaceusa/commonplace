@@ -449,6 +449,10 @@ var StatsPage = CommonPlace.View.extend({
            //     return null;
            //   }
            //}
+          type: 'datetime',
+          title: {
+            text: null
+          }
         },
         yAxis: {
            title: {
@@ -470,22 +474,34 @@ var StatsPage = CommonPlace.View.extend({
 
         series: [{
            name: 'Posts',
+           pointInterval: 24*3600*1000,
+           pointStart: first_date,
            data: _.map(community_stats, function(stat) { return Number(stat.PostsToday); })
         }, {
            name: 'Events',
+           pointInterval: 24*3600*1000,
+           pointStart: first_date,
            data: _.map(community_stats, function(stat) { return Number(stat.EventsToday); })
         }, {
            name: 'Group Posts',
+           pointInterval: 24*3600*1000,
+           pointStart: first_date,
            data: _.map(community_stats, function(stat) { return Number(stat.GroupPostsToday); })
         }, {
            name: 'Announcements',
+           pointInterval: 24*3600*1000,
+           pointStart: first_date,
            data: _.map(community_stats, function(stat) { return Number(stat.AnnouncementsToday); })
         }, {
-          name: 'Private Messages',
-          data: _.map(community_stats, function(stat) { return Number(stat.PrivateMessagesToday); })
+           name: 'Private Messages',
+           pointInterval: 24*3600*1000,
+           pointStart: first_date,
+           data: _.map(community_stats, function(stat) { return Number(stat.PrivateMessagesToday); })
         }, {
-          name: 'Private Message Replies',
-          data: _.map(community_stats, function(stat) { return Number(stat.PrivateMessageRepliesToday); })
+           name: 'Private Message Replies',
+           pointInterval: 24*3600*1000,
+           pointStart: first_date,
+           data: _.map(community_stats, function(stat) { return Number(stat.PrivateMessageRepliesToday); })
         }],
         credits: { enabled: false }
       });
