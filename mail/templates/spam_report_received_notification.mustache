@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+  <body>
+    <table id="body">
+
+      {{< header }}
+
+      <tr>
+        <td>
+          <p>Hi {{short_user_name}},</p>
+
+          <p>{{#t}}message{{/t}}</p>
+
+          <p>{{#t}}outro{{/t}}</p>
+          <p>{{#t}}thanks{{/t}}</p>
+
+          <p>Cheers, <br> The {{community_name}} CommonPlace</p>
+
+        </td>
+
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< legal }}
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>

@@ -414,7 +414,6 @@ var StatsPage = CommonPlace.View.extend({
 
       series: _.map(_.reject(this.statistics, function(raw_stat) { return raw_stat[0] == "global"; }), function(raw_stats) {
         var slug = raw_stats[0];
-        console.log("Working with " + slug);
         var statistics = _.last(JSON.parse(raw_stats[1]), 30);
         var first_date = Date.parse(statistics[0].Date);
         var options = {
@@ -423,7 +422,6 @@ var StatsPage = CommonPlace.View.extend({
           pointStart: first_date,
           data: _.map(statistics, function(stat) { return Number(stat.UsersGainedDaily); })
         };
-        console.log(_.map(statistics, function(stat) { return Number(stat.UsersGainedDaily); }));
         return options;
       }),
       credits: { enabled: false }
