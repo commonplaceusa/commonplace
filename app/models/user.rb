@@ -528,6 +528,16 @@ WHERE
     UserErrors.new(self)
   end
 
+  def received_spam_report
+    index = User.post_receive_options.index self.post_receive_method
+    index += 1
+    unless index == User.post_receive_options.length
+      self.post_receive_method = User.post_receive_options[index]
+      self.save!
+    end
+    KickOff.new.send_spam_report_received_notification(self)
+  end
+
   private
 
   def is_transitional_user

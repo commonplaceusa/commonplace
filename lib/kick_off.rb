@@ -179,6 +179,10 @@ class KickOff
     enqueue(StatisticsReadyNotification, admin_user.email, name)
   end
 
+  def send_spam_report_received_notification(user)
+    enqueue(SpamReportReceivedNotification, user.id)
+  end
+
   private
   
   def enqueue(*args)
@@ -198,5 +202,5 @@ class KickOff
       enqueue(PostNotification, post.id, user_id)
     end
   end
-  
+
 end
