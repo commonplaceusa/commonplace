@@ -170,8 +170,9 @@ var Account = Model.extend({
       dataType: "json",
       success: function(account) { 
         self.set(account);
-        if (callback)
+        if (callback) {
           callback();
+        }
       }
     });
   },
