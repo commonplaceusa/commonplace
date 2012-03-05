@@ -43,7 +43,8 @@ module Serializer
         "friends_on_commonplace" => o.friends_on_commonplace?,
         "in_commonplace_organization" => o.in_commonplace_organization?,
         "have_dropped_flyers" => o.have_dropped_flyers?,
-        "logs" => o.logs
+        "logs" => o.logs,
+        "avatar_url" => o.avatar_url
       }
 
       when OrganizerDataPoint

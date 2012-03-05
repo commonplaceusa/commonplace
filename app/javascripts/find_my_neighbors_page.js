@@ -40,7 +40,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       "/api" + CommonPlace.community.link("residents"), {},
       _.bind(function(response) {
         if (response.length) {
-          this.neighbors = response;
+          this.neighbors = _.sortBy(response, function(neighbor) { return neighbor.last_name; });
           this.generate(CommonPlace.account.get("facebook_user"));
         }
       }, this)
@@ -273,7 +273,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       full_name: full_name,
       first_name: _.first(full_name.split(" ")),
       last_name: _.last(full_name.split(" ")),
-      email: email
+      email: email,
+      avatar_url: undefined
     }
     
     var itemView = this.generateItem(neighbor, false);
@@ -310,7 +311,13 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       }
     },
 
-    avatar_url: function() { return "/assets/block.png"; },
+    avatar_url: function() {
+      if (this.model.user_id) {
+        return this.model.avatar_url;
+      } else {
+        return "https://s3.amazonaws.com/commonplace-avatars-production/missing.png";
+      }
+    },
     first_name: function() { return this.model.first_name; },
     last_name: function() { return this.model.last_name; },
     email: function() { return this.model.email; },

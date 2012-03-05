@@ -29,4 +29,12 @@ class Resident < ActiveRecord::Base
     ["Bought a cow.", "Borrowed a babysitter.", "Hoed the lawn."]
   end
 
+  def avatar_url
+    if User.find(self.user_id)
+      User.find(self.user_id).avatar_url
+    else
+      "https://s3.amazonaws.com/commonplace-avatars-production/missing.png"
+    end
+  end
+
 end
