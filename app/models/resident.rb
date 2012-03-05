@@ -30,9 +30,9 @@ class Resident < ActiveRecord::Base
   end
 
   def avatar_url
-    if User.find(self.user_id)
+    begin
       User.find(self.user_id).avatar_url
-    else
+    rescue
       "https://s3.amazonaws.com/commonplace-avatars-production/missing.png"
     end
   end
