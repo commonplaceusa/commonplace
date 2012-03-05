@@ -1,13 +1,14 @@
 
 $.extend({
-  postJSON: function(url, data, callback) {
+  postJSON: function(options) {
     return $.ajax({
       type: "POST",
-      url: url,
+      url: options.url,
       contentType: "application/json",
-      data: JSON.stringify(data),
+      data: JSON.stringify(options.data),
       dataType: "json",
-      success: callback
+      success: options.success,
+      error: options.error
     });
   }
 });

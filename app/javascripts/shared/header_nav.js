@@ -2,7 +2,13 @@ var HeaderNav = CommonPlace.View.extend({
   template: "shared.header-nav",
   className: "nav",
 
-  slug: function() { return CommonPlace.community.get("slug"); },
+  slug: function() {
+    if (CommonPlace.account.isAuth()) {
+      return CommonPlace.account.get("community_slug");
+    } else {
+      return CommonPlace.community.get("slug");
+    }
+  },
   
   invite_url: function() { return "/" + this.slug() + "/invite"; },
   

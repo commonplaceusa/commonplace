@@ -1,16 +1,17 @@
 <li>Have an Account?</li>
 <li id="sign_in_button">Sign in</li>
 <li id="sign_in_form">
-  <!-- huuuuge amount of crud goes here -->
-  <form>
-    <label name="email">Email Address:
-      <input name="email>
-    </label>
-    <label name="password">Enter your password:
-      <input name="password">
-    </label>
-    <a class="submit" href="#">Log in</a>
-    <a class="facebook" href="/users/auth/facebook">Log in with Facebook</a>
-    <a class="forgot" href="/users/password/new">Forgot your password?</a>
-  </form>
+  <form class="user"><ul>
+    <li>
+      <label name="email">Email Address: <input name="email" type="text"></label>
+    </li>
+    <li>
+      <label name="password">Enter your password: <input name="password" type="password"> </label>
+    </li>
+    <li>
+      <input type="image" src="/assets/buttons/login.png" class="submit" value="Log in">
+      <a class="facebook" href="/users/auth/facebook"> <img src="/assets/login.png" alt="Log in with Facebook"> </a>
+      <a class="forgot" href="/users/password/new">Forgot your password?</a>
+    </li>
+  </ul></form>
 </li>

@@ -38,12 +38,20 @@ var HeaderActivity = CommonPlace.View.extend({
   },
   
   
-  invite_url: function() { return "/" + CommonPlace.community.get("slug") + "/invite"; },
+  invite_url: function() { return "/" + this.community_slug() + "/invite"; },
   percentage_penetration_px: function() {
     return Math.min(152, (this.activity.community_users.all / this.activity.households) * 152);
   },
   percent_penetration: function() {
     return Math.min(100, (this.activity.community_users.all / this.activity.households) * 100);
+  },
+  
+  community_slug: function() {
+    if (CommonPlace.account.isAuth()) {
+      return CommonPlace.account.get("community_slug");
+    } else {
+      return CommonPlace.community.get("slug");
+    }
   }
 
 });
