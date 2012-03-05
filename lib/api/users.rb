@@ -22,6 +22,10 @@ class API
       user.to_json
     end
 
+    get "/:id/history" do
+      User.find(params[:id]).profile_history.to_json
+    end
+
     get "/:id" do |id|
       user = User.find(id)
       halt [401, "wrong community"] unless in_comm(user.community.id)
