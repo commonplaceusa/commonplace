@@ -20,7 +20,7 @@
   = f.inputs do
     = f.input :name, :input_html => {'autocomplete' => "off"}
 
-    = f.input(:slug, :label => "Feed address:", :hint => "Your feed address serves as your CommonPlace URL: <em>www.OurCommonPlace.com<wbr>/pages/____</em><br><br>Also, you can send announcements by email using this email address: <em>____@OurCommonPlace.com</em>")
+    = f.input(:slug, :label => "Feed address:", :hint => "Your feed address serves as your CommonPlace URL: www.OurCommonPlace.com/pages/____. Also, you can send announcements by email using this email address: ____@OurCommonPlace.com")
 
     - unless current_community.is_college
       = f.input :kind, :as => :radio, :collection => Feed.kinds.to_hash
