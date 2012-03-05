@@ -117,7 +117,7 @@ module MailUrls
   end
 
   def inbox_url
-    url("/inbox")
+    community_url("/inbox")
   end
 
   def copyright_year
