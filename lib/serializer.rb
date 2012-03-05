@@ -271,10 +271,10 @@ module Serializer
           "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts",
           "featured_users" => "/account/featured",
           "neighbors" => "/account/neighbors",
-          "swipes" => "/account/swipes"
+          "swipes" => "/account/swipes",
+          "history" => "/account/history"
         },
         "metadata" => o.metadata,
-        "history" => o.profile_history,
         "current_sign_in_ip" => o.current_sign_in_ip
         }
 

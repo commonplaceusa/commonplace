@@ -164,7 +164,7 @@ class API
     end
 
     get "/history" do
-      serialize(current_account.profile_history)
+      current_account.profile_history.to_json
     end
     
     get "/activity" do

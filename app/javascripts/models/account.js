@@ -7,6 +7,15 @@ var Account = Model.extend({
     }
   },
 
+  profileHistory: function(callback) {
+    $.ajax({
+      type: "GET",
+      contentType: "application/json",
+      url: "/api" + this.link('history'),
+      success: callback
+    });
+  },
+
   neighborhoodsPosts: function() {
     return new Posts([], { uri: this.link('neighborhoods_posts') });
   },

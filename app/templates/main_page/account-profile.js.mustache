@@ -21,28 +21,50 @@
     </div>
 
   </div>
-  <ul class="profile-data">
-    {{#hasAbout}}<li>
-      <h4>About</h4>
-      <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>
-    </li>{{/hasAbout}}
-    {{#hasInterests}}<li>
-      <h4>Interests</h4>
-      <ul> {{#interests}}<li class="interest">{{.}}</li>{{/interests}} </ul>
-    </li>{{/hasInterests}}
-    {{#hasSkills}}<li>
-      <h4>Skills</h4>
-      <ul> {{#skills}}<li class="interest">{{.}}</li>{{/skills}} </ul>
-    </li>{{/hasSkills}}
-    {{#hasGoods}}<li>
-      <h4>Goods</h4>
-      <ul> {{#goods}}<li class="interest">{{.}}</li>{{/goods}} </ul>
-    </li>{{/hasGoods}}
-    {{#hasHistory}}<li>
-      <h4>Activity</h4><br>
-      <ul class="history">
-        {{#history}}<li>{{{to_html}}}</li>{{/history}}
-      </ul>
-    </li>{{/hasHistory}}
-  </ul>
+  <div class="profile-data">
+    {{#hasAbout}}
+      <div>
+        <h4>About</h4>
+        <div class="about">{{#markdown}}{{about}}{{/markdown}}</div>
+      </div>
+    {{/hasAbout}}
+    {{#hasInterests}}
+      <div>
+        <h4>Interests</h4>
+        <ul>
+          {{#interests}}
+            <li class="interest">
+              {{.}}
+            </li>
+          {{/interests}}
+        </ul>
+      </div>
+    {{/hasInterests}}
+    {{#hasSkills}}
+      <div>
+        <h4>Skills</h4>
+        <ul>
+          {{#skills}}
+            <li class="interest">
+              {{.}}
+            </li>
+          {{/skills}}
+        </ul>
+      </div>
+    {{/hasSkills}}
+    {{#hasGoods}}
+      <div>
+        <h4>Goods</h4>
+        <ul>
+          {{#goods}}
+            <li class="interest">
+              {{.}}
+            </li>
+          {{/goods}}
+        </ul>
+      </div>
+    {{/hasGoods}}
+    <div class="profile-history">
+    </div>
+  </div>
 </div>
