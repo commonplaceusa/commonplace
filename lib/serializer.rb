@@ -260,6 +260,9 @@ module Serializer
         "reply_count" => o.replies.count,
         "about" => o.about,
         "facebook_user" => o.facebook_user?,
+        "community_slug" => o.community.slug,
+        "community_id" => o.community_id,
+        "community_name" => o.community.name,
         "links" => {
           "avatar" => "/account/avatar",
           "crop" => "/account/crop",
