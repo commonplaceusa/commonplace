@@ -190,16 +190,20 @@ class KickOff
   end
 
   def send_post_to_neighborhood(post, neighborhood)
-    # Send to the people in the neighborhood
-    # Who receive posts live
-    recipient_ids = neighborhood.users.receives_posts_live.map(&:id)
+    # HACK: Disable e-mailing of 'publicity' posts to neighbors
+    # TODO: Don't call this method on 'publicity' posts
+    unless post.is_publicity?
+      # Send to the people in the neighborhood
+      # Who receive posts live
+      recipient_ids = neighborhood.users.receives_posts_live.map(&:id)
 
-    # Who are not the poster
-    recipient_ids.delete(post.user_id)
+      # Who are not the poster
+      recipient_ids.delete(post.user_id)
 
-    # Send it
-    recipient_ids.each do |user_id|
-      enqueue(PostNotification, post.id, user_id)
+      # Send it
+      recipient_ids.each do |user_id|
+        enqueue(PostNotification, post.id, user_id)
+      end
     end
   end
 
