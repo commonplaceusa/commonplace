@@ -22,6 +22,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   
   afterRender: function() {
     var self = this;
+    fbAsyncInit();
     this.currentQuery = "";
     
     this.$(".no_results").hide();
