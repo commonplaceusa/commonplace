@@ -323,7 +323,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     first_name: function() { return this.model.first_name; },
     last_name: function() { return this.model.last_name; },
     email: function() { return this.model.email; },
-    facebook_id: function() { return this.fbUser.id; },
+    facebook_id: function() { return this.options.fbUser.id; },
 
     isFacebook: function() { return this._isFacebook; },
 
