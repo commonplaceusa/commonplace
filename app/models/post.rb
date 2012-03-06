@@ -63,6 +63,10 @@ class Post < ActiveRecord::Base
     (self.thanks + self.replies.map(&:thanks)).flatten.sort_by {|t| t.created_at }
   end
 
+  def is_publicity?
+    self.category.present? and self.category == 'publicity'
+  end
+
   acts_as_api
 
   api_accessible :history do |t|
