@@ -1,71 +1,31 @@
 class API
-  class GroupPosts < Authorized
+  class GroupPosts < Postlikes
+
+    # This api inherits from the Postlikes api, where most of it's methods
+    # are defined. It overrides some of Postlikes's helpers in order
+    # to work specifically with GroupPosts
 
     helpers do
+      
+      # Returns the Postlike class
+      def klass
+        GroupPost
+      end
+
+      # Set the group post's attributes using the given request_body
+      # 
+      # Request params:
+      #   title -
+      #   body - 
+      #
+      # Returns true on success, false otherwise
+      def update_attributes
+        find_postlike.update_attributes(
+          subject: request_body["title"],
+          body: request_body["body"])
+      end
+
+    end
     
-      def auth(post)
-        halt [401, "wrong community"] unless in_comm(post.group.community.id)
-        post.user == current_account or current_account.admin
-      end
-
-    end
-
-    put "/:id" do |id|
-      post = GroupPost.find(id)
-      unless post.present?
-        [404, 'errors']
-      end
-
-      post.subject = request_body['title']
-      post.body = request_body['body']
-
-      if auth(post) and post.save
-        serialize(post)
-      else
-        unless auth(post)
-          [401, 'unauthorized']
-        else
-          [500, 'could not save']
-        end
-      end
-    end
-
-    delete "/:id" do |id|
-      post = GroupPost.find(id)
-      unless post.present?
-        [404, "errors"]
-      end
-
-      if auth(post)
-        post.destroy
-      else
-        [404, "errors"]
-      end
-    end
-
-    get "/:id" do |id|
-      post = GroupPost.find(id)
-      halt [401, "wrong community"] unless in_comm(post.group.community.id)
-      serialize post
-    end
-
-    post "/:id/thank" do |id|
-      thank(GroupPost, id)
-    end
-
-    post "/:id/replies" do |id|
-      post = GroupPost.find(id)
-      halt [401, "wrong community"] unless in_comm(post.group.community.id)
-      reply = Reply.new(:repliable => post,
-                        :user => current_account,
-                        :body => request_body['body'])
-
-      if reply.save
-        kickoff.deliver_reply(reply)
-        Serializer::serialize(reply).to_json
-      else
-        [400, "errors"]
-      end
-    end
   end
 end

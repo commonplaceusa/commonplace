@@ -1,5 +1,6 @@
 class API
   class Stats < Base
+  
     get "/" do
       # Return global statistics aggregate
       if StatisticsAggregator.statistics_available?

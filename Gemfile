@@ -89,6 +89,7 @@ gem 'json', "~> 1.6.0" # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku' # access heroku api
 gem 'rack-timeout' # Timeout requests that take too long
+gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 
 group :assets do
   gem 'uglifier'
@@ -132,7 +133,7 @@ group :test do
   gem 'rr' # we use rr for mocking
   gem 'rspec-rr' # we use rspec-rr for integration between rspec and rr
   gem 'webmock' # we use webmock to mock google maps and other apis
-  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git' # we use capybara for integration testing
+  gem 'capybara', '1.1.2'
   gem 'launchy' # we use launchy to launch a browser during integration testing
   gem 'database_cleaner' # we use database_cleaner to clean the database between tests
   gem 'jasmine' # we use jasmine for javascript tests

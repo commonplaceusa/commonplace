@@ -38,5 +38,15 @@ class Message < ActiveRecord::Base
   def community
     user.community
   end
-  
+
+  # Tells us whether the given user has participated in this conversation
+  #
+  # params:
+  #   user - the user we're asking about
+  # 
+  # Returns true if the user is the owner of the message or any of the 
+  # message's replies
+  def thread_member?(user)
+    user == self.user || self.replies.map(&:user).include?(user)
+  end
 end
