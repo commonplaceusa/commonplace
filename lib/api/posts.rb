@@ -1,5 +1,5 @@
 class API
-  class Posts < Authorized
+  class Posts < Unauthorized
 
     helpers do
     

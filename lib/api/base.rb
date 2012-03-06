@@ -104,6 +104,12 @@ class API
   end
   
   class Unauthorized < Base
+    
+    before do
+      if request.method != "GET"
+        authorize!
+      end
+    end
   
   end
   

@@ -1,5 +1,5 @@
 class API
-  class Communities < Authorized
+  class Communities < Unauthorized
 
     before "/:community_id/*" do |community_id, stuff|
       unless current_account.community.id == community_id || current_account.admin

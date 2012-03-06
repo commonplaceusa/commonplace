@@ -1,5 +1,5 @@
 class API
-  class GroupPosts < Authorized
+  class GroupPosts < Unauthorized
 
     helpers do
     
