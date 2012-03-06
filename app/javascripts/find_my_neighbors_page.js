@@ -52,9 +52,12 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   },
   
   generate: function(checkFacebook) {
+    console.log("Generating");
     if (checkFacebook) {
+      console.log("Checking Facebook");
       facebook_connect_friends({
         success: _.bind(function(friends) {
+          console.log("Got friends");
           this.friends = friends;
           this.generate(false);
         }, this)
