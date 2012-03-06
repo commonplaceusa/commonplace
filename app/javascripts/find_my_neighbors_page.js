@@ -66,7 +66,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     } else {
       this.items = [];
       this.limit = 0;
-      this.neighbors = _.sortBy(response, function(neighbor) { return neighbor.last_name; });
+      this.neighbors = _.sortBy(this.neighbors, function(neighbor) { return neighbor.last_name; });
       _.each(this.neighbors, _.bind(function(neighbor) {
         var itemView = this.generateItem(neighbor, false);
         if (!itemView.isFacebook()) {
