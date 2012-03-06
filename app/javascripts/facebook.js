@@ -9,11 +9,16 @@ function fbEnsureInit(callback) {
 }
 
 function fbConnect(api, scope, callback) {
+  console.log("Connecting");
   fbEnsureInit(function() {
+    console.log("Initialized");
     FB.login(function(loginResponse) {
+      console.log("Logged in");
       if (loginResponse.authResponse) {
+        console.log("Authenticated");
         var auth_token = loginResponse.authResponse.accessToken;
         FB.api(api, function(response) {
+          console.log("hitting callback");
           callback(auth_token, response);
         });
       }
@@ -67,6 +72,7 @@ function facebook_connect_avatar(options) {
 
 function facebook_connect_friends(options) {
   fbConnect("/me/friends", "", function(auth_token, response) {
+    console.log("Got friends");
     var friends = response.data;
     options.success(friends);
   });
