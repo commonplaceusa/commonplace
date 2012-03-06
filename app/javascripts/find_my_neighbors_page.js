@@ -283,7 +283,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       last_name: _.last(full_name.split(" ")),
       email: email,
       avatar_url: undefined
-    }
+    };
     
     var itemView = this.generateItem(neighbor, false);
     itemView.render();
@@ -329,6 +329,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     first_name: function() { return this.model.first_name; },
     last_name: function() { return this.model.last_name; },
     email: function() { return this.model.email; },
+    facebook_id: function() { return this.fbUserId; },
 
     isFacebook: function() { return this._isFacebook; },
 
