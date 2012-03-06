@@ -27,7 +27,6 @@ class API
       map("/messages") { run Messages }
       map("/neighborhoods") { run Neighborhoods }
       map("/posts") { run Posts }
-      map("/search/community") { run Search }
       map("/replies") { run Replies }
       map("/stats") { run Stats }
       map("/registration") { run Registrations }
