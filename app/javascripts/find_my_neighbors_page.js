@@ -41,7 +41,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       "/api" + CommonPlace.community.link("residents"), {},
       _.bind(function(response) {
         if (response.length) {
-          this.neighbors = _.sortBy(response, function(neighbor) { return neighbor.last_name; });
+          this.neighbors = response;
           this.generate(CommonPlace.account.get("facebook_user"));
         }
       }, this)
@@ -66,6 +66,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     } else {
       this.items = [];
       this.limit = 0;
+      this.neighbors = _.sortBy(response, function(neighbor) { return neighbor.last_name; });
       _.each(this.neighbors, _.bind(function(neighbor) {
         var itemView = this.generateItem(neighbor, false);
         if (!itemView.isFacebook()) {
