@@ -68,7 +68,7 @@ class API
 
       def thank(scope, id)
         post = scope.find(id)
-        halt [401, "wrong community"] unless in_comm(post.community.id)
+        halt [403, "wrong community"] unless in_comm(post.community.id)
         halt [400, "errors: already thanked"] unless post.thanks.index { |t| t.user.id == current_account.id } == nil
         thank = Thank.new(:user_id => current_account.id,
                          :thankable_id => id,
@@ -82,6 +82,10 @@ class API
         else
           [400, "errors"]
         end
+      end
+      
+      def is_method(meth)
+        return request.request_method.downcase == meth
       end
 
       NO_CALLBACK = ["no_callback"].to_json

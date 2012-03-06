@@ -3,9 +3,9 @@ class API
 
     before "/:group_id/*" do |group_id, stuff|
       group = Group.find(group_id)
-      if request.method != "GET"
+      if !is_method("get")
         authorize!
-        halt [401, "wrong community"] unless in_comm(group.community_id)
+        halt [403, "wrong community"] unless in_comm(group.community_id)
       end
     end
 

@@ -2,14 +2,14 @@ class API
   class Users < Unauthorized
   
     before do
-      if request.method != "GET"
+      if !is_method("get")
         authorize!
       end
     end
 
     post "/:id/messages" do |id|
       user = User.find(id)
-      halt [401, "wrong community"] unless in_comm(user.community.id)
+      halt [403, "wrong community"] unless in_comm(user.community.id)
       message = Message.new(:subject => request_body['subject'],
                             :body => request_body['body'],
                             :messagable => user,
@@ -20,12 +20,6 @@ class API
       else
         [400, "errors"]
       end
-    end
-
-    get "/user_by_email/:email" do |email|
-      user = User.find_by_email(email)
-      halt [401, "wrong community"] unless current_user.admin
-      user.to_json
     end
 
     get "/:id/history" do

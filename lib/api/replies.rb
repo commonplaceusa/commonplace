@@ -4,7 +4,7 @@ class API
     helpers do
     
       def auth(reply)
-        halt [401, "wrong community"] unless in_comm(reply.repliable.community.id)
+        halt [403, "wrong community"] unless in_comm(reply.repliable.community.id)
         reply.user == current_account or current_account.admin
       end
 

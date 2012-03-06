@@ -85,6 +85,7 @@ gem 'json', "~> 1.6.0" # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku' # access heroku api
 gem 'rack-timeout' # Timeout requests that take too long
+gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 
 group :assets do
   gem 'uglifier'

@@ -2,7 +2,7 @@ class API
   class Events < Unauthorized
     
     before do
-      if request.method != "GET"
+      if !is_method("get")
         authorize!
       end
     end
@@ -10,7 +10,7 @@ class API
     helpers do
 
       def auth(event)
-        halt [401, "wrong community"] unless in_comm(event.community.id)
+        halt [403, "wrong community"] unless in_comm(event.community.id)
         if (event.owner_type == "Feed")
           event.owner.get_feed_owner(current_account) or current_account.admin
         else
@@ -70,7 +70,7 @@ class API
 
     post "/:id/replies" do |id|
       event = Event.find(id)
-      halt [401, "wrong community"] unless in_comm(event.community.id)
+      halt [403, "wrong community"] unless in_comm(event.community.id)
       reply = Reply.new(:repliable => event,
                         :user => current_account,
                         :body => request_body['body'])

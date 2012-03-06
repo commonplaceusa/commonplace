@@ -3,9 +3,9 @@ class API
 
     before "/:feed_id/*" do |feed_id, stuff|
       feed = feed_id =~ /[^\d]/ ? Feed.find_by_slug(feed_id) : Feed.find(feed_id)
-      if request.method != "GET"
+      if !is_method("get")
         authorize!
-        halt [401, "wrong community"] unless in_comm(feed.community_id)
+        halt [403, "wrong community"] unless in_comm(feed.community_id)
       end
     end
     

@@ -1,8 +1,8 @@
 class API
-  class Announcements < Authorized
+  class Announcements < Unauthorized
   
     before do
-      if request.method != "GET"
+      if !is_method("get")
         authorize!
       end
     end
@@ -10,7 +10,7 @@ class API
     helpers do
 
       def auth(announcement)
-        halt [401, "wrong community"] unless in_comm(announcement.community.id)
+        halt [403, "wrong community"] unless in_comm(announcement.community.id)
         if (announcement.owner_type == "Feed")
           announcement.owner.get_feed_owner(current_account) or current_account.admin
         else
@@ -64,7 +64,7 @@ class API
 
     post "/:id/replies" do |id|
       announcement = Announcement.find(id)
-      halt [401, "wrong community"] unless in_comm(announcement.community.id)
+      halt [403, "wrong community"] unless in_comm(announcement.community.id)
       reply = Reply.new(:repliable => announcement,
                         :user => current_account,
                         :body => request_body['body'])

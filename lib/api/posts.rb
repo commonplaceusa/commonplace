@@ -2,7 +2,7 @@ class API
   class Posts < Unauthorized
     
     before do
-      if request.method != "GET"
+      if !is_method("get")
         authorize!
       end
     end
@@ -10,7 +10,7 @@ class API
     helpers do
     
       def auth(post)
-        halt [401, "wrong community"] unless in_comm(post.community.id)
+        halt [403, "wrong community"] unless in_comm(post.community.id)
         post.user == current_account or current_account.admin
       end
 
@@ -49,7 +49,6 @@ class API
 
     get "/:id" do |id|
       post = Post.find(id)
-      halt [401, "wrong community"] unless in_comm(post.community.id)
       serialize post
     end
 
@@ -59,7 +58,7 @@ class API
 
     post "/:id/replies" do |id|
       post = Post.find(id)
-      halt [401, "wrong community"] unless in_comm(post.community.id)
+      halt [403, "wrong community"] unless in_comm(post.community.id)
       reply = Reply.new(:repliable => post,
                         :user => current_account,
                         :body => request_body['body'])

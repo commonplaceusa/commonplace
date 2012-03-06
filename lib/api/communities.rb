@@ -2,9 +2,9 @@ class API
   class Communities < Unauthorized
 
     before "/:community_id/*" do |community_id, stuff|
-      if request.method != "GET"
+      if !is_method("get")
         authorize!
-        halt [401, "wrong community"] unless in_comm(community_id)
+        halt [403, "wrong community"] unless in_comm(community_id)
       end
     end
 
