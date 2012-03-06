@@ -96,8 +96,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     
     var itemView = new this.NeighborItemView({
       model: neighbor,
-      fbUser: fbUser.user,
-      fbUserId: fbUser.facebook_id,
+      fbUser: fbUser,
       search: isSearch,
       showCount: _.bind(function() { this.showCount(); }, this),
       addFromSearch: addFromSearch
@@ -166,14 +165,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
 
   getFacebookUser: function(neighbor) {
     var name = neighbor.first_name + " " + neighbor.last_name;
-    var user = _.find(this.friends, function(friend) {
+    return _.find(this.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
-    var facebook_id = neighbor.id;
-    return {
-      user: user,
-      facebook_id: facebook_id
-    };
   },
   
   debounceSearch: _.debounce(function() {
@@ -329,7 +323,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     first_name: function() { return this.model.first_name; },
     last_name: function() { return this.model.last_name; },
     email: function() { return this.model.email; },
-    facebook_id: function() { return this.fbUserId; },
+    facebook_id: function() { return this.fbUser.id; },
 
     isFacebook: function() { return this._isFacebook; },
 
