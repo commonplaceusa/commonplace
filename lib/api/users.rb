@@ -1,5 +1,11 @@
 class API
   class Users < Unauthorized
+  
+    before do
+      if request.method != "GET"
+        authorize!
+      end
+    end
 
     post "/:id/messages" do |id|
       user = User.find(id)

@@ -1,5 +1,11 @@
 class API
   class Announcements < Authorized
+  
+    before do
+      if request.method != "GET"
+        authorize!
+      end
+    end
 
     helpers do
 
@@ -49,7 +55,6 @@ class API
 
     get "/:id" do |id|
       announcement = Announcement.find(id)
-      halt [401, "wrong community"] unless in_comm(announcement.community.id)
       serialize announcement
     end
 

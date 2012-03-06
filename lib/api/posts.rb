@@ -1,5 +1,11 @@
 class API
   class Posts < Unauthorized
+    
+    before do
+      if request.method != "GET"
+        authorize!
+      end
+    end
 
     helpers do
     

@@ -1,5 +1,11 @@
 class API
   class GroupPosts < Unauthorized
+    
+    before do
+      if request.method != "GET"
+        authorize!
+      end
+    end
 
     helpers do
     
@@ -45,7 +51,6 @@ class API
 
     get "/:id" do |id|
       post = GroupPost.find(id)
-      halt [401, "wrong community"] unless in_comm(post.group.community.id)
       serialize post
     end
 

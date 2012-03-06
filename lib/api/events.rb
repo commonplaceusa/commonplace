@@ -1,5 +1,11 @@
 class API
   class Events < Unauthorized
+    
+    before do
+      if request.method != "GET"
+        authorize!
+      end
+    end
 
     helpers do
 
@@ -55,7 +61,6 @@ class API
 
     get "/:id" do |id|
       event = Event.find(id)
-      halt [401, "wrong community"] unless in_comm(event.community.id)
       serialize event
     end
 

@@ -3,13 +3,15 @@ class API
 
     before "/:feed_id/*" do |feed_id, stuff|
       feed = feed_id =~ /[^\d]/ ? Feed.find_by_slug(feed_id) : Feed.find(feed_id)
-      halt [401, "wrong community"] unless in_comm(feed.community.id)
+      if request.method != "GET"
+        authorize!
+        halt [401, "wrong community"] unless in_comm(feed.community_id)
+      end
     end
     
     helpers do
 
       def auth(feed)
-        authorize!
         feed.get_feed_owner(current_account) or current_account.admin
       end
 
