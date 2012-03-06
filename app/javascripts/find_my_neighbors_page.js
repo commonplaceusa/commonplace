@@ -53,12 +53,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   },
   
   generate: function(checkFacebook) {
-    console.log("Generating");
     if (checkFacebook) {
-      console.log("Checking Facebook");
       facebook_connect_friends({
         success: _.bind(function(friends) {
-          console.log("Got friends");
           this.friends = friends;
           this.generate(false);
         }, this)
@@ -99,7 +96,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     
     var itemView = new this.NeighborItemView({
       model: neighbor,
-      fbUser: fbUser,
+      fbUser: fbUser.user,
+      fbUserId: fbUser.facebook_id,
       search: isSearch,
       showCount: _.bind(function() { this.showCount(); }, this),
       addFromSearch: addFromSearch
@@ -168,9 +166,14 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
 
   getFacebookUser: function(neighbor) {
     var name = neighbor.first_name + " " + neighbor.last_name;
-    return _.find(this.friends, function(friend) {
+    var user = _.find(this.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
+    var facebook_id = neighbor.id;
+    return {
+      user: user,
+      facebook_id: facebook_id
+    };
   },
   
   debounceSearch: _.debounce(function() {
