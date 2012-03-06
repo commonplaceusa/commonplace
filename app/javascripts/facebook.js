@@ -1,5 +1,6 @@
 function fbEnsureInit(callback) {
     if(!window.fbApiInit) {
+        console.log("No FB yet...");
         setTimeout(function() {fbEnsureInit(callback);}, 50);
     } else {
         if(callback) {
@@ -71,6 +72,7 @@ function facebook_connect_avatar(options) {
 }
 
 function facebook_connect_friends(options) {
+  console.log("Searching for friends");
   fbConnect("/me/friends", "", function(auth_token, response) {
     console.log("Got friends");
     var friends = response.data;
@@ -91,5 +93,16 @@ function fbAsyncInit() {
     cookie : true,
     xfbml  : true
   });
-  fbApiInit = true;
+  window.fbApiInit = true;
+  console.log("Facebook initializzed");
+}
+
+function fbAsyncLoad() {
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
 }
