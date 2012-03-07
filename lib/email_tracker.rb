@@ -1,15 +1,17 @@
 class EmailTracker
 
-  EMAIL_TRACKING_BASE_URL = 'http://www.ourcommonplace.com/api/stats'
-  API = RestClient::Resource.new "#{EMAIL_TRACKING_BASE_URL}/create_email"
+  #EMAIL_TRACKING_BASE_URL = 'http://www.ourcommonplace.com/api/stats'
+  #API = RestClient::Resource.new "#{EMAIL_TRACKING_BASE_URL}/create_email"
 
   def self.new_email(params)
-    if Rails.env.production?
-      response = API.put params.to_json, :content_type => :json
-    else
-      response = "-1"
-    end
-    response
+    sent_email = SentEmail.create(
+        :recipient_email => params['recipient_email'],
+        :tag_list => params['tag_list'],
+        :status => :sent,
+        :originating_community_id => params['originating_community_id'],
+        :main_tag => params['tag']
+      )
+      sent_email.id.to_s
   end
 
   def self.create_with_tracking_pixel(params)
