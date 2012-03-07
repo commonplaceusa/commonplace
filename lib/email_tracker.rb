@@ -1,6 +1,6 @@
 class EmailTracker
 
-  #EMAIL_TRACKING_BASE_URL = 'http://www.ourcommonplace.com/api/stats'
+  EMAIL_TRACKING_BASE_URL = 'http://www.ourcommonplace.com/api/stats'
   #API = RestClient::Resource.new "#{EMAIL_TRACKING_BASE_URL}/create_email"
 
   def self.new_email(params)
