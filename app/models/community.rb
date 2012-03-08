@@ -1,5 +1,6 @@
 class Community < ActiveRecord::Base
 
+  serialize :feature_switches, Hash
   serialize :discount_businesses
   has_many :feeds
   has_many :neighborhoods, :order => :created_at
