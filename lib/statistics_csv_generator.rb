@@ -4,6 +4,7 @@ class StatisticsCsvGenerator
   @queue = :statistics
 
   def self.perform(days = 30, globally = true)
+    Resque.redis.set("statistics:meta:available", false)
     Community.all.each do |c|
       Resque.redis.set("statistics:csv:#{c.slug}", nil)
       Resque.redis.set("statistics:hashed:#{c.slug}", nil)
@@ -18,6 +19,6 @@ class StatisticsCsvGenerator
     end
     StatisticsAggregator.csv_statistics_globally(days) if globally
     StatisticsAggregator.generate_hashed_statistics_globally if globally
-
+    Resque.redis.set("statistics:meta:available", true)
   end
 end

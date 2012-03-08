@@ -2,12 +2,16 @@ class API
   class Stats < Base
     get "/" do
       # Return global statistics aggregate
-      stats_by_community = {}
-      stats_by_community["global"] = StatisticsAggregator.generate_hashed_statistics_globally
-      Community.all.select { |c| c.core }.each do |community|
-        stats_by_community[community.slug] = StatisticsAggregator.generate_hashed_statistics_for_community(community)
+      if StatisticsAggregator.statistics_available?
+        stats_by_community = {}
+        stats_by_community["global"] = StatisticsAggregator.generate_hashed_statistics_globally
+        Community.all.select { |c| c.core }.each do |community|
+          stats_by_community[community.slug] = StatisticsAggregator.generate_hashed_statistics_for_community(community)
+        end
+        serialize stats_by_community
+      else
+        serialize({ :error => "stats locked" })
       end
-      serialize stats_by_community
     end
 
     get "/days" do

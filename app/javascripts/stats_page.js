@@ -33,10 +33,15 @@ var StatsPage = CommonPlace.View.extend({
           dataType: "json",
           url: "/api/stats/",
           success: function(response) {
-            self.populateStatistics(response);
-            $(".graph").hide();
-            $(".global").show("slow");
-            $.unblockUI();
+            if (response[0][0] == "error") {
+              $.unblockUI();
+              $.blockUI({ message: '<h1>Sorry, statistics are currently generating</h1>' });
+            } else {
+              self.populateStatistics(response);
+              $(".graph").hide();
+              $(".global").show("slow");
+              $.unblockUI();
+            }
           },
           failure: function(response) {
             self.showError("Could not load statistics: " + response);
