@@ -82,6 +82,23 @@ class API
       scope = Event.where("owner_id = ? AND owner_type = ?",feed_id, "Feed")
       serialize(paginate(scope.upcoming.includes(:replies).reorder("date ASC")))
     end
+    
+    post "/:feed_id/essays" do |feed_id|
+      halt [401, "unauthorized"] unless auth(Feed.find(Feed_id))
+      essay = Essay.new(:feed_id => feed_id,
+                        :user_id => current_user.id,
+                        :subject => request_body["title"],
+                        :body => request_body["body"])
+      if essay.save
+        serialize essay
+      else
+        [400, "errors"]
+      end
+    end
+    
+    get "/:feed_id/essays" do |feed_id|
+      serialize(paginate(Feed.find(feed_id).essays))
+    end
 
     get "/:feed_id/subscribers" do |feed_id|
       serialize(paginate(Feed.find(feed_id).subscribers))

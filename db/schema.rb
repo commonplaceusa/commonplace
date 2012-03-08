@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308202708) do
+ActiveRecord::Schema.define(:version => 20120308214137) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -125,6 +125,15 @@ ActiveRecord::Schema.define(:version => 20120308202708) do
     t.text     "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "essays", :force => true do |t|
+    t.string   "subject"
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "feed_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "event_cross_postings", :force => true do |t|
