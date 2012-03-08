@@ -5,6 +5,7 @@ end
 class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
+  after_create :create_resident
 
   serialize :metadata, Hash
   serialize :private_metadata, Hash
@@ -537,6 +538,15 @@ WHERE
       self.save!
     end
     KickOff.new.send_spam_report_received_notification(self)
+  end
+
+  def create_resident
+    Resident.create(
+      :community => self.community,
+      :first_name => self.first_name,
+      :last_name => self.last_name,
+      :address => self.address,
+      :user => self)
   end
 
   private
