@@ -520,4 +520,8 @@ class StatisticsAggregator
     Resque.redis.get("statistics:csv:#{community.slug}")
   end
 
+  def self.statistics_available?
+    Resque.redis.get("statistics:meta:available") == "true"
+  end
+
 end
