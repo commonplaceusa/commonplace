@@ -84,7 +84,7 @@ class API
     end
     
     post "/:feed_id/essays" do |feed_id|
-      halt [401, "unauthorized"] unless auth(Feed.find(Feed_id))
+      halt [401, "unauthorized"] unless auth(Feed.find(feed_id))
       essay = Essay.new(:feed_id => feed_id,
                         :user_id => current_user.id,
                         :subject => request_body["title"],
