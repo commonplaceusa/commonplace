@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228143600) do
+ActiveRecord::Schema.define(:version => 20120308202708) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20120228143600) do
     t.date     "launch_date",                :default => '2010-01-01'
     t.string   "google_docs_url"
     t.text     "discount_businesses"
+    t.text     "feature_switches"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -335,6 +336,7 @@ ActiveRecord::Schema.define(:version => 20120228143600) do
     t.text    "metadata"
     t.integer "user_id"
     t.integer "community_id"
+    t.string  "address"
   end
 
   create_table "subscriptions", :force => true do |t|
