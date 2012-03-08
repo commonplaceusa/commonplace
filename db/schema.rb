@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20120308214137) do
 
   create_table "essays", :force => true do |t|
     t.string   "subject"
-    t.string   "body"
+    t.text     "body"
     t.integer  "user_id"
     t.integer  "feed_id"
     t.datetime "created_at", :null => false
