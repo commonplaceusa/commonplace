@@ -35,7 +35,7 @@ class CommunityExterior
   end
   
   def has_residents_list
-    @community.residents.present?
+    @community.feature_switches[:find_my_neighbor]
   end
   
   def grouplikes
