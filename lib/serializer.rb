@@ -190,6 +190,9 @@ module Serializer
           "user" => (o.messagable_type == "User" ? "/users" : "/feeds") + "/#{o.messagable_id}"
         }
         }
+        
+      when Essay
+        o.as_api_response(:default)
 
       when Reply
         {
