@@ -1,5 +1,5 @@
 class Community < ActiveRecord::Base
-
+  serialize :metadata, Hash
   serialize :feature_switches, Hash
   serialize :discount_businesses
   has_many :feeds
