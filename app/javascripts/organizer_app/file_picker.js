@@ -1,46 +1,37 @@
 
 OrganizerApp.FilePicker = Backbone.View.extend({
 
-  initialize: function() { },
-
   events: {
     "click li": "onClickFile",
-    "click input:checked": "filter",
-    "click input:not(:checked)": "unfilter"
+    "click #filter-button": "filter"
   },
-
+  
   onClickFile: function(e) {
     e.preventDefault();
     this.options.fileViewer.show($(e.currentTarget).data('model'));
   },
   
   render: function() {
+    this.$("#file-picker-list").empty();
     this.$("#file-picker-list").append(
       this.collection.map(_.bind(function(model) {
         return $("<li/>", { text: model.full_name(), data: { model: model } })[0];
       }, this)));
   },
 
-  filter: function(e) {
-    /*console.log($(e.currentTarget));*/
-    this.$("#file-picker-list li:visible").filter(function() {
-      var passesFilters = true;
-      var person = this;
-      return !$(person).data("model").get($(e.currentTarget).attr('id'));
-    }).hide();
-  },
+  filter: function() {
 
-  unfilter: function(e) {
-    /*console.log($(e.currentTarget));*/
-    this.$("#file-picker-list li").filter(function() {
-      var passesFilters = true;
-    
-      var person = this;
-      $("#file-picker-filters input:checked").each(function(index) {
-        
-        passesFilters = $(person).data("model").get($(this).attr('id')) && passesFilters;
-      });
-      return passesFilters;
-    }).css({ display: "block" });
+    var filters = _.groupBy(this.$("#filter-input").val().split(","), 
+                            function(string) {
+                              return string[0] === "!" ? "without": "with"
+                            });
+
+    filters.without = _.map(filters.without, 
+                            function(string) { return string.slice(1) });
+
+    this.collection.fetch({ 
+      data: {"with": filters["with"], without: filters.without},
+      success: _.bind(this.render, this)
+    });
   }
 });

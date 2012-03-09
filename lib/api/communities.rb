@@ -97,8 +97,18 @@ CONDITION
       serialize residents
     end
 
-    get "/:community_id/files" do |community_id|
-      serialize Community.find(community_id).residents
+    get "/:community_id/files" do
+      serialize(Sunspot.search(Resident) do
+          all_of do
+            with :community_id, params[:community_id]
+            Array(params[:with]).each do |w|
+              with :tags, w
+            end
+            Array(params[:without]).each do |w|
+              without :tags, w
+            end
+          end
+        end)
     end
 
     post "/:community_id/files" do

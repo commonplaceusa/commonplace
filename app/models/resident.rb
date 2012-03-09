@@ -38,12 +38,14 @@ class Resident < ActiveRecord::Base
   end
 
   def tags
-    [ self.metadata[:tags] if self.metadata[:tags],
-      "registered" if self.user.present?
-    ].compact.flatten
+    tags = []
+    tags += self.metadata[:tags] if self.metadata[:tags]
+    tags << "registered" if self.user.present?
+    tags
   end
 
   searchable do
+    integer :community_id
     string :tags, :multiple => true
     string :first_name
     string :last_name
