@@ -13,11 +13,9 @@ OrganizerApp.File = Backbone.Model.extend({
 		data: text,
 		cache: 'false',
 		success: function(response){		
-            console.log("ajax success");
             $("#person-viewer").append("<br />" + text);
 		},
         error: function(response){
-            console.log("ajax error");
         }
 	});
   }
