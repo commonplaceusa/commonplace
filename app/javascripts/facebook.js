@@ -1,6 +1,5 @@
 function fbEnsureInit(callback) {
     if(!window.fbApiInit) {
-        console.log("No FB yet...");
         setTimeout(function() {fbEnsureInit(callback);}, 50);
     } else {
         if(callback) {
@@ -10,16 +9,11 @@ function fbEnsureInit(callback) {
 }
 
 function fbConnect(api, scope, callback) {
-  console.log("Connecting");
   fbEnsureInit(function() {
-    console.log("Initialized");
     FB.login(function(loginResponse) {
-      console.log("Logged in");
       if (loginResponse.authResponse) {
-        console.log("Authenticated");
         var auth_token = loginResponse.authResponse.accessToken;
         FB.api(api, function(response) {
-          console.log("hitting callback");
           callback(auth_token, response);
         });
       }
@@ -72,9 +66,7 @@ function facebook_connect_avatar(options) {
 }
 
 function facebook_connect_friends(options) {
-  console.log("Searching for friends");
   fbConnect("/me/friends", "", function(auth_token, response) {
-    console.log("Got friends");
     var friends = response.data;
     options.success(friends);
   });
@@ -94,7 +86,6 @@ function fbAsyncInit() {
     xfbml  : true
   });
   window.fbApiInit = true;
-  console.log("Facebook initializzed");
 }
 
 function fbAsyncLoad() {
