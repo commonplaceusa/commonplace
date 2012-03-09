@@ -125,6 +125,10 @@ CONDITION
       Resident.find(params[:id]) #TODO: Add to logs
     end
 
+    post "/:community_id/files/:id/tags" do
+      Resident.find(params[:id]).add_tags(params[:tags])
+    end
+
     post "/:community_id/posts" do |community_id|
       post = Post.new(:user => current_account,
                       :community_id => community_id,

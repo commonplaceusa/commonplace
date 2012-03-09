@@ -44,6 +44,14 @@ class Resident < ActiveRecord::Base
     tags
   end
 
+  def add_tags(tag_or_tags)
+    tags = Array(tag_or_tags)
+    self.metadata[:tags] ||= []
+    self.metadata[:tags] |= tags
+    self.community.add_resident_tags(tags)
+    self.save
+  end
+
   searchable do
     integer :community_id
     string :tags, :multiple => true
