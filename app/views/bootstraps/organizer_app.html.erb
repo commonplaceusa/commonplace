@@ -14,35 +14,8 @@
       
       <div id="file-picker">
         <div id="file-picker-filters">
-
-          <div>
-            <label>
-              <input id="on_commonplace" type="checkbox" name="on-commonplace-filter">
-              On CommonPlace
-            </label>
-          </div>
-
-          <div>
-            <label>
-              <input id="has_friends_on_commonplace" type="checkbox" name="on-commonplace-filter">
-              Has friends on CommonPlace
-            </label>
-          </div>
-
-          <div>
-            <label>
-              <input id="in_commonplace_organization" type="checkbox" name="on-commonplace-filter">
-              In CommonPlace organization
-            </label>
-          </div>
-
-          <div>
-            <label>
-              <input id="have_dropped_flyers" type="checkbox" name="on-commonplace-filter">
-              Have dropped flyers
-            </label>
-          </div>
-
+          <input type="text" id="filter-input">
+          <button id="filter-button">Filter</button>
         </div>
         
         <ul id="file-picker-list">
@@ -65,12 +38,8 @@
 
         var files = new OrganizerApp.Files([], { community: community });
 
-        files.fetch({ 
-          success: function() {
             var main = new OrganizerApp.Main({ el: $("#main"), collection: files });
             main.render();
-          }
-        });
 
       });
     </script>
