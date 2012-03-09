@@ -253,4 +253,10 @@ class Community < ActiveRecord::Base
     CommunityExterior.new(self)
   end
 
+  def add_resident_tags(tags)
+    self.metadata[:resident_tags] ||= []
+    self.metadata[:resident_tags] |= tags
+    self.save
+  end
+
 end
