@@ -76,8 +76,13 @@ class API
 
     end
 
-    get "/:community_slug" do |community_slug|
-      serialize(Community.find_by_slug(community_slug))
+    get "/:id" do 
+      serialize case params[:id]
+                when /\d+/
+                  Community.find_by_id(params[:id])
+                else
+                  Community.find_by_slug(params[:id])
+                end
     end
 
     get "/:community_id/wire" do |community_id|
@@ -101,10 +106,10 @@ CONDITION
       serialize(Sunspot.search(Resident) do
           all_of do
             with :community_id, params[:community_id]
-            Array(params[:with]).each do |w|
+            Array(params[:with].split(",")).each do |w|
               with :tags, w
             end
-            Array(params[:without]).each do |w|
+            Array(params[:without].split(",")).each do |w|
               without :tags, w
             end
           end
@@ -117,16 +122,21 @@ CONDITION
       neighbor.to_json
     end
 
-    put "/:community_id/files/:file_id" do
-      ResidentFile.find(params[:file_id]).update(params).to_json
+    get "/:community_id/files/:file_id" do
+      serialize Resident.find(params[:file_id])
     end
 
     post "/:community_id/files/:id/logs" do
-      Resident.find(params[:id]) #TODO: Add to logs
+      Resident.find(params[:id]).add_log(
+        request_body['date'],
+        request_body['text'], 
+        request_body['tags'])
+      200
     end
 
     post "/:community_id/files/:id/tags" do
       Resident.find(params[:id]).add_tags(params[:tags])
+      200
     end
 
     post "/:community_id/posts" do |community_id|

@@ -1,4 +1,4 @@
-
+ 
 #main
   width: 1200px
   margin: 50px
@@ -14,18 +14,6 @@
   left: 0
   border: 1px solid #777
   
-#file-picker-filters
-  position: absolute
-  top: 0
-  bottom: 0
-  overflow:auto
-
-#file-picker-list 
-  position: absolute
-  top: 80px
-  bottom: 0
-  overflow: auto
-
 
 #file-viewer 
   position: absolute
@@ -35,3 +23,13 @@
   width: 800px
   border: 1px solid #777
 
+
+.tag-filter
+  border: 1px solid purple
+  display: inline-block
+  padding: 3px
+  margin: 3px
+  &[data-state=on]
+    background-color: #99ff00
+  &[data-state=off]
+    background-color: pink

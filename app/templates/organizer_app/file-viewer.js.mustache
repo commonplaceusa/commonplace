@@ -4,6 +4,20 @@
   {{ address }}
   <br />
   <br />
-  New activity: <input id="log-text" type="text" name="log" />
-  <input id="log-add" type="submit" value="Add" />
+
+  {{#tags}}{{.}}, {{/tags}}
+
+  <ul id="organizer-logs">
+    {{#logs}}
+      <li>{{.}}</li>
+    {{/logs}}
+  </ul>
+
+  <form id="add-log">
+    Add Log:
+    <input id="log-date" placeholder="yyyy-mm-dd">
+    <input id="log-text" type="text" placeholder="description">
+    <input id="log-tags" type="text" placeholder="dropped, talked to, dropped on 2012-01-13">
+    <input id="log-add" type="submit" value="Add">
+  </form>
 </div>

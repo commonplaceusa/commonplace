@@ -44,6 +44,7 @@ module Serializer
         "in_commonplace_organization" => o.in_commonplace_organization?,
         "have_dropped_flyers" => o.have_dropped_flyers?,
         "logs" => o.logs,
+        "tags" => o.tags,
         "avatar_url" => o.avatar_url
       }
 

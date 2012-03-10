@@ -1,17 +1,20 @@
 
-OrganizerApp.FilePicker = Backbone.View.extend({
+OrganizerApp.FilePicker = CommonPlace.View.extend({
+
+  template: "organizer_app.file-picker",
 
   events: {
     "click li": "onClickFile",
-    "click #filter-button": "filter"
+    "click #filter-button": "filter",
+    "click .tag-filter": "cycleFilter"
   },
   
   onClickFile: function(e) {
     e.preventDefault();
     this.options.fileViewer.show($(e.currentTarget).data('model'));
   },
-  
-  render: function() {
+
+  afterRender: function() {
     this.$("#file-picker-list").empty();
     this.$("#file-picker-list").append(
       this.collection.map(_.bind(function(model) {
@@ -20,18 +23,31 @@ OrganizerApp.FilePicker = Backbone.View.extend({
   },
 
   filter: function() {
-
-    var filters = _.groupBy(this.$("#filter-input").val().split(","), 
-                            function(string) {
-                              return string[0] === "!" ? "without": "with"
-                            });
-
-    filters.without = _.map(filters.without, 
-                            function(string) { return string.slice(1) });
-
+    console.log('foo');
+    var params = {
+      "with": _.map(this.$(".tag-filter[data-state=on]").toArray(), function(e) { 
+        return $(e).attr("data-tag");
+      }).join(","),
+      without: _.map(this.$(".tag-filter[data-state=off]").toArray(), function(e) { 
+        return $(e).attr("data-tag");
+      }).join(","),
+      query: this.$("#query-input").val()
+    };
+    
     this.collection.fetch({ 
-      data: {"with": filters["with"], without: filters.without},
-      success: _.bind(this.render, this)
+      data: params,
+      success: _.bind(this.afterRender, this)
     });
+  },
+
+  tags: function() { return this.options.community.get('resident_tags'); },
+
+  cycleFilter: function(e) {
+    window.foo = this;
+    e.preventDefault();
+    var state = $(e.currentTarget).attr("data-state");
+    var newState = { neutral: "on", on: "off", off: "neutral"}[state];
+    $(e.currentTarget).attr("data-state", newState);
   }
+    
 });

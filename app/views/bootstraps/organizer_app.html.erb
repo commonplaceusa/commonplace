@@ -13,15 +13,6 @@
     <div id="main">
       
       <div id="file-picker">
-        <div id="file-picker-filters">
-          <input type="text" id="filter-input">
-          <button id="filter-button">Filter</button>
-        </div>
-        
-        <ul id="file-picker-list">
-          
-        </ul>
-
       </div>
 
       <div id="file-viewer">
@@ -34,12 +25,17 @@
       
       $(function() {
       
-        var community = window.location.pathname.replace(/^\/organizer_app\//, "");
-
-        var files = new OrganizerApp.Files([], { community: community });
-
-            var main = new OrganizerApp.Main({ el: $("#main"), collection: files });
-            main.render();
+        var c_id = window.location.pathname.replace(/^\/organizer_app\//, "");
+        $.getJSON("/api/communities/" + c_id, function(r) {
+          var community = new Community(r);
+          var files = new OrganizerApp.Files([], { community: community });
+          var main = new OrganizerApp.Main({ 
+            el: $("#main"), 
+            collection: files, 
+            community: community
+          });
+          main.render();
+        });
 
       });
     </script>

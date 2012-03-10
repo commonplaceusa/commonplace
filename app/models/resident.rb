@@ -22,12 +22,10 @@ class Resident < ActiveRecord::Base
     [false, true].sample
   end
 
-  def add_log(log)
-    
-  end
-
-  def logs
-    ["Bought a cow.", "Borrowed a babysitter.", "Hoed the lawn."]
+  def add_log(date, text, tags)
+    self.add_tags(tags)
+    self.logs << [date, ": ", text].join
+    self.save
   end
 
   def avatar_url
