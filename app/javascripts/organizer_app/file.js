@@ -4,20 +4,18 @@ OrganizerApp.File = Backbone.Model.extend({
     return this.get('first_name') + ' ' + this.get('last_name');
   },
 
-  addLog: function() {
-    url = this.url() + "/logs";
-    text = $("#log-text").val();
-	$.ajax({
-		type: 'POST',
-		url: url,
-		data: text,
-		cache: 'false',
-		success: function(response){		
-            $("#person-viewer").append("<br />" + text);
-		},
-        error: function(response){
-        }
-	});
+  addLog: function(log, callback) {
+    var self = this;
+	  $.ajax({
+		  type: 'POST',
+      contentType: "application/json",
+		  url: this.url() + "/logs",
+		  data: JSON.stringify(log),
+		  cache: 'false',
+		  success: function() {
+        self.fetch({success: callback});
+      }
+	  });
   }
 });
 
@@ -30,7 +28,7 @@ OrganizerApp.Files = Backbone.Collection.extend({
   },
   
   url: function() {
-    return "/api/communities/" + this.community + "/files";
+    return "/api/communities/" + this.community.id + "/files";
   }
 
   

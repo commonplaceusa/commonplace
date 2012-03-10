@@ -63,6 +63,7 @@ class Community < ActiveRecord::Base
     t.add lambda {|c| $goods }, :as => :goods
     t.add lambda {|c| $skills }, :as => :skills
     t.add lambda {|c| $interests }, :as => :interests
+    t.add :resident_tags
   end
 
   def links
@@ -259,4 +260,10 @@ class Community < ActiveRecord::Base
     self.save
   end
 
+  def resident_tags
+    tags = []
+    tags +=  self.metadata[:resident_tags] if self.metadata[:resident_tags]
+    tags << "registered"
+    tags
+  end
 end
