@@ -1,5 +1,6 @@
 class Resident < ActiveRecord::Base
   serialize :metadata, Hash
+  serialize :logs, Array
 
   belongs_to :community
 
