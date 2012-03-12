@@ -56,6 +56,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       facebook_connect_friends({
         success: _.bind(function(friends) {
           this.friends = friends;
+          this.facebook_connected = true;
           this.generate(false);
         }, this)
       });
@@ -143,7 +144,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       can_contact: (this.$("input[name=can_contact]").attr("checked")) ? true : false
     };
 
-    if (can_contact && facebook_connected)
+    if (data.can_contact && this.facebook_connected)
     {
       var facebook_neighbors = _.map($(".neighbor_finder input[name=neighbors_list]:checked[data-facebook-id]"), function(elm) {
         return $(elm).attr("data-facebook-id");
