@@ -46,6 +46,8 @@
 //
 //= require facebook
 
+//= require_tree ./contacts
+
 //= require application_initialization
 
 var Application = Backbone.Router.extend({
