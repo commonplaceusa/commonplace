@@ -57,7 +57,7 @@ var GoogleContacts = {
       };
       contacts.push(contact);
     }
-    window.GoogleContactsCallback(contacts);
+    window.GoogleContactsCallback.success(contacts);
     window.GoogleContactsCallback = undefined;
   },
 
