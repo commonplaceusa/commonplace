@@ -4,7 +4,7 @@ gem 'rails', "~> 3.2.0"
 gem 'sass-rails'
 
 # API
-gem 'sinatra'
+gem 'sinatra', "~> 1.2.7"
 gem 'rack-contrib'
 gem 'rack-cache' # For caching
 gem 'dalli' # memcache client, for caching
@@ -50,6 +50,8 @@ gem 'redcarpet', "~> 2.0.1" # We use this to format user messages in emails
 gem 'resque', "~> 1.19.0" # use this to queue worker processes
 gem 'resque-exceptional' # we use this to send notify of exceptions with worker processes
 gem 'resque-scheduler' # we use this to queue jobs at specific times
+gem 'resque-queue-priority', :git => "git@github.com:Jberlinsky/resque-queue-priority.git" # use this to prioritize jobs
+gem 'resque-cleaner'
 gem 'hirefireapp' # auto-scale web and worker processes
 gem 'delayed_job' # we use this to run jobs to index our data
 
@@ -61,7 +63,7 @@ gem 'premailer', :git => "git://github.com/Jberlinsky/premailer.git" # we use th
 # ActionView
 gem 'sanitize' # used in app/controllers/posts_controller.rb (which is dead code) ! remove
 gem 'haml', '~> 3.1' # used for view templates
-gem 'formtastic' # used for view templates
+gem 'formtastic', '~> 2.0.2' # used for view templates
 gem 'sass' # used for stylesheets
 
 # Admin
