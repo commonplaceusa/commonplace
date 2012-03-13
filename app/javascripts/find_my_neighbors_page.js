@@ -77,16 +77,19 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         }, this)
       });
     } else {
+      console.log("Looking for intersections...");
       this.items = [];
       this.limit = 0;
       this.neighbors = _.sortBy(this.neighbors, function(neighbor) { return neighbor.last_name; });
       _.each(this.neighbors, _.bind(function(neighbor) {
         var itemView = this.generateItem(neighbor, false);
-        if (!itemView.isFacebook()) {
-          this.items.push(itemView);
-        } else {
+        if (itemView.isFacebook() || itemView.isGmail()) {
+          consol.log("Facebook/GMail user");
+          console.log(neighbor);
           this.items.unshift(itemView);
           this.limit++;
+        } else {
+          this.items.push(itemView);
         }
       }, this));
       this.limit += 100;
@@ -98,9 +101,6 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   
   generateItem: function(neighbor, isSearch) {
     var intersectedUser = this.getIntersectedUser(neighbor);
-    console.log(neighbor);
-    console.log("Intersected");
-    console.log(intersectedUser);
     var addFromSearch;
     
     if (isSearch) {
