@@ -67,7 +67,7 @@ gem 'formtastic', '~> 2.0.2' # used for view templates
 gem 'sass' # used for stylesheets
 
 # Admin
-gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git' # use as an easy admin tool
+gem 'activeadmin', '~> 0.4.1' # use as an easy admin tool
 gem 'meta_search',    '>= 1.1.0.pre'
 gem 'googlecharts' # used for admin/overview
 gem 'garb' # used to access the Google Analytics API
