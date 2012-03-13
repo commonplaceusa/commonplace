@@ -112,19 +112,19 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     } else {
       addFromSearch = function() {};
     }
-    
+    var intersectionType = "";
+    if (this.facebook_connected)
+      intersectionType = "facebook";
+    if (this.gmail_connected)
+      intersectionType = "gmail";
     var itemView = new this.NeighborItemView({
       model: neighbor,
       intersectedUser: intersectedUser,
+      intersectionType: intersectionType,
       search: isSearch,
       showCount: _.bind(function() { this.showCount(); }, this),
       addFromSearch: addFromSearch
     });
-    itemView.options.intersectionType = "";
-    if (this.facebook_connected)
-      itemView.options.intersectionType = "facebook";
-    if (this.gmail_connected)
-      itemView.options.intersectionType = "gmail";
     console.log("Intersection type: " + itemView.options.intersectionType);
     return itemView;
   },
