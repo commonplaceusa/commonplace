@@ -126,6 +126,12 @@ CONDITION
       serialize Resident.find(params[:file_id])
     end
 
+    put "/:community_id/files/:file_id" do
+      Resident.find(params[:file_id]).update_attributes(
+        request_body
+      )
+    end
+
     post "/:community_id/files/:id/logs" do
       Resident.find(params[:id]).add_log(
         request_body['date'],
