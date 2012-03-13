@@ -98,6 +98,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   
   generateItem: function(neighbor, isSearch) {
     var intersectedUser = this.getIntersectedUser(neighbor);
+    console.log(neighbor);
+    console.log("Intersected");
+    console.log(intersectedUser);
     var addFromSearch;
     
     if (isSearch) {
@@ -208,8 +211,10 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   getIntersectedUser: function(neighbor) {
     var name = neighbor.first_name + " " + neighbor.last_name;
     return _.find(this.friends, function(friend) {
+      console.match(friend.name.toLowerCase() + " matched " + name.toLowerCase());
       return friend.name.toLowerCase() == name.toLowerCase();
     });
+    console.log("No match found for " + name);
   },
   
   debounceSearch: _.debounce(function() {
@@ -357,6 +362,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         });
       }
       else if (this.isGmail()) {
+        console.log("Rendering GMail");
         if (!this.options.search) { this.check(); }
       }
     },
