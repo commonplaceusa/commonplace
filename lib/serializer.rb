@@ -43,7 +43,8 @@ module Serializer
         "email" => o.email,
         "logs" => o.logs,
         "tags" => o.tags,
-        "avatar_url" => o.avatar_url
+        "avatar_url" => o.avatar_url,
+        "on_commonplace" => o.on_commonplace?
       }
 
       when OrganizerDataPoint
