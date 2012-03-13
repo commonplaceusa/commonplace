@@ -19,7 +19,7 @@ var GoogleContacts = {
   retrievePairedContacts: function(callback) {
     console.log("Getting contacts");
     this.logMeIn();
-    this.callback = callback;
+    window.GoogleContactsCallback = callback;
     this.getContacts();
   },
 
@@ -57,7 +57,8 @@ var GoogleContacts = {
       };
       contacts.push(contact);
     }
-    this.callback(contacts);
+    window.GoogleContactsCallback(contacts);
+    window.GoogleContactsCallback = undefined;
   },
 
   handleError: function(err) {
