@@ -50,7 +50,7 @@ gem 'redcarpet', "~> 2.0.1" # We use this to format user messages in emails
 gem 'resque', "~> 1.19.0" # use this to queue worker processes
 gem 'resque-exceptional' # we use this to send notify of exceptions with worker processes
 gem 'resque-scheduler' # we use this to queue jobs at specific times
-gem 'resque-queue-priority', :git => "git@github.com:Jberlinsky/resque-queue-priority.git" # use this to prioritize jobs
+gem 'resque-queue-priority', :require => false # use this to prioritize jobs
 gem 'resque-cleaner'
 gem 'hirefireapp' # auto-scale web and worker processes
 gem 'delayed_job' # we use this to run jobs to index our data
