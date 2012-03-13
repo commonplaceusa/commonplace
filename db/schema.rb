@@ -352,6 +352,13 @@ ActiveRecord::Schema.define(:version => 20120313200641) do
     t.string  "email"
   end
 
+  create_table "sent_emails", :force => true do |t|
+    t.string   "tag"
+    t.integer  "community_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id",                             :null => false
     t.integer  "feed_id",                             :null => false
