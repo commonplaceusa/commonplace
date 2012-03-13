@@ -46,7 +46,7 @@ GEM
       rack-cache (~> 1.1)
       rack-test (~> 0.6.1)
       sprockets (~> 2.1.2)
-    activeadmin (0.4.3)
+    activeadmin (0.4.1)
       bourbon (>= 1.0.0)
       devise (>= 1.1.2)
       fastercsv
@@ -413,7 +413,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin (~> 0.4.1)
+  activeadmin (= 0.4.1)
   acts_as_api
   aws-s3
   bson_ext
