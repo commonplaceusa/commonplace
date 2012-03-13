@@ -341,6 +341,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     
     initialize: function(options) {
       this._isFacebook = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "facebook";
+      this._isGmail = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "gmail";
     },
 
     afterRender: function() {
@@ -373,6 +374,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     facebook_id: function() { return this.isFacebook() && this.options.intersectedUser.id; },
 
     isFacebook: function() { return this._isFacebook; },
+    isGmail: function() { return this._isGmail; },
 
     check: function(e) {
       if (e) { e.preventDefault(); }
