@@ -70,6 +70,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         success: _.bind(function(friends) {
           console.log(this.friends);
           this.friends = friends;
+          this.gmail_connected = true;
           console.log("Friends overwritten");
           console.log(this.friends);
           this.generate(false);
@@ -96,7 +97,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   },
   
   generateItem: function(neighbor, isSearch) {
-    var fbUser = this.getFacebookUser(neighbor);
+    var intersectedUser = this.getIntersectedUser(neighbor);
     var addFromSearch;
     
     if (isSearch) {
@@ -111,11 +112,16 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     
     var itemView = new this.NeighborItemView({
       model: neighbor,
-      fbUser: fbUser,
+      intersectedUser: intersectedUser,
       search: isSearch,
       showCount: _.bind(function() { this.showCount(); }, this),
       addFromSearch: addFromSearch
     });
+    itemView.options.intersectionType = "";
+    if (this.facebook_connected)
+      itemView.options.intersectionType = "facebook";
+    if (this.gmail_connected)
+      itemView.options.intersectionType = "gmail";
     return itemView;
   },
 
@@ -199,7 +205,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     this.generate("gmail");
   },
 
-  getFacebookUser: function(neighbor) {
+  getIntersectedUser: function(neighbor) {
     var name = neighbor.first_name + " " + neighbor.last_name;
     return _.find(this.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
@@ -334,7 +340,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     events: { "click": "check" },
     
     initialize: function(options) {
-      this._isFacebook = !_.isEmpty(this.options.fbUser);
+      this._isFacebook = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "facebook";
     },
 
     afterRender: function() {
@@ -343,11 +349,14 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       if (this.isFacebook()) {
         if (!this.options.search) { this.check(); }
         facebook_connect_user_picture({
-          id: this.options.fbUser.id,
+          id: this.options.intersectedUser.id,
           success: _.bind(function(url) {
             this.$("img").attr("src", url);
           }, this)
         });
+      }
+      else if (this.isGmail()) {
+        if (!this.options.search) { this.check(); }
       }
     },
 
@@ -361,7 +370,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     first_name: function() { return this.model.first_name; },
     last_name: function() { return this.model.last_name; },
     email: function() { return this.model.email; },
-    facebook_id: function() { return this.isFacebook() && this.options.fbUser.id; },
+    facebook_id: function() { return this.isFacebook() && this.options.intersectedUser.id; },
 
     isFacebook: function() { return this._isFacebook; },
 
