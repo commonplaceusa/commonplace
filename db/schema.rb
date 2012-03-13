@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120310000016) do
+ActiveRecord::Schema.define(:version => 20120313160649) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -348,6 +348,7 @@ ActiveRecord::Schema.define(:version => 20120310000016) do
     t.integer "community_id"
     t.string  "address"
     t.text    "logs"
+    t.string  "email"
   end
 
   create_table "subscriptions", :force => true do |t|
