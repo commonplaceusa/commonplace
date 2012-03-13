@@ -84,7 +84,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       _.each(this.neighbors, _.bind(function(neighbor) {
         var itemView = this.generateItem(neighbor, false);
         if (itemView.isFacebook() || itemView.isGmail()) {
-          consol.log("Facebook/GMail user");
+          console.log("Facebook/GMail user");
           console.log(neighbor);
           this.items.unshift(itemView);
           this.limit++;
