@@ -1,6 +1,6 @@
 var GoogleContacts = {
   contactsFeedUrl: "https://www.google.com/m8/feeds/contacts/default/full",
-  maximumResultCount: 500,
+  maximumResultCount: 1,
   contacts: [],
   contactsAvailable: false,
   contactsService: undefined,
