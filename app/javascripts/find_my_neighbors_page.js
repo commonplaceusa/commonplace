@@ -5,6 +5,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
 
   events: {
     "click img.facebook": "facebook",
+    "click img.gmail": "gmail",
     
     "click .show_add_neighbor": "toggleAddNeighbor",
     "click form.add input.add_neighbor": "addNeighbor",
@@ -22,6 +23,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   
   afterRender: function() {
     var self = this;
+    GoogleContacts.prepare();
     this.currentQuery = "";
     
     this.$(".no_results").hide();
@@ -41,7 +43,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       _.bind(function(response) {
         if (response.length) {
           this.neighbors = response;
-          this.generate(CommonPlace.account.get("facebook_user"));
+          this.generate((CommonPlace.account.get("facebook_user")) ? "facebooK" : false);
         }
       }, this)
     );
@@ -51,12 +53,19 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     this.nextPageThrottled = _.once(_.bind(function() { this.nextPage(); }, this));
   },
   
-  generate: function(checkFacebook) {
-    if (checkFacebook) {
+  generate: function(checkExternalService) {
+    if (checkExternalService == "facebook") {
       facebook_connect_friends({
         success: _.bind(function(friends) {
           this.friends = friends;
           this.facebook_connected = true;
+          this.generate(false);
+        }, this)
+      });
+    } else if (checkExternalService == "gmail") {
+      GoogleContacts.retrievePairedContacts({
+        success: _.bind(function(friends) {
+          this.friends = friends;
           this.generate(false);
         }, this)
       });
@@ -175,7 +184,13 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   facebook: function(e) {
     if (e) { e.preventDefault(); }
 
-    this.generate(true);
+    this.generate("facebook");
+  },
+
+  gmail: function(e) {
+    if (e) { e.preventDefault(); }
+
+    this.generate("gmail");
   },
 
   getFacebookUser: function(neighbor) {
