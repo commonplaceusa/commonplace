@@ -53,8 +53,8 @@ var GoogleContacts = {
         full_name: contactName,
         email: emailAddress,
         avatar_url: undefined,
-        first_name: _.first(full_name.split(" ")),
-        last_name: _.last(full_name.split(" "))
+        first_name: _.first(contactName.split(" ")),
+        last_name: _.last(contactName.split(" "))
       };
       _.append(this.contacts, contact);
     }
