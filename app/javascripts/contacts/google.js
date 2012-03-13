@@ -56,7 +56,7 @@ var GoogleContacts = {
         first_name: _.first(contactName.split(" ")),
         last_name: _.last(contactName.split(" "))
       };
-      _.append(this.contacts, contact);
+      this.contacts.push(contact);
     }
     this.callback(this.contacts);
   },
