@@ -535,7 +535,7 @@ WHERE
     index += 1
     unless index == User.post_receive_options.length
       self.post_receive_method = User.post_receive_options[index]
-      self.save!
+      self.save
     end
     KickOff.new.send_spam_report_received_notification(self)
   end
