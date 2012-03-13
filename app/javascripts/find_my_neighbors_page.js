@@ -57,10 +57,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     if (checkExternalService == "facebook") {
       facebook_connect_friends({
         success: _.bind(function(friends) {
-          console.log(this.friends);
           this.friends = friends;
-          console.log("Friends overwritten");
-          console.log(this.friends);
           this.facebook_connected = true;
           this.generate(false);
         }, this)
@@ -68,24 +65,18 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     } else if (checkExternalService == "gmail") {
       GoogleContacts.retrievePairedContacts({
         success: _.bind(function(friends) {
-          console.log(this.friends);
           this.friends = friends;
           this.gmail_connected = true;
-          console.log("Friends overwritten");
-          console.log(this.friends);
           this.generate(false);
         }, this)
       });
     } else {
-      console.log("Looking for intersections...");
       this.items = [];
       this.limit = 0;
       this.neighbors = _.sortBy(this.neighbors, function(neighbor) { return neighbor.last_name; });
       _.each(this.neighbors, _.bind(function(neighbor) {
         var itemView = this.generateItem(neighbor, false);
         if (itemView.isFacebook() || itemView.isGmail()) {
-          console.log("Facebook/GMail user");
-          console.log(neighbor);
           this.items.unshift(itemView);
           this.limit++;
         } else {
@@ -125,7 +116,6 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       showCount: _.bind(function() { this.showCount(); }, this),
       addFromSearch: addFromSearch
     });
-    console.log("Intersection type: " + itemView.options.intersectionType);
     return itemView;
   },
 
@@ -212,8 +202,6 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   getIntersectedUser: function(neighbor) {
     var name = neighbor.first_name + " " + neighbor.last_name;
     return _.find(this.friends, function(friend) {
-      if (friend.name.toLowerCase() == name.toLowerCase())
-        console.log(friend.name.toLowerCase() + " matched " + name.toLowerCase());
       return friend.name.toLowerCase() == name.toLowerCase();
     });
   },
@@ -348,22 +336,6 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     initialize: function(options) {
       this._isFacebook = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "facebook";
       this._isGmail = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "gmail";
-      if (this._isFacebook)
-        console.log("Facebook");
-      else {
-        if (this._isGmail)
-          console.log("GMail Intersection");
-        else {
-          if (_.isEmpty(this.options.intersectedUser)) {
-            console.log("Intersected user not provided");
-          } else if (this.options.intersectionType != "gmail") {
-            console.log("IntersectionType != gmail, == " + this.options.intersectionType);
-          }
-          else {
-            console.log("??");
-          }
-        }
-      }
     },
 
     afterRender: function() {
@@ -379,10 +351,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         });
       }
       else if (this.isGmail()) {
-        console.log("Rendering GMail");
         if (!this.options.search) { this.check(); }
-      } else {
-        console.log("No intersection to render");
       }
     },
 
