@@ -25,6 +25,7 @@ class API
       current_account.receive_weekly_digest = request_body["bulletin"]
       
       if current_account.save
+        current_account.reset_password(request_body["password"]) if request_body["password"]
         serialize Account.new(current_account)
       else
         [500, "could not save"]
