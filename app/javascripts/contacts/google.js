@@ -8,7 +8,6 @@ var GoogleContacts = {
 
   prepare: function() {
     googleLoaded = function() {
-      console.log("Loaded");
       window.GoogleContactsApiPrepared = true;
       this.contactsService = new google.gdata.contacts.ContactsService('test-123');
       window.googleContactsService = this.contactsService;
@@ -17,23 +16,19 @@ var GoogleContacts = {
   },
 
   retrievePairedContacts: function(callback) {
-    console.log("Getting contacts");
     this.logMeIn();
     window.GoogleContactsCallback = callback;
     this.getContacts();
   },
 
   logMeIn: function() {
-    console.log("logmein");
     google.accounts.user.login(this.contactsScope);
   },
 
   getContacts: function() {
-    console.log("getting conts");
     this.callback = {};
     var query = new google.gdata.contacts.ContactQuery(this.contactsFeedUrl);
     query.setMaxResults(this.maximumResultCount);
-    console.log(query);
     window.contactsService.getContactFeed(query, this.handleContactsFeed, this.handleError);
   },
 
@@ -63,6 +58,5 @@ var GoogleContacts = {
   },
 
   handleError: function(err) {
-    console.log(err);
   }
 };
