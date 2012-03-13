@@ -216,7 +216,6 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         console.log(friend.name.toLowerCase() + " matched " + name.toLowerCase());
       return friend.name.toLowerCase() == name.toLowerCase();
     });
-    console.log("No match found for " + name);
   },
   
   debounceSearch: _.debounce(function() {
@@ -349,6 +348,22 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     initialize: function(options) {
       this._isFacebook = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "facebook";
       this._isGmail = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "gmail";
+      if (this._isFacebook)
+        console.log("Facebook");
+      else {
+        if (this._isGmail)
+          console.log("GMail Intersection");
+        else {
+          if (_.isEmpty(this.options.intersectedUser)) {
+            console.log("Intersected user not provided");
+          } else if (this.options.intersectionType != "gmail") {
+            console.log("IntersectionType != gmail, == " + this.options.intersectionType);
+          }
+          else {
+            console.log("??");
+          }
+        }
+      }
     },
 
     afterRender: function() {
@@ -366,6 +381,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       else if (this.isGmail()) {
         console.log("Rendering GMail");
         if (!this.options.search) { this.check(); }
+      } else {
+        console.log("No intersection to render");
       }
     },
 
