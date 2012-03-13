@@ -40,6 +40,8 @@ class Resident < ActiveRecord::Base
     tags = []
     tags += self.metadata[:tags] if self.metadata[:tags]
     tags << "registered" if self.user.present?
+    tags << "email" if self.email?
+    tags << "address" if self.address?
     tags
   end
 

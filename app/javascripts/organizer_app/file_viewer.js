@@ -4,7 +4,9 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
   template: "organizer_app.file-viewer",
 
   events: {
-    "submit form#add-log": "addLog"
+    "submit form#add-log": "addLog",
+    "submit form#add-address": "addAddress",
+    "submit form#add-email": "addEmail"
   },
 
   show: function(model) {
@@ -27,17 +29,28 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
 
   address: function() {
     var address = this.model.get('address');
-    if (address === undefined) {
+    if (!address) {
       return "No address in our records";
     } else {
       return address;
     }
   },
 
+  addAddress: function(e) {
+    e.preventDefault();
+    var address = this.$("#address-text").val();
+    if (!address) {
+      alert("Please enter a non-empty address.");
+    } else {
+      this.model.save({address: address}, {success: _.bind(this.render, this)});
+      location.reload();
+    }
+  },
+
   email: function() {
     var email = this.model.get('email');
     console.log(email);
-    if (email === undefined) {
+    if (!email) {
       return "No email in our records";
     } else {
       return email;
@@ -46,7 +59,15 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
 
   addEmail: function(e) {
     e.preventDefault();
-    this.model.save({email: this.$("#email-text").val()}, {success: _.bind(this.render, this)});
+    var email = this.$("#email-text").val();
+    var atpos = email.indexOf("@");
+    var dotpos = email.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+      alert("Please enter a valid email address.");
+    } else {
+      this.model.save({email: email}, {success: _.bind(this.render, this)});
+      location.reload();
+    }
   },
   
   addLog: function(e) {

@@ -264,6 +264,8 @@ class Community < ActiveRecord::Base
     tags = []
     tags +=  self.metadata[:resident_tags] if self.metadata[:resident_tags]
     tags << "registered"
+    tags << "email"
+    tags << "address"
     tags
   end
 end

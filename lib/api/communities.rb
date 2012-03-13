@@ -128,7 +128,7 @@ CONDITION
 
     put "/:community_id/files/:file_id" do
       Resident.find(params[:file_id]).update_attributes(
-        request_body
+        request_body.slice("email", "address")
       )
     end
 
