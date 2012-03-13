@@ -23,7 +23,13 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   
   afterRender: function() {
     var self = this;
-    GoogleContacts.prepare();
+    GoogleContacts.prepare({
+        success: _.bind(function(friends) {
+          this.friends = friends;
+          this.gmail_connected = true;
+          this.generate(false);
+        }, this)
+      });
     this.currentQuery = "";
     
     this.$(".no_results").hide();
@@ -63,13 +69,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         }, this)
       });
     } else if (checkExternalService == "gmail") {
-      GoogleContacts.retrievePairedContacts({
-        success: _.bind(function(friends) {
-          this.friends = friends;
-          this.gmail_connected = true;
-          this.generate(false);
-        }, this)
-      });
+      GoogleContacts.retrievePairedContacts();
     } else {
       this.items = [];
       this.limit = 0;
