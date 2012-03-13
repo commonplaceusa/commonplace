@@ -173,6 +173,10 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         to: facebook_neighbors
       }, callback);
     }
+    if (data.can_contact && this.gmail_connected)
+    {
+      // TODO: Implement
+    }
 
     if (data.neighbors.length) {
       $.ajax({
