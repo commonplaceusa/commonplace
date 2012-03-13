@@ -5,7 +5,7 @@ Commonplace::Application.configure do
   config.assets.compress = true
 
   # Generate digests for assets URLs
-  config.assets.digest = true
+  # config.assets.digest = true
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
