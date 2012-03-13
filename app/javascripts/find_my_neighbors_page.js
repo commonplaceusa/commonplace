@@ -57,7 +57,10 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     if (checkExternalService == "facebook") {
       facebook_connect_friends({
         success: _.bind(function(friends) {
+          console.log(this.friends);
           this.friends = friends;
+          console.log("Friends overwritten");
+          console.log(this.friends);
           this.facebook_connected = true;
           this.generate(false);
         }, this)
