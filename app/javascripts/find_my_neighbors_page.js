@@ -65,7 +65,10 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     } else if (checkExternalService == "gmail") {
       GoogleContacts.retrievePairedContacts({
         success: _.bind(function(friends) {
+          console.log(this.friends);
           this.friends = friends;
+          console.log("Friends overwritten");
+          console.log(this.friends);
           this.generate(false);
         }, this)
       });
