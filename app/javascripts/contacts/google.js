@@ -50,6 +50,7 @@ var GoogleContacts = {
       }
       var contact = {
         full_name: contactName,
+        name: contactName,
         email: emailAddress,
         avatar_url: undefined,
         first_name: _.first(contactName.split(" ")),
