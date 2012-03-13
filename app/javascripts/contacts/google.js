@@ -6,18 +6,16 @@ var GoogleContacts = {
   contactsScope: "https://www.google.com/m8/feeds",
   callback: {},
 
-  prepare: function() {
-    googleLoaded = function() {
-      window.GoogleContactsApiPrepared = true;
-      this.contactsService = new google.gdata.contacts.ContactsService('test-123');
-      window.googleContactsService = this.contactsService;
-    };
-    googleLoaded();
+  prepare: function(callback) {
+    this.contactsService = new google.gdata.contacts.ContactsService('test-123');
+    window.googleContactsService = this.contactsService;
+    window.GoogleContactsCallback = callback;
+    if (google.accounts.user.checkLogin(this.contactsScope))
+      this.getContacts();
   },
 
   retrievePairedContacts: function(callback) {
     this.logMeIn();
-    window.GoogleContactsCallback = callback;
     this.getContacts();
   },
 
