@@ -211,7 +211,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   getIntersectedUser: function(neighbor) {
     var name = neighbor.first_name + " " + neighbor.last_name;
     return _.find(this.friends, function(friend) {
-      console.match(friend.name.toLowerCase() + " matched " + name.toLowerCase());
+      console.log(friend.name.toLowerCase() + " matched " + name.toLowerCase());
       return friend.name.toLowerCase() == name.toLowerCase();
     });
     console.log("No match found for " + name);
