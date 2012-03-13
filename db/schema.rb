@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313160649) do
+ActiveRecord::Schema.define(:version => 20120313200641) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(:version => 20120313160649) do
   end
 
   create_table "feeds", :force => true do |t|
-    t.string   "name",                                 :null => false
+    t.string   "name",                                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "about"
@@ -183,9 +183,9 @@ ActiveRecord::Schema.define(:version => 20120313160649) do
     t.string   "category"
     t.string   "cached_tag_list"
     t.string   "code"
-    t.boolean  "claimed",          :default => true
+    t.boolean  "claimed",              :default => true
     t.integer  "user_id"
-    t.string   "type",             :default => "Feed"
+    t.string   "type",                 :default => "Feed"
     t.string   "feed_url"
     t.string   "avatar_file_name"
     t.string   "address"
@@ -194,6 +194,7 @@ ActiveRecord::Schema.define(:version => 20120313160649) do
     t.string   "twitter_name"
     t.integer  "kind"
     t.string   "password"
+    t.string   "background_file_name"
   end
 
   create_table "group_posts", :force => true do |t|
