@@ -9,5 +9,6 @@
 
 //= require_tree ../templates/organizer_app
 
+//= require jquery-ui
 
 
