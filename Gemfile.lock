@@ -35,14 +35,6 @@ GIT
       xpath (~> 0.1.4)
 
 GIT
-  remote: git@github.com:Jberlinsky/resque-queue-priority.git
-  revision: 24c3b4400c7ca51bfd7222f78e2aad7e4a0ffe02
-  specs:
-    resque-queue-priority (0.6.0)
-      resque (~> 1.19.0)
-      sinatra (= 1.2.7)
-
-GIT
   remote: https://github.com/dabio/taps.git
   revision: a56d8e8494d6bcb529628ee602b9198086a20b9c
   specs:
@@ -323,6 +315,8 @@ GEM
       resque (~> 1.0)
     resque-exceptional (0.1.0)
       resque (>= 1.8.0)
+    resque-queue-priority (0.6.0)
+      resque (~> 1.10)
     resque-scheduler (1.9.9)
       redis (>= 2.0.1)
       resque (>= 1.8.0)
@@ -483,7 +477,7 @@ DEPENDENCIES
   resque (~> 1.19.0)
   resque-cleaner
   resque-exceptional
-  resque-queue-priority!
+  resque-queue-priority
   resque-scheduler
   rmagick
   rollout

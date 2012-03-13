@@ -2,8 +2,8 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 require 'resque/server'
-require 'resque-queue-priority-server'
 require 'resque-cleaner'
+require 'resque-queue-priority-server'
 require 'exceptional'
 
 app = Rack::Builder.new do 
