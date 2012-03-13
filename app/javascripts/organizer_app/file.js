@@ -4,6 +4,20 @@ OrganizerApp.File = Backbone.Model.extend({
     return this.get('first_name') + ' ' + this.get('last_name');
   },
 
+  addEmail: function(email, callback) {
+    var self = this;
+	  $.ajax({
+		  type: 'POST',
+      contentType: "application/json",
+		  url: this.url(),
+		  data: email,
+		  cache: 'false',
+		  success: function() {
+        self.fetch({success: callback});
+      }
+	  });
+  },
+
   addLog: function(log, callback) {
     var self = this;
 	  $.ajax({

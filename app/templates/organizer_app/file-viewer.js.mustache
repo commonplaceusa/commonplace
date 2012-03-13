@@ -930,32 +930,45 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 <!-- Start HTML -->
 
 <div id="person-viewer">
-  {{ full_name }}
-  <br />
-  {{ address }}
-  <br />
-  <br />
-
-  {{#tags}}{{.}}, {{/tags}}
-
-  <ul id="organizer-logs">
-    {{#logs}}
-      <li>{{.}}</li>
-    {{/logs}}
-  </ul>
-
-  <br />
-  {{#possibleTags}}
-  	<button type=button>{{.}}</button>
-  {{/possibleTags}}
-
-  <form id="add-log">
-    Add Log:
-    <!--<input id="log-date" placeholder="yyyy-mm-dd">-->
-	<p>Date: <input id="datepicker" type="text"></p>
-    <input id="log-text" type="text" placeholder="description">
-    <input id="log-tags" type="text" placeholder="dropped, talked to, dropped on 2012-01-13">
-    <input id="log-add" type="submit" value="Add">
-  </form>
-  <button type="button">Star as VIP</button>
+  <span id="person-viewer-left">
+    <h2>{{ full_name }}</h2>
+	<div>{{ email }}</div>
+	<form id="add-email">
+	<input id="email-text" type="text" placeholder="john@example.com"><br />
+	<input id="email-add" type="submit" value="Add Email">
+	</form>
+	<br />
+    <div>{{ address }}</div>
+	<form id="add-address">
+	<input id="address-text" type="text" placeholder="125 Western Avenue, Allston, MA 02134"><br />
+	<input id="address-add" type="submit" value="Add address">
+	</form>
+  
+    <p>This resident's current tags:</p>
+    <ul>
+    {{#tags}}<li>{{.}}</li>{{/tags}}
+    </ul>
+  
+    <ul id="organizer-logs">
+      {{#logs}}
+        <li>{{.}}</li>
+      {{/logs}}
+    </ul>
+  
+    <br />
+    {{#possibleTags}}
+    	<button type=button>{{.}}</button>
+    {{/possibleTags}}
+  </span>
+  <span id="person-viewer-right">  
+    <form id="add-log">
+      Add Log:
+      <!--<input id="log-date" placeholder="yyyy-mm-dd">-->
+  	<p>Date: <input id="datepicker" type="text"></p>
+      <input id="log-text" type="text" placeholder="description">
+      <input id="log-tags" type="text" placeholder="dropped, talked to, dropped on 2012-01-13">
+      <input id="log-add" type="submit" value="Add">
+    </form>
+    <button type="button">Star as VIP</button>
+  </span>
 </div>

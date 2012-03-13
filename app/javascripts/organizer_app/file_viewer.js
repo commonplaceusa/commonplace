@@ -34,6 +34,21 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     }
   },
 
+  email: function() {
+    var email = this.model.get('email');
+    console.log(email);
+    if (email === undefined) {
+      return "No email in our records";
+    } else {
+      return email;
+    }
+  },
+
+  addEmail: function(e) {
+    e.preventDefault();
+    this.model.save({email: this.$("#email-text").val()}, {success: _.bind(this.render, this)});
+  },
+  
   addLog: function(e) {
     e.preventDefault();
     this.model.addLog({ 

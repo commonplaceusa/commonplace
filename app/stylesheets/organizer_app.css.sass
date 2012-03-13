@@ -1,3 +1,5 @@
+$min-height: 500px
+$file-viewer-padding: 10px
  
 #main
   width: 1200px
@@ -9,20 +11,36 @@
 #file-picker 
   position: absolute
   top: 0
-  bottom: 0
   width: 300px
   left: 0
   border: 1px solid #777
+  min-height: $min-height + 2*$file-viewer-padding
+  height: auto !important
+  height: $min-height + 2*$file-viewer-padding
   
+.pick-resident
+  cursor: pointer
 
 #file-viewer 
   position: absolute
   top: 0
-  bottom: 0
   right: 0
   width: 800px
   border: 1px solid #777
+  padding: $file-viewer-padding $file-viewer-padding $file-viewer-padding $file-viewer-padding
+  min-height: $min-height
+  height: auto !important
+  height: $min-height
 
+#person-viewer-left
+  display: inline-block
+  width: 900px
+  height: 100%
+
+#person-viewer-right
+  display: inline-block
+  width: 900px
+  height: 100%
 
 .tag-filter
   cursor: pointer
@@ -34,5 +52,3 @@
     background-color: #99ff00
   &[data-state=off]
     background-color: pink
-
-
