@@ -125,6 +125,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       itemView.options.intersectionType = "facebook";
     if (this.gmail_connected)
       itemView.options.intersectionType = "gmail";
+    console.log("Intersection type: " + itemView.options.intersectionType);
     return itemView;
   },
 
@@ -211,7 +212,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   getIntersectedUser: function(neighbor) {
     var name = neighbor.first_name + " " + neighbor.last_name;
     return _.find(this.friends, function(friend) {
-      console.log(friend.name.toLowerCase() + " matched " + name.toLowerCase());
+      if (friend.name.toLowerCase() == name.toLowerCase())
+        console.log(friend.name.toLowerCase() + " matched " + name.toLowerCase());
       return friend.name.toLowerCase() == name.toLowerCase();
     });
     console.log("No match found for " + name);
