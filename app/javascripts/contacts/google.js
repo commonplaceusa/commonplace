@@ -27,7 +27,7 @@ var GoogleContacts = {
     this.callback = {};
     var query = new google.gdata.contacts.ContactQuery(this.contactsFeedUrl);
     query.setMaxResults(this.maximumResultCount);
-    window.contactsService.getContactFeed(query, this.handleContactsFeed, this.handleError);
+    window.googleContactsService.getContactFeed(query, this.handleContactsFeed, this.handleError);
   },
 
   handleContactsFeed: function(result) {
