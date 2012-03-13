@@ -40,7 +40,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     });
   },
 
-  tags: function() { return this.options.community.get('resident_tags'); },
+  tags: function() { possTags = this.options.community.get('resident_tags'); return this.options.community.get('resident_tags'); },
 
   cycleFilter: function(e) {
     window.foo = this;
