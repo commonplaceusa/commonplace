@@ -55,10 +55,13 @@ class API
     end
 
     get "/email_opened/:id" do |id|
-      sent_email = SentEmail.find(id)
-      sent_email.status = :opened
-      sent_email.updated_at = DateTime.now
-      sent_email.save
+      begin
+        sent_email = SentEmail.find(id)
+        sent_email.status = :opened
+        sent_email.updated_at = DateTime.now
+        sent_email.save
+      rescue
+      end
     end
   end
 end
