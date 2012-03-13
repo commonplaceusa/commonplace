@@ -18,7 +18,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     this.$("#file-picker-list").empty();
     this.$("#file-picker-list").append(
       this.collection.map(_.bind(function(model) {
-        return $("<li/>", { text: model.full_name(), data: { model: model } })[0];
+        return $('<li class="pick-resident" />', { text: model.full_name(), data: { model: model } })[0];
       }, this)));
   },
 
