@@ -249,7 +249,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
           var results = [];
           _.each(response, _.bind(function(neighbor) {
             var itemView = this.generateItem(neighbor, true);
-            (!itemView.isFacebook()) ? results.unshift(itemView) : results.push(itemView);
+            (!itemView.isFacebook() || !itemView.isGmail()) ? results.unshift(itemView) : results.push(itemView);
           }, this));
           _.each(results, _.bind(function(itemView) {
             itemView.render();
