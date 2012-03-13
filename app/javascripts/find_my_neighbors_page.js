@@ -317,6 +317,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     },
 
     afterRender: function() {
+      if (!this.model.on_commonplace) { this.$(".on-commonplace").hide(); }
+      
       if (this.isFacebook()) {
         if (!this.options.search) { this.check(); }
         facebook_connect_user_picture({
@@ -329,7 +331,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     },
 
     avatar_url: function() {
-      if (this.model.user_id) {
+      if (this.model.on_commonplace) {
         return this.model.avatar_url;
       } else {
         return "https://s3.amazonaws.com/commonplace-avatars-production/missing.png";
