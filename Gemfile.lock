@@ -428,7 +428,7 @@ DEPENDENCIES
   factory_girl
   foreman
   forgery
-  formtastic (~> 2.0.2)
+  formtastic (= 2.0.2)
   fuubar
   garb
   geocoder (~> 1.0.5)
