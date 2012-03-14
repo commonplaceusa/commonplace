@@ -52,7 +52,26 @@
       font-family: Helvetica
       font-weight: lighter
       line-height: 1.4
-      
+      .button
+        margin-left: 6px
+        text-transform: uppercase
+        font-weight: bold
+        font-size: 10px
+        background: #1b334a
+        padding: 5px 12px
+        color: white
+        float: left
+        margin-top: 10px
+
+      .name, .email
+        float: left
+        margin-right: 10px
+        width: 118px
+        border: 1px solid #b6b6b6
+        padding: 4px
+        +border-radius(3px)
+        margin-top: 10px
+        
     .learn-more
       font-size: 12px
       font-weight: bold
@@ -262,9 +281,20 @@
     &.find_neighbors
       width: 380px
       float: right
-      
+      div.button
+        float:left
+        margin-left: 16px
+        text-transform: uppercase
+        font-weight: bold
+        font-size: 10px
+        background: #1b334a
+        padding: 4px 12px
+        color: white
+      input.name, input.email
+        float: left
+        width: 130px
       input.search
-        width: 366px
+        width: 371px
         +border-radius(5px)
         +box-shadow(#ccc 1px 1px 2px 0 inset)
         border: 1px solid #ccc
@@ -292,7 +322,7 @@
       .neighbor_finder, .search_finder
         margin-top: 10px
         width: 380px
-        background: #ac322f
+        background: white
         overflow-y: scroll
         height: 340px
         +border-radius(5px)
@@ -322,6 +352,7 @@
           border-spacing: 10px
           border-collapse: separate
           background: white
+          width: 380px
           
           td
             width: 150px
@@ -330,10 +361,10 @@
             border: 1px solid #dadada
             border-collapse: collapse
             &.checked, &:hover
-              background: #fef8ce
+              background: #EEF5DF
               cursor: pointer
             &.checked
-              border: 1px solid #ffe534
+              border: 1px solid #CCDAAE
               +box-shadow(#bbb 2px 2px 2px)
             img
               float: left
