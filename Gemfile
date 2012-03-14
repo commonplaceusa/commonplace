@@ -63,7 +63,7 @@ gem 'premailer', :git => "git://github.com/Jberlinsky/premailer.git" # we use th
 # ActionView
 gem 'sanitize' # used in app/controllers/posts_controller.rb (which is dead code) ! remove
 gem 'haml', '~> 3.1' # used for view templates
-gem 'formtastic', '~> 2.0.2' # used for view templates
+gem 'formtastic', '= 2.0.2' # used for view templates
 gem 'sass' # used for stylesheets
 
 # Admin
