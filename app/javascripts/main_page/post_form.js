@@ -40,6 +40,9 @@ var PostForm = CommonPlace.View.extend({
     }
 
     else {
+      if ($("input[name=commercial]").is(":checked")) {
+        this.options.category = "publicity";
+      }
       var data = {
         title: this.$("[name=title]").val(),
         body: this.$("[name=body]").val(),
