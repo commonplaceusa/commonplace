@@ -7,11 +7,11 @@ class API
     @app = Rack::Builder.new do
 
       use Rack::JSONP
-      
+
       use Rack::Session::Cookie, # share session w/ rails. replaces enable :sessions
         :key => Commonplace::Application.config.session_options[:key],
         :secret => Commonplace::Application.config.secret_token
-      
+
       map("/account") { run Accounts }
       map("/announcements") { run Announcements }
       map("/communities") { run Communities }
