@@ -36,6 +36,7 @@ $file-viewer-padding: 10px
 
 #name
   //text-align: center
+  border-bottom: 1px solid
 
 #person-viewer-info
   //text-align:center
@@ -44,12 +45,16 @@ $file-viewer-padding: 10px
   display: inline-block
   width: 40%
   height: 100%
+  padding: 5px
+  border: 1px solid
 
 #person-viewer-right
   display: inline-block
   vertical-align: top
-  width: 40%
+  width: 55%
   height: 100%
+  padding: 5px
+  border: 1px solid
 
 .tag-filter
   cursor: pointer
@@ -61,3 +66,14 @@ $file-viewer-padding: 10px
     background-color: #99ff00
   &[data-state=off]
     background-color: pink
+
+/* Map View */
+html 
+  height: 100%
+body
+  height: 100%
+  margin: 0
+  padding: 0
+#map_canvas
+  height: $min-height
+  width: 100%
