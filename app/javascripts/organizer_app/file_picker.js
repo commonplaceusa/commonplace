@@ -6,12 +6,17 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   events: {
     "click li": "onClickFile",
     "click #filter-button": "filter",
-    "click .tag-filter": "cycleFilter"
+    "click .tag-filter": "cycleFilter",
+    "click #map-button": "showMapView"
   },
   
   onClickFile: function(e) {
     e.preventDefault();
     this.options.fileViewer.show($(e.currentTarget).data('model'));
+  },
+
+  showMapView: function(e) {
+    new OrganizerApp.MapView({el: $('#file-viewer')}).render();
   },
 
   afterRender: function() {

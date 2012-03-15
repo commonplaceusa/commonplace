@@ -15,7 +15,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     this.$("#log-add").click($.proxy(function() {
       this.model.addLog();
     }, this));
-    this.$("#datepicker").datepicker();
+    this.$("#log-date").datepicker();
   },
 
   full_name: function() {
@@ -79,9 +79,23 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     }, _.bind(this.render,this));
   },
 
-  logs: function() { return this.model.get('logs'); },
+  logs: function() {
+    var logs = this.model.get('logs');
+    if (logs) {
+      return logs
+    } else {
+      return "No logs in our records yet.";
+    }
+  },
 
-  tags: function() { return this.model.get('tags'); },
+  tags: function() { 
+    var tags = this.model.get('tags');
+    if (tags) {
+      return tags
+    } else {
+      return "No tags in our records yet.";
+    }
+  },
 
   possibleTags: function() { return possTags; }
 

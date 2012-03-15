@@ -5,7 +5,7 @@
   <div id="person-viewer-info">
   <span id="person-viewer-left">
 	<div id="email-div">
-		<h3>Email</h3>
+		<h3>Email:</h3>
 		<div>{{ email }}</div>
 		<form id="add-email" autocomplete="off">
 		<input id="email-text" type="text" placeholder="john@example.com"><br />
@@ -14,7 +14,7 @@
 	</div>
 	<br />
 	<div id="address-div">
-		<h3>Address</h3>
+		<h3>Address:</h3>
 		<div>{{ address }}</div>
 		<form id="add-address" autocomplete="off">
 		<input id="address-text" type="text" placeholder="125 Western Avenue, Allston, MA 02134"><br />
@@ -24,11 +24,12 @@
   </span>
 
   <span id="person-viewer-right">  
-    <p>This resident's current tags:</p>
-    <ul>
+    <h3>Current tags:</h3>
+    <ul id="resident-tags">
     {{#tags}}<li>{{.}}</li>{{/tags}}
     </ul>
   
+    <h3>Organizer Logs:</h3>
     <ul id="organizer-logs">
       {{#logs}}
         <li>{{.}}</li>
@@ -36,18 +37,19 @@
     </ul>
   
     <br />
-    {{#possibleTags}}
-    	<button type=button>{{.}}</button>
-    {{/possibleTags}}
     <form id="add-log">
-      Add Log:
+      <h2>Add Log:</h2>
       <!--<input id="log-date" placeholder="yyyy-mm-dd">-->
-  	<p>Date: <input id="datepicker" type="text"></p>
-      <input id="log-text" type="text" placeholder="description">
-      <input id="log-tags" type="text" placeholder="dropped, talked to, dropped on 2012-01-13">
-      <input id="log-add" type="submit" value="Add">
+  	  <input id="log-date" type="text" placeholder="Date (MM/DD/YYYY)"><br />
+      <!--<input id="log-text" type="text" placeholder="description"><br />-->
+      <textarea id="log-text" name="log-text" placeholder="description" cols="40"></textarea><br />
+      <!--<input id="log-tags" type="text" placeholder="dropped, talked to, dropped on 2012-01-13"><br />-->
+	  Tag as: <br />
+      {{#possibleTags}}
+      <input type="checkbox" value="{{.}}" />{{.}}<br />
+      {{/possibleTags}}
+      <input id="log-add" type="submit" value="Add log">
     </form>
-    <button type="button">Star as VIP</button>
   </span>
   </div>
 </div>
