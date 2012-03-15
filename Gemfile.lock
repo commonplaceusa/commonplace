@@ -97,6 +97,9 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    contacts (1.2.4)
+      gdata (= 1.1.1)
+      json (>= 0.4.1)
     crack (0.3.1)
     creole (0.4.2)
     css_parser (1.2.6)
@@ -143,6 +146,7 @@ GEM
     garb (0.9.1)
       activesupport (>= 2.2.0)
       crack (>= 0.1.6)
+    gdata (1.1.1)
     geocoder (1.0.5)
     glebm-geokit (1.5.2)
     googlecharts (1.6.8)
@@ -420,6 +424,7 @@ DEPENDENCIES
   cancan
   capybara!
   compass (= 0.12.alpha.0)
+  contacts
   dalli
   database_cleaner
   delayed_job
