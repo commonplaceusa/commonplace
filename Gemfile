@@ -80,6 +80,9 @@ gem 'newrelic_rpm' # we use this to monitor the app
 # Features
 gem 'rollout' # we use this to control features
 
+# Contacts
+gem 'contacts'
+
 # Misc
 gem 'json', "~> 1.6.0" # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
