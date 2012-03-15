@@ -34,7 +34,7 @@ class API
 
     delete "/" do
       current_account.destroy
-      [200]
+      200
     end
 
     post "/avatar" do
