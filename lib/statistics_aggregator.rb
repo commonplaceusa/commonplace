@@ -350,9 +350,15 @@ class StatisticsAggregator
         feed_announcements_today = community.announcements.between(day.to_datetime - 1.day, day.to_datetime).select { |a| a.owner.is_a? Feed }.count
         feed_events_today = community.events.between(day.to_datetime - 1.day, day.to_datetime).select { |e| e.owner.is_a? Feed }.count
         feeds_posting_today = community.feeds.select { |f| f.posted_between?(day.to_datetime - 1.day, day.to_datetime) }.count
-        feeds_editing_profile_in_past_month = community.feeds.updated_between(day.to_datetime - 1.month, day.to_datetime).count * 100 / community.feeds.count
-        feeds_streaming_input = 0 * 100 / community.feeds.count
-        feeds_posting_event_in_past_month = community.events.between(day.to_datetime - 1.month, day.to_datetime).select { |e| e.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / community.feeds.count
+        if community.feeds.count == 0
+          feeds_editing_profile_in_past_month = 0
+          feeds_streaming_input = 0
+          feeds_posting_event_in_past_month = 0
+        else
+          feeds_editing_profile_in_past_month = community.feeds.updated_between(day.to_datetime - 1.month, day.to_datetime).count * 100 / community.feeds.count
+          feeds_streaming_input = 0 * 100 / community.feeds.count
+          feeds_posting_event_in_past_month = community.events.between(day.to_datetime - 1.month, day.to_datetime).select { |e| e.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / community.feeds.count
+        end
         feeds_posting_announcement_in_past_month = community.announcements.between(day.to_datetime - 1.month, day.to_datetime).select { |a| a.owner.is_a? Feed }.map(&:owner).uniq.count * 100 / community.feeds.count
         posts_replied_to_today = community.posts.between(day.to_datetime - 1.month, day.to_datetime).select(&:has_reply).count
         events_replied_to_today = community.events.between(day.to_datetime - 1.day, day.to_datetime).select(&:has_reply).count
