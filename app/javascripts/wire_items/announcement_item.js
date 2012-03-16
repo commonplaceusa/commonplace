@@ -23,8 +23,6 @@ var AnnouncementWireItem = WireItem.extend({
   },
 
   avatarUrl: function() { return this.model.get('avatar_url'); },
-  
-  url: function() { return this.model.get('url'); },
 
   title: function() { return this.model.get('title'); },
   
