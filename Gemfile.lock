@@ -7,18 +7,6 @@ GIT
       htmlentities (>= 4.0.0)
 
 GIT
-  remote: git://github.com/jnicklas/capybara.git
-  revision: 33969bfdc0932d4fd7a55c5c637ec0dad1b8fa44
-  specs:
-    capybara (1.1.2)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      selenium-webdriver (~> 2.0)
-      xpath (~> 0.1.4)
-
-GIT
   remote: https://github.com/dabio/taps.git
   revision: a56d8e8494d6bcb529628ee602b9198086a20b9c
   specs:
@@ -89,6 +77,13 @@ GEM
       bson (~> 1.6.1)
     builder (3.0.0)
     cancan (1.6.7)
+    capybara (1.1.2)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      selenium-webdriver (~> 2.0)
+      xpath (~> 0.1.4)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
@@ -419,7 +414,7 @@ DEPENDENCIES
   aws-s3
   bson_ext
   cancan
-  capybara!
+  capybara (= 1.1.2)
   compass (= 0.12.alpha.0)
   dalli
   database_cleaner

@@ -1,20 +1,37 @@
 class API
-  class Groups < Authorized
+  class Groups < Base
 
-    before "/:group_id/*" do |group_id, stuff|
-      group = Group.find(group_id)
-      if !is_method("get")
-        authorize!
-        halt [403, "wrong community"] unless in_comm(group.community_id)
+    helpers do 
+      # Finds the group using params[:id] or halts with 404
+      def find_group
+        @group ||= Group.find_by_id(params[:id]) || (halt 404)
       end
     end
 
-    get "/:group_id" do |group_id|
-      serialize(Group.find(group_id))
+    # Returns the serialized group
+    #
+    # Requires community membership
+    get "/:id" do
+      control_access :community_member, find_group.community
+      serialize find_group
     end
     
-    post "/:group_id/posts" do |group_id|
-      group_post = GroupPost.new(:group => Group.find(group_id),
+    # Creates a Group Post
+    #
+    # Requires community membership
+    #
+    # Kicks off a job to deliver a GroupPostNotification
+    # 
+    # Request params:
+    #   subject -
+    #   body -
+    #
+    # Returns the serialized post if it was saved
+    # Returns 400 with if it was not
+    post "/:id/posts" do
+      control_access :community_member, find_group.community
+      
+      group_post = GroupPost.new(:group => find_group,
                                  :subject => request_body['title'],
                                  :body => request_body['body'],
                                  :user => current_account)
@@ -28,23 +45,43 @@ class API
       end
     end
 
-    get "/:group_id/posts" do |group_id|
-      scope = Group.find(group_id).group_posts.reorder("replied_at DESC")
+    # Returns a list of the group's posts
+    #
+    # Requires community membership
+    get "/:id/posts" do
+      control_access :community_member, find_group.community
+
+      scope = find_group.group_posts.reorder("replied_at DESC")
       serialize( paginate(scope) )
     end
 
-    get "/:group_id/members" do |group_id|
-      scope = Group.find(group_id).subscribers
+    # Returns a list of the group's members
+    #
+    # Requires community membership
+    get "/:id/members" do
+      control_access :community_member, find_group.community
+
+      scope = find_group.subscribers
       serialize( paginate(scope) )
     end
 
-    get "/:group_id/events" do |group_id|
-      scope = Group.find(group_id).events.upcoming.reorder("date ASC")
+    # Returns a list of the group's events
+    #
+    # Requires community membership
+    get "/:id/events" do |group_id|
+      control_access :community_member, find_group.community
+
+      scope = find_group.events.upcoming.reorder("date ASC")
       serialize( paginate(scope) )
     end
 
-    get "/:group_id/announcements" do |group_id|
-      scope = Group.find(group_id).announcements.reorder("replied_at DESC")
+    # Returns a list of the group's announcements
+    #
+    # Requires community membership
+    get "/:id/announcements" do |group_id|
+      control_access :community_member, find_group.community
+
+      scope = find_group.announcements.reorder("replied_at DESC")
       serialize( paginate(scope) )
     end
 

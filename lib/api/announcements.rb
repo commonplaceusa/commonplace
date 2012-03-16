@@ -1,25 +1,31 @@
 class API
   class Announcements < Postlikes
 
+    # This api inherits from the Postlikes api, where most of it's methods
+    # are defined. It overrides some of Postlikes's helpers in order
+    # to work specifically with Announcements.
+
     helpers do
 
-      def auth(announcement)
-        halt [403, "wrong community"] unless in_comm(announcement.community.id)
-        if (announcement.owner_type == "Feed")
-          announcement.owner.get_feed_owner(current_account) or current_account.admin
-        else
-          announcement.owner == current_account or announcement.user == current_account or current_account.admin
-        end
-      end
-      
+      # Returns the Postlike class
       def klass
         Announcement
       end
       
-      def set_attributes(announcement, request_body)
-        announcement.subject = request_body["title"]
-        announcement.body = request_body["body"]
-        announcement.tag_list = request_body["tags"]
+      # Set the announcement's attributes using the given request_body
+      # 
+      # Request params:
+      #  subject -
+      #  body - 
+      #  tag_list -
+      # 
+      # Returns true on success, false otherwise
+      def update_attributes
+        find_postlike.update_attributes(
+          subject:  request_body["title"],
+          body:  request_body["body"],
+          tag_list:  request_body["tags"]
+          )
       end
 
     end

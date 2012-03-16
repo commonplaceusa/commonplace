@@ -1,7 +1,15 @@
 class API
-  class Registrations < Unauthorized
+  class Registrations < Base
     
+    # Returns Account validation errors
+    #
+    # A utility for seeing whether an account will be valid. Does *not*
+    # attempt to save the account.
+    #
+    # Returns the validation errors
     get "/:community_id/validate" do |community_id|
+      control_access :public
+
       user = User.new(:full_name => params["full_name"],
                       :email => params["email"],
                       :address => params["address"],
@@ -11,8 +19,24 @@ class API
       serialize user.validation_errors
     end
     
+    # Creates a new account, assigns profile attributes, sets as current 
+    # authenticated user
+    #
+    # Request params:
+    #   full_name
+    #   email
+    #   password
+    #   about
+    #   interest_list
+    #   skill_list
+    #   good_list
+    #   referral_source
+    #   referral_metadata
+    # 
+    # Returns serialized account on success
+    # Returns validation errors on failure
     post "/:community_id/new" do |community_id|
-      halt [401, "already logged in"] if warden.authenticated?(:user)
+      control_access :public
       
       user = User.new(:full_name => params["full_name"],
                       :email => params["email"],
@@ -37,8 +61,26 @@ class API
       end
     end
     
+    # Creates a new account with facebook connect, assigns profile 
+    # attributes, sets as current authenticated user
+    #
+    # Request params:
+    #   full_name
+    #   email
+    #   password
+    #   about
+    #   interest_list
+    #   skill_list
+    #   good_list
+    #   referral_source
+    #   referral_metadata
+    #   fb_auth_token
+    #   fb_uid
+    # 
+    # Returns serialized account on success
+    # Returns validation errors on failure
     post "/:community_id/facebook" do |community_id|
-      halt [401, "already logged in"] if warden.authenticated?(:user)
+      
       
       user = User.new(:full_name => params["full_name"],
                    :email => params["email"],
@@ -65,10 +107,11 @@ class API
       end
     end
     
+    # Returns community exterior
     get "/:community_id" do |community_id|
-      community = Community.find_by_id(community_id)
-      
-      serialize community.exterior
+      control_access :public
+
+      serialize  Community.find_by_id(community_id).exterior
     end
     
   end

@@ -1,5 +1,5 @@
 class API
-  class Sessions < Unauthorized
+  class Sessions < Base
 
     # Public: sets a cookie which maintains the login session using warden
     # 
