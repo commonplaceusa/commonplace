@@ -1,5 +1,10 @@
 class API
-  class Stats < Base
+  class Stats < Authorized
+  
+    before do
+      halt [401, "unauthorized"] unless current_user.admin
+    end
+    
     get "/" do
       # Return global statistics aggregate
       if StatisticsAggregator.statistics_available?
