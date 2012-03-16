@@ -1,12 +1,6 @@
 class API
-  class Users < Unauthorized
+  class Users < Authorized
   
-    before do
-      if !is_method("get")
-        authorize!
-      end
-    end
-
     post "/:id/messages" do |id|
       user = User.find(id)
       halt [403, "wrong community"] unless in_comm(user.community.id)

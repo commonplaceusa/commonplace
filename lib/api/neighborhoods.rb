@@ -1,5 +1,5 @@
 class API
-  class Neighborhoods < Unauthorized
+  class Neighborhoods < Authorized
 
     get "/:id/posts" do |id|
       posts = Post.includes(:user).where(:users => {:neighborhood_id => id}).

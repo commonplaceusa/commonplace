@@ -1,5 +1,5 @@
 class API
-  class Groups < Unauthorized
+  class Groups < Authorized
 
     before "/:group_id/*" do |group_id, stuff|
       group = Group.find(group_id)

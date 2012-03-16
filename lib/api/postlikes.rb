@@ -1,11 +1,5 @@
 class API
-  class Postlikes < Unauthorized
-    
-    before do
-      if !is_method("get")
-        authorize!
-      end
-    end
+  class Postlikes < Authorized
 
     put "/:id" do |id|
       postlike = klass.find(id)
