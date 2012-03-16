@@ -1,6 +1,6 @@
 
 Commonplace::Application.routes.draw do
-
+  mount API => "/api"
   match "/mobile" => "bootstraps#mobile"
 
   # Community specific redirects
