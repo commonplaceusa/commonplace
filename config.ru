@@ -22,13 +22,12 @@ app = Rack::Builder.new do
     #    :entitystore => Dalli::Client.new)
   end
 
-  map("/api") { 
-    run API
-  }
 
   map("/resque") { run Resque::Server }
-
   map("/") { run Commonplace::Application }
+
+
+
 end       
 
 run app
