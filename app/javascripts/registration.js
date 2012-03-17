@@ -12,6 +12,7 @@
 //= require chosen
 //= require jcrop
 //= require scrollTo
+//= require postjson
 //= require config
 //= require facebook
 //= require views

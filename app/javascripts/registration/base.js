@@ -16,7 +16,10 @@ var RegistrationRouter = Backbone.Router.extend({
   
   initialize: function(options) {
     this.initFacebook();
-  
+    
+    var header = new HeaderView({ el: $("#header") });
+    header.render();
+
     this.modal = new RegistrationModal({
       communityExterior: options.communityExterior,
       template: "registration.modal",
