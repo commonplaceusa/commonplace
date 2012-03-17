@@ -37,8 +37,6 @@ class API
         @_user ||= warden.user(:user)
       end
       
-      alias :current_account :current_user
-      
       # Helper for accessing env["warden"]
       def warden
         env["warden"]
@@ -49,13 +47,6 @@ class API
         @_request_body ||= JSON.parse(request.body.read.to_s)
       end
       
-      # Deprecated: halts with 401 if thu user is not authenticated
-      #
-      # use `control_access :authenticated` instead
-      def authorize!
-        halt [401, "not logged in"] unless warden.authenticated?(:user)
-      end
-
       # renders the argument as json 
       # 
       # Args:
@@ -115,19 +106,6 @@ class API
             Date.today.beginning_of_day].compact.max)
       end
 
-      # Unused?
-      def jsonp(callback, data)
-        "#{callback}(#{data})"
-      end
-
-      # Deprecated: Tests if the current_user belongs to the community with the 
-      # given id, or is an admin
-      #
-      # Use `control_access :community_member, community` instead
-      def in_comm(community_id)
-        current_user.community.id == community_id.to_i || current_user.admin
-      end
-
       # Creates a Thank for a given Thankable 
       #
       # Args:
@@ -138,9 +116,11 @@ class API
       # When the thank is already exists, returns 400
       def thank(scope, id)
         post = scope.find(id)
-        halt [403, "wrong community"] unless in_comm(post.community.id)
-        halt [400, "errors: already thanked"] unless post.thanks.index { |t| t.user.id == current_account.id } == nil
-        thank = Thank.new(:user_id => current_account.id,
+        
+        control_access :community_member, post.community
+
+        halt [400, "errors: already thanked"] unless post.thanks.index { |t| t.user.id == current_user.id } == nil
+        thank = Thank.new(:user_id => current_user.id,
                          :thankable_id => id,
                          :thankable_type => scope.to_s)
         if thank.save
@@ -153,14 +133,6 @@ class API
           [400, "errors"]
         end
       end
-      
-      # Tests the request method
-      def is_method(meth)
-        return request.request_method.downcase == meth
-      end
-
-      # ?
-      NO_CALLBACK = ["no_callback"].to_json
 
     end
     

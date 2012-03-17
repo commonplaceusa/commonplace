@@ -7,8 +7,8 @@ class API
       # 
       # Returns the serialized account
       def checked_inbox
-        current_account.checked_inbox!
-        serialize(Account.new(current_account))
+        current_user.checked_inbox!
+        serialize(Account.new(current_user))
       end
 
     end
@@ -19,7 +19,7 @@ class API
     get "/" do 
       control_access :authenticated
 
-      serialize Account.new(current_account)
+      serialize Account.new(current_user)
     end
     
     # Updates the account's profile
@@ -41,18 +41,18 @@ class API
     put "/" do
       control_access :authenticated
       
-      current_account.full_name = request_body["name"]
-      current_account.about = request_body["about"]
-      current_account.interest_list = request_body["interests"]
-      current_account.skill_list = request_body["skills"]
-      current_account.good_list = request_body["goods"]
-      current_account.email = request_body["email"]
-      current_account.post_receive_method = request_body["neighborhood_posts"]
-      current_account.receive_weekly_digest = request_body["bulletin"]
+      current_user.full_name = request_body["name"]
+      current_user.about = request_body["about"]
+      current_user.interest_list = request_body["interests"]
+      current_user.skill_list = request_body["skills"]
+      current_user.good_list = request_body["goods"]
+      current_user.email = request_body["email"]
+      current_user.post_receive_method = request_body["neighborhood_posts"]
+      current_user.receive_weekly_digest = request_body["bulletin"]
       
-      if current_account.save
-        current_account.reset_password(request_body["password"]) if request_body["password"]
-        serialize Account.new(current_account)
+      if current_user.save
+        current_user.reset_password(request_body["password"]) if request_body["password"]
+        serialize Account.new(current_user)
       else
         [500, "could not save"]
       end
@@ -66,7 +66,7 @@ class API
     delete "/" do
       control_access :authenticated
 
-      current_account.destroy
+      current_user.destroy
       200
     end
 
@@ -81,10 +81,10 @@ class API
     post "/avatar" do
       control_access :authenticated
 
-      current_account.avatar = params[:avatar][:tempfile]
-      current_account.avatar.instance_write(:filename, params[:avatar][:filename])
-      current_account.save
-      serialize Account.new(current_account)
+      current_user.avatar = params[:avatar][:tempfile]
+      current_user.avatar.instance_write(:filename, params[:avatar][:filename])
+      current_user.save
+      serialize Account.new(current_user)
     end
 
     # Deletes the account's avatar
@@ -95,9 +95,9 @@ class API
     delete "/avatar" do
       control_access :authenticated
 
-      current_account.avatar = nil
-      current_account.save
-      serialize Account.new(current_account)
+      current_user.avatar = nil
+      current_user.save
+      serialize Account.new(current_user)
     end
 
     # Updates the account avatar's cropping
@@ -135,14 +135,14 @@ class API
       control_access :authenticated
 
       k = request_body['key']
-      current_account.metadata[k] = request_body['value']
-      current_account.save
-      serialize Account.new(current_account)
+      current_user.metadata[k] = request_body['value']
+      current_user.save
+      serialize Account.new(current_user)
     end
 
     # Adds account feed subscriptions
     #
-    # Requires authentication
+    # Requires same community membership
     #
     # Request params:
     #   id - The feed ids to subscribe to
@@ -150,19 +150,20 @@ class API
     # Returns 401 if any of the requested feeds are in a different community
     # Returns the serialized account
     post "/subscriptions/feeds" do
-      control_access :authenticated
       
       feeds = [params[:id] || request_body["id"]].flatten.map do |feed_id|
         feed = Feed.find(feed_id)
-        halt [401, "wrong community"] unless in_comm(feed.community.id)
+
+        control_access :community_member, feed.community
+
         feed
       end
       
       feeds.each do |feed|
-        current_account.feeds << feed
+        current_user.feeds << feed
       end
       
-      serialize(Account.new(current_account))
+      serialize(Account.new(current_user))
     end
 
     # Removes a subscription to a feed
@@ -173,8 +174,8 @@ class API
     delete "/subscriptions/feeds/:id" do |id|
       control_access :authenticated
       
-      current_account.feeds.delete(Feed.find(id))
-      serialize(Account.new(current_account))
+      current_user.feeds.delete(Feed.find(id))
+      serialize(Account.new(current_user))
     end
     
 
@@ -188,19 +189,20 @@ class API
     # Returns 401 if any of the requested groups are in a different community
     # Returns the serialized account
     post "/subscriptions/groups" do
-      control_access :authenticated
 
       groups = [params[:id] || request_body["id"]].flatten.map do |group_id|
         group = Group.find(group_id)
-        halt [401, "wrong community"] unless in_comm(group.community.id)
+
+        control_access :community_member, group.community
+
         group
       end
       
       groups.each do |group|
-        current_account.groups << group
+        current_user.groups << group
       end
       
-      serialize(Account.new(current_account))
+      serialize(Account.new(current_user))
     end
 
     # Removes a subscription to a group
@@ -211,13 +213,13 @@ class API
     delete "/subscriptions/groups/:id" do |id|
       control_access :authenticated
 
-      current_account.groups.delete(Group.find(id))
-      serialize(Account.new(current_account))
+      current_user.groups.delete(Group.find(id))
+      serialize(Account.new(current_user))
     end
 
     # Adds a Met for the given user id
     # 
-    # Requires authentication
+    # Requires same community membership
     #
     # Request params:
     #   id - the id of the user to met
@@ -225,12 +227,12 @@ class API
     # Returns 401 if the user is not in the same community
     # Returns the serialized account
     post "/mets" do
-      control_access :authenticated
-
       user = User.find(params[:id] || request_body["id"])
-      halt [401, "wrong community"] unless in_comm(user.community.id)
-      current_account.people << user
-      serialize(Account.new(current_account))
+
+      control_access :community_member, user.community
+
+      current_user.people << user
+      serialize(Account.new(current_user))
     end
 
     # Removes a met 
@@ -239,8 +241,8 @@ class API
     delete "/mets/:id" do |id|
       control_access :authenticated
 
-      current_account.people.delete(User.find(id))
-      serialize(Account.new(current_account))
+      current_user.people.delete(User.find(id))
+      serialize(Account.new(current_user))
     end
     
     # Adds residents for each of the neighbors the user names
@@ -292,7 +294,7 @@ class API
       control_access :authenticated
 
       checked_inbox()
-      serialize(paginate(current_account.inbox.reorder("GREATEST(replied_at, created_at) DESC")))
+      serialize(paginate(current_user.inbox.reorder("GREATEST(replied_at, created_at) DESC")))
     end
 
     # Returns the account's (paginated) outbox
@@ -303,7 +305,7 @@ class API
     get "/inbox/sent" do
       control_access :authenticated
 
-      serialize(paginate(current_account.sent_messages.reorder("GREATEST(replied_at, created_at) DESC")))
+      serialize(paginate(current_user.sent_messages.reorder("GREATEST(replied_at, created_at) DESC")))
     end
 
     # Returns the a (paginated) list of messages to feeds the account owns
@@ -317,7 +319,7 @@ class API
       control_access :authenticated
 
       checked_inbox()
-      serialize(paginate(current_account.feed_messages.reorder("GREATEST(replied_at, created_at) DESC")))
+      serialize(paginate(current_user.feed_messages.reorder("GREATEST(replied_at, created_at) DESC")))
     end
 
     # Returns a list of 'featured' neighbors for the account
@@ -326,7 +328,7 @@ class API
     get "/featured" do
       control_access :authenticated
 
-      serialize(paginate(current_account.featured))
+      serialize(paginate(current_user.featured))
     end
 
     # Adds Facebook connect to the account
@@ -350,7 +352,7 @@ class API
     get "/history" do
       control_access :authenticated
 
-      current_account.profile_history.to_json
+      current_user.profile_history.to_json
     end
     
     # Returns the account's activity (post counts, thank counts, etc.)
@@ -359,7 +361,7 @@ class API
     get "/activity" do
       control_access :authenticated
       
-      serialize(current_account.activity)
+      serialize(current_user.activity)
     end
 
   end

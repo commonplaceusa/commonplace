@@ -77,7 +77,7 @@ class API
       control_access :community_member, find_postlike.community
       
       reply = Reply.new(:repliable => find_postlike,
-                        :user => current_account,
+                        :user => current_user,
                         :body => request_body['body'])
 
       if reply.save

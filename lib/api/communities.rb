@@ -212,7 +212,7 @@ CONDITION
     post "/:id/posts" do
       control_access :community_member, find_community
 
-      post = Post.new(:user => current_account,
+      post = Post.new(:user => current_user,
                       :community_id => find_community.id,
                       :subject => request_body['title'],
                       :body => request_body['body'],
@@ -276,7 +276,7 @@ CONDITION
     post "/:id/events" do
       control_access :community_member, find_community
       
-      event = Event.new(:owner => current_account,
+      event = Event.new(:owner => current_user,
                         :name => request_body['title'],
                         :description => request_body['about'],
                         :date => request_body['date'],
@@ -505,7 +505,7 @@ CONDITION
       control_access :community_member, find_community
 
       kickoff.deliver_user_invite(request_body['emails'], 
-                                  current_account, 
+                                  current_user, 
                                   request_body['message'])
       [ 200, {}, "" ]
     end
@@ -521,7 +521,7 @@ CONDITION
 
       scope = request_body['data_type'].chop.camelize.constantize
       item = scope.find(request_body['id'])
-      kickoff.deliver_share_notification(current_account, item, request_body['email'])
+      kickoff.deliver_share_notification(current_user, item, request_body['email'])
       [ 200, {}, "" ]
     end
 
