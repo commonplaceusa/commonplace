@@ -3,6 +3,7 @@ var ReplyWireItem = WireItem.extend({
   className: 'reply-item',
   template: "wire_items/reply-item",
   initialize: function(options) {
+    this.model.on("destroy", this.remove, this);
   },
 
   afterRender: function() {
