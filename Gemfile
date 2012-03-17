@@ -81,7 +81,8 @@ gem 'newrelic_rpm' # we use this to monitor the app
 gem 'rollout' # we use this to control features
 
 # Contacts
-gem 'contacts'
+gem 'hpricot'
+gem 'turing-contacts', :git => "git://github.com/turingstudio/contacts.git", :require => 'contacts'
 
 # Misc
 gem 'json', "~> 1.6.0" # isn't json built-in?
@@ -111,7 +112,7 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
   gem 'jasmine'
-  gem 'progress_bar'
+  #gem 'progress_bar'
 end
 
 group :linux do
