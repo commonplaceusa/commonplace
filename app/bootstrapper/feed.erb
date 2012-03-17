@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns="https://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
+
+  <head>
+    <title>CommonPlace</title>
+    <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
+
+    <link href="https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css"}
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
+    <link href="/assets/favicon.png" rel="icon" type="image/png">
+
+    <link href="/assets/feed_page.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body class="application">
+    <img src="/assets/tour/welcome-bg.png" style="display:none;">
+    <img src="/assets/tour/tour-button.png" style="display:none;">
+
+    <div id="sticky-wrapper">
+      
+      <div id="header"></div>
+
+      <div id="main">
+        <div id="feed"></div>
+        
+        <div id="right-column">
+          <div id="feeds-list"></div>
+        </div>
+      </div>
+
+      <div style="clear:both;"></div>
+      
+    </div>
+    <%= erb :footer %>
+
+    <script type="text/javascript" src="/assets/feed_page.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+          var community = <%= Serializer::serialize(@community).to_json.html_safe %>;
+          $.getJSON("/api/account", function(account_response) {
+            $.getJSON("/api/communities/<%= @community.id %>/feeds", function(feeds) {
+
+              CommonPlace.account = new Account(account_response);
+              CommonPlace.community = new Community(community);
+
+              new FeedPageRouter({ account: CommonPlace.account, community: community, feed: "<%= @feed.id %>", feeds: feeds });
+              Backbone.history.start();
+            });
+          });
+        });
+
+    </script>
+    
+    <%= erb :tracking %>
+
+
+  </body>
+
+</html>

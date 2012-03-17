@@ -1,7 +1,7 @@
 #footer
   #cont
     .left_text
-      Find out more at #{link_to "CommonPlaceUSA.com", about_url, :target => :blank }
+      Find out more at #{link_to "CommonPlaceUSA.com", "/about", :target => :blank }
     .right_text
       - if params[:community]
         = mail_to current_community.organizer_email, "Questions?  Email #{current_community.organizer_email}"
@@ -11,7 +11,7 @@
         &sdot;
         = link_to "FAQ", "/faq", data: { remote: true }
       &sdot;
-      = link_to "About", about_url, :target => :blank
+      = link_to "About", "/about", :target => :blank
       - if logged_in? && current_community.discount_businesses.present?
         &sdot;
         = link_to "Good Neighbor Discount", "/discount", data: { remote: true }

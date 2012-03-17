@@ -2,10 +2,6 @@ class AccountsController < ApplicationController
 
   layout 'application'
 
-  protect_from_forgery :except => :update
-
-  before_filter :authenticate_user!, :except => [:learn_more, :disable_email]
-
   def avatar ; end
 
   def crop_avatar
@@ -13,10 +9,6 @@ class AccountsController < ApplicationController
     redirect_to "/" + current_user.community.slug + "/account"
   end
   
-  def learn_more
-    render :layout => false
-  end
-
   def make_focp
     user = User.find_by_email(params[:email])
     slug = user.community.slug

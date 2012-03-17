@@ -1,11 +1,25 @@
 !!! 5
 %html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
   %head
-    = render :partial => 'layouts/common_head', :locals => { :javascripts => ["sign_in"], :stylesheets => ["learn_more"] }
+    <title>CommonPlace</title>
+    <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
+
+    <link href="https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css"}
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
+    <link href="/assets/favicon.png" rel="icon" type="image/png">
+
+    <link href="/assets/learn_more.css" rel="stylesheet" type="text/css">
   %body
 
   #wrapper
-    = render 'layouts/registration_header'
+    #header
+      #nav_wrapper
+        %a{ href: "/#{@community.slug}", id: "logo"}
+          %img{src: "/assets/logo2.png", alt: 'CommonPlace'}
+          %span.community= @community.name
+  
+      .clear
+
 
     #main
       
@@ -17,56 +31,55 @@
 
       %ul
         %li
-          = image_tag "learn_more/sign_up_screen_shot.png", :size => "300x210"
+          %img{ :src => "/assets/learn_more/sign_up_screen_shot.png", :size => "300x210" }
 
           %h3 1. Sign Up
           
-          %p= t ".signup1", :community => current_community.name
+          %p CommonPlace brings your neighbors and civic leaders in #{@community.name} together onto one 'community network' online.
 
-          %p= t ".signup2"
+          %p Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and the mayor.
 
           %div{:style => "clear: both;"}
 
         %li
-          = image_tag "learn_more/bulletin_screen_shot.png", :size => "300x210"
+          %img{ :src => "/assets/learn_more/bulletin_screen_shot.png", :size => "300x210" }
 
           %h3 2. Receive Community Bulletins
 
-          %p= t ".bulletins1"
+          %p Each day you'll receive a 'community bulletin' featuring events and announcements written by your neighbors and local leaders. Learn about local events. Find a good mechanic. Join a new biking group.
 
-          %p= t ".bulletins2"
+          %p Whenever something's interesting to you, you can hit 'reply' and start a community conversation.
  
           %div{:style => "clear: both;"}
 
         %li 
-          = image_tag "learn_more/community_screen_shot.png", :size => "300x210"
+          %img{ :src => "/assets/learn_more/community_screen_shot.png", :size => "300x210" }
 
           %h3 3. Search the Community
 
-          %p= t ".search1_html", :slug => current_community.slug
+          %p All these community conversations, events, and announcements can always be views at <a href='http://#{@community.slug}.ourcommonplace.com/'>#{@community.slug}.OurCommonPlace.com</a>.
 
-          %p= t ".search2"
+          %p CommonPlace centralizes community information. Use it to search for people in your area, find cool local organizations, or locate goods and skills in your neighborhood.
 
           %div{:style => "clear: both;"}
 
         %li 
-          = image_tag "learn_more/post_screen_shot.png", :size => "300x210"
+          %img{ :src => "/assets/learn_more/post_screen_shot.png", :size => "300x210" }
 
           %h3 4. Post to the Neighborhood
 
-          %p= t ".post1"
+          %p Of course, whenever YOU have a need or announcement, CommonPlace makes it really easy to share it with the people around you.
   
           %ul
-            %li= t ".post2"
-            %li= t ".post3"
-            %li= t ".post4"
-            %li= t ".post5", community: current_community.name    
+            %li Ask to borrow a ladder or a power drill
+            %li Publicize a tag sale or block party
+            %li Ask about how to fix a pot hole
+            %li Organize service projects for #{@community.name}
 
           %div{:style => "clear: both;"}
           
         .register_con
-          = link_to 'Register', "/", :class=> "register"
-
+          %a{ :href => "/#{@community.slug}", :class => "register"} Register 
 
 
       %h2 Press and Local Testimonials
@@ -102,4 +115,5 @@
     #wrapper-footer
 
 
-  = render "layouts/footer"
+  = erb :footer
+  

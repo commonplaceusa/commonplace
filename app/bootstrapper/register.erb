@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns="https://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
+
+  <head>
+    <title>CommonPlace</title>
+    <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
+
+    <link href="https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css"}
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
+    <link href="/assets/favicon.png" rel="icon" type="image/png">
+
+    <link href="/assets/registration_page.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body class="application">
+
+    <div id="wrapper">
+      <div id="header"></div>
+
+      <div id="main">
+        <div id="fb-root"></div>
+        <div id="registration-modal"></div>
+      
+        <div style="clear:both;"></div>
+        
+ 
+      </div>
+      <div id="wrapper-footer"></div>
+    </div>
+
+    <%= erb :footer %>
+    
+    <script type="text/javascript" src="/assets/registration.js"></script>
+
+    <script type="text/javascript">
+      new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
+    </script>
+    <%= erb :tracking %>
+      
+
+
+  </body>
+
+</html>

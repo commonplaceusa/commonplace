@@ -9,17 +9,4 @@ en:
         daily: "Only receive neigborhood posts in the daily bulletin"
         never: "Receive no neighborhood posts"
 
-    learn_more:
-      signup1: "CommonPlace brings your neighbors and civic leaders in %{community} together onto one 'community network' online."
-      signup2: "Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and the mayor."
-      bulletins1: "Each day you'll receive a 'community bulletin' featuring events and announcements written by your neighbors and local leaders. Learn about local events. Find a good mechanic. Join a new biking group."
-      bulletins2: "Whenever something's interesting to you, you can hit 'reply' and start a community conversation."
-      search1_html: "All these community conversations, events, and announcements can always be views at <a href='http://%{slug}.ourcommonplace.com/'>%{slug}.OurCommonPlace.com</a>."
-      search2: "CommonPlace centralizes community information. Use it to search for people in your area, find cool local organizations, or locate goods and skills in your neighborhood."
-      post1: "Of course, whenever YOU have a need or announcement, CommonPlace makes it really easy to share it with the people around you."
-      post2: "Ask to borrow a ladder or a power drill"
-      post3: "Publicize a tag sale or block party"
-      post4: "Ask about how to fix a pot hole"
-      post5: "Organize service projects for %{community}"
-
       
