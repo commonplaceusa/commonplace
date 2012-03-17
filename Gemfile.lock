@@ -19,6 +19,17 @@ GIT
       xpath (~> 0.1.4)
 
 GIT
+  remote: git://github.com/turingstudio/contacts.git
+  revision: aa86d2ff8e566a801953300dd1848725f722c020
+  specs:
+    turing-contacts (0.2.6)
+      hpricot
+      httparty
+      json
+      nokogiri
+      oauth (= 0.3.6)
+
+GIT
   remote: https://github.com/dabio/taps.git
   revision: a56d8e8494d6bcb529628ee602b9198086a20b9c
   specs:
@@ -97,9 +108,6 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    contacts (1.2.4)
-      gdata (= 1.1.1)
-      json (>= 0.4.1)
     crack (0.3.1)
     creole (0.4.2)
     css_parser (1.2.6)
@@ -130,7 +138,6 @@ GEM
       multipart-post (~> 1.1)
       rack (~> 1.1)
     fastercsv (1.5.4)
-    fattr (2.2.1)
     ffi (1.0.11)
     foreman (0.40.0)
       term-ansicolor (~> 1.0.7)
@@ -146,7 +153,6 @@ GEM
     garb (0.9.1)
       activesupport (>= 2.2.0)
       crack (>= 0.1.6)
-    gdata (1.1.1)
     geocoder (1.0.5)
     glebm-geokit (1.5.2)
     googlecharts (1.6.8)
@@ -179,10 +185,13 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
-    highline (1.6.11)
     hike (1.2.1)
     hirefireapp (0.0.7)
+    hpricot (0.8.6)
     htmlentities (4.3.1)
+    httparty (0.8.1)
+      multi_json
+      multi_xml
     i18n (0.6.0)
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
@@ -233,10 +242,13 @@ GEM
       activesupport (~> 3.0)
       plucky (~> 0.4.0)
     multi_json (1.1.0)
+    multi_xml (0.4.2)
     multipart-post (1.1.5)
     mustache (0.99.4)
     newrelic_rpm (3.3.2)
     nokogiri (1.5.2)
+    oauth (0.3.6)
+      ruby-hmac (>= 0.3.1)
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
@@ -248,8 +260,6 @@ GEM
     omniauth-oauth2 (1.0.0)
       oauth2 (~> 0.5.0)
       omniauth (~> 1.0)
-    options (2.3.0)
-      fattr
     orm_adapter (0.0.6)
     paperclip (2.4.5)
       activerecord (>= 2.3.0)
@@ -265,9 +275,6 @@ GEM
       activerecord (~> 3.0)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
-    progress_bar (0.4.0)
-      highline (~> 1.6.1)
-      options (~> 2.3.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -345,6 +352,7 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.8.0)
     rspec-rr (0.1.0)
+    ruby-hmac (0.4.0)
     ruby-progressbar (0.0.10)
     rubyzip (0.9.6.1)
     rufus-scheduler (2.0.16)
@@ -424,7 +432,6 @@ DEPENDENCIES
   cancan
   capybara!
   compass (= 0.12.alpha.0)
-  contacts
   dalli
   database_cleaner
   delayed_job
@@ -449,6 +456,7 @@ DEPENDENCIES
   haml (~> 3.1)
   heroku
   hirefireapp
+  hpricot
   jasmine
   json (~> 1.6.0)
   launchy
@@ -465,7 +473,6 @@ DEPENDENCIES
   permanent_records
   pg
   premailer!
-  progress_bar
   rack-cache
   rack-contrib
   rack-timeout
@@ -496,6 +503,7 @@ DEPENDENCIES
   taps!
   therubyracer
   thin
+  turing-contacts!
   uglifier
   uuid
   webmock

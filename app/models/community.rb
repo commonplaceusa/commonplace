@@ -97,7 +97,8 @@ class Community < ActiveRecord::Base
       "questions" => "/communities/#{id}/questions",
       "shares" => "/communities/#{id}/shares",
       "landing_wires" => "/communities/#{id}/wire",
-      "residents" => "/communities/#{id}/residents"
+      "residents" => "/communities/#{id}/residents",
+      "email_contact_authorization_callback" => "find_neighbors/callback"
     }
   end
 

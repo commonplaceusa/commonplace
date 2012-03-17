@@ -3,62 +3,74 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   track: true,
   page_name: "find_my_neighbors",
 
+  is_callback: false,
+  callback_token: "",
+  callback_verifier: "",
+
   events: {
     "click img.facebook": "facebook",
     "click img.gmail": "gmail",
-    
+    "click img.yahoo": "yahoo",
+
     "click .show_add_neighbor": "toggleAddNeighbor",
     "click form.add input.add_neighbor": "addNeighbor",
     "submit form.add": "addNeighbor",
-    
+
     "click input.contact": "toggleContact",
-    
+
     "keyup form.list input.search": "debounceSearch",
     "click form.list .remove_search.active": "removeSearch",
     "click form.list .no_results": "removeSearch",
-    
+
     "click form.list input.continue": "submit",
     "submit form.list": "submit"
   },
-  
+
   afterRender: function() {
     var self = this;
     GoogleContacts.prepare({
-        success: _.bind(function(friends) {
+      success: _.bind(function(friends) {
           this.friends = friends;
           this.gmail_connected = true;
           this.generate(false);
         }, this)
       });
+    YahooContacts.prepare({
+        success: _.bind(function(friends) {
+          this.friends = friends;
+          this.yahoo_connected = true;
+          this.generate(false);
+        }, this)
+      });
     this.currentQuery = "";
-    
+
     this.$(".no_results").hide();
     this.$(".search_finder").hide();
     this.$(".initial_load").show();
     this.$(".neighbor_count_li").hide();
     this.$("form.add").hide();
     this.$("form.add .error").hide();
-    
+
     this.nextPageTrigger();
     this.$(".neighbor_finder").scroll(function() {
       if (($(this).scrollTop() + 30) > (5 * this.scrollHeight / 7)) { self.nextPageThrottled(); }
     });
-    
+
     $.getJSON(
-      "/api" + CommonPlace.community.link("residents"), {},
+      "/api" + CommonPlace.community.link("residents"),
+      {},
       _.bind(function(response) {
         if (response.length) {
           this.neighbors = response;
           this.generate((CommonPlace.account.get("facebook_user")) ? "facebooK" : false);
         }
-      }, this)
-    );
+      }, this));
   },
 
   nextPageTrigger: function() {
     this.nextPageThrottled = _.once(_.bind(function() { this.nextPage(); }, this));
   },
-  
+
   generate: function(checkExternalService) {
     if (checkExternalService == "facebook") {
       facebook_connect_friends({
@@ -70,6 +82,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       });
     } else if (checkExternalService == "gmail") {
       GoogleContacts.retrievePairedContacts();
+    } else if (checkExternalService == "yahoo" || this.is_callback) {
+      YahooContacts.retrievePairedContacts(this.callback_verifier);
+      this.is_callback = false;
     } else {
       this.items = [];
       this.limit = 0;
@@ -89,11 +104,11 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       this.nextPageThrottled();
     }
   },
-  
+
   generateItem: function(neighbor, isSearch) {
     var intersectedUser = this.getIntersectedUser(neighbor);
     var addFromSearch;
-    
+
     if (isSearch) {
       addFromSearch = _.bind(function(el) {
         this.appendCell(this.$(".neighbor_finder table"), el);
@@ -108,6 +123,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       intersectionType = "facebook";
     if (this.gmail_connected)
       intersectionType = "gmail";
+    if (this.yahoo_connected)
+      intersectionType = "yahoo";
     var itemView = new this.NeighborItemView({
       model: neighbor,
       intersectedUser: intersectedUser,
@@ -121,9 +138,9 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
 
   nextPage: function() {
     if (_.isEmpty(this.items)) { return; }
-    
+
     this.showGif("loading");
-    
+
     var currentItems = _.first(this.items, this.limit);
     this.items = _.rest(this.items, this.limit);
     _.each(currentItems, _.bind(function(itemView, index) {
@@ -131,25 +148,25 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       this.appendCell(this.$(".neighbor_finder table"), itemView.el);
     }, this));
     this.nextPageTrigger();
-    
+
     this.showCount();
     this.showGif("inactive");
   },
-  
+
   appendCell: function($table, el) {
     var $row;
     var $lastRow = $(_.last($table[0].rows));
-    
+
     if ($table[0].rows.length && $lastRow[0].cells.length == 1) {
       $row = $lastRow;
     } else { $row = $($table[0].insertRow(-1)); }
-    
+
     $row.append(el);
   },
 
   submit: function(e) {
     if (e) { e.preventDefault(); }
-    
+
     if (this.currentQuery) { this.removeSearch(); }
 
     var data = {
@@ -173,7 +190,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         to: facebook_neighbors
       }, callback);
     }
-    if (data.can_contact && this.gmail_connected)
+    if (data.can_contact && (this.gmail_connected || this.yahoo_connected))
     {
       // TODO: Implement
     }
@@ -186,8 +203,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         data: JSON.stringify(data), 
         success: _.bind(function() { this.finish(); }, this)
       });
-    } else { 
-      this.finish(); 
+    } else {
+      this.finish();
     }
   },
 
@@ -203,17 +220,28 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     this.generate("gmail");
   },
 
+  yahoo: function(e) {
+    if (e) { e.preventDefault(); }
+    $.ajax({
+      type: "POST",
+      contentType: "application/json",
+      url: "/api/contacts/authorization_url/yahoo",
+      data: JSON.stringify({return_url: "" + CommonPlace.community.link("base") + "/" + CommonPlace.community.link("email_contact_authorization_callback")}),
+      success: function(response) { window.location = response; }
+    });
+  },
+
   getIntersectedUser: function(neighbor) {
     var name = neighbor.first_name + " " + neighbor.last_name;
     return _.find(this.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
   },
-  
+
   debounceSearch: _.debounce(function() {
     this.search();
   }, CommonPlace.autoActionTimeout),
-  
+
   search: function() {
     this.showGif("loading");
     this.$(".no_results").hide();
@@ -228,7 +256,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       this.showSearch();
     }
   },
-  
+
   showSearch: function() {
     $.getJSON(
       "/api" + CommonPlace.community.link("residents"),
@@ -252,10 +280,10 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       }, this)
     );
   },
-  
+
   removeSearch: function(e) {
     if (e) { e.preventDefault(); }
-    
+
     this.currentQuery = "";
     this.$("input[name=search]").val("");
     this.$(".search_finder").hide();
@@ -263,22 +291,22 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     if (!this.$(".neighbor_finder").scrollTop()) {
       this.$(".neighbor_finder").scrollTo(this.currentScroll);
     }
-    
+
     this.showGif("inactive");
   },
-  
+
   toggleContact: function(e) {
     this.$("input.contact").removeAttr("checked");
     $(e.currentTarget).attr("checked", "checked");
   },
-  
+
   showGif: function(className) {
     this.$(".remove_search").removeClass("inactive");
     this.$(".remove_search").removeClass("active");
     this.$(".remove_search").removeClass("loading");
     this.$(".remove_search").addClass(className);
   },
-  
+
   showCount: function() {
     var count = this.$(".neighbor_finder input[name=neighbors_list]:checked").length;
     if (count) {
@@ -289,10 +317,10 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       this.$(".neighbor_count_li").hide();
     }
   },
-  
+
   toggleAddNeighbor: function(e) {
     if (e) { e.preventDefault(); }
-    
+
     if (this.$("form.add:visible").length) {
       this.$("form.add").hide();
     } else {
@@ -300,17 +328,17 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       this.$("form.add .error").hide();
     }
   },
-  
+
   addNeighbor: function(e) {
     if (e) { e.preventDefault(); }
-    
+
     this.$("form.add .error").hide();
     var full_name = this.$("form.add input[name=name]").val();
     var email = this.$("form.add input[name=email]").val();
     if (!full_name || !email || full_name.split(" ").length < 2 || !_.last(full_name.split(" "))) {
       return this.$("form.add .error").show();
     }
-    
+
     var neighbor = {
       full_name: full_name,
       first_name: _.first(full_name.split(" ")),
@@ -318,7 +346,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       email: email,
       avatar_url: undefined
     };
-    
+
     var itemView = this.generateItem(neighbor, false);
     itemView.render();
     this.appendCell(this.$(".neighbor_finder table"), itemView.el);
@@ -336,15 +364,16 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     tagName: "td",
 
     events: { "click": "check" },
-    
+
     initialize: function(options) {
       this._isFacebook = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "facebook";
       this._isGmail = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "gmail";
+      this._isYahoo = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "yahoo";
     },
 
     afterRender: function() {
       if (!this.model.on_commonplace) { this.$(".on-commonplace").hide(); }
-      
+
       if (this.isFacebook()) {
         if (!this.options.search) { this.check(); }
         facebook_connect_user_picture({
@@ -376,18 +405,18 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
 
     check: function(e) {
       if (e) { e.preventDefault(); }
-      
+
       if (this.options.search) {
         this.options.search = false;
         this.options.addFromSearch(this.el);
       }
-      
+
       var $checkbox = this.$("input[type=checkbox]");
       if ($checkbox.attr("checked")) {
         $checkbox.removeAttr("checked");
       } else { $checkbox.attr("checked", "checked"); }
       $(this.el).toggleClass("checked");
-      
+
       this.options.showCount();
     }
   })

@@ -111,7 +111,8 @@ var Application = Backbone.Router.extend({
 
     ":community/stats": "stats",
 
-    ":community/find_neighbors": "find_neighbors"
+    ":community/find_neighbors": "find_neighbors",
+    ":community/find_neighbors/callback?oauth_token=:token&oauth_verifier=:verifier": "find_neighbors_with_callback"
   },
 
   stats: function(c) { 
@@ -129,6 +130,13 @@ var Application = Backbone.Router.extend({
   discount: function(c) { this.showPage("discount"); },
 
   find_neighbors: function(c) { this.showPage("find_neighbors"); },
+  find_neighbors_with_callback: function(c, token, verifier) {
+    console.log("Finding with callback");
+    this.pages.find_neighbors.is_callback = true;
+    this.pages.find_neighbors.callback_token = token;
+    this.pages.find_neighbors.callback_verifier = verifier;
+    this.showPage("find_neighbors");
+  },
 
   community: function(c) {
     this.showPage("community");
