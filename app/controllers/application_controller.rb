@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_community
   helper_method 'logged_in?'
 
-  helper_method :serialize
   
   before_filter :domain_redirect
 
@@ -17,10 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
-  def serialize(thing)
-    Serializer::serialize(thing).to_json.html_safe
-  end
 
   def translate_with(options = {})
     @default_translate_options ||= {}

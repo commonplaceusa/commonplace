@@ -1,0 +1,53 @@
+:css
+  #referral_sources {
+    text-align: center;
+  }
+  table {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  td {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    text-align: center;
+  }
+  
+  h1 {
+    margin: 20px auto;
+    font-size: 28px;
+    color: blue;
+  }
+.referral_sources
+  %h1 Referral Sources
+  - Community.all.each do |community|
+    #referral_sources
+    %table
+      %tr
+        %th Name
+        %th Community
+        %th Timestamp
+        %th Referral Source
+        %th Metadata
+      - community_referrer.users.select{|u| u.referral_source.present?}.sort{|a,b| a.created_at <=> b.created_at}.reverse.each do |user|
+        %tr
+          %td{:width => "20%"}= user.full_name
+
+          %td{:width => "10%"}= user.community.name
+          %td{:width => "20%"}
+            = user.created_at.getlocal.to_date
+            = user.created_at.getlocal
+          %td{:width => "25%"}= user.referral_source
+          %td{:width => "25%"}= user.referral_metadata
