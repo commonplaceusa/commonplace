@@ -48,7 +48,7 @@ class API
                                       :owner_id => find_feed.id,
                                       :subject => request_body['title'],
                                       :body => request_body['body'],
-                                      :community => current_account.community,
+                                      :community => current_user.community,
                                       :group_ids => request_body["groups"])
       if announcement.save
         kickoff.deliver_announcement(announcement)
@@ -82,7 +82,7 @@ class API
                         :venue => request_body['venue'],
                         :address => request_body['address'],
                         :tag_list => request_body['tags'],
-                        :community => current_account.community,
+                        :community => current_user.community,
                         :group_ids => request_body["groups"])
       if event.save
         serialize(event)
@@ -145,7 +145,7 @@ class API
                             :body => request_body['body'],
                             :messagable_type => "Feed",
                             :messagable_id => find_feed.id,
-                            :user => current_account)
+                            :user => current_user)
       if message.save
         [200, ""]
       else

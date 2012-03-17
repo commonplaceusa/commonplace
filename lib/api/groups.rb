@@ -34,7 +34,7 @@ class API
       group_post = GroupPost.new(:group => find_group,
                                  :subject => request_body['title'],
                                  :body => request_body['body'],
-                                 :user => current_account)
+                                 :user => current_user)
       if group_post.save
         group_post.group.live_subscribers.each do |user|
           Resque.enqueue(GroupPostNotification, group_post.id, user.id)

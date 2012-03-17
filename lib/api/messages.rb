@@ -22,7 +22,7 @@ class API
       control_access :thread_member, find_message
 
       reply = Reply.new(:repliable => find_message,
-                        :user => current_account,
+                        :user => current_user,
                         :body => request_body['body'])
 
       if reply.save

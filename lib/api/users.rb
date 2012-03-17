@@ -23,7 +23,7 @@ class API
       message = Message.new(:subject => request_body['subject'],
                             :body => request_body['body'],
                             :messagable => find_user,
-                            :user => current_account)
+                            :user => current_user)
       if message.save
         kickoff.deliver_user_message(message)
         [200, ""]
