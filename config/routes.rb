@@ -1,9 +1,6 @@
 require Rails.root.join("app", "bootstrapper.rb")
 require Rails.root.join("app", "administration.rb")
 Commonplace::Application.routes.draw do
-  mount API => "/api"
-  mount Administration => "/admin"
-  mount Bootstrapper => ""
 
 
   # Community specific redirects
@@ -98,5 +95,10 @@ Commonplace::Application.routes.draw do
     resources :password_resets
 
   end
+
+  mount API => "/api"
+  mount Administration => "/admin"
+  mount Bootstrapper => ""
+
 
 end

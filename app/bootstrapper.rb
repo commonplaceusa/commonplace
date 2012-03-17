@@ -32,9 +32,9 @@ class Bootstrapper < Sinatra::Base
     
     erb @account ? :application : :register
   end
-
-  get ":community/*/*/*" do
-    @community = Community.find_by_slug(params[:community])
+  
+  get %r{([\w]+)/.*} do
+    @community = Community.find_by_slug(params[:captures].first)
 
     return 404 unless @community
     
