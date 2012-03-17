@@ -5,7 +5,7 @@ var HeaderView = CommonPlace.View.extend({
   
   afterRender: function() {
     var nav;
-    if (CommonPlace.account) {
+    if (CommonPlace.account.isAuth()) {
       nav = new HeaderNav();
     } else {
       nav = new HeaderLogin();
