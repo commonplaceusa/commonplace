@@ -19,8 +19,9 @@ class API
       # 
       # Halts with 401 if the test fails. No return value
       def control_access(test, arg = nil)
-        return if current_user.admin? || test == :public
+        return if test == :public
         halt 401 unless warden.authenticated?(:user)
+        return if current_user.admin? 
         accessible = case test
                      when :authenticated then true
                      when :community_member then current_user.community == arg

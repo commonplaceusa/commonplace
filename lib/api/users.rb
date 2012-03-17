@@ -18,7 +18,7 @@ class API
     # 
     # Returns 200 on success, 400 if there were validation errors
     post "/:id/messages" do |id|
-      control_access :community, find_user.community
+      control_access :community_member, find_user.community
 
       message = Message.new(:subject => request_body['subject'],
                             :body => request_body['body'],
@@ -34,19 +34,19 @@ class API
 
     # Gets a list of the users history
     get "/:id/history" do
-      control_access :community, find_user.community
+      control_access :community_member, find_user.community
       find_user.profile_history.to_json
     end
 
     # Gets the users data
     get "/:id" do |id|
-      control_access :community, find_user.community
+      control_access :community_member, find_user.community
       serialize find_user
     end
     
     # Returns a list of all the users posts of any type
     get "/:id/postlikes" do
-      control_access :community, find_user.community
+      control_access :community_member, find_user.community
       
       search = Sunspot.search([Announcement, Post, GroupPost, Event]) do
         order_by(:created_at, :desc)
