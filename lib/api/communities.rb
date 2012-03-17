@@ -115,7 +115,7 @@ class API
     # Query params:
     #   query - query to search residents by
     get "/:id/residents" do
-      control_access :community_member
+      control_access :community_member, find_community
       
       residents = find_community.residents
       if params["query"].present?
