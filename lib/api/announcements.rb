@@ -1,75 +1,34 @@
 class API
-  class Announcements < Authorized
+  class Announcements < Postlikes
+
+    # This api inherits from the Postlikes api, where most of it's methods
+    # are defined. It overrides some of Postlikes's helpers in order
+    # to work specifically with Announcements.
 
     helpers do
 
-      def auth(announcement)
-        halt [401, "wrong community"] unless in_comm(announcement.community.id)
-        if (announcement.owner_type == "Feed")
-          announcement.owner.get_feed_owner(current_account) or current_account.admin
-        else
-          announcement.owner == current_account or announcement.user == current_account or current_account.admin
-        end
+      # Returns the Postlike class
+      def klass
+        Announcement
+      end
+      
+      # Set the announcement's attributes using the given request_body
+      # 
+      # Request params:
+      #  subject -
+      #  body - 
+      #  tag_list -
+      # 
+      # Returns true on success, false otherwise
+      def update_attributes
+        find_postlike.update_attributes(
+          subject:  request_body["title"],
+          body:  request_body["body"],
+          tag_list:  request_body["tags"]
+          )
       end
 
     end
-
-    put "/:id" do |id|
-      announcement = Announcement.find(id)
-      unless announcement.present?
-        [404, "errors"]
-      end
-
-      announcement.subject = request_body['title']
-      announcement.body = request_body['body']
-
-      if auth(announcement) and announcement.save
-        serialize(announcement)
-      else
-        unless auth(announcement)
-          [401, 'unauthorized']
-        else
-          [500, 'could not save']
-        end
-      end
-    end
-
-    delete "/:id" do |id|
-      announcement = Announcement.find(id)
-      unless announcement.present?
-        [404, "errors"]
-      end
-
-      if (auth(announcement))
-        announcement.destroy
-      else
-        [404, "errors"]
-      end
-    end
-
-    get "/:id" do |id|
-      announcement = Announcement.find(id)
-      halt [401, "wrong community"] unless in_comm(announcement.community.id)
-      serialize announcement
-    end
-
-    post "/:id/thank" do |id|
-      thank(Announcement, id)
-    end
-
-    post "/:id/replies" do |id|
-      announcement = Announcement.find(id)
-      halt [401, "wrong community"] unless in_comm(announcement.community.id)
-      reply = Reply.new(:repliable => announcement,
-                        :user => current_account,
-                        :body => request_body['body'])
-
-      if reply.save
-        kickoff.deliver_reply(reply)
-        Serializer::serialize(reply).to_json
-      else
-        [400, "errors"]
-      end
-    end
+    
   end
 end

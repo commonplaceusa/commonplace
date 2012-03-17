@@ -6,12 +6,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :serialize
   
-  before_filter :domain_redirect, :set_api_token
-  
-  rescue_from CanCan::AccessDenied do |exception|
-    store_location
-    redirect_to "/users/sign_in"
-  end
+  before_filter :domain_redirect
 
   def kickoff
     @kickoff ||= KickOff.new
@@ -22,12 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
-  def set_api_token
-    if logged_in?
-      cookies['authentication_token'] = current_user.authentication_token
-    end
-  end
 
   def serialize(thing)
     Serializer::serialize(thing).to_json.html_safe
@@ -89,9 +78,6 @@ class ApplicationController < ActionController::Base
     @_community
   end
   
-  def store_location
-    session["user_return_to"] = request.fullpath
-  end
 
   def logged_in?
     user_signed_in?

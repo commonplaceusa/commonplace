@@ -1,30 +1,35 @@
 class API
-  class Replies < Authorized
-  
-    helpers do
-    
-      def auth(reply)
-        halt [401, "wrong community"] unless in_comm(reply.repliable.community.id)
-        reply.user == current_account or current_account.admin
-      end
+  class Replies < Base
 
+    helpers do
+      # Returns the reply found with params[:id] or halts with 404
+      def find_reply
+        @reply ||= Reply.find_by_id(params[:id]) || (halt 404)
+      end
     end
   
-    delete "/:id" do |reply_id|
-      reply = Reply.find(reply_id)
-      unless reply.present?
-        [404, "errors"]
-      end
-      
-      if auth(reply)
-        reply.destroy
-      else
-        [401, "unauthorized"]
-      end
+    # Deletes the reply
+    # 
+    # Requires ownership
+    #
+    # Returns 200
+    delete "/:id" do
+      control_access :owner, find_reply
+
+      find_reply.destroy
+      200
     end
     
-    post "/:id/thank" do |id|
-      thank(Reply, id)
+    # Creates a thank by the current user for the reply
+    #
+    # Requires community membership
+    #
+    # Returns the serialized Thank on success
+    # Returns 400 on failure
+    post "/:id/thank" do
+      control_access :community_member, find_reply.community
+
+      thank(Reply, find_reply.id)
     end
     
   end
