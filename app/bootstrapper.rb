@@ -7,7 +7,7 @@ class Bootstrapper < Sinatra::Base
   end
 
   get "" do
-    redirect to(@account ? "/#{@account.community.slug}" : "/users/sign_in")
+    redirect to(@account ? "/#{@account.community.slug}" : "/about")
   end
   
   get "groups/:slug" do
@@ -32,14 +32,6 @@ class Bootstrapper < Sinatra::Base
     
     erb @account ? :application : :register
   end
-  
-  get %r{([\w]+)/.*} do
-    @community = Community.find_by_slug(params[:captures].first)
-
-    return 404 unless @community
-    
-    erb @account ? :application : :register
-  end
 
   get "pages/:id" do
     @feed = 
@@ -56,8 +48,13 @@ class Bootstrapper < Sinatra::Base
     erb :organizer_app
   end
 
+  get %r{([\w]+)/.*} do
+    @community = Community.find_by_slug(params[:captures].first)
 
+    return 404 unless @community
+    
+    erb @account ? :application : :register
+  end
 
-  
 
 end
