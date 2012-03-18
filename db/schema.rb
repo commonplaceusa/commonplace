@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313200641) do
+ActiveRecord::Schema.define(:version => 20120318004131) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -350,6 +350,8 @@ ActiveRecord::Schema.define(:version => 20120313200641) do
     t.string  "address"
     t.text    "logs"
     t.string  "email"
+    t.decimal "latitude"
+    t.decimal "longitude"
   end
 
   create_table "sent_emails", :force => true do |t|

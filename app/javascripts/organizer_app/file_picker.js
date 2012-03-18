@@ -16,7 +16,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   showMapView: function(e) {
-    new OrganizerApp.MapView({el: $('#file-viewer')}).render();
+    new OrganizerApp.MapView({el: $('#file-viewer'), collection: this.collection}).render();
   },
 
   afterRender: function() {
@@ -30,7 +30,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   filter: function() {
-    console.log('foo');
     var params = {
       "with": _.map(this.$(".tag-filter[data-state=on]").toArray(), function(e) { 
         return $(e).attr("data-tag");
