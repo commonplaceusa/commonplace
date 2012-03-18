@@ -12,12 +12,20 @@ OrganizerApp.MapView = CommonPlace.View.extend({
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     console.log("Initializing map view...");
     window.residentLatLngs = [];
+
+    var i = 0;
     this.collection.each(function(model) {
-      /*console.log(model);*/
-      /*console.log(model.address());*/
+      console.log(model.full_name());
       
+      //TODO: tack on community zip code to address
       // geocodes and stores lat and lng into database for residents
-      this.geocode(model);
+      if (i < 10 && model.address()) {
+        console.log(model.address());
+        var ms = 2500 + new Date().getTime();
+        while (new Date() < ms) {}
+        this.geocode(model);
+        i++;
+      }
     }, this);
     setTimeout(function() {
       map.setCenter(window.residentLatLngs[0].latLng);
@@ -153,9 +161,9 @@ OrganizerApp.MapView = CommonPlace.View.extend({
           position: latLng
         });
         window.residentLatLngs.push({ "residentId": model.getId(), "latLng": latLng });
-        model.save({ latitude: latLng.lat(), longitude: latLng.lng() }, {success: console.log("latLng update success")});
+        model.save({ latitude: latLng.lat(), longitude: latLng.lng() }, {success: console.log(model.getId() + " latLng update success")});
       } else {
-        alert("Geocode was not successful for the following reason: " + status);
+        console.log("Geocode was not successful for the following reason: " + status);
       }
     });
   },
@@ -216,13 +224,6 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       }
     });
     return success;
-  },
-
-/*events: {*/
-/*"click li": "onClickFile",*/
-/*"click #filter-button": "filter",*/
-/*"click .tag-filter": "cycleFilter",*/
-/*"click #map-button": "showMapView"*/
-/*},*/
+  }
 
 });
