@@ -1,7 +1,15 @@
 
 OrganizerApp.File = Backbone.Model.extend({
+  getId: function() {
+    return this.get('id');
+  },
+
   full_name: function() {
     return this.get('first_name') + ' ' + this.get('last_name');
+  },
+
+  address: function () {
+    return this.get('address');
   },
 
   addEmail: function(email, callback) {

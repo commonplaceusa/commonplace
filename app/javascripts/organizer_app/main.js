@@ -14,7 +14,11 @@ OrganizerApp.Main = Backbone.View.extend({
 
 
   render: function() {
-    _.invoke([this.filePicker], "render");
+    this.collection.fetch({ 
+      success: _.bind(function() {
+        _.invoke([this.filePicker], "render");
+      }, this)
+    });
   }
 
 });

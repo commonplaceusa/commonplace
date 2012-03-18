@@ -40,6 +40,8 @@ module Serializer
         "first_name" => o.first_name, 
         "last_name" => o.last_name,
         "address" => o.address,
+        "latitude" => o.latitude,
+        "longitude" => o.longitude,
         "email" => o.email,
         "logs" => o.logs,
         "tags" => o.tags,
