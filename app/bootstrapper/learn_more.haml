@@ -35,7 +35,7 @@
 
           %h3 1. Sign Up
           
-          %p CommonPlace brings your neighbors and civic leaders in #{@community.name} together onto one 'community network' online.
+          %p CommonPlace brings your neighbors and civic leaders in #{@community} together onto one 'community network' online.
 
           %p Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and the mayor.
 
@@ -57,7 +57,7 @@
 
           %h3 3. Search the Community
 
-          %p All these community conversations, events, and announcements can always be views at <a href='http://#{@community.slug}.ourcommonplace.com/'>#{@community.slug}.OurCommonPlace.com</a>.
+          %p All these community conversations, events, and announcements can always be viewed at <a href='http://%{slug}.ourcommonplace.com/'>#{@communityslug}.OurCommonPlace.com</a>.
 
           %p CommonPlace centralizes community information. Use it to search for people in your area, find cool local organizations, or locate goods and skills in your neighborhood.
 
@@ -85,16 +85,16 @@
       %h2 Press and Local Testimonials
 
       #testimonial
-        %h3 Neighbors now have a common online community bulletin board
-        %p Warwick - Neighbors in Warwick now have a new way to connect with their neighbors and local leaders, thanks to two college students at Harvard University. CommonPlace is an online bulletin board that allows members to post questions, event information, requests and announcements for their neighbors.
+        %h3 News story from Burnsville, MN
+        %blockquote "The difference between OurCommonPlace.com and other social media websites: Its designers hope their project rouses community members to move away from their computers and participate in civic and community activities. The founders call their website a bulletin board and liken it to "infrastructure" for communities."
         #more 
-          %a{:href => "http://strausnews.com/articles/2011/06/12/warwick_advertiser/news/1.txt"} READ MORE...
+          %a{:href => "http://www.startribune.com/local/south/133110453.html"} READ MORE...
         %div{:style => "clear: both;"}
 
       #testimonial
-        <iframe width="330" height="215" src="http://www.youtube.com/embed/6yD_MCgyFBI" frameborder="0" allowfullscreen></iframe>
-        %h3 Local news helps to describe CommonPlace
-        %p Watch this video from Marquette, Michigan. Description using community organizer's name and name of program/TV show.
+        <iframe width="330" height="215" src="http://www.youtube.com/embed/NsTypSRO4rc" frameborder="0" allowfullscreen></iframe>
+        %h3 Local news describes CommonPlace to Marquette, MI
+        %p News story from ABC10 in Marquette, MI about The Marquette CommonPlace.
         #more 
           %a{:href => "http://www.youtube.com/watch?v=6yD_MCgyFBI"} VIEW MORE...
         %div{:style => "clear: both;"}
