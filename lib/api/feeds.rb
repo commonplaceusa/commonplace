@@ -208,6 +208,28 @@ class API
       find_feed.save
       serialize find_feed
     end
+    
+    # Updates the feed avatar's cropping
+    #
+    # Requires authentication
+    #
+    # Request params
+    #   crop_x - the cropping distance from the left
+    #   crop_y - the cropping distance from the top
+    #   crop_w - the cropping width
+    #   crop_h - thi cropping height
+    #
+    # Returns the serialized feed
+    put "/:id/crop" do
+      control_access :owner, find_feed
+
+      find_feed.crop_x = request_body["crop_x"]
+      find_feed.crop_y = request_body["crop_y"]
+      find_feed.crop_w = request_body["crop_w"]
+      find_feed.crop_h = request_body["crop_h"]
+      find_feed.save
+      serialize find_feed
+    end
 
     # Remove the feed avatar
     delete "/:id/avatar" do

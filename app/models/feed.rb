@@ -58,6 +58,7 @@ class Feed < ActiveRecord::Base
     t.add :name
     t.add :about
     t.add lambda {|f| f.avatar_url(:normal)}, :as => :avatar_url
+    t.add lambda {|f| f.avatar_url(:original)}, :as => :avatar_original
     t.add lambda {|f| "/feeds/#{f.id}/profile"}, :as => :profile_url
     t.add :feed_url, :as => :rss
     t.add lambda {|f| "/feeds/#{f.id}/delete"}, :as => :delete_url
@@ -79,6 +80,7 @@ class Feed < ActiveRecord::Base
         "thumb" => self.avatar_url(:thumb)
       },
       "avatar_edit" => "/feeds/#{id}/avatar",
+      "crop" => "/feeds/#{id}/crop",
       "announcements" => "/feeds/#{id}/announcements",
       "events" => "/feeds/#{id}/events",
       "invites" => "/feeds/#{id}/invites",

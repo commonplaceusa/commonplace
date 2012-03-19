@@ -3,6 +3,7 @@ var FeedEditFormView = FormView.extend({
   
   events: {
     "click #modal-shadow": "exit",
+    "click .avatar-controls .crop": "cropAvatar",
     "click .avatar-controls .remove": "removeAvatar",
     "click .controls button": "send"
   },
@@ -96,6 +97,15 @@ var FeedEditFormView = FormView.extend({
         self.render();
       }
     });    
+  },
+  
+  cropAvatar: function(e) {
+    if (e) { e.preventDefault(); }
+    this.exit();
+    var formview = new AvatarCropFormView({
+      model: this.model
+    });
+    formview.render();
   },
 
   removeAvatar: function(e) {
