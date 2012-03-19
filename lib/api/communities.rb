@@ -117,7 +117,7 @@ class API
     get "/:id/residents" do
       control_access :community_member, find_community
       
-      residents = find_community.residents
+      residents = find_community.residents.includes(:user)
       if params["query"].present?
         terms = params["query"].split(" ").join(" | ")
         residents = residents.where(<<CONDITION,terms)
