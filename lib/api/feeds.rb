@@ -62,7 +62,7 @@ class API
     get "/:id/announcements" do
       control_access :public
       
-      scope = Announcement.where("owner_id = ? AND owner_type = ?", feed_id, "Feed")
+      scope = Announcement.where("owner_id = ? AND owner_type = ?", find_feed.id, "Feed")
       serialize(paginate(scope.includes(:replies, :owner).reorder("GREATEST(replied_at,created_at) DESC")))
     end
 
@@ -95,7 +95,7 @@ class API
     get "/:id/events" do
       control_access :public
 
-      scope = Event.where("owner_id = ? AND owner_type = ?",feed_id, "Feed")
+      scope = Event.where("owner_id = ? AND owner_type = ?",find_feed.id, "Feed")
       serialize(paginate(scope.upcoming.includes(:replies).reorder("date ASC")))
     end
     
