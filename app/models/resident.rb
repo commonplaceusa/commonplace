@@ -7,7 +7,7 @@ class Resident < ActiveRecord::Base
   belongs_to :user
 
   def on_commonplace?
-    self.user.present?
+    self.user_id?
   end
 
   def friends_on_commonplace?
