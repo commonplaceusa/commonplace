@@ -318,9 +318,6 @@ CONDITION
     get "/:id/posts_and_group_posts" do
       control_access :community_member, find_community
 
-      last_modified_by_replied_at(Post)
-      last_modified_by_replied_at(GroupPost)
-      
       if params["query"].present?
         chronological_search([Post, GroupPost], params, find_community.id)
       else
