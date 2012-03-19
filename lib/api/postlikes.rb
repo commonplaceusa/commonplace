@@ -23,7 +23,7 @@ class API
       control_access :owner, find_postlike
             
       if update_attributes
-        serialize postlike
+        serialize find_postlike
       else
         [400, "errors: #{find_postlike.errors.full_messages.to_s}"]
       end
