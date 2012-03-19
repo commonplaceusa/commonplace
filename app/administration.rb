@@ -11,7 +11,7 @@ class Administration < Sinatra::Base
   # Show all the messages passing through CommonPlace
   get "/view_messages" do
     @messages = Message.find(:all, :order => "id desc", :limit => 50).sort { |x, y| y.created_at <=> x.created_at }
-    erb :view_messages
+    haml :view_messages
   end
 
   # Export Community data as csvs
@@ -25,13 +25,13 @@ class Administration < Sinatra::Base
 
   # Show referrers that users enter during registration
   get "/show_referrers" do
-    erb :show_referrers
+    haml :show_referrers
   end
 
   # Show requests to bring CommonPlace to a town (created on the about page)
   get "/show_requests" do
     @requests = Request.all.sort{ |a,b| a.created_at <=> b.created_at }
-    erb :show_requests
+    haml :show_requests
   end
 
   # Kickoff a job to generate CSVs
