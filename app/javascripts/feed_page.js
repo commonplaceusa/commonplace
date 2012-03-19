@@ -11,6 +11,7 @@
 //= require dropkick
 //= require truncator
 //= require ajaxupload
+//= require jcrop
 //= require views
 //= require models
 //= require_tree ../templates/shared

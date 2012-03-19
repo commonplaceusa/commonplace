@@ -23,6 +23,25 @@ var Feed = Model.extend({
     }
   },
   
+  cropAvatar: function(coords, callback) {
+    $.ajax({
+      contentType: "application/json",
+      url: "/api" + this.get("links").crop,
+      type: "put",
+      dataType: "json",
+      data: JSON.stringify({
+        crop_x: coords.crop_x,
+        crop_y: coords.crop_y,
+        crop_w: coords.crop_w,
+        crop_h: coords.crop_h
+      }),
+      success: _.bind(function(feed) {
+        this.set(feed);
+        if (callback) { callback(); }
+      }, this)
+    });
+  },
+  
   deleteAvatar: function(callback) {
     var self = this;
     $.ajax({

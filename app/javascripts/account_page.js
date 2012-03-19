@@ -7,11 +7,14 @@ var AccountPage = CommonPlace.View.extend({
   events: {
     "click .controls button": "editAccount",
     "click .avatar a.delete": "deleteAvatar",
+    "click .avatar a.crop": "cropAvatar",
     "click .delete-account": "confirmDeleteAccount"
   },
 
   initialize: function() {
     this.model = CommonPlace.account;
+    
+    this.model.on("change:avatar_url", _.bind(function() { this.render(); }, this));
   },
 
 
@@ -117,6 +120,14 @@ var AccountPage = CommonPlace.View.extend({
         self.render();
       }
     });
+  },
+  
+  cropAvatar: function(e) {
+    if (e) { e.preventDefault(); }
+    var formview = new AvatarCropFormView({
+      model: CommonPlace.account
+    });
+    formview.render();
   },
 
   deleteAvatar: function(e) {
