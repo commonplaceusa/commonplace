@@ -339,7 +339,7 @@ class API
 
       current_user.private_metadata["fb_access_token"] = request_body["fb_auth_token"]
       current_user.facebook_uid = request_body["fb_uid"]
-      if user.save
+      if current_user.save
         [200, ""]
       else
         [400, "errors"]
