@@ -145,6 +145,17 @@ class API
       content_type :json
     end
 
+    after do
+      
+      # Sunspot::Rails commits the Sunspot session (indexes everything) at
+      # the end of each request. When we hit the api, that doesn't get triggered
+      # so we're doing it here. See 
+      # https://github.com/sunspot/sunspot/blob/master/sunspot_rails/lib/sunspot/rails/request_lifecycle.rb
+      # for details
+      Sunspot.commit_if_dirty
+
+    end
+
   end
   
 end
