@@ -86,10 +86,6 @@ Commonplace::Application.routes.draw do
     match 'dmca' => 'site#dmca', :as => :dmca
   end
 
-  
-  match "/account/make_focp", :to => "accounts#make_focp"
-  match "/account/disable_email", :to => "accounts#disable_email"
-
   unauthenticated do
 
     resources :password_resets
