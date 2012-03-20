@@ -20,6 +20,8 @@ class API
       consumer = case provider
                  when 'yahoo'
                    ::Contacts::Yahoo.new
+                 when 'hotmail'
+                   ::Contacts::WindowsLive.new
                  end
       authentication_url = consumer.authentication_url(return_url)
       session[:email_contact_consumer] = consumer.serialize

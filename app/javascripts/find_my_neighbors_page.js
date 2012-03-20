@@ -4,13 +4,18 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   page_name: "find_my_neighbors",
 
   is_callback: false,
-  callback_token: "",
-  callback_verifier: "",
+  callback_token: undefined,
+  callback_verifier: undefined,
+  ConsentToken: undefined,
+  exp: undefined,
+  lid: undefined,
+  delt: undefined,
 
   events: {
     "click img.facebook": "facebook",
     "click img.gmail": "gmail",
     "click img.yahoo": "yahoo",
+    "click img.windows_live": "windows_live",
 
     "click .show_add_neighbor": "toggleAddNeighbor",
     "click form.add input.add_neighbor": "addNeighbor",
@@ -39,6 +44,13 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         success: _.bind(function(friends) {
           this.friends = friends;
           this.yahoo_connected = true;
+          this.generate(false);
+        }, this)
+      });
+    WindowsLiveContacts.prepare({
+        success: _.bind(function(friends) {
+          this.friends = friends;
+          this.windows_live_connected = true;
           this.generate(false);
         }, this)
       });
@@ -82,8 +94,14 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       });
     } else if (checkExternalService == "gmail") {
       GoogleContacts.retrievePairedContacts();
-    } else if (checkExternalService == "yahoo" || this.is_callback) {
-      YahooContacts.retrievePairedContacts(this.callback_verifier);
+    } else if (this.is_callback) {
+      if (!(this.callback_verifier === undefined)) {
+        // Yahoo!
+        YahooContacts.retrievePairedContacts(this.callback_verifier);
+      } else {
+        // Windows Live
+        WindowsLiveContacts.retrievePairedContacts(this.ConsentToken, this.exp, this.lid, this.delt);
+      }
       this.is_callback = false;
     } else {
       this.items = [];
@@ -125,6 +143,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       intersectionType = "gmail";
     if (this.yahoo_connected)
       intersectionType = "yahoo";
+    if (this.windows_live_connected)
+      intersectionType = "windows_live";
     var itemView = new this.NeighborItemView({
       model: neighbor,
       intersectedUser: intersectedUser,
@@ -190,7 +210,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
         to: facebook_neighbors
       }, callback);
     }
-    if (data.can_contact && (this.gmail_connected || this.yahoo_connected))
+    if (data.can_contact && (this.gmail_connected || this.yahoo_connected || this.windows_live_connected))
     {
       // TODO: Implement
     }
@@ -226,6 +246,17 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       type: "POST",
       contentType: "application/json",
       url: "/api/contacts/authorization_url/yahoo",
+      data: JSON.stringify({return_url: "" + CommonPlace.community.link("base") + "/" + CommonPlace.community.link("email_contact_authorization_callback")}),
+      success: function(response) { window.location = response; }
+    });
+  },
+
+  windows_live: function(e) {
+    if (e) { e.preventDefault(); }
+    $.ajax({
+      type: "POST",
+      contentType: "application/json",
+      url: "/api/contacts/authorization_url/windows_live",
       data: JSON.stringify({return_url: "" + CommonPlace.community.link("base") + "/" + CommonPlace.community.link("email_contact_authorization_callback")}),
       success: function(response) { window.location = response; }
     });
@@ -369,6 +400,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
       this._isFacebook = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "facebook";
       this._isGmail = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "gmail";
       this._isYahoo = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "yahoo";
+      this._isWindowsLive = !_.isEmpty(this.options.intersectedUser) && this.options.intersectionType == "windows_live";
     },
 
     afterRender: function() {
