@@ -8,7 +8,7 @@ var YahooContacts = {
     $.ajax({
       type: "GET",
       contentType: "application/json",
-      url: "/api/contacts/get/" + oauth_verifier,
+      url: "/api/contacts/retrieve?oauth_verifier=" + oauth_verifier,
       success: function(response) {
         var contacts = [];
         _.each(response, function(raw_contact) {

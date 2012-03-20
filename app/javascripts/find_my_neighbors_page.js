@@ -402,6 +402,8 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
 
     isFacebook: function() { return this._isFacebook; },
     isGmail: function() { return this._isGmail; },
+    isYahoo: function() { return this._isYahoo; },
+    isWindowsLive: function() { return this._isWindowsLive; },
 
     check: function(e) {
       if (e) { e.preventDefault(); }
