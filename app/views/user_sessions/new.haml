@@ -1,5 +1,6 @@
 #main
   = semantic_form_for(:user, :url => "/users/sign_in") do |f|
+    %h2.notice= flash[:notice]
     = f.inputs do
       = f.input :email
       = f.input :password, :label => "Enter your password:"
