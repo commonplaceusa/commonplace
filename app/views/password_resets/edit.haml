@@ -1,5 +1,5 @@
 #main
-
+  %h1 Create a new password for CommonPlace
   = semantic_form_for(resource, :url => user_password_url, :html => { :method => "put"}) do |f|
     = f.inputs do
       = f.input :reset_password_token, :as => :hidden
