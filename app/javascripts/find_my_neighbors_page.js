@@ -82,7 +82,6 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
   nextPageTrigger: function() {
     this.nextPageThrottled = _.once(_.bind(function() { this.nextPage(); }, this));
   },
-
   generate: function(checkExternalService) {
     if (checkExternalService == "facebook") {
       facebook_connect_friends({
