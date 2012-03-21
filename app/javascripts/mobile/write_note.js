@@ -6,4 +6,5 @@ var WriteNoteView = CommonPlace.View.extend({
                 // create note model
                 // write to database
                 // what to do after note is submitted??
-    });
+    }
+});

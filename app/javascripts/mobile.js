@@ -3,6 +3,10 @@
 //= require underscore
 //= require mustache
 //= require backbone
+//= require modernizr
+//= require gears_init
+//= require geo
+//= require lat_lon_geo
 
 //= require views
 
