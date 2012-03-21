@@ -1,6 +1,10 @@
 var ImInView = CommonPlace.View.extend({
     template: "mobile.imin",
 
+    user: function() {
+        return window.full_name;
+    },
+
     feed: function() {
         return this.model.feed.toJSON();
     },
