@@ -18,7 +18,7 @@ OrganizerApp.File = Backbone.Model.extend({
 		  type: 'POST',
       contentType: "application/json",
 		  url: this.url(),
-		  data: email,
+		  data: email + " 01824",
 		  cache: 'false',
 		  success: function() {
         self.fetch({success: callback});

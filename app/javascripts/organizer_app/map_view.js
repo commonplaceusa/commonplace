@@ -152,7 +152,7 @@ OrganizerApp.MapView = CommonPlace.View.extend({
 
   geocode: function(model) {
     var geocoder = new google.maps.Geocoder();
-    var address = model.address();
+    var address = model.address() + " 01824";
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         var latLng = results[0].geometry.location;
