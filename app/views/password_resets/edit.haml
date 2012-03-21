@@ -3,7 +3,7 @@
   = semantic_form_for(resource, :url => user_password_url, :html => { :method => "put"}) do |f|
     = f.inputs do
       = f.input :reset_password_token, :as => :hidden
-      = f.input :password, :label => "Your new password:"
+      = f.input :password, :label => "Create a new password:"
       = f.input :password_confirmation, :label => "Confirm your new password:"
     = f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/login2.png")}
