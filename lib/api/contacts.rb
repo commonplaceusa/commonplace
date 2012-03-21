@@ -1,5 +1,5 @@
 class API
-  class Contacts < Unauthorized
+  class Contacts < Base
     get "/retrieve" do
       provider = session[:email_contact_provider]
       consumer = ::Contacts.deserialize_consumer(provider, session[:email_contact_consumer])

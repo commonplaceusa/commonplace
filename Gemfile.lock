@@ -7,18 +7,6 @@ GIT
       htmlentities (>= 4.0.0)
 
 GIT
-  remote: git://github.com/jnicklas/capybara.git
-  revision: 33969bfdc0932d4fd7a55c5c637ec0dad1b8fa44
-  specs:
-    capybara (1.1.2)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      selenium-webdriver (~> 2.0)
-      xpath (~> 0.1.4)
-
-GIT
   remote: git://github.com/turingstudio/contacts.git
   revision: aa86d2ff8e566a801953300dd1848725f722c020
   specs:
@@ -115,9 +103,6 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    contacts (1.2.4)
-      gdata (= 1.1.1)
-      json (>= 0.4.1)
     crack (0.3.1)
     creole (0.4.2)
     css_parser (1.2.6)
@@ -163,7 +148,6 @@ GEM
     garb (0.9.1)
       activesupport (>= 2.2.0)
       crack (>= 0.1.6)
-    gdata (1.1.1)
     geocoder (1.0.5)
     glebm-geokit (1.5.2)
     googlecharts (1.6.8)
@@ -439,7 +423,6 @@ DEPENDENCIES
   cancan
   capybara (= 1.1.2)
   compass (= 0.12.alpha.0)
-  contacts
   dalli
   database_cleaner
   delayed_job
