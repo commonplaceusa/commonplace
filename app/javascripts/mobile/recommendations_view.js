@@ -1,6 +1,10 @@
 var RecommendationView = CommonPlace.View.extend({
     template: "mobile.recommendations",
 
+    user: function() {
+        return window.full_name;
+    },
+
     recommendations: function() {
         return this.collection.toJSON();
     },
