@@ -6,7 +6,6 @@ body
   background-color: #cee7fe
   font-family: Rockwell,Georgia,Times,"Times New Roman",serif
 
-
 +sticky_footer(74px, "#wrapper", "#wrapper-footer", "#footer")
 
 h1
@@ -28,9 +27,8 @@ h1
     width: 360px
     z-index: 2
     +clearfix
-    abbr.required
+    abbr[title=required]
       display: none
-    a
     .inline-errors
       width: 360px
       margin: 0px 0px 0px 0px
