@@ -5,6 +5,14 @@ var ImInView = CommonPlace.View.extend({
         return this.model.feed.toJSON();
     },
 
+    title: function() {
+                return this.model.title;
+            },
+
+    venue: function() {
+               return this.model.venue;
+           },
+
     events: "click #in":function(e) {
                 // create new model
                 // write to database

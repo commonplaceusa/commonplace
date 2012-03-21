@@ -1,0 +1,13 @@
+<div id="place">{{title}}</div>
+<div id="venue">{{venue}}</div>
+<div id="top">
+    <div id="in">I'm in!</div>
+</div>
+<div id="feed">
+<div id="header">Here's what your neighbors are saying:</div>
+{{#feed}}
+    <div class="note">
+        <div class="author">{{author}}</div>
+        <div class="message">{{message}}</div>
+    </div>
+{{/feed}}
