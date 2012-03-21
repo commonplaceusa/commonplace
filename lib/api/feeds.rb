@@ -31,8 +31,8 @@ class API
       find_feed.slug = request_body["slug"]
       find_feed.feed_url = request_body["rss"]
       
-      if feed.save
-        serialize(feed)
+      if find_feed.save
+        serialize(find_feed)
       else
         [400, "could not save"]
       end
