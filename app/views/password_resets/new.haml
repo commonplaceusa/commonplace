@@ -1,5 +1,5 @@
 #main
-  %h1 Create a new password for CommonPlace
+  %h1 Enter the email you registered with to reset your password
   = semantic_form_for(:user, :url => user_password_url, :html => {:class => "forgot-password"}) do |f|
     - if flash[:error]
       %p.inline-errors= flash[:error]
