@@ -21,9 +21,6 @@ var RegisterNewUserView = RegistrationModalPage.extend({
       this.$("input[name=full_name]").val(this.data.full_name);
       if (this.isRealEmail()) { this.$("input[name=email]").val(this.data.email); }
     }
-    
-    window.test = this;
-    
   },
   
   community_name: function() { return this.communityExterior.name; },
