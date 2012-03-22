@@ -101,6 +101,8 @@ group :development, :test do
   gem 'guard-rails-assets'
   gem 'guard-rspec'
   gem 'guard-sass'
+  gem 'colored'
+  gem 'deadweight', :require => 'deadweight/hijack/rails'
 
   #gem 'rails-dev-tweaks', '~> 0.5.2' # Don't reload the code when serving assets
   gem 'factory_girl' # we use factory_girl to generate models for tests
