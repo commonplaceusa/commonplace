@@ -21,14 +21,31 @@ var RegisterNewUserView = RegistrationModalPage.extend({
       this.$("input[name=full_name]").val(this.data.full_name);
       if (this.isRealEmail()) { this.$("input[name=email]").val(this.data.email); }
     }
+    var domains = ["hotmail.com", "gmail.com", "aol.com", "yahoo.com"];
+
+    this.$("input#email").blur(function() {
+      $("input#email").mailcheck(domains, {
+      suggested: function(element, suggestion) {
+        $(".error.email").html("Did you mean " + suggestion.full + "?");
+        $(".error.email").show();
+        $(".error.email").click(function(e) {
+          $(element).val(suggestion.full);
+        });
+      },
+      empty: function(element) {
+        $(".error.email").hide();
+      }
+    });
+    });
+
   },
   
   community_name: function() { return this.communityExterior.name; },
-  learn_more: function() { return this.communityExterior.links.learn_more },
-  created_at: function() { return this.communityExterior.statistics.created_at },
-  neighbors: function() { return this.communityExterior.statistics.neighbors },
-  feeds: function() { return this.communityExterior.statistics.feeds },
-  postlikes: function() { return this.communityExterior.statistics.postlikes },
+  learn_more: function() { return this.communityExterior.links.learn_more; },
+  created_at: function() { return this.communityExterior.statistics.created_at; },
+  neighbors: function() { return this.communityExterior.statistics.neighbors; },
+  feeds: function() { return this.communityExterior.statistics.feeds; },
+  postlikes: function() { return this.communityExterior.statistics.postlikes; },
   
   submit: function(e) {
     if (e) { e.preventDefault(); }
