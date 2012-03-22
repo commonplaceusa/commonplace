@@ -22,21 +22,36 @@ var HeaderLogin = CommonPlace.View.extend({
     }
   },
   
+  create_error: function(text) {
+    return "<li class='error'>" + text + "</li>";
+  },
   login: function(e) {
     if (e) { e.preventDefault(); }
+    this.$("#errors").html("");
     this.$(".error").removeClass("error");
     
     var email = this.$("input[name=email]").val();
-    if (!email) { return this.$("label[name=email]").addClass("error"); }
+    if (!email) {
+      this.$("#errors").append(this.create_error("Please enter an e-mail address"));
+      this.$("label[name=email]").addClass("error");
+      return;
+    }
     
     var password = this.$("input[name=password]").val();
-    if (!password) { return this.$("label[name=password]").addClass("error"); }
+    if (!password) {
+      this.$("#errors").append(this.create_error("Please enter a password"));
+      this.$("label[name=password]").addClass("error");
+      return;
+    }
     
     $.postJSON({
       url: "/api/sessions",
       data: { email: email, password: password },
       success: function() { document.location.reload(); },
-      error: _.bind(function() { this.$("label").addClass("error"); }, this)
+      error: _.bind(function() {
+        this.$("#errors").append(this.create_error("Invalid login! Please try again."))
+        this.$("label").addClass("error");
+      }, this)
     });
   }
 
