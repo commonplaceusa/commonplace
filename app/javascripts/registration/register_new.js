@@ -3,6 +3,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
   facebookTemplate: "registration.facebook",
   
   events: {
+    "click a.show-video": "showVideo",
     "click input.sign_up": "submit",
     "submit form": "submit",
     "click img.facebook": "facebook"
@@ -20,6 +21,8 @@ var RegisterNewUserView = RegistrationModalPage.extend({
       this.$("input[name=full_name]").val(this.data.full_name);
       if (this.isRealEmail()) { this.$("input[name=email]").val(this.data.email); }
     }
+    
+    window.test = this;
     
   },
   
@@ -76,5 +79,17 @@ var RegisterNewUserView = RegistrationModalPage.extend({
   isRealEmail: function() {
     if (!this.data || !this.data.email) { return false; }
     return this.data.email.search("proxymail") == -1;
+  },
+  
+  showVideo: function(e) {
+    if (e) { e.preventDefault(); }
+    var video = this.make("iframe", {
+      width: 330,
+      height: 215,
+      src: "http://www.youtube.com/embed/FXHuFSCasF0",
+      frameborder: 0,
+      allowfullscreen: true
+    });
+    this.$("a.show-video").replaceWith(video);
   }
 });
