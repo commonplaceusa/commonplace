@@ -21,7 +21,7 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
     
     this.slideIn(this.el, _.bind(function() {
       $.getJSON(
-        "/api" + this.communityExterior.links.registration.residents, {},
+        "/api" + this.communityExterior.links.registration.residents, {limit: 3000},
         _.bind(function(response) {
           if (response.length) {
             this.neighbors = response;

@@ -70,7 +70,7 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
 
     $.getJSON(
       "/api" + CommonPlace.community.link("residents"),
-      {},
+      {limit: 3000},
       _.bind(function(response) {
         if (response.length) {
           this.neighbors = response;
