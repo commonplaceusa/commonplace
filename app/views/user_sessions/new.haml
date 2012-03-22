@@ -3,7 +3,7 @@
     %h2.notice= flash[:notice]
     = f.inputs do
       = f.input :email
-      = f.input :password, :label => "Enter your password:"
+      = f.input :password, :label => "Password:"
     = f.buttons do
       = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/login2.png")}
       = link_to user_omniauth_authorize_path(:facebook), :class => "facebook"  do 
