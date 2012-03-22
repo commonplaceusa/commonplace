@@ -308,7 +308,7 @@ describe KickOff do
   describe "#deliver_daily_bulletin" do
     let(:user) { User.new {|u| u.id = 23 } }
     let(:date) { DateTime.now.utc }
-    before { kickoff.deliver_daily_bulletin(user, date) }
+    before { kickoff.deliver_daily_bulletin(user, date.to_s(:db)) }
     
     it "enqueues a DailyBulletin job" do
       should have_queued(DailyBulletin, user.id, date.to_s(:db))
