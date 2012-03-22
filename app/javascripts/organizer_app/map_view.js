@@ -3,71 +3,93 @@ OrganizerApp.MapView = CommonPlace.View.extend({
   template: "organizer_app.map-view",
 
   afterRender: function() {
+    var parentThis = this;
+    var now = new Date();
+    $('#map-date').val(now.format("mm/dd/yy"));
+    $('#map-text').val("dropped flyer");
+
     var myOptions = {
-      center: new google.maps.LatLng(-34.397, 150.644),
+      center: new google.maps.LatLng(42.6, -71.3733831),
       zoom: 17,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
+
     // map is a global variable
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     console.log("Initializing map view...");
-    window.residentLatLngs = [];
+    window.residents = [];
+    /*window.residentLatLngs = [];*/
+    /*window.residentMarkers = [];*/
 
     var i = 0;
     this.collection.each(function(model) {
       console.log(model.full_name());
-      
+      var id = model.getId();
+      if (model.address() && model.getLat()) {
+        console.log(model.getLat());
+        console.log(model.getLng());
+        var ll = new google.maps.LatLng(model.getLat(), model.getLng());
+        console.log(ll);
+        var marker = new google.maps.Marker({
+          map: map,
+          position: ll
+        });
+        google.maps.event.addListener(marker, 'click', function(event) {
+          if (!$('#map-date').val() || !$('#map-text').val())
+            return;
+          var index = parentThis.searchMarkers(marker);
+          console.log(window.residents[index]);
+          console.log([$.trim($('#map-text').val())]);
+          window.residents[index].model.addLog({
+            date: $('#map-date').val(),
+            text: $('#map-text').val(),
+            tags: [$.trim($('#map-text').val())]
+          });
+        });
+        /*window.residentMarkers.push(marker);*/
+        /*window.residentLatLngs.push(ll);*/
+        window.residents.push({
+          id: id,
+          marker: marker,
+          latLng: ll,
+          model: model
+        });
+      }
+
       //TODO: tack on community zip code to address
       // geocodes and stores lat and lng into database for residents
-      if (i < 10 && model.address()) {
-        console.log(model.address());
-        var ms = 2500 + new Date().getTime();
-        while (new Date() < ms) {}
-        this.geocode(model);
-        i++;
-      }
+
+      /*if (i < 10 && model.address()) {*/
+        /*console.log(model.address());*/
+        /*var ms = 2500 + new Date().getTime();*/
+        /*while (new Date() < ms) {}*/
+        /*this.geocode(model);*/
+        /*i++;*/
+        /*} else {*/
+          /*return;*/
+          /*}*/
     }, this);
-    setTimeout(function() {
-      map.setCenter(window.residentLatLngs[0].latLng);
-    }, 1000);
-    /*console.log(this.collection);*/
 
-    /*// Try HTML5 geolocation*/
-    /*if(navigator.geolocation) {*/
-      /*navigator.geolocation.getCurrentPosition(function(position) {*/
-        /*var pos = new google.maps.LatLng(position.coords.latitude,*/
-/*position.coords.longitude);*/
-
-          /*var infowindow = new google.maps.InfoWindow({*/
-            /*map: map,*/
-            /*position: pos,*/
-            /*content: 'You are here!'*/
-/*});*/
-
-            /*map.setCenter(pos);*/
-            /*}, function() {*/
-              /*this.handleNoGeolocation(true);*/
-/*});*/
-              /*} else {*/
-                /*// Browser doesn't support Geolocation*/
-                /*this.handleNoGeolocation(false);*/
-                /*}*/
+    /*setTimeout(function() {*/
+      /*map.setCenter(window.residentLatLngs[0].latLng);*/
+/*}, 1000);*/
 
     var drawingManager = new google.maps.drawing.DrawingManager({
       drawingMode: google.maps.drawing.OverlayType.MARKER,
       drawingControl: true,
       drawingControlOptions: {
         position: google.maps.ControlPosition.TOP_CENTER,
-        drawingModes: [google.maps.drawing.OverlayType.MARKER, google.maps.drawing.OverlayType.CIRCLE, google.maps.drawing.OverlayType.POLYLINE]
+        drawingModes: [google.maps.drawing.OverlayType.MARKER, google.maps.drawing.OverlayType.POLYGON, google.maps.drawing.OverlayType.POLYLINE]
       },
       markerOptions: {
-        icon: new google.maps.MarkerImage('http://hpwebsolutions.com/assets/images/IntenetAndEmailMarketing/icon-48x48-flag_green.png')
+        cursor: 'pointer',
+        
       },
-      circleOptions: {
-        fillColor: '#ffff00',
+      polygonOptions: {
+        fillColor: '#006600',
         fillOpacity: 1,
-        strokeWeight: 5,
-        clickable: false,
+        strokeWeight: 3,
+        strokeOpacity: 0.1,
         zIndex: 1,
         editable: true
       },
@@ -78,7 +100,26 @@ OrganizerApp.MapView = CommonPlace.View.extend({
     });
     drawingManager.setMap(map);
 
-    var parentThis = this;
+    google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
+      console.log(marker.getPosition());
+      var closestResidentIndex = 0;
+      var closestResident = window.residentLatLngs[0];
+      var closestDistance = 9999;
+
+      // find closest resident to click by linear traversal
+      for (var i = 1; i < window.residentLatLngs.length; i++) {
+        var nextDistance = Math.sqrt( Math.pow( window.residentLatLngs[i].lat() - closestResident.lat(), 2 ) + Math.pow( window.residentLatLngs[i].lng() - closestResident.lng(), 2 ) );
+        if (nextDistance < closestDistance) {
+          closestResidentIndex = i;
+          closestResident = window.residentLatLngs[i];
+        }
+      }
+      marker.setVisible(false);
+      console.log(residentMarkers);
+      console.log(closestResidentIndex);
+      residentMarkers[closestResidentIndex].setAnimation(google.maps.Animation.BOUNCE);
+    });
+
     google.maps.event.addListener(drawingManager, 'polylinecomplete', function(polyline) {
       var pathMvcArr = polyline.getPath();
       var addresses = [];
@@ -131,6 +172,15 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       console.log(addresses);
     });
 
+  },
+
+  searchMarkers: function(marker) {
+    for (var i = 0; i < window.residents.length; i++) {
+      if (window.residents[i].marker == marker) {
+        return i;
+      }
+    }
+    return -1;
   },
 
   /*handleNoGeolocation: function(errorFlag) {*/
@@ -227,3 +277,4 @@ OrganizerApp.MapView = CommonPlace.View.extend({
   }
 
 });
+

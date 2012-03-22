@@ -12,6 +12,14 @@ OrganizerApp.File = Backbone.Model.extend({
     return this.get('address');
   },
 
+  getLat: function () {
+    return this.get('latitude');
+  },
+
+  getLng: function () {
+    return this.get('longitude');
+  },
+
   addEmail: function(email, callback) {
     var self = this;
 	  $.ajax({
