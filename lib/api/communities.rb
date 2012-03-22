@@ -114,16 +114,18 @@ class API
     #
     # Query params:
     #   query - query to search residents by
+    #   limit - the page limit
+    #   page - the page
     get "/:id/residents" do
       control_access :community_member, find_community
       
       residents = find_community.residents.includes(:user)
+      residents = paginate(residents)
       if params["query"].present?
         terms = params["query"].split(" ").join(" | ")
         residents = residents.where(<<CONDITION,terms)
 upper(first_name || ' ' || last_name)::tsvector @@ tsquery(upper(?))
 CONDITION
-        residents = residents.limit(params["limit"].to_i)
       end
       serialize residents
     end
