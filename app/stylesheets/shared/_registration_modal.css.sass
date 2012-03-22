@@ -79,14 +79,23 @@
       color: #1B334A
       &:hover
         text-decoration: underline
-        
-    .show-video
-      width: 130px
-      height: 97px
-      display: block
-      background-image: image-url("video-thumb.png")
-      &:hover
-        background-image: image-url("video-thumb-hover.png")
+    .show-video-con
+      h2
+        float: right
+        width: 185px
+        padding-left: 15px
+        font-weight: bold
+        font-family: RockwellSTD
+        font-size: 20px
+        color: #1B334A  
+      .show-video
+        width: 130px
+        height: 97px
+        float: left
+        display: block
+        background-image: image-url("video-thumb.png")
+        &:hover
+          background-image: image-url("video-thumb-hover.png")
         
     li.buttons
       background: none
