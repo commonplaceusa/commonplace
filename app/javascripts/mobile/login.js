@@ -22,6 +22,18 @@ var LoginView = CommonPlace.View.extend({
                     dataType: "json", 
                     success: function(response) { 
                         window.full_name = response.full_name;
+                        this.get_recommendations();
+                    }
+
+                    error: function() { 
+                        console.log("Error!");
+                        $("#message").show();
+                    } 
+                });
+        
+    },
+
+    get_recommendations: function() {
                         var lat = null;
                         var lng = null;
                         if (geo_position_js.init()) {
@@ -39,17 +51,11 @@ var LoginView = CommonPlace.View.extend({
                             success: function(recommendations) {
                                         recommendationsView = new RecommendationsView({el:$('#main'),collection:recommendations});
                                         recommendationsView.render();
-                                     }
+                                    }
                         });
                     
-                    }, 
-                    error: function() { 
-                                console.log("Error!");
-                                $("#message").show();
-                           } 
-                });
-        
-    }
+                
+                         }
 
 
 });
