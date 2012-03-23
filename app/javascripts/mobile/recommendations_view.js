@@ -28,6 +28,7 @@ var RecommendationView = CommonPlace.View.extend({
 
     events: {
                 "click .item":function(e) {
+                    e.preventDefault();
                     var id = $(e.currentTarget).data('id');
                     var rec = this.collection.get(id);
                     var ImInView = new ImInView({el:$('#main'), model:rec});
