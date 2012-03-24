@@ -1,9 +1,7 @@
 class API
   class Communities < Base
-<<<<<<< HEAD
-=======
+
     helpers do
->>>>>>> parent of 04e7526... latitude and longitude indb, markers display for each resident, have array of residentLatLngs
 
       # Finds the community by params[:id] or returns 404 
       def find_community
