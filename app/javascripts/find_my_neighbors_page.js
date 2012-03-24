@@ -31,29 +31,54 @@ var FindMyNeighborsPage = CommonPlace.View.extend({
     "submit form.list": "submit"
   },
 
+  email_address_contains: function(email, string) {
+    return (email.index(string) != -1);
+  },
+
+  is_google_user: function(email_address) {
+    return (this.email_address_contains(email_address, "@gmail") || this.email_address_contains(email_address, "@google"));
+  },
+
+  is_yahoo_user: function(email_address) {
+    return this.email_address_contains(email_address, "@yahoo");
+  },
+
+  is_windows_live_user: function(email_address) {
+    return (this.email_address_contains(email_address, "@hotmail") || this.email_address_contains(email_address, "@live"));
+  },
+
   afterRender: function() {
     var self = this;
-    GoogleContacts.prepare({
-      success: _.bind(function(friends) {
-          this.friends = friends;
-          this.gmail_connected = true;
-          this.generate(false);
-        }, this)
-      });
-    YahooContacts.prepare({
+    if (this.is_google_user(CommonPlace.account.get("email"))) {
+      GoogleContacts.prepare({
         success: _.bind(function(friends) {
-          this.friends = friends;
-          this.yahoo_connected = true;
-          this.generate(false);
-        }, this)
-      });
-    WindowsLiveContacts.prepare({
-        success: _.bind(function(friends) {
-          this.friends = friends;
-          this.windows_live_connected = true;
-          this.generate(false);
-        }, this)
-      });
+            this.friends = friends;
+            this.gmail_connected = true;
+            this.generate(false);
+          }, this)
+        });
+      $("img.google").show();
+    }
+    else if (this.is_yahoo_user(CommonPlace.account.get("email"))) {
+      YahooContacts.prepare({
+          success: _.bind(function(friends) {
+            this.friends = friends;
+            this.yahoo_connected = true;
+            this.generate(false);
+          }, this)
+        });
+      $("img.yahoo").show();
+    }
+    else if (this.is_windows_live_user(CommonPlace.account.get("email"))) {
+      WindowsLiveContacts.prepare({
+          success: _.bind(function(friends) {
+            this.friends = friends;
+            this.windows_live_connected = true;
+            this.generate(false);
+          }, this)
+        });
+      $("img.windows_live").show();
+    }
     this.currentQuery = "";
 
     this.$(".no_results").hide();
