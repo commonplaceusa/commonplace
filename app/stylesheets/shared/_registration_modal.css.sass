@@ -80,22 +80,23 @@
       &:hover
         text-decoration: underline
     .show-video-con
-      h2
-        float: right
-        width: 185px
-        padding-left: 15px
+      h3
         font-weight: bold
-        font-family: RockwellSTD
-        font-size: 20px
-        color: #1B334A  
+        font-size: 12px
+        margin-bottom: 6px
+        color: #1B334A
       .show-video
-        width: 130px
-        height: 97px
+        width: 160px
+        height: 85px
         float: left
+        border: 5px solid #1B334A
         display: block
-        background-image: image-url("video-thumb.png")
+        background-image: image-url("video-thumb-sprite.png")
+        background-position: 0px
         &:hover
-          background-image: image-url("video-thumb-hover.png")
+          border-color: #324e69
+          background-image: image-url("video-thumb-sprite.png")
+          background-position: 160px
         
     li.buttons
       background: none
@@ -139,7 +140,7 @@
           font-family: Helvetica
           font-size: 11px
           margin-top: 8px
-          text-align: right
+          text-align: left
       .new-top
         width: 380px
         padding-bottom: 24px
