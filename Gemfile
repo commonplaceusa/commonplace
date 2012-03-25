@@ -114,6 +114,9 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
   gem 'jasmine'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'capybara-webkit'
   #gem 'progress_bar'
 end
 
