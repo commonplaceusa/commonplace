@@ -120,6 +120,10 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       residentMarkers[closestResidentIndex].setAnimation(google.maps.Animation.BOUNCE);
     });
 
+    google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+      console.log(polygon.getPath());
+    }
+
     google.maps.event.addListener(drawingManager, 'polylinecomplete', function(polyline) {
       var pathMvcArr = polyline.getPath();
       var addresses = [];
@@ -274,7 +278,15 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       }
     });
     return success;
-  }
+  },
+
+  isPointInPoly: function(poly, pt) {
+    for(var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i)
+      ((poly[i].y <= pt.y && pt.y < poly[j].y) || (poly[j].y <= pt.y && pt.y < poly[i].y))
+    && (pt.x < (poly[j].x - poly[i].x) * (pt.y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x)
+    && (c = !c);
+    return c;
+  } 
 
 });
 
