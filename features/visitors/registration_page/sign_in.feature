@@ -6,13 +6,12 @@ Scenario: Trying to register
   When I click #user_sign_in
   Then I should see the sign in dropdown
 
-@wip
-  Scenario: Logging in from the drop-down
-    Given I see the sign in dropdown
-    And I fill in “Email Address”
-    And I fill in “Enter your password”
-    When I click “log in”
-    Then I should see main page
+Scenario: Logging in from the drop-down
+  Given I see the sign in dropdown
+  And I fill in email with "test@example.com"
+  And I fill in password with "password"
+  When I click input.submit
+  Then I should see the main page
 @wip
   Scenario: Forgot Password from the drop-down
     Given I see the sign in dropdown
