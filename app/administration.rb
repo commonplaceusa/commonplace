@@ -44,6 +44,7 @@ class Administration < Sinatra::Base
   get "/download_csv" do
     @communities = Community.all.select { |c| Resque.redis.get("statistics:csv:#{c.slug}").present? }
     @date = Resque.redis.get("statistics:csv:meta:date")
+    haml :download_csv
   end
 
   # Become a user 
