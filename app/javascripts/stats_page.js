@@ -240,12 +240,7 @@ var StatsPage = CommonPlace.View.extend({
           pointInterval: 24*3600*1000,
           pointStart: first_date,
           data: _.map(community_stats, function(stat) { return 100 * Number(stat.UsersPostingToday) / Number(stat.UsersTotal); })
-        }/*, {
-          name: 'Percentage of Users who did anything',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: []
-        }*/],
+        }],
         credits: { enabled: false }
       });
     }
@@ -449,11 +444,6 @@ var StatsPage = CommonPlace.View.extend({
           text: 'Total Posted Content for ' + slug
         },
         xAxis: {
-           //labels: {
-           //   formatter: function() {
-           //     return null;
-           //   }
-           //}
           type: 'datetime',
           title: {
             text: null
@@ -535,7 +525,10 @@ var StatsPage = CommonPlace.View.extend({
           }
         },
         yAxis: {
-          min: 0
+          min: 0,
+          title: {
+            text: ""
+          }
         },
         tooltip: {
           enabled: true
@@ -587,7 +580,10 @@ var StatsPage = CommonPlace.View.extend({
           }
         },
         yAxis: {
-          min: 0
+          min: 0,
+          title: {
+            text: "Percentage"
+          }
         },
         tooltip: {
           enabled: true
@@ -642,7 +638,10 @@ var StatsPage = CommonPlace.View.extend({
           type: 'datetime'
         },
         yAxis: {
-          min: 0
+          min: 0,
+          title: {
+            text: "Number of Posted Content"
+          }
         },
         tooltip: {
          formatter: function() {
@@ -734,7 +733,10 @@ var StatsPage = CommonPlace.View.extend({
           type: 'datetime'
         },
         yAxis: {
-          min: 0
+          min: 0,
+          title: {
+            text: "Emails"
+          }
         },
         tooltip: {
           formatter: function() {
@@ -830,7 +832,10 @@ var StatsPage = CommonPlace.View.extend({
         },
         yAxis: {
           min: 0,
-          max: 100
+          max: 100,
+          title: {
+            text: ""
+          }
         },
         tooltip: {
           enabled: true
@@ -916,7 +921,10 @@ var StatsPage = CommonPlace.View.extend({
           }
         },
         yAxis: {
-          min: 0
+          min: 0,
+          title: {
+            text: "Posts"
+          }
         },
         tooltip: {
           enabled: true
