@@ -327,7 +327,17 @@
         font-weight: 300
         display: block
         font-family: Helvetica, sans-serif
-      
+      .know
+        line-height: 25px
+        margin-top: 12px
+        background: #8C2523
+        width: 367px
+        +border-radius(4px)
+        padding: 5px
+        color: white
+        font-family: Helvetica
+        font-size: 14px
+        text-align: center
       .remove_search
         position: absolute
         top: 43px
@@ -376,7 +386,6 @@
           border-spacing: 10px
           border-collapse: separate
           background: white
-          width: 380px
           
           td
             width: 150px
@@ -385,23 +394,26 @@
             border: 1px solid #dadada
             border-collapse: collapse
             &.checked, &:hover
-              background: #EEF5DF
-              cursor: pointer
-            &.checked
-              border: 1px solid #CCDAAE
-              +box-shadow(#bbb 2px 2px 2px)
+              &.checked, &:hover
+                background: #EEF5DF
+                cursor: pointer
+              &.checked
+                border: 1px solid #CCDAAE
+                +box-shadow(#bbb 2px 2px 2px)
             img
               float: left
               margin-right: 10px
             .lName
               margin-top: 3px
-            .oC
-              font-size: 10px
-              margin-top: 11px
+            .on-commonplace
+              font-size: 9px
+              margin-top: 12px
               color: #ac322f
             input[type=checkbox]
               display: none
-              
+            .on-commonplace
+              font-size: 10px
+              margin-top: 11px              
     &.crop
       margin: auto
       float: none
@@ -509,3 +521,14 @@
     input[type=checkbox]
       display: none
       
+.addb
+  text-transform: uppercase
+  font-weight: bold
+  border: 0
+  +border-radius(3px)
+  font-size: 10px
+  background: #1b334a
+  padding: 6px 12px
+  color: white
+  float: left
+  margin-top: 10px

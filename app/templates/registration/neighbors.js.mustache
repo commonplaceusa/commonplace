@@ -2,15 +2,15 @@
 
 <div class="registration_information">
   <ul>
-    <li>How many neighbors do you know? Select the names of your friends in town and we'll add them to your CommonPlace profile!</li>
+    <li>How many neighbors do you know? Select the names of friends in town and we'll add them to your CommonPlace profile!</li>
     <li>Use Facebook and your email contacts to quickly find the neighbors you know:</li>
     <li class="buttons">
-      <img src="/assets/buttons/facebookconnect.png" alt="Connect with Facebook" class="facebook">
+      <img src="/assets/buttons/facebook-connect.png" alt="Connect with Facebook" class="facebook">
     </li>
     <li class="add_neighbor">
     Are we missing anyone? Help Chelmsford CommonPlace stay up-to-date by adding their names to the list to the right.
-    <input type="text" placeholder="Name" class="name"><input type="text" class="email" placeholder="Email"><div class="button">Add</div><br />
-    <input type="text" class="name" placeholder="Name"><input placeholder="Email" type="text" class="email"><div class="button">Add</div><br />
+    <input type="text" placeholder="Name" class="name"><input type="text" class="email" placeholder="Email"><div class="addb">Add</div><br />
+    <input type="text" class="name" placeholder="Name"><input placeholder="Email" type="text" class="email"><div class="addb">Add</div><br />
     </li>
     <li class="can_contact">
       Do you mind if we invite your friends to join you on CommonPlace?
@@ -27,7 +27,10 @@
     <input type="text" name="search" class="search">
     <span class="remove_search inactive"></span>
   </div>
-  
+    <div class="know neighbor_count_li">
+        You know <span class="neighbor_count">0</span> <span class="plural">neighbors</span>.
+    </div>
+
   <div class="neighbor_finder">
     <div class="initial_load">Loading</div>
     <table></table>
