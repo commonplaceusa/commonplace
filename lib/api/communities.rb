@@ -122,6 +122,7 @@ class API
       
       residents = find_community.residents.includes(:user)
       residents = paginate(residents)
+      residents = residents.order("first_name ASC, last_name ASC")
       if params["query"].present?
         terms = params["query"].split(" ").join(" | ")
         residents = residents.where(<<CONDITION,terms)
