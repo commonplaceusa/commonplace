@@ -4,7 +4,7 @@ class EmailTracker
   #API = RestClient::Resource.new "#{EMAIL_TRACKING_BASE_URL}/create_email"
 
   def self.new_email(params)
-    sent_email = SentEmail.create(
+    sent_email = SentEmail.create!(
         :recipient_email => params['recipient_email'],
         :tag_list => params['tag_list'],
         :status => :sent,
