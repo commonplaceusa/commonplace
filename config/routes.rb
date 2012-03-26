@@ -4,8 +4,8 @@ Commonplace::Application.routes.draw do
 
 
   # Community specific redirects
-  match "/corunna" => redirect { "/owossocorunna" }
-  match "/owosso" => redirect { "/owossocorunna" }
+  match "/corunna" => redirect("/owossocorunna")
+  match "/owosso" => redirect("/owossocorunna")
 
 
   resources :feed_registrations, :only => [:new, :create] do
