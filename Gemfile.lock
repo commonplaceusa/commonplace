@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/Jberlinsky/premailer.git
-  revision: cb80fdd5edfb091d5f1341db6c654b284265e79c
-  specs:
-    premailer (1.7.3)
-      css_parser (>= 1.1.9)
-      htmlentities (>= 4.0.0)
-
-GIT
   remote: git://github.com/turingstudio/contacts.git
   revision: aa86d2ff8e566a801953300dd1848725f722c020
   specs:
@@ -220,7 +212,7 @@ GEM
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     jslint_on_rails (1.0.7)
-    json (1.6.5)
+    json (1.6.6)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -286,6 +278,9 @@ GEM
       activerecord (~> 3.0)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
+    premailer (1.7.3)
+      css_parser (>= 1.1.9)
+      htmlentities (>= 4.0.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -486,7 +481,7 @@ DEPENDENCIES
   paperclip (~> 2.4.4)
   permanent_records
   pg
-  premailer!
+  premailer
   rack-cache
   rack-contrib
   rack-timeout
