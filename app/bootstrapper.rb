@@ -84,6 +84,11 @@ class Bootstrapper < Sinatra::Base
     erb :organizer_app
   end
 
+  get ":community/sign_in" do
+    @community = Community.find_by_slug(params[:captures].first)
+    erb :application
+  end
+
   get %r{([\w]+)/.*} do
     @community = Community.find_by_slug(params[:captures].first)
 

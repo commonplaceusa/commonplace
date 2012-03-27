@@ -8,12 +8,6 @@
       $(this).siblings("#sign_in_form").children("form").toggle();
       });
       });
-    %ul{:id=>"user_sign_in"}
-      %li Have an Account?
-      %li{:id=>"sign_in_button", :class=>"remove_border"} Sign in
-      %li{:id=>"sign_in_form"}
-        = render "user_sessions/form"
-
     - if params[:community]
       = link_to "/#{params[:community]}", :id => "logo" do
         = image_tag "logo2.png", :alt => 'CommonPlace'
