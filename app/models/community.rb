@@ -48,6 +48,9 @@ class Community < ActiveRecord::Base
                     :path => ":rails_root/public/system/community/:id/organizer_avatar.:extension",
                     :default_url => "/avatars/missing.png")
 
+
+  scope :public, where(:public => true)
+
   acts_as_api
 
   api_accessible :default do |t|

@@ -1,6 +1,7 @@
 @import core
 @import logged_out_header
 @import footer
+@import "shared/dropkick_selects"
 
 body
   background-color: #cee7fe
@@ -23,6 +24,7 @@ h1
     position: relative
     margin: 50px auto 40px
     +redlightbox
+    height: 300px
     padding: 14px 24px 26px 24px
     width: 360px
     z-index: 2
@@ -31,6 +33,8 @@ h1
       display: none
     h2.notice
       color: white
+    h1.notice
+      color: #275174
     .inline-errors
       width: 360px
       margin: 0px 0px 0px 0px
@@ -90,4 +94,13 @@ h1
     &.forgot-password
       .buttons
         text-align: center
+    .dk_container
+      a
+        &:hover
+          color: #1B334A
+      a.dk_toggle
+        box-shadow: 0 0 0 1px #1B334A, 2px 2px 5px #cccccc inset
+        span.dk_arrow
+          height: 10px
+          padding-top: 13px
 

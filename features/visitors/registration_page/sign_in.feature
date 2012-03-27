@@ -2,7 +2,7 @@ Feature: Registration
 
 Scenario: Trying to register
   Given a default community exists
-  Given I am on the registration page
+  And I am on the registration page
   When I click #user_sign_in
   Then I should see the sign in dropdown
 

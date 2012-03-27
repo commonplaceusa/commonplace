@@ -1,14 +1,21 @@
+:javascript
+  $(document).ready(function() {
+    $("select").dropkick({
+      change: function(value) {
+        $("h2.notice").html("Please wait...");
+        $("#main form").css("height", "0px");
+        window.location.pathname = value;
+      }
+    });
+    $(".dk_arrow.button.blue").click()
+  });
 #main
-  = semantic_form_for(:user, :url => "/users/sign_in") do |f|
-    %h2.notice= flash[:notice]
-    = f.inputs do
-      = f.input :email
-      %span.error.email
-      = f.input :password, :label => "Password:"
-      %span.error.password
-    = f.buttons do
-      = f.commit_button :button_html => {:type => "image", :src => asset_path("buttons/login2.png")}
-      = link_to user_omniauth_authorize_path(:facebook), :class => "facebook"  do 
-        = image_tag "buttons/facebook-login.png"
-      = link_to "Forgot your password?", new_user_password_url, :class => 'forgot-password'
+  = semantic_form_for(:user, :url => "#") do |f|
+    - if flash[:notice].present?
+      %h1.notice= flash[:notice]
+    %h2.notice Please select your community
+    %br
+    %select{:name => 'start', :class => "default dk"}
+      - for community in @communities
+        %option{:value => community.slug}= community.name
 

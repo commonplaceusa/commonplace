@@ -15,7 +15,7 @@
   <fieldset class="buttons">
     <ol>
       <li class="commit button">
-        <input class="submit" name="commit" src="<%= asset_path("buttons/login.png") %>" type="image" value="Submit User">
+        <input id="big_sign_in_button" class="submit" name="commit" src="<%= asset_path("buttons/login.png") %>" type="image" value="Submit User">
       </li>
       <li class="facebook">
         <%= link_to user_omniauth_authorize_path(:facebook) do %>
