@@ -57,7 +57,7 @@ gem 'delayed_job' # we use this to run jobs to index our data
 # Mail
 gem 'mail' # Used for mail
 gem 'mustache' # used for mail
-gem 'premailer', :git => "git://github.com/Jberlinsky/premailer.git" # we use this to inline css in our emails
+gem 'premailer' # we use this to inline css in our emails
 
 # ActionView
 gem 'sanitize' # used in app/controllers/posts_controller.rb (which is dead code) ! remove
