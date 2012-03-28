@@ -21,6 +21,7 @@ class PasswordResetsController < Devise::PasswordsController
       sign_in(resource_name, resource)
       respond_with resource, :location => after_sign_in_path_for(resource)
     else
+      set_flash_message(:notice, "Unable to reset your password. Please try again.")
       respond_with resource
     end
   end
