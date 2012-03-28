@@ -130,7 +130,7 @@ var StatsPage = CommonPlace.View.extend({
 
         },
         title: {
-          text: 'User Count for ' + slug
+          text: 'User Engagement for ' + slug
         },
         xAxis: {
           type: 'datetime',
