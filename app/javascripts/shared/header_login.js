@@ -49,7 +49,7 @@ var HeaderLogin = CommonPlace.View.extend({
       data: { email: email, password: password },
       success: function() { document.location.reload(); },
       error: _.bind(function() {
-        this.$("#errors").append(this.create_error("Invalid login! Please try again."));
+        this.$("#errors").append(this.create_error("Invalid login! Please try again."))
         this.$("label").addClass("error");
       }, this)
     });
