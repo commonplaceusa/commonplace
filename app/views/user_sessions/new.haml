@@ -2,6 +2,7 @@
   $(document).ready(function() {
     $("select").dropkick({
       change: function(value) {
+        $("h1.notice").hide();
         $("h2.notice").html("Please wait...");
         $("#main form").css("height", "0px");
         window.location.pathname = value;
