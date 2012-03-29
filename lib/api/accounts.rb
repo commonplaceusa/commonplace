@@ -250,6 +250,8 @@ class API
     # Requires authentication
     #
     # Notes that the current_user is a friend of the added resident
+    # Delivers an invite to the resident if that is allowed by
+    # can_contact
     # 
     # Request params:
     #   neighbors - A list of neighbors like {name: "", email: ""}
@@ -270,6 +272,11 @@ class API
         resident.metadata[:email] ||= neighbor["email"]
         resident.metadata[:can_contact] ||= request_body["can_contact"]
         resident.save
+        if resident.metadata[:can_contact]
+          kickoff.deliver_invite_to_resident(resident, current_user)
+          resident.metadata[:invited] = true
+          resident.save
+        end
       end
       halt 200
     end
