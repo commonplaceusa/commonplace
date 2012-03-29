@@ -63,6 +63,7 @@ class Bootstrapper < Sinatra::Base
 
   get ":community" do
     @community = Community.find_by_slug(params[:community])
+    response.set_cookie("commonplace_community_slug", @community.slug)
 
     return 404 unless @community
     
@@ -82,11 +83,6 @@ class Bootstrapper < Sinatra::Base
 
   get "organizer_app/:id" do 
     erb :organizer_app
-  end
-
-  get ":community/sign_in" do
-    @community = Community.find_by_slug(params[:captures].first)
-    erb :application
   end
 
   get %r{([\w]+)/.*} do
