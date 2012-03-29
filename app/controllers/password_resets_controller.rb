@@ -8,6 +8,7 @@ class PasswordResetsController < Devise::PasswordsController
       flash[:notice] = "An email will be sent to #{user.email} containing password reset instructions."
       redirect_to new_user_session_url
     else
+      flash[:error] = "This account does not exist."
       render :new
     end
   end
