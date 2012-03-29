@@ -116,6 +116,14 @@ class KickOff
     end
   end
 
+  # Sends an invite to a resident, from the given user
+  #
+  # Params:
+  #   resident 
+  #   user
+  def deliver_invite_to_resident(resident, user)
+    enqueue(ResidentInvitation, resident.id, user.id)
+  end
   
   def deliver_post_confirmation(post)
     enqueue(PostConfirmation, post.id)
