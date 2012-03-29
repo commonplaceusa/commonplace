@@ -12,7 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    "/users/sign_in"
+    community_slug = cookies[:commonplace_community_slug]
+    if community_slug.present?
+      return "/#{community_slug}"
+    else
+      return "/users/sign_in"
+    end
   end
 
   protected
@@ -67,7 +72,8 @@ class ApplicationController < ActionController::Base
     if @_community
       params[:community] = @_community.slug
       translate_with :community => @_community.name
-      Time.zone = @_community.time_zone    
+      Time.zone = @_community.time_zone
+      cookies[:commonplace_community_slug] = @_community.slug
     end
 
     @_community
