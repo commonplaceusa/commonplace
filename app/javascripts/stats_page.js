@@ -99,7 +99,12 @@ var StatsPage = CommonPlace.View.extend({
            }
          }
       },
-      tooltip: { enabled: true },
+      tooltip: {
+        enabled: true,
+        formatter: function() {
+          return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+        }
+      },
       legend: { enabled: true },
       series: _.map(_.reject(this.statistics, function(raw_stat) { return raw_stat[0] == "global"; }), function(raw_stats) {
         var slug = raw_stats[0];
@@ -329,7 +334,10 @@ var StatsPage = CommonPlace.View.extend({
           max: 100
         },
         tooltip: {
-          enabled: true
+          enabled: true,
+          formatter: function() {
+            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+          }
         },
         legend: {
           enabled: true
@@ -406,7 +414,10 @@ var StatsPage = CommonPlace.View.extend({
          }
       },
       tooltip: {
-        enabled: true
+        enabled: true,
+        formatter: function() {
+          return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+        }
       },
       legend: {
         enabled: true
@@ -466,7 +477,12 @@ var StatsPage = CommonPlace.View.extend({
              }
            }
         },
-
+        tooltip: {
+          enabled: true,
+          formatter: function() {
+            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+          }
+        },
         series: [{
            name: 'Posts',
            pointInterval: 24*3600*1000,
@@ -533,8 +549,11 @@ var StatsPage = CommonPlace.View.extend({
         tooltip: {
           enabled: true
         },
-        legend: {
-          enabled: true
+        tooltip: {
+          enabled: true,
+          formatter: function() {
+            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+          }
         },
 
         series: [{
@@ -586,7 +605,10 @@ var StatsPage = CommonPlace.View.extend({
           }
         },
         tooltip: {
-          enabled: true
+          enabled: true,
+          formatter: function() {
+            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+          }
         },
         legend: {
           enabled: true
@@ -927,7 +949,10 @@ var StatsPage = CommonPlace.View.extend({
           }
         },
         tooltip: {
-          enabled: true
+          enabled: true,
+          formatter: function() {
+            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+          }
         },
         legend: {
           enabled: true
