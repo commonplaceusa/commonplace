@@ -12,6 +12,7 @@
 
     <link href="/assets/login_page.css" rel="stylesheet" type="text/css">
 
+
     <div id="wrapper">
       <div id="header"></div>
 
@@ -22,29 +23,19 @@
           <fieldset class="inputs">
             <ol>
               <li class="string input required stringish" id="user_email_input">
-                <label class=" label" for="user_email">Email Address:
+                <label class=" label" name="email" for="email">Email Address:
                   <abbr title="required">*
                   </abbr>
                 </label>
-                <input id="user_email" name="user[email]" type="text">
+                <input id="user_email" name="email" type="text">
               </li>
-              
-              <span class="error email">
-              </span>
-              
               <li class="password input required stringish" id="user_password_input">
-                <label class=" label" for="user_password">Password:
+                <label class=" label" for="password" name="password">Password:
                   <abbr title="required">*
                   </abbr>
                 </label>
-                <input id="user_password" name="user[password]" type="password">
-                
-                
+                <input id="user_password" name="password" type="password">
               </li>
-              
-              <span class="error password">
-              </span>
-              
             </ol>
           </fieldset>
           <fieldset class="buttons">
