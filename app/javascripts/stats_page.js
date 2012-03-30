@@ -346,22 +346,22 @@ var StatsPage = CommonPlace.View.extend({
           name: 'Visited 0 Times in Past Week',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.UsersTotal) - Number(stat.UsersReturnedOnceInPastWeek) - Number(stat.UsersReturnedTwiceInPastWeek) - Number(stat.UsersReturnedThreeOrMoreTimesInPastWeek); })
+          data: _.map(community_stats, function(stat) { return (Number(stat.UsersTotal) - Number(stat.UsersReturnedOnceInPastWeek) - Number(stat.UsersReturnedTwiceInPastWeek) - Number(stat.UsersReturnedThreeOrMoreTimesInPastWeek)) / Number(stat.UsersTotal); })
         }, {
           name: 'Visited 1 Time in Past Week',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.UsersReturnedOnceInPastWeek); })
+          data: _.map(community_stats, function(stat) { return (Number(stat.UsersReturnedOnceInPastWeek)) / Number(stat.UsersTotal); })
         }, {
           name: 'Visited 2 Times in Past Week',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.UsersReturnedTwiceInPastWeek); })
+          data: _.map(community_stats, function(stat) { return (Number(stat.UsersReturnedTwiceInPastWeek)) / Number(stat.UsersTotal); })
         }, {
           name: 'Visited 3+ Times in Past Week',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.UsersReturnedThreeOrMoreTimesInPastWeek); })
+          data: _.map(community_stats, function(stat) { return (Number(stat.UsersReturnedThreeOrMoreTimesInPastWeek)) / Number(stat.UsersTotal); })
         }],
         credits: { enabled: false }
       });
