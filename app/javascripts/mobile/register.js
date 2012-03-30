@@ -30,9 +30,27 @@ var RegisterView = CommonPlace.View.extend({
                   dataType: "json", 
                   url: "/registration/" + community_id + "/new",
                   data: JSON.stringify({ full_name: full_name, email: email, address: address, password: password }),
-                  success: function() {
+                  success: function(response) {
+                        $.getJSON("/api/account", function(response) {
+                            window.account = response;
+                            window.full_name = response.full_name;
+                            get_recommendations();
+                        });
+                    },
+                  
+                  error: function() {
+                      $("#errors").append("There was an error in registration. Please try again!");
+                  }
+            });
+    
+        }
+    }
+});
 
-                      // log the user in
+
+
+                      // log the user in (I guess this is unnecessary)
+                      /*
                       $.ajax({
                             url: "/api/sessions",
                             contentType: "application/json",
@@ -48,7 +66,7 @@ var RegisterView = CommonPlace.View.extend({
                                    }
                       });
                       
-                      /*
+                      
                       // this is bad; I'm repeating code
                       var lat = null;
                       var lng = null;
@@ -71,13 +89,3 @@ var RegisterView = CommonPlace.View.extend({
                       });
 
                   */
-                    },
-                  
-                  error: function() {
-                      $("#errors").append("There was an error in registration. Please try again!");
-                  }
-            });
-    
-        }
-    }
-});
