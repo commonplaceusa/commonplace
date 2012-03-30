@@ -36,7 +36,10 @@
     <script type="text/javascript">
       CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
       CommonPlace.account = new Account({});
-      new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
+      window.router = new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
+      var communitySlug = window.location.pathname.split("/")[1];
+      Backbone.history.start({ pushState: true, root: "/" + communitySlug });
+
     </script>
     <%= erb :tracking %>
       

@@ -5,15 +5,16 @@ var RegistrationRouter = Backbone.Router.extend({
     "": "new_user",
     "/": "new_user",
     "new": "new_user",
-    "profile": "profile",
-    "avatar": "crop",
-    "crop": "crop",
-    "feeds": "feed",
-    "groups": "group",
-    "neighbors": "neighbors",
-    "*p":"new_user"
+    "register/profile": "profile",
+    "register/avatar": "crop",
+    "register/crop": "crop",
+    "register/feeds": "feed",
+    "register/groups": "group",
+    "register/neighbors": "neighbors",
+    "*p": "new_user"
   },
   
+  sro: function(x) { alert(x); },
   initialize: function(options) {
     this.initFacebook();
     
@@ -30,8 +31,6 @@ var RegistrationRouter = Backbone.Router.extend({
     });
     this.modal.render();
     
-    var communitySlug = window.location.pathname.split("/")[1];
-    Backbone.history.start({ pushState: true, root: "/" + communitySlug });
   },
   
   new_user: function() { this.modal.showPage("new_user"); },

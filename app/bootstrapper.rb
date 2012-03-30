@@ -61,6 +61,11 @@ class Bootstrapper < Sinatra::Base
     haml :learn_more
   end
 
+  get %r{([\w]+)/register.*} do 
+    @community = Community.find_by_slug(params[:captures].first)
+    erb :register
+  end
+
   get ":community" do
     @community = Community.find_by_slug(params[:community])
     response.set_cookie("commonplace_community_slug", @community.slug)
