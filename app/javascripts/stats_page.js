@@ -336,7 +336,7 @@ var StatsPage = CommonPlace.View.extend({
         tooltip: {
           enabled: true,
           formatter: function() {
-            return "<b>" + this.series.name + "</b>: " + this.y + "/100"+' ('+ Math.round(this.percentage) +'%)';
+            return "<b>" + this.series.name + "</b>: " + this.y + "/100";
           }
         },
         legend: {
