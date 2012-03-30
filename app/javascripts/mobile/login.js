@@ -21,8 +21,11 @@ var LoginView = CommonPlace.View.extend({
                     data: JSON.stringify({ email: email, password: password }), 
                     dataType: "json", 
                     success: function(response) { 
-                        window.full_name = response.full_name;
-                        this.get_recommendations();
+                        $.getJSON("/api/account", function(response) {
+                            window.account = response;
+                            window.full_name = response.full_name;
+                            get_recommendations();
+                        });
                     }
 
                     error: function() { 
@@ -31,31 +34,31 @@ var LoginView = CommonPlace.View.extend({
                     } 
                 });
         
-    },
-
-    get_recommendations: function() {
-                        var lat = null;
-                        var lng = null;
-                        if (geo_position_js.init()) {
-                            geo_position_js.getCurrentPosition(function(loc) {
-                                lat = loc.coords.latitude;
-                                lng = loc.coords.longitude;
-                            });
-                        }
-
-                        new Recommendations([]).fetch({
-                            data: {
-                                      latitude: lat,
-                                      longitude: lng
-                                  },
-                            success: function(recommendations) {
-                                        recommendationsView = new RecommendationsView({el:$('#main'),collection:recommendations});
-                                        recommendationsView.render();
-                                    }
-                        });
-                    
-                
-                         }
-
+    }
 
 });
+
+
+function get_recommendations() {
+        var lat = null;
+        var lng = null;
+        if (geo_position_js.init()) {
+            geo_position_js.getCurrentPosition(function(loc) {
+                lat = loc.coords.latitude;
+                lng = loc.coords.longitude;
+            });
+        }
+
+        new Recommendations([]).fetch({
+            data: {
+                      latitude: lat,
+                      longitude: lng
+                  },
+            success: function(recommendations) {
+                        recommendationsView = new RecommendationsView({el:$('#main'),collection:recommendations});
+                        recommendationsView.render();
+                    }
+        });
+    
+
+}
