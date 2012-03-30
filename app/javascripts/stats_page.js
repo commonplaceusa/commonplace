@@ -102,7 +102,7 @@ var StatsPage = CommonPlace.View.extend({
       tooltip: {
         enabled: true,
         formatter: function() {
-          return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+          return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total+' ('+ Math.round(this.percentage) +'%)';
         }
       },
       legend: { enabled: true },
@@ -336,7 +336,7 @@ var StatsPage = CommonPlace.View.extend({
         tooltip: {
           enabled: true,
           formatter: function() {
-            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+            return "<b>" + this.series.name + "</b>: " + this.y + "/100"+' ('+ Math.round(this.percentage) +'%)';
           }
         },
         legend: {
@@ -416,7 +416,7 @@ var StatsPage = CommonPlace.View.extend({
       tooltip: {
         enabled: true,
         formatter: function() {
-          return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+          return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total+' ('+ Math.round(this.percentage) +'%)';
         }
       },
       legend: {
@@ -480,7 +480,7 @@ var StatsPage = CommonPlace.View.extend({
         tooltip: {
           enabled: true,
           formatter: function() {
-            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total+' ('+ Math.round(this.percentage) +'%)';
           }
         },
         series: [{
@@ -552,7 +552,7 @@ var StatsPage = CommonPlace.View.extend({
         tooltip: {
           enabled: true,
           formatter: function() {
-            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
+            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total+' ('+ Math.round(this.percentage) +'%)';
           }
         },
 
@@ -605,10 +605,7 @@ var StatsPage = CommonPlace.View.extend({
           }
         },
         tooltip: {
-          enabled: true,
-          formatter: function() {
-            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
-          }
+          enabled: true
         },
         legend: {
           enabled: true
@@ -949,10 +946,7 @@ var StatsPage = CommonPlace.View.extend({
           }
         },
         tooltip: {
-          enabled: true,
-          formatter: function() {
-            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total;
-          }
+          enabled: true
         },
         legend: {
           enabled: true
