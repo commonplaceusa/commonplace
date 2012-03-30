@@ -18,15 +18,17 @@ var HeaderView = CommonPlace.View.extend({
     if (CommonPlace.account.isAuth()) {
       return "/" + CommonPlace.account.get("community_slug");
     } else {
-      return "/" + CommonPlace.community.get("slug");
+      if (CommonPlace.community) return "/" + CommonPlace.community.get("slug");
     }
   },
+
+  hasCommunity: function() { return CommonPlace.community; },
   
   community_name: function() {
     if (CommonPlace.account.isAuth()) {
       return CommonPlace.account.get("community_name");
     } else {
-      return CommonPlace.community.get("name");
+      if (CommonPlace.community) return CommonPlace.community.get("name");
     }
   }
   
