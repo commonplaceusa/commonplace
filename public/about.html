@@ -13,35 +13,9 @@
 
 
   <body>
-    <div id="top_header">
-      <div id="nav_wrapper">
-        <ul id="user_sign_in">
-          <li>Have an Account?</li>
-          <li id="sign_in_button">Sign in</li>
-        </ul>
-        <a href="undefined" id="logo">
-          <img src="/assets/logo2.png" alt="CommonPlace" />
-        </a>
-      </div>
-    </div>
-    <!--<div class='nav page-navigation' id="main_header">
-      <div class='container-12'>
-        <div id='logo' class='grid-4'>
-          <a href='/'>
-            <img src="/assets/starter_site/ourcommonplace-logo.png">
-          </a>
-        </div>
-        <ul id="user_sign_in">
-          <li id="sign_in_button">Sign In</li>
-          <li id="sign_in_form" style="display: none"></li>
-        </ul>
-      </div>
-      
-      <div class='clear'>
-      </div>
-    </div>-->
+    <div id="header"></div>
     
-    <div id='header'>
+    <div id="banner">
       <div class='container-12'>
         <div id='banner_menu' class='grid-3'>
           <ol>
@@ -374,13 +348,12 @@
         <p>Copyright 2011 CommonPlace.</p>
       </div>
     </div>
-    <script type="text/javascript" src="/assets/jquery.js"></script>
     <script type="text/javascript" src="/assets/starter_site.js"></script>
     <script type="text/javascript">
       CommonPlace.account = new Account({});
-      var header = new HeaderLogin();
+      var header = new HeaderView({el: $("#header")});
       header.render();
-      this.$("#user_sign_in").replaceWith(header.el);
+  
     </script>
   </body>
 </html>
