@@ -46,6 +46,12 @@ class Bootstrapper < Sinatra::Base
   end
 
   get "login" do
+    @failed_login = false
+    erb :login
+  end
+
+  get "login_failed" do
+    @failed_login = true
     erb :login
   end
 
