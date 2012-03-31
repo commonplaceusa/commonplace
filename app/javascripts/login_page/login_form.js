@@ -13,6 +13,18 @@ var LoginForm = Backbone.View.extend({
     "submit form": "login"
   },
 
+  firstFailure: function() {
+    this.$(".notice").html(this.INVALID_LOGIN_FIRST_ERROR_MESSAGE);
+    this.$(".notice").addClass("error");
+    this.$(".notice").show();
+  },
+
+  secondFailure: function() {
+    this.$(".notice").html(this.INVALID_LOGIN_SECOND_ERROR_MESSAGE);
+    this.$(".notice").addClass("error");
+    this.$(".notice").show();
+  },
+
   login: function(e) {
     if (e) { e.preventDefault(); }
 
@@ -42,12 +54,10 @@ var LoginForm = Backbone.View.extend({
       error: _.bind(function() {
         this.failed_login_count += 1;
         if (this.failed_login_count == 1) {
-          this.$(".notice").html(this.INVALID_LOGIN_FIRST_ERROR_MESSAGE);
+          this.firstFailure();
         } else if (this.failed_login_count > 1) {
-          this.$(".notice").html(this.INVALID_LOGIN_SECOND_ERROR_MESSAGE);
+          this.secondFailure();
         }
-        this.$(".notice").addClass("error");
-        this.$(".notice").show();
       }, this)
     });
   }
