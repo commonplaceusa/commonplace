@@ -55,6 +55,11 @@ class Bootstrapper < Sinatra::Base
     erb :login
   end
 
+  get "login_password_reset" do
+    @post_password_reset = true
+    erb :login
+  end
+
   get "" do
     set_account
     redirect to(@account ? "/#{@account.community.slug}" : "/about")
