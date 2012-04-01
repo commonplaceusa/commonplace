@@ -68,6 +68,9 @@
       <% if @failed_login %>
         loginForm.firstFailure();
       <% end %>
+      <% if @post_password_reset %>
+        $(".notice").html("You have been e-mailed password reset instructions.");
+      <% end %>
     </script>
   </body>
 

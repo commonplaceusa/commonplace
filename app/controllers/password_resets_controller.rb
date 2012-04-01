@@ -6,7 +6,7 @@ class PasswordResetsController < Devise::PasswordsController
     if user
       user.send_reset_password_instructions
       flash[:notice] = "You have been e-mailed password reset instructions."
-      redirect_to '/login'
+      redirect_to '/login_password_reset'
     else
       flash[:error] = "The e-mail address you entered is not registered with CommonPlace. Register for CommonPlace or e-mail <a href='mailto: support@commonplaceusa.com'>support@commonplaceusa.com</a> for assistance."
       render :new
