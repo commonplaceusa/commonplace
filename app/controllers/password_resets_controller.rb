@@ -5,10 +5,10 @@ class PasswordResetsController < Devise::PasswordsController
     user = User.find_by_email(params[:user][:email])
     if user
       user.send_reset_password_instructions
-      flash[:notice] = "An email will be sent to #{user.email} containing password reset instructions."
-      redirect_to new_user_session_url
+      flash[:notice] = "You have been e-mailed password reset instructions."
+      redirect_to '/login'
     else
-      flash[:error] = "This account does not exist."
+      flash[:error] = "The e-mail address you entered is not registered with CommonPlace. Register for CommonPlace or e-mail <a href='mailto: support@commonplaceusa.com'>support@commonplaceusa.com</a> for assistance."
       render :new
     end
   end
