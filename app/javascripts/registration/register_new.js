@@ -100,7 +100,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
     var video = this.make("iframe", {
       width: 330,
       height: 215,
-      src: "http://www.youtube.com/embed/FXHuFSCasF0?autoplay=1",
+      src: "http://www.youtube.com/embed/3GIydXPH3Eo?autoplay=1",
       frameborder: 0,
       allowfullscreen: true
     });
