@@ -3,8 +3,9 @@
 <html>
 
   <head>
-    <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBPGZ6eQKnEXsyfZw_GahjTYzZd1wDOgUk&sensor=true&libraries=drawing","http://stevenlevithan.com/assets/misc/date.format.js" %>
-    <%= stylesheet_link_tag "organizer_app" %>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBPGZ6eQKnEXsyfZw_GahjTYzZd1wDOgUk&sensor=true&libraries=drawing"></script>
+    <script type="text/javascript" src="http://stevenlevithan.com/assets/misc/date.format.js"></script>
+    <link type="text/css" rel="stylesheet" src="/assets/organizer_app.css">
   </head>
 
   <!--name id-->
@@ -21,7 +22,7 @@
       </div>
     </div>
 
-    <%= javascript_include_tag :organizer_app %>
+    <script type="text/javascript" src="/assets/organizer_app.js"></script>
     
     <script type="text/javascript">
       
