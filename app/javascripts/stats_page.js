@@ -860,6 +860,7 @@ var StatsPage = CommonPlace.View.extend({
       community_stats = _.last(JSON.parse(this.statistics[community][1]), 7);
       first_date = Date.parse(community_stats[0].Date);
 
+      $("#email_opens").append(this.liHiderFor("email_opens_graph_" + slug, slug));
       $("#email_opens").append("<li class='graph full " + slug + " email_opens_graph' id='email_opens_graph_" + slug + "'></li>");
 
       new Highcharts.Chart({
