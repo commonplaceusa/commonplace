@@ -145,10 +145,10 @@ CONDITION
       serialize(Sunspot.search(Resident) do
           all_of do
             with :community_id, params[:id]
-            Array(params[:with].split(",")).each do |w|
+            Array(params[:with].try(:split, ",")).each do |w|
               with :tags, w
             end
-            Array(params[:without].split(",")).each do |w|
+            Array(params[:without].try(:split, ",")).each do |w|
               without :tags, w
             end
           end
