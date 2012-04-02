@@ -88,7 +88,7 @@ var StatsPage = CommonPlace.View.extend({
     var lifetime_global_stats = global_stats;
 
     $("table#executive_summary tr#today td.new_users").html("" + Number(todays_global_stats.UsersGainedDaily));
-    $("table#executive_summary tr#today td.pct_growth").html("" + this.roundDecimal((100*todays_global_stats.UsersGainedDaily/todays_global_stats.UsersTotal)) + "%");
+    $("table#executive_summary tr#today td.pct_growth").html("" + this.roundDecimal((100*todays_global_stats.UsersGainedDaily/todays_global_stats.UsersTotal), 2) + "%");
     $("table#executive_summary tr#today td.pct_visits").html("" + (100*todays_global_stats.UsersVisitedToday/todays_global_stats.UsersTotal) + "%");
     $("table#executive_summary tr#today td.pct_daily_bulletin").html("" + this.roundDecimal((100*todays_global_stats.DailyBulletinsOpenedToday/todays_global_stats.DailyBulletinsSentToday)) + "%");
     $("table#executive_summary tr#today td.number_posts").html("" + Number(todays_global_stats.PostsToday));
