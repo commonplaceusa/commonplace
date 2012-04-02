@@ -62,8 +62,85 @@ var StatsPage = CommonPlace.View.extend({
     return "<li class='subheader' data-hider='" + id + "'>" + text + "</li>";
   },
 
+  pctDifference: function(x, y) {
+    x = this.roundDecimal(x, 2);
+    y = this.roundDecimal(y, 2);
+    var difference = 100 * (Math.abs(x - y) / (Math.max(Math.abs(x), Math.abs(y))));
+    if (y < x) {
+      difference = 0 - difference;
+    }
+    return this.roundDecimal(difference, 2);
+  },
+
+  roundDecimal: function(num, precision) {
+    var result = Math.round(num*Math.pow(10, precision))/Math.pow(10, precision);
+    return result;
+  },
+
   populateStatistics: function(json_data) {
     this.statistics = json_data;
+
+    // Executive Summary
+    var global_stats = JSON.parse(_.select(this.statistics, function(e) { return (e[0] == "global"); })[0][1]);
+    var todays_global_stats = _.last(global_stats);
+    var weekly_global_stats = _.last(global_stats, 7);
+    var prior_weekly_global_stats = _.first(_.last(global_stats, 14), 7);
+    var lifetime_global_stats = global_stats;
+
+    $("table#executive_summary tr#today td.new_users").html("" + Number(todays_global_stats.UsersGainedDaily));
+    $("table#executive_summary tr#today td.pct_growth").html("" + this.roundDecimal((100*todays_global_stats.UsersGainedDaily/todays_global_stats.UsersTotal)) + "%");
+    $("table#executive_summary tr#today td.pct_visits").html("" + (100*todays_global_stats.UsersVisitedToday/todays_global_stats.UsersTotal) + "%");
+    $("table#executive_summary tr#today td.pct_daily_bulletin").html("" + this.roundDecimal((100*todays_global_stats.DailyBulletinsOpenedToday/todays_global_stats.DailyBulletinsSentToday)) + "%");
+    $("table#executive_summary tr#today td.number_posts").html("" + Number(todays_global_stats.PostsToday));
+
+    //var users_gained_weekly_average = this.stats_average(weekly_global_stats, function(stat) { return stat.UsersGainedDaily; });
+    var users_gained_weekly_average = this.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + Number(stat.UsersGainedDaily); }, 0) / 7, 2);
+    var pct_growth_weekly_average = this.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersGainedDaily)/Number(stat.UsersTotal)); }, 0) / 7, 2);
+    var pct_visits_weekly_average = this.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersVisitedToday)/Number(stat.UsersTotal)); }, 0) / 7, 2);
+    var pct_daily_bulletin_weekly_average = this.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.DailyBulletinsOpenedToday)/Number(stat.DailyBulletinsSentToday)); }, 0) / 7, 2);
+    var posts_weekly_average = this.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + Number(stat.PostsToday); }, 0) / 7, 2);
+
+    $("table#executive_summary tr#this_week td.new_users").html("" + users_gained_weekly_average);
+    $("table#executive_summary tr#this_week td.pct_growth").html("" + pct_growth_weekly_average + "%");
+    $("table#executive_summary tr#this_week td.pct_visits").html("" + pct_visits_weekly_average + "%");
+    $("table#executive_summary tr#this_week td.pct_daily_bulletin").html("" + pct_daily_bulletin_weekly_average + "%");
+    $("table#executive_summary tr#this_week td.number_posts").html("" + posts_weekly_average);
+
+    var users_gained_last_weekly_average = _.reduce(prior_weekly_global_stats, function(memo, stat) { return memo + Number(stat.UsersGainedDaily); }, 0) / 7;
+    var pct_growth_last_weekly_average = _.reduce(prior_weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersGainedDaily)/Number(stat.UsersTotal)); }, 0) / 7;
+    var pct_visits_last_weekly_average = _.reduce(prior_weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersVisitedToday)/Number(stat.UsersTotal)); }, 0) / 7;
+    var pct_daily_bulletin_last_weekly_average = _.reduce(prior_weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.DailyBulletinsOpenedToday)/Number(stat.DailyBulletinsSentToday)); }, 0) / 7;
+    var posts_last_weekly_average = _.reduce(prior_weekly_global_stats, function(memo, stat) { return memo + Number(stat.PostsToday); }, 0) / 7;
+
+    var users_gained_pct_difference = this.pctDifference(users_gained_weekly_average, users_gained_last_weekly_average);
+    var pct_growth_pct_difference = this.pctDifference(pct_growth_weekly_average, pct_growth_last_weekly_average);
+    var pct_visits_pct_difference = this.pctDifference(pct_visits_weekly_average, pct_visits_last_weekly_average);
+    var pct_daily_bulletin_pct_difference = this.pctDifference(pct_daily_bulletin_weekly_average, pct_daily_bulletin_last_weekly_average);
+    var posts_pct_difference = this.pctDifference(posts_weekly_average, posts_last_weekly_average);
+
+    $("table#executive_summary tr#pct_difference td.new_users").html("" + users_gained_pct_difference + "%");
+    $("table#executive_summary tr#pct_difference td.pct_growth").html("" + pct_growth_pct_difference + "%");
+    $("table#executive_summary tr#pct_difference td.pct_visits").html("" + pct_visits_pct_difference + "%");
+    $("table#executive_summary tr#pct_difference td.pct_daily_bulletin").html("" + pct_daily_bulletin_pct_difference + "%");
+    $("table#executive_summary tr#pct_difference td.number_posts").html("" + posts_pct_difference + "%");
+
+    var users_gained_lifetime_average = _.reduce(lifetime_global_stats, function(memo, stat) { return memo + Number(stat.UsersGainedDaily); }, 0) / 7;
+    var pct_growth_lifetime_average = _.reduce(lifetime_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersGainedDaily)/Number(stat.UsersTotal)); }, 0) / 7;
+    var pct_visits_lifetime_average = _.reduce(lifetime_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersVisitedToday)/Number(stat.UsersTotal)); }, 0) / 7;
+    var pct_daily_bulletin_lifetime_average = _.reduce(lifetime_global_stats, function(memo, stat) { return memo + (100*Number(stat.DailyBulletinsOpenedToday)/Number(stat.DailyBulletinsSentToday)); }, 0) / 7;
+    var posts_lifetime_average = _.reduce(lifetime_global_stats, function(memo, stat) { return memo + Number(stat.PostsToday); }, 0) / 7;
+
+    var users_gained_pct_difference_lifetime = this.pctDifference(users_gained_weekly_average, users_gained_lifetime_average);
+    var pct_growth_pct_difference_lifetime = this.pctDifference(pct_growth_weekly_average, pct_growth_lifetime_average);
+    var pct_visits_pct_difference_lifetime = this.pctDifference(pct_visits_weekly_average, pct_visits_lifetime_average);
+    var pct_daily_bulletin_pct_difference_lifetime = this.pctDifference(pct_daily_bulletin_weekly_average, pct_daily_bulletin_lifetime_average);
+    var posts_pct_difference_lifetime = this.pctDifference(posts_weekly_average, posts_lifetime_average);
+
+    $("table#executive_summary tr#pct_difference_lifetime td.new_users").html("" + users_gained_pct_difference_lifetime + "%");
+    $("table#executive_summary tr#pct_difference_lifetime td.pct_growth").html("" + pct_growth_pct_difference_lifetime + "%");
+    $("table#executive_summary tr#pct_difference_lifetime td.pct_visits").html("" + pct_visits_pct_difference_lifetime + "%");
+    $("table#executive_summary tr#pct_difference_lifetime td.pct_daily_bulletin").html("" + pct_daily_bulletin_pct_difference_lifetime + "%");
+    $("table#executive_summary tr#pct_difference_lifetime td.number_posts").html("" + posts_pct_difference_lifetime + "%");
 
     $("#user_count").append(this.liHiderFor('user_count_graph_cumulative', 'Cumulative User Count'));
     $("#user_count").append("<li class='graph full global user_count_graph' id='user_count_graph_cumulative'></li>");
@@ -104,6 +181,57 @@ var StatsPage = CommonPlace.View.extend({
         formatter: function() {
           return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total+' ('+ Math.round(this.percentage) +'%)';
         }
+      },
+      legend: { enabled: true },
+      series: _.map(_.reject(this.statistics, function(raw_stat) { return raw_stat[0] == "global"; }), function(raw_stats) {
+        var slug = raw_stats[0];
+        var statistics = _.last(JSON.parse(raw_stats[1]), 30);
+        var first_date = Date.parse(statistics[0].Date);
+        var options = {
+          name: slug,
+          pointInterval: 24*3600*1000,
+          pointStart: first_date,
+          data: _.map(statistics, function(stat) { return Number(stat.UsersTotal); })
+        };
+        return options;
+      }),
+      credits: { enabled: true }
+    });
+
+    $("#user_count").append("<li class='graph full global user_count_graph' id='user_count_graph_cumulative_line'></li>");
+    new Highcharts.Chart({
+      chart: {
+        renderTo: 'user_count_graph_cumulative_line'
+      },
+      title: {
+        text: 'User Counts across Communities'
+      },
+      xAxis: {
+        type: 'datetime',
+        title: {
+          text: null
+        }
+      },
+      yAxis: {
+        title: {
+          text: 'Users'
+        },
+        min: 0
+      },
+
+      plotOptions: {
+         area: {
+            pointStart: first_date
+         },
+         column: {
+           stacking: 'normal',
+           dataLabels: {
+             enabled: false
+           }
+         }
+      },
+      tooltip: {
+        enabled: true
       },
       legend: { enabled: true },
       series: _.map(_.reject(this.statistics, function(raw_stat) { return raw_stat[0] == "global"; }), function(raw_stats) {
@@ -343,11 +471,6 @@ var StatsPage = CommonPlace.View.extend({
           enabled: true
         },
         series: [{
-          name: 'Visited 0 Times in Past Week',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return 100*(Number(stat.UsersTotal) - Number(stat.UsersReturnedOnceInPastWeek) - Number(stat.UsersReturnedTwiceInPastWeek) - Number(stat.UsersReturnedThreeOrMoreTimesInPastWeek)) / Number(stat.UsersTotal); })
-        }, {
           name: 'Visited 1 Time in Past Week',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
