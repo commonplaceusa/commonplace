@@ -458,8 +458,7 @@ var StatsPage = CommonPlace.View.extend({
           title: {
             text: 'Percentage'
           },
-          min: 0,
-          max: 100
+          min: 0
         },
         tooltip: {
           enabled: true,
