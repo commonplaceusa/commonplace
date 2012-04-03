@@ -41,7 +41,7 @@
         %th Timestamp
         %th Referral Source
         %th Metadata
-      - community_referrer.users.select{|u| u.referral_source.present?}.sort{|a,b| a.created_at <=> b.created_at}.reverse.each do |user|
+      - community.users.select{|u| u.referral_source.present?}.sort{|a,b| a.created_at <=> b.created_at}.reverse.each do |user|
         %tr
           %td{:width => "20%"}= user.full_name
 
