@@ -69,7 +69,7 @@ var StatsPage = CommonPlace.View.extend({
     if (y < x) {
       difference = 0 - difference;
     }
-    return this.roundDecimal(difference, 2);
+    return this.roundDecimal(difference, 3);
   },
 
   roundDecimal: function(num, precision) {
@@ -109,17 +109,17 @@ var StatsPage = CommonPlace.View.extend({
       var lifetime_global_stats = global_stats;
 
       $("table#executive_summary tr#today td.new_users." + slug).html("" + Number(todays_global_stats.UsersGainedDaily));
-      $("table#executive_summary tr#today td.pct_growth." + slug).html("" + self.roundDecimal((100*todays_global_stats.UsersGainedDaily/todays_global_stats.UsersTotal), 2) + "%");
-      $("table#executive_summary tr#today td.pct_visits." + slug).html("" + self.roundDecimal((100*todays_global_stats.UsersVisitedToday/todays_global_stats.UsersTotal), 2) + "%");
-      $("table#executive_summary tr#today td.pct_daily_bulletin." + slug).html("" + self.roundDecimal((100*todays_global_stats.DailyBulletinsOpenedToday/todays_global_stats.DailyBulletinsSentToday), 2) + "%");
+      $("table#executive_summary tr#today td.pct_growth." + slug).html("" + self.roundDecimal((100*todays_global_stats.UsersGainedDaily/todays_global_stats.UsersTotal), 3) + "%");
+      $("table#executive_summary tr#today td.pct_visits." + slug).html("" + self.roundDecimal((100*todays_global_stats.UsersVisitedToday/todays_global_stats.UsersTotal), 3) + "%");
+      $("table#executive_summary tr#today td.pct_daily_bulletin." + slug).html("" + self.roundDecimal((100*todays_global_stats.DailyBulletinsOpenedToday/todays_global_stats.DailyBulletinsSentToday), 3) + "%");
       $("table#executive_summary tr#today td.number_posts." + slug).html("" + Number(todays_global_stats.PostsToday));
 
       //var users_gained_weekly_average = this.stats_average(weekly_global_stats, function(stat) { return stat.UsersGainedDaily; });
-      var users_gained_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + Number(stat.UsersGainedDaily); }, 0) / 7, 2);
-      var pct_growth_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersGainedDaily)/Number(stat.UsersTotal)); }, 0) / 7, 2);
-      var pct_visits_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersVisitedToday)/Number(stat.UsersTotal)); }, 0) / 7, 2);
-      var pct_daily_bulletin_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.DailyBulletinsOpenedToday)/Number(stat.DailyBulletinsSentToday)); }, 0) / 7, 2);
-      var posts_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + Number(stat.PostsToday); }, 0) / 7, 2);
+      var users_gained_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + Number(stat.UsersGainedDaily); }, 0) / 7, 3);
+      var pct_growth_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersGainedDaily)/Number(stat.UsersTotal)); }, 0) / 7, 3);
+      var pct_visits_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.UsersVisitedToday)/Number(stat.UsersTotal)); }, 0) / 7, 3);
+      var pct_daily_bulletin_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + (100*Number(stat.DailyBulletinsOpenedToday)/Number(stat.DailyBulletinsSentToday)); }, 0) / 7, 3);
+      var posts_weekly_average = self.roundDecimal(_.reduce(weekly_global_stats, function(memo, stat) { return memo + Number(stat.PostsToday); }, 0) / 7, 3);
 
       $("table#executive_summary tr#this_week td.new_users." + slug).html("" + users_gained_weekly_average);
       $("table#executive_summary tr#this_week td.pct_growth." + slug).html("" + pct_growth_weekly_average + "%");
