@@ -4,6 +4,8 @@ Commonplace::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
+  config.assets.precompile += ['active_admin.js', 'active_admin.css']
+
   # Generate digests for assets URLs
   # config.assets.digest = true
 
