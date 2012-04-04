@@ -49,13 +49,6 @@ module Serializer
         "on_commonplace" => o.on_commonplace?
       }
 
-      when OrganizerDataPoint
-      {
-        "address" => o.address,
-        "status" => o.status,
-        "lat" => o.lat,
-        "lng" => o.lng
-      }
       when User
         o.as_api_response(:default)
       when Post
