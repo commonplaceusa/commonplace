@@ -16,6 +16,9 @@
 //= require postjson
 //= require config
 //= require facebook
+//= require contacts/google
+//= require contacts/windows_live
+//= require contacts/yahoo
 //= require views
 //= require models
 //= require_tree ../templates/shared

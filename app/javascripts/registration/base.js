@@ -14,7 +14,6 @@ var RegistrationRouter = Backbone.Router.extend({
     "*p": "new_user"
   },
   
-  sro: function(x) { alert(x); },
   initialize: function(options) {
     this.initFacebook();
     
@@ -38,7 +37,7 @@ var RegistrationRouter = Backbone.Router.extend({
   crop: function() { this.modal.showPage("crop"); },
   feed: function() { this.modal.showPage("feed"); },
   group: function() { this.modal.showPage("group"); },
-  neighbors: function() { this.modal.showPage("neighbors"); },
+  neighbors: function() { this.modal.showPage("neighbors", CommonPlace.account.toJSON()); },
   
   initFacebook: function() {
     var e = document.createElement('script');

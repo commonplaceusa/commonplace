@@ -32,13 +32,30 @@
     <%= erb :footer %>
     
     <script type="text/javascript" src="/assets/registration.js"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the latest version of the Google Data JavaScript Client
+      google.load('gdata', '2.x');
+
+      CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
+      CommonPlace.account = new Account(<%= Serializer::serialize(Account.new(@account)).to_json %>);
+ 
+      window.router = new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
+
+      var communitySlug = window.location.pathname.split("/")[1];
+
+      function onGoogleDataLoad() {
+        Backbone.history.start({ pushState: true, root: "/" + communitySlug });      
+      }
+      
+      // Call function once the client has loaded
+      google.setOnLoadCallback(onGoogleDataLoad);
+      
+    </script>
 
     <script type="text/javascript">
-      CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
-      CommonPlace.account = new Account({});
-      window.router = new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
-      var communitySlug = window.location.pathname.split("/")[1];
-      Backbone.history.start({ pushState: true, root: "/" + communitySlug });
+
 
     </script>
     <%= erb :tracking %>
