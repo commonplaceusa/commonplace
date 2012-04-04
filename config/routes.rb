@@ -3,6 +3,10 @@ require Rails.root.join("app", "administration.rb")
 Commonplace::Application.routes.draw do
 
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  devise_for :admin_users
+
   # Community specific redirects
   match "/corunna" => redirect("/owossocorunna")
   match "/owosso" => redirect("/owossocorunna")
@@ -53,9 +57,6 @@ Commonplace::Application.routes.draw do
   end
   
   begin 
-    ActiveAdmin.routes(self) 
-    devise_for :admin_users, ActiveAdmin::Devise.config
-    
     devise_for :users, :controllers => { 
       :sessions => "user_sessions",
       :passwords => "password_resets",
@@ -64,7 +65,6 @@ Commonplace::Application.routes.draw do
       get '/users/auth/:provider' => 'users_omniauth_callbacks#passthru'
     end
   rescue
-    Rails.logger.warn "ActiveAdmin routes not initialized"
     Rails.logger.warn "Devise routes not initialized"
     # ActiveAdmin and Devise try to hit the database on initialization.
     # That fails when Heroku is compiling assets, so we catch the error here.
