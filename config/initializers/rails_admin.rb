@@ -34,6 +34,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = [AdminUser, Announcement, AnnouncementCrossPosting, Attendance, Community, Essay, Event, EventCrossPosting, Feed, FeedOwner, Group, GroupPost, HalfUser, Invite, Membership, Message, Met, OrganizerDataPoint, Referral, Reply, Resident, Subscription, Swipe, Thank, Neighborhood, OrganizerDataPoint, Post, Referral, Reply, Request, Resident, Subscription, Swipe, Thank, User]
 
   # Add models here if you want to go 'whitelist mode':
+  config.included_models = [Announcement, Community, Event, Feed, Group, GroupPost, Invite, Post, Reply, Request, User]
   # config.included_models = [AdminUser, Announcement, AnnouncementCrossPosting, Attendance, Community, Essay, Event, EventCrossPosting, Feed, FeedOwner, Group, GroupPost, HalfUser, Invite, Membership, Message, Met, OrganizerDataPoint, Referral, Reply, Resident, Subscription, Swipe, Thank, Neighborhood, OrganizerDataPoint, Post, Referral, Reply, Request, Resident, Subscription, Swipe, Thank, User]
 
   # Application wide tried label methods for models' instances
