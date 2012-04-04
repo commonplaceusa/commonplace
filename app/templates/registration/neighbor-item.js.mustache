@@ -1,4 +1,5 @@
-<input type="checkbox" name="neighbors_list" value="{{first_name}} {{last_name}}">
+<input type="checkbox" name="neighbors_list" data-name="{{first_name}} {{last_name}}" {{#email}}data-email="{{email}}"{{/email}} {{#facebook_id}}data-facebook-id="{{facebook_id}}"{{/facebook_id}}>
 <img src="{{avatar_url}}" width="50" height="50">
 <p class="fName">{{first_name}}</p>
 <p class="lName">{{last_name}}</p>
+<div class="on-commonplace">&#9733; On CommonPlace</div>
