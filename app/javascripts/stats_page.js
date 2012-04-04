@@ -693,7 +693,7 @@ var StatsPage = CommonPlace.View.extend({
         yAxis: {
           min: 0,
           title: {
-            text: ""
+            text: "Number"
           }
         },
         tooltip: {
@@ -702,7 +702,7 @@ var StatsPage = CommonPlace.View.extend({
         tooltip: {
           enabled: true,
           formatter: function() {
-            return "<b>" + this.series.name + "</b>: " + this.y + "/" + this.total+' ('+ Math.round(this.percentage) +'%)';
+            return "<b>" + this.series.name + "</b>: " + this.y;
           }
         },
 
@@ -1004,7 +1004,7 @@ var StatsPage = CommonPlace.View.extend({
           min: 0,
           max: 100,
           title: {
-            text: ""
+            text: "Cumulative Percentage"
           }
         },
         tooltip: {
