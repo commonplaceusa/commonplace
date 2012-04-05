@@ -13,23 +13,9 @@
 
 
   <body>
-    <div class='nav page-navigation'>
-      <div class='container-12'>
-        <div id='logo' class='grid-4'>
-          <a href='/'>
-            <img src="/assets/starter_site/ourcommonplace-logo.png">
-          </a>
-        </div>
-        <div class='links'>
-          <a class='grid-8' href="/users/sign_in">Login</a>
-        </div>
-      </div>
-      
-      <div class='clear'>
-      </div>
-    </div>
+    <div id="header"></div>
     
-    <div id='header'>
+    <div id="banner">
       <div class='container-12'>
         <div id='banner_menu' class='grid-3'>
           <ol>
@@ -362,7 +348,11 @@
         <p>Copyright 2011 CommonPlace.</p>
       </div>
     </div>
-    <script type="text/javascript" src="/assets/jquery.js"></script>
     <script type="text/javascript" src="/assets/starter_site.js"></script>
+    <script type="text/javascript">
+      CommonPlace.account = new Account({});
+      var header = new HeaderView({el: $("#header")});
+      header.render();
+    </script>
   </body>
 </html>
