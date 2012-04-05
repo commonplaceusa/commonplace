@@ -43,13 +43,20 @@ var LoginForm = Backbone.View.extend({
       return;
     }
 
+    var self = this;
+
     $.postJSON({
       url: "/api/sessions",
       data: {
         email: email, password: password
       },
       success: function() {
-        window.location = "/users/sign_in";
+        if (self.$("input[name=login_redirect]")) {
+          window.location = this.$("input[name=login_redirect]").val();
+        }
+        else {
+          window.location = "/users/sign_in";
+        }
       },
       error: _.bind(function() {
         this.failed_login_count += 1;
