@@ -12,13 +12,6 @@ import_feeds_rss:
   queue: rss_importer
   description: "Imports feed announcements from rss"
 
-geolocate_data_points:
-  cron: "0 0 * * *"
-  class: AddressGeolocator
-  args:
-  queue: geolocation
-  description: "Geolocates bulk entered data points from organizers"
-
 reset_emails_sent:
   cron: "0 0 * * *"
   class: EmailCountResetter
