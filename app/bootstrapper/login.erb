@@ -19,7 +19,10 @@
       <div id="main">
 
         <form accept-charset="UTF-8" id="login_form" action="/users/sign_in" class="formtastic user" method="post" novalidate="novalidate">
-          <h2 class="notice"></h2>
+          <% if @login_redirect %>
+            <input type="hidden" name="login_redirect" value="<%= @login_redirect %>" />
+          <% end %>
+          <h2 class="notice"><%= (@login_error) ? @login_error : "" %></h2>
           <fieldset class="inputs">
             <ol>
               <li class="string input required stringish" id="user_email_input">
