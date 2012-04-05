@@ -60,7 +60,7 @@ class MailBase < Mustache
         'email_type' => self.class.name,
         'tag_list' => self.tag_list,
         'main_tag' => self.tag,
-        'originating_community_id' => self.community.id || 0,
+        'originating_community_id' => (self.community) ? self.community.id : 0,
         'updated_at' => DateTime.now
     }))
   end
