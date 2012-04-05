@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html xmlns="https://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
+
+  <head>
+    <title>CommonPlace</title>
+    <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
+
+    <link href="https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
+    <link href="/assets/favicon.png" rel="icon" type="image/png">
+
+    <link href="/assets/login_page.css" rel="stylesheet" type="text/css">
+
+
+    <div id="wrapper">
+      <div id="header"></div>
+
+      <div id="main">
+
+        <form accept-charset="UTF-8" id="login_form" action="/users/sign_in" class="formtastic user" method="post" novalidate="novalidate">
+          <h2 class="notice"></h2>
+          <fieldset class="inputs">
+            <ol>
+              <li class="string input required stringish" id="user_email_input">
+                <label class=" label" name="email" for="email">Email Address:
+                  <abbr title="required">*
+                  </abbr>
+                </label>
+                <input id="user_email" name="email" type="text">
+              </li>
+              <li class="password input required stringish" id="user_password_input">
+                <label class=" label" for="password" name="password">Password:
+                  <abbr title="required">*
+                  </abbr>
+                </label>
+                <input id="user_password" name="password" type="password">
+              </li>
+            </ol>
+          </fieldset>
+          <fieldset class="buttons">
+            <ol>
+              <li class="commit button">
+                <input class="submit" name="commit" src="/assets/buttons/login2.png" type="image" value="Submit User">
+              </li>
+              <a href="/users/auth/facebook" class="facebook">
+                <img alt="Facebook-login" src="/assets/buttons/facebook-login.png">
+              </a>
+              <a href="/users/password/new" class="forgot-password">Forgot your password?
+              </a>
+            </ol>
+          </fieldset>
+        </form>
+        <div style="clear:both;"></div>
+      </div>
+      <div id="wrapper-footer"></div>
+    </div>
+
+    <%= erb :footer %>
+    <script type="text/javascript" src="/assets/login_page.js"></script>
+
+    <script type="text/javascript">
+      CommonPlace.account = new Account({});
+      var header = new HeaderView({ el: $("#header") });
+      header.render();
+      var loginForm = new LoginForm({ el: $("#login_form") });
+      loginForm.render();
+      <% if @failed_login %>
+        loginForm.firstFailure();
+      <% end %>
+      <% if @post_password_reset %>
+        $(".notice").html("You have been e-mailed password reset instructions.");
+      <% end %>
+    </script>
+  </body>
+
+</html>

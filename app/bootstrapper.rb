@@ -35,28 +35,50 @@ class Bootstrapper < Sinatra::Base
         end
       end
     end
+
+    def set_account
+      @account = env["warden"].user(:user)
+    end
   end
 
   before do
     normalize_domains
-    @account = env["warden"].user(:user)
+  end
+
+  get "login" do
+    @failed_login = false
+    erb :login
+  end
+
+  get "login_failed" do
+    @failed_login = true
+    erb :login
+  end
+
+  get "login_password_reset" do
+    @post_password_reset = true
+    erb :login
   end
 
   get "" do
+    set_account
     redirect to(@account ? "/#{@account.community.slug}" : "/about")
   end
   
   get "groups/:slug" do
+    set_account
     @group = Group.find_by_slug(params[:slug])
     @community = @group.community
     erb :group
   end
 
   get "mobile" do
+    set_account
     erb :mobile
   end
 
   get ":community/learn_more" do
+    set_account
     @community = Community.find_by_slug(params[:community])
     haml :learn_more
   end
@@ -67,6 +89,7 @@ class Bootstrapper < Sinatra::Base
   end
 
   get ":community" do
+    set_account
     @community = Community.find_by_slug(params[:community])
     response.set_cookie("commonplace_community_slug", @community.slug)
 
@@ -76,6 +99,7 @@ class Bootstrapper < Sinatra::Base
   end
 
   get "pages/:id" do
+    set_account
     @feed = 
       if params[:id].match(/^\d+/) 
         Feed.find_by_id(params[:id])
@@ -87,10 +111,12 @@ class Bootstrapper < Sinatra::Base
   end
 
   get "organizer_app/:id" do 
+    set_account
     erb :organizer_app
   end
 
   get %r{([\w]+)/.*} do
+    set_account
     @community = Community.find_by_slug(params[:captures].first)
 
     return 404 unless @community

@@ -34,8 +34,6 @@ Commonplace::Application.routes.draw do
 
   match "/facebook_canvas/" => "facebook_canvas#index"
 
-  resource :user_session
-
   resources :feeds, :only => [:edit, :update, :destroy] do
     member do
       get :import
@@ -58,9 +56,8 @@ Commonplace::Application.routes.draw do
   
   begin 
     devise_for :users, :controllers => { 
-      :sessions => "user_sessions",
       :passwords => "password_resets",
-    :omniauth_callbacks => "users_omniauth_callbacks"
+      :omniauth_callbacks => "users_omniauth_callbacks"
     } do
       get '/users/auth/:provider' => 'users_omniauth_callbacks#passthru'
     end

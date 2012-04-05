@@ -18,3 +18,55 @@
 @import starter_site/core
 @import starter_site/formtastic
 @import starter_site/test
+@import header
+
+#top_header
+  background: #1B334A
+  height: 31px
+  padding: 15px 0px
+  border-bottom: 4px solid white
+  margin: 0
+
+  #nav_wrapper
+    width: 1004px
+    margin: 0 auto
+    position: relative
+    left: 2px
+
+  #user_sign_in
+    float: right
+    margin-top: 2px
+    position: relative
+    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+
+    li
+      margin: 0 5px
+      display: -moz-inline-box
+      -moz-box-orient: vertical
+      display: inline-block
+      vertical-align: middle
+      font-size: 13px
+      font-weight: 300
+
+      &:first-child
+        color: #BCD5EC
+
+  #sign_in_button
+    background: url(/assets/nav-down-arrow.png) no-repeat 95% 40% white
+    padding: 2px 27px 3px 10px
+    line-height: 22px
+    position: relative
+    color: #1B334A
+    z-index: 100
+    cursor: pointer
+    border: 1px solid #CCC
+    -khtml-border-radius: 5px
+    -moz-border-radius: 5px
+    -webkit-border-radius: 5px
+    -o-border-radius: 5px
+    -ms-border-radius: 5px
+#sign_in_form
+  z-index: 10000
+  position: absolute
+  right: 0px
+  top: 22px
