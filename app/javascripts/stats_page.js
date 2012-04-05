@@ -63,8 +63,8 @@ var StatsPage = CommonPlace.View.extend({
   },
 
   pctDifference: function(x, y) {
-    x = this.roundDecimal(x, 2);
-    y = this.roundDecimal(y, 2);
+    x = this.roundDecimal(x, 3);
+    y = this.roundDecimal(y, 3);
     var difference = 100 * (Math.abs(x - y) / (Math.max(Math.abs(x), Math.abs(y))));
     if (y < x) {
       difference = 0 - difference;
