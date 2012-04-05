@@ -78,12 +78,10 @@ var StatsPage = CommonPlace.View.extend({
   },
 
   showExecutiveSummary: function(slug) {
-    _.each($("table#executive_summary tr td"), function(elem) {
-      $(elem).hide();
-    });
-    _.each($("table#executive_summary tr td." + slug), function(elem) {
-      $(elem).show();
-    });
+    $("table#executive_summary tr td").hide();
+    $("table#executive_summary tr").hide();
+    $("table#executive_summary tr td." + slug).show();
+    $("table#executive_summary tr").show();
   },
 
   populateStatistics: function(json_data) {
@@ -1066,6 +1064,8 @@ var StatsPage = CommonPlace.View.extend({
         }],
         credits: { enabled: false }
       });
+
+      this.showExecutiveSummary('global');
     }
 
     for (community in this.statistics) {
