@@ -51,7 +51,7 @@ var LoginForm = Backbone.View.extend({
         email: email, password: password
       },
       success: function() {
-        if (self.$("input[name=login_redirect]")) {
+        if (self.$("input[name=login_redirect]") && self.$("input[name=login_redirect]").val() !== undefined) {
           window.location = self.$("input[name=login_redirect]").val();
         }
         else {
