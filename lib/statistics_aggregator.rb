@@ -87,7 +87,8 @@ class StatisticsAggregator
       today = DateTime.now
       launch.upto(today).each do |day|
         reply_count = Reply.between(community_launch.to_datetime, day.to_datetime).count
-        user_count = StatisticsAggregator.user_total_count(User, community_launch.to_datetime, day.to_datetime)
+        #user_count = StatisticsAggregator.user_total_count(User, community_launch.to_datetime, day.to_datetime)
+        user_count = Community.core.map { |c| c.users.count }.sum
         logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(User.all, day.to_datetime)
         users_engaged_in_past_30_days = [
           Post.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
