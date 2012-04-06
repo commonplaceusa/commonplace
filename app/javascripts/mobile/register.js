@@ -1,9 +1,10 @@
 var RegisterView = CommonPlace.View.extend({
     template: "mobile.register",
 
-    events: {"form submit":"register"},
+    events: {"submit form":"register"},
 
     register: function(e) {
+        e.preventDefault();
         var full_name = $("#full_name").val();
         var email = $("#email").val();
         var address = $("#address1").val() + " " + $("#address2").val();
@@ -12,23 +13,27 @@ var RegisterView = CommonPlace.View.extend({
         var errors = false;
         if (full_name == "" || email == "" || address == " " || password == "") {
             errors = true;
-            $("#errors").append("Error: you must fill out all fields.");
+            $("#errors").append("Error: you must fill out all fields. ");
         }
+
         if (password != password2) {
             errors = true;
-            $("#errors").append("Error: passwords must match.");
+            $("#errors").append("Error: passwords must match. ");
         }
+
         if (errors) {
-            $("#errors").append("Please try again!");
+            console.log("errors");
+            $("#errors").append("Please try again! ");
         } else {
             window.full_name = full_name;
             $("#errors").empty();
             var community_id = "1";
             // API call to register user
-            $.ajax({ type: "post", 
+            $.ajax({ 
+                type: "POST", 
                   contentType: "application/json", 
                   dataType: "json", 
-                  url: "/registration/" + community_id + "/new",
+                  url: "api/registration/" + community_id + "/new",
                   data: JSON.stringify({ full_name: full_name, email: email, address: address, password: password }),
                   success: function(response) {
                         $.getJSON("/api/account", function(response) {
