@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
 
   def self.find_by_email(email)
-    where("LOWER(users.email) = ?", email.downcase).first
+    where("LOWER(users.email) = ?", email.try(:downcase)).first
   end
 
   def self.find_by_full_name(full_name)
