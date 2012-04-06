@@ -21,11 +21,6 @@ module Commonplace
     # Enable the asset pipeline
     config.assets.enabled = true
 
-    # Use SSL protection application-wide on Production
-    if Rails.env.production?
-      config.middleware.use Rack::SslEnforcer
-    end
-
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
