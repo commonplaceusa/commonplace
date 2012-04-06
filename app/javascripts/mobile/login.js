@@ -46,21 +46,22 @@ function get_recommendations() {
         var lng = null;
         if (geo_position_js.init()) {
             geo_position_js.getCurrentPosition(function(loc) {
+                console.log("Geolocating...");
                 lat = loc.coords.latitude;
                 lng = loc.coords.longitude;
+                new Recommendations([]).fetch({
+                    data: {
+                              latitude: lat,
+                              longitude: lng
+                          },
+                    success: function(recommendations) {
+                                recommendationsView = new RecommendationsView({el:$('#main'),collection:recommendations});
+                                recommendationsView.render();
+                            }
+                });
             });
         }
 
-        new Recommendations([]).fetch({
-            data: {
-                      latitude: lat,
-                      longitude: lng
-                  },
-            success: function(recommendations) {
-                        recommendationsView = new RecommendationsView({el:$('#main'),collection:recommendations});
-                        recommendationsView.render();
-                    }
-        });
     
 
 }
