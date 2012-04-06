@@ -27,7 +27,7 @@ var LoginView = CommonPlace.View.extend({
                         $.getJSON("/api/account", function(response) {
                             $("#message").hide();
                             window.account = response;
-                            window.full_name = response.full_name;
+                            window.full_name = response.name;
                             get_recommendations();
                         });
                     },
