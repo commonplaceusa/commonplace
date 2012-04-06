@@ -1,5 +1,6 @@
 var LoginView = CommonPlace.View.extend({
     template: "mobile.login",
+    id: "main",
     events: {
         "click a#register":"register",
         "submit form":"login"
@@ -7,8 +8,9 @@ var LoginView = CommonPlace.View.extend({
 
     register: function(e) {
                   e.preventDefault();
-                  var registerView = new RegisterView({el:$('#main')});
+                  var registerView = new RegisterView();
                   registerView.render();
+      $("#main").replaceWith(registerView.el);
               },
 
     login: function(e) {

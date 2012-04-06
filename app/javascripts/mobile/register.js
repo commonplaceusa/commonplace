@@ -1,10 +1,10 @@
 var RegisterView = CommonPlace.View.extend({
     template: "mobile.register",
-
+    id: "main",
     events: {"submit form":"register"},
 
     register: function(e) {
-        e.preventDefault();
+      e.preventDefault();
         var full_name = $("#full_name").val();
         var email = $("#email").val();
         var address = $("#address1").val() + " " + $("#address2").val();
