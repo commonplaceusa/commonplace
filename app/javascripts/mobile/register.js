@@ -40,6 +40,9 @@ var RegisterView = CommonPlace.View.extend({
                             window.account = response;
                             window.full_name = response.full_name;
                             get_recommendations();
+                        },
+                        function(response) {
+                            $("#errors").append("There was an error finding nearby places!");
                         });
                     },
                   
