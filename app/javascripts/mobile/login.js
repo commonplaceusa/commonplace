@@ -15,8 +15,8 @@ var LoginView = CommonPlace.View.extend({
                 //e.preventDefault();
                 var email = $("#email").val();
                 var password = $("#password").val();
-                var self = this;
                 $.ajax({ 
+                    type: "POST",
                     url: "/api/sessions", 
                     contentType: "application/json", 
                     data: JSON.stringify({ email: email, password: password }), 
@@ -25,7 +25,7 @@ var LoginView = CommonPlace.View.extend({
                         $.getJSON("/api/account", function(response) {
                             window.account = response;
                             window.full_name = response.full_name;
-                            self.get_recommendations();
+                            get_recommendations();
                         });
                     },
 
