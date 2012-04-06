@@ -1,7 +1,7 @@
 
 MobileView = CommonPlace.View.extend({
   
-  template: "mobile.mobile-view",
+  template: "mobile.landing",
 
   hello: function() { return "world"; }
 
@@ -10,7 +10,6 @@ MobileView = CommonPlace.View.extend({
 
 $(function() {
 
-  var view = new MobileView({ el: $("#main") });
-
+  var view = new LandingView({ el: $("#main") });
   view.render();
 });

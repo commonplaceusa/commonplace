@@ -1,7 +1,8 @@
 var WriteNoteView = CommonPlace.View.extend({
     template: "mobile.write_note",
 
-    events: "submit form":function(e) {
+    events: {
+        "submit form":function(e) {
                 e.preventDefault();
                 $("#progress").show();
                 // create note model
@@ -11,5 +12,6 @@ var WriteNoteView = CommonPlace.View.extend({
                 $("#write_note_form").hide();
                 $("#thanks").fadeIn(400).delay(3000).fadeOut(800);
                 $("#write_note_form").show();
+        }
     }
 });

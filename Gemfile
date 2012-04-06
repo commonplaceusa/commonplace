@@ -115,7 +115,7 @@ group :development, :test do
   gem 'jasmine'
   gem 'cucumber'
   gem 'cucumber-rails'
-  gem 'capybara-webkit'
+  #gem 'capybara-webkit'
   #gem 'progress_bar'
 end
 
