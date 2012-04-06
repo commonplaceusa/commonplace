@@ -17,12 +17,14 @@ var ImInView = CommonPlace.View.extend({
                return this.model.venue;
            },
 
-    events: "click #in":function(e) {
-                // create new model
-                // write to database
-                var rec = this.model;
-                var WriteNoteView = new WriteNoteView({el:$('top'),model:rec});
-                WriteNoteView.render();
+    events: {
+                "click #in":function(e) {
+                    // create new model
+                    // write to database
+                    var rec = this.model;
+                    var WriteNoteView = new WriteNoteView({el:$('top'),model:rec});
+                    WriteNoteView.render();
+                }
             }
 });
 

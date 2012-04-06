@@ -4,13 +4,13 @@ var LandingView = CommonPlace.View.extend({
     events: {
         "click #login":function(e) {
             e.preventDefault();
-            var LoginView = new LoginView({el:$('#main')});
-            LoginView.render();
+            var loginView = new LoginView({el:$('#main')});
+            loginView.render();
         },
         "click #register":function(e) {
             e.preventDefault();
-            var RegisterView = new RegisterView({el:$('#main')});
-            RegisterView.render();
+            var registerView = new RegisterView({el:$('#main')});
+            registerView.render();
         }
     }
 });

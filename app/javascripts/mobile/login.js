@@ -2,19 +2,20 @@ var LoginView = CommonPlace.View.extend({
     template: "mobile.login",
     events: {
         "click a#register":"register",
-        "submit form":"login",
+        "submit form":"login"
     },
 
     register: function(e) {
                   e.preventDefault();
-                  var RegisterView = new RegisterView({el:$('#main')});
-                  RegisterView.render();
+                  var registerView = new RegisterView({el:$('#main')});
+                  registerView.render();
               },
 
     login: function(e) {
-                e.preventDefault();
+                //e.preventDefault();
                 var email = $("#email").val();
                 var password = $("#password").val();
+                var self = this;
                 $.ajax({ 
                     url: "/api/sessions", 
                     contentType: "application/json", 
@@ -24,15 +25,16 @@ var LoginView = CommonPlace.View.extend({
                         $.getJSON("/api/account", function(response) {
                             window.account = response;
                             window.full_name = response.full_name;
-                            get_recommendations();
+                            self.get_recommendations();
                         });
-                    }
+                    },
 
                     error: function() { 
                         console.log("Error!");
                         $("#message").show();
                     } 
                 });
+                return false;
         
     }
 
