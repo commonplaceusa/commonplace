@@ -24,7 +24,7 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
     "keyup form.list input.search": "debounceSearch",
     "click form.list .remove_search.active": "removeSearch",
 
-    "submit form.list": "submit",
+    "submit form.list": "submit"
   },
 
   email_address_contains: function(email, string) {
@@ -111,8 +111,10 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
     
   generate: function(checkExternalService) {
     if (checkExternalService == "facebook") {
+      console.log("facebook_connect_friends");
       facebook_connect_friends({
         success: _.bind(function(friends) {
+          console.log("facebook_connect_friends_success");
           this.friends = friends;
           this.facebook_connected = true;
           this.generate(false);
@@ -211,6 +213,7 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
 
   facebook: function(e) {
     if (e) { e.preventDefault(); }
+    console.log("facebook");
 
     this.generate("facebook");
   },
@@ -477,12 +480,7 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
       this.finish();
     }
   },  
-  facebook: function(e) {
-    if (e) { e.preventDefault(); }
 
-    this.generate(true);
-  },
-  
   getFacebookUser: function(name) {
     return _.find(this.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
