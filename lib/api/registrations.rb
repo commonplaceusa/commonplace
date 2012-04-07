@@ -37,7 +37,7 @@ class API
     # Returns validation errors on failure
     post "/:community_id/new" do |community_id|
       control_access :public
-      params.merge!(request_body)
+      params.merge!(request_body) rescue
       user = User.new(:full_name => params["full_name"],
                       :email => params["email"],
                       :address => params["address"],
