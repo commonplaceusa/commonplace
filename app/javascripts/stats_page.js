@@ -333,7 +333,7 @@ var StatsPage = CommonPlace.View.extend({
           name: 'Daily Bulletins Opened',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.NeighborhoodPostEmailsOpenedToday) / Number(stat.UsersTotal) * 100; })
+          data: _.map(community_stats, function(stat) { return Number(stat.DailyBulletinsOpenedToday) / Number(stat.UsersTotal) * 100; })
         }],
         credits: { enabled: false }
       });
