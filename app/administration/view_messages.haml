@@ -4,7 +4,7 @@
     %p.community= message.user.community.name
     %p.to to #{message.messagable.name}
     %p.from from #{message.user.name}
-    %p.date= message.created_at
+    %p.date= message.created_at.to_formatted_s(:db)
     %p.body= message.body
     .replies
       - message.replies.each do |reply|
