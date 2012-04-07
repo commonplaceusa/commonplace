@@ -111,10 +111,8 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
     
   generate: function(checkExternalService) {
     if (checkExternalService == "facebook") {
-      console.log("facebook_connect_friends");
       facebook_connect_friends({
         success: _.bind(function(friends) {
-          console.log("facebook_connect_friends_success");
           this.friends = friends;
           this.facebook_connected = true;
           this.generate(false);
@@ -213,8 +211,6 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
 
   facebook: function(e) {
     if (e) { e.preventDefault(); }
-    console.log("facebook");
-
     this.generate("facebook");
   },
 
