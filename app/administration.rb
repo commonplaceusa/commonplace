@@ -10,7 +10,7 @@ class Administration < Sinatra::Base
 
   # Show all the messages passing through CommonPlace
   get "/view_messages" do
-    @messages = Message.find(:all, :order => "id desc", :limit => 50).sort { |x, y| y.created_at <=> x.created_at }
+    @messages = Message.find(:all, :order => "id desc", :limit => 50).sort { |x, y| y.replied_at <=> x.replied_at }
     haml :view_messages
   end
 
