@@ -56,9 +56,10 @@ OrganizerApp.MapView = CommonPlace.View.extend({
         });
       }
 
-      //TODO: tack on community zip code to address
       // geocodes and stores lat and lng into database for residents
 
+
+      /*window.residentLatLngs = [];*/
       /*if (i < 10 && model.address()) {*/
         /*console.log(model.address());*/
         /*var ms = 2500 + new Date().getTime();*/
@@ -121,8 +122,35 @@ OrganizerApp.MapView = CommonPlace.View.extend({
     });
 
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
-      console.log(polygon.getPath());
-    }
+      var path = polygon.getPath();
+      console.log(path);
+      window.polygon = [];
+      path.forEach(function(point) {
+        console.log(point);
+        window.polygon.push( {x: point.lat(), y: point.lng()} );
+      });
+      window.polygon.push( {x: path.getAt(0).lat(), y: path.getAt(0).lng()} );
+      console.log(window.polygon);
+      for (var i = 0, l = window.residents.length; i < l; i++) {
+        var x = residents[i].latLng.lat();
+        var y = residents[i].latLng.lng();
+        if (parentThis.isPointInPoly(window.polygon, {x: x, y: y})) {
+          console.log("point in polygon: " + i);
+          console.log(window.residents[i]);
+          if ($('#map-date').val() && $('#map-text').val()) {
+            console.log([$.trim($('#map-text').val())]);
+            console.log(window.residents[i].model.addLog);
+            /*window.residents[i].model.addLog({*/
+              /*date: $('#map-date').val(),*/
+              /*text: $('#map-text').val(),*/
+              /*tags: [$.trim($('#map-text').val())]*/
+    /*});*/
+          } else {
+            alert("Please fill out the Date of the activity and Log description.");
+          }
+        }
+      }
+    });
 
     google.maps.event.addListener(drawingManager, 'polylinecomplete', function(polyline) {
       var pathMvcArr = polyline.getPath();
