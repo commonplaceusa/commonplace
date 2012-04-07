@@ -883,7 +883,7 @@ var StatsPage = CommonPlace.View.extend({
 
     for (community in this.statistics) {
       slug = this.statistics[community][0];
-      community_stats = _.last(JSON.parse(this.statistics[community][1]), 7);
+      community_stats = _.last(JSON.parse(this.statistics[community][1]), 14);
       first_date = Date.parse(community_stats[0].Date);
 
       $("#email_opens").append(this.liHiderFor("email_opens_graph_" + slug, slug));
@@ -899,6 +899,11 @@ var StatsPage = CommonPlace.View.extend({
         },
         xAxis: {
           type: 'datetime'
+          //labels: {
+          //  formatter: function() {
+          //    return Highcharts.dateFormat('%d %b', this.value);
+          //  }
+          //}
         },
         yAxis: {
           min: 0,
