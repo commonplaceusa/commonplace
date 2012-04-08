@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+# TODO: Monkey-patch 'raise' to send an email
+# REQUIRED: Run with RAILS_ENV=remote_worker
+`bundle install`
+unless ENV['RAILS_ENV'] == 'remote_worker'
+  raise "Can not run in #{ENV['RAILS_ENV']} environment"
+end
+# TODO: Make sure this succeeds...
+#`heroku db:pull --app commonplace --confirm commonplace` # There must be a better way to do this...
+`rm -rf ./tmp/mongo_dump/*`
+`mongodump -h ds031107.mongolab.com:31107 -d heroku_app579241 -u jason -p 601845 -o ./tmp/mongo_dump`
+`mongorestore -h localhost -d commonplace_stats ./tmp/mongo_dump/*`
+
+#`heroku plugins:install git://github.com/ddollar/heroku-config.git`
+#`heroku config:pull --overwrite --app commonplace`
+#`source ./.env`
+unless ENV["REDISTOGO_URL"]
+  raise 'Could not load local Redis data...'
+end
+# Make sure we are connecting to the right instances...
+require File.expand_path('../../config/boot',  __FILE__)
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+local_redis = Redis.new(
+  :host => 'localhost',
+  :port => '6379',
+  :password => nil,
+  :thread_safe => true
+)
+MongoMapper.config = {
+  Rails.env => {
+    'uri' => 'mongodb://localhost/commonplace_stats'
+  }
+}
+MongoMapper.connect(Rails.env)
+unless local_redis
+  raise 'Could not connect to Redis locally. Aborting.'
+end
+unless StatisticsCsvGenerator.perform(30, true, local_redis)
+  raise 'Could not generate statistics'
+end
+unless StatisticsCsvGenerator.copy_redis_values(local_redis, Resque.redis)
+  raise 'Could not copy values from local to remote Redis storage'
+end
+# Issue command to shut down
+puts "shutdown now"

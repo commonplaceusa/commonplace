@@ -76,9 +76,9 @@ class StatisticsAggregator
     scope.select { |u| u.last_sign_in_at and u.last_sign_in_at < reference_date and u.last_sign_in_at > reference_date - 30.days }.count
   end
 
-  def self.csv_statistics_globally(num_days = STATISTIC_DAYS)
+  def self.csv_statistics_globally(num_days = STATISTIC_DAYS, redis = Resque.redis)
     puts "Processing globally"
-    unless Resque.redis.get("statistics:csv:global").present?
+    unless redis.get("statistics:csv:global").present?
       t1 = Time.now
       #launch = [Post.first, Event.first, Announcement.first, GroupPost.first].sort_by(&:created_at).first.created_at.to_datetime
       csv = StatisticsAggregator.csv_headers
@@ -276,17 +276,17 @@ class StatisticsAggregator
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
       puts "Completed in #{Time.now - t1} seconds"
-      Resque.redis.set("statistics:csv:global", csv)
+      redis.set("statistics:csv:global", csv)
       csv
     else
-      Resque.redis.get("statistics:csv:global")
+      redis.get("statistics:csv:global")
     end
   end
 
-  def self.generate_statistics_csv_for_community(c, num_days = STATISTIC_DAYS)
+  def self.generate_statistics_csv_for_community(c, num_days = STATISTIC_DAYS, redis = Resque.redis)
     puts "Processing #{c.slug}"
     t1 = Time.now
-    unless Resque.redis.get("statistics:csv:#{c.slug}").present?
+    unless redis.get("statistics:csv:#{c.slug}").present?
       csv = StatisticsAggregator.csv_headers
       today = DateTime.now
       community = c
@@ -491,45 +491,45 @@ class StatisticsAggregator
       end
       t2 = Time.now
       puts "Took #{t2 - t1} seconds"
-      Resque.redis.set("statistics:csv:#{c.slug}", csv)
+      redis.set("statistics:csv:#{c.slug}", csv)
       csv
     else
-      Resque.redis.get("statistics:csv:#{c.slug}")
+      redis.get("statistics:csv:#{c.slug}")
     end
   end
 
-  def self.generate_hashed_statistics_globally
-    unless Resque.redis.get("statistics:hashed:global").present?
+  def self.generate_hashed_statistics_globally(redis = Resque.redis)
+    unless redis.get("statistics:hashed:global").present?
       data = CSV.parse(StatisticsAggregator.csv_statistics_globally)
       headers = data.shift.map &:to_s
       string_data = data.map { |row| row.map(&:to_s) }
       array_of_hashes = string_data.map { |row| Hash[*headers.zip(row).flatten] }
-      Resque.redis.set("statistics:hashed:global", ActiveSupport::JSON.encode(array_of_hashes))
+      redis.set("statistics:hashed:global", ActiveSupport::JSON.encode(array_of_hashes))
       array_of_hashes
     else
-      Resque.redis.get("statistics:hashed:global")
+      redis.get("statistics:hashed:global")
     end
   end
 
-  def self.generate_hashed_statistics_for_community(c)
-    unless Resque.redis.get("statistics:hashed:#{c.slug}").present?
+  def self.generate_hashed_statistics_for_community(c, redis = Resque.redis)
+    unless redis.get("statistics:hashed:#{c.slug}").present?
       data = CSV.parse(StatisticsAggregator.csv_statistics_for_community(c))
       headers = data.shift.map &:to_s
       string_data = data.map { |row| row.map(&:to_s) }
       array_of_hashes = string_data.map { |row| Hash[*headers.zip(row).flatten] }
-      Resque.redis.set("statistics:hashed:#{c.slug}", ActiveSupport::JSON.encode(array_of_hashes))
+      redis.set("statistics:hashed:#{c.slug}", ActiveSupport::JSON.encode(array_of_hashes))
       array_of_hashes
     else
-      Resque.redis.get("statistics:hashed:#{c.slug}")
+      redis.get("statistics:hashed:#{c.slug}")
     end
   end
 
-  def self.csv_statistics_for_community(community)
-    Resque.redis.get("statistics:csv:#{community.slug}")
+  def self.csv_statistics_for_community(community, redis = Resque.redis)
+    redis.get("statistics:csv:#{community.slug}")
   end
 
-  def self.statistics_available?
-    Resque.redis.get("statistics:meta:available") == "true"
+  def self.statistics_available?(redis = Resque.redis)
+    redis.get("statistics:meta:available") == "true"
   end
 
 end
