@@ -44,6 +44,13 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
   },
   
   afterRender: function() {
+    if (window.history && window.history.pushState) {
+      window.history.pushState({},
+                               document.title, 
+                               "/" + CommonPlace.community.get('slug') + 
+                               "/register/neighbors");
+    }
+
     var self = this;
     if (this.is_google_user(this.options.data.email)) {
 
