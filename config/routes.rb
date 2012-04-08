@@ -3,7 +3,7 @@ require Rails.root.join("app", "administration.rb")
 Commonplace::Application.routes.draw do
 
 
-  mount RailsAdmin::Engine => '/administration', :as => 'rails_admin'
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   devise_for :admin_users
 
