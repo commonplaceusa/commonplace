@@ -74,6 +74,8 @@ GEM
       activesupport (>= 3.0.0)
       rack (>= 1.1.0)
     addressable (2.2.7)
+    amazon-ec2 (0.9.17)
+      xml-simple (>= 1.0.12)
     arel (3.0.2)
     aws-s3 (0.6.2)
       builder
@@ -434,6 +436,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_api
+  amazon-ec2
   aws-s3
   bson_ext
   cancan
