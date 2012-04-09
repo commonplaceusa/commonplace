@@ -37,7 +37,7 @@ gem 'cancan' # Authorization, see app/models/ability.rb, should be refactored/re
 
 # Assets
 gem 'aws-s3', :require => 'aws/s3' # storing avatars and stuff
-gem 'amazon-ec2'
+gem 'amazon-ec2', :require => 'AWS' # managing instances
 
 # Worker Jobs
 gem 'redis' # for queueing with resque
