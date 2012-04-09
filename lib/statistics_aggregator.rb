@@ -532,4 +532,8 @@ class StatisticsAggregator
     redis.get("statistics:meta:available") == "true"
   end
 
+  def self.current_version(redis = Resque.redis)
+    redis.get("statistics:meta:version")
+  end
+
 end

@@ -5,11 +5,12 @@ class API
       # Return global statistics aggregate
       if StatisticsAggregator.statistics_available?
         stats_by_community = {}
+        varsion = StatisticsAggregator.current_version
         stats_by_community["global"] = StatisticsAggregator.generate_hashed_statistics_globally
         Community.all.select { |c| c.core }.each do |community|
           stats_by_community[community.slug] = StatisticsAggregator.generate_hashed_statistics_for_community(community)
         end
-        serialize stats_by_community
+        serialize [version, stats_by_community]
       else
         serialize({ :error => "stats locked" })
       end

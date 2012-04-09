@@ -11,9 +11,6 @@ end
 `mongodump -h ds031107.mongolab.com:31107 -d heroku_app579241 -u jason -p 601845 -o ./tmp/mongo_dump`
 `mongorestore -h localhost -d commonplace_stats ./tmp/mongo_dump/*`
 
-#`heroku plugins:install git://github.com/ddollar/heroku-config.git`
-#`heroku config:pull --overwrite --app commonplace`
-#`source ./.env`
 unless ENV["REDISTOGO_URL"]
   raise 'Could not load local Redis data...'
 end
@@ -35,11 +32,15 @@ MongoMapper.connect(Rails.env)
 unless local_redis
   raise 'Could not connect to Redis locally. Aborting.'
 end
-unless StatisticsCsvGenerator.perform(30, true, local_redis)
+unless StatisticsCsvGenerator.run(30, true, local_redis)
   raise 'Could not generate statistics'
 end
 unless StatisticsCsvGenerator.copy_redis_values(local_redis, Resque.redis)
   raise 'Could not copy values from local to remote Redis storage'
 end
 # Issue command to shut down
-puts "shutdown now"
+ec2 = AWS::EC2::Base.new(:access_key_id => ENV['EC2_KEY_ID'],
+                        :secret_access_key => ENV['EC2_KEY_SECRET'])
+ec2.stop_instances({
+  :instance_id => [ENV['EC2_STATS_CRUNCHER_INSTANCE_ID']]
+})
