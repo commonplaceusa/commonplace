@@ -6,5 +6,6 @@ if ENV['custom_branch']
 else
   `git checkout master`
 end
+`git pull`
 
 `script/remote_statistics_runner`
