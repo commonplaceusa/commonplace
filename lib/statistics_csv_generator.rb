@@ -3,7 +3,7 @@ class StatisticsCsvGenerator
   #
   @queue = :statistics
 
-  def self.perform_remotely
+  def self.perform
     # Spin up EC2 instance
     #   The instance should run the remote connection on spin-up
     #   And should shut itself down automatically
@@ -13,7 +13,7 @@ class StatisticsCsvGenerator
     })
   end
 
-  def self.perform(days = 30, globally = true, redis = Resque.redis)
+  def self.run(days = 30, globally = true, redis = Resque.redis)
     redis.set("statistics:meta:available", false)
     Community.all.each do |c|
       redis.set("statistics:csv:#{c.slug}", nil)
@@ -21,7 +21,7 @@ class StatisticsCsvGenerator
     end
     redis.set("statistics:csv:global", nil) if globally
     redis.set("statistics:hashed:global", nil) if globally
-    redis.set("statistics:meta:date", Date.today.to_s)
+    redis.set("statistics:meta:version", "#{DateTime.now.to_s(:number)}#{(Rails.env || ENV['RAILS_ENV'])[0]}")
     Community.where("core = true").each do |c|
       StatisticsAggregator.generate_statistics_csv_for_community(c, days, redis)
       StatisticsAggregator.generate_hashed_statistics_for_community(c, redis)
@@ -35,7 +35,7 @@ class StatisticsCsvGenerator
     keys = [
             "statistics:csv:global",
             "statistics:hashed:global",
-            "statistics:meta:date",
+            "statistics:meta:version",
             "statistics:meta:available"
     ]
     Community.where("core = true").each do |c|
