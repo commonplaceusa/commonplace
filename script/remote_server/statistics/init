@@ -1,8 +1,8 @@
-#!/usr/bin/env ruby
+#!/bin/bash
 
-`cd ~/commonplace/ && git fetch`
-`git pull`
+cd ~/commonplace/ && git fetch
+git pull
 
-`script/remote_server/pull_environment`
-`./.env`
-`RAILS_ENV=remote_worker script/remote_statistics_runner`
+script/remote_server/pull_environment
+./.env
+RAILS_ENV=remote_worker script/remote_statistics_runner
