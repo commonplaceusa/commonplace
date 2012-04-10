@@ -500,7 +500,7 @@ class StatisticsAggregator
 
   def self.generate_hashed_statistics_globally(redis = Resque.redis)
     unless redis.get("statistics:hashed:global").present?
-      data = CSV.parse(StatisticsAggregator.csv_statistics_globally)
+      data = CSV.parse(StatisticsAggregator.csv_statistics_globally(redis))
       headers = data.shift.map &:to_s
       string_data = data.map { |row| row.map(&:to_s) }
       array_of_hashes = string_data.map { |row| Hash[*headers.zip(row).flatten] }
@@ -513,7 +513,7 @@ class StatisticsAggregator
 
   def self.generate_hashed_statistics_for_community(c, redis = Resque.redis)
     unless redis.get("statistics:hashed:#{c.slug}").present?
-      data = CSV.parse(StatisticsAggregator.csv_statistics_for_community(c))
+      data = CSV.parse(StatisticsAggregator.csv_statistics_for_community(c, redis))
       headers = data.shift.map &:to_s
       string_data = data.map { |row| row.map(&:to_s) }
       array_of_hashes = string_data.map { |row| Hash[*headers.zip(row).flatten] }
