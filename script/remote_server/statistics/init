@@ -4,5 +4,5 @@
 `git pull`
 
 `script/remote_server/pull_environment`
-`source ./.env`
+`./.env`
 `RAILS_ENV=remote_worker script/remote_statistics_runner`
