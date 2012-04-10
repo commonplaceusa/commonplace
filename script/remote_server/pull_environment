@@ -2,7 +2,10 @@
 
 COPY_KEYS = [
   "REDISTOGO_URL",
-  "MONGOLAB_URI"
+  "MONGOLAB_URI",
+  "EC2_KEY_ID",
+  "EC2_KEY_SECRET",
+  "EC2_STATS_CRUNCHER_INSTANCE_ID"
 ]
 
 `heroku config:pull --app commonplace`
