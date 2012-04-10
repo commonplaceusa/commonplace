@@ -87,7 +87,6 @@ gem 'turing-contacts', :git => "git://github.com/turingstudio/contacts.git", :re
 gem 'json', "~> 1.6.0" # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku' # access heroku api
-gem 'taps', :git => 'https://github.com/dabio/taps.git'
 gem 'rack-timeout' # Timeout requests that take too long
 gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 
@@ -96,7 +95,8 @@ group :assets do
   gem 'compass', '0.12.alpha.0'
 end
 
-group :development, :test do
+group :development, :test, :remote_worker do
+  gem 'taps', :git => 'https://github.com/dabio/taps.git'
   gem 'guard-jslint-on-rails'
   gem 'guard-rails-assets'
   gem 'guard-rspec'
