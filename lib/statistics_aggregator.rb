@@ -500,7 +500,7 @@ class StatisticsAggregator
 
   def self.generate_hashed_statistics_globally(redis = Resque.redis)
     unless redis.get("statistics:hashed:global").present?
-      data = CSV.parse(StatisticsAggregator.csv_statistics_globally(redis))
+      data = CSV.parse(StatisticsAggregator.csv_statistics_globally(STATISTIC_DAYS, redis))
       headers = data.shift.map &:to_s
       string_data = data.map { |row| row.map(&:to_s) }
       array_of_hashes = string_data.map { |row| Hash[*headers.zip(row).flatten] }
