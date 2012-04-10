@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+COPY_KEYS = [
+  "REDISTOGO_URL",
+  "MONGOLAB_URI"
+]
+
+`heroku config:pull --app commonplace`
+
+File.open("./.env_new", 'w') do |f|
+  File.read("./.env").split("\n").each do |l|
+    line = l.split("=")
+    if COPY_KEYS.include? line[0]
+      f.puts("export #{line[0]}=\"#{line[1]}\"")
+    end
+  end
+end
+
+`rm -rf .env`
+`mv .env_new .env`
