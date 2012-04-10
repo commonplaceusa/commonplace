@@ -21,3 +21,4 @@ end
 
 `rm -rf .env`
 `mv .env_new .env`
+`chmod +x .env`
