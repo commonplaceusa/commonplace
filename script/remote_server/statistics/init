@@ -4,5 +4,5 @@ cd ~/commonplace/ && git fetch
 git pull
 
 script/remote_server/pull_environment
-./.env
+source ./.env
 RAILS_ENV=remote_worker script/remote_statistics_runner
