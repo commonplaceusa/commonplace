@@ -1,11 +1,6 @@
 #!/usr/bin/env ruby
 
 `cd ~/commonplace/ && git fetch`
-if ENV['custom_branch']
-  `git checkout #{ENV['custom_branch']}`
-else
-  `git checkout master`
-end
 `git pull`
 
 `script/remote_server/pull_environment`
