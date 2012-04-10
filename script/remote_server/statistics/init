@@ -8,4 +8,6 @@ else
 end
 `git pull`
 
-`script/remote_statistics_runner`
+`script/remote_server/pull_environment`
+`source .env`
+`RAILS_ENV=remote_worker script/remote_statistics_runner`
