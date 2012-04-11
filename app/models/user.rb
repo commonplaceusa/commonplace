@@ -370,9 +370,7 @@ class User < ActiveRecord::Base
 
   def inbox
     Message.where(<<WHERE, self.id, self.id)
-    ("messages"."user_id" = ? AND
-    (SELECT COUNT(*) FROM "replies" WHERE "replies"."repliable_type" = 'Message' AND
-    "replies"."repliable_id" = "messages"."id") > 0) OR
+    ("messages"."user_id" = ? AND "messages"."replies_count" > 0) OR
     ("messages"."messagable_type" = 'User' AND
     "messages"."messagable_id" = ?)
 WHERE

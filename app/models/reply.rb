@@ -19,7 +19,7 @@ class Reply < ActiveRecord::Base
 
   def touch_repliable_replied_at
     self.repliable.update_attribute(:replied_at, DateTime.now)
-    
+    self.repliable.increment!(:replies_count)
   end
   
   def community
