@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd ~/commonplace/ && git fetch
+git checkout master
 git pull
 
 script/remote_server/pull_environment
