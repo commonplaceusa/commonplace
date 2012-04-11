@@ -17,6 +17,7 @@ end
 # Make sure we are connecting to the right instances...
 require File.expand_path('../../config/boot',  __FILE__)
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+Resque.redis.set("statistics:meta:started", DateTime.now.to_s(:number))
 local_redis = Redis.new(
   :host => 'localhost',
   :port => '6379',
