@@ -17,6 +17,7 @@ var InboxPage = CommonPlace.View.extend({
           collection: this.collection,
           el: this.$("#message-list")
         });
+        this.$("div#message-list.loading").removeClass("loading");
         this.listview.render();
       }, this)
     });
