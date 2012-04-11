@@ -13,6 +13,12 @@ var LoginForm = Backbone.View.extend({
     "submit form": "login"
   },
 
+  initialize: function() {
+    console.log("Initialized");
+    $("form#login_form").css("display", "block");
+    console.log("Unhidden");
+  },
+
   firstFailure: function() {
     this.$(".notice").html(this.INVALID_LOGIN_FIRST_ERROR_MESSAGE);
     this.$(".notice").addClass("error");
