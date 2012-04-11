@@ -32,4 +32,23 @@ describe Message do
       it { should == replies.last.body }
     end
   end
+
+  describe "a user's inbox" do
+    context "given the user sent the message" do
+      let(:user) { User.new }
+      let(:replier) { User.new }
+      let(:message) { mock_model(Message, :body => Forgery(:basic).text, :user_id => user.id) }
+      context "the message has not been replied to" do
+        it "should have no messages in the inbox" do
+          user.inbox.count { should == 0 }
+        end
+      end
+      context "the message has been replied to" do
+        let(:message) { mock_model(Message, :body => Forgery(:basic).text, :user_id => user.id, :replies_count => 1)}
+        it "should have one message in the inbox" do
+          user.inbox.count.should == 1
+        end
+      end
+    end
+  end
 end
