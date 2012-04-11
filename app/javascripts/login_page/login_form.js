@@ -28,6 +28,8 @@ var LoginForm = Backbone.View.extend({
   login: function(e) {
     if (e) { e.preventDefault(); }
 
+    this.$(".notice").html("");
+
     var email = this.$("input[name=email]").val();
     var password = this.$("input[name=password]").val();
 
@@ -55,7 +57,7 @@ var LoginForm = Backbone.View.extend({
           window.location = self.$("input[name=login_redirect]").val();
         }
         else {
-          window.location = "/users/sign_in";
+          window.location = "/";
         }
       },
       error: _.bind(function() {
