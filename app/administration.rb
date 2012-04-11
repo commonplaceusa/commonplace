@@ -15,11 +15,14 @@ class Administration < Sinatra::Base
   end
 
   # Export Community data as csvs
-  get "/:community/export_csv" do
-    if params[:community] == "global"
-      send_file StatisticsAggregator.csv_statistics_globally, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{params[:community]}.csv"
+  get "/:community/export_csv" do |community|
+    response.headers['content_type'] = 'text/csv'
+    if community == "global"
+      attachment("global.csv")
+      response.write StatisticsAggregator.csv_statistics_globally
     else
-      send_file StatisticsAggregator.generate_statistics_csv_for_community(Community.find_by_slug(params[:community])), :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=#{params[:community]}.csv"
+      attachment "#{community}.csv"
+      response.write StatisticsAggregator.generate_statistics_csv_for_community(Community.find_by_slug(params[:community]))
     end
   end
 
