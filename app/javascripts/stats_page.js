@@ -8,6 +8,7 @@ var StatsPage = CommonPlace.View.extend({
   },
 
   statistics: {},
+  statistics_version: "",
   statistic_days: 30,
 
   initialize: function() {
@@ -85,7 +86,8 @@ var StatsPage = CommonPlace.View.extend({
   },
 
   populateStatistics: function(json_data) {
-    this.statistics = json_data;
+    this.statistics_version = json_data[0];
+    this.statistics = json_data[1];
 
     // Executive Summary
     // Set up selector
