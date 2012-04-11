@@ -1,7 +1,7 @@
 %h2 CSV Data Exports
 %ul
   - @communities.each do |community|
-    %li <a href='/admin/export_csv?community=#{community.slug}'>#{community.name}</a>
+    %li <a href='/admin/#{community.slug}/export_csv'>#{community.name}</a>
 
 %a{:href => '/admin/generate_csvs'} Regenerate
 
