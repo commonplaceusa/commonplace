@@ -28,19 +28,17 @@ var LoginForm = Backbone.View.extend({
   login: function(e) {
     if (e) { e.preventDefault(); }
 
-    this.$(".notice").html("");
-
     var email = this.$("input[name=email]").val();
     var password = this.$("input[name=password]").val();
 
     if (!email) {
-      this.$(".notice").append(this.NO_EMAIL_ERROR_MESSAGE);
+      this.$(".notice").html(this.NO_EMAIL_ERROR_MESSAGE);
       this.$("label[name=email]").addClass("error");
       return;
     }
 
     if (!password) {
-      this.$(".notice").append(this.NO_PASSWORD_ERROR_MESSAGE);
+      this.$(".notice").html(this.NO_PASSWORD_ERROR_MESSAGE);
       this.$("label[name=password]").addClass("error");
       return;
     }
