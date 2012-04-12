@@ -15,8 +15,10 @@ class ApplicationController < ActionController::Base
     community_slug = cookies[:commonplace_community_slug]
     if community_slug.present?
       return "/#{community_slug}"
+    elsif request.referrer.present?
+      return request.referrer
     else
-      return "/users/sign_in"
+      return "/login"
     end
   end
 
