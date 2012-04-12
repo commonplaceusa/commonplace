@@ -12,4 +12,5 @@ module HerokuResque
       Heroku::Client.new(ENV['HEROKU_USER'], ENV['HEROKU_PASSWORD']).ps_scale(ENV['HEROKU_APP'], :type => 'web', :qty => num_dynos)
     end
   end
+
 end
