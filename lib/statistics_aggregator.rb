@@ -77,7 +77,6 @@ class StatisticsAggregator
   end
 
   def self.csv_statistics_globally(num_days = STATISTIC_DAYS, redis = Resque.redis)
-    puts "Processing globally"
     unless redis.get("statistics:csv:global").present?
       t1 = Time.now
       #launch = [Post.first, Event.first, Announcement.first, GroupPost.first].sort_by(&:created_at).first.created_at.to_datetime
@@ -126,7 +125,6 @@ class StatisticsAggregator
           Announcement.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).where("owner_type = 'User'").pluck(:owner_id).uniq,
           Reply.joins(:user).between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).pluck(:user_id).uniq
         ].reduce { |ids, more_ids| ids | more_ids }.size
-        puts "#{__LINE__}: #{Time.now - t1}"
         users_gained = User.between(day.to_datetime.beginning_of_day, day.to_datetime.end_of_day).count
         post_count = Post.between(community_launch.to_datetime, day.to_datetime).count
         event_count = Event.between(community_launch.to_datetime, day.to_datetime).count
@@ -181,7 +179,6 @@ class StatisticsAggregator
         users_thanked_past_6_months = User.find(Thank.where("? < created_at and created_at < ?", day - 6.months, day).uniq(:user_id).pluck(:user_id)).count
 
         users_metted_past_6_months = User.joins(:mets).where("(select count(id) from mets where (requestee_id = users.id OR requester_id = users.id) AND ? < mets.created_at AND mets.created_at < ?) > 0", day - 6.months, day).count
-        puts "#{__LINE__}: #{Time.now - t1}"
 
         posts_received_message_response = 0
 
@@ -275,7 +272,6 @@ class StatisticsAggregator
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
-      puts "Completed in #{Time.now - t1} seconds"
       redis.set("statistics:csv:global", csv)
       csv
     else
@@ -284,7 +280,6 @@ class StatisticsAggregator
   end
 
   def self.generate_statistics_csv_for_community(c, num_days = STATISTIC_DAYS, redis = Resque.redis)
-    puts "Processing #{c.slug}"
     t1 = Time.now
     unless redis.get("statistics:csv:#{c.slug}").present?
       csv = StatisticsAggregator.csv_headers
@@ -490,7 +485,6 @@ class StatisticsAggregator
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
       t2 = Time.now
-      puts "Took #{t2 - t1} seconds"
       redis.set("statistics:csv:#{c.slug}", csv)
       csv
     else
