@@ -55,7 +55,6 @@ Commonplace::Application.routes.draw do
   end
   
   begin 
-    match "/users/sign_in" => redirect("/login")
     devise_for :users, :controllers => { 
       :passwords => "password_resets",
       :omniauth_callbacks => "users_omniauth_callbacks"
@@ -67,8 +66,6 @@ Commonplace::Application.routes.draw do
     # ActiveAdmin and Devise try to hit the database on initialization.
     # That fails when Heroku is compiling assets, so we catch the error here.
   end
-
-
 
   authenticated do
 
