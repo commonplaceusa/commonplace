@@ -14,7 +14,8 @@ var LoginForm = Backbone.View.extend({
   },
 
   initialize: function() {
-    $("form#login_form").css("display", "block");
+    //$("form#login_form").css("display", "block");
+    $("form#login_form").show();
   },
 
   firstFailure: function() {
