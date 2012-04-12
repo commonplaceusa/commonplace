@@ -3,12 +3,10 @@
 require ::File.expand_path('../config/environment',  __FILE__)
 require 'resque/server'
 require 'resque-cleaner'
-require 'resque-queue-priority-server'
 require 'exceptional'
 
 app = Rack::Builder.new do 
 
-  
   if Rails.env.staging? || Rails.env.production?
 
     use Rack::Exceptional, ENV['exceptional_key']
@@ -22,12 +20,8 @@ app = Rack::Builder.new do
     #    :entitystore => Dalli::Client.new)
   end
 
-
   map("/resque") { run Resque::Server }
   map("/") { run Commonplace::Application }
-
-
-
-end       
+end
 
 run app
