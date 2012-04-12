@@ -39,6 +39,7 @@ end
 unless StatisticsCsvGenerator.copy_redis_values(local_redis, Resque.redis)
   raise 'Could not copy values from local to remote Redis storage'
 end
+Resque.redis.set("statistics:meta:finished", DateTime.now.to_s(:number))
 # Issue command to shut down
 ec2 = AWS::EC2::Base.new(:access_key_id => ENV['EC2_KEY_ID'],
                         :secret_access_key => ENV['EC2_KEY_SECRET'])
