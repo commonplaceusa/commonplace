@@ -7,6 +7,7 @@
 //= require gears_init
 //= require geo
 //= require lat_lon_geo
+//= require postjson
 
 //= require views
 
