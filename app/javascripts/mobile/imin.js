@@ -19,11 +19,19 @@ var ImInView = CommonPlace.View.extend({
 
     events: {
                 "click #in":function(e) {
-                    // create new model
-                    // write to database
                     var rec = this.model;
-                    var WriteNoteView = new WriteNoteView({el:$('top'),model:rec});
-                    WriteNoteView.render();
+                    var url = rec.get("links").checkins;
+                    $.postJSON({
+                        url: url,
+                        data: {},
+                        success: function() {
+                            var WriteNoteView = new WriteNoteView({el:$('top'),model:rec});
+                            WriteNoteView.render();
+                        },
+                        error: function() {
+                                   console.log("There was an error checking in!");
+                               }
+                    });
                 }
             }
 });
