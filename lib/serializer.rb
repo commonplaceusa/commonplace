@@ -33,6 +33,8 @@ module Serializer
         "name" => o.name,
         "address" => o.address
       }
+      when EventRecommendation
+        o.as_api_response(:default)
 
       when Resident
       { 

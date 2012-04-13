@@ -371,5 +371,13 @@ class API
       serialize(current_user.activity)
     end
 
+    # Returns a list of feeds/events we suggest the user should check out.
+    #
+    # Requires authentication
+    get "/recommendations" do
+      control_access :authenticated
+      serialize(Account.new(current_user).recommendations)
+    end
+    
   end
 end

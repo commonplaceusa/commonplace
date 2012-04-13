@@ -70,6 +70,14 @@ class Account
     end
   end
 
+  # Eventually we will recommend by location or by interests, currently this
+  # just returns all the events in the community.
+  def recommendations
+    @user.community.events.upcoming.where(:owner_type => "Feed").map do |e|
+      EventRecommendation.new(e)
+    end
+  end
+
   def method_missing(method, *args)
     @user.send(method, *args)
   end
