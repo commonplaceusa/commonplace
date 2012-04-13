@@ -23,6 +23,10 @@ class EventRecommendation
   api_accessible :default do |t|
     t.add :title
     t.add :venue
+    t.add :links
   end
 
+  def links
+    { "checkins" => "/events/#{@event.id}/checkins" }
+  end
 end
