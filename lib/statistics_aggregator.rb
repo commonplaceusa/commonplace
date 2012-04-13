@@ -73,6 +73,7 @@ class StatisticsAggregator
 
   def self.csv_statistics_globally(redis = Resque.redis)
     unless redis.get("statistics:csv:global").present?
+      puts "Processing globally"
       t1 = Time.now
       #launch = [Post.first, Event.first, Announcement.first, GroupPost.first].sort_by(&:created_at).first.created_at.to_datetime
       csv = StatisticsAggregator.csv_headers
@@ -265,6 +266,8 @@ class StatisticsAggregator
          users_returned_three_or_more_times_in_past_week
         ]
         csv = "#{csv}\n#{csv_arr.join(',')}"
+        t2 = Time.now
+        puts "Done in #{t2 - t1}"
       end
       redis.set("statistics:csv:global", csv)
       csv
@@ -274,6 +277,7 @@ class StatisticsAggregator
   end
 
   def self.generate_statistics_csv_for_community(c, num_days = STATISTIC_DAYS, redis = Resque.redis)
+    puts "Processing #{c.slug}"
     t1 = Time.now
     unless redis.get("statistics:csv:#{c.slug}").present?
       csv = StatisticsAggregator.csv_headers
@@ -477,6 +481,7 @@ class StatisticsAggregator
         csv = "#{csv}\n#{csv_arr.join(',')}"
       end
       t2 = Time.now
+      puts "Took #{t2 - t1}"
       redis.set("statistics:csv:#{c.slug}", csv)
       csv
     else
