@@ -37,6 +37,15 @@ class API
       end
 
     end
+
+    # Records the that the current user checked in to this event
+    #
+    # Requires authorization
+    post "/:id/checkins" do
+      event = Event.find_by_id(params[:id]) || (halt 404)
+      EventCheckin.create(:user => current_user, :event => event)
+      200
+    end
     
   end
 end
