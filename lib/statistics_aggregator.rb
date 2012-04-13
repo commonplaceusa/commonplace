@@ -13,7 +13,6 @@ class StatisticsAggregator
       "PrivateMessagesTotal",
       "GroupPostsTotal",
       "RepliesTotal",
-      "UsersLoggedInOverPast3Months",
       "UsersActiveOverPast30Days",
       "UsersActiveToday",
       "UsersPostingOverPast3Months",
@@ -72,10 +71,6 @@ class StatisticsAggregator
     scope.between(start_date, end_date).count
   end
 
-  def self.logged_in_in_past_30_days(scope, reference_date)
-    scope.select { |u| u.last_sign_in_at and u.last_sign_in_at < reference_date and u.last_sign_in_at > reference_date - 30.days }.count
-  end
-
   def self.csv_statistics_globally(num_days = STATISTIC_DAYS, redis = Resque.redis)
     unless redis.get("statistics:csv:global").present?
       t1 = Time.now
@@ -88,7 +83,6 @@ class StatisticsAggregator
         reply_count = Reply.between(community_launch.to_datetime, day.to_datetime).count
         #user_count = StatisticsAggregator.user_total_count(User, community_launch.to_datetime, day.to_datetime)
         user_count = Community.where("core = true").map { |c| c.users.between(community_launch.to_datetime, day.to_datetime).count }.sum
-        logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(User.all, day.to_datetime)
         users_engaged_in_past_30_days = [
           Post.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           Event.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
@@ -217,7 +211,6 @@ class StatisticsAggregator
          private_message_count,
          group_post_count,
          reply_count,
-         logged_in_in_past_30_days,
          users_engaged_in_past_30_days,
          users_active_today,
          users_posted_in_past_30_days,
@@ -294,7 +287,6 @@ class StatisticsAggregator
           reply_count += reply_set.select{ |repliable| repliable.between?(launch.to_datetime, day.to_datetime) }.count
         end
         user_count = StatisticsAggregator.user_total_count(community.users, community_launch.to_datetime, day.to_datetime)
-        logged_in_in_past_30_days = StatisticsAggregator.logged_in_in_past_30_days(community.users, day.to_datetime)
         users_engaged_in_past_30_days = [
           community.posts.between((day - 6.months).to_datetime, day.to_datetime).pluck(:user_id).uniq,
           community.events.between((day - 6.months).to_datetime, day.to_datetime).where("owner_type = 'User'").pluck(:owner_id).uniq,
@@ -429,7 +421,6 @@ class StatisticsAggregator
          private_message_count,
          group_post_count,
          reply_count,
-         logged_in_in_past_30_days,
          users_engaged_in_past_30_days,
          users_active_today,
          users_posted_in_past_30_days,

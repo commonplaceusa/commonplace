@@ -322,11 +322,6 @@ var StatsPage = CommonPlace.View.extend({
           pointStart: first_date,
           data: _.map(community_stats, function(stat) { return Number(stat.UsersActiveOverPast30Days) / Number(stat.UsersTotal) * 100; })
         }, {
-          name: 'Users Logged In over Past 3 Months',
-          pointInterval: 24*3600*1000,
-          pointStart: first_date,
-          data: _.map(community_stats, function(stat) { return Number(stat.UsersLoggedInOverPast3Months) / Number(stat.UsersTotal) * 100; })
-        }, {
           name: 'Users Posting over Past 3 Months',
           pointInterval: 24*3600*1000,
           pointStart: first_date,
