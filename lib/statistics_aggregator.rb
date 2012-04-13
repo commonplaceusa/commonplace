@@ -71,13 +71,14 @@ class StatisticsAggregator
     scope.between(start_date, end_date).count
   end
 
-  def self.csv_statistics_globally(num_days = STATISTIC_DAYS, redis = Resque.redis)
+  def self.csv_statistics_globally(redis = Resque.redis)
     unless redis.get("statistics:csv:global").present?
       t1 = Time.now
       #launch = [Post.first, Event.first, Announcement.first, GroupPost.first].sort_by(&:created_at).first.created_at.to_datetime
       csv = StatisticsAggregator.csv_headers
       community_launch = Community.first.launch_date.to_date
-      launch = num_days.days.ago.to_date 
+      #launch = num_days.days.ago.to_date
+      launch = community_launch
       today = DateTime.now
       launch.upto(today).each do |day|
         reply_count = Reply.between(community_launch.to_datetime, day.to_datetime).count
@@ -279,7 +280,7 @@ class StatisticsAggregator
       today = DateTime.now
       community = c
       community_launch = community.launch_date.to_date || community.users.sort { |a,b| a.created_at <=> b.created_at }.first.created_at.to_date
-      launch = [community_launch, num_days.days.ago.to_date].max
+      launch = [community_launch, num_days.days.ago.to_date].min
       launch.upto(today).each do |day|
         reply_count = 0
         replies = community.repliables
@@ -485,7 +486,7 @@ class StatisticsAggregator
 
   def self.generate_hashed_statistics_globally(redis = Resque.redis)
     unless redis.get("statistics:hashed:global").present?
-      data = CSV.parse(StatisticsAggregator.csv_statistics_globally(STATISTIC_DAYS, redis))
+      data = CSV.parse(StatisticsAggregator.csv_statistics_globally(redis))
       headers = data.shift.map &:to_s
       string_data = data.map { |row| row.map(&:to_s) }
       array_of_hashes = string_data.map { |row| Hash[*headers.zip(row).flatten] }
