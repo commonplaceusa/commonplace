@@ -1,6 +1,8 @@
 !!! 5
 %html{:xmlns => "https://www.w3.org/1999/xhtml", 'xmlns:fb' => "https://www.facebook.com/2008/fbml"}
   %head
+    :javascript
+      if (!window.CommonPlace) { window.CommonPlace = {} };
     = render :partial => 'layouts/common_head', :locals => { :javascripts => ["jquery", "jcrop"], :stylesheets => ["application"] }
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
