@@ -71,7 +71,7 @@ class StatisticsAggregator
     scope.between(start_date, end_date).count
   end
 
-  def self.csv_statistics_globally(redis = Resque.redis)
+  def self.csv_statistics_globally(num_days = STATISTIC_DAYS, redis = Resque.redis)
     unless redis.get("statistics:csv:global").present?
       puts "Processing globally"
       t1 = Time.now
