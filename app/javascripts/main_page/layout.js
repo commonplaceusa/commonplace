@@ -12,6 +12,10 @@ var FixedLayout = function() {
       $("#right-column").css({ float: '', marginLeft: '', marginRight: '' });
     }
     
+    if ($(window).height() < 590) {
+      $("#post-box").css({ position: "relative", top: "60px"});
+    }
+    
     $infoBox.css({
       top: $postBox.outerHeight() + parseInt($postBox.css("top"),10) + 4
     });

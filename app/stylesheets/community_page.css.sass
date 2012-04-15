@@ -3,6 +3,12 @@
 @import main_page/community_resources
 @import main_page/profile_box
 
+@media screen and (min-height: 591px)
+  #post-box
+    position: fixed
+    width: 485px
+    top: 75px
+
 
 
 .important-notification
@@ -44,7 +50,7 @@ body.fixedLayout.community
     top: 0
     left: 0
     right: 0
-    z-index: 1000
+    z-index: 999999
   #footer 
     display: none
 
@@ -58,11 +64,6 @@ body.fixedLayout.community
     position: absolute
     top: 15px
     bottom: 15px
-
-  #post-box
-    position: fixed
-    width: 485px
-    top: 75px
 
   #profile-box
     position: fixed
