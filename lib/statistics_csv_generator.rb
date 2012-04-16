@@ -58,6 +58,6 @@ class StatisticsCsvGenerator
   end
 
   def self.escape(string)
-
+    string.gsub(",", '\,')
   end
 end
