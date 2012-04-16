@@ -48,11 +48,11 @@ class StatisticsCsvGenerator
   end
 
   def self.extract_csv_from_hash_for_community(c, redis = Resque.redis)
-    array = redis.get("statistics:hashed:#{c.slug}")
+    array = ActiveSupport::JSON.decode(redis.get("statistics:hashed:#{c.slug}"))
     headers = array[0].keys.join ","
     data = [headers]
     array.each do |hash|
-      data << (hash.values.map { |value| escape value unless value.nil? }.join ",")
+      data << (hash.values.map { |value| StatisticsCsvGenerator.escape value unless value.nil? }.join ",")
     end
     data
   end
