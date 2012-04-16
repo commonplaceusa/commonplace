@@ -54,7 +54,7 @@ class StatisticsCsvGenerator
     array.each do |hash|
       data << (hash.values.map { |value| StatisticsCsvGenerator.escape value unless value.nil? }.join ",")
     end
-    data
+    data.join "\n"
   end
 
   def self.escape(string)

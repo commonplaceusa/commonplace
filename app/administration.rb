@@ -26,6 +26,16 @@ class Administration < Sinatra::Base
     end
   end
 
+  # Export Community data as csvs
+  get "/:community/export_csv_hack" do |community|
+    response.headers['content_type'] = 'text/csv'
+    if community == "global"
+    else
+      attachment "#{community}.csv"
+      response.write StatisticsCsvGenerator.extract_csv_from_hash_for_community(Community.find_by_slug(params[:community]))
+    end
+  end
+
   # Show referrers that users enter during registration
   get "/show_referrers" do
     haml :show_referrers
