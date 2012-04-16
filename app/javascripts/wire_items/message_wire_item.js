@@ -8,7 +8,6 @@ var MessageWireItem = WireItem.extend({
     "click a.person": "sendMessageToUser"
   },
 
-
   afterRender: function() {
     this.repliesView = {};
     this.reply();
@@ -31,6 +30,10 @@ var MessageWireItem = WireItem.extend({
 
   recipient: function() {
     return this.model.get("user");
+  },
+
+  message_id: function() {
+    return this.model.get("id");
   },
 
   body: function() { return this.model.get("body"); },

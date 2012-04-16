@@ -15,7 +15,12 @@ var InboxPage = CommonPlace.View.extend({
       success: _.bind(function() {
         this.listview = new MessageWire({
           collection: this.collection,
-          el: this.$("#message-list")
+          el: this.$("#message-list"),
+          callback: function() {
+            if (window.location.hash) {
+              $(window).scrollTop($("#message_" + window.location.hash.substr(1)).position().top);
+            }
+          }
         });
         this.$("div#message-list.loading").removeClass("loading");
         this.listview.render();

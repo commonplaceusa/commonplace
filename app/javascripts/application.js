@@ -229,7 +229,7 @@ var Application = Backbone.Router.extend({
       this.currentPage = page;
       this.currentPage.bind();
       this.currentPage.render();
-      window.scrollTo(0,0);
+      //window.scrollTo(0,0);
     }
   },
 
