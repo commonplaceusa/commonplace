@@ -16,7 +16,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   showMapView: function(e) {
-    new OrganizerApp.MapView({el: $('#file-viewer'), collection: this.collection}).render();
+    new OrganizerApp.MapView({el: $('#file-viewer'), collection: this.collection, filePicker: this}).render();
   },
 
   afterRender: function() {

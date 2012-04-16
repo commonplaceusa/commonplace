@@ -131,6 +131,7 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       });
       window.polygon.push( {x: path.getAt(0).lat(), y: path.getAt(0).lng()} );
       console.log(window.polygon);
+      var selectedIds = [];
       for (var i = 0, l = window.residents.length; i < l; i++) {
         var x = residents[i].latLng.lat();
         var y = residents[i].latLng.lng();
@@ -148,8 +149,21 @@ OrganizerApp.MapView = CommonPlace.View.extend({
           } else {
             alert("Please fill out the Date of the activity and Log description.");
           }
+          selectedIds.push(residents[i].id);
         }
       }
+
+      console.log(parentThis.options.filePicker);
+      parentThis.options.filePicker.filter();
+      console.log("collection models: ");
+      console.log(parentThis.options.filePicker.collection.models);
+      parentThis.options.filePicker.collection = _(parentThis.options.filePicker.collection.filter(function (model) {
+        console.log(model.getId());
+        return (selectedIds.indexOf(model.getId()) != -1);
+      }));
+      console.log("new collection: ");
+      console.log(parentThis.options.filePicker.collection);
+      parentThis.options.filePicker.afterRender();
     });
 
     google.maps.event.addListener(drawingManager, 'polylinecomplete', function(polyline) {
@@ -214,6 +228,7 @@ OrganizerApp.MapView = CommonPlace.View.extend({
     }
     return -1;
   },
+
 
   /*handleNoGeolocation: function(errorFlag) {*/
     /*if (errorFlag) {*/
