@@ -180,6 +180,7 @@ var Application = Backbone.Router.extend({
 
   messageUser: function(c, id) {
     this.showPage("community");
+    this.pages.community.lists.switchTab("all_posts");
     var user = new User({ links: { self: "/users/" + id } });
     user.fetch({
       success: function() {
