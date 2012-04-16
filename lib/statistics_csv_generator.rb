@@ -39,8 +39,8 @@ class StatisticsCsvGenerator
             "statistics:meta:available"
     ]
     Community.where("core = true").each do |c|
-      #keys.prepend "statistics:csv:#{c.slug}"
-      #keys.prepend "statistics:hashed:#{c.slug}"
+      keys.prepend "statistics:csv:#{c.slug}"
+      keys.prepend "statistics:hashed:#{c.slug}"
     end
     keys.each do |redis_key|
       new_redis.set(redis_key, original_redis.get(redis_key))
