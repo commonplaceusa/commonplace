@@ -17,7 +17,7 @@ class API
     #   body - The body of the message
     # 
     # Returns 200 on success, 400 if there were validation errors
-    post "/:id/messages" do |id|
+    put "/:id/messages" do |id|
       control_access :community_member, find_user.community
 
       message = Message.new(:subject => request_body['subject'],

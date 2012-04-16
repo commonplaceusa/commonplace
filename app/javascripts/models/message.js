@@ -11,10 +11,6 @@ var Message = Repliable.extend({
     return this.messagable.get("name");
   },
 
-  id: function() {
-    return this.messagable.get("id");
-  },
-
   validate: function(attribs) {
     var missing = [];
     if (!attribs.subject && !attribs.title) { missing.push("title"); }
