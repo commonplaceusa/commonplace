@@ -46,4 +46,18 @@ class StatisticsCsvGenerator
       new_redis.set(redis_key, original_redis.get(redis_key))
     end
   end
+
+  def self.extract_csv_from_hash_for_community(c, redis = Resque.redis)
+    array = redis.get("statistics:hashed:#{c.slug}")
+    headers = array[0].keys.join ","
+    data = [headers]
+    array.each do |hash|
+      data << (hash.values.map { |value| escape value unless value.nil? }.join ",")
+    end
+    data
+  end
+
+  def self.escape(string)
+
+  end
 end
