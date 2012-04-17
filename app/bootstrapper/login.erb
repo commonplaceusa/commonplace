@@ -81,11 +81,9 @@
         $(".notice").html("You have been e-mailed password reset instructions.");
       <% end %>
       <% if @login_redirect %>
-        <script type="text/javascript">
           $(document).ready(function() {
             $("input[type=hidden][name=login_redirect]").val(window.location.href);
           });
-        </script>
       <% end %>
     </script>
   </body>
