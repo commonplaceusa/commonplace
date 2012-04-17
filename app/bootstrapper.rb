@@ -122,7 +122,7 @@ class Bootstrapper < Sinatra::Base
     return 404 unless @community
     
     @login_error = "You must log in to view this content"
-    @login_redirect = request.url.gsub("?", "#")
+    @login_redirect = request.url
     erb @account ? :application : :login
   end
 
