@@ -134,6 +134,9 @@ GEM
       nokogiri
     delayed_job (3.0.1)
       activesupport (~> 3.0)
+    delayed_job_active_record (0.3.2)
+      activerecord (> 2.1.0)
+      delayed_job (~> 3.0.0)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -447,6 +450,7 @@ DEPENDENCIES
   database_cleaner
   deadweight
   delayed_job
+  delayed_job_active_record
   devise
   exceptional
   factory_girl

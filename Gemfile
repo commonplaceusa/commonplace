@@ -13,6 +13,7 @@ gem 'acts_as_api'
 # ActiveRecord
 gem 'sunspot_rails', "1.3.0"
 gem 'sunspot_solr'
+gem 'delayed_job_active_record'
 gem 'pg' # for postgres
 gem 'permanent_records' # adds soft-delete if a model has a deleted_at column
 gem 'paperclip', "~> 2.4.4" # we use this to store avatars
