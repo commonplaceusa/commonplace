@@ -13,7 +13,6 @@ var WindowsLiveContacts = {
         "&lid=" + lid +
         "&delt=" + delt,
       success: function(response) {
-        console.log(response);
         var contacts = [];
         _.each(response, function(raw_contact) {
           if (raw_contact.name && raw_contact.emails.length > 0) {

@@ -22,7 +22,7 @@ var RegisterView = CommonPlace.View.extend({
         }
 
         if (errors) {
-            console.log("errors");
+            //console.log("errors");
             $("#errors").append("Please try again! ");
         } else {
             window.full_name = full_name;

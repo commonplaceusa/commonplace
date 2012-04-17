@@ -33,7 +33,7 @@ var LoginView = CommonPlace.View.extend({
                     },
 
                     error: function() { 
-                        console.log("Error!");
+                        //console.log("Error!");
                         $("#message").show();
                     } 
                 });

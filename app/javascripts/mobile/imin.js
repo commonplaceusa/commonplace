@@ -29,7 +29,7 @@ var ImInView = CommonPlace.View.extend({
                             WriteNoteView.render();
                         },
                         error: function() {
-                                   console.log("There was an error checking in!");
+                                   //console.log("There was an error checking in!");
                                }
                     });
                 }

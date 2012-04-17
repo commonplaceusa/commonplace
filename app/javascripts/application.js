@@ -131,7 +131,6 @@ var Application = Backbone.Router.extend({
 
   find_neighbors: function(c) { this.showPage("find_neighbors"); },
   find_neighbors_with_callback: function(c, token, verifier) {
-    console.log("Finding with callback");
     this.pages.find_neighbors.is_callback = true;
     this.pages.find_neighbors.callback_token = token;
     this.pages.find_neighbors.callback_verifier = verifier;

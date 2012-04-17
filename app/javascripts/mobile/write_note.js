@@ -18,7 +18,7 @@ var WriteNoteView = CommonPlace.View.extend({
                         $("#write_note_form").show();
                     },
                     error: function() {
-                               console.log("Error posting a note!");
+                               //console.log("Error posting a note!");
                            }
                 });
         }
