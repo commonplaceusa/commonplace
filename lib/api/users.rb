@@ -32,6 +32,28 @@ class API
       end
     end
 
+    # Creates a message from the current user to the user
+    #
+    # Request params:
+    #   subject - The message subject
+    #   body - The body of the message
+    #
+    # Returns 200 on success, 400 if there were validation errors
+    post "/:id/messages" do |id|
+      control_access :community_member, find_user.community
+
+      message = Message.new(:subject => request_body['subject'],
+                            :body => request_body['body'],
+                            :messagable => find_user,
+                            :user => current_user)
+      if message.save
+        kickoff.deliver_user_message(message)
+        [200, ""]
+      else
+        [400, "errors"]
+      end
+    end
+
     # Gets a list of the users history
     get "/:id/history" do
       control_access :community_member, find_user.community
