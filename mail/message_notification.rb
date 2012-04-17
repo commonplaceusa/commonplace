@@ -41,7 +41,7 @@ class MessageNotification < PostNotification
   end
 
   def message_url
-    inbox_url + "#" + message.id
+    inbox_url + "#" + message.id.to_s
   end
 
   def new_message_url
