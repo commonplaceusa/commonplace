@@ -17,8 +17,8 @@ var InboxPage = CommonPlace.View.extend({
           collection: this.collection,
           el: this.$("#message-list"),
           callback: function() {
-            if (window.location.hash) {
-              $(window).scrollTop($("#message_" + window.location.hash.substr(1)).position().top);
+            if (window.location.search) {
+              $(window).scrollTop($("#message_" + window.location.search.substr(1)).position().top);
             }
           }
         });
