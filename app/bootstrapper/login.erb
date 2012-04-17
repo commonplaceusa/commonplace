@@ -27,11 +27,6 @@
         <form accept-charset="UTF-8" id="login_form" action="#" style="display: none" class="formtastic user" method="post" novalidate="novalidate">
           <% if @login_redirect %>
             <input type="hidden" name="login_redirect" value="<%= @login_redirect %>" />
-            <script type="text/javascript">
-              $(document).ready(function() {
-                $("input[type=hidden][name=login_redirect]").val(window.location.href);
-              });
-            </script>
           <% end %>
           <h2 class="notice"><%= (@login_error) ? @login_error : "" %></h2>
           <fieldset class="inputs">
@@ -84,6 +79,13 @@
       <% end %>
       <% if @post_password_reset %>
         $(".notice").html("You have been e-mailed password reset instructions.");
+      <% end %>
+      <% if @login_redirect %>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $("input[type=hidden][name=login_redirect]").val(window.location.href);
+          });
+        </script>
       <% end %>
     </script>
   </body>
