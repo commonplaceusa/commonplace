@@ -57,7 +57,12 @@ var LoginForm = Backbone.View.extend({
       },
       success: function() {
         if (self.$("input[name=login_redirect]") && self.$("input[name=login_redirect]").val() !== undefined) {
-          window.location = self.$("input[name=login_redirect]").val();
+          if (self.$("input[name=login_redirect]").val() == window.location.href) {
+            window.location.reload(true);
+          }
+          else {
+            window.location = self.$("input[name=login_redirect]").val();
+          }
         }
         else {
           window.location = "/";
