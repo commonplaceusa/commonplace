@@ -1,3 +1,5 @@
+:javascript
+  $(document).ready(function() { $("#sign_in_form").hide() });
 #main
   %h1 Create a new password for CommonPlace
   = semantic_form_for(resource, :url => user_password_url, :html => { :method => "put"}) do |f|
