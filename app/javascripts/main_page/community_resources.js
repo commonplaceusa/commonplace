@@ -6,7 +6,10 @@ var CommunityResources = CommonPlace.View.extend({
   events: {
     "submit .sticky form": "search",
     "keyup .sticky input": "debounceSearch",
-    "click .sticky .cancel": "cancelSearch"
+    "click .sticky .cancel": "cancelSearch",
+    "mouseenter": "showProfile",
+    "mouseenter .post": "showProfile",
+    "mouseenter .thank-share": "showProfile"
   },
   
   afterRender: function() {
@@ -267,6 +270,7 @@ var CommunityResources = CommonPlace.View.extend({
   highlightSingleUser: function(user) { this.singleUser = user; },
   
   showSingleItem: function(model, kind, options) {
+    this.model = model;
     var self = this;
     var wire = new LandingPreview({
       template: options.template,
@@ -280,6 +284,13 @@ var CommunityResources = CommonPlace.View.extend({
     }
     this.switchTab(options.tab, wire);
     $(window).scrollTo(0);
+  },
+
+  showProfile: function(e) {
+    var user = new User({
+      links: { self: this.model.link("author") }
+    });
+    this.options.showProfile(user);
   },
   
   showUserWire: function(user) {
