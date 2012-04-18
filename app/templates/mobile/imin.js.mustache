@@ -5,9 +5,10 @@
 </div>
 <div id="feed">
 <div id="header">Here's what your neighbors are saying:</div>
-{{#feed}}
+{{#notes}}
     <div class="note">
         <div class="author">{{author}}</div>
-        <div class="message">{{message}}</div>
+        <div class="timestamp">{{timestamp}}</div>
+        <div class="message">{{body}}</div>
     </div>
-{{/feed}}
+{{/notes}}
