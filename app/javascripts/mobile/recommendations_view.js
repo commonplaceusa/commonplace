@@ -5,25 +5,36 @@ var RecommendationView = CommonPlace.View.extend({
         return window.full_name;
     },
 
+  aroundRender: function(render) {
+    var self = this;
+    geo_position_js.getCurrentPosition(function(loc) {
+      self.location = loc;
+      render();
+    });
+
+  },
+
     recommendations: function() {
-        return this.collection.toJSON();
+      var self = this;
+      return _.map(this.collection.toJSON(), function(rec) {
+        rec.distance = self.distanceTo(rec);
+        return rec;
+      });
     },
 
-    distance: function() {
-                  geo_position_js.getCurrentPosition(function(loc) {
-                      var lat1 = loc.coords.latitude;
-                      var lng1 = loc.coords.longitude;
-                      var lat2 = this.latitude;
-                      var lng2 = this.longtitude;
-                      var p1 = new LatLon(lat1,lng1);
-                      var p2 = new LatLon(lat2,lng2);
-                      var dist_km = p1.distanceTo(p2);
-                      if (dist_km < 1) {
-                          return dist_km*1000 + " m";
-                      } else {
-                          return dist_km + " km";
-                      }
-                  });
+    distanceTo: function(recommendation) {
+      var lat1 = self.location.coords.latitude;
+      var lng1 = self.location.coords.longitude;
+      var lat2 = recommendation.latitude;
+      var lng2 = recommendation.longtitude;
+      var p1 = new LatLon(lat1,lng1);
+      var p2 = new LatLon(lat2,lng2);
+      var dist_km = p1.distanceTo(p2);
+      if (dist_km < 1) {
+        return dist_km*1000 + " m";
+      } else {
+        return dist_km + " km";
+      }
     },
 
     events: {
