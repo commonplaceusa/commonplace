@@ -26,6 +26,10 @@ class EventRecommendation
     @event.longitude
   end
 
+  def id
+    @event.id
+  end
+
   acts_as_api
   
   api_accessible :default do |t|
