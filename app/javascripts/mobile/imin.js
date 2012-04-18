@@ -5,9 +5,9 @@ var ImInView = CommonPlace.View.extend({
         return window.full_name;
     },
 
-    feed: function() {
-        return this.model.feed.toJSON();
-    },
+    notes: function() {
+               return this.model.notes;
+           }
 
     title: function() {
                 return this.model.title;
