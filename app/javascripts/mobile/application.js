@@ -10,6 +10,19 @@ MobileView = CommonPlace.View.extend({
 
 $(function() {
 
-  var view = new LandingView({ el: $("#main") });
-  view.render();
+    $.getJSON({
+        url: "/api/account",
+        data: {},
+        success: function(response) {
+            window.account = response;
+            window.full_name = response.name;
+            console.log("success");
+            get_recommendations();
+        },
+        error: function() {
+            var view = new LandingView({ el: $("#main") });
+            view.render();
+        }
+    });
+
 });
