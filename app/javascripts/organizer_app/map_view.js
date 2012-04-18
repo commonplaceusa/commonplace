@@ -1,6 +1,14 @@
+// TODO: 
+// 2nd polygon drawn breaks it
+// Allow them to clear the polygons (finish clearSelection's click event and button)
+
 OrganizerApp.MapView = CommonPlace.View.extend({
 
   template: "organizer_app.map-view",
+
+  events: {
+    "click #add-log-to-selected": "addLogToSelected"
+  },
 
   afterRender: function() {
     var parentThis = this;
@@ -121,6 +129,8 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       residentMarkers[closestResidentIndex].setAnimation(google.maps.Animation.BOUNCE);
     });
 
+
+    window.selectedIndices = [];
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
       var path = polygon.getPath();
       console.log(path);
@@ -131,25 +141,13 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       });
       window.polygon.push( {x: path.getAt(0).lat(), y: path.getAt(0).lng()} );
       console.log(window.polygon);
-      var selectedIds = [];
       for (var i = 0, l = window.residents.length; i < l; i++) {
-        var x = residents[i].latLng.lat();
-        var y = residents[i].latLng.lng();
+        var x = window.residents[i].latLng.lat();
+        var y = window.residents[i].latLng.lng();
         if (parentThis.isPointInPoly(window.polygon, {x: x, y: y})) {
           console.log("point in polygon: " + i);
           console.log(window.residents[i]);
-          if ($('#map-date').val() && $('#map-text').val()) {
-            console.log([$.trim($('#map-text').val())]);
-            console.log(window.residents[i].model.addLog);
-            /*window.residents[i].model.addLog({*/
-              /*date: $('#map-date').val(),*/
-              /*text: $('#map-text').val(),*/
-              /*tags: [$.trim($('#map-text').val())]*/
-    /*});*/
-          } else {
-            alert("Please fill out the Date of the activity and Log description.");
-          }
-          selectedIds.push(residents[i].id);
+          window.selectedIndices.push(i);
         }
       }
 
@@ -158,13 +156,16 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       console.log("collection models: ");
       console.log(parentThis.options.filePicker.collection.models);
       parentThis.options.filePicker.collection = _(parentThis.options.filePicker.collection.filter(function (model) {
-        console.log(model.getId());
-        return (selectedIds.indexOf(model.getId()) != -1);
+        console.log("model id: " + model.getId());
+        console.log("in selected: " + parentThis.searchSelectedForId(model.getId()));
+        return (parentThis.searchSelectedForId(model.getId()));
       }));
       console.log("new collection: ");
       console.log(parentThis.options.filePicker.collection);
       parentThis.options.filePicker.afterRender();
     });
+
+
 
     google.maps.event.addListener(drawingManager, 'polylinecomplete', function(polyline) {
       var pathMvcArr = polyline.getPath();
@@ -220,6 +221,17 @@ OrganizerApp.MapView = CommonPlace.View.extend({
 
   },
 
+  searchSelectedForId: function(id) {
+    console.log("Looking for " + id);
+    for (var i = 0; i < window.selectedIndices.length; i++) {
+      if (window.residents[selectedIndices[i]].id == id) {
+        console.log("Found it! It is: " + window.residents[selectedIndices[i]].id);
+        return true;
+      }
+    }
+    return false;
+  },
+
   searchMarkers: function(marker) {
     for (var i = 0; i < window.residents.length; i++) {
       if (window.residents[i].marker == marker) {
@@ -227,6 +239,26 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       }
     }
     return -1;
+  },
+
+  clearSelection: function() {
+    window.selectedIds = [];
+  },
+
+  addLogToSelected: function() {
+    for (var i = 0, l = window.selectedIndices.length; i < l; i++) {
+      if ($('#map-date').val() && $('#map-text').val()) {
+        console.log([$.trim($('#map-text').val())]);
+        console.log(window.residents[i].model.addLog);
+        window.residents[i].model.addLog({
+          date: $('#map-date').val(),
+          text: $('#map-text').val(),
+          tags: [$.trim($('#map-text').val())]
+        });
+      } else {
+        alert("Please fill out the Date of the activity and Log description.");
+      }
+    }
   },
 
 

@@ -72,10 +72,15 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
   
   addLog: function(e) {
     e.preventDefault();
+    console.log({
+      date: $("#log-date").val(),
+      text: $("#log-text").val(),
+    });
     this.model.addLog({ 
-      date: this.$("#log-date").val(),
-      text: this.$("#log-text").val(),
-      tags: _.map(this.$("#log-tags").val().split(","), $.trim)
+      date: $("#log-date").val(),
+      text: $("#log-text").val(),
+      //TODO: include tags. They are checkboxes and not CSVs now
+      /*tags: _.map(this.$("#log-").val().split(","), $.trim)*/
     }, _.bind(this.render,this));
   },
 
