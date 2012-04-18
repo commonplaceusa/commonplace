@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413214031) do
+ActiveRecord::Schema.define(:version => 20120418193123) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -178,6 +178,8 @@ ActiveRecord::Schema.define(:version => 20120413214031) do
     t.integer  "community_id"
     t.datetime "deleted_at"
     t.datetime "replied_at"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
   end
 
   create_table "feed_owners", :force => true do |t|
