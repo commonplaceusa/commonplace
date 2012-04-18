@@ -18,12 +18,22 @@ class EventRecommendation
     @event.venue
   end
 
+  def latitude
+    @event.latitude
+  end
+
+  def longitude
+    @event.longitude
+  end
+
   acts_as_api
   
   api_accessible :default do |t|
     t.add :title
     t.add :venue
     t.add :links
+    t.add :latitude
+    t.add :longitude
   end
 
   def links
