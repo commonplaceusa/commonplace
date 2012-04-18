@@ -12,8 +12,9 @@ $(function() {
 
     $.ajax({
         url: "/api/account",
-        contentType: "json",
+        contentType: "application/json",
         data: {},
+        dataType: "json",
         success: function(response) {
             window.account = response;
             window.full_name = response.name;
