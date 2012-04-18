@@ -60,6 +60,7 @@ class Registration
       "On another website",
       "In the news",
       "Word of mouth",
+      "Phone Call with Julia Campbell",
       "Other"
     ]
   end
