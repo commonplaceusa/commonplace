@@ -29,6 +29,7 @@ class EventRecommendation
   acts_as_api
   
   api_accessible :default do |t|
+    t.add :id
     t.add :title
     t.add :venue
     t.add :links
