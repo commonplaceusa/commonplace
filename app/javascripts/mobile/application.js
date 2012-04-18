@@ -10,8 +10,9 @@ MobileView = CommonPlace.View.extend({
 
 $(function() {
 
-    $.getJSON({
+    $.ajax({
         url: "/api/account",
+        contentType: "json",
         data: {},
         success: function(response) {
             window.account = response;
