@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413205448) do
+ActiveRecord::Schema.define(:version => 20120413214031) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -149,6 +149,14 @@ ActiveRecord::Schema.define(:version => 20120413205448) do
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "event_notes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "events", :force => true do |t|
@@ -373,13 +381,6 @@ ActiveRecord::Schema.define(:version => 20120413205448) do
     t.string  "email"
     t.decimal "latitude"
     t.decimal "longitude"
-  end
-
-  create_table "sent_emails", :force => true do |t|
-    t.string   "tag"
-    t.integer  "community_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
