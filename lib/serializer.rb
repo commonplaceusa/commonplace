@@ -35,7 +35,8 @@ module Serializer
       }
       when EventRecommendation
         o.as_api_response(:default)
-
+      when EventNote
+        o.as_api_response(:default)
       when Resident
       { 
         "id" => o.id,

@@ -37,6 +37,8 @@ class EventRecommendation
   end
 
   def links
-    { "checkins" => "/events/#{@event.id}/checkins" }
+    { "checkins" => "/events/#{@event.id}/checkins",
+      "notes" => "/events/#{@event.id}/notes"
+    }
   end
 end
