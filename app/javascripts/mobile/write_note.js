@@ -9,10 +9,11 @@ var WriteNoteView = CommonPlace.View.extend({
                 var url = rec.get("links").notes;
                 var message = $("textarea#message").val();
                 $.postJSON({
-                    url: url,
+                    url: "/api"+url,
                     data: { body: message },
                     success: function() {
                         $("#progress").hide();
+                        $("textarea#message").val('');
                         $("#write_note_form").hide();
                         $("#thanks").fadeIn(400).delay(3000).fadeOut(800);
                         $("#write_note_form").show();
