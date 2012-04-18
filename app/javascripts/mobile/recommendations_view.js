@@ -1,4 +1,4 @@
-var RecommendationView = CommonPlace.View.extend({
+var RecommendationsView = CommonPlace.View.extend({
     template: "mobile.recommendations",
 
     user: function() {
