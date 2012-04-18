@@ -12,6 +12,9 @@ class Event < ActiveRecord::Base
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
   has_many :attendances
   has_many :attendees, :through => :attendances, :source => :user
+
+  has_many :event_notes
+
   belongs_to :owner, :polymorphic => true
   belongs_to :community
   
