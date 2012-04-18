@@ -30,6 +30,10 @@ class EventRecommendation
     @event.id
   end
 
+  def notes
+    @event.event_notes
+  end
+
   acts_as_api
   
   api_accessible :default do |t|
@@ -39,6 +43,7 @@ class EventRecommendation
     t.add :links
     t.add :latitude
     t.add :longitude
+    t.add :notes
   end
 
   def links
