@@ -64,6 +64,7 @@ class Community < ActiveRecord::Base
     t.add lambda {|c| $skills }, :as => :skills
     t.add lambda {|c| $interests }, :as => :interests
     t.add :resident_tags
+    t.add :zip_code
   end
 
   def links

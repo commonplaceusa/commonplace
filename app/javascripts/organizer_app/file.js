@@ -26,7 +26,7 @@ OrganizerApp.File = Backbone.Model.extend({
 		  type: 'POST',
       contentType: "application/json",
 		  url: this.url(),
-		  data: email + " 01824",
+		  data: email + " " + CommonPlace.community.get("zip_code"),
 		  cache: 'false',
 		  success: function() {
         self.fetch({success: callback});
