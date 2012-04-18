@@ -1,5 +1,9 @@
 
 OrganizerApp.File = Backbone.Model.extend({
+  urlRoot: function () {
+    return "/api/communities/" + window.location.toString().split('/')[4] + "/files/";
+  },
+
   getId: function() {
     return this.get('id');
   },
@@ -24,7 +28,7 @@ OrganizerApp.File = Backbone.Model.extend({
     var self = this;
 	  $.ajax({
 		  type: 'POST',
-      contentType: "application/json",
+          contentType: "application/json",
 		  url: this.url(),
 		  data: email + " " + CommonPlace.community.get("zip_code"),
 		  cache: 'false',
@@ -36,9 +40,10 @@ OrganizerApp.File = Backbone.Model.extend({
 
   addLog: function(log, callback) {
     var self = this;
+    console.log("addLog's URL: ", this.url());
 	  $.ajax({
 		  type: 'POST',
-      contentType: "application/json",
+          contentType: "application/json",
 		  url: this.url() + "/logs",
 		  data: JSON.stringify(log),
 		  cache: 'false',
@@ -46,7 +51,7 @@ OrganizerApp.File = Backbone.Model.extend({
         self.fetch({success: callback});
       }
 	  });
-  }
+  }, 
 });
 
 OrganizerApp.Files = Backbone.Collection.extend({

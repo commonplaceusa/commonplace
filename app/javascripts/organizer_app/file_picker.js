@@ -7,7 +7,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     "click li": "onClickFile",
     "click #filter-button": "filter",
     "click .tag-filter": "cycleFilter",
-    "click #map-button": "showMapView"
   },
   
   onClickFile: function(e) {
@@ -20,13 +19,21 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   afterRender: function() {
+    this.renderList(this.collection.models);
+  },
+
+  renderList: function(list) {
     this.$("#file-picker-list").empty();
+    console.log(list);
     this.$("#file-picker-list").append(
-      this.collection.map(_.bind(function(model) {
+      _.map(list, _.bind(function(model) {
+        console.log("renderList model: ");
+        console.log(model);
+        console.log("model url: ", model.url());
         var li = $("<li/>", { text: model.full_name(), data: { model: model } })[0];
         $(li).addClass("pick-resident");
         return li;
-      }, this)));
+      }, this))); 
   },
 
   filter: function() {
@@ -44,6 +51,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
       data: params,
       success: _.bind(this.afterRender, this)
     });
+    this.showMapView();
   },
 
   tags: function() { possTags = this.options.community.get('resident_tags'); return this.options.community.get('resident_tags'); },

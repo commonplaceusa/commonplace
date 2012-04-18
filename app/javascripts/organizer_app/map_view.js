@@ -1,5 +1,4 @@
 // TODO: 
-// 2nd polygon drawn breaks it
 // Allow them to clear the polygons (finish clearSelection's click event and button)
 
 OrganizerApp.MapView = CommonPlace.View.extend({
@@ -7,7 +6,8 @@ OrganizerApp.MapView = CommonPlace.View.extend({
   template: "organizer_app.map-view",
 
   events: {
-    "click #add-log-to-selected": "addLogToSelected"
+    "click #add-log-to-selected": "addLogToSelected",
+    "click #clear-selection": "clearSelection"
   },
 
   afterRender: function() {
@@ -131,7 +131,9 @@ OrganizerApp.MapView = CommonPlace.View.extend({
 
 
     window.selectedIndices = [];
+    window.polygons = [];
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+      window.polygons.push(polygon);
       var path = polygon.getPath();
       console.log(path);
       window.polygon = [];
@@ -152,17 +154,17 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       }
 
       console.log(parentThis.options.filePicker);
-      parentThis.options.filePicker.filter();
+      /*parentThis.options.filePicker.filter();*/
       console.log("collection models: ");
       console.log(parentThis.options.filePicker.collection.models);
-      parentThis.options.filePicker.collection = _(parentThis.options.filePicker.collection.filter(function (model) {
+      var list = parentThis.options.filePicker.collection.filter(function (model) {
         console.log("model id: " + model.getId());
         console.log("in selected: " + parentThis.searchSelectedForId(model.getId()));
         return (parentThis.searchSelectedForId(model.getId()));
-      }));
-      console.log("new collection: ");
-      console.log(parentThis.options.filePicker.collection);
-      parentThis.options.filePicker.afterRender();
+      });
+      console.log("new list: ");
+      console.log(list);
+      parentThis.options.filePicker.renderList(list);
     });
 
 
@@ -242,7 +244,12 @@ OrganizerApp.MapView = CommonPlace.View.extend({
   },
 
   clearSelection: function() {
-    window.selectedIds = [];
+    window.selectedIndices = [];
+    this.options.filePicker.filter();
+    for (var i = 0, l = window.polygons.length; i < l; i++) {
+      window.polygons[i].setVisible(false);
+    }
+    window.polygons = [];
   },
 
   addLogToSelected: function() {
@@ -252,8 +259,8 @@ OrganizerApp.MapView = CommonPlace.View.extend({
         console.log(window.residents[i].model.addLog);
         window.residents[i].model.addLog({
           date: $('#map-date').val(),
-          text: $('#map-text').val(),
-          tags: [$.trim($('#map-text').val())]
+          text: $('#map-text').val()
+          /*tags: [$.trim($('#map-text').val())]*/
         });
       } else {
         alert("Please fill out the Date of the activity and Log description.");

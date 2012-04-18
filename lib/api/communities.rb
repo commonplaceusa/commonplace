@@ -143,16 +143,18 @@ CONDITION
       control_access :admin
       
       serialize(Sunspot.search(Resident) do
-          all_of do
-            with :community_id, params[:id]
-            Array(params[:with].try(:split, ",")).each do |w|
-              with :tags, w
-            end
-            Array(params[:without].try(:split, ",")).each do |w|
-              without :tags, w
-            end
+        paginate :page => 1, :per_page => 9001
+        order_by :last_name
+        all_of do
+          with :community_id, params[:id]
+          Array(params[:with].try(:split, ",")).each do |w|
+            with :tags, w
           end
-        end)
+          Array(params[:without].try(:split, ",")).each do |w|
+            without :tags, w
+          end
+        end
+      end)
     end
 
     # Updates a community resident file
@@ -183,8 +185,8 @@ CONDITION
 
       Resident.find(params[:file_id]).add_log(
         request_body['date'],
-        request_body['text'], 
-        request_body['tags'])
+        request_body['text'],
+        [])
       200
     end
 
