@@ -18,24 +18,26 @@ class API
 
     # Receive incoming replies from mailgun
     post "/mailgun/posts" do
-      authentic_mailgun? || (halt 200)
+      authentic_mailgun? || (halt 401)
       begin
         MailgunPost.new(params).save
-      ensure
-        halt 200
+      rescue
+        halt 501
       end
+      200
     end
 
     # When a user marks us as spam, Mailgun lets us know, and we don't
     # send them any more emails
     post "/mailgun/disabled_emails" do
-      authentic_mailgun? || (halt 200)
+      authentic_mailgun? || (halt 401)
       begin
         User.find_by_email(params[:recipient])
           .update_attribute(:post_receive_method, "Never")
-      ensure
-        halt 200
+      rescue
+        halt 501
       end
+      200
     end
       
   end
