@@ -31,9 +31,11 @@ class MailgunPost
   def create_reply
     puts "Creating reply"
     puts "to: #{self.to}"
+    puts "from: #{self.from}"
     puts "repliable: #{self.to.match(/reply\+([a-zA-Z_0-9]+)/)[1]}"
     puts "body: #{self.body_text}"
     puts "user: #{self.user}"
+    puts "manual user: #{User.find_by_email(self.from).inspect}"
     if reply = Reply.create!(
         repliable: Repliable.find(self.to.match(/reply\+([a-zA-Z_0-9]+)/)[1]),
         body: self.body_text,
