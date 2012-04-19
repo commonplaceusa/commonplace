@@ -23,7 +23,7 @@ class API
       puts "Authentic"
       #begin
       #  puts "Creating post"
-        post = MailgunPost.new(request_body)
+        post = MailgunPost.new(params)
       #  puts "Made new post"
         post.save
       #  puts "Saved"
