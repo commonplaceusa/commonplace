@@ -19,8 +19,13 @@ class API
     # Receive incoming replies from mailgun
     post "/mailgun/posts" do
       authentic_mailgun? || (halt 401)
-      reply = MailgunPost.new(params)
-      reply.save
+      begin
+        reply = MailgunPost.new(params)
+        reply.save
+        200
+      rescue
+        halt 501
+      end
       200
     end
 
