@@ -21,14 +21,17 @@ class API
       puts "Post from Mailgun"
       authentic_mailgun? || (halt 200)
       puts "Authentic"
-      begin
-        puts "Creating post"
-        MailgunPost.new(request_body).save
-        puts "Done"
-      ensure
-        puts "Halting"
+      #begin
+      #  puts "Creating post"
+        post = MailgunPost.new(request_body)
+      #  puts "Made new post"
+        post.save
+      #  puts "Saved"
+      #  puts "Done"
+      #ensure
+      #  puts "Halting"
         halt 200
-      end
+      #end
     end
 
     # When a user marks us as spam, Mailgun lets us know, and we don't
