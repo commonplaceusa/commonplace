@@ -18,10 +18,15 @@ class API
 
     # Receive incoming replies from mailgun
     post "/mailgun/posts" do
+      logger.debug "Post from Mailgun"
       authentic_mailgun? || (halt 200)
+      logger.debug "Authentic"
       begin
+        logger.debug "Creating post"
         MailgunPost.new(request_body).save
+        logger.debug "Done"
       ensure
+        logger.debug "Halting"
         halt 200
       end
     end
