@@ -3,12 +3,20 @@ var MessageFormView = FormView.extend({
 
   save: function(callback) {
     var self = this;
+    var oldHTML = this.$(".controls").html();
+    this.$(".controls button").replaceWith("<img src='/assets/loading.gif' />");
     this.model.save({
       subject: this.$("[name=subject]").val(),
       body: this.$("[name=body]").val()
     }, {
-      success: function() { callback(); },
-      error: function(attribs, response) { self.showError(response); }
+      success: function() {
+        this.$(".controls").html(oldHTML);
+        callback();
+      },
+      error: function(attribs, response) {
+        this.$(".controls").html(oldHTML);
+        self.showError(response);
+      }
     });
   },
   
