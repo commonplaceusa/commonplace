@@ -1,0 +1,48 @@
+.badger-outter
+	{
+	/*background:#fff;*/
+  /*background: #f13c31;*/
+	/*border:1px solid #ccc;*/
+	min-width: 20px;
+	height: 20px;
+	/*border-radius: 10px;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 18px;*/
+
+	/*box-shadow:0px 1px 5px #ccc;
+	-moz-box-shadow:0px 1px 5px #ccc;
+	-webkit-box-shadow:0px 1px 5px #ccc;
+	*//*float:left;*/
+	position:relative;
+	top:-12px;
+	right:-12px;
+	z-index:9999;
+	}
+.badger-inner
+	{
+	min-width: 15px;
+	height: 15px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: #f13c31;
+	background: -moz-linear-gradient(100% 100% 90deg, #f13c31, #f79690);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f79690), to(#f13c31));
+    background: -webkit-linear-gradient(#f79690, #f13c31);
+    background: -o-linear-gradient(#f79690, #f13c31);
+    margin:3px;
+    z-index:99999;
+	}
+.badger-badge
+	{
+	color:#fff;
+	padding:2px 5px;
+	margin:0;
+	text-align:center;
+	text-shadow:0px -1px 1px #e01b0f;
+	z-index:999999;
+	}
+.badger-text
+	{ font-size:12px; }
+.badger-number
+	{ font-size:10px; }
