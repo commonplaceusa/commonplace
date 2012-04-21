@@ -57,10 +57,16 @@ var RepliesView = CommonPlace.View.extend({
   sendReply: function() {
     if (this.$("form textarea").val()) {
       this.cleanUpPlaceholders();
+      this.$("div.submit-c").addClass("waiting");
       this.collection.create(
-        { body: this.$("[name=body]").val() },
         {
-          success: _.bind(function() { this.collection.trigger("sync"); }, this),
+          body: this.$("[name=body]").val()
+        },
+        {
+          success: _.bind(function() {
+            this.$("div.submit-c").removeClass("waiting");
+            this.collection.trigger("sync");
+          }, this),
           wait: true
         }
       );
