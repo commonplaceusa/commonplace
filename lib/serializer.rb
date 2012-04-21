@@ -279,7 +279,8 @@ module Serializer
           "history" => "/account/history"
         },
         "metadata" => o.metadata,
-        "current_sign_in_ip" => o.current_sign_in_ip
+        "current_sign_in_ip" => o.current_sign_in_ip,
+        "unread" => o.unread
         }
 
       when Community
