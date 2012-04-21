@@ -33,6 +33,17 @@ var PostBox = CommonPlace.View.extend({
     }
     this.showTab(tab, e);
   },
+
+  absolutePosition: function(element) {
+    var curleft = curtop = 0;
+    if (element.offsetParent) {
+      do {
+        curleft += element.offsetLeft;
+        curtop += element.offsetTop;
+      } while (element = element.offsetParent);
+    }
+    return [curleft, curtop];
+  },
   
   showTab: function(tab, e) {
     var view;
@@ -48,6 +59,7 @@ var PostBox = CommonPlace.View.extend({
     
     view.render();
     this.$("form").replaceWith(view.el);
+    
 
     if (this.temp) {
       this.$("form input[name=title]").val(this.temp.title);
@@ -59,7 +71,14 @@ var PostBox = CommonPlace.View.extend({
     
     this.showWire(tab);
 
-
+    if (view.$el.height() + this.absolutePosition(view.el)[1] > $(window).height()) {
+      // Make the position fixed
+      var newHeight = $(window).height() - this.absolutePosition(view.el)[1] - 20;
+      view.$el.css("height", "" + newHeight + "px");
+      view.$el.css("width", view.$el.width() + 25 + "px");
+      view.$el.css("overflow-y", "scroll");
+      view.$el.css("overflow-x", "hidden");
+    }
 
     if (view.onFormFocus) { view.onFormFocus(); }
   },
