@@ -2,23 +2,23 @@
 var PostBox = CommonPlace.View.extend({
   template: "main_page.post-box",
   id: "post-box",
-  
+
   events: {
     "click .navigation li": "clickTab"
   },
-  
+
   afterRender: function() {
     this.temp = {};
     this.showTab("nothing");
   },
-  
+
   clickTab: function(e) {
     e.preventDefault();
     // DETERMINE WHAT TO DO WITH URLS WHEN WE CLICK
     this.switchTab($(e.target).attr("data-tab"), e);
     $("#first_post_tooltip").hide();
   },
-  
+
   switchTab: function(tab, e) {
     if (this.$("form input").length) {
       var $title = this.$("[name=title]");
@@ -44,31 +44,31 @@ var PostBox = CommonPlace.View.extend({
     }
     return [curleft, curtop];
   },
-  
+
   showTab: function(tab, e) {
     var view;
     $("#invalid_post_tooltip").hide();
-    
+
     this.$("li.current").removeClass("current");
-    
+
     if (tab == "announcement") { tab = "publicity"; }
     if (tab == "group_post") { tab = "group"; }
-    
+
     this.$("li." + tab).addClass("current");
     view = this.tabs(tab);
-    
+
     view.render();
     this.$("form").replaceWith(view.el);
-    
+
 
     if (this.temp) {
       this.$("form input[name=title]").val(this.temp.title);
       this.$("form textarea[name=body]").val(this.temp.body);
       this.$("form textarea[name=about]").val(this.temp.body);
     }
-    this.$("[placeholder]").placeholder();    
+    this.$("[placeholder]").placeholder();
     CommonPlace.layout.reset();
-    
+
     this.showWire(tab);
 
     if (view.$el.height() + this.absolutePosition(view.el)[1] > $(window).height()) {
@@ -82,7 +82,7 @@ var PostBox = CommonPlace.View.extend({
 
     if (view.onFormFocus) { view.onFormFocus(); }
   },
-  
+
   tabs: function(tab) {
     var view;
     var constant = {
@@ -114,20 +114,20 @@ var PostBox = CommonPlace.View.extend({
         template: "main_page.forms.post-meetup-form"
       }); }
     };
-    
+
     if (!constant[tab]) {
       view = new AnnouncementForm({
         feed_id: tab.split("-").pop()
       });
     } else { view = constant[tab](); }
-    
+
     return view;
   },
-  
+
   groups: function() {
     return CommonPlace.community.get("groups");
   },
-  
+
   showWire: function(tab) {
     if (tab != "nothing") {
       if (tab.search("feed") > -1) { tab = "announcements"; }
@@ -138,9 +138,9 @@ var PostBox = CommonPlace.View.extend({
       }
     }
   },
-  
+
   feeds: function() { return CommonPlace.account.get("feeds"); }
-  
-  
+
+
 });
 
