@@ -2,6 +2,12 @@ var HeaderNav = CommonPlace.View.extend({
   template: "shared.header-nav",
   className: "nav",
 
+  afterRender: function() {
+    if (this.hasUnreadMessages()) {
+      this.$(".inbox .file").badger("" + this.unreadMessages());
+    }
+  },
+
   slug: function() {
     if (CommonPlace.account.isAuth()) {
       return CommonPlace.account.get("community_slug");
@@ -28,6 +34,10 @@ var HeaderNav = CommonPlace.View.extend({
   
   feeds: function() { return CommonPlace.account.get("feeds"); },
   
-  activityIsEnabled: function() { return this.isActive("CPCreditsHeaderView"); }
+  activityIsEnabled: function() { return this.isActive("CPCreditsHeaderView"); },
+
+  unreadMessages: function() { return CommonPlace.account.get("unread"); },
+
+  hasUnreadMessages: function() { return this.unreadMessages() !== 0; }
 
 });
