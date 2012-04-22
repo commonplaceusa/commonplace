@@ -10,6 +10,7 @@ var HeaderView = CommonPlace.View.extend({
     } else {
       nav = new HeaderLogin();
     }
+    window.HeaderNav = nav;
     nav.render();
     this.$(".nav").replaceWith(nav.el);
   },
