@@ -271,6 +271,7 @@ var CommunityResources = CommonPlace.View.extend({
   
   showSingleItem: function(model, kind, options) {
     this.model = model;
+    this.isSingle = true;
     var self = this;
     var wire = new LandingPreview({
       template: options.template,
@@ -287,10 +288,12 @@ var CommunityResources = CommonPlace.View.extend({
   },
 
   showProfile: function(e) {
-    var user = new User({
-      links: { self: this.model.link("author") }
-    });
-    this.options.showProfile(user);
+    if (this.isSingle) {
+      var user = new User({
+        links: { self: this.model.link("author") }
+      });
+      this.options.showProfile(user);
+    }
   },
   
   showUserWire: function(user) {
