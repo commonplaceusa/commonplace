@@ -19,11 +19,11 @@ module Serializer
 
       when Thank
       {
-        "thanker" => o.user.name,
-        "avatar_url" => o.user.avatar_url(:normal),
-        "thanker_link" => "/users/#{o.user_id}",
-        "thankable_type" => o.thankable_type,
-        "thankable_author" => o.thankable.user.name
+        "thanker" => o.user.name || "",
+        "avatar_url" => o.user.avatar_url(:normal) || "",
+        "thanker_link" => "/users/#{o.user_id || ''}",
+        "thankable_type" => o.thankable_type || "",
+        "thankable_author" => o.thankable.user.name || ""
       }
 
       when NamedPoint
