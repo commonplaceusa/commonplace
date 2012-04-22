@@ -11,6 +11,16 @@
     <link href="/assets/favicon.png" rel="icon" type="image/png">
 
     <link href="/assets/application.css" rel="stylesheet" type="text/css">
+
+    <% if Rails.env.production? %>
+    <script type="text/javascript">
+      var _errs=["4f947d86c30155957702de85"];(function(a,b){a.onerror=function(){_errs.push(arguments)};
+      var d=function(){var a=b.createElement("script"),c=b.getElementsByTagName("script")[0];
+      a.src="//d15qhc0lu1ghnk.cloudfront.net/beacon.js";a.async=!0;
+      c.parentNode.insertBefore(a,c)};a.addEventListener?a.addEventListener("load",d,!1):
+      a.attachEvent("onload",d)})(window,document);
+    </script>
+    <% end %>
   </head>
 
   <body class="application">
