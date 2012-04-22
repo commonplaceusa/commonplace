@@ -14,6 +14,12 @@ class Administration < Sinatra::Base
     haml :view_messages
   end
 
+  get "/view_messages_since/:datestamp" do |datestamp|
+    date = Time.at(datestamp.to_i)
+    @messages = Message.between(date, DateTime.now.to_time).order("id desc").sort { |x, y| y.replied_at <=> x.replied_at }
+    haml :view_messages
+  end
+
   # Export Community data as csvs
   get "/:community/export_csv" do |community|
     response.headers['content_type'] = 'text/csv'
