@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 
   belongs_to :community
   belongs_to :neighborhood  
-  has_many :thanks
+  has_many :thanks, :dependent => :destroy
   
   has_many :swipes
   has_many :swiped_feeds, :through => :swipes, :class_name => "Feed", :source => :feed
