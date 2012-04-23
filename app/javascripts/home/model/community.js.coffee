@@ -8,3 +8,8 @@ Home.model.Community = Backbone.Model.extend
     neighbors.url = "/api" + this.get("links").users
     neighbors.fetch params
 
+
+  getPosts: (params) ->
+    posts = new Backbone.Collection()
+    posts.url = "/api" + this.get("links").posts
+    posts.fetch params

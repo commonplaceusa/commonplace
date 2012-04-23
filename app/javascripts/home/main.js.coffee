@@ -7,7 +7,6 @@ $ ->
     success: ->
       window.router = new Home.Router();
       window.router.community = community
-
       Backbone.history.start(pushState: true)
 
 

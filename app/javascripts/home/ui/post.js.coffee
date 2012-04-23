@@ -3,5 +3,9 @@ Home.ui.Post = Framework.View.extend
 
   className: "wire"
 
-  render: -> this.$el.html this.renderTemplate()
+  render: ->
+    presenter = new Home.presenter.Post(this.model)
+    this.$el.html this.renderTemplate(presenter.toJSON())
+
+
 
