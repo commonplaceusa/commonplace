@@ -10,8 +10,6 @@ Home.Router = Backbone.Router.extend
     sidebar = new Home.ui.Sidebar el: $("#sidebar")
     sidebar.render()
 
-    post = new Home.ui.Post
-    post.render()
-    $(".main").append post.el
-
+    content = new Home.ui.CommunityContent el: $("#content")
+    content.render()
 
