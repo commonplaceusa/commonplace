@@ -7,4 +7,5 @@
 
 window.Home = {
   ui: {}
+  model: {}
 }

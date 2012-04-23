@@ -1,12 +1,17 @@
 $ ->
-  header = new Home.ui.Header el: $("header")
-  header.render()
 
-  sidebar = new Home.ui.Sidebar el: $("#sidebar")
-  sidebar.render()
+  slug = window.location.pathname.split("/")[1]
+  community = new Home.model.Community(slug: slug)
 
-  post = new Home.ui.Post
-  post.render()
-  $(".main").append post.el
+  community.fetch
+    success: ->
+      window.router = new Home.Router();
+      window.router.community = community
+
+      Backbone.history.start(pushState: true)
+
+
+
+
 
 
