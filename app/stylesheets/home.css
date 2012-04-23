@@ -1,0 +1,522 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.alpha.0/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* line 20, ../../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.alpha.0/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+body {
+  line-height: 1;
+}
+
+/* line 22, ../../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.alpha.0/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 24, ../../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.alpha.0/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.alpha.0/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.alpha.0/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 101, ../../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.alpha.0/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 30, ../../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.alpha.0/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 114, ../../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.alpha.0/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* Woo colors */
+/* Woo Fonts */
+/* Woo Shadows */
+/* Woo Buttons */
+/* line 30, ../sass/screen.sass */
+.red-button {
+  background: #ac322f;
+  border-radius: 4px;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  font-weight: bold;
+  font-family: RockwellSTD, Rockwell, sans-serif;
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
+  border: 1px solid;
+  border-color: #70211f;
+  box-shadow: inset 0px 1px 0px 0px #d56360;
+  padding: 15px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+/* Overall Styles */
+/* line 48, ../sass/screen.sass */
+.right {
+  float: right;
+}
+
+/* line 50, ../sass/screen.sass */
+.left {
+  float: left;
+}
+
+/* line 52, ../sass/screen.sass */
+.clear {
+  clear: both;
+}
+
+/* line 54, ../sass/screen.sass */
+.full-width {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+/* line 58, ../sass/screen.sass */
+html {
+  background: url(../images/bg.jpg) no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+}
+
+/* line 63, ../sass/screen.sass */
+header {
+  height: 60px;
+  width: 100%;
+  background: #1b334a;
+  position: fixed;
+  z-index: 9999;
+  box-shadow: 0px 1px 10px #434343;
+  border: 2px solid #32485c;
+  border-left: none;
+  border-right: none;
+}
+/* line 73, ../sass/screen.sass */
+header .community-name {
+  width: 269px;
+  float: left;
+  padding-left: 15px;
+  background: url("../images/commonplace-icon.png") no-repeat;
+  padding-left: 60px;
+  height: 60px;
+  background-position: 20px 14px;
+  position: relative;
+  border-right: 1px solid #151f28;
+  border-left: 1px solid #151f28;
+  box-shadow: inset 1px 0 0 #32485c;
+}
+/* line 85, ../sass/screen.sass */
+header .community-name h1 {
+  color: white;
+  font-weight: bold;
+  text-shadow: 0px 2px 1px black;
+  font-size: 21px;
+  margin-top: 22px;
+  font-family: RockwellSTD, Rockwell, sans-serif;
+}
+/* line 92, ../sass/screen.sass */
+header .right {
+  width: 280px;
+}
+/* line 94, ../sass/screen.sass */
+header .top-bar {
+  width: 667px;
+  float: right;
+  border-left: 1px solid #32485c;
+  height: 60px;
+  border-right: 1px solid #32485c;
+  box-shadow: inset -1px 0px 0px 0px #151f28;
+}
+/* line 101, ../sass/screen.sass */
+header .top-bar h2 {
+  float: left;
+  margin-top: 21px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0px 2px 1px black;
+  font-size: 21px;
+  font-family: RockwellSTD, Rockwell, sans-serif;
+  margin-left: 20px;
+}
+/* line 111, ../sass/screen.sass */
+header .top-bar .right input[type=text] {
+  font-size: 12px;
+  width: 150px;
+  box-shadow: inset 0 1px 1px black;
+  margin-top: 13px;
+  font-weight: bold;
+  float: left;
+  border: 1px solid #151f28;
+  border-radius: 5px;
+  padding: 7px;
+  background-color: #b7c3cf;
+  outline: none;
+}
+/* line 123, ../sass/screen.sass */
+header .top-bar .right input::-webkit-input-placeholder {
+  color: #1b334a;
+}
+/* line 126, ../sass/screen.sass */
+header .top-bar .right .messages {
+  background: url(../images/mail-icon.png) no-repeat;
+  width: 29px;
+  height: 22px;
+  float: left;
+  display: block;
+  text-indent: -9999px;
+  margin-top: 17px;
+  margin-left: 20px;
+}
+/* line 135, ../sass/screen.sass */
+header .top-bar .right .settings {
+  background: url(../images/settings-icon.png) no-repeat;
+  height: 24px;
+  margin-left: 20px;
+  margin-top: 17px;
+  width: 24px;
+  float: left;
+  display: block;
+  text-indent: -9999px;
+}
+
+/* line 144, ../sass/screen.sass */
+aside {
+  width: 330px;
+  background: #eeecdf;
+  position: fixed;
+  display: block;
+  height: 100%;
+  margin-top: 64px;
+  z-index: 999;
+}
+/* line 152, ../sass/screen.sass */
+aside .red-button {
+  width: 77%;
+  text-align: center;
+  vertical-align: center;
+  padding-bottom: 10px;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+/* line 159, ../sass/screen.sass */
+aside ul.post-box {
+  margin: 0;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+}
+/* line 165, ../sass/screen.sass */
+aside ul.post-box li {
+  margin-bottom: 5px;
+  background: url(../images/topics-icon-lrg.png) no-repeat;
+  height: 26px;
+  padding-left: 35px;
+  padding-top: 6px;
+}
+/* line 171, ../sass/screen.sass */
+aside ul.post-box li a {
+  text-decoration: none;
+  color: #1b334a;
+  font-family: RockwellSTD, Rockwell, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 1px 1px 1px white;
+}
+/* line 178, ../sass/screen.sass */
+aside ul.post-box li .number-of {
+  font-weight: normal;
+  font-size: 14px;
+}
+/* line 181, ../sass/screen.sass */
+aside .your-neighbors {
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+/* line 185, ../sass/screen.sass */
+aside .your-neighbors h3 {
+  font-family: RockwellSTD, Rockwell, sans-serif;
+  font-size: 14px;
+  color: #1b334a;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px white;
+  border-bottom: 1px solid #1b334a;
+  padding-bottom: 7px;
+}
+/* line 194, ../sass/screen.sass */
+aside .your-neighbors .neighbor {
+  border-bottom: 1px solid;
+  border-color: #bbbbbb;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  border-top: 1px solid white;
+  height: 45px;
+}
+/* line 201, ../sass/screen.sass */
+aside .your-neighbors .neighbor:last-child {
+  border-bottom: none;
+}
+/* line 203, ../sass/screen.sass */
+aside .your-neighbors .neighbor h4 {
+  font-family: RockwellSTD, Rockwell, sans-serif;
+  color: #333333;
+  font-weight: bold;
+  font-size: 14px;
+}
+/* line 208, ../sass/screen.sass */
+aside .your-neighbors .neighbor p {
+  font-family: Helvetica Neue, Helvetica, Tahoma, serif;
+  font-size: 13px;
+  color: #666666;
+  margin-top: 5px;
+}
+/* line 213, ../sass/screen.sass */
+aside .your-neighbors .neighbor img {
+  height: 45px;
+  width: 45px;
+  padding-right: 8px;
+  float: left;
+}
+/* line 218, ../sass/screen.sass */
+aside .town-map {
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+/* line 222, ../sass/screen.sass */
+aside .town-map h3 {
+  font-family: RockwellSTD, Rockwell, sans-serif;
+  font-size: 14px;
+  color: #1b334a;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px white;
+  border-bottom: 1px solid #1b334a;
+  padding-bottom: 7px;
+}
+/* line 230, ../sass/screen.sass */
+aside .town-map img {
+  margin-top: 15px;
+  border: 1px solid;
+  border-color: #bbbbbb;
+}
+
+/* line 235, ../sass/screen.sass */
+.main {
+  overflow: hidden;
+  position: relative;
+  height: auto;
+  width: 670px;
+  left: 330px;
+  top: 64px;
+  background-color: rgba(27, 51, 74, 0.4);
+}
+/* line 243, ../sass/screen.sass */
+.main .wire {
+  min-height: 100px;
+  background: white;
+  border-radius: 4px;
+  margin: 20px;
+}
+/* line 248, ../sass/screen.sass */
+.main .wire .wire-top {
+  height: 30px;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: #e8e8e8;
+  box-shadow: inset 0px 1px 0px 0px white;
+  border-bottom: 1px solid;
+  border-color: #bbbbbb;
+}
+/* line 257, ../sass/screen.sass */
+.main .wire .wire-top h3 {
+  font-family: RockwellSTD, Rockwell, sans-serif;
+  float: left;
+  color: #1b334a;
+  font-weight: bold;
+  font-size: 15px;
+  padding-left: 30px;
+  padding-top: 10px;
+}
+/* line 265, ../sass/screen.sass */
+.main .wire .wire-top p {
+  font-family: Helvetica Neue, Helvetica, Tahoma, serif;
+  font-size: 12px;
+  color: #6f6f6f;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px white;
+  float: right;
+  padding-top: 8px;
+  padding-right: 10px;
+}
+/* line 274, ../sass/screen.sass */
+.main .wire .post-content {
+  padding: 10px;
+}
+/* line 276, ../sass/screen.sass */
+.main .wire .post-content h3, .main .wire .post-content p {
+  margin-left: 60px;
+  font-family: Helvetica Neue, Helvetica, Tahoma, serif;
+  color: #333333;
+}
+/* line 280, ../sass/screen.sass */
+.main .wire .post-content h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+/* line 284, ../sass/screen.sass */
+.main .wire .post-content p.author {
+  font-size: 12px;
+  color: #1b334a;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+/* line 289, ../sass/screen.sass */
+.main .wire .post-content p.post-text {
+  font-size: 14px;
+  line-height: 18px;
+}
+/* line 292, ../sass/screen.sass */
+.main .wire .post-content img {
+  height: 45px;
+  width: 45px;
+  border-radius: 4px;
+  float: left;
+}
+/* line 297, ../sass/screen.sass */
+.main .wire .post-action {
+  padding: 10px;
+  padding-top: 0;
+  margin-left: 60px;
+  font-family: Helvetica Neue, Helvetica, Tahoma, serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ac322f;
+  padding-bottom: 20px;
+  margin-top: 10px;
+}
+/* line 308, ../sass/screen.sass */
+.main .wire .post-action span.thank {
+  color: #888888;
+}
+/* line 310, ../sass/screen.sass */
+.main .wire .post-action p {
+  float: left;
+}
+/* line 312, ../sass/screen.sass */
+.main .wire .post-action p.how-many {
+  float: right;
+  color: #888888;
+  text-shadow: 1px 1px 1px white;
+  text-transform: none;
+  font-size: 11px;
+}
+/* line 318, ../sass/screen.sass */
+.main .wire .post-replies {
+  padding: 10px;
+}
+/* line 320, ../sass/screen.sass */
+.main .wire .post-replies p {
+  margin-left: 60px;
+  padding-top: 10px;
+}
+/* line 323, ../sass/screen.sass */
+.main .wire .post-replies p.author {
+  font-size: 12px;
+  color: #1b334a;
+  font-weight: bold;
+  font-family: Helvetica Neue, Helvetica, Tahoma, serif;
+  float: left;
+  margin-left: 20px;
+  margin-right: 10px;
+  vertical-align: bottom;
+}
+/* line 332, ../sass/screen.sass */
+.main .wire .post-replies p.reply-text {
+  border-top: 1px solid;
+  border-color: #c8c8c8;
+  font-size: 13px;
+  font-family: Helvetica Neue, Helvetica, Tahoma, serif;
+}
+/* line 337, ../sass/screen.sass */
+.main .wire .post-replies p.reply-time {
+  margin-top: 5px;
+  font-size: 11px;
+  font-family: Helvetica Neue, Helvetica, Tahoma, serif;
+  padding-top: 0;
+  color: #1b334a;
+}
+/* line 343, ../sass/screen.sass */
+.main .wire .post-replies img {
+  width: 25px;
+  padding-top: 10px;
+  height: 25px;
+  float: left;
+  margin-left: 15px;
+}
+/* line 349, ../sass/screen.sass */
+.main .wire .reply {
+  margin-left: 60px;
+  padding: 10px;
+  padding-top: 0;
+}
+/* line 353, ../sass/screen.sass */
+.main .wire .reply .reply-box {
+  outline: none;
+  width: 534px;
+  padding: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  border: 1px solid;
+  border-color: #bbbbbb;
+}
+/* line 363, ../sass/screen.sass */
+.main .wire .reply .reply-box:focus {
+  box-shadow: 0 0 5px #ac322f;
+  -webkit-transition: box-shadow 150ms ease-in;
+}

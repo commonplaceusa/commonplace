@@ -115,6 +115,10 @@ class Bootstrapper < Sinatra::Base
     erb :organizer_app
   end
 
+  get ":community/home" do
+    erb :home
+  end
+
   get %r{([\w]+)/.*} do
     set_account
     @community = Community.find_by_slug(params[:captures].first)
