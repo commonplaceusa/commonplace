@@ -8,8 +8,10 @@ window.Framework.View = Backbone.View.extend
   #   params - the params object to render with
   #
   # Returns a string of HTML
-  renderTemplate: (params) ->
-    templateName = this.getTemplate()
+  renderTemplate: (templateName, params) ->
+    if typeof templateName != "string"
+      params = templateName
+      templateName = this.getTemplate()
     if !Templates[templateName]
       throw new Error("template '" + templateName + "' does not exist");
 
