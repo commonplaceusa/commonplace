@@ -2,9 +2,16 @@ $ ->
 
   slug = window.location.pathname.split("/")[1]
 
-  account = new Home.model.Account
+  $("body").delegate "a[data-remote]", "click", (e) ->
+    e.preventDefault()
+    path = e.currentTarget.pathname
+    Backbone.history.navigate path, true
 
   window.router = new Home.Router();
+
+  account = new Home.model.Account
+
+
 
   (new Home.model.Account).fetch
 
