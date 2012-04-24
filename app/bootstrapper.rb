@@ -115,7 +115,7 @@ class Bootstrapper < Sinatra::Base
     erb :organizer_app
   end
 
-  get ":community/home" do
+  get %r{([\w]+)/home.*} do
     erb :home
   end
 
