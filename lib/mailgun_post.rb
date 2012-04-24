@@ -2,6 +2,9 @@ class MailgunPost
 
   EMAIL_BLACKLIST = [
     'reservations@myusairways.com',
+    'bounces.usair@myusairways.com',
+    'support@myusairways.com',
+    'usair@myusairways.com',
     'kari.dziedzic@co.hennepin.mn.us'
   ]
 
