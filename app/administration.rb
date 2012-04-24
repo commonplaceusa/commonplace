@@ -16,7 +16,7 @@ class Administration < Sinatra::Base
 
   get "/view_messages_since/:datestamp" do |datestamp|
     date = Time.at(datestamp.to_i)
-    @messages = Message.between(date, DateTime.now.to_time).order("id desc").sort { |x, y| y.replied_at <=> x.replied_at }
+    @messages = Message.between(date, DateTime.now.to_time).sort { |x, y| y.replied_at <=> x.replied_at }
     haml :view_messages
   end
 

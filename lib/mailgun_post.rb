@@ -1,5 +1,10 @@
 class MailgunPost
 
+  EMAIL_BLACKLIST = [
+    'reservations@myusairways.com',
+    'kari.dziedzic@co.hennepin.mn.us'
+  ]
+
   def initialize(params)
     @params = params
   end
@@ -29,7 +34,7 @@ class MailgunPost
   end
 
   def create_reply
-    unless self.user.disabled?
+    unless EMAIL_BLACKLIST.include? self.from
       if reply = Reply.create!(
           repliable: Repliable.find(self.to.match(/reply\+([a-zA-Z_0-9]+)/)[1]),
           body: self.body_text,
