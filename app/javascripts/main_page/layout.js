@@ -33,10 +33,12 @@ var FixedLayout = function() {
   }
 
   function adjustWireElementsHorizontally() {
-    var left = $("#community-resources").offset().left;
-    $("#community-resources .navigation").css({ left: left });
-    $("#community-resources .sticky").css({ left: left });
-    $("#community-resources-spacer").css({ left: left });
+    if ($("#community-resources").offset() !== undefined) {
+      var left = $("#community-resources").offset().left;
+      $("#community-resources .navigation").css({ left: left });
+      $("#community-resources .sticky").css({ left: left });
+      $("#community-resources-spacer").css({ left: left });
+    }
   }
 
   this.reset = function() {
