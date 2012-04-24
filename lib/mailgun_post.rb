@@ -29,11 +29,13 @@ class MailgunPost
   end
 
   def create_reply
-    if reply = Reply.create!(
-        repliable: Repliable.find(self.to.match(/reply\+([a-zA-Z_0-9]+)/)[1]),
-        body: self.body_text,
-        user: self.user)
-      KickOff.new.deliver_reply(reply)
+    unless self.user.disabled?
+      if reply = Reply.create!(
+          repliable: Repliable.find(self.to.match(/reply\+([a-zA-Z_0-9]+)/)[1]),
+          body: self.body_text,
+          user: self.user)
+        KickOff.new.deliver_reply(reply)
+      end
     end
   end
 

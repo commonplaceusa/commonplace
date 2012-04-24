@@ -38,12 +38,12 @@ class User < ActiveRecord::Base
   geocoded_by :normalized_address
 
   belongs_to :community
-  belongs_to :neighborhood  
+  belongs_to :neighborhood
   has_many :thanks, :dependent => :destroy
-  
+
   has_many :swipes
   has_many :swiped_feeds, :through => :swipes, :class_name => "Feed", :source => :feed
-  
+
   def organizer_data_points
     OrganizerDataPoint.find_all_by_organizer_id(self.id)
   end
@@ -54,17 +54,17 @@ class User < ActiveRecord::Base
   validates_presence_of :community
   validates_presence_of :address, :on => :create, :unless => :is_transitional_user, :message => "Please provide a street address so CommonPlace can verify that you live in our community."
   validates_presence_of :address, :on => :update
-  
 
-  validates_presence_of :first_name, :unless => :is_transitional_user 
+
+  validates_presence_of :first_name, :unless => :is_transitional_user
   validate :validate_first_and_last_names, :unless => :is_transitional_user
 
   validates_presence_of :neighborhood, :unless => :is_transitional_user
   validates_uniqueness_of :facebook_uid, :allow_blank => true
 
-  scope :between, lambda { |start_date, end_date| 
-    { :conditions => 
-      ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] } 
+  scope :between, lambda { |start_date, end_date|
+    { :conditions =>
+      ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] }
   }
 
   scope :today, { :conditions => ["created_at between ? and ?", DateTime.now.utc.beginning_of_day, DateTime.now.utc.end_of_day] }
@@ -77,20 +77,20 @@ class User < ActiveRecord::Base
 
   # HACK HACK HACK avatar_url should not be hardcoded like this
   scope :pretty, { :conditions => ["about != '' OR goods != '' OR interests != '' OR avatar_file_name IS NOT NULL"] }
-  
+
   scope :have_sent_messages, lambda {|user| joins(:received_messages).where(messages: { user_id: user.id }) }
 
   def facebook_user?
     self.facebook_uid?
   end
-  
+
   def validate_password?
     if facebook_user?
       return false
     end
     return true
   end
-  
+
   validates_presence_of :encrypted_password, :if => :validate_password?
 
   validates_presence_of :email
@@ -151,23 +151,23 @@ class User < ActiveRecord::Base
   has_many :messages
 
   has_many :mets, :foreign_key => "requester_id"
-  
+
   has_many :people, :through => :mets, :source => "requestee"
 
   include CroppableAvatar
-  has_attached_file(:avatar,                    
-                    {:styles => { 
+  has_attached_file(:avatar,
+                    {:styles => {
                         :thumb => {:geometry => "100x100", :processors => [:cropper]},
                         :normal => {:geometry => "120x120", :processors => [:cropper]},
                         :large => {:geometry => "200x200", :processors => [:cropper]},
                         :original => "1000x1000>"
                       },
                       :default_url => "https://s3.amazonaws.com/commonplace-avatars-production/missing.png"
-                    }.merge(Rails.env.development? || Rails.env.test? ? 
-                            { :path => ":rails_root/public/system/users/:id/avatar/:style.:extension", 
+                    }.merge(Rails.env.development? || Rails.env.test? ?
+                            { :path => ":rails_root/public/system/users/:id/avatar/:style.:extension",
                               :storage => :filesystem,
                               :url => "/system/users/:id/avatar/:style.:extension"
-                            } : { 
+                            } : {
                               :storage => :s3,
                               :s3_protocol => "https",
                               :bucket => "commonplace-avatars-#{Rails.env}",
@@ -177,7 +177,7 @@ class User < ActiveRecord::Base
                                 :secret_access_key => ENV['S3_KEY_SECRET']
                               }
                             }))
-  
+
   acts_as_api
 
   api_accessible :default do |t|
@@ -200,7 +200,7 @@ class User < ActiveRecord::Base
   end
 
   def links
-    { 
+    {
       "messages" => "/users/#{id}/messages",
       "self" => "/users/#{id}",
       "postlikes" => "/users/#{id}/postlikes",
@@ -230,8 +230,8 @@ class User < ActiveRecord::Base
 
   def validate_first_and_last_names
     errors.add(:full_name, "CommonPlace requires people to register with their first \& last names.") if first_name.blank? || last_name.blank?
-  end 
-  
+  end
+
   def daily_subscribed_announcements
     self.subscriptions.all(:conditions => "receive_method = 'Daily'").
       map(&:feed).map(&:announcements).flatten
@@ -266,7 +266,7 @@ class User < ActiveRecord::Base
       ((item.is_a?(Event) ? item.start_datetime : item.created_at) - Time.now).abs
     end
   end
-  
+
   def role_symbols
     if new_record?
       [:guest]
@@ -298,15 +298,15 @@ class User < ActiveRecord::Base
                                   :community => self.community.name)
     end
   end
-  
+
   def is_facebook_user
     facebook_uid.present?
   end
-  
+
   def facebook_avatar_url
     "https://graph.facebook.com/" + self.facebook_uid.to_s + "/picture/?type=large"
   end
-  
+
   def avatar_url(style_name = nil)
     if is_facebook_user && !self.avatar.file?
       facebook_avatar_url
@@ -491,7 +491,7 @@ WHERE
   def all_cpcredits
     self.posts.count + self.replies.count + self.replies_received.count + self.events.count + self.all_invitations.count + self.thanks.count + self.thanks_received.count
   end
-  
+
   def featured # not user-relevant yet
     self.community.users.reorder("
       (Case When avatar_file_name IS NOT NULL Then 1 Else 0 End)
@@ -501,10 +501,10 @@ WHERE
 
 
   def profile_history_elements
-    self.posts + 
-      self.direct_events + 
-      self.announcements + 
-      self.group_posts + 
+    self.posts +
+      self.direct_events +
+      self.announcements +
+      self.group_posts +
       self.replies.where("repliable_type != 'Message'")
   end
 
@@ -515,12 +515,16 @@ WHERE
       .map {|e| e.as_api_response(:history) }
   end
 
+  def disabled?
+    self.disabled
+  end
+
   searchable do
     text :name do
       self.name
     end
   end
-  
+
   def activity
     Activity.new(self)
   end
@@ -553,5 +557,5 @@ WHERE
   def is_transitional_user
     transitional_user
   end
-  
+
 end
