@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/gdb/embedded-mongo.git
+  revision: 06db599985c6a5877fe33508623aa046515523a4
+  specs:
+    embedded-mongo (0.0.1)
+      mongo
+
+GIT
   remote: git://github.com/sferik/rails_admin.git
   revision: c70beff76fdad15e09b197387ed0a8df4ee47924
   specs:
@@ -39,7 +46,6 @@ GIT
       sqlite3-ruby
 
 GEM
-  remote: http://rubygems.org/
   specs:
     RedCloth (4.2.9)
     actionmailer (3.2.3)
@@ -452,6 +458,7 @@ DEPENDENCIES
   delayed_job
   delayed_job_active_record
   devise
+  embedded-mongo!
   exceptional
   factory_girl
   foreman

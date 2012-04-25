@@ -3,4 +3,10 @@ MongoMapper.config = {
     'uri' => ENV['MONGOLAB_URI'] || 'mongodb://localhost/commonplace_stats'
   }
 }
-MongoMapper.connect(Rails.env)
+
+if Rails.env.production?
+  MongoMapper.connect(Rails.env)
+else
+  MongoMapper.connection = EmbeddedMongo::Connection.new
+  MongoMapper.database = 'commonplace_embeddable'
+end
