@@ -1,4 +1,3 @@
-source :gemcutter
 
 gem 'rails', "~> 3.2.0"
 gem 'sass-rails'
@@ -24,6 +23,7 @@ gem 'glebm-geokit', :require => 'geokit' # use this to find latlngs from address
 # MongoDB
 gem 'bson_ext'
 gem 'mongo_mapper' # used to represent site visits
+gem 'embedded-mongo', :git => "git://github.com/gdb/embedded-mongo.git"
 
 # Deployment
 gem 'thin' # lighter than mongrel, faster than webrick
