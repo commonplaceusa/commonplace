@@ -41,6 +41,7 @@ gem 'aws-s3', :require => 'aws/s3' # storing avatars and stuff
 gem 'amazon-ec2', :require => 'AWS' # managing instances
 
 # Worker Jobs
+gem 'mock_redis', :git => "https://github.com/causes/mock_redis.git"
 gem 'redis' # for queueing with resque
 gem 'redis-namespace', :require => false # resque wants it, we don't need to require it
 gem 'mcbean' # We use this to pull data from rss feeds for import
