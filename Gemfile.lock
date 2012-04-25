@@ -35,6 +35,12 @@ GIT
       oauth (= 0.3.6)
 
 GIT
+  remote: https://github.com/causes/mock_redis.git
+  revision: 76d569567a16b7e6b8806489cc629b6d225bcf22
+  specs:
+    mock_redis (0.4.1)
+
+GIT
   remote: https://github.com/dabio/taps.git
   revision: a56d8e8494d6bcb529628ee602b9198086a20b9c
   specs:
@@ -486,6 +492,7 @@ DEPENDENCIES
   libnotify
   mail
   mcbean
+  mock_redis!
   mongo_mapper
   mustache
   newrelic_rpm
