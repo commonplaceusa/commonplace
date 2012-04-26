@@ -54,7 +54,7 @@ var RepliesView = CommonPlace.View.extend({
     return this._hiddenReplyCount;
   },
 
-  sendReply: function() {
+  sendReply: _.throttle(function() {
     if (this.$("form textarea").val()) {
       this.cleanUpPlaceholders();
       this.$("div.submit-c").addClass("waiting");
@@ -71,7 +71,7 @@ var RepliesView = CommonPlace.View.extend({
         }
       );
     }
-  },
+  }, 1000),
 
   showMoreReplies: function(event){
     event.preventDefault();
