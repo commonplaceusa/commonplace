@@ -1,6 +1,7 @@
 //= require showdown
 //= require jquery
 //= require jquery-ui
+//= require jquery-badger
 //= require underscore
 //= require mustache
 //= require json2
