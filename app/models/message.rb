@@ -47,6 +47,6 @@ class Message < ActiveRecord::Base
   # Returns true if the user is the owner of the message or any of the 
   # message's replies
   def thread_member?(user)
-    user == self.user || self.replies.map(&:user).include?(user)
+    user == self.user || (messagable_type == "User" && messagable_id == user.id) || self.replies.map(&:user).include?(user)
   end
 end
