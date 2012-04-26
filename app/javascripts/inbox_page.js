@@ -24,7 +24,7 @@ var InboxPage = CommonPlace.View.extend({
         });
         this.$("div#message-list.loading").removeClass("loading");
         this.listview.render();
-        window.HeaderNav.clearUnreadMessages();
+        window.HeaderNavigation.clearUnreadMessages();
       }, this)
     });
   },
