@@ -33,7 +33,7 @@ var FixedLayout = function() {
   }
 
   function adjustWireElementsHorizontally() {
-    if ($("#community-resources").offset() !== undefined) {
+    if ($("#community-resources").offset()) {
       var left = $("#community-resources").offset().left;
       $("#community-resources .navigation").css({ left: left });
       $("#community-resources .sticky").css({ left: left });
