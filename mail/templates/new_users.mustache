@@ -1,7 +1,13 @@
 
 {{day}}<br><br>
 
-"name", "email", "address", "id"<br>
-{{#users}}
-"{{full_name}}", "{{email}}", "{{address}}", "{{id}}"<br>
-{{/users}}
+<table>
+  <tr>
+    <th>name</th><th>email</th><th>address</th><th>id</th>
+  </tr>
+    {{#users}}
+      <tr>
+        <td>{{full_name}}</td><td>{{email}}</td><td>{{address}}</td><td>{{id}}</td>
+      </tr>
+    {{/users}}
+</table>

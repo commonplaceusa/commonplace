@@ -1,7 +1,7 @@
 class NewUsers < MailBase
   
-  def initialize
-    @day = DateTime.now
+  def initialize(date)
+    @day = DateTime.parse(date)
     @community = Community.find_by_slug("Belmont")
   end
 
