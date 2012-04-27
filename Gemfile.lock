@@ -463,7 +463,6 @@ DEPENDENCIES
   dalli
   database_cleaner
   deadweight
-  delayed_job
   delayed_job_active_record
   devise
   embedded-mongo!
