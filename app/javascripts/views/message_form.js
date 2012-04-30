@@ -1,5 +1,6 @@
 var MessageFormView = FormView.extend({
   template: "shared/message-form",
+  goToInbox: false,
 
   save: function(callback) {
     var self = this;
@@ -9,9 +10,13 @@ var MessageFormView = FormView.extend({
       subject: this.$("[name=subject]").val(),
       body: this.$("[name=body]").val()
     }, {
-      success: function() {
+      wait: true,
+      success: function(model, response) {
         this.$(".controls").html(oldHTML);
         callback();
+        if (self.goToInbox) {
+          window.location = '/' + CommonPlace.community.get("slug") + '/inbox#' + response;
+        }
       },
       error: function(attribs, response) {
         this.$(".controls").html(oldHTML);

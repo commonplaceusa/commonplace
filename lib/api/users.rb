@@ -26,7 +26,7 @@ class API
                             :user => current_user)
       if message.save
         kickoff.deliver_user_message(message)
-        [200, ""]
+        [200, message.id.to_s]
       else
         [400, "errors"]
       end
@@ -48,7 +48,7 @@ class API
                             :user => current_user)
       if message.save
         kickoff.deliver_user_message(message)
-        [200, ""]
+        [200, message.id.to_s]
       else
         [400, "errors"]
       end
