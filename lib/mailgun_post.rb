@@ -75,7 +75,7 @@ class MailgunPost
   end
 
   def is_out_of_office?(text)
-    return text.match(out_of_office_regexp)
+    return text.match(out_of_office_regexp).present?
   end
 
   def strip_email_body(text)
