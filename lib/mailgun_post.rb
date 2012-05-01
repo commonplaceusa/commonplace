@@ -38,11 +38,13 @@ class MailgunPost
 
   def create_reply
     unless EMAIL_BLACKLIST.include? self.from
-      if reply = Reply.create!(
-          repliable: Repliable.find(self.to.match(/reply\+([a-zA-Z_0-9]+)/)[1]),
-          body: self.body_text,
-          user: self.user)
-        KickOff.new.deliver_reply(reply)
+      unless is_out_of_office?
+        if reply = Reply.create!(
+            repliable: Repliable.find(self.to.match(/reply\+([a-zA-Z_0-9]+)/)[1]),
+            body: self.body_text,
+            user: self.user)
+          KickOff.new.deliver_reply(reply)
+        end
       end
     end
   end
@@ -70,6 +72,10 @@ class MailgunPost
       render :nothing => true
       return false
     end
+  end
+
+  def is_out_of_office?(text)
+    return text.match(out_of_office_regexp)
   end
 
   def strip_email_body(text)
