@@ -30,6 +30,20 @@ END
       results.each {|r| r.should match "Hey -- testing a reply" }
       results.each {|r| r.should_not match "Hi Peter" }
     end
+
+  end
+
+  describe ".filter_out_of_office" do
+    let(:sample_email) {
+      "I am out of the office until 06/10/2012.\r\n\r\nI will"
+    }
+
+    it "recognizes the autoresponse" do
+      MailgunPost.new({}).is_out_of_office?(sample_email).should be_true
+    end
+    it "denies a sample reply" do
+      # TODO: Implement
+    end
   end
 
   let(:community) { mock_model(Community, :id => 1, :slug => "test", :time_zone => "Eastern Time (US & Canada)") }
