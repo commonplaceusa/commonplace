@@ -38,7 +38,7 @@ class MailgunPost
 
   def create_reply
     unless EMAIL_BLACKLIST.include? self.from
-      unless is_out_of_office?
+      unless is_out_of_office?(self.body_text)
         if reply = Reply.create!(
             repliable: Repliable.find(self.to.match(/reply\+([a-zA-Z_0-9]+)/)[1]),
             body: self.body_text,
