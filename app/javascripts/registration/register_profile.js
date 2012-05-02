@@ -21,7 +21,7 @@ var RegisterProfileView = RegistrationModalPage.extend({
       this.current = true;
     }
     
-    this.$("textarea").autoResize();
+    //this.$("textarea").autoResize();
     
     this.$("select.list").chosen().change({}, function() {
       var clickable = $(this).parent("li").children("div").children("ul");

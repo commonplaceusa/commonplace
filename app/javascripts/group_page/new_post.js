@@ -8,7 +8,7 @@ var NewPostView = CommonPlace.View.extend({
 
   afterRender: function() {
     this.$('input[placeholder], textarea[placeholder]').placeholder();
-    this.$("textarea").autoResize();
+    //this.$("textarea").autoResize();
   },
 
   account_avatar: function() {

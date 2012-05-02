@@ -20,7 +20,7 @@ var PostForm = CommonPlace.View.extend({
 
   afterRender: function() {
     this.$('input[placeholder], textarea[placeholder]').placeholder();
-    this.$("textarea").autoResize();
+    //this.$("textarea").autoResize();
   },
   
   createPost: function(e) {
