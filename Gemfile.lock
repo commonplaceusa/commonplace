@@ -221,6 +221,7 @@ GEM
       multi_json
       multi_xml
     i18n (0.6.0)
+    jamster-statsd (0.1.0)
     jasmine (1.1.2)
       jasmine-core (>= 1.1.0)
       rack (>= 1.1)
@@ -350,6 +351,8 @@ GEM
       redis (>= 2.0.1)
       resque (>= 1.8.0)
       rufus-scheduler
+    resque-statsd (0.0.1)
+      jamster-statsd
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rmagick (2.13.1)
@@ -481,6 +484,7 @@ DEPENDENCIES
   heroku
   hirefireapp
   hpricot
+  jamster-statsd
   jasmine
   json (~> 1.6.0)
   launchy
@@ -511,6 +515,7 @@ DEPENDENCIES
   resque-cleaner
   resque-exceptional
   resque-scheduler
+  resque-statsd
   rmagick
   rollout
   rpm_contrib
