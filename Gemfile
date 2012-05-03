@@ -54,6 +54,8 @@ gem 'resque-exceptional' # we use this to send notify of exceptions with worker 
 gem 'resque-scheduler' # we use this to queue jobs at specific times
 gem 'resque-cleaner'
 gem 'hirefireapp' # auto-scale web and worker processes
+gem 'resque-statsd'
+gem 'jamster-statsd'
 
 # Mail
 gem 'mail' # Used for mail
