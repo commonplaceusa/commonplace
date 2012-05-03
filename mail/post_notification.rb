@@ -1,5 +1,4 @@
 class PostNotification < MailBase
-  extend Resque::Plugins::Statsd
 
   def initialize(post_id, user_id)
     @post, @user = Post.find(post_id), User.find(user_id)
