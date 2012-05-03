@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/cloudability/resque-statsd.git
+  revision: a07359e81c11058045e2cb59c05f2a1d3389b386
+  specs:
+    resque-statsd (0.0.4)
+      jamster-statsd
+
+GIT
   remote: git://github.com/gdb/embedded-mongo.git
   revision: 06db599985c6a5877fe33508623aa046515523a4
   specs:
@@ -351,8 +358,6 @@ GEM
       redis (>= 2.0.1)
       resque (>= 1.8.0)
       rufus-scheduler
-    resque-statsd (0.0.1)
-      jamster-statsd
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rmagick (2.13.1)
@@ -484,7 +489,6 @@ DEPENDENCIES
   heroku
   hirefireapp
   hpricot
-  jamster-statsd
   jasmine
   json (~> 1.6.0)
   launchy
@@ -515,7 +519,7 @@ DEPENDENCIES
   resque-cleaner
   resque-exceptional
   resque-scheduler
-  resque-statsd
+  resque-statsd!
   rmagick
   rollout
   rpm_contrib
