@@ -26,13 +26,6 @@ module Serializer
         "thankable_author" => o.thankable.user.name
       }
 
-      when NamedPoint
-      {
-        "lat" => o.lat,
-        "lng" => o.lng,
-        "name" => o.name,
-        "address" => o.address
-      }
       when EventRecommendation
         o.as_api_response(:default)
       when EventNote
