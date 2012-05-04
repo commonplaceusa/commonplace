@@ -88,7 +88,6 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
     this.$(".no_results").hide();
     this.$(".search_finder").hide();
     this.$(".initial_load").show();
-    this.$(".neighbor_count_li").hide();
     this.$("form.add").hide();
     this.$("form.add .error").hide();
 
@@ -329,13 +328,9 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
 
   showCount: function() {
     var count = this.$(".neighbor_finder input[name=neighbors_list]:checked").length;
-    if (count) {
-      this.$(".neighbor_count_li").show();
-      this.$(".neighbor_count").text(count);
-      this.$(".neighbor_count_li .plural").text( count === 1 ? "neighbor" : "neighbors" );
-    } else {
-      this.$(".neighbor_count_li").hide();
-    }
+    this.$(".neighbor_count").text(count);
+    this.$(".neighbor_count_li .plural").text( count === 1 ? "neighbor" : "neighbors" );
+
   },
 
   toggleAddNeighbor: function(e) {
