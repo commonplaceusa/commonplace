@@ -165,8 +165,8 @@ class KickOff
   end
 
 
-  def deliver_daily_bulletin(user, date_string)
-    enqueue(DailyBulletin, user.id, date_string)
+  def deliver_daily_bulletin(user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events)
+    enqueue(DailyBulletin, user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events)
   end
   
   def deliver_feed_owner_welcome(feed)

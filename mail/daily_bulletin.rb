@@ -1,11 +1,15 @@
 class DailyBulletin < MailBase
 
-  def initialize(user_id, date)
-    @user, @date = User.find(user_id), DateTime.parse(date)
-  end
-
-  def user 
-    @user
+  def initialize(user_email, user_first_name, user_community_name, community_locale, community_slug, date, posts, announcements, events)
+    @user_email = user_email
+    @user_first_name = user_first_name
+    @user_community_name = user_community_name
+    @community_locale = community_locale
+    @community_slug = community_slug
+    @date = DateTime.parse(date)
+    @posts = posts
+    @announcements = announcements
+    @events = events
   end
 
   def logo_url
@@ -20,86 +24,81 @@ class DailyBulletin < MailBase
     asset_url("invite-them-now-button.png")
   end
   
+  # TODO: Do this more elegantly. To make daily digests idempotent, this had to be hacked together.
   def short_user_name
-    @user.first_name
+    @user_first_name
+  end
+
+  def text
+    # TODO: Do this more elegantly. To make daily digests idempotent, this had to be hacked together.
+    @text ||= YAML.load_file(File.join(File.dirname(__FILE__), "text", "#{@community_locale}.yml"))[self.underscored_name]
+  end
+
+  def from
+    "#{community_name} CommonPlace <notifications@#{@community_slug}.ourcommonplace.com>"
   end
 
   def subject
     "The #{community_name} CommonPlace Daily Bulletin"
   end
 
+  def to
+    @user_email
+  end
+
   def header_text
     @date.strftime("%A, %B %d, %Y")
   end
 
-  def community
-    @user.community
-  end
-
   def community_name
-    community.name
+    @user_community_name
   end
 
   def deliver?
     posts_present || announcements_present || events_present
   end
 
-  def posts_present
-    posts.present?
+  def deliver
+    if deliver?
+      increase_email_count
+      mail = Mail.deliver(:to => self.to,
+                          :from => self.from,
+                          :reply_to => self.reply_to,
+                          :subject => self.subject,
+                          :content_type => "text/html",
+                          :body => self.render_html,
+                          :charset => 'UTF-8',
+                          :headers => {
+                            "Precedence" => "list",
+                            "Auto-Submitted" => "auto-generated",
+                            "X-Campaign-Id" => @community_slug,
+                            "X-Mailgun-Tag" => self.tag
+                          })
+    end
   end
 
-  def yesterday
-    @date.advance(:days => -1)
+  def posts_present
+    @posts.present?
   end
-  
+
   def posts
-    @posts ||= community.posts_for_user(@user).between(yesterday,@date).map do |post|
-      Serializer::serialize(post).tap do |post|
-        post['replies'].each {|reply| 
-          reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
-          reply['avatar_url'] = asset_url(reply['avatar_url'])
-        }
-        post['avatar_url'] = asset_url(post['avatar_url'])
-        post['url'] = show_post_url(post['id'])
-        post['new_message_url'] = message_user_url(post['user_id'])
-      end
-    end
+    @posts
   end
 
   def announcements_present
-    announcements.present?
+    @announcements.present?
   end
 
   def announcements
-    @announcements ||= community.announcements.between(yesterday, @date).map do |announcement|
-      Serializer::serialize(announcement).tap do |announcement|
-        announcement['replies'].each {|reply| 
-          reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
-          reply['avatar_url'] = asset_url(reply['avatar_url'])
-        }
-        announcement['avatar_url'] = asset_url(announcement['avatar_url'])
-        announcement['url'] = show_announcement_url(announcement['id'])
-      end
-    end
+    @announcements
   end
 
   def events_present
-    events.present?
+    @events.present?
   end
 
   def events
-    @events ||= community.events.between(@date, @date.advance(:weeks => 1)).map do |event|
-      
-      Serializer::serialize(event).tap do |event|
-        event['replies'].each {|reply| 
-          reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
-          reply['avatar_url'] = asset_url(reply['avatar_url'])
-        }
-        event["short_month"] = event['occurs_on'].strftime("%b")
-        event["day"] = event['occurs_on'].strftime("%d")
-        event['url'] = show_event_url(event['id'])
-      end
-    end
+    @events
   end
 
   def tag
