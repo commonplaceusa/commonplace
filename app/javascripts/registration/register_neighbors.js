@@ -435,6 +435,8 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
     }
   }),
 
+  community_name: function() { return CommonPlace.community.get('name'); },
+
   submit: function(e) {
     if (e) { e.preventDefault(); }
 
