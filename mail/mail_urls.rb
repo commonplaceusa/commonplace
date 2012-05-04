@@ -12,8 +12,16 @@ module MailUrls
     end
   end
 
+  def community_slug
+    if community.is_a? Community
+      community.slug
+    else
+      @community_slug
+    end
+  end
+
   def community_url(path)
-    url("/#{community.slug}#{path}")
+    url("/#{community_slug}#{path}")
   end
 
   def community_home_url
@@ -97,7 +105,7 @@ module MailUrls
   end
 
   def root_url
-    url("/" + community.slug)
+    url("/" + community_slug)
   end
 
   def logo_url
