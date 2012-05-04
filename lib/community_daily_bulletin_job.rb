@@ -46,6 +46,7 @@ class CommunityDailyBulletinJob
     kickoff = KickOff.new
     community = Community.find(community_id)
 
+    date = Date.parse(date)
     yesterday = date.advance(:days => -1)
 
     posts = community.posts.between(yesterday, date).map do |post|
