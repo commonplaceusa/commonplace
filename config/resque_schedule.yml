@@ -35,14 +35,14 @@ compute_statistics_csv:
 
 scale_up_for_daily_digest:
   cron: "45 20 * * *"
-  class: HerokuResque::WorkerScaler
-  args: 100
+  class: HerokuResque::NotificationWorkerScaler
+  args: 50
   queue: server_management
   description: "Ramps up available dynos for daily digest mailings"
 
 scale_down_post_daily_digest:
   cron: "45 21 * * *"
-  class: HerokuResque::WorkerScaler
+  class: HerokuResque::NotificationWorkerScaler
   args: 2
   queue: server_management
   description: "Decreases used dynos after daily digest mailings"
