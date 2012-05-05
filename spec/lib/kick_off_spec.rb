@@ -306,12 +306,21 @@ describe KickOff do
   end
 
   describe "#deliver_daily_bulletin" do
-    let(:user) { User.new {|u| u.id = 23 } }
+    let(:community) { Community.new { |c|
+      c.name = "Test"
+      c.slug = "test"
+    }}
+    let(:user) { User.new {|u| 
+      u.id = 23
+      u.email = "test@ema.il"
+      u.first_name = "John"
+      u.community = community
+    } }
     let(:date) { DateTime.now.utc }
-    before { kickoff.deliver_daily_bulletin(user, date.to_s(:db)) }
+    before { kickoff.deliver_daily_bulletin(user.email, user.first_name, user.community.name, user.community.locale, user.community.slug, date.to_s(:db), "posts", "announcements", "events") }
     
     it "enqueues a DailyBulletin job" do
-      should have_queued(DailyBulletin, user.id, date.to_s(:db))
+      should have_queued(DailyBulletin, user.email, user.first_name, user.community.name, user.community.locale, user.community.slug, date.to_s(:db), "posts", "announcements", "events")
     end
   end
 
