@@ -60,7 +60,6 @@ class DailyBulletin < MailBase
 
   def deliver
     if deliver?
-      increase_email_count
       mail = Mail.deliver(:to => self.to,
                           :from => self.from,
                           :reply_to => self.reply_to,
