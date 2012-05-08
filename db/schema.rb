@@ -332,19 +332,6 @@ ActiveRecord::Schema.define(:version => 20120424012904) do
     t.datetime "replied_at"
   end
 
-  create_table "rails_admin_histories", :force => true do |t|
-    t.text     "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month"
-    t.integer  "year",       :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
-
   create_table "referrals", :force => true do |t|
     t.integer  "event_id",    :null => false
     t.integer  "referee_id",  :null => false
@@ -383,13 +370,6 @@ ActiveRecord::Schema.define(:version => 20120424012904) do
     t.string  "email"
     t.decimal "latitude"
     t.decimal "longitude"
-  end
-
-  create_table "sent_emails", :force => true do |t|
-    t.string   "tag"
-    t.integer  "community_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
