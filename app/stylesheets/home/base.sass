@@ -177,6 +177,53 @@ aside
       .number-of
         font-weight: normal
         font-size: 14px
+  #your-town
+    width: 85%
+    margin: 0 auto
+      top: 20px
+    h3
+      font-family: $heading
+      font-size: 14px
+      color: $blue
+      text-shadow: 1px 1px 1px white
+      border-bottom: 1px solid #c5c2b5
+      padding-bottom: 7px
+    .your-town 
+      padding-top: 15px
+      border-top: 1px solid white
+      li
+        padding: 8px 0
+        a
+          text-decoration: none
+          font-family: $heading
+          color: $blue
+          text-shadow: 1px 1px 1px white
+          font-size: 14px
+
+  #your-pages
+    width: 85%
+    margin: 0 auto
+      top: 20px
+    .your-pages
+      padding-top: 15px
+      border-top: 1px solid white
+      li
+        padding: 8px 0
+        a
+          text-decoration: none
+          font-family: $heading
+          color: $blue
+          text-shadow: 1px 1px 1px white
+          font-size: 14px
+
+    h3
+      font-family: $heading
+      font-size: 14px
+      color: $blue
+      text-shadow: 1px 1px 1px white
+      border-bottom: 1px solid #c5c2b5
+      padding-bottom: 7px
+
   .your-neighbors
     width: 85%
     margin: 0 auto
@@ -185,33 +232,32 @@ aside
       font-family: $heading
       font-size: 14px
       color: $blue
-      font-weight: bold
       text-shadow: 1px 1px 1px white
-      border-bottom: 1px solid $blue
+      border-bottom: 1px solid #c5c2b5
       padding-bottom: 7px
-
+    .list
+      border-top: 1px solid white
     .neighbor
       border-bottom: 1px solid
-      border-color: lighten($dark-grey, 20%)
-      padding-bottom: 15px
+      border-color: lighten($dark-grey, 30%)
+      padding-bottom: 10px
       padding-top: 15px
-      border-top: 1px solid white
       height: 45px
       &:last-child
         border-bottom: none
       h4
-        font-family: $heading
-        color: $black
+        font-family: $body
+        color: $blue
         font-weight: bold
-        font-size: 14px
+        font-size: 13px
       p
         font-family:  $body
         font-size: 13px
-        color: lighten($black, 20%)
+        color: lighten($black, 10%)
         margin-top: 5px
       img
-        height: 45px
-        width: 45px
+        height: 40px
+        width: 40px
         padding-right: 8px
         float: left
   .town-map
@@ -222,9 +268,8 @@ aside
       font-family: $heading
       font-size: 14px
       color: $blue
-      font-weight: bold
       text-shadow: 1px 1px 1px white
-      border-bottom: 1px solid $blue
+      border-bottom: 1px solid #c5c2b5
       padding-bottom: 7px
     img
       margin-top: 15px
@@ -257,8 +302,7 @@ aside
         font-family: $heading
         float: left
         color: $blue
-        font-weight: bold
-        font-size: 15px
+        font-size: 14px
         padding-left: 30px
         padding-top: 10px
       p
@@ -296,14 +340,14 @@ aside
     .post-action
       padding: 10px
         top: 0
+        bottom: 0
       margin-left: 60px
       font-family: $body
       font-size: 10px
       text-transform: uppercase
       font-weight: bold
       color: $red
-      padding-bottom: 20px
-      margin-top: 10px
+      margin-top: 5px
       height: 40px
       span.thank
         color: $dark-grey
@@ -317,6 +361,8 @@ aside
         font-size: 11px
       .actions
         border-top: 1px solid
+        border-bottom: 1px solid
+        height: 40px
         border-color: lighten($dark-grey, 37%)
         li
           border-right: 1px solid
@@ -331,6 +377,7 @@ aside
             border-right: none 
     .post-replies
       padding: 10px
+        bottom: 20px
       p
         margin-left: 60px
         padding-top: 10px
@@ -344,16 +391,18 @@ aside
         margin-right: 10px
         vertical-align: bottom
       p.reply-text
-        border-top: 1px solid
-        border-color: lighten($dark-grey, 25%)
         font-size: 13px
         font-family: $body
-      p.reply-time
+      p.reply-actions
         margin-top: 5px
-        font-size: 11px
+        font-size: 13px
         font-family: $body
         padding-top: 0
-        color: $blue
+        color: lighten($dark-grey, 15%)
+        span.reply-thank
+          color: $red
+        span.reply-thanked
+          color: lighten($dark-grey, 15%)
       img
         width: 25px
         padding-top: 10px

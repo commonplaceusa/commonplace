@@ -10,3 +10,5 @@ Home.ui.Sidebar = Framework.View.extend
     this.yourPages = new Home.ui.YourPages(el: this.$("#your-pages"))
     this.yourPages.render()
 
+    this.yourTown = new Home.ui.YourTown(el: this.$("#your-town"))
+    this.yourTown.render()
