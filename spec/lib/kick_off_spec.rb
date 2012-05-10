@@ -3,7 +3,7 @@ require 'spec_helper'
 describe KickOff do
   let(:queuer) { Object.new.tap {|o| stub(o).enqueue } }
   let(:kickoff) { KickOff.new(queuer) }
-  
+
   before { stub(queuer).enqueue }
 
   subject { queuer }
@@ -14,14 +14,14 @@ describe KickOff do
         stub(p).id { 23 }
         stub(p).user_id { 5 }
         stub(p).neighborhood.stub!.users.
-          stub!.receives_posts_live { 
-          (1..5).map {|id| User.new {|u| u.id = id } } 
+          stub!.receives_posts_live {
+          (1..5).map {|id| User.new {|u| u.id = id } }
         }
       end
     }
 
     before { kickoff.deliver_post(post) }
-    
+
     it "queues a PostNotification for users in the neighborhood who receive posts live" do
       (1..4).each do |id|
         should have_queued(PostNotification, post.id, id)
@@ -34,8 +34,8 @@ describe KickOff do
 
   end
 
-  describe "#deliver_announcement" do 
-    
+  describe "#deliver_announcement" do
+
     context "when owner isn't a Feed" do
       let(:post) {
         Announcement.new.tap do |a|
@@ -50,7 +50,7 @@ describe KickOff do
         should_not have_queued
       end
     end
-    
+
     context "when owner is a Feed" do
       let(:post) {
         owner = Feed.new
@@ -62,7 +62,7 @@ describe KickOff do
       }
 
       before { kickoff.deliver_announcement(post) }
-      
+
       it "enqueues an AnnouncementNotification for each live subscriber" do
         (1..5).each do |id|
           should have_queued(AnnouncementNotification, post.id, id)
@@ -99,7 +99,7 @@ describe KickOff do
       end
     end
 
-    it "does not deliver to the poster" do 
+    it "does not deliver to the poster" do
       should_not have_queued(ReplyNotification, reply.id, reply.user_id)
     end
   end
@@ -126,21 +126,21 @@ describe KickOff do
 
   end
 
-  describe "#deliver_group_post" do 
+  describe "#deliver_group_post" do
     let(:post) {
       GroupPost.new.tap do |p|
         stub(p).user_id { 5 }
         stub(p).id { 3414 }
-        stub(p).group.stub!.live_subscribers { 
+        stub(p).group.stub!.live_subscribers {
           (1..5).map {|id| User.new {|u| u.id = id } }
-        }        
+        }
       end
     }
-    
+
     before { kickoff.deliver_group_post(post) }
 
     it "queues a GroupPostNotification subscribers of the group" do
-      (1..4).each do |id| 
+      (1..4).each do |id|
         should have_queued(GroupPostNotification, post.id, id)
       end
     end
@@ -167,15 +167,15 @@ describe KickOff do
   describe "#deliver_post_to_community" do
     let(:post_neighborhood) {
       Neighborhood.new.tap do |n|
-        stub(n).users.stub!.receives_posts_live { 
-          (6..10).map {|id| User.new {|u| u.id = id } } 
+        stub(n).users.stub!.receives_posts_live {
+          (6..10).map {|id| User.new {|u| u.id = id } }
         }
       end
     }
     let(:other_neighborhood) {
       Neighborhood.new.tap do |n|
-        stub(n).users.stub!.receives_posts_live { 
-          (1..5).map {|id| User.new {|u| u.id = id } } 
+        stub(n).users.stub!.receives_posts_live {
+          (1..5).map {|id| User.new {|u| u.id = id } }
         }
       end
     }
@@ -192,7 +192,7 @@ describe KickOff do
         stub(p).user_id { 6 }
       end
     }
-    
+
     before { kickoff.deliver_post_to_community(post) }
 
     it "delivers to other neighborhoods in the community" do
@@ -211,11 +211,11 @@ describe KickOff do
   describe "#deliver_clipboard_welcome" do
     let(:half_user) { HalfUser.new {|u| u.id = 12 } }
     before { kickoff.deliver_clipboard_welcome(half_user) }
-    
+
     it "delivers a clipboard welcome" do
       should have_queued(ClipboardWelcome, half_user.id)
     end
-    
+
   end
 
   describe "#deliver_user_invite" do
@@ -241,7 +241,7 @@ describe KickOff do
   describe "#deliver_announcement_confirmation" do
     let(:post) { Announcement.new {|a| a.id = 13 } }
     before { kickoff.deliver_announcement_confirmation(post) }
-      
+
     it "delivers an AnnouncementConfirmation" do
       should have_queued(AnnouncementConfirmation, post.id)
     end
@@ -251,7 +251,7 @@ describe KickOff do
     let(:feed) { Feed.new {|f| f.id = 43 } }
     let(:user) { User.new {|u| u.id = 23 } }
     before { kickoff.deliver_feed_permission_warning(user, feed) }
-    
+
     it "enqueues a NoFeedPermission job" do
       should have_queued(NoFeedPermission, user.id, feed.id)
     end
@@ -269,7 +269,7 @@ describe KickOff do
   describe "#deliver_unknown_user_warning" do
     let(:email) { "test@example.com" }
     before { kickoff.deliver_unknown_user_warning(email) }
-    
+
     it "enqueues an UnknownUser job" do
       should have_queued(UnknownUser, email)
     end
@@ -299,7 +299,7 @@ describe KickOff do
     let(:message) { "I have a question" }
     let(:name) { "Asker Jones" }
     before { kickoff.deliver_admin_question(from, message, name) }
-    
+
     it "enqueues an AdminQuestion job" do
       should have_queued(AdminQuestion, from, message,name)
     end
@@ -310,7 +310,7 @@ describe KickOff do
       c.name = "Test"
       c.slug = "test"
     }}
-    let(:user) { User.new {|u| 
+    let(:user) { User.new {|u|
       u.id = 23
       u.email = "test@ema.il"
       u.first_name = "John"
@@ -318,7 +318,7 @@ describe KickOff do
     } }
     let(:date) { DateTime.now.utc }
     before { kickoff.deliver_daily_bulletin(user.email, user.first_name, user.community.name, user.community.locale, user.community.slug, date.to_s(:db), "posts", "announcements", "events") }
-    
+
     it "enqueues a DailyBulletin job" do
       should have_queued(DailyBulletin, user.email, user.first_name, user.community.name, user.community.locale, user.community.slug, date.to_s(:db), "posts", "announcements", "events")
     end
@@ -327,7 +327,7 @@ describe KickOff do
   describe "#deliver_feed_owner_welcome" do
     let(:feed) { Feed.new {|f| f.id = 34 } }
     before { kickoff.deliver_feed_owner_welcome(feed) }
-    
+
     it "enqueues a welcome for the feed" do
       should have_queued(FeedWelcome, feed.id)
     end
