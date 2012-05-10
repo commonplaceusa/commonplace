@@ -5,7 +5,7 @@ end
 class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
-  after_create :create_resident
+  after_create :check_resident
 
   serialize :metadata, Hash
   serialize :private_metadata, Hash
@@ -542,14 +542,49 @@ WHERE
     end
     KickOff.new.send_spam_report_received_notification(self)
   end
+  
+  def find_resident
+    address_components = self.address.split(" ")
+    # if first word of address is not a number
+    if !(address_components.first =~ /^[-+]?[0-9]+$/) 
+      address_components.shift if address_components.first == "#"
+      # TODO: add PO BOX case
+      matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.first + "%", self.last_name)
+      # TODO: add unsure address tag
+    else
+      matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.take(2).join(" ") + "%", self.last_name)
+    end
+
+    # TODO: FIRST LETTER OF FIRST NAME
+
+    # if any of address and last name don't match, make a new Resident for the user
+    return nil if matched.count == 0
+    # if address and last name and first letter of first name match one Resident, use this Resident (first name can be a nickname or the actual name)
+    return matched.first if matched.count == 1
+
+    # check user first name /first name's first letter
+    # check if resident returned has a user already
+    # add 'unsure because only address and last name match' tag and 'address, last name, and first letter of first name match'
+
+    matched_first_name = matched.select {|resident| resident.first_name == self.first_name}
+    # if address and last name and first name match, use the first resident for whom all these match (shouldn't be more than 1 though, really)
+    return matched_first_name.first if matched_first_name.count >= 1
+
+    # if address and last name and first letter of first name match MULTIPLE Residents but the full first name doesn't, make a new Resident for the user
+    nil
+  end
 
   def create_resident
-    Resident.create(
-      :community => self.community,
-      :first_name => self.first_name,
-      :last_name => self.last_name,
-      :address => self.address,
-      :user => self)
+    if r = find_resident
+      r.user = self
+      r.save
+    else
+      Resident.create(
+        :community => self.community,
+        :first_name => self.first_name,
+        :last_name => self.last_name,
+        :address => self.address,
+        :user => self)
   end
 
   private
