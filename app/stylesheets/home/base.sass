@@ -56,7 +56,7 @@ $black-shadow: 0px 2px 1px black
   margin: 0 auto
 
 html
-  background: url(../images/bg.jpg) no-repeat center center fixed
+  background: image-url("shared/redesign/bg.jpg") no-repeat center center fixed
   background-size: cover
   -webkit-background-size: cover 
 
@@ -74,7 +74,7 @@ header
     width: 269px
     float: left
     padding-left: 15px
-    background: url("../images/commonplace-icon.png") no-repeat
+    background: image-url("shared/redesign/commonplace-icon.png") no-repeat
     padding-left: 60px
     height: 60px
     background-position: 20px 14px
@@ -122,7 +122,7 @@ header
         color: $blue
       
       .messages
-        background: url(../images/mail-icon.png) no-repeat
+        background: image-url("shared/redesign/mail-icon.png") no-repeat
         width: 29px
         height: 22px
         float: left
@@ -131,7 +131,7 @@ header
         margin-top: 17px
         margin-left: 20px
       .settings
-        background: url(../images/settings-icon.png) no-repeat
+        background: image-url("shared/redesign/settings-icon.png") no-repeat
         height: 24px
         margin-left: 20px
         margin-top: 17px
@@ -315,7 +315,7 @@ aside
         padding-top: 11px
         padding-right: 10px
     .post-content
-      padding: 10px
+      padding: 15px
       h3, p
         margin-left: 60px
         font-family: $body
@@ -392,7 +392,32 @@ aside
           background: image-url("shared/redesign/flag.png") no-repeat
           padding-left: 31px
           background-position: 11px 14px
-
+    .post-interaction
+      margin-left: 60px
+      font-size: 11px
+      .interaction
+        padding: 14px 0
+        border-bottom: 1px solid
+        border-color: lighten($dark-grey, 37%)
+        margin-left: 10px
+        margin-right: 10px
+        font-family: $body
+        color: darken($dark-grey, 20%)
+        .blue
+          color: $blue
+          font-weight: bold
+        .thanked
+          padding-left: 22px
+          padding-top: 2px
+          background: image-url("shared/redesign/thanked.png") no-repeat
+          height: 13px
+          background-position-y: 2px
+        .publicized
+          margin-top: 10px
+          padding-left: 22px
+          background: image-url("shared/redesign/publicized.png") no-repeat
+          height: 15px
+          padding-top: 3px
     .post-replies
       padding: 10px
         bottom: 20px
@@ -405,7 +430,7 @@ aside
         font-weight: bold
         font-family: $body
         float: left
-        margin-left: 20px
+        margin-left: 10px
         margin-right: 10px
         vertical-align: bottom
       p.reply-text
@@ -426,7 +451,7 @@ aside
         padding-top: 10px
         height: 25px
         float: left
-        margin-left: 15px
+        margin-left: 25px
     .reply
       margin-left: 60px
       padding: 10px
