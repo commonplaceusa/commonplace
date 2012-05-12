@@ -585,6 +585,7 @@ WHERE
         :last_name => self.last_name,
         :address => self.address,
         :user => self)
+    end
   end
 
   private
