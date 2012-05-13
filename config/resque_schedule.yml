@@ -49,7 +49,7 @@ scale_down_post_daily_digest:
 
 send_community_new_users_notification:
   cron: "50 23 * * *"
-  class: NewUsers
+  class: SendNewUsers
   args:
   queue: statistics
   description: "sends us a list of users created that day"
