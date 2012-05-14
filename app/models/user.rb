@@ -5,7 +5,6 @@ end
 class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
-  after_create :check_resident
 
   serialize :metadata, Hash
   serialize :private_metadata, Hash
