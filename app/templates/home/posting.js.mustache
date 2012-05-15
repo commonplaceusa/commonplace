@@ -1,27 +1,28 @@
-<div class="container">
+<div id="newPost" class="container">
   <div class="navigation">
     <h1>Choose a Post Type:</h1>
 
     <div class="links">
-      <a
+      <ul>
+		<li><a
         href="create-post"
         class="conversation"
         data-remote>Conversation Topic
-      </a>
-      <a
+      </a></li>
+      <li><a
         href="create-request"
         class="request"
         data-remote>Request or Offer
-      </a>
-      <a
+      </a></li>
+      <li><a
         href="create-event"
         class="event"
         data-remote>Event or Meetup
-      </a>
+      </a></li>
     </div>
 
     <div class="help conversation">
-      A Conversation Topic is like posting to your community bulletin board.
+      A <strong>Conversation Topic</strong> is like posting to your community bulletin board.
       Choose a topic and discuss it with the rest of your Upper West Side
       neighbors!
     </div>
@@ -41,12 +42,12 @@
     <div class="form-container conversation">
       <form>
         <input placeholder="Post Title">
-        <textarea placeholder="Post Message"></textarea>
+        <textarea placeholder="Post Message" rows="15" cols="55"></textarea>
 
-        <button>POST NOW</button>
+        <button class="red-button">POST NOW</button>
 
-        <label><input type="checkbox">I am not advertising on behalf of
-          any business or organization</label>
+        <div id="disclaimer"><label><input type="checkbox">I am not advertising on behalf of
+          any business or organization</label></div>
       </form>
     </div>
 
@@ -55,7 +56,7 @@
         <input placeholder="Request Title">
         <textarea placeholder="Request Message"></textarea>
 
-        <button>POST NOW</button>
+        <button class="red-button">POST NOW</button>
 
       </form>
 
@@ -66,7 +67,7 @@
         <input placeholder="Event Title">
         <textarea placeholder="Event Message"></textarea>
 
-        <button>POST NOW</button>
+        <button class="red-button">POST NOW</button>
 
       </form>
 
