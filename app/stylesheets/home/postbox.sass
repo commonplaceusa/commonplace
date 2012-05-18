@@ -1,0 +1,115 @@
+@import "compass/reset"
+@import base.sass
+
+#newPost   
+  width: 725px  
+  height: 320px  
+  margin: auto auto  
+  background-color: white  
+  border: 12px solid $dark-tan  
+  position: relative  
+  top: 150px  
+  z-index: 1000  
+
+  div.navigation   
+    width: 250px  
+    float: left   
+    padding: 20px  
+
+  div.help   
+    position: relative  
+    top: 10px  
+    padding: 25px 20px 15px 20px         
+    background-color: $off-grey  
+    color: $dark-grey  
+    font: 12px/18px Helvetica  
+    width: 200px            
+    background: url(post-help-box.png) no-repeat
+  
+  h1   
+    font: bold 16px RockwellSTD, Rockwell, sans-serif  
+    text-shadow: 1px 1px 1px white  
+    color: $blue  
+    
+  div.links   
+    margin-top: 10px
+
+    ul li   
+      list-style-type: none  
+      padding-top: 10px  
+      padding-bottom: 10px  
+      text-shadow: black 0 0 0  
+      padding-left: 30px  
+      background: url(bullet-quote.png) left center no-repeat
+        
+      a   
+        font: 16px RockwellSTD, Rockwell, sans-serif  
+        text-decoration: none  
+        color: $blue
+            
+        .current   
+          color: $red
+    
+  div.tabs div.form-container   
+    padding: 10px  
+    float: right  
+    background-color: $off-grey  
+    height: 300px  
+    border-left: 1px solid $dark-tan  
+    width: 414px  
+
+    form   
+      margin-top: 9px
+
+      button.red-button   
+        float: right  
+        margin-right: 10px
+
+strong   
+  font-weight: bold  
+  
+.rounded_corners   
+  -moz-border-radius: 5px  
+  -webkit-border-radius: 5px  
+  border-radius: 5px  
+ 
+input   
+  width: 394px  
+  background-color: #fefffe  
+  height: 23px  
+  text-shadow: #000000 0 0 0  
+  margin-bottom: 10px  
+  border: 1px solid $dark-tan  
+  font-size: 14px  
+  padding: 5px  
+  color: #1a1918  
+
+textarea   
+  width: 394px  
+  background-color: #fefffe  
+  height: 170px  
+  text-shadow: #000000 0 0 0  
+  margin-bottom: 10px  
+  border: 1px solid $dark-tan  
+  font-size: 14px  
+  padding: 5px  
+  color: #b8b4ae  
+  box-shadow: inset 2px 2px 4px 0px #dddddd  
+
+#disclaimer   
+  width: 152px  
+  color: $dark-tan  
+  bottom: 75px  
+  position: relative  
+  left: 30px  
+  text-shadow: #fffeff 2px 1px 0  
+  font: 11.4px/16px Helvetica  
+
+  label   
+    float: left  
+    display: inline-block  
+    position: relative  
+
+  label.disclaimerLabel   
+    position: relative  
+    bottom: 45px  
