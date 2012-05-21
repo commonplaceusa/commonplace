@@ -78,7 +78,8 @@ class StatisticsAggregator
       #launch = [Post.first, Event.first, Announcement.first, GroupPost.first].sort_by(&:created_at).first.created_at.to_datetime
       csv = StatisticsAggregator.csv_headers
       community_launch = Community.first.launch_date.to_date
-      launch = (num_days == -1) ? community_launch : num_days.days.ago.to_date
+      #launch = (num_days == -1) ? community_launch : num_days.days.ago.to_date
+      launch = 30.days.ago.to_date
       today = DateTime.now
       launch.upto(today).each do |day|
         reply_count = Reply.between(community_launch.to_datetime, day.to_datetime).count
@@ -125,7 +126,7 @@ class StatisticsAggregator
         event_count = Event.between(community_launch.to_datetime, day.to_datetime).count
         announcement_count = Announcement.between(community_launch.to_datetime, day.to_datetime).count
         private_message_count = Message.between(community_launch.to_datetime, day.to_datetime).count
-        
+
         group_post_count = GroupPost.between(community_launch.to_datetime, day.to_datetime).count
         posts_today = Post.between(day.to_datetime - 1.day, day.to_datetime).count
         events_today = Event.between(day.to_datetime - 1.day, day.to_datetime).count
