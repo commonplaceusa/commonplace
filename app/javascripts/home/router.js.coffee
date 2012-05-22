@@ -25,7 +25,7 @@ Home.Router = Backbone.Router.extend
 
   createDefault: ->
     posting = this.createPost()
-    posting.show "default"
+    posting.showDefault "default"
 
   createConvo: ->
     posting = this.createPost()
