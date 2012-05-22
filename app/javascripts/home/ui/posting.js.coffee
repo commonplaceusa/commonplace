@@ -3,8 +3,6 @@ Home.ui.Posting = Framework.View.extend
 
   render: ->
     this.$el.html this.renderTemplate()
-    this.show "conversation"
-
 
   show: (klass) ->
     this.$(".help, .form-container").hide()
