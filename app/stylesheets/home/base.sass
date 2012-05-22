@@ -4,6 +4,7 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "compass/reset"
+@import "compass/css3/gradient"
 
 /* Woo colors */
 
@@ -30,16 +31,18 @@ $black-shadow: 0px 2px 1px black
 .red-button
   background: $red
   border-radius: 4px
-  color: white
+  color: #eeecdf
   text-shadow: 1px 1px 1px black
   font-weight: bold
+  height: 18px
   font-family: $heading
+  +linear-gradient(color-stops(#d0413d, #ac322f), top)
   display: block
   font-size: 20px
   text-decoration: none
   border: 1px solid
-  border-color: darken($red, 15%)
-  box-shadow: inset 0px 1px 0px 0px #d56360
+  border-color: #ac322f
+  box-shadow: inset 0px 1px 1px #e28986
   padding: 15px
     top: 13px
     bottom: 13px
@@ -116,8 +119,9 @@ header
         border: 1px solid $dark-blue
         border-radius: 5px
         padding: 7px
-        background-color: $search-box
+        background: $search-box image-url("shared/redesign/search.png") no-repeat right
         outline: none
+        background-position-x: 143px
       input::-webkit-input-placeholder
         color: $blue
       
@@ -183,11 +187,11 @@ aside
       top: 20px
     h3
       font-family: $heading
-      font-size: 14px
+      font-size: 15px
       color: $blue
       text-shadow: 1px 1px 1px white
       border-bottom: 1px solid #c5c2b5
-      padding-bottom: 7px
+      padding-bottom: 5px
     .your-town 
       padding-top: 15px
       border-top: 1px solid white
@@ -198,7 +202,12 @@ aside
           font-family: $heading
           color: $blue
           text-shadow: 1px 1px 1px white
-          font-size: 14px
+          font-size: 15px
+          padding-top: 2px
+          padding-left: 26px
+          background: image-url("shared/redesign/sidebar-icon.png") no-repeat left
+          line-height: 16px
+
 
   #your-pages
     width: 85%
@@ -214,15 +223,19 @@ aside
           font-family: $heading
           color: $blue
           text-shadow: 1px 1px 1px white
-          font-size: 14px
+          padding-left: 26px
+          padding-top: 2px
+          background: image-url("shared/redesign/sidebar-icon.png") no-repeat left
+          font-size: 15px
+          line-height: 16px
 
     h3
       font-family: $heading
-      font-size: 14px
+      font-size: 15px
       color: $blue
       text-shadow: 1px 1px 1px white
       border-bottom: 1px solid #c5c2b5
-      padding-bottom: 7px
+      padding-bottom: 5px
 
   .your-neighbors
     width: 85%
@@ -230,11 +243,11 @@ aside
       top: 20px
     h3
       font-family: $heading
-      font-size: 14px
+      font-size: 15px
       color: $blue
       text-shadow: 1px 1px 1px white
       border-bottom: 1px solid #c5c2b5
-      padding-bottom: 7px
+      padding-bottom: 5px
     .list
       border-top: 1px solid white
     .neighbor
@@ -266,11 +279,11 @@ aside
       top: 20px
     h3
       font-family: $heading
-      font-size: 14px
+      font-size: 15px
       color: $blue
       text-shadow: 1px 1px 1px white
       border-bottom: 1px solid #c5c2b5
-      padding-bottom: 7px
+      padding-bottom: 5px
     img
       margin-top: 15px
       border: 1px solid
@@ -304,6 +317,8 @@ aside
         color: $blue
         font-size: 14px
         padding-left: 30px
+        background: image-url("shared/redesign/wire-icon.png") left no-repeat
+        background-position: 5px 5px
         padding-top: 11px
       p
         font-family: $heading
