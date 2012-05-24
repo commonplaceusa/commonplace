@@ -70,14 +70,29 @@
       font-weight: bold
       position: relative
       top: 30px
+   
+  div.tabs div.form-container.default
+    opacity: 0.6
     
+    form
+      position: relative
+      bottom: 48px
+
+      label.disclaimerLabel input
+        position: relative
+        top: 0
+
+      input
+        position: relative
+        top: 16px
+ 
   div.tabs div.form-container   
     padding: 10px  
     float: right  
     background-color: $off-grey  
     height: 300px  
     border-left: 1px solid $dark-tan  
-    width: 414px  
+    width: 414px 
 
     form   
       margin-top: 9px
@@ -85,6 +100,9 @@
       button.red-button   
         float: right  
         margin-right: 10px
+
+    label.disclaimerLabel input
+      width: 252px
 
 strong   
   font-weight: bold  
