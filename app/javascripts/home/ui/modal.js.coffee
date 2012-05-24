@@ -9,10 +9,5 @@ Home.ui.Modal = Framework.View.extend
   center: ->
     # center it
 
-  sendPost: ->
-    params = "title": "Post Title", "body": "Static post content, need to change to get this content dynamically", "category": "conversation"
-    router.community.sendPost(params)
-
   events:
     "click modal-shadow": -> this.remove()
-    "click button": -> this.sendPost()
