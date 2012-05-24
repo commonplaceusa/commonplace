@@ -12,9 +12,20 @@
   z-index: 1000  
 
   div.navigation   
-    width: 250px  
+    width: 250px 
+    height: 230px 
     float: left   
-    padding: 20px  
+    padding: 20px
+    overflow: scroll
+
+    div.links-conversation
+      display: none
+
+    div.links-event
+      display: none
+
+    div.links-request
+      display: none
 
   div.help   
     position: relative  
@@ -49,6 +60,16 @@
             
       a.current   
         color: $red
+
+  div.links-conversation
+    @extend div.links
+    
+    .go-back a
+      text-decoration: none
+      color: #f00
+      font-weight: bold
+      position: relative
+      top: 30px
     
   div.tabs div.form-container   
     padding: 10px  
