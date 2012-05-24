@@ -1,6 +1,7 @@
 Home.ui.Posting = Framework.View.extend
   template: "home.posting"
   klass: "conversation"
+  category: "conversation"
 
   render: ->
     this.$el.html this.renderTemplate()
@@ -21,8 +22,7 @@ Home.ui.Posting = Framework.View.extend
   createPost: ->
     title = this.$("[name="+this.klass+"-title]").val()
     body = this.$("[name="+this.klass+"-post]").val()
-    #category = this.category
-    category = "conversation"
+    category = this.category
     params = "title": title, "body": body, "category": category 
     this.sendPost(params)
 
@@ -33,5 +33,9 @@ Home.ui.Posting = Framework.View.extend
     posts.create(data)
     posts.trigger("sync")
 
+  changeCategory: ->
+    this.category = this.$("[name='category']:checked").val()
+
   events:
     "click button": -> this.createPost()
+    "click input[name=category]": -> this.changeCategory() 
