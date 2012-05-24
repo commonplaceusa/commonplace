@@ -80,31 +80,30 @@
     <div class="form-container default">
       <form>
         <input disabled="disabled" placeholder="Post Title" class="rounded_corners">
-        <textarea placeholder="Post Message" rows="15" cols="55" class="rounded_corners"></textarea>
+        <textarea placeholder="Post Message" disabled="disabled" rows="15" cols="55" class="rounded_corners"></textarea>
 
         <button disabled="disabled" class="red-button">POST NOW</button>
 
-        <label class="disclaimerLabel"><input disabled="disabled" type="checkbox"><div id="disclaimer">I am not ilasjdfpoijaspdofj on behalf of
-            any business or organization</div></label>
+        <label class="disclaimerLabel"><input disabled="disabled" type="checkbox"><div id="disclaimer">I am not advertising on behalf of any business or organization</div></label>
       </form>
     </div>
 
     <div class="form-container conversation">
       <form>
-        <input placeholder="Post Title" class="rounded_corners">
-        <textarea placeholder="Post Message" rows="15" cols="55" class="rounded_corners"></textarea>
+        <input placeholder="Post Title" name="conversation-title" class="rounded_corners">
+        <textarea placeholder="Post Message" name="conversation-post" rows="15" cols="55" class="rounded_corners"></textarea>
 
         <button class="red-button">POST NOW</button>
 
-        <label class="disclaimerLabel"><input type="checkbox"><div id="disclaimer">I am not advertising on behalf of
+        <label class="disclaimerLabel"><input type="checkbox" name="conversation-disclaimer"><div id="disclaimer">I am not advertising on behalf of
           any business or organization</div></label>
       </form>
     </div>
 
     <div class="form-container request">
       <form>
-        <input placeholder="Request Title" class="rounded_corners">
-        <textarea placeholder="Request Message" class="rounded_corners"></textarea>
+        <input placeholder="Request Title" name="request-title" class="rounded_corners">
+        <textarea placeholder="Request Message" name="request-post" class="rounded_corners"></textarea>
 
         <button class="red-button">POST NOW</button>
 
@@ -114,8 +113,8 @@
 
     <div class="form-container event">
       <form>
-        <input placeholder="Event Title" class="rounded_corners">
-        <textarea placeholder="Event Message" class="rounded_corners"></textarea>
+        <input placeholder="Event Title" name="event-title" class="rounded_corners">
+        <textarea placeholder="Event Message" name="event-post" class="rounded_corners"></textarea>
 
         <button class="red-button">POST NOW</button>
 
