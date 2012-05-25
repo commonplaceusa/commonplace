@@ -54,7 +54,7 @@
 		<li class="request"><input type="radio" name="category" id="request" value="Request">
         <a href="#" onClick="document.getElementById('request').checked = true;" >Request</a>
       </li>
-      <li class="offer"><input type="radio" name="category" value="offer" id="offer">
+      <li class="offer"><input type="radio" name="category" value="Offer" id="offer">
         <a href="#" onClick="document.getElementById('offer').checked = true;" >Offer</a>
 	  </li>
 	</ul>
@@ -109,11 +109,11 @@
     </div>
 
     <div class="form-container conversation">
-      <form>
+      <form action="/home">
         <input placeholder="Post Title" name="conversation-title" class="rounded_corners">
         <textarea placeholder="Post Message" name="conversation-post" rows="15" cols="55" class="rounded_corners"></textarea>
 
-        <button class="red-button">POST NOW</button>
+        <a href="../home"><button class="red-button">POST NOW</button></a>
 
         <label class="disclaimerLabel"><input type="checkbox" name="conversation-disclaimer"><div id="disclaimer">I am not advertising on behalf of
           any business or organization</div></label>
@@ -126,7 +126,7 @@
         <textarea placeholder="Request Message" name="request-post" class="rounded_corners"></textarea>
         <input placeholder="$ Desired Price" name="request-price" class="rounded_corners">		
 
-        <button class="red-button">POST NOW</button>
+        <a href="../home"><button class="red-button">POST NOW</button></a>
 
       </form>
 
@@ -134,11 +134,11 @@
 
 	<div class="form-container offer">
       <form>
-        <input placeholder="Offer Title" name="request-title" class="rounded_corners">
-        <textarea placeholder="Offer Message" name="request-post" class="rounded_corners"></textarea>
-        <input placeholder="$ Asking Price" name="request-price" class="rounded_corners">		
+        <input placeholder="Offer Title" name="offer-title" class="rounded_corners">
+        <textarea placeholder="Offer Message" name="offer-post" class="rounded_corners"></textarea>
+        <input placeholder="$ Asking Price" name="offer-price" class="rounded_corners">		
 
-        <button class="red-button">POST NOW</button>
+        <a href="../home"><button class="red-button">POST NOW</button></a>
 
       </form>
 
@@ -154,7 +154,7 @@
         <input placeholder="Venue" name="event-venue" class="rounded_corners">
         <input placeholder="Address`" name="event-address" class="rounded_corners">		
 
-        <button class="red-button">POST NOW</button>
+        <a href="../home"><button class="red-button">POST NOW</button></a>
 
       </form>
 
@@ -162,15 +162,15 @@
 
     <div class="form-container meetup">
       <form>
-        <input placeholder="Meetup Name" name="event-title" class="rounded_corners">
-        <textarea placeholder="Description of your meetup" name="event-post" class="rounded_corners"></textarea>
-        <input placeholder="Date (Monday April 9, 2012)" name="event-date" class="rounded_corners">
-        <input placeholder="Starts At" name="event-starttime" class="rounded_corners">
-        <input placeholder="Ends At" name="event-endtime" class="rounded_corners">
-        <input placeholder="Venue" name="event-venue" class="rounded_corners">
-        <input placeholder="Address`" name="event-address" class="rounded_corners">		
+        <input placeholder="Meetup Name" name="meetup-title" class="rounded_corners">
+        <textarea placeholder="Description of your meetup" name="meetup-post" class="rounded_corners"></textarea>
+        <input placeholder="Date (Monday April 9, 2012)" name="meetup-date" class="rounded_corners">
+        <input placeholder="Starts At" name="meetup-starttime" class="rounded_corners">
+        <input placeholder="Ends At" name="meetup-endtime" class="rounded_corners">
+        <input placeholder="Venue" name="meetup-venue" class="rounded_corners">
+        <input placeholder="Address`" name="meetup-address" class="rounded_corners">		
 
-        <button class="red-button">POST NOW</button>
+        <a href="../home"><button class="red-button">POST NOW</button></a>
 
       </form>
 

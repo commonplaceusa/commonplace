@@ -19,12 +19,12 @@ Home.ui.Posting = Framework.View.extend
     this.$("." + klass).show()
     this.$(".links ." + klass).addClass "current"
 
-  createPost: ->
+  createPost: (e) ->
     title     = this.$("[name="+this.klass+"-title]").val()
     body      = this.$("[name="+this.klass+"-post]").val()
     price     = this.$("[name="+this.klass+"-price]").val()
     date      = this.$("[name="+this.klass+"-date]").val()
-    strttime = this.$("[name="+this.klass+"-starttime]").val()
+    starttime = this.$("[name="+this.klass+"-starttime]").val()
     endtime   = this.$("[name="+this.klass+"-endtime]").val()
     venue     = this.$("[name="+this.klass+"-venue]").val()
     address   = this.$("[name="+this.klass+"-address]").val()
@@ -57,7 +57,7 @@ Home.ui.Posting = Framework.View.extend
       this.show(klass)
 
   events:
-    "click button": -> this.createPost()
-    "click .links-conversation li": -> this.changeCategory() 
-    "click .links-request li": -> this.changeCategory() 
-    "click .links-event li": -> this.changeCategory() 
+    "click button": "createPost"
+    "click .links-conversation li": "changeCategory"
+    "click .links-request li": "changeCategory" 
+    "click .links-event li": "changeCategory" 
