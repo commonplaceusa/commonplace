@@ -14,10 +14,4 @@ Home.model.Community = Backbone.Model.extend
     posts.url = "/api" + this.get("links").posts
     posts.fetch params
 
-  sendPost: (params) ->
-    self = this
-    posts = new Backbone.Collection()
-    posts.url = "/api" + self.get("links").posts
-    posts.create(params)
-#TODO: handle errors in posts.create()
 
