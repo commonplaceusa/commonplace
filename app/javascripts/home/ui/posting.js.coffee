@@ -39,3 +39,5 @@ Home.ui.Posting = Framework.View.extend
   events:
     "click button": -> this.createPost()
     "click .links-conversation li": -> this.changeCategory() 
+    "click .links-request li": -> this.changeCategory() 
+    "click .links-event li": -> this.changeCategory() 
