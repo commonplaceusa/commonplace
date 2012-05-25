@@ -38,4 +38,4 @@ Home.ui.Posting = Framework.View.extend
 
   events:
     "click button": -> this.createPost()
-    "click input[name=category]": -> this.changeCategory() 
+    "click .links-conversation li": -> this.changeCategory() 
