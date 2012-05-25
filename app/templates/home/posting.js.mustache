@@ -1,8 +1,8 @@
 <div id="newPost" class="container rounded_corners">
   <div class="navigation">
-    <h1>Choose a Post Type:</h1>
 
     <div class="links">
+	    <h1>Choose a Post Type:</h1>
       <ul>
 		<li><a
         href="create-conversation"
@@ -22,37 +22,28 @@
     </div>
 
 	<div class="links-conversation">
-      <ul>
-		<li><a
-        href="create-conversation"
-        class="conversation"
-        data-remote>Volunteering
-      </a></li>
-      <li><a
-        href="create-conversation"
-        class="conversation"
-        data-remote>City Problems
-      </a></li>
-      <li><a
-        href="create-conversation"
-        class="conversation"
-        data-remote>Saftey
-      </a></li>
-      <li><a
-        href="create-conversation"
-        class="conversation"
-        data-remote>News
-      </a></li>
-      <li><a
-        href="create-conversation"
-        class="conversation"
-        data-remote>Health and Wellness
-      </a></li>
-      <li><a
-        href="create-conversation"
-        class="conversation"
-        data-remote>Schools
-      </a></li>
+		    <h1>Choose a Topic:</h1>
+    <form> 
+ 	<ul>
+		<input type="radio" name="category" id="volunteering" value="volunteering"><li class="conversation">
+        <a href="#" onClick="document.getElementById('volunteering').checked = true;" >Volunteering</a>
+      </li>
+      <input type="radio" name="category" value="cityproblems" id="cityproblems"><li class="conversation">
+        <a href="#" onClick="document.getElementById('cityproblems').checked = true;" >City Problems</a>
+	  </li>
+      <input type="radio" name="category" value="safety" id="safety"><li class="conversation">
+		<a href="#" onClick="document.getElementById('safety').checked = true;" class="">Safety</a>
+      </li>
+      <input type="radio" name="category" value="news" id="news"><li class="conversation">
+		<a href="#" id="newsLink" onClick="document.getElementById('news').checked = true;" class="">News</a>
+      </li>
+      <input type="radio" name="category" value="healthandwellness" id="healthandwellness"><li class="conversation">
+		<a href="#" onClick="document.getElementById('healthandwellness').checked = true;" class="">Health and Wellness</a>
+      </li>
+      <input type="radio" name="category" value="schools" id="schools"><li class="conversation">
+		<a href="#" onClick="document.getElementById('schools').checked = true;" >Schools</a>
+	  </li>
+	</form>
     </div>
 
 	<div class="links-conversation go-back"><a
