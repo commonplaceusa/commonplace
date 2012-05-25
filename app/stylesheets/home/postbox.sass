@@ -13,13 +13,30 @@
 
   div.navigation   
     width: 250px 
-    height: 230px 
     float: left   
     padding: 20px
-    overflow: scroll
 
     div.links-conversation
       display: none
+
+      form
+        overflow: scroll
+        width: 250px
+        height: 230px
+        font-family: "Rockwell STD"
+        color: $blue
+
+        ul li.conversation a.current
+          color: $red
+
+        ul input
+          display: none
+
+    div.links-conversation.go-back a
+      color: $red
+      text-decoration: none
+      text-transform: uppercase
+      font: bold 11px "Helvetica Neue", "Helvetica", "Arial"
 
     div.links-event
       display: none
