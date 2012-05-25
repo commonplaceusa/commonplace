@@ -24,7 +24,7 @@ Home.ui.Posting = Framework.View.extend
     body      = this.$("[name="+this.klass+"-post]").val()
     price     = this.$("[name="+this.klass+"-price]").val()
     date      = this.$("[name="+this.klass+"-date]").val()
-    starttime = this.$("[name="+this.klass+"-starttime]").val()
+    strttime = this.$("[name="+this.klass+"-starttime]").val()
     endtime   = this.$("[name="+this.klass+"-endtime]").val()
     venue     = this.$("[name="+this.klass+"-venue]").val()
     address   = this.$("[name="+this.klass+"-address]").val()
@@ -50,7 +50,11 @@ Home.ui.Posting = Framework.View.extend
     posts.trigger("sync")
 
   changeCategory: ->
-    this.category = this.$("[name='category']:checked").val()
+    category = this.$("[name='category']:checked")
+    this.category = category.val()
+    klass = category.parent().attr("class")
+    if klass isnt undefined
+      this.show(klass)
 
   events:
     "click button": -> this.createPost()
