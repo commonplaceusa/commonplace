@@ -1,7 +1,7 @@
 Home.ui.Posting = Framework.View.extend
   template: "home.posting"
   klass: "conversation"
-  category: "conversation"
+  category: "Conversation"
 
   render: ->
     this.$el.html this.renderTemplate()
@@ -20,10 +20,26 @@ Home.ui.Posting = Framework.View.extend
     this.$(".links ." + klass).addClass "current"
 
   createPost: ->
-    title = this.$("[name="+this.klass+"-title]").val()
-    body = this.$("[name="+this.klass+"-post]").val()
-    category = this.category
-    params = "title": title, "body": body, "category": category 
+    title     = this.$("[name="+this.klass+"-title]").val()
+    body      = this.$("[name="+this.klass+"-post]").val()
+    price     = this.$("[name="+this.klass+"-price]").val()
+    date      = this.$("[name="+this.klass+"-date]").val()
+    starttime = this.$("[name="+this.klass+"-starttime]").val()
+    endtime   = this.$("[name="+this.klass+"-endtime]").val()
+    venue     = this.$("[name="+this.klass+"-venue]").val()
+    address   = this.$("[name="+this.klass+"-address]").val()
+    category  = this.category
+
+    params = 
+      "title"    : title
+      "body"     : body
+      "price"    : price
+      "date"     : date
+      "starttime": starttime
+      "endtime"  : endtime
+      "venue"    : venue
+      "address"  : address
+      "category" : category 
     this.sendPost(params)
 
   sendPost: (data) ->
@@ -38,4 +54,6 @@ Home.ui.Posting = Framework.View.extend
 
   events:
     "click button": -> this.createPost()
-    "click input[name=category]": -> this.changeCategory() 
+    "click .links-conversation li": -> this.changeCategory() 
+    "click .links-request li": -> this.changeCategory() 
+    "click .links-event li": -> this.changeCategory() 
