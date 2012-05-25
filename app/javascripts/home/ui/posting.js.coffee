@@ -15,7 +15,7 @@ Home.ui.Posting = Framework.View.extend
     this.$(".links ." + klass).addClass "current"
 
   showDefault: (klass) ->
-    this.$(".help, .form-container").hide()
+    this.$(".go-back, .form-container").hide()
     this.$("." + klass).show()
     this.$(".links ." + klass).addClass "current"
 

@@ -32,11 +32,47 @@
         ul input
           display: none
 
-    div.links-conversation.go-back a
+    div.links-request
+      display:none  
+
+      form
+        overflow: scroll
+        width: 250px
+        height: 230px
+        font-family: "Rockwell STD"
+        color: $blue
+
+        ul li.request a.current
+          color: $red
+
+      ul input
+        display: none
+
+    div.links-event
+      display: none
+
+      form
+        overflow: scroll
+        width: 250px
+        height: 230px
+        font-family: "Rockwell STD"
+        color: $blue
+
+        ul li.event a.current
+          color: $red
+
+      ul input
+        display: none
+
+
+    div.go-back a
       color: $red
       text-decoration: none
       text-transform: uppercase
       font: bold 11px "Helvetica Neue", "Helvetica", "Arial"
+
+    div.links ul li a.conversation:hover .help
+      display: inline
 
     div.links-event
       display: none
@@ -53,6 +89,7 @@
     font: 12px/18px Helvetica  
     width: 200px            
     background: url(post-help-box.png) no-repeat
+    display: none
   
   h1   
     font: bold 16px RockwellSTD, Rockwell, sans-serif  
@@ -79,6 +116,12 @@
         color: $red
 
   div.links-conversation
+    @extend div.links
+
+  div.links-request
+    @extend div.links
+
+  div.links-event
     @extend div.links
     
     .go-back a
@@ -110,6 +153,7 @@
     height: 300px  
     border-left: 1px solid $dark-tan  
     width: 414px 
+    overflow: scroll
 
     form   
       margin-top: 9px
@@ -178,3 +222,12 @@ label.disclaimerLabel
   position: absolute
   overflow: visible
   clear: both
+
+#conversation-help
+  display: none
+
+#request-help
+  display: none
+
+#event-help
+  display: none
