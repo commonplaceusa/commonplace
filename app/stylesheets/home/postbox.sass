@@ -1,15 +1,21 @@
 @import "compass/reset"
 @import base.sass
 
+#modal
+  width: 1000px
+  margin-right: auto
+  margin-left: auto
+
 #newPost   
-  width: 725px  
-  height: 320px  
-  margin: auto auto  
-  background-color: white  
-  border: 12px solid $dark-tan  
-  position: relative  
-  top: 150px  
-  z-index: 1000  
+  width: 725px
+  height: 320px
+  background-color: white
+  border: 12px solid #bcbbae
+  z-index: 1000
+  margin-top: 150px
+  margin-right: auto
+  margin-left: 150px
+  position: fixed
 
   div.navigation   
     width: 250px 
@@ -213,15 +219,6 @@ textarea
 label.disclaimerLabel   
   position: relative  
   bottom: 45px  
-
-#sidebar
-  top: 0
-  right: 0
-  bottom: 0
-  left: 10%
-  position: absolute
-  overflow: visible
-  clear: both
 
 #conversation-help
   display: none
