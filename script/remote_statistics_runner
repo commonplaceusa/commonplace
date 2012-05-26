@@ -7,10 +7,10 @@ unless ENV['RAILS_ENV'] == 'remote_worker'
 end
 # TODO: Make sure this succeeds...
 `bundle exec heroku db:pull --app commonplace --confirm commonplace` # There must be a better way to do this...
-`rm -rf ./tmp/mongo_dump/*`
-`mongodump -h ds031107.mongolab.com:31107 -d heroku_app579241 -u jason -p 601845 -o ./tmp/mongo_dump`
-`mongorestore -h localhost -d commonplace_stats ./tmp/mongo_dump/*`
 
+unless ENV["MONGOLAB_URI"]
+  raise 'MongoDB URL must be set for this to work...'
+end
 unless ENV["REDISTOGO_URL"]
   raise 'Could not load local Redis data...'
 end
@@ -26,12 +26,15 @@ local_redis = Redis.new(
 )
 MongoMapper.config = {
   Rails.env => {
-    'uri' => 'mongodb://localhost/commonplace_stats'
+    'uri' => ENV['MONGOLAB_URI']
   }
 }
 MongoMapper.connect(Rails.env)
 unless local_redis
   raise 'Could not connect to Redis locally. Aborting.'
+end
+unless MongoMapper.connection
+  raise 'Could not connect to Mongo...'
 end
 unless StatisticsCsvGenerator.run(30, true, local_redis)
   raise 'Could not generate statistics'

@@ -146,7 +146,7 @@ class MailBase < Mustache
                           :headers => {
                             "Precedence" => "list",
                             "Auto-Submitted" => "auto-generated",
-                            "X-Campaign-Id" => community ? community.slug : "administrative",
+                            "X-Mailgun-Campaign-Id" => community ? community.slug : "administrative",
                             "X-Mailgun-Tag" => self.tag
                           })
     end
