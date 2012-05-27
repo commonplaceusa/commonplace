@@ -1,0 +1,28 @@
+#
+# Format:
+#
+# <stage name>:
+#   app: <Heroku app name>
+#   stack: <Heroku stack, optional>
+#   tag: <git tag pattern, optional>
+#   repo: <git repository, optional>
+#   config:
+#     - <Heroku config:var name>: <Heroku config:var value>
+#
+production:
+  app: commonplace
+  stack: cedar
+  tag: production/*
+  repo: git@github.com:commonplaceusa/commonplace.git
+  config:
+    BUNDLE_WITHOUT: "development:test:osx:remote_worker"
+
+staging:
+  stack: cedar
+  app: commonplace-staging
+  config: &default
+    BUNDLE_WITHOUT: "development:test:osx:remote_worker"
+
+demo:
+  app: awesomeapp-demo
+  config: *default

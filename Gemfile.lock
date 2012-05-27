@@ -42,6 +42,16 @@ GIT
       oauth (= 0.3.6)
 
 GIT
+  remote: git@github.com:Jberlinsky/heroku_san.git
+  revision: 3ad7d89733bc9aa82a514b9557d51f0486f0177f
+  specs:
+    heroku_san (3.0.1)
+      activesupport
+      heroku (>= 2)
+      heroku-api (>= 0.1.2)
+      rake
+
+GIT
   remote: https://github.com/causes/mock_redis.git
   revision: 76d569567a16b7e6b8806489cc629b6d225bcf22
   specs:
@@ -62,6 +72,10 @@ GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
   specs:
+    POpen4 (0.1.4)
+      Platform (>= 0.4.0)
+      open4
+    Platform (0.4.0)
     RedCloth (4.2.9)
     actionmailer (3.2.3)
       actionpack (= 3.2.3)
@@ -164,6 +178,7 @@ GEM
     eventmachine (0.12.10)
     exceptional (2.0.32)
       rack
+    excon (0.13.4)
     execjs (1.3.0)
       multi_json (~> 1.0)
     factory_girl (2.6.3)
@@ -220,6 +235,8 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
+    heroku-api (0.2.1)
+      excon (~> 0.13.3)
     hike (1.2.1)
     hirefireapp (0.0.7)
     hpricot (0.8.6)
@@ -228,6 +245,8 @@ GEM
       multi_json
       multi_xml
     i18n (0.6.0)
+    jammit (0.6.3)
+      yui-compressor (>= 0.9.3)
     jamster-statsd (0.1.0)
     jasmine (1.1.2)
       jasmine-core (>= 1.1.0)
@@ -289,6 +308,7 @@ GEM
     omniauth-oauth2 (1.0.0)
       oauth2 (~> 0.5.0)
       omniauth (~> 1.0)
+    open4 (1.1.0)
     orm_adapter (0.0.7)
     paperclip (2.4.5)
       activerecord (>= 2.3.0)
@@ -448,6 +468,8 @@ GEM
     xml-simple (1.1.1)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yui-compressor (0.9.6)
+      POpen4 (>= 0.1.4)
 
 PLATFORMS
   ruby
@@ -487,8 +509,10 @@ DEPENDENCIES
   guard-spork
   haml (~> 3.1)
   heroku
+  heroku_san!
   hirefireapp
   hpricot
+  jammit
   jasmine
   json (~> 1.6.0)
   launchy
