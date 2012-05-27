@@ -56,9 +56,11 @@ var Application = Backbone.Router.extend({
   initialize: function() {
     var header = new HeaderView({ el: $("#header") });
     header.render();
-    
+
     if (!CommonPlace.account.get("metadata")['completed_facebook_nag'] &&
-        !CommonPlace.account.get('facebook_user')) {
+        (!CommonPlace.account.get('facebook_user') &&
+        !(CommonPlace.account.get('avatar_url').indexOf("missing") == -1)
+        )) {
       var nag = new FacebookNag({ el: $("#notification") });
       nag.render();
     } else {
@@ -116,12 +118,12 @@ var Application = Backbone.Router.extend({
     ":community/find_neighbors/callback?oauth_token=:token&oauth_verifier=:verifier": "find_neighbors_with_callback"
   },
 
-  stats: function(c) { 
-    if (CommonPlace.account.get("is_admin")) { 
-      this.showPage("stats"); 
-    } else { 
-      this.community(); 
-    } 
+  stats: function(c) {
+    if (CommonPlace.account.get("is_admin")) {
+      this.showPage("stats");
+    } else {
+      this.community();
+    }
   },
 
   faq: function(c) { this.showPage("faq"); },

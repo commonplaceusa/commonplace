@@ -1,43 +1,43 @@
 class CommunityExterior
 
   extend ActsAsApi::Base
-  
+
   def model_name
     "community_exterior"
   end
-  
+
   def initialize(community)
     @community = community
   end
-  
+
   def id
     @community.id
   end
-  
+
   def slug
     @community.slug
   end
-  
+
   def name
     @community.name
   end
-  
+
   def interests
     $interests
   end
-  
+
   def goods
     $goods
   end
-  
+
   def skills
     $skills
   end
-  
+
   def has_residents_list
     @community.feature_switches[:find_my_neighbor]
   end
-  
+
   def grouplikes
     combo = [@community.feeds.featured, @community.groups].flatten.sort_by do |grouplike|
       grouplike.subscribers.count
@@ -52,7 +52,7 @@ class CommunityExterior
       }
     end
   end
-  
+
   def feeds
     @community.feeds.featured.map do |feed|
       {
@@ -62,7 +62,7 @@ class CommunityExterior
       }
     end
   end
-  
+
   def groups
     @community.groups.map do |group|
       {
@@ -73,10 +73,11 @@ class CommunityExterior
       }
     end
   end
-  
+
   def referral_sources
     [
-      "Flyer at my door",
+      "",
+      "Flyer in the mail",
       "Someone knocked on my door",
       "In a meeting with #{@community.organizer_name}",
       "At a table or booth at an event",
@@ -85,10 +86,11 @@ class CommunityExterior
       "On another website",
       "In the news",
       "Word of mouth",
+      "Flyer from a business or organization",
       "Other"
     ]
   end
-  
+
   def links
     {
       "self" => "/registration/#{id}",
@@ -104,7 +106,7 @@ class CommunityExterior
       }
     }
   end
-  
+
   def statistics
     {
       "created_at" => @community.created_at.strftime("%B %Y"),
@@ -113,9 +115,9 @@ class CommunityExterior
       "postlikes" => @community.posts.count + @community.events.count + @community.announcements.count + @community.group_posts.count
     }
   end
-  
+
   acts_as_api
-  
+
   api_accessible :default do |t|
     t.add :id
     t.add :slug
@@ -130,5 +132,5 @@ class CommunityExterior
     t.add :statistics
     t.add :has_residents_list
   end
-  
+
 end
