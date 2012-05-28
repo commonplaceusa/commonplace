@@ -44,6 +44,7 @@ var RegisterProfileView = RegistrationModalPage.extend({
     this.$(".error").hide();
     this.data.password = this.$("input[name=password]").val();
     this.data.about = this.$("textarea[name=about]").val();
+    this.data.organizations = this.$("textarea[name=organizations]").val();
 
     _.each(["interests", "skills", "goods"], _.bind(function(listname) {
       var list = this.$("select[name=" + listname + "]").val();

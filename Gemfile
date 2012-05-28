@@ -91,7 +91,6 @@ gem 'heroku' # access heroku api
 gem 'heroku_san', :git => "git@github.com:Jberlinsky/heroku_san.git" # some nice additions to the Heroku gem
 gem 'rack-timeout' # Timeout requests that take too long
 gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
-gem 'jammit' # legacy requirement...
 
 group :assets do
   gem 'uglifier'

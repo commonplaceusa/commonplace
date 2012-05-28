@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424012904) do
+ActiveRecord::Schema.define(:version => 20120528150913) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -307,17 +307,6 @@ ActiveRecord::Schema.define(:version => 20120424012904) do
     t.decimal  "longitude"
   end
 
-  create_table "organizer_data_points", :force => true do |t|
-    t.integer  "organizer_id"
-    t.string   "address"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "lat"
-    t.float    "lng"
-    t.boolean  "attempted_geolocating"
-  end
-
   create_table "posts", :force => true do |t|
     t.text     "body",                                :null => false
     t.integer  "user_id",                             :null => false
@@ -331,6 +320,19 @@ ActiveRecord::Schema.define(:version => 20120424012904) do
     t.datetime "deleted_at"
     t.datetime "replied_at"
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month"
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "referrals", :force => true do |t|
     t.integer  "event_id",    :null => false
@@ -475,6 +477,7 @@ ActiveRecord::Schema.define(:version => 20120424012904) do
     t.integer  "card_id"
     t.datetime "reset_password_sent_at"
     t.boolean  "disabled",                         :default => false
+    t.string   "organizations"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
