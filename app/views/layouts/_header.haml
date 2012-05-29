@@ -38,7 +38,7 @@
                 %a(href="/#{current_community.slug}/discount" data-remote) Good Neighbor Discount
             %li
               %a(href="/#{current_community.slug}/privacy") Privacy Policy
-            %li 
+            %li
               %a(href="/users/sign_out") Sign Out
       = link_to "/#{current_community.slug}", :id => "logo", :data => { :remote => true } do
         = image_tag "logo2.png", :alt => 'CommonPlace'
@@ -57,7 +57,7 @@
         %li{:id=>"sign_in_button", :class=>"remove_border"} Sign in
         %li{:id=>"sign_in_form"}
           = render 'user_sessions/form'
-            
+
       - if params[:community]
         = link_to "/#{params[:community]}", :id => "logo" do
           = image_tag "logo2.png", :alt => 'CommonPlace'
@@ -65,5 +65,5 @@
       - else
         = link_to "/", :id => "logo" do
           = image_tag "logo2.png", :alt => 'CommonPlace'
-    
+
   .clear

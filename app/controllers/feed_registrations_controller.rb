@@ -32,7 +32,8 @@ class FeedRegistrationsController < ApplicationController
 
   def add_profile
     if registration.update_attributes params[:feed]
-      redirect_to subscribers_feed_registration_url(registration)
+      #redirect_to subscribers_feed_registration_url(registration)
+      redirect_to "/pages/#{registration.feed.slug.blank? ? registration.feed.id : registration.feed.slug}"
     else
       render :profile
     end

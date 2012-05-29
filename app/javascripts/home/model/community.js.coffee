@@ -13,3 +13,5 @@ Home.model.Community = Backbone.Model.extend
     posts = new Backbone.Collection()
     posts.url = "/api" + this.get("links").posts
     posts.fetch params
+
+

@@ -1,61 +1,144 @@
-<div class="container">
+<div id="newPost" class="container rounded_corners">
   <div class="navigation">
-    <h1>Choose a Post Type:</h1>
 
     <div class="links">
-      <a
-        href="create-post"
+	    <h1>Choose a Post Type:</h1>
+      <ul>
+		<li class="conversation"><a onMouseOver="document.getElementById('conversation-help').style.display = 'block';" onMouseOut="document.getElementById('conversation-help').style.display = 'none';"
+        href="create-conversation"
         class="conversation"
         data-remote>Conversation Topic
-      </a>
-      <a
+      </a></li>
+      <li class="request"><a onMouseOver="document.getElementById('request-help').style.display = 'block';" onMouseOut="document.getElementById('request-help').style.display = 'none';"
         href="create-request"
         class="request"
         data-remote>Request or Offer
-      </a>
-      <a
+      </a></li>
+      <li class="event"><a onMouseOver="document.getElementById('event-help').style.display = 'block';" onMouseOut="document.getElementById('event-help').style.display = 'none';"
         href="create-event"
         class="event"
         data-remote>Event or Meetup
-      </a>
+      </a></li>
     </div>
 
-    <div class="help conversation">
-      A Conversation Topic is like posting to your community bulletin board.
+	<div class="links-conversation">
+		    <h1>Choose a Topic:</h1>
+    <form> 
+ 	<ul>
+		<li class="conversation"><input type="radio" name="category" id="volunteering" value="Volunteering">
+        <a href="#volunteering" onClick="document.getElementById('volunteering').checked = true;">Volunteering</a>
+      </li>
+      <li class="conversation"><input type="radio" name="category" value="City Problems" id="cityproblems">
+        <a href="#cityproblems" onClick="document.getElementById('cityproblems').checked = true;" >City Problems</a>
+	  </li>
+      <li class="conversation"><input type="radio" name="category" value="Safety" id="safety">
+		<a href="#safety" onClick="document.getElementById('safety').checked = true;" class="">Safety</a>
+      </li>
+      <li class="conversation"><input type="radio" name="category" value="News" id="news">
+		<a href="#news" id="newsLink" onClick="document.getElementById('news').checked = true;" class="">News</a>
+      </li>
+      <li class="conversation"><input type="radio" name="category" value="Health and Wellness" id="healthandwellness">
+		<a href="#healthandwellness" onClick="document.getElementById('healthandwellness').checked = true;" class="">Health and Wellness</a>
+      </li>
+      <li class="conversation"><input type="radio" name="category" value="Schools" id="schools">
+		<a href="#schools" onClick="document.getElementById('schools').checked = true;" >Schools</a>
+	  </li>
+	</ul>
+	</form>
+    </div>
+
+	<div class="links-request">
+		    <h1>Request or Offer:</h1>
+    <form> 
+ 	<ul>
+		<li class="request"><input type="radio" name="category" id="request" value="Request">
+        <a href="#request" onClick="document.getElementById('request').checked = true;" >Request</a>
+      </li>
+      <li class="offer"><input type="radio" name="category" value="offer" id="offer">
+        <a href="#offer" onClick="document.getElementById('offer').checked = true;" >Offer</a>
+	  </li>
+	</ul>
+	</form>
+    </div>
+
+	<div class="links-event">
+		    <h1>Event or Meetup:</h1>
+    <form> 
+ 	<ul>
+		<li class="event"><input type="radio" name="category" id="event" value="Event">
+        <a href="#event" onClick="document.getElementById('event').checked = true;" >Event</a>
+      </li>
+      <li class="meetup"><input type="radio" name="category" value="Meetup" id="meetup">
+        <a href="#meetup" onClick="document.getElementById('meetup').checked = true;" >Meetup</a>
+	  </li>
+	</ul>
+	</form>
+    </div>
+
+	<div class="go-back"><a
+      href="create-post"
+      data-remote>Go Back
+    </a></div>
+
+    <div class="help rounded_corners" id="conversation-help">
+      A <strong>Conversation Topic</strong> is like posting to your community bulletin board.
       Choose a topic and discuss it with the rest of your Upper West Side
       neighbors!
     </div>
 
-    <div class="help request">
+    <div class="help rounded_corners" id="request-help">
       request help
     </div>
 
-    <div class="help event">
+    <div class="help rounded_corners" id="event-help">
       event help
     </div>
 
   </div>
 
   <div class="tabs">
+    <div class="form-container default">
+      <form>
+        <input disabled="disabled" placeholder="Post Title" class="rounded_corners">
+        <textarea placeholder="Post Message" disabled="disabled" rows="15" cols="55" class="rounded_corners"></textarea>
+
+        <button disabled="disabled" class="red-button">POST NOW</button>
+
+        <label class="disclaimerLabel"><input disabled="disabled" type="checkbox"><div id="disclaimer">I am not advertising on behalf of any business or organization</div></label>
+      </form>
+    </div>
 
     <div class="form-container conversation">
       <form>
-        <input placeholder="Post Title">
-        <textarea placeholder="Post Message"></textarea>
+        <input placeholder="Post Title" name="conversation-title" class="rounded_corners">
+        <textarea placeholder="Post Message" name="conversation-post" rows="15" cols="55" class="rounded_corners"></textarea>
 
-        <button>POST NOW</button>
+        <button class="red-button">POST NOW</button>
 
-        <label><input type="checkbox">I am not advertising on behalf of
-          any business or organization</label>
+        <label class="disclaimerLabel"><input type="checkbox" name="conversation-disclaimer"><div id="disclaimer">I am not advertising on behalf of
+          any business or organization</div></label>
       </form>
     </div>
 
     <div class="form-container request">
       <form>
-        <input placeholder="Request Title">
-        <textarea placeholder="Request Message"></textarea>
+        <input placeholder="Request Title" name="request-title" class="rounded_corners">
+        <textarea placeholder="Request Message" name="request-post" class="rounded_corners"></textarea>
+        <input placeholder="$ Desired Price" name="request-price" class="rounded_corners">		
 
-        <button>POST NOW</button>
+        <button class="red-button">POST NOW</button>
+
+      </form>
+
+    </div>
+
+	<div class="form-container offer">
+      <form>
+        <input placeholder="Offer Title" name="request-title" class="rounded_corners">
+        <textarea placeholder="Offer Message" name="request-post" class="rounded_corners"></textarea>
+        <input placeholder="$ Asking Price" name="request-price" class="rounded_corners">		
+
+        <button class="red-button">POST NOW</button>
 
       </form>
 
@@ -63,10 +146,31 @@
 
     <div class="form-container event">
       <form>
-        <input placeholder="Event Title">
-        <textarea placeholder="Event Message"></textarea>
+        <input placeholder="Event Name" name="event-title" class="rounded_corners">
+        <textarea placeholder="Description of your event" name="event-post" class="rounded_corners"></textarea>
+        <input placeholder="Date (Monday April 9, 2012)" name="event-date" class="rounded_corners">
+        <input placeholder="Starts At" name="event-starttime" class="rounded_corners">
+        <input placeholder="Ends At" name="event-endtime" class="rounded_corners">
+        <input placeholder="Venue" name="event-venue" class="rounded_corners">
+        <input placeholder="Address`" name="event-address" class="rounded_corners">		
 
-        <button>POST NOW</button>
+        <button class="red-button">POST NOW</button>
+
+      </form>
+
+    </div>
+
+    <div class="form-container meetup">
+      <form>
+        <input placeholder="Meetup Name" name="event-title" class="rounded_corners">
+        <textarea placeholder="Description of your meetup" name="event-post" class="rounded_corners"></textarea>
+        <input placeholder="Date (Monday April 9, 2012)" name="event-date" class="rounded_corners">
+        <input placeholder="Starts At" name="event-starttime" class="rounded_corners">
+        <input placeholder="Ends At" name="event-endtime" class="rounded_corners">
+        <input placeholder="Venue" name="event-venue" class="rounded_corners">
+        <input placeholder="Address`" name="event-address" class="rounded_corners">		
+
+        <button class="red-button">POST NOW</button>
 
       </form>
 

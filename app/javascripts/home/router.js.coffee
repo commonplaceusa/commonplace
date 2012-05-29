@@ -1,7 +1,8 @@
 Home.Router = Backbone.Router.extend
   routes:
     ":community/home" : "home"
-    ":community/home/create-post": "createPost"
+    ":community/home/create-post": "createDefault"
+    ":community/home/create-conversation": "createConvo"
     ":community/home/create-event": "createEvent"
     ":community/home/create-request": "createRequest"
 
@@ -21,6 +22,14 @@ Home.Router = Backbone.Router.extend
     modal = new Home.ui.Modal(el: $("#modal"), view: posting)
     modal.render()
     return posting
+
+  createDefault: ->
+    posting = this.createPost()
+    posting.showDefault "default"
+
+  createConvo: ->
+    posting = this.createPost()
+    posting.show "conversation"
 
   createEvent: ->
     posting = this.createPost()

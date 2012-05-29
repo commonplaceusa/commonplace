@@ -6,7 +6,7 @@ class Home.presenter.Post
   toJSON: ->
     _.extend(@post.toJSON(),
       wireCategoryClass: "sports"
-      wireCategoryName: "Food & Dining"
+      wireCategoryName: this.post.attributes.category
       timeAgo: timeAgoInWords(@post.get("published_at")))
 
 
