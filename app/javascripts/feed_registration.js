@@ -1,7 +1,14 @@
-//= require slugify.js
+//= require json2
+//= require underscore
+//= require mustache
+//= require backbone
 //= require jquery.js
 //= require jcrop.js
+//= require models
+//= require views
 //= require_tree ./shared
+//= require slugify.js
+
 
 $(function() {
   $("<div/>", { id: "file_input_fix" })
