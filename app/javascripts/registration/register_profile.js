@@ -135,5 +135,8 @@ var RegisterProfileView = RegistrationModalPage.extend({
         this.render();
       }, this)
     });
-  }
+  },
+
+  isWatertown: function() { return CommonPlace.community.get("name") == "Watertown"; }
+
 });
