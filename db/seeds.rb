@@ -16,6 +16,8 @@ user = User.create!(:first_name => "test", :last_name => "dev",
                     :password => "password", :neighborhood => neighborhood,
                      :community => community)
 
+user.create_resident
+
 community.add_default_groups
 user.admin = true
 user.save!
