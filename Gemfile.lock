@@ -1,48 +1,5 @@
 GIT
-  remote: git://github.com/cloudability/resque-statsd.git
-  revision: a07359e81c11058045e2cb59c05f2a1d3389b386
-  specs:
-    resque-statsd (0.0.4)
-      jamster-statsd
-
-GIT
-  remote: git://github.com/gdb/embedded-mongo.git
-  revision: 06db599985c6a5877fe33508623aa046515523a4
-  specs:
-    embedded-mongo (0.0.1)
-      mongo
-
-GIT
-  remote: git://github.com/sferik/rails_admin.git
-  revision: c70beff76fdad15e09b197387ed0a8df4ee47924
-  specs:
-    rails_admin (0.0.1)
-      bbenezech-nested_form (~> 0.0.6)
-      bootstrap-sass (~> 2.0)
-      builder (~> 3.0)
-      coffee-rails (~> 3.1)
-      haml (~> 3.1)
-      jquery-rails (>= 1.0)
-      jquery-ui-rails (~> 0.2.2)
-      kaminari (~> 0.12)
-      rack-pjax (~> 0.5)
-      rails (~> 3.1)
-      remotipart (~> 1.0)
-      sass-rails (~> 3.1)
-
-GIT
-  remote: git://github.com/turingstudio/contacts.git
-  revision: aa86d2ff8e566a801953300dd1848725f722c020
-  specs:
-    turing-contacts (0.2.6)
-      hpricot
-      httparty
-      json
-      nokogiri
-      oauth (= 0.3.6)
-
-GIT
-  remote: git@github.com:Jberlinsky/heroku_san.git
+  remote: https://github.com/Jberlinsky/heroku_san.git
   revision: 3ad7d89733bc9aa82a514b9557d51f0486f0177f
   specs:
     heroku_san (3.0.1)
@@ -58,6 +15,13 @@ GIT
     mock_redis (0.4.1)
 
 GIT
+  remote: https://github.com/cloudability/resque-statsd.git
+  revision: a07359e81c11058045e2cb59c05f2a1d3389b386
+  specs:
+    resque-statsd (0.0.4)
+      jamster-statsd
+
+GIT
   remote: https://github.com/dabio/taps.git
   revision: a56d8e8494d6bcb529628ee602b9198086a20b9c
   specs:
@@ -67,6 +31,42 @@ GIT
       sequel
       sinatra
       sqlite3-ruby
+
+GIT
+  remote: https://github.com/gdb/embedded-mongo.git
+  revision: 06db599985c6a5877fe33508623aa046515523a4
+  specs:
+    embedded-mongo (0.0.1)
+      mongo
+
+GIT
+  remote: https://github.com/sferik/rails_admin.git
+  revision: 1eda06e225b021febe3de6a543235c818dfa8150
+  specs:
+    rails_admin (0.0.4)
+      bbenezech-nested_form (~> 0.0.6)
+      bootstrap-sass (~> 2.0, >= 2.0.3)
+      builder (~> 3.0)
+      coffee-rails (~> 3.1)
+      haml (~> 3.1)
+      jquery-rails (>= 1.0.17)
+      jquery-ui-rails (~> 0.2.2)
+      kaminari (~> 0.12)
+      rack-pjax (~> 0.5)
+      rails (~> 3.1)
+      remotipart (~> 1.0)
+      sass-rails (~> 3.1)
+
+GIT
+  remote: https://github.com/turingstudio/contacts.git
+  revision: aa86d2ff8e566a801953300dd1848725f722c020
+  specs:
+    turing-contacts (0.2.6)
+      hpricot
+      httparty
+      json
+      nokogiri
+      oauth (= 0.3.6)
 
 GEM
   remote: http://rubygems.org/
@@ -114,7 +114,7 @@ GEM
       xml-simple
     bbenezech-nested_form (0.0.6)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.0.2)
+    bootstrap-sass (2.0.3.1)
     bson (1.6.1)
     bson_ext (1.6.1)
       bson (~> 1.6.1)
@@ -137,7 +137,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.2.0)
+    coffee-script-source (1.3.3)
     colored (1.2)
     compass (0.12.alpha.0)
       chunky_png (~> 1.2)
@@ -174,7 +174,7 @@ GEM
     eventmachine (0.12.10)
     exceptional (2.0.32)
       rack
-    excon (0.13.4)
+    excon (0.14.0)
     execjs (1.3.0)
       multi_json (~> 1.0)
     factory_girl (2.6.3)
@@ -231,14 +231,14 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
-    heroku-api (0.2.1)
-      excon (~> 0.13.3)
+    heroku-api (0.2.4)
+      excon (~> 0.14.0)
     hike (1.2.1)
     hirefireapp (0.0.7)
     hpricot (0.8.6)
     htmlentities (4.3.1)
-    httparty (0.8.1)
-      multi_json
+    httparty (0.8.3)
+      multi_json (~> 1.0)
       multi_xml
     i18n (0.6.0)
     jamster-statsd (0.1.0)
@@ -284,7 +284,7 @@ GEM
       activesupport (~> 3.0)
       plucky (~> 0.4.0)
     multi_json (1.2.0)
-    multi_xml (0.4.2)
+    multi_xml (0.5.1)
     multipart-post (1.1.5)
     mustache (0.99.4)
     newrelic_rpm (3.3.2)
@@ -349,6 +349,7 @@ GEM
     rake (0.9.2.2)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
+    rb-readline (0.4.2)
     rdiscount (1.6.8)
     rdoc (3.12)
       json (~> 1.4)
@@ -525,6 +526,7 @@ DEPENDENCIES
   rails (~> 3.2.0)
   rails_admin!
   rb-inotify
+  rb-readline
   redcarpet (~> 2.0.1)
   redis
   redis-namespace

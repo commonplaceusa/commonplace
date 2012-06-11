@@ -24,7 +24,7 @@ gem 'glebm-geokit', :require => 'geokit' # use this to find latlngs from address
 # MongoDB
 gem 'bson_ext'
 gem 'mongo_mapper' # used to represent site visits
-gem 'embedded-mongo', :git => "git://github.com/gdb/embedded-mongo.git"
+gem 'embedded-mongo', :git => "https://github.com/gdb/embedded-mongo.git"
 
 # Deployment
 gem 'thin' # lighter than mongrel, faster than webrick
@@ -54,7 +54,7 @@ gem 'resque-exceptional' # we use this to send notify of exceptions with worker 
 gem 'resque-scheduler' # we use this to queue jobs at specific times
 gem 'resque-cleaner'
 gem 'hirefireapp' # auto-scale web and worker processes
-gem "resque-statsd", :git => "git://github.com/cloudability/resque-statsd.git"
+gem "resque-statsd", :git => "https://github.com/cloudability/resque-statsd.git"
 
 # Mail
 gem 'mail' # Used for mail
@@ -68,7 +68,7 @@ gem 'formtastic', '= 2.0.2' # used for view templates
 gem 'sass' # used for stylesheets
 
 # Admin
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git'
 gem 'googlecharts' # used for admin/overview
 gem 'garb' # used to access the Google Analytics API
 
@@ -82,13 +82,13 @@ gem 'rollout' # we use this to control features
 
 # Contacts
 gem 'hpricot'
-gem 'turing-contacts', :git => "git://github.com/turingstudio/contacts.git", :require => 'contacts'
+gem 'turing-contacts', :git => "https://github.com/turingstudio/contacts.git", :require => 'contacts'
 
 # Misc
 gem 'json', "~> 1.6.0" # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku' # access heroku api
-gem 'heroku_san', :git => "git@github.com:Jberlinsky/heroku_san.git" # some nice additions to the Heroku gem
+gem 'heroku_san', :git => "https://github.com/Jberlinsky/heroku_san.git" # some nice additions to the Heroku gem
 gem 'rack-timeout' # Timeout requests that take too long
 gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 
@@ -144,3 +144,5 @@ group :test do
   gem 'database_cleaner' # we use database_cleaner to clean the database between tests
   gem 'jasmine' # we use jasmine for javascript tests
 end
+
+gem 'rb-readline'
