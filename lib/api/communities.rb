@@ -301,6 +301,14 @@ CONDITION
       end
     end
 
+    # Returns a list of completed versions of the address
+    #
+    # term - the term to find auto-completed
+    get "/:id/address_completions" do
+      serialize(find_community.residents
+      .where("address ILIKE ?", "%#{params[:term]}%").pluck(:address))
+    end
+
     # Returns the community's posts, possibly a search result
     # 
     # Query params:
