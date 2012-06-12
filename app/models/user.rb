@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
     OrganizerDataPoint.find_all_by_organizer_id(self.id)
   end
 
+  after_create :create_resident
   before_validation :geocode, :if => :address_changed?
   before_validation :place_in_neighborhood, :if => :address_changed?
 
