@@ -39,7 +39,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
     });
 
     var url = '/api/communities/'+this.communityExterior.id+'/address_completions'
-	this.$("input[name=street_address]").autocomplete({ source: url , minLength: 2 });
+    this.$("input[name=street_address]").autocomplete({ source: url , minLength: 2 });
 
   },
   
