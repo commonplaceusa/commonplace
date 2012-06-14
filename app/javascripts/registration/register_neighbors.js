@@ -8,7 +8,7 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
   exp: undefined,
   lid: undefined,
   delt: undefined,
-  
+
   events: {
     "click input.continue": "submit",
 
@@ -42,13 +42,14 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
   is_windows_live_user: function(email_address) {
     return (this.email_address_contains(email_address, "@hotmail") || this.email_address_contains(email_address, "@live"));
   },
-  
+
   afterRender: function() {
     if (window.history && window.history.pushState) {
-      window.history.pushState({},
-                               document.title, 
-                               "/" + CommonPlace.community.get('slug') + 
-                               "/register/neighbors");
+      // window.history.pushState({},
+                               // document.title,
+                               // "/" + CommonPlace.community.get('slug') +
+                               // "/register/neighbors");
+      this.complete();
     }
 
     var self = this;
@@ -92,12 +93,12 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
     this.$("form.add .error").hide();
 
 
-    
+
     this.$(".neighbor_finder").scroll(function() {
       if (($(this).scrollTop() + 30) > (5 * this.scrollHeight / 7)) { self.nextPageThrottled(); }
     });
     this.nextPageTrigger();
-    
+
     this.slideIn(this.el, _.bind(function() {
       $.getJSON(
         "/api" + this.communityExterior.links.registration.residents, {limit: 3000},
@@ -110,11 +111,11 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
       );
     }, this));
   },
-  
+
   nextPageTrigger: function() {
     this.nextPageThrottled = _.once(_.bind(function() { this.nextNeighborsPage(); }, this));
   },
-    
+
   generate: function(checkExternalService) {
     if (checkExternalService == "facebook") {
       facebook_connect_friends({
@@ -191,7 +192,7 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
   nextNeighborsPage: function() {
     if (_.isEmpty(this.items)) { return; }
     this.showGif("loading");
-    
+
     var currentItems = _.first(this.items, this.limit);
     this.items = _.rest(this.items, this.limit);
     _.each(currentItems, _.bind(function(itemView) {
@@ -199,18 +200,18 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
       this.appendCell(this.$(".neighbor_finder table"), itemView.el);
     }, this));
     this.nextPageTrigger();
-    
+
     this.showGif("inactive");
   },
-  
+
   appendCell: function($table, el) {
     var $row;
     var $lastRow = $(_.last($table[0].rows));
-    
+
     if ($table[0].rows.length && $lastRow[0].cells.length == 1) {
       $row = $lastRow;
     } else { $row = $($table[0].insertRow(-1)); }
-    
+
     $row.append(el);
   },
 
@@ -472,33 +473,33 @@ var RegisterNeighborsView = RegistrationModalPage.extend({
       $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/api" + CommonPlace.account.link("neighbors"), 
-        data: JSON.stringify(data), 
+        url: "/api" + CommonPlace.account.link("neighbors"),
+        data: JSON.stringify(data),
         success: _.bind(function() { this.finish(); }, this)
       });
     } else {
       this.finish();
     }
-  },  
+  },
 
   getFacebookUser: function(name) {
     return _.find(this.friends, function(friend) {
       return friend.name.toLowerCase() == name.toLowerCase();
     });
   },
-  
+
   showGif: function(className) {
     this.$(".remove_search").removeClass("inactive");
     this.$(".remove_search").removeClass("active");
     this.$(".remove_search").removeClass("loading");
     this.$(".remove_search").addClass(className);
   },
-  
+
   toggleContact: function(e) {
     this.$("input.contact").removeAttr("checked");
     $(e.currentTarget).attr("checked", "checked");
   },
-  
+
   finish: function() { this.complete(); },
 
 
