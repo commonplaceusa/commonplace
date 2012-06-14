@@ -5,6 +5,7 @@ class Resident < ActiveRecord::Base
   belongs_to :community
 
   belongs_to :user
+  belongs_to :street_address
 
   def on_commonplace?
     self.user_id?
@@ -18,9 +19,6 @@ class Resident < ActiveRecord::Base
     [false, true].sample
   end
 
-  def have_dropped_flyers?
-    [false, true].sample
-  end
 
   def add_log(date, text, tags)
     self.add_tags(tags)
