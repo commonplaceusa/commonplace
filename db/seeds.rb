@@ -16,11 +16,14 @@ user = User.create!(:first_name => "test", :last_name => "dev",
                     :password => "password", :neighborhood => neighborhood,
                      :community => community)
 
-user.create_resident
+address = StreetAddress.create!(:address => "221B Baker St.", 
+                                :unreliable_name => "test dev")
 
 community.add_default_groups
 user.admin = true
 user.save!
+
+user.correlate
 post = Post.create(:body => "This is a test post",
                     :user => user,
                     :subject => "Subject",

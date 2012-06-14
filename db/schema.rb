@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528150913) do
+ActiveRecord::Schema.define(:version => 20120612213633) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -307,6 +307,17 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.decimal  "longitude"
   end
 
+  create_table "organizer_data_points", :force => true do |t|
+    t.integer  "organizer_id"
+    t.string   "address"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "lat"
+    t.float    "lng"
+    t.boolean  "attempted_geolocating"
+  end
+
   create_table "posts", :force => true do |t|
     t.text     "body",                                :null => false
     t.integer  "user_id",                             :null => false
@@ -372,6 +383,23 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.string  "email"
     t.decimal "latitude"
     t.decimal "longitude"
+    t.integer "street_address_id"
+  end
+
+  create_table "sent_emails", :force => true do |t|
+    t.string   "tag"
+    t.integer  "community_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "street_addresses", :force => true do |t|
+    t.string   "address"
+    t.string   "unreliable_name"
+    t.text     "metadata"
+    t.text     "logs"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
