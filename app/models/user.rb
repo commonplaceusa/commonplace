@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
     OrganizerDataPoint.find_all_by_organizer_id(self.id)
   end
 
-  after_create :correlate
+  after_create :create_resident
   before_validation :geocode, :if => :address_changed?
   before_validation :place_in_neighborhood, :if => :address_changed?
 
@@ -542,28 +542,7 @@ WHERE
     end
     KickOff.new.send_spam_report_received_notification(self)
   end
-
-  # Finds StreetAddress with same address
-  # 
-  # Note: This should find an exact match because of address verification
-  # upon User registration [!!verify_address does not exist yet]
-  # ...Unless one is in the dev-environment where there's no real data
-  def find_st_address
-    matched = StreetAddress.where("address ILIKE ?", "%#{self.address}%") 
-
-    return matched.first if matched.count == 1
-
-    # This should not happen when verify_address is written
-    if matched.count == 0
-      matched = create_st_address
-    else
-      # We somehow...have the same street address more than once D=
-      # merge (matched) goes here, where merge merges table entries into 1 entry
-    end
-
-    return matched
-  end
-
+  
   def find_resident
     address_components = self.address.split(" ")
     # if first word of address is not a number
@@ -579,14 +558,9 @@ WHERE
     # TODO: FIRST LETTER OF FIRST NAME
 
     # if any of address and last name don't match, make a new Resident for the user
-    # return nil if matched.count == 0
+    return nil if matched.count == 0
     # if address and last name and first letter of first name match one Resident, use this Resident (first name can be a nickname or the actual name)
     return matched.first if matched.count == 1
-
-    # match email address
-    matched_email = matched.select { |resident| resident.email == self.email }
-
-    return matched_email.first if matched_email.count == 1
 
     # check user first name /first name's first letter
     # check if resident returned has a user already
@@ -600,19 +574,9 @@ WHERE
     nil
   end
 
-  def create_st_address
-    return  StreetAddress.create(
-      :address => self.address,
-      :unreliable_name => "#{self.first_name} #{self.last_name}")
-  end
-
-  # Correlates the User and the corresponding StreetAddress file with
-  # the "REAL AMERICAN PERSON" file [aka the Resident file]
-  def correlate
-    addr = find_st_address
+  def create_resident
     if r = find_resident
       r.user = self
-      r.street_address = addr
       r.save
     else
       Resident.create(
@@ -620,8 +584,6 @@ WHERE
         :first_name => self.first_name,
         :last_name => self.last_name,
         :address => self.address,
-        :email => self.email,
-        :street_address => addr,
         :user => self)
     end
   end
