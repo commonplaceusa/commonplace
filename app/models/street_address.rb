@@ -45,10 +45,11 @@ class StreetAddress < ActiveRecord::Base
     end
 
     split_name = unreliable_name.to_s.split(" ")
-    r = Resident.create(
+
+    Resident.create(
       :community => self.community,
-      :first_name => split_name.shift.to_s,
-      :last_name => split_name.pop.to_s,
+      :first_name => split_name.shift.to_s.capitalize,
+      :last_name => split_name.pop.to_s.capitalize,
       :address => self.address,
       :street_address => self)
 
