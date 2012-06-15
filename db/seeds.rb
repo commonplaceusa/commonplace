@@ -35,7 +35,6 @@ Resident.create!(:first_name => "Will",
                  :address => "22 Mott St.",
                  :community => community)
 
-
 user = User.create!(:first_name => "test", :last_name => "dev",
                     :email => "test@example.com", :address => "221B Baker St.",
                     :password => "password", :neighborhood => neighborhood,
