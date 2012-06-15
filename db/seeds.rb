@@ -44,6 +44,7 @@ user = User.create!(:first_name => "test", :last_name => "dev",
 community.add_default_groups
 user.admin = true
 user.save!
+
 post = Post.create(:body => "This is a test post",
                     :user => user,
                     :subject => "Subject",

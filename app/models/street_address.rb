@@ -14,6 +14,8 @@ class StreetAddress < ActiveRecord::Base
     string :address
   end
 
+  after_create :create_default_resident
+
   def have_dropped_flyers?
     [false, true].sample
   end
@@ -52,5 +54,4 @@ class StreetAddress < ActiveRecord::Base
 
     r.add_tags(self.carrier_route)
   end
-
 end
