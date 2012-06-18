@@ -6,6 +6,16 @@
 
 require 'cucumber/rails'
 require 'factory_girl/step_definitions'
+Dir.glob(File.join(File.dirname(__FILE__), '../../spec/factories/*.rb')).each {|f| require f }
+
+VCR.configure do |c|
+  c.hook_into :webmock
+  c.cassette_library_dir = 'features/cassettes'
+  c.allow_http_connections_when_no_cassette = true
+end
+VCR.cucumber_tags do |t|
+  t.tags '@uses_api', '@external_request'
+end
 
 # Allow local network access
 WebMock.disable_net_connect!(:allow_localhost => true)
@@ -16,14 +26,15 @@ WebMock.disable_net_connect!(:allow_localhost => true)
 Capybara.default_selector = :css
 
 # Set Capybara driver to capybara-webkit
-Capybara.register_driver :selenium_waiting do |app|
-  Capybara::Selenium::Driver.new(app, :resynchronize => true)
-end
-#Capybara.default_driver = :selenium_waiting
-Capybara.default_driver = :webkit
+#Capybara.register_driver :selenium_waiting do |app|
+#  Capybara::Selenium::Driver.new(app, :resynchronize => true)
+#end
+#Capybara.default_driver = :webkit
+#
+Capybara.default_driver = :selenium
 #Capybara.default_host = "localhost"
 #Capybara.server_port = 3000
-Capybara.app_host = "http://localhost:3000"
+#Capybara.app_host = "http://localhost:3000"
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how

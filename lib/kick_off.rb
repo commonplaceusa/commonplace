@@ -1,9 +1,9 @@
 class KickOff
-  
+
   def initialize(queuer = Resque)
     @queuer = queuer
   end
- 
+
   def deliver_post(post)
     send_post_to_neighborhood(post, post.neighborhood)
   end
@@ -22,14 +22,14 @@ class KickOff
     end
   end
 
-  
+
   def deliver_reply(reply)
     # We're delivering a reply to the author of the repliable
     repliable_ids = [reply.repliable.user_id]
 
     # As well as anyone else who replied
     repliable_ids += reply.repliable.replies.map &:user_id
-    
+
     # But not the author of the current reply
     repliable_ids.delete(reply.user_id)
 
@@ -42,15 +42,15 @@ class KickOff
     end
   end
 
-  
+
   def deliver_feed_invite(emails, feed)
-    # Given some emails 
+    # Given some emails
     recipients = Array(emails) # it's definitely an array now
 
     # That don't already exist in the system
-    
-    recipients.reject! do |email| 
-      User.exists?(:email => Mail::Address.new(email).address) 
+
+    recipients.reject! do |email|
+      User.exists?(:email => Mail::Address.new(email).address)
     end
 
     # Send invites
@@ -63,7 +63,7 @@ class KickOff
     enqueue(NSubscribersFeedNotification, feed_id)
   end
 
-  
+
   def deliver_group_post(post)
     # We're delivering a post to subscribers of the group
     recipients = post.group.live_subscribers.map(&:id)
@@ -77,7 +77,7 @@ class KickOff
     end
   end
 
-  
+
   def deliver_user_message(message)
     enqueue(MessageNotification, message.id, message.messagable_id)
   end
@@ -86,7 +86,7 @@ class KickOff
   def deliver_post_to_community(post)
     # Uplifting a post (sending it to whole community)
     community = post.community
-    
+
     neighborhoods = community.neighborhoods
 
     # Its already been sent to it's neighborhood, don't do it again
@@ -107,8 +107,8 @@ class KickOff
     # emails is an array
     emails = Array(emails)
 
-    emails.reject! do |email| 
-      User.exists?(:email => Mail::Address.new(email).address) 
+    emails.reject! do |email|
+      User.exists?(:email => Mail::Address.new(email).address)
     end
 
     emails.each do |email|
@@ -119,22 +119,22 @@ class KickOff
   # Sends an invite to a resident, from the given user
   #
   # Params:
-  #   resident 
+  #   resident
   #   user
   def deliver_invite_to_resident(resident, user)
     enqueue(ResidentInvitation, resident.id, user.id)
   end
-  
+
   def deliver_post_confirmation(post)
     enqueue(PostConfirmation, post.id)
   end
 
-  
+
   def deliver_announcement_confirmation(post)
     enqueue(AnnouncementConfirmation, post.id)
   end
 
-  
+
   def deliver_feed_permission_warning(user, feed)
     enqueue(NoFeedPermission, user.id, feed.id)
   end
@@ -144,7 +144,7 @@ class KickOff
     enqueue(UnknownAddress, user.id)
   end
 
-  
+
   def deliver_unknown_user_warning(email)
     enqueue(UnknownUser, email)
   end
@@ -154,7 +154,7 @@ class KickOff
     enqueue(Welcome, user.id)
   end
 
-  
+
   def deliver_password_reset(user)
     enqueue(PasswordReset, user.id)
   end
@@ -168,7 +168,7 @@ class KickOff
   def deliver_daily_bulletin(user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events)
     enqueue(DailyBulletin, user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events)
   end
-  
+
   def deliver_feed_owner_welcome(feed)
     enqueue(FeedWelcome, feed.id)
   end
@@ -191,8 +191,12 @@ class KickOff
     enqueue(SpamReportReceivedNotification, user.id)
   end
 
+  def deliver_network_health_stats_document(filename, interval)
+    enqueue(NetworkHealthStatsDocumentNotification, filename, interval)
+  end
+
   private
-  
+
   def enqueue(*args)
     @queuer.enqueue(*args)
   end

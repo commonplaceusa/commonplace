@@ -64,16 +64,22 @@ class User < ActiveRecord::Base
 
   scope :between, lambda { |start_date, end_date|
     { :conditions =>
-      ["? <= created_at AND created_at < ?", start_date.utc, end_date.utc] }
+      ["? <= users.created_at AND users.created_at < ?", start_date.utc, end_date.utc] }
   }
 
   scope :today, { :conditions => ["created_at between ? and ?", DateTime.now.utc.beginning_of_day, DateTime.now.utc.end_of_day] }
 
   scope :this_week, { :conditions => ["created_at between ? and ?", DateTime.now.utc.beginning_of_week, DateTime.now.utc.end_of_day] }
 
-  scope :up_to, lambda { |end_date| { :conditions => ["created_at <= ?", end_date.utc] } }
+  scope :up_to, lambda { |end_date| { :conditions => ["users.created_at <= ?", end_date.utc] } }
 
   scope :logged_in_since, lambda { |date| { :conditions => ["last_login_at >= ?", date.utc] } }
+
+  scope :core, {
+    :joins => "LEFT OUTER JOIN communities ON (users.community_id = communities.id)",
+    :conditions => "communities.core = true",
+    :select => "users.*"
+  }
 
   # HACK HACK HACK avatar_url should not be hardcoded like this
   scope :pretty, { :conditions => ["about != '' OR goods != '' OR interests != '' OR avatar_file_name IS NOT NULL"] }
@@ -542,11 +548,11 @@ WHERE
     end
     KickOff.new.send_spam_report_received_notification(self)
   end
-  
+
   def find_resident
     address_components = self.address.split(" ")
     # if first word of address is not a number
-    if !(address_components.first =~ /^[-+]?[0-9]+$/) 
+    if !(address_components.first =~ /^[-+]?[0-9]+$/)
       address_components.shift if address_components.first == "#"
       # TODO: add PO BOX case
       matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.first + "%", self.last_name)

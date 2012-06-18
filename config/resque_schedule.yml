@@ -1,3 +1,5 @@
+# NOTE: All times are in server time.
+
 send_daily_digest:
   cron: "00 21 * * *"
   class: DailyDigestJob
@@ -46,3 +48,17 @@ scale_down_post_daily_digest:
   args: 2
   queue: server_management
   description: "Decreases used dynos after daily digest mailings"
+
+send_weekly_network_health_stats:
+  cron: "0 0 * * 0"
+  class: NetworkHealthStats
+  args:
+  queue: statistics
+  description: "Sends out a weekly digest of network health statistics for board review"
+
+send_monthly_network_health_stats:
+  cron: "0 0 0 * *"
+  class: NetworkHealthStatsMonthly
+  args:
+  queue: statistics
+  description: "Sends out a monthly digest of network health statistics"

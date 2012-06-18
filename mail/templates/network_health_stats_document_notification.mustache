@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+  <body>
+    <table id="body">
+
+      {{< header }}
+
+      <tr>
+        <td>
+          <p>Dear CommonPlace Administrator,</p>
+
+          <p>A {{interval}} network health statistics document has recently been generated. Please download it here: {{document_url}}</p>
+
+          <p>Cheers, <br> The Friendly CommonPlace Server Robot</p>
+
+        </td>
+
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< legal }}
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>

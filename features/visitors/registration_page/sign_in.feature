@@ -1,28 +1,27 @@
 Feature: Registration
 
-Scenario: Trying to register
-  Given a default community exists
-  Given I am on the registration page
-  When I click #user_sign_in
-  Then I should see the sign in dropdown
+  @javascript
+    Scenario: Trying to register
+      Given a default community exists
+      Given I am on the registration page
+      When I click #sign_in_button
+      Then I should see the sign in dropdown
+      And I should see the selector .forgot
 
-Scenario: Logging in from the drop-down
-  Given I see the sign in dropdown
-  And I fill in email with "test@example.com"
-  And I fill in password with "password"
-  When I click input.submit
-  Then I should see the main page
-@wip
-  Scenario: Forgot Password from the drop-down
-    Given I see the sign in dropdown
-    When I click “Forgot Your Password”
-    Then I should see the “Forgot Your Password” page
-@wip
-  Scenario: Forgot Password
-    Given I see the “Forgot Your Password” page
-    And I fill in “Email Address”
-    When I click “Submit”
-    Then I should be emailed a “Forgot Your Password” email
+      When I fill in email with "test@example.com"
+      And I fill in password with "password"
+      When I click input.submit
+      Then I should see the main page
+
+@wip @javascript
+    Scenario: Forgot Password from the drop-down
+      Given I see the sign-in drop-down
+      When I click .forgot
+      Then I should be on the Forgot Password page
+
+      #When I fill in email_address with "test@example.com"
+      #And I click input.submit
+      #Then a Forgot Password email should have sent to "test@example.com"
 @wip
   Scenario: Facebook login from drop-down
     Given I see sign in drop down

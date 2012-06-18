@@ -1,10 +1,10 @@
 class Post < ActiveRecord::Base
   #acts_as_trackable
 
-  CATEGORIES = %w{Request Offer Invitation Announcement Question}  
+  CATEGORIES = %w{Request Offer Invitation Announcement Question}
 
   delegate :neighborhood, :to => :user
-  
+
   belongs_to :user, :counter_cache => true
   belongs_to :community
 
@@ -19,13 +19,19 @@ class Post < ActiveRecord::Base
 
   attr_accessor :post_to_facebook
 
-  scope :between, lambda { |start_date, end_date| 
-    { :conditions => 
-      ["posts.created_at between ? and ?", start_date.utc, end_date.utc] } 
+  scope :between, lambda { |start_date, end_date|
+    { :conditions =>
+      ["posts.created_at between ? and ?", start_date.utc, end_date.utc] }
   }
   scope :up_to, lambda { |end_date| { :conditions => ["posts.created_at <= ?", end_date.utc] } }
 
   scope :created_on, lambda { |date| { :conditions => ["posts.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
+
+  scope :core, {
+    :joins => "LEFT OUTER JOIN users ON (posts.user_id = users.id) LEFT OUTER JOIN communities ON (users.community_id = communities.id)",
+    :conditions => "communities.core = true",
+    :select => "posts.*"
+  }
 
   scope :today, :conditions => ["posts.created_at between ? and ?", DateTime.now.at_beginning_of_day, Time.now]
 
@@ -46,7 +52,7 @@ class Post < ActiveRecord::Base
   def self.human_name
     "Neighborhood Post"
   end
-  
+
   def owner
     self.user
   end
@@ -58,7 +64,7 @@ class Post < ActiveRecord::Base
   def between?(start_date, end_date)
     start_date <= self.created_at and self.created_at <= end_date
   end
-  
+
   def all_thanks
     (self.thanks + self.replies.map(&:thanks)).flatten.sort_by {|t| t.created_at }
   end
@@ -74,7 +80,7 @@ class Post < ActiveRecord::Base
     t.add ->(m) { "posts" }, :as => :schema
     t.add :subject, :as => :title
   end
-  
+
   searchable do
     text :subject, :body
     text :author_name do

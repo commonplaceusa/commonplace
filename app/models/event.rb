@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   #track_on_creation
 
-  
+
   attr_accessor :pledge
 
   validates_presence_of :name, :description, :date
@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :owner, :polymorphic => true
   belongs_to :community
-  
+
   has_many :thanks, :as => :thankable, :dependent => :destroy
 
   has_many :invites, :as => :inviter
@@ -26,9 +26,16 @@ class Event < ActiveRecord::Base
   has_many :groups, :through => :event_cross_postings
 
   scope :upcoming, lambda { { :conditions => ["? <= events.date", Time.now.beginning_of_day.utc] } }
-  scope :between, lambda { |start_date, end_date| 
-    { :conditions => ["? <= events.date AND events.date < ?", start_date, end_date] } 
+  scope :between, lambda { |start_date, end_date|
+    { :conditions => ["? <= events.date AND events.date < ?", start_date, end_date] }
   }
+
+  scope :core, {
+    :joins => "LEFT OUTER JOIN users ON (events.owner_id = users.id) LEFT OUTER JOIN communities ON (users.community_id = communities.id)",
+    :conditions => "communities.core = true",
+    :select => "events.*"
+  }
+
   scope :past, :conditions => ["events.date < ?", Time.now.utc]
   scope :today, :conditions => ["events.created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
   scope :this_week, :conditions => ["events.created_at between ? and ?", DateTime.now.at_beginning_of_week, Time.now]
@@ -65,23 +72,23 @@ class Event < ActiveRecord::Base
   def search(term)
     Event.all
   end
-  
+
   def time
-    date.strftime("%b %d") 
+    date.strftime("%b %d")
   end
 
   def occurs_at
     DateTime.strptime("#{self.date.strftime("%Y-%m-%d")}T00:00:00#{Time.zone.formatted_offset}")
   end
-  
+
   def start_datetime
     date.to_time + start_time.hour.hours + start_time.min.minutes
   end
-  
+
   def subject
     self.name
   end
-  
+
   def body
     self.description
   end
@@ -100,15 +107,15 @@ class Event < ActiveRecord::Base
   def between?(start_date, end_date)
     start_date <= self.created_at and self.created_at <= end_date
   end
-  
+
   def long_id
     IDEncoder.to_long_id(self.id)
   end
-  
+
   def self.find_by_long_id(long_id)
     Event.find(IDEncoder.from_long_id(long_id))
   end
-  
+
   def all_thanks
     (self.thanks + self.replies.map(&:thanks)).flatten.sort_by {|t| t.created_at }
   end
@@ -132,5 +139,5 @@ class Event < ActiveRecord::Base
     end
     time :created_at
   end
-  
+
 end

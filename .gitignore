@@ -37,3 +37,4 @@ sunspot-solr.pid
 *.pyc
 neo4j
 .env
+coverage

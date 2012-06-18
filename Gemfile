@@ -84,6 +84,9 @@ gem 'rollout' # we use this to control features
 gem 'hpricot'
 gem 'turing-contacts', :git => "https://github.com/turingstudio/contacts.git", :require => 'contacts'
 
+# Data Export
+gem 'simple_xlsx_writer', :require => false
+
 # Misc
 gem 'json', "~> 1.6.0" # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
@@ -117,7 +120,9 @@ group :development, :test, :remote_worker do
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
   gem 'jasmine'
   gem 'cucumber'
+  gem 'simplecov', :require => false
   gem 'cucumber-rails'
+  gem 'selenium'
   #gem 'capybara-webkit'
   #gem 'progress_bar'
 end
@@ -134,6 +139,7 @@ end
 
 group :test do
   gem 'rspec-rails' # we use rspec-rails for tests
+  gem 'vcr'
   gem 'fuubar' # we use fuubar for pretty rspec output
   gem 'spork' # we use spork to speed up tests
   gem 'rr' # we use rr for mocking
