@@ -1,7 +1,6 @@
 
 OrganizerApp.FileViewer = CommonPlace.View.extend({
 
-  //template: "organizer_app.file-viewer",
   template: "organizer_app.viewer",
 
   events: {
@@ -82,13 +81,12 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     }, this));
     this.$("#log-date").datepicker();
     this.allactions();
-    //console.log(this.model.full_name()+":"+this.model.getId());
   },
 
   ifuser: function() {
     return this.model.get("on_commonplace");
   },
-
+  
   full_name: function() {
     var name = this.model.full_name();
     if (name === undefined) {
@@ -104,6 +102,60 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
       return "No address in our records";
     } else {
       return address;
+    }
+  },
+  
+  phone: function() {
+    var phone = this.model.get('phone');
+    if (!phone) {
+      return "No phone in our records";
+    } else {
+      return phone;
+    }
+  },
+  
+  organization: function() {
+    var organization = this.model.get('organization');
+    if (!organization) {
+      return "No organization in our records";
+    } else {
+      return organization;
+    }
+  },
+  
+  position: function() {
+    var position = this.model.get('position');
+    if (!position) {
+      return "No position in our records";
+    } else {
+      return position;
+    }
+  },
+  
+  notes: function() {
+    var notes = this.model.get('notes');
+    if (!notes) {
+      return "No notes in our records";
+    } else {
+      return notes;
+    }
+  },
+  
+  sector: function() {
+    var sector = this.model.get('sector');
+    if (!sector) {
+      return "No sector in our records";
+    } else {
+      return sector;
+    }
+  },
+  
+  type: function() {
+    var type = this.model.get('type');
+    if (!type) {
+      return "No type in our records";
+    } else {
+      return type;
     }
   },
 
