@@ -123,6 +123,7 @@ group :development, :test, :remote_worker do
   gem 'simplecov', :require => false
   gem 'cucumber-rails'
   gem 'selenium'
+  gem 'trollop'
   #gem 'capybara-webkit'
   #gem 'progress_bar'
 end
