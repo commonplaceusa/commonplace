@@ -100,8 +100,11 @@ group :assets do
   gem 'compass', '0.12.alpha.0'
 end
 
-group :development, :test, :remote_worker do
+group :development do
   gem 'taps', :git => 'https://github.com/dabio/taps.git'
+end
+
+group :development, :test, :remote_worker do
   gem 'guard-jslint-on-rails'
   gem 'guard-rails-assets'
   gem 'guard-rspec'

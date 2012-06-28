@@ -61,17 +61,17 @@ def labs
 end
 
 def environment
-  {
-    'ERROR_PAGE_URL' => 'https://s3.amazonaws.com/commonplace-heroku-pages/maintenance.html',
-    'S3_KEY_ID' => '***REMOVED***',
-    'S3_KEY_SECRET' => '***REMOVED***',
-    'facebook_app_id' => '***REMOVED***',
-    'facebook_app_secret' => '***REMOVED***',
-    'facebook_password' => 'staging',
-    'facebook_salt' => '***REMOVED***',
-    'BUNDLE_WITHOUT' => 'development:test:osx:remote_worker',
-    'RAILS_ENV' => 'staging'
-  }
+  [
+    ['ERROR_PAGE_URL', 'https://s3.amazonaws.com/commonplace-heroku-pages/maintenance.html'],
+    ['S3_KEY_ID', '***REMOVED***'],
+    ['S3_KEY_SECRET', '***REMOVED***'],
+    ['facebook_app_id', '***REMOVED***'],
+    ['facebook_app_secret', '***REMOVED***'],
+    ['facebook_password', 'staging'],
+    ['facebook_salt', '***REMOVED***'],
+    ['BUNDLE_WITHOUT', 'development:test:osx:remote_worker'],
+    ['RAILS_ENV', 'staging']
+  ]
 end
 
 def rake_tasks
@@ -103,6 +103,8 @@ def git_remotes
   ]
 end
 
+time_started = Time.now
+
 puts "Creating '#{app_name}'"
 heroku.create(app_name)
 
@@ -114,26 +116,26 @@ labs.each do |lab|
   execute_command("heroku labs:enable user_env_compile --app #{app_name}")
 end
 
-heroku.add_config_vars(app_name, environment)
+environment.each do |env|
+  execute_command "bundle exec heroku config:add #{env.first}=#{env.last} --app #{app_name}"
+end
 
 git_remotes.each do |remote|
   execute_command([Git::Remote::Add, remote[0], remote[1]].join(' '))
   execute_command([Git::Push, remote[0], Git::Master].join(' '))
 end
 
-# heroku_tasks.each do |task, args|
-  # execute_command(["bundle exec heroku", task, args.join(' '), "--app #{app_name}"].join(' '))
-# end
 execute_command "bundle exec heroku addons:add pgbackups --app #{app_name}"
 execute_command "bundle exec heroku pgbackups:restore DATABASE `heroku pgbackups:url --app commonplace` --app #{app_name} --confirm #{app_name}"
 
 execute_command "bundle exec heroku sharing:add #{email} --app #{app_name}"
-#share_with.each do |user|
-#  heroku.add_collaborator(app_name, user)
-#end
 
 execute_command "bundle exec heroku config:add RAILS_ENV=staging --app #{app_name}"
 execute_command "bundle exec heroku restart --app #{app_name}"
 execute_command "bundle exec heroku run rake assets:precompile --app #{app_name}"
 
 execute_command "bundle exec heroku maintenance:off --app #{app_name}"
+
+time_elapsed = Time.now - time_started
+
+puts "Took #{time_elapsed / 60} minutes!"
