@@ -1,7 +1,29 @@
 <% if  Rails.env.production? %>
 <script type='text/javascript' src="https://exceptional-js.heroku.com/exceptional.js"></script>
+
+<script type="text/javascript">
+  var _kmq = _kmq || [];
+  var _kmk = _kmk || '<%= $KissmetricsAPIToken %>';
+  function _kms(u){
+    setTimeout(function(){
+      var d = document, f = d.getElementsByTagName('script')[0],
+      s = d.createElement('script');
+      s.type = 'text/javascript'; s.async = true; s.src = u;
+      f.parentNode.insertBefore(s, f);
+    }, 1);
+  }
+  _kms('//i.kissmetrics.com/i.js');
+  _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+</script>
+
+<% if @account.present? %>
+  <script type="text/javascript">
+    _kmq.push(['identify', '<%= @account.email %>']);
+  </script>
+<% end %>
+
 <script type='text/javascript'>
-  
+
   if (window['mpq'] != 'undefined') {
   var mpq = [];
   mpq.push(["init", "#{$MixpanelAPIToken}"]);
