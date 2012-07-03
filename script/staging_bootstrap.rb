@@ -126,7 +126,6 @@ git_remotes.each do |remote|
 end
 
 execute_command "bundle exec heroku addons:add pgbackups --app #{app_name}"
-execute_command "bundle exec heroku pgbackups:restore DATABASE `heroku pgbackups:url --app commonplace` --app #{app_name} --confirm #{app_name}"
 
 execute_command "bundle exec heroku sharing:add #{email} --app #{app_name}"
 
@@ -135,6 +134,10 @@ execute_command "bundle exec heroku restart --app #{app_name}"
 execute_command "bundle exec heroku run rake assets:precompile --app #{app_name}"
 
 execute_command "bundle exec heroku maintenance:off --app #{app_name}"
+
+execute_command "heroku pg:reset SHARED_DATABASE --app #{app_name} --confirm #{app_name}"
+execute_command "heroku run rake db:setup --app #{app_name}"
+execute_command "bundle exec heroku pgbackups:restore DATABASE `bundle exec heroku pgbackups:url --app commonplace` --app #{app_name} --confirm #{app_name}"
 
 time_elapsed = Time.now - time_started
 
