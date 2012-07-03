@@ -596,8 +596,8 @@ WHERE
   end
 
   def track
-    KM.identify(user.email)
-    KM.alias(user.full_name, user.email)
+    KM.identify(email)
+    KM.alias(full_name, email)
     KM.record('signed up')
     KM.record('activated')
   end
