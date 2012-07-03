@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
   end
 
   after_create :create_resident
+  after_create :track
   before_validation :geocode, :if => :address_changed?
   before_validation :place_in_neighborhood, :if => :address_changed?
 
@@ -592,6 +593,10 @@ WHERE
         :address => self.address,
         :user => self)
     end
+  end
+
+  def track
+    KM.record('activated')
   end
 
   private

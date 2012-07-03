@@ -53,6 +53,12 @@ class Event < ActiveRecord::Base
     t.add :name, :as => :title
   end
 
+  after_create :track
+
+  def track
+    KM.record('posted content', {'content type' => self.class.name})
+  end
+
   def has_reply
     self.replies.present?
   end

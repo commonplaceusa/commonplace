@@ -32,6 +32,9 @@
 
 = include_mixpanel
 = mixpanel_track(track)
+= include_kissmetrics
+- if current_user.present?
+  = kissmetrics_track_person(user)
 
 = include_ga
 = include_exceptional

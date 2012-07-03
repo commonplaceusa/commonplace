@@ -95,6 +95,9 @@ gem 'heroku_san', :git => "https://github.com/Jberlinsky/heroku_san.git" # some 
 gem 'rack-timeout' # Timeout requests that take too long
 gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 
+# Analytics
+gem 'km'
+
 group :assets do
   gem 'uglifier'
   gem 'compass', '0.12.alpha.0'
@@ -102,6 +105,7 @@ end
 
 group :development do
   gem 'taps', :git => 'https://github.com/dabio/taps.git'
+  gem 'jammit'
 end
 
 group :development, :test, :remote_worker do

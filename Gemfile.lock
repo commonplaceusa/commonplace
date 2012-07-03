@@ -72,6 +72,10 @@ GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
   specs:
+    POpen4 (0.1.4)
+      Platform (>= 0.4.0)
+      open4
+    Platform (0.4.0)
     RedCloth (4.2.9)
     actionmailer (3.2.3)
       actionpack (= 3.2.3)
@@ -104,7 +108,7 @@ GEM
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       rack (>= 1.1.0)
-    addressable (2.2.7)
+    addressable (2.2.8)
     amazon-ec2 (0.9.17)
       xml-simple (>= 1.0.12)
     arel (3.0.2)
@@ -174,7 +178,7 @@ GEM
     eventmachine (0.12.10)
     exceptional (2.0.32)
       rack
-    excon (0.14.0)
+    excon (0.14.2)
     execjs (1.3.0)
       multi_json (~> 1.0)
     factory_girl (2.6.3)
@@ -228,12 +232,13 @@ GEM
       spork (>= 0.8.4)
     haml (3.1.4)
     hashie (1.2.0)
-    heroku (2.21.2)
+    heroku (2.28.7)
+      heroku-api (~> 0.2.6)
       launchy (>= 0.3.2)
+      netrc (~> 0.7.5)
       rest-client (~> 1.6.1)
       rubyzip
-      term-ansicolor (~> 1.0.5)
-    heroku-api (0.2.4)
+    heroku-api (0.2.6)
       excon (~> 0.14.0)
     hike (1.2.1)
     hirefireapp (0.0.7)
@@ -243,6 +248,8 @@ GEM
       multi_json (~> 1.0)
       multi_xml
     i18n (0.6.0)
+    jammit (0.6.5)
+      yui-compressor (>= 0.9.3)
     jamster-statsd (0.1.0)
     jar_wrapper (0.1.2)
       jeweler
@@ -273,7 +280,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
-    launchy (2.0.5)
+    km (1.1.2)
+    launchy (2.1.0)
       addressable (~> 2.2.6)
     libnotify (0.7.2)
     libv8 (3.3.10.4)
@@ -288,7 +296,7 @@ GEM
       creole (>= 0.3.7)
       loofah (>= 0.4.7)
       rdiscount (>= 1.6.0)
-    mime-types (1.18)
+    mime-types (1.19)
     mongo (1.6.1)
       bson (~> 1.6.1)
     mongo_mapper (0.11.0)
@@ -299,6 +307,7 @@ GEM
     multi_xml (0.5.1)
     multipart-post (1.1.5)
     mustache (0.99.4)
+    netrc (0.7.5)
     newrelic_rpm (3.3.2)
     nokogiri (1.5.2)
     oauth (0.3.6)
@@ -314,6 +323,7 @@ GEM
     omniauth-oauth2 (1.0.0)
       oauth2 (~> 0.5.0)
       omniauth (~> 1.0)
+    open4 (1.1.0)
     orm_adapter (0.0.7)
     paperclip (2.4.5)
       activerecord (>= 2.3.0)
@@ -411,7 +421,7 @@ GEM
     rspec-rr (0.1.0)
     ruby-hmac (0.4.0)
     ruby-progressbar (0.0.10)
-    rubyzip (0.9.6.1)
+    rubyzip (0.9.9)
     rufus-scheduler (2.0.16)
       tzinfo (>= 0.3.23)
     sanitize (2.0.3)
@@ -486,6 +496,8 @@ GEM
     xml-simple (1.1.1)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yui-compressor (0.9.6)
+      POpen4 (>= 0.1.4)
     zip (2.0.2)
 
 PLATFORMS
@@ -529,8 +541,10 @@ DEPENDENCIES
   heroku_san!
   hirefireapp
   hpricot
+  jammit
   jasmine
   json (~> 1.6.0)
+  km
   launchy
   libnotify
   mail

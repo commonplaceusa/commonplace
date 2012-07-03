@@ -15,6 +15,12 @@ class Post < ActiveRecord::Base
   validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
 
+  after_create :track
+
+  def track
+    KM.record('posted content', {'content type' => self.class.name})
+  end
+
   default_scope where(:deleted_at => nil)
 
   attr_accessor :post_to_facebook
