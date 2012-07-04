@@ -98,6 +98,29 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
     });
   },
 
+  afterRender: function() {
+    _.each(this.$(".todo-specific"), function(list) {
+      var value = $(list).attr('value');
+      var profiles = _.filter(models, function(model) {
+        console.log(model.get('type'));
+        console.log(model.get('tags'));
+        return true;
+      });
+
+      $(list).empty();
+      $(list).append(
+        _.map(profiles, function(model) {
+          var li = $("<li/>",{ text: model.full_name(), data: { model: model } })[0];
+          var cb = $("<input/>", { type: "checkbox", value: model.getId(), data: { model: model } })[0];
+          $(cb).addClass("cb");
+          $(li).prepend(cb);
+
+          return li;
+        }));
+      //console.log($(list).attr('value'));
+    });
+  },
+
   profiles: function() {
     var todos = possTodos;
 
