@@ -1,12 +1,22 @@
 class Administration < Sinatra::Base
 
   set :views, Rails.root.join("app", "administration")
-  
+
   # Make sure the current user is an admin
   before do
     @account = env['warden'].user(:user)
     redirect "/" unless @account && @account.admin?
-  end 
+  end
+
+  get "/request_stats" do
+    haml :request_stats
+  end
+
+  post "/request_stats/:type" do |type|
+    k = KickOff.new
+    k.enqueue_statistics_generation_job(type, @account)
+    haml :request_stats_generating
+  end
 
   # Show all the messages passing through CommonPlace
   get "/view_messages" do
@@ -56,7 +66,7 @@ class Administration < Sinatra::Base
     haml :download_csv
   end
 
-  # Become a user 
+  # Become a user
   #
   # Params: id - the user to become
   get "/become" do

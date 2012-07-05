@@ -105,7 +105,7 @@ end
 
 group :development do
   gem 'taps', :git => 'https://github.com/dabio/taps.git'
-  gem 'jammit'
+  # gem 'jammit'
 end
 
 group :development, :test, :remote_worker do

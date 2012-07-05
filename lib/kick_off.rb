@@ -195,6 +195,17 @@ class KickOff
     enqueue(NetworkHealthStatsDocumentNotification, filename, interval)
   end
 
+  def enqueue_statistics_generation_job(stats_type, account = nil)
+    case stats_type
+    when "full"
+      enqueue(StatisticsCsvGenerator)
+    when "monthly_health"
+      enqueue(NetworkHealthStatsMonthly)
+    when "weekly_health"
+      enqueue(NetworkHealthStats)
+    end
+  end
+
   private
 
   def enqueue(*args)
