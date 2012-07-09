@@ -28,13 +28,6 @@ recalculate_cp_credits:
   queue: credits
   description: "Checks for invalidated users and recalculates their CP Credits"
 
-compute_statistics_csv:
-  cron: "0 0 * * *"
-  class: StatisticsCsvGenerator
-  args:
-  queue: statistics
-  description: "Generates Excel files for stats"
-
 scale_up_for_daily_digest:
   cron: "45 20 * * *"
   class: HerokuResque::NotificationWorkerScaler
