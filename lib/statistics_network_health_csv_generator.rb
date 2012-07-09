@@ -107,7 +107,7 @@ class StatisticsNetworkHealthCsvGenerator
     "network_health_weekly.xlsx"
   end
 
-  def copy_redis_values(local_redis, remote_redis)
+  def self.copy_redis_values(original_redis, new_redis)
     keys = [
       "statistics:network_health_#{frequency}",
     ]

@@ -35,10 +35,10 @@ end
 unless MongoMapper.connection
   raise 'Could not connect to Mongo...'
 end
-unless NetworkHealthCsvGenerator.run(local_redis)
+unless StatisticsNetworkHealthCsvGenerator.perform(local_redis)
   raise 'Could not generate network health statistics'
 end
-unless NetworkHealthCsvGenerator.copy_redis_values(local_redis, Resque.redis)
+unless StatisticsNetworkHealthCsvGenerator.copy_redis_values(local_redis, Resque.redis)
   raise 'Could not copy values from local to remote Redis storage'
 end
 Resque.redis.set("statistics:meta:finished", DateTime.now.to_s(:number))
