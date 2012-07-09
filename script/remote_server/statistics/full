@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd ~/commonplace/ && git fetch
+git checkout master
+git pull
+
+script/remote_server/pull_environment
+source ./.env
+RAILS_ENV=remote_worker script/remote_statistics_runner
