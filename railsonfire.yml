@@ -2,6 +2,8 @@ id: 638c7b20-b455-012f-aaac-12313d19fdd5
 setup:
   commands:
   - bundle install --without production
+  - bundle exec rake db:drop --trace
+  - bundle exec rake db:setup --trace
   - bundle exec rake db:migrate --trace
 test:
   commands:
