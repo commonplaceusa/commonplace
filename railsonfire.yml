@@ -3,9 +3,6 @@ setup:
   commands:
   - bundle install --without production
   - bundle exec rake db:reset --trace
-  - bundle exec rake db:drop --trace
-  - bundle exec rake db:setup --trace
-  - bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare --trace
 test:
   commands:
@@ -14,7 +11,6 @@ deploy:
   heroku:
     staging:
       name: commonplace-staging
-    production:
-      name: commonplace
 ruby_versions:
 - 1.9.3
+- 1.9.2
