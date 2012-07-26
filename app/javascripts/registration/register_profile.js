@@ -67,8 +67,11 @@ var RegisterProfileView = RegistrationModalPage.extend({
         if (!_.isEmpty(response.facebook)) {
           window.location.pathname = this.communityExterior.links.facebook_login;
         } else if (!_.isEmpty(response.password)) {
-          this.$(".error").text(response.password[0]);
-          this.$(".error").show();
+          this.$("#password_error").text(response.password[0]);
+          this.$("#password_error").show();
+        } else if (!_.isEmpty(response.referral_source)) {
+          this.$("#referral_source_error").text(response.referral_source[0]);
+          this.$("#referral_source_error").show();
         }
       }
     }, this));

@@ -20,7 +20,7 @@
         <div>
           <label for="password">Create a password:</label>
           <input type="password" name="password">
-          <div class="error"></div>
+          <div class="error" id="password_error"></div>
         </div>
         <div>
           <label class="add-photo" for="photo">Add a profile photo:</label>
@@ -61,6 +61,7 @@
           <option value="{{.}}">{{.}}</option>
         {{/referrers}}
       </select>
+      <div class="error" id="referral_source_error"></div>
     </li>
     <li class="referral_metadata_li text">
       <label for="referral_metadata"></label>

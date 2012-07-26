@@ -102,6 +102,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_presence_of :referral_source
 
   # HACK HACK HACK TODO: This should be in the database schema, or slugs for college towns should ALWAYS be the domain suffix
   validates_format_of :email, :with => /^([^\s]+)umw\.edu/, :if => :college?
