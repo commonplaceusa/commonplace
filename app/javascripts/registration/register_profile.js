@@ -107,18 +107,45 @@ var RegisterProfileView = RegistrationModalPage.extend({
   initReferralQuestions: function() {
     this.$("select[name=referral_source]").bind("change", _.bind(function() {
       var question = {
-        "At a table or booth at an event": "What was the event?",
-        "In an email": "Who was the email from?",
-        "On Facebook or Twitter": "From what person or organization?",
-        "On another website": "What website?",
-        "In the news": "From which news source?",
-        "Word of mouth": "From what person or organization?",
-        "Flyer from a business or organization": "Which business or organization?",
-        "Other": "Where?"
+        "Received a postcard from a local business": {
+          text: "Which local business?",
+          select_business: true
+        },
+        "In an email": {
+          text: "Who was the email from?",
+          autocomplete_people: true
+        },
+        "By word of mouth": {
+          text: "From what person or organization?",
+          autocomplete_people: true
+        },
+        "In the news": {
+          text: "From which news source?"
+        },
+        "On Facebook": {
+          text: "From what person or organization?",
+          autocomplete_people: true
+        },
+        "On Twitter": {
+          text: "From what person or organization?",
+          autocomplete_people: true
+        },
+        "At an event": {
+          text: "What was the event?"
+        },
+        "Other": "Please specify how you found out about CommonPlace."
       }[this.$("select[name=referral_source] option:selected").val()];
       if (question) {
         this.$(".referral_metadata_li").show();
-        this.$(".referral_metadata_li label").html(question);
+        this.$(".referral_metadata_li label").html(question.text);
+        if (question.autocomplete_users) {
+          // TODO
+          // Auto-completer for users from Organizer App
+        }
+        if (question.select_business) {
+          // TODO
+          // Display a dropdown of local business partners
+        }
       } else {
         this.$(".referral_metadata_li").hide();
       }
