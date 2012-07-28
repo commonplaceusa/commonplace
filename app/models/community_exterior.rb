@@ -77,16 +77,14 @@ class CommunityExterior
   def referral_sources
     [
       "",
-      "Flyer in the mail",
-      "Someone knocked on my door",
-      "In a meeting with #{@community.organizer_name}",
-      "At a table or booth at an event",
+      "Received a flyer in the mail",
+      "Received a postcard from a local business",
       "In an email",
-      "On Facebook or Twitter",
-      "On another website",
+      "By word of mouth",
       "In the news",
-      "Word of mouth",
-      "Flyer from a business or organization",
+      "On Facebook",
+      "On Twitter",
+      "At an event",
       "Other"
     ]
   end

@@ -116,115 +116,119 @@ class StatisticsNetworkHealthCsvGenerator
     end
   end
 
+  def self.current_value(redis = Resque.redis)
+    redis.get "statistics:network_health_#{frequency}"
+  end
+
   def self.perform(redis = Resque.redis)
     require 'simple_xlsx'
 
     original_start_date = start_date
     original_end_date = end_date
 
-    str = ""
-    io = StringIO.new(str)
-
-    SimpleXlsx::Sheet.new(nil, "Network Health", io) do |sheet|
-      sheet.add_row([
-        "BY COMMUNITY",
-        "Total Users",
-        "% Growth",
-        "User Gains / Day",
-        "Posts / Day",
-        "Events / Day",
-        "Daily Bulletins Opened",
-        "Weekly % Platform Visit"
-      ])
-      NetworkHealthStats::core_communities.each do |community|
+    SimpleXlsx::Serializer.new("/tmp/network_health_#{frequency}.xlsx") do |document|
+      document.add_sheet("Network Health") do |sheet|
         sheet.add_row([
-          community.name,
-          NetworkHealthStats.users_for_community(end_date, community),
-          NetworkHealthStats.percent_growth_for_community(start_date, end_date, community),
-          NetworkHealthStats.item_gains_per_day_for_community(start_date, end_date, community, User, days_elapsed),
-          NetworkHealthStats.item_gains_per_day_for_community(start_date, end_date, community, Post, days_elapsed),
-          NetworkHealthStats.item_gains_per_day_for_community(start_date, end_date, community, Event, days_elapsed),
-          NetworkHealthStats.daily_bulletin_opens_for_community(start_date, end_date, community),
-          NetworkHealthStats.weekly_pctg_platform_visit_for_community(start_date, end_date, community)
+          "BY COMMUNITY",
+          "Total Users",
+          "% Growth",
+          "User Gains / Day",
+          "Posts / Day",
+          "Events / Day",
+          "Daily Bulletins Opened",
+          "Weekly % Platform Visit"
         ])
+        NetworkHealthStats::core_communities.each do |community|
+          sheet.add_row([
+            community.name,
+            NetworkHealthStats.users_for_community(end_date, community),
+            NetworkHealthStats.percent_growth_for_community(start_date, end_date, community),
+            NetworkHealthStats.item_gains_per_day_for_community(start_date, end_date, community, User, days_elapsed),
+            NetworkHealthStats.item_gains_per_day_for_community(start_date, end_date, community, Post, days_elapsed),
+            NetworkHealthStats.item_gains_per_day_for_community(start_date, end_date, community, Event, days_elapsed),
+            NetworkHealthStats.daily_bulletin_opens_for_community(start_date, end_date, community),
+            NetworkHealthStats.weekly_pctg_platform_visit_for_community(start_date, end_date, community)
+          ])
+        end
+
+        start_date = original_start_date - 4.weeks
+        end_date = original_end_date - 4.weeks
+
+        sheet.add_row([
+          "BY WEEK",
+          end_date.to_date.to_s,
+          (end_date + 1.week).to_date.to_s,
+          (end_date + 2.weeks).to_date.to_s,
+          (end_date + 3.weeks).to_date.to_s,
+          (end_date + 4.weeks).to_date.to_s
+        ])
+
+        sheet.add_row([
+          "Total Users",
+          User.core.up_to(end_date).count,
+          User.core.up_to(end_date + 1.week).count,
+          User.core.up_to(end_date + 2.weeks).count,
+          User.core.up_to(end_date + 3.weeks).count,
+          User.core.up_to(end_date + 4.weeks).count
+        ])
+
+        sheet.add_row([
+          "% Network Growth",
+          NetworkHealthStats.percent_growth(start_date, end_date),
+          NetworkHealthStats.percent_growth(start_date + 1.week, end_date + 1.week),
+          NetworkHealthStats.percent_growth(start_date + 2.weeks, end_date + 2.weeks),
+          NetworkHealthStats.percent_growth(start_date + 3.weeks, end_date + 3.weeks),
+          NetworkHealthStats.percent_growth(start_date + 4.weeks, end_date + 4.weeks)
+        ])
+
+        sheet.add_row([
+          "User Gains / Day / Community",
+          NetworkHealthStats.items_per_day_per_community(start_date, end_date, User),
+          NetworkHealthStats.items_per_day_per_community(start_date + 1.week, end_date + 1.week, User),
+          NetworkHealthStats.items_per_day_per_community(start_date + 2.weeks, end_date + 2.weeks, User),
+          NetworkHealthStats.items_per_day_per_community(start_date + 3.weeks, end_date + 3.weeks, User),
+          NetworkHealthStats.items_per_day_per_community(start_date + 4.weeks, end_date + 4.weeks, User)
+        ])
+
+        sheet.add_row([
+          "Events / Day / Community",
+          NetworkHealthStats.items_per_day_per_community(start_date, end_date, Event),
+          NetworkHealthStats.items_per_day_per_community(start_date + 1.week, end_date + 1.week, Event),
+          NetworkHealthStats.items_per_day_per_community(start_date + 2.weeks, end_date + 2.weeks, Event),
+          NetworkHealthStats.items_per_day_per_community(start_date + 3.weeks, end_date + 3.weeks, Event),
+          NetworkHealthStats.items_per_day_per_community(start_date + 4.weeks, end_date + 4.weeks, Event)
+        ])
+
+        sheet.add_row([
+          "Posts / Day / Community",
+          NetworkHealthStats.items_per_day_per_community(start_date, end_date, Post),
+          NetworkHealthStats.items_per_day_per_community(start_date + 1.week, end_date + 1.week, Post),
+          NetworkHealthStats.items_per_day_per_community(start_date + 2.weeks, end_date + 2.weeks, Post),
+          NetworkHealthStats.items_per_day_per_community(start_date + 3.weeks, end_date + 3.weeks, Post),
+          NetworkHealthStats.items_per_day_per_community(start_date + 4.weeks, end_date + 4.weeks, Post)
+        ])
+
+        # sheet.add_row([
+          # "Daily Bulletin Open Rate",
+          # NetworkHealthStats.daily_bulletin_open_rate(start_date, end_date),
+          # NetworkHealthStats.daily_bulletin_open_rate(start_date + 1.week, end_date + 1.week),
+          # NetworkHealthStats.daily_bulletin_open_rate(start_date + 2.weeks, end_date + 2.weeks),
+          # NetworkHealthStats.daily_bulletin_open_rate(start_date + 3.weeks, end_date + 3.weeks),
+          # NetworkHealthStats.daily_bulletin_open_rate(start_date + 4.weeks, end_date + 4.weeks)
+        # ])
+
+        # sheet.add_row([
+          # "Weekly Platform Engagement",
+          # NetworkHealthStats.platform_engagement(start_date, end_date),
+          # NetworkHealthStats.platform_engagement(start_date + 1.week, end_date + 1.week),
+          # NetworkHealthStats.platform_engagement(start_date + 2.weeks, end_date + 2.weeks),
+          # NetworkHealthStats.platform_engagement(start_date + 3.weeks, end_date + 3.weeks),
+          # NetworkHealthStats.platform_engagement(start_date + 4.weeks, end_date + 4.weeks)
+        # ])
       end
-
-      start_date = original_start_date - 4.weeks
-      end_date = original_end_date - 4.weeks
-
-      sheet.add_row([
-        "BY WEEK",
-        end_date.to_date.to_s,
-        (end_date + 1.week).to_date.to_s,
-        (end_date + 2.weeks).to_date.to_s,
-        (end_date + 3.weeks).to_date.to_s,
-        (end_date + 4.weeks).to_date.to_s
-      ])
-
-      sheet.add_row([
-        "Total Users",
-        User.core.up_to(end_date).count,
-        User.core.up_to(end_date + 1.week).count,
-        User.core.up_to(end_date + 2.weeks).count,
-        User.core.up_to(end_date + 3.weeks).count,
-        User.core.up_to(end_date + 4.weeks).count
-      ])
-
-      sheet.add_row([
-        "% Network Growth",
-        NetworkHealthStats.percent_growth(start_date, end_date),
-        NetworkHealthStats.percent_growth(start_date + 1.week, end_date + 1.week),
-        NetworkHealthStats.percent_growth(start_date + 2.weeks, end_date + 2.weeks),
-        NetworkHealthStats.percent_growth(start_date + 3.weeks, end_date + 3.weeks),
-        NetworkHealthStats.percent_growth(start_date + 4.weeks, end_date + 4.weeks)
-      ])
-
-      sheet.add_row([
-        "User Gains / Day / Community",
-        NetworkHealthStats.items_per_day_per_community(start_date, end_date, User),
-        NetworkHealthStats.items_per_day_per_community(start_date + 1.week, end_date + 1.week, User),
-        NetworkHealthStats.items_per_day_per_community(start_date + 2.weeks, end_date + 2.weeks, User),
-        NetworkHealthStats.items_per_day_per_community(start_date + 3.weeks, end_date + 3.weeks, User),
-        NetworkHealthStats.items_per_day_per_community(start_date + 4.weeks, end_date + 4.weeks, User)
-      ])
-
-      sheet.add_row([
-        "Events / Day / Community",
-        NetworkHealthStats.items_per_day_per_community(start_date, end_date, Event),
-        NetworkHealthStats.items_per_day_per_community(start_date + 1.week, end_date + 1.week, Event),
-        NetworkHealthStats.items_per_day_per_community(start_date + 2.weeks, end_date + 2.weeks, Event),
-        NetworkHealthStats.items_per_day_per_community(start_date + 3.weeks, end_date + 3.weeks, Event),
-        NetworkHealthStats.items_per_day_per_community(start_date + 4.weeks, end_date + 4.weeks, Event)
-      ])
-
-      sheet.add_row([
-        "Posts / Day / Community",
-        NetworkHealthStats.items_per_day_per_community(start_date, end_date, Post),
-        NetworkHealthStats.items_per_day_per_community(start_date + 1.week, end_date + 1.week, Post),
-        NetworkHealthStats.items_per_day_per_community(start_date + 2.weeks, end_date + 2.weeks, Post),
-        NetworkHealthStats.items_per_day_per_community(start_date + 3.weeks, end_date + 3.weeks, Post),
-        NetworkHealthStats.items_per_day_per_community(start_date + 4.weeks, end_date + 4.weeks, Post)
-      ])
-
-      # sheet.add_row([
-        # "Daily Bulletin Open Rate",
-        # NetworkHealthStats.daily_bulletin_open_rate(start_date, end_date),
-        # NetworkHealthStats.daily_bulletin_open_rate(start_date + 1.week, end_date + 1.week),
-        # NetworkHealthStats.daily_bulletin_open_rate(start_date + 2.weeks, end_date + 2.weeks),
-        # NetworkHealthStats.daily_bulletin_open_rate(start_date + 3.weeks, end_date + 3.weeks),
-        # NetworkHealthStats.daily_bulletin_open_rate(start_date + 4.weeks, end_date + 4.weeks)
-      # ])
-
-      # sheet.add_row([
-        # "Weekly Platform Engagement",
-        # NetworkHealthStats.platform_engagement(start_date, end_date),
-        # NetworkHealthStats.platform_engagement(start_date + 1.week, end_date + 1.week),
-        # NetworkHealthStats.platform_engagement(start_date + 2.weeks, end_date + 2.weeks),
-        # NetworkHealthStats.platform_engagement(start_date + 3.weeks, end_date + 3.weeks),
-        # NetworkHealthStats.platform_engagement(start_date + 4.weeks, end_date + 4.weeks)
-      # ])
     end
-
+    str = File.open("/tmp/network_health_#{frequency}.xlsx", "rb").read
     redis.set("statistics:network_health_#{frequency}", str)
+    `rm -rf /tmp/network_health_#{frequency}.xlsx`
   end
 end

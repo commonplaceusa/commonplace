@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # TODO: Monkey-patch 'raise' to send an email
 # REQUIRED: Run with RAILS_ENV=remote_worker
+# `service postgresql start`
 `bundle install`
 unless ENV['RAILS_ENV'] == 'remote_worker'
   raise "Can not run in #{ENV['RAILS_ENV']} environment"

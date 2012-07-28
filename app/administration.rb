@@ -42,6 +42,14 @@ class Administration < Sinatra::Base
     end
   end
 
+  get "/network_health_stats/:frequency" do |frequency|
+    response.headers['content_type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    if frequency == 'weekly'
+      attachment('network_health.xlsx')
+      response.write StatisticsNetworkHealthCsvGenerator.current_value
+    end
+  end
+
   # Show referrers that users enter during registration
   get "/show_referrers" do
     haml :show_referrers

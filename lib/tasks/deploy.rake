@@ -29,7 +29,6 @@ namespace :deployment do
         action "Pushing to production"
         if run("git push production master")
           success "Pushed successfully"
-          $statsd.increment("deploys")
         else
           failure "Could not push to Heroku"
         end

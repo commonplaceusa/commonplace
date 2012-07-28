@@ -1,8 +1,6 @@
 #!/bin/bash
 
-cd ~/commonplace/ && git fetch
-git checkout master
-git pull
+cd ~/commonplace/ && git fetch && git checkout origin/master
 
 script/remote_server/pull_environment
 source ./.env

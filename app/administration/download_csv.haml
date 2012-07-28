@@ -3,5 +3,8 @@
   - @communities.each do |community|
     %li <a href='/admin/#{community.slug}/export_csv'>#{community.name}</a>
 
-%a{:href => '/admin/generate_csvs'} Regenerate
+%h3 Download Summaries
+%ul
+  %li <a href="/admin/network_health_stats/weekly">Weekly Health Stats</a>
+-# %a{:href => '/admin/generate_csvs'} Regenerate
 

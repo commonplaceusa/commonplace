@@ -3,7 +3,7 @@ class API
 
   class Integration < Base
 
-    helpers do 
+    helpers do
 
       # Tells us whether the current_request came from Mailgun
       #
@@ -22,7 +22,6 @@ class API
       begin
         reply = MailgunPost.new(params)
         reply.save
-        $statsd.increment("emails.inbound")
         200
       rescue
         halt 501
@@ -37,7 +36,6 @@ class API
       begin
         User.find_by_email(params[:recipient])
           .update_attribute(:post_receive_method, "Never")
-        $statsd.increment("emails.disabled")
       rescue
         halt 501
       end
@@ -46,14 +44,9 @@ class API
 
     # When an exception is triggered, record it in graphite
     post "/exceptional/error" do
-      begin
-        $statsd.increment("errors")
-      rescue
-        halt 501
-      end
       200
     end
-      
+
   end
-  
+
 end
