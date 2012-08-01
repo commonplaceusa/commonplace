@@ -1,20 +1,26 @@
 $(document).ready(function(){
-  $('.tabs li a').click(function(){
+  $('.nav li a').click(function(){
     
-    $('.tabs li a').removeClass('current');
+    $('.nav li').removeClass('selected');
     
-    $(this).addClass('current');
+    $(this).parent().addClass('selected');
     
-    $('.panes div').hide();
+    $('.slide').hide();
     
-    if($(this).parent().attr('id')=="ini"){
-      $('#init').show();
+    if($(this).attr('href')=="our-mission"){
+      $('#our-mission').show();
     }
-    else if($(this).parent().attr('id')=="tec"){
-      $('#tech').show();
+    else if($(this).attr('href')=="our-story"){
+      $('#our-story').show();
     }
-    else if($(this).parent().attr('id')=="org"){
-      $('#organ').show();
+    else if($(this).attr('href')=="our-platform"){
+      $('#our-platform').show();
+    }
+    else if($(this).attr('href')=="press"){
+      $('#press').show();
+    }
+    else if($(this).attr('href')=="nominate"){
+      $('#nominate').show();
     }
     return false;
   });

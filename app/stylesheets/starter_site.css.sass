@@ -1,72 +1,266 @@
-@import compass/reset/utilities
-@import compass/css3/inline-block
-@import compass/utilities/general/clearfix
-@import compass/css3/border-radius
-@import compass/css3/box-shadow
-@import compass/css3/text-shadow
-@import compass/css3/gradient
+@import url(http://fonts.googleapis.com/css?family=Rokkitt:400,700)
+@import url(http://fonts.googleapis.com/css?family=Ultra)
+@import url(http://fonts.googleapis.com/css?family=Yellowtail)
+@import "compass/reset"
+@import "compass/css3/gradient"
 
-@import starter_site/reset
-@import starter_site/mixins
-@import starter_site/colors
-@import starter_site/measurements
-@import starter_site/tabs
-@import starter_site/960
-@import starter_site/requestform
+/* Woo colors */
 
+$blue: #1b334a
+$dark-blue: #151f28
+$light-blue: #32485c
+$red: #ac322f
+$dark-red: darken($red, 20%)
+$black: #333
+$dark-grey: #888
+$light-grey: #e8e8e8
+$off-grey: #eeecdf
+$search-box: #b7c3cf
+$dark-tan: #bcbbae
 
-@import starter_site/core
-@import starter_site/formtastic
-@import starter_site/test
-@import header
+$Ultra: 'Ultra'
+$Yellowtail: 'Yellowtail'
+$Rokkitt: 'Rokkitt'
 
-#top_header
-  background: #1B334A
-  height: 31px
-  padding: 15px 0px
-  border-bottom: 4px solid white
-  margin: 0
+/* Woo Fonts */
+$heading: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+$body: Helvetica Neue, Helvetica, Tahoma, serif
 
-  #nav_wrapper
-    width: 1004px
-    margin: 0 auto
+/* Woo Shadows */
+$black-shadow: 0px 2px 1px black
+
+body 
+  background: url("shared/redesign/bg.jpg") no-repeat center top
+
+.slide 
+  display: none
+.selected
+  display: block
+
+#about
+  width: 1100px
+  margin: 0 auto
+    top: 150px
+  .header 
+    height: 37px
+    background: url("shared/redesign/red-bg.png")
+    padding: 13px 0 18px 40px
+    h2 
+      color: white
+      font-family: $Yellowtail
+      text-shadow: 4px 4px 1px $blue
+      font-size: 40px
+      float: left
+    ul.nav 
+      list-style-type: none
+      margin-top: 5px 
+      position: relative 
+      left: 40px
+      top: 10px
+      li 
+        float: left 
+        margin-right: 20px
+        a 
+          font-family: $Rokkitt
+          text-decoration: none
+          color: white
+          font-size: 18px
+          padding: 5px 7px 3px 6px
+        &:hover 
+          a 
+            background-color: darken($red, 10%)
+            border-radius: 4px
+      li.selected
+        a 
+          background-color: darken($red, 10%)
+          border-radius: 4px
+
+  .content
+    background: #f5f3e9
+    padding: 30px 
+      left: 40px
+    height: 400px
+    .left 
+      width: 500px
+      border-right: 1px solid #d3d1c9
+      float: left
+      overflow-y: scroll
+      height: 380px
+      a 
+        color: $red
+        text-decoration: none
+      h3
+        font-family: $Rokkitt
+        color: $blue
+        font-size: 26px
+        padding-bottom: 20px
+      p 
+        color: #5d5d5d
+        font-family: $Rokkitt
+        width: 430px
+        font-size: 19px
+        margin-bottom: 15px
+      .highlight
+        color: $blue 
+        font-size: 19px 
+        margin-top: 15px 
+        margin-bottom: 5px
+    .right 
+      border-left: 1px solid white
+      width: 460px
+      height: 378px
+      float: left
+      padding-left: 40px
+      h3
+        font-family: $Rokkitt
+        color: $blue
+        font-size: 26px
+        text-align: center
+        padding-bottom: 20px
+      h2 
+        font-family: $Yellowtail
+        font-size: 38px
+        color: $red 
+        text-align: center
+        background: url("shared/redesign/about-stars.png") no-repeat center
+      .registration 
+        margin-top: 25px
+      input
+        width: 460px
+        height: 20px
+        padding: 8px
+        font-family: $Rokkitt
+        color: $blue
+        border: none
+        font-size: 18px
+        background: white
+        margin-bottom: 20px
+        border-radius: 4px
+        box-shadow: inset 0px 1px 6px rgba(0, 0, 0, .5)
+        &:last-child
+          margin-bottom: 30px
+      button 
+        -webkit-appearance: none
+        background: $blue
+        width: 475px
+        padding: 10px 0
+        letter-spacing: 1px
+        font-family: $Ultra
+        font-size: 20px
+        border: 1px solid #151f28
+        color: white
+        text-transform: uppercase
+        +linear-gradient(color-stops(#2e5274, #1b334a))
+        box-shadow: 1px 1px 1px rgba(0,0,0,.5)
+        text-shadow: 1px 2px 3px rgba(0,0,0,.5)
+        cursor: pointer
+        margin-top: 0px
+      .facebook
+        margin: 0 auto
+          top: 15px
+        width: 345px
+        text-align: left
+        a 
+          cursor: pointer
+          background: url("shared/redesign/fbreg.png") no-repeat center
+          text-indent: -9999px
+          height: 32px
+          display: block
+          margin-left: 100px
+          width: 245px
+          font-size: 18px
+          text-transform: uppercase
+        p
+          color: #979695
+          font-family: $Rokkitt 
+          padding-top: 6px
+          float: left
+          font-size: 20px
+
+      input::-webkit-input-placeholder
+        color: $blue
+
+#header
+  height: 60px
+  width: 100%
+  background: $blue
+  position: fixed
+  top: 0
+  z-index: 9999
+  box-shadow: 0px 1px 10px #434343
+  border: 2px solid $light-blue
+    left: none
+    right: none
+  .community-name
+    width: 233px
+    float: left
+    background: image-url("shared/redesign/commonplace-icon.png") no-repeat
+    padding-left: 60px
+    height: 60px
+    background-position: 20px 14px
     position: relative
-    left: 2px
+    border-right: 1px solid $dark-blue
+    border-left: 1px solid $dark-blue
+    box-shadow: inset 1px 0 0 $light-blue
+    h1
+      color: white
+      text-shadow: $black-shadow
+      font-size: 22px
+      margin-top: 20px
+      font-family: $heading
+      a
+        underline: none
+        color: white
 
-  #user_sign_in
+  .right
+    width: 113px
     float: right
-    margin-top: 2px
-    position: relative
-    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
-
-    li
-      margin: 0 5px
-      display: -moz-inline-box
-      -moz-box-orient: vertical
-      display: inline-block
-      vertical-align: middle
-      font-size: 13px
-      font-weight: 300
-
-      &:first-child
-        color: #BCD5EC
-
-  #sign_in_button
-    background: url(/assets/nav-down-arrow.png) no-repeat 95% 40% white
-    padding: 2px 27px 3px 10px
-    line-height: 22px
-    position: relative
-    color: #1B334A
-    z-index: 100
-    cursor: pointer
-    border: 1px solid #CCC
-    -khtml-border-radius: 5px
-    -moz-border-radius: 5px
-    -webkit-border-radius: 5px
-    -o-border-radius: 5px
-    -ms-border-radius: 5px
-#sign_in_form
-  z-index: 10000
-  position: absolute
-  right: 0px
-  top: 22px
+  .top-bar
+    width: 803px
+    border-left: 1px solid $light-blue
+    height: 60px
+    border-right: 1px solid $light-blue
+    box-shadow: inset -1px 0px 0px 0px $dark-blue
+    h2
+      float: left
+      margin-top: 20px
+      color: white
+      text-shadow: $black-shadow
+      font-size: 22px
+      font-family: $heading
+      margin-left: 20px
+    .right
+      input[type=text]
+        font-size: 12px
+        width: 150px
+        box-shadow: inset 0 1px 1px black
+        margin-top: 13px
+        font-weight: bold
+        float: left
+        border: 1px solid $dark-blue
+        border-radius: 5px
+        padding: 7px
+        background: $search-box image-url("shared/redesign/search.png") no-repeat right
+        outline: none
+        background-position-x: 143px
+      input::-webkit-input-placeholder
+        color: $blue
+      
+      .messages
+        background: image-url("shared/redesign/mail-icon.png") no-repeat
+        width: 29px
+        height: 22px
+        float: left
+        display: block
+        text-indent: -9999px
+        margin-top: 17px
+        margin-left: 20px
+      .settings
+        background: image-url("shared/redesign/settings-icon.png") no-repeat
+        height: 24px
+        margin-left: 20px
+        margin-top: 17px
+        width: 24px
+        float: left
+        display: block
+        text-indent: -9999px
