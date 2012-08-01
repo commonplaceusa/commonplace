@@ -338,17 +338,6 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.decimal  "longitude"
   end
 
-  create_table "organizer_data_points", :force => true do |t|
-    t.integer  "organizer_id"
-    t.string   "address"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "lat"
-    t.float    "lng"
-    t.boolean  "attempted_geolocating"
-  end
-
   create_table "posts", :force => true do |t|
     t.text     "body",                                :null => false
     t.integer  "user_id",                             :null => false
@@ -425,13 +414,6 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.integer  "stories_count",     :default => 0,     :null => false
     t.datetime "last_story_time"
     t.text     "old_stories"
-  end
-
-  create_table "sent_emails", :force => true do |t|
-    t.string   "tag"
-    t.integer  "community_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
 
   create_table "stories", :force => true do |t|
