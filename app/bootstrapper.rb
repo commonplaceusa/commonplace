@@ -93,8 +93,19 @@ class Bootstrapper < Sinatra::Base
     erb :register
   end
 
-  get "about" do
+  get ":community/about" do
+    @community = Community.find_by_slug(params[:community])
     erb :about
+  end
+
+  get ":community/nominate" do
+    @community = Community.find_by_slug(params[:community])
+    @nominate = true
+    erb :about
+  end
+
+  get "about" do
+    erb :about_without_community
   end
 
   get ":community" do

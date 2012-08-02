@@ -29,14 +29,14 @@
           <div id="our-mission" class="slide selected">
             <h3>Our Mission</h3>
             <p>OurCommonPlace is a national civics & technology organization that works to revitalize the spirit of local community engagement in towns and cities across the country.</p>
-            <p><%= @community.slug %>.OurCommonPlace.com was built by our team in Cambridge, MA and was launched with support from the <%= @community.name %> community. To learn more about our team go here and see some of our sponsors go here.</p>
+            <p>Lexington.OurCommonPlace.com was built by our team in Cambridge, MA and was launched with support from the Lexington community. To learn more about our team go here and see some of our sponsors go here.</p>
             <p>We believe in technology. But we know it’s not enough. We work with our partnership communities to run through a full organizing plan designed to empower, celebrate and inspire local leadership.</p>
             <p class="highlight">Empower: We help local leaders “plug in” to the Internet.</p>
-            <p>The <%= @community.slug %>.OurCommonPlace.com is designed to make it delightfully easy for <%= @community.name %> neighbors and community leaders to share and connect with the people around them. You can view a tutorial here.</p>
-            <p>But we know that <%= @community.name %>’s CommonPlace is only one tool at a leader’s disposal. Our organizers work with leaders to help them create “digital strategies” for advancing their projects. Contact one of our organizers right now.</p>
+            <p>The Lexington.OurCommonPlace.com is designed to make it delightfully easy for Lexington neighbors and community leaders to share and connect with the people around them. You can view a tutorial here.</p>
+            <p>But we know that Lexington’s CommonPlace is only one tool at a leader’s disposal. Our organizers work with leaders to help them create “digital strategies” for advancing their projects. Contact one of our organizers right now.</p>
             <p class="highlight">Celebrate: Our national Civic Hero Awards program spotlights beloved local leaders in town.</p>
             <p>OurCommonPlace runs a national awards program dedicated to celebrating local leaders everywhere.</p>
-            <p>With input from the <%= @community.name %> community, we search for leaders whose work at the schools, at service organizations, in the local government, or at a great local business, have made <%= @community.name %> a better place to live in.</p>
+            <p>With input from the Lexington community, we search for leaders whose work at the schools, at service organizations, in the local government, or at a great local business, have made Lexington a better place to live in.</p>
             <p>We then publish profiles of their work on the town’s OurCommonPlace platform and on our national awards page. To nominate a leader go here.</p>
             <p class="highlight">Inspire: We train ambitious students to be 21st century community organizers with our Civic Heroes Leadership Program.</p>
             <p>OurCommonPlace works with ambitious students who are interested in learning the skills of a 21st century community organizer.</p>
@@ -104,7 +104,7 @@
           </div>
         </div>
         <div class="right">
-          <h3>To Join <%= @community.name %>'s CommonPlace</h3>
+          <h3>To Join Belmont's CommonPlace</h3>
           <h2>Sign Up Here</h2>
           <form class="registration">
             <input id="full-name" class="name" type="text" placeholder="Full Name" /><br />
@@ -117,11 +117,12 @@
             </div>
           </form>
         </div>
-      </div>
+      </div>git
     </div>
   </div>
     <script type="text/javascript" src="/assets/starter_site.js"></script>
     <script type="text/javascript">
+      CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
       CommonPlace.account = new Account({});
       var header = new HeaderView({el: $("#header")});
       header.render();
