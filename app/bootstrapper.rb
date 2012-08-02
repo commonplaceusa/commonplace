@@ -8,24 +8,24 @@ class Bootstrapper < Sinatra::Base
       return unless Rails.env.production?
       return if request.host == "commonplace.herokuapp.com"
       case request.host
-        
+
       when %r{^www\.ourcommonplace\.com$}
         return
-        
+
       when %r{^assets\.}
         return
-        
+
       when %r{^ourcommonplace\.com$}
         redirect "https://www.ourcommonplace.com#{request.path}"
         return
-        
+
       when %r{^(?:www\.)?([a-zA-Z]+)\.ourcommonplace\.com$}
         if request.path == "/" || request.path == ""
           redirect "https://www.ourcommonplace.com/#{$1}"
         else
           redirect "https://www.ourcommonplace.com#{request.path}"
         end
-        
+
       when %r{^(?:www\.)?commonplaceusa.com$}
         case request.path
         when %r{^/$}
@@ -64,7 +64,7 @@ class Bootstrapper < Sinatra::Base
     set_account
     redirect to(@account ? "/#{@account.community.slug}" : "/about")
   end
-  
+
   get "groups/:slug" do
     set_account
     @group = Group.find_by_slug(params[:slug])
@@ -88,9 +88,13 @@ class Bootstrapper < Sinatra::Base
     erb :art_project
   end
 
-  get %r{([\w]+)/register.*} do 
+  get %r{([\w]+)/register.*} do
     @community = Community.find_by_slug(params[:captures].first)
     erb :register
+  end
+
+  get "about" do
+    erb :about
   end
 
   get ":community" do
@@ -99,14 +103,14 @@ class Bootstrapper < Sinatra::Base
     response.set_cookie("commonplace_community_slug", @community.slug)
 
     return 404 unless @community
-    
+
     erb @account ? :application : :register
   end
 
   get "pages/:id" do
     set_account
-    @feed = 
-      if params[:id].match(/^\d+/) 
+    @feed =
+      if params[:id].match(/^\d+/)
         Feed.find_by_id(params[:id])
       else
         Feed.find_by_slug(params[:id])
@@ -115,7 +119,7 @@ class Bootstrapper < Sinatra::Base
     erb :feed
   end
 
-  get "organizer_app/:id" do 
+  get "organizer_app/:id" do
     set_account
     erb :organizer_app
   end
@@ -129,7 +133,7 @@ class Bootstrapper < Sinatra::Base
     @community = Community.find_by_slug(params[:captures].first)
 
     return 404 unless @community
-    
+
     @login_error = "You must log in to view this content"
     @login_redirect = request.url
     erb @account ? :application : :login
