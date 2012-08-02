@@ -8,15 +8,15 @@ feature "Logging in", %q{
 
   background do
     community = @community = FactoryGirl.create(:community, :slug => "testing")
-    neighborhood = FactoryGirl.create(:neighborhood, :community => community, 
+    neighborhood = FactoryGirl.create(:neighborhood, :community => community,
             :coordinates => Forgery(:latlng).random)
 
-    stub_geocoder("100 Example Way, #{community.name}", 
+    stub_geocoder("100 Example Way, #{community.name}",
                   :latlng => Forgery(:latlng).random(:within => 15, :miles_of => neighborhood.coordinates))
 
     FactoryGirl.create(:user, :email => "test@example.com", :password => "password",
                        :neighborhood_id => neighborhood.id, :community_id => community.id,
-                       :address => "100 Example Way")
+                       :address => "100 Example Way", :referral_source => "Other")
     Capybara.app_host = "http://localhost:#{Capybara.server_port}"
   end
 
