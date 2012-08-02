@@ -125,6 +125,10 @@
       CommonPlace.account = new Account({});
       var header = new HeaderView({el: $("#header")});
       header.render();
+
+      <% if @nominate %>
+          activateTab("nominate");
+      <% end %>
     </script>
   </body>
 </html>
