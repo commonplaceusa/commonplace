@@ -18,6 +18,12 @@ $(document).ready(function(){
 
     return false;
   });
+
+  $(".right #nominate #apply-btn").click(function() {
+    $(".slide").hide();
+    $("#application").show();
+    activateAboutPageForm("apply");
+  });
 });
 
 function activateTab(tab_name) {
