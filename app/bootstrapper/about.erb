@@ -118,37 +118,32 @@
               </div>
             </form>
           </div>
-          <div id="nominate" style="display: none;">
-              <div class="nominate-form">
-                <h2>Nominate A Hero</h2>
-                <form class="registration">
-                  <input id="their-full-name" class="their-name" type="text" placeholder="Their Full Name" /><br />
-                  <input id="their-email" class="their-email" type="email" placeholder="Their Email Address" /><br />
-                  <textarea id="why" class="why-nominate" placeholder="Tell us why you are nominating this perosn." ></textarea>
-                  <input id="full-name" class="your-name" placeholder="Your Full Name"/>
-                  <input id="email" class="your-email" placeholder="Your Email Address" />
-                  <button class="next-button">Nominate this person!</button>
-                  <div class="facebook">
-                    <p>Or you can:</p>   
-                  </div>
-                </form>
+          <div id="nominate" class="nominate-form" style="display: none;">
+            <h2>Nominate A Hero</h2>
+            <form class="registration">
+              <input id="their-full-name" class="their-name" type="text" placeholder="Their Full Name" /><br />
+              <input id="their-email" class="their-email" type="email" placeholder="Their Email Address" /><br />
+              <textarea id="why" class="why-nominate" placeholder="Tell us why you are nominating this perosn." ></textarea>
+              <input id="full-name" class="your-name" placeholder="Your Full Name"/>
+              <input id="email" class="your-email" placeholder="Your Email Address" />
+              <button class="next-button">Nominate this person!</button>
+              <div class="facebook">
+                <p>Or you can:</p>
               </div>
             </form>
           </div>
-          <div id="apply" style="display: none;">
-              <div class="apply-form">
-                <h3>Fill out an application to be</h3>
-                <h2>A Civic Hero</h2>
-                <form class="registration">
-                  <input class="name" type="text" placeholder="Your Full Name" /><br />
-                  <input class="email" type="email" placeholder="Your Email Address" /><br />
-                  <textarea id="why" class="why-nominate" placeholder="Tell us why you'd like to be a <%= @community.name %> civic leader." ></textarea>
-                  <button class="next-button">Apply!</button>
-                  <div class="facebook">
-                    <p>Or you can:</p>   
-                  </div>
-                </form>
+          <div id="apply" class="apply-form" style="display: none;">
+            <h3>Fill out an application to be</h3>
+            <h2>A Civic Hero</h2>
+            <form class="registration">
+              <input class="name" type="text" placeholder="Your Full Name" /><br />
+              <input class="email" type="email" placeholder="Your Email Address" /><br />
+              <textarea id="why" class="why-nominate" placeholder="Tell us why you'd like to be a <%= @community.name %> civic leader." ></textarea>
+              <button class="next-button">Apply!</button>
+              <div class="facebook">
+                <p>Or you can:</p>
               </div>
+            </form>
           </div>
 
         </div>
