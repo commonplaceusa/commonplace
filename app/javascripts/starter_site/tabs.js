@@ -19,10 +19,16 @@ $(document).ready(function(){
     return false;
   });
 
-  $(".right #nominate #apply-btn").click(function() {
+  $(".right #apply-btn").click(function() {
     $(".slide").hide();
     $("#application").show();
     activateAboutPageForm("apply");
+  });
+
+  $(".right #nominate-btn").click(function() {
+    $(".slide").hide();
+    $("#nominate").show();
+    activateAboutPageForm("nominate");
   });
 });
 
@@ -36,6 +42,6 @@ function activateTab(tab_name) {
 
 function activateAboutPageForm(form_name) {
   $(".right > div").hide();
-  $(".right #" + form_name).show();
+  $(".right #" + form_name + "-form").show();
   return false;
 }
