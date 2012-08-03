@@ -35,7 +35,7 @@ function activateTab(tab_name) {
 }
 
 function activateAboutPageForm(form_name) {
-  $(".right div").hide();
+  $(".right > div").hide();
   $(".right #" + form_name).show();
   return false;
 }
