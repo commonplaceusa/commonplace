@@ -104,18 +104,23 @@
           </div>
         </div>
         <div class="right">
-          <h3>To Join <%= @community.name %>'s CommonPlace</h3>
-          <h2>Sign Up Here</h2>
-          <form class="registration">
-            <input id="full-name" class="name" type="text" placeholder="Full Name" /><br />
-            <input class="email" type="email" placeholder="Your Email" /><br />
-            <input class="password" type="password" placeholder="New Password" /><br />
-            <button class="next-button">Register Now!</button>
-            <div class="facebook">
-              <p>Or you can:</p>
-              <a href="#">Facebook</a>
-            </div>
-          </form>
+          <div id="register">
+            <h3>To Join <%= @community.name %>'s CommonPlace</h3>
+            <h2>Sign Up Here</h2>
+            <form class="registration">
+              <input id="full-name" class="name" type="text" placeholder="Full Name" /><br />
+              <input class="email" type="email" placeholder="Your Email" /><br />
+              <input class="password" type="password" placeholder="New Password" /><br />
+              <button class="next-button">Register Now!</button>
+              <div class="facebook">
+                <p>Or you can:</p>
+                <a href="#">Facebook</a>
+              </div>
+            </form>
+          </div>
+          <div id="nominate" style="display: none;">
+            NOMINATE ME
+          </div>
         </div>
       </div>
     </div>

@@ -7,7 +7,15 @@ $(document).ready(function(){
 
     $('.slide').hide();
 
-    activateTab($(this).attr('href'));
+    var tab_name = $(this).attr('href');
+    activateTab(tab_name);
+
+    if (tab_name == "nominate") {
+      activateAboutPageForm("nominate");
+    } else {
+      activateAboutPageForm("register");
+    }
+
     return false;
   });
 });
@@ -17,5 +25,11 @@ function activateTab(tab_name) {
   $("a[href=" + tab_name + "]").parent().addClass('selected');
   $(".slide").hide();
   $('#' + tab_name).show();
+  return false;
+}
+
+function activateAboutPageForm(form_name) {
+  $(".right div").hide();
+  $(".right #" + form_name).show();
   return false;
 }
