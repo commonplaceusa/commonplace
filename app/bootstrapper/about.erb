@@ -83,6 +83,7 @@
         <div class="right">
           <div id="registration-modal"></div>
           <div id="nominate-form" class="nominate-form" style="display: none;">
+            <!--
             <h2>Nominate A Hero</h2>
             <form class="registration">
               <input id="their-full-name" class="their-name" type="text" placeholder="Their Full Name" /><br />
@@ -95,8 +96,10 @@
                 <p>Or you can:</p>
                 <span id="apply-btn">Be a civic leader</span>
               </div>
+            -->
           </div>
           <div id="apply-form" class="apply-form" style="display: none;">
+            <!--
             <h3>Fill out an application to be</h3>
             <h2>A Civic Hero</h2>
             <form class="registration">
@@ -109,6 +112,7 @@
                 <span id="nominate-btn">nominate a civic leader</span>
               </div>
             </form>
+            -->
           </div>
 
         </div>
@@ -126,9 +130,15 @@
           activateTab("<%= @active_tab %>");
       <% end %>
 
-      window.router = new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
+      var communityExterior = <%= Serializer::serialize(@community.exterior).to_json.html_safe %>;
+      window.router = new RegistrationRouter({ communityExterior: communityExterior });
 
       var communitySlug = window.location.pathname.split("/")[1];
+
+      var nominateForm = new NominateCivicHeroForm({ el: $("#nominate-form"), communityExterior: communityExterior });
+      var applyForm = new ApplyCivicLeaderForm({ el: $("#apply-form"), communityExterior: communityExterior });
+      nominateForm.render();
+      applyForm.render();
 
       Backbone.history.start();
     </script>

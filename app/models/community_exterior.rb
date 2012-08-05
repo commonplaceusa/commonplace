@@ -101,7 +101,9 @@ class CommunityExterior
         "new" => "/registration/#{id}/new",
         "avatar" => "/account/avatar",
         "facebook" => "/registration/#{id}/facebook",
-        "residents" => "/communities/#{id}/residents"
+        "residents" => "/communities/#{id}/residents",
+        "nominate_civic_hero" => "/registration/#{id}/civic_hero_nomination",
+        "apply_civic_leader" => "/registration/#{id}/civic_leader_application"
       }
     }
   end

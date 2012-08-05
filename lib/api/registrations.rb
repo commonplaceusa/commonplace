@@ -70,6 +70,17 @@ class API
         nominee_email: params["nominee_email"],
         nominator_name: params["nominator_name"],
         nominator_email: params["nominator_email"],
+        reason: params["nomination_reason"]
+      )
+      200
+    end
+
+    post "/:community_id/civic_leader_application" do |community_id|
+      control_access :public
+      CivicHeroNomination.create!(
+        community_id: community_id,
+        name: params["nominee_name"],
+        email: params["nominee_email"],
         reason: params["reason"]
       )
       200

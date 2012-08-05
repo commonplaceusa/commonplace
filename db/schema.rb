@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20120805050923) do
     t.text     "reason"
     t.string   "nominator_name"
     t.string   "nominator_email"
+    t.integer  "community_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end

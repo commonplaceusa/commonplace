@@ -1,0 +1,27 @@
+var ApplyCivicLeaderForm = CommonPlace.View.extend({
+  template: "registration.apply_civic_leader",
+
+  events: {
+    "click button.next-button": "submit"
+  },
+
+  initialize: function() {
+    this.data = {};
+  },
+
+  submit: function(e) {
+    if (e) { e.preventDefault(); }
+
+    var self = this;
+    _.each(["name", "email", "reason"], function(data_point) {
+      self.data[data_point] = self.$("input[name=" + data_point + "]").val();
+    });
+
+    var post_api = "/api" + this.options.communityExterior.links.registration.apply_civic_leader;
+    $.post(post_api, this.data, _.bind(function(response) {
+      alert("Thanks :)");
+    }, this));
+  }
+
+});
+

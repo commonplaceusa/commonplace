@@ -8,6 +8,12 @@ require 'cucumber/rails'
 require 'factory_girl/step_definitions'
 Dir.glob(File.join(File.dirname(__FILE__), '../../spec/factories/*.rb')).each {|f| require f }
 
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.javascript_driver = :chrome
+
 VCR.configure do |c|
   c.hook_into :webmock
   c.cassette_library_dir = 'features/cassettes'
