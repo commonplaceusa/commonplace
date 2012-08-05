@@ -4,6 +4,7 @@ class CreateCivicLeaderApplications < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.text :reason
+      t.integer :community_id
 
       t.timestamps
     end

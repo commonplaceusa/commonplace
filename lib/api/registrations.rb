@@ -62,6 +62,19 @@ class API
       end
     end
 
+    post "/:community_id/civic_hero_nomination" do |community_id|
+      control_access :public
+      CivicHeroNomination.create!(
+        community_id: community_id,
+        nominee_name: params["nominee_name"],
+        nominee_email: params["nominee_email"],
+        nominator_name: params["nominator_name"],
+        nominator_email: params["nominator_email"],
+        reason: params["reason"]
+      )
+      200
+    end
+
     # Creates a new account with facebook connect, assigns profile
     # attributes, sets as current authenticated user
     #

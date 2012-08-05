@@ -6,6 +6,7 @@ class CreateCivicHeroNominations < ActiveRecord::Migration
       t.text :reason
       t.string :nominator_name
       t.string :nominator_email
+      t.integer :community_id
 
       t.timestamps
     end
