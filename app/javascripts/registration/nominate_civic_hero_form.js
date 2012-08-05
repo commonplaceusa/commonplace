@@ -17,12 +17,14 @@ var NominateCivicHeroForm = CommonPlace.View.extend({
       self.data[data_point] = self.$("[name=" + data_point + "]").val();
     });
 
-    console.log(this.data);
-
     var post_api = "/api" + this.options.communityExterior.links.registration.nominate_civic_hero;
     $.post(post_api, this.data, _.bind(function(response) {
-      alert("Thanks :)");
+      new ApplicationOrNominationSubmittedView({ el: $(this.options.el) }).render();
     }, this));
+  },
+
+  continue: function() {
+
   }
 
 });

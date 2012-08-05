@@ -19,7 +19,7 @@ var ApplyCivicLeaderForm = CommonPlace.View.extend({
 
     var post_api = "/api" + this.options.communityExterior.links.registration.apply_civic_leader;
     $.post(post_api, this.data, _.bind(function(response) {
-      alert("Thanks :)");
+      new ApplicationOrNominationSubmittedView({ el: $(this.options.el) }).render();
     }, this));
   }
 
