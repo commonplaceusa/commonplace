@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528150913) do
+ActiveRecord::Schema.define(:version => 20120805050923) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -88,6 +88,24 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "civic_hero_nominations", :force => true do |t|
+    t.string   "nominee_name"
+    t.string   "nominee_email"
+    t.text     "reason"
+    t.string   "nominator_name"
+    t.string   "nominator_email"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "civic_leader_applications", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "reason"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "communities", :force => true do |t|
@@ -212,6 +230,13 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.integer  "kind"
     t.string   "password"
     t.string   "background_file_name"
+  end
+
+  create_table "flags", :force => true do |t|
+    t.string   "name"
+    t.integer  "resident_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "group_posts", :force => true do |t|
@@ -372,6 +397,27 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.string  "email"
     t.decimal "latitude"
     t.decimal "longitude"
+  end
+
+  create_table "stories", :force => true do |t|
+    t.string   "title"
+    t.integer  "community_id"
+    t.text     "url"
+    t.text     "content"
+    t.text     "summary"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "street_addresses", :force => true do |t|
+    t.string   "address"
+    t.string   "unreliable_name"
+    t.text     "metadata"
+    t.text     "logs"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "community_id"
+    t.string   "carrier_route"
   end
 
   create_table "subscriptions", :force => true do |t|
