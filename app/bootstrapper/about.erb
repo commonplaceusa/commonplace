@@ -14,6 +14,7 @@
 
     </div>
     <div id="about">
+      <div id="fb-root"></div>
       <div class="header">
         <h2>About Us</h2>
         <ul class="nav">
@@ -80,20 +81,7 @@
           </div>
         </div>
         <div class="right">
-          <div id="register-form">
-            <h3>To Join <%= @community.name %>'s CommonPlace</h3>
-            <h2>Sign Up Here</h2>
-            <form class="registration">
-              <input id="full-name" class="name" type="text" placeholder="Full Name" /><br />
-              <input class="email" type="email" placeholder="Your Email" /><br />
-              <input class="password" type="password" placeholder="New Password" /><br />
-              <button class="next-button">Register Now!</button>
-              <div class="facebook">
-                <p>Or you can:</p>
-                <a href="#">Facebook</a>
-              </div>
-            </form>
-          </div>
+          <div id="registration-modal"> </div>
           <div id="nominate-form" class="nominate-form" style="display: none;">
             <h2>Nominate A Hero</h2>
             <form class="registration">
@@ -127,14 +115,22 @@
       </div>
     </div>
     <script type="text/javascript" src="/assets/starter_site.js"></script>
+    <script type="text/javascript" src="/assets/registration.js"></script>
     <script type="text/javascript">
-      CommonPlace.account = new Account({});
+      CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
+      CommonPlace.account = new Account(<%= @account.try(:persisted?) ? Serializer::serialize(Account.new(@account)).to_json : "{}" %>);
       var header = new HeaderView({el: $("#header")});
       header.render();
 
       <% if @nominate %>
           activateTab("nominate");
       <% end %>
+
+      window.router = new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
+
+      var communitySlug = window.location.pathname.split("/")[1];
+
+      Backbone.history.start();
     </script>
   </body>
 </html>

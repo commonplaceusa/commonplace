@@ -5,7 +5,7 @@ function toggleEditor(id) {
     tinyMCE.execCommand('mceRemoveControl', false, id);
 }
 
-jQuery.ajaxSetup({ 
+jQuery.ajaxSetup({
   'beforeSend': function(xhr) {
       $('form.ajax_submit').html("Please wait...");
       xhr.setRequestHeader("Accept", "text/javascript");
@@ -23,7 +23,7 @@ jQuery.fn.submitWithAjax = function() {
 
 
 $(document).ready(function() {
-  $('form.ajax_submit').submitWithAjax();
+  // $('form.ajax_submit').submitWithAjax();
   $("select").dropkick({
     change: function(value) { window.location.pathname = value; }
   });
