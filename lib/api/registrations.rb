@@ -81,7 +81,7 @@ class API
         community_id: community_id,
         name: params["nominee_name"],
         email: params["nominee_email"],
-        reason: params["reason"]
+        reason: params["application_reason"]
       )
       200
     end

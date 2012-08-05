@@ -13,8 +13,8 @@ var ApplyCivicLeaderForm = CommonPlace.View.extend({
     if (e) { e.preventDefault(); }
 
     var self = this;
-    _.each(["name", "email", "reason"], function(data_point) {
-      self.data[data_point] = self.$("input[name=" + data_point + "]").val();
+    _.each(["name", "email", "application_reason"], function(data_point) {
+      self.data[data_point] = self.$("[name=" + data_point + "]").val();
     });
 
     var post_api = "/api" + this.options.communityExterior.links.registration.apply_civic_leader;
