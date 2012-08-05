@@ -38,7 +38,13 @@ var RegistrationRouter = Backbone.Router.extend({
 
   new_user: function(a) {
     if (window.location.pathname.split("/").length > 2) {
-      if (window.location.pathname.split("/")[2] == "about") {
+      var url = window.location.pathname.split("/")[2];
+      if (url == "about" ||
+         url == "our-mission" ||
+         url == "our-story" ||
+         url == "our-platform" ||
+         url == "press" ||
+         url == "nominate") {
         this.newUserAbout();
         return;
       }

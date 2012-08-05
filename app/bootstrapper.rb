@@ -98,9 +98,33 @@ class Bootstrapper < Sinatra::Base
     erb :about
   end
 
+  get ":community/our-mission" do
+    @community = Community.find_by_slug(params[:community])
+    @active_tab = "our-mission"
+    erb :about
+
+  end
+  get ":community/our-story" do
+    @community = Community.find_by_slug(params[:community])
+    @active_tab = "our-story"
+    erb :about
+
+  end
+  get ":community/our-platform" do
+    @community = Community.find_by_slug(params[:community])
+    @active_tab = "our-platform"
+    erb :about
+
+  end
+  get ":community/press" do
+    @community = Community.find_by_slug(params[:community])
+    @active_tab = "press"
+    erb :about
+
+  end
   get ":community/nominate" do
     @community = Community.find_by_slug(params[:community])
-    @nominate = true
+    @active_tab = "nominate"
     erb :about
   end
 

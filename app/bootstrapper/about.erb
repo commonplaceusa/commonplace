@@ -81,7 +81,7 @@
           </div>
         </div>
         <div class="right">
-          <div id="registration-modal"> </div>
+          <div id="registration-modal"></div>
           <div id="nominate-form" class="nominate-form" style="display: none;">
             <h2>Nominate A Hero</h2>
             <form class="registration">
@@ -122,8 +122,8 @@
       var header = new HeaderView({el: $("#header")});
       header.render();
 
-      <% if @nominate %>
-          activateTab("nominate");
+      <% if @active_tab %>
+          activateTab("<%= @active_tab %>");
       <% end %>
 
       window.router = new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });

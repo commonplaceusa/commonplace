@@ -10,12 +10,6 @@ $(document).ready(function(){
     var tab_name = $(this).attr('href');
     activateTab(tab_name);
 
-    if (tab_name == "nominate") {
-      activateAboutPageForm("nominate");
-    } else {
-      activateAboutPageForm("register");
-    }
-
     return false;
   });
 
@@ -37,11 +31,19 @@ function activateTab(tab_name) {
   $("a[href=" + tab_name + "]").parent().addClass('selected');
   $(".slide").hide();
   $('#' + tab_name).show();
+  if (tab_name == "nominate") {
+    activateAboutPageForm("nominate");
+  } else {
+    activateAboutPageForm("register");
+  }
   return false;
 }
 
 function activateAboutPageForm(form_name) {
   $(".right > div").hide();
-  $(".right #" + form_name + "-form").show();
+  if (form_name == "register")
+    $("#registration-modal").show();
+  else
+    $(".right #" + form_name + "-form").show();
   return false;
 }
