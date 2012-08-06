@@ -234,13 +234,6 @@ ActiveRecord::Schema.define(:version => 20120805050923) do
     t.string   "background_file_name"
   end
 
-  create_table "flags", :force => true do |t|
-    t.string   "name"
-    t.integer  "resident_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "group_posts", :force => true do |t|
     t.string   "subject"
     t.text     "body"
@@ -334,6 +327,17 @@ ActiveRecord::Schema.define(:version => 20120805050923) do
     t.decimal  "longitude"
   end
 
+  create_table "organizer_data_points", :force => true do |t|
+    t.integer  "organizer_id"
+    t.string   "address"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "lat"
+    t.float    "lng"
+    t.boolean  "attempted_geolocating"
+  end
+
   create_table "posts", :force => true do |t|
     t.text     "body",                                :null => false
     t.integer  "user_id",                             :null => false
@@ -347,19 +351,6 @@ ActiveRecord::Schema.define(:version => 20120805050923) do
     t.datetime "deleted_at"
     t.datetime "replied_at"
   end
-
-  create_table "rails_admin_histories", :force => true do |t|
-    t.text     "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month"
-    t.integer  "year",       :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "referrals", :force => true do |t|
     t.integer  "event_id",    :null => false
@@ -399,27 +390,6 @@ ActiveRecord::Schema.define(:version => 20120805050923) do
     t.string  "email"
     t.decimal "latitude"
     t.decimal "longitude"
-  end
-
-  create_table "stories", :force => true do |t|
-    t.string   "title"
-    t.integer  "community_id"
-    t.text     "url"
-    t.text     "content"
-    t.text     "summary"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  create_table "street_addresses", :force => true do |t|
-    t.string   "address"
-    t.string   "unreliable_name"
-    t.text     "metadata"
-    t.text     "logs"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.integer  "community_id"
-    t.string   "carrier_route"
   end
 
   create_table "subscriptions", :force => true do |t|
