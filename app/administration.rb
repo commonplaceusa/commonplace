@@ -47,6 +47,9 @@ class Administration < Sinatra::Base
     if frequency == 'weekly'
       attachment('network_health.xlsx')
       response.write StatisticsNetworkHealthCsvGenerator.current_value
+    elsif frequency == "monthly"
+      attachment('network_health.xlsx')
+      response.write StatisticsNetworkHealthCsvGeneratorMonthly.current_value
     end
   end
 

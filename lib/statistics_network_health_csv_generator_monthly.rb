@@ -7,6 +7,10 @@ class StatisticsNetworkHealthCsvGeneratorMonthly < StatisticsNetworkHealthCsvGen
     30
   end
 
+  def self.frequency
+    "monthly"
+  end
+
   def self.filename
     "network_health_monthly.xlsx"
   end
