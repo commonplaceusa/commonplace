@@ -1,0 +1,438 @@
+#current-registration-page, #next-registration-page
+  display: none
+  padding-bottom: 30px
+  font-family: Rockwell, Georgia, Times, "Times New Roman", serif
+  
+  h1
+    font-size: 49px
+    color: #1b334a
+    padding: 18px 0px 
+    font-weight: bold
+    text-align: center
+    margin: 5px auto 20px
+    width: 960px
+    line-height: 1.2
+    +text-shadow(#bfc8cf 1px 1px 1px)
+    
+  .registration_information    
+    display: none  
+  h1 
+    display: none
+  form
+    margin-right: 75px
+    display: block    
+    &.new_user, &.user_facebook
+      width: 380px
+      > ul
+        margin-top: 20px
+      > ul > li
+        width: 380px
+        > .error, > .hint
+          width: 380px
+        > input[type=text]
+          width: 366px
+          +border-radius(5px)
+          +box-shadow(#ccc 1px 1px 2px 0 inset)
+          border: 1px solid #ccc
+          padding: 5px 5px
+          font-size: 18px
+          font-weight: 300
+          display: block
+          font-family: Helvetica, sans-serif
+          margin-top: 10px     
+        .addressS
+          color: white
+          font-family: Helvetica
+          font-size: 11px
+          margin-top: 8px
+          text-align: left
+      .new-top
+        width: 380px
+        padding-bottom: 24px
+        .or
+          font-family: Helvetica
+          font-size: 17px
+          text-shadow: none
+          float: left
+          font-weight: lighter
+          margin-left: 11px
+          margin-top: 6px
+          color: white
+          
+        a.facebook
+          float: right
+          width: 158px
+          height: 27px
+          background: image-url('facebookconnect.png')
+          text-indent: -9999px
+          border: 0
+          margin-top: 3px
+        img.facebook
+          float: right
+          margin-right: 0
+          cursor: pointer
+        h4
+          float: left
+         
+        
+    &.user_profile
+      width: 380px
+      
+      > ul > li
+        width: 380px
+        margin-top: 10px
+        &:first-child
+          margin-top: 0
+        > input, > select, > .error, > .hint
+          width: 380px
+      
+      > ul > .text
+        input[type=text], input[type=password], textarea
+          +border-radius(5px)
+          +box-shadow(#ccc 1px 1px 2px 0 inset)
+          border: 1px solid #ccc
+          padding: 3px 5px
+          font-size: 18px
+          font-weight: 300
+          display: block
+          +serif
+          margin-bottom: 5px
+        input[type=password]
+          width: 165px
+        input[type=text], textarea
+          width: 366px
+      .chzn-choices
+        +border-radius(4px)
+        li.search-choice
+          margin-top: 2px
+          margin-left: 4px
+          
+      .add-photo
+        margin-top: 10px
+        
+      .to-facebook
+        width: 184px
+        position: absolute
+        top: 30px
+        right: 30px
+        h4
+          font-size: 14px
+          margin-bottom: 8px
+          font-weight: 600
+          text-shadow: black 1px 1px 1px
+      img
+        cursor: pointer
+        
+      .facebook_avatar
+        text-align: center
+        width: 165px
+        background-color: white
+        +border-radius(5px)
+        padding: 5px
+        
+      a.avatar_file_browse
+        display: block
+        padding: 8px
+        height: 11px
+        color: #1b334a
+        border: 1px solid #5c0a09
+        +border-radius(5px)
+        cursor: pointer
+        line-height: 10px
+        padding-left: 8px
+        text-decoration: none
+        text-align: center
+        width: 159px
+        margin-top: 6px
+        &.hover
+          +box-shadow(inset 2px 2px 0 #e0e0e0, inset -2px -2px 0 #e0e0e0)
+          background-color: #bdbdbd
+        &:not(.hover)
+          +box-shadow(inset 2px 2px 0 white, inset -2px 0 0 white, inset 0 -2px 0 #bdbdbd)
+          background-color: #e0e0e0
+        
+      > input[type=image]
+        margin-top: 10px
+        
+      .referral_metadata_li
+        display: none
+        
+    &.add_feeds
+      li
+        height: 30px
+        h3
+          margin-top: 6px
+        
+    &.add_feeds, &.add_groups
+      ul
+        width: 390px
+        margin: 10px 0
+        overflow-y: scroll
+        overflow-x: hidden
+        height: 100px
+        li
+          width: 350px
+          padding: 10px
+          margin: 0px 0px 4px
+          +border-radius(5px)
+          background: white
+          &:hover
+            background-color: #fffdf0
+            cursor: pointer
+          h3
+            color: $cpBlue
+            font-size: 16px
+            margin-left: 40px
+            margin-top: 6px
+          img
+            float: left
+            margin-right: 5px
+            height: 30px
+            width: 30px
+          p
+            font-size: 13px
+            margin-right: 30px
+            margin-left: 40px
+            line-height: 1.3
+          .check
+            float: right
+            height: 20px
+            width: 20px
+            margin-left: 5px
+            margin-top: 5px
+            &:not(.checked)
+              background: image-url('check-off.png')
+              background-repeat: none
+            &.checked
+              background: image-url('check-on.png')
+              background-repeat: none
+              
+    &.find_neighbors
+      width: 380px
+      float: right
+      div.button
+        float:left
+        margin-left: 16px
+        text-transform: uppercase
+        font-weight: bold
+        font-size: 10px
+        background: #1b334a
+        padding: 4px 12px
+        color: white
+      input.name, input.email
+        float: left
+        width: 130px
+      input.search
+        width: 371px
+        +border-radius(5px)
+        +box-shadow(#ccc 1px 1px 2px 0 inset)
+        border: 1px solid #ccc
+        padding: 5px 5px
+        font-size: 18px
+        font-weight: 300
+        display: block
+        font-family: Helvetica, sans-serif
+      .know
+        line-height: 25px
+        margin-top: 12px
+        background: #8C2523
+        width: 367px
+        +border-radius(4px)
+        padding: 5px
+        color: white
+        font-family: Helvetica
+        font-size: 14px
+        text-align: center
+      .remove_search
+        position: absolute
+        top: 43px
+        right: 30px
+        width: 25px
+        height: 25px
+        background-repeat: no-repeat
+        &.loading
+          background-image: image-url("shared/icons/waiting.gif")
+        &.active
+          background-image: image-url("shared/icons/cancel.png")
+          cursor: pointer
+        &.inactive
+          background-image: image-url("icons/search.png")
+      
+      .neighbor_finder, .search_finder
+        margin-top: 10px
+        width: 380px
+        background: white
+        overflow-y: scroll
+        height: 285px
+        +border-radius(5px)
+        border: 1px solid black
+        
+        .no_results, .initial_load
+          background: white
+          +border-radius(5px)
+          text-align: center
+          margin-top: 10px
+          padding: 5px
+          margin-left: 10px
+          margin-right: 10px
+          .query
+            color: #1b334a
+            font-weight: bold
+            
+        .initial_load
+          height: 120px
+          background-image: image-url("loading.gif")
+          background-position: center center
+          background-repeat: no-repeat
+        
+        table 
+          font-family: Helvetica
+          font-size: 13px
+          border-spacing: 10px
+          border-collapse: separate
+          background: white
+          
+          td
+            width: 150px
+            padding: 10px
+            margin-top: 14px
+            border: 1px solid #dadada
+            border-collapse: collapse
+            &.checked, &:hover
+              &.checked, &:hover
+                background: #EEF5DF
+                cursor: pointer
+              &.checked
+                border: 1px solid #CCDAAE
+                +box-shadow(#bbb 2px 2px 2px)
+            img
+              float: left
+              margin-right: 10px
+            .lName
+              margin-top: 3px
+            .on-commonplace
+              font-size: 8px
+              margin-top: 12px
+              color: #ac322f
+            input[type=checkbox]
+              display: none
+
+    &.crop
+      margin: auto
+      float: none
+      padding: 25px
+      
+      .jcrop-holder
+        margin: auto
+        
+      input[type=image]
+        margin: 20px auto 0
+        display: block
+          
+          
+          
+          
+          
+
+
+
+    h4
+      text-align: left
+      color: #FFFFFF
+      font-weight: bold
+      font-size: 25px
+      text-shadow: #000000 2px 2px 2px
+      padding-bottom: 4px
+      letter-spacing: 1px
+      word-spacing: 2px
+    li
+      margin: 0px 0px
+    label
+      color: #898989
+      display: block
+      text-align: left
+      color: #FFFFFF
+      font-weight: 600
+      font-size: 14px
+      text-shadow: #000000 1px 1px 1px
+      margin-bottom: 5px
+      
+    .inline-errors
+      margin: 0px 0px 0px 0px
+      padding: 0px
+      text-align: right
+      font-size: 11px
+      color: #FFFFFF
+      
+    .error
+      display: none
+      margin: 0 0 0 0
+      padding: 0
+      font-size: 11px
+      color: white
+
+    .hint
+      margin: 5px 0px 3px 0px
+      padding: 0px
+      text-align: right
+      font-size: 12px
+      color: #FFFFFF
+      
+    input.grey-button
+      display: block
+      padding: 4px
+      height: 42px
+      width: 380px
+      color: white
+      text-align: center
+      +border-radius(5px)
+      cursor: pointer
+      text-decoration: none
+      margin-top: 20px
+      font-weight: bold
+      font-size: 21px
+      font-family: Rockwell, Georgia, Times, "Times New Roman", serif
+      background: #112130
+      +background-image(linear-gradient(#294D6F 0%,#1B334A 50%))
+      +box-shadow(#254564 0 0 0 1px inset,#112130 0 0 0 1px,#070c12 0 5px 6px -4px)
+      border: none
+      text-shadow: #070C12 0 -1px 0
+      letter-spacing: 1px
+      &:hover
+        +background-image(linear-gradient(#2D547B 0%,#1F3B55 50%))
+      &:active
+        +background-image(linear-gradient(#22405D 0%,#182E43 50%))
+        +box-shadow(#1e3851 0 0 0 1px inset,#112130 0 0 0 1px)
+      
+    #user_referral_metadata_input
+      display: none
+
+
+  form.add_feeds, form.add_groups
+    h2
+      display: block
+      text-align: left
+      color: #fff
+      font-weight: bold
+      font-size: 18px
+      text-shadow: #000000 0px 1px 2px
+      margin-bottom: 3px
+
+    input[type=image]
+      margin: auto
+      display: block
+    input[type=checkbox]
+      display: none
+      
+.addb
+  text-transform: uppercase
+  font-weight: bold
+  border: 0
+  +border-radius(3px)
+  cursor: pointer
+  font-size: 10px
+  background: #1b334a
+  padding: 6px 12px
+  color: white
+  float: left
+  margin-top: 10px
