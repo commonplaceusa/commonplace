@@ -75,7 +75,10 @@ var AboutPageRegisterNewUserView = RegistrationModalPage.extend({
         }, this));
 
         if (valid) {
-          this.nextPage("profile", this.data);
+          new_url = "/" + this.communityExterior.slug + "/register/profile?name=" + this.data.full_name +
+            "&email=" + this.data.email +
+            "&address=" + this.data.address;
+          window.location.href = new_url;
         }
       }
     }, this));

@@ -6,6 +6,7 @@ var RegistrationRouter = Backbone.Router.extend({
     "/": "new_user",
     "new": "new_user",
     "register/profile": "profile",
+    "register/profile?:params": "profile",
     "register/avatar": "crop",
     "register/crop": "crop",
     "register/feeds": "feed",
@@ -54,7 +55,24 @@ var RegistrationRouter = Backbone.Router.extend({
   newUserAbout: function() {
     this.modal.showPage("new_user_about");
   },
-  profile: function() { this.modal.showPage("profile"); },
+
+  getURLParameter: function(name) {
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
+  },
+
+  profile: function() {
+    if (window.location.search != '') {
+      this.modal.showPage("profile", {
+        full_name: this.getURLParameter("name"),
+        email: this.getURLParameter("email"),
+        address: this.getURLParameter("address")
+      })
+    } else {
+      this.modal.showPage("profile", this.data);
+    }
+  },
   crop: function() { this.modal.showPage("crop"); },
   feed: function() { this.modal.showPage("feed"); },
   group: function() { this.modal.showPage("group"); },
