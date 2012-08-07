@@ -125,6 +125,31 @@ body
         color: $red 
         text-align: center
         background: url("shared/redesign/about-stars.png") no-repeat center
+      #password, #full_name, #email
+        position: relative
+        float: left
+        width: 100%
+      .input_error
+        background: #EEECDF url(/assets/shared/redesign/background.gif) center
+        box-shadow: inset #B5B196 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
+      .input_error::-webkit-input-placeholder
+        color: $red
+      .error
+        font-size: 11px
+        color: #fff
+        max-width: 250px
+        font-family: Helvetica, Arial, sans-serif
+        font-weight: bold
+        position: absolute
+        bottom: 40px
+        right: -10px
+        background: url('shared/redesign/error-bg.png')
+        background-repeat: no-repeat
+        background-position: bottom left
+        padding: 10px 12px 18px 12px
+        line-height: 14px
+        text-align: left
+        display: none
       .registration 
         margin-top: 25px
         width: 476px
@@ -143,10 +168,14 @@ body
         border: none
         font-size: 18px
         background: white
-        margin-bottom: 20px
-        box-shadow: inset 0px 1px 6px rgba(0, 0, 0, .5)
+        margin-bottom: 10px
+        box-shadow: inset #C8C8C8 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
         &:last-child
-          margin-bottom: 30px
+         margin-bottom: 30px
+      input::-webkit-input-placeholder
+       color: #888
+      input:-moz-placeholder
+       color: #888
       textarea
         width: 460px
         height: 100px
@@ -157,14 +186,13 @@ body
         font-size: 18px
         background: white
         margin-bottom: 20px
-        border-radius: 4px
         box-shadow: inset 0px 1px 6px rgba(0, 0, 0, .5)
       textarea::-webkit-input-placeholder 
-        color: $blue
+        color: #888
       textarea:-moz-placeholder 
-        color: $blue
+        color: #888
       button 
-        -webkit-appearance: none
+        -webkit-font-smoothing: antialiased
         background: $blue
         width: 475px
         padding: 10px 0
@@ -174,11 +202,21 @@ body
         border: 1px solid #151f28
         color: white
         text-transform: uppercase
-        +linear-gradient(color-stops(#2e5274, #1b334a))
-        box-shadow: 1px 1px 1px rgba(0,0,0,.5)
-        text-shadow: 1px 2px 3px rgba(0,0,0,.5)
+        +linear-gradient(color-stops(#2e5274, #1b334a), top)
+        box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+        text-shadow: 1px 2px 3px rgba(0,0,0,.65)
         cursor: pointer
-        margin-top: 0px
+        margin-top: 12px
+        &:hover, &:focus
+         color: #fff
+         +linear-gradient(color-stops(#2e5274, #1b334a), top)
+         text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+         box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+        &:active
+         color: #fff
+         +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+         text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+         box-shadow: 1px 1px 1px rgba(0,0,0,.25)
       .facebook
         margin: 0 auto
           top: 15px
@@ -200,9 +238,6 @@ body
           padding-top: 6px
           float: left
           font-size: 20px
-
-      input::-webkit-input-placeholder
-        color: $blue
 
 #header
   height: 60px
