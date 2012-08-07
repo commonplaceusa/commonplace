@@ -43,15 +43,21 @@
 -->
 
 <h3>To Join {{community_name}}'s CommonPlace</h3>
-  <h2>Sign Up Here</h2>
-  <form class="registration">
-    <input id="full-name" class="full_name" name="full_name" type="text" placeholder="Full Name" /><br />
-    <input class="email" type="email" name="email" placeholder="Your Email" /><br />
-    <input class="street_address" type="text" placeholder="Street Address" name="street_address"/><br />
-    <button class="next-button">Register Now!</button>
-    <div class="facebook">
-      <p>Or you can:</p>
-      <a href="#">Facebook</a>
-    </div>
-  </form>
+<h2>Sign Up Here</h2>
+<form class="registration">
+  <input id="full-name" class="full_name" name="full_name" type="text" placeholder="Full Name" />
+  <br />
+  <span class="error full_name"></span>
+  <input class="email" type="email" name="email" placeholder="Your Email" />
+  <br />
+  <span class="error email"></span>
+  <input class="street_address" type="text" placeholder="Street Address" name="street_address"/>
+  <br />
+  <span class="error street_address"></span>
+  <button class="next-button">Register Now!</button>
+  <div class="facebook">
+    <p>Or you can:</p>
+    <a href="#">Facebook</a>
+  </div>
+</form>
 
