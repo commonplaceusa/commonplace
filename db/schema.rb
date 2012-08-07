@@ -133,6 +133,9 @@ ActiveRecord::Schema.define(:version => 20120805050923) do
     t.text     "discount_businesses"
     t.text     "feature_switches"
     t.text     "metadata"
+    t.text     "last_story"
+    t.string   "state"
+    t.date     "organize_start_date"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -232,6 +235,14 @@ ActiveRecord::Schema.define(:version => 20120805050923) do
     t.integer  "kind"
     t.string   "password"
     t.string   "background_file_name"
+    t.integer  "announcements_count",  :default => 0,      :null => false
+  end
+
+  create_table "flags", :force => true do |t|
+    t.string   "name"
+    t.integer  "resident_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "group_posts", :force => true do |t|
@@ -380,16 +391,55 @@ ActiveRecord::Schema.define(:version => 20120805050923) do
   end
 
   create_table "residents", :force => true do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.text    "metadata"
-    t.integer "user_id"
-    t.integer "community_id"
-    t.string  "address"
-    t.text    "logs"
-    t.string  "email"
-    t.decimal "latitude"
-    t.decimal "longitude"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "metadata"
+    t.integer  "user_id"
+    t.integer  "community_id"
+    t.string   "address"
+    t.text     "logs"
+    t.string   "email"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.integer  "street_address_id"
+    t.integer  "phone"
+    t.string   "organization"
+    t.string   "position"
+    t.text     "sector_tags"
+    t.text     "type_tags"
+    t.string   "notes"
+    t.boolean  "manually_added",    :default => false
+    t.integer  "stories_count",     :default => 0,     :null => false
+    t.datetime "last_story_time"
+    t.text     "old_stories"
+  end
+
+  create_table "sent_emails", :force => true do |t|
+    t.string   "tag"
+    t.integer  "community_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "stories", :force => true do |t|
+    t.string   "title"
+    t.integer  "community_id"
+    t.text     "url"
+    t.text     "content"
+    t.text     "summary"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "street_addresses", :force => true do |t|
+    t.string   "address"
+    t.string   "unreliable_name"
+    t.text     "metadata"
+    t.text     "logs"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "community_id"
+    t.string   "carrier_route"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -496,6 +546,12 @@ ActiveRecord::Schema.define(:version => 20120805050923) do
     t.datetime "reset_password_sent_at"
     t.boolean  "disabled",                         :default => false
     t.string   "organizations"
+    t.integer  "announcements_count",              :default => 0,       :null => false
+    t.integer  "feeds_count",                      :default => 0,       :null => false
+    t.integer  "invites_count",                    :default => 0,       :null => false
+    t.integer  "events_count",                     :default => 0,       :null => false
+    t.integer  "replied_count",                    :default => 0,       :null => false
+    t.text     "action_tags"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

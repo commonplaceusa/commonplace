@@ -1,5 +1,6 @@
 //= require json2
 //= require jquery
+//= require chosen
 //= require underscore
 //= require mustache
 //= require backbone

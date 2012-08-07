@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
 
   has_many :event_notes
 
-  belongs_to :owner, :polymorphic => true
+  belongs_to :owner, :polymorphic => true,:counter_cache => true
   belongs_to :community
 
   has_many :thanks, :as => :thankable, :dependent => :destroy
@@ -26,6 +26,7 @@ class Event < ActiveRecord::Base
   has_many :groups, :through => :event_cross_postings
 
   scope :upcoming, lambda { { :conditions => ["? <= events.date", Time.now.beginning_of_day.utc] } }
+<<<<<<< HEAD
   scope :between, lambda { |start_date, end_date|
     { :conditions => ["? <= events.date AND events.date < ?", start_date, end_date] }
   }
@@ -34,6 +35,8 @@ class Event < ActiveRecord::Base
     :joins => "LEFT OUTER JOIN users ON (events.owner_id = users.id) LEFT OUTER JOIN communities ON (users.community_id = communities.id)",
     :conditions => "communities.core = true",
     :select => "events.*"
+  scope :between, lambda { |start_date, end_date|
+    { :conditions => ["? <= events.date AND events.date < ?", start_date, end_date] }
   }
 
   scope :past, :conditions => ["events.date < ?", Time.now.utc]
