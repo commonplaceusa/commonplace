@@ -23,9 +23,6 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
 
     checklist[c] = !checklist[c];
 
-    console.log("toggle");
-    console.log(c);
-    console.log(checklist[c]);
     this.render();
   },
 
@@ -39,7 +36,6 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
     var arr = [];
     _.map(models, _.bind(function(model) {
       if(checklist[model.getId()]) {
-        console.log(model);
 
         arr[i] = model.getId();
         ++i;

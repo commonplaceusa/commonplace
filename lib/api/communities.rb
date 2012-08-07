@@ -321,22 +321,24 @@ CONDITION
           serialize(User.find(params[:user_id]).find_related_interests.map &:resident)
         end
       else
-=begin
       serialize(Sunspot.search(Resident) do
-          paginate :page => 1, :per_page => 9001
-          order_by :last_name
+          paginate :page => params[:page], :per_page => params[:per]
+          order_by :last_name, :asc
+          order_by :first_name, :asc
+
           all_of do
             with :community_id, params[:id]
+=begin
             Array(params[:with].try(:split, ",")).each do |w|
               with :tags, w
             end
             Array(params[:without].try(:split, ",")).each do |w|
               without :tags, w
             end
+=end
           end
         end)
-=end
-      serialize(paginate(Resident.where(:community_id=>params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
+      #serialize(paginate(Resident.where(:community_id=>params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
       #serialize(Resident.where(:community_id=>params[:id]))
       end
     end

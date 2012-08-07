@@ -3,7 +3,7 @@ OrganizerApp.Main = Backbone.View.extend({
 
   initialize: function() {
     page = 1;
-    per = 50;
+    per = 100;
     this.fileViewer = new OrganizerApp.FileViewer({ el: this.$("#file-viewer") });
 
     this.filePicker = new OrganizerApp.FilePicker({

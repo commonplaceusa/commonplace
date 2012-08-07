@@ -41,7 +41,8 @@ class Neighborhood < ActiveRecord::Base
                     password: "password",
                     address: street,
                     neighborhood: self,
-                    community: self.community)
+                    community: self.community,
+                    referral_source: "Other")
         u.address_correlate
         u.save!
       end
