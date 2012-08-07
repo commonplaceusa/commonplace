@@ -14,6 +14,7 @@ class Resident < ActiveRecord::Base
   belongs_to :community
 
   belongs_to :user
+  belongs_to :street_address
 
   has_many :flags
 
