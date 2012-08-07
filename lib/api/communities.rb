@@ -540,9 +540,13 @@ CONDITION
     #
     # term - the term to find auto-completed
     get "/:id/address_completions" do
-      addr = find_community.street_addresses.where("address ILIKE ?", "%#{params[:term]}%").pluck(:address)
+      if(find_community.slug.downcase == "lexington")
+        addr = find_community.street_addresses.where("address ILIKE ?", "%#{params[:term]}%").pluck(:address)
 
-      serialize(addr[0, 7])
+        serialize(addr[0, 7])
+      else
+        serialize(find_community.residents.where("address ILIKE ?","%#{params[:term]}%").pluck(:address))
+      end
     end
 
     # Returns a list of address approximations
@@ -560,11 +564,9 @@ CONDITION
         st_apt << " Apt" if !street.upcase.include?("APT")
         test = st_apt.jarowinkler_similar(input)
         addr[street] = test
-=begin
         if test >= likeness
           addr[street] = test
         end
-=end
       end
 
       list = addr.sort {|a, b| b[1] <=> a[1]}.map {|a, b| a}
