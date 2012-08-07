@@ -31,6 +31,9 @@ $body: Helvetica Neue, Helvetica, Tahoma, serif
 /* Woo Shadows */
 $black-shadow: 0px 2px 1px black
 
+html
+  -webkit-font-smoothing: antialiased
+  
 body 
   background: url("shared/redesign/bg.jpg") no-repeat center top
 
@@ -177,6 +180,7 @@ body
         box-shadow: inset #C8C8C8 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
         &:last-child
           margin-bottom: 30px
+        -webkit-font-smoothing: antialiased
       input::-webkit-input-placeholder
         color: #888
       input:-moz-placeholder
