@@ -6,7 +6,8 @@ var RegisterNewUserView = RegistrationModalPage.extend({
     "click a.show-video": "showVideo",
     "click input.sign_up": "submit",
     "submit form": "submit",
-    "click img.facebook": "facebook"
+    "click img.facebook": "facebook",
+    "click radio": "change_address"
   },
 
   afterRender: function() {
@@ -50,6 +51,35 @@ var RegisterNewUserView = RegistrationModalPage.extend({
   feeds: function() { return this.communityExterior.statistics.feeds; },
   postlikes: function() { return this.communityExterior.statistics.postlikes; },
 
+  change_address: function(e) {
+    console.log("hi");
+    console.log(e.name);
+  },
+  
+  suggest_address: function() {
+
+    var url = '/api/communities/'+this.communityExterior.id+'/address_approximate';
+    this.data.term = this.data.address;
+
+    $.get(url, this.data, _.bind(function(response) {
+
+      if(response.length < 1) {
+        console.log("no good");
+        var radio = this.$("#suggested_address").hide;
+        return false;
+      }
+
+      var radio = this.$("#suggested_address").empty();
+
+      for(var i = 0; i < response.length; ++i) {
+      }
+
+      radio.text(response[0]);
+      radio.show();
+    }, this));
+
+  },
+
   submit: function(e) {
     if (e) { e.preventDefault(); }
 
@@ -72,6 +102,27 @@ var RegisterNewUserView = RegistrationModalPage.extend({
             error.text(errorText);
             error.show();
             valid = false;
+          }
+        }, this));
+
+        var url = '/api/communities/'+this.communityExterior.id+'/address_approximate';
+        this.data.term = this.data.address;
+
+        $.get(url, this.data, _.bind(function(response) {
+          var radio = this.$("#suggested_address");
+
+          if(response === null || response.length < 1) {
+            radio.hide();
+            valid = false;
+          }
+          else {
+            radio.empty();
+
+            for(var i = 0; i < response.length; ++i) {
+            }
+
+            radio.text(response[0]);
+            radio.show();
           }
         }, this));
 
