@@ -6,6 +6,8 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   events: {
     "click .pick-resident": "onClickFile",
     "click .cb": "toggle",
+    "click #prev": "previous",
+    "click #next": "next",
     "click #filter": "filterUsers",
     "click #filter-order" :"filterUsers",
     "click #filter-button": "filter",
@@ -39,6 +41,40 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     e.preventDefault();
     //console.log($(e.currentTarget));
     this.options.fileViewer.show($(e.currentTarget).data('model'), this.options.community, this.collection,this);
+  },
+
+  previous: function() {
+    if(page <= 1)
+      return;
+
+    --page;
+
+    all_check = false;
+    var params = {
+      "page": page,
+      "per": per
+    };
+    this.collection.fetch({
+      data: params,
+      success: _.bind(this.afterRender, this)
+    });
+  },
+
+  next: function() {
+    if(this.amount() < per)
+      return;
+
+    ++page;
+
+    all_check = false;
+    var params = {
+      "page": page,
+      "per": per
+    };
+    this.collection.fetch({
+      data: params,
+      success: _.bind(this.afterRender, this)
+    });
   },
 
   checkall: function(e) {
@@ -114,6 +150,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     });
 
     this.renderList(this.collection.models);
+    this.$("#pg_num").text(page);
     this.amount();
     this.$("#amount").text(this.collection.models.length);
     this.produceOrdertags();
@@ -227,6 +264,8 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     switch(e.target.id){
       case "filter":
         var params={
+          "page": page,
+          "per": per,
           "search": Search,
           "have": haves,
           "tag": tag
@@ -240,6 +279,8 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
         break;
       case "filter-order":
         var params={
+          "page": page,
+          "per": per,
           "search": "filter",
           //"have": this.$("#haveornot").val(),
           "tag": this.$("#order-tags").val(),

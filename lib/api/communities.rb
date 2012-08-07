@@ -437,6 +437,7 @@ CONDITION
       params[:file_id].each do |id|
         find_community.residents.find(id).add_tags(params[:tags])
       end
+
       200
     end
 
