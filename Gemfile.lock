@@ -295,8 +295,8 @@ GEM
       creole (>= 0.3.7)
       loofah (>= 0.4.7)
       rdiscount (>= 1.6.0)
-    mime-types (1.19)
     method_source (0.7.1)
+    mime-types (1.19)
     mongo (1.6.1)
       bson (~> 1.6.1)
     mongo_mapper (0.11.0)
@@ -332,9 +332,6 @@ GEM
     permanent_records (2.1.2)
       activerecord
     pg (0.13.2)
-    pg_search (0.5)
-      activerecord (>= 3)
-      activesupport (>= 3)
     plucky (0.4.4)
       mongo (~> 1.5)
     polyglot (0.3.3)
@@ -565,7 +562,6 @@ DEPENDENCIES
   paperclip (~> 2.4.4)
   permanent_records
   pg
-  pg_search
   premailer
   pry
   rack-cache
