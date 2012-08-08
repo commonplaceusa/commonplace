@@ -364,10 +364,6 @@ CONDITION
                                       :manually_added => true
                                       )
 
-      r.manually_added
-
-
-
     end
 
     # Updates a community resident file

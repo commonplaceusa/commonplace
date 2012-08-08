@@ -96,10 +96,7 @@ class Resident < ActiveRecord::Base
   def manual_add
     self.metadata[:todos] ||= []
     if self.manually_added
-      self.manually_added = true
-      todo = ["send nomination email"]
-      self.metadata[:todos] |= todo
-      self.community.add_resident_todos(todo)
+      self.add_tags("nominate")
     end
   end
 
@@ -116,9 +113,9 @@ class Resident < ActiveRecord::Base
     add = []
     remove = []
     flags.each do |flag|
-      if !self.flags.find_by_name(flag)
-        f = self.flags.create(:name => flag)
-        if rule = Flag.get_rule(f.name)
+      if rule = Flag.get_rule(flag)
+        if !self.flags.find_by_name(flag)
+          f = self.flags.create(:name => flag)
           remove |= rule[0]
           add |= rule[1]
         end
