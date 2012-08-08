@@ -543,7 +543,7 @@ CONDITION
     #
     # term - the term to find auto-completed
     get "/:id/address_completions" do
-      if !find_community.street_addresses.nil?
+      if !find_community.street_addresses.nil? && find_community.street_addresses.count > 0
         addr = find_community.street_addresses.where("address ILIKE ?", "%#{params[:term]}%").pluck(:address)
 
         serialize(addr[0, 7])
@@ -565,15 +565,19 @@ CONDITION
       end
 
       input = params[:term].split(/[,|\.]/).first
-      likeness = input.split(" ").first =~ /^[0-9]+/ ? 0.90 : 0.75
+      likeness = input.split(" ").first =~ /^[0-9]+/ ? 0.90 : 0.90
       addr = {}
+      best = 0
 
-      if !find_community.street_addresses.nil?
+      if !find_community.street_addresses.nil? && find_community.street_addresses.count > 0
         find_community.street_addresses.each do |street_address|
           street = street_address.address.squeeze(" ")
           st_apt = street.clone
           st_apt << " Apt" if !street.upcase.include?("APT")
           test = st_apt.jarowinkler_similar(input)
+          if test > best
+            best = test
+          end
           if test >= likeness
             addr[street] = test
           end
@@ -585,6 +589,9 @@ CONDITION
           st_apt = street.clone
           st_apt << " Apt" if !street.upcase.include?("APT")
           test = st_apt.jarowinkler_similar(input)
+          if test > best
+            best = test
+          end
           if test >= likeness
             addr[street] = test
           end
@@ -592,7 +599,9 @@ CONDITION
       end
 
       list = addr.sort {|a, b| b[1] <=> a[1]}.map {|a, b| a}
-      serialize(list[0, 4])
+      threshold_test = [best, list[0]]
+      #serialize(list[0, 4])
+      serialize(threshold_test)
     end
 
     # Returns the community's posts, possibly a search result

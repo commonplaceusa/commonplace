@@ -7,7 +7,6 @@ var RegisterNewUserView = RegistrationModalPage.extend({
     "click input.sign_up": "submit",
     "submit form": "submit",
     "click img.facebook": "facebook",
-    "click radio": "change_address"
   },
 
   afterRender: function() {
@@ -50,36 +49,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
   neighbors: function() { return this.communityExterior.statistics.neighbors; },
   feeds: function() { return this.communityExterior.statistics.feeds; },
   postlikes: function() { return this.communityExterior.statistics.postlikes; },
-
-  change_address: function(e) {
-    console.log("hi");
-    console.log(e.name);
-  },
   
-  suggest_address: function() {
-
-    var url = '/api/communities/'+this.communityExterior.id+'/address_approximate';
-    this.data.term = this.data.address;
-
-    $.get(url, this.data, _.bind(function(response) {
-
-      if(response.length < 1) {
-        console.log("no good");
-        var radio = this.$("#suggested_address").hide;
-        return false;
-      }
-
-      var radio = this.$("#suggested_address").empty();
-
-      for(var i = 0; i < response.length; ++i) {
-      }
-
-      radio.text(response[0]);
-      radio.show();
-    }, this));
-
-  },
-
   submit: function(e) {
     if (e) { e.preventDefault(); }
 
@@ -87,10 +57,10 @@ var RegisterNewUserView = RegistrationModalPage.extend({
     this.data.email = this.$("input[name=email]").val();
     this.data.address = this.$("input[name=street_address]").val();
 
+    var valid = true;
     var validate_api = "/api" + this.communityExterior.links.registration.validate;
     $.getJSON(validate_api, this.data, _.bind(function(response) {
       this.$(".error").hide();
-      var valid = true;
 
       if (!_.isEmpty(response.facebook)) {
         window.location.pathname = this.communityExterior.links.facebook_login;
@@ -105,28 +75,60 @@ var RegisterNewUserView = RegistrationModalPage.extend({
           }
         }, this));
 
-        var url = '/api/communities/'+this.communityExterior.id+'/address_approximate';
-        this.data.term = this.data.address;
+        if(this.$("#suggested_address").is(":hidden") || this.$('#try_again').is(":checked")) {
 
-        $.get(url, this.data, _.bind(function(response) {
-          var radio = this.$("#suggested_address");
+          var url = '/api/communities/'+this.communityExterior.id+'/address_approximate';
+          this.data.term = this.data.address;
 
-          if(response === null || response.length < 1) {
+          $.get(url, this.data, _.bind(function(response) {
+            var radio = this.$("input.address_verify_radio");
+            var span = this.$("span.address_verify_radio");
+            var addr = this.$("#suggested_address");
             radio.hide();
-            valid = false;
-          }
-          else {
-            radio.empty();
+            span.hide();
+            addr.hide();
 
-            for(var i = 0; i < response.length; ++i) {
+            console.log(response);
+
+            if(response === null || response[1].length < 1 || response[0] < 0.90) {
+              valid = false;
+
+              var error = this.$(".error.address");
+              error.text("Please enter a valid address");
+              error.show();
+
             }
+            else if(response[0] < 0.94) {
+              valid = false;
 
-            radio.text(response[0]);
-            radio.show();
+              this.data.suggest = response[1];
+              this.data.original = this.data.term;
+
+              addr.empty();
+
+              addr.text(response[1]);
+              radio.show();
+              span.show();
+              addr.show();
+            }
+            else if(valid) {
+              this.data.address = response[1];
+
+              this.nextPage("profile", this.data);
+            }
+          }, this));
+        }
+        else {
+          if (valid) {
+            if(this.$("#suggested_radio").is(':checked')) {
+              this.data.address = this.data.suggest;
+            }
+            else {
+              this.data.address = this.data.original;
+            }
+            this.nextPage("profile", this.data);
           }
-        }, this));
-
-        if (valid) { this.nextPage("profile", this.data); }
+        }
       }
     }, this));
   },
