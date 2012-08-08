@@ -37,6 +37,9 @@ html
 body
   background: url("shared/redesign/bg.jpg") no-repeat center top
 
+em
+  font-style: italic
+  
 .slide
   display: none
 .selected
@@ -104,44 +107,70 @@ body
       p
         color: #424242
         font-family: $Rokkitt
-        width: 465px
+        width: 460px
         font-size: 18px
         margin-bottom: 15px
         line-height: 1.25em
-      .highlight, .author
+      .highlight
         color: $blue
-        font-size: 19px
+        font-size: 20px
         margin-top: 15px
         margin-bottom: 15px
         font-weight: bold
+      div.section_list
+        border-top: 1px dotted #ccc        
+        padding-top: 20px
+        margin: 0px 0px 20px 0px
+        float: left
+        width: 460px
+      div.section_list:last-child
+        margin-bottom: 0px
       h4.headline
         font-family: $Rokkitt
         color: $blue
-        font-size: 26px
+        font-size: 22px
         font-weight: bold
-        padding-top: 20px
-        margin-bottom: 15px
-        border-top: 1px dotted #ccc
-        width: 465px
+        margin-bottom: 0px        
+        width: 460px
+        text-transform: capitalize
       h4.headline_platform
         font-family: $Rokkitt
         color: $red
         font-size: 26px
         font-weight: bold
-        padding-top: 20px
+        margin-bottom: 20px
+        width: 460px
+      .author
+        color: $red
+        font-size: 18px
+        margin-top: 0px
         margin-bottom: 15px
-        border-top: 1px dotted #ccc
-        margin-right: 30px
+      .author_quote
+        margin-top: 15px
+        margin-bottom: 0px
+        font-size: 18px
+        text-align: right
+        font-weight: bold
+        color: #969488
+      object
+        margin-bottom: 15px
+        float: left
+      p:last-child
+        margin-bottom: 0px
       p.quote
         font-size: 24px
         line-height: 1.35em
         font-style: italic
+        color: $blue
+      p.read_more
+        font-weight: bold
+        margin-bottom: 0px
       img.platform_thumb
         background-color: #e2dfd2
-        padding: 0px 82px 0px 82px
+        padding: 0px 81px 0px 81px
         text-align: center
         margin: 0px auto
-        margin-bottom: 15px
+        margin-bottom: 20px
         float: left
       ul.neighborhood_list
         float: left
@@ -154,6 +183,8 @@ body
           background: url("shared/redesign/about-stars.png") no-repeat -420px 2px
           padding-left: 25px
           width: 440px
+        li:last-child
+          margin-bottom: 0px
           
 
     .right
