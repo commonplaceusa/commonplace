@@ -561,25 +561,19 @@ WHERE
     KickOff.new.send_spam_report_received_notification(self)
   end
 
-  def address_approx
-    self.metadata[:address_approx] ||= []
-  end
-
+  # Finds StreetAddress with "same" address
+  #
+  # This is like find_st_address except a little bit more lax in matching
+  # addresses. This *still* might not find a match if a user decides to
+  # forgo both the auto-complete and address suggestion, but it can't be
+  # helped if a user decides to be pathological
   def address_correlate
-    likeness = 0.85
-    static = likeness
-    crrt = []
-    matches = []
+    likeness = 0.94
     addr = []
     street = self.community.street_addresses
     street.each do |street_address|
-      route = street_address.carrier_route
       st_addr = street_address.address
-      test = st_addr.jarowinkler_similar(address.split(/[,|\.]/).first)
-      if test >= static
-        crrt << route
-        matches << st_addr
-      end
+      test = st_addr.jarowinkler_similar(address.split(/[,|.]/).first)
       if test > likeness
         likeness = test
         addr.clear
@@ -589,52 +583,20 @@ WHERE
       end
     end
 
-    self.metadata[:address_approx] = []
-    matches.each_with_index do |address, idx|
-      carrier = crrt[idx]
-      self.metadata[:address_approx] << "#{address}: #{carrier}"
+    if addr.empty?
+      addr << create_st_address
     end
 
     addr.first
   end
 
-  def self.no_carrier
-    user = User.all
-    no_carrier = []
-    user.each do |u|
-      next if u.first_name === "test"
-      no_carrier << u if u.resident.street_address.nil?
-    end
-
-    no_carrier
-  end
-
-  def self.find_all_by_carrier_route(crrt)
-    user = User.all
-    carriers = []
-    user.each do |u|
-      s = u.resident.street_address.carrier_route if !u.resident.street_address.nil?
-      carriers << u if s === crrt
-    end
-
-    address = []
-    street = StreetAddress.all
-    street.each do |s|
-      address << s if s.carrier_route === crrt
-    end
-
-    c = carriers.count
-    a = address.count
-    conversion = (c / a.to_f).round(4) * 100
-    [c, a, conversion]
-    carriers
-  end
-
   # Finds StreetAddress with same address
   #
   # Note: This should find an exact match because of address verification
-  # upon User registration [!!verify_address does not exist yet]
+  # upon User registration unless the user forgoes both the auto-complete
+  # and the suggested address
   # ...Unless one is in the dev-environment where there's no real data
+  # Deprecated?
   def find_st_address
     matched = StreetAddress.where("address ILIKE ?", "%#{self.address}%")
 
@@ -655,15 +617,7 @@ WHERE
 
   def find_resident
     address_components = self.address.split(" ")
-    # if first word of address is not a number
-    if !(address_components.first =~ /^[-+]?[0-9]+$/)
-      address_components.shift if address_components.first == "#"
-      # TODO: add PO BOX case
-      matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.first + "%", self.last_name)
-      # TODO: add unsure address tag
-    else
-      matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.take(2).join(" ") + "%", self.last_name)
-    end
+    matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.take(2).join(" ") + "%", self.last_name)
 
     # Don't want to match with Resident files that already have a User
     matched_street = matched.select { |resident| !resident.on_commonplace? }
@@ -707,20 +661,15 @@ WHERE
 
       # Merge them if they're not the same file
       street.email = email.email
-      # street.add_tags(email.tags)
-      email.destroy
+      email.address = street.address
+      email.add_tags(street.tags)
+      street.destroy
 
-      return street
-    else
-      return emails.first
+      return email
     end
 
     # None of the names matched
-    if emails.count > 0
-      return emails.first
-    end
-
-    return nil
+    return emails.first
   end
 
   def create_st_address
@@ -733,6 +682,7 @@ WHERE
   # the "REAL AMERICAN PERSON" file [aka the Resident file]
   def correlate
     #addr = find_st_address
+    self.address.squeeze!(" ")
     addr = self.address_correlate
     if r = find_resident
       if !r.address?
@@ -748,7 +698,6 @@ WHERE
       end
 
       r.user = self
-      # r.add_tags("registered")
       r.registered
       r.save
     else
@@ -762,7 +711,6 @@ WHERE
         :user => self,
         :community_id => self.community_id)
       r.add_tags(addr.carrier_route) if !addr.nil?
-      # r.add_tags("registered")
       r.registered
       r.update_attribute(:community_id,self.community_id)
       r.update_attribute(:community,self.community)

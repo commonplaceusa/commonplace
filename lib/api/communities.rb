@@ -560,7 +560,7 @@ CONDITION
         return []
       end
 
-      input = params[:term].split(/[,|\.]/).first
+      input = params[:term].split(/[,|.]/).first
       likeness = input.split(" ").first =~ /^[0-9]+/ ? 0.90 : 0.90
       addr = {}
       best = 0
@@ -596,7 +596,6 @@ CONDITION
 
       list = addr.sort {|a, b| b[1] <=> a[1]}.map {|a, b| a}
       threshold_test = [best, list[0]]
-      #serialize(list[0, 4])
       serialize(threshold_test)
     end
 

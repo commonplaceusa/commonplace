@@ -125,14 +125,6 @@ class Resident < ActiveRecord::Base
     [remove, add]
   end
 
-  def approx
-    if !self.user.nil?
-      return self.user.address_approx
-    end
-
-    nil
-  end
-
   def registered
     self.metadata[:tags] ||= []
     self.metadata[:tags] << "registered"
