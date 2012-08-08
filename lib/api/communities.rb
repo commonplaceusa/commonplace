@@ -574,7 +574,7 @@ CONDITION
           street = street_address.address.squeeze(" ")
           st_apt = street.clone
           st_apt << " Apt" if !street.upcase.include?("APT")
-          test = st_apt.jarowinkler_similar(input)
+          test = st_apt.jarowinkler_similar(input.squeeze(" "))
           if test > best
             best = test
           end
@@ -588,7 +588,7 @@ CONDITION
           street = street_address.address.squeeze(" ")
           st_apt = street.clone
           st_apt << " Apt" if !street.upcase.include?("APT")
-          test = st_apt.jarowinkler_similar(input)
+          test = st_apt.jarowinkler_similar(input.squeeze(" "))
           if test > best
             best = test
           end
