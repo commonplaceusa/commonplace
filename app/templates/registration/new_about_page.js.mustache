@@ -1,59 +1,24 @@
-<!--
-<h1>Plug Into the {{community_name}} Community</h1>
-
-<div class="registration_information">
-  <ul class="infolist">
-    <li>The {{community_name}} CommonPlace is a safe online bulletin board for {{community_name}} residents.  It's the very best way to connect with your local community.</li>
-    <li>Register once to start receiving short updates from your neighborhood, the police, the {{community_name}} city government, and great community organizations in town. <a href="{{learn_more}}" class="learn-more">LEARN MORE</a></li>
-    <li>
-      <div class="show-video-con">
-      <h3>What Are Neighbors Saying?</h3>
-      <a href="#" class="show-video"></a>
-      </div>
-    </li>
-  </ul>
-    
-</div>
-
-<form class="new_user">
-  <div class="new-top">
-    <h4>Register Now</h4>
-    <p class="or">or</p>
-    <img class="facebook" src="/assets/facebookconnect.png">
-  </div>
-  <ul>
-    <li>
-      <input class="name" type="text" name="full_name" placeholder="Full name">
-      <span class="error full_name"></span>
-    </li>
-    <li>
-      <input class="mail" type="text" name="email" id="email" placeholder="Email address">
-      <span class="error email"></span>
-    </li>
-    <li>
-      <input class="address" type="text" name="street_address" class="has_hint" placeholder="Street address*">
-      <div class="address">*This is to verify you live in {{community_name}}.  It won't be shared with anyone.</div>
-    </li>
-  </ul>
-  
-  <input type="submit" class="grey-button sign_up" value="SIGN ME UP!">
-</form>
-
-<div style="clear: both;"></div>
--->
+<style>
+.input_wrapper {
+  position: relative;
+}
+</style>
 
 <h3>To Join {{community_name}}'s CommonPlace</h3>
 <h2>Sign Up Here</h2>
 <form class="registration">
-  <input id="full-name" class="full_name" name="full_name" type="text" placeholder="Full Name" />
-  <br />
-  <span class="error full_name"></span>
-  <input class="email" type="email" name="email" placeholder="Your Email" />
-  <br />
-  <span class="error email"></span>
-  <input class="street_address" type="text" placeholder="Street Address" name="street_address"/>
-  <br />
-  <span class="error street_address"></span>
+  <div id="full_name" class="input_wrapper">
+    <input id="full-name" class="full_name" name="full_name" type="text" placeholder="Full Name" />
+    <span class="error full_name"></span>
+  </div>
+  <div id="email" class="input_wrapper">
+    <input class="email" type="email" name="email" placeholder="Your Email" />
+    <span class="error email"></span>
+  </div>
+  <div id="address" class="input_wrapper">
+    <input class="street_address" type="text" placeholder="Street Address" name="street_address"/>
+    <span class="error street_address"></span>
+  </div>
   <button class="next-button">Register Now!</button>
   <div class="facebook">
     <p>Or you can:</p>
