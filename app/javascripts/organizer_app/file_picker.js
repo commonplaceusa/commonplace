@@ -149,18 +149,14 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
       clickable.click();
     });
 
-    this.renderList(this.collection.models);
-    this.$("#pg_num").text(page);
-    this.amount();
-    this.$("#amount").text(this.collection.models.length);
-    this.produceOrdertags();
-  },
-
-  amount: function(){
-    return this.collection.models.length;
+    var deferred = $.Deferred();
+    deferred.resolve(this.renderList(this.collection.models));  
+    //this.$("#amount").text(this.collection.models.length);
+    deferred.done(this.produceOrdertags());
   },
 
   renderList: function(list) {
+    
     this.$("#file-picker-list").empty();
 
     this.$("#file-picker-list").append(
@@ -207,22 +203,44 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   dropdowns: function(){
-    //var tags=["post","email","reply","replied","invite","announcement","event","sitevisit"];
-    //var alltags=tags.concat(possTags);
-    var actions=[{tag:"post",val:"Post"},{tag:"email",val:"Email"},{tag:"reply",val:"Reply"},{tag:"replied",val:"Be replied"},
-              {tag:"invite",val:"Invite"},{tag:"announcement",val:"Announcement"},{tag:"event",val:"Event"},{tag:"sitevisit",val:"Log in"},{tag:"story",val:"News"}         ];
+    //when organizer becomes more should be pulled from database
+    var actions=[{val:"Post",tag: JSON.stringify({tag:"post",type:"action"})},
+                 {val:"Email",tag: JSON.stringify({tag:"email",type:"action"})},
+                 {val:"Reply",tag: JSON.stringify({tag:"reply",type:"action"})},
+                 {val:"Be replied",tag: JSON.stringify({tag:"replied",type:"action"})},
+                 {val:"Invite",tag: JSON.stringify({tag:"invite",type:"action"})},
+                 {val:"Announcement",tag: JSON.stringify({tag:"announcement",type:"action"})},
+                 {val:"Event",tag: JSON.stringify({tag:"event",type:"action"})},
+                 {val:"Log in",tag: JSON.stringify({tag:"sitevisit",type:"action"})},
+                 {val:"News",tag: JSON.stringify({tag:"story",type:"action"})},
+                 {val:"Referred Contacts",tag: JSON.stringify({tag:"referred-contacts",type:"input"})},
+                 {val:"Leader List",tag: JSON.stringify({tag:"leader-list",type:"input"})},
+                 {val:"Non-Leader Email List",tag: JSON.stringify({tag:"non-leader-email-list",type:"input"})},
+                 {val:"Potential Feed Owner",tag: JSON.stringify({tag:"pfo",type:"PFO"})},
+                 {val:"Non-Potential Feed Owner",tag: JSON.stringify({tag:"non-pfo",type:"PFO"})},
+                 {val:"Cultural",tag: JSON.stringify({tag:"cultural",type:"sector"})},
+                 {val:"Religious",tag: JSON.stringify({tag:"religious",type:"sector"})},
+                 {val:"Civic",tag: JSON.stringify({tag:"civic",type:"sector"})},
+                 {val:"Government",tag: JSON.stringify({tag:"government",type:"sector"})},
+                 {val:"Schools",tag: JSON.stringify({tag:"schools",type:"sector"})},
+                 {val:"Leader",tag: JSON.stringify({tag:"leader",type:"type"})},
+                 {val:"Neighbor",tag: JSON.stringify({tag:"neighbor",type:"type"})},
+                 {val:"Chava",tag: JSON.stringify({tag:"Chava",type:"organizer"})},
+                 {val:"Peter",tag: JSON.stringify({tag:"Peter",type:"organizer"})},
+                 {val:"Ricky",tag: JSON.stringify({tag:"Ricky",type:"organizer"})}];
     possTags=this.options.community.get('resident_tags');
     _.map(possTags, function(residenttag) {
-      actions.push({tag:residenttag,val:residenttag});
+      actions.push({val:residenttag,tag: JSON.stringify({tag:residenttag,type:"flag"})});
     });
     interests=this.options.community.get('interests');
     for(i=0;i<interests.length;i++){
-      actions.push({tag:i,val:interests[i]});
+      actions.push({val:interests[i],tag: JSON.stringify({tag:i,type:"interest"})});
     }
     return actions;
   },
 
   filterUsers: function(e){
+    this.$("#amount").text("Counting");
     var tag=new Array();
     var Search="filter";
     var select = this.$("select[name=filter-tags]");
@@ -240,7 +258,8 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
         haves.push("no");
       }
     }
-
+    
+    console.log(tag[0]);
     /*
     _.map(this.$("select[name=filter-tags]"), function(select) {
       if(select.value){
@@ -260,7 +279,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
       }
     });
     */
-
+    
     switch(e.target.id){
       case "filter":
         var params={
@@ -270,6 +289,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
           "have": haves,
           "tag": tag
         };
+
 
         this.collection.fetch({
           data: params,
@@ -286,7 +306,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
           "tag": this.$("#order-tags").val(),
           "order": this.$("#order").val()
         };
-
+        console.log(this.$("#order-tags").val());
         this.collection.fetch({
           data: params,
           success: _.bind(this.afterRender, this)
@@ -309,6 +329,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   produceOrdertags: function(){
+    this.$("#amount").text(this.collection.models.length);
     var obj = this.$("#order-tags").empty();
     _.map(this.collection.commontags(),function(tag){
       //console.log(tag);

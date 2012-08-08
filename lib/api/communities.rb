@@ -93,7 +93,10 @@ class API
 
       def filter_users_by_tag(tag,haveornot,community_id)
         @resident=false
-        case tag
+        @tag=JSON.parse tag
+        case @tag['type']
+          when "action"
+            case @tag['tag']
               when "post"
                 @ids=Post.all.map {|a| a.user_id}.uniq
               when "email"
@@ -119,21 +122,39 @@ class API
               when "story"
                 @ids=Resident.where("stories_count > 0").map &:id
                 @resident=true
-              else
-                #@ids=Flag.where(:name=>tag).map &:resident_id
-                @ids = []
-
-                residents = Resident.all
-                residents.each do |r|
-                  @ids << r.id if r.tags.include?(tag)
-                end
-
-                @resident=true
-          end
+            end
+          when "flag"
+            #@ids=Flag.where(:name=>tag).map &:resident_id
+            @ids = []
+            residents = Resident.where(:community_id=>community_id)
+            residents.each do |r|
+              @ids << r.id if r.tags.include?(@tag['tag'])
+            end
+            @resident=true
+          when "interest"
+            @ids=User.tagged_with(@tag['tag'],:on=>:interests).map {|a| a.id}.uniq
+          when "input"
+            @ids=Resident.tagged_with(@tag['tag'],:on=>:input_method).map {|a| a.id}.uniq
+            @resident=true
+          when "PFO"
+            @ids=Resident.tagged_with(@tag['tag'],:on=>:PFO_status).map {|a| a.id}.uniq
+            @resident=true
+          when "type"
+            @ids=Resident.tagged_with(@tag['tag'],:on=>:type_tags).map {|a| a.id}.uniq
+            @resident=true
+          when "sector"
+            @ids=Resident.tagged_with(@tag['tag'],:on=>:sector_tags).map {|a| a.id}.uniq
+            @resident=true
+          when "organizer"
+            @ids=Resident.tagged_with(@tag['tag'],:on=>:organizer).map {|a| a.id}.uniq              
+            @resident=true
+        end
           @ids.uniq!
           if !@resident
             if haveornot=="yes"
-              User.where(:id=>@ids,:community_id=>community_id).map &:resident
+              #for existing communities, not every user has a corresponding resident so i have
+              #to joins resident in case of nil. But for new ones this is not necessary
+              User.where(:id=>@ids,:community_id=>community_id).joins(:resident).map &:resident
             else
               if @ids.empty?
                 User.where(:community_id=>community_id).map &:resident
@@ -189,9 +210,12 @@ class API
           @ids.uniq!
           @residents=nil
           if !@resident
-            @residents=User.where(:id=>@ids[0],:community_id=>community_id).map &:resident
+              # for existing communities, not every user has a corresponding resident so i have
+              # to joins resident in case of nil. But for new ones this is not necessary, remove it to 
+              # improve speed
+            @residents=User.where(:id=>@ids[0],:community_id=>community_id).joins(:resident).map &:resident
             for @k in 1..@ids.size-1 do
-              if @users=User.where(:id=>@ids[@k],:community_id=>community_id)
+              if @users=User.where(:id=>@ids[@k],:community_id=>community_id).joins(:resident)
                 @users.each do |user|
                   @residents << user.resident
                 end
@@ -212,24 +236,27 @@ class API
       end
 
       def order_users_by_quantity_of_tag(tag,community_id)
-        @need=false
+        @resident=false
+        # for existing communities, not every user has a corresponding resident so i have
+        # to joins resident in case of nil. But for new ones this is not necessary, remove it to 
+        # improve speed
         case tag
           when "post"
-            @residents=User.where("community_id = ? and posts_count <> ?",community_id,0).order("posts_count DESC").map &:resident
+            @residents=User.where("residents.community_id = ? and users.posts_count <> ?",community_id,0).joins(:resident).order("posts_count DESC").map &:resident
           when "reply"
-            @residents=User.where("community_id = ? and replies_count <> ?",community_id,0).order("replies_count DESC").map &:resident
+            @residents=User.where("residents.community_id = ? and users.replies_count <> ?",community_id,0).joins(:resident).order("replies_count DESC").map &:resident
           when "sitevisit"
-            @residents=User.where("community_id = ? and sign_in_count <> ?",community_id,0).order("sign_in_count DESC").map &:resident
+            @residents=User.where("residents.community_id = ? and users.sign_in_count <> ?",community_id,0).joins(:resident).order("sign_in_count DESC").map &:resident
           when "announcement"
-            @residents=User.where("community_id = ? and announcements_count <> ?",community_id,0).order("announcements_count DESC").map &:resident
+            @residents=User.where("residents.community_id = ? and users.announcements_count <> ?",community_id,0).joins(:resident).order("announcements_count DESC").map &:resident
           when "feed"
-            @residents=User.where("community_id = ? and feeds_count <> ?",community_id,0).order("feeds_count DESC").map &:resident
+            @residents=User.where("residents.community_id = ? and users.feeds_count <> ?",community_id,0).joins(:resident).order("feeds_count DESC").map &:resident
           when "replied"
-            @residents=User.where("community_id = ? and replied_count <> ?",community_id,0).order("replied_count DESC").map &:resident
+            @residents=User.where("residents.community_id = ? and users.replied_count <> ?",community_id,0).joins(:resident).order("replied_count DESC").map &:resident
           when "invite"
-            @residents=User.where("community_id = ? and invite_count <> ?",community_id,0).order("invite_count DESC").map &:resident
+            @residents=User.where("residents.community_id = ? and users.invite_count <> ?",community_id,0).joins(:resident).order("invite_count DESC").map &:resident
           when "event"
-            @residents=User.where("community_id = ? and event_count <> ?",community_id,0).order("events_count DESC").map &:resident
+            @residents=User.where("residents.community_id = ? and users.event_count <> ?",community_id,0).joins(:resident).order("events_count DESC").map &:resident
           when "story"
             @residents=Resident.where("community_id = ? and stories_count <> ?",community_id,0).order("stories_count DESC")
         end
@@ -302,8 +329,10 @@ CONDITION
                 @final=@final&filter_users_by_tag(params[:tag][@k],params[:have][@k],params[:id])
             end
             serialize(@final)
-          else
+          elsif params[:tag].length==1
             serialize(filter_users_by_tag(params[:tag][0], params[:have][0], params[:id]))
+          elsif params[:tag].length==0
+            serialize(Resident.where(:community_id=>params[:id]).order("last_name ASC, first_name ASC"))
           end
         else
           if params[:order]=="time"
@@ -359,8 +388,11 @@ CONDITION
                                       :position => request_body['position'],
                                       :notes => request_body['notes'],
                                       :address => request_body['address'],
-                                      :sector_tags => request_body['sector_tags'],
-                                      :type_tags => request_body['type_tags'],
+                                      :sector_tag_list => request_body['sector_tag_list'],
+                                      :type_tag_list => request_body['type_tag_list'],
+                                      :PFO_statu_list => request_body['PFO_statu_list'],
+                                      :organizer_list => request_body['organizer_list'],
+                                      :input_method_list => request_body['input_method_list'],
                                       :manually_added => true
                                       )
 
@@ -377,8 +409,7 @@ CONDITION
       control_access :admin
 
       Resident.find(params[:file_id]).update_attributes(
-        request_body.slice("email", "address","phone","organization","notes","position","first_name","last_name","sector_tags","type_tags")
-      )
+        request_body.slice("email", "address","phone","organization","notes","position","first_name","last_name","sector_tag_list","type_tag_list","input_method_list","PFO_statu_list","organizer_list")      )
     end
 
     # Returns a specific resident file
@@ -436,7 +467,22 @@ CONDITION
 
       200
     end
+=begin    
+    # Add tags for a single resident file
+    #
+    # Requires admin
+    #
+    # Request params:
+    #   tags - the tags to add
+    post "/:id/files/tags" do
+      control_access :admin
 
+      params[:file_id].each do |id|
+        find_community.residents.find(id).add_tags(params[:tags])
+      end
+      200
+    end
+=end
     # Create a post in the community
     #
     # Requires community membership

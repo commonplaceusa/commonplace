@@ -23,10 +23,10 @@ newselect.insertBefore("#filter");
 <button id="todo-list">Task List</button>
 <button id="statistics-charts">Charts</button>
 <HR>
+<!--
   <input type="text" placeholder="search" id="query-input" size=25>
   <button id="filter-button">Search</button>
-
-<br>
+-->
   <label id="haveornot" name="haveornot" style="width:77px">Has</label>
 <select id="1" multiple="true" class="list" name="filter-tags" data-placeholder="Choose a tag" style="width:200px">
   {{#dropdowns}}
@@ -38,7 +38,7 @@ newselect.insertBefore("#filter");
   <label id="haveornot" name="haveornot" style="width:77px">No</label>
 <select id="2" multiple="true" class="list" name="filter-tags" data-placeholder="Choose a tag" style="width:200px">
   {{#dropdowns}}
-    <option value="{{tag}}" > {{val}} </option>
+    <option value="{{.}}" > {{val}} </option>
   {{/dropdowns}}
 </select>
 

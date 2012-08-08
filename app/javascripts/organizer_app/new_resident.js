@@ -17,14 +17,38 @@ OrganizerApp.AddResident = CommonPlace.View.extend({
     }
   },
 
-  backbutton: function(){
-    if(this.model){
-      this.$("#back").append("<button>");
-    }
-  },
-
   addResident: function(e){
     e.preventDefault();
+    var sectortags = document.getElementsByName('sector-tag');
+    var sectorvalue = new Array();
+    for(var i = 0; i < sectortags.length; i++){
+      if(sectortags[i].checked)
+	 sectorvalue.push(sectortags[i].value);
+    }
+    var typetags = document.getElementsByName('type-tag');
+    var typevalue = new Array();
+    for(var i = 0; i < typetags.length; i++){
+      if(typetags[i].checked)
+	 typevalue.push(typetags[i].value);
+    }
+    var inputmethods = document.getElementsByName('input-method');
+    var methodvalue = new Array();
+    for(var i = 0; i < inputmethods.length; i++){
+      if(inputmethods[i].checked)
+	 methodvalue.push(inputmethods[i].value);
+    }
+    var pfostatus = document.getElementsByName('PFO-status');
+    var pfovalue = new Array();
+    for(var i = 0; i < pfostatus.length; i++){
+      if(pfostatus[i].checked)
+	 pfovalue.push(pfostatus[i].value);
+    }
+    var organizers = document.getElementsByName('organizer');
+    var organizer = new Array();
+    for(var i = 0; i < organizers.length; i++){
+      if(organizers[i].checked)
+	 organizer.push(organizers[i].value);
+    }    
     if(this.model){
 
       var params= {};
@@ -45,44 +69,30 @@ OrganizerApp.AddResident = CommonPlace.View.extend({
         params.first_name=this.$("#first-name").val();
       if(this.$("#last-name").val())
         params.last_name=this.$("#last-name").val();
-
-      var sectortags = document.getElementsByName('sector-tag');
-	    var sectorvalue = new Array();
-	    for(var i = 0; i < sectortags.length; i++){
-	      if(sectortags[i].checked)
-		 sectorvalue.push(sectortags[i].value);
-	    }
-	    var typetags = document.getElementsByName('type-tag');
-	    var typevalue = new Array();
-	    for(var i = 0; i < typetags.length; i++){
-	      if(typetags[i].checked)
-		 typevalue.push(typetags[i].value);
-	    }
+        
       if(sectorvalue.length>0)
-        params.sector_tags=sectorvalue;
+        params.sector_tag_list=sectorvalue;
       if(typevalue.length>0)
-        params.type_tags=typevalue;
+        params.type_tag_list=typevalue;
+      if(methodvalue.length>0)
+        params.input_method_list=methodvalue;
+      if(pfovalue.length>0)
+        params.PFO_statu_list=pfovalue;
+      if(organizers.length>0)
+        params.organizer_list=organizer;
+      //console.log(params);  
+      this.model.save(params, {success: function() { //this.show("Added");
+		                          alert("Saved. Refreshing to see new residents");
+		                          location.reload();
+	                                } });
 
-      this.model.save(params, {success: _.bind(this.render, this)});
-      //alert(params['first_name']);
     }
     else{
       if(!this.$("#first-name").val()||!this.$("#last-name").val()){
         alert("At least a full name.....");
       }
       else{
-	    var sectortags = document.getElementsByName('sector-tag');
-	    var sectorvalue = new Array();
-	    for(var i = 0; i < sectortags.length; i++){
-	      if(sectortags[i].checked)
-		 sectorvalue.push(sectortags[i].value);
-	    }
-	    var typetags = document.getElementsByName('type-tag');
-	    var typevalue = new Array();
-	    for(var i = 0; i < typetags.length; i++){
-	      if(typetags[i].checked)
-		 typevalue.push(typetags[i].value);
-	    }
+	    
 	    //console.log("!");
 	    $.ajax({
 		type: 'POST',
@@ -97,13 +107,17 @@ OrganizerApp.AddResident = CommonPlace.View.extend({
 		                      position: this.$("#position").val(),
 		                      notes: this.$("#notes").val(),
 		                      address: this.$("#address").val(),
-		                      sector_tags: sectorvalue,
-		                      type_tags:typevalue
+		                      sector_tag_list: sectorvalue,
+		                      type_tag_list: typevalue,
+		                      PFO_statu_list: pfovalue,
+		                      organizer_list: organizer,
+		                      input_method_list: methodvalue
 		}),
 		cache: 'false',
 		success: function() { //this.show("Added");
-		alert("Added. Refresh to see new residents");
-	      }
+		           alert("Added. Refreshing to see new residents");
+		           location.reload();
+	                 }
 	    });
 
 	    this.options.filePicker.render();

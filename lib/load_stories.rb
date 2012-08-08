@@ -10,7 +10,6 @@ class LoadStories
   @queue = :daily_new_stories
   
   def self.perform
-    User.create!(:first_name => "tryagain", :last_name => "dev",:email => "try@example.com", :address => "221B Baker St.",:password => "password",:community => Community.find(17))
     l=LoadStories.new
     l.init_communities_last_story
     l.load_stories
@@ -117,7 +116,7 @@ class LoadStories
     Community.all.each do |c|
       count=count+1
       sleep(1) if count%3==0
-      init_last_story(c) if c.state && c.last_story
+      init_last_story(c) if c.state
     end
   end  
   

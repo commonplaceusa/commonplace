@@ -169,7 +169,11 @@ class Bootstrapper < Sinatra::Base
   get "organizer_app/:id/:userid/:type" do
     set_account
     @type=params[:type]
-    @user=Community.find(params[:id]).users.find(params[:userid])
+    if @type!="residenttags"
+      @user=Community.find(params[:id]).users.find(params[:userid])
+    else
+      @resident=Community.find(params[:id]).residents.find(params[:userid])
+    end
     erb:organizer_app_user_action_by_type
   end
 

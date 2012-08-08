@@ -8,8 +8,11 @@ require 'uri'
 class Resident < ActiveRecord::Base
   serialize :metadata, Hash
   serialize :logs, Array
-  serialize :sector_tags, Array
-  serialize :type_tags, Array
+  #serialize :sector_tags, Array
+  #serialize :type_tags, Array
+
+  acts_as_taggable
+  acts_as_taggable_on :sector_tags, :type_tags, :input_method, :PFO_status, :organizer
 
   belongs_to :community
 

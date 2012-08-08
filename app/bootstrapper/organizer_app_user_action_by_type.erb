@@ -111,6 +111,22 @@ th{
 	  <% end %>
 	 
       </tbody>
+      
+      <% when "residenttags" %>
+     <h4>Amount: <%@flags= Array(Flag.where(:resident_id=>@resident.id)) %> 
+                 <%= @flags.count %></h4>
+          
+	  <thead><tr> <th>Tag</th> <th>Time</th> </tr></thead>
+	  <tbody>
+	  
+	  <% sortbytime(@flags).each do |flag| %>
+	    <tr>
+	    <td> <%= flag.name %> </td>
+	    <td> <%= flag.created_at.to_formatted_s(:db) %> </td>
+	    </tr>
+	  <% end %>
+	 
+      </tbody>
      <% when "sitevisit" %> 
      <h4>Amount: <%@sitevisits= Array(SiteVisit.where(:commonplace_account_id => @user.id)) %> 
                  <%= SiteVisit.where(:commonplace_account_id => @user.id).count %></h4>

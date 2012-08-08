@@ -58,6 +58,7 @@
 }
 
 .dataTables_filter {
+        display: none;
 	float: top;
 	text-align: left;
 }
@@ -68,8 +69,8 @@
 }
 
 .dataTables_paginate {
-	float: right;
-	text-align: right;
+	float: left;
+	text-align: left;
 }
 
 /* Pagination nested */
@@ -104,11 +105,9 @@
 
 
 
-
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables display
- */
+ */ 
 table.display {
 	margin: 0 auto;
 	clear: both;
@@ -155,6 +154,7 @@ table.display td.center {
 }
 
 
+ 
 th:active {
 	outline: none;
 }
