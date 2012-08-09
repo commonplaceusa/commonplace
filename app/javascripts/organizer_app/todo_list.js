@@ -62,30 +62,39 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
         return $.inArray(value, todo) > -1;
       });
 
+
       $(list).empty();
-      $(list).append(
-        _.map(profiles, function(model) {
-          var name = model.full_name();
-          var email = model.email();
-          var phone = model.phone();
 
-          if(email == null) {
-            email = "No email";
-          }
+      if(profiles.length == 0) {
+        var header = 'h4[value="'+value+'"]';
 
-          if(phone == null) {
-            phone = "No phone";
-          }
+        this.$(header).hide();
+      }
+      else {
+        $(list).append(
+          _.map(profiles, function(model) {
+            var name = model.full_name();
+            var email = model.email();
+            var phone = model.phone();
 
-          var info = name + " | " + email + " | "+phone;
+            if(email == null) {
+              email = "No email";
+            }
 
-          var li = $("<li/>",{ text: info, data: { model: model } })[0];
-          var cb = $("<input/>", { type: "checkbox", checked: checklist[model.getId()], value: model.getId(), data: { model: model } })[0];
-          $(cb).addClass("cb");
-          $(li).prepend(cb);
+            if(phone == null) {
+              phone = "No phone";
+            }
 
-          return li;
-        }));
+            var info = name + " | " + email + " | "+phone;
+
+            var li = $("<li/>",{ text: info, data: { model: model } })[0];
+            var cb = $("<input/>", { type: "checkbox", checked: checklist[model.getId()], value: model.getId(), data: { model: model } })[0];
+            $(cb).addClass("cb");
+            $(li).prepend(cb);
+
+            return li;
+          }));
+      }
     });
   },
 

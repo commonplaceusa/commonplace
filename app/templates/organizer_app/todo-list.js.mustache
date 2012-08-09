@@ -9,7 +9,7 @@
   </select>
   <button id="add-tag">Add tag</button>
   {{#todos}}
-    <h4>{{.}}</h4>
+    <h4 value="{{.}}">{{.}}</h4>
     <ul class="todo-specific" value="{{.}}">
     {{#profiles}}
       <input type="checkbox" name="{{.}}">{{.}}<br>
