@@ -49,7 +49,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
   neighbors: function() { return this.communityExterior.statistics.neighbors; },
   feeds: function() { return this.communityExterior.statistics.feeds; },
   postlikes: function() { return this.communityExterior.statistics.postlikes; },
-
+  
   submit: function(e) {
     if (e) { e.preventDefault(); }
 
@@ -95,7 +95,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
 
             console.log(response);
 
-            if(response === null || response[1].length < 1 || response[0] < 0.90) {
+            if(response === null || response[1].length < 1 || response[0] < 0.84) {
               valid = false;
 
               var error = this.$(".error.address");
