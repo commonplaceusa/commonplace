@@ -77,10 +77,10 @@ class API
 
     post "/:community_id/civic_leader_application" do |community_id|
       control_access :public
-      CivicHeroNomination.create!(
+      CivicLeaderApplication.create!(
         community_id: community_id,
-        name: params["nominee_name"],
-        email: params["nominee_email"],
+        name: params["name"],
+        email: params["email"],
         reason: params["application_reason"]
       )
       200
