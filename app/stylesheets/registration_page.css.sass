@@ -45,7 +45,22 @@ body
 
 ul.ui-autocomplete
   background: white
-  width: 366px
+  width: 365px
+  border: 1px solid #bbb
+  overflow: auto
+  max-height: 250px
 
 li.ui-menu-item
-  border-bottom: solid grey 1px
+  border-bottom: dotted #ccc 1px
+  padding: 10px 5px
+  color: #555
+  font-family: Helvetica, Arial, sans-serif
+  font-size: 15px
+  &:hover
+    background-color: #eee
+  a
+    &:hover
+      cursor: pointer
+      color: #ac322f
+li.ui-menu-item:last-child
+  border: 0px none

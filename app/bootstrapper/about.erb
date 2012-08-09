@@ -30,21 +30,21 @@
           <div id="our-mission" class="slide selected">
             <h3>Our Mission</h3>
             <p>OurCommonPlace is a civic technology organization that works to revitalize the spirit of local community engagement in towns across the country.</p>
-            <p><%= @community.slug %>.OurCommonPlace.com is a “community web platform” that’s designed to make it delightfully easy for <%= @community.name %> residents to share and connect with the <%= @community.name %> community.</p>
-            <p>That means: getting in touch with that new family that moved down the block...sharing your thoughts about the school budget with the town...borrowing a ladder or a cup of sugar from your neighbors rather than buying it at the store...organizing the next great community event.</p>
+            <p><strong><a href="http://<%= @community.name %>.ourcommonplace.com/"><%= @community.slug %>.OurCommonPlace.com</a> is a &#8220;community web platform&#8221; that’s designed to make it delightfully easy for <%= @community.name %> residents to share and connect with the <%= @community.name %> community.</strong></p>
+            <p>On CommonPlace, you can: borrow a ladder or a cup of sugar from your neighbors rather than buying it at the store; get in touch with that new family that moved in down the block; share your thoughts about the school budget with the town; organize the next great community event; and much more!</p>
             <p>We built the platform because we believe that extraordinary things can happen -- indeed, have always happened -- when neighbors who care come together.</p>
             <p>We believe in technology, and yet, we know it’s not enough. So we work with our partnership communities to implement a full community organizing plan designed to empower, celebrate and inspire civic leadership in <%= @community.name %>’s real community.</p>
             <p class="highlight">Empower</p>
             <p><em>We help local leaders &#8220;plug in&#8221; to the Internet.</em></p>
-            <p>We dedicate a full-time organizer to helping local leaders and active neighbors utilize <%= @community.slug %>.OurCommonPlace.com to its fullest.</p>
+            <p>We dedicate a full-time organizer to helping local leaders and active neighbors utilize <a href="http://<%= @community.name %>.ourcommonplace.com/"><%= @community.slug %>.OurCommonPlace.com</a> to its fullest.</p>
             <p class="highlight">Celebrate</p>
             <p><em>Our national Civic Hero Awards program spotlights beloved local leaders in town.</em></p>
-            <p>OurCommonPlace runs a national awards program that celebrates local leader everywhere.</p>
+            <p>OurCommonPlace runs a national awards program that celebrates local leaders everywhere.</p>
             <p>With input from the <%= @community.name %> community, we search for leaders whose work at the schools, at service organizations, in the local government, or at a great local business, have made <%= @community.name %> a better place to live in.</p>
             <p class="highlight">Inspire</p>
             <p><em>We train ambitious students to be 21st century community organizers with our Civic Heroes Leadership Program.</em></p>
             <p>OurCommonPlace works with ambitious students who are interested in learning the skills of a 21st century community organizer.</p>
-            <p>Students leave the Civic Heroes Leadership Program with a base of knowledge about how to organize in their community, how to publish online and how to inspire others to act. They’ll also get close to a group of engaged young people based in Harvard and in towns across MA.</p>
+            <p>Students leave the Civic Heroes Leadership Program with a base of knowledge about how to organize in their community, how to publish online and how to inspire others to act. They’ll also get close to a group of engaged young people based in Harvard and in towns across the state.</p>
           </div>
           <div id="our-story" class="slide">
             <h3>Our Story</h3>
@@ -55,11 +55,11 @@
             <p>Yet, Putnam said, the institutions that have traditionally connected us to our communities -- the community centers, Rotary clubs, local newspapers and yes, bowling leagues -- were in a state of transition. As our lives have changed, so have our communities.</p>
             <p>We began by asking ourselves: What next? How can technology play a role in revitalizing the ways we have to connect to each other?</p>
             <p>OurCommonPlace is our answer to that question. It’s like a newsletter written by your neighborhood, or a community center bulletin board designed to fit into your email inbox.</p>
-            <p>We dream of an Internet that works for local communities. That works for parents who want to share resources. For local leaders who want to create something for the people around them. For anyone who wants to make something happen in local world they are a part of.</p>
+            <p>We dream of an Internet that works for local communities. That works for parents who want to share resources. For local leaders who want to create something for the people around them. For anyone who wants to make something in the local world they are part of.</p>
             <h3>Our Team</h3>
             <p>We’re a team of young technologists and veteran community organizers based in Cambridge, MA.</p>
             <p class="highlight">Non-profit? For profit?</p>
-            <p>The OurCommonPlace web platform is developed by a professional web development team run by the OurCommonPlace s-corporation. We believe in the &#8220;double bottom line&#8221;: doing good and doing well at once.</p>
+            <p>We are a for-profit organization, but we believe in the &#8220;double bottom line&#8221;: doing good while doing well at once. For more information on the cause-driven business ethos that defines OurCommonPlace, check out <a href="http://www.muhammadyunus.org/Social-Business/social-business/" target="_blank">this article</a> on “Social Business” from Nobel Peace Prize Winner Mohammad Yunus’ <a href="http://www.muhammadyunus.org/Social-Business/social-business/" target="_blank">Yunus Centre</a>.</p>
           </div>
           <div id="our-platform" class="slide">
             <h3>The Platform</h3>
@@ -70,7 +70,7 @@
             <div class="section_list">
                <h4 class="headline_platform">1. Sign Up</h4>
                <img class="platform_thumb" src="https://www.ourcommonplace.com/assets/learn_more/sign_up_screen_shot.png" alt="Sign Up" />
-               <p>CommonPlace brings your neighbors and civic leaders in Marquette together onto one 'community network' online.</p>
+               <p>CommonPlace brings your neighbors and civic leaders in <%= @community.name %> together onto one 'community network' online.</p>
                <p>Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and the mayor.</p>
             </div>
             <div class="section_list">
@@ -93,7 +93,7 @@
                   <li>Ask to borrow a ladder or a power drill</li>
                   <li>Publicize a tag sale or block party</li>
                   <li>Ask about how to fix a pot hole</li>
-                  <li>Organize service projects for Marquette</li>
+                  <li>Organize service projects for <%= @community.name %></li>
                </ul>
             </div>
           </div>
@@ -108,7 +108,6 @@
                   <h4 class="headline"><a href="http://www.youtube.com/watch?v=6yD_MCgyFBI" target="_blank">Local news describes CommonPlace to Marquette, MI</a></h4>
                   <object width="460" height="345"><param name="movie" value="https://www.youtube.com/v/NsTypSRO4rc?version=3&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/NsTypSRO4rc?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="460" height="345" allowscriptaccess="always" allowfullscreen="true"></embed></object>
                   <p>News story from ABC10 in Marquette, MI about The Marquette CommonPlace.</p>
-                  <p class="author">from <a href="http://www.youtube.com/watch?v=6yD_MCgyFBI" target="_blank"><em>The Doug Garrison Show</em>, ABC10</a></p>
                </div>
                <div class="section_list">
                   <p class="quote">&#8220;I've posted on and responded to Falls Church CommonPlace posts. People attended a community event I promoted. I found work through it. And I scored a free perfect-condition TV from it.&#8221;</p>
@@ -123,8 +122,8 @@
           <div id="nominate" class="slide">
             <h3>Civic Hero Awards</h3>
             <p>OurCommonPlace runs a national community awards program dedicated to spotlighting and celebrating local leaders in towns and cities across the country.</p>
-            <p>As we launch <%= @community.slug %>.OurCommonPlace.com, we'll be seeking input from the community on beloved community members whose work for the schools, for service organizations, for the local government, for great local businesses, make <%= @community.name %> what it is.</p>
-            <p>We publish profiles of our &#8220;Civic Heroes&#8221; on the town's OurCommonPlace platform and on our national awards page.</p>
+            <p>As we launch <a href="http://<%= @community.name %>.ourcommonplace.com/"><%= @community.slug %>.OurCommonPlace.com</a>, we'll be seeking input from the community on beloved community members whose work for the schools, for service organizations, for the local government, for great local businesses, make <%= @community.name %> what it is.</p>
+            <p>We publish profiles of our &#8220;Civic Heroes&#8221; on the town's OurCommonPlace platform and on our <a href="http://<%= @community.name %>civicheroes.com/">national awards page</a>.</p>
             <p>Use the form to your right to nominate a Civic Hero!</p>
           </div>
           <div id="application" class="slide">
