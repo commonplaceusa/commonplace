@@ -30,17 +30,17 @@
           <div id="our-mission" class="slide selected">
             <h3>Our Mission</h3>
             <p>OurCommonPlace is a civic technology organization that works to revitalize the spirit of local community engagement in towns across the country.</p>
-            <p><%= @community.slug %>.OurCommonPlace.com is a “community web platform” that’s designed to make it delightfully easy for Lexington residents to share and connect with the Lexington community.</p>
+            <p><%= @community.slug %>.OurCommonPlace.com is a “community web platform” that’s designed to make it delightfully easy for <%= @community.name %> residents to share and connect with the Lexington community.</p>
             <p>That means: getting in touch with that new family that moved down the block...sharing your thoughts about the school budget with the town...borrowing a ladder or a cup of sugar from your neighbors rather than buying it at the store...organizing the next great community event.</p>
             <p>We built the platform because we believe that extraordinary things can happen -- indeed, have always happened -- when neighbors who care come together.</p>
-            <p>We believe in technology, and yet, we know it’s not enough. So we work with our partnership communities to implement a full community organizing plan designed to empower, celebrate and inspire civic leadership in Lexington’s real community.</p>
+            <p>We believe in technology, and yet, we know it’s not enough. So we work with our partnership communities to implement a full community organizing plan designed to empower, celebrate and inspire civic leadership in <%= @community.name %>’s real community.</p>
             <p class="highlight">Empower</p>
             <p><em>We help local leaders &#8220;plug in&#8221; to the Internet.</em></p>
             <p>We dedicate a full-time organizer to helping local leaders and active neighbors utilize <%= @community.slug %>.OurCommonPlace.com to its fullest.</p>
             <p class="highlight">Celebrate</p>
             <p><em>Our national Civic Hero Awards program spotlights beloved local leaders in town.</em></p>
             <p>OurCommonPlace runs a national awards program that celebrates local leader everywhere.</p>
-            <p>With input from the Lexington community, we search for leaders whose work at the schools, at service organizations, in the local government, or at a great local business, have made Lexington a better place to live in.</p>
+            <p>With input from the <%= @community.name %> community, we search for leaders whose work at the schools, at service organizations, in the local government, or at a great local business, have made Lexington a better place to live in.</p>
             <p class="highlight">Inspire</p>
             <p><em>We train ambitious students to be 21st century community organizers with our Civic Heroes Leadership Program.</em></p>
             <p>OurCommonPlace works with ambitious students who are interested in learning the skills of a 21st century community organizer.</p>
@@ -128,7 +128,7 @@
             <p>Use the form to your right to nominate a Civic Hero!</p>
           </div>
           <div id="application" class="slide">
-            <h3>Apply to be a Lexington Student Organizer</h3>
+            <h3>Apply to be a <%= @community.name %> Student Organizer</h3>
             <p>The OurCommonPlace &#8220;Civic Hero Leadership Program&#8221; is a service-learning course that’s dedicated to training ambitious students at 21st century community organizers, as they work to make their town’s OurCommonPlace platform flourish.</p>
             <p>Students leave with a base of knowledge about how to organize in their community, how to publish online and how to inspire others to act. They’ll also bond with a group of engaged young people based in Harvard and across the state of Massachusetts. </p>
           </div>

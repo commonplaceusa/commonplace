@@ -158,12 +158,12 @@ class Bootstrapper < Sinatra::Base
     set_account
     erb :organizer_app
   end
-  
+
   get "organizer_app/:id/:userid/:type" do
     set_account
     @type=params[:type]
     @user=Community.find(params[:id]).users.find(params[:userid])
-    erb:organizer_app_user_action_by_type
+    erb :organizer_app_user_action_by_type
   end
 
   get %r{([\w]+)/home.*} do

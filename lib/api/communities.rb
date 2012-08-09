@@ -244,7 +244,7 @@ class API
 
       serialize find_community
     end
-    
+
     # Set organize start date
     post "/:id" do
       control_access :admin
