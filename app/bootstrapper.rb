@@ -7,6 +7,7 @@ class Bootstrapper < Sinatra::Base
     def normalize_domains
       return unless Rails.env.production?
       return if request.host == "commonplace.herokuapp.com"
+      raise request.host
       case request.host
 
       when %r{^www\.ourcommonplace\.com$}
@@ -29,7 +30,7 @@ class Bootstrapper < Sinatra::Base
       when %r{^(?:www\.)?commonplaceusa.com$}
         case request.path
         when %r{^/$}
-          redirect "https://www.ourcommonplace.com/about"
+          redirect "https://www.ourcommonplace.com/info"
         else
           redirect "https://www.ourcommonplace.com#{request.path}"
         end
