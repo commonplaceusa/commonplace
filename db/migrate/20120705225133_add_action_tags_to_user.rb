@@ -15,9 +15,11 @@ class AddActionTagsToUser < ActiveRecord::Migration
       tags.push("event") if pair[6].present? and pair[6].to_i>0
       tags.push("sitevisit") if pair[7].present? and pair[7].to_i>0
       tags.push("email") if pair[8].present? and pair[8].to_i>0
-
-      #execute("UPDATE users SET action_tags = #{tagstos} WHERE id = #{pair[0]}")
-      User.find(pair[0]).update_attributes(:action_tags=>tags)
+      tagstos="--- \n"
+      tags.each do |tag|
+        tagstos+="- "+tag+"\n"
+      end
+      execute("UPDATE users SET action_tags = '#{tagstos}' WHERE id = #{pair[0]}")
     end if result.present?
 =end
   end
