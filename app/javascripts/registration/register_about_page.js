@@ -43,7 +43,7 @@ var AboutPageRegisterNewUserView = RegistrationModalPage.extend({
   },
 
   community_name: function() { return this.communityExterior.name; },
-  learn_more: function() { return this.communityExterior.links.learn_more; },
+  learn_more: function() { return "/" + this.communityExterior.slug + "/about"; },
   created_at: function() { return this.communityExterior.statistics.created_at; },
   neighbors: function() { return this.communityExterior.statistics.neighbors; },
   feeds: function() { return this.communityExterior.statistics.feeds; },
