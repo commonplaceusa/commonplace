@@ -8,8 +8,7 @@ require 'uri'
 class Resident < ActiveRecord::Base
   serialize :metadata, Hash
   serialize :logs, Array
-  #serialize :sector_tags, Array
-  #serialize :type_tags, Array
+  serialize :old_stories, Array
 
   acts_as_taggable
   acts_as_taggable_on :sector_tags, :type_tags, :input_method, :PFO_status, :organizer
@@ -263,29 +262,31 @@ class Resident < ActiveRecord::Base
   end
 
   def find_story
-=begin
-    stories=self.community.stories.order(:created_at)
-    result=[]
-    #self.stories_count=0
-    count=0
-    stories.each do |story|
-    #add story.id into self.examined stories, then search stories=self.community.stories.where("id NOT IN ?",self.examnied).order(:created_at)
-      #doc=Pismo::Document.new(story.url)
-      url="http://viewtext.org/api/text?url="+story.url+"&format=JSON"
-      response = Net::HTTP.get_response(URI(url))
-      if JSON[response.body]['content'].include?(self.first_name+" "+self.last_name)
-      if story.content.include?(self.first_name+" "+self.last_name)
-        puts story.title
-        result << {"story_url"=>story.url,"title"=>story.title,"summary"=>story.summary}
-        count=count+1
+    stories=self.community.stories.order("created_at DESC")
+    if stories.size>0
+      new_last=stories[0].id
+      new_stories=[]
+      time=[]
+      stories.each do |story|
+        if story.id!=self.last_examined_story
+          if story.content.include?(self.first_name+" "+self.last_name)
+            puts story.title
+            new_stories << {"story_url"=>story.url,"title"=>story.title,"summary"=>story.summary}
+            time << story.created_at
+          end
+        else
+          break
+        end
       end
-    end
-    #self.stories_count=count
-    self.last_story_time=stories[0].created_at unless stories.size==0
-    self.save
-    result
-=end
-    []
 
+      self.stories_count=time.size+self.stories_count
+      self.old_stories=self.old_stories+new_stories
+      #if self.stories_count>0 && self.
+      self.last_story_time=time[0] unless time.size==0
+      self.last_examined_story=new_last
+      self.save
+    end
+
+    self.old_stories
   end
 end

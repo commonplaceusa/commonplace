@@ -57,7 +57,7 @@ send_monthly_network_health_stats:
   description: "Sends out a monthly digest of network health statistics"
 
 load_daily_new_stories:
-  cron: "0 0 * * *"
+  cron: "0 4 * * *"
   class: LoadStories
   args:
   queue: daily_new_stories

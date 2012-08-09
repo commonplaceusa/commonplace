@@ -13,6 +13,17 @@ class LoadStories
     l=LoadStories.new
     l.init_communities_last_story
     l.load_stories
+    l.resident_load_stories
+  end
+  
+  def resident_load_stories
+    Community.all.each do |c|
+      if c.stories.count>0
+        c.residents.each do |r|
+          r.find_story
+        end
+      end
+    end
   end
   
   def find_stories(state,city,page)
