@@ -33,30 +33,16 @@ module Serializer
       when Resident
       { 
         "id" => o.id,
-        "classtype" => o.class.name,
-        "user_id" => o.user_id,
         "first_name" => o.first_name, 
         "last_name" => o.last_name,
         "address" => o.address,
-        "phone" => o.phone,
-        "organization" => o.organization,
-        "position" => o.position,
-        "notes" => o.notes,
-        "sector" => o.sector_tags,
-        "todos" => o.todos,
-        "type" => o.type_tags,
         "latitude" => o.latitude,
         "longitude" => o.longitude,
         "email" => o.email,
         "logs" => o.logs,
         "tags" => o.tags,
-        "manualtags" => o.manualtags,
-        "actionstags" => o.actionstags,
         "avatar_url" => o.avatar_url,
-        "on_commonplace" => o.on_commonplace?,
-        "community_id" => o.community_id,
-        "interest_list" => o.interest_list,
-        "stories" => o.find_story
+        "on_commonplace" => o.on_commonplace?
       }
 
       when User

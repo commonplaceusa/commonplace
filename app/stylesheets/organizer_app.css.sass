@@ -1,4 +1,3 @@
-//=require chosen
 @import "jquery-ui-1.8.18"
 
 $min-height: 500px
@@ -23,11 +22,9 @@ $file-viewer-padding: 10px
   
 .pick-resident
   cursor: pointer
-  
-.interests
-  cursor: pointer
 
 #file-viewer 
+  position: absolute
   top: 0
   right: 0
   width: 800px
@@ -46,21 +43,24 @@ $file-viewer-padding: 10px
 
 #person-viewer-left
   display: inline-block
-  width: 100%
-  height: 40%
+  width: 40%
+  height: 100%
   padding: 5px
   border: 1px solid
 
 #person-viewer-right
   display: inline-block
   vertical-align: top
-  width: 100%
-  //height: 55%
+  width: 55%
+  height: 100%
   padding: 5px
   border: 1px solid
 
 .tag-filter
   cursor: pointer
+  border: 1px solid purple
+  display: inline-block
+  padding: 3px
   margin: 3px
   &[data-state=on]
     background-color: #99ff00

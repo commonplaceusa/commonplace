@@ -2,11 +2,9 @@
 OrganizerApp.Main = Backbone.View.extend({
 
   initialize: function() {
-    page = 1;
-    per = 100;
     this.fileViewer = new OrganizerApp.FileViewer({ el: this.$("#file-viewer") });
 
-    this.filePicker = new OrganizerApp.FilePicker({
+    this.filePicker = new OrganizerApp.FilePicker({ 
       el: this.$("#file-picker"),
       collection: this.collection,
       fileViewer: this.fileViewer,
@@ -16,12 +14,7 @@ OrganizerApp.Main = Backbone.View.extend({
 
 
   render: function() {
-    var params = {
-      "page": page,
-      "per": per
-    };
-    this.collection.fetch({
-      data: params,
+    this.collection.fetch({ 
       success: _.bind(function() {
         _.invoke([this.filePicker], "render");
       }, this)

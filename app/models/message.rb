@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
   #track_on_creation
-  belongs_to :user, :counter_cache => true
+  belongs_to :user
   belongs_to :messagable, :polymorphic => true
   validates_presence_of :subject, :body, :user, :messagable
 
@@ -9,7 +9,7 @@ class Message < ActiveRecord::Base
   scope :today, :conditions => ["messages.created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
 
   scope :between, lambda { |start_date, end_date| { :conditions => ["? <= messages.created_at AND messages.created_at < ?", start_date.utc, end_date.utc] } }
-
+  
   def replied_at
     read_attribute(:replied_at) == nil ? self.updated_at : read_attribute(:replied_at)
   end
@@ -17,12 +17,12 @@ class Message < ActiveRecord::Base
   def long_id
     IDEncoder.to_long_id(self.id)
   end
-
+  
   def self.find_by_long_id(long_id)
     Message.find(IDEncoder.from_long_id(long_id))
   end
 
-
+  
   def most_recent_body
     if replies.empty?
       self.body
@@ -34,7 +34,7 @@ class Message < ActiveRecord::Base
   def between?(start_date, end_date)
     start_date <= self.created_at and self.created_at <= end_date
   end
-
+  
   def community
     user.community
   end
@@ -43,8 +43,8 @@ class Message < ActiveRecord::Base
   #
   # params:
   #   user - the user we're asking about
-  #
-  # Returns true if the user is the owner of the message or any of the
+  # 
+  # Returns true if the user is the owner of the message or any of the 
   # message's replies
   def thread_member?(user)
     user == self.user || (messagable_type == "User" && messagable_id == user.id) || self.replies.map(&:user).include?(user)

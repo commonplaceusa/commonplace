@@ -1,76 +1,12 @@
-<script  type="text/javascript">
-var ids=new Array();
-var currentid=1;
-function show(id){
-if(ids.indexOf(id)>=0){
-  console.log(id+"is in");
-  return;
-}
-else{
-  ids.push(id);
-  var newid=++currentid;
-  var newselect=$("<br><select id=\"haveornot\" name=\"haveornot\" ><option value=yes selected=true> Have<option value=no> Not</select><select id=\""+newid+"\" name=\"filter-tags\" style=\"width:130px\" onchange=\"show(this.id)\"><option value=''>Choose a tag</option> {{#dropdowns}}<option value=\"{{tag}}\">{{val}}{{/dropdowns}}</select>");
-newselect.insertBefore("#filter");
-  if(newid==2){
-    $("<br>").insertAfter("#1");
-  }
-}
-
-}
-</script>
 <div id="file-picker-filters">
-<button id="new-resident">New Resident</button>
-<button id="todo-list">Task List</button>
-<button id="statistics-charts">Charts</button>
-<HR>
-  <input type="text" placeholder="search" id="query-input" size=25>
-  <button id="filter-button">Search</button>
-
-<br>
-  <label id="haveornot" name="haveornot" style="width:77px">Has</label>
-<select id="1" multiple="true" class="list" name="filter-tags" data-placeholder="Choose a tag" style="width:200px">
-  {{#dropdowns}}
-    <option value="{{tag}}" > {{val}} </option>
-  {{/dropdowns}}
-</select>
-
-<br>
-  <label id="haveornot" name="haveornot" style="width:77px">No</label>
-<select id="2" multiple="true" class="list" name="filter-tags" data-placeholder="Choose a tag" style="width:200px">
-  {{#dropdowns}}
-    <option value="{{tag}}" > {{val}} </option>
-  {{/dropdowns}}
-</select>
-
-<button id="filter">Filter</button><br>
-
-<select id="order">
-  <option value=time>Recent</option>
-  <option value=quantity>Quantity</option>
-</select>
-  <select id="order-tags" name="order-tags" style="width:130px">
-  <option>Choose a tag</option>
-  {{#dropdowns}}
-        <option value="{{tag}}" > {{val}}
-  {{/dropdowns}}
-</select>
-  <button id="filter-order">Order by</button>
-<HR>
-<select class="list" id="tag-list" style="width:198px">
-  <option></option>
-   {{#tags}}
-     <option class="tag-adding" value="{{.}}">{{.}}</option>
+  {{#tags}}
+    <a class="tag-filter" data-state="neutral" data-tag="{{.}}">{{.}}</a>
   {{/tags}}
-</select>
-<button id="add-tag">Add tag</button>
-<HR>
 
-<button id="prev">Prev</button>Page: <label id="pg_num"></label><button id="next">Next</button>
-<br>
-<input type="checkbox" id="check-all">Check all shown</input>
-&nbsp;&nbsp;&nbsp; Amount: <label id="amount" name="amount">Counting...</label>
+  <input type="text" placeholder="search" id="query-input">
+  <button id="filter-button">Find these residents!</button>
 </div>
 
-<ul id="file-picker-list" style= "list-style:none; ">
+<ul id="file-picker-list">
 <li>Loading...</li>
 </ul>

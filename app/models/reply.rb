@@ -1,14 +1,14 @@
 class Reply < ActiveRecord::Base
   #track_on_creation
-
+  
   belongs_to :repliable, :polymorphic => true
-  after_create :touch_repliable_replied_at, :update_user_replied_count
+  after_create :touch_repliable_replied_at
   belongs_to :user, :counter_cache => true
-
+  
   validates_presence_of :repliable
   validates_presence_of :user
   validates_presence_of :body
-
+  
   has_many :thanks, :as => :thankable, :dependent => :destroy
 
   scope :between, lambda { |start_date, end_date| { :conditions => ["? <= replies.created_at AND replies.created_at < ?", start_date.utc, end_date.utc] } }
@@ -20,20 +20,14 @@ class Reply < ActiveRecord::Base
   def touch_repliable_replied_at
     self.repliable.update_attribute(:replied_at, DateTime.now)
     self.repliable.increment!(:replies_count)
-
   end
-
-  def update_user_replied_count
-    @user=User.find(repliable.user_id)
-    @user.update_attribute(:replied_count, @user.replied_count+1)
-  end
-
+  
   def community
     self.repliable.community
   end
 
-  acts_as_api
-
+  acts_as_api 
+  
   api_accessible :history do |t|
     t.add :id
     t.add ->(m) { "replies" }, :as => :schema

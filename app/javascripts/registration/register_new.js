@@ -6,7 +6,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
     "click a.show-video": "showVideo",
     "click input.sign_up": "submit",
     "submit form": "submit",
-    "click img.facebook": "facebook",
+    "click img.facebook": "facebook"
   },
 
   afterRender: function() {
@@ -39,7 +39,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
     });
 
     var url = '/api/communities/'+this.communityExterior.id+'/address_completions'
-    this.$("input[name=street_address]").autocomplete({ source: url , minLength: 1 });
+    this.$("input[name=street_address]").autocomplete({ source: url , minLength: 2 });
 
   },
 
@@ -49,7 +49,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
   neighbors: function() { return this.communityExterior.statistics.neighbors; },
   feeds: function() { return this.communityExterior.statistics.feeds; },
   postlikes: function() { return this.communityExterior.statistics.postlikes; },
-  
+
   submit: function(e) {
     if (e) { e.preventDefault(); }
 
@@ -57,10 +57,10 @@ var RegisterNewUserView = RegistrationModalPage.extend({
     this.data.email = this.$("input[name=email]").val();
     this.data.address = this.$("input[name=street_address]").val();
 
-    var valid = true;
     var validate_api = "/api" + this.communityExterior.links.registration.validate;
     $.getJSON(validate_api, this.data, _.bind(function(response) {
       this.$(".error").hide();
+      var valid = true;
 
       if (!_.isEmpty(response.facebook)) {
         window.location.pathname = this.communityExterior.links.facebook_login;
@@ -74,7 +74,6 @@ var RegisterNewUserView = RegistrationModalPage.extend({
             valid = false;
           }
         }, this));
-
         if(valid) {
           this.$("input[name=full_name]").hide();
           this.$("input[name=email]").hide();
