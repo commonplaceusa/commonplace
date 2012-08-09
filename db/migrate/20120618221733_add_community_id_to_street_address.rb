@@ -1,5 +1,8 @@
 class AddCommunityIdToStreetAddress < ActiveRecord::Migration
   def change
-    add_column :street_addresses, :community_id, :integer
+    begin
+      add_column :street_addresses, :community_id, :integer
+    rescue
+    end
   end
 end
