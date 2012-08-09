@@ -1,0 +1,106 @@
+<script type="text/javascript">
+function display(id){ 
+var target=document.getElementById(id); 
+    if(target.style.display=="none"){ 
+       target.style.display="";
+    }else{ 
+       target.style.display="none"; 
+    } 
+}
+
+</script>
+
+
+
+
+
+  <h3 id="name">{{ full_name }} 
+  <button id="edit-resident" onclick="">Edit Info</button>
+<!--  <button id="get-stories" onclick="display('stories-viewer');display('person-viewer-left');display('person-viewer-right');">Relative News</button> -->
+  </h3>  
+  <div id="person-viewer">
+<!--  <span id="stories-viewer" style="display:none; ">
+    <ul id="stories-list">
+       {{#stories}}<li class="stories" ><a href={{story_url}} target="_blank">{{title}}</a></li>{{/stories}}
+    </ul>
+  </span> -->
+  <span id="person-viewer-left"> 
+     <table>
+       <tr>
+	<td>Email<img src="../assets/edit.png" onclick="display('email-text');display('email-add');" /></td> <td>{{email}} 
+       
+	    <form id="add-email" autocomplete="off">
+		<input id="email-text" type="text" style="display:none" placeholder="john@example.com">
+		<input id="email-add" type="submit" style="display:none" value="Save">
+	    </form> 
+	    </td></tr>
+       <tr>
+	<td>Phone<img src="../assets/edit.png" onclick="display('phone-text');display('phone-add');" /></td></td> <td>{{phone}} 
+	<form id="add-phone" autocomplete="off">
+		<input id="phone-text" type="text" style="display:none" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" placeholder="1234567890">
+		<input id="phone-add" type="submit" style="display:none" value="Save">
+	    </form> 
+	</td>
+       </tr><tr>	
+	<td><nobr>Organization<img src="../assets/edit.png" onclick="display('organization-text');display('organization-add');" /></nobr></td> <td>{{organization}}  
+	<form id="add-organization" autocomplete="off">
+		<input id="organization-text" type="text" style="display:none" >
+		<input id="organization-add" type="submit" style="display:none" value="Save">
+	    </form> 
+	</td>
+       </tr><tr>
+	<td>Position<img src="../assets/edit.png" onclick="display('position-text');display('position-add');" /></td> <td>{{position}}  
+	<form id="add-position" autocomplete="off">
+		<input id="position-text" type="text" style="display:none" >
+		<input id="position-add" type="submit" style="display:none" value="Save">
+	    </form> 
+	</td>
+       </tr><tr>
+	<td>Address<img src="../assets/edit.png" onclick="display('address-text');display('address-add');" /></td> <td>{{ address }} 
+	        <form id="add-address" autocomplete="off">
+		  <input id="address-text" type="text" style="display:none" placeholder="125 Western Avenue, Allston, MA 02134">
+		  <input id="address-add" type="submit" style="display:none" value="Save">
+		</form> 
+	</td>
+       </tr><tr>
+	<td>Notes<img src="../assets/edit.png" onclick="display('notes-text');display('notes-add');" /></td> <td>{{notes}}  
+	<form id="add-notes" autocomplete="off">
+		  <textarea id="notes-text"  style="display:none" />
+		  <input id="notes-add" type="submit" style="display:none" value="Save">
+		</form> 
+	</td>
+       </tr><tr>
+	<td>Sector</td> <td><ul id="sector-tags">
+                 {{#sector}}<li>{{.}}</li>{{/sector}}
+                </ul></td>
+       </tr><tr>
+        <td>Type</td> <td><ul id="type-tags">
+                 {{#type}}<li>{{.}}</li>{{/type}}
+                </ul></td>
+       </tr><tr>
+        <td>Tags</td> <td><ul id="resident-tags">
+                 {{#tags}}<li>{{.}}</li>{{/tags}}
+                </ul></td>
+       </tr><tr>
+        <td>Interests</td> <td><ul id="interest-list">
+                 {{#interests}}<li class="interests" >{{.}}</li>{{/interests}}
+                </ul></td>
+       </tr></table>
+       <table><tr>
+        <td>News</td>
+        </tr><tr> <td><ul id="News-list">
+                 {{#stories}}<li class="stories" ><a href={{story_url}} target="_blank">{{title}}</a><br>
+                 {{summary}}</li>{{/stories}}
+                 
+                </ul></td>
+       </tr>
+       </table>
+        
+    </span>
+    <span id="person-viewer-right">
+    Actions <br>
+    <div id="action-count">
+      <iframe id="content" name="content" width="100%" height="450" frameborder=0 > </iframe>
+    </div>
+    </span> 
+</div>

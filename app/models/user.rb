@@ -3,12 +3,18 @@ class NamedPoint
 end
 
 class User < ActiveRecord::Base
+  require 'amatch'
+  include Amatch
 
   before_save :ensure_authentication_token
 
   serialize :metadata, Hash
+  serialize :action_tags, Array
   serialize :private_metadata, Hash
 
+  acts_as_taggable
+
+  acts_as_taggable_on :skills, :interests, :goods
   #track_on_creation
   include Geokit::Geocoders
 
@@ -36,6 +42,7 @@ class User < ActiveRecord::Base
 
   geocoded_by :normalized_address
 
+  has_one :resident
   belongs_to :community
   belongs_to :neighborhood
   has_many :thanks, :dependent => :destroy
@@ -47,8 +54,9 @@ class User < ActiveRecord::Base
     OrganizerDataPoint.find_all_by_organizer_id(self.id)
   end
 
-  after_create :create_resident
   after_create :track
+  after_create :correlate
+
   before_validation :geocode, :if => :address_changed?
   before_validation :place_in_neighborhood, :if => :address_changed?
 
@@ -197,7 +205,7 @@ class User < ActiveRecord::Base
     t.add :first_name
     t.add :last_name
     t.add :about
-    t.add :interest_list, :as => :interests
+    t.add :interest_list
     t.add :good_list, :as => :goods
     t.add :skill_list, :as => :skills
     t.add :links
@@ -205,6 +213,8 @@ class User < ActiveRecord::Base
     t.add lambda {|u| u.replies.count}, :as => :reply_count
     t.add lambda {|u| "true" }, :as => :success
     t.add :unread
+    t.add lambda {|u| "User"}, :as => :classtype
+    t.add lambda {|u| u.action_tags}, :as => :actionstags
   end
 
   def links
@@ -396,7 +406,7 @@ WHERE
     integer :community_id
     time :created_at
   end
-
+=begin
   def skill_list
     (self.skills || "").split(", ")
   end
@@ -435,7 +445,7 @@ WHERE
       self.interests = interest_list
     end
   end
-
+=end
   def send_reset_password_instructions
     generate_reset_password_token! if should_generate_reset_token?
     kickoff.deliver_password_reset(self)
@@ -551,48 +561,160 @@ WHERE
     KickOff.new.send_spam_report_received_notification(self)
   end
 
-  def find_resident
-    address_components = self.address.split(" ")
-    # if first word of address is not a number
-    if !(address_components.first =~ /^[-+]?[0-9]+$/)
-      address_components.shift if address_components.first == "#"
-      # TODO: add PO BOX case
-      matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.first + "%", self.last_name)
-      # TODO: add unsure address tag
-    else
-      matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.take(2).join(" ") + "%", self.last_name)
+  # Finds StreetAddress with "same" address
+  #
+  # This is like find_st_address except a little bit more lax in matching
+  # addresses. This *still* might not find a match if a user decides to
+  # forgo both the auto-complete and address suggestion, but it can't be
+  # helped if a user decides to be pathological
+  def address_correlate
+    likeness = 0.94
+    addr = []
+    street = self.community.street_addresses
+    street.each do |street_address|
+      st_addr = street_address.address
+      test = st_addr.jarowinkler_similar(address.split(/[,|.]/).first)
+      if test > likeness
+        likeness = test
+        addr.clear
+        addr << street_address
+      elsif test == likeness
+        addr << street_address
+      end
     end
 
-    # TODO: FIRST LETTER OF FIRST NAME
+    if addr.empty?
+      addr << create_st_address
+    end
 
-    # if any of address and last name don't match, make a new Resident for the user
-    return nil if matched.count == 0
-    # if address and last name and first letter of first name match one Resident, use this Resident (first name can be a nickname or the actual name)
-    return matched.first if matched.count == 1
-
-    # check user first name /first name's first letter
-    # check if resident returned has a user already
-    # add 'unsure because only address and last name match' tag and 'address, last name, and first letter of first name match'
-
-    matched_first_name = matched.select {|resident| resident.first_name == self.first_name}
-    # if address and last name and first name match, use the first resident for whom all these match (shouldn't be more than 1 though, really)
-    return matched_first_name.first if matched_first_name.count >= 1
-
-    # if address and last name and first letter of first name match MULTIPLE Residents but the full first name doesn't, make a new Resident for the user
-    nil
+    addr.first
   end
 
-  def create_resident
+  # Finds StreetAddress with same address
+  #
+  # Note: This should find an exact match because of address verification
+  # upon User registration unless the user forgoes both the auto-complete
+  # and the suggested address
+  # ...Unless one is in the dev-environment where there's no real data
+  # Deprecated?
+  def find_st_address
+    matched = StreetAddress.where("address ILIKE ?", "%#{self.address}%")
+
+    return matched.first if matched.count == 1
+
+    # This should not happen when verify_address is written
+    if matched.count == 0
+      # matched = create_st_address
+      return nil
+    else
+      return nil
+      # We somehow...have the same street address more than once D=
+      # This should never happen
+    end
+
+    return matched
+  end
+
+  def find_resident
+    address_components = self.address.split(" ")
+    matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.take(2).join(" ") + "%", self.last_name)
+
+    # Don't want to match with Resident files that already have a User
+    matched_street = matched.select { |resident| !resident.on_commonplace? }
+
+    # Match by e-mail address
+    # E-mail addresses should be unique in that no two Resident files should
+    # have the same e-mail address
+    matched_email = Resident.where("email ILIKE ? AND last_name ILIKE ?", self.email, self.last_name)
+
+    resident = merge(matched_street, matched_email)
+    return resident
+  end
+
+  # Merge "duplicate" Resident files of this user, if there are any
+  def merge(streets, emails)
+
+    # No street address match. Return e-mail match [if any]
+    if streets.count == 0
+      return emails.first
+    end
+
+    # Multiple street address match. Search by name
+    #
+    # The odds of two people with the same exact first AND last name
+    # living at the same address is low enough to be negligible.
+    if street = streets.select { |resident| resident.first_name == self.first_name }
+      if street.count > 1
+        # Well, what are the odds? =(
+      end
+
+      street = street.first
+      if emails.count == 0
+        return street
+      end
+
+      # Check to see if they're the same file
+      email = emails.first
+      if street == email
+        return street
+      end
+
+      # Merge them if they're not the same file
+      street.email = email.email
+      email.address = street.address
+      email.add_tags(street.tags)
+      street.destroy
+
+      return email
+    end
+
+    # None of the names matched
+    return emails.first
+  end
+
+  def create_st_address
+    return  StreetAddress.create(
+      :address => self.address,
+      :unreliable_name => "#{self.first_name} #{self.last_name}")
+  end
+
+  # Correlates the User and the corresponding StreetAddress file with
+  # the "REAL AMERICAN PERSON" file [aka the Resident file]
+  def correlate
+    #addr = find_st_address
+    self.address.squeeze!(" ")
+    addr = self.address_correlate
     if r = find_resident
+      if !r.address?
+        r.address = self.address
+      end
+
+      if !r.street_address?
+        r.street_address = addr
+      end
+
+      if !r.email?
+        r.email = self.email
+      end
+
       r.user = self
+      r.registered
       r.save
     else
-      Resident.create(
+      r= Resident.create(
         :community => self.community,
         :first_name => self.first_name,
         :last_name => self.last_name,
         :address => self.address,
-        :user => self)
+        :email => self.email,
+        :street_address => addr,
+        :user => self,
+        :community_id => self.community_id)
+      r.add_tags(addr.carrier_route) if !addr.nil?
+      r.registered
+      r.update_attribute(:community_id,self.community_id)
+      r.update_attribute(:community,self.community)
+      r.save
     end
   end
 
