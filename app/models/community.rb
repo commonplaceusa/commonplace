@@ -2,7 +2,7 @@ class Community < ActiveRecord::Base
   serialize :metadata, Hash
   serialize :feature_switches, Hash
   serialize :discount_businesses
-
+  
   has_many :feeds
   has_many :stories
   has_many :neighborhoods, :order => :created_at
@@ -293,9 +293,9 @@ class Community < ActiveRecord::Base
   def manual_tags
     Flag.all.map &:name
   end
-
+  
   def user_statistics
-    if self.respond_to?(:organize_start_date) && self.try(:organize_start_date).present?
+    if self.organize_start_date?
       start=self.organize_start_date
     else
       start=self.created_at.to_date
@@ -336,7 +336,7 @@ class Community < ActiveRecord::Base
       t=t+1
     end
     result.merge!({users: users}).merge!({posts: posts}).merge!({feeds: feeds}).merge!({emails: emails}).merge!({calls: calls})
-=begin
+=begin    
     cols=[]
     rows=[]
     cols<<{id: 'date', label: 'Date', type: 'date'}

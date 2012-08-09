@@ -31,20 +31,20 @@ module Serializer
       when EventNote
         o.as_api_response(:default)
       when Resident
-      {
+      { 
         "id" => o.id,
         "classtype" => o.class.name,
         "user_id" => o.user_id,
-        "first_name" => o.first_name,
+        "first_name" => o.first_name, 
         "last_name" => o.last_name,
         "address" => o.address,
-        "phone" => (o.respond_to?(:phone)) ? o.try(:phone) : "",
-        "organization" => (o.respond_to?(:organization)) ? o.try(:organization) : "",
-        "position" => (o.respond_to?(:position)) ? o.position : "",
-        "notes" => (o.respond_to?(:notes)) ? o.notes : "",
-        "sector" => (o.respond_to?(:sector_tags)) ? o.sector_tags : "",
+        "phone" => o.phone,
+        "organization" => o.organization,
+        "position" => o.position,
+        "notes" => o.notes,
+        "sector" => o.sector_tags,
         "todos" => o.todos,
-        "type" => (o.respond_to?(:type_tags)) ? o.type_tags : "",
+        "type" => o.type_tags,
         "latitude" => o.latitude,
         "longitude" => o.longitude,
         "email" => o.email,
@@ -195,7 +195,7 @@ module Serializer
           "user" => (o.messagable_type == "User" ? "/users" : "/feeds") + "/#{o.messagable_id}"
         }
         }
-
+        
       when Essay
         o.as_api_response(:default)
 
@@ -305,7 +305,7 @@ module Serializer
 
       when CommunityExterior
         o.as_api_response(:default)
-
+        
       when Swipe
         if o.success
           o.as_api_response(:default)
