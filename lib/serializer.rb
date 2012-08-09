@@ -31,9 +31,9 @@ module Serializer
       when EventNote
         o.as_api_response(:default)
       when Resident
-      { 
+      {
         "id" => o.id,
-        "first_name" => o.first_name, 
+        "first_name" => o.first_name,
         "last_name" => o.last_name,
         "address" => o.address,
         "latitude" => o.latitude,
@@ -181,7 +181,7 @@ module Serializer
           "user" => (o.messagable_type == "User" ? "/users" : "/feeds") + "/#{o.messagable_id}"
         }
         }
-        
+
       when Essay
         o.as_api_response(:default)
 
@@ -291,7 +291,7 @@ module Serializer
 
       when CommunityExterior
         o.as_api_response(:default)
-        
+
       when Swipe
         if o.success
           o.as_api_response(:default)

@@ -2,12 +2,13 @@ class Community < ActiveRecord::Base
   serialize :metadata, Hash
   serialize :feature_switches, Hash
   serialize :discount_businesses
+
   has_many :feeds
   has_many :neighborhoods, :order => :created_at
   has_many(:announcements,
            :order => "announcements.created_at DESC",
            :include => [:replies])
-  has_many(:events, 
+  has_many(:events,
            :order => "events.date ASC",
            :include => [:replies])
 
@@ -24,14 +25,14 @@ class Community < ActiveRecord::Base
   has_many :messages, :through => :users
   has_many :subscriptions, :through => :users
 
-  has_many(:posts, 
+  has_many(:posts,
            :order => "posts.updated_at DESC",
            :include => [:user, {:replies => :user}])
-  
+
   before_destroy :ensure_marked_for_deletion
-  
+
   validates_presence_of :name, :slug
-  
+
   accepts_nested_attributes_for :neighborhoods
 
   has_attached_file(:logo,
@@ -114,7 +115,7 @@ class Community < ActiveRecord::Base
   def ensure_marked_for_deletion
     raise "Can not destroy community" unless self.should_delete
   end
-  
+
   def neighborhood_for(address)
     if self.is_college
       self.neighborhoods.select { |n| n.name == address }
@@ -192,7 +193,7 @@ class Community < ActiveRecord::Base
     end
     items.reverse
   end
-  
+
   def private_messages_since_n_days_ago(day)
     items = []
     for i in (1..day)
@@ -229,7 +230,7 @@ class Community < ActiveRecord::Base
   def has_launched?
     self.launch_date < DateTime.now
   end
-  
+
   def user_count
     self.users.count
   end
@@ -251,7 +252,7 @@ class Community < ActiveRecord::Base
   def wire
     CommunityWire.new(self)
   end
-  
+
   def exterior
     CommunityExterior.new(self)
   end
