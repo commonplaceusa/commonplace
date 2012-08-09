@@ -38,9 +38,10 @@ class StreetAddress < ActiveRecord::Base
   # this function if a Resident[:name, :email] file of this person is inputted.
   # This should be resolved with a merge when the person registers as a user.
   def create_default_resident
-    if unreliable_name.nil?
-      return
+    if unreliable_name.nil? || unreliable_name.strip.empty?
+      return nil
     end
+
     split_name = unreliable_name.to_s.split(" ")
     r = Resident.create(
       :community => self.community,
