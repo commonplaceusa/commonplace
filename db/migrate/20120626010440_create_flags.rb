@@ -1,14 +1,11 @@
 class CreateFlags < ActiveRecord::Migration
   def change
-    begin
-      create_table :flags do |t|
+    create_table :flags do |t|
 
-        t.string :name
-        t.integer :resident_id
+      t.string :name
+      t.integer :resident_id
 
-        t.timestamps
-      end
-    rescue
+      t.timestamps
     end
   end
 end
