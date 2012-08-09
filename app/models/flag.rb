@@ -27,6 +27,12 @@ class Flag < ActiveRecord::Base
     }
   end
 
+  def self.get_todos
+    @@todos ||= init
+
+    @@todos
+  end
+
   def self.get_rule(flag)
     @@rules ||= init
 
@@ -45,13 +51,36 @@ class Flag < ActiveRecord::Base
     nil
   end
 
+  def self.create_todo(to_do, type, should, cant)
+    @@todos ||= init
+    if @@todos[to_do].nil?
+      @@todos[to_do] = [type, Array(cant), Array(should)]
+    else
+      update = @@todos[to_do]
+      update[1] |= Array(cant)
+      update[2] |= Array(should)
+      @@todos[to_do] = update
+    end
+  end
+
   # Creates rules for flags to follow
   def self.create_rule(done, flag, to_do)
     @@rules ||= init
-    @@rules[flag] = [done, to_do]
+    if @@rules[flag].nil?
+      @@rules[flag] = [Array(done), Array(to_do)]
+    else
+      update = @@rules[flag]
+      update[0] |= Array(done)
+      update[1] |= Array(to_do)
+      @@rules[flag] = update
+    end
   end
 
   def self.create_rules(flag_list)
     @@rules ||= init
+  end
+
+  def self.clear
+    @@rules = {}
   end
 end
