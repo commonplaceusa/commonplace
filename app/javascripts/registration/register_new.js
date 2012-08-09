@@ -75,6 +75,11 @@ var RegisterNewUserView = RegistrationModalPage.extend({
           }
         }, this));
 
+        if(valid) {
+          this.$("input[name=full_name]").hide();
+          this.$("input[name=email]").hide();
+        }
+
         if(this.$("#suggested_address").is(":hidden") || this.$('#try_again').is(":checked")) {
 
           var url = '/api/communities/'+this.communityExterior.id+'/address_approximate';
@@ -100,12 +105,14 @@ var RegisterNewUserView = RegistrationModalPage.extend({
             }
             else if(response[0] < 0.94) {
               valid = false;
+              var verify = this.$("#verify_text");
 
               this.data.suggest = response[1];
-              this.data.original = this.data.term;
 
+              verify.empty();
               addr.empty();
 
+              verify.text("Verify this address");
               addr.text(response[1]);
               radio.show();
               span.show();
@@ -123,9 +130,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
             if(this.$("#suggested_radio").is(':checked')) {
               this.data.address = this.data.suggest;
             }
-            else {
-              this.data.address = this.data.original;
-            }
+
             this.nextPage("profile", this.data);
           }
         }

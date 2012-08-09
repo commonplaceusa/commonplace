@@ -568,6 +568,14 @@ CONDITION
       if !find_community.street_addresses.nil? && find_community.street_addresses.count > 0
         find_community.street_addresses.each do |street_address|
           street = street_address.address.squeeze(" ").strip
+          test = street.jarowinkler_similar(input.squeeze(" ").strip)
+
+          if test == 1
+            best = test
+            addr[street] = test
+            break
+          end
+
           st_apt = street.clone
           st_apt << " Apt" if !street.upcase.include?("APT")
           test = st_apt.jarowinkler_similar(input.squeeze(" ").strip)
@@ -582,6 +590,13 @@ CONDITION
         find_community.residents.each do |street_address|
           next if street_address.address.nil?
           street = street_address.address.squeeze(" ").strip
+
+          if test == 1
+            best = test
+            addr[street] = test
+            break
+          end
+
           st_apt = street.clone
           st_apt << " Apt" if !street.upcase.include?("APT")
           test = st_apt.jarowinkler_similar(input.squeeze(" ").strip)
