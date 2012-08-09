@@ -1,8 +1,11 @@
 class AddNewTagsAndNotesToResident < ActiveRecord::Migration
   def up
-    add_column :residents, :sector_tags, :text
-    add_column :residents, :type_tags, :text
-    add_column :residents, :notes, :string
+    begin
+      add_column :residents, :sector_tags, :text
+      add_column :residents, :type_tags, :text
+      add_column :residents, :notes, :string
+    rescue
+    end
   end
   def down
     remove_column :residents, :sector_tags

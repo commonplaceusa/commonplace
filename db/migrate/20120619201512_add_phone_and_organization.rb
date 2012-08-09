@@ -1,7 +1,10 @@
 class AddPhoneAndOrganization < ActiveRecord::Migration
   def up
-    add_column :residents, :phone, :integer
-    add_column :residents, :organization, :string
+    begin
+      add_column :residents, :phone, :integer
+      add_column :residents, :organization, :string
+    rescue
+    end
   end
   def down
     remove_column :residents, :phone
