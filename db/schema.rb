@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528150913) do
+ActiveRecord::Schema.define(:version => 20120809035102) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -109,6 +109,26 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.datetime "updated_at",         :null => false
   end
 
+  create_table "civic_hero_nominations", :force => true do |t|
+    t.string   "nominee_name"
+    t.string   "nominee_email"
+    t.text     "reason"
+    t.string   "nominator_name"
+    t.string   "nominator_email"
+    t.integer  "community_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "civic_leader_applications", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "reason"
+    t.integer  "community_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "communities", :force => true do |t|
     t.string   "name",                                                                 :null => false
     t.datetime "created_at"
@@ -132,6 +152,9 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.text     "discount_businesses"
     t.text     "feature_switches"
     t.text     "metadata"
+    t.text     "last_story"
+    t.string   "state"
+    t.date     "organize_start_date"
   end
 
   create_table "conversation_memberships", :force => true do |t|
@@ -244,6 +267,14 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.integer  "kind"
     t.string   "password"
     t.string   "background_file_name"
+    t.integer  "announcements_count",  :default => 0,      :null => false
+  end
+
+  create_table "flags", :force => true do |t|
+    t.string   "name"
+    t.integer  "resident_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "group_posts", :force => true do |t|
@@ -446,16 +477,26 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
   end
 
   create_table "residents", :force => true do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.text    "metadata"
-    t.integer "user_id"
-    t.integer "community_id"
-    t.string  "address"
-    t.text    "logs"
-    t.string  "email"
-    t.decimal "latitude"
-    t.decimal "longitude"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "metadata"
+    t.integer  "user_id"
+    t.integer  "community_id"
+    t.string   "address"
+    t.text     "logs"
+    t.string   "email"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.integer  "phone"
+    t.string   "organization"
+    t.string   "position"
+    t.text     "sector_tags"
+    t.text     "type_tags"
+    t.string   "notes"
+    t.boolean  "manually_added",  :default => false
+    t.integer  "stories_count",   :default => 0,     :null => false
+    t.datetime "last_story_time"
+    t.text     "old_stories"
   end
 
   create_table "roles", :force => true do |t|
@@ -465,6 +506,16 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.datetime "updated_at"
   end
 
+  create_table "stories", :force => true do |t|
+    t.string   "title"
+    t.integer  "community_id"
+    t.text     "url"
+    t.text     "content"
+    t.text     "summary"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "street_addresses", :force => true do |t|
     t.string   "address"
     t.string   "unreliable_name"
@@ -472,6 +523,9 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.text     "logs"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "community_id"
+    t.string   "carrier_route"
+    t.integer  "zip_code"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -578,6 +632,12 @@ ActiveRecord::Schema.define(:version => 20120528150913) do
     t.datetime "reset_password_sent_at"
     t.boolean  "disabled",                         :default => false
     t.string   "organizations"
+    t.integer  "announcements_count",              :default => 0,       :null => false
+    t.integer  "feeds_count",                      :default => 0,       :null => false
+    t.integer  "invites_count",                    :default => 0,       :null => false
+    t.integer  "events_count",                     :default => 0,       :null => false
+    t.integer  "replied_count",                    :default => 0,       :null => false
+    t.text     "action_tags"
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
