@@ -7,7 +7,6 @@ class Bootstrapper < Sinatra::Base
     def normalize_domains
       return unless Rails.env.production?
       return if request.host == "commonplace.herokuapp.com"
-      raise request.host
       case request.host
 
       when %r{^www\.ourcommonplace\.com$}
@@ -24,7 +23,7 @@ class Bootstrapper < Sinatra::Base
         if request.path == "/" || request.path == ""
           redirect "https://www.ourcommonplace.com/#{$1}"
         else
-          redirect "https://www.ourcommonplace.com#{request.path}"
+          redirect "https://www.ourcommonplace.com/#{$1}#{request.path}"
         end
 
       when %r{^(?:www\.)?commonplaceusa.com$}
@@ -63,7 +62,7 @@ class Bootstrapper < Sinatra::Base
 
   get "" do
     set_account
-    redirect to(@account ? "/#{@account.community.slug}" : "/about")
+    redirect to(@account ? "/#{@account.community.slug}" : "/info")
   end
 
   get "groups/:slug" do
@@ -127,10 +126,6 @@ class Bootstrapper < Sinatra::Base
     @community = Community.find_by_slug(params[:community])
     @active_tab = "nominate"
     erb :about
-  end
-
-  get "about" do
-    erb :about_without_community
   end
 
   get ":community" do
