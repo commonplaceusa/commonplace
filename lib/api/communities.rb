@@ -590,6 +590,7 @@ CONDITION
         find_community.residents.each do |street_address|
           next if street_address.address.nil?
           street = street_address.address.squeeze(" ").strip
+          test = street.jarowinkler_similar(input.squeeze(" ").strip)
 
           if test == 1
             best = test
