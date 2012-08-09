@@ -91,7 +91,7 @@ em
       width: 500px
       border-right: 1px solid #d3d1c9
       float: left
-      overflow-y: scroll
+      overflow-y: auto
       height: 445px
       a
         color: $red
@@ -130,9 +130,11 @@ em
         color: $blue
         font-size: 22px
         font-weight: bold
-        margin-bottom: 0px        
+        margin-bottom: 20px
         width: 460px
         text-transform: capitalize
+        a
+          color: $blue
       h4.headline_platform
         font-family: $Rokkitt
         color: $red
@@ -141,7 +143,7 @@ em
         margin-bottom: 20px
         width: 460px
       .author
-        color: $red
+        color: #424242
         font-size: 18px
         margin-top: 0px
         margin-bottom: 15px
@@ -303,7 +305,7 @@ em
           +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
           text-shadow: -1px -1px -1px rgba(0,0,0,.65)
           box-shadow: 1px 1px 1px rgba(0,0,0,.25)
-      .facebook
+      .facebook, .leader-button
         margin: 0 auto
           top: 15px
         width: 345px
@@ -324,6 +326,8 @@ em
           padding-top: 6px
           float: left
           font-size: 20px
+      .leader-button
+        width: 448px
 
 
 #header
@@ -420,7 +424,7 @@ span#apply-btn, span#nominate-btn, .register-btn
   border: 1px solid $red
   text-shadow: 1px 1px 1px black
   cursor: pointer
-  margin-left: 20px
+  margin-left: 10px
   margin-top: 1px
   display: block
   float: left
