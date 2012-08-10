@@ -71,7 +71,7 @@ class Community < ActiveRecord::Base
     t.add :resident_todos
     t.add :zip_code
     t.add :organize_start_date
-    t.add lambda {|u| u.user_statistics}, :as => :user_statistics
+    #t.add lambda {|u| u.user_statistics}, :as => :user_statistics
   end
 
   def links

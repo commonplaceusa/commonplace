@@ -572,7 +572,7 @@ WHERE
     street = self.community.street_addresses
     street.each do |street_address|
       st_addr = street_address.address
-      test = st_addr.jarowinkler_similar(address.split(/[,|.]/).first)
+      test = st_addr.jarowinkler_similar(address.split(",").first)
       if test > likeness
         likeness = test
         addr.clear
@@ -673,6 +673,7 @@ WHERE
 
   def create_st_address
     return  StreetAddress.create(
+      :community => self.community,
       :address => self.address,
       :unreliable_name => "#{self.first_name} #{self.last_name}")
   end
@@ -682,6 +683,7 @@ WHERE
   def correlate
     #addr = find_st_address
     self.address.squeeze!(" ")
+    self.address.strip!
     addr = self.address_correlate
     if r = find_resident
       if !r.address?
