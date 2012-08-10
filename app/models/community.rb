@@ -4,6 +4,7 @@ class Community < ActiveRecord::Base
   serialize :discount_businesses
 
   has_many :feeds
+  has_many :stories
   has_many :neighborhoods, :order => :created_at
   has_many(:announcements,
            :order => "announcements.created_at DESC",
@@ -15,6 +16,7 @@ class Community < ActiveRecord::Base
   has_many :users, :order => "last_name, first_name"
   has_many :mets, :through => :users
   has_many :residents
+  has_many :street_addresses
   def organizers
     self.users.select { |u| u.admin }
   end
@@ -65,7 +67,11 @@ class Community < ActiveRecord::Base
     t.add lambda {|c| $skills }, :as => :skills
     t.add lambda {|c| $interests }, :as => :interests
     t.add :resident_tags
+    t.add :manual_tags
+    t.add :resident_todos
     t.add :zip_code
+    t.add :organize_start_date
+    t.add lambda {|u| u.user_statistics}, :as => :user_statistics
   end
 
   def links
@@ -263,12 +269,91 @@ class Community < ActiveRecord::Base
     self.save
   end
 
+  def add_resident_todos(todos)
+    self.metadata[:resident_todos] ||= []
+    self.metadata[:resident_todos] |= todos
+    self.save
+  end
+
+  def resident_todos
+    todos = Flag.init_todo.keys
+    todos |= self.metadata[:resident_todos] if self.metadata[:resident_todos]
+    todos
+  end
+
   def resident_tags
-    tags = []
-    tags +=  self.metadata[:resident_tags] if self.metadata[:resident_tags]
-    tags << "registered"
+    tags = Flag.init.keys
+    tags |=  self.metadata[:resident_tags] if self.metadata[:resident_tags]
+    # tags << "registered"
     tags << "email"
     tags << "address"
     tags
+  end
+
+  def manual_tags
+    Flag.all.map &:name
+  end
+  
+  def user_statistics
+    if self.organize_start_date?
+      start=self.organize_start_date
+    else
+      start=self.created_at.to_date
+    end
+    if Date.today.months_ago(6)>start
+      t=Date.today.months_ago(6)
+    else
+      t=start
+    end
+    result={}
+    users=[]
+    users<<["Date","Total","Gain"]
+    posts=[]
+    posts<<["Date","Total","Gain"]
+    feeds=[]
+    feeds<<["Date","Total","Gain"]
+    emails=[]
+    emails<<["Date","Total","Gain"]
+    calls=[]
+    calls<<["Date","Total","Gain"]
+    while t<=Date.today
+      userstotal=self.users.where("created_at <= ?",t).count
+      poststotal=self.posts.where("created_at <= ?",t).count
+      feedstotal=self.feeds.where("created_at <= ?",t).count
+      emailstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"sent nomination email",self.id).count
+      callstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"called",self.id).count
+      usersgain=userstotal-self.users.where("created_at <= ?",t-1).count
+      postsgain=poststotal-self.posts.where("created_at <= ?",t-1).count
+      feedsgain=feedstotal-self.feeds.where("created_at <= ?",t-1).count
+      emailsgain=emailstotal-Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t-1,"sent nomination email",self.id).count
+      callsgain=callstotal-Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t-1,"called",self.id).count
+      #result<<[t.strftime("%b %d"),total,gain]
+      users<<[t.strftime("%b %d"),userstotal,usersgain]
+      posts<<[t.strftime("%b %d"),poststotal,postsgain]
+      feeds<<[t.strftime("%b %d"),feedstotal,feedsgain]
+      emails<<[t.strftime("%b %d"),emailstotal,emailsgain]
+      calls<<[t.strftime("%b %d"),callstotal,callsgain]
+      t=t+1
+    end
+    result.merge!({users: users}).merge!({posts: posts}).merge!({feeds: feeds}).merge!({emails: emails}).merge!({calls: calls})
+=begin    
+    cols=[]
+    rows=[]
+    cols<<{id: 'date', label: 'Date', type: 'date'}
+    cols<<{id: 'total', label: 'Total', type: 'number'}
+    cols<<{id: 'gain', label: 'Gain', type: 'number'}
+    while t!=Date.today
+      column=[]
+      column<<{v: t}
+      total=User.where("created_at<?",t).count
+      column<<{v: total}
+      gain=total-User.where("created_at<?",t-1).count
+      column<<{v: gain}
+      rows<<{c: column}
+      t=t+1
+    end
+    results={cols: cols, rows: rows}
+=end
+
   end
 end

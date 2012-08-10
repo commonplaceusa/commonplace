@@ -2,11 +2,11 @@ class Feed < ActiveRecord::Base
   #track_on_creation
 
   validates_presence_of :name, :community
-  
+
   validates_attachment_presence :avatar
 
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
-  
+
   scope :featured, reorder("
     (Case When about != '' OR address != '' Then 1 Else 0 End)
     + Case When avatar_file_name IS NOT NULL Then 1 Else 0 End DESC")
@@ -25,25 +25,25 @@ class Feed < ActiveRecord::Base
       (self.announcements.present? and self.announcements.last.created_at >= start_date and self.announcements.last.created_at <= end_date)
   end
 
-  scope :updated_between, lambda { |start_date, end_date| 
-    { :conditions => 
-      ["? <= updated_at AND updated_at < ?", start_date.utc, end_date.utc] } 
+  scope :updated_between, lambda { |start_date, end_date|
+    { :conditions =>
+      ["? <= updated_at AND updated_at < ?", start_date.utc, end_date.utc] }
   }
 
   belongs_to :community
   has_many :feed_owners
   has_many :owners, :through => :feed_owners, :class_name => "User", :source => :user
-  belongs_to :user
+  belongs_to :user,:counter_cache => true
 
   has_many :events, :dependent => :destroy, :as => :owner, :include => :replies
 
   has_many :announcements, :dependent => :destroy, :as => :owner, :include => :replies
-  
+
   has_many :essays, :dependent => :destroy
 
   has_many :subscriptions, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions, :source => :user, :uniq => true
-  
+
   has_many :swipes
   has_many :swiped_visitors, :through => :swipes, :class_name => "User", :source => :user
 
@@ -73,7 +73,7 @@ class Feed < ActiveRecord::Base
   end
 
   def links
-    { 
+    {
       "avatar" => {
         "large" => self.avatar_url(:large),
         "normal" => self.avatar_url(:normal),
@@ -98,8 +98,8 @@ class Feed < ActiveRecord::Base
   end
 
   include CroppableAvatar
-  has_attached_file(:avatar,                    
-                    { :styles => { 
+  has_attached_file(:avatar,
+                    { :styles => {
                         :thumb => {:geometry => "100x100", :processors => [:cropper]},
                         :normal => {:geometry => "120x120", :processors => [:cropper]},
                         :large => {:geometry => "200x200", :processors => [:cropper]},
@@ -107,7 +107,7 @@ class Feed < ActiveRecord::Base
                       },
                       :default_url => "https://s3.amazonaws.com/commonplace-avatars-production/missing.png"
                     }.merge(Rails.env.development? || Rails.env.test? ?
-                            { :path => ":rails_root/public/system/feeds/:id/avatar/:style.:extension", 
+                            { :path => ":rails_root/public/system/feeds/:id/avatar/:style.:extension",
                               :storage => :filesystem,
                               :url => "/system/feeds/:id/avatar/:style.:extension"
                             } : {
@@ -120,7 +120,7 @@ class Feed < ActiveRecord::Base
                                 :secret_access_key => ENV['S3_KEY_SECRET']
                               }
                             }))
-                    
+
 
   def tag_list
     self.cached_tag_list
@@ -137,7 +137,7 @@ class Feed < ActiveRecord::Base
       super(string)
     end
   end
-  
+
   def avatar_url(style_name = nil)
     self.avatar.url(style_name || self.avatar.default_style)
   end
@@ -148,7 +148,7 @@ class Feed < ActiveRecord::Base
       time = case item
              when Event then item.created_at
              when Announcement then item.created_at
-             end 
+             end
       (time - Time.now).abs
     end
   end
@@ -156,7 +156,7 @@ class Feed < ActiveRecord::Base
   def is_news
     self.kind == 4
   end
-  
+
   def self.kinds
     feed_kinds = ActiveSupport::OrderedHash.new
     feed_kinds["A non-profit"] = 0
@@ -194,7 +194,7 @@ class Feed < ActiveRecord::Base
       owner
     end
   end
-  
+
   def rss_feed
     RSSFeed.new(self)
   end

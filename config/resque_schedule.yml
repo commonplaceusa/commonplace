@@ -55,3 +55,10 @@ send_monthly_network_health_stats:
   args:
   queue: statistics
   description: "Sends out a monthly digest of network health statistics"
+  
+load_daily_new_stories:
+  cron: "0 0 * * *"
+  class: LoadStories
+  args:
+  queue: daily_new_stories
+  description: "Pull new news of a community every midnight"
