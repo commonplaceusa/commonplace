@@ -39,7 +39,6 @@ $(document).ready(function(){
 
     var tab_name = $(this).attr('href');
     activateTab(tab_name);
-    resetPlaceholders();
 
     return false;
   });
@@ -48,14 +47,12 @@ $(document).ready(function(){
     $(".slide").hide();
     $("#application").show();
     activateAboutPageForm("apply");
-    resetPlaceholders();
   });
 
   $(".right #nominate-btn").click(function() {
     $(".slide").hide();
     $("#nominate").show();
     activateAboutPageForm("nominate");
-    resetPlaceholders();
   });
 });
 
@@ -69,6 +66,7 @@ function activateTab(tab_name) {
   } else {
     activateAboutPageForm("register");
   }
+  resetPlaceholders();
   return false;
 }
 
@@ -78,5 +76,6 @@ function activateAboutPageForm(form_name) {
     $("#registration-modal").show();
   else
     $(".right #" + form_name + "-form").show();
+  resetPlaceholders();
   return false;
 }
