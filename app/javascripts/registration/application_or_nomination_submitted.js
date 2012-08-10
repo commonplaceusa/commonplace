@@ -14,6 +14,16 @@ var ApplicationOrNominationSubmittedView = CommonPlace.View.extend({
     return this.options.applying_or_nominating == "nominating";
   },
 
+  nominee_name: function() { return this.options.nominee_name; },
+
+  nominee_first_name: function() {
+    if (this.options.nominee_name.indexOf(" ") != -1) {
+      return this.options.nominee_name.split(" ")[0];
+    } else {
+      return this.options.nominee_name;
+    }
+  },
+
   register: function() {
     var community_slug = CommonPlace.community.get("slug");
     var about_page_url = "/" + community_slug + "/about";

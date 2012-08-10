@@ -19,7 +19,7 @@ var NominateCivicHeroForm = CommonPlace.View.extend({
 
     var post_api = "/api" + this.options.communityExterior.links.registration.nominate_civic_hero;
     $.post(post_api, this.data, _.bind(function(response) {
-      new ApplicationOrNominationSubmittedView({ el: $(this.options.el), applying_or_nominating: "nominating" }).render();
+      new ApplicationOrNominationSubmittedView({ el: $(this.options.el), nominee_name: self.$("[name=nominee_name]").val(), applying_or_nominating: "nominating" }).render();
     }, this));
   },
 
