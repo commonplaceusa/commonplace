@@ -113,7 +113,9 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
       $("table[name='"+value+"']").remove();
     }
     }));
-	deferred.done(this.$("table.todo-specific").dataTable());
+	deferred.done(this.$("table.todo-specific").dataTable({
+                                                 "bPaginate": false
+                                                  }));
 
   },
 
