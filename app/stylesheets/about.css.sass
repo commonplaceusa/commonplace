@@ -263,6 +263,8 @@ em
         &:last-child
           margin-bottom: 30px
         -webkit-font-smoothing: antialiased
+        .placeholder
+          color: #888
       input.placeholder, textarea.placeholder
         color: #888
       input:-ms-input-placeholder
@@ -283,9 +285,13 @@ em
         margin-bottom: 10px
         box-shadow: inset #eaeaea 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
         border: 1px solid #dad8cb
+        .placeholder
+          color: #888
       textarea::-webkit-input-placeholder
         color: #888
       textarea:-moz-placeholder
+        color: #888
+      textarea.placeholder
         color: #888
       button
         -webkit-font-smoothing: antialiased
@@ -526,8 +532,3 @@ li.ui-menu-item:last-child
     text-decoration: none
     &:hover
       text-decoration: underline
-
-#about .content .right input.placeholder
-  color: #333
-#about .content .right textarea.placeholder
-  color: #333
