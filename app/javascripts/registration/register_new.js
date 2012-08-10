@@ -80,7 +80,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
           this.$("input[name=email]").hide();
         }
 
-        if(this.$("#suggested_address").is(":hidden") || this.$('#try_again').is(":checked")) {
+        if(this.$("#suggested_address").is(":hidden")) {
 
           var url = '/api/communities/'+this.communityExterior.id+'/address_approximate';
           this.data.term = this.data.address;
@@ -89,40 +89,45 @@ var RegisterNewUserView = RegistrationModalPage.extend({
             var radio = this.$("input.address_verify_radio");
             var span = this.$("span.address_verify_radio");
             var addr = this.$("#suggested_address");
+            /*
             radio.hide();
             span.hide();
             addr.hide();
+            */
 
             console.log(response);
 
-            if(response === null || response[1].length < 1 || response[0] < 0.84) {
-              valid = false;
+            if(response[0] != -1) {
+              if(response[1].length < 1 || response[0] < 0.84) {
+                valid = false;
 
-              var error = this.$(".error.address");
-              error.text("Please enter a valid address");
-              error.show();
+                var error = this.$(".error.address");
+                error.text("Please enter a valid address");
+                error.show();
 
+              }
+              else if(response[0] < 0.94) {
+                valid = false;
+                var verify = this.$("#verify_text");
+
+                this.data.suggest = response[1];
+
+                verify.empty();
+                addr.empty();
+
+                verify.text("Verify this address");
+                addr.text(response[1]);
+                radio.show();
+                span.show();
+                addr.show();
+              }
+              else if(valid) {
+                this.data.address = response[1];
+
+                this.nextPage("profile", this.data);
+              }
             }
-            else if(response[0] < 0.94) {
-              valid = false;
-              var verify = this.$("#verify_text");
-
-              this.data.suggest = response[1];
-
-              verify.empty();
-              addr.empty();
-
-              verify.text("Verify this address");
-              addr.text(response[1]);
-              radio.show();
-              span.show();
-              addr.show();
-            }
-            else if(valid) {
-              this.data.address = response[1];
-
-              this.nextPage("profile", this.data);
-            }
+            else if(valid) { this.nextPage("profile", this.data); }
           }, this));
         }
         else {

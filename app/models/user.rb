@@ -567,6 +567,7 @@ WHERE
   # forgo both the auto-complete and address suggestion, but it can't be
   # helped if a user decides to be pathological
   def address_correlate
+    return nil if self.community.launch_date < Community.find_by_name("Lexington").launch_date
     likeness = 0.94
     addr = []
     street = self.community.street_addresses
@@ -672,8 +673,9 @@ WHERE
   end
 
   def create_st_address
-    return  StreetAddress.create(
+    return StreetAddress.create(
       :community => self.community,
+      :community_id => self.community_id,
       :address => self.address,
       :unreliable_name => "#{self.first_name} #{self.last_name}")
   end
