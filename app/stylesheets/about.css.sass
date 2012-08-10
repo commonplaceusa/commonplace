@@ -239,6 +239,10 @@ em
       .registration
         margin-top: 25px
         width: 476px
+        input.placeholder, textarea.placeholder
+          color: #888
+        input:-ms-input-placeholder
+          color: #888
       .your-name
         width: 215px
         float: left
@@ -260,6 +264,8 @@ em
           margin-bottom: 30px
         -webkit-font-smoothing: antialiased
       input.placeholder, textarea.placeholder
+        color: #888
+      input:-ms-input-placeholder
         color: #888
       input::-webkit-input-placeholder
         color: #888
@@ -441,8 +447,6 @@ span#apply-btn, span#nominate-btn, .register-btn
 #about
   .content
     .right
-      input.placeholder, textarea.placeholder
-        color: #888
       .nominate-after
         h2
           margin-bottom: 20px
