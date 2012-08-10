@@ -64,10 +64,14 @@ var AboutPageRegisterNewUserView = RegistrationModalPage.extend({
       if (!_.isEmpty(response.facebook)) {
         window.location.pathname = this.communityExterior.links.facebook_login;
       } else {
-        _.each(["full_name", "email", "address"], _.bind(function(field) {
-          if (!_.isEmpty(response[field])) {
+        _.each(["full_name", "email", "street_address"], _.bind(function(field) {
+          var model_field_name;
+          if (field == "street_address") {
+            model_field_name = "address";
+          } else { model_field_name = field; }
+          if (!_.isEmpty(response[model_field_name])) {
             var error = this.$(".error." + field);
-            var errorText = _.reduce(response[field], function(a, b) { return a + " and " + b; });
+            var errorText = _.reduce(response[model_field_name], function(a, b) { return a + " and " + b; });
             error.text(errorText);
             error.show();
             valid = false;
