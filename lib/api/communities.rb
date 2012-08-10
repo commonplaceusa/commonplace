@@ -154,7 +154,7 @@ class API
             if haveornot=="yes"
               #for existing communities, not every user has a corresponding resident so i have
               #to joins resident in case of nil. But for new ones this is not necessary
-              User.where(:id=>@ids,:community_id=>community_id).joins(:resident).map &:resident
+              User.where(:id=>@ids,:community_id=>community_id).map &:resident
             else
               if @ids.empty?
                 User.where(:community_id=>community_id).map &:resident
@@ -268,9 +268,9 @@ class API
               # for existing communities, not every user has a corresponding resident so i have
               # to joins resident in case of nil. But for new ones this is not necessary, remove it to 
               # improve speed
-            @residents=User.where(:id=>@ids[0],:community_id=>community_id).joins(:resident).map &:resident
+            @residents=User.where(:id=>@ids[0],:community_id=>community_id).map &:resident
             for @k in 1..@ids.size-1 do
-              if @users=User.where(:id=>@ids[@k],:community_id=>community_id).joins(:resident)
+              if @users=User.where(:id=>@ids[@k],:community_id=>community_id)
                 @users.each do |user|
                   @residents << user.resident
                 end
@@ -293,56 +293,58 @@ class API
       def order_users_by_quantity_of_tag(tag,community_id,ids)
         @resident=false
         # for existing communities, not every user has a corresponding resident so i have
-        # to joins resident in case of nil. But for new ones this is not necessary, remove it to 
-        # improve speed
+        # to joins resident in case of nil. But for new ones this is not necessary, now i remove it to 
+        # improve speed. If needed add it back. e.g. @residents=User.where("users.id in (?) AND residents.community_id = ? 
+        # AND users.posts_count <> ?",ids[:userids],community_id,0).order("posts_count DESC").map &:resident
+        #                                                                          --   Ye Shen
         case tag
           when "post"
             if ids[:userids].size>0 
-              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.posts_count <> ?",ids[:userids],community_id,0).joins(:resident).order("posts_count DESC").map &:resident
+              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.posts_count <> ?",ids[:userids],community_id,0).order("posts_count DESC").map &:resident
             else
-              @residents=User.where("residents.community_id = ? and users.posts_count <> ?",community_id,0).joins(:resident).order("posts_count DESC").map &:resident
+              @residents=User.where("residents.community_id = ? and users.posts_count <> ?",community_id,0).order("posts_count DESC").map &:resident
             end
           when "reply"
             if ids[:userids].size>0 
-              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.replies_count <> ?",ids[:userids],community_id,0).joins(:resident).order("replies_count DESC").map &:resident
+              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.replies_count <> ?",ids[:userids],community_id,0).order("replies_count DESC").map &:resident
             else
-              @residents=User.where("residents.community_id = ? and users.replies_count <> ?",community_id,0).joins(:resident).order("replies_count DESC").map &:resident
+              @residents=User.where("residents.community_id = ? and users.replies_count <> ?",community_id,0).order("replies_count DESC").map &:resident
             end
           when "sitevisit"
             if ids[:userids].size>0 
-              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.sign_in_count <> ?",ids[:userids],community_id,0).joins(:resident).order("sign_in_count DESC").map &:resident
+              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.sign_in_count <> ?",ids[:userids],community_id,0).order("sign_in_count DESC").map &:resident
             else
-              @residents=User.where("residents.community_id = ? and users.sign_in_count <> ?",community_id,0).joins(:resident).order("sign_in_count DESC").map &:resident
+              @residents=User.where("residents.community_id = ? and users.sign_in_count <> ?",community_id,0).order("sign_in_count DESC").map &:resident
             end
           when "announcement"
             if ids[:userids].size>0 
-              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.announcements_count <> ?",ids[:userids],community_id,0).joins(:resident).order("announcements_count DESC").map &:resident
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.announcements_count <> ?",ids[:userids],community_id,0).order("announcements_count DESC").map &:resident
             else
-              @residents=User.where("residents.community_id = ? and users.announcements_count <> ?",community_id,0).joins(:resident).order("announcements_count DESC").map &:resident
+              @residents=User.where("residents.community_id = ? and users.announcements_count <> ?",community_id,0).order("announcements_count DESC").map &:resident
             end
           when "feed"
             if ids[:userids].size>0 
-              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.feeds_count <> ?",ids[:userids],community_id,0).joins(:resident).order("feeds_count DESC").map &:resident
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.feeds_count <> ?",ids[:userids],community_id,0).order("feeds_count DESC").map &:resident
             else
-              @residents=User.where("residents.community_id = ? and users.feeds_count <> ?",community_id,0).joins(:resident).order("feeds_count DESC").map &:resident
+              @residents=User.where("residents.community_id = ? and users.feeds_count <> ?",community_id,0).order("feeds_count DESC").map &:resident
             end
           when "replied"
             if ids[:userids].size>0 
-              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.replied_count <> ?",ids[:userids],community_id,0).joins(:resident).order("replied_count DESC").map &:resident
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.replied_count <> ?",ids[:userids],community_id,0).order("replied_count DESC").map &:resident
             else
-              @residents=User.where("residents.community_id = ? and users.replied_count <> ?",community_id,0).joins(:resident).order("replied_count DESC").map &:resident
+              @residents=User.where("residents.community_id = ? and users.replied_count <> ?",community_id,0).order("replied_count DESC").map &:resident
             end
           when "invite"
             if ids[:userids].size>0 
-              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.invite_count <> ?",ids[:userids],community_id,0).joins(:resident).order("invite_count DESC").map &:resident
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.invite_count <> ?",ids[:userids],community_id,0).order("invite_count DESC").map &:resident
             else
-              @residents=User.where("residents.community_id = ? and users.invite_count <> ?",community_id,0).joins(:resident).order("invite_count DESC").map &:resident
+              @residents=User.where("residents.community_id = ? and users.invite_count <> ?",community_id,0).order("invite_count DESC").map &:resident
             end
           when "event"
             if ids[:userids].size>0 
-              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.event_count <> ?",ids[:userids],community_id,0).joins(:resident).order("events_count DESC").map &:resident
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.event_count <> ?",ids[:userids],community_id,0).order("events_count DESC").map &:resident
             else
-              @residents=User.where("residents.community_id = ? and users.event_count <> ?",community_id,0).joins(:resident).order("events_count DESC").map &:resident
+              @residents=User.where("residents.community_id = ? and users.event_count <> ?",community_id,0).order("events_count DESC").map &:resident
             end
           when "story"
             if ids[:residentids].size>0 
