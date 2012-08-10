@@ -10,6 +10,8 @@ class LoadStories
   @queue = :daily_new_stories
   
   def self.perform
+    # All for new communities which means community id >28
+    # Please change if needed
     l=LoadStories.new
     l.init_communities_last_story
     l.load_stories
@@ -17,7 +19,7 @@ class LoadStories
   end
   
   def resident_load_stories
-    Community.all.each do |c|
+    Community.where("id>29").each do |c|
       if c.stories.count>0
         c.residents.each do |r|
           r.find_story
@@ -109,7 +111,7 @@ class LoadStories
   
   def load_stories
     count=0
-    Community.all.each do |c|
+    Community.where("id>29").each do |c|
       count=count+1
       sleep(1) if count%3==0
       puts c.id
@@ -124,7 +126,7 @@ class LoadStories
   
   def init_communities_last_story
     count=0
-    Community.all.each do |c|
+    Community.where("id>29").each do |c|
       count=count+1
       sleep(1) if count%3==0
       init_last_story(c) if c.state

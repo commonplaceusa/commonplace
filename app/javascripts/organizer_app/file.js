@@ -7,6 +7,10 @@ OrganizerApp.File = Backbone.Model.extend({
   getId: function() {
     return this.get('id');
   },
+  
+  getUserid: function() {
+    return this.get('user_id');
+  },
 
   full_name: function() {
     return this.get('first_name') + ' ' + this.get('last_name');
@@ -79,6 +83,14 @@ OrganizerApp.Files = Backbone.Collection.extend({
 
   url: function() {
     return "/api/communities/" + this.community.id + "/files";
+  },
+  
+  modelIds: function() {
+    var userids= new Array();
+    _.each(this.models, function(model){ userids.push(model.getUserid())});
+    var residentids= new Array();
+    _.each(this.models, function(model){ residentids.push(model.getId())});
+    return {userids: userids, residentids: residentids};
   },
 
   commontags: function(){

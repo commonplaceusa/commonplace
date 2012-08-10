@@ -174,39 +174,94 @@ class API
             end
           end
       end
+      
+      def filter_users_by_several_tag(tags,haves,community_id)
+        @residents=filter_users_by_tag(tags[0],haves[0],community_id)
+        @final=@residents&filter_users_by_tag(tags[1],haves[1],community_id)
+        for @k in 2..tags.size-1 do
+          @final=@final&filter_users_by_tag(tags[@k],haves[@k],community_id)
+        end  
+        @final
+      end
 
-      def order_users_by_time_of_tag(tag,community_id)
+      def order_users_by_time_of_tag(tag,community_id,ids)
         @resident=false
         case tag
-              when "post"
+            when "post"
+              if ids[:userids].size>0
+                @ids=Post.where(:user_id=>ids[:userids]).order("created_at DESC").map {|a| a.user_id}.uniq
+              else 
                 @ids=Post.order("created_at DESC").map {|a| a.user_id}.uniq
-              when "email"
-                @emails=SentEmail.sort("created_at DESC").where(:status=>"opened").map {|a| a.recipient_email}.uniq
+              end
+            when "email"
+              if ids[:userids].size>0
+                @useremails=User.where(:id=>ids[:userids]).map &:email
+                @emails=SentEmail.where(:status=>"opened", :recipient_email=>@useremails).sort("created_at DESC").map {|a| a.recipient_email}.uniq
                 @ids=User.where(:email=>@emails).map &:id
-              when "sitevisit"
+              else
+                @emails=SentEmail.where(:status=>"opened").sort("created_at DESC").map {|a| a.recipient_email}.uniq
+                @ids=User.where(:email=>@emails).map &:id
+              end
+            when "sitevisit"
+              if ids[:userids].size>0
+                @ids=SiteVisit.where(:commonplace_account_id=>ids[:userids]).sort("created_at DESC").map {|a| a.commonplace_account_id}.uniq
+              else
                 @ids=SiteVisit.sort("created_at DESC").map {|a| a.commonplace_account_id}.uniq
-              when "announcement"
-                @ids=Announcement.order("created_at DESC").where(:owner_type=>"User").map {|a| a.owner_id}.uniq
-                @announcements=Announcement.order("created_at DESC").where(:owner_type=>"Feed").map {|a| a.owner_id}.uniq
+              end
+            when "announcement"
+              @announcements=Announcement.order("created_at DESC").where(:owner_type=>"Feed").map {|a| a.owner_id}.uniq              
+              if ids[:userids].size>0
+                @ids=Announcement.where(:owner_id=>ids[:userids],:owner_type=>"User").order("created_at DESC").map {|a| a.owner_id}.uniq
+                @announcements=@announcements&@ids
                 @ids+=Feed.where(:id=>@announcements).map {|a|a.user_id}.uniq
-              when "event"
-                @ids=Event.order("created_at DESC").where(:owner_type=>"User").map {|a| a.owner_id}.uniq
-                @events=Event.order("created_at DESC").where(:owner_type=>"Feed").map {|a| a.owner_id}.uniq
+              else
+                @ids=Announcement.order("created_at DESC").where(:owner_type=>"User").map {|a| a.owner_id}.uniq
+                @ids+=Feed.where(:id=>@announcements).map {|a|a.user_id}.uniq
+              end
+            when "event"
+              @events=Event.order("created_at DESC").where(:owner_type=>"Feed").map {|a| a.owner_id}.uniq
+              if ids[:userids].size>0
+                @ids=Event.where(:owner_type=>"User",:owner_id=>ids[:userids]).order("created_at DESC").map {|a| a.owner_id}.uniq
+                @events=@events&@ids
                 @ids+=Event.order("created_at DESC").where(:id=>@events).map {|a|a.user_id}.uniq
-              when "reply"
+              else
+                @ids=Event.order("created_at DESC").where(:owner_type=>"User").map {|a| a.owner_id}.uniq
+                @ids+=Event.order("created_at DESC").where(:id=>@events).map {|a|a.user_id}.uniq
+              end
+            when "reply"
+              if ids[:userids].size>0
+                @ids=Reply.where(:user_id=>ids[:userids]).order("created_at DESC").map {|a| a.user_id}.uniq
+              else
                 @ids=Reply.order("created_at DESC").map {|a| a.user_id}.uniq
-              when "replied"
-                @postsids=Reply.order("created_at DESC").map {|a| a.repliable_id}.uniq
+              end
+            when "replied"
+              @postsids=Reply.order("created_at DESC").map {|a| a.repliable_id}.uniq
+              if ids[:userids].size>0                
+                @ids=Post.where(:user_id=>ids[:userids],:id=>@postsids).map {|a| a.user_id}.uniq
+              else
                 @ids=Post.where(:id=>@postsids).map {|a| a.user_id}.uniq
-              when "invite"
+              end
+            when "invite"
+              if ids[:userids].size>0
+                @ids=Invite.where(:inviter_id=>ids[:userids]).order("created_at DESC").map {|a| a.inviter_id}.uniq
+              else
                 @ids=Invite.order("created_at DESC").map {|a| a.inviter_id}.uniq
-              when "story"
-                @ids=Resident.where("last_story_time is not null").order("last_story_time DESC").map &:id
-                @resident=true
+              end
+            when "story"
+              @resident=true
+              if ids[:residentids].size>0
+                @ids=Resident.where("last_story_time is not null AND id in (?)",ids[:residentids]).order("last_story_time DESC").map &:id  
+              else
+                @ids=Resident.where("last_story_time is not null").order("last_story_time DESC").map &:id                
+              end
+            else
+              @resident=true
+              if ids[:residentids].size>0
+                @ids=Flag.where("name=? AND id in (?)",tag,ids[:residentids]).order("created_at DESC").map &:resident_id
               else
                 @ids=Flag.where(:name=>tag).order("created_at DESC").map &:resident_id
-                @resident=true
-          end
+              end  
+            end 
           @ids.uniq!
           @residents=nil
           if !@resident
@@ -235,30 +290,66 @@ class API
           serialize(@residents)
       end
 
-      def order_users_by_quantity_of_tag(tag,community_id)
+      def order_users_by_quantity_of_tag(tag,community_id,ids)
         @resident=false
         # for existing communities, not every user has a corresponding resident so i have
         # to joins resident in case of nil. But for new ones this is not necessary, remove it to 
         # improve speed
         case tag
           when "post"
-            @residents=User.where("residents.community_id = ? and users.posts_count <> ?",community_id,0).joins(:resident).order("posts_count DESC").map &:resident
+            if ids[:userids].size>0 
+              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.posts_count <> ?",ids[:userids],community_id,0).joins(:resident).order("posts_count DESC").map &:resident
+            else
+              @residents=User.where("residents.community_id = ? and users.posts_count <> ?",community_id,0).joins(:resident).order("posts_count DESC").map &:resident
+            end
           when "reply"
-            @residents=User.where("residents.community_id = ? and users.replies_count <> ?",community_id,0).joins(:resident).order("replies_count DESC").map &:resident
+            if ids[:userids].size>0 
+              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.replies_count <> ?",ids[:userids],community_id,0).joins(:resident).order("replies_count DESC").map &:resident
+            else
+              @residents=User.where("residents.community_id = ? and users.replies_count <> ?",community_id,0).joins(:resident).order("replies_count DESC").map &:resident
+            end
           when "sitevisit"
-            @residents=User.where("residents.community_id = ? and users.sign_in_count <> ?",community_id,0).joins(:resident).order("sign_in_count DESC").map &:resident
+            if ids[:userids].size>0 
+              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.sign_in_count <> ?",ids[:userids],community_id,0).joins(:resident).order("sign_in_count DESC").map &:resident
+            else
+              @residents=User.where("residents.community_id = ? and users.sign_in_count <> ?",community_id,0).joins(:resident).order("sign_in_count DESC").map &:resident
+            end
           when "announcement"
-            @residents=User.where("residents.community_id = ? and users.announcements_count <> ?",community_id,0).joins(:resident).order("announcements_count DESC").map &:resident
+            if ids[:userids].size>0 
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.announcements_count <> ?",ids[:userids],community_id,0).joins(:resident).order("announcements_count DESC").map &:resident
+            else
+              @residents=User.where("residents.community_id = ? and users.announcements_count <> ?",community_id,0).joins(:resident).order("announcements_count DESC").map &:resident
+            end
           when "feed"
-            @residents=User.where("residents.community_id = ? and users.feeds_count <> ?",community_id,0).joins(:resident).order("feeds_count DESC").map &:resident
+            if ids[:userids].size>0 
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.feeds_count <> ?",ids[:userids],community_id,0).joins(:resident).order("feeds_count DESC").map &:resident
+            else
+              @residents=User.where("residents.community_id = ? and users.feeds_count <> ?",community_id,0).joins(:resident).order("feeds_count DESC").map &:resident
+            end
           when "replied"
-            @residents=User.where("residents.community_id = ? and users.replied_count <> ?",community_id,0).joins(:resident).order("replied_count DESC").map &:resident
+            if ids[:userids].size>0 
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.replied_count <> ?",ids[:userids],community_id,0).joins(:resident).order("replied_count DESC").map &:resident
+            else
+              @residents=User.where("residents.community_id = ? and users.replied_count <> ?",community_id,0).joins(:resident).order("replied_count DESC").map &:resident
+            end
           when "invite"
-            @residents=User.where("residents.community_id = ? and users.invite_count <> ?",community_id,0).joins(:resident).order("invite_count DESC").map &:resident
+            if ids[:userids].size>0 
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.invite_count <> ?",ids[:userids],community_id,0).joins(:resident).order("invite_count DESC").map &:resident
+            else
+              @residents=User.where("residents.community_id = ? and users.invite_count <> ?",community_id,0).joins(:resident).order("invite_count DESC").map &:resident
+            end
           when "event"
-            @residents=User.where("residents.community_id = ? and users.event_count <> ?",community_id,0).joins(:resident).order("events_count DESC").map &:resident
+            if ids[:userids].size>0 
+              @residents=User.where("users.id in (?) AND residents.community_id = ? and users.event_count <> ?",ids[:userids],community_id,0).joins(:resident).order("events_count DESC").map &:resident
+            else
+              @residents=User.where("residents.community_id = ? and users.event_count <> ?",community_id,0).joins(:resident).order("events_count DESC").map &:resident
+            end
           when "story"
-            @residents=Resident.where("community_id = ? and stories_count <> ?",community_id,0).order("stories_count DESC")
+            if ids[:residentids].size>0 
+              @residents=Resident.where("id in (?) and community_id = ? and stories_count <> ?",ids[:residentids],community_id,0).order("stories_count DESC")              
+            else
+              @residents=Resident.where("community_id = ? and stories_count <> ?",community_id,0).order("stories_count DESC")
+            end
         end
         @residents.uniq!
         serialize(@residents)
@@ -315,20 +406,13 @@ CONDITION
     #
     # Requires admin
     #
-    # Query params:
-    #   with - find files tagged with tags in this list
-    #   without - but not tagged with tags in this list
+    # I really think it gonna be much faster if change to executing SQL. So hope you have time change to SQL --Ye Shen
     get "/:id/files" do
       control_access :admin
       if params[:search]=="filter"
         if !params[:order]
           if params[:tag].length>1
-            @users=filter_users_by_tag(params[:tag][0],params[:have][0],params[:id])
-            @final=@users&filter_users_by_tag(params[:tag][1],params[:have][1],params[:id])
-            for @k in 2..params[:tag].size-1 do
-                @final=@final&filter_users_by_tag(params[:tag][@k],params[:have][@k],params[:id])
-            end
-            serialize(@final)
+            serialize(filter_users_by_several_tag(params[:tag],params[:have],params[:id]))
           elsif params[:tag].length==1
             serialize(filter_users_by_tag(params[:tag][0], params[:have][0], params[:id]))
           elsif params[:tag].length==0
@@ -336,9 +420,9 @@ CONDITION
           end
         else
           if params[:order]=="time"
-             order_users_by_time_of_tag(params[:tag],params[:id])
+             order_users_by_time_of_tag(params[:tag],params[:id],params[:ids])
           else
-             order_users_by_quantity_of_tag(params[:tag],params[:id])
+             order_users_by_quantity_of_tag(params[:tag],params[:id],params[:ids])
           end
         end
       elsif params[:search]=="byinterest"

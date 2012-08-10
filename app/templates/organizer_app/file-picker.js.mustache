@@ -20,7 +20,7 @@ newselect.insertBefore("#filter");
 </script>
 <div id="file-picker-filters">
 <button id="new-resident">New Resident</button>
-<button id="todo-list">Task List</button>
+<button id="todo-list">Todo List</button>
 <button id="statistics-charts">Charts</button>
 <HR>
 <!--
@@ -38,7 +38,7 @@ newselect.insertBefore("#filter");
   <label id="haveornot" name="haveornot" style="width:77px">No</label>
 <select id="2" multiple="true" class="list" name="filter-tags" data-placeholder="Choose a tag" style="width:200px">
   {{#dropdowns}}
-    <option value="{{.}}" > {{val}} </option>
+    <option value="{{tag}}" > {{val}} </option>
   {{/dropdowns}}
 </select>
 

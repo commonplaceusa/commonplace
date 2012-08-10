@@ -334,7 +334,8 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     //this.$("#action-count").append("<p>here</p>");
     if(!this.model.get("on_commonplace")){
       this.$("#action-count").before("Not a user yet<br>");
-      this.$("#action-count").before("<a href=\""+this.model.get("community_id")+"/"+this.model.get("id")+"/residenttags\" target=\"content\" >Tags</a>");
+      this.$("#content").attr("src",this.model.get("community_id")+"/"+this.model.get("id")+"/residenttags");
+      //this.$("#action-count").before("<a href=\""+this.model.get("community_id")+"/"+this.model.get("id")+"/residenttags\" target=\"content\" >Tags</a>");
     }
     else{
       this.$("#content").attr("src",this.model.get("community_id")+"/"+this.model.get("user_id")+"/all");
