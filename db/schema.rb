@@ -487,24 +487,23 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.string   "email"
     t.decimal  "latitude"
     t.decimal  "longitude"
-    t.integer  "street_address_id"
     t.integer  "phone"
     t.string   "organization"
     t.string   "position"
     t.text     "sector_tags"
     t.text     "type_tags"
     t.string   "notes"
-    t.boolean  "manually_added",    :default => false
-    t.integer  "stories_count",     :default => 0,     :null => false
+    t.boolean  "manually_added",  :default => false
+    t.integer  "stories_count",   :default => 0,     :null => false
     t.datetime "last_story_time"
     t.text     "old_stories"
   end
 
-  create_table "sent_emails", :force => true do |t|
-    t.string   "tag"
-    t.integer  "community_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+  create_table "roles", :force => true do |t|
+    t.integer  "user_id",         :null => false
+    t.integer  "organization_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stories", :force => true do |t|
@@ -527,13 +526,6 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.integer  "community_id"
     t.string   "carrier_route"
     t.integer  "zip_code"
-  end
-
-  create_table "roles", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "organization_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "subscriptions", :force => true do |t|
