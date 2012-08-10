@@ -74,7 +74,10 @@ class Resident < ActiveRecord::Base
   def actionstags
     actionstags=[]
     if self.on_commonplace?
-      actionstags+=User.find(self.user_id).action_tags
+      u = self.user
+      if !u.nil?
+        actionstags += u.action_tags
+      end
     end
 =begin
     if self.stories_count>0
@@ -86,7 +89,12 @@ class Resident < ActiveRecord::Base
 
   def interest_list
     if self.on_commonplace?
-      User.find(self.user_id).interest_list
+      u = self.user
+      if !u.nil?
+        u.interest_list
+      else
+        []
+      end
     else
       []
     end
