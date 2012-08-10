@@ -69,45 +69,52 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
         todo = model.get('todos');
         return $.inArray(value, todo) > -1;
       });
+      if(profiles.length>0){
+	      $(list).empty();
+	      var tbody=  $("<tbody/>");
+	      var thead=$("<thead><tr><th><input type=checkbox class=checkall id=\""+value+"\"/></th> <th>Name</th> <th>Email</th> <th>Phone</th></tr> </thead>");
+	      $(list).append(thead);
+	      var trs=
+		_.map(profiles, function(model) {
+		  var name = model.full_name();
+		  var email = model.email();
+		  var phone = model.phone();
 
-      $(list).empty();
-      var tbody=  $("<tbody/>");
-      var thead=$("<thead><tr><th><input type=checkbox class=checkall id=\""+value+"\"/></th> <th>Name</th> <th>Email</th> <th>Phone</th></tr> </thead>");
-      $(list).append(thead);
-      var trs=
-        _.map(profiles, function(model) {
-          var name = model.full_name();
-          var email = model.email();
-          var phone = model.phone();
+		  if(email == null) {
+		    email = "No email";
+		  }
 
-          if(email == null) {
-            email = "No email";
-          }
+		  if(phone == null) {
+		    phone = "No phone";
+		  }
 
-          if(phone == null) {
-            phone = "No phone";
-          }
+		  //var info = name + " | " + email + " | "+phone;
 
-          //var info = name + " | " + email + " | "+phone;
+		  //var li = $("<li/>",{ text: info, data: { model: model } })[0];
+		  var cb = $("<input/>", { type: "checkbox", name: value+"[]", checked: checklist[model.getId()], value: model.getId(), data: { model: model } })[0];
+		  $(cb).addClass("cb");
+		  var td=$("<td/>");
+		  $(td).append(cb);
+		  var tr=$("<tr/>");
+		  $(tr).append(td);
+		  $(tr).append("<td>"+name+"</td><td>"+email+"</td><td>"+phone+"</td>");
 
-          //var li = $("<li/>",{ text: info, data: { model: model } })[0];
-          var cb = $("<input/>", { type: "checkbox", name: value+"[]", checked: checklist[model.getId()], value: model.getId(), data: { model: model } })[0];
-          $(cb).addClass("cb");
-          var td=$("<td/>");
-          $(td).append(cb);
-          var tr=$("<tr/>");
-          $(tr).append(td);
-          $(tr).append("<td>"+name+"</td><td>"+email+"</td><td>"+phone+"</td>");
+		  //$(tr).prepend(cb)
+		  //$(li).prepend(cb);
 
-          //$(tr).prepend(cb)
-          //$(li).prepend(cb);
+		  return tr;
+		});
+	      _.each(trs,function(tr){$(tbody).append(tr);});
+	      $(list).append(tbody);
+	    }
 
-          return tr;
-        });
-      _.each(trs,function(tr){$(tbody).append(tr);});
-      $(list).append(tbody);
+    else{
+      $("a[name='"+value+"']").remove();
+      $("table[name='"+value+"']").remove();
+    }
     }));
-    deferred.done(this.$("table.todo-specific").dataTable());
+	deferred.done(this.$("table.todo-specific").dataTable());
+
   },
 
   profiles: function() {

@@ -22,7 +22,7 @@ var target=document.getElementById(id);
   <button id="add-tag">Add tag</button>
   <br>
   {{#todos}}
-  <a href="#" onclick="display('{{.}}')"><h4>{{.}}</h4></a>
+  <a href="#" onclick="display('{{.}}')" name="{{.}}"><h4>{{.}}</h4></a>
     <!-- this div could be content of todo, could make the return value of todos to
          be hash, then can use {{key}} in <a> to show title, then use {{value}} in
          div. can see examples from dropdowns in file-picker
