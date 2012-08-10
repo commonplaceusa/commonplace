@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
-  create_table "addresses", :force => true do |t|
-    t.string   "name"
-    t.string   "primary"
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "admin_users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -99,16 +90,6 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.datetime "updated_at"
   end
 
-  create_table "avatars", :force => true do |t|
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.string   "image_file_size"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
   create_table "civic_hero_nominations", :force => true do |t|
     t.string   "nominee_name"
     t.string   "nominee_email"
@@ -155,19 +136,6 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.text     "last_story"
     t.string   "state"
     t.date     "organize_start_date"
-  end
-
-  create_table "conversation_memberships", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "conversation_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "conversations", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -332,15 +300,6 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.integer  "invitee_id"
   end
 
-  create_table "links", :force => true do |t|
-    t.integer  "linkable_id",   :null => false
-    t.string   "linkable_type", :null => false
-    t.integer  "linker_id",     :null => false
-    t.string   "linker_type",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
@@ -379,38 +338,15 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.decimal  "longitude"
   end
 
-  create_table "notifications", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "notifiable_id",   :null => false
-    t.string   "notifiable_type", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "organizations", :force => true do |t|
-    t.string   "name",                                  :null => false
+  create_table "organizer_data_points", :force => true do |t|
+    t.integer  "organizer_id"
     t.string   "address"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.text     "about"
-    t.string   "phone"
-    t.string   "website"
-    t.integer  "community_id"
-    t.string   "category"
-    t.string   "cached_tag_list"
-    t.string   "code"
-    t.boolean  "claimed",             :default => true
-  end
-
-  create_table "platform_updates", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.text     "body",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.float    "lat"
+    t.float    "lng"
+    t.boolean  "attempted_geolocating"
   end
 
   create_table "posts", :force => true do |t|
@@ -425,15 +361,6 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.boolean  "published",         :default => true
     t.datetime "deleted_at"
     t.datetime "replied_at"
-  end
-
-  create_table "profile_fields", :force => true do |t|
-    t.string   "subject",         :null => false
-    t.text     "body",            :null => false
-    t.integer  "organization_id", :null => false
-    t.integer  "position",        :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -487,23 +414,24 @@ ActiveRecord::Schema.define(:version => 20120809035102) do
     t.string   "email"
     t.decimal  "latitude"
     t.decimal  "longitude"
+    t.integer  "street_address_id"
     t.integer  "phone"
     t.string   "organization"
     t.string   "position"
     t.text     "sector_tags"
     t.text     "type_tags"
     t.string   "notes"
-    t.boolean  "manually_added",  :default => false
-    t.integer  "stories_count",   :default => 0,     :null => false
+    t.boolean  "manually_added",    :default => false
+    t.integer  "stories_count",     :default => 0,     :null => false
     t.datetime "last_story_time"
     t.text     "old_stories"
   end
 
-  create_table "roles", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "organization_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "sent_emails", :force => true do |t|
+    t.string   "tag"
+    t.integer  "community_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "stories", :force => true do |t|
