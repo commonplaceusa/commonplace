@@ -1,11 +1,16 @@
 class CreateFlags < ActiveRecord::Migration
-  def change
-    create_table :flags do |t|
+  def up
+    unless Flag.table_exists?
+      create_table :flags do |t|
 
-      t.string :name
-      t.integer :resident_id
+        t.string :name
+        t.integer :resident_id
 
-      t.timestamps
+        t.timestamps
+      end
     end
+  end
+  def down
+    drop_table :flags
   end
 end

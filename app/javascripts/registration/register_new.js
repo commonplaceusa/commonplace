@@ -95,7 +95,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
 
             console.log(response);
 
-            if(response === null || response[1].length < 1 || response[0] < 0.845) {
+            if(response === null || response[1].length < 1 || response[0] < 0.84) {
               valid = false;
 
               var error = this.$(".error.address");

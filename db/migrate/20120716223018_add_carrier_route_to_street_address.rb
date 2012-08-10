@@ -1,5 +1,7 @@
 class AddCarrierRouteToStreetAddress < ActiveRecord::Migration
   def change
-    add_column :street_addresses, :carrier_route, :string
+    unless column_exists? :street_addresses, :carrier_route
+      add_column :street_addresses, :carrier_route, :string
+    end
   end
 end

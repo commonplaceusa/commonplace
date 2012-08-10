@@ -561,7 +561,7 @@ CONDITION
       end
 
       input = params[:term].split(",").first
-      likeness = input.split(" ").first =~ /^[0-9]+/ ? 0.845 : 0.845
+      likeness = input.split(" ").first =~ /^[0-9]+/ ? 0.84 : 0.84
       addr = {}
       best = 0
 

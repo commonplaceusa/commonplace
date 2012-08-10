@@ -1,5 +1,5 @@
 class CreateStreetAddresses < ActiveRecord::Migration
-  def change
+  def up
     unless StreetAddress.table_exists?
       create_table :street_addresses do |t|
 
@@ -10,5 +10,8 @@ class CreateStreetAddresses < ActiveRecord::Migration
         t.timestamps
       end
     end
+  end
+  def down
+    drop_table :street_addresses
   end
 end
