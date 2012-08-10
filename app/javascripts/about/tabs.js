@@ -29,6 +29,7 @@ function resetPlaceholders() {
   }
 }
 $(document).ready(function(){
+  resetPlaceholders();
   $('.nav li a').click(function(){
 
     $('.nav li').removeClass('selected');
