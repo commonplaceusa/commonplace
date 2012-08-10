@@ -128,6 +128,10 @@ class Bootstrapper < Sinatra::Base
     erb :about
   end
 
+  get "close_dialog" do
+    erb :close_dialog
+  end
+
   get ":community" do
     set_account
     @community = Community.find_by_slug(params[:community])
