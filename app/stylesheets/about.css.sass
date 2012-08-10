@@ -37,6 +37,9 @@ html
 body
   background: #CEE7FE
 
+input.placeholder, textarea.placeholder
+  color: #888
+  
 em
   font-style: italic
 
@@ -395,7 +398,8 @@ em
         background-position-x: 143px
       input::-webkit-input-placeholder
         color: $blue
-
+      input.placeholder, textarea.placeholder
+        color: #888
       .messages
         background: image-url("shared/redesign/mail-icon.png") no-repeat
         width: 29px
@@ -422,6 +426,7 @@ span#apply-btn, span#nominate-btn, .register-btn
   font-family: $Rokkitt
   box-shadow: inset 0px 1px 1px rgba(255,255,255,.2)
   border: 1px solid $red
+  background-color: $red
   text-shadow: 1px 1px 1px black
   cursor: pointer
   margin-left: 10px
