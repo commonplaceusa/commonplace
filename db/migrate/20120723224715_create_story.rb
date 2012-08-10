@@ -1,13 +1,15 @@
 class CreateStory < ActiveRecord::Migration
   def up
-    create_table :stories do |t|
+    unless Story.table_exists?
+      create_table :stories do |t|
 
-      t.string :title
-      t.integer :community_id
-      t.text :url
-      t.text :content
-      t.text :summary
-      t.timestamps
+        t.string :title
+        t.integer :community_id
+        t.text :url
+        t.text :content
+        t.text :summary
+        t.timestamps
+      end
     end
   end
   def down

@@ -560,8 +560,8 @@ CONDITION
         return []
       end
 
-      input = params[:term].split(/[,|.]/).first
-      likeness = input.split(" ").first =~ /^[0-9]+/ ? 0.90 : 0.90
+      input = params[:term].split(",").first
+      likeness = input.split(" ").first =~ /^[0-9]+/ ? 0.845 : 0.845
       addr = {}
       best = 0
 
@@ -588,8 +588,8 @@ CONDITION
         end
       else
         find_community.residents.each do |street_address|
-          next if street_address.address.nil?
-          street = street_address.address.squeeze(" ").strip
+          next if street_address.address.nil? || street_address.address.empty?
+          street = street_address.address.squeeze(" ").split(",").first.strip
           test = street.jarowinkler_similar(input.squeeze(" ").strip)
 
           if test == 1
@@ -597,6 +597,7 @@ CONDITION
             addr[street] = test
             break
           end
+
 
           st_apt = street.clone
           st_apt << " Apt" if !street.upcase.include?("APT")
