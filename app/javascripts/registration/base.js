@@ -57,13 +57,13 @@ var RegistrationRouter = Backbone.Router.extend({
   },
 
   getURLParameter: function(name) {
-    return decodeURI(
-        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
-    );
+    var query_string;
+    if (window.location.search === "") { query_string = window.location.hash.split("?")[1]; } else { query_string = window.location.search; }
+    return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(query_string)||[,null])[1]);
   },
 
   profile: function() {
-    if (window.location.search != '') {
+    if (window.location.search != '' || window.location.hash.indexOf('?') != -1) {
       this.modal.showPage("profile", {
         full_name: this.getURLParameter("name"),
         email: this.getURLParameter("email"),
