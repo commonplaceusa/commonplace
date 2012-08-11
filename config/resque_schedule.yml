@@ -44,18 +44,18 @@ scale_down_post_daily_digest:
 
 send_weekly_network_health_stats:
   cron: "0 0 * * 0"
-  class: NetworkHealthStats
+  class: StatisticsNetworkHealthCsvGenerator
   args:
   queue: statistics
   description: "Sends out a weekly digest of network health statistics for board review"
 
 send_monthly_network_health_stats:
   cron: "0 0 0 * *"
-  class: NetworkHealthStatsMonthly
+  class: StatisticsNetworkHealthCsvGeneratorMonthly
   args:
   queue: statistics
   description: "Sends out a monthly digest of network health statistics"
-  
+
 load_daily_new_stories:
   cron: "0 0 * * *"
   class: LoadStories
