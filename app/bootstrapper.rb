@@ -158,7 +158,7 @@ class Bootstrapper < Sinatra::Base
     set_account
     erb :organizer_app
   end
-  
+
   get "organizer_app/:id/:userid/:type" do
     set_account
     @type=params[:type]
@@ -168,6 +168,24 @@ class Bootstrapper < Sinatra::Base
 
   get %r{([\w]+)/home.*} do
     erb :home
+  end
+
+  get %r{([\w]+)/tour(.*)$} do |community, after_tour|
+    # HACK: Fixes broken tour link after registration from about page v2
+
+    set_account
+    @community = Community.find_by_slug(params[:captures].first)
+
+    return 404 unless @community
+
+    @login_error = "You must log in to view this content"
+    @login_redirect = request.url
+
+    if params[:name].present? || params[:email].present? || params[:address].present?
+      redirect "/#{params[:captures].first}/tour"
+    end
+
+    erb @account ? :application : :login
   end
 
   get %r{([\w]+)/.*} do
