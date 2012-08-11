@@ -75,12 +75,9 @@ var RegisterNewUserView = RegistrationModalPage.extend({
           }
         }, this));
 
-        if(valid) {
-          this.$("input[name=full_name]").hide();
-          this.$("input[name=email]").hide();
-        }
 
         if(this.$("#suggested_address").is(":hidden")) {
+
 
           var url = '/api/communities/'+this.communityExterior.id+'/address_approximate';
           this.data.term = this.data.address;
@@ -98,6 +95,12 @@ var RegisterNewUserView = RegistrationModalPage.extend({
             console.log(response);
 
             if(response[0] != -1) {
+
+              if(valid) {
+                this.$("input[name=full_name]").hide();
+                this.$("input[name=email]").hide();
+              }
+
               if(response[1].length < 1 || response[0] < 0.84) {
                 valid = false;
 
