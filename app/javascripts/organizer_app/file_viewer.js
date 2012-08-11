@@ -29,7 +29,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
   },
 
   interests: function(){
-    return this.model.get('interest_list');
+    return this.model.get('interests');
   },
 
   getRelated: function(){

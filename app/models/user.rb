@@ -204,7 +204,7 @@ class User < ActiveRecord::Base
     t.add :first_name
     t.add :last_name
     t.add :about
-    t.add :interest_list
+    t.add :interest_list, :as => :interests
     t.add :good_list, :as => :goods
     t.add :skill_list, :as => :skills
     t.add :links

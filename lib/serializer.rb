@@ -56,7 +56,7 @@ module Serializer
         "avatar_url" => o.avatar_url,
         "on_commonplace" => o.on_commonplace?,
         "community_id" => o.community_id,
-        "interest_list" => o.interest_list,
+        "interests" => o.interest_list,
         "stories" => o.find_story
       }
 
