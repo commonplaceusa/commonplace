@@ -92,8 +92,6 @@ var RegisterNewUserView = RegistrationModalPage.extend({
             addr.hide();
             */
 
-            console.log(response);
-
             if(response[0] != -1) {
 
               if(valid) {
