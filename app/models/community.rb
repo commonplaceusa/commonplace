@@ -277,13 +277,13 @@ class Community < ActiveRecord::Base
   end
 
   def resident_todos
-    todos = Flag.init_todo.keys
+    todos = Flag.get_todos
     todos |= self.metadata[:resident_todos] if self.metadata[:resident_todos]
     todos
   end
 
   def resident_tags
-    tags = Flag.init.keys
+    tags = Flag.get_rules.keys
     tags |=  self.metadata[:resident_tags] if self.metadata[:resident_tags]
     # tags << "registered"
     tags << "email"

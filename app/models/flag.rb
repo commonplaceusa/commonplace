@@ -3,9 +3,8 @@ class Flag < ActiveRecord::Base
   belongs_to :resident
   belongs_to :street_address
 
-  # TODO Initialize with actual flags [load from text file or...?]
   def self.init
-    {
+    @@rules = {
       "nominate" =>[[], ["send nomination email"]],
       "sent nomination email" => [["send nomination email"], ["schedule a call"]],
       "scheduled a call" => [["schedule a call"], ["call"]],
@@ -18,7 +17,7 @@ class Flag < ActiveRecord::Base
 
   # Creates a 1:1 mapping of todo with "logical" next flag
   def self.init_todo
-    {
+    @@todos = {
       "send nomination email" => ["sent nomination email"],
       "schedule a call" => ["scheduled a call"],
       "call" => ["called"],
@@ -28,31 +27,26 @@ class Flag < ActiveRecord::Base
   end
 
   def self.get_todos
-    @@todos ||= init
+    @@todos ||= {}
 
-    @@todos
+    @@todos.sort {|a,b| a[1] <=> b[1]}.map {|a, b, c, d| a}.compact
+    # @@todos.keys.compact
   end
 
   def self.get_rule(flag)
-    @@rules ||= init
+    @@rules ||= {}
 
     @@rules[flag]
   end
 
   def self.get_rules
-    @@rules ||= init
+    @@rules ||= {}
 
-    list = @@rules.to_a
-
-    list.each do |flag|
-      puts flag.to_s
-    end
-
-    nil
+    @@rules
   end
 
   def self.create_todo(to_do, type, should, cant)
-    @@todos ||= init
+    @@todos ||= {}
     if @@todos[to_do].nil?
       @@todos[to_do] = [type, Array(cant), Array(should)]
     else
@@ -65,7 +59,7 @@ class Flag < ActiveRecord::Base
 
   # Creates rules for flags to follow
   def self.create_rule(done, flag, to_do)
-    @@rules ||= init
+    @@rules ||= {}
     if @@rules[flag].nil?
       @@rules[flag] = [Array(done), Array(to_do)]
     else
@@ -76,11 +70,8 @@ class Flag < ActiveRecord::Base
     end
   end
 
-  def self.create_rules(flag_list)
-    @@rules ||= init
-  end
-
   def self.clear
     @@rules = {}
+    @@todos = {}
   end
 end

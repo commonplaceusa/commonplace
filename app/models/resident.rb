@@ -106,7 +106,7 @@ class Resident < ActiveRecord::Base
   def manual_add
     self.metadata[:todos] ||= []
     if self.manually_added
-      self.add_tags("nominate")
+      # self.add_tags("nominate")
     end
   end
 
