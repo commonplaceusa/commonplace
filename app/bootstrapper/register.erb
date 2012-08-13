@@ -11,6 +11,15 @@
     <link href="/assets/favicon.png" rel="icon" type="image/png">
 
     <link href="/assets/registration_page.css" rel="stylesheet" type="text/css">
+    <script src="https://connect.facebook.net/en_US/all.js"></script>
+      <script>
+        FB.init({
+          appId      : '<%= $FacebookConfig["app_id"] %>', // App ID
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+      </script>
   </head>
 
   <body class="application">
@@ -21,16 +30,16 @@
       <div id="main">
         <div id="fb-root"></div>
         <div id="registration-modal"></div>
-      
+
         <div style="clear:both;"></div>
-        
- 
+
+
       </div>
       <div id="wrapper-footer"></div>
     </div>
 
     <%= erb :footer %>
-    
+
     <script type="text/javascript" src="/assets/registration.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -40,18 +49,18 @@
 
       CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
       CommonPlace.account = new Account(<%= @account.try(:persisted?) ? Serializer::serialize(Account.new(@account)).to_json : "{}" %>);
- 
+
       window.router = new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
 
       var communitySlug = window.location.pathname.split("/")[1];
 
       function onGoogleDataLoad() {
-        Backbone.history.start({ pushState: true, root: "/" + communitySlug });      
+        Backbone.history.start({ pushState: true, root: "/" + communitySlug });
       }
-      
+
       // Call function once the client has loaded
       google.setOnLoadCallback(onGoogleDataLoad);
-      
+
     </script>
 
     <script type="text/javascript">
@@ -59,7 +68,7 @@
 
     </script>
     <%= erb :tracking %>
-      
+
 
 
   </body>
