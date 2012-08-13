@@ -146,9 +146,11 @@ var RegisterNewUserView = RegistrationModalPage.extend({
 
   facebook: function(e) {
     if (e) { e.preventDefault(); }
+    console.log("Registering");
 
     facebook_connect_registration({
       success: _.bind(function(data) {
+        console.log("Registered");
         this.data = data;
         this.data.isFacebook = true;
         this.template = this.facebookTemplate;

@@ -1,11 +1,9 @@
 function fbEnsureInit(callback) {
-    if(!window.fbApiInit) {
-        setTimeout(function() {fbEnsureInit(callback);}, 50);
-    } else {
-        if(callback) {
-            callback();
-        }
-    }
+  if (FB == undefined) {
+    setTimeout(function() { fbEnsureInit(callback); }, 50);
+  } else {
+    if (callback) { callback(); }
+  }
 }
 
 function fbConnect(api, scope, callback) {
