@@ -34,6 +34,7 @@ class Community < ActiveRecord::Base
   before_destroy :ensure_marked_for_deletion
 
   validates_presence_of :name, :slug
+  validates_uniqueness_of :slug
 
   accepts_nested_attributes_for :neighborhoods
 
