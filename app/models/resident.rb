@@ -116,18 +116,27 @@ class Resident < ActiveRecord::Base
     todos
   end
 
+  def registered
+    self.metadata[:tags] ||= []
+    self.metadata[:tags] << "registered"
+    self.community.add_resident_tags(Array("registered"))
+    self.save
+  end
+
   # Creates tags associated with the resident
   #
   # Returns a list of todos
   def add_flags(flags)
     metadata[:remove] ||= []
     metadata[:add] ||= []
-    add = []
-    remove = []
+
     flags.each do |flag|
       if rule = Flag.get_rule(flag)
         if !self.flags.find_by_name(flag)
           f = self.flags.create(:name => flag)
+          if replace = f.replace_flag
+            remove_tag(replace)
+          end
           metadata[:remove] |= rule[0]
           metadata[:add] |= rule[1]
         end
@@ -137,11 +146,45 @@ class Resident < ActiveRecord::Base
     [metadata[:remove], metadata[:add]]
   end
 
-  def registered
-    self.metadata[:tags] ||= []
-    self.metadata[:tags] << "registered"
-    self.community.add_resident_tags(Array("registered"))
-    self.save
+  def remove_flag(flag)
+    rules = Flag.get_rule(flag)
+    todos = rules[0] | rules[1]
+
+    # For each todo associated with the given flag...
+    todos.each do |todo|
+      tags = Flag.get_todo(todo)
+      un_cant = tags[1]
+      un_should = tags[2]
+      change = true
+
+      # Check if Resident has other "can't display" tags for this todo
+      un_cant.each do |tag|
+        if metadata[:tags].include?(tag)
+          change = false
+          break
+        end
+      end
+
+      # If it doesn't, then remove todo from the "can't display" list
+      if change
+        metadata[:remove] -= Array(todo)
+      end
+
+      change = true
+
+      # Check if Resident has other "should display" tags for this todo
+      un_should.each do |tag|
+        if metadata[:tags].include?(tag)
+          change = false
+          break
+        end
+      end
+
+      # If it doesn't, then remove todo from the "should display" list
+      if change
+        metadata[:add] -= Array(todo)
+      end
+    end
   end
 
   def add_tags(tag_or_tags)
@@ -161,15 +204,17 @@ class Resident < ActiveRecord::Base
   end
 
   def remove_tag(tag)
-    if flag = self.flags.find_by_name(tag)
-      flag.destroy
+    if !metadata[:tags].include?(tag)
+      return
     end
+
     tags = Array(tag)
     self.metadata[:tags] ||= []
     self.metadata[:tags] -= tags
+
+    remove_flag(tag)
     self.save
   end
-
 
   def add_sector_tags(tags)
     sectortags = tags.split(',')

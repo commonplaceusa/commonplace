@@ -3,9 +3,27 @@ class Flag < ActiveRecord::Base
   belongs_to :resident
   belongs_to :street_address
 
+  # todo => [type, [don't display tags], [should display tags]
+  #
+  # Note: Don't display overrides should display
+  # This function will only be called if the TagRules file can't be found
+  def self.init_todo
+    @@todos = {
+      "send nomination email" => [0, ["sent nomination email"], ["nominate"]],
+      "schedule a call" => [0, ["scheduled a call", "called", "sent thanks for call"], ["sent nomination email"]],
+      "call" => [0, ["called"] ["scheduled a call"]],
+      "send thanks for call" => [0, ["sent thanks for call"], ["called"]],
+      "add to civic hero list" => [0, ["member of civic hero"]]
+    }
+  end
+
+  # tag => [[don't display todos], [should display todos]
+  #
+  # Note: Don't display overrides should display
+  # This function will only be called if the TagRules file can't be found
   def self.init
     @@rules = {
-      "nominate" =>[[], ["send nomination email"]],
+      "nominate" => [[], ["send nomination email"]],
       "sent nomination email" => [["send nomination email"], ["schedule a call"]],
       "scheduled a call" => [["schedule a call"], ["call"]],
       "called" => [["schedule a call", "call"], ["send thanks for call"]],
@@ -15,15 +33,10 @@ class Flag < ActiveRecord::Base
     }
   end
 
-  # Creates a 1:1 mapping of todo with "logical" next flag
-  def self.init_todo
-    @@todos = {
-      "send nomination email" => ["sent nomination email"],
-      "schedule a call" => ["scheduled a call"],
-      "call" => ["called"],
-      "send thanks for call" => ["sent thanks for call"],
-      "add to civic hero list" => ["member of civic hero"]
-    }
+  def self.get_todo(todo)
+    @@todos ||= {}
+
+    @@todos[todo]
   end
 
   def self.get_todos
@@ -68,6 +81,19 @@ class Flag < ActiveRecord::Base
       update[1] |= Array(to_do)
       @@rules[flag] = update
     end
+  end
+
+  def replace_flag
+    case name
+    when "Supporter"
+      return "Not-Yet Supporter"
+    when "Potential Feed Owner"
+      return "Not Potential Feed Owner"
+    when "Received Civic Heroes Information"
+      return "Not-Yet Received Civic Heroes information"
+    end
+
+    nil
   end
 
   def self.clear
