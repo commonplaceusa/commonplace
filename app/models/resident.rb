@@ -120,19 +120,21 @@ class Resident < ActiveRecord::Base
   #
   # Returns a list of todos
   def add_flags(flags)
+    metadata[:remove] ||= []
+    metadata[:add] ||= []
     add = []
     remove = []
     flags.each do |flag|
       if rule = Flag.get_rule(flag)
         if !self.flags.find_by_name(flag)
           f = self.flags.create(:name => flag)
-          remove |= rule[0]
-          add |= rule[1]
+          metadata[:remove] |= rule[0]
+          metadata[:add] |= rule[1]
         end
       end
     end
 
-    [remove, add]
+    [metadata[:remove], metadata[:add]]
   end
 
   def registered
