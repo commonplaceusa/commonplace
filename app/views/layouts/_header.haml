@@ -26,7 +26,7 @@
           %ul.account-sub
             %li
               %a(href="/#{current_community.slug}/account" data-remote) Account Settings
-            - current_user.feed_owners.each do |feed_owner|
+            - current_user.feed_owners.select { |owner| owner.feed.present? }.each do |feed_owner|
               %li
                 %a(href="/pages/#{feed_owner.feed.slug}") #{feed_owner.feed.name}
             %li
