@@ -93,6 +93,7 @@ class Bootstrapper < Sinatra::Base
     erb :register
   end
 
+  # TODO: This should be a set of regular expressions
   get ":community/about" do
     @community = Community.find_by_slug(params[:community])
     erb :about
@@ -102,27 +103,33 @@ class Bootstrapper < Sinatra::Base
     @community = Community.find_by_slug(params[:community])
     @active_tab = "our-mission"
     erb :about
-
   end
+
   get ":community/our-story" do
     @community = Community.find_by_slug(params[:community])
     @active_tab = "our-story"
     erb :about
-
   end
+
   get ":community/our-platform" do
     @community = Community.find_by_slug(params[:community])
     @active_tab = "our-platform"
     erb :about
-
   end
+
   get ":community/press" do
     @community = Community.find_by_slug(params[:community])
     @active_tab = "press"
     erb :about
-
   end
+
   get ":community/nominate" do
+    @community = Community.find_by_slug(params[:community])
+    @active_tab = "nominate"
+    erb :about
+  end
+
+  get ":community/Nominate" do
     @community = Community.find_by_slug(params[:community])
     @active_tab = "nominate"
     erb :about
