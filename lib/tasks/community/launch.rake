@@ -3,7 +3,7 @@ namespace :community do
     ActiveRecord::Base.transaction do
       begin
         new_community = Community.create!(
-          name: args[:name],
+          name: args[:name].titleize,
           slug: args[:slug]
         )
         new_neighborhood = Neighborhood.create!(
