@@ -26,7 +26,12 @@ namespace :community do
     community = Community.find_by_slug(args[:slug])
     community.add_default_groups! if community.groups.empty?
     community.groups.each do |group|
-      group.update_attribute(:avatar_url, "https://s3.amazonaws.com/commonplace-avatars-production/groups/#{group.slug}.png")
+      # All slugs should be lowercase
+      new_group = I18n.t("default_groups").select { |g| g.name == group.name }.first
+      next unless new_group.present?
+      group.slug = new_group.slug
+      group.avatar_url = "https://s3.amazonaws.com/commonplace-avatars-production/groups/#{group.slug}.png"
+      group.save!
     end
   end
 end
