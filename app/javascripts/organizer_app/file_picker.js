@@ -10,7 +10,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     "click #next": "next",
     "click #filter": "filterUsers",
     "click #filter-order" :"filterUsers",
-    "click #filter-button": "filter",
+    "click #search-button": "search",
     "click .tag-filter": "cycleFilter",
     "click #check-all": "checkall",
     "click #add-tag" : "addTag",
@@ -174,15 +174,10 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
       }, this)));
   },
 
-  filter: function() {
+  search: function() {
     var params = {
-      "with": _.map(this.$(".tag-filter[data-state=on]").toArray(), function(e) {
-        return $(e).attr("data-tag");
-      }).join(","),
-      without: _.map(this.$(".tag-filter[data-state=off]").toArray(), function(e) {
-        return $(e).attr("data-tag");
-      }).join(","),
-      query: this.$("#query-input").val()
+      search: "search",
+      name: this.$("#query-input").val()
     };
 
     this.collection.fetch({

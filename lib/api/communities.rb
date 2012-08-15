@@ -411,6 +411,12 @@ CONDITION
     # I really think it gonna be much faster if change to executing SQL. So hope you have time change to SQL --Ye Shen
     get "/:id/files" do
       control_access :admin
+
+      if params[:search] == "search"
+        return serialize(find_community.residents.find_by_full_name(params[:name]))
+      end
+
+
       if params[:search]=="filter"
         if !params[:order]
           if params[:tag].length>1

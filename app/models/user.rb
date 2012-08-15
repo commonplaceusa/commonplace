@@ -126,7 +126,11 @@ class User < ActiveRecord::Base
 
   def self.find_by_full_name(full_name)
     name = full_name.split(" ")
-    where("LOWER(users.last_name) = ? AND LOWER(users.first_name) = ?", name.last, name.first)
+    u = where("LOWER(users.last_name) ILIKE ? AND LOWER(users.first_name) ILIKE ?", name.last, name.first)
+
+    return u if !u.empty?
+
+    nil
   end
 
   def reset_password(new_password = "cp123")

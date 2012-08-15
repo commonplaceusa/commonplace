@@ -22,6 +22,15 @@ class Resident < ActiveRecord::Base
 
   after_create :manual_add#, :find_story
 
+  def self.find_by_full_name(full_name)
+    name = full_name.split(" ")
+    r = where("residents.last_name ILIKE ? AND residents.first_name ILIKE ?", name.last, name.first)
+
+    return r if !r.empty?
+
+    nil
+  end
+
   def on_commonplace?
     self.user_id?
   end
@@ -40,6 +49,14 @@ class Resident < ActiveRecord::Base
 
   def manually_added?
     self.metadata[:manually_added] ||= false
+  end
+
+  def full_name
+    [first_name, last_name].select(&:present?).join(" ")
+  end
+
+  def name
+    full_name
   end
 
   def add_log(date, text, tags)
@@ -241,6 +258,7 @@ class Resident < ActiveRecord::Base
     string :type_tags, :multiple => true
     string :first_name
     string :last_name
+    text :full_name
   end
 
   # Correlates Resident with existing Users
