@@ -1,0 +1,18 @@
+%h2
+  Civic Hero Nominations for
+  = @community.name
+%table
+  %tr
+    %th Nominator Email
+    %th Nominator Name
+    %th Nominee Email
+    %th Nominee Name
+    %th Reason
+  - @nominations.each do |nomination|
+    %tr
+      %td= nomination.nominator_email
+      %td= nomination.nominator_name
+      %td= nomination.nominee_email
+      %td= nomination.nominee_name
+      %td= nomination.reason
+

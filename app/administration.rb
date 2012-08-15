@@ -85,4 +85,10 @@ class Administration < Sinatra::Base
     redirect "/"
   end
 
+  get "/:community/civic_hero_nominations" do |slug|
+    @community = Community.find_by_slug(slug)
+    @nominations = CivicHeroNomination.where(community_id: @community.id)
+    haml :civic_hero_nominations
+  end
+
 end
