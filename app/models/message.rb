@@ -4,7 +4,7 @@ class Message < ActiveRecord::Base
   belongs_to :messagable, :polymorphic => true
   validates_presence_of :subject, :body, :user, :messagable
 
-  has_many :replies, :as => :repliable, :order => :created_at
+  has_many :replies, :as => :repliable, :order => :created_at, :dependent => :destroy
 
   scope :today, :conditions => ["messages.created_at between ? and ?", DateTime.now.at_beginning_of_day, DateTime.now]
 
