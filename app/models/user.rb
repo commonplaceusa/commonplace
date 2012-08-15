@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   scope :have_sent_messages, lambda {|user| joins(:received_messages).where(messages: { user_id: user.id }) }
 
   def facebook_user?
-    self.facebook_uid?
+    self.facebook_uid? || self.private_metadata.has_key?("fb_access_token")
   end
 
   def validate_password?
@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_presence_of :referral_source
+  validates_presence_of :referral_source, on: :create
 
   # HACK HACK HACK TODO: This should be in the database schema, or slugs for college towns should ALWAYS be the domain suffix
   validates_format_of :email, :with => /^([^\s]+)umw\.edu/, :if => :college?
@@ -567,6 +567,7 @@ WHERE
   # forgo both the auto-complete and address suggestion, but it can't be
   # helped if a user decides to be pathological
   def address_correlate
+    return nil unless (self.community.respond_to?(:launch_date) && Community.find_by_name("Lexington").respond_to?(:launch_date))
     return nil if self.community.launch_date < Community.find_by_name("Lexington").launch_date
     likeness = 0.94
     addr = []
