@@ -544,7 +544,7 @@ CONDITION
       200
     end
 
-    # Add tags to a community resident file
+    # Add tags to community resident files
     #
     # Requires admin
     #
@@ -559,22 +559,25 @@ CONDITION
 
       200
     end
-=begin    
-    # Add tags for a single resident file
-    #
-    # Requires admin
-    #
-    # Request params:
-    #   tags - the tags to add
-    post "/:id/files/tags" do
+
+    post "/:id/files/tag_all" do
       control_access :admin
 
-      params[:file_id].each do |id|
-        find_community.residents.find(id).add_tags(params[:tags])
+      if params[:tag].length>1
+        res = filter_users_by_several_tag(params[:tag],params[:have],params[:id])
+      elsif params[:tag].length==1
+        res = filter_users_by_tag(params[:tag][0], params[:have][0], params[:id])
+      elsif params[:tag].length==0
+        res = Resident.where(:community_id=>params[:id]).order("last_name ASC, first_name ASC")
       end
+
+      res.each do |r|
+        r.add_tags(params[:add])
+      end
+
       200
     end
-=end
+
     # Create a post in the community
     #
     # Requires community membership

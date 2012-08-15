@@ -13,6 +13,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     "click #search-button": "search",
     "click .tag-filter": "cycleFilter",
     "click #check-all": "checkall",
+    "click #server-tag": "serverAddTag",
     "click #add-tag" : "addTag",
     "click #map-button": "showMapView",
     "click #new-resident": "addResident",
@@ -61,7 +62,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   next: function() {
-    if(this.amount() < per)
+    if(this.collection.models.length < per)
       return;
 
     ++page;
@@ -95,6 +96,24 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
 
     checklist[c] = !checklist[c];
     this.render();
+  },
+
+  serverAddTag: function() {
+    var add = this.$("#tag-list option:selected").val();
+    var all = this.filter();
+    var tag = all[0];
+    var haves = all[1];
+
+    if(add == "")
+      return;
+
+    var params = {
+      "add": add,
+      "tag": tag,
+      "have": haves
+    }
+
+    $.post(this.collection.url()+"/tag_all", params).success(function() { location.reload() });
   },
 
   addTag: function() {
@@ -233,8 +252,34 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     return actions;
   },
 
+  filter: function() {
+    var tag=new Array();
+    var select = this.$("select[name=filter-tags]");
+    var haves = new Array();
+    var len = select[0].options.length;
+
+    for(var x = 0; x < len; ++x) {
+      if(select[0].options[x].selected) {
+        tag.push(select[0].options[x].value);
+        haves.push("yes");
+      }
+
+      if(select[1].options[x].selected) {
+        tag.push(select[1].options[x].value);
+        haves.push("no");
+      }
+    }
+
+    return [tag, haves];
+  },
+
   filterUsers: function(e){
     this.$("#amount").text("Counting");
+    var Search = "filter";
+    var all = this.filter();
+    var tag = all[0];
+    var haves = all[1];
+    /*(
     var tag=new Array();
     var Search="filter";
     var select = this.$("select[name=filter-tags]");
@@ -252,28 +297,8 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
         haves.push("no");
       }
     }
-    
-    //console.log(tag[0]);
-    /*
-    _.map(this.$("select[name=filter-tags]"), function(select) {
-      if(select.value){
-        if(!isNaN(select.value)){
-          tag.push(interests[select.value]);
-          Search="byinterest";
-        }
-        else{
-          tag.push(select.value);
-        }
-      }
-    });
-    var haves=new Array();
-    _.map(this.$("select[name=haveornot]"), function(select) {
-      if(select.value){
-        haves.push(select.value);
-      }
-    });
     */
-    
+
     switch(e.target.id){
       case "filter":
         var params={
