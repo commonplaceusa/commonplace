@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
   #track_on_creation
-  belongs_to :user, :counter_cache => true
+  belongs_to :user#, :counter_cache => true
   belongs_to :messagable, :polymorphic => true
   validates_presence_of :subject, :body, :user, :messagable
 
