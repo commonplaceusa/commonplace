@@ -2,28 +2,30 @@
 
   <div id="cont">
 
-    <div class="left_text">
-      Find out more at <a href="/about" target="_blank">CommonPlaceUSA.com</a>
-    </div>
+    <!--
+      <div class="left_text">
+        Find out more at <a href="/about" target="_blank">CommonPlaceUSA.com</a>
+      </div>
 
-    <div class="right_text">
-      <% if @community %>
-        <a href="mailto:<%= @community.organizer_email %>">Questions? Email <%= @community.organizer_email %></a>
-      <% else %>
-        <a href="mailto:faq@commonplaceusa.com">Questions? Email FAQ@CommonPlaceUsa.com</a>
-      <% end %>
-      <% if @community %>
-        &sdot;
-        <a href="/faq" data-remote>FAQ</a>
-      <% end %>
-      <% if @account && @community.discount_businesses.present? %>
-        &sdot;
-        <a href="/discount" data-remote>Good Neighbor Discount</a>
-      <% end %>
-      <% if @community %>
-        &sdot;
-        <a href="/<%= @community.slug %>/privacy">Privacy Policy</a>
-      <% end %>
-    </div>
+      <div class="right_text">
+        <% if @community %>
+          <a href="mailto:<%= @community.organizer_email %>">Questions? Email <%= @community.organizer_email %></a>
+        <% else %>
+          <a href="mailto:faq@commonplaceusa.com">Questions? Email FAQ@CommonPlaceUsa.com</a>
+        <% end %>
+        <% if @community %>
+          &sdot;
+          <a href="/faq" data-remote>FAQ</a>
+        <% end %>
+        <% if @account && @community.discount_businesses.present? %>
+          &sdot;
+          <a href="/discount" data-remote>Good Neighbor Discount</a>
+        <% end %>
+        <% if @community %>
+          &sdot;
+          <a href="/<%= @community.slug %>/privacy">Privacy Policy</a>
+        <% end %>
+      </div>
+    -->
   </div>
 </div>
