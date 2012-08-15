@@ -3,7 +3,7 @@ require 'htmlentities'
 
 class RSSAnnouncement < Announcement
 
-  validates_uniqueness_of :url
+  validates_uniqueness_of :subject, scope: [:url]
 
   def self.from_rss_item(item, params = {})
     self.record_timestamps = false
@@ -31,5 +31,5 @@ class RSSAnnouncement < Announcement
   def self.strip_feedflare(html)
     html.gsub(/<div class=\"feedflare\">(.*)<\/div>/m, "")
   end
-  
+
 end
