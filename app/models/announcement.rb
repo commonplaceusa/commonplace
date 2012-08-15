@@ -4,7 +4,7 @@ class Announcement < ActiveRecord::Base
 
   has_many :replies, :as => :repliable, :order => :created_at, :dependent => :destroy
   has_many :repliers, :through => :replies, :uniq => true, :source => :user
-  belongs_to :owner, :polymorphic => true,:counter_cache => true
+  belongs_to :owner, :polymorphic => true, :counter_cache => true
   belongs_to :community
 
   has_many :thanks, :as => :thankable, :dependent => :destroy
