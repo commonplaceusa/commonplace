@@ -14,16 +14,16 @@ Spork.prefork do
 
   RSpec.configure do |config|
     config.use_transactional_examples = false
-    
+
     config.mock_with :rr
 
-    config.before :all do 
+    config.before :all do
       stub(Geocoder).search
     end
 
     config.before :suite do
       DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.clean_with(:truncation)
+      # DatabaseCleaner.clean_with(:truncation)
     end
 
     config.before :each do
@@ -33,9 +33,9 @@ Spork.prefork do
     config.after :each do
       DatabaseCleaner.clean
     end
-    
+
     config.include Matchers
-    config.include Helpers, :type => :request 
+    config.include Helpers, :type => :request
   end
 
 end
