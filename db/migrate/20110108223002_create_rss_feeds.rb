@@ -7,5 +7,7 @@ class CreateRssFeeds < ActiveRecord::Migration
   end
 
   def self.down
+    remove_column :feeds, :type
+    remove_column :feeds, :feed_url
   end
 end
