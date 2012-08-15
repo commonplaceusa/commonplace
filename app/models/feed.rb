@@ -3,7 +3,7 @@ class Feed < ActiveRecord::Base
 
   validates_presence_of :name, :community
 
-  validates_attachment_presence :avatar
+  # validates_attachment_presence :avatar
 
   validates_uniqueness_of :slug, :scope => :community_id, :allow_nil => true
 
