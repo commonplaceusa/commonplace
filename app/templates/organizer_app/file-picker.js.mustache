@@ -3,7 +3,7 @@ var ids=new Array();
 var currentid=1;
 function show(id){
 if(ids.indexOf(id)>=0){
-  console.log(id+"is in");
+  //console.log(id+"is in");
   return;
 }
 else{
@@ -25,6 +25,14 @@ newselect.insertBefore("#filter");
 <HR>
   <input type="text" placeholder="search" id="query-input" size=25>
   <button id="search-button">Search</button>
+  <select id="query-select">
+    <option>by full name</option>
+    <option value="first name">by first name</option>
+    <option value="last name">by last name</option>
+    <option value="email">by e-mail</option>
+    <option value="address">by address</option>
+    <option value="notes">by notes</option>
+  </select>
 <HR>
   <label id="haveornot" name="haveornot" style="width:77px">Has</label>
 <select id="1" multiple="true" class="list" name="filter-tags" data-placeholder="Choose a tag" style="width:200px">

@@ -37,6 +37,7 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
         checklist[id] = false;
       checklist[id] = !checklist[id];
     });
+
     this.render();
   },
 
@@ -75,7 +76,7 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
 	      var thead=$("<thead><tr><th><input type=checkbox class=checkall id=\""+value+"\"/></th> <th>Name</th> <th>Email</th> <th>Phone</th></tr> </thead>");
 	      $(list).append(thead);
 	      var trs=
-		_.map(profiles, function(model) {
+		_.map(profiles, _.bind(function(model) {
 		  var name = model.full_name();
 		  var email = model.email();
 		  var phone = model.phone();
@@ -103,7 +104,7 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
 		  //$(li).prepend(cb);
 
 		  return tr;
-		});
+		}, this));
 	      _.each(trs,function(tr){$(tbody).append(tr);});
 	      $(list).append(tbody);
 	    }

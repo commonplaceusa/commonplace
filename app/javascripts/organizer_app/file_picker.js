@@ -44,38 +44,24 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     this.options.fileViewer.show($(e.currentTarget).data('model'), this.options.community, this.collection,this);
   },
 
-  previous: function() {
+  previous: function(e) {
     if(page <= 1)
       return;
 
     --page;
-
     all_check = false;
-    var params = {
-      "page": page,
-      "per": per
-    };
-    this.collection.fetch({
-      data: params,
-      success: _.bind(this.afterRender, this)
-    });
+
+    this.filterUsers(e);
   },
 
-  next: function() {
+  next: function(e) {
     if(this.collection.models.length < per)
       return;
 
     ++page;
-
     all_check = false;
-    var params = {
-      "page": page,
-      "per": per
-    };
-    this.collection.fetch({
-      data: params,
-      success: _.bind(this.afterRender, this)
-    });
+
+    this.filterUsers(e);
   },
 
   checkall: function(e) {
@@ -196,10 +182,18 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
 
   search: function() {
     var params = {
+      page: page,
+      per: per,
       search: "search",
-      name: this.$("#query-input").val()
+      type: this.$("#query-select option:selected").val(),
+      text: this.$("#query-input").val()
     };
 
+    if(params["text"] == null || params["text"].length === 0) {
+      return;
+    }
+
+    console.log(params["text"]);
     this.collection.fetch({
       data: params,
       success: _.bind(this.afterRender, this)
@@ -275,33 +269,19 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   filterUsers: function(e){
+
+    console.log(e);
     this.$("#amount").text("Counting");
     var Search = "filter";
     var all = this.filter();
     var tag = all[0];
     var haves = all[1];
-    /*(
-    var tag=new Array();
-    var Search="filter";
-    var select = this.$("select[name=filter-tags]");
-    var haves = new Array();
-    var len = select[0].options.length;
-
-    for(var x = 0; x < len; ++x) {
-      if(select[0].options[x].selected) {
-        tag.push(select[0].options[x].value);
-        haves.push("yes");
-      }
-
-      if(select[1].options[x].selected) {
-        tag.push(select[1].options[x].value);
-        haves.push("no");
-      }
-    }
-    */
 
     switch(e.target.id){
       case "filter":
+        page = 1;
+      case "prev":
+      case "next":
         var params={
           "page": page,
           "per": per,

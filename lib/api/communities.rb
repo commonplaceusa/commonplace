@@ -413,29 +413,46 @@ CONDITION
       control_access :admin
 
       if params[:search] == "search"
-        return serialize(find_community.residents.find_by_full_name(params[:name]))
+        text = params[:text]
+
+        case params[:type]
+        when "email"
+          r = find_community.residents.where("email ILIKE ?", "%#{text}%")
+        when "address"
+          r = find_community.residents.where("address ILIKE ?", "%#{text}%")
+        when "notes"
+          r = find_community.residents.where("notes ILIKE ?", "%#{text}%")
+        when "first name"
+          r = find_community.residents.where("first_name ILIKE ?", "%#{text}%")
+        when "last name"
+          r = find_community.residents.where("last_name ILIKE ?", "%#{text}%")
+        else
+          r = find_community.residents.find_by_full_name(text)
+        end
+
+        return serialize(paginate(r).page(params[:page]).per(params[:per]))
       end
 
 
       if params[:search]=="filter"
         if !params[:order]
-          if params[:tag].length>1
-            serialize(paginate(filter_users_by_several_tag(params[:tag],params[:have],params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
-          elsif params[:tag].length==1
-            serialize(paginate(filter_users_by_tag(params[:tag][0], params[:have][0], params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
-          elsif params[:tag].length==0
+          if params[:tag].nil? || params[:tag].length == 0
             serialize(paginate(Resident.where(:community_id=>params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
+          elsif params[:tag].length > 1
+            serialize(paginate(filter_users_by_several_tag(params[:tag],params[:have],params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
+          else
+            serialize(paginate(filter_users_by_tag(params[:tag][0], params[:have][0], params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
           end
         else
-          if params[:order]=="time"
+          if params[:order] == "time"
              order_users_by_time_of_tag(params[:tag],params[:id],params[:ids])
           else
              order_users_by_quantity_of_tag(params[:tag],params[:id],params[:ids])
           end
         end
-      elsif params[:search]=="byinterest"
+      elsif params[:search] == "byinterest"
         serialize(User.where(:community_id=>params[:id]).tagged_with(params[:tag],:on=>:interests).map &:resident)
-      elsif params[:search]=="linked"
+      elsif params[:search] == "linked"
         if params[:resident_id]
           serialize(User.find(Resident.find(params[:resident_id]).user_id).find_related_interests.map &:resident)
         else
@@ -460,7 +477,6 @@ CONDITION
         end)
 =end
       serialize(paginate(Resident.where(:community_id=>params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
-      #serialize(Resident.where(:community_id=>params[:id]))
       end
     end
 
