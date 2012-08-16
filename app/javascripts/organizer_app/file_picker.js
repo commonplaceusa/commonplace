@@ -160,6 +160,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   afterRender: function() {
+    $("#pg_num").text(page);
     $("#check-all").attr("checked", all_check);
 //    this.$("select.list").chosen()
 
