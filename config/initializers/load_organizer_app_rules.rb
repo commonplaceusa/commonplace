@@ -1,13 +1,23 @@
 
 Flag.clear
 
+r = Rails.root.join("app", "text", "TagTypes.csv")
 s = Rails.root.join("app", "text", "TagRules.csv")
 
-if !File.exist?(s)
+if !File.exist?(s) || !File.exist?(r)
   Flag.init
   Flag.init_todo
 
 else
+
+  CSV.foreach(r, :headers => true) do |row|
+    h = row.to_hash
+
+    type = h["Type"].nil? ? "No type" : h["Type"]
+    name = h["Tag Name"]
+
+    Flag.create_type(name, type)
+  end
 
   CSV.foreach(s, :headers => true) do |row|
     h = row.to_hash

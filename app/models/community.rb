@@ -267,6 +267,8 @@ class Community < ActiveRecord::Base
   def add_resident_tags(tags)
     self.metadata[:resident_tags] ||= []
     self.metadata[:resident_tags] |= tags
+
+    self.save
   end
 
   def add_resident_todos(todos)
@@ -282,7 +284,7 @@ class Community < ActiveRecord::Base
   end
 
   def resident_tags
-    tags = Flag.get_rules.keys
+    tags = Flag.get_types.keys
     tags |=  self.metadata[:resident_tags] if self.metadata[:resident_tags]
     # tags << "registered"
     tags << "email"

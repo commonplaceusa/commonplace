@@ -31,6 +31,28 @@ class Flag < ActiveRecord::Base
       "agreed to civic hero membership" => [[], ["add to civic hero list"]],
       "member of civic hero" => [["add to civic hero list"], []]
     }
+
+    @@type = {
+      "nominate" => "No type",
+      "sent nomination email" => "No type",
+      "scheduled a call" => "No type",
+      "called" => "No type",
+      "sent thanks for call" => "No type",
+      "agreed to civic hero membership" => "No type",
+      "member of civic hero" => "No type"
+    }
+  end
+
+  def self.get_type(flag)
+    @@type ||= {}
+
+    @@type[flag]
+  end
+
+  def self.get_types
+    @@type ||= {}
+
+    @@type
   end
 
   def self.get_todo(todo)
@@ -56,6 +78,11 @@ class Flag < ActiveRecord::Base
     @@rules ||= {}
 
     @@rules
+  end
+
+  def self.create_type(flag, type)
+    @@type ||= {}
+    @@type[flag] = type
   end
 
   def self.create_todo(to_do, type, should, cant)
@@ -112,5 +139,6 @@ class Flag < ActiveRecord::Base
   def self.clear
     @@rules = {}
     @@todos = {}
+    @@type = {}
   end
 end
