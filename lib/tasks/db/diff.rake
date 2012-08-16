@@ -14,14 +14,15 @@ namespace :db do
      puts "run 'rake db:diff' to test the migrations"
   end
 
+  task :diff_local_production do
+    `dropdb -h localhost commonplace_development; createdb -h localhost -T commonplace_production commonplace_development`
+  end
+
   desc "see if there's a difference between migrating and rolling back your migration, if env variable LEAVE_FILES is set, diff files will not be deleted"
   task :diff => [:environment] do
     exit 0 if migrations.empty?
 
     clean_up
-
-    puts 'marking functions immutable ...'
-    # Rake::Task["db:mark_functions_immutable"].invoke
 
     puts 'taking "before" snapshot of db ...'
     dump("before")
