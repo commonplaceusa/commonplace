@@ -6,8 +6,5 @@ class ChangeDataTypeForResidentPhone < ActiveRecord::Migration
   end
 
   def down
-    change_table :residents do |t|
-      t.change :phone, :integer
-    end
   end
 end
