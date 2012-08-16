@@ -18,7 +18,7 @@ class Resident < ActiveRecord::Base
   belongs_to :user
   belongs_to :street_address
 
-  has_many :flags
+  has_many :flags, :dependent => :destroy
 
   after_create :manual_add#, :find_story
 
@@ -125,7 +125,7 @@ class Resident < ActiveRecord::Base
     if self.manually_added
       self.add_tags("Not-Yet Supporter")
       self.add_tags("Not Potential Feed Owner")
-      self.add_tags("Not-Yet Receive Civic Heroes Information")
+      self.add_tags("Not-Yet Received Civic Heroes Information")
     end
   end
 
@@ -151,6 +151,10 @@ class Resident < ActiveRecord::Base
 
     flags.each do |flag|
       if rule = Flag.get_rule(flag)
+        ignore = Flag.ignore_flag(flag)
+        if !ignore.nil? && metadata[:tags].include?(ignore)
+          return [metadata[:remove], metadata[:add]]
+        end
         if !self.flags.find_by_name(flag)
           f = self.flags.create(:name => flag)
           if replace = f.replace_flag
@@ -209,14 +213,15 @@ class Resident < ActiveRecord::Base
   def add_tags(tag_or_tags)
     tags = Array(tag_or_tags)
 
-    # Edit todo list
     self.metadata[:todos] ||= []
+    self.metadata[:tags] ||= []
+
+    # Edit todo list
     todos ||= add_flags(tags)
     self.metadata[:todos] |= todos[1]
     self.metadata[:todos] -= todos[0]
 
     # Add to tag list
-    self.metadata[:tags] ||= []
     self.metadata[:tags] |= tags
     self.community.add_resident_tags(tags)
     self.save
@@ -263,21 +268,68 @@ class Resident < ActiveRecord::Base
     text :full_name
   end
 
-  # Correlates Resident with existing Users
-  # and StreetAddresses [if possible]
-  #
-  # Since Users are always associated with a Resident,
-  # this function simply adds tags to the existing
-  # Resident file if a correlation exists and
-  # does nothing otherwise, if given only an e-mail
-  #
-  # @return boolean, depending on whether a correlation was found or not
-  # If true, destroy this [redundant] Resident file
-  def correlate
-    if self.address?
-      matched_street = User.where("address ILIKE ? AND last_name ILIKE ?", self.address)
+  # If a correlation is found, then stuff has to be merged into one file
+  def merge_into(r)
+    if !self.metadata[:add].nil?
+      if !r.metadata[:add].nil?
+        r.metadata[:add] |= self.metadata[:add]
+      else
+        r.metadata[:add] = self.metadata[:add]
+      end
+    end
 
-      if matched_street.count > 1
+    if !self.metadata[:remove].nil?
+      if !r.metadata[:remove].nil?
+        r.metadata[:remove] |= self.metadata[:remove]
+      else
+        r.metadata[:remove] = self.metadata[:remove]
+      end
+    end
+
+    if !r.metadata[:todo].nil?
+      r.metadata[:todo] |= r.metadata[:add] - r.metadata[:remove]
+    else
+      r.metadata[:todo] = r.metadata[:add] - r.metadata[:remove]
+    end
+
+    if !r.metadata[:tags].nil?
+      r.metadata[:tags] |= self.metadata[:tags]
+    else
+      r.metadata[:tags] = self.metadata[:tags]
+    end
+
+    self.metadata[:tags].each do |tag|
+      r.add_tags(tag)
+    end
+
+    r.sector_tag_list |= self.sector_tag_list
+    r.type_tag_list |= self.type_tag_list
+    r.input_method_list |= self.input_method_list
+    r.PFO_statu_list |= self.PFO_statu_list
+    r.organizer_list |= self.organizer_list
+
+    r.email = self.email if r.email.nil? && !self.email.nil? && !self.email.empty?
+    r.phone = self.phone if r.phone.nil? && !self.phone.nil? && !self.phone.empty?
+    r.organization = self.organization if r.organization.nil? && !self.organization.nil? && !self.organization.empty?
+    r.position = self.position if r.position.nil? && !self.position.nil? && !self.position.empty?
+    r.address = self.address if r.address.nil? && !self.address.nil? && !self.address.empty?
+    r.notes = self.notes if r.notes.nil? && !self.notes.nil? && !self.notes.empty?
+
+    r.manually_added ||= self.manually_added
+    r.save
+  end
+
+  # Correlates Resident with existing Residents
+  # and StreetAddresses [if possible]
+  def correlate
+    correlated = false
+    r = nil
+
+    # Correlate by address
+    if self.address?
+      matched_street = self.community.residents.where("residents.id != ? AND address ILIKE ? AND last_name ILIKE ?", self.id, self.address, self.last_name)
+
+      if matched_street.count > 0
         matched = matched_street.select { |resident| resident.first_name == self.first_name }
 
         if matched.count > 1
@@ -285,28 +337,27 @@ class Resident < ActiveRecord::Base
         end
 
         if matched.count == 1
-          # matched.first.add_tags(self.tags)
-          return true
+          r = matched.first
+
+          self.merge_into(r)
+          correlated = true
+
         else
-          # No match, but should match with a StreetAddress file
-          matched_addr = StreetAddress.where("address ILIKE ?","%#{self.address}%")
+          # No match, but might match with a StreetAddress file
+          matched_addr = self.community.street_addresses.where("address ILIKE ?","%#{self.address}%")
 
           if matched_addr.count == 1
             street = matched_addr.first
-            if street.unreliable name == "#{self.first_name} #{self.last_name}"
-              # add tags
-              return true
-            end
 
-            # Not the property owner
             self.street_address = street
           end
-
-          return false
         end
       end
-    elsif self.email?
-      matched_email = User.where("email ILIKE ? AND last_name ILIKE ?", self.email, self.last_name)
+    end
+
+    # Correlate by email
+    if self.email?
+      matched_email = self.community.residents.where("residents.id != ? AND email ILIKE ?", self.id, self.email)
 
       if matched_email.count > 1
         # We have a problem; No two Users should have the same e-mail D=
@@ -314,18 +365,21 @@ class Resident < ActiveRecord::Base
 
       # Add whatever was inputted to the existing Residents file
       if matched_email.count == 1
-        # matched_email.first.add_tags(self.tags)
-        return true
-      else
-        return false
-      end
-    else
-      # A name isn't really much to work with.
-      # Don't let this happen in a higher level function?
+        r = matched.first
 
-      # Until then, destroy as a contingency plan
-      return true
+        self.merge_into(r)
+
+        correlated = true
+      end
     end
+
+    # If there is neither an address nor an email, then there's a good chance of
+    # correlating with the wrong file...so don't correlate
+    if correlated
+      self.destroy
+    end
+
+    r
   end
 
   def find_story

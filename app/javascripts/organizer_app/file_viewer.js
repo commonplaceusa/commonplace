@@ -317,7 +317,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
   },
 
   tags: function() {
-    var tags = this.model.get('manualtags');
+    var tags = this.model.get('tags');
     if (tags) {
       return tags
     } else {

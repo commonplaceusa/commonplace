@@ -485,9 +485,9 @@ CONDITION
                                       :PFO_statu_list => request_body['PFO_statu_list'],
                                       :organizer_list => request_body['organizer_list'],
                                       :input_method_list => request_body['input_method_list'],
-                                      :manually_added => true
-                                      )
+                                      :manually_added => true)
 
+      r.correlate
     end
 
     # Updates a community resident file

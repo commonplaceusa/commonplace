@@ -267,7 +267,6 @@ class Community < ActiveRecord::Base
   def add_resident_tags(tags)
     self.metadata[:resident_tags] ||= []
     self.metadata[:resident_tags] |= tags
-    self.save
   end
 
   def add_resident_todos(todos)

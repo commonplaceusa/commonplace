@@ -622,7 +622,7 @@ WHERE
 
   def find_resident
     address_components = self.address.split(" ")
-    matched = Resident.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.take(2).join(" ") + "%", self.last_name)
+    matched = self.community.residents.where("address ILIKE ? AND last_name ILIKE ?", "%" + address_components.take(2).join(" ") + "%", self.last_name)
 
     # Don't want to match with Resident files that already have a User
     matched_street = matched.select { |resident| !resident.on_commonplace? }
@@ -630,7 +630,7 @@ WHERE
     # Match by e-mail address
     # E-mail addresses should be unique in that no two Resident files should
     # have the same e-mail address
-    matched_email = Resident.where("email ILIKE ? AND last_name ILIKE ?", self.email, self.last_name)
+    matched_email = self.community.residents.where("email ILIKE ? AND last_name ILIKE ?", self.email, self.last_name)
 
     resident = merge(matched_street, matched_email)
     return resident

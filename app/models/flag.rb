@@ -83,6 +83,19 @@ class Flag < ActiveRecord::Base
     end
   end
 
+  def self.ignore_flag(flag)
+    case flag
+    when "Not-Yet Supporter"
+      return "Supporter"
+    when "Not Potential Feed Owner"
+      return "Potential Feed Owner"
+    when "Not-Yet Received Civic Heroes Information"
+      return "Received Civic Heroes Information"
+    end
+
+    nil
+  end
+
   def replace_flag
     case name
     when "Supporter"
@@ -90,7 +103,7 @@ class Flag < ActiveRecord::Base
     when "Potential Feed Owner"
       return "Not Potential Feed Owner"
     when "Received Civic Heroes Information"
-      return "Not-Yet Received Civic Heroes information"
+      return "Not-Yet Received Civic Heroes Information"
     end
 
     nil
