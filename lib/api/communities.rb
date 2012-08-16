@@ -420,11 +420,11 @@ CONDITION
       if params[:search]=="filter"
         if !params[:order]
           if params[:tag].length>1
-            serialize(filter_users_by_several_tag(params[:tag],params[:have],params[:id]))
+            serialize(paginate(filter_users_by_several_tag(params[:tag],params[:have],params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
           elsif params[:tag].length==1
-            serialize(filter_users_by_tag(params[:tag][0], params[:have][0], params[:id]))
+            serialize(paginate(filter_users_by_tag(params[:tag][0], params[:have][0], params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
           elsif params[:tag].length==0
-            serialize(Resident.where(:community_id=>params[:id]).order("last_name ASC, first_name ASC"))
+            serialize(paginate(Resident.where(:community_id=>params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
           end
         else
           if params[:order]=="time"
