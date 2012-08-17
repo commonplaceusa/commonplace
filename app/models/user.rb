@@ -665,10 +665,12 @@ WHERE
       end
 
       # Merge them if they're not the same file
-      street.email = email.email
-      email.address = street.address
-      email.add_tags(street.tags)
-      street.destroy
+      if street.present? and email.present?
+        street.email = email.email
+        email.address = street.address
+        email.add_tags(street.tags)
+        street.destroy
+      end
 
       return email
     end

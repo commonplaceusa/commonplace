@@ -40,7 +40,7 @@ user = User.create!(:first_name => "test", :last_name => "dev",
                     :password => "password", :neighborhood => neighborhood,
                      :community => community, :referral_source => "Other")
 
-community.add_default_groups
+community.add_default_groups!
 user.admin = true
 user.save!
 
