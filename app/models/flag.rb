@@ -15,6 +15,14 @@ class Flag < ActiveRecord::Base
       "send thanks for call" => [0, ["sent thanks for call"], ["called"]],
       "add to civic hero list" => [0, ["member of civic hero"]]
     }
+
+    @@scripts = {
+      "send nomination email" => "<i>test</i>",
+      "schedule a call" => "hi",
+      "call" => "wat",
+      "send thanks for call" => "zen",
+      "add to civic hero list" => "final"
+    }
   end
 
   # tag => [[don't display todos], [should display todos]
@@ -41,6 +49,12 @@ class Flag < ActiveRecord::Base
       "agreed to civic hero membership" => "No type",
       "member of civic hero" => "No type"
     }
+  end
+
+  def self.get_scripts
+    @@scripts ||= {}
+
+    @@scripts
   end
 
   def self.get_type(flag)
@@ -78,6 +92,11 @@ class Flag < ActiveRecord::Base
     @@rules ||= {}
 
     @@rules
+  end
+
+  def self.create_script(to_do, script)
+    @@scripts ||= {}
+    @@scripts[to_do] = script
   end
 
   def self.create_type(flag, type)

@@ -65,9 +65,12 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
   afterRender: function() {
     this.$("select.listing").chosen();
     var deferred = $.Deferred();
+
+    var scripts = this.options.community.get('scripts');
     deferred.resolve(
     _.each(this.$(".todo-specific"), function(list) {
       var value = $(list).attr('value');
+
       var profiles = _.filter(models, function(model) {
         todo = model.get('todos');
         return $.inArray(value, todo) > -1;
@@ -134,7 +137,20 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
 
   todos: function() {
     possTodos = this.options.community.get('resident_todos');
-    return this.options.community.get('resident_todos');
+    var todoScripts = this.options.community.get('scripts');
+
+    var content = new Array();
+    _.map(possTodos, function(key) {
+      var script = todoScripts[key];
+
+      if(!script) {
+        script = "No script";
+      }
+
+      content.push({tag: key, val: script})
+    });
+
+    return content;
   },
 
   tags: function() { return this.options.community.get('resident_tags'); },
