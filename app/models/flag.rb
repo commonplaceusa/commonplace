@@ -96,7 +96,9 @@ class Flag < ActiveRecord::Base
 
   def self.create_script(to_do, script)
     @@scripts ||= {}
-    @@scripts[to_do] = script
+    if @@scripts[to_do].nil?
+      @@scripts[to_do] = script
+    end
   end
 
   def self.create_type(flag, type)

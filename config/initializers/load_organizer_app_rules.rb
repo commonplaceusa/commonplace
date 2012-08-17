@@ -42,9 +42,11 @@ else
     else
       type = -1
     end
+    script = h["Script A"] if !h["Script A"].nil?
 
     Flag.create_todo(todo, type, should, cant)
     Flag.create_rule(todo, cant, nil) if !cant.nil?
     Flag.create_rule(nil, should, todo) if !should.nil?
+    Flag.create_script(todo, script) if !script.nil?
   end
 end
