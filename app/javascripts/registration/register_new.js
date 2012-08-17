@@ -41,6 +41,8 @@ var RegisterNewUserView = RegistrationModalPage.extend({
     var url = '/api/communities/'+this.communityExterior.id+'/address_completions'
     this.$("input[name=street_address]").autocomplete({ source: url , minLength: 1 });
 
+    fbAsyncInit();
+    this.$(".facebook_registration").show();
   },
 
   community_name: function() { return this.communityExterior.name; },
@@ -49,7 +51,7 @@ var RegisterNewUserView = RegistrationModalPage.extend({
   neighbors: function() { return this.communityExterior.statistics.neighbors; },
   feeds: function() { return this.communityExterior.statistics.feeds; },
   postlikes: function() { return this.communityExterior.statistics.postlikes; },
-  
+
   submit: function(e) {
     if (e) { e.preventDefault(); }
 

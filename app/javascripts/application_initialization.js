@@ -11,7 +11,8 @@ function fbAsyncInit() {
     appId : CommonPlace.facebookAppId,
     status : true,
     cookie : true,
-    xfbml  : true
+    xfbml  : true,
+    channelUrl: "//www.ourcommonplace.com/channel"
   });
   fbApiInit = true;
 }
@@ -20,13 +21,13 @@ $(function() {
 
   var communitySlug = window.location.pathname.split("/")[1];
 
-  $("body").delegate("a[data-remote]", "click", function(e) { 
+  $("body").delegate("a[data-remote]", "click", function(e) {
     e.preventDefault();
     var fragment = e.currentTarget.pathname;
     Backbone.history.navigate(fragment, true);
   });
 
-  var getCommunity = $.getJSON("/api/communities/" + communitySlug, 
+  var getCommunity = $.getJSON("/api/communities/" + communitySlug,
                                function(r) {
 
                                  CommonPlace.community = new Community(r);
@@ -39,8 +40,8 @@ $(function() {
   $.when(getAccount, getCommunity).then(function() {
     window.app = new Application();
 
-    (new FeatureSwitching({ 
-      account: CommonPlace.account, 
+    (new FeatureSwitching({
+      account: CommonPlace.account,
       el: $("#feature-switching")})
     ).render();
 

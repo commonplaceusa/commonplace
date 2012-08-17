@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
       user.email = facebook_data["info"]["email"]
       user.full_name = facebook_data["info"]["name"]
       user.facebook_uid = facebook_data["uid"]
+      user.neighborhood_id = Neighborhood.where(community_id: params[:community_id]).first.id
     end
   end
 
@@ -690,6 +691,7 @@ WHERE
   # Correlates the User and the corresponding StreetAddress file with
   # the "REAL AMERICAN PERSON" file [aka the Resident file]
   def correlate
+    return unless self.address.present?
     #addr = find_st_address
     self.address.squeeze!(" ")
     self.address.strip!

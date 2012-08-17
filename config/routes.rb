@@ -18,7 +18,7 @@ Commonplace::Application.routes.draw do
       put :add_profile, :crop_avatar, :invite_subscribers
     end
   end
- 
+
   get "facebook_canvas/index"
   match "/facebook_canvas/" => "facebook_canvas#index"
 
@@ -46,16 +46,16 @@ Commonplace::Application.routes.draw do
     end
   end
 
-    
+
   resource :account, :except => :show do
-    member do 
+    member do
       get :avatar, :delete
       put :crop_avatar
     end
   end
-  
-  begin 
-    devise_for :users, :controllers => { 
+
+  begin
+    devise_for :users, :controllers => {
       :passwords => "password_resets",
       :omniauth_callbacks => "users_omniauth_callbacks"
     } do

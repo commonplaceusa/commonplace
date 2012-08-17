@@ -81,7 +81,8 @@ function fbAsyncInit() {
     appId : CommonPlace.facebookAppId,
     status : true,
     cookie : true,
-    xfbml  : true
+    xfbml  : true,
+    channelUrl: "//www.ourcommonplace.com/channel"
   });
   window.fbApiInit = true;
 }
