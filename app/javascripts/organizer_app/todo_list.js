@@ -23,9 +23,11 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
 
     checklist[c] = !checklist[c];
 
+    /*
     console.log("toggle");
     console.log(c);
     console.log(checklist[c]);
+    */
     this.render();
   },
 

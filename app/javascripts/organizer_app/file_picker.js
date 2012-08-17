@@ -122,6 +122,8 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   gotoTodo: function (e) {
+    $('#file-viewer').unbind();
+    $('#file-viewer').empty();
     new OrganizerApp.TodoList({el: $('#file-viewer'), community: this.options.community,  collection: this.collection, filePicker: this}).render();
   },
 
@@ -193,7 +195,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
       return;
     }
 
-    console.log(params["text"]);
     this.collection.fetch({
       data: params,
       success: _.bind(this.afterRender, this)
@@ -270,7 +271,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
 
   filterUsers: function(e){
 
-    console.log(e);
     this.$("#amount").text("Counting");
     var Search = "filter";
     var all = this.filter();
@@ -340,7 +340,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
         break;
       }
     }
-   console.log(this.collection.modelIds());
+   //console.log(this.collection.modelIds());
   },
 
   refreshStory: function(){
