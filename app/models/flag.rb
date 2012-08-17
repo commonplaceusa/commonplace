@@ -11,7 +11,7 @@ class Flag < ActiveRecord::Base
     @@todos = {
       "send nomination email" => [0, ["sent nomination email"], ["nominate"]],
       "schedule a call" => [0, ["scheduled a call", "called", "sent thanks for call"], ["sent nomination email"]],
-      "call" => [0, ["called"] ["scheduled a call"]],
+      "call" => [0, ["called"], ["scheduled a call"]],
       "send thanks for call" => [0, ["sent thanks for call"], ["called"]],
       "add to civic hero list" => [0, ["member of civic hero"]]
     }
