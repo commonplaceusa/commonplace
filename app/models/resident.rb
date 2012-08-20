@@ -365,7 +365,7 @@ class Resident < ActiveRecord::Base
 
       # Add whatever was inputted to the existing Residents file
       if matched_email.count == 1
-        r = matched.first
+        r = matched_email.first
 
         self.merge_into(r)
 
