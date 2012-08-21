@@ -26,9 +26,7 @@ class Resident < ActiveRecord::Base
     name = full_name.split(" ")
     r = where("residents.last_name ILIKE ? AND residents.first_name ILIKE ?", name.last, name.first)
 
-    return r if !r.empty?
-
-    nil
+    return r
   end
 
   def on_commonplace?
