@@ -174,6 +174,11 @@ class Resident < ActiveRecord::Base
           metadata[:remove] |= rule[0]
           metadata[:add] |= rule[1]
         end
+      elsif flag == "Type: Fully Uninterested"
+        if rule = Flag.get_rule(flag)
+          metadata[:remove] |= rule[0]
+          metadata[:add] |= rule[1]
+        end
       end
     end
 

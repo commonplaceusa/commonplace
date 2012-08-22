@@ -52,7 +52,7 @@ else
     Flag.create_rule(nil, should, todo) if !should.nil?
     Flag.create_script(todo, script) if !script.nil?
 
-    Flag.create_rule(todo, "Type - Fully Uninterested", nil)
-    Flag.create_rule(todo, "Type - Timed Out", nil)
+    Flag.create_rule(todo, "Type: Fully Uninterested", nil)
+    Flag.create_rule(todo, "Type: Timed Out", nil)
   end
 end
