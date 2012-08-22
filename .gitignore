@@ -39,3 +39,4 @@ sunspot-solr.pid
 neo4j
 .env
 coverage
+chromedriver.log
