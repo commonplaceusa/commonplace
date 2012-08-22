@@ -36,6 +36,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   initialize: function() {
     checklist = [];
     all_check = false;
+    total = 0;
   },
 
   onClickFile: function(e) {
@@ -292,6 +293,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
 
   filterUsers: function(e){
 
+    this.$("#total").empty();
     this.$("#amount").text("Counting");
     var Search = "filter";
     var all = this.filter();
@@ -308,14 +310,27 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
           "per": per,
           "search": Search,
           "have": haves,
-          "tag": tag
+          "tag": tag,
+          "count": true
         };
 
-        this.collection.fetch({
-          data: params,
-          success: _.bind(this.afterRender, this),
-          error: function(attr, response) { alert(response) }
-        });
+        $.get(this.collection.url(), params, _.bind(function(response) {
+          total = response;
+
+          var params={
+            "page": page,
+            "per": per,
+            "search": Search,
+            "have": haves,
+            "tag": tag
+          };
+
+          this.collection.fetch({
+            data: params,
+            success: _.bind(this.afterRender, this),
+            error: function(attr, response) { alert(response) }
+          });
+        }, this));
 
         break;
       case "filter-order":
@@ -351,6 +366,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   produceOrdertags: function(){
+    this.$("#total").text(total);
     this.$("#amount").text(this.collection.models.length);
     var obj = this.$("#order-tags").empty();
     _.map(this.collection.commontags(),function(tag){

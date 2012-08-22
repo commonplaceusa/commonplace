@@ -76,7 +76,7 @@ class Resident < ActiveRecord::Base
     tags += self.metadata[:tags] if self.metadata[:tags]
 
     if self.user.present?
-      tags << "registered"
+      tags |= Array("registered")
 
       r = self.user.referral_source
       tags << "Referral: " + r if !r.nil?
