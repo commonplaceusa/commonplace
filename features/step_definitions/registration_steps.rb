@@ -46,9 +46,37 @@ Given /^I see the sign in dropdown$/ do
 end
 
 When /^I fill in (.*) with (.*)$/ do |field_name, value|
-  fill_in field_name, :with => value
+  unless page.has_field?(field_name)
+    if page.has_selector?(:css, "input[placeholder=#{field_name}]")
+      page.find(:css, "input[placeholder=#{field_name}]").set(value)
+    end
+  else
+    fill_in field_name, :with => value
+  end
 end
 
 Then /^I should see the main page$/ do
 
+end
+
+When /^I console$/ do
+  binding.pry
+end
+
+When /^I press "(.*)"$/ do |button_text|
+  page.click_button button_text
+end
+
+def wait_for_ajax
+  page.wait_until(5) do
+    page.evaluate_script 'jQuery.active == 0'
+  end
+end
+
+When /^I wait for AJAX$/ do
+  wait_for_ajax
+end
+
+Then /^I should see "(.*)"$/ do |text|
+  page.should have_content text
 end
