@@ -74,8 +74,14 @@ class Resident < ActiveRecord::Base
   def tags
     tags = []
     tags += self.metadata[:tags] if self.metadata[:tags]
+
+    if self.user.present?
+      tags << "registered"
+
+      r = self.user.referral_source
+      tags << "Referral: " + r if !r.nil?
+    end
 =begin
-    tags << "registered" if self.user.present?
     tags << "email" if self.email?
     tags << "address" if self.address?
 =end
@@ -121,9 +127,10 @@ class Resident < ActiveRecord::Base
   def manual_add
     self.metadata[:todos] ||= []
     if self.manually_added
-      self.add_tags("Not-Yet Supporter")
-      self.add_tags("Not Potential Feed Owner")
-      self.add_tags("Not-Yet Received Civic Heroes Information")
+      self.add_tags("Status: Not Yet On Civic Heroes Track")
+      self.add_tags("Status: Not Yet On Supporter Track")
+      self.add_tags("Type: Leader On-Boarding Process")
+      self.add_tags("Type: Not Yet PFO/Non-PFO")
     end
   end
 
@@ -148,16 +155,22 @@ class Resident < ActiveRecord::Base
     metadata[:add] ||= []
 
     flags.each do |flag|
-      if rule = Flag.get_rule(flag)
-        ignore = Flag.ignore_flag(flag)
-        if !ignore.nil? && metadata[:tags].include?(ignore)
-          return [metadata[:remove], metadata[:add]]
+      ignore = Flag.ignore_flag(flag)
+      if !ignore.nil? && metadata[:tags].include?(ignore)
+        next
+      end
+      if !self.flags.find_by_name(flag)
+        f = self.flags.create(:name => flag)
+        if replace = f.replace_flag
+          remove_tag(replace)
         end
-        if !self.flags.find_by_name(flag)
-          f = self.flags.create(:name => flag)
-          if replace = f.replace_flag
-            remove_tag(replace)
-          end
+=begin
+        if extra = f.extra_flag
+          metadata[:tags] |= Array(extra)
+          Flag.create(:name => extra)
+        end
+=end
+        if rule = Flag.get_rule(flag)
           metadata[:remove] |= rule[0]
           metadata[:add] |= rule[1]
         end
@@ -169,6 +182,11 @@ class Resident < ActiveRecord::Base
 
   def remove_flag(flag)
     rules = Flag.get_rule(flag)
+
+    if rules.nil?
+      return
+    end
+
     todos = rules[0] | rules[1]
 
     # For each todo associated with the given flag...
@@ -213,6 +231,12 @@ class Resident < ActiveRecord::Base
 
     self.metadata[:todos] ||= []
     self.metadata[:tags] ||= []
+
+    # Don't add tags that have replacements
+    tags.each do |tag|
+      ignore = Flag.ignore_flag(tag)
+      tags.delete(tag) if !ignore.nil? && metadata[:tags].include?(ignore)
+    end
 
     # Edit todo list
     todos ||= add_flags(tags)
@@ -357,8 +381,9 @@ class Resident < ActiveRecord::Base
     if self.email?
       matched_email = self.community.residents.where("residents.id != ? AND email ILIKE ?", self.id, self.email)
 
+      # If this happens, then at least one of the files must have been
+      # inputted/modified in the organizer app
       if matched_email.count > 1
-        # We have a problem; No two Users should have the same e-mail D=
       end
 
       # Add whatever was inputted to the existing Residents file

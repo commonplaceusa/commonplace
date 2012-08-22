@@ -441,7 +441,9 @@ CONDITION
           elsif params[:tag].length > 1
             serialize(paginate(filter_users_by_several_tag(params[:tag],params[:have],params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
           else
-            serialize(paginate(filter_users_by_tag(params[:tag][0], params[:have][0], params[:id])).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
+            r = filter_users_by_tag(params[:tag][0], params[:have][0], params[:id])
+            serialize(paginate(r).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
+            #serialize(filter_users_by_tag(params[:tag][0], params[:have][0], params[:id]))
           end
         else
           if params[:order] == "time"
