@@ -450,7 +450,9 @@ CONDITION
             if params[:count]
               serialize(r.count)
             else
-              serialize(paginate(r).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
+              r.map! { |res| res.id }
+              s = Resident.where("id in (?)", r)
+              serialize(paginate(s).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
             end
           else
             r = filter_users_by_tag(params[:tag][0], params[:have][0], params[:id])
