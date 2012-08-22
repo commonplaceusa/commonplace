@@ -292,6 +292,7 @@ class Community < ActiveRecord::Base
   def resident_tags
     tags = Flag.get_types.keys
     tags |=  self.metadata[:resident_tags] if self.metadata[:resident_tags]
+    tags |= self.exterior.referral_sources.reject {|ref| ref == ""}.map {|ref| "Referral: " << ref}
     tags |= Array("registered")
     tags |= Array("email")
     tags |= Array("address")
