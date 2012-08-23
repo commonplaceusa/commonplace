@@ -600,7 +600,7 @@ CONDITION
         r.add_tags(params[:add])
       end
 
-      200
+      [200, {}, "true"]
     end
 
     # Create a post in the community
