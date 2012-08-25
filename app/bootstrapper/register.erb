@@ -10,8 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
     <link href="/assets/favicon.png" rel="icon" type="image/png">
 
-    <link href="/assets/registration_page.css" rel="stylesheet" type="text/css">
-    <script src="//connect.facebook.net/en_US/all.js"></script>
+    <link href="/assets/registration.sass" rel="stylesheet" type="text/css">
   </head>
 
   <body class="application">
@@ -41,8 +40,8 @@
 
       CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
       CommonPlace.account = new Account(<%= @account.try(:persisted?) ? Serializer::serialize(Account.new(@account)).to_json : "{}" %>);
-
-      window.router = new RegistrationRouter({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
+ 
+      window.router = new CommonPlace.registration.Router({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
 
       var communitySlug = window.location.pathname.split("/")[1];
 

@@ -1,0 +1,366 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset"
+
+/* Woo colors */
+
+$blue: #1b334a
+$dark-blue: #151f28
+$light-blue: #32485c
+$red: #ac322f
+$dark-red: darken($red, 20%)
+$black: #333
+$dark-grey: #888
+$light-grey: #e8e8e8
+$off-grey: #eeecdf
+$search-box: #b7c3cf
+
+
+/* Woo Fonts */
+$heading: RockwellSTD, Rockwell, sans-serif
+$body: Helvetica Neue, Helvetica, Tahoma, serif
+
+/* Woo Shadows */
+$black-shadow: 0px 2px 1px black
+
+/* Woo Buttons */
+.red-button
+  background: $red
+  border-radius: 4px
+  color: white
+  text-shadow: 1px 1px 1px black
+  font-weight: bold
+  font-family: $heading
+  display: block
+  font-size: 20px
+  text-decoration: none
+  border: 1px solid
+  border-color: darken($red, 15%)
+  box-shadow: inset 0px 1px 0px 0px #d56360
+  padding: 15px
+    top: 13px
+    bottom: 13px
+    
+/* Overall Styles */
+.right
+  float: right
+.left
+  float: left
+.clear
+  clear: both
+#main
+  width: 1000px
+  margin: 0 auto
+
+html
+  background: url(../images/bg.jpg) no-repeat center center fixed
+  background-size: cover
+  -webkit-background-size: cover 
+
+#header
+  height: 60px
+  width: 100%
+  background: $blue
+  position: fixed
+  z-index: 9999
+  box-shadow: 0px 1px 10px #434343
+  border: 2px solid $light-blue
+    left: none
+    right: none
+  .community-name
+    width: 269px
+    float: left
+    padding-left: 15px
+    padding-left: 60px
+    height: 60px
+    background-position: 20px 14px
+    position: relative
+    border-right: 1px solid $dark-blue
+    border-left: 1px solid $dark-blue
+    box-shadow: inset 1px 0 0 $light-blue
+    h1
+      color: white
+      font-weight: bold
+      text-shadow: $black-shadow
+      font-size: 21px
+      margin-top: 22px
+      font-family: $heading
+  .right
+    width: 280px    
+  .top-bar
+    width: 667px
+    float: right
+    border-left: 1px solid $light-blue
+    height: 60px
+    border-right: 1px solid $light-blue
+    box-shadow: inset -1px 0px 0px 0px $dark-blue
+    h2
+      float: left
+      margin-top: 21px
+      color: white
+      font-weight: bold
+      text-shadow: $black-shadow
+      font-size: 21px
+      font-family: $heading
+      margin-left: 20px
+    .right
+      input[type=text]
+        font-size: 12px
+        width: 150px
+        box-shadow: inset 0 1px 1px black
+        margin-top: 13px
+        font-weight: bold
+        float: left
+        border: 1px solid $dark-blue
+        border-radius: 5px
+        padding: 7px
+        background-color: $search-box
+        outline: none
+      input::-webkit-input-placeholder
+        color: $blue
+      
+      .messages
+        background: url(../images/mail-icon.png) no-repeat
+        width: 29px
+        height: 22px
+        float: left
+        display: block
+        text-indent: -9999px
+        margin-top: 17px
+        margin-left: 20px
+      .settings
+        background: url(../images/settings-icon.png) no-repeat
+        height: 24px
+        margin-left: 20px
+        margin-top: 17px
+        width: 24px
+        float: left
+        display: block
+        text-indent: -9999px
+aside
+  width: 330px
+  background: $off-grey
+  position: fixed
+  display: block
+  height: 100%
+  margin-top: 64px
+  z-index: 999
+  .red-button
+    width: 77%
+    text-align: center
+    vertical-align: center
+    padding-bottom: 10px
+    margin: 0 auto
+      top: 25px
+  ul.post-box
+    margin: 0
+      top: 25px
+      left: auto
+      right: auto
+    width: 85%
+    li
+      margin-bottom: 5px
+      background: url(../images/topics-icon-lrg.png) no-repeat
+      height: 26px
+      padding-left: 35px
+      padding-top: 6px
+      a
+        text-decoration: none
+        color: $blue
+        font-family: $heading
+        font-weight: bold
+        font-size: 16px
+        text-shadow: 1px 1px 1px white
+      .number-of
+        font-weight: normal
+        font-size: 14px
+  .your-neighbors
+    width: 85%
+    margin: 0 auto
+      top: 20px
+    h3
+      font-family: $heading
+      font-size: 14px
+      color: $blue
+      font-weight: bold
+      text-shadow: 1px 1px 1px white
+      border-bottom: 1px solid $blue
+      padding-bottom: 7px
+
+    .neighbor
+      border-bottom: 1px solid
+      border-color: lighten($dark-grey, 20%)
+      padding-bottom: 15px
+      padding-top: 15px
+      border-top: 1px solid white
+      height: 45px
+      &:last-child
+        border-bottom: none
+      h4
+        font-family: $heading
+        color: $black
+        font-weight: bold
+        font-size: 14px
+      p
+        font-family:  $body
+        font-size: 13px
+        color: lighten($black, 20%)
+        margin-top: 5px
+      img
+        height: 45px
+        width: 45px
+        padding-right: 8px
+        float: left
+  .town-map
+    width: 85%
+    margin: 0 auto
+      top: 20px
+    h3
+      font-family: $heading
+      font-size: 14px
+      color: $blue
+      font-weight: bold
+      text-shadow: 1px 1px 1px white
+      border-bottom: 1px solid $blue
+      padding-bottom: 7px
+    img
+      margin-top: 15px
+      border: 1px solid
+      border-color: lighten($dark-grey, 20%)
+      
+.main
+  overflow: hidden
+  position: relative
+  height: auto
+  width: 670px
+  left: 330px
+  top: 64px
+  background-color: rgba(27, 51, 74, 0.4)
+  .wire
+    min-height: 100px
+    background: white
+    border-radius: 4px
+    margin: 20px
+    .wire-top
+      height: 30px
+      border-radius: 4px
+      border-bottom-left-radius: 0
+      border-bottom-right-radius: 0      
+      background: $light-grey
+      box-shadow: inset 0px 1px 0px 0px white
+      border-bottom: 1px solid 
+      border-color: lighten($dark-grey, 20%)
+      h3
+        font-family: $heading
+        float: left
+        color: $blue
+        font-weight: bold
+        font-size: 15px
+        padding-left: 30px
+        padding-top: 10px
+      p
+        font-family: $body
+        font-size: 12px
+        color: darken($dark-grey, 10%)
+        font-weight: bold
+        text-shadow: 1px 1px 1px white
+        float: right
+        padding-top: 8px
+        padding-right: 10px
+    .post-content
+      padding: 10px
+      h3, p
+        margin-left: 60px
+        font-family: $body
+        color: $black
+      h3 
+        font-size: 18px
+        font-weight: bold
+        margin-bottom: 8px
+      p.author
+        font-size: 12px
+        color: $blue
+        font-weight: bold
+        margin-bottom: 15px
+      p.post-text
+        font-size: 14px
+        line-height: 18px
+      img
+        height: 45px
+        width: 45px
+        border-radius: 4px
+        float: left
+    .post-action
+      padding: 10px
+        top: 0
+      margin-left: 60px
+      font-family: $body
+      font-size: 10px
+      text-transform: uppercase
+      font-weight: bold
+      color: $red
+      padding-bottom: 20px
+      margin-top: 10px
+      span.thank
+        color: $dark-grey
+      p
+        float: left
+      p.how-many
+        float: right
+        color: $dark-grey
+        text-shadow: 1px 1px 1px white
+        text-transform: none
+        font-size: 11px
+    .post-replies
+      padding: 10px
+      p
+        margin-left: 60px
+        padding-top: 10px
+      p.author
+        font-size: 12px
+        color: $blue
+        font-weight: bold
+        font-family: $body
+        float: left
+        margin-left: 20px
+        margin-right: 10px
+        vertical-align: bottom
+      p.reply-text
+        border-top: 1px solid
+        border-color: lighten($dark-grey, 25%)
+        font-size: 13px
+        font-family: $body
+      p.reply-time
+        margin-top: 5px
+        font-size: 11px
+        font-family: $body
+        padding-top: 0
+        color: $blue
+      img
+        width: 25px
+        padding-top: 10px
+        height: 25px
+        float: left
+        margin-left: 15px
+    .reply
+      margin-left: 60px
+      padding: 10px
+        top: 0
+      .reply-box
+        outline: none
+        width: 534px
+        padding: 7px
+          top: 5px
+          bottom: 5px
+        border-radius: 5px
+        font-size: 12px
+        border: 1px solid
+        border-color: lighten($dark-grey, 20%)
+        &:focus
+          box-shadow: 0 0 5px $red
+          -webkit-transition: box-shadow 150ms ease-in
+
+@import 'starter-site'

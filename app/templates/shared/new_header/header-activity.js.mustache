@@ -1,0 +1,94 @@
+<div class="week-cpcredits number">{{weekly_cpcredits}}</div>
+<a>My Activity</a>
+    
+<ul class="my-activity-sub">
+  <p>You've earned
+    <span class="week-cpcredits red">{{weekly_cpcredits}}</span>
+    'Good Neighbor' points this week, and
+    <span class="all-cpcredits red">{{all_cpcredits}}</span>
+    since you signed up
+    <span class="red">{{sign_up_time}}</span>
+  </p>
+  <div class="sub-left">
+    <h4>Personal Activity</h4>
+    <span class="this-week">This Week</span>
+    <span class="all-time">All Time</span>
+    <li>
+      <span class="sub-title">My posts</span>
+      <span class="sub-notif one">{{post_count}}</span>
+      <span class="sub-notif two">{{posts_this_week_count}}</span>
+    </li>
+    <li>
+      <span class="sub-title">Neighbors thanked</span>
+      <span class="sub-notif one">{{thanks_count}}</span>
+      <span class="sub-notif two">{{thanks_this_week_count}}</span>
+    </li>
+    <li>
+      <span class="sub-title">Replies received</span>
+      <span class="sub-notif one">{{replies_count}}</span>
+      <span class="sub-notif two">{{replies_this_week_count}}</span>
+    </li>
+    <li>
+      <span class="sub-title">Thanks received</span>
+      <span class="sub-notif one">{{thanks_count}}</span>
+      <span class="sub-notif two">{{thanks_this_week_count}}</span>
+    </li>
+    <!-- <li>
+      <span class="sub-title">Number of site visits</span>
+      <span class="sub-notif one"></span>
+      <span class="sub-notif two"></span>
+    </li> -->
+    <li>
+      <span class="sub-title">Invites sent</span>
+      <span class="sub-notif one">{{invites_count}}</span>
+      <span class="sub-notif two">{{invites_this_week_count}}</span>
+    </li>
+    <!-- <li>
+      <span class="sub-title">Shares on Facebook</span>
+      <span class="sub-notif one"></span>
+      <span class="sub-notif two"></span>
+    </li> -->
+    <li class="total">
+      <span class="sub-total-title">Total</span>
+      <span class="sub-total-all all-cpcredits">{{all_cpcredits}}</span>
+      <span class="sub-total-week week-cpcredits two">{{weekly_cpcredits}}</span>
+    </li>
+  </div>
+  <div class="sub-right">
+    <h4>Town Activity</h4>
+    <span class="this-week">This Week</span>
+    <span class="all-time">All Time</span>
+    <li>
+      <span class="sub-title">Neighbors registered</span>
+      <span class="sub-notif one">{{community_users_count}}</span>
+      <span class="sub-notif two">{{community_users_this_week_count}}</span>
+    </li>
+    <li>
+      <span class="sub-title">Total posts</span>
+      <span class="sub-notif one">{{community_posts_count}}</span>
+      <span class="sub-notif two">{{community_posts_this_week_count}}</span>
+    </li>
+    <!-- <li>
+      <span class="sub-title">Total thanks</span>
+      <span class="sub-notif one"></span>
+      <span class="sub-notif two"></span>
+    </li> -->
+    <li>
+      <span class="sub-title">Average replies / user</span>
+      <span class="sub-notif one">{{average_replies_count}}</span>
+      <span class="sub-notif two">{{average_replies_this_week_count}}</span>
+    </li>
+    <li>
+      <span class="sub-title">Average posts / user</span>
+      <span class="sub-notif one">{{average_posts_count}}</span>
+      <span class="sub-notif two">{{average_posts_this_week_count}}</span>
+    </li>
+    <li class="community-percent">
+      <p>How many households in town are on CommonPlace? <a href="{{invite_url}}" class="invite" data-remote>Invite more!</a>
+      <div class="percent-layer" style="width: {{percentage_penetration_px}}px;"></div>
+      <div class="houses"></div>
+      <span class="percent">{{percent_penetration}}%</span>
+    </li>
+  </div>
+  <div style="clear: both;"></div>
+</ul>

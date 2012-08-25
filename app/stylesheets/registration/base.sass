@@ -1,0 +1,861 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import url(http://fonts.googleapis.com/css?family=Rokkitt:400,700)
+@import url(http://fonts.googleapis.com/css?family=Ultra)
+@import url(http://fonts.googleapis.com/css?family=Yellowtail)
+@import "compass/reset"
+@import "compass/css3/gradient"
+
+/* Woo colors */
+
+$blue: #1b334a
+$dark-blue: #151f28
+$light-blue: #32485c
+$red: #ac322f
+$dark-red: darken($red, 20%)
+$black: #333
+$dark-grey: #888
+$light-grey: #e8e8e8
+$off-grey: #eeecdf
+$search-box: #b7c3cf
+$dark-tan: #bcbbae
+$tan: #F5F3E9
+$light-tan: #FCFAF4
+
+$Ultra: 'Ultra'
+$Yellowtail: 'Yellowtail'
+$Rokkitt: 'Rokkitt'
+
+/* Woo Fonts */
+$heading: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+$body: Helvetica Neue, Helvetica, Tahoma, serif
+
+/* Woo Shadows */
+$black-shadow: 0px 2px 1px black
+
+/* Woo Buttons */
+.red-button
+  background: $red
+  border-radius: 5px
+  color: #fff
+  text-shadow: 0px 2px 1px #64100D
+  font-weight: bold
+  height: 18px
+  font-family: $heading
+  +linear-gradient(color-stops(#d0413d, #ac322f), top)
+  display: block
+  font-size: 21px
+  text-decoration: none
+  border: 1px solid
+  border-color: #ac322f
+  box-shadow: inset 0px 1px 1px #e28986
+  padding: 15px
+    top: 8px
+    bottom: 16px
+  &:hover, &:focus
+    color: #fff
+    +linear-gradient(color-stops(#ee5a56, #b53633), top)
+    text-shadow: 1px 1px 1px #541513
+    box-shadow: 0px 2px 4px #adab9f
+  &:active
+    color: #fff
+    +linear-gradient(color-stops(#d64541, #ac322f), bottom)
+    text-shadow: -1px -1px -1px #cb5450
+
+.green-button
+  background: green
+  border-radius: 5px
+  color: #eeecdf
+  text-shadow: 1px 1px 1px black
+  font-weight: bold
+  height: 18px
+  font-family: $heading
+  +linear-gradient(color-stops(#62AF46, #569E3F), top)
+  display: block
+  font-size: 20px
+  text-decoration: none
+  border: 1px solid
+  border-color: #569E3F
+  box-shadow: inset 0px 1px 1px #569E3F
+  padding: 15px
+    top: 13px
+    bottom: 13px
+  &:hover, &:focus
+    color: #fff
+    +linear-gradient(color-stops(#62AF46, #569E3F), top)
+    box-shadow: 0px 2px 4px #adab9f
+  &:active
+    color: #fff
+    +linear-gradient(color-stops(#62AF46, #569E3F), bottom) 
+    
+/* Overall Styles */
+.right
+  float: right
+.left
+  float: left
+.clear
+  clear: both
+.full-width
+  width: 1100px
+  margin: 0 auto
+sup
+  font-size: 0.85em
+  vertical-align: top
+
+html
+  background: image-url("shared/redesign/backgrounds/Warwick2.jpg") no-repeat center center fixed
+  background-color: #cae4f7
+  background-size: cover
+  -webkit-background-size: cover
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+
+#wrapper
+  width: 1100px
+  margin: 0px auto
+  
+#nav_wrapper
+  width: 1100px
+  margin: 0 auto
+  position: relative
+  top: -15px
+  
+#header
+  height: 30px
+  width: 100%
+  background: $blue
+  padding: 15px 0px
+  z-index: 1000
+  position: fixed
+  top: 0px
+  left: 0px
+  right: 0px
+  box-shadow: 0px 3px 5px rgba(0,0,0,0.25)
+  border: 2px solid $light-blue
+    left: none
+    right: none
+    bottom: 1px solid #000
+  .community-name
+    width: auto
+    float: left
+    background: image-url("shared/redesign/commonplace-icon.png") no-repeat
+    padding-left: 57px
+    height: 60px
+    background-position: 20px 14px
+    position: relative
+    //border-right: 1px solid $dark-blue
+    border-left: 1px solid $dark-blue
+    box-shadow: inset 1px 0 0 $light-blue
+    h1
+      color: white
+      text-shadow: $black-shadow
+      font-size: 30px
+      margin-top: 15px
+      font-family: $heading
+      float: left
+      text-align: left
+      font-weight: bold
+      a
+        text-decoration: none
+        color: white
+
+  .right
+    width: 113px
+    float: right
+  .top-bar
+    width: 803px
+    //border-left: 1px solid $light-blue
+    height: 60px
+    border-right: 1px solid $light-blue
+    box-shadow: inset -1px 0px 0px 0px $dark-blue
+    h2
+      float: left
+      margin-top: 20px
+      color: white
+      text-shadow: $black-shadow
+      font-size: 22px
+      font-family: $heading
+      margin-left: 20px
+    .right
+      input[type=text]
+        font-size: 12px
+        width: 150px
+        box-shadow: inset 0 1px 1px black
+        margin-top: 13px
+        font-weight: bold
+        float: left
+        border: 1px solid $dark-blue
+        border-radius: 5px
+        padding: 7px
+        background: $search-box image-url("shared/redesign/search.png") no-repeat right
+        outline: none
+        background-position-x: 143px
+      input::-webkit-input-placeholder
+        color: $blue
+      
+      .messages
+        background: image-url("shared/redesign/mail-icon.png") no-repeat
+        width: 29px
+        height: 22px
+        float: left
+        display: block
+        text-indent: -9999px
+        margin-top: 17px
+        margin-left: 20px
+      .settings
+        background: image-url("shared/redesign/settings-icon.png") no-repeat
+        height: 24px
+        margin-left: 20px
+        margin-top: 17px
+        width: 24px
+        float: left
+        display: block
+        text-indent: -9999px
+aside
+  width: 300px
+  background-color: #F5F3E9
+  //background: $off-grey image-url("shared/redesign/background.gif") center
+  position: fixed
+  display: block
+  height: 100%
+  z-index: 999
+  padding-top: 15px
+  .red-button
+    width: 235px
+    text-align: center
+    vertical-align: center
+    padding: 12px 9px 13px 9px
+    margin: 0 auto
+      top: 15px
+  ul.post-box
+    margin: 0
+      top: 25px
+      left: auto
+      right: auto
+    width: 85%
+    li
+      margin-bottom: 5px
+      background: url(../images/topics-icon-lrg.png) no-repeat
+      height: 26px
+      padding-left: 35px
+      padding-top: 6px
+      a
+        text-decoration: none
+        color: $blue
+        font-family: $heading
+        font-weight: bold
+        font-size: 16px
+        text-shadow: 1px 1px 1px white
+      .number-of
+        font-weight: normal
+        font-size: 14px
+  #your-town
+    width: 255px
+    margin: 0 auto
+    padding: 15px 0px 0px 0px
+    margin-bottom: -4px
+    h3
+      font-family: $heading
+      font-size: 15px
+      color: $blue
+      text-shadow: 1px 1px 1px white
+      border-bottom: 1px solid #c5c2b5
+      padding-bottom: 5px
+    .your-town 
+      padding: 0px
+      li
+        padding: 8px 10px 8px 9px
+        &:hover, &:focus, &:active
+          background-color: $light-tan
+          border-radius: 5px
+        a
+          text-decoration: none
+          font-family: $heading
+          color: $blue
+          text-shadow: none
+          font-size: 20px
+          padding-top: 10px
+          padding-bottom: 8px
+          padding-left: 43px
+          background: image-url("shared/redesign/sidebar-icon.png") no-repeat left
+          line-height: 26px
+          text-shadow: 1px 1px 0px #fff
+          &:hover, &:focus, &:active
+            color: $red
+            text-shadow: 2px 2px 0px white
+
+        #request
+          background: image-url("shared/redesign/request-offer-icon.png") no-repeat left
+
+        #event
+          background: image-url("shared/redesign/event-icon.png") no-repeat left
+
+        #discussion
+          background: image-url("shared/redesign/discussions-icon.png") no-repeat left
+
+        #announcement
+          background: image-url("shared/redesign/announcements-icon.png") no-repeat left       
+
+  #directories
+    width: 270px
+    margin: 0 auto
+    h3
+      display: inline-block
+      font-family: $heading
+      font-size: 18px
+      padding: 10px 8px
+      margin: 19px 0px 0px 0px
+      background-color: rgba(225, 225, 225, 0.35)
+      color: $red
+      border-radius: 5px 5px 0px 0px
+      cursor: pointer
+      width: 115px
+      text-align: center
+      text-shadow: none
+      border: 1px solid #CAC8B8
+      border-bottom: 1px solid $light-tan
+      box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 1.0)
+      text-shadow: rgba(255, 255, 255, 0.75)
+      &:hover
+        color: $blue
+        background-color: $light-tan
+        cursor: pointer
+
+    li.directory_listing
+      padding: 8px 0
+      a
+        text-decoration: none
+        font-family: $heading
+        color: $blue
+        text-shadow: 1px 1px 1px white
+        font-size: 18px
+        padding-top: 10px
+        padding-bottom: 8px
+        padding-left: 42px
+        background: image-url("shared/redesign/missing.png") no-repeat left
+        line-height: 26px
+
+
+#directory_nav h3.sidebar-links.current_tab
+  background-color: $light-tan
+
+#directory_nav 
+  height: 58px
+  cursor: pointer
+  width: 270px
+  h3
+    cursor: pointer
+    &:hover
+      background-color: $light-tan
+  h3.sidebar-links.current_tab
+    background-color: $light-tan
+    color: $red
+    position: relative
+    z-index: 999
+
+#directory_content
+  height: 100%
+  width: 238px
+  background-color: #efeee7
+  padding: 0px 10px 10px 10px
+  position: relative
+  bottom: 0px
+  overflow: hidden
+  border: 1px solid #D7D5C6
+
+  .your-neighbors
+    .neighbor
+      margin-left: 0px
+      border-bottom: 1px dotted
+      border-color: lighten($dark-grey, 30%)
+      box-shadow: 0px 1px 0px rgba(255, 255, 255, 1.0)
+      padding-bottom: 5px
+      padding-top: 15px
+      width: auto
+      overflow: hidden
+      white-space: nowrap
+      cursor: pointer
+      &:last-child
+        border-bottom: none
+        box-shadow: none
+      &:hover
+        white-space: normal
+        height: inherit
+        p
+          float: right
+          width: 181px
+          margin-top: 2px
+          padding-bottom: 10px
+        h4
+          color: $red
+      h4
+        font-family: $heading
+        color: $blue
+        font-weight: normal
+        font-size: 18px
+        line-height: 16px
+        margin-bottom: 0px
+        margin-right: 10px
+        text-overflow: ellipsis
+        overflow: hidden
+        text-transform: capitalize
+      p
+        font-family: $body
+        font-size: 13px
+        color: lighten($black, 10%)
+        text-overflow: ellipsis
+        overflow: hidden
+        margin-top: 2px
+        line-height: 15px
+      .avatar-container
+        width: 32px
+        height: 32px
+        border-radius: 5px
+        margin-bottom: 10px
+        overflow: hidden
+        margin-right: 10px
+        float: left
+        background-color: #ccc
+        background-position: top center
+        background-size: auto 100%
+        background-repeat: no-repeat
+        img
+          width: 100%
+          height: 100%
+  .page
+    margin-left: 0px
+    border-bottom: 1px dotted
+    border-color: lighten($dark-grey, 30%)
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 1.0)
+    padding-bottom: 5px
+    padding-top: 15px
+    width: auto
+    overflow: hidden
+    cursor: pointer    
+    white-space: nowrap
+    &:last-child
+      border-bottom: none
+      box-shadow: none
+    &:hover
+      white-space: normal
+      height: inherit
+      p
+        float: right
+        width: 181px
+        margin-top: 2px
+        padding-bottom: 10px
+      h4
+        color: $red
+    h4
+      font-family: $heading
+      color: $blue
+      font-weight: normal
+      font-size: 18px
+      line-height: 16px
+      margin-bottom: 0px
+      margin-right: 10px
+      text-overflow: ellipsis
+      overflow: hidden
+    p
+      font-family: $body
+      font-size: 13px
+      color: lighten($black, 10%)
+      text-overflow: ellipsis
+      overflow: hidden
+      margin-top: 2px
+      line-height: 15px
+    .avatar-container
+      width: 32px
+      height: 32px
+      border-radius: 5px
+      margin-bottom: 10px
+      overflow: hidden
+      margin-right: 10px
+      float: left
+      background-color: #ccc
+      background-position: top center
+      background-size: auto 100%
+      background-repeat: no-repeat
+      img
+        width: 100%
+        height: 100%
+.main
+  overflow: hidden
+  position: relative
+  height: auto
+  width: 805px
+  margin-left: 295px
+  top: 64px
+  background-color: rgba(0, 0, 0, 0.25)
+  .wire
+    min-height: 100px
+    background: white
+    border-radius: 5px
+    margin: 20px
+    position: relative
+    box-shadow: 0px 0px 5px #666
+    .wire-top
+      height: 30px
+      border-radius: 5px
+      border-bottom-left-radius: 0
+      border-bottom-right-radius: 0      
+      //background: $light-grey image-url("shared/redesign/background.gif")
+      border-bottom: 1px dotted 
+      border-color: #D7D5C6
+      background-color: #F5F3E9
+      h3
+        font-family: $heading
+        float: left
+        color: $blue
+        font-size: 16px
+        padding-left: 30px
+        background: image-url("shared/redesign/wire-icon.png") left no-repeat
+        background-position: 5px 5px
+        padding: 8px 0px 2px 30px
+        font-weight: normal
+      p
+        font-family: $heading
+        font-size: 16px
+        color: darken($dark-grey, 10%)
+        text-shadow: 1px 1px 1px white
+        float: right
+        padding: 8px 10px 0px 0px
+    .post-content
+      padding: 15px 15px 10px 15px
+      h3, p
+        margin-left: 65px
+        font-family: $body
+        color: $black
+        overflow: hidden
+      h3 
+        font-size: 24px
+        font-weight: bold
+        padding-bottom: 10px
+      p.author
+        font-size: 13px
+        color: $blue
+        font-weight: bold
+        padding-bottom: 10px
+      p.post-text
+        font-size: 13px
+        line-height: 18px
+      img
+        height: 50px
+        width: 50px
+        border-radius: 0px
+        float: left
+    .post-action
+      padding: 15px 20px 15px 15px
+        top: 0
+        bottom: 0
+      margin-left: 65px
+      font-family: $body
+      font-size: 10px
+      text-transform: uppercase
+      font-weight: bold
+      color: $red
+      height: 35px
+      span.thank
+        color: $dark-grey
+      p
+        float: left
+      p.how-many
+        float: right
+        color: $dark-grey
+        text-shadow: 1px 1px 1px white
+        text-transform: none
+        font-size: 11px
+      .actions
+        border-top: 1px dotted
+        border-bottom: 1px dotted
+        height: 35px
+        border-color: lighten($dark-grey, 37%)
+        li
+          border-right: 1px dotted
+          border-color: lighten($dark-grey, 37%)
+          float: left
+          font-size: 12px
+          text-transform: capitalize
+          padding: 10px 10px 12px 10px
+          &:first-child
+            padding-left: 0
+          &:last-child
+            border-right: none 
+        li.reply
+          margin-left: 0
+          background: image-url("shared/redesign/reply.png") no-repeat
+          padding-left: 21px
+          background-position: 0 10px
+          &:hover, &:focus, &:active
+            background: image-url("shared/redesign/replied.png") no-repeat
+            padding-left: 21px
+            background-position: 0 10px
+            color: $dark-grey
+        li.help
+          background: image-url("shared/redesign/publicize.png") no-repeat
+          padding-left: 31px
+          background-position: 10px 8px
+          &:hover, &:focus, &:active
+            background: image-url("shared/redesign/publicized.png") no-repeat
+            padding-left: 31px
+            background-position: 10px 8px
+            color: $dark-grey
+        li.thank
+          background: image-url("shared/redesign/thank.png") no-repeat
+          padding-left: 33px
+          background-position: 10px 10px
+          &:hover, &:focus, &:active
+            background: image-url("shared/redesign/thanked.png") no-repeat
+            padding-left: 33px
+            background-position: 10px 10px
+            color: $dark-grey
+        li.flag
+          background: image-url("shared/redesign/flag.png") no-repeat
+          padding-left: 31px
+          background-position: 10px 10px
+          &:hover, &:focus, &:active
+            background: image-url("shared/redesign/flagged.png") no-repeat
+            padding-left: 31px
+            background-position: 10px 10px
+            color: $dark-grey
+    .post-interaction
+      margin-left: 80px
+      font-size: 12px
+      margin-right: 20px
+      .interaction
+        border-color: #e6e6e6
+        margin-left: 0
+        margin-right: 0
+        font-family: Helvetica Neue, Helvetica, Tahoma, serif
+        color: #555555
+        border-bottom-style: none
+        border-bottom-width: 1px
+        .blue
+          color: $blue
+          font-weight: bold
+        .thanked
+          padding-left: 22px
+          padding-top: 13px
+          background: image-url("shared/redesign/thanked.png") no-repeat
+          height: 13px
+          background-position-y: 13px
+          margin-bottom: 13px
+          border-top: 1px dotted #e4e4e4
+        .publicized
+          padding-left: 22px
+          background: image-url("shared/redesign/publicized.png") no-repeat
+          height: 15px
+          padding-top: 3px
+          border-top: 1px dotted #e4e4e4
+    .post-replies
+      padding: 0px 20px 5px 20px
+      p
+        margin-left: 60px
+        padding-top: 13px
+      p.author
+        font-size: 13px
+        color: $blue
+        font-weight: bold
+        font-family: $body
+        float: left
+        margin-left: 15px
+        margin-right: 10px
+        vertical-align: bottom
+      p.reply-text
+        font-size: 13px
+        font-family: $body
+        border-top: 1px dotted #E4E4E4
+      p.reply-actions
+        margin: 5px 0px 10px 60px
+        font-size: 12px
+        font-family: $body
+        padding-top: 0
+        color: lighten($dark-grey, 15%)
+        span.reply-thank
+          color: $red
+        span.reply-thanked
+          color: lighten($dark-grey, 15%)
+      img
+        width: 25px
+        padding-top: 13px
+        height: 25px
+        float: left
+        margin-left: 20px
+    .reply
+      margin-left: 60px
+      padding: 10px
+        top: 0
+      .reply-box
+        outline: none
+        width: 540px
+        padding: 7px
+          top: 5px
+          bottom: 5px
+        border-radius: 5px
+        font-size: 12px
+        border: 1px solid
+        border-color: lighten($dark-grey, 20%)
+        &:focus
+          box-shadow: 0 0 5px $red
+          -webkit-transition: box-shadow 150ms ease-in
+    &.multi-column
+      margin: 20px 0px 0px 20px
+      float: left
+      width: 382px
+      .post-content
+        p.post-text
+          margin-left: 10px
+      .post-action
+        margin-left: 0px
+      .post-interaction
+        margin-left: 0px
+      .post-replies
+        .post-reply
+          width: 250px
+        p
+          margin-left: 35px
+        img
+          margin-left: 0px
+  .post-shadow
+    width: 100%
+    height: 35px
+    position: absolute
+    bottom: -15px
+    .shadow_left
+      float: left
+      width: 50%
+      height: 15px
+      background: image-url("shared/redesign/post-shadow-left.png") no-repeat
+      background-position: bottom left
+      position: absolute
+      bottom: 0px
+      left: 5px
+    .shadow_right
+      float: right
+      width: 50%
+      height: 15px
+      background: image-url("shared/redesign/post-shadow-right.png") no-repeat
+      background-position: bottom right
+      position: absolute
+      bottom: 0px
+      right: 5px
+  .wire-group
+    width: 100%
+    float: left
+  .wire-header
+    margin: 20px 20px 0px
+    height: 40px
+    .header-display
+      margin: auto
+      border-radius: 5px
+      background: $light-grey image-url("shared/redesign/background.gif")
+      box-shadow: inset 0px 1px 0px 0px white
+      border-bottom: 1px solid 
+      border-color: lighten($dark-grey, 20%)
+      h3
+        font-family: $heading
+        text-align: center
+        color: $blue
+        font-size: 18px
+        background-position: 5px 5px
+        padding: 11px
+
+.main .wire .post-action .actions
+  height: 35px
+  border-color: #e6e6e6
+  border-top-style: dotted
+  border-bottom-width: 1px
+  border-bottom-style: none
+  border-top-width: 1px
+
+  li
+    border-color: #e6e6e6
+    float: left
+    font-size: 12px
+    text-transform: capitalize
+    padding: 10px 10px 12px 10px
+    border-right-style: dotted
+    border-right-width: 1px
+
+
+//#content div.list div.wire div.post-interaction
+  border-bottom: 1px dotted #e4e4e4
+  margin-right: 20px
+  margin-left: 80px
+  padding-left: 0
+  border-top: 1px dotted #e4e4e4
+
+#content div.list div.wire div.post-replies p.replies
+  display: none
+
+input::-webkit-input-placeholder
+  color: #a2a2a2
+
+//.main .wire .post-interaction .interaction
+  padding: 15px 0
+  border-color: #e6e6e6
+  margin-left: 0
+  margin-right: 0
+  font-family: Helvetica Neue, Helvetica, Tahoma, serif
+  color: #555555
+  border-bottom-style: none
+  border-bottom-width: 1px
+
+.wire div.post-replies .post-reply
+  height: 0
+  margin-left: 60px
+  margin-top: 10px
+  width: 650px
+  font-size: 13px
+  padding: 15px 7px
+  border: 1px solid $light-grey
+  &:hover, &:focus, &:active
+    border: 1px solid #bababa
+
+.wire div.post-replies .post-reply-button
+  color: #fffefe
+  text-decoration: none
+  text-transform: uppercase
+  position: relative
+  font: bold 11px "Helvetica Neue", "Helvetica", "Arial"
+  background-color: #ac322f
+  width: 90px
+  height: 24px
+  border-radius: 4px
+  border: 1px solid
+  border-color: #ac322f
+  float: right
+  margin-top: 0
+  margin-bottom: 20px
+
+ul.actions li
+  cursor: pointer
+
+div.bottom input.next-button
+  height: 50px
+
+a span.community
+  float: left
+  color: #ac322f
+  text-decoration: none
+  margin-top: 24px
+  margin-left: 5px
+
+#nav_wrapper div.community-name
+  width: 351px
+
+#user_sign_in div.top-bar
+  width: 665px
+
+#nav_wrapper div.community-name a h1
+  float: left
+
+#nav_wrapper div.community-name a span.community
+  float: left
+  margin-top: 21px
+  color: #991a17
+  font: bold 18px Rokkitt, "Rockwell STD", Serif
+  margin-left: 6px

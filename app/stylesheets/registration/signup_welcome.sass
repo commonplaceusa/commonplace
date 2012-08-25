@@ -1,0 +1,264 @@
+@import "compass/reset"
+@import base.sass
+
+
+#findNeighbors 
+  width: 630px
+  height: 550px
+  overflow: scroll
+  background-color: #eeecdf
+  background: url(shared/redesign/red-bg.png)
+  z-index: 1000
+  margin-top: 5%
+  margin-right: auto
+  margin-left: 170px
+  margin-bottom: 30px
+  padding-bottom: 30px
+
+  img.find_title 
+    margin: 15px auto 0px 30px
+
+li div.check h4
+  font: bold 13px Helvetica, sans-serif
+  color: #1f3952
+
+li div.check span.page_text
+  font: 12px Helvetica, sans-serif
+  color: #1a1918
+  overflow: hidden
+
+#civicProfile 
+  width: 630px
+  height: 70%
+  overflow: scroll
+  background-color: #eeecdf
+  background: url(shared/redesign/red-bg.png)
+  z-index: 1000
+  margin-top: 100px
+  margin-right: auto
+  margin-left: auto
+  margin-bottom: 30px
+  position: fixed
+  padding-bottom: 20px
+
+  img.find_title 
+    margin: 15px auto 0px 30px
+
+#find_left 
+  width: 270px
+  height: 412px
+  float: left
+  margin-left: 30px
+  margin-right: 5px
+
+#find_right 
+  width: 270
+  height: 412
+  float: right
+  margin-right: 30px
+  margin-left: 5px
+
+.blue-button  
+  -webkit-font-smoothing: antialiased
+  background: $blue
+  width: 100%
+  padding: 10px 0
+  letter-spacing: 1px
+  font-family: $Ultra
+  font-size: 20px
+  border: 1px solid #151f28
+  color: white
+  text-transform: uppercase
+  +linear-gradient(color-stops(#2e5274, #1b334a), top)
+  box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+  text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+  cursor: pointer
+  margin-top: 0px
+  &:hover, &:focus
+    color: #fff
+    +linear-gradient(color-stops(#2e5274, #1b334a), top)
+    text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+    box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+  &:active
+    color: #fff
+    +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+    text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+    box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+#buttons a 
+  background: #2e5172
+  border-radius: 0px
+  color: #ffffff
+  text-shadow: 1px 1px 1px black
+  height: 17px
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #2e5172), color-stop(100%, #1c344b))
+  background-image: -webkit-linear-gradient(top, #2e5172, #1c344b)
+  background-image: -moz-linear-gradient(top, #2e5172, #1c344b)
+  background-image: -o-linear-gradient(top, #2e5172, #1c344b)
+  background-image: -ms-linear-gradient(top, #2e5172, #1c344b)
+  background-image: linear-gradient(top, #2e5172, #1c344b)
+  display: block
+  text-decoration: none
+  border: 1px solid
+  border-color: #1c344b
+  box-shadow: inset 0px 1px 1px #2e5172
+  padding: 0px 15px 11px
+  width: 97px
+  float: right
+  position: relative
+  font: bold 13px/0 RockwellSTD, Rockwell, sans-serif
+  margin-left: 6px
+  top: 10px
+
+  img 
+    position: relative
+    top: 4px
+
+#find_left h3 
+  font-family: RockwellSTD, Rockwell, sans-serif
+  color: #fffeff
+  text-shadow: #000000 0px 0px 0
+
+#search 
+  width: 226px
+  margin-left: -14px
+  margin-top: -13px
+  font-size: 13px
+
+#invite_friends 
+  width: 225px
+  font: 13px RockwellSTD, Rockwell, sans-serif
+  line-height: 20px
+  color: #ffffff
+  float: left
+  text-align: left
+  margin-left: 37px
+  margin-top: 0px
+
+  ul 
+    height: 23px
+    position: relative
+    bottom: 7px
+    margin-bottom: 10px
+
+    li 
+      display: inline-block
+      margin-left: 21px
+
+      input 
+        width: 25px
+        height: 25px
+        position: relative
+        top: 5px
+
+#neighbor_find 
+  height: 300px
+  background-color: #eeede0
+  margin-top: 57px
+  padding: 20px
+
+ul li 
+  font-family: RockwellSTD, Rockwell, sans-serif
+  line-height: 47px
+
+#findNeighbors ul.subscribe_categories
+  width: 556px
+  margin: 0px auto
+  
+  li 
+    display: inline-block
+    height: 50px
+    margin-left: 0px
+    margin-right: 0px
+    padding: 0px 13px 0px 0px
+    border-radius: 5px
+    font-size: 24px
+
+#findNeighbors ul.subscribe_categories li:hover 
+  display: inline-block
+  background-color: #1b334a
+
+
+#findNeighbors ul.subscribe_categories li a 
+  color: #fffeff
+  font-size: 18px
+
+
+#subscribe_pages 
+  width: 560px
+  margin-right: auto
+  margin-left: auto
+  height: 380px
+  overflow: scroll
+
+#subscribe_pages ul.subscribe_pages li 
+  overflow: hidden
+  width: 240px
+  display: inline-block
+  padding: 15px
+  background-color: #e9ded0
+  margin-right: 8px
+  margin-bottom: 0
+  margin-top: 8px
+  height: 50px
+
+#subscribe_pages ul.subscribe_pages li:hover
+  background-color: $blue
+  color: $dark-tan
+  a h4
+    color: $dark-tan
+    font: 14px Helvetica, sans-serif
+  a span.page_text
+    color: $dark-tan
+    font: 12px Helvetica, sans-serif
+
+#subscribe_pages ul.subscribe_pages li a 
+  display: inline-block
+  float: left
+  color: $dark-tan
+
+#subscribe_pages ul.subscribe_pages li a img.page_img 
+  width: 50px
+  height: 50px
+  float: left
+
+
+#subscribe_pages ul.subscribe_pages li a h4 
+  font: bold 14px Helvetica, Arial, sans-serif
+  width: 165px
+  margin-left: 15px
+  overflow: hidden
+  color: #1b334a
+  float: left
+
+#subscribe_pages ul.subscribe_pages li a span.page_text 
+  color: #1a1918
+  font: 12px Helvetica, Arial, sans-serif
+  width: 160px
+  padding-left: 15px
+  margin-top: 4px
+  float: left
+
+#invite_friends p
+  font-size: 14px
+  line-height: 27px
+  margin-top: 2px
+
+#invite_friends p a 
+  font-size: 14px
+  line-height: 21px
+  color: #fffeff
+  text-decoration: underline
+
+#registration1 div.redbox.address div#find_button a.blue-button.next-button
+  float: left
+
+#find_button a.blue-button.next-button
+  float: left
+
+img.page_img
+  width: 64px
+  height: 64px
+  float: left
+
+#subscribe_pages a h2
+  color: #e9ded0

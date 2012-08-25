@@ -1,0 +1,24 @@
+<div id="nav_wrapper">
+  
+  <div class="community-name">
+    <a href="{{root_url}}">
+      {{#isAuth}}
+        {{#hasCommunity}}
+          <h1 class="community">
+            {{community_name}}
+          </h1>
+        {{/hasCommunity}}
+      {{/isAuth}}
+      {{#notAuth}}
+        <h1>OurCommonPlace</h1>
+        {{#hasCommunity}}
+          <span class="community">
+            {{community_name}}
+          </span>
+        {{/hasCommunity}}
+      {{/notAuth}}
+    </a>
+  </div>
+  <div class="nav"></div>
+
+</div>

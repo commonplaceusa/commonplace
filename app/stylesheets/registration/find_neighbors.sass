@@ -1,0 +1,100 @@
+@import "compass/css3/border-radius"
+@import "compass/css3/images"
+@import base.sass
+
+#RealFindNeighbors
+  width: 670px
+  background-color: #eeecdf
+  background: url(shared/redesign/red-bg.png)
+  z-index: 1000
+  margin-top: 100px
+  margin-right: auto
+  margin-left: 170px
+  margin-bottom: 30px
+  position: fixed
+  padding-bottom: 20px
+  font-family: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+  color: #fff
+
+  #search 
+    width: 526px
+    height: 20px
+    margin: 10px 0px 15px 0px
+    font-size: 13px
+    padding: 8px
+    font-family: $Rokkitt
+    color: $blue
+    background: #fff
+    float: left
+    margin-left: 27px
+    border: 1px solid #821916
+    box-shadow: inset #C8C8C8 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
+
+  .find_title
+    font-family: $Yellowtail
+    font-size: 36px
+    margin: 20px auto 30px auto
+    text-shadow: 3px 3px 0px $blue
+    text-align: center
+    background: url(shared/redesign/neighbors_stars.png) no-repeat 29px -16px
+
+  .find_known
+    width: 590px
+    font-size: 24px
+    padding: 18px 0px 18px 0px
+    text-align: center
+    background: darken($red, 13%)
+    margin: 0px auto 30px auto
+
+  .find_steps
+    width: 566px
+    margin-left: 60px
+
+    p
+      line-height: 14px
+      font-size: 17px
+
+  #buttons
+    margin-bottom: 25px
+    margin-left: -10px
+    width: 275px
+    a 
+      background: #2e5172
+      border-radius: 0px
+      color: #ffffff
+      text-shadow: 1px 1px 1px black
+      height: 17px
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #2e5172), color-stop(100%, #1c344b))
+      background-image: -webkit-linear-gradient(top, #2e5172, #1c344b)
+      background-image: -moz-linear-gradient(top, #2e5172, #1c344b)
+      background-image: -o-linear-gradient(top, #2e5172, #1c344b)
+      background-image: -ms-linear-gradient(top, #2e5172, #1c344b)
+      background-image: linear-gradient(top, #2e5172, #1c344b)
+      display: block
+      text-decoration: none
+      border: 1px solid
+      border-color: #1c344b
+      box-shadow: inset 0px 1px 1px #2e5172
+      padding: 0px 15px 11px
+      width: 97px
+      position: relative
+      font: bold 13px/0 RockwellSTD, Rockwell, sans-serif
+      margin-left: 6px
+      top: 10px
+
+      img 
+        position: relative
+        top: 4px
+
+  #invite_friends
+    p
+      width: 450px
+      margin-left: 30px
+    ul
+      margin-left: 5px
+
+div#RealFindNeighbors div#find_bottom #invite_friends
+  margin-left: 31px
+
+div#RealFindNeighbors div#find_bottom
+  margin-top:  -20px
