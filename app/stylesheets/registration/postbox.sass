@@ -1,0 +1,600 @@
+@import "compass/reset"
+@import base.sass
+
+a
+  text-decoration: none
+
+#modal
+  width: 1000px
+  margin-right: auto
+  margin-left: auto
+
+#posting_navlinks
+  overflow: hidden
+
+  ul li a
+    font: 20px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+
+  ul li a
+    position: relative
+    top: 1px
+    text-decoration: none
+    color: $black
+    position: relative
+    font: 18px/28px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+    padding-left: 6px
+
+  ul li a:hover
+    color: $red
+    cursor: pointer
+
+#newPost   
+  background-color: $off-grey  
+  border: 12px solid #bcbbae
+  z-index: 1000
+  margin-top: 100px
+  margin-right: auto
+  margin-left: 250px
+  margin-bottom: 30px
+  position: fixed
+  border-radius: 4px
+  
+  div.navigation   
+    width: 409px 
+    float: left   
+    padding: 20px
+
+    div.links-conversation
+      display: none
+      height: 350px	
+	
+      form
+        font-family: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+        color: $blue
+        overflow: hidden
+
+        ul input
+          display: none
+
+    div.links-request
+      display:none  
+
+      form
+        width: 250px
+        height: 100px
+        font-family: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+        color: $blue
+        overflow: scroll
+
+      ul input
+        display: none
+
+    div.links-event
+      display: none
+
+      form
+        overflow: scroll
+        width: 250px
+        height: 100px
+        font-family: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+        color: $blue
+
+      ul input
+        display: none
+
+  div.help   
+    position: relative  
+    top: 10px  
+    padding: 25px 20px 15px 20px         
+    background-color: $off-grey  
+    color: $dark-grey  
+    font: 12px/18px Helvetica  
+    width: 200px            
+    background: url(post-help-box.png) no-repeat
+  
+  h1   
+    font: 24px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+    text-shadow: 1px 1px 1px white
+    color: $blue
+    margin-bottom: 15px
+    font-weight: bold
+    
+  div.links   
+    padding: 40px 80px
+    margin: 0px auto
+
+    ul li   
+      list-style-type: none  
+      padding-top: 10px  
+      padding-bottom: 10px  
+      text-shadow: black 0 0 0  
+      padding-left: 30px  
+      background: url(bullet-quote.png) left center no-repeat
+      
+
+    ul li.request
+      background: url(shared/redesign/request-offer-icon.png) left center no-repeat
+      background-size: 26px
+
+    ul li.event
+      background: url(shared/redesign/event-icon.png) left center no-repeat
+      background-size: 26px
+
+    ul li.conversation
+      background: url(shared/redesign/discussions-icon.png) left center no-repeat
+      background-size: 26px
+
+    ul li.meetup
+      background: url(shared/redesign/meetup-icon.png) left center no-repeat
+      background-size: 26px
+
+    ul li:hover
+      color: $red
+      clear: both
+      background-color: rgba(255, 255, 255, 0.4)
+   
+  div.form-container.default
+    opacity: 1
+    
+    form
+      position: relative
+      bottom: 48px
+
+      label.disclaimerLabel input
+        position: relative
+        top: 0
+
+      input
+        position: relative
+        top: 16px
+        background: $dark-tan
+
+      textarea
+        background: $dark-tan
+
+  div.form-container   
+    padding: 40px    
+    width: 415px 
+    position: relative
+
+    form   
+      margin-top: 9px
+
+      button.red-button   
+        margin-right: 10px
+        margin-top: 20px
+        font-size: 20px
+        padding: 10px 5px
+        width: 400px
+        height: 39px
+        text-decoration: none
+        cursor: pointer
+
+        a
+          text-decoration: none
+
+    button.green-button   
+      float: right
+      margin-right: 10px
+      font-size: 20px
+      padding: 10px 5px
+      width: 405px
+      height: 39px
+      text-decoration: none
+      margin-bottom: 15px
+      cursor: pointer
+
+      a
+        text-decoration: none
+
+    label.disclaimerLabel input
+      width: 25px
+      float: left
+    
+strong   
+  font-weight: bold  
+  
+.rounded_corners   
+  -moz-border-radius: 4px  
+  -webkit-border-radius: 4px  
+  border-radius: 4px  
+ 
+.half_rounded_corners   
+  -moz-border-radius: 4px 4px 0px 0px  
+  -webkit-border-radius: 4px 4px 0px 0px  
+  border-radius: 4px 4px 0px 0px  
+
+::-webkit-input-placeholder
+  color: #a2a2a2
+
+::-moz-placeholder
+  color: #a2a2a2
+
+input   
+  width: 397px  
+  background-color: #fefffe
+  margin-bottom: 15px  
+  border: 1px solid $dark-tan  
+  font: 14px Helvetica, Arial, "Sans Serif"
+  padding: 10px 8px
+  color: #333
+
+textarea   
+  width: 397px  
+  background-color: #fefffe  
+  height: 150px  
+  margin-bottom: 15px  
+  border: 1px solid $dark-tan  
+  font: 14px Helvetica, Arial, "Sans Serif"
+  padding: 10px 8px
+  line-height: 18px  
+  color: #333
+  //box-shadow: inset 2px 2px 4px 0px #dddddd  
+
+#disclaimer   
+  width: 174px  
+  color: $dark-tan  
+  top: 0px
+  right: 0px
+  bottom: 0px
+  left: 0px  
+  position: relative  
+  text-shadow: #fffeff 2px 1px 0  
+  font: 11.4px/16px Helvetica  
+  float: left
+
+  label   
+    position: relative
+    width: 200px
+    display: inline-block
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+    p.disclaimer_text
+      position: relative
+      top: 3px
+      right: 5px
+
+    .disclaimerLabel input
+      position: relative
+      right: 0px
+      bottom: 0px
+      left: 0px
+
+.jspContainer
+  overflow: hidden
+  position: relative
+
+.jspPane
+  position: absolute
+
+.jspVerticalBar
+  position: absolute
+  top: 0
+  right: 0
+  width: 16px
+  height: 100%
+  background: red
+
+.jspHorizontalBar
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  height: 16px
+  background: red
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+  margin: 0
+  padding: 0
+
+.jspCap
+  display: none
+
+.jspHorizontalBar .jspCap
+  float: left
+
+.jspTrack
+  background: #dde
+  position: relative
+
+.jspDrag
+  background: #bbd
+  position: relative
+  top: 0
+  left: 0
+  cursor: pointer
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+  float: left
+  height: 100%
+
+.jspArrow
+  background: #50506d
+  text-indent: -20000px
+  display: block
+  cursor: pointer
+
+.jspArrow.jspDisabled
+  cursor: default
+  background: #80808d
+
+.jspVerticalBar .jspArrow
+  height: 16px
+
+.jspHorizontalBar .jspArrow
+  width: 16px
+  float: left
+  height: 100%
+
+.jspVerticalBar .jspArrow:focus
+  outline: none
+
+.jspCorner
+  background: #eeeef4
+  float: left
+  height: 100%
+
+* html .jspCorner
+  margin: 0 -3px 0 0
+
+#posting_right
+  width: 725px
+  height: 320px
+
+div.posting
+  padding: 40px
+
+  ul li
+    list-style-type: none
+    padding-top: 10px
+    padding-bottom: 10px
+    text-shadow: white 1 1 0
+    padding-left: 30px
+    background: url(bullet-quote.png) left center no-repeat
+
+    a
+      font: 18px/40px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+      color: $blue
+      position: relative
+      top: 4px
+
+    a:hover
+      color: $red
+
+  ul li:hover
+    list-style-type: none
+    padding-top: 10px
+    padding-bottom: 10px
+    text-shadow: white 1 1 0
+    padding-left: 30px
+    background: url(bullet-quote2.png) left center no-repeat
+
+    a
+      font: 18px/40px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+      color: $blue
+      position: relative
+      top: 4px
+
+    a:hover
+      color: $red
+div.go-back
+  margin-bottom: -40px
+  bottom: 45px
+  position: relative
+div.go-back a
+  color: $red
+  text-decoration: none
+  text-transform: uppercase
+  position: relative
+  bottom: 15px
+  left: 20px
+  font: bold 11px "Helvetica Neue", "Helvetica", "Arial"
+
+#newPost div.form-container form button.red-button
+  width: 200px
+  height: 60px
+  padding-top: 16px
+  position: relative
+  bottom: 25px
+  font-size: 26px
+  float: right
+  margin-right: 0px
+
+#business
+  width: 400px
+  font: 12px Helvetica, Arial, sans-serif
+  color: #1b334a
+  float: right
+  text-align: right
+
+#request
+  width: 403px
+  font: 14px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+  color: $blue
+  margin-bottom: 20px
+  z-index: 11999
+
+  ul
+    height: 23px
+    position: relative
+    bottom: 7px
+    margin-bottom: 10px
+
+  ul li
+    display: inline-block
+    margin-right: 30px
+
+    input
+      width: 25px
+      height: 25px
+      position:  relative
+      top: 5px
+
+form select
+  width: 404px
+  margin-bottom: 12px
+
+div.form-container.share ul
+  
+div.form-container.share ul li   
+  list-style-type: none  
+  padding-top: 10px  
+  padding-bottom: 10px  
+  text-shadow: black 0 0 0  
+  padding-left: 30px  
+  //background: url(bullet-quote.png) left center no-repeat
+  cursor: pointer
+  clear: both
+  &:hover, &:focus, &:active
+    background-color: rgba(255, 255, 255, 0.4)
+
+  div
+    font: 18px/20px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+    color: $blue
+    position: relative
+    top: 3px
+    margin-left: 10px
+    &:hover, &:focus, &:active
+      color: $red
+  a:hover
+    color: $red
+div.form-container.share
+  width: 285px
+  padding: 40px 80px
+  #share_email
+    input
+      width: 267px
+      padding: 10px 8px
+      margin-bottom: 15px
+  #share_link
+    input
+      width: 267px
+      padding: 10px 8px
+      margin: 0px
+  
+h3   
+  font: 18px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+  text-shadow: 1px 1px 1px white
+  color: #1b334a
+  margin-bottom: 10px
+
+a.share
+  color: $red
+  text-decoration: none
+  text-transform: uppercase
+  position: relative
+  font: bold 11px "Helvetica Neue", "Helvetica", "Arial"
+  padding: 8px
+  float: right
+  bottom: 15px
+  background-color: #D7D5C6
+  margin-top: 10px
+  &:hover, &:focus, &:active
+    background-color: $red
+    color: white
+
+div.share
+  text-decoration: none
+
+  h3
+    font: 16px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+    margin: 20px 0px 10px 0px
+  
+  button.green-button   
+    float: left
+    font-size: 20px
+    padding: 10px 5px
+    width: 100%
+    height: 40px
+    text-decoration: none
+    cursor: pointer
+    text-transform: uppercase
+
+#site_overlay
+  background-color: black
+  width:  1000px
+  height:  1000px
+
+#discussion_dk
+  width: 414px
+
+#start_at_time
+  width: 114px
+  float: left
+  margin-right: 14px
+
+#end_at_time
+  width: 114px
+  float: left
+
+#event_date input
+  width: 141px
+  float: left
+  margin-right: 10px
+  margin-top: 0px
+
+div.meetup_lets
+  font-family: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+  color: $blue
+  display: inline
+
+  p
+    float: left
+    margin-right: 12px
+    padding-top: 8px
+    font-size: 22px
+
+  input
+    width: 328px
+    float: left
+
+//New Code
+
+#business
+  width: 200px
+  float: left
+  font: 12px Helvetica, Arial, sans-serif
+  color: #6e6e65
+  text-align: left
+
+  ul
+    height: 23px
+    position: relative
+    bottom: 7px
+    margin-bottom: 10px
+
+  ul li
+    display: inline-block
+    margin-left: -4px
+    margin-right: 20px
+    color: #6e6e65
+
+    input
+      width: 25px
+      height: 25px
+      position: relative
+      top: 7px
+      
+div.form-container   
+  padding: 17px 17px 0    
+  width: 415px 
+  overflow: auto
+  position: relative
+
+  form   
+    margin-top: 9px
+
+    button.red-button   
+      float: right
+      margin-right: 10px
+      font-size: 20px
+      padding: 10px 5px
+      width: 185px
+      height: 39px
+      text-decoration: none
+      cursor: pointer

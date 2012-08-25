@@ -1,4 +1,47 @@
+<div id="civicProfile" class="container">
+  <div class="registration_border">
+     <div class="civic_title">Fill Out Your Civic Profile</div>
+     <span class="divider"></span>
+     <div class='civic_left'>
+      <img class="profile_pic" src="/avatars/missing.png" alt="This is your profile photo" />
+   	<div class="not-facebook">
+         <div>
+           <a href="#" class="avatar_file_browse">Upload New Photo</a>
+         </div>
+   	<br />or<br />
+       </div>
+       <div class="to-facebook">
+         <img class="facebook" src="/assets/use_facebook.png" alt="Connect with Facebook">
+       </div>
+     </div>
 
-<p>{{#t}}p1{{/t}}</p>
+     <div class="civic_right">
+       <!--<span id="civic_name">{{user_name}}</span><br />-->
+       <input type="text" name="status" placeholder="This is a short civic status message" class="civic_message">
+       <br />
+       <textarea rows="2" cols="20" name="about" placeholder="Tell us a bit about yourself" class="civic_profile"></textarea>
+       <br />
+       <input type="text" name="organizations" placeholder="What organizations are you part of?" class="civic_orgs">
+       <br />
+       <!--<label for="interests">Share interests with my neighborhood:</label>-->
+       <select name="interests" class="list" multiple="true" data-placeholder="Share interests with my neighborhood">
+         {{#interests}} <option value="{{.}}">{{.}}</option> {{/interests}}
+       </select>
+       <br />
+       <!--<label for="skills">Share skills with my neighborhood:</label>-->
+       <select name="skills" class="list" multiple="true" data-placeholder="Share skills with my neighborhood">
+         {{#skills}} <option value="{{.}}">{{.}}</option> {{/skills}}
+       </select>
+       <br />
+       <!--<label for="goods">Share goods with my neighborhood:</label>-->
+       <select name="goods" class="list" multiple="true" data-placeholder="Share goods with my neighborhood">
+         {{#goods}} <option value="{{.}}">{{.}}</option> {{/goods}}
+       </select>
+       <br />
+     </div>
 
-<a class="feed-tour"></a>
+     <div id="civic_button">
+       <a href="#" class="blue-button next-button">Continue</a>
+     </div>
+  </div>
+</div>

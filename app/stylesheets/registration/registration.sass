@@ -1,0 +1,193 @@
+@import "compass/reset"
+@import base.sass
+
+#registration1
+  width: 515px
+  margin: 12% auto 0px auto
+
+.welcome
+  background: url("shared/redesign/welcomebg.png") center top no-repeat
+  width: 525px
+  padding: 0 32px
+  margin: 100px auto 0px auto
+  height: 670px
+  .inside 
+    position: relative
+    top: 125px
+    width: 495px
+    left: 15px
+  h4
+    font-family: $Yellowtail
+    color: white
+    font-size: 30px 
+    margin: 0
+    position: relative
+    top: 10px
+    text-align: center
+  h3
+    font-family: $Rokkitt
+    font-size: 80px
+    text-align: center
+    letter-spacing: 1px
+    text-shadow: 6px 5px 0px #1B334A
+    color: white
+    margin: 0
+    text-transform: capitalize
+  .white-box
+    width: 400px
+    margin: 0 auto
+      top: 20px
+    padding: 15px
+      top: 20px
+      bottom: 20px
+    border-radius: 5px
+    background: white
+    text-align: center
+    p 
+      margin: 0
+      font-family: $Rokkitt
+      color: $blue
+      font-size: 23px 
+  .bottom
+    width: 430px
+    font-size: 18px
+    margin: 0 auto
+      top: 20px 
+    color: white 
+    font-family: $Rokkitt
+  ul 
+    font-family: $Rokkitt
+    padding-left: 15px
+    margin: 0 auto
+      top: 15px
+    li 
+      color: white
+      margin-bottom: 6px
+      list-style-image: url(../images/bullet_star.png)
+      line-height: 30px
+
+  input[type=button]
+    -webkit-appearance: none
+    background: $blue
+    @include background(linear-gradient(top center, #2e5274, #1b334a))
+    width: 230px
+    text-transform: uppercase
+    padding: 10px 0
+    letter-spacing: 1px
+    font-family: $Ultra
+    font-size: 20px
+    border: 1px solid #151f28
+    color: white
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255,255,255,.3)
+    text-shadow: 1px 2px 3px rgba(0,0,0,.5)
+    cursor: pointer
+    margin: 26px 0 0 95px
+
+#registration_modal
+  //margin-left: -300px
+
+#civicProfile div.civic_right 
+  float: right
+  width: 400px
+
+#civic_button 
+  width: 150px
+  height: 50px
+  clear: right
+  margin-top: 5px
+  position: relative
+  bottom: 90px
+  float: right
+  left: 40px
+  margin-bottom: 10px
+
+#civicProfile div.civic_left 
+  float: left
+  width: 122px
+  margin-right: 25px
+  color: #888
+  text-shadow: 0px 1px 0px #fff
+  text-align: center
+  font: 18px/15px Rockkitt, RockwellSTD, Rockwell, sans-serif
+
+#civicProfile div.civic_title 
+  font-size: 46px
+  width: 100%
+  //background: url("shared/redesign/civic_stars.png") no-repeat 25px
+  text-align: center
+  font-family: $Yellowtail
+  text-shadow: 4px 4px 1px #1b334a
+  color: #eeecdf
+  margin-bottom: 0px
+
+input#search.civic_message 
+  margin-top: 12px
+
+#civicProfile.container div.civic_right input 
+  height: 10px
+  padding: 10px
+  width: 388px
+  margin-bottom: 22px
+
+#civicProfile.container div.civic_right textarea
+  padding: 10px
+  width: 388px
+  margin-bottom: 22px
+
+input::-webkit-input-placeholder
+  color: #424242
+
+textarea::-webkit-input-placeholder
+  color: #424242
+
+#civic_name 
+  font-family: $Rokkitt
+  font-size: 26px
+  letter-spacing: 1px
+  color: white
+  margin: 0
+
+#civicProfile div.civic_left a.civic_upload
+  color: #fefffe
+  background-color: #1e3953
+  padding: 7px
+  font: 10px Helvetica, Arial
+  border-radius: 5px
+  
+#civicProfile
+  span.divider
+    margin-bottom: 30px
+
+#civicProfile div.civic_left img.profile_pic
+  margin-bottom: 15px
+
+#civicProfile div.civic_left div.civic_facebook
+  width: 120px
+  height: 30px
+  background: url(shared/redesign/use_facebook.png) no-repeat
+  cursor: pointer
+
+#header #nav_wrapper div.community-name
+  width: auto
+  margin-left: -20px
+  border: 0px none
+  box-shadow: none
+
+#header #user_sign_in div.top-bar
+  width: auto
+  margin-right: -20px
+  border: 0px none
+  box-shadow: none
+  
+#header #nav_wrapper div.community-name a h1
+  float: left
+
+#header #nav_wrapper div.community-name a span.community
+  float: left
+  margin-top: 18px
+  color: $red
+  font-family: $heading
+  font-size: 24px
+  font-weight: bold
+  margin-left: 8px
+  text-shadow: 1px 1px 1px black

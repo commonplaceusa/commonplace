@@ -108,7 +108,15 @@ class Community < ActiveRecord::Base
       "shares" => "/communities/#{id}/shares",
       "landing_wires" => "/communities/#{id}/wire",
       "residents" => "/communities/#{id}/residents",
-      "email_contact_authorization_callback" => "find_neighbors/callback"
+      "email_contact_authorization_callback" => "find_neighbors/callback",
+      "facebook_login" => "/users/auth/facebook",
+      "registration" => {
+        "validate" => "/registration/#{id}/validate",
+        "new" => "/registration/#{id}/new",
+        "avatar" => "/account/avatar",
+        "facebook" => "/registration/#{id}/facebook",
+        "residents" => "/communities/#{id}/residents"
+      }
     }
   end
 

@@ -1,47 +1,84 @@
-<h1>Plug Into the {{community_name}} Community</h1>
-
-<div class="registration_information">
-  <ul class="infolist">
-    <li>The {{community_name}} CommonPlace is a safe online bulletin board for {{community_name}} residents.  It's the very best way to connect with your local community.</li>
-    <li>Register once to start receiving short updates from your neighborhood, the police, the {{community_name}} city government, and great community organizations in town. <a href="{{learn_more}}" class="learn-more">LEARN MORE</a></li>
-    <li>
-      <div class="show-video-con">
-      <h3>What Are Neighbors Saying?</h3>
-      <a href="#" class="show-video"></a>
+<div class="registration1">
+  <div class="left">
+    <div class="tab-content">
+      <div class="tab-pane" id="home">
+        <h1>Welcome Home!</h1>
+        <div class="tab-description">
+          <p class="first">The {{community_name}} CommonPlace is the easiest way</p><br/>
+          <p>to share with your neighors and keep up with what's</p><br/>
+          <p>happening in {{community_name}}. <span class="learn-more"><a href="{{community_name}}/about" class="learn-more">Learn More</a></span></p>
+        </div>
       </div>
-    </li>
-  </ul>
-    
-</div>
-
-<form class="new_user">
-  <div class="new-top">
-    <h4>Register Now</h4>
-    <span class="facebook_registration" style="display: none">
-      <p class="or">or</p>
-      <img class="facebook" src="/assets/facebookconnect.png">
-    </span>
+      <div class="tab-pane" id="story">
+        <h1>Our Story</h1>
+        <div class="tab-description">
+          <p>OurCommonPlace began with a story about</p><br/>
+          <p>bowling. In 2009, two freshman-year roommates</p><br/>
+          <p>at Harvard read the book <em>Bowling Alone</em> by Robert</p><br/>
+          <p>Putnam. The book was a revelation. <span class="learn-more"><a href="{{community_name}}/our-story" class="learn-more">Learn More</a></span></p>
+        </div>
+      </div>
+      <div class="tab-pane" id="platform">
+        <h1>The Platform</h1>
+        <div class="tab-description">
+          <p class="first">Our goal is to help neighbors and community</p><br/>
+          <p>leaders to share information with the people around</p><br/>
+          <p>them and empower them to build awesome things</p><br/>
+          <p>for their communities. <span class="learn-more"><a href="{{community_name}}/our-platform" class="learn-more">Learn More</a></span></p>
+        </div>
+      </div>
+      <div class="tab-pane" id="press">
+        <h1>Supporters</h1>
+        <div class="tab-description">
+          <p class="first">Need copy! <span class="learn-more"><a href="{{community_name}}/press" class="learn-more">Learn More</a></span></p>
+        </div>
+      </div>
+      <div class="tab-pane" id="awards">
+        <h1>Civic Hero Awards</h1>
+        <div class="tab-description">
+          <p class="first">OurCommonPlace runs a national community</p><br/>
+          <p>awards program dedicated to spotlighting and</p><br/>
+          <p>celebrating local leaders in towns and cities across</p><br/>
+          <p>the country.<span class="learn-more"><a href="{{community_name}}/nominate" class="learn-more">Learn More</a></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="navbar">
+      <ul class="nav nav-tabs" id="scroller">
+        <li><a href="#home" class="mission selected">Our Mission</a></li>
+        <li><a href="#story" class="story">Our Story</a></li>
+        <li><a href="#platform" class="platform">The Platform</a></li>
+        <li><a href="#press" class="press">Supporters</a></li>
+        <li><a href="#awards" class="awards">Civic Hero Awards</a></li>
+      </ul>
+    </div>
   </div>
-  <ul>
-    <li>
-      <input class="name" type="text" name="full_name" placeholder="Full name">
-      <span class="error full_name"></span>
-    </li>
-    <li>
-      <input class="mail" type="text" name="email" id="email" placeholder="Email address">
-      <span class="error email"></span>
-    </li>
-    <li>
-      <input class="st_address" type="text" name="street_address" class="has_hint" placeholder="Street address*">
-      <span class="error address"></span>
-      <div id="verify_text" class="address">*This verifies that you live in {{community_name}}. It won't be shared with anyone.</div>
-      <input type="radio" id="suggested_radio" style="display:none" checked="checked" name="verify_address" value="suggested" class="address_verify_radio" /> <span style="display:none" class="address_verify_radio">Use the address we have in our system</span><br />
-      <div id="suggested_address" style="display:none"></div>
-      <input type="radio" style="display:none" name="verify_address" value="entered" class="address_verify_radio" /> <span style="display:none" class="address_verify_radio">Use the address I typed.</span><br />
-    </li>
-  </ul>
-  
-  <input type="submit" class="grey-button sign_up" value="SIGN ME UP!">
-</form>
-
-<div style="clear: both;"></div>
+  <div class="right">
+    <div id="redbox">
+      <figure class="front">
+        <h2>Sign Up</h2>
+        <form class="registration">
+          <div id="full_name">
+            <input name="full_name" class="name" type="text" placeholder="Full Name" />
+            <span class="error full_name"></span>
+          </div>
+          <br />
+          <div id="email">
+            <input class="email" type="email" name="email" placeholder="Your Email" />
+            <span class="error email"></span>
+          </div>
+          <br />
+          <div id="password">
+            <input class="password" type="password" name="password" placeholder="New Password" /><br />
+            <span class="error password"></span>
+          </div>
+          <button class="next-button">Register Now!</button></form>
+          <div class="facebook">
+            <p>Or you can:</p>
+            <a href="#">Facebook</a>
+          </div>
+        </form>
+      </figure>
+    </div>
+  </div>
+</div>

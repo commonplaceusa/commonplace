@@ -1,0 +1,432 @@
+@import "compass/css3/gradient"
+@import "compass/css3/border-radius"
+@import "compass/reset"
+@import base.sass
+
+$Ultra: 'Ultra'
+$Yellowtail: 'Yellowtail'
+$Rokkitt: 'Rokkitt'
+
+html
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+
+#main-reg
+  width: 1100px
+  background: none
+  margin: 0 auto
+  position: relative
+  .community-name
+    width: 600px
+    padding-left: 20px
+    border-style: none
+    h1
+      background: url("shared/redesign/logo2.png") left no-repeat
+      font-weight: normal
+      font-size: 33px
+      float: left
+      width: 225px
+      margin-top: 15px
+      text-indent: -9999px
+    span
+      font-size: 28px
+      margin-top: 18px
+      text-shadow: black 1px 1px 1px
+      font-weight: normal
+      display: block
+      font-family: $Rokkitt
+      color: $red
+#registration_modal
+  background:none
+  width: 1070px
+  overflow: hidden
+  position: relative
+  height: auto
+  margin-left: auto
+  margin-right: auto
+  z-index: 500
+.registration_right
+  top: 0
+  width: 420px
+  float: right
+.top-bar
+  width: 300px
+  border-style: none
+  border-right: none
+  float: right
+  h3
+    color: white
+    font-size: 16px
+    text-shadow: 1px 1px 1px black
+    margin-right: 10px
+    float: left 
+    margin-top: 22px
+    font-family: $heading
+  .button
+    padding: 5px
+    border-radius: 4px 
+    box-shadow: inset 0 1px 1px rgba(255,255,255,.4)
+    cursor: pointer
+    width: 70px
+    float: left
+    margin-top: 14px
+    font-family: $heading
+    font-size: 18px
+    color: white
+    border: 1px solid black
+    text-align: center
+  .blue
+    margin-right: 20px
+    +linear-gradient(color-stops(#2e5274, #1b334a))
+    &:hover, &:focus
+      color: #fff
+      +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+    &:active
+      color: #fff
+      +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+  .red
+    background: $red
+    +linear-gradient(color-stops(#cc4441, #ac322f))
+    &:hover, &:focus
+      color: #fff
+      +linear-gradient(color-stops(#ea4e4a, #ac322f), top)
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+    &:active
+      color: #fff
+      +linear-gradient(color-stops(#cc4441, #ac322f), bottom)
+.dropdown
+  width: 300px
+  background: #EEECDF
+  text-align: center
+  z-index: 4000000
+  display:none
+  +border-radius(4px)
+  position: absolute
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), inset 0px -1px 0px #AAA
+  right: 0px
+  top: 61px
+  .arrow
+    width: 150px
+    height: 20px
+    background: url("shared/redesign/arrow.png") no-repeat
+    background-position: 100px 12px
+    position: absolute
+    top: -20px 
+    display: block
+    right: 0
+  input
+    width: 240px
+    -webkit-appearance: none
+    font-size: 16px
+    padding: 8px
+    height: auto
+    margin-top: 5px
+    font-family: $Rokkitt
+    border: 1px solid #d7d5c5
+    font-family: $Rokkitt
+    color: #333
+    box-shadow: inset #eee 0px 0px 3px 2px, rgba(255,255,255,.15) 0px 1px 1px
+    -webkit-font-smoothing: antialiased
+    &:focus
+      outline: none
+  input::-webkit-input-placeholder
+    color: #888
+  input:-moz-placeholder
+    color: #888
+  .email
+    margin: 20px 0px 10px 0px
+  button.signin
+    text-align: center
+    float: right
+    width: 100px
+    +linear-gradient(color-stops(#2e5274, #1b334a))
+    font-weight: bold
+    font-size: 15px
+    margin-right: 20px
+    padding-top: 10px
+    padding-bottom: 8px
+    margin-top: 5px
+    height: auto
+    -webkit-font-smoothing: antialiased
+    &:hover, &:focus
+      color: #fff
+      +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+    &:active
+      color: #fff
+      +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+  button.signin.facebook
+    width: 145px
+    height: auto
+    margin-right: 12px
+    font-size: 15px
+    padding: 10px 0 8px 0
+    +linear-gradient(color-stops(#4e6fb6, #3b5998))
+    -webkit-font-smoothing: antialiased
+    &:hover, &:focus
+      color: #fff
+      +linear-gradient(color-stops(#5c83d7, #3b5998), top)
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+    &:active
+      color: #fff
+      +linear-gradient(color-stops(#4e6fb6, #3b5998), bottom)
+  p 
+    clear: both
+    margin-left: 22px
+    padding: 12px 0px 15px 0px
+    text-align: left
+    font-family: $Rokkitt
+    cursor: pointer
+    color: #565656
+    font-weight: bold
+    -webkit-font-smoothing: antialiased
+    &:hover
+      text-decoration: underline
+
+.registration1
+  margin-top: 12%
+  .left 
+    width: 55%
+    float: left
+    h1
+      color: #fff
+      font-family: $Yellowtail
+      background: url("shared/redesign/red-bg.png")
+      text-shadow: 3px 3px 0px $blue
+      font-size: 42px
+      padding: 20px
+      padding-right: 28px
+      margin-bottom: 35px
+      float: left
+    .tab-description
+      clear: both
+      width: 560px
+      padding: 0px
+      margin: 0px
+    p
+      margin-top: 20px
+      display: inline
+      color: #1c344b
+      font-family: $Rokkitt
+      background: #fff
+      padding: 5px
+        left: 15px 
+        right: 15px
+      font-size: 26px
+      line-height: 38px
+      &:last-child
+        padding-top: 0px
+        display: inline-block
+        margin-top: 0px
+    p.first
+      padding-top: 15px
+    .learn-more
+      color: $red
+      cursor: pointer
+      margin-left: 5px
+      &:hover
+        text-decoration: underline
+    .tab-pane
+      display: none
+      &:first-child
+        display: block
+    .navbar
+      background: url("shared/redesign/blue-bg.png")
+      margin-top: 20px
+      margin-right: 40px
+      height: 40px 
+      width: 550px
+      ul
+        padding-left: 13px
+        li 
+          float: left 
+          color: white
+          font-family: $Rokkitt
+          font-size: 15px
+          text-shadow: 1px 1px 1px black
+          margin-right: 15px
+          margin-top: -3px
+          a 
+            text-decoration: none
+            color: white
+            font-size: 17px
+            padding-left: 0px
+            font-weight: bold
+            &:hover 
+              color: $red
+          a.selected
+            color: $red
+  .right 
+    width: 450px
+    height: 375px
+    position: relative
+    -webkit-perspective: 800px
+    float: right
+    #redbox
+      height: 100%
+      text-align: center
+      width: 100%
+      position: absolute
+      -webkit-transform-style: preserve-3d
+      -webkit-transition: transform 1s
+      figure
+        display: block
+        position: absolute
+        width: 100%
+        height: 100%
+        -webkit-backface-visibility: hidden
+      .front
+        background: $red url("shared/redesign/red-bg.png")
+        display: block
+      .back 
+        background: $blue
+        -webkit-transform: rotateY( 180deg )
+        display: block
+      #password, #full_name, #email
+        position: relative
+        float: left
+        width: 100%
+      .input_error
+        background: #EEECDF url(/assets/shared/redesign/background.gif) center
+        box-shadow: inset #B5B196 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
+      .input_error::-webkit-input-placeholder
+        color: $red
+      .error
+        font-size: 11px
+        color: #fff
+        max-width: 250px
+        font-family: Helvetica, Arial, sans-serif
+        font-weight: bold
+        position: absolute
+        bottom: 40px
+        right: -10px
+        background: url('shared/redesign/error-bg.png')
+        background-repeat: no-repeat
+        background-position: bottom left
+        padding: 10px 12px 18px 12px
+        line-height: 14px
+        text-align: left
+        display: none
+      h2
+        font-size: 42px
+        margin-top: 20px
+        width: 100%
+        background: url("shared/redesign/stars.png") no-repeat center
+        text-align: center
+        font-family: $Yellowtail
+        text-shadow: 3px 3px 0px $blue
+        color: #fff
+        margin-bottom: 15px
+        padding-bottom: 15px
+      input
+        width: 378px
+        height: 20px
+        padding: 8px
+        font-family: $Rokkitt
+        color: $blue
+        font-size: 18px
+        background: #fff
+        margin-bottom: 10px
+        float: left
+        margin-left: 27px
+        border: 1px solid #821916
+        box-shadow: inset #C8C8C8 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
+        &:last-child
+          margin-bottom: 30px
+      input::-webkit-input-placeholder
+        color: #999
+      input:-moz-placeholder
+        color: #999
+    .registration 
+      button 
+        -webkit-font-smoothing: antialiased
+        background: $blue
+        width: 395px
+        padding: 10px 0
+        letter-spacing: 1px
+        font-family: $Ultra
+        font-size: 20px
+        border: 1px solid #151f28
+        color: white
+        text-transform: uppercase
+        +linear-gradient(color-stops(#2e5274, #1b334a), top)
+        box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+        text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+        cursor: pointer
+        margin-top: 12px
+        &:hover, &:focus
+          color: #fff
+          +linear-gradient(color-stops(#2e5274, #1b334a), top)
+          text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+          box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+        &:active
+          color: #fff
+          +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+          box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+    .facebook
+      margin: 0 auto
+        top: 20px
+      width: 345px
+      text-align: left
+      a 
+        cursor: pointer
+        background: url("shared/redesign/fbreg.png") no-repeat center
+        text-indent: -9999px
+        height: 32px
+        display: block
+        margin-left: 100px
+        width: 245px
+        font-size: 18px
+        text-transform: uppercase
+        &:hover
+          box-shadow: 0px 0px 8px rgba(255,255,255,.35)
+        &:active
+          box-shadow: none
+      p
+        color: white
+        font-family: $Rokkitt 
+        padding-top: 6px
+        float: left
+        font-size: 18px
+
+.tab-content
+  overflow: hidden
+  height: auto
+  width: 100%
+.strip
+  width: 2000px
+  position: relative
+  height: auto
+.tab-pane
+  display: block
+  width: 100%
+  float: left
+
+div#main-reg 
+  div.community-name
+    border-right: none
+    border-left: 1px solid #1c1b1c
+    padding-left: 20px
+  div.community-name h1 
+    margin-top: 16px
+  div.community-name span.community
+    font-size: 28px
+    bottom: 30px
+  div.top-bar
+    border-left: none
+    width: 100%
+
+#find_button a.blue-button.next-button
+  float: left
+  position: static
+  width: 100%
+  margin: 0px auto
+
+#user_sign_in div.community-name span.community
+  position: relative
+  bottom: 31px
+  left: 222px
+  color: $red
+  font: 18px $Rokkitt, Rockwell, Arial, sans-serif
