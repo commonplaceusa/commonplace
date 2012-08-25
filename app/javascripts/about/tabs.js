@@ -8,7 +8,9 @@ function resetPlaceholders() {
       }
     }).blur(function () {
       if ($(this).attr('placeholder') != '' && ($(this).val() == '' || $(this).val() == $(this).attr('placeholder'))) {
-        $(this).val($(this).attr('placeholder')).addClass('hasPlaceholder');
+        if (!$(this).hasClass('password')) {
+          $(this).val($(this).attr('placeholder')).addClass('hasPlaceholder');
+        }
       }
     });
     $('textarea').focus(function () {

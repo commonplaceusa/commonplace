@@ -1,0 +1,30 @@
+<div id="findNeighbors" class="container">
+	<div class="registration_border">
+      <div class="find_title">Subscribe To Some Pages</div>
+      <span class="divider"></span>
+      <ul class="subscribe_categories">
+        {{#categories}}
+      	<li><a href="#{{.}}">{{.}}</a></li>
+        {{/categories}}
+      </ul>
+
+      <div id="subscribe_pages">
+        {{#categories}}
+        <a name="{{.}}"></a>
+        <div class="page_category {{.}}">
+          <h2>{{.}}</h2>
+          <ul class="subscribe_pages" id="{{.}}"></ul>
+        </div>
+        {{/categories}}
+      </div>
+
+      <div id="find_bottom">
+      <div id="invite_friends">
+      	<p>Are you running an organization? <br /><a href="#" class="subscribe_create">Create A New Page</a></p>
+      </div>
+
+      <div id="find_button">
+      	<a href="#" class="blue-button next-button">Continue</a>
+      </div>
+  </div>
+</div>

@@ -76,7 +76,6 @@ class CommunityExterior
 
   def referral_sources
     [
-      "",
       "Received a flyer in the mail",
       "Received a postcard from a local business",
       "From the Lexington Civic Heroes Blog",
@@ -93,7 +92,7 @@ class CommunityExterior
   def links
     {
       "self" => "/registration/#{id}",
-      "tour" => "/#{slug}/tour",
+      "tour" => "/#{slug}/registration",
       "learn_more" => "/#{slug}/about",
       "facebook_login" => "/users/auth/facebook",
       "registration" => {

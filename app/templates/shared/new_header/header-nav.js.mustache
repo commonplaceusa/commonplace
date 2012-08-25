@@ -1,0 +1,37 @@
+<ul>
+  <li id="header_title"></li>
+  {{#showActivity}}
+    <li class="my-activity"></li>
+  {{/showActivity}}
+
+  <li class="inbox">
+    <div class="file"></div>
+    <a href="{{inbox_url}}" data-remote>
+      Inbox
+    </a>
+  </li>
+  <li class="account">
+    <div class="avatar-container" style="background-image:url('{{avatar_url}}');">
+    </div>
+    <a href="{{account_url}}" data-remote>Hi, {{short_name}}!</a>
+
+    <ul class="account-sub">
+      <li><a href="{{account_url}}" data-remote>Account Settings</a></li>
+
+      {{#feeds}}
+        <li><a href="/pages/{{slug}}">{{name}}</a></li>
+      {{/feeds}}
+
+      <li><a href="/feed_registrations/new">Register a Feed</a></li>
+      <li><a href="{{faq_url}}" data-remote>FAQ</a></li>
+
+      {{#neighbor_discount_url}}
+        <li><a href="{{neighbor_discount_url}}" data-remote>Good Neighbor Discount</a></li>
+      {{/neighbor_discount_url}}
+
+      <li><a href="{{privacy_url}}">Privacy Policy</a></li>
+      <li><a href="/users/sign_out">Sign Out</a></li>
+    </ul>
+
+  </li>
+</ul>
