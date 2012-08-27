@@ -26,7 +26,7 @@ else
 
     todo = h["To-Do"]
     should = h["Should Display If Has Tag:"]
-    cant = h["Cant Display If Has Tag:"]
+    cant = h["Can't Display If Has Tag:"]
     case h["To-Do Type"]
     when "Email"
       type = 1
