@@ -131,6 +131,8 @@ $darkBlue: #1b334a
   top: 0
   margin-top: 10%
   -webkit-font-smoothing: antialiased
+  a
+    text-decoration: none
 
 #current-tour-page, #next-tour-page
   display: none
@@ -172,6 +174,7 @@ $darkBlue: #1b334a
   position: relative
   top: 10px
   text-align: center 
+  text-shadow: 1px 2px 0px #fff
 
 .welcome h3 
   font-family: $heading
@@ -184,6 +187,7 @@ $darkBlue: #1b334a
   text-transform: capitalize 
   font-weight: bold
   color: $red
+  mragin-top: 5px
 
 .welcome .white-box 
   width: 400px
@@ -223,7 +227,7 @@ p.welcome-divider
 .welcome ul 
   font-family: $heading
   padding-left: 10px
-  margin: 10px auto 25px
+  margin: 15px auto 25px
 
 .welcome ul li 
   color: $black
@@ -307,9 +311,77 @@ li div.check span.page_text
   box-shadow: 0px 2px 1px #000, inset 0px 1px 0px #fff
   span.divider
     margin-bottom: 30px
+    float: left
+    width: 100%
+    height: 3px
+    background-color: #CFCCC1
+    border-bottom: 1px solid #fff
   img.find_title 
     margin: 15px auto 0px 30px
+  .civic_title
+    font-size: 46px
+    //background: url(shared/redesign/stars-subscribe.png) no-repeat 0px -7px
+    text-align: center
+    font-family: $Yellowtail
+    text-shadow: 0px 2px 0px #fff
+    color: $red
+    margin: -10px auto 20px auto
+    padding-bottom: 0px
+  .civic_left
+    float: left
+    width: 122px
+    margin-right: 25px
+    color: #888
+    text-shadow: 0px 1px 0px #fff
+    text-align: center
+    font-family: $heading
+    font-size: 18px
+    img.profile_pic
+      margin-bottom: 25px
+      width: 122px
+  .civic_right
+    float: right
+    width: 396px
+    color: #333
+    input
+      width: 382px
+      margin-top: 0px
+      margin-bottom: 20px
+      -webkit-font-smoothing: antialiased
+      font-size: 18px
+      padding: 8px
+      height: auto
+      font-family: $heading
+      color: #333
+      border: 1px solid #C9C4B4
+      box-shadow: inset #DDD 0px 0px 3px 2px, white 0px 1px 1px
+      background-color: #fff
+    textarea
+      width: 382px
+      height: 50px
+      margin-top: 0px
+      margin-bottom: 20px
+      -webkit-font-smoothing: antialiased
+      font-size: 18px
+      padding: 8px
+      font-family: $heading
+      color: #333
+      border: 1px solid #C9C4B4
+      box-shadow: inset #DDD 0px 0px 3px 2px, white 0px 1px 1px
+      background-color: #fff
+  
+#civicProfile div.civic_left div.not-facebook div a.avatar_file_browse
+  text-transform: uppercase
+  color: white
+  font: bold 10px $body
+  background-color: #1B334A
+  padding: 5px
+  border-radius: 5px
+  text-shadow: none
 
+#civicProfile div.civic_left div.to-facebook img.facebook
+  margin-top: 7px
+  
 #find_left 
   width: 270px
   height: 412px
@@ -396,8 +468,6 @@ li div.check span.page_text
   margin-top: 57px
   padding: 20px
 
-ul li 
-  font-family: $heading
 
 #findNeighbors ul.subscribe_categories
   width: 100%
@@ -799,7 +869,7 @@ div#RealFindNeighbors.container #find_button a.blue-button.next-button
   margin-top: -5px
   li.search-field
     input::-webkit-input-placeholder
-      color: #555 !important
+      color: #555
       
 div#subscribe_pages ul.subscribe_pages div
   display: inline-block

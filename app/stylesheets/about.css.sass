@@ -5,6 +5,7 @@
 @import header
 @import "compass/reset"
 @import "compass/css3/gradient"
+@import registration/dropkick_selects.scss
 
 /* Woo colors */
 
@@ -19,6 +20,8 @@ $light-grey: #e8e8e8
 $off-grey: #eeecdf
 $search-box: #b7c3cf
 $dark-tan: #bcbbae
+$tan: #F5F3E9
+$light-tan: #FCFAF4
 
 $Ultra: 'Ultra'
 $Yellowtail: 'Yellowtail'
@@ -32,10 +35,12 @@ $body: Helvetica Neue, Helvetica, Tahoma, serif
 $black-shadow: 0px 2px 1px black
 
 html
+  background: image-url("shared/redesign/backgrounds/Vienna.jpg") no-repeat center center fixed
+  background-color: #CEE7FE
+  background-size: cover
+  -webkit-background-size: cover
   -webkit-font-smoothing: antialiased
-
-body
-  background: #CEE7FE
+  text-rendering: optimizeLegibility
   
 em
   font-style: italic
@@ -546,3 +551,215 @@ li.ui-menu-item:last-child
     color: #888
 .hasPlaceholder
   color: #888
+
+/*  Registration Step 2: Verify Address  */
+
+.address
+  .error
+    clear: both
+    font-family: $body
+    font-size: 11px
+    font-weight: bold
+    color: $red
+    text-transform: uppercase
+    margin-top: 6px
+    float: left
+    //color: #fff
+    //padding: 10px 12px 18px 12px
+    //background: url('shared/redesign/error-bg.png') no-repeat bottom left
+    //top: 155px
+    //right: -85px
+    display: none
+  h2 
+    font-size: 46px
+    //background: url("shared/redesign/stars-address.png") no-repeat 7px 10px
+    text-align: center
+    font-family: $Yellowtail
+    text-shadow: 0px 2px 0px #fff
+    color: $red
+    margin: -10px 0px 0px 0px
+    padding-bottom: 0px
+    background-image: none !important
+  p 
+    color: $black
+    font-family: $Rokkitt
+    font-size: 18px
+    margin: 0 0 20px 0
+    line-height: 1.2em
+    text-shadow: 1px 1px 0px #fff
+  input.address
+    -webkit-font-smoothing: antialiased
+    font-size: 18px
+    border: 1px solid #C9C4B4
+    box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
+    font-family: $Rokkitt
+    width: 440px
+    padding: 8px
+    color: #333
+    margin: 0px 0px 5px 0px
+    z-index: 150 !important
+  input.address::-webkit-input-placeholder
+    color: #424242
+  img 
+    border: 1px solid #821916
+    margin-top: -5px
+  p.caption
+    font-size: 14px
+    float: right
+    margin: 5px 0 20px 0 
+    font-family: $Rokkitt
+    text-align: right
+  input[type=button]
+    -webkit-appearance: none
+    background: $blue
+    @include background(linear-gradient(top center, #2e5274, #1b334a))
+    width: 393px
+    padding: 10px 0
+    letter-spacing: 1px
+    font-family: $Ultra
+    font-size: 20px
+    border: 1px solid #151f28
+    color: white
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255,255,255,.3)
+    text-shadow: 1px 2px 3px rgba(0,0,0,.5)
+    cursor: pointer
+  select
+    width: 450px
+    
+.address span.divider
+  //background: url("shared/redesign/divider.png") no-repeat top center
+  //background-size: 95%
+  float: left
+  width: 100%
+  height: 3px
+  margin: 20px auto
+  background-color: #CFCCC1
+  border-bottom: 1px solid #fff
+      
+.address div#find_button
+  margin-top: 20px
+  float: left
+  width: 100%  
+
+#registration1 div.redbox.address div#find_button a.blue-button.next-button
+  text-align: center
+  text-decoration: none
+  -webkit-font-smoothing: antialiased
+  background: $blue
+  width: 100%
+  padding: 10px 0
+  letter-spacing: 1px
+  font-family: $Ultra
+  font-size: 20px
+  border: 1px solid #151f28
+  color: white
+  text-transform: uppercase
+  +linear-gradient(color-stops(#2e5274, #1b334a), top)
+  box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+  text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+  cursor: pointer
+  margin-top: 12px
+  &:hover, &:focus
+    color: #fff
+    +linear-gradient(color-stops(#2e5274, #1b334a), top)
+    text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+    box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+  &:active
+    color: #fff
+    +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+    text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+    box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+#dk_container_hear 
+  width: 475px
+  z-index: 10 !important
+  float: left
+  margin-bottom: 0px
+  font-family: $heading
+  a.dk_toggle 
+    height: 16px
+    margin-bottom: 0
+    border: 1px solid #C9C4B4
+    box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
+    width: 468px !important
+    color: $black
+    border-radius: 0px !important
+    z-index: 10 !important
+    span.dk_arrow.button.blue 
+      border-radius: 0px !important
+      border: 1px solid #0F1E2C
+      height: 15px
+      box-shadow: 0px 1px 0px white
+      right: 0px
+    span.dk_label 
+      width: 400px
+      color: $black
+      font-size: 18px
+      font-family: $heading
+  .dk_options
+    border-radius: 0px !important
+    li
+      &:hover
+        color: $black !important
+      a
+        font-family: $heading !important
+        border-bottom: 1px dotted #ccc !important
+        line-height: 24px !important
+        font-size: 18px !important
+        &:hover
+          background-color: #eee
+          color: $red
+        &:last-child
+          border: 0px none
+          
+.dk_options_inner, .dk_touch .dk_options
+  max-height: 200px !important
+  
+ul.ui-autocomplete
+  background: white
+  width: 366px
+  border: 1px solid #C9C4B4
+  overflow: auto
+  max-height: 250px
+  z-index: 150 !important
+
+li.ui-menu-item
+  border-bottom: 1px dotted #ccc
+  line-height: 44px
+  font-family: $heading
+  padding: 0px 8px
+  font-size: 18px
+  color: $black
+  -webkit-font-smoothing: antialiased
+  &:hover
+    background-color: #eee
+  &:last-child
+    border: 0px none
+  a
+    &:hover
+      color: $red
+      cursor: pointer
+      
+#address_verification
+  color: $black
+  font-family: $Rokkitt
+  font-size: 18px
+  margin: 15px 0px 10px 0px
+  text-shadow: 1px 1px 0px #fff
+
+#address_verification input.address_verify_radio
+  width: 15px
+  height: 15px
+  margin-top: 15px
+  margin-left: 0px
+  margin-right: 5px
+
+#suggested_address
+  margin-left: 24px
+  font-weight: bold
+  line-height: 21px
+  font-size: 18px
+  
+#map_canvas
+  border: 1px solid #C9C4B4
+  box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
+  width: 100% !important
