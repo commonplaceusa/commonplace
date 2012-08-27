@@ -23,7 +23,7 @@ class SiteController < ApplicationController
             slug: community.slug
           }
         end.sort_by { |h| h[:distance] }.first
-        redirect_to "/#{closest_community[:slug]}/about" and return if closest_community[:distance] <= 2
+        redirect_to "/#{closest_community[:slug]}" and return if closest_community[:distance] <= 2
       rescue => ex
         raise "#{ex.message}. REQUEST LOCATION: #{request.location.inspect}"
       end
