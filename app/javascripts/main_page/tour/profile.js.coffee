@@ -76,7 +76,7 @@ CommonPlace.main.ProfileView = CommonPlace.main.TourModalPage.extend(
 
   toggleAvatar: ->
     @hasAvatarFile = true
-    @$("a.avatar_file_browse").html "Added a photo ✓"
+    @$("a.avatar_file_browse").html "Photo Added! ✓"
 
   initReferralQuestions: ->
     @$("select[name=referral_source]").bind "change", _.bind(->

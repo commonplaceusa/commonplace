@@ -62,6 +62,16 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
           complete: self.options.complete
         )
 
+      rules: ->
+        new CommonPlace.main.RulesView(
+          nextPage: nextPage
+          slideIn: slideIn
+          community: self.community
+          account: self.account
+          data: data
+          complete: self.options.complete
+        )
+
       neighbors: ->
         new CommonPlace.main.NeighborsView(
           complete: self.options.complete

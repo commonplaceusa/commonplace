@@ -10,15 +10,17 @@
 
       <div id="subscribe_pages">
         {{#categories}}
-        <a name="{{.}}"><h2>{{.}}</h2></a>
-        <ul class="subscribe_pages" id="{{.}}"></ul>
+        <div class="page_category {{.}}">
+          <a name="{{.}}"><h2>{{.}}</h2></a>
+          <ul class="subscribe_pages" id="{{.}}"></ul>
+        </div>
         {{/categories}}
       </div>
 
       <div id="find_bottom">
-      <div id="invite_friends">
+      <!--<div id="invite_friends">
       	<p>Are you running an organization? <br /><a href="#" class="subscribe_create">Create A New Page</a></p>
-      </div>
+      </div>-->
 
       <div id="find_button">
       	<a href="#" class="blue-button next-button">Continue</a>

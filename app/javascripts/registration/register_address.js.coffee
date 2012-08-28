@@ -9,9 +9,7 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
     @hasAvatarFile = false
     @initReferralQuestions()
     @$("select.dk").dropkick()
-    unless @current
-      @slideIn @el
-      @current = true
+    $("#current-registration-page").html @el
     url = "/api/communities/" + @communityExterior.id + "/address_completions"
     @$("input[name=address]").autocomplete
       source: url
