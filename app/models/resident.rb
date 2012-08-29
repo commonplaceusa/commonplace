@@ -164,17 +164,11 @@ class Resident < ActiveRecord::Base
         if replace = f.replace_flag
           remove_tag(replace)
         end
-=begin
-        if extra = f.extra_flag
-          metadata[:tags] |= Array(extra)
-          Flag.create(:name => extra)
-        end
-=end
         if rule = Flag.get_rule(flag)
           metadata[:remove] |= rule[0]
           metadata[:add] |= rule[1]
         end
-      elsif flag == "Type: Fully Uninterested"
+      else
         if rule = Flag.get_rule(flag)
           metadata[:remove] |= rule[0]
           metadata[:add] |= rule[1]
