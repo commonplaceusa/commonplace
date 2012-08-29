@@ -737,6 +737,9 @@ CONDITION
     # TODO: Instead of loosening the similarity cut-off,
     # make sure they type in a "proper" address (ie begins with some #)
     get "/:id/address_approximate" do
+      if find_community.nil? || Community.find_by_name("Lexington").nil?
+        return serialize([-1])
+      end
       if find_community.launch_date < Community.find_by_name("Lexington").launch_date
         return serialize([-1])
       end
