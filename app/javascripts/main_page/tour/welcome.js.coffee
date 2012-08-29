@@ -4,15 +4,7 @@ CommonPlace.main.WelcomeView = CommonPlace.main.TourModalPage.extend(
     "click .next-button": "submit"
 
   afterRender: ->
-<<<<<<< HEAD
     @slideIn @el
-=======
-    $current = $("#current-tour-page")
-    $current.html @el
-    offset = ($(window).width() - $current.width())/2
-    $current.css(left: offset)
-    $current.show()
->>>>>>> e00456ef103c67f13257a4bf393e113710b71a59
 
   community_name: ->
     @community.get("name")
