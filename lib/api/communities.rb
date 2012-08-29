@@ -701,6 +701,21 @@ CONDITION
       end
     end
 
+    # Returns a list of completed versions of community names
+    #
+    # Note: This should not be bound to a community, but when
+    # the /:id is left out, this function isn't recognized and
+    # won't be called. As a "fix" to this, one can use any of
+    # the existing communities' id/name to call this function
+    # eg: /api/lexington/comm_completions
+    # 
+    # Maybe it has something to do with the way the API is set up?
+    get "/:id/comm_completions" do
+      comm = Community.where("name ILIKE ?", "%#{params[:term]}%").pluck(:name)
+
+      return serialize(comm)
+    end
+
     # Returns a list of completed versions of the address
     #
     # term - the term to find auto-completed
