@@ -3,16 +3,21 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
   id: "user_sign_in"
   tagName: "ul"
   events:
-    "click #login": "toggleLogin"
+    "click #login": "toggleForm"
+    "click #wrong_town": "toggleTown"
     "click button[name=signin]": "login"
     "submit form": "login"
 
   afterRender: ->
     @$("#sign_in").hide()
     @$("#choose_town").hide()
-    #append the links to the towns in the $("#town_list")
+    town_list_api = "/api/communities/marquette/comm_completions"
+    $.getJSON town_list_api, _.bind((response) ->
+      if response
+        @$("#town_list").append("<li><a href='/#{town.slug}'>#{town.name}</a></li>") for town in response
+    , this)
 
-  toggleLogin: (e) ->
+  toggleForm: (e) ->
     e.preventDefault()  if e
     @$("#sign_in").toggle()
 
