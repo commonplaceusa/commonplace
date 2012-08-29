@@ -13,6 +13,8 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
     @community = options.community
     @firstSlide = true
 
+    $("body").css(overflow: "hidden") #prevents the main page from scrolling during the tour
+
   render: ->
     @$("#tour").html(@renderTemplate("main_page.tour.wire", this)).attr "class", "wire"
     $(@el).append("<div id='tour-shadow'></div>")
