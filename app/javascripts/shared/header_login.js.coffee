@@ -4,13 +4,28 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
   tagName: "ul"
   events:
     "click #login": "toggleLogin"
+    "click #wrong_town": "toggleTown"
     "click button[name=signin]": "login"
     "submit form": "login"
+
+  towns: 
+    "harrisonburg": "Harrisonburg, VA"
+    "chelmsford": "Chelmsford, MA"
+    "warwick": "Warwick, NY"
+    "vienna": "Vienna, VA"
+    "marquette": "Marquette, MI"
+    "clarkson": "Clarkson, GA"
+    "burnsville": "Burnsville, MN"
+    "owossocorunna": "Owosso/Corunna, MI"
+    "goldenvalley": "Golden Valley, MN"
+    "grovehall": "Grove Hall, MA"
+    "fallschurch": "Falls Church, VA"
+    "belmont": "Belmont, MA"
 
   afterRender: ->
     @$("#sign_in").hide()
     @$("#choose_town").hide()
-    #append the links to the towns in the $("#town_list")
+    @$("#town_list").append("<li><a href='/#{slug}'>#{town}</a></li>") for slug, town of @towns
 
   toggleLogin: (e) ->
     e.preventDefault()  if e

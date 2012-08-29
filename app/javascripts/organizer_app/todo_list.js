@@ -59,7 +59,7 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
         //model.addTag(tag, _.bind(this.render, this));
       }
     }, this));
-    $.post(this.collection.url()+"/tags", {tags: tag, file_id: arr}).success(function() { location.reload() });
+    $.post(this.collection.url()+"/tags", {tags: tag, file_id: arr}).success(function() { alert("Added tag"); });
   },
 
   afterRender: function() {
