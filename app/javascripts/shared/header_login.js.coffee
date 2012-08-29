@@ -27,7 +27,7 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
     @$("#choose_town").hide()
     @$("#town_list").append("<li><a href='/#{slug}'>#{town}</a></li>") for slug, town of @towns
 
-  toggleLogin: (e) ->
+  toggleForm: (e) ->
     e.preventDefault()  if e
     @$("#sign_in").toggle()
 
