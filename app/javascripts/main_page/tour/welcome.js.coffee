@@ -4,7 +4,7 @@ CommonPlace.main.WelcomeView = CommonPlace.main.TourModalPage.extend(
     "click .next-button": "submit"
 
   afterRender: ->
-    @slideIn @el
+    @fadeIn @el
 
   community_name: ->
     @community.get("name")

@@ -5,7 +5,7 @@ CommonPlace.main.RulesView = CommonPlace.main.TourModalPage.extend(
 
   afterRender: ->
     unless @current
-      @slideIn @el
+      @fadeIn @el
       @current = true
 
   community_name: ->

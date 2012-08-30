@@ -47,9 +47,11 @@ CommonPlace.registration.AboutPageRegisterNewUserView = CommonPlace.registration
 
   submit: (e) ->
     e.preventDefault()  if e
+    @$("input").removeClass "input_error"
+    @$(".error").hide()
     @data.full_name = @$("input[name=full_name]").val()
     @data.email = @$("input[name=email]").val()
-    @data.password = @$("input[name=password]").val()
+    @data.password = @$("input[name=password][type=password]").val()
     if @data.password is ""
       input = @$("input[name=password]")
       error = @$(".error.password")

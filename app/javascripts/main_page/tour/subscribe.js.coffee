@@ -22,7 +22,7 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
           $("." + category).show()
         , this)
     )
-    @slideIn @el
+    @fadeIn @el
 
   community_name: ->
     @community.get("name")

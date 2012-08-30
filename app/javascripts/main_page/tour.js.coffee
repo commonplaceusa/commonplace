@@ -31,16 +31,16 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
     nextPage = (next, data) ->
       self.showPage next, data
 
-    slideIn = (el, callback) ->
-      self.slideIn el, callback
+    fadeIn = (el, callback) ->
+      self.fadeIn el, callback
 
-    @slideOut()  unless @firstSlide
+    @fadeOut()  unless @firstSlide
     view = {
       welcome: ->
         new CommonPlace.main.WelcomeView(
           nextPage: nextPage
           data: data
-          slideIn: slideIn
+          fadeIn: fadeIn
           community: self.community
           account: self.account
         )
@@ -49,7 +49,7 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
         new CommonPlace.main.ProfileView(
           nextPage: nextPage
           data: data
-          slideIn: slideIn
+          fadeIn: fadeIn
           community: self.community
           account: self.account
         )
@@ -57,7 +57,7 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
       feed: ->
         new CommonPlace.main.SubscribeView(
           nextPage: nextPage
-          slideIn: slideIn
+          fadeIn: fadeIn
           community: self.community
           account: self.account
           data: data
@@ -67,7 +67,7 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
       rules: ->
         new CommonPlace.main.RulesView(
           nextPage: nextPage
-          slideIn: slideIn
+          fadeIn: fadeIn
           community: self.community
           account: self.account
           data: data
@@ -77,7 +77,7 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
       neighbors: ->
         new CommonPlace.main.NeighborsView(
           complete: self.options.complete
-          slideIn: slideIn
+          fadeIn: fadeIn
           community: self.community
           account: self.account
           data: data
@@ -124,44 +124,32 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
     @changedElements = []
     CommonPlace.layout.reset()
 
-  centerEl: ->
-    $el = @$("#current-tour-page")
+  centerEl: ($el) ->
     $el.css @dimensions($el)
 
-  slideOut: ->
+  fadeOut: ->
     $current = @$("#current-tour-page")
-    dimensions = @dimensions($current)
-    @slide $current,
-      left: 0 - (1.5*$current.width())
+    $current.fadeOut "slow"
     , ->
       $current.empty()
       $current.hide()
 
-  slideIn: (el, callback) ->
+  fadeIn: (el, callback) ->
     $next = @$("#next-tour-page")
-    $window = $(window)
     $current = @$("#current-tour-page")
     $tour = @$("#tour")
     $tour.css top: $(@el).offset().top
-    $next.show()
     $next.append el
-    dimensions = @dimensions($next)
-    $next.css left: $window.width()
-    @slide $next,
-      left: dimensions.left
+    @centerEl($next)
+    $next.fadeIn "slow"
     , _.bind(->
       $current.html $next.children("div").detach()
+      @centerEl($current)
       $current.show()
-      @centerEl()
       $next.empty()
       $next.hide()
       callback()  if callback
     , this)
-
-  slide: ($el, ending, complete) ->
-    if @firstSlide
-      @firstSlide = false
-    $el.animate ending, 1200, complete
 
   dimensions: ($el) ->
     left = ($(window).width() - $el.width())/ 2
@@ -176,7 +164,7 @@ CommonPlace.main.TourModalPage = CommonPlace.View.extend(
     @data = options.data or isFacebook: false
     @community = options.community
     @account = options.account
-    @slideIn = options.slideIn
+    @fadeIn = options.fadeIn
     @nextPage = options.nextPage
     @complete = options.complete
     @template = @facebookTemplate  if options.data and options.data.isFacebook and @facebookTemplate

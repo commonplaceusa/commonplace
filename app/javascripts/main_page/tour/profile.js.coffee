@@ -11,7 +11,7 @@ CommonPlace.main.ProfileView = CommonPlace.main.TourModalPage.extend(
     @initReferralQuestions()
     @initAvatarUploader @$(".avatar_file_browse")  unless @data.isFacebook
     unless @current
-      @slideIn @el
+      @fadeIn @el
       @current = true
     @$("select.list").chosen().change {}, ->
       clickable = $(this).parent("li").children("div").children("ul")
