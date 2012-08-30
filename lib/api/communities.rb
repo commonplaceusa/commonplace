@@ -713,7 +713,9 @@ CONDITION
     get "/:id/comm_completions" do
       comm = Community.where("name ILIKE ?", "%#{params[:term]}%")
 
-      return serialize(comm)
+      slim = comm.map { |c| {name: c.name, slug: c.slug, state: c.state} }
+
+      return slim.to_json
     end
 
     # For auto-complete

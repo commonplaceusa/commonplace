@@ -14,7 +14,6 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
     town_list_api = "/api/communities/marquette/comm_completions"
     $.getJSON town_list_api, _.bind((response) ->
       if response
-        console.log(response)
         @$("#town_list").append("<li><a href='/#{town.slug}'>#{town.name}, #{town.state}</a></li>") for town in response
     , this)
 
