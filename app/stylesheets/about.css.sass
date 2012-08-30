@@ -294,11 +294,14 @@ em
   width: 1100px
   margin: 0 auto
   position: relative
-  top: 125px
+  top: 95px
   .header
     height: 37px
     background: url("shared/redesign/red-bg.png")
     padding: 13px 0 18px 40px
+    border: 1px solid #741A18
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.25)
+    border-radius: 5px 5px 0px 0px
     h2
       color: white
       font-family: $Yellowtail
@@ -307,32 +310,51 @@ em
       float: left
     ul.nav
       list-style-type: none
-      margin-top: 5px
       position: relative
       left: 40px
-      top: 10px
+      top: 13px
       li
         float: left
-        margin-right: 20px
+        margin-right: 15px
         a
           font-family: $Rokkitt
           text-decoration: none
           color: white
           font-size: 18px
-          padding: 5px 7px
+          padding: 5px 10px
         &:hover
           a
             background-color: #741A18
             border-radius: 4px
+            box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.25)
+        &:active
+          a
+            background-color: #741A18
+            border-radius: 4px
+            color: #eee
+            box-shadow: inset 0px 1px 8px rgba(0, 0, 0, 0.65), 0px 1px 0px rgba(255, 255, 255, 0.20)
       li.selected
         a
           background-color: #741A18
           border-radius: 4px
+          box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.25)
+          text-shadow: 0px 2px 1px #333
 
   .content
-    background: #f5f3e9
-    padding: 40px
-    height: 445px
+    background: url("shared/redesign/tan-bg.png") repeat
+    background-color: $tan
+    padding: 15px
+    height: 512px
+    border-radius: 0px 0px 5px 5px
+    box-shadow: 0px 2px 1px black
+    border: 1px solid #fff
+    margin: 0px auto
+  .about_border
+    float: left
+    padding: 30px
+    border: 3px solid #CFCCC1
+    border-radius: 0px 0px 5px 5px
+    box-shadow: 1px 1px 0px white, inset 1px 1px 0px white
     .left
       width: 500px
       border-right: 1px solid #d3d1c9
@@ -354,11 +376,11 @@ em
       p
         color: #424242
         font-family: $Rokkitt
-        width: 460px
         font-size: 18px
         margin-bottom: 15px
         line-height: 1.25em
         text-shadow: 1px 1px 0px #fff
+        padding-right: 20px
       .highlight
         color: $blue
         font-size: 20px
@@ -366,7 +388,7 @@ em
         margin-bottom: 15px
         font-weight: bold
       div.section_list
-        border-top: 1px dotted #ccc
+        border-top: 1px solid #D6D2C2
         padding-top: 20px
         margin: 0px 0px 20px 0px
         float: left
@@ -418,7 +440,7 @@ em
         font-weight: bold
         margin-bottom: 0px
       img.platform_thumb
-        background-color: #e2dfd2
+        background-color: #D6D2C2
         padding: 0px 81px 0px 81px
         text-align: center
         margin: 0px auto
@@ -443,7 +465,7 @@ em
       border-left: 1px solid white
       height: 445px
       float: left
-      padding-left: 40px
+      padding-left: 30px
       h3
         font-family: $Rokkitt
         color: $blue
@@ -489,7 +511,7 @@ em
         display: none
       .registration
         margin-top: 25px
-        width: 476px
+        width: 470px
         input.placeholder, textarea.placeholder
           color: #555
         input:-ms-input-placeholder
@@ -501,7 +523,7 @@ em
         float: right
         width: 215px
       input
-        width: 458px
+        width: 453px
         height: 20px
         padding: 8px
         font-family: $Rokkitt
@@ -525,7 +547,7 @@ em
         color: #555
       textarea
         -webkit-font-smoothing: antialiased
-        width: 458px
+        width: 452px
         height: 100px
         padding: 8px
         font-family: $Rokkitt
@@ -545,7 +567,7 @@ em
       button
         -webkit-font-smoothing: antialiased
         background: $blue
-        width: 476px
+        width: 470px
         padding: 10px 0
         letter-spacing: 1px
         font-family: $Ultra
@@ -584,7 +606,7 @@ em
           font-size: 18px
           text-transform: uppercase
         p
-          color: #979695
+          color: #555
           font-family: $Rokkitt
           padding-top: 6px
           float: left
