@@ -146,7 +146,7 @@ class API
             @ids=Resident.tagged_with(@tag['tag'],:on=>:sector_tags).map {|a| a.id}.uniq
             @resident=true
           when "organizer"
-            @ids=Resident.tagged_with(@tag['tag'],:on=>:organizer).map {|a| a.id}.uniq              
+            @ids=Resident.tagged_with(@tag['tag'],:on=>:organizer).map {|a| a.id}.uniq
             @resident=true
         end
           @ids.uniq!
@@ -174,13 +174,13 @@ class API
             end
           end
       end
-      
+
       def filter_users_by_several_tag(tags,haves,community_id)
         @residents=filter_users_by_tag(tags[0],haves[0],community_id)
         @final=@residents&filter_users_by_tag(tags[1],haves[1],community_id)
         for @k in 2..tags.size-1 do
           @final=@final&filter_users_by_tag(tags[@k],haves[@k],community_id)
-        end  
+        end
         @final
       end
 
@@ -190,7 +190,7 @@ class API
             when "post"
               if ids[:userids].size>0
                 @ids=Post.where(:user_id=>ids[:userids]).order("created_at DESC").map {|a| a.user_id}.uniq
-              else 
+              else
                 @ids=Post.order("created_at DESC").map {|a| a.user_id}.uniq
               end
             when "email"
@@ -209,7 +209,7 @@ class API
                 @ids=SiteVisit.sort("created_at DESC").map {|a| a.commonplace_account_id}.uniq
               end
             when "announcement"
-              @announcements=Announcement.order("created_at DESC").where(:owner_type=>"Feed").map {|a| a.owner_id}.uniq              
+              @announcements=Announcement.order("created_at DESC").where(:owner_type=>"Feed").map {|a| a.owner_id}.uniq
               if ids[:userids].size>0
                 @ids=Announcement.where(:owner_id=>ids[:userids],:owner_type=>"User").order("created_at DESC").map {|a| a.owner_id}.uniq
                 @announcements=@announcements&@ids
@@ -236,7 +236,7 @@ class API
               end
             when "replied"
               @postsids=Reply.order("created_at DESC").map {|a| a.repliable_id}.uniq
-              if ids[:userids].size>0                
+              if ids[:userids].size>0
                 @ids=Post.where(:user_id=>ids[:userids],:id=>@postsids).map {|a| a.user_id}.uniq
               else
                 @ids=Post.where(:id=>@postsids).map {|a| a.user_id}.uniq
@@ -250,9 +250,9 @@ class API
             when "story"
               @resident=true
               if ids[:residentids].size>0
-                @ids=Resident.where("last_story_time is not null AND id in (?)",ids[:residentids]).order("last_story_time DESC").map &:id  
+                @ids=Resident.where("last_story_time is not null AND id in (?)",ids[:residentids]).order("last_story_time DESC").map &:id
               else
-                @ids=Resident.where("last_story_time is not null").order("last_story_time DESC").map &:id                
+                @ids=Resident.where("last_story_time is not null").order("last_story_time DESC").map &:id
               end
             else
               @resident=true
@@ -260,13 +260,13 @@ class API
                 @ids=Flag.where("name=? AND id in (?)",tag,ids[:residentids]).order("created_at DESC").map &:resident_id
               else
                 @ids=Flag.where(:name=>tag).order("created_at DESC").map &:resident_id
-              end  
-            end 
+              end
+            end
           @ids.uniq!
           @residents=nil
           if !@resident
               # for existing communities, not every user has a corresponding resident so i have
-              # to joins resident in case of nil. But for new ones this is not necessary, remove it to 
+              # to joins resident in case of nil. But for new ones this is not necessary, remove it to
               # improve speed
             @residents=User.where(:id=>@ids[0],:community_id=>community_id).map &:resident
             for @k in 1..@ids.size-1 do
@@ -293,62 +293,62 @@ class API
       def order_users_by_quantity_of_tag(tag,community_id,ids)
         @resident=false
         # for existing communities, not every user has a corresponding resident so i have
-        # to joins resident in case of nil. But for new ones this is not necessary, now i remove it to 
-        # improve speed. If needed add it back. e.g. @residents=User.where("users.id in (?) AND residents.community_id = ? 
+        # to joins resident in case of nil. But for new ones this is not necessary, now i remove it to
+        # improve speed. If needed add it back. e.g. @residents=User.where("users.id in (?) AND residents.community_id = ?
         # AND users.posts_count <> ?",ids[:userids],community_id,0).order("posts_count DESC").map &:resident
         #                                                                          --   Ye Shen
         case tag
           when "post"
-            if ids[:userids].size>0 
+            if ids[:userids].size>0
               @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.posts_count <> ?",ids[:userids],community_id,0).order("posts_count DESC").map &:resident
             else
               @residents=User.where("residents.community_id = ? and users.posts_count <> ?",community_id,0).order("posts_count DESC").map &:resident
             end
           when "reply"
-            if ids[:userids].size>0 
+            if ids[:userids].size>0
               @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.replies_count <> ?",ids[:userids],community_id,0).order("replies_count DESC").map &:resident
             else
               @residents=User.where("residents.community_id = ? and users.replies_count <> ?",community_id,0).order("replies_count DESC").map &:resident
             end
           when "sitevisit"
-            if ids[:userids].size>0 
+            if ids[:userids].size>0
               @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.sign_in_count <> ?",ids[:userids],community_id,0).order("sign_in_count DESC").map &:resident
             else
               @residents=User.where("residents.community_id = ? and users.sign_in_count <> ?",community_id,0).order("sign_in_count DESC").map &:resident
             end
           when "announcement"
-            if ids[:userids].size>0 
+            if ids[:userids].size>0
               @residents=User.where("users.id in (?) AND residents.community_id = ? and users.announcements_count <> ?",ids[:userids],community_id,0).order("announcements_count DESC").map &:resident
             else
               @residents=User.where("residents.community_id = ? and users.announcements_count <> ?",community_id,0).order("announcements_count DESC").map &:resident
             end
           when "feed"
-            if ids[:userids].size>0 
+            if ids[:userids].size>0
               @residents=User.where("users.id in (?) AND residents.community_id = ? and users.feeds_count <> ?",ids[:userids],community_id,0).order("feeds_count DESC").map &:resident
             else
               @residents=User.where("residents.community_id = ? and users.feeds_count <> ?",community_id,0).order("feeds_count DESC").map &:resident
             end
           when "replied"
-            if ids[:userids].size>0 
+            if ids[:userids].size>0
               @residents=User.where("users.id in (?) AND residents.community_id = ? and users.replied_count <> ?",ids[:userids],community_id,0).order("replied_count DESC").map &:resident
             else
               @residents=User.where("residents.community_id = ? and users.replied_count <> ?",community_id,0).order("replied_count DESC").map &:resident
             end
           when "invite"
-            if ids[:userids].size>0 
+            if ids[:userids].size>0
               @residents=User.where("users.id in (?) AND residents.community_id = ? and users.invite_count <> ?",ids[:userids],community_id,0).order("invite_count DESC").map &:resident
             else
               @residents=User.where("residents.community_id = ? and users.invite_count <> ?",community_id,0).order("invite_count DESC").map &:resident
             end
           when "event"
-            if ids[:userids].size>0 
+            if ids[:userids].size>0
               @residents=User.where("users.id in (?) AND residents.community_id = ? and users.event_count <> ?",ids[:userids],community_id,0).order("events_count DESC").map &:resident
             else
               @residents=User.where("residents.community_id = ? and users.event_count <> ?",community_id,0).order("events_count DESC").map &:resident
             end
           when "story"
-            if ids[:residentids].size>0 
-              @residents=Resident.where("id in (?) and community_id = ? and stories_count <> ?",ids[:residentids],community_id,0).order("stories_count DESC")              
+            if ids[:residentids].size>0
+              @residents=Resident.where("id in (?) and community_id = ? and stories_count <> ?",ids[:residentids],community_id,0).order("stories_count DESC")
             else
               @residents=Resident.where("community_id = ? and stories_count <> ?",community_id,0).order("stories_count DESC")
             end
@@ -364,7 +364,7 @@ class API
 
       serialize find_community
     end
-    
+
     # Set organize start date
     post "/:id" do
       control_access :admin
@@ -708,7 +708,7 @@ CONDITION
     # won't be called. As a "fix" to this, one can use any of
     # the existing communities' id/name to call this function
     # eg: /api/lexington/comm_completions
-    # 
+    #
     # Maybe it has something to do with the way the API is set up?
     get "/:id/comm_completions" do
       comm = Community.where("name ILIKE ?", "%#{params[:term]}%")

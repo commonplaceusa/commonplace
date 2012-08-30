@@ -175,6 +175,27 @@
       header.render();
       var communitySlug = window.location.pathname.split("/")[1];
 
+      this.$(".next-button").click(function() {
+        var community, error, input, params;
+        var data = {};
+        community = this.$("input[name=community]").val();
+        data.full_name = this.$("input[name=full_name]").val();
+        data.email = this.$("input[name=email]").val();
+        data.password = this.$("input[name=password]").val();
+        if (data.password === "") {
+          input = this.$("input[name=password]");
+          error = this.$(".error.password");
+          input.addClass("input_error");
+          error.text("Password can't be empty");
+          error.show();
+        } else if (data.community === "") {
+          input = this.$("input[name=community]");
+          error = this.$(".error.community");
+          input.addClass("input_error");
+          error.text("Please tell us what community you live in.");
+          error.show();
+        }
+      });
       tabs = this.$("ul.nav-tabs > a");
       $(".tab-content > div").hide().filter("#home").fadeIn("500", "linear");
       $("ul.nav-tabs a").each(function() {

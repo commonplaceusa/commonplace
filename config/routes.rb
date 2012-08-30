@@ -9,6 +9,7 @@ Commonplace::Application.routes.draw do
 
   match "/info" => "site#info"
   match "/about" => "site#about"
+
   # Community specific redirects
   match "/corunna" => redirect("/owossocorunna")
   match "/owosso" => redirect("/owossocorunna")

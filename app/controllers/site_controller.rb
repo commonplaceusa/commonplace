@@ -20,10 +20,24 @@ class SiteController < ApplicationController
                   latitude: community.latitude,
                   longitude: community.longitude
                 }),
-            slug: community.slug
+            slug: community.slug,
+            name: community.name
           }
         end.sort_by { |h| h[:distance] }.first
-        redirect_to "/#{closest_community[:slug]}/about" and return if closest_community[:distance] <= 2
+
+        # Filter communites by cut-off distance
+        closest_community.reject! {|h| CoordinateDistance.cutoff(h) }
+
+        # If there are more than one community left [or none at all],
+        # render the default about page
+        if closest_community.count != 1
+          render layout: nil and return
+        end
+
+        # Found exactly one community within the cut-off
+        closest_community = closest_community.first
+
+        redirect_to "/#{closest_community[:slug]}/about" and return
       rescue => ex
         raise "#{ex.message}. REQUEST LOCATION: #{request.location.inspect}"
       end
@@ -45,10 +59,23 @@ class SiteController < ApplicationController
                   latitude: community.latitude,
                   longitude: community.longitude
                 }),
-            slug: community.slug
+            slug: community.slug,
+            name: community.name
           }
-        end.sort_by { |h| h[:distance] }.first
-        redirect_to "/#{closest_community[:slug]}" and return if closest_community[:distance] <= 2
+        end.sort_by { |h| h[:distance] }
+
+        # Filter communites by cut-off distance
+        closest_community.reject! {|h| CoordinateDistance.cutoff(h) }
+
+        # If there are more than one community left [or none at all],
+        # render the default landing page
+        if closest_community.count != 1
+          render layout: nil and return
+        end
+
+        # Found exactly one community within the cut-off
+        closest_community = closest_community.first
+        redirect_to "/#{closest_community[:slug]}" and return
       rescue => ex
         raise "#{ex.message}. REQUEST LOCATION: #{request.location.inspect}"
       end
