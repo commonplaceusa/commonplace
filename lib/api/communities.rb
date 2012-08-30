@@ -716,6 +716,14 @@ CONDITION
       return serialize(comm)
     end
 
+    # For auto-complete
+    get "/:id/comm_complete" do
+      comm = Community.where("name ILIKE ?", "%#{params[:term]}%")
+
+      full_comm = comm.map { |c| "#{c.name}, #{c.state}" }
+      return serialize(full_comm)
+    end
+
     # Returns a list of completed versions of the address
     #
     # term - the term to find auto-completed

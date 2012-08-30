@@ -74,27 +74,13 @@
             <div class="right">
               <div id="redbox">
                 <figure class="front">
-                  <h2>Sign Up</h2>
+                  <h2>Find Your Community</h2>
                   <form class="registration">
                     <div id="community">
-                      <input name="comm" id="community" placeholder="Community">
+                      <input name="comm" id="community" placeholder="Community" />
                     </div>
                     <br />
-                    <div id="full_name">
-                      <input name="full_name" class="name" type="text" placeholder="Full Name" />
-                      <span class="error full_name"></span>
-                    </div>
-                    <br />
-                    <div id="email">
-                      <input class="email" type="email" name="email" placeholder="Your Email" />
-                      <span class="error email"></span>
-                    </div>
-                    <br />
-                    <div id="password">
-                      <input class="password" type="password" name="password" placeholder="New Password" /><br />
-                      <span class="error password"></span>
-                    </div>
-                    <button class="next-button">Register Now!</button></form>
+                    <button class="next-button">Go to Community!</button></form>
                   </form>
                 </figure>
               </div>
@@ -106,96 +92,16 @@
       <div id="wrapper-footer"></div>
     </div>
     <script type="text/javascript" src="/assets/registration.js"></script>
-    <script>
-      if (typeof(Number.prototype.toRad) === "undefined") {
-        Number.prototype.toRad = function() {
-          return this * Math.PI / 180;
-        }
-      }
-      function distance(lat1, lon1, lat2, lon2) {
-        var R = 6371; // km
-        var dLat = (lat2-lat1).toRad();
-        var dLon = (lon2-lon1).toRad();
-        var lat1 = lat1.toRad();
-        var lat2 = lat2.toRad();
-
-        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        var d = R * c;
-        return d;
-      }
-      $.collect = function(c, f) {
-        var a = [];
-        $.each(c, function(k, v) {
-          a.push(f(k, v));
-        });
-        return a;
-      };
-
-      function sortByDistance(a, b) {
-        var aDistance = a.distance;
-        var bDistance = b.distance;
-        return ((aDistance < bDistance) ? -1 : ((aDistance > bDistance) ? 1 : 0));
-      }
-      $.location = {
-        // window.geolocation_provider is useful for testing purposes, not used in
-        // development/staging/production envs.
-        geolocation_provider: window.geolocation_provider || navigator.geolocation
-      }
-      function getLocation() {
-        $.ajax({
-          url: "/api/communities/locations"
-          }).done(function(community_locations) {
-          if (navigator.geolocation) {
-            $.location.geolocation_provider.getCurrentPosition(function(position) {
-              var latitude = position.coords.latitude;
-              var longitude = position.coords.longitude;
-              distances = $.collect(community_locations, function(index, coords) {
-                return {
-                  slug: coords[0],
-                  distance: distance(parseInt(coords[1]), parseInt(coords[2]), latitude, longitude)
-                }
-              });
-              distances = distances.sort(sortByDistance);
-              coordinate_pair = distances[0];
-              window.location.href = "/" + coordinate_pair.slug + "/about";
-            });
-            } else {
-          }
-        });
-      }
-      $(document).ready(function() {
-        getLocation();
-      });
-    </script>
     <script type="text/javascript">
       CommonPlace.account = new Account({});
       var header = new CommonPlace.shared.HeaderView({el: $("#header")});
       header.render();
       var communitySlug = window.location.pathname.split("/")[1];
-
-      this.$(".next-button").click(function() {
-        var community, error, input, params;
-        var data = {};
-        community = this.$("input[name=community]").val();
-        data.full_name = this.$("input[name=full_name]").val();
-        data.email = this.$("input[name=email]").val();
-        data.password = this.$("input[name=password]").val();
-        if (data.password === "") {
-          input = this.$("input[name=password]");
-          error = this.$(".error.password");
-          input.addClass("input_error");
-          error.text("Password can't be empty");
-          error.show();
-        } else if (data.community === "") {
-          input = this.$("input[name=community]");
-          error = this.$(".error.community");
-          input.addClass("input_error");
-          error.text("Please tell us what community you live in.");
-          error.show();
-        }
+      this.$("input#community").autocomplete({
+          source: "/api/communities/lexington/comm_complete",
+          minLength: 0
       });
+
       tabs = this.$("ul.nav-tabs > a");
       $(".tab-content > div").hide().filter("#home").fadeIn("500", "linear");
       $("ul.nav-tabs a").each(function() {

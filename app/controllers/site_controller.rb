@@ -31,7 +31,14 @@ class SiteController < ApplicationController
         # If there are more than one community left [or none at all],
         # render the default about page
         if closest_community.count != 1
-          render layout: nil and return
+          render layout: nil and return if params[:comm].nil?
+
+          name = params[:comm].split(",").first
+          if c = Community.find_by_name(name)
+            redirect_to "/#{c.slug}" and return
+          else
+            render layout: nil and return
+          end
         end
 
         # Found exactly one community within the cut-off
@@ -70,7 +77,15 @@ class SiteController < ApplicationController
         # If there are more than one community left [or none at all],
         # render the default landing page
         if closest_community.count != 1
-          render layout: nil and return
+          render layout: nil and return if params[:comm].nil?
+
+          name = params[:comm].split(",").first
+          if c = Community.find_by_name(name)
+            redirect_to "/#{c.slug}" and return
+          else
+            render layout: nil and return
+          end
+
         end
 
         # Found exactly one community within the cut-off
