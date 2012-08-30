@@ -23,7 +23,7 @@ class SiteController < ApplicationController
             slug: community.slug,
             name: community.name
           }
-        end.sort_by { |h| h[:distance] }.first
+        end.sort_by { |h| h[:distance] }
 
         # Filter communites by cut-off distance
         closest_community.reject! {|h| CoordinateDistance.cutoff(h) }
