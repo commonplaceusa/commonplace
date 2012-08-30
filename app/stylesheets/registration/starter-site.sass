@@ -122,11 +122,10 @@ html
     padding: 8px
     height: auto
     margin-top: 5px
-    font-family: $Rokkitt
     border: 1px solid #d7d5c5
     font-family: $Rokkitt
     color: #333
-    box-shadow: inset #eee 0px 0px 3px 2px, rgba(255,255,255,.15) 0px 1px 1px
+    box-shadow: inset #eee 0px 0px 3px 2px, rgba(255,255,255,1.0) 0px 1px 0px
     -webkit-font-smoothing: antialiased
     &:focus
       outline: none
@@ -185,6 +184,35 @@ html
       text-decoration: underline
 #choose_town.dropdown
   right: 223px !important
+  padding: 13px
+  width: 250px
+  .arrow
+    width: 145px
+  ul#town_list
+    overflow: scroll
+    overflow-x: hidden
+    max-height: 286px
+    box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
+    border: 1px solid #d7d5c5
+    li
+      border-bottom: 1px dotted #ddd
+      font-family: $heading
+      font-size: 18px
+      line-height: 24px
+      text-align: left
+      color: $black
+      background-color: #fff
+      &:hover
+        background-color: #eee
+        color: $black
+        cursor: pointer
+      a
+        padding: 8px 10px
+        color: #555
+        display: block
+        cursor: pointer
+        &:hover
+          color: $red
 .registration1
   margin-top: 12%
   .left 
