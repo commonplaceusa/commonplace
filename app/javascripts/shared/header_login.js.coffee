@@ -8,26 +8,16 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
     "click button[name=signin]": "login"
     "submit form": "login"
 
-  towns: 
-    "harrisonburg": "Harrisonburg, VA"
-    "chelmsford": "Chelmsford, MA"
-    "warwick": "Warwick, NY"
-    "vienna": "Vienna, VA"
-    "marquette": "Marquette, MI"
-    "clarkson": "Clarkson, GA"
-    "burnsville": "Burnsville, MN"
-    "owossocorunna": "Owosso/Corunna, MI"
-    "goldenvalley": "Golden Valley, MN"
-    "grovehall": "Grove Hall, MA"
-    "fallschurch": "Falls Church, VA"
-    "belmont": "Belmont, MA"
-
   afterRender: ->
     @$("#sign_in").hide()
     @$("#choose_town").hide()
-    @$("#town_list").append("<li><a href='/#{slug}'>#{town}</a></li>") for slug, town of @towns
+    town_list_api = "/api/communities/marquette/comm_completions"
+    $.getJSON town_list_api, _.bind((response) ->
+      if response
+        @$("#town_list").append("<li><a href='/#{town.slug}'>#{town.name}</a></li>") for town in response
+    , this)
 
-  toggleForm: (e) ->
+  toggleLogin: (e) ->
     e.preventDefault()  if e
     @$("#sign_in").toggle()
 

@@ -711,7 +711,7 @@ CONDITION
     # 
     # Maybe it has something to do with the way the API is set up?
     get "/:id/comm_completions" do
-      comm = Community.where("name ILIKE ?", "%#{params[:term]}%").pluck(:name)
+      comm = Community.where("name ILIKE ?", "%#{params[:term]}%")
 
       return serialize(comm)
     end
