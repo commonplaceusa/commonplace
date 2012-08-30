@@ -1,0 +1,25 @@
+/* h8u IE7 */
+
+#registration1 {
+  position: relative;
+}
+#registration1 .right {
+  right: 0px;
+}
+.redbox .address {
+  display: block;
+}
+
+div#find_button {
+  z-index: 75;
+  clear: both;
+}
+
+#header .registration_right {
+  width: 451px;
+}
+
+#about .address {
+  display: block;
+}
+      
