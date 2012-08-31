@@ -21,6 +21,7 @@
 //= require contacts/yahoo
 //= require views
 //= require models
+//= require placeholders
 //= require_tree ../templates/shared
 //= require_tree ../templates/registration
 //= require_tree ./registration

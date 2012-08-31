@@ -13,12 +13,11 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
     @community = options.community
     @firstSlide = true
 
-    $("body").css(overflow: "hidden") #prevents the main page from scrolling during the tour
-
-  render: ->
+  afterRender: ->
     @$("#tour").html(@renderTemplate("main_page.tour.wire", this)).attr "class", "wire"
     $(@el).append("<div id='tour-shadow'></div>")
     $(@el).append(@renderTemplate("main_page.tour.modal", this))
+    $("body").css(overflow: "hidden") #prevents the main page from scrolling during the tour
 
   community_name: ->
     @community.get "name"
@@ -85,50 +84,22 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
         )
     }[page]()
     view.render()
+    resetPlaceholders()
 
   welcome: ->
     @showPage "welcome"
-
-  wire: ->
-    #this function isn't used, leaving it as an example of how the tour highlighted different objects
-    @cleanUp()
-    @template = "main_page.tour.wire"
-    @$("#tour").html(@renderTemplate("main_page.tour.wire", this)).attr "class", "wire"
-    @$("#tour").css left: $("#main").offset().left
-    @removeShadows "#community-resources"
-    @raise "#community-resources"
 
   end: ->
     @cleanUp()
     $("#tour-shadow").remove()
     $("#tour").remove()
 
-  raise: (el) ->
-    $(el).css zIndex: @overlayLevel + 1
-    @changedElements.push el
-
-  removeShadows: (el) ->
-    shadowVal = "0 0 0 transparent"
-    $(el).css
-      "-moz-box-shadow": shadowVal
-      "-webkit-box-shadow": shadowVal
-      "-o-box-shadow": shadowVal
-      "box-shadow": shadowVal
-
-    @changedElements.push el
-
-  cleanUp: ->
-    _(@changedElements).each (e) ->
-      $(e).attr "style", ""
-
-    @changedElements = []
-    CommonPlace.layout.reset()
-
   centerEl: ($el) ->
     $el.css @dimensions($el)
 
   fadeOut: ->
     $current = @$("#current-tour-page")
+    $current.css('filter', 'alpha(opacity=40)')
     $current.fadeOut "slow"
     , ->
       $current.empty()
@@ -140,6 +111,7 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
     $tour = @$("#tour")
     $tour.css top: $(@el).offset().top
     $next.append el
+    $next.css('filter', 'alpha(opacity=40)')
     @centerEl($next)
     $next.fadeIn "slow"
     , _.bind(->
