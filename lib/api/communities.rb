@@ -593,14 +593,18 @@ CONDITION
       elsif params[:tag].length==1
         res = filter_users_by_tag(params[:tag][0], params[:have][0], params[:id])
       elsif params[:tag].length==0
-        res = Resident.where(:community_id=>params[:id]).order("last_name ASC, first_name ASC")
+        [200, {}, "0"]
       end
+      res.sort!
 
-      res.each do |r|
+      per = params[:per].to_i
+      start = per * (params[:page].to_i - 1)
+      partial = res.slice(start, per)
+      partial.each do |r|
         r.add_tags(params[:add])
       end
 
-      [200, {}, "true"]
+      [200, {}, "#{res.count}"]
     end
 
     # Create a post in the community
