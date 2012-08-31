@@ -8,6 +8,16 @@
   right: 0px !important;
   
 }
+
+.registration1 .right #redbox {
+  display: block;
+  background: #AC322F url("shared/redesign/red-bg.png");
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0px;
+  top: 0px;
+}
 .redbox .address {
   display: block;
 }
