@@ -1,6 +1,11 @@
 function resetPlaceholders() {
+  if(typeof jQuery.support.placeholder === 'undefined') {
+    jQuery.support.placeholder = false;
+    test = document.createElement('input');
+    if('placeholder' in test) jQuery.support.placeholder = true;
+  }
 
-  if(!$.support.placeholder) {
+  if(!jQuery.support.placeholder) {
     var active = document.activeElement;
     $('input').focus(function () {
       if ($(this).attr('placeholder') != '' && $(this).val() == $(this).attr('placeholder')) {
