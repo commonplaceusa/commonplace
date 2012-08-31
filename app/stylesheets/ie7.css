@@ -1,16 +1,23 @@
-/* h8u IE7 */
+/* IE7 Styles */
 
-#registration1 {
+#wrapper {
   position: relative;
+  
 }
-#registration1 .right {
-  right: 0px;
+#wrapper .right {
+  right: 0px !important;
 }
 .redbox .address {
   display: block;
 }
 
-div#find_button {
+div#address div#find_button {
+  z-index: 75;
+  clear: both;
+}
+
+#find_button a.blue-button.next-button {
+  height: 22px;
   z-index: 75;
   clear: both;
 }
@@ -22,4 +29,19 @@ div#find_button {
 #about .address {
   display: block;
 }
-      
+
+#about .about_border .right {
+  display: block;  
+}
+
+.registration1 .right #redbox #password, .registration1 .right #redbox #full_name, .registration1 .right #redbox #email {
+  height: 50px;
+}
+
+#redbox input {
+  margin-bottom: 15px;
+}
+
+.address input {
+  color: #333;
+}
