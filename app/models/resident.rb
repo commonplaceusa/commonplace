@@ -334,7 +334,17 @@ class Resident < ActiveRecord::Base
     r.organization = self.organization if r.organization.nil? && !self.organization.nil? && !self.organization.empty?
     r.position = self.position if r.position.nil? && !self.position.nil? && !self.position.empty?
     r.address = self.address if r.address.nil? && !self.address.nil? && !self.address.empty?
-    r.notes = self.notes if r.notes.nil? && !self.notes.nil? && !self.notes.empty?
+
+    if !self.notes.nil? && !self.notes.empty?
+      if r.notes.nil?
+        r.notes = self.notes
+      else
+        new_notes = r.notes << ", " << self.notes
+        r.notes = nil
+        r.save
+        r.notes = new_notes
+      end
+    end
 
     r.manually_added ||= self.manually_added
     r.save
