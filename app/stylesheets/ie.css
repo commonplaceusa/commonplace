@@ -9,7 +9,11 @@
   
 }
 
-.redbox .address {
+.registration1 .right #redbox {
+  margin-left: -20px;
+}
+
+#redbox .address {
   display: block;
 }
 
