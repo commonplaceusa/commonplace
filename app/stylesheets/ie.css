@@ -51,3 +51,7 @@ div#address div#find_button {
 #dk_container_hear .dk_options li a {
   height: 24px;
 }
+
+#choose_town.dropdown ul#town_list {
+  overflow-y: scroll;
+}
