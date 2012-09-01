@@ -1,5 +1,8 @@
-.registration1 .right #redbox {
-   background: #AC322F url("shared/redesign/red-bg.png");
-   margin-left: -40px;
+.registration1 .right.default #redbox {
+   margin-left: -30px;
+}
+
+.registration1 .right {
+   margin-left: -90px;
 }
 
