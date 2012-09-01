@@ -1,7 +1,7 @@
 /* IE7, IE8 Styles */
 
 #wrapper {
-  position: relative;
+  position: relative !important;
   
 }
 #wrapper .right {
@@ -12,6 +12,10 @@
 .registration1 .right #redbox {
   margin-left: -20px;
 }
+.registration1 .right.default #redbox {
+  padding: 1px 0px 25px 0px;
+}
+
 
 #redbox .address {
   display: block;
