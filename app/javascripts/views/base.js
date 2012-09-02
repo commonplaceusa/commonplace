@@ -134,8 +134,11 @@ CommonPlace.View = Backbone.View.extend({
 
   organizer_email: function() { return CommonPlace.community.get('admin_email'); },
 
-  community_slug: function() { return CommonPlace.community.get('slug'); }
+  community_slug: function() { return CommonPlace.community.get('slug'); },
 
+  community_user_count: function() { return CommonPlace.community.get('user_count'); },
+
+  community_feed_count: function() { return CommonPlace.community.get('feed_count'); }
 });
 
 var FormView = CommonPlace.View.extend({

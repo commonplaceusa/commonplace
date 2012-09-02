@@ -74,6 +74,8 @@ class Community < ActiveRecord::Base
     t.add :zip_code
     t.add :organize_start_date
     t.add :scripts
+    t.add :user_count
+    t.add :feed_count
     #t.add lambda {|u| u.user_statistics}, :as => :user_statistics
   end
 
@@ -292,6 +294,14 @@ class Community < ActiveRecord::Base
     scripts
   end
 
+  def user_count
+    self.users.count
+  end
+
+  def feed_count
+    self.feeds.count
+  end
+
   def resident_todos
     todos = Flag.get_todos
     todos |= self.metadata[:resident_todos] if self.metadata[:resident_todos]
@@ -311,7 +321,7 @@ class Community < ActiveRecord::Base
   def manual_tags
     Flag.all.map &:name
   end
-  
+
   def user_statistics
     if self.organize_start_date?
       start=self.organize_start_date
@@ -354,7 +364,7 @@ class Community < ActiveRecord::Base
       t=t+1
     end
     result.merge!({users: users}).merge!({posts: posts}).merge!({feeds: feeds}).merge!({emails: emails}).merge!({calls: calls})
-=begin    
+=begin
     cols=[]
     rows=[]
     cols<<{id: 'date', label: 'Date', type: 'date'}
