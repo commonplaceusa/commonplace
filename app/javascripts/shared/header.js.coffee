@@ -26,6 +26,12 @@ CommonPlace.shared.HeaderView = CommonPlace.View.extend(
     else
       CommonPlace.community.get "name"  if CommonPlace.community
 
+  community_url: ->
+    if CommonPlace.community
+      @root_url
+    else
+      "/info"
+
   isAuth: ->
     CommonPlace.account.isAuth()
 
