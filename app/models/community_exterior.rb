@@ -78,7 +78,7 @@ class CommunityExterior
     [
       "Received a flyer in the mail",
       "Received a postcard from a local business",
-      "From the Lexington Civic Heroes Blog",
+      "From the Civic Heroes Blog",
       "In an email",
       "By word of mouth",
       "In the news",
