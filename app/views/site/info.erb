@@ -120,6 +120,9 @@
           source: "/api/communities/lexington/comm_complete",
           minLength: 0
       });
+      this.$("input#community").click(function() {
+        this.autocomplete("search", "");
+      });
 
       tabs = this.$("ul.nav-tabs > a");
       $(".tab-content > div").hide().filter("#home").fadeIn("500", "linear");
