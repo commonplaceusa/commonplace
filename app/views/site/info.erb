@@ -113,7 +113,7 @@
     <script type="text/javascript" src="/assets/registration.js"></script>
     <script type="text/javascript">
       CommonPlace.account = new Account({});
-      var header = new CommonPlace.shared.HeaderView({el: $("#header"), communityProvided: false});
+      var header = new CommonPlace.shared.HeaderView({el: $("#header")});
       header.render();
       var communitySlug = window.location.pathname.split("/")[1];
       this.$("input#community").autocomplete({
