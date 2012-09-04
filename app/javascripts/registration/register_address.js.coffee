@@ -10,7 +10,7 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
     @initReferralQuestions()
     @$("select.dk").dropkick()
     $("#current-registration-page").html @el
-    resetPlaceholders()
+    @$("input[placeholder]").placeholder()
     url = "/api/communities/" + @communityExterior.id + "/address_completions"
     @$("input[name=address]").autocomplete
       source: url

@@ -84,7 +84,6 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
         )
     }[page]()
     view.render()
-    resetPlaceholders()
 
   welcome: ->
     @showPage "welcome"

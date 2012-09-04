@@ -8,6 +8,7 @@ CommonPlace.main.ProfileView = CommonPlace.main.TourModalPage.extend(
 
   afterRender: ->
     @hasAvatarFile = false
+    @$('input[placeholder], textarea[placeholder]').placeholder()
     @initReferralQuestions()
     @initAvatarUploader @$(".avatar_file_browse")  unless @data.isFacebook
     unless @current

@@ -11,6 +11,7 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
   afterRender: ->
     @$("#sign_in").hide()
     @$("#choose_town").hide()
+    @$("input[placeholder]").placeholder()
     town_list_api = "/api/communities/marquette/comm_completions"
     $.getJSON town_list_api, _.bind((response) ->
       if response

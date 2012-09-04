@@ -1,16 +1,26 @@
 //= require jquery
-//= require dropkick
-//= require json2
+//= require jquery-ui
+//= require jquery-mailcheck
+//= require placeholder
+//= require modernizr
 //= require underscore
-//= require postjson
 //= require mustache
+//= require json2
 //= require backbone
+//= require autoresize
+//= require dropkick
+//= require facebook
+//= require postjson
+//= require contacts/google
+//= require contacts/windows_live
+//= require contacts/yahoo
 //= require views
 //= require models
+
 //= require starter_site/application
 //= require starter_site/tabs
 //= require about/tabs
-//= require placeholders
 
 //= require_tree ./shared
+//= require_tree ./registration
 //= require_tree ../templates

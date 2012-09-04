@@ -5,6 +5,7 @@ CommonPlace.main.NeighborsView = CommonPlace.main.TourModalPage.extend(
 
   afterRender: ->
     @fadeIn @el
+    @$('input[placeholder], textarea[placeholder]').placeholder()
 
   community_name: ->
     @community.get("name")

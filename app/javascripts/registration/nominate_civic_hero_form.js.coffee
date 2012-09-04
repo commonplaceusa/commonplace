@@ -6,6 +6,9 @@ CommonPlace.registration.NominateCivicHeroForm = CommonPlace.View.extend(
   initialize: ->
     @data = {}
 
+  afterRender: ->
+    @$('input[placeholder], textarea[placeholder]').placeholder()
+
   submit: (e) ->
     e.preventDefault()  if e
     self = this

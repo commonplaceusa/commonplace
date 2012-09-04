@@ -185,7 +185,6 @@
       </div>
     </div>
     <script type="text/javascript" src="/assets/starter_site.js"></script>
-    <script type="text/javascript" src="/assets/registration.js"></script>
     <script type="text/javascript">
       CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
       CommonPlace.account = new Account(<%= @account.try(:persisted?) ? Serializer::serialize(Account.new(@account)).to_json : "{}" %>);

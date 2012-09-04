@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  resetPlaceholders();
   $('.nav li a').click(function(){
 
     $('.nav li').removeClass('selected');
@@ -37,7 +36,6 @@ function activateTab(tab_name) {
   } else {
     activateAboutPageForm("register");
   }
-  resetPlaceholders();
   return false;
 }
 
@@ -47,6 +45,5 @@ function activateAboutPageForm(form_name) {
     $("#registration-modal").show();
   else
     $(".right #" + form_name + "-form").show();
-  resetPlaceholders();
   return false;
 }
