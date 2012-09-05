@@ -63,8 +63,9 @@ div#address div#find_button {
   overflow-y: scroll;
 }
 
-#current-tour-page, #next-tour-page {
-  margin-top: -65px;
+#tour {
+  margin-top: 75px !important;
+  z-index: 9999;
 }
 
 #header .community-name h1 {
