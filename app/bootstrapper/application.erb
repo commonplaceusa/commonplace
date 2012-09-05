@@ -12,6 +12,7 @@
 
     <link href="/assets/application.css" rel="stylesheet" type="text/css">
 
+    <script type="text/javascript" src="/assets/application.js"></script>
     <% if Rails.env.production? %>
     <script type="text/javascript">
       var _errs=["4f947d86c30155957702de85"];(function(a,b){a.onerror=function(){_errs.push(arguments)};
@@ -51,8 +52,6 @@
       
       <div id="sticky-footer"></div>
       
-      <script type="text/javascript" src="/assets/application.js"></script>
-
       <%= erb :tracking %>
     </div>
 

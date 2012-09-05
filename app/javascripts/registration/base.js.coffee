@@ -15,7 +15,11 @@ CommonPlace.registration.Router = Backbone.Router.extend(
       communityExterior: options.communityExterior
       template: "registration.modal"
       complete: ->
-        window.location.pathname = options.communityExterior.links.tour
+        if Modernizr.history
+          window.location.pathname = options.communityExterior.links.tour
+        else
+          location = window.location.href.replace(/\/about$/,"")
+          window.location.href = location + "/#" + options.communityExterior.slug + "/registration"
 
       el: $("#registration-modal")
     )

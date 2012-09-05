@@ -38,10 +38,10 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
       @$("#errors").append @create_error("Please enter an e-mail address")
       @$("input[name=email]").addClass "error"
       return
-    password = @$("input[name=password]").val()
+    password = @$("input[name=password][type=password]").val()
     unless password
       @$("#errors").append @create_error("Please enter a password")
-      @$("input[name=password]").addClass "error"
+      @$("input[name=password][type=password]").addClass "error"
       return
     $.postJSON
       url: "/api/sessions"

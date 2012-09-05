@@ -89,7 +89,6 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
     @showPage "welcome"
 
   end: ->
-    @cleanUp()
     $("#tour-shadow").remove()
     $("#tour").remove()
 
