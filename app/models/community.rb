@@ -328,41 +328,28 @@ class Community < ActiveRecord::Base
     while t<=Date.today
       userstotal=self.users.where("created_at <= ?",t).count
       poststotal=self.posts.where("created_at <= ?",t).count
+=begin
       feedstotal=self.feeds.where("created_at <= ?",t).count
       emailstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"sent nomination email",self.id).count
       callstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"called",self.id).count
+=end
       usersgain=userstotal-self.users.where("created_at <= ?",t-1).count
       postsgain=poststotal-self.posts.where("created_at <= ?",t-1).count
+=begin
       feedsgain=feedstotal-self.feeds.where("created_at <= ?",t-1).count
       emailsgain=emailstotal-Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t-1,"sent nomination email",self.id).count
       callsgain=callstotal-Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t-1,"called",self.id).count
+=end
       #result<<[t.strftime("%b %d"),total,gain]
       users<<[t.strftime("%b %d"),userstotal,usersgain]
       posts<<[t.strftime("%b %d"),poststotal,postsgain]
+=begin
       feeds<<[t.strftime("%b %d"),feedstotal,feedsgain]
       emails<<[t.strftime("%b %d"),emailstotal,emailsgain]
       calls<<[t.strftime("%b %d"),callstotal,callsgain]
-      t=t+1
-    end
-    result.merge!({users: users}).merge!({posts: posts}).merge!({feeds: feeds}).merge!({emails: emails}).merge!({calls: calls})
-=begin    
-    cols=[]
-    rows=[]
-    cols<<{id: 'date', label: 'Date', type: 'date'}
-    cols<<{id: 'total', label: 'Total', type: 'number'}
-    cols<<{id: 'gain', label: 'Gain', type: 'number'}
-    while t!=Date.today
-      column=[]
-      column<<{v: t}
-      total=User.where("created_at<?",t).count
-      column<<{v: total}
-      gain=total-User.where("created_at<?",t-1).count
-      column<<{v: gain}
-      rows<<{c: column}
-      t=t+1
-    end
-    results={cols: cols, rows: rows}
 =end
-
+      t=t+1
+    end
+    result.merge!({users: users}).merge!({posts: posts})
   end
 end

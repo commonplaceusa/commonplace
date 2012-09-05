@@ -489,6 +489,11 @@ CONDITION
       end
     end
 
+    get "/:id/user_stats" do
+      control_access :admin
+
+      find_community.user_statistics.to_json
+    end
 
     # Add a new resident
     #

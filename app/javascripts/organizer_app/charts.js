@@ -10,7 +10,7 @@ OrganizerApp.Charts = CommonPlace.View.extend({
 
   initialize: function() {
     community=this.options.community;
-    console.log(this.options.community.url());
+    //console.log(this.options.community.url());
     /*if(!this.options.community.get('organize_start_date')){
       this.$("#set-start-date").style.display="";
     }*/
@@ -18,7 +18,7 @@ OrganizerApp.Charts = CommonPlace.View.extend({
 
   render:function () {
         /*$(this.el).html('<div id="set-start-date" style="display:none">Organize start date is not set. Set now?<input id="start-date" type="text" placeholder="Date (MM/DD/YYYY)"><button id="set-start-date">Set</button></div><br><select id="graphs"><option value="user">User Amount</option></select><br><div id="chart_div"></div>');*/
-        $(this.el).html('<div id="set-start-date" style="display:none">Organize start date is not set. Set now?</div><br>Users Amount<div id="users_div"></div>Posts Amount<div id="posts_div"></div>Feeds Amount<div id="feeds_div"></div>Emails Sent<div id="emails_div"></div>Calls Made<div id="calls_div"></div>');
+        $(this.el).html('<div id="set-start-date" style="display:none">Organize start date is not set. Set now?</div><br>Users Amount<div id="users_div"></div>Posts Amount<div id="posts_div"></div>');
         this.$('#set-start-date').append('<input id="start-date" type="text" placeholder="Date (DD/MM/YYYY)" />');
         this.$('#set-start-date').append('<button id="set-date">Set</button>');
         /*
@@ -52,35 +52,45 @@ OrganizerApp.Charts = CommonPlace.View.extend({
     },
 
   drawVisualization:function () {
-    /*
-    console.log("In draw visualization");
+    //console.log("In draw visualization");
     var data = new google.visualization.DataTable();
-    console.log(community.get('user_statistics'));
-    users = google.visualization.arrayToDataTable(community.get('user_statistics')['users'],false);
-    posts = google.visualization.arrayToDataTable(community.get('user_statistics')['posts'],false);
-    feeds = google.visualization.arrayToDataTable(community.get('user_statistics')['feeds'],false);
-    emails = google.visualization.arrayToDataTable(community.get('user_statistics')['emails'],false);
-    calls = google.visualization.arrayToDataTable(community.get('user_statistics')['calls'],false);
-    var options = {
-      chartArea:{left:35,top:10,width:"90%",height:"60%"},
+    //var stats = community.get('user_statistics');
+    //console.log(stats);
+
+    var url = '/api/communities/'+this.community.id+'/user_stats';
+
+    $.get(url, function(stats) {
+      users = google.visualization.arrayToDataTable(stats['users'],false);
+      posts = google.visualization.arrayToDataTable(stats['posts'],false);
+      /*
+      feeds = google.visualization.arrayToDataTable(stats['feeds'],false);
+      emails = google.visualization.arrayToDataTable(stats['emails'],false);
+      calls = google.visualization.arrayToDataTable(stats['calls'],false);
+      */
+      var options = {
+        chartArea:{left:35,top:10,width:"90%",height:"60%"},
       //title : 'User Amount Gain Statistics',
       vAxis: {0:{title: "Amount",logScale: false},1:{}},
       hAxis: {title: "Day",textPosition: "out",textStyle:{fontSize: 10}},
       series: {0:{type: "line",targetAxisIndex:0},1: {type: "bars",targetAxisIndex:1}},
       legend: {position: 'in',textStyle: {color: 'blue', fontSize: 12}}
-    };
-    var userschart = new google.visualization.ComboChart(this.$('#users_div').get(0));
-    var postschart = new google.visualization.ComboChart(this.$('#posts_div').get(0));
-    var feedschart = new google.visualization.ComboChart(this.$('#feeds_div').get(0));
-    var emailschart = new google.visualization.ComboChart(this.$('#emails_div').get(0));
-    var callschart = new google.visualization.ComboChart(this.$('#calls_div').get(0));
-    google.visualization.events.addListener(userschart, 'select', this.selectHandler);
-    userschart.draw(users, options);
-    postschart.draw(posts, options);
-    feedschart.draw(feeds, options);
-    emailschart.draw(emails, options);
-    callschart.draw(calls, options);
-    */
+      };
+      var userschart = new google.visualization.ComboChart($('#users_div').get(0));
+      var postschart = new google.visualization.ComboChart($('#posts_div').get(0));
+      /*
+      var feedschart = new google.visualization.ComboChart($('#feeds_div').get(0));
+      var emailschart = new google.visualization.ComboChart($('#emails_div').get(0));
+      var callschart = new google.visualization.ComboChart($('#calls_div').get(0));
+      */
+      google.visualization.events.addListener(userschart, 'select', this.selectHandler);
+      userschart.draw(users, options);
+      postschart.draw(posts, options);
+      /*
+      feedschart.draw(feeds, options);
+      emailschart.draw(emails, options);
+      callschart.draw(calls, options);
+      */
+    });
   },
 
     selectHandler: function () {

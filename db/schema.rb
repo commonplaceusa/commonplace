@@ -136,8 +136,6 @@ ActiveRecord::Schema.define(:version => 20120824011243) do
     t.text     "last_story"
     t.string   "state"
     t.date     "organize_start_date"
-    t.decimal  "latitude",                   :default => 0.0
-    t.decimal  "longitude",                  :default => 0.0
   end
 
   create_table "delayed_jobs", :force => true do |t|
