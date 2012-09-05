@@ -62,3 +62,11 @@ div#address div#find_button {
 #choose_town.dropdown ul#town_list {
   overflow-y: scroll;
 }
+
+#current-tour-page, #next-tour-page {
+  margin-top: -65px;
+}
+
+#header .community-name h1 {
+  margin-top: 13px;
+}
