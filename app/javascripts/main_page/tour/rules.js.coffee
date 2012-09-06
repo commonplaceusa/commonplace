@@ -13,5 +13,5 @@ CommonPlace.main.RulesView = CommonPlace.main.TourModalPage.extend(
 
   submit: (e) ->
     e.preventDefault()  if e
-    window.location.pathname = "/" + @community.get("slug")
+    window.location = window.location.protocol + "//" + window.location.host + "/" + @community.get("slug") #performing the redirect this way ensures it works with IE and the hash routing
 )

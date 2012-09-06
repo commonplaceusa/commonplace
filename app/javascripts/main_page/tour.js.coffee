@@ -107,7 +107,6 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
     $next = @$("#next-tour-page")
     $current = @$("#current-tour-page")
     $tour = @$("#tour")
-    $tour.css top: $(@el).offset().top
     $next.append el
     $next.css('filter', 'alpha(opacity=40)')
     @centerEl($next)
