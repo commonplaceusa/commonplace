@@ -64,10 +64,14 @@ div#address div#find_button {
 }
 
 #tour {
-  margin-top: 75px !important;
+  margin-top: 65px !important;
   z-index: 9999;
 }
 
 #header .community-name h1 {
   margin-top: 13px;
+}
+
+.dropdown {
+  right: 25px;
 }

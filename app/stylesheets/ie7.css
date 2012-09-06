@@ -6,3 +6,7 @@
    margin-left: -90px;
 }
 
+#tour {
+  margin-top: 65px !important;
+  z-index: 9999 !important;
+}
