@@ -37,7 +37,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     checklist = [];
     all_check = false;
     total = 0;
-    test = 0;
+    auto_page = 1;
   },
 
   onClickFile: function(e) {
@@ -98,21 +98,32 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     var params = {
       "add": add,
       "tag": tag,
-      "have": haves
+      "have": haves,
+      "per": per,
+      "page": auto_page
     }
 
     //$.post(this.collection.url()+"/tag_all", params).success(_.bind(this.callback, this)).error(function(attr, response) { alert(response) });
-    $.post(this.collection.url()+"/tag_all", params).success(function() { alert("Added tag"); }).error(function(attr, response) { alert(response) });
+    //$.post(this.collection.url()+"/tag_all", params).success(function() { alert("Added tag"); }).error(function(attr, response, error) { alert(error) });
+    $.ajax({
+      type: 'POST',
+      url: this.collection.url()+"/tag_all",
+      data: params,
+      success: _.bind(this.callback, this),
+      error: function(attr, response, error) { alert(error); }
+    });
   },
 
   callback: function(response) {
-    alert("Added tag");
 
-    console.log(response);
-    if(response && test < 1) {
-      console.log("In");
-      test += 1;
+    total = auto_page * per;
+    if(total < response) {
+      auto_page += 1;
       this.serverAddTag();
+    }
+    else {
+      auto_page = 1;
+      alert("Completed");
     }
   },
 

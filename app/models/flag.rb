@@ -98,6 +98,10 @@ class Flag < ActiveRecord::Base
     @@scripts ||= {}
     if @@scripts[to_do].nil?
       @@scripts[to_do] = script
+    else
+      old = @@scripts[to_do]
+      new = old << script
+      @@scripts[to_do] = new
     end
   end
 
