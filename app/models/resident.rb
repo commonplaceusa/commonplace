@@ -76,7 +76,7 @@ class Resident < ActiveRecord::Base
     tags += self.metadata[:tags] if self.metadata[:tags]
 
     if self.user.present?
-      tags |= Array("registered")
+      tags |= Array("Joined CP")
 
       r = self.user.referral_source
       tags << "Referral: " + r if !r.nil?
@@ -142,8 +142,8 @@ class Resident < ActiveRecord::Base
 
   def registered
     self.metadata[:tags] ||= []
-    self.metadata[:tags] << "registered"
-    self.community.add_resident_tags(Array("registered"))
+    self.metadata[:tags] |= "Joined CP"
+    self.community.add_resident_tags(Array("Joined CP"))
     self.save
   end
 

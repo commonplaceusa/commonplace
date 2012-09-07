@@ -588,11 +588,11 @@ CONDITION
     post "/:id/files/tag_all" do
       control_access :admin
 
-      if params[:tag].length>1
+      if params[:tag].length > 1
         res = filter_users_by_several_tag(params[:tag],params[:have],params[:id])
-      elsif params[:tag].length==1
+      elsif params[:tag].length == 1
         res = filter_users_by_tag(params[:tag][0], params[:have][0], params[:id])
-      elsif params[:tag].length==0
+      elsif params[:tag].length == 0
         [200, {}, "0"]
       end
       res.sort!
