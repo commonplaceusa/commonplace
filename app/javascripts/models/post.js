@@ -24,7 +24,7 @@ var Post = Repliable.extend({
       };
       return response;
     }
-  },
+  }
 
 });
 
