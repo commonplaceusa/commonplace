@@ -315,41 +315,42 @@ class Community < ActiveRecord::Base
       t=start
     end
     result={}
-    users=[]
-    users<<["Date","Total","Gain"]
-    posts=[]
-    posts<<["Date","Total","Gain"]
-    feeds=[]
-    feeds<<["Date","Total","Gain"]
-    emails=[]
-    emails<<["Date","Total","Gain"]
-    calls=[]
-    calls<<["Date","Total","Gain"]
+    users = []
+    posts = []
+    events = []
+    feeds = []
+    announcements = []
+
+    users << ["Date","Total","Gain"]
+    posts << ["Date","Total","Gain"]
+    events << ["Date","Total","Gain"]
+    feeds << ["Date", "Total", "Gain"]
+    announcements << ["Date", "Total", "Gain"]
+
     while t<=Date.today
-      userstotal=self.users.where("created_at <= ?",t).count
-      poststotal=self.posts.where("created_at <= ?",t).count
+      userstotal = self.users.where("created_at <= ?", t).count
+      poststotal = self.posts.where("created_at <= ?", t).count
+      eventstotal = self.events.where("created_at <= ?", t).count
+      announcementstotal = self.announcements.where("created_at <= ?", t).count
 =begin
       feedstotal=self.feeds.where("created_at <= ?",t).count
       emailstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"sent nomination email",self.id).count
       callstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"called",self.id).count
 =end
-      usersgain=userstotal-self.users.where("created_at <= ?",t-1).count
-      postsgain=poststotal-self.posts.where("created_at <= ?",t-1).count
-=begin
-      feedsgain=feedstotal-self.feeds.where("created_at <= ?",t-1).count
-      emailsgain=emailstotal-Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t-1,"sent nomination email",self.id).count
-      callsgain=callstotal-Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t-1,"called",self.id).count
-=end
-      #result<<[t.strftime("%b %d"),total,gain]
-      users<<[t.strftime("%b %d"),userstotal,usersgain]
-      posts<<[t.strftime("%b %d"),poststotal,postsgain]
-=begin
-      feeds<<[t.strftime("%b %d"),feedstotal,feedsgain]
-      emails<<[t.strftime("%b %d"),emailstotal,emailsgain]
-      calls<<[t.strftime("%b %d"),callstotal,callsgain]
-=end
-      t=t+1
+      usersgain = userstotal - self.users.where("created_at <= ?", t-1).count
+      postsgain = poststotal - self.posts.where("created_at <= ?", t-1).count
+      eventsgain = eventstotal - self.events.where("created_at <= ?", t-1).count
+      announcementsgain = announcementstotal - self.announcements.where("created_at <= ?", t-1).count
+
+      users << [t.strftime("%b %d"), userstotal, usersgain]
+      posts << [t.strftime("%b %d"), poststotal, postsgain]
+      events << [t.strftime("%b %d"), eventstotal, eventsgain]
+      announcements << [t.strftime("%b %d"), announcementstotal, announcementsgain]
+
+      t += 1
     end
     result.merge!({users: users}).merge!({posts: posts})
+    result.merge!({events: events})
+    result.merge!({announcements: announcements})
   end
 end
