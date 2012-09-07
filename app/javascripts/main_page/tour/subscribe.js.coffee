@@ -10,10 +10,19 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
   afterRender: ->
     self = this
     @$(".page_category").hide()
+    groups = @community.groups
+    groups.fetch(
+      success: ->
+        _.each groups.models, _.bind((group) ->
+          itemView = new self.GroupItem(model: group)
+          itemView.render()
+          $("#Discussion").append itemView.el
+          $(".Discussion").show()
+        , this)
+    )
     feeds = @community.featuredFeeds
     feeds.fetch(
       success: ->
-        $ul = self.$("ul.feeds_container")
         _.each feeds.models, _.bind((feed) ->
           itemView = new self.FeedItem(model: feed)
           itemView.render()
@@ -35,12 +44,16 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
     feeds = _.map(@$("input[name=feeds_list]:checked"), (feed) ->
       $(feed).val()
     )
-    if _.isEmpty(feeds)
-      @finish()
-    else
-      CommonPlace.account.subscribeToFeed feeds, _.bind(->
-        @finish()
-      , this)
+    if not _.isEmpty(feeds)
+      CommonPlace.account.subscribeToFeed feeds
+
+    groups = _.map(@$("input[name=groups_list]:checked"), (group) ->
+      $(group).val()
+    )
+    if not _.isEmpty(groups)
+      CommonPlace.account.subscribeToGroup groups
+
+    @finish()
 
   finish: ->
     @nextPage "rules", @data
@@ -64,6 +77,38 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
       @model.get("name")
 
     feed_about: ->
+      @model.get("about")
+
+    check: (e) ->
+      e.preventDefault()  if e
+      $checkbox = @$("input[type=checkbox]")
+      if $checkbox.attr("checked")
+        $checkbox.removeAttr "checked"
+        @$(".check").removeClass "checked"
+      else
+        $checkbox.attr "checked", "checked"
+        @$(".check").addClass "checked"
+  )
+
+  GroupItem: CommonPlace.View.extend(
+    template: "main_page.tour.group-item"
+
+    events:
+      click: "check"
+
+    initialize: (options) ->
+      @model = options.model
+
+    avatar_url: ->
+      @model.get("avatar_url")
+
+    group_id: ->
+      @model.get("id")
+
+    group_name: ->
+      @model.get("name")
+
+    group_about: ->
       @model.get("about")
 
     check: (e) ->
