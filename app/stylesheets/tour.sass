@@ -33,7 +33,9 @@ $black-shadow: 0px 2px 1px black
 
 em
   font-style: italic
-
+strong
+  font-weight: bold 
+  
 /* Woo Buttons */
 .red-button
   background: $red
@@ -605,7 +607,7 @@ li div.check span.page_text
   background-color: #ccc
   overflow: hidden
   background-position: top center
-  background-size: auto 100%
+  background-size: cover
   background-repeat: no-repeat
 
 #subscribe_pages ul.subscribe_pages li a h4 
@@ -1090,7 +1092,7 @@ ul#Other div li.check
 /* Norms Page */
 
 #norms
-  width: 710px
+  width: 665px
   font-size: 18px
   p
     line-height: 22px
@@ -1104,12 +1106,23 @@ ul#Other div li.check
   span.divider
     margin-bottom: 20px
   ol#rules
+    float: left
+    width: 100%
+    margin-top: 10px
     li
       list-style-type: none
       list-style-position: inside
+      float: left
+      width: 100%
+      margin-bottom: 10px
+      img
+        border-radius: 5px
+        float: left
+      p
+        float: right
+        width: 515px
       strong
         color: $red
-      margin-bottom: 20px  
   #norms_button
     margin: 20px auto 0px auto
     text-align: center
