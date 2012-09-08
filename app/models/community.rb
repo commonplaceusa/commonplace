@@ -302,55 +302,79 @@ class Community < ActiveRecord::Base
   def manual_tags
     Flag.all.map &:name
   end
-  
-  def user_statistics
-    if self.organize_start_date?
-      start=self.organize_start_date
-    else
-      start=self.created_at.to_date
+
+  def graph(datas, t)
+    data = datas.sort { |x,y| x.created_at <=> y.created_at }
+
+    s = t
+
+    table = []
+    table << ["Date","Total","Gain"]
+
+    total = 0
+    gain = 0
+    data.each do |d|
+
+      if d.created_at.to_date <= t
+        gain += 1
+        total += 1
+
+        if d.id != data.last.id
+          next
+        end
+      else
+        table << [t.strftime("%b %d"), total, gain]
+        gain = 0
+        t += 1
+
+        while d.created_at.to_date > t
+
+          table << [t.strftime("%b %d"), total, gain]
+
+          t += 1
+        end
+
+        gain += 1
+        total += 1
+      end
+
+      if d.id == data.last.id && d.created_at > t
+
+        table << [t.strftime("%b %d"), total, gain]
+        t += 1
+      end
     end
-    if Date.today.months_ago(6)>start
-      t=Date.today.months_ago(6)
-    else
-      t=start
-    end
-    result={}
-    users = []
-    posts = []
-    events = []
-    feeds = []
-    announcements = []
 
-    users << ["Date","Total","Gain"]
-    posts << ["Date","Total","Gain"]
-    events << ["Date","Total","Gain"]
-    feeds << ["Date", "Total", "Gain"]
-    announcements << ["Date", "Total", "Gain"]
-
-    while t<=Date.today
-      userstotal = self.users.where("created_at <= ?", t).count
-      poststotal = self.posts.where("created_at <= ?", t).count
-      eventstotal = self.events.where("created_at <= ?", t).count
-      announcementstotal = self.announcements.where("created_at <= ?", t).count
-=begin
-      feedstotal=self.feeds.where("created_at <= ?",t).count
-      emailstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"sent nomination email",self.id).count
-      callstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"called",self.id).count
-=end
-      usersgain = userstotal - self.users.where("created_at <= ?", t-1).count
-      postsgain = poststotal - self.posts.where("created_at <= ?", t-1).count
-      eventsgain = eventstotal - self.events.where("created_at <= ?", t-1).count
-      announcementsgain = announcementstotal - self.announcements.where("created_at <= ?", t-1).count
-
-      users << [t.strftime("%b %d"), userstotal, usersgain]
-      posts << [t.strftime("%b %d"), poststotal, postsgain]
-      events << [t.strftime("%b %d"), eventstotal, eventsgain]
-      announcements << [t.strftime("%b %d"), announcementstotal, announcementsgain]
+    while t <= Date.today
+      table << [t.strftime("%b %d"), total, 0]
 
       t += 1
     end
-    result.merge!({users: users}).merge!({posts: posts})
+
+    table
+  end
+  
+  def user_statistics
+    if self.organize_start_date?
+      start = self.organize_start_date
+    else
+      start = self.created_at.to_date
+    end
+    if Date.today.months_ago(6)>start
+      t = Date.today.months_ago(6)
+    else
+      t = start
+    end
+    result = {}
+
+    users = graph(self.users.all, t)
+    posts = graph(self.posts.all, t)
+    events = graph(self.events.all, t)
+    feeds = graph(self.feeds.all, t)
+
+    result.merge!({users: users})
+    result.merge!({posts: posts})
     result.merge!({events: events})
-    result.merge!({announcements: announcements})
+    result.merge!({feeds: feeds})
   end
 end

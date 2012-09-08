@@ -63,9 +63,7 @@ OrganizerApp.Charts = CommonPlace.View.extend({
       users = google.visualization.arrayToDataTable(stats['users'],false);
       posts = google.visualization.arrayToDataTable(stats['posts'],false);
       events = google.visualization.arrayToDataTable(stats['events'],false);
-      /*
       feeds = google.visualization.arrayToDataTable(stats['feeds'],false);
-      */
 
       var options = {
         chartArea:{left:35,top:10,width:"90%",height:"60%"},
@@ -78,18 +76,14 @@ OrganizerApp.Charts = CommonPlace.View.extend({
       var userschart = new google.visualization.ComboChart($('#users_div').get(0));
       var postschart = new google.visualization.ComboChart($('#posts_div').get(0));
       var eventschart = new google.visualization.ComboChart($('#events_div').get(0));
-      /*
       var feedschart = new google.visualization.ComboChart($('#feeds_div').get(0));
-      */
 
       google.visualization.events.addListener(userschart, 'select', this.selectHandler);
 
       userschart.draw(users, options);
       postschart.draw(posts, options);
       eventschart.draw(events, options);
-      /*
       feedschart.draw(feeds, options);
-      */
     });
   },
 
