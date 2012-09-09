@@ -110,7 +110,8 @@ class API
       user = User.new(:full_name => params["full_name"],
                    :email => params["email"],
                    :address => params["address"],
-                   :community_id => community_id)
+                   :community_id => community_id,
+                   :referral_source => params["referral_source"])
 
       user.private_metadata["fb_access_token"] = params["fb_auth_token"]
       user.facebook_uid = params["fb_uid"]
@@ -120,7 +121,6 @@ class API
         user.interest_list = params["interests"]
         user.skill_list = params["skills"]
         user.good_list = params["goods"]
-        user.referral_source = params["referral_source"]
         user.referral_metadata = params["referral_metadata"]
         user.calculated_cp_credits = 0
 
