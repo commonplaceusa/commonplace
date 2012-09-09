@@ -98,9 +98,7 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
   verified: ->
     new_api = "/api" + @communityExterior.links.registration[(if (@data.isFacebook) then "facebook" else "new")]
     $.post new_api, @data, _.bind((response) ->
-      console.log("Before success check, response: " + JSON.stringify(response))
       if response.success is "true" or response.id
-        console.log("Successful account creation.")
         CommonPlace.account = new Account(response)
         if @hasAvatarFile and not @data.isFacebook
           @avatarUploader.submit()
