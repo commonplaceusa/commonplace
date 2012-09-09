@@ -28,7 +28,7 @@ CommonPlace.shared.HeaderView = CommonPlace.View.extend(
 
   community_url: ->
     if CommonPlace.community
-      @root_url
+      @root_url()
     else
       "/info"
 
