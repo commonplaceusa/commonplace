@@ -715,7 +715,7 @@ CONDITION
     #
     # Maybe it has something to do with the way the API is set up?
     get "/:id/comm_completions" do
-      comm = Community.where("name ILIKE ?", "%#{params[:term]}%").sort_by(&:name)
+      comm = Community.where("(name || ', ' || state) ILIKE ?", "%#{params[:term]}%").sort_by(&:name)
 
       slim = comm.map { |c| {name: c.name, slug: c.slug, state: c.state} }
 
@@ -724,7 +724,7 @@ CONDITION
 
     # For auto-complete
     get "/:id/comm_complete" do
-      comm = Community.where("name ILIKE ?", "%#{params[:term]}%")
+      comm = Community.where("(name || ', ' || state) ILIKE ?", "%#{params[:term]}%")
 
       full_comm = comm.map { |c| "#{c.name}, #{c.state}" }.sort
       return serialize(full_comm)
