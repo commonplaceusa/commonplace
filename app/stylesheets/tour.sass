@@ -159,8 +159,8 @@ $darkBlue: #1b334a
 .welcome
   background: image-url("shared/redesign/welcomebg.png") no-repeat center
   width: 460px
-  height: 415px
-  padding: 80px 35px 100px 35px
+  height: 395px
+  padding: 70px 35px 100px 35px
   position: relative
 
 .welcome-to
@@ -257,7 +257,7 @@ p.welcome-divider
   
 .welcome_button
   display: block
-  width: 200px
+  width: 290px
   margin: 0px auto
   
 .white-box p 
@@ -274,7 +274,7 @@ p.welcome-divider
 
 #findNeighbors 
   display: inline-block
-  width: 640px
+  width: 610px
   background-color: #eeecdf
   background: url(shared/redesign/tan-bg.png) center center
   z-index: 1000
@@ -299,20 +299,6 @@ p.welcome-divider
     margin-top: 0px
     width: 100%
     
-.check h4
-  font: bold 13px Helvetica, sans-serif
-  text-overflow: ellipsis !important
-  white-space: nowrap !important
-
-li div.check span.page_text
-  font: 12px Helvetica, sans-serif
-  color: #131313
-  overflow: hidden
-  height: 40px
-  margin-top: 2px
-  display: block
-  line-height: 16px
-
 #civicProfile, #norms
   width: 610px
   overflow: none
@@ -387,7 +373,7 @@ li div.check span.page_text
       width: 378px
       height: 50px
       margin-top: 0px
-      margin-bottom: 20px
+      margin-bottom: 15px
       -webkit-font-smoothing: antialiased
       font-size: 18px
       padding: 8px
@@ -541,10 +527,10 @@ li div.check span.page_text
   text-shadow: 0px 1px 0px #fff
 
 #subscribe_pages
-  width: 547px
+  width: 517px
   margin-right: auto
   margin-left: auto
-  height: 350px
+  height: 320px
   overflow: auto
   overflow-x: hidden
   background-color: #F7F5EA
@@ -561,14 +547,14 @@ li div.check span.page_text
 
 #subscribe_pages ul.subscribe_pages li 
   overflow: hidden
-  width: 230px
+  width: 215px
   padding: 15px
   background-color: #fff
   margin-right: 0px
   margin-left: 0px
   margin-bottom: -10px
   margin-top: 15px
-  height: 50px
+  height: 65px
   border-radius: 5px
   border: 1px solid #ddd
   //box-shadow: 0px 1px 2px #ebe8d9
@@ -590,8 +576,7 @@ li div.check span.page_text
 
 #subscribe_pages ul.subscribe_pages li:active
   box-shadow: none
-  border-color: #bbb !important  
-  opacity: 0.75
+  border: 1px solid $blue
   
 #subscribe_pages ul.subscribe_pages li a 
   display: inline-block
@@ -609,20 +594,31 @@ li div.check span.page_text
   background-position: top center
   background-size: cover
   background-repeat: no-repeat
+  margin-bottom: 25px
 
-#subscribe_pages ul.subscribe_pages li a h4 
+#subscribe_pages ul.subscribe_pages li h4 
   font: bold 14px Helvetica, Arial, sans-serif
-  margin-left: 15px
   overflow: hidden
-  color: #333
-  float: left
+  color: $blue
+  margin-bottom: 3px
 
-#subscribe_pages ul.subscribe_pages li a span.page_text 
+#subscribe_pages ul.subscribe_pages li span.page_text 
   color: #333
   font: 12px Helvetica, Arial, sans-serif
-  padding-left: 15px
-  margin-top: 4px
-  float: left
+  display: block
+  line-height: 16px
+  
+#subscribe_pages ul.subscribe_pages li .description-container
+  overflow: hidden
+  width: 152px
+  height: 70px
+
+#subscribe_pages ul.subscribe_pages li.check.checked
+  border-color: $blue
+
+#subscribe_pages ul.subscribe_pages li.check
+  input
+    display: none
 
 #invite_friends p
   font-size: 16px
@@ -944,159 +940,14 @@ div#subscribe_pages ul.subscribe_pages div
   display: inline-block
   width: 50%
 
-
-ul#Discussion div li.check.checked
-  border-color: $red
-  h4
-    color: $red
-  span.page_text
-    color: $black
-
-ul#Discussion div li.check
-  span.page_text
-    color: #333
-    font: 12px Helvetica, Arial, sans-serif
-    padding-left: 63px
-    margin-top: -30px
-    float: left
-    height: 27px
-    overflow: hidden
-  input
-    display: none
-  h4
-    font: bold 14px Helvetica, Arial, sans-serif
-    margin-left: 15px
-    overflow: hidden
-    color: #1b334a 
-    
-ul#Community-group div li.check.checked
-  border-color: $red
-  h4
-    color: $red
-  span.page_text
-    color: $black
-
-ul#Community-group div li.check
-  span.page_text
-    color: #333
-    font: 12px Helvetica, Arial, sans-serif
-    padding-left: 63px
-    margin-top: -30px
-    float: left
-    height: 27px
-    overflow: hidden
-  input
-    display: none
-  h4
-    font: bold 14px Helvetica, Arial, sans-serif
-    margin-left: 15px
-    overflow: hidden
-    color: #1b334a
-
-ul#Business div li.check.checked
-  border-color: $red
-  h4
-    color: $red
-  span.page_text
-    color: $black
-
-ul#Business div li.check
-  span.page_text
-    color: #333
-    font: 12px Helvetica, Arial, sans-serif
-    padding-left: 62px
-    margin-top: -30px
-    float: left
-    height: 28px
-    overflow: hidden
-  input
-    display: none
-  h4
-    font: bold 14px Helvetica, Arial, sans-serif
-    margin-left: 15px
-    overflow: hidden
-    color: #1b334a
-
-ul#Municipal div li.check.checked
-  border-color: $red
-  h4
-    color: $red
-  span.page_text
-    color: $black
-
-ul#Municipal div li.check
-  span.page_text
-    color: #333
-    font: 12px Helvetica, Arial, sans-serif
-    padding-left: 63px
-    margin-top: -30px
-    float: left
-    height: 27px
-    overflow: hidden
-  input
-    display: none
-  h4
-    font: bold 14px Helvetica, Arial, sans-serif
-    margin-left: 15px
-    overflow: hidden
-    color: #1b334a
-    
-ul#News div li.check.checked
-  border-color: $red
-  h4
-    color: $red
-  span.page_text
-    color: $black
-
-ul#News div li.check
-  span.page_text
-    color: #333
-    font: 12px Helvetica, Arial, sans-serif
-    padding-left: 62px
-    margin-top: -30px
-    float: left
-    height: 27px
-    overflow: hidden
-  input
-    display: none
-  h4
-    font: bold 14px Helvetica, Arial, sans-serif
-    margin-left: 15px
-    overflow: hidden
-    color: #1b334a
-
-ul#Other div li.check.checked
-  border-color: $red
-  h4
-    color: $red
-  span.page_text
-    color: $black
-
-ul#Other div li.check
-  span.page_text
-    color: #333
-    font: 12px Helvetica, Arial, sans-serif
-    padding-left: 62px
-    margin-top: -30px
-    float: left
-    height: 27px
-    overflow: hidden
-  input
-    display: none
-  h4
-    font: bold 14px Helvetica, Arial, sans-serif
-    margin-left: 15px
-    overflow: hidden
-    color: #1b334a
   
 /* Norms Page */
 
 #norms
-  width: 665px
   font-size: 18px
   p
     line-height: 22px
-    margin-bottom: 15px
+    margin-bottom: 13px
     a
       color: $red
       &:hover
@@ -1114,15 +965,20 @@ ul#Other div li.check
       list-style-position: inside
       float: left
       width: 100%
-      margin-bottom: 10px
+      margin-bottom: 15px
+      &:last-child
+        margin-bottom: 10px
       img
         border-radius: 5px
         float: left
+        margin-top: 4px
       p
         float: right
-        width: 515px
+        width: 465px
       strong
         color: $red
+        font-size: 17px
+        margin-right: 2px
   #norms_button
     margin: 20px auto 0px auto
     text-align: center

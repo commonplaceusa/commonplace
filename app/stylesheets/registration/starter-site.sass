@@ -78,6 +78,7 @@ em
     color: white
     border: 1px solid black
     text-align: center
+    text-shadow: 0px 2px 0px #424242
   .blue
     margin-right: 20px
     +linear-gradient(color-stops(#2e5274, #1b334a))
@@ -119,12 +120,14 @@ em
     display: block
     right: 0
   input
-    width: 240px
+    width: 253px
     -webkit-appearance: none
     font-size: 16px
     padding: 8px
     height: auto
-    margin-top: 5px
+    margin-top: 4px
+    margin-bottom: 10px
+    margin-right: 2px
     border: 1px solid #d7d5c5
     font-family: $Rokkitt
     color: #333
@@ -137,21 +140,22 @@ em
   input:-moz-placeholder
     color: #555
   .email
-    margin: 20px 0px 10px 0px
+    margin: 14px 2px 10px 0px
   button.signin
     text-align: center
     float: right
-    width: 100px
+    width: 110px
     +linear-gradient(color-stops(#2e5274, #1b334a))
     font-weight: bold
-    font-size: 15px
-    margin-right: 20px
+    font-size: 16px
+    margin-right: 15px
     padding-top: 10px
     padding-bottom: 8px
     margin-top: 5px
     height: auto
     -webkit-font-smoothing: antialiased
     background-color: #1b334a
+    text-shadow: 0px 2px 0px #333
     &:hover, &:focus
       color: #fff
       +linear-gradient(color-stops(#3e6b96, #1b334a), top)
@@ -160,14 +164,15 @@ em
       color: #fff
       +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
   button.signin.facebook
-    width: 145px
+    width: 148px
     height: auto
     margin-right: 12px
-    font-size: 15px
+    font-size: 16px
     padding: 10px 0 8px 0
     +linear-gradient(color-stops(#4e6fb6, #3b5998))
     -webkit-font-smoothing: antialiased
     background-color: #3b5998
+    text-shadow: 0px 2px 0px #333
     &:hover, &:focus
       color: #fff
       +linear-gradient(color-stops(#5c83d7, #3b5998), top)
@@ -177,8 +182,8 @@ em
       +linear-gradient(color-stops(#4e6fb6, #3b5998), bottom)
   p 
     clear: both
-    margin-left: 22px
-    padding: 12px 0px 15px 0px
+    margin-left: 14px
+    padding: 12px 0px 13px 0px
     text-align: left
     font-family: $Rokkitt
     cursor: pointer
@@ -189,7 +194,7 @@ em
       text-decoration: underline
 #choose_town.dropdown
   right: 223px !important
-  padding: 13px
+  padding: 14px
   width: 250px
   .arrow
     width: 145px
