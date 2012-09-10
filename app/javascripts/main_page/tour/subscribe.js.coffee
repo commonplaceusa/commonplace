@@ -16,8 +16,8 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
         _.each groups.models, _.bind((group) ->
           itemView = new self.GroupItem(model: group)
           itemView.render()
-          $("#Discussion").append itemView.el
-          $(".Discussion").show()
+          $(".Discussion").append itemView.el
+          $("#Discussion").show()
         , this)
     )
     feeds = @community.featuredFeeds
@@ -27,8 +27,8 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
           itemView = new self.FeedItem(model: feed)
           itemView.render()
           category = self.feed_kinds[feed.get("kind")]
-          $("#" + category).append itemView.el
-          $("." + category).show()
+          $("." + category).append itemView.el
+          $("#" + category).show()
         , this)
     )
     @fadeIn @el
