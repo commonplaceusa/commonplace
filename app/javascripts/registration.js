@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery-mailcheck
+//= require jquery-backgroundSize
 //= require placeholder
 //= require modernizr
 //= require underscore

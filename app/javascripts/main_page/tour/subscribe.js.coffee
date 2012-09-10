@@ -59,6 +59,7 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
     @nextPage "rules", @data
 
   FeedItem: CommonPlace.View.extend(
+    className: "page_item"
     template: "main_page.tour.feed-item"
 
     events:
@@ -66,6 +67,9 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
 
     initialize: (options) ->
       @model = options.model
+
+    afterRender: ->
+      @$(".avatar-container").css("background-size": "cover")
 
     avatar_url: ->
       @model.get("avatar_url")
@@ -91,6 +95,7 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
   )
 
   GroupItem: CommonPlace.View.extend(
+    className: "page_item"
     template: "main_page.tour.group-item"
 
     events:
@@ -98,6 +103,9 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
 
     initialize: (options) ->
       @model = options.model
+
+    afterRender: ->
+      @$(".avatar-container").css("background-size": "cover")
 
     avatar_url: ->
       @model.get("avatar_url")

@@ -4,6 +4,7 @@
 //= require jquery-ui
 //= require jquery-blockUI
 //= require jquery-badger
+//= require jquery-backgroundSize
 //= require highcharts
 //= require actual
 //= require underscore
