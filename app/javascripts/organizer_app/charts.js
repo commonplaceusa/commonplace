@@ -10,10 +10,6 @@ OrganizerApp.Charts = CommonPlace.View.extend({
 
   initialize: function() {
     community=this.options.community;
-    console.log(this.options.community.url());
-    /*if(!this.options.community.get('organize_start_date')){
-      this.$("#set-start-date").style.display="";
-    }*/
   },
 
   render:function () {
@@ -52,35 +48,6 @@ OrganizerApp.Charts = CommonPlace.View.extend({
     },
 
   drawVisualization:function () {
-    /*
-    console.log("In draw visualization");
-    var data = new google.visualization.DataTable();
-    console.log(community.get('user_statistics'));
-    users = google.visualization.arrayToDataTable(community.get('user_statistics')['users'],false);
-    posts = google.visualization.arrayToDataTable(community.get('user_statistics')['posts'],false);
-    feeds = google.visualization.arrayToDataTable(community.get('user_statistics')['feeds'],false);
-    emails = google.visualization.arrayToDataTable(community.get('user_statistics')['emails'],false);
-    calls = google.visualization.arrayToDataTable(community.get('user_statistics')['calls'],false);
-    var options = {
-      chartArea:{left:35,top:10,width:"90%",height:"60%"},
-      //title : 'User Amount Gain Statistics',
-      vAxis: {0:{title: "Amount",logScale: false},1:{}},
-      hAxis: {title: "Day",textPosition: "out",textStyle:{fontSize: 10}},
-      series: {0:{type: "line",targetAxisIndex:0},1: {type: "bars",targetAxisIndex:1}},
-      legend: {position: 'in',textStyle: {color: 'blue', fontSize: 12}}
-    };
-    var userschart = new google.visualization.ComboChart(this.$('#users_div').get(0));
-    var postschart = new google.visualization.ComboChart(this.$('#posts_div').get(0));
-    var feedschart = new google.visualization.ComboChart(this.$('#feeds_div').get(0));
-    var emailschart = new google.visualization.ComboChart(this.$('#emails_div').get(0));
-    var callschart = new google.visualization.ComboChart(this.$('#calls_div').get(0));
-    google.visualization.events.addListener(userschart, 'select', this.selectHandler);
-    userschart.draw(users, options);
-    postschart.draw(posts, options);
-    feedschart.draw(feeds, options);
-    emailschart.draw(emails, options);
-    callschart.draw(calls, options);
-    */
   },
 
     selectHandler: function () {

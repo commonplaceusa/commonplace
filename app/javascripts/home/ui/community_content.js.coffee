@@ -4,7 +4,6 @@ Home.ui.CommunityContent = Framework.View.extend
   className: "main"
 
   render: ->
-    console.log "content render"
     this.$el.html this.renderTemplate()
 
     router.community.getPosts

@@ -25,12 +25,10 @@ var ImInView = CommonPlace.View.extend({
                         url: "/api"+url,
                         data: {},
                         success: function() {
-                            console.log("I'm in!");
                             var writeNoteView = new WriteNoteView({el:$('#top'),model:rec});
                             writeNoteView.render();
                         },
                         error: function() {
-                                   //console.log("There was an error checking in!");
                                }
                     });
                 }

@@ -7,7 +7,7 @@ OrganizerApp.File = Backbone.Model.extend({
   getId: function() {
     return this.get('id');
   },
-  
+
   getUserid: function() {
     return this.get('user_id');
   },
@@ -52,7 +52,6 @@ OrganizerApp.File = Backbone.Model.extend({
 
   addLog: function(log, callback) {
     var self = this;
-    //console.log("addLog's URL: ", this.url());
 	  $.ajax({
 		  type: 'POST',
           contentType: "application/json",
@@ -84,7 +83,7 @@ OrganizerApp.Files = Backbone.Collection.extend({
   url: function() {
     return "/api/communities/" + this.community.id + "/files";
   },
-  
+
   modelIds: function() {
     var userids= new Array();
     _.each(this.models, function(model){ userids.push(model.getUserid())});
@@ -116,7 +115,6 @@ OrganizerApp.Files = Backbone.Collection.extend({
 
     _.map(this.models, function(model){
       if((t=model.actionstags()).length>0){
-        //console.log(model.manualtags());
         intersect={},res=[];
         for (var i=actions.length-1; i>=0; i--) {
 	  for ( var j=0; j<t.length; j++) {

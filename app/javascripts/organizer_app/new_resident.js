@@ -48,7 +48,7 @@ OrganizerApp.AddResident = CommonPlace.View.extend({
     for(var i = 0; i < organizers.length; i++){
       if(organizers[i].checked)
 	 organizer.push(organizers[i].value);
-    }    
+    }
     if(this.model){
 
       var params= {};
@@ -69,7 +69,7 @@ OrganizerApp.AddResident = CommonPlace.View.extend({
         params.first_name=this.$("#first-name").val();
       if(this.$("#last-name").val())
         params.last_name=this.$("#last-name").val();
-        
+
       if(sectorvalue.length>0)
         params.sector_tag_list=sectorvalue;
       if(typevalue.length>0)
@@ -80,7 +80,6 @@ OrganizerApp.AddResident = CommonPlace.View.extend({
         params.PFO_statu_list=pfovalue;
       if(organizers.length>0)
         params.organizer_list=organizer;
-      //console.log(params);  
       this.model.save(params, {success: function() { //this.show("Added");
 		                          alert("Saved. Refreshing to see new residents");
 		                          location.reload();
@@ -92,8 +91,7 @@ OrganizerApp.AddResident = CommonPlace.View.extend({
         alert("At least a full name.....");
       }
       else{
-	    
-	    //console.log("!");
+
 	    $.ajax({
 		type: 'POST',
 		contentType: "application/json",
@@ -127,9 +125,8 @@ OrganizerApp.AddResident = CommonPlace.View.extend({
 
   show: function(){
     collection.each(function(model) {
-      console.log(model.full_name());
     });
-    
+
   }
 
 });

@@ -23,7 +23,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
 
   onClickFile: function(e) {
     e.preventDefault();
-    //console.log($(e.currentTarget));
     this.show($(e.currentTarget).data('model'), this.community, this.collection);
   },
 
@@ -32,7 +31,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
   },
 
   filterByinterest: function(e){
-  //  console.log("!");
     this.filePicker.filtByinterest($(e.currentTarget).text());
   },
 
@@ -62,7 +60,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
   ifuser: function() {
     return this.model.get("on_commonplace");
   },
-  
+
   full_name: function() {
     var name = this.model.full_name();
     if (name === undefined) {
@@ -80,60 +78,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
       return address;
     }
   },
-  
-  phone: function() {
-    var phone = this.model.get('phone');
-    if (!phone) {
-      return "No phone in our records";
-    } else {
-      return phone;
-    }
-  },
-  
-  organization: function() {
-    var organization = this.model.get('organization');
-    if (!organization) {
-      return "No organization in our records";
-    } else {
-      return organization;
-    }
-  },
-  
-  position: function() {
-    var position = this.model.get('position');
-    if (!position) {
-      return "No position in our records";
-    } else {
-      return position;
-    }
-  },
-  
-  notes: function() {
-    var notes = this.model.get('notes');
-    if (!notes) {
-      return "No notes in our records";
-    } else {
-      return notes;
-    }
-  },
-  
-  sector: function() {
-    var sector = this.model.get('sector');
-    if (!sector) {
-      return "No sector in our records";
-    } else {
-      return sector;
-    }
-  },
-  
-  type: function() {
-    var type = this.model.get('type');
-    if (!type) {
-      return "No type in our records";
-    } else {
-      return type;
-    }
-  },
 
   phone: function() {
     var phone = this.model.get('phone');
@@ -188,15 +132,69 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
       return type;
     }
   },
-  
+
+  phone: function() {
+    var phone = this.model.get('phone');
+    if (!phone) {
+      return "No phone in our records";
+    } else {
+      return phone;
+    }
+  },
+
+  organization: function() {
+    var organization = this.model.get('organization');
+    if (!organization) {
+      return "No organization in our records";
+    } else {
+      return organization;
+    }
+  },
+
+  position: function() {
+    var position = this.model.get('position');
+    if (!position) {
+      return "No position in our records";
+    } else {
+      return position;
+    }
+  },
+
+  notes: function() {
+    var notes = this.model.get('notes');
+    if (!notes) {
+      return "No notes in our records";
+    } else {
+      return notes;
+    }
+  },
+
+  sector: function() {
+    var sector = this.model.get('sector');
+    if (!sector) {
+      return "No sector in our records";
+    } else {
+      return sector;
+    }
+  },
+
+  type: function() {
+    var type = this.model.get('type');
+    if (!type) {
+      return "No type in our records";
+    } else {
+      return type;
+    }
+  },
+
   inputMethod: function() {
     return this.model.get('input_method');
   },
-  
+
   PFOstatus: function(){
     return this.model.get('PFO_status');
   },
-  
+
   organizer: function(){
     return this.model.get('organizer');
   },
@@ -242,7 +240,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
 
   addNotes: function(e) {
     e.preventDefault();
-    var notes = this.$("#notes-text").val();console.log(notes);
+    var notes = this.$("#notes-text").val();
     if (!notes) {
       alert("Please enter a non-empty notes.");
     } else {
@@ -271,7 +269,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
 
   email: function() {
     var email = this.model.get('email');
-    //console.log(email);
     if (!email) {
       return "No email in our records";
     } else {
@@ -295,10 +292,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
 
   addLog: function(e) {
     e.preventDefault();
-    console.log({
-      date: $("#log-date").val(),
-      text: $("#log-text").val(),
-    });
     this.model.addLog({
       date: $("#log-date").val(),
       text: $("#log-text").val(),
@@ -324,7 +317,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
       return "No tags in our records yet.";
     }
   },
-  
+
   stories: function() {
     return this.model.get('stories');
   },

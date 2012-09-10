@@ -42,7 +42,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
 
   onClickFile: function(e) {
     e.preventDefault();
-    //console.log($(e.currentTarget));
     this.options.fileViewer.show($(e.currentTarget).data('model'), this.options.community, this.collection,this);
   },
 
@@ -157,7 +156,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     $('#file-viewer').empty();
     new OrganizerApp.AddResident({el: $('#file-viewer'), collection: this.collection, filePicker: this}).render();
   },
-  
+
   newCharts: function(e) {
     $('#file-viewer').unbind();
     $('#file-viewer').empty();
@@ -191,21 +190,17 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     });
 
     var deferred = $.Deferred();
-    deferred.resolve(this.renderList(this.collection.models));  
+    deferred.resolve(this.renderList(this.collection.models));
     //this.$("#amount").text(this.collection.models.length);
     deferred.done(this.produceOrdertags());
   },
 
   renderList: function(list) {
-    
+
     this.$("#file-picker-list").empty();
 
     this.$("#file-picker-list").append(
       _.map(list, _.bind(function(model) {
-        /*console.log("renderList model: ");
-        console.log(model);
-        console.log("model url: ", model.url());
-        */
         var li = $("<li/>", { text: model.full_name(), data: { model: model } })[0];
         var cb = $("<input/>", { type: "checkbox", checked: checklist[model.getId()], value: model.getId(), data: { model: model } })[0];
         $(cb).addClass("cb");
@@ -366,13 +361,12 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
           "order": this.$("#order").val(),
           "ids": this.collection.modelIds()
         };
-        
+
         this.collection.fetch({
           data: params,
           success: _.bind(this.afterRender, this),
           error: function(attr, response) { alert(response) }
         });
-        //console.log(params["tag"]);
         break;
     }
   },
@@ -394,7 +388,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     this.$("#amount").text(this.collection.models.length);
     var obj = this.$("#order-tags").empty();
     _.map(this.collection.commontags(),function(tag){
-      //console.log(tag);
       this.$("#order-tags").append('<option value='+tag+'>'+tag+'</option>');
     });
     for(var x = 0; x <this.$("select[name=filter-tags]")[0].length  ; ++x) {
@@ -403,7 +396,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
         break;
       }
     }
-   //console.log(this.collection.modelIds());
   },
 
   refreshStory: function(){

@@ -22,17 +22,16 @@ var RegisterView = CommonPlace.View.extend({
         }
 
         if (errors) {
-            //console.log("errors");
             $("#errors").append("Please try again! ");
         } else {
             window.full_name = full_name;
             $("#errors").empty();
             var community_id = "1";
             // API call to register user
-            $.ajax({ 
-                type: "POST", 
-                  contentType: "application/json", 
-                  dataType: "json", 
+            $.ajax({
+                type: "POST",
+                  contentType: "application/json",
+                  dataType: "json",
                   url: "api/registration/" + community_id + "/new",
                   data: JSON.stringify({ full_name: full_name, email: email, address: address, password: password }),
                   success: function(response) {
@@ -45,12 +44,12 @@ var RegisterView = CommonPlace.View.extend({
                             $("#errors").append("There was an error finding nearby places!");
                         });
                     },
-                  
+
                   error: function() {
                       $("#errors").append("There was an error in registration. Please try again!");
                   }
             });
-    
+
         }
     }
 });
@@ -70,11 +69,10 @@ var RegisterView = CommonPlace.View.extend({
                                 LoginView.get_recommendations();
                             },
                             error: function() {
-                                       console.log("Error!");
                                    }
                       });
-                      
-                      
+
+
                       // this is bad; I'm repeating code
                       var lat = null;
                       var lng = null;

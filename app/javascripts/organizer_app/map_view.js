@@ -1,4 +1,4 @@
-// TODO: 
+// TODO:
 // Allow them to clear the polygons (finish clearSelection's click event and button)
 
 OrganizerApp.MapView = CommonPlace.View.extend({
@@ -24,20 +24,15 @@ OrganizerApp.MapView = CommonPlace.View.extend({
 
     // map is a global variable
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-    console.log("Initializing map view...");
     window.residents = [];
     /*window.residentLatLngs = [];*/
     /*window.residentMarkers = [];*/
 
     var i = 0;
     this.collection.each(function(model) {
-      console.log(model.full_name());
       var id = model.getId();
       if (model.address() && model.getLat()) {
-        console.log(model.getLat());
-        console.log(model.getLng());
         var ll = new google.maps.LatLng(model.getLat(), model.getLng());
-        console.log(ll);
         var marker = new google.maps.Marker({
           map: map,
           position: ll
@@ -46,8 +41,6 @@ OrganizerApp.MapView = CommonPlace.View.extend({
           if (!$('#map-date').val() || !$('#map-text').val())
             return;
           var index = parentThis.searchMarkers(marker);
-          console.log(window.residents[index]);
-          console.log([$.trim($('#map-text').val())]);
           window.residents[index].model.addLog({
             date: $('#map-date').val(),
             text: $('#map-text').val(),
@@ -69,7 +62,6 @@ OrganizerApp.MapView = CommonPlace.View.extend({
 
       /*window.residentLatLngs = [];*/
       /*if (i < 10 && model.address()) {*/
-        /*console.log(model.address());*/
         /*var ms = 2500 + new Date().getTime();*/
         /*while (new Date() < ms) {}*/
         /*this.geocode(model);*/
@@ -92,7 +84,7 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       },
       markerOptions: {
         cursor: 'pointer',
-        
+
       },
       polygonOptions: {
         fillColor: '#006600',
@@ -110,7 +102,6 @@ OrganizerApp.MapView = CommonPlace.View.extend({
     drawingManager.setMap(map);
 
     google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
-      console.log(marker.getPosition());
       var closestResidentIndex = 0;
       var closestResident = window.residentLatLngs[0];
       var closestDistance = 9999;
@@ -124,8 +115,6 @@ OrganizerApp.MapView = CommonPlace.View.extend({
         }
       }
       marker.setVisible(false);
-      console.log(residentMarkers);
-      console.log(closestResidentIndex);
       residentMarkers[closestResidentIndex].setAnimation(google.maps.Animation.BOUNCE);
     });
 
@@ -135,35 +124,23 @@ OrganizerApp.MapView = CommonPlace.View.extend({
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
       window.polygons.push(polygon);
       var path = polygon.getPath();
-      console.log(path);
       window.polygon = [];
       path.forEach(function(point) {
-        console.log(point);
         window.polygon.push( {x: point.lat(), y: point.lng()} );
       });
       window.polygon.push( {x: path.getAt(0).lat(), y: path.getAt(0).lng()} );
-      console.log(window.polygon);
       for (var i = 0, l = window.residents.length; i < l; i++) {
         var x = window.residents[i].latLng.lat();
         var y = window.residents[i].latLng.lng();
         if (parentThis.isPointInPoly(window.polygon, {x: x, y: y})) {
-          console.log("point in polygon: " + i);
-          console.log(window.residents[i]);
           window.selectedIndices.push(i);
         }
       }
 
-      console.log(parentThis.options.filePicker);
       /*parentThis.options.filePicker.filter();*/
-      console.log("collection models: ");
-      console.log(parentThis.options.filePicker.collection.models);
       var list = parentThis.options.filePicker.collection.filter(function (model) {
-        console.log("model id: " + model.getId());
-        console.log("in selected: " + parentThis.searchSelectedForId(model.getId()));
         return (parentThis.searchSelectedForId(model.getId()));
       });
-      console.log("new list: ");
-      console.log(list);
       parentThis.options.filePicker.renderList(list);
     });
 
@@ -173,11 +150,9 @@ OrganizerApp.MapView = CommonPlace.View.extend({
       var pathMvcArr = polyline.getPath();
       var addresses = [];
       var allPoints = [];
-      
+
       // iterate through each point on the polyline
       pathMvcArr.forEach(function(point, index) {
-        console.log("Point " + index);
-        console.log(point.toString());
         allPoints.push(point);
       });
 
@@ -206,28 +181,21 @@ OrganizerApp.MapView = CommonPlace.View.extend({
 
       for (var i = 0; i < allPoints.length; i++) {
         // reverse geocode point to hopefully get an address
-        console.log(allPoints.length);
-        console.log(allPoints[i]);
         var a = parentThis.reverseGeocode(map, allPoints[i]);
         while (a == false) {
-          console.log(a);
           var ms = 3000 + new Date().getTime();
           while (new Date() < ms) {}
           a = parentThis.reverseGeocode(map, allPoints[i]);
         }
         addresses.push(a);
       }
-      console.log("addresses: ");
-      console.log(addresses);
     });
 
   },
 
   searchSelectedForId: function(id) {
-    console.log("Looking for " + id);
     for (var i = 0; i < window.selectedIndices.length; i++) {
       if (window.residents[selectedIndices[i]].id == id) {
-        console.log("Found it! It is: " + window.residents[selectedIndices[i]].id);
         return true;
       }
     }
@@ -255,8 +223,6 @@ OrganizerApp.MapView = CommonPlace.View.extend({
   addLogToSelected: function() {
     for (var i = 0, l = window.selectedIndices.length; i < l; i++) {
       if ($('#map-date').val() && $('#map-text').val()) {
-        console.log([$.trim($('#map-text').val())]);
-        console.log(window.residents[i].model.addLog);
         window.residents[i].model.addLog({
           date: $('#map-date').val(),
           text: $('#map-text').val()
@@ -297,15 +263,13 @@ OrganizerApp.MapView = CommonPlace.View.extend({
           position: latLng
         });
         window.residentLatLngs.push({ "residentId": model.getId(), "latLng": latLng });
-        model.save({ latitude: latLng.lat(), longitude: latLng.lng() }, {success: console.log(model.getId() + " latLng update success")});
+        model.save({ latitude: latLng.lat(), longitude: latLng.lng() });
       } else {
-        console.log("Geocode was not successful for the following reason: " + status);
       }
     });
   },
 
   reverseGeocode: function(map, point) {
-    console.log(point);
     var geocoder = new google.maps.Geocoder();
     var success;
     geocoder.geocode({'latLng': point}, function(results, status) {
@@ -317,9 +281,6 @@ OrganizerApp.MapView = CommonPlace.View.extend({
           map: map,
           position: addr.geometry.location
         });
-        /*console.log(addr);*/
-        /*console.log(addr.types[0]);*/
-        /*console.log(addr.formatted_address);*/
         var addrString = "";
         var isBuilding = false;
 
@@ -345,17 +306,14 @@ OrganizerApp.MapView = CommonPlace.View.extend({
             default:
           }
         }
-        console.log(addrString);
         if (isBuilding) {
           success = addrString;
         } else {
-          console.log("No street number received, thus probably not a building");
           success = false;
         }
 
         // if geocode fails
       } else {
-        console.log("Error in geocoding. Reason: " + status);
         success = false;
       }
     });
@@ -368,7 +326,7 @@ OrganizerApp.MapView = CommonPlace.View.extend({
     && (pt.x < (poly[j].x - poly[i].x) * (pt.y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x)
     && (c = !c);
     return c;
-  } 
+  }
 
 });
 

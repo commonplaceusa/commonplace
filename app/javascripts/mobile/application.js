@@ -1,6 +1,6 @@
 
 MobileView = CommonPlace.View.extend({
-  
+
   template: "mobile.landing",
 
   hello: function() { return "world"; }
@@ -18,7 +18,6 @@ $(function() {
         success: function(response) {
             window.account = response;
             window.full_name = response.name;
-            console.log("success");
             get_recommendations();
         },
         error: function() {

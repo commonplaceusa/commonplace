@@ -32,7 +32,6 @@ var StatsWeeklyHealthPage = CommonPlace.View.extend({
           dataType: "json",
           url: "/api/stats/",
           success: function(response) {
-            console.log(response);
           }
     });
   }
