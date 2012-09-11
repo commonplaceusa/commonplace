@@ -13,7 +13,7 @@ CommonPlace.registration.NewUserView = CommonPlace.registration.RegistrationModa
     tabs = @$("ul.nav-tabs > a")
     $(".tab-content > div").hide().filter("#home").fadeIn "500", "linear"
     $("ul.nav-tabs a").each ->
-      tabs.push this  if @pathname is window.location.pathname
+      tabs.push this
 
     @$(tabs).click ->
       $(".tab-content > div").hide().filter(@hash).fadeIn "500", "linear"

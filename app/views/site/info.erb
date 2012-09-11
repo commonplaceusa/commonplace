@@ -129,9 +129,7 @@
       tabs = this.$("ul.nav-tabs > a");
       $(".tab-content > div").hide().filter("#home").fadeIn("500", "linear");
       $("ul.nav-tabs a").each(function() {
-        if (this.pathname === window.location.pathname) {
-          return tabs.push(this);
-        }
+        return tabs.push(this);
       });
       this.$(tabs).click(function() {
         $(".tab-content > div").hide().filter(this.hash).fadeIn("500", "linear");
