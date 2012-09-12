@@ -303,10 +303,23 @@ class Community < ActiveRecord::Base
     Flag.all.map &:name
   end
 
-  def graph(datas, t)
-    data = datas.sort { |x,y| x.created_at <=> y.created_at }
+  # Calculates datas over time and data per day for graphs in Organizer App
+  #
+  def graph(datas)
+    if self.organize_start_date?
+      start = self.organize_start_date
+    else
+      start = self.created_at.to_date
+    end
 
-    s = t
+    if Date.today.months_ago(6) > start
+      t = Date.today.months_ago(6)
+    else
+      t = start
+    end
+
+    # Sort data by time of creation
+    data = datas.sort { |x,y| x.created_at <=> y.created_at }
 
     table = []
     table << ["Date","Total","Gain"]
@@ -315,6 +328,7 @@ class Community < ActiveRecord::Base
     gain = 0
     data.each do |d|
 
+      # Add to counts until d was created after time t
       if d.created_at.to_date <= t
         gain += 1
         total += 1
@@ -323,22 +337,27 @@ class Community < ActiveRecord::Base
           next
         end
       else
+        # d is created after time t. Record counts for time t
         table << [t.strftime("%b %d"), total, gain]
         gain = 0
         t += 1
 
+        # Increment t until t is the day that d was created at
+        # Record total for each t until then
         while d.created_at.to_date > t
 
-          table << [t.strftime("%b %d"), total, gain]
+          table << [t.strftime("%b %d"), total, 0]
 
           t += 1
         end
 
+        # Reached time of creation of d. Start counting again
         gain += 1
         total += 1
       end
 
-      if d.id == data.last.id && d.created_at > t
+      # Last piece of data, so record counts
+      if d.id == data.last.id
 
         table << [t.strftime("%b %d"), total, gain]
         t += 1
@@ -353,28 +372,40 @@ class Community < ActiveRecord::Base
 
     table
   end
-  
+
   def user_statistics
-    if self.organize_start_date?
-      start = self.organize_start_date
-    else
-      start = self.created_at.to_date
-    end
-    if Date.today.months_ago(6)>start
-      t = Date.today.months_ago(6)
-    else
-      t = start
-    end
     result = {}
 
-    users = graph(self.users.all, t)
-    posts = graph(self.posts.all, t)
-    events = graph(self.events.all, t)
-    feeds = graph(self.feeds.all, t)
+    civic_l = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Civic Leader") }.map { |x| x.id }
+    civics_l = Flag.where("name = ? AND resident_id in (?)", "CL2: Civic Leader Phone Call Held", civic_l)
+
+    civic_p = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("CH3a: Post Published") }.map { |x| x.id }
+    civics_p = Flag.where("name = ? AND resident_id in (?)", "CH3a: Post Published", civic_p)
+
+    civic_s = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Status: On Civic Heroes List") }.map { |x| x.id }
+    civics_s = Flag.where("name = ? AND resident_id in (?)", "Status: On Civic Heroes List", civic_s)
+
+    nominee = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominee") }
+    nominator = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominator") }
+
+    phone = graph(civics_l)
+    posted = graph(civics_p)
+    status = graph(civics_s)
+
+    nominees = graph(nominee)
+    nominators = graph(nominator)
+
+    users = graph(self.users.all)
+    posts = graph(self.posts.all)
+    events = graph(self.events.all)
 
     result.merge!({users: users})
     result.merge!({posts: posts})
     result.merge!({events: events})
-    result.merge!({feeds: feeds})
+    result.merge!({phone: phone})
+    result.merge!({posted: posted})
+    result.merge!({c_status: status})
+    result.merge!({nominees: nominees})
+    result.merge!({nominators: nominators})
   end
 end
