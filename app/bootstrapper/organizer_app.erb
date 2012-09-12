@@ -5,7 +5,7 @@
   <head>
   <!-- Not using now, commented temporarily
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBPGZ6eQKnEXsyfZw_GahjTYzZd1wDOgUk&sensor=true&libraries=drawing"></script> -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//www.google.com/jsapi"></script>
     <script type="text/javascript" src="http://stevenlevithan.com/assets/misc/date.format.js"></script>
     <link type="text/css" rel="stylesheet" href="/assets/organizer_app.css">
     <style>
@@ -2284,7 +2284,7 @@ body {
   <body>
 
     <div id="main">
-      
+
       <div id="file-picker">
         <span id="loading">Loading residents (may take 10 seconds or so)...</span>
       </div>
@@ -2294,18 +2294,18 @@ body {
     </div>
 
     <script type="text/javascript" src="/assets/organizer_app.js"></script>
-    
+
     <script type="text/javascript">
-      
+
       $(function() {
-      
+
         var c_id = window.location.pathname.replace(/^\/organizer_app\//, "");
         $.getJSON("/api/communities/" + c_id, function(r) {
           var community = new Community(r);
           var files = new OrganizerApp.Files([], { community: community });
-          var main = new OrganizerApp.Main({ 
-            el: $("#main"), 
-            collection: files, 
+          var main = new OrganizerApp.Main({
+            el: $("#main"),
+            collection: files,
             community: community
           });
           main.render();

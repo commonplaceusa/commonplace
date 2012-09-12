@@ -6,12 +6,12 @@
     <title>CommonPlace</title>
     <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
 
-    <link href="https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
+    <link href="//webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
     <link href="/assets/favicon.png" rel="icon" type="image/png">
 
     <link href="/assets/registration.sass" rel="stylesheet" type="text/css">
-    
+
     <!--[if lt IE 9]>
             <link rel="stylesheet" type="text/css" href="/assets/ie.css" />
     <![endif]-->
@@ -73,7 +73,7 @@
 
       CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
       CommonPlace.account = new Account(<%= @account.try(:persisted?) ? Serializer::serialize(Account.new(@account)).to_json : "{}" %>);
- 
+
       window.router = new CommonPlace.registration.Router({ communityExterior: <%= Serializer::serialize(@community.exterior).to_json.html_safe %> });
 
       var communitySlug = window.location.pathname.split("/")[1];

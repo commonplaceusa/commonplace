@@ -4,8 +4,8 @@
     <title>CommonPlace</title>
     <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
 
-    <link href="https://webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
+    <link href="//webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
     <link href="/assets/favicon.png" rel="icon" type="image/png">
 
     <link href="/assets/learn_more.css" rel="stylesheet" type="text/css">
@@ -17,12 +17,12 @@
         %a{ href: "/#{@community.slug}", id: "logo"}
           %img{src: "/assets/logo2.png", alt: 'CommonPlace'}
           %span.community= @community.name
-  
+
       .clear
 
 
     #main
-      
+
       %h1
         #smallbanner Learn more about
         CommonPlace
@@ -34,7 +34,7 @@
           %img{ :src => "/assets/learn_more/sign_up_screen_shot.png", :size => "300x210" }
 
           %h3 1. Sign Up
-          
+
           %p CommonPlace brings your neighbors and civic leaders in #{@community.name} together onto one 'community network' online.
 
           %p Sign up once and you'll start receiving short email messages from your neighbors and community leaders like the police chief and the mayor.
@@ -49,10 +49,10 @@
           %p Each day you'll receive a 'community bulletin' featuring events and announcements written by your neighbors and local leaders. Learn about local events. Find a good mechanic. Join a new biking group.
 
           %p Whenever something's interesting to you, you can hit 'reply' and start a community conversation.
- 
+
           %div{:style => "clear: both;"}
 
-        %li 
+        %li
           %img{ :src => "/assets/learn_more/community_screen_shot.png", :size => "300x210" }
 
           %h3 3. Search the Community
@@ -63,13 +63,13 @@
 
           %div{:style => "clear: both;"}
 
-        %li 
+        %li
           %img{ :src => "/assets/learn_more/post_screen_shot.png", :size => "300x210" }
 
           %h3 4. Post to the Neighborhood
 
           %p Of course, whenever YOU have a need or announcement, CommonPlace makes it really easy to share it with the people around you.
-  
+
           %ul
             %li Ask to borrow a ladder or a power drill
             %li Publicize a tag sale or block party
@@ -77,9 +77,9 @@
             %li Organize service projects for #{@community.name}
 
           %div{:style => "clear: both;"}
-          
+
         .register_con
-          %a{ :href => "/#{@community.slug}", :class => "register"} Register 
+          %a{ :href => "/#{@community.slug}", :class => "register"} Register
 
 
       %h2 Press and Local Testimonials
@@ -87,7 +87,7 @@
       #testimonial
         %h3 News story from Burnsville, MN
         %blockquote "The difference between OurCommonPlace.com and other social media websites: Its designers hope their project rouses community members to move away from their computers and participate in civic and community activities. The founders call their website a bulletin board and liken it to "infrastructure" for communities."
-        #more 
+        #more
           %a{:href => "http://www.startribune.com/local/south/133110453.html"} READ MORE...
         %div{:style => "clear: both;"}
 
@@ -95,7 +95,7 @@
         <iframe width="330" height="215" src="http://www.youtube.com/embed/NsTypSRO4rc" frameborder="0" allowfullscreen></iframe>
         %h3 Local news describes CommonPlace to Marquette, MI
         %p News story from ABC10 in Marquette, MI about The Marquette CommonPlace.
-        #more 
+        #more
           %a{:href => "http://www.youtube.com/watch?v=6yD_MCgyFBI"} VIEW MORE...
         %div{:style => "clear: both;"}
 
@@ -108,7 +108,7 @@
         %h3 In Order to Form a More Perfect Community
         %p Because community is the heart of Raleigh, and because our neighborhoods are made up of amazing and inspiring neighbors who love their families and want to help each other, it is time we hammer the Internet into a tool that unites rather than divides our communities.
         %p (A beautiful article about CommonPlace published in <strong>The Raleigh Creative District</strong>)
-        #more 
+        #more
           %a{:href => "http://southwestraleigh.com/2011/06/in-order-to-form-a-more-perfect-community/"} READ MORE...
         %div{:style => "clear: both;"}
 
@@ -116,4 +116,4 @@
 
 
   = erb :footer
-  
+
