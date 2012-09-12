@@ -250,34 +250,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
                  {val:"Announcement",tag: JSON.stringify({tag:"announcement",type:"action"})},
                  {val:"Event",tag: JSON.stringify({tag:"event",type:"action"})},
                  {val:"Log in",tag: JSON.stringify({tag:"sitevisit",type:"action"})},
-                 {val:"News",tag: JSON.stringify({tag:"story",type:"action"})},
-                 /*
-                 {val:"Type: Excited Neighbor",tag: JSON.stringify({tag:"Excited Neighbor",type:"type"})},
-                 {val:"Type: Gatekeeper",tag: JSON.stringify({tag:"Gatekeeper",type:"type"})},
-                 {val:"Type: Leader",tag: JSON.stringify({tag:"Leader",type:"type"})},
-                 {val:"Type: News",tag: JSON.stringify({tag:"News",type:"type"})},
-                 {val:"Type: Nominator",tag: JSON.stringify({tag:"Nominator",type:"type"})},
-                 {val:"Type: Nominee",tag: JSON.stringify({tag:"Nominee",type:"type"})},
-                 {val:"Type: Non-Leader Email List",tag: JSON.stringify({tag:"Non-Leader Email List",type:"type"})},
-                 {val:"Type: Leader On-Boarding Process",tag: JSON.stringify({tag:"Leader On-Boarding Process",type:"type"})},
-                 */
-                 {val:"Sector: Culture",tag: JSON.stringify({tag:"Culture",type:"sector"})},
-                 {val:"Sector: Religion",tag: JSON.stringify({tag:"Religon",type:"sector"})},
-                 {val:"Sector: Civic",tag: JSON.stringify({tag:"Civic",type:"sector"})},
-                 {val:"Sector: Government",tag: JSON.stringify({tag:"Government",type:"sector"})},
-                 {val:"Sector: Schools",tag: JSON.stringify({tag:"Schools",type:"sector"})},
-                 {val:"Sector: Town Meeting",tag: JSON.stringify({tag:"Town Meeting",type:"sector"})},
-                 {val:"Sector: PTA",tag: JSON.stringify({tag:"PTA",type:"sector"})},
-                 {val:"Sector: Kids",tag: JSON.stringify({tag:"Kids",type:"sector"})},
-                 {val:"Sector: Business",tag: JSON.stringify({tag:"Business",type:"sector"})},
-                 {val:"Sector: Chamber of Commerce",tag: JSON.stringify({tag:"Chamber of Commerce",type:"sector"})},
-                 {val:"Sector: Municipal",tag: JSON.stringify({tag:"Municipal",type:"sector"})},
-                 {val:"Sector: Library",tag: JSON.stringify({tag:"Library",type:"sector"})},
-                 {val:"Sector: News",tag: JSON.stringify({tag:"News",type:"sector"})},
-                 {val:"Sector: General",tag: JSON.stringify({tag:"General",type:"sector"})},
-                 {val:"Organizer: Chava",tag: JSON.stringify({tag:"Chava",type:"organizer"})},
-                 {val:"Organizer: Pete",tag: JSON.stringify({tag:"Pete",type:"organizer"})},
-                 {val:"Organizer: Ricky",tag: JSON.stringify({tag:"Ricky",type:"organizer"})}];
+                 {val:"News",tag: JSON.stringify({tag:"story",type:"action"})}];
     possTags=this.options.community.get('resident_tags');
     _.map(possTags, function(residenttag) {
       actions.push({val:residenttag,tag: JSON.stringify({tag:residenttag,type:"flag"})});
