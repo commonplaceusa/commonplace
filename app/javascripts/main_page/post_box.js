@@ -80,7 +80,6 @@ var PostBox = CommonPlace.View.extend({
       view.$el.css("overflow-x", "hidden");
     }
 
-    if (view.onFormFocus) { view.onFormFocus(); }
   },
 
   tabs: function(tab) {
