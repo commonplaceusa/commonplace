@@ -71,14 +71,13 @@ em
     text-decoration: none
   .community-name
     width: auto
-    float: left
-    padding-left: 57px
-    height: 60px
-    background-position: 20px 14px
-    position: relative
-    //border-right: 1px solid $dark-blue
-    border-left: 1px solid $dark-blue
-    box-shadow: inset 1px 0 0 $light-blue
+    border: 0px none
+    box-shadow: none
+    padding-top: 12px
+    img.cp_logo
+      float: left
+      margin: 0px
+      padding: 0px
     h1
       color: white
       text-shadow: $black-shadow
@@ -271,23 +270,29 @@ em
     left: 0px
 #header #nav_wrapper div.community-name
   width: auto
-  margin-left: -20px
   border: 0px none
   box-shadow: none
+  padding-top: 12px
+  img.cp_logo
+    float: left
+    margin: 0px
+    padding: 0px
+
+#header #user_sign_in
+  margin-top: -12px
 
 #header #user_sign_in div.top-bar
   width: auto
   margin-right: -20px
   border: 0px none
   box-shadow: none
-  margin-top: -1px
 
 #header #nav_wrapper div.community-name a h1
   float: left
 
 #header #nav_wrapper div.community-name a span.community
   float: left
-  margin-top: 20px
+  margin-top: 8px
   color: $red
   font-family: $heading
   font-size: 24px
@@ -375,7 +380,7 @@ em
       h3
         font-family: $Rokkitt
         color: $blue
-        font-size: 26px
+        font-size: 23px
         padding-bottom: 20px
         font-weight: bold
         text-shadow: 1px 1px 0px #fff
@@ -470,12 +475,13 @@ em
     .right
       border-left: 1px solid white
       min-height: 445px
+      width: 470px
       float: left
       padding-left: 30px
       h3
         font-family: $Rokkitt
         color: $blue
-        font-size: 26px
+        font-size: 23px
         text-align: center
         padding-bottom: 20px
         text-shadow: 1px 1px 0px #fff
@@ -650,8 +656,9 @@ span#apply-btn, span#nominate-btn, .register-btn
     .right
       .nominate-after
         h2
-          margin-bottom: 20px
-          font-size: 34px
+          margin-bottom: 30px
+          font-size: 45px
+          background-image: none
         p
           font-family: $Rokkitt
           font-size: 18px
