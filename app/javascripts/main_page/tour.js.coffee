@@ -18,6 +18,7 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
     $(@el).append("<div id='tour-shadow'></div>")
     $(@el).append(@renderTemplate("main_page.tour.modal", this))
     $("body").css(overflow: "hidden") #prevents the main page from scrolling during the tour
+    $("#current-registration-page").css(overflow: "auto")
 
   community_name: ->
     @community.get "name"
@@ -94,6 +95,12 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
 
   centerEl: ($el) ->
     $el.css @dimensions($el)
+    w_height = $(window).height()
+    el_height = $el.height()
+    el_offset = $el.offset().top
+    if (el_offset + el_height) > w_height
+      $el.css(overflow: "auto")
+      $el.height(w_height - el_offset)
 
   fadeOut: ->
     $current = @$("#current-tour-page")
