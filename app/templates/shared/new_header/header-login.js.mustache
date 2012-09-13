@@ -14,9 +14,12 @@
     </div>
     <div id="sign_in" class="dropdown">
       <div class="arrow"></div>
-      <input type="email" name="email" class="email" placeholder="Email Address" />
-      <input type="password" name="password" placeholder="Password" />
-      <button name="signin" class="button signin">Sign In</button>
+      <form id="sign_in_form">
+        <input type="email" name="email" class="email" placeholder="Email Address" />
+        <input type="password" name="password" placeholder="Password" />
+        <button name="signin" class="button signin">Sign In</button>
+        <input type="submit" style="display: none"/>
+      </form>
       <a href="/users/auth/facebook">
         <button name="facebooksignin" class="button signin facebook">Facebook Login</button>
       </a>
