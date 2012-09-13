@@ -320,66 +320,109 @@ class Community < ActiveRecord::Base
     Flag.all.map &:name
   end
 
-  def user_statistics
+  # Calculates datas over time and data per day for graphs in Organizer App
+  #
+  def graph(datas)
     if self.organize_start_date?
-      start=self.organize_start_date
+      start = self.organize_start_date
     else
-      start=self.created_at.to_date
+      start = self.created_at.to_date
     end
-    if Date.today.months_ago(6)>start
-      t=Date.today.months_ago(6)
-    else
-      t=start
-    end
-    result={}
-    users=[]
-    users<<["Date","Total","Gain"]
-    posts=[]
-    posts<<["Date","Total","Gain"]
-    feeds=[]
-    feeds<<["Date","Total","Gain"]
-    emails=[]
-    emails<<["Date","Total","Gain"]
-    calls=[]
-    calls<<["Date","Total","Gain"]
-    while t<=Date.today
-      userstotal=self.users.where("created_at <= ?",t).count
-      poststotal=self.posts.where("created_at <= ?",t).count
-      feedstotal=self.feeds.where("created_at <= ?",t).count
-      emailstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"sent nomination email",self.id).count
-      callstotal=Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t,"called",self.id).count
-      usersgain=userstotal-self.users.where("created_at <= ?",t-1).count
-      postsgain=poststotal-self.posts.where("created_at <= ?",t-1).count
-      feedsgain=feedstotal-self.feeds.where("created_at <= ?",t-1).count
-      emailsgain=emailstotal-Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t-1,"sent nomination email",self.id).count
-      callsgain=callstotal-Flag.joins(:resident).where("flags.created_at <= ? AND flags.name= ? AND residents.community_id=?",t-1,"called",self.id).count
-      #result<<[t.strftime("%b %d"),total,gain]
-      users<<[t.strftime("%b %d"),userstotal,usersgain]
-      posts<<[t.strftime("%b %d"),poststotal,postsgain]
-      feeds<<[t.strftime("%b %d"),feedstotal,feedsgain]
-      emails<<[t.strftime("%b %d"),emailstotal,emailsgain]
-      calls<<[t.strftime("%b %d"),callstotal,callsgain]
-      t=t+1
-    end
-    result.merge!({users: users}).merge!({posts: posts}).merge!({feeds: feeds}).merge!({emails: emails}).merge!({calls: calls})
-=begin
-    cols=[]
-    rows=[]
-    cols<<{id: 'date', label: 'Date', type: 'date'}
-    cols<<{id: 'total', label: 'Total', type: 'number'}
-    cols<<{id: 'gain', label: 'Gain', type: 'number'}
-    while t!=Date.today
-      column=[]
-      column<<{v: t}
-      total=User.where("created_at<?",t).count
-      column<<{v: total}
-      gain=total-User.where("created_at<?",t-1).count
-      column<<{v: gain}
-      rows<<{c: column}
-      t=t+1
-    end
-    results={cols: cols, rows: rows}
-=end
 
+    if Date.today.months_ago(6) > start
+      t = Date.today.months_ago(6)
+    else
+      t = start
+    end
+
+    # Sort data by time of creation
+    data = datas.sort { |x,y| x.created_at <=> y.created_at }
+
+    table = []
+    table << ["Date","Total","Gain"]
+
+    total = 0
+    gain = 0
+    data.each do |d|
+
+      # Add to counts until d was created after time t
+      if d.created_at.to_date <= t
+        gain += 1
+        total += 1
+
+        if d.id != data.last.id
+          next
+        end
+      else
+        # d is created after time t. Record counts for time t
+        table << [t.strftime("%b %d"), total, gain]
+        gain = 0
+        t += 1
+
+        # Increment t until t is the day that d was created at
+        # Record total for each t until then
+        while d.created_at.to_date > t
+
+          table << [t.strftime("%b %d"), total, 0]
+
+          t += 1
+        end
+
+        # Reached time of creation of d. Start counting again
+        gain += 1
+        total += 1
+      end
+
+      # Last piece of data, so record counts
+      if d.id == data.last.id
+
+        table << [t.strftime("%b %d"), total, gain]
+        t += 1
+      end
+    end
+
+    while t <= Date.today
+      table << [t.strftime("%b %d"), total, 0]
+
+      t += 1
+    end
+
+    table
+  end
+
+  def user_statistics
+    result = {}
+
+    civic_l = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Civic Leader") }.map { |x| x.id }
+    civics_l = Flag.where("name = ? AND resident_id in (?)", "CL2: Civic Leader Phone Call Held", civic_l)
+
+    civic_p = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("CH3a: Post Published") }.map { |x| x.id }
+    civics_p = Flag.where("name = ? AND resident_id in (?)", "CH3a: Post Published", civic_p)
+
+    civic_s = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Status: On Civic Heroes List") }.map { |x| x.id }
+    civics_s = Flag.where("name = ? AND resident_id in (?)", "Status: On Civic Heroes List", civic_s)
+
+    nominee = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominee") }
+    nominator = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominator") }
+
+    phone = graph(civics_l)
+    posted = graph(civics_p)
+    status = graph(civics_s)
+
+    nominees = graph(nominee)
+    nominators = graph(nominator)
+
+    users = graph(self.users.all)
+    posts = graph(self.posts.all)
+    events = graph(self.events.all)
+
+    result.merge!({users: users})
+    result.merge!({posts: posts})
+    result.merge!({events: events})
+    result.merge!({phone: phone})
+    result.merge!({posted: posted})
+    result.merge!({c_status: status})
+    result.merge!({nominees: nominees})
+    result.merge!({nominators: nominators})
   end
 end
