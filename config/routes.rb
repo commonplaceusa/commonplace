@@ -8,7 +8,7 @@ Commonplace::Application.routes.draw do
   devise_for :admin_users
 
   match "/info" => "site#info"
-  match "/about" => "site#about"
+  match "/about" => "site#about", :constraints => { :subdomain => "www" }
 
   # Community specific redirects
   match "/corunna" => redirect("/owossocorunna")
