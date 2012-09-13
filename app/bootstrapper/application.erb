@@ -22,6 +22,16 @@
       a.attachEvent("onload",d)})(window,document);
     </script>
     <% end %>
+    <style type="text/css" media="screen">
+       body {
+           background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
+           background-color: #CEE7FE;
+           background-size: cover;
+           -webkit-background-size: cover;
+           -webkit-font-smoothing: antialiased;
+           text-rendering: optimizeLegibility;
+          }
+     </style>
   </head>
 
   <body class="application">
