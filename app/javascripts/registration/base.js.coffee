@@ -150,6 +150,11 @@ CommonPlace.registration.RegistrationModalPage = CommonPlace.View.extend(
     @complete = options.complete
     @template = @facebookTemplate  if options.data and options.data.isFacebook and @facebookTemplate
 
+  showError: ($el, $error, message) ->
+    $el.addClass "input_error"
+    $error.text message
+    $error.show()
+
   validate_registration: (params, callback) ->
     validate_api = "/api" + @communityExterior.links.registration.validate
     $.getJSON validate_api, @data, _.bind((response) ->

@@ -63,11 +63,7 @@ CommonPlace.registration.NewUserView = CommonPlace.registration.RegistrationModa
     @data.email = @$("input[name=email]").val()
     @data.password = @$("input[name=password][type=password]").val()
     if @data.password is ""
-      input = @$("input[name=password]")
-      error = @$(".error.password")
-      input.addClass "input_error"
-      error.text "Password can't be empty"
-      error.show()
+      @showError @$("input[name=password]"), @$(".error.password"), "Password can't be empty"
     else
       params = [ "full_name", "email" ]
       @validate_registration params, _.bind(->

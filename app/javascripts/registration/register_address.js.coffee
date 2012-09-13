@@ -20,27 +20,6 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
   user_name: ->
     (if (@data.full_name) then @data.full_name.split(" ")[0] else "")
 
-  showAddressError: (message) ->
-    address = @$("input[name=address]")
-    error = @$(".error.address")
-    address.addClass "input_error"
-    error.text message
-    error.show()
-
-  showReferralSourceError: (message) ->
-    referral = @$("select[name=referral_source]")
-    error = @$(".error.referral_source")
-    referral.addClass "input_error"
-    error.text message
-    error.show()
-
-  showReferralMetaError: (message) ->
-    referral = @$("select[name=referral_metadata]")
-    error = @$(".error.referral_metadata")
-    referral.addClass "input_error"
-    error.text message
-    error.show()
-
   submit: (e) ->
     e.preventDefault()  if e
     @$(".error").hide()
@@ -50,11 +29,11 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
     @data.organizations = ""
 
     if @data.address.length < 1
-      @showAddressError "Please enter a valid address"
+      @showError @$("input[name=address]"), @$(".error.address"), "Please enter a valid address"
       return
 
     if @data.referral_source is "placeholder"
-      @showReferralSourceError "Please tell us how you heard about OurCommonPlace"
+      @showError @$("select[name=referral_source]"), @$(".error.referral_source"), "Please tell us how you heard about OurCommonPlace"
       return
 
     if @$("#address_verification").is(":hidden")
@@ -70,7 +49,7 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
 
         if weight != -1
           if response[1].length < 1 || weight < 0.84
-            @showAddressError "Please enter a valid address"
+            @showError @$("input[name=address]"), @$(".error.address"), "Please enter a valid address"
             return
           else if weight < 0.94
             @data.suggest = response[1]
