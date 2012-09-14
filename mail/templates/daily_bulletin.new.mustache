@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Daily Bulletin</title>
+  <style>
+    {{styles}}
+  </style>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" style="-webkit-font-smoothing: antialiased;width:100% !important;-webkit-text-size-adjust:none;background-image:url (images/bg.jpg);" background="images/bg.jpg">
+	
+<table width="100%" cellpadding="0" cellspacing="0" border="0" background="images/bg.jpg">
+<tr>
+	<td width="100%">
+
+	<table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="table">
+	<tr>
+		<td width="600" class="cell">
+		
+		<!--Header-->
+	   	<table width="600" background="images/header.jpg" style="color:#ffffff;font:14px Helvetica, sans-serif;margin-bottom:0px" cellpadding="0" cellspacing="0" border="0" class="table">
+		<tr>
+			<td width="30px" style="padding-left:15px;position:relative;bottom:5px;"><img src="{{logo_url}}" alt="CommonPlace Logo"></td>
+			<td class="town_name" width="450px" style="font:20px Rokkitt, 'Rockwell STD', Rockwell, serif;padding-left: 5px;position:relative;bottom:5px;"><singleline><img src="http://f4design.com/fallschurchheader.jpg" alt="town_name"></singleline ></td>
+			<td width="120px">
+				<table class="date" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td class="month">July</td>
+					</tr>
+					<tr>
+						<td class="day">4</td>
+					</tr>					
+				</table>
+			</td>
+		</tr>
+		</table>
+		<!--End Header-->
+		
+		<!--Introduction-->
+		<table width="600" cellpadding="0" cellspacing="0" border="0" class="promotable">
+		<tr>
+			<td width="600" class="promocell intro">                      
+			 
+				<h1>{{header_title}}</h1>
+        <p>{{header_text}}</p>
+			
+			</td>
+		</tr>
+		</table>
+		<!--End Intro-->
+	
+	
+		<img border="0" src="images/spacer.gif" width="1" height="15" class="divider"><br>
+	
+    {{#posts_present}}
+      <table width="600" cellpadding="25" cellspacing="0" border="0" class="promotable">
+      <tr>
+        <td width="600" class="promocell section_header" style="padding: 0 0 20px 0;">                      
+          <img src="images/post-icon.png" alt="Post Icon" class="section_icon"> &nbsp; <span id="section_header">{{#t}}posts-section-title{{/t}}</span>	
+        </td>
+      </tr>
+      </table>	
+    
+      {{#posts}}
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td width="100%" bgcolor="#ffffff">
+              <table width="100%" cellpadding="20" cellspacing="0" border="0">
+                <tr>
+                  <td bgcolor="#ffffff" class="contentblock">
+
+                    <table>
+                      <tr class="post"><!--A Post-->
+                        <td class="avatar" height="110" valign="top"><img src="{{avatar_url}}" alt="User Avatar"></td>
+                        <td class="post_content"><h3 style="color:#1b334a;">{{title}}</h3>
+                          <h4 style="color:#1b334a;">{{author}}</h4>
+                          <p>{{body}}</p>
+                          <table width="100%">
+                            <tr>
+                              <td width="190px">&nbsp;</td>
+                              <td><a href="{{new_message_url}}"><span class="viewall">Send a Private Message</span></a></td>
+                              <td width="20px">&nbsp;</td>
+                              <td><a href="{{url}}" class="viewpost">View Post</a></td>
+                            <tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>  
+        <img border="0" src="images/spacer.gif" width="1" height="15" class="divider"><br>
+      {{/posts}}
+    {{/posts_present}}
+
+    {{#offers_present}}
+      <table width="600" cellpadding="25" cellspacing="0" border="0" class="promotable">
+      <tr>
+        <td width="600" class="promocell section_header" style="padding: 0 0 20px 0;">                      
+          <img src="images/request-offer-icon.png" alt="Request Icon" class="section_icon"> &nbsp; <span id="section_header">Requests &amp; Offers</span>	
+        </td>
+      </tr>
+      </table>	
+    
+      {{#offers}}
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td width="100%" bgcolor="#ffffff">
+              <table width="100%" cellpadding="20" cellspacing="0" border="0">
+                <tr>
+                  <td bgcolor="#ffffff" class="contentblock">
+
+                    <table>
+                      <tr class="post"><!--A Post-->
+                        <td class="avatar" height="110" valign="top"><img src="{{avatar_url}}" alt="User Avatar"></td>
+                        <td class="post_content"><h3 style="color:#1b334a;">{{title}}</h3>
+                          <h4 style="color:#1b334a;">{{author}}</h4>
+                          <p>{{body}}</p>
+                          <table width="100%">
+                            <tr>
+                              <td width="190px">&nbsp;</td>
+                              <td><a href="{{new_message_url}}"><span class="viewall">Send a Private Message</span></a></td>
+                              <td width="20px">&nbsp;</td>
+                              <td><a href="{{url}}" class="viewpost">View Event</a></td>
+                            <tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>  
+        <img border="0" src="images/spacer.gif" width="1" height="15" class="divider"><br>
+      {{/offers}}
+    {{/offers_present}}
+
+    {{#events_present}}
+      <table width="600" cellpadding="25" cellspacing="0" border="0" class="promotable">
+      <tr>
+        <td width="600" class="promocell section_header" style="padding: 0 0 20px 0;">                      
+          <img src="images/event-icon.png" alt="Event Icon" class="section_icon"> &nbsp; <span id="section_header">{{#t}}events-section-title{{/t}}</span>	
+        </td>
+      </tr>
+      </table>	
+    
+      {{#events}}
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td width="100%" bgcolor="#ffffff">
+              <table width="100%" cellpadding="20" cellspacing="0" border="0">
+                <tr>
+                  <td bgcolor="#ffffff" class="contentblock">
+
+                    <table>
+                      <tr class="post"><!--A Post-->
+                        <td class="avatar" height="110" valign="top"><img src="{{avatar_url}}" alt="User Avatar"></td>
+                        <td class="post_content">
+                          <h3 style="color:#1b334a;">{{title}}</h3>
+                          <h4 style="color:#1b334a;">{{author}}</h4>
+                          <h4 style="color:#1b334a;">{{short_month}, {{day}}</h4>
+                          <h4 style="color:#1b334a;">{{starts_at}} to {{ends_at}}</h4>
+                          {{#venue}}<h4 style="color:#1b334a;">{{venue}}</h4>{{/venue}}
+                          {{#address}}<h4 style="color:#1b334a;">{{address}}</h4>{{/address}}
+                          <p>{{body}}</p>
+                          <table width="100%">
+                            <tr>
+                              <td width="190px">&nbsp;</td>
+                              <td><a href="{{new_message_url}}"><span class="viewall">Send a Private Message</span></a></td>
+                              <td width="20px">&nbsp;</td>
+                              <td><a href="{{url}}" class="viewpost">View Event</a></td>
+                            <tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>  
+        <img border="0" src="images/spacer.gif" width="1" height="15" class="divider"><br>
+      {{/events}}
+    {{/events_present}}
+
+    {{#announcements_present}}
+      <table width="600" cellpadding="25" cellspacing="0" border="0" class="promotable">
+      <tr>
+        <td width="600" class="promocell section_header" style="padding: 0 0 20px 0;">                      
+          <img src="images/announcement-icon.png" alt="Post Icon" class="section_icon"> &nbsp; <span id="section_header">{{#t}}announcements-section-title{{/t}}</span>	
+        </td>
+      </tr>
+      </table>	
+    
+      {{#announcements}}
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td width="100%" bgcolor="#ffffff">
+              <table width="100%" cellpadding="20" cellspacing="0" border="0">
+                <tr>
+                  <td bgcolor="#ffffff" class="contentblock">
+
+                    <table>
+                      <tr class="post"><!--A Post-->
+                        <td class="avatar" height="110" valign="top"><img src="{{avatar_url}}" alt="User Avatar"></td>
+                        <td class="post_content"><h3 style="color:#1b334a;">{{title}}</h3>
+                          <h4 style="color:#1b334a;">{{author}}</h4>
+                          <p>{{body}}</p>
+                          <table width="100%">
+                            <tr>
+                              <td width="190px">&nbsp;</td>
+                              <td><a href="{{new_message_url}}"><span class="viewall">Send a Private Message</span></a></td>
+                              <td width="20px">&nbsp;</td>
+                              <td><a href="{{url}}" class="viewpost">View Post</a></td>
+                            <tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>  
+        <img border="0" src="images/spacer.gif" width="1" height="15" class="divider"><br>
+      {{/announcements}}
+    {{/announcements_present}}
+
+			<table width="100%" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td bgcolor="#ffffff" nowrap><img border="0" src="images/spacer.gif" width="5" height="1"></td> 
+				<td width="100%" bgcolor="#ffffff">
+
+					<img border="0" src="images/spacer.gif" width="1" height="5"><br>
+
+				</td>
+			</tr>
+			</table>  
+			<img border="0" src="images/spacer.gif" width="1" height="15" class="divider"><br>		
+		</td>
+	</tr>
+	</table>
+
+	<img border="0" src="images/spacer.gif" width="1" height="25" class="divider"><br>
+
+	<table width="100%" cellpadding="0" cellspacing="0" border="0" >
+	<tr>
+		<td>
+		
+			<img border="0" src="images/spacer.gif" width="1" height="30"><br>
+		
+			<table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="table">
+			<tr>
+				<td width="600" nowrap align="center" class="cell" style="position: relative; bottom: 30px;">
+				
+				<!--footer-->
+				<table width="600" cellpadding="0" cellspacing="0" border="0" class="table footer">
+					<tr>
+						<tdvalign="top" class="footershow">
+						
+							<img border="0" src="images/spacer.gif" width="1" height="2"><br>  
+						
+					<p class="email_settings">Want to change your email settings? <a href="{{settings_url}}">Click here</a> to manage your subscriptions.<unsubscribe>unsubscribe</unsubscribe></p>
+								<p class="website"><a href="{{root_url}}">{{community_name}}.OurCommonPlace.com</a></p></p>
+						</td></tr>
+					</table><!--End footer-->
+				
+				</td>
+			</tr>	
+	   		</table>
+
+			<img border="0" src="images/spacer.gif" width="1" height="25"><br>
+		
+	   </td>
+	</tr>
+	</table>
+	
+	</td>
+</tr>
+</table>  	   			     	 
+
+</body>
+</html>
