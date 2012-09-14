@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824011243) do
+ActiveRecord::Schema.define(:version => 20120914010553) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -431,6 +431,8 @@ ActiveRecord::Schema.define(:version => 20120824011243) do
     t.string   "PFO_status"
     t.string   "organizer"
     t.integer  "last_examined_story"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sent_emails", :force => true do |t|

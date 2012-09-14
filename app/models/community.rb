@@ -402,8 +402,11 @@ class Community < ActiveRecord::Base
     civic_s = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Status: On Civic Heroes List") }.map { |x| x.id }
     civics_s = Flag.where("name = ? AND resident_id in (?)", "Status: On Civic Heroes List", civic_s)
 
-    nominee = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominee") }
-    nominator = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominator") }
+    nominee_r = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominee") }.map { |x| x.id }
+    nominee = Flag.where("name = ? AND resident_id in (?)", "Type: Nominee", nominee_r)
+
+    nominator_r = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominator") }.map { |x| x.id }
+    nominator = Flag.where("name = ? AND resident_id in (?)", "Type: Nominator", nominator_r)
 
     phone = graph(civics_l)
     posted = graph(civics_p)
