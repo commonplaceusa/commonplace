@@ -44,7 +44,7 @@ OrganizerApp.Charts = CommonPlace.View.extend({
         chartArea:{left:35,top:10,width:"90%",height:"60%"},
         vAxis: {0:{title: "Amount",logScale: false},1:{}},
         hAxis: {title: "Day",textPosition: "out",textStyle:{fontSize: 10}},
-        series: {0:{type: "line",targetAxisIndex:0},1: {type: "bars",targetAxisIndex:1}},
+        series: {0:{type: "line",targetAxisIndex:1},1: {type: "bars",targetAxisIndex:0}},
         legend: {position: 'in',textStyle: {color: 'blue', fontSize: 12}}
       };
       var userschart = new google.visualization.ComboChart($('#users_div').get(0));
