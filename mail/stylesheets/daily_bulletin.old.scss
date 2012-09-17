@@ -1,0 +1,183 @@
+
+body { margin: 20px 0px; background-color: #cee7fe ; }
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+
+h1, h2, h3, h4, h5 {
+    font-family: Rockwell, Helvetica, Arial, sans-serif;
+}
+p {
+    font-family: Georgia, Times New Roman, Times, serif;
+    line-height: 1.4 ;
+}
+td {
+    vertical-align:top;
+}
+ul, ol {
+    margin: 0;
+    padding: 0
+}
+a {
+    color:#ac322f;
+    text-decoration:none;
+}
+
+img { border: 0 }
+
+#top {
+    tr { background-color: #1b334a; }
+    td { padding-top: 10px; padding-left: 10px; padding-bottom: 10px; }
+    #logo { margin: 0px; }
+    #community-name { }
+}
+
+#header {
+    h2 { border-bottom: 10px solid #fafafa ; font-weight: bold ;}
+    .date { 
+        margin:0; color:#ffffff; font-size: 12px; font-weight: bold; text-transform: uppercase; background-color: #2e4b67; border: 5px #2e4b67 solid; 
+    }
+}
+
+.section-header {
+    h2 { margin: 10px 0 0 0; 
+         font-size: 22px; font-family: Rockwell, Helvetica, Arial;font-weight: weight; color: #1b334a; padding-bottom: 0px ; 
+       }
+}
+
+.post {
+    border-top: 15px solid #fafafa ;
+    padding:0px; font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: #524E47;background-color:#fafafa;
+    .avatar {
+        padding:0px 10px 0px 0px; width: 50px ; height: 50px ;
+        img { border: 1px solid #cfcfcf ; }
+    }
+    .author { font-family: Rockwell, Helvetica, Arial; font-size: 16px; color: #a6352c; padding-bottom: 8px ; line-height: 15px ; }
+
+    .title { span { font-family: Georgia, Times New Roman, Times, serif; font-size: 18px; color: #444; padding-bottom: 5px ; }
+             padding-bottom: 3px ; }
+    
+    .body {
+        p { font-size: 15px ; line-height: 18px ; margin-bottom: 5px ;}
+    }
+
+    .subscribe {
+        div { margin-top: 5px; padding-bottom: 5px ; }
+        span { color: #304a6a ; font-size: 16px ; text-decoration: none ;
+               font-family: Georgia, Times New Roman, Times, serif; 
+               font-weight: bold ; }
+    }
+
+    .info { color: #a6352c ; 
+            font-family: Rockwell, Georgia, Times New Roman, serif ; 
+          }
+
+    &.event {
+        .avatar {
+            
+            .calendar {
+                width: 50px ; text-align: center ;
+                .short-month { 
+                    height: 20px;
+                    border: 1px solid #b55f58 ; border-bottom-width: 0px ; 
+                    background-color: #a6352c ; color: #ecd5d4 ;
+                }
+                .day { border: 1px solid #cfcfcf ; border-top-width: 0px ; 
+                       background-color: #f2f2f2 ;
+                       font-size: 18px; 
+                       line-height: 24px ; color: #1d443c ; 
+                       font-family:  Rockwell, Georgia, Times New Roman, serif ;
+                     }
+            }
+            
+            
+            .time { font-size: 12px ; 
+                    font-family:  Rockwell, Georgia, Times New Roman, serif ;    
+                    color: #1b334a ; padding-top: 5px ; 
+                    text-align: center ; }
+            
+        }
+    }
+
+    .respond { img { vertical-align: middle } 
+               a.message-link, a.message-link { font-family: Rockwell, Georgia, Times New Roman, serif ; }
+             }
+
+}
+
+.post-separator {
+    margin-top: 10px ; border-top: 1px solid #cfcfcf ; padding-bottom: 10px ;
+}
+
+.reply-separator {
+    margin-top: 10px ; border-top: 1px solid #cfcfcf ;
+}
+
+.reply {
+    width: 100%;
+    margin: 15px 0 0px;
+    .avatar { width: 30px ; padding: 0 ;}
+    .author { font-family: Rockwell, Helvetica, Arial; font-size: 14px; color: #a6352c; line-height: 15px ; }
+}
+
+#sidebar {
+    h4 {
+        a { font-size: 13px; font-family:Rockwell, Georgia, Helvetica; color: #1b334a; }
+        margin: 0; text-align:left; font-size: 13px; font-family:Rockwell, Georgia, Helvetica; color: #1b334a;
+        border-bottom: 1px solid #ddd ;
+        padding-bottom: 5px ;
+    }
+
+    p {
+        margin-top: 10px ;
+        padding-bottom: 5px ;
+        color: #666 ; 
+        font-size: 14px ;
+        text-align: left ;
+    }
+
+    a.post-now, a.post-now { font-size: 12px; font-family:Rockwell, Georgia, Helvetica; color: #1b334a; font-weight: bold ; }
+}
+
+
+#footer {
+    border: 0px ;
+    background-color: #f2f2f2 ;
+    .posting-links {
+        border-top: 10px solid #f2f2f2 ;
+        border-bottom: 10px solid #f2f2f2 ;
+        text-align: center ; 
+        a { color: #a24841; font-size: 14px ; font-family: Rockwell, Georgia, Helvetica ; font-weight: bold ; }
+        .separator { color: #888 ; font-size: 18px ; }
+     }
+
+    .settings {
+        border-top: 10px solid #f2f2f2 ;
+        border-bottom: 10px solid #f2f2f2 ;
+        text-align: center ; 
+        p {
+            color: #666 ; 
+            font-size: 12px ;
+        }
+    }
+
+    .legal {
+        border-top: #304a6a 10px solid ;
+        border-bottom: #304a6a 10px solid ;
+        color: #fafafa;
+        font-family: Rockwell, Georgia, Helvetica ;
+        font-weight: bold;
+        font-size: 12px ;
+        background-color: #304a6a ;
+        text-align: center ;
+        a {        
+            color: #fafafa;
+            font-family: Rockwell, Georgia, Helvetica ;
+            font-weight: bold;
+            font-size: 12px ;
+        }
+    }
+}
