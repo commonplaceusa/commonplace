@@ -590,6 +590,28 @@ CONDITION
       200
     end
 
+    # Merges two resident files
+    #
+    # This should only be done if someone notices that
+    # two files are the same person
+    #
+    # requires admin
+    post "/:id/files/merge" do
+      merger = find_community.residents.find(params[:merger])
+      mergee = find_community.residents.find(params[:mergee])
+
+      if merger.flags.count > mergee.flags.count
+        mergee.merge_into(merger)
+        mergee.destroy
+      else
+        merger.merge_into(mergee)
+        merger.destroy
+      end
+    end
+
+    # Tags all filtered resident files with given tag
+    #
+    # Requires admin
     post "/:id/files/tag_all" do
       control_access :admin
 

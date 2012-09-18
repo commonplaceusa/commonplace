@@ -19,6 +19,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     "click #new-resident": "addResident",
     "click #todo-list": "gotoTodo",
     "click #interest-picker": "interestPicker",
+    "click #merge": "merge",
     "click #statistics-charts": "newCharts"
     //"click #filter-tags": "addNewselect"
     //"click #new-street" : "addStreet"
@@ -124,6 +125,30 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
       auto_page = 1;
       alert("Completed");
     }
+  },
+
+  merge: function() {
+    var i = 0;
+    var arr = [];
+    _.map(this.collection.models, _.bind(function(model) {
+      if(checklist[model.getId()]) {
+
+        arr[i] = model.getId();
+        ++i;
+      }
+    }, this));
+
+    if(arr.length < 2) {
+      return;
+    }
+
+    var params = {
+      mergee: arr[0],
+      merger: arr[1]
+    };
+
+    var url = this.collection.url()+"/merge";
+    $.post(url, params).success(function() { alert("merged"); });
   },
 
   addTag: function() {

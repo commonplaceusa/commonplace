@@ -329,11 +329,14 @@ class Resident < ActiveRecord::Base
     r.PFO_statu_list |= self.PFO_statu_list
     r.organizer_list |= self.organizer_list
 
-    r.email = self.email if r.email.nil? && !self.email.nil? && !self.email.empty?
-    r.phone = self.phone if r.phone.nil? && !self.phone.nil? && !self.phone.empty?
-    r.organization = self.organization if r.organization.nil? && !self.organization.nil? && !self.organization.empty?
-    r.position = self.position if r.position.nil? && !self.position.nil? && !self.position.empty?
-    r.address = self.address if r.address.nil? && !self.address.nil? && !self.address.empty?
+    r.email = self.email if r.email.blank? && !self.email.blank?
+    r.phone = self.phone if r.phone.blank? && !self.phone.blank?
+    r.organization = self.organization if r.organization.blank? && !self.organization.blank?
+    r.position = self.position if r.position.blank? && !self.position.blank?
+    r.address = self.address if r.address.blank? && !self.address.blank?
+
+    r.street_address = self.street_address if r.street_address.nil? && !self.street_address.nil?
+    r.user = self.user if r.user.nil? && !self.user.nil?
 
     if !self.notes.nil? && !self.notes.empty?
       if r.notes.nil?
