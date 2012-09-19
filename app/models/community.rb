@@ -390,6 +390,42 @@ class Community < ActiveRecord::Base
     table
   end
 
+  def user_charts
+    charts = {}
+
+    # Platform data
+    platform = []
+    platform << ["Users", "Posts", "Events"]
+
+    users = self.users.count
+    posts = self.posts.count
+    events = self.events.count
+
+    platform << [users, posts, events]
+
+    # Civic Leader Track data
+    leader = []
+    leader << ["Total # of Civic Leaders", "Total # of Asks Phone Calls", "Total # of Yes", "Total # of PFOs",
+      "Total # of Non-PFOs", "Total # of Civic Leaders who joined CP", "Total # of Civic Leaders who have a feed", "Total # of Civic Leaders who have posted to their feed"]
+
+    leaders = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Civic Leader") }
+
+    c_leaders = leaders.count
+    calls =  self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("CL2: Civic Leader Phone Call Held") }.count
+    yes = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Civic Leader Partner") }.count
+    pfos = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: PFO") }.count
+    nonPFOs = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Non-PFO") }.count
+    joined = leaders.reject { |x| !x.metadata[:tags].include?("Joined CP") }.count
+    feeds = leaders.reject { |x| !x.metadata[:tags].include?("Feed Owner") }.count
+    posted = leaders.reject { |x| !x.metadata[:tags].include?("Has Posted") }.count
+
+    leader << [c_leaders, calls, yes, pfos, nonPFOs, joined, feeds, posted]
+
+    # All the data
+    charts.merge!({ platform: platform })
+    charts.merge!({ leader: leader })
+  end
+
   def user_statistics
     result = {}
 

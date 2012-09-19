@@ -28,7 +28,7 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
 
   checkall: function(e){
     var name=e.target.id;
-    _.each(this.$("input[name='"+name+"[]']"),function(checkbox){
+    _.each(this.$("input[name='"+name+"[]']"), function(checkbox){
       var id=checkbox.value;
       if(typeof checklist[id] === "undefined")
         checklist[id] = false;

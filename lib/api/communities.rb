@@ -489,10 +489,20 @@ CONDITION
       end
     end
 
+    # Gets various statistics on people for graph usage
+    # Depends on the demands of the organizing team
     get "/:id/user_stats" do
       control_access :admin
 
       find_community.user_statistics.to_json
+    end
+
+    # Gets various statistics on people for chart usage
+    # Depends on the demands of the organizing team
+    get "/:id/user_charts" do
+      control_access :admin
+
+      find_community.user_charts.to_json
     end
 
     # Add a new resident

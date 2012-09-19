@@ -20,12 +20,48 @@ OrganizerApp.Charts = CommonPlace.View.extend({
     if(!this.options.community.get('organize_start_date')){
       this.$("#set-start-date").get(0).style.display="";
     }
+
+    this.showCharts();
+
     google.load('visualization', '1',  {'callback':this.drawVisualization,
       'packages':['corechart']});
+
     return this;
   },
 
-  drawVisualization:function () {
+  showCharts: function() {
+    var url = '/api/communities/'+community.id+'/user_charts';
+
+    $.get(url, _.bind(function(stats) {
+
+      this.drawCharts(stats);
+    }, this));
+  },
+
+  drawCharts: function(data) {
+    this.$("#charts").append(
+      _.map(data, _.bind(function(table) {
+        var tb = $("<table border='1'/>");
+
+        tb.append(
+          _.map(table, _.bind(function(row) {
+            var tr = $("<tr/>");
+
+            tr.append(
+              _.map(row, _.bind(function(cell) {
+                var td = $("<td/>", { text: cell })[0];
+
+                return td;
+              }, this)));
+
+            return tr[0];
+          }, this)));
+
+        return tb[0];
+      }, this)));
+  },
+
+  drawVisualization: function () {
     var data = new google.visualization.DataTable();
     var url = '/api/communities/'+this.community.id+'/user_stats';
 
