@@ -392,6 +392,7 @@ class Community < ActiveRecord::Base
 
   def user_charts
     charts = {}
+    residents = self.residents.all.reject { |x| x.metadata[:tags].nil? }
 
     # Platform data
     platform = []
@@ -408,18 +409,23 @@ class Community < ActiveRecord::Base
     leader << ["Total # of Civic Leaders", "Total # of Asks Phone Calls", "Total # of Yes", "Total # of PFOs",
       "Total # of Non-PFOs", "Total # of Civic Leaders who joined CP", "Total # of Civic Leaders who have a feed", "Total # of Civic Leaders who have posted to their feed"]
 
-    leaders = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Civic Leader") }
+    leaders = residents.reject { |x| !x.metadata[:tags].include?("Type: Civic Leader") }
 
     c_leaders = leaders.count
-    calls =  self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("CL2: Civic Leader Phone Call Held") }.count
-    yes = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Civic Leader Partner") }.count
-    pfos = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: PFO") }.count
-    nonPFOs = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Non-PFO") }.count
+    calls =  residents.reject { |x| !x.metadata[:tags].include?("CL2: Civic Leader Phone Call Held") }.count
+    yes = residents.reject { |x| !x.metadata[:tags].include?("Type: Civic Leader Partner") }.count
+    pfos = residents.reject { |x| !x.metadata[:tags].include?("Type: PFO") }.count
+    nonPFOs = residents.reject { |x| !x.metadata[:tags].include?("Type: Non-PFO") }.count
     joined = leaders.reject { |x| !x.metadata[:tags].include?("Joined CP") }.count
     feeds = leaders.reject { |x| !x.metadata[:tags].include?("Feed Owner") }.count
     posted = leaders.reject { |x| !x.metadata[:tags].include?("Has Posted") }.count
 
     leader << [c_leaders, calls, yes, pfos, nonPFOs, joined, feeds, posted]
+
+    # Civic Hero Track data
+    hero = []
+    hero << ["Total On Civic Heroes Track", "# of people interviewed", "People added to Civic Hero List", "Nominees", "Nominees Responded",
+      "Nominees Processed", "Nominees Joined", "Nominators", "Nominators who joined"]
 
     # All the data
     charts.merge!({ platform: platform })
@@ -428,20 +434,21 @@ class Community < ActiveRecord::Base
 
   def user_statistics
     result = {}
+    residents = self.residents.all
 
-    civic_l = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Civic Leader") }.map { |x| x.id }
+    civic_l = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Civic Leader") }.map { |x| x.id }
     civics_l = Flag.where("name = ? AND resident_id in (?)", "CL2: Civic Leader Phone Call Held", civic_l)
 
-    civic_p = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("CH3a: Post Published") }.map { |x| x.id }
+    civic_p = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("CH3a: Post Published") }.map { |x| x.id }
     civics_p = Flag.where("name = ? AND resident_id in (?)", "CH3a: Post Published", civic_p)
 
-    civic_s = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Status: On Civic Heroes List") }.map { |x| x.id }
+    civic_s = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Status: On Civic Heroes List") }.map { |x| x.id }
     civics_s = Flag.where("name = ? AND resident_id in (?)", "Status: On Civic Heroes List", civic_s)
 
-    nominee_r = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominee") }.map { |x| x.id }
+    nominee_r = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominee") }.map { |x| x.id }
     nominee = Flag.where("name = ? AND resident_id in (?)", "Type: Nominee", nominee_r)
 
-    nominator_r = self.residents.all.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominator") }.map { |x| x.id }
+    nominator_r = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominator") }.map { |x| x.id }
     nominator = Flag.where("name = ? AND resident_id in (?)", "Type: Nominator", nominator_r)
 
     phone = graph(civics_l)
