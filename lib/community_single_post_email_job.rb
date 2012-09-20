@@ -23,23 +23,23 @@ class CommunitySinglePostEmailJob
   end
 
   def self.community_url(community, path)
-    CommunityDailyBulletinJob.url("/#{community.slug}#{path}")
+    CommunitySinglePostEmailJob.url("/#{community.slug}#{path}")
   end
 
   def self.show_announcement_url(community, id)
-    CommunityDailyBulletinJob.community_url(community, "/show/announcements/#{id}")
+    CommunitySinglePostEmailJob.community_url(community, "/show/announcements/#{id}")
   end
 
   def self.show_post_url(community, id)
-    CommunityDailyBulletinJob.community_url(community, "/show/posts/#{id}")
+    CommunitySinglePostEmailJob.community_url(community, "/show/posts/#{id}")
   end
 
   def self.show_event_url(community, id)
-    CommunityDailyBulletinJob.community_url(community, "/show/events/#{id}")
+    CommunitySinglePostEmailJob.community_url(community, "/show/events/#{id}")
   end
 
   def self.message_user_url(community, id)
-    CommunityDailyBulletinJob.community_url(community, "/message/users/#{id}")
+    CommunitySinglePostEmailJob.community_url(community, "/message/users/#{id}")
   end
 
   def self.perform(community_id, time_start, time_end)
@@ -53,11 +53,11 @@ class CommunitySinglePostEmailJob
       Serializer::serialize(post).tap do |post|
         post['replies'].each do |reply|
           reply['published_at'] = reply['published_at'].strftime("%l:%M%P")
-          reply['avatar_url'] = CommunityDailyBulletinJob.asset_url(reply['avatar_url'])
+          reply['avatar_url'] = CommunitySinglePostEmailJob.asset_url(reply['avatar_url'])
         end
-        post['avatar_url'] = CommunityDailyBulletinJob.asset_url(post['avatar_url'])
-        post['url'] = CommunityDailyBulletinJob.show_post_url(community, post['id'])
-        post['new_message_url'] = CommunityDailyBulletinJob.message_user_url(community, post['user_id'])
+        post['avatar_url'] = CommunitySinglePostEmailJob.asset_url(post['avatar_url'])
+        post['url'] = CommunitySinglePostEmailJob.show_post_url(community, post['id'])
+        post['new_message_url'] = CommunitySinglePostEmailJob.message_user_url(community, post['user_id'])
       end
     end
 
@@ -65,10 +65,10 @@ class CommunitySinglePostEmailJob
       Serializer::serialize(announcement).tap do |announcement|
         announcement['replies'].each {|reply| 
           reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
-          reply['avatar_url'] = CommunityDailyBulletinJob.asset_url(reply['avatar_url'])
+          reply['avatar_url'] = CommunitySinglePostEmailJob.asset_url(reply['avatar_url'])
         }
-        announcement['avatar_url'] = CommunityDailyBulletinJob.asset_url(announcement['avatar_url'])
-        announcement['url'] = CommunityDailyBulletinJob.show_announcement_url(community, announcement['id'])
+        announcement['avatar_url'] = CommunitySinglePostEmailJob.asset_url(announcement['avatar_url'])
+        announcement['url'] = CommunitySinglePostEmailJob.show_announcement_url(community, announcement['id'])
       end
     end
 
