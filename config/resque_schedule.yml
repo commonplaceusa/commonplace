@@ -1,6 +1,6 @@
 # NOTE: All times are in server time.
 
-send_daily_digest:
+send_daily_digest: #cron job to send the daily bulletin
   cron: "00 21 * * *"
   class: DailyDigestJob
   args:
