@@ -1,15 +1,13 @@
 class SinglePostEmail < MailBase
 
-  def initialize(user_email, user_first_name, user_community_name, community_locale, community_slug, date, posts, announcements, events)
+  def initialize(user_email, user_first_name, user_community_name, community_locale, community_slug, date, post)
     @user_email = user_email
     @user_first_name = user_first_name
     @user_community_name = user_community_name
     @community_locale = community_locale
     @community_slug = community_slug
     @date = DateTime.parse(date)
-    @posts = posts
-    @announcements = announcements
-    @events = events
+    @posts = post
   end
 
   def logo_url
