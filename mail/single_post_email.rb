@@ -39,7 +39,7 @@ class SinglePostEmail < MailBase
   end
 
   def subject
-    "The #{community_name} CommonPlace Daily Bulletin"
+    "New post in the #{community_name} CommonPlace"
   end
 
   def to
