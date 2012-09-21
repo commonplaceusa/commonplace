@@ -16,7 +16,6 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
   },
 
   toggle: function(e) {
-
     c = this.$(e.currentTarget).data('model').getId();
     if(typeof checklist[c] === "undefined")
       checklist[c] = false;
