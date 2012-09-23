@@ -1,5 +1,6 @@
 class Reply < ActiveRecord::Base
-  #track_on_creation
+  include Trackable
+  after_create :track_posted_content
 
   belongs_to :repliable, :polymorphic => true
   after_create :touch_repliable_replied_at, :update_user_replied_count

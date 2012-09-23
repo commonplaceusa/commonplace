@@ -1,6 +1,6 @@
 class Announcement < ActiveRecord::Base
-  #track_on_creation
-
+  include Trackable
+  after_create :track_posted_content
 
   has_many :replies, :as => :repliable, :order => :created_at, :dependent => :destroy
   has_many :repliers, :through => :replies, :uniq => true, :source => :user

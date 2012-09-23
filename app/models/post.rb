@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
-  #acts_as_trackable
+  include Trackable
+  after_create :track_posted_content
 
   CATEGORIES = %w{Request Offer Invitation Announcement Question}
 
@@ -14,12 +15,6 @@ class Post < ActiveRecord::Base
   validates_presence_of :user, :community
   validates_presence_of :subject, :message => "Please enter a subject for your post"
   validates_presence_of :body, :message => "Please enter some text for your post"
-
-  after_create :track
-
-  def track
-    KM.record('posted content', {'content type' => self.class.name})
-  end
 
   default_scope where(:deleted_at => nil)
 

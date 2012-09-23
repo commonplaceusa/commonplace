@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
-  #track_on_creation
-
+  include Trackable
+  after_create :track_posted_content
 
   attr_accessor :pledge
 
@@ -53,11 +53,6 @@ class Event < ActiveRecord::Base
     t.add :name, :as => :title
   end
 
-  after_create :track
-
-  def track
-    KM.record('posted content', {'content type' => self.class.name})
-  end
 
   def has_reply
     self.replies.present?

@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   acts_as_taggable
 
   acts_as_taggable_on :skills, :interests, :goods
-  #track_on_creation
   include Geokit::Geocoders
 
   def self.post_receive_options
@@ -54,7 +53,10 @@ class User < ActiveRecord::Base
     OrganizerDataPoint.find_all_by_organizer_id(self.id)
   end
 
-  after_create :track
+  include Trackable
+  after_create :track_on_create
+  after_destroy :track_on_deletion
+
   after_create :correlate
 
   before_validation :geocode, :if => :address_changed?
@@ -728,17 +730,6 @@ WHERE
       r.update_attribute(:community,self.community)
       r.save
     end
-  end
-
-  def track
-    KM.identify(email)
-    KM.alias(full_name, email)
-    KM.record('signed up')
-    KM.record('activated')
-  end
-
-  def track_deletion
-    KM.record('canceled')
   end
 
   private
