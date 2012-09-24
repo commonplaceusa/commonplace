@@ -309,7 +309,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   filterUsers: function(e){
-
     this.$("#total").empty();
     this.$("#amount").text("Counting");
     var Search = "filter";

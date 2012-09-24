@@ -452,6 +452,7 @@ CONDITION
             else
               r.map! { |res| res.id }
               s = Resident.where("id in (?)", r)
+
               serialize(paginate(s).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
             end
           else
@@ -460,6 +461,9 @@ CONDITION
             if params[:count]
               serialize(r.count)
             else
+              r.map! { |res| res.id }
+              s = Resident.where("id in (?)", r)
+
               serialize(paginate(r).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
             end
           end
