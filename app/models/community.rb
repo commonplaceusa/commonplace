@@ -427,9 +427,48 @@ class Community < ActiveRecord::Base
     hero << ["Total On Civic Heroes Track", "# of people interviewed", "People added to Civic Hero List", "Nominees", "Nominees Responded",
       "Nominees Processed", "Nominees Joined", "Nominators", "Nominators who joined"]
 
+    nominees = residents.reject { |x| !x.metadata[:tags].include?("Type: Nominee") }
+    nominators = residents.reject { |x| !x.metadata[:tags].include?("Type: Nominator") }
+
+    heroes = residents.reject { |x| !x.metadata[:tags].include?("Type: Civic Hero Partner") }.count
+    interviewed = residents.reject { |x| !x.metadata[:tags].include?("CH3a: Interviewed") }.count
+    listed = residents.reject { |x| !x.metadata[:tags].include?("On Civic Heroes List") }.count
+    c_nominees = nominees.count
+    responded = residents.reject { |x| !x.metadata[:tags].include?("CH1: Responded to Civic Hero Asks Email") }.count
+    processed = nominees.reject { |x| !x.metadata[:tags].include?("Type: Civic Hero Partner") }.count
+    j_nominees = nominees.reject { |x| !x.metadata[:tags].include?("Joined CP") }.count
+    c_nominators = nominators.count
+    j_nominators = nominators.reject { |x| !x.metadata[:tags].include?("Joined CP") }.count
+
+    hero << [heroes, interviewed, listed, c_nominees, responded, processed, j_nominees, c_nominators, j_nominators]
+
+    # Other Tracks
+    other = []
+    other << ["", "Super Leaders", "Gatekeeper", "Library/CC", "Total # of Press", "Total # of Student Organizer Recruiter"]
+
+    ts_leaders = residents.reject { |x| !x.metadata[:tags].include?("Type: Super Leader") }.count
+    t_gate = residents.reject { |x| !x.metadata[:tags].include?("Type: Gatekeeper") }.count
+    t_cc = residents.reject { |x| !x.metadata[:tags].include?("Type: Library/CC") }.count
+    t_press = residents.reject { |x| !x.metadata[:tags].include?("Type: Press") }.count
+    t_student = residents.reject { |x| !x.metadata[:tags].include?("Type: Student Organizer Recruiter") }.count
+    ps_leaders = residents.reject { |x| !x.metadata[:tags].include?("Type: Super Leader Partner") }.count
+    p_gate = residents.reject { |x| !x.metadata[:tags].include?("Type: Gatekeeper Partner") }.count
+    p_cc = residents.reject { |x| !x.metadata[:tags].include?("Type: Library/CC Partner") }.count
+    p_press = residents.reject { |x| !x.metadata[:tags].include?("Type: Press Partner") }.count
+    p_student = residents.reject { |x| !x.metadata[:tags].include?("Type: Student Organizer Recruiter Partner") }.count
+
+    other << ["Total #", ts_leaders, t_gate, t_cc, t_press, t_student]
+    other << ["# of Partners", ps_leaders, p_gate, p_cc, p_press, p_student]
+
+    # Launch Email Response Rate
+    launch = []
+    launch << ["", "Nomination Email A", "Nomination Email B", "Nomination Drive Email (To Leaders)", "Civic Leader Tips Email", "Civic Leader Phone Call Request A"]
+
     # All the data
     charts.merge!({ platform: platform })
     charts.merge!({ leader: leader })
+    charts.merge!({ hero: hero })
+    charts.merge!({ other: other })
   end
 
   def user_statistics
