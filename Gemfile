@@ -125,7 +125,6 @@ group :development, :test, :remote_worker do
   gem 'guard-spork'
   gem 'guard-bundler'
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
-  gem 'jasmine'
   gem 'cucumber'
   gem 'simplecov', :require => false
   gem 'cucumber-rails'
