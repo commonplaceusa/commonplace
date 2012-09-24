@@ -7,6 +7,13 @@ send_daily_digest: #cron job to send the daily bulletin
   queue: daily_digest
   description: "Sends daily digest"
 
+send_single_post: #cron job to send the single post emails
+  cron: "00 01,06 * * *"
+  class: SinglePostEmailJob
+  args:
+  queue: single_post
+  description: "Sends single post email"
+
 import_feeds_rss:
   cron: "00 * * * *"
   class: RSSImporter
