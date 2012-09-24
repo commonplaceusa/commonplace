@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   end
 
   include Trackable
-  after_create :track_on_create
+  after_create :track_on_creation
   after_destroy :track_on_deletion
 
   after_create :correlate
