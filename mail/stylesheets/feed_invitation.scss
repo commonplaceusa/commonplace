@@ -1,0 +1,18 @@
+@import "mail_base" ;
+@import "post_notification";
+
+#footer { text-align: center ; }
+
+div.p.quote { margin-left: 15px ; font-style: italic ; } 
+
+div.p em { color: #3b6085 ; }
+
+div.p.link-to-commonplace { text-align: center ; }
+
+span.accept-button { background-color: #a6352c; margin-top: 10px; padding: 6px; color: #fff ; font-size: 13px ; }
+span.find-out-button { margin-left: 10px; margin-top: 10px;background-color: #a6352c; padding: 6px; color: #fff ; font-size: 13px ; background-color: #1B334A;}
+#inviter_avatar_td { width: 120px; vertical-align: top;}
+
+ul { margin-bottom: 20px;}
+
+#invite td { padding-bottom: 25px; padding-top: 20px;}
