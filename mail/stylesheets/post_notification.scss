@@ -22,7 +22,7 @@ td {
 }
 
 a { text-decoration: none }
-a span { color: #a6352c ; text-decoration: none}
+a span { color: #AD312F ; text-decoration: none}
 
 div.p {
    margin: 0 0 8px 0;
@@ -41,7 +41,7 @@ img { border: 0 }
 
 #email-wrapper {
     text-align: left;
-    width: 700px;
+    width: 640px;
     background-color: #F5F4E8;
     margin: 0px;
 }
@@ -75,51 +75,48 @@ img { border: 0 }
 }
 
 #content-td {
-   padding: 18px;
+   padding: 20px;
 }
 #content {
-    width: 682px;
+    width: 100%;
 }
 
 #greeting td { padding-top: 5px ; padding-bottom: 20px; }
 
-#email-message-body { background-color: #f5f5f5 ; }
-#email-message-body-td { padding: 15px 20px 0; }
+#email-message-body { background-color: #fff; border-bottom: 1px solid #D9D8CB; }
+#email-message-body-td { padding: 22px 25px 0px 20px; }
 
-#email-author-avatar-td { vertical-align: top ; padding: 20px 0 20px 20px; }
+#email-author-avatar-td { vertical-align: top ; padding: 25px 0 20px 25px; }
 
 #email-author-avatar-td.not-present { width: 0 ; img { display: none ; } }
 
-#email-message-body div.p { line-height: 18px; margin-bottom: 12px;}
+#email-message-body div.p { font-size: 14px; line-height: 18px; margin-bottom: 10px; }
 
-.message-title { font-size: 18px; color: #333; font-weight: bold; }
+.message-title { font-size: 18px; color: #333; font-weight: bold; margin-bottom: 5px; }
 .message-body { color: #333 ; }
 
-#email-reply-methods-td { padding: 5px 20px 20px; }
+#email-reply-methods-td { padding: 10px 25px 25px 20px; }
 
-#reply-button-td { width: 120px; padding-top: 0px;}
+#reply-button-td { width: 90px; padding: 0px 7px 0px 0px;}
 a.reply-now img { vertical-align: text-top; }
 #reply-or-td { font-size: 13px; padding-top: 0px; }
 
 #reminder { width: 100% ; }
-#reminder td { padding-top: 10px ; }
-#reminder div.p { color: #858585 ; text-align: center ; font-size: 14px }
+#reminder td { padding-top: 15px ; }
+#reminder div.p { color: #888673 ; text-align: center ; font-size: 13px; margin: 0px; }
 
-#footer { background-color: #304a6a; }
-#footer td {width: 580px ; padding: 10px ; }
-#footer div.p { padding: 0 10px ; font-size: 13px ; text-align: center ; color: #d0e7ff ; margin: 3px 0}
+#footer { background-color: #F5F4E8; }
+#footer td {width: 100%; padding: 0px; }
+#footer div.p { padding: 0px ; font-size: 13px ; text-align: center ; color: #19334A ; margin: 0px; }
 
 #footer a span { color: #fafafa; }
     
-
-
-
-#legal-footer { background-color: #d0e7ff;  width: 100% ; }
+#legal-footer { background-color: #F5F4E8;  width: 100% ; }
 #legal-footer { 
-    a, a span { text-decoration: underline ; font-weight: bold ; color: #a6352c;}
+    a, a span { text-decoration: underline ; font-weight: bold ; color: #AD312F;}
 }
-#legal-footer td { padding: 10px 0 ; }
+#legal-footer td { padding: 20px 0px 0px 0px; }
 
-#legal-footer div.p { padding: 0 10px ; font-size: 13px ; text-align: center ; color: #a6352c ; margin: 3px 0}
-#legal-footer div.p.copy { padding: 0 10px ; font-size: 13px ; text-align: center ; color: #304a6a ; margin: 3px 0}
+#legal-footer div.p { padding: 0 10px ; font-size: 13px ; text-align: center ; color: #AD312F ; margin: 3px 0}
+#legal-footer div.p.copy { padding: 0 10px ; font-size: 13px ; text-align: center ; color: #888673 ; margin: 3px 0}
 
