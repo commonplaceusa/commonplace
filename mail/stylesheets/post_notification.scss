@@ -41,7 +41,7 @@ img { border: 0 }
 
 #email-wrapper {
     text-align: left;
-    width: 640px;
+    width: 650px;
     background-color: #F5F4E8;
     margin: 0px;
 }
@@ -55,15 +55,16 @@ img { border: 0 }
 
 #header td { 
     vertical-align: bottom; 
-    font-family: Helvetica, Arial, sans-serif; 
-    padding: 20px 20px 15px;
+    font-family: Rockwell, Helvetica, Arial, sans-serif;
+    padding: 15px 20px;
+    font-size: 20px;
 } 
 
 #email-title {
     padding: 5px 0 20px 55px; 
     color:#6b7a89; 
     font-size: 20px;
-    font-family: Georgia, Courier, Times, serif;
+    font-family: Rockwell, Helvetica, Arial, sans-serif;
 }
 
 #date {
@@ -84,9 +85,9 @@ img { border: 0 }
 #greeting td { padding-top: 5px ; padding-bottom: 20px; }
 
 #email-message-body { background-color: #fff; border-bottom: 1px solid #D9D8CB; }
-#email-message-body-td { padding: 22px 25px 0px 20px; }
+#email-message-body-td { padding: 22px 25px 0px 25px; }
 
-#email-author-avatar-td { vertical-align: top ; padding: 25px 0 20px 25px; }
+#email-author-avatar-td { vertical-align: top ; padding: 25px 0 20px 25px; margin-right: -5px; }
 
 #email-author-avatar-td.not-present { width: 0 ; img { display: none ; } }
 
@@ -97,7 +98,7 @@ img { border: 0 }
 
 #email-reply-methods-td { padding: 10px 25px 25px 20px; }
 
-#reply-button-td { width: 90px; padding: 0px 7px 0px 0px;}
+#reply-button-td { width: 90px; padding: 0px 7px 0px 0px; color: #AD312F; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 13px; }
 a.reply-now img { vertical-align: text-top; }
 #reply-or-td { font-size: 13px; padding-top: 0px; }
 
@@ -105,7 +106,7 @@ a.reply-now img { vertical-align: text-top; }
 #reminder td { padding-top: 15px ; }
 #reminder div.p { color: #888673 ; text-align: center ; font-size: 13px; margin: 0px; }
 
-#footer { background-color: #F5F4E8; }
+#footer { background-color: #F5F4E8; padding-bottom: 20px; }
 #footer td {width: 100%; padding: 0px; }
 #footer div.p { padding: 0px ; font-size: 13px ; text-align: center ; color: #19334A ; margin: 0px; }
 
