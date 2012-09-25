@@ -178,7 +178,7 @@ class KickOff
   end
 
   def deliver_thank_notification(thank)
-    # TODO: Implement
+    enqueue(ThankNotification, thank)
   end
 
   def deliver_share_notification(user, item, recipient_email)
