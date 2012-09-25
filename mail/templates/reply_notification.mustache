@@ -1,141 +1,70 @@
 <html>
+
   <head>
     <style>
       {{styles}}
     </style>
   </head>
+
   <body>
+    <table id="body">
 
-    <table id="page-wrapper">
-      <tbody>
-        <tr>
-          <td>
-            <center>
-              <table id="email-wrapper">
-                <tbody>
-                  <tr>
-                    <td>
-                      <table id="header">
-                        <tr><td>
-                          <a href="{{community_home_url}}"><img src="{{header_image_url}}"></a>
-                        </td></tr>
-                      </table>
-                    </td>
-                  </tr>
+      {{< header}}
 
-                  <tr>
-                    <td id="content-td">
-                      <table id="content">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <table id="greeting">
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      <div class="p">Hi {{short_user_name}},</div>
+      <tr>
+        <td id="intro">
+          <p>Hi {{user_name}},<br>
+            {{subject_line}}
+            <a href="{{post_url}}"><span>{{post_subject}}</span></a>
+          </p>
+        </td>
+      </tr>
 
-                                      <div class="p">{{subject}}</div>
+      <tr>
+        <td id="post">
+          <table>
+            <tr>
+              <td class="avatar" rowspan="4">
+                <img src="{{replier_avatar_url}}" width="50" height="50">
+              </td>
 
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
+              <td class="subject" colspan="2">
+                {{repliable_subject}}
+              </td>
+            </tr>
 
-                            </td>
-                          </tr>
+            <tr>
+              <td class="body" colspan="2">
+                {{{reply_body}}}
+              </td>
+            </tr>
 
-                          <tr>
-                            <td>
-                              <table id="email-message-body">
-                                <tbody>
-                                  <tr>
-                                    {{#has_avatar}}
-                                      <td id="email-author-avatar-td" rowspan="2">
-                                      <img src="{{poster_avatar_url}}" width="50" height="50">
+            <tr>
+              <td class="reply">
+                <a href="{{repliable_url}}"><span>Reply to {{short_replier_name}}</span></a>
+              </td>
+              <td class="reply-by-email">
+                <p>Or just reply to this email.</p>
+              </td>
+            </tr>
+            {{^repliable_is_a_message?}}
+              <tr>
+                <td class="message" colspan="2">
+                  <a href="{{new_message_url}}"><span>Send {{short_replier_name}} a private message</span></a>
+                </td>
+              </tr>
+            {{/repliable_is_a_message?}}
+          </table>
+        </td>
+      </tr>
 
-                                      </td>
-                                    {{/has_avatar}}
+      <tr>
+        <td id="footer">
+          {{< settings }}
 
-                                    <td id="email-message-body-td">
-                                      <p class="message-title">{{title}}</div>
-
-                                      <div class="message-body">
-                                        {{#markdown}}{{body}}{{/markdown}}
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td id="email-reply-methods-td">
-                                      <table>
-                                        <tbody>
-                                          <tr>
-                                            <td id="reply-button-td">
-                                              <a href="{{post_url}}"class="reply-now"><img src="https://s3.amazonaws.com/commonplace-mail-assets-production/reply-now-button.png" alt="Reply Now" width="110" height="27" style="vertical-align: text-top; border: 0;" />
-                                            </td>
-                                            <td id="reply-or-td">
-                                              or <a href="{{new_message_url}}"><span>Send a Private Message</span></a>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <table id="reminder">
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      <div class="p">You can also reply to {{short_poster_name}} by replying to this email.</div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <table id="footer">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="p">Improve the {{community_name}} CommonPlace: Click <a href="{{new_invites_url}}"><span>HERE</span></a> to invite more neighbors.</div>
-                              <div class="p">Click <a href="{{settings_url}}"><span>here</span></a> to manage your email settings.</div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <table id="legal-footer">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="p"><a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></p>
-                              <div class="p copy">&copy; 2012 CommonPlace</div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </center>
-          </td>
-        </tr>
-      </tbody>
+          {{< legal }}
+        </td>
+      </tr>
     </table>
   </body>
 </html>
