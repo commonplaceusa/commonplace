@@ -7,6 +7,7 @@ body {
     font-size: 1px;
     text-align: left;
     background-color: #F5F4E8;
+    margin: 0px;
 }
 
 table {
@@ -56,8 +57,15 @@ img { border: 0 }
 #header td { 
     vertical-align: bottom; 
     font-family: Rockwell, Helvetica, Arial, sans-serif;
-    padding: 15px 20px;
+    padding: 15px 20px 13px 20px;
     font-size: 20px;
+}
+
+#header td img { 
+    vertical-align: bottom; 
+    font-family: Rockwell, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    color: #fff;
 } 
 
 #email-title {
@@ -82,42 +90,42 @@ img { border: 0 }
     width: 100%;
 }
 
-#greeting td { padding-top: 5px ; padding-bottom: 20px; }
+#greeting td { padding-bottom: 12px; color: #333; }
 
 #email-message-body { background-color: #fff; border-bottom: 1px solid #D9D8CB; }
 #email-message-body-td { padding: 22px 25px 0px 25px; }
 
-#email-author-avatar-td { vertical-align: top ; padding: 25px 0 20px 25px; margin-right: -5px; }
+#email-author-avatar-td { vertical-align: top ; padding: 25px 0 20px 25px; width: 50px; }
 
-#email-author-avatar-td.not-present { width: 0 ; img { display: none ; } }
+#email-author-avatar-td.not-present { width: 0 ; img { display: none ; } width: 5px; }
 
 #email-message-body div.p { font-size: 14px; line-height: 18px; margin-bottom: 10px; }
 
-.message-title { font-size: 18px; color: #333; font-weight: bold; margin-bottom: 5px; }
+.message-title { font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #333; font-weight: bold; margin: 0px 0px 7px 0px; }
 .message-body { color: #333 ; }
 
-#email-reply-methods-td { padding: 10px 25px 25px 20px; }
+#email-reply-methods-td { padding: 3px 25px 25px 25px; }
 
 #reply-button-td { width: 90px; padding: 0px 7px 0px 0px; color: #AD312F; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 13px; }
-a.reply-now img { vertical-align: text-top; }
+a.reply-now img { vertical-align: text-top; color: #AD312F; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 13px; }
 #reply-or-td { font-size: 13px; padding-top: 0px; }
 
 #reminder { width: 100% ; }
-#reminder td { padding-top: 15px ; }
-#reminder div.p { color: #888673 ; text-align: center ; font-size: 13px; margin: 0px; }
+#reminder td { padding-top: 20px ; }
+#reminder div.p { color: #333 ; text-align: center ; font-size: 14px; margin: 0px; }
 
-#footer { background-color: #F5F4E8; padding-bottom: 20px; }
+#footer { background-color: #F5F4E8; }
 #footer td {width: 100%; padding: 0px; }
 #footer div.p { padding: 0px ; font-size: 13px ; text-align: center ; color: #19334A ; margin: 0px; }
 
-#footer a span { color: #fafafa; }
+#footer a span { color: #AD312F; }
     
-#legal-footer { background-color: #F5F4E8;  width: 100% ; }
+#legal-footer { background-color: #F5F4E8;  width: 100%; }
 #legal-footer { 
     a, a span { text-decoration: underline ; font-weight: bold ; color: #AD312F;}
 }
-#legal-footer td { padding: 20px 0px 0px 0px; }
+#legal-footer td { padding: 0px 0px 25px 0px; }
 
-#legal-footer div.p { padding: 0 10px ; font-size: 13px ; text-align: center ; color: #AD312F ; margin: 3px 0}
-#legal-footer div.p.copy { padding: 0 10px ; font-size: 13px ; text-align: center ; color: #888673 ; margin: 3px 0}
+#legal-footer div.p { padding: 0 10px ; font-size: 13px ; text-align: center ; color: #AD312F ; margin: 7px 0px 0px 0px; }
+#legal-footer div.p.copy { padding: 0 10px ; font-size: 13px ; text-align: center ; color: #19334A ; margin: 7px 0px 0px 0px; }
 
