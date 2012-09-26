@@ -20,6 +20,18 @@ class DailyBulletin < MailBase
     asset_url("reply-button.png")
   end
 
+  def post_icon_url
+    asset_url("reply-button.png")
+  end
+
+  def event_icon_url
+    asset_url("reply-button.png")
+  end
+
+  def announcement_icon_url
+    asset_url("reply-button.png")
+  end
+
   def invite_them_now_button_url
     asset_url("invite-them-now-button.png")
   end
@@ -48,6 +60,22 @@ class DailyBulletin < MailBase
 
   def header_text
     @date.strftime("%A, %B %d, %Y")
+  end
+
+  def month_short
+    @date.strftime("%b")
+  end
+
+  def month_long
+    @date.strftime("%B")
+  end
+
+  def day_of_month
+    @date.strftime("%e")
+  end
+
+  def day_of_week
+    @date.strftime("%A")
   end
 
   def community_name
