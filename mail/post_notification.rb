@@ -9,7 +9,7 @@ class PostNotification < MailBase
   end
 
   def subject
-    "#{author_name} just posted to your neighborhood on CommonPlace"
+    "#{author_name} just posted to your neighborhood on OurCommonPlace."
   end
 
   def header_image_url
