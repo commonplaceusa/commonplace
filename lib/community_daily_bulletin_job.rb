@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'barometer'
+
 class CommunityDailyBulletinJob
   include MailUrls
   @queue = :community_daily_bulletin
@@ -84,9 +87,12 @@ class CommunityDailyBulletinJob
       end
     end
 
+    barometer = Barometer.new(community.zip_code)
+    weather = barometer.measure
+
     community.users.where("post_receive_method != 'Never'").find_each do |user|
       Exceptional.rescue do
-        kickoff.deliver_daily_bulletin(user.email, user.first_name, user.community.name, user.community.locale, user.community.slug, date, posts, announcements, events)
+        kickoff.deliver_daily_bulletin(user.email, user.first_name, user.community.name, user.community.locale, user.community.slug, date, posts, announcements, events, weather.today)
       end
     end
   end
