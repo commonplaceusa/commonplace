@@ -1,6 +1,6 @@
 class DailyBulletin < MailBase
 
-  def initialize(user_email, user_first_name, user_community_name, community_locale, community_slug, date, posts, announcements, events)
+  def initialize(user_email, user_first_name, user_community_name, community_locale, community_slug, date, posts, announcements, events, weather)
     @user_email = user_email
     @user_first_name = user_first_name
     @user_community_name = user_community_name
@@ -10,6 +10,7 @@ class DailyBulletin < MailBase
     @posts = posts
     @announcements = announcements
     @events = events
+    @weather = weather
   end
 
   def logo_url
@@ -76,6 +77,11 @@ class DailyBulletin < MailBase
 
   def day_of_week
     @date.strftime("%A")
+  end
+
+  def temperature
+    puts @weather.inspect
+    @weather.high.fahrenheit
   end
 
   def community_name

@@ -165,8 +165,8 @@ class KickOff
   end
 
 
-  def deliver_daily_bulletin(user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events)
-    enqueue(DailyBulletin, user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events)
+  def deliver_daily_bulletin(user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events, weather)
+    enqueue(DailyBulletin, user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events, weather)
   end
 
   def deliver_single_post_email(user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, post)
