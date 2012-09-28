@@ -1,33 +1,28 @@
-a:hover {
-  text-decoration: underline !important;
+strong {
+   font-weight: bold !important;
 }
 h1 {
-  font: 24px Helvetica, sans-serif;
+  font: 24px Helvetica, Arial, sans-serif;
   color: #A9211D;
 }
 h3 {
   font-size: 18px;
   margin: 18px 0 0;
 }
-.intro p {
-  font: 13px/22px Helvetica, sans-serif;
-  color: #4c4c4c;
-}
 .contentblock {
-  padding-bottom: 20px;
-  padding-left: 16px;
-  padding-top: 22px;
-  padding-right: 19px;
+   padding: 25px;
+   border-bottom: 1px solid #d0d0c5;
 }
 .month {
   width: 80px;
   text-align: center;
-  color: #fffeff;
+  color: #fff;
   text-transform: uppercase;
   background-color: #aa211d;
-  font: 20px Helvetica, sans-serif;
-  font-weight: bold;
-  height: 28px;
+  font: 20px Helvetica, Arial, sans-serif;
+  font-weight: bold !important;
+  height: 30px;
+  letter-spacing: 1px;
 }
 .view_post_td {
   width: 79px;
@@ -35,17 +30,19 @@ h3 {
 .day {
   width: 80px;
   text-align: center;
-  color: #1a1918;
+  color: #333333;
   text-transform: uppercase;
-  background-color: #fefffe;
+  background-color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 44px;
+  border-bottom: 2px solid #d8d8cd;
 }
 .contentblock h4 {
   color:#444444 !important;
   font-size:16px;
   line-height:24px;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   margin-top:0;
   margin-bottom:10px;
   padding-top:0;
@@ -60,7 +57,7 @@ h3 {
     color:#888888;
   font-size:13px;
   line-height:19px;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   margin-top:0;
   margin-bottom:12px;
   padding-top:0;
@@ -76,7 +73,7 @@ h3 {
     background-color: #aa2a27;
     color: #fffeff;
     text-decoration: none;
-    font: 12px Helvetica;
+    font: 12px Helvetica, Arial, sans-serif;
     border-radius: 5px;
 }
 .avatar {
@@ -113,44 +110,40 @@ h3 {
 }
 .section_header {
   color: #A9211D;
-  font: 19px Helvetica;
-  font-weight: bold;
+  font: 16px Helvetica, Arial, sans-serif;
+  font-weight: bold !important;
 }
 .viewall {
-  text-transform: uppercase;
-  font: 10px Helvetica, sans-serif;
-  color: #aaa79d;
-  font-weight: bold;
+  font: 13px Helvetica, Arial, sans-serif;
+  color: #A9211D;
 }	
 
 
 .post {
     .avatar {
-        padding:0px 10px 0px 0px; width: 50px ; height: 50px ;
+        padding:0px 20px 0px 0px; width: 50px ; height: 50px ;
     }
     .author { 
-      font: 13px/20px Helvetica, sans-serif;
-      font-weight: bold;
-      color: #1b334a;
+      font: 13px/20px Helvetica, Arial, sans-serif;
+      font-weight: bold !important;
+      color: #1b334a !important;
       margin-top: 0px;
     }
 
     .title { 
-      font: 18px/26px Helvetica, sans-serif;
-      font-weight: bold;
-      color: #1b334a;
+      font: 18px/26px Helvetica, Arial, sans-serif;
+      font-weight: bold !important;
+      color: #333;
       margin: 0px;	
     }
     
     .body {
-        font: 13px/22px Helvetica, sans-serif;
-        color: #4c4c4c;
-        margin-top: -10px;
-        margin-bottom: 18px;
+        font: 13px/20px Helvetica, Arial, sans-serif;
+        color: #333;
     }
 
     .info { color: #a6352c ; 
-            font-family: Rockwell, Georgia, Times New Roman, serif ; 
+            font-family: Helvetica, Arial, sans-serif; 
           }
 
     &.event {
@@ -158,20 +151,29 @@ h3 {
             .calendar {
                 width: 50px ; text-align: center ;
                 .short-month { 
-                    height: 20px;
+                    height: 18px;
+                    padding-top: 2px;
+                    letter-spacing: 1px;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    font-weight: bold;
                     border: 1px solid #b55f58 ; border-bottom-width: 0px ; 
-                    background-color: #a6352c ; color: #ecd5d4 ;
+                    background-color: #a6352c ; color: #fff ;
                 }
                 .day { border: 1px solid #cfcfcf ; border-top-width: 0px ; 
-                       background-color: #f2f2f2 ;
-                       font-size: 18px; 
-                       line-height: 24px ; color: #1d443c ; 
-                       font-family:  Rockwell, Georgia, Times New Roman, serif ;
+                       background-color: #f7f7f7 ;
+                       font-size: 22px; 
+                       line-height: 24px ; color: #333 ; 
+                       font-family: Helvetica, Arial, sans-serif;
+                       font-weight: normal;
+                       width: 48px;
+                       padding: 4px 0px;
+                       margin-bottom: 10px;
                      }
             }
             
             .time { font-size: 12px ; 
-                    font-family:  Rockwell, Georgia, Times New Roman, serif ;    
+                    font-family: Helvetica, Arial, sans-serif; 
                     color: #1b334a ; padding-top: 5px ; 
                     text-align: center ; 
                   }
@@ -181,17 +183,12 @@ h3 {
 
 .post_content {
   padding-top: 0px;
-  position: relative;
-  bottom: 5px;
   padding-bottom: 6px;
 }
 .section_icon {
-  position: relative;
-  top: 9px;
+   vertical-align: bottom;
 }
 .contentblock table {
-  margin-bottom: -5px;
-  margin-left: 6px;
 }
 
 .post-separator {
@@ -206,62 +203,103 @@ h3 {
     width: 100%;
     margin: 15px 0 0px;
     .avatar { width: 30px ; padding: 0 ;}
-    .author { font-family: Rockwell, Helvetica, Arial; font-size: 14px; color: #a6352c; line-height: 15px ; }
+    .author { font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #a6352c; line-height: 15px ; }
 }
 
-@media only screen and (max-device-width: 480px) {
-     div[class="header"] {
-          font-size: 16px !important;
-     }
-     table[class="table"], td[class="cell"] {
-          width: 300px !important;
-     }
-  table[class="promotable"], td[class="promocell"] {
-          width: 325px !important;
-     }
-  td[class="footershow"] {
-          width: 300px !important;
-     }
-  table[class="hide"], img[class="hide"], td[class="hide"] {
-          display: none !important;
-     }
-     img[class="divider"] {
-        height: 1px !important;
-   }
-   td[class="logocell"] {
-    padding-top: 15px !important; 
-    padding-left: 15px !important;
-    width: 300px !important;
-   }
-     img[id="screenshot"] {
-          width: 325px !important;
-          height: 127px !important;
-     }
-  img[class="galleryimage"] {
-      width: 53px !important;
-          height: 53px !important;
-  }
-  p[class="reminder"] {
-    font-size: 11px !important;
-  }
-  h4[class="secondary"] {
-    line-height: 22px !important;
-    margin-bottom: 15px !important;
-    font-size: 18px !important;
-  }
-  td.view_post_td {
-    width: 179px !important;
-  }
-  td.viewalltd {
-    width: 279px !important;
-  }
-  table.promotable {
-    width: 540px !important;
-  }
-  table.table {
-    width: 540px !important;
-  }
-  table.links {
-    width: 430px !important;
-  }
+/* NEW STYLES */
+
+html {
+   background-color: #F5F4E8;
+   -webkit-font-smoothing: antialiased;
 }
+                            
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: left;
+    background-color: #F5F4E8;
+    margin: 0px;
+}
+
+table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    padding: 0;
+    margin: 0px;
+}
+
+td {
+    padding: 0;
+    margin: 0px;
+}
+
+a { text-decoration: none }
+a span { color: #AD312F ; text-decoration: none}
+
+div.p {
+   margin: 0 0 8px 0;
+   line-height: 20px;
+   font-size: 14px;
+   font-family: Helvetica, Arial, sans-serif;
+}
+
+img { border: 0 }
+
+#page-wrapper {
+    text-align: center;
+    background-color: #F5F4E8;
+}
+
+#email-wrapper {
+    text-align: left;
+    width: 650px;
+    background-color: #F5F4E8;
+    margin: 0px;
+}
+
+#header-wrapper {
+    width: 100%;
+}
+
+#header-wrapper .header { 
+    vertical-align: middle; 
+    font-family: Rockwell, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    color: #fff;
+    border-bottom: 4px solid #d1d1c6;
+}
+
+#header-wrapper .header img.logo { 
+    vertical-align: bottom; 
+    font-family: Rockwell, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    color: #fff;
+    padding: 2px 0px 0px 20px;
+}
+
+#introduction {
+   padding: 0px 20px 10px;
+}
+
+#introduction h1 {
+   margin-top: 10px;
+}
+
+#introduction p {
+  font: 13px/20px Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.section_container {
+   padding: 5px 20px 25px 20px;
+}
+
+.posts {
+   padding: 0px 20px;
+}
+
+.links {
+   text-align: right;
+}
+
+a.reply-now img { vertical-align: text-top; color: #AD312F; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 13px; }
