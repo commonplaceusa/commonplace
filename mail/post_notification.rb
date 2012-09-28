@@ -44,6 +44,10 @@ class PostNotification < MailBase
     community.name
   end
 
+  def community_home_url
+    community.links.base
+  end
+
   def community_slug
     community.slug
   end

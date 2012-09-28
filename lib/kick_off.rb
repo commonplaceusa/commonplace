@@ -222,7 +222,7 @@ class KickOff
     unless post.is_publicity?
       # Send to the people in the neighborhood
       # Who receive posts live
-      recipient_ids = neighborhood.users.receives_posts_live.map(&:id)
+      recipient_ids = neighborhood.users.receives_posts_live_unlimited.map(&:id)
 
       # Who are not the poster
       recipient_ids.delete(post.user_id)
