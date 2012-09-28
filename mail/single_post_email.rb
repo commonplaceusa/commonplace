@@ -48,6 +48,22 @@ class SinglePostEmail < MailBase
     @date.strftime("%A, %B %d, %Y")
   end
 
+  def month_short
+    @date.strftime("%b")
+  end
+
+  def month_long
+    @date.strftime("%B")
+  end
+
+  def day_of_month
+    @date.strftime("%e")
+  end
+
+  def day_of_week
+    @date.strftime("%A")
+  end
+
   def community_name
     @user_community_name
   end
