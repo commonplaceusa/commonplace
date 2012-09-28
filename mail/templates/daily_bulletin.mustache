@@ -70,7 +70,7 @@
                                 <tr>
                                   <td>
                                     <h1><strong>Happy {{day_of_week}}!</strong></h1>
-                                    <p>Today is {{day_of_week}} {{month_long}} {{day_of_month}} and the weather is a cool {{temperature}} degrees - a perfect day to go outside and meet some of your {{community_name}} neighbors! Before you step out, take some time to read your customized daily bulletin featuring the latest neighborhood posts, events, and announcements from your neighbors in {{community_name}}. Put on a light coat or jacket and have a wonderful day.</p>
+                                    <p>Today is {{day_of_week}}, {{month_long}} {{day_of_month}} and the weather is a cool {{temperature}} degrees - a perfect day to go outside and meet some of your {{community_name}} neighbors! Before you step out, take some time to read your customized daily bulletin featuring the latest neighborhood posts, events, and announcements from your neighbors in {{community_name}}. Put on a light coat or jacket and have a wonderful day.</p>
                                   </td>
                                 </tr>
                               </table>
@@ -97,7 +97,7 @@
                                               <td class="avatar" height="110" valign="top"><img src={{avatar_url}} alt="User Avatar" width="50" height="50"></td>
                                               <td class="post_content">
                                                 <a href="{{url}}"><p class="title" style="color:#1b334a;">{{title}}</p></a>
-                                                <h4 class="author" style="color:#1b334a;">{{author}}</h4>
+                                                <p class="author" style="color:#1b334a;">{{author}}</h4>
                                                 <p class="body">{{body}}</p>
                                                 {{#replies}}
                                                 <div class="reply-separator"></div>
@@ -145,7 +145,6 @@
                               </table>  
                               {{/posts}}
                               {{/posts_present}}
->>>>>>> Styling Daily Bulletin and tweaked footer of Notifications
 
                               {{#events_present}}
                               <table width="100%" cellpadding="25" cellspacing="0" border="0" class="section_container">
@@ -316,7 +315,7 @@
                                         <tdvalign="top" class="footershow">
                                         <div class="post-separator"></div>
                                         <p class="email_settings">Want to change your email settings? <a href="{{settings_url}}">Click here</a> to manage your subscriptions.</p>
-                                        <p class="website"><a href="{{root_url}}">OurCommonPlace.com</a></p>
+                                        <p class="website"><a href="{{settings_url}}"><span>Change my email settings</span></a> | <a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></p>
                                     </td></tr>
                                   </table><!--End footer-->
                                 </td>
