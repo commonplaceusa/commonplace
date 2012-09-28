@@ -795,7 +795,7 @@ CONDITION
       if find_community.nil? || Community.find_by_name("Lexington").nil?
         return serialize([-1])
       end
-      if find_community.launch_date < Community.find_by_name("Lexington").launch_date
+      if find_community.launch_date.to_date < Community.find_by_name("Lexington").launch_date.to_date
         return serialize([-1])
       end
       if params[:term].nil? || params[:term].empty?
