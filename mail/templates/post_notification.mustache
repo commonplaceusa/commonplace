@@ -17,7 +17,7 @@
                     <td>
                       <table id="header">
                         <tr><td>
-                          <a href="{{community_home_url}}"><img src="http://markmalazarte.com/commonplace/Hinckley.gif" alt="OurCommonPlace {{community_name}}" /></a>
+                          <a href="{{community_home_url}}"><img src="http://markmalazarte.com/commonplace/Hinckley.png" alt="OurCommonPlace {{community_name}}" /></a>
                         </td></tr>
                       </table>
                     </td>
@@ -58,7 +58,7 @@
                                     {{/has_avatar}}
 
                                     <td id="email-message-body-td">
-                                      <p class="message-title">{{title}}</p>
+                                      <p class="message-title"><a href="{{post_url}}">{{title}}</a></p>
 
                                       <div class="message-body">
                                         {{#markdown}}{{body}}{{/markdown}}
@@ -104,25 +104,11 @@
                   </tr>
                   <tr>
                     <td>
-                      <table id="footer">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="p">Want to change your email settings? Click <a href="{{new_invites_url}}"><span>here</span></a> to manage your subscriptions.</div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
                       <table id="legal-footer">
                         <tbody>
                           <tr>
                             <td>
-                              <div class="p copy">&copy; 2012 OurCommonPlace</div>
-                              <div class="p"><a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></p>                              
+                              <div class="p copy"><a href="{{new_invites_url}}"><span>My Email Settings</span></a> | <a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></div>                       
                             </td>
                           </tr>
                         </tbody>
