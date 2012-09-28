@@ -61,7 +61,7 @@ class CommunitySinglePostEmailJob
       end
     end
 
-    community.users.where("post_receive_method != 'Never'").find_each do |user|
+    community.users.receives_posts_live_limited.each do |user|
       Exceptional.rescue do
         kickoff.deliver_single_post_email(user.email, user.first_name, user.community.name, user.community.locale, user.community.slug, end_date, posts.sample)
       end

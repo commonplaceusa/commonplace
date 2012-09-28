@@ -80,7 +80,6 @@ class DailyBulletin < MailBase
   end
 
   def temperature
-    puts @weather.inspect
     @weather.high.fahrenheit
   end
 
