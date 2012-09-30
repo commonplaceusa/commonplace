@@ -80,7 +80,7 @@
                               <table width="650" cellpadding="25" cellspacing="0" border="0" class="section_container">
                                 <tr>
                                   <td width="100%">                      
-                                    <img src="http://markmalazarte.com/commonplace/section-icon.png" alt="Post Icon" class="section_icon"> &nbsp; <span class="section_header">{{#t}}posts-section-title{{/t}}</span>	
+                                    <img src="http://markmalazarte.com/commonplace/section-icon.png" alt="Post Icon" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}posts-section-title{{/t}}</strong></span>	
                                   </td>
                                 </tr>
                               </table>	
@@ -96,8 +96,8 @@
                                             <tr class="post"><!--A Post-->
                                               <td class="avatar" height="110" valign="top"><img src={{avatar_url}} alt="User Avatar" width="50" height="50"></td>
                                               <td class="post_content">
-                                                <a href="{{url}}"><p class="title" style="color:#1b334a;">{{title}}</p></a>
-                                                <p class="author" style="color:#1b334a;">{{author}}</h4>
+                                                <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
+                                                <p class="author" style="color:#1b334a;"><strong>{{author}}</strong></p>
                                                 <p class="body">{{body}}</p>
                                                 {{#replies}}
                                                 <div class="reply-separator"></div>
@@ -106,8 +106,8 @@
                                                     <td class="avatar" rowspan="2">
                                                       <img src="{{avatar_url}}" width="25" height="25">
                                                     </td>
-                                                    <td class="author">
-                                                      {{author}}
+                                                    <td class="author" style="font-weight: bold;">
+                                                      <strong>{{author}}</strong>
                                                     </td>
                                                   </tr>
                                                   <tr>
@@ -151,7 +151,7 @@
                                 <tr>
                                   <td><div class="post-separator"></div></td>
                                   <td width="100%">                      
-                                    <img src="http://markmalazarte.com/commonplace/section-icon.png" alt="Event Icon" class="section_icon"> &nbsp; <span class="section_header">{{#t}}events-section-title{{/t}}</span>	
+                                    <img src="http://markmalazarte.com/commonplace/section-icon.png" alt="Event Icon" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}events-section-title{{/t}}</strong></span>	
                                   </td>
                                 </tr>
                               </table>	
@@ -175,8 +175,8 @@
                                                 <span class="time">{{ends_at}}</span>
                                               </td>
                                               <td class="post_content">
-                                                <a href="{{url}}"><p class="title" style="color:#1b334a;">{{title}}</p></a>
-                                                <h4 class="author" style="color:#1b334a;">{{author}}</h4>
+                                                <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
+                                                <p class="author" style="color:#1b334a; font-weight: bold;"><strong>{{author}}</strong></p>
                                                 <p class="body">{{body}}</p>
                                                 <p>
                                                   {{#venue}}<span class="info">Venue:</span> {{venue}}<br>{{/venue}}
@@ -190,7 +190,7 @@
                                                     <td class="avatar" rowspan="2">
                                                       <img src="{{avatar_url}}" width="25" height="25">
                                                     </td>
-                                                    <td class="author">
+                                                    <td class="author" style="font-weight: bold;">
                                                       {{author}}
                                                     </td>
                                                   </tr>
@@ -236,7 +236,7 @@
                                 <tr>
                                   <td><div class="post-separator"></div></td>
                                   <td width="100%">                      
-                                    <img src="{{announcement_icon_url}}" alt="Announcement Icon" class="section_icon"> &nbsp; <span class="section_header">{{#t}}announcements-section-title{{/t}}</span>	
+                                    <img src="{{announcement_icon_url}}" alt="Announcement Icon" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}announcements-section-title{{/t}}</strong></span>	
                                   </td>
                                 </tr>
                               </table>	
@@ -252,8 +252,8 @@
                                             <tr class="post"><!--A Post-->
                                               <td class="avatar" height="110" valign="top"><img src={{avatar_url}} alt="User Avatar" width="50" height="50"></td>
                                               <td class="post_content">
-                                                <a href="{{url}}"><p class="title" style="color:#1b334a;">{{title}}</p></a>
-                                                <h4 class="author" style="color:#1b334a;">{{author}}</h4>
+                                                <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
+                                                <p class="author" style="color:#1b334a; font-weight: bold;"><strong>{{author}}</strong></p>
                                                 <p class="body">{{body}}</p>
 
                                                 {{#replies}}
@@ -263,7 +263,7 @@
                                                     <td class="avatar" rowspan="2">
                                                       <img src="{{avatar_url}}" width="25" height="25">
                                                     </td>
-                                                    <td class="author">
+                                                    <td class="author" style="font-weight: bold;">
                                                       {{author}}
                                                     </td>
                                                   </tr>
@@ -306,21 +306,19 @@
                           </tr>
                         </table>
                         <div class="post-separator"></div>
-                        <table width="650" cellpadding="0" cellspacing="0" border="0" align="center" class="table">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
                                 <tr>
-                                  <td width="100%" nowrap align="center" class="cell" style="position: relative; bottom: 30px;">
+                                  <td width="100%" nowrap align="center">
                                     <!--footer-->
-                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" class="table footer">
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" class="footer">
                                       <tr>
                                         <tdvalign="top" class="footershow">
                                         <div class="post-separator"></div>
-                                        <p class="email_settings">Want to change your email settings? <a href="{{settings_url}}">Click here</a> to manage your subscriptions.</p>
                                         <p class="website"><a href="{{settings_url}}"><span>Change my email settings</span></a> | <a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></p>
                                     </td></tr>
                                   </table><!--End footer-->
                                 </td>
                               </tr>	
-                        <div class="post-separator"></div>
                       </td>
                     </tr>
                   </tbody>

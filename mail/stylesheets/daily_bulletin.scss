@@ -13,6 +13,11 @@ h3 {
    padding: 25px;
    border-bottom: 1px solid #d0d0c5;
 }
+
+.contentblock p {
+   font: 14px/18px Helvetica, Arial, sans-serif;
+   color: #333;
+}
 .month {
   width: 80px;
   text-align: center;
@@ -73,6 +78,11 @@ h3 {
   color: #a2a19e;
   text-decoration: none;
 }
+.website {
+font: 13px Helvetica, Arial, sans-serif;
+color: #333;
+padding-bottom: 20px;
+}
 .website a {
   font-weight: bold;
   color: #a9211d;
@@ -97,23 +107,26 @@ h3 {
         height: 50px ;
     }
     .author { 
-      font: 13px/20px Helvetica, Arial, sans-serif;
+      font: 14px/18px Helvetica, Arial, sans-serif;
       font-weight: bold !important;
       color: #1b334a !important;
-      margin-top: 0px;
+      margin: 0px 0px 5px 0px;
     }
 
     .title { 
       font: 18px/26px Helvetica, Arial, sans-serif;
       font-weight: bold !important;
       color: #333;
-      margin: 0px;	
+      margin: -4px 0px 0px 0px;	
     }
     
     .body {
-        font: 13px/20px Helvetica, Arial, sans-serif;
+        font: 14px/18px Helvetica, Arial, sans-serif;
         color: #333;
+        margin: 0px 0px 8px 0px;
     }
+    
+    .body p { margin-top: 0px; }
 
     .info { color: #aa211d ; 
             font-family: Helvetica, Arial, sans-serif; 
@@ -170,15 +183,16 @@ h3 {
 }
 
 .reply-separator {
-    margin-top: 10px ; 
+    margin-top: 10px ;
+    border-bottom: 1px dotted #eee; 
 }
 
 .reply {
     width: 100%;
     margin: 15px 0 0px;
-    .avatar { width: 30px ; padding: 0 ; margin: 0px ; vertical-align: top ; }
-    .author { font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: #1b334a; line-height: 15px ; }
-    p { font: 13px/20px Helvetica, Arial, sans-serif ; color: #333 ; }
+    .avatar { width: 35px ; height: auto ; padding: 0 ; margin: 0px ; vertical-align: top ; }
+    .author { font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: #1b334a; line-height: 15px ; vertical-align: top; margin: 0px; }
+    p { font: 14px/18px Helvetica, Arial, sans-serif ; color: #333 ; margin: 2px 0px 8px 0px; vertical-align: top; }
 }
 
 /* NEW STYLES */
@@ -208,8 +222,8 @@ td {
     margin: 0px;
 }
 
-a { text-decoration: none }
-a span { color: #AD312F ; text-decoration: none}
+a { text-decoration: none; }
+a span { color: #AD312F ; text-decoration: none;}
 
 div.p {
    margin: 0 0 8px 0;
@@ -218,7 +232,7 @@ div.p {
    font-family: Helvetica, Arial, sans-serif;
 }
 
-img { border: 0 }
+img { border: 0; }
 
 #page-wrapper {
     text-align: center;
@@ -262,7 +276,7 @@ img { border: 0 }
 }
 
 #introduction p {
-  font: 13px/20px Helvetica, Arial, sans-serif;
+  font: 14px/20px Helvetica, Arial, sans-serif;
   color: #333;
 }
 
@@ -276,6 +290,7 @@ img { border: 0 }
 
 .links {
    text-align: right;
+   margin-top: 10px;
 }
 
-a.reply-now img { vertical-align: text-top; color: #AD312F; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 13px; }
+a.reply-now img { vertical-align: text-top; color: #AD312F; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 14px; }
