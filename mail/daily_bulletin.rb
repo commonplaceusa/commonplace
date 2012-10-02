@@ -48,7 +48,7 @@ class DailyBulletin < MailBase
   end
 
   def message_text
-    "Good morning #{community_name}! It's currently #{current_temp} degrees outside with a high today of #{high_today} degrees and a #{pop_today}% chance of #{rain_or_snow}. In the past week, 4 of your neighbors have joined OurCommonPlace #{community_name}, making the network [488] people large. In the past day, the community has posted [4] needs and [3] organization announcements. Enjoy!"
+    "Good morning #{community_name}! It's currently #{current_temp} degrees outside with a high today of #{high_today} degrees and #{rain?}. In the past week, 4 of your neighbors have joined OurCommonPlace #{community_name}, making the network [488] people large. In the past day, the community has posted [4] needs and [3] organization announcements. Enjoy!"
   end
 
   def from
@@ -97,6 +97,15 @@ class DailyBulletin < MailBase
 
   def pop_today
     Integer (@weather.forecast.first.low.fahrenheit)
+  end
+
+  def rain?
+    pop = pop_today
+    if pop > 25
+      "a #{pop}% chance of #{rain_or_snow}"
+    else
+      "clear skies"
+    end
   end
 
   def rain_or_snow
