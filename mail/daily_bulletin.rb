@@ -36,7 +36,7 @@ class DailyBulletin < MailBase
   def invite_them_now_button_url
     asset_url("invite-them-now-button.png")
   end
-  
+
   # TODO: Do this more elegantly. To make daily digests idempotent, this had to be hacked together.
   def short_user_name
     @user_first_name
@@ -45,6 +45,10 @@ class DailyBulletin < MailBase
   def text
     # TODO: Do this more elegantly. To make daily digests idempotent, this had to be hacked together.
     @text ||= YAML.load_file(File.join(File.dirname(__FILE__), "text", "#{@community_locale}.yml"))[self.underscored_name]
+  end
+
+  def message_text
+    "Good morning #{community_name}! It's currently #{current_temp} degrees outside with a high today of #{high_today} degrees and a #{pop_today}% chance of #{rain_or_snow}. In the past week, 4 of your neighbors have joined OurCommonPlace #{community_name}, making the network [488] people large. In the past day, the community has posted [4] needs and [3] organization announcements. Enjoy!"
   end
 
   def from
@@ -79,8 +83,32 @@ class DailyBulletin < MailBase
     @date.strftime("%A")
   end
 
-  def temperature
-    @weather.high.fahrenheit
+  def current_temp
+    Integer (@weather.current.temperature.fahrenheit)
+  end
+
+  def high_today
+    Integer (@weather.forecast.first.high.fahrenheit)
+  end
+
+  def low_today
+    Integer (@weather.forecast.first.low.fahrenheit)
+  end
+
+  def pop_today
+    Integer (@weather.forecast.first.low.fahrenheit)
+  end
+
+  def rain_or_snow
+    high = high_today
+    low = low_today
+    rain_snow = "rain/snow"
+    if high < 32
+      rain_snow = "snow"
+    elsif low > 32
+      rain_snow = "rain"
+    end
+    rain_snow
   end
 
   def community_name
@@ -136,5 +164,5 @@ class DailyBulletin < MailBase
   def tag
     'daily_bulletin'
   end
-
 end
+
