@@ -75,18 +75,29 @@ class CommunityExterior
   end
 
   def referral_sources
-    [
-      "Received a flyer in the mail",
-      "Received a postcard from a local business",
-      "From the Civic Heroes Blog",
-      "In an email",
-      "By word of mouth",
-      "In the news",
-      "On Facebook",
-      "On Twitter",
-      "At an event",
-      "Other"
-    ]
+    if @community.slug == "HarvardNeighbors"
+      [
+        "Current Faculty",
+        "Current Staff",
+        "Retiree",
+        "Visiting Scholar/Researcher",
+        "Post-Doc Fellow/Program Fellow",
+        "Spouse/Partner"
+      ]
+    else
+      [
+        "Received a flyer in the mail",
+        "Received a postcard from a local business",
+        "From the Civic Heroes Blog",
+        "In an email",
+        "By word of mouth",
+        "In the news",
+        "On Facebook",
+        "On Twitter",
+        "At an event",
+        "Other"
+      ]
+    end
   end
 
   def links

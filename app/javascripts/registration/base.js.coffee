@@ -89,6 +89,15 @@ CommonPlace.registration.RegistrationModal = CommonPlace.View.extend(
           complete: self.options.complete
         )
 
+      affiliation: ->
+        new CommonPlace.registration.AffiliationView(
+          nextPage: nextPage
+          data: data
+          #slideIn: slideIn
+          communityExterior: self.communityExterior
+          complete: self.options.complete
+        )
+
     }[page]()
     view.render()
 

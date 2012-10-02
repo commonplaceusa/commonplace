@@ -67,7 +67,10 @@ CommonPlace.registration.NewUserView = CommonPlace.registration.RegistrationModa
     else
       params = [ "full_name", "email" ]
       @validate_registration params, _.bind(->
-        @nextPage "address", @data
+        if this.options.communityExterior.slug == "HarvardNeighbors"
+          @nextPage "affiliation", @data
+        else
+          @nextPage "address", @data
       , this)
 
   facebook: (e) ->
@@ -75,7 +78,10 @@ CommonPlace.registration.NewUserView = CommonPlace.registration.RegistrationModa
     facebook_connect_registration success: _.bind((data) ->
       @data = data
       @data.isFacebook = true
-      @nextPage "address", @data
+      if this.options.communityExterior.slug == "HarvardNeighbors"
+        @nextPage "affiliation", @data
+      else
+        @nextPage "address", @data
     , this)
 
   isRealEmail: ->
