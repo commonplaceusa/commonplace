@@ -20,6 +20,14 @@ module MailUrls
     end
   end
 
+  def community_name
+    if community.is_a? Community
+      community.name
+    else
+      @community_name
+    end
+  end
+
   def community_url(path)
     url("/#{community_slug}#{path}")
   end
@@ -110,6 +118,14 @@ module MailUrls
 
   def logo_url
     asset_url("logo.png")
+  end
+
+  def header_image_url
+    asset_url("headers/#{community_slug}.png")
+  end
+
+  def reply_button_url
+    asset_url("reply-button.png")
   end
 
   def settings_url

@@ -12,16 +12,8 @@ class PostNotification < MailBase
     "#{author_name} just posted to your neighborhood on OurCommonPlace."
   end
 
-  def header_image_url
-    asset_url("headers/#{community.slug}.png")
-  end
-
   def reply_to
     "reply+post_#{post.id}@ourcommonplace.com"
-  end
-
-  def reply_button_url
-    asset_url("reply-now-button.png")
   end
 
   def post
@@ -40,18 +32,6 @@ class PostNotification < MailBase
     @post.community
   end
     
-  def community_name
-    community.name
-  end
-
-  def community_home_url
-    community.links.base
-  end
-
-  def community_slug
-    community.slug
-  end
-
   def author_name
     author.name
   end
