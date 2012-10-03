@@ -92,7 +92,7 @@ class CommunityDailyBulletinJob
 
     community.users.receives_daily_bulletin.each do |user|
       Exceptional.rescue do
-        kickoff.deliver_daily_bulletin(user.email, user.first_name, user.community.name, user.community.locale, user.community.slug, date, posts, announcements, events, weather.default)
+        kickoff.deliver_daily_bulletin(user.id, date, posts, announcements, events, weather.default)
       end
     end
   end

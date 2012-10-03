@@ -1,16 +1,20 @@
 class DailyBulletin < MailBase
 
-  def initialize(user_email, user_first_name, user_community_name, community_locale, community_slug, date, posts, announcements, events, weather)
-    @user_email = user_email
-    @user_first_name = user_first_name
-    @user_community_name = user_community_name
-    @community_locale = community_locale
-    @community_slug = community_slug
+  def initialize(user_id, date, posts, announcements, events, weather)
+    @user = User.find(user_id)
     @date = DateTime.parse(date)
     @posts = posts
     @announcements = announcements
     @events = events
     @weather = weather
+  end
+
+  def user
+    @user
+  end
+
+  def community
+    user.community
   end
 
   def logo_url
@@ -39,20 +43,36 @@ class DailyBulletin < MailBase
 
   # TODO: Do this more elegantly. To make daily digests idempotent, this had to be hacked together.
   def short_user_name
-    @user_first_name
+    user.first_name
+  end
+
+  def new_user_count
+    community.users.this_week.count
+  end
+
+  def community_user_count
+    community.user_count
+  end
+
+  def post_count
+    @posts.count
+  end
+
+  def announcement_count
+    @announcements.count
   end
 
   def text
     # TODO: Do this more elegantly. To make daily digests idempotent, this had to be hacked together.
-    @text ||= YAML.load_file(File.join(File.dirname(__FILE__), "text", "#{@community_locale}.yml"))[self.underscored_name]
+    @text ||= YAML.load_file(File.join(File.dirname(__FILE__), "text", "#{community.locale}.yml"))[self.underscored_name]
   end
 
   def message_text
-    "Good morning #{community_name}! It's currently #{current_temp} degrees outside with a high today of #{high_today} degrees and #{rain?}. In the past week, 4 of your neighbors have joined OurCommonPlace #{community_name}, making the network [488] people large. In the past day, the community has posted [4] needs and [3] organization announcements. Enjoy!"
+    "Good morning #{community_name}! It's currently #{current_temp} degrees outside with a high today of #{high_today} degrees and #{rain?}. In the past week, #{new_user_count} of your neighbors have joined OurCommonPlace #{community_name}, making the network #{community_user_count} people large. In the past day, the community has posted #{post_count} discussions and #{announcement_count} organization announcements. Enjoy!"
   end
 
   def from
-    "#{community_name} CommonPlace <notifications@#{@community_slug}.ourcommonplace.com>"
+    "#{community_name} CommonPlace <notifications@#{community.slug}.ourcommonplace.com>"
   end
 
   def subject
@@ -60,7 +80,7 @@ class DailyBulletin < MailBase
   end
 
   def to
-    @user_email
+    user.email 
   end
 
   def header_text
@@ -121,7 +141,7 @@ class DailyBulletin < MailBase
   end
 
   def community_name
-    @user_community_name
+    community.name
   end
 
   def deliver?
@@ -140,7 +160,7 @@ class DailyBulletin < MailBase
                           :headers => {
                             "Precedence" => "list",
                             "Auto-Submitted" => "auto-generated",
-                            "X-Campaign-Id" => @community_slug,
+                            "X-Campaign-Id" => community.slug,
                             "X-Mailgun-Tag" => self.tag
                           })
     end
