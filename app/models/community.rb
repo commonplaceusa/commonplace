@@ -404,71 +404,73 @@ class Community < ActiveRecord::Base
 
     platform << [users, posts, events]
 
-    # Civic Leader Track data
-    leader = []
-    leader << ["Total # of Civic Leaders", "Total # of Asks Phone Calls", "Total # of Yes", "Total # of PFOs",
-      "Total # of Non-PFOs", "Total # of Civic Leaders who joined CP", "Total # of Civic Leaders who have a feed", "Total # of Civic Leaders who have posted to their feed"]
+    # Relationship Metrics
+    relationship = []
+    relationship << ["Phase", "Total # of Civic Leaders", "Total # of Connected", "Total # of Phone Call",
+      "Total # of Joined CP", "Total # with Feed", "Total # Posting to Feed", "Total # Publicized"]
 
     leaders = residents.reject { |x| !x.metadata[:tags].include?("Type: Civic Leader") }
 
     c_leaders = leaders.count
+    connected = residents.reject { |x| !x.metadata[:tags].include?("CL1: Responded to Civic Leader Phone Call Request Email") }.count
     calls =  residents.reject { |x| !x.metadata[:tags].include?("CL2: Civic Leader Phone Call Held") }.count
-    yes = residents.reject { |x| !x.metadata[:tags].include?("Type: Civic Leader Partner") }.count
-    pfos = residents.reject { |x| !x.metadata[:tags].include?("Type: PFO") }.count
-    nonPFOs = residents.reject { |x| !x.metadata[:tags].include?("Type: Non-PFO") }.count
     joined = leaders.reject { |x| !x.metadata[:tags].include?("Joined CP") }.count
     feeds = leaders.reject { |x| !x.metadata[:tags].include?("Feed Owner") }.count
     posted = leaders.reject { |x| !x.metadata[:tags].include?("Has Posted") }.count
+    publicized = residents.reject { |x| !x.metadata[:tags].include?("CL4a: Received Publicity and Leaderbox Email") }.count
 
-    leader << [c_leaders, calls, yes, pfos, nonPFOs, joined, feeds, posted]
+    def percent(n, d)
+      if d == 0
+        return 0.0
+      end
 
-    # Civic Hero Track data
-    hero = []
-    hero << ["Total On Civic Heroes Track", "# of people interviewed", "People added to Civic Hero List", "Nominees", "Nominees Responded",
-      "Nominees Processed", "Nominees Joined", "Nominators", "Nominators who joined"]
+      (n.to_f / d * 100 * 100).round * 0.01
+    end
 
-    nominees = residents.reject { |x| !x.metadata[:tags].include?("Type: Nominee") }
-    nominators = residents.reject { |x| !x.metadata[:tags].include?("Type: Nominator") }
+    a = percent(connected, c_leaders)
+    b = percent(calls, connected)
+    c = percent(joined, calls)
+    d = percent(feeds, joined)
+    e = percent(posted, feeds)
+    f = percent(publicized, posted)
 
-    heroes = residents.reject { |x| !x.metadata[:tags].include?("Type: Civic Hero Partner") }.count
-    interviewed = residents.reject { |x| !x.metadata[:tags].include?("CH3a: Interviewed") }.count
-    listed = residents.reject { |x| !x.metadata[:tags].include?("On Civic Heroes List") }.count
-    c_nominees = nominees.count
-    responded = residents.reject { |x| !x.metadata[:tags].include?("CH1: Responded to Civic Hero Asks Email") }.count
-    processed = nominees.reject { |x| !x.metadata[:tags].include?("Type: Civic Hero Partner") }.count
-    j_nominees = nominees.reject { |x| !x.metadata[:tags].include?("Joined CP") }.count
-    c_nominators = nominators.count
-    j_nominators = nominators.reject { |x| !x.metadata[:tags].include?("Joined CP") }.count
+    v = percent(calls, c_leaders)
+    w = percent(joined, c_leaders)
+    x = percent(feeds, c_leaders)
+    y = percent(posted, c_leaders)
+    z = percent(publicized, c_leaders)
 
-    hero << [heroes, interviewed, listed, c_nominees, responded, processed, j_nominees, c_nominators, j_nominators]
+    relationship << ["Absolute #", c_leaders, connected, calls, joined, feeds, posted, publicized]
+    relationship << ["Phase-to-Phase Conversion", "100.0", a, b, c, d, e, f]
+    relationship << ["Total Conversion", "100.0", a, v, w, x, y, z]
 
-    # Other Tracks
-    other = []
-    other << ["", "Super Leaders", "Gatekeeper", "Library/CC", "Total # of Press", "Total # of Student Organizer Recruiter"]
+    # PLS Metrics
+    pls = []
+    pls << ["", "Super Leaders", "PTA", "Press", "Library/CC"]
 
     ts_leaders = residents.reject { |x| !x.metadata[:tags].include?("Type: Super Leader") }.count
-    t_gate = residents.reject { |x| !x.metadata[:tags].include?("Type: Gatekeeper") }.count
-    t_cc = residents.reject { |x| !x.metadata[:tags].include?("Type: Library/CC") }.count
+    t_pta = residents.reject { |x| !x.metadata[:tags].include?("Type: PTA") }.count
     t_press = residents.reject { |x| !x.metadata[:tags].include?("Type: Press") }.count
-    t_student = residents.reject { |x| !x.metadata[:tags].include?("Type: Student Organizer Recruiter") }.count
+    t_cc = residents.reject { |x| !x.metadata[:tags].include?("Type: Library/CC") }.count
+
+    rs_leaders = residents.reject { |x| !x.metadata[:tags].include?("SL1: Responded to Super Leader Phone Call Request Email") }.count
+    r_pta = residents.reject { |x| !x.metadata[:tags].include?("PTA1: Responded to PTA Phone Call Request Email") }.count
+    r_press = residents.reject { |x| !x.metadata[:tags].include?("P1: Responded to Press Phone Call Request Email") }.count
+    r_cc = residents.reject { |x| !x.metadata[:tags].include?("LCC1: Responded to Library/CC Phone Call Request Email") }.count
+
     ps_leaders = residents.reject { |x| !x.metadata[:tags].include?("Type: Super Leader Partner") }.count
-    p_gate = residents.reject { |x| !x.metadata[:tags].include?("Type: Gatekeeper Partner") }.count
-    p_cc = residents.reject { |x| !x.metadata[:tags].include?("Type: Library/CC Partner") }.count
+    p_pta = residents.reject { |x| !x.metadata[:tags].include?("Type: PTA Partner") }.count
     p_press = residents.reject { |x| !x.metadata[:tags].include?("Type: Press Partner") }.count
-    p_student = residents.reject { |x| !x.metadata[:tags].include?("Type: Student Organizer Recruiter Partner") }.count
+    p_cc = residents.reject { |x| !x.metadata[:tags].include?("Type: Library/CC Partner") }.count
 
-    other << ["Total #", ts_leaders, t_gate, t_cc, t_press, t_student]
-    other << ["# of Partners", ps_leaders, p_gate, p_cc, p_press, p_student]
-
-    # Launch Email Response Rate
-    launch = []
-    launch << ["", "Nomination Email A", "Nomination Email B", "Nomination Drive Email (To Leaders)", "Civic Leader Tips Email", "Civic Leader Phone Call Request A"]
+    pls << ["Total #", ts_leaders, t_pta, t_press, t_cc]
+    pls << ["# in Contact", rs_leaders, r_pta, r_press, r_cc]
+    pls << ["# of Partners", ps_leaders, p_pta, p_press, p_cc]
 
     # All the data
     charts.merge!({ platform: platform })
-    charts.merge!({ leader: leader })
-    charts.merge!({ hero: hero })
-    charts.merge!({ other: other })
+    charts.merge!({ relationship: relationship })
+    charts.merge!({ pls: pls })
   end
 
   def user_statistics

@@ -24,11 +24,16 @@ else
 
     next if h["To-Do"].nil?
 
-    todo = h["To-Do"]
+    todo = h["To-Do"].strip!
     should = h["Should Display If Has Tag:"]
 
     cant = h["Can't Display If Has Tag:"]
     more_cant = h["Can't Display If Has Tag (2):"]
+
+    should.strip! if !should.nil?
+    cant.strip! if !cant.nil?
+    more_cant.strip! if !more_cant.nil?
+
     case h["To-Do Type"]
     when "Email"
       type = 1
@@ -47,6 +52,7 @@ else
     else
       type = 8
     end
+
     script = h["Notes"] if !h["Notes"].nil?
 
     Flag.create_todo(todo, type, should, cant)
