@@ -68,7 +68,7 @@ class DailyBulletin < MailBase
   end
 
   def message_text
-    "Good morning #{community_name}! It's currently #{current_temp} degrees outside with a high today of #{high_today} degrees and #{rain?}. In the past week, #{new_user_count} of your neighbors have joined OurCommonPlace #{community_name}, making the network #{community_user_count} people large. In the past day, the community has posted #{post_count} discussions and #{announcement_count} organization announcements. Enjoy!"
+    "Good morning #{community_name}! It's currently #{current_temp} degrees outside with a high today of #{high_today} degrees and #{rain?}. In the past week, #{new_user_count} of your neighbors have joined OurCommonPlace #{community_name}, making the network #{community_user_count} people strong. In the past day, the community has shared #{post_count} neighborhood posts and #{announcement_count} organization announcements. Enjoy!"
   end
 
   def from
@@ -123,8 +123,6 @@ class DailyBulletin < MailBase
     pop = pop_today
     if pop > 25
       "a #{pop}% chance of #{rain_or_snow}"
-    else
-      "clear skies"
     end
   end
 
