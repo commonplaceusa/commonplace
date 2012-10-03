@@ -32,12 +32,12 @@
                               		<td class="month" width="80" height="30" bgcolor="#aa211d"><strong>{{month_short}}</strong></td>
                               		<td class="header" width="20" height="65" rowspan="2" bgcolor="#1b334a">&nbsp;</td>
                               	</tr>
-                              	<tr>
+                              	<tr height="40">
                               		<td class="day" width="80" height="50" rowspan="3" bgcolor="#fff">{{day_of_month}}</td>
                               	</tr>
                               	<tr>
-                              		<td width="550" height="4" bgcolor="#f5f4e8" style="background-color: #f5f4e8;">&nbsp;</td>
-                              		<td width="20" height="4" bgcolor="#f5f4e8" style="background-color: #f5f4e8;">&nbsp;</td>
+                              		<td class="shadow" width="550" height="5" bgcolor="#f5f4e8">&nbsp;</td>
+                              		<td class="shadow" width="20" height="5" bgcolor="#f5f4e8">&nbsp;</td>
                               	</tr>
                               </table>
                               <!-- END NEW HEADER -->
@@ -80,7 +80,7 @@
                               <table width="650" cellpadding="25" cellspacing="0" border="0" class="section_container">
                                 <tr>
                                   <td width="100%">                      
-                                    <img src="http://markmalazarte.com/commonplace/section-icon.png" alt="Post Icon" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}posts-section-title{{/t}}</strong></span>	
+                                    <img src="http://markmalazarte.com/commonplace/discussions-icon.png" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}posts-section-title{{/t}}</strong></span>	
                                   </td>
                                 </tr>
                               </table>	
@@ -96,7 +96,7 @@
                                             <tr class="post"><!--A Post-->
                                               <td class="avatar" height="110" valign="top"><img src={{avatar_url}} alt="User Avatar" width="50" height="50"></td>
                                               <td class="post_content">
-                                                <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
+                                                <a href="{{post_url}}"><p class="title"><strong>{{title}}</strong></p></a>
                                                 <p class="author" style="color:#1b334a;"><strong>{{author}}</strong></p>
                                                 <p class="body">{{body}}</p>
                                                 {{#replies}}
@@ -151,7 +151,7 @@
                                 <tr>
                                   <td><div class="post-separator"></div></td>
                                   <td width="100%">                      
-                                    <img src="http://markmalazarte.com/commonplace/section-icon.png" alt="Event Icon" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}events-section-title{{/t}}</strong></span>	
+                                    <img src="http://markmalazarte.com/commonplace/events-icon.png" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}events-section-title{{/t}}</strong></span>	
                                   </td>
                                 </tr>
                               </table>	
@@ -175,7 +175,7 @@
                                                 <span class="time">{{ends_at}}</span>
                                               </td>
                                               <td class="post_content">
-                                                <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
+                                                <a href="{{post_url}}"><p class="title"><strong>{{title}}</strong></p></a>
                                                 <p class="author" style="color:#1b334a; font-weight: bold;"><strong>{{author}}</strong></p>
                                                 <p class="body">{{body}}</p>
                                                 <p>
@@ -236,7 +236,7 @@
                                 <tr>
                                   <td><div class="post-separator"></div></td>
                                   <td width="100%">                      
-                                    <img src="{{announcement_icon_url}}" alt="Announcement Icon" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}announcements-section-title{{/t}}</strong></span>	
+                                    <img src="http://markmalazarte.com/commonplace/announcements-icon.png" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}announcements-section-title{{/t}}</strong></span>	
                                   </td>
                                 </tr>
                               </table>	
@@ -252,7 +252,7 @@
                                             <tr class="post"><!--A Post-->
                                               <td class="avatar" height="110" valign="top"><img src={{avatar_url}} alt="User Avatar" width="50" height="50"></td>
                                               <td class="post_content">
-                                                <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
+                                                <a href="{{post_url}}"><p class="title"><strong>{{title}}</strong></p></a>
                                                 <p class="author" style="color:#1b334a; font-weight: bold;"><strong>{{author}}</strong></p>
                                                 <p class="body">{{body}}</p>
 
@@ -312,9 +312,10 @@
                                     <!--footer-->
                                     <table width="100%" cellpadding="0" cellspacing="0" border="0" class="footer">
                                       <tr>
-                                        <tdvalign="top" class="footershow">
+                                        <td valign="top" class="footershow">
                                         <div class="post-separator"></div>
                                         <p class="website"><a href="{{settings_url}}"><span>Change my email settings</span></a> | <a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></p>
+                                        <p class="social-media">Follow us: <img src="http://markmalazarte.com/commonplace/facebook-icon.png" width="20" height="20" alt="Facebook" /> <img src="http://markmalazarte.com/commonplace/twitter-icon.png" width="20" height="20" alt="Twitter" /></span>
                                     </td></tr>
                                   </table><!--End footer-->
                                 </td>
