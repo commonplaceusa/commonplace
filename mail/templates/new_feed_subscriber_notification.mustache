@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <style>
+      {{styles}}
+    </style>
+  </head>
+  <body>
+    <table id="body">
+
+      {{< header }}
+
+      <tr>
+        <td>
+          <p>Dear {{short_owner_name}},</p>
+
+          <p><a href="{{user_url}}">{{short_user_name}}</a> has subscribed to {{feed_name}} on CommonPlace!</p>
+
+
+          <p>Cheers, <br> The {{town_name}} CommonPlace Team</p>
+
+        </td>
+
+      </tr>
+
+      <tr>
+        <td id="footer">
+          {{< settings }}
+          {{< legal }}
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>
