@@ -21,24 +21,13 @@ class DailyBulletin < MailBase
     asset_url("logo2.png")
   end
 
-  def reply_button_url
-    asset_url("reply-button.png")
-  end
-
-  def post_icon_url
-    asset_url("reply-button.png")
-  end
-
-  def event_icon_url
-    asset_url("reply-button.png")
-  end
-
-  def announcement_icon_url
-    asset_url("reply-button.png")
-  end
-
   def invite_them_now_button_url
     asset_url("invite-them-now-button.png")
+  end
+
+  def header_image_url
+    community_slug = community.slug.downcase
+    asset_url("headers/daily_bulletin/#{community_slug}.png")
   end
 
   # TODO: Do this more elegantly. To make daily digests idempotent, this had to be hacked together.

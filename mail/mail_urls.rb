@@ -120,8 +120,32 @@ module MailUrls
     asset_url("logo.png")
   end
 
+  def facebook_icon_url
+    asset_url("facebook-icon.png")
+  end
+
+  def twitter_icon_url
+    asset_url("twitter-icon.png")
+  end
+
   def header_image_url
     asset_url("headers/#{community_slug}.png")
+  end
+
+  def view_post_button_url
+    asset_url("view-post-btn.png")
+  end
+
+  def post_icon_url
+    asset_url("discussions-icon.png")
+  end
+
+  def event_icon_url
+    asset_url("events-icon.png")
+  end
+
+  def announcement_icon_url
+    asset_url("announcements-icon.png")
   end
 
   def reply_button_url

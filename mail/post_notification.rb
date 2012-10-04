@@ -8,6 +8,11 @@ class PostNotification < MailBase
     asset_url("logo2.png")
   end
 
+  def header_image_url
+    community_slug = community.slug.downcase
+    asset_url("headers/single_post/#{community_slug}.png")
+  end
+
   def subject
     "#{author_name} just posted to your neighborhood on OurCommonPlace."
   end
