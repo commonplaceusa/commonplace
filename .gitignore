@@ -40,5 +40,3 @@ neo4j
 .env
 coverage
 chromedriver.log
-
-Gemfile.lock
