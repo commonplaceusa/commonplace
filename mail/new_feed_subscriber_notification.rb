@@ -31,6 +31,15 @@ class NewFeedSubscriberNotification < MailBase
     user.first_name
   end
 
+  def user_name
+    user.name
+  end
+
+  def header_image_url
+    community_slug = community.slug.downcase
+    asset_url("headers/single_post/#{community_slug}.png")
+  end
+
   def user_url
     show_user_url(user.id)
   end

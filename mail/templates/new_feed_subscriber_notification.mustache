@@ -5,30 +5,70 @@
     </style>
   </head>
   <body>
-    <table id="body">
 
-      {{< header }}
+    <table id="page-wrapper">
+      <tbody>
+        <tr>
+          <td>
+            <center>
+              <table id="email-wrapper">
+                <tbody>
+                  <tr>
+                    <td>
+                      <table id="header">
+                        <tr><td>
+                            <a href="{{community_home_url}}"><img src="{{header_image_url}}" alt="OurCommonPlace {{community_name}}" /></a>
+                        </td></tr>
+                      </table>
+                    </td>
+                  </tr>
 
-      <tr>
-        <td>
-          <p>Dear {{short_owner_name}},</p>
+                  <tr>
+                    <td id="content-td">
+                      <table id="content">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <table id="greeting">
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <div class="p">Hi {{short_owner_name}},</div>
 
-          <p><a href="{{user_url}}">{{short_user_name}}</a> has subscribed to {{feed_name}} on CommonPlace!</p>
+                                      <div class="p"><a href="{{user_url}}">{{user_name}}</a> has subscribed to <a href="{{feed_url}}">{{feed_name}}</a> on OurCommonPlace!</div>
 
+                                      <div class="p">Cheers, <br> The {{town_name}} OurCommonPlace Team</div>
 
-          <p>Cheers, <br> The {{town_name}} CommonPlace Team</p>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
 
-        </td>
-
-      </tr>
-
-      <tr>
-        <td id="footer">
-          {{< settings }}
-          {{< legal }}
-        </td>
-      </tr>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table id="legal-footer">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="p copy"><a href="{{settings_url}}"><span>Change my email settings</span></a> | <a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></div>                       
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </center>
+          </td>
+        </tr>
+      </tbody>
     </table>
-
   </body>
 </html>
