@@ -8,11 +8,6 @@ class ThankNotification < MailBase
     @thankable = @thank.thankable
   end
 
-
-  def header_image_url
-    asset_url("headers/#{community.slug}.png")
-  end
-
   def user
     @user
   end
@@ -49,15 +44,8 @@ class ThankNotification < MailBase
     end
   end
 
-  def message_thanker_url
-    
-  end
-  
   def thanker_profile_url
-
+    show_user_url(@thanker.id)
   end
 
-  def community_slug
-    community.slug
-  end
 end

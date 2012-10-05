@@ -124,12 +124,21 @@ module MailUrls
     asset_url("facebook-icon.png")
   end
 
+  def facebook_url
+    "http://facebook.com"
+  end
+
   def twitter_icon_url
     asset_url("twitter-icon.png")
   end
 
+  def twitter_url
+    "http://twitter.com"
+  end
+
   def header_image_url
-    asset_url("headers/#{community_slug}.png")
+    community_slug = community.slug.downcase
+    asset_url("headers/single_post/#{community_slug}.png")
   end
 
   def view_post_button_url

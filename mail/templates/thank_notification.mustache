@@ -17,7 +17,7 @@
                     <td>
                       <table id="header">
                         <tr><td>
-                          <a href="{{community_home_url}}"><img src="{{header_image_url}}"></a>
+                            <a href="{{community_home_url}}"><img src="{{header_image_url}}" alt"OurCommonPlace {{community_name}}"></a>
                         </td></tr>
                       </table>
                     </td>
@@ -35,10 +35,9 @@
                                     <td>
                                       <div class="p">Good news!</div>
 
-                                      <div class="p">Your neighbor {{thanker_name}} just thanked you on CommonPlace for your post {{thanked_for}}</div>
+                                      <div class="p">Your neighbor <a href="{{thanker_profile_url}}">{{thanker_name}}</a> just thanked you on CommonPlace for your {{thanked_for}}</div>
 
-                                      <div class="p">To view {{short_thanker_name}}'s community profile, <a href="{{message_thanker_url}}"><span>click here</span></a>.</div>
-                                      <div class="p">To message {{thanker_name}}, <a href="{{thanker_profile_url}}"><span>click here</span></a>.</div>
+                                      <div class="p">To view {{short_thanker_name}}'s community profile, <a href="{{thanker_profile_url}}"><span>click here</span></a>.</div>
 
                                       <div class="p">Regards,<br>The CommonPlace Team</div>
 
@@ -55,29 +54,14 @@
                   </tr>
                   <tr>
                     <td>
-                      <table id="footer">
+                      <table id="legal-footer" width="100%" cellpadding="0" cellspacing="0" border="0">
                         <tbody>
                           <tr>
-                            <td>
-                              <div class="p">Improve the {{community_name}} CommonPlace: Click <a href="{{new_invites_url}}"><span>HERE</span></a> to invite more neighbors.</div>
-                              <div class="p">Click <a href="{{settings_url}}"><span>here</span></a> to manage your email settings.</div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <table id="legal-footer">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="p"><a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></p>
-                              <div class="p copy">&copy; 2011 CommonPlace</div>
-                            </td>
-                          </tr>
-                        </tbody>
+                           <td valign="top">
+                             <div class="p copy"><a href="{{settings_url}}"><span>Change my email settings</span></a> | <a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></div>
+                             <p class="social-media">Join us on: <img src="{{facebook_icon_url}}" width="20" height="20" alt="Facebook" class="Facebook"/> <img src="{{twitter_icon_url}}" width="20" height="20" alt="Twitter" class="Twitter"/></span>
+                          </td>
+                        </tr>
                       </table>
                     </td>
                   </tr>
