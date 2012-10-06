@@ -125,7 +125,7 @@ module MailUrls
   end
 
   def facebook_url
-    "http://facebook.com"
+    "http://www.facebook.com/ourcommonplace"
   end
 
   def twitter_icon_url
@@ -133,7 +133,7 @@ module MailUrls
   end
 
   def twitter_url
-    "http://twitter.com"
+    "http://twitter.com/commonplacehq"
   end
 
   def header_image_url
