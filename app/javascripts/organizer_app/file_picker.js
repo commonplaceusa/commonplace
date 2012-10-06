@@ -344,7 +344,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
           this.collection.fetch({
             data: params,
             success: _.bind(this.afterRender, this),
-            error: function(attr, response) { alert(response) }
+            error: function(attr, response) { alert(response.responseText) }
           });
         }, this));
 
@@ -362,7 +362,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
         this.collection.fetch({
           data: params,
           success: _.bind(this.afterRender, this),
-          error: function(attr, response) { alert(response) }
+          error: function(attr, response) { alert(response.responseText) }
         });
         break;
     }

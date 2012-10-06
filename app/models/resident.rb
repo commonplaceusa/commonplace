@@ -81,10 +81,7 @@ class Resident < ActiveRecord::Base
       r = self.user.referral_source
       tags << "Referral: " + r if !r.nil?
     end
-=begin
-    tags << "email" if self.email?
-    tags << "address" if self.address?
-=end
+
     tags
   end
 
