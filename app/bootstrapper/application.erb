@@ -63,6 +63,11 @@
       <div id="sticky-footer"></div>
 
       <%= erb :tracking %>
+      <% if Rails.env.production? %>
+        <script type="text/javascript">
+          kmq.push(['record', 'Main Page']);
+        </script>
+      <% end %>
     </div>
 
     <%= erb :footer %>
