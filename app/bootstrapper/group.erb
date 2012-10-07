@@ -49,5 +49,11 @@
 
 
   <%= erb :tracking %>
+  <% if Rails.env.production? %>
+    <script type="text/javascript">
+      _kmq.push(['record', 'Group Page']);
+    </script>
+  <% end %>
+
 
 </html>

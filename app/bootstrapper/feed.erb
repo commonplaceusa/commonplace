@@ -54,6 +54,11 @@
     </script>
 
     <%= erb :tracking %>
+    <% if Rails.env.production? %>
+      <script type="text/javascript">
+        _kmq.push(['record', 'Feed Page']);
+      </script>
+    <% end %>
 
 
   </body>

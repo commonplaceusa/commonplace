@@ -87,6 +87,11 @@
       google.setOnLoadCallback(onGoogleDataLoad);
     </script>
     <%= erb :tracking %>
+    <% if Rails.env.production? %>
+      <script type="text/javascript">
+        _kmq.push(['record', 'Registration Page']);
+      </script>
+    <% end %>
 
   </body>
 
