@@ -84,6 +84,7 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
           nextPage: nextPage
         )
     }[page]()
+    _kmq.push(['record', 'Tour: ' + page + ' page']) if _kmq?
     view.render()
 
   welcome: ->
