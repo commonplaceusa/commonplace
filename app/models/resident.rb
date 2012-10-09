@@ -78,7 +78,7 @@ class Resident < ActiveRecord::Base
     if self.user.present?
       tags |= Array("Status: Joined CP")
 
-      if !self.metadata[:tags].nil? && self.metadata[:tags]..include?("Type: PFO")
+      if !self.metadata[:tags].nil? && self.metadata[:tags].include?("Type: PFO")
         tags |= Array("PFO1: Joined CP")
         tags |= Array("PFO2: Has Feed")
       end
