@@ -7,6 +7,10 @@ class Thank < ActiveRecord::Base
 
   scope :this_week, :conditions => ["created_at between ? and ?", DateTime.now.at_beginning_of_week, Time.now]
 
+  def community
+    self.thankable.community
+  end
+
   def replied_at
     self.updated_at
   end
