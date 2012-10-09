@@ -290,10 +290,10 @@ class Resident < ActiveRecord::Base
       end
     end
 
-    if !r.metadata[:todo].nil?
-      r.metadata[:todo] |= r.metadata[:add] - r.metadata[:remove]
+    if !r.metadata[:todos].nil?
+      r.metadata[:todos] |= r.metadata[:add] - r.metadata[:remove]
     else
-      r.metadata[:todo] = r.metadata[:add] - r.metadata[:remove]
+      r.metadata[:todos] = r.metadata[:add] - r.metadata[:remove]
     end
 
     if !r.metadata[:tags].nil?
