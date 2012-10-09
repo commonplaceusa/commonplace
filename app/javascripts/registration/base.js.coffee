@@ -99,7 +99,7 @@ CommonPlace.registration.RegistrationModal = CommonPlace.View.extend(
         )
 
     }[page]()
-    _kmq.push(['record', 'Registration: ' + page + ' page', {'community': self.community.get("name")}]) if _kmq?
+    _kmq.push(['record', 'Registration: ' + page + ' page', {'community': self.communityExterior.name}]) if _kmq?
     view.render()
 
   centerEl: ->
