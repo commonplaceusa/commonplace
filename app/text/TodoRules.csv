@@ -4,11 +4,11 @@ Push to Feed,PFO1: Joined CP,PFO2: Send Post-Join Followup and Transfer Feed,PFO
 Push to Post,PFO2: Has Feed,PFO3: Send Post-Feed Followup and Push to Post,PFO3: Posted to Feed,Next Tag: PFO3: Posted to Feed
 Push to PFO Partner,PFO3: Posted to Feed,PFO4: Send Post-Posting Followup and Push to Publicize and Join FoCP,Type: PFO Partner,Next Tag: Type: PFO Partner
 CL1: Push to Contacted,Type: Civic Leader,CL1: Send Phone Call Request Email,CL1: Contacted,Next Tag: CL1: Contacted
-CL2: Push to Connected,CL1: Contacted,"CL2: Log Response (and in 7 days, send reminder and tag non-response) ",CL2: Connected,"Next Tag: CL2: Connected, CL1x: Delayer, CL1x: Non-Responder, X: Referred Out"
-,,"CL2: Log Response (and in 7 days, send reminder and tag non-response) ",CL1x: Delayer,
-,,"CL2: Log Response (and in 7 days, send reminder and tag non-response) ",CL1x: Non-Responder,
-,,"CL2: Log Response (and in 7 days, send reminder and tag non-response) ",X: Referred Out,
-,,"CL2: Log Response (and in 7 days, send reminder and tag non-response) ",CL1x: Dead Email,
+CL2: Push to Connected,CL1: Contacted,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",CL2: Connected,"Next Tag: CL2: Connected, CL1x: Delayer, CL1x: Non-Responder, X: Referred Out"
+,,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",CL1x: Delayer,
+,,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",CL1x: Non-Responder,
+,,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",X: Referred Out,
+,,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",CL1x: Dead Email,
 CL1x: Push to Connected,CL1x: Delayer,CL1x: Check back with Delayer List,CL2: Connected,"Next Tag: CL2: Connected, X: Referred Out"
 ,,CL1x: Check back with Delayer List,X: Referred Out,
 CL1x: Push to Connected,CL1x: Non-Responder,CL1x: Check back with Non-Responder List,CL2: Connected,"Next Tag: CL2: Connected, CL1x: Delayer, X: Referred Out"

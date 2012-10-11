@@ -117,3 +117,21 @@ Type: Excited Neighbor Partner,
 Type: Library/CC,
 Type: Library/CC Partner,
 Type: Non-Leader,
+Type: Nominator,Automatically Tagged to a person who nominated in the Nomination Page
+Type: Nominator Complete,
+Type: Nominee,Automatically Tagged to a person inputted as a nominee in the Nomination Page
+Type: Opinionated Neighbor,
+Type: Opinionated Neighbor Partner,
+Type: PFO,
+Type: PFO Partner,
+Type: Press,
+Type: Press Partner,
+Type: PTA,
+Type: PTA Partner,
+Type: Student Organizer Recruiter,
+Type: Student Organizer Recruiter Partner,
+Type: Super Leader,
+Type: Super Leader Partner,
+X: Non-Leader Dead Email,
+X: Referred Out,Cancels all To-Dos
+X: Uninterested,Cancels all To-Dos

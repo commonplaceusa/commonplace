@@ -24,11 +24,12 @@ else
 
     next if h["To-Do"].nil?
 
-    todo = h["To-Do"].strip!
+    todo = h["To-Do"]
     should = h["Should Display If Has Tag:"]
 
     cant = h["Can't Display If Has Tag:"]
 
+    todo.strip!
     should.strip! if !should.nil?
     cant.strip! if !cant.nil?
 
