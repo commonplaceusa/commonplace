@@ -28,11 +28,9 @@ else
     should = h["Should Display If Has Tag:"]
 
     cant = h["Can't Display If Has Tag:"]
-    more_cant = h["Can't Display If Has Tag (2):"]
 
     should.strip! if !should.nil?
     cant.strip! if !cant.nil?
-    more_cant.strip! if !more_cant.nil?
 
     case h["To-Do Type"]
     when "Email"
@@ -53,15 +51,14 @@ else
       type = 8
     end
 
-    script = h["Notes"] if !h["Notes"].nil?
+    script = h["Script"] if !h["Script"].nil?
 
     Flag.create_todo(todo, type, should, cant)
     Flag.create_rule(todo, cant, nil) if !cant.nil?
-    Flag.create_rule(todo, more_cant, nil) if !more_cant.nil?
     Flag.create_rule(nil, should, todo) if !should.nil?
     Flag.create_script(todo, script) if !script.nil?
 
-    Flag.create_rule(todo, "Type: Uninterested", nil)
-    Flag.create_rule(todo, "Type: Timed Out", nil)
+    Flag.create_rule(todo, "X: Referred Out", nil)
+    Flag.create_rule(todo, "X: Uninterested", nil)
   end
 end

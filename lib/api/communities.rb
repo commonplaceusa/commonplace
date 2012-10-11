@@ -124,21 +124,20 @@ class API
                 @resident=true
             end
           when "flag"
-            #@ids=Flag.where(:name=>tag).map &:resident_id
-            @ids = []
-            residents = Resident.where(:community_id=>community_id)
-            residents.each do |r|
-              @ids << r.id if r.tags.include?(@tag['tag'])
-            end
             @resident=true
+
+            residents = find_community.residents.all
+            if haveornot == "yes"
+              residents.reject! { |x| !x.tags.include?(@tag['tag']) }.map { |x| x.id }
+            else
+              residents.reject! { |x| x.tags.include?(@tag['tag']) }.map { |x| x.id }
+            end
+
+            r = find_community.residents.where("id in (?)", residents)
+
+            return r
           when "interest"
             @ids=User.tagged_with(@tag['tag'],:on=>:interests).map {|a| a.id}.uniq
-          when "input"
-            @ids=Resident.tagged_with(@tag['tag'],:on=>:input_method).map {|a| a.id}.uniq
-            @resident=true
-          when "PFO"
-            @ids=Resident.tagged_with(@tag['tag'],:on=>:PFO_status).map {|a| a.id}.uniq
-            @resident=true
           when "type"
             @ids=Resident.tagged_with(@tag['tag'],:on=>:type_tags).map {|a| a.id}.uniq
             @resident=true
@@ -461,8 +460,6 @@ CONDITION
             if params[:count]
               serialize(r.count)
             else
-              r.map! { |res| res.id }
-              s = Resident.where("id in (?)", r)
 
               serialize(paginate(r).page(params[:page]).per(params[:per]).order("last_name ASC, first_name ASC"))
             end

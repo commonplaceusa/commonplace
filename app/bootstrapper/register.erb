@@ -89,7 +89,7 @@
     <%= erb :tracking %>
     <% if Rails.env.production? %>
       <script type="text/javascript">
-        _kmq.push(['record', 'Registration Page']);
+        _kmq.push(['record', 'Registration Page', {'community': '<%= @community.name %>'}]);
       </script>
     <% end %>
 

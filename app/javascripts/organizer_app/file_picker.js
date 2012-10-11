@@ -207,7 +207,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   afterRender: function() {
     $("#pg_num").text(page);
     $("#check-all").attr("checked", all_check);
-//    this.$("select.list").chosen()
 
     this.$("select.list").chosen().change({}, function() {
       var clickable = $(this).parent("li").children("div").children("ul");
@@ -344,7 +343,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
           this.collection.fetch({
             data: params,
             success: _.bind(this.afterRender, this),
-            error: function(attr, response) { alert(response) }
+            error: function(attr, response) { alert(response.responseText) }
           });
         }, this));
 
@@ -362,7 +361,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
         this.collection.fetch({
           data: params,
           success: _.bind(this.afterRender, this),
-          error: function(attr, response) { alert(response) }
+          error: function(attr, response) { alert(response.responseText) }
         });
         break;
     }

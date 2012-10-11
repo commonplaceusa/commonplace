@@ -76,15 +76,17 @@ class Resident < ActiveRecord::Base
     tags += self.metadata[:tags] if self.metadata[:tags]
 
     if self.user.present?
-      tags |= Array("Joined CP")
+      tags |= Array("Status: Joined CP")
+
+      if !self.metadata[:tags].nil? && self.metadata[:tags].include?("Type: PFO")
+        tags |= Array("PFO1: Joined CP")
+        tags |= Array("PFO2: Has Feed")
+      end
 
       r = self.user.referral_source
       tags << "Referral: " + r if !r.nil?
     end
-=begin
-    tags << "email" if self.email?
-    tags << "address" if self.address?
-=end
+
     tags
   end
 
@@ -126,12 +128,6 @@ class Resident < ActiveRecord::Base
   # Created via Organizer App
   def manual_add
     self.metadata[:todos] ||= []
-    if self.manually_added
-      self.add_tags("Status: Not Yet On Civic Heroes Track")
-      self.add_tags("Status: Not Yet On Supporter Track")
-      self.add_tags("Type: Leader On-Boarding Process")
-      self.add_tags("Type: Not Yet PFO/Non-PFO")
-    end
   end
 
   def todos
@@ -155,15 +151,8 @@ class Resident < ActiveRecord::Base
     metadata[:add] ||= []
 
     flags.each do |flag|
-      ignore = Flag.ignore_flag(flag)
-      if !ignore.nil? && metadata[:tags].include?(ignore)
-        next
-      end
       if !self.flags.find_by_name(flag)
         f = self.flags.create(:name => flag)
-        if replace = f.replace_flag
-          remove_tag(replace)
-        end
         if rule = Flag.get_rule(flag)
           metadata[:remove] |= rule[0]
           metadata[:add] |= rule[1]
@@ -230,12 +219,6 @@ class Resident < ActiveRecord::Base
 
     self.metadata[:todos] ||= []
     self.metadata[:tags] ||= []
-
-    # Don't add tags that have replacements
-    tags.each do |tag|
-      ignore = Flag.ignore_flag(tag)
-      tags.delete(tag) if !ignore.nil? && metadata[:tags].include?(ignore)
-    end
 
     # Edit todo list
     todos ||= add_flags(tags)
@@ -307,10 +290,10 @@ class Resident < ActiveRecord::Base
       end
     end
 
-    if !r.metadata[:todo].nil?
-      r.metadata[:todo] |= r.metadata[:add] - r.metadata[:remove]
+    if !r.metadata[:todos].nil?
+      r.metadata[:todos] |= r.metadata[:add] - r.metadata[:remove]
     else
-      r.metadata[:todo] = r.metadata[:add] - r.metadata[:remove]
+      r.metadata[:todos] = r.metadata[:add] - r.metadata[:remove]
     end
 
     if !r.metadata[:tags].nil?

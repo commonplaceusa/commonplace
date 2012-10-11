@@ -135,49 +135,6 @@ class Flag < ActiveRecord::Base
     end
   end
 
-  def self.ignore_flag(flag)
-    case flag
-    when "Status: Not Yet On Civic Heroes Track"
-      return "Status: On Civic Heroes Track"
-    when "Status: On Civic Heroes Track"
-      return "Status: Civic Heroes Track Graduate"
-    when "Status: Not Yet On Supporter Track"
-      return "Status: On Supporter Track"
-    when "Status: On Supporter Track"
-      return "Status: Supporter Track Graduate"
-    when "Type: Not Yet PFO/Non-PFO"
-      return "Type: Non-PFO", "Type: PFO"
-    end
-
-    nil
-  end
-
-  def replace_flag
-    case name
-    when "Status: Civic Heroes Track Graduate"
-      return "Status: On Civic Heroes Track"
-    when "Status: On Civic Heroes Track"
-      return "Status: Not Yet On Civic Heroes Track"
-    when "Status: Supporter Track Graduate"
-      return "Status: On Supporter Track"
-    when "Status: On Supporter Track"
-      return "Status: Not Yet On Supporter Track"
-    when "Type: Non-PFO", "Type: PFO"
-      return "Type: Not Yet PFO/Non-PFO"
-    end
-
-    nil
-  end
-
-  def extra_flag
-    case name
-    when "Type: Leader", "Type: Non-Leader Email List", "Type: Nominee", "Type: Nominator", "Type: Independent Feed Owner"
-      return "Type: Leader On-Boarding Process"
-    end
-
-    nil
-  end
-
   def self.clear
     @@rules = {}
     @@todos = {}
