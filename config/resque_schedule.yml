@@ -1,18 +1,25 @@
 # NOTE: All times are in server time.
 
 send_daily_digest: #cron job to send the daily bulletin
-  cron: "00 21 * * *"
+  cron: "45 11 * * *"
   class: DailyDigestJob
   args:
   queue: daily_digest
   description: "Sends daily digest"
 
-send_single_post: #cron job to send the single post emails
-  cron: "00 01,06 * * *"
+send_single_post: #cron job to send the single post emails at 12pm EST
+  cron: "45 15 * * *"
   class: SinglePostEmailJob
   args:
   queue: single_post
-  description: "Sends single post email"
+  description: "Sends single post email at 12pm EST"
+
+send_single_post: #cron job to send the single post emails at 5pm EST
+  cron: "45 20 * * *"
+  class: SinglePostEmailJob
+  args:
+  queue: single_post
+  description: "Sends single post email at 5pm EST"
 
 import_feeds_rss:
   cron: "00 * * * *"
@@ -36,14 +43,14 @@ recalculate_cp_credits:
   description: "Checks for invalidated users and recalculates their CP Credits"
 
 scale_up_for_daily_digest:
-  cron: "45 20 * * *"
+  cron: "30 11 * * *"
   class: HerokuResque::NotificationWorkerScaler
   args: 50
   queue: server_management
   description: "Ramps up available dynos for daily digest mailings"
 
 scale_down_post_daily_digest:
-  cron: "45 21 * * *"
+  cron: "30 12 * * *"
   class: HerokuResque::NotificationWorkerScaler
   args: 2
   queue: server_management
