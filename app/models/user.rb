@@ -575,7 +575,7 @@ WHERE
   # helped if a user decides to be pathological
   def address_correlate
     return nil unless (self.community.respond_to?(:launch_date) && Community.find_by_name("Lexington").respond_to?(:launch_date))
-    return nil if self.community.launch_date < Community.find_by_name("Lexington").launch_date
+    return nil if self.community.launch_date.to_date < Community.find_by_name("Lexington").launch_date.to_date
     likeness = 0.94
     addr = []
     street = self.community.street_addresses
@@ -712,10 +712,9 @@ WHERE
       end
 
       r.user = self
-      #r.registered
       r.save
     else
-      r= Resident.create(
+      r = Resident.create(
         :community => self.community,
         :first_name => self.first_name,
         :last_name => self.last_name,
@@ -724,11 +723,6 @@ WHERE
         :street_address => addr,
         :user => self,
         :community_id => self.community_id)
-      r.add_tags(addr.carrier_route) if !addr.nil?
-      #r.registered
-      r.update_attribute(:community_id,self.community_id)
-      r.update_attribute(:community,self.community)
-      r.save
     end
   end
 

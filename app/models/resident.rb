@@ -87,6 +87,10 @@ class Resident < ActiveRecord::Base
       tags << "Referral: " + r if !r.nil?
     end
 
+    if self.street_address.present?
+      tags |= Array(self.street_address.carrier_route)
+    end
+
     tags
   end
 
@@ -297,7 +301,7 @@ class Resident < ActiveRecord::Base
     end
 
     if !r.metadata[:tags].nil?
-      r.metadata[:tags] |= self.metadata[:tags]
+      r.metadata[:tags] |= self.metadata[:tags] if !self.metadata[:tags].nil?
     else
       r.metadata[:tags] = self.metadata[:tags]
     end
