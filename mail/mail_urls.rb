@@ -80,6 +80,18 @@ module MailUrls
     community_url("/message/users/#{id}")
   end
 
+  def list_posts_url
+    community_url("/list/posts")
+  end
+
+  def list_events_url
+    community_url("/list/events")
+  end
+
+  def list_announcements_url
+    community_url("/list/announcements")
+  end
+
   def subscribe_url
     community_url("/list/feeds")
   end
@@ -125,7 +137,7 @@ module MailUrls
   end
 
   def facebook_url
-    "http://www.facebook.com/ourcommonplace"
+    url("http://www.facebook.com/ourcommonplace")
   end
 
   def twitter_icon_url
@@ -133,7 +145,7 @@ module MailUrls
   end
 
   def twitter_url
-    "http://twitter.com/commonplacehq"
+    url("http://twitter.com/commonplacehq")
   end
 
   def header_image_url

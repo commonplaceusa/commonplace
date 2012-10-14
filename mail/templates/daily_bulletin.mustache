@@ -80,7 +80,7 @@
                               <table width="650" cellpadding="25" cellspacing="0" border="0" class="section_container">
                                 <tr>
                                   <td width="100%">                      
-                                    <img src="{{post_icon_url}}" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}posts-section-title{{/t}}</strong></span>	
+                                    <a href="{{list_posts_url}}"><img src="{{post_icon_url}}" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}posts-section-title{{/t}}</strong></span></a>
                                   </td>
                                 </tr>
                               </table>	
@@ -97,7 +97,7 @@
                                               <td class="avatar" height="110" valign="top"><img src={{avatar_url}} alt="User Avatar" width="50" height="50"></td>
                                               <td class="post_content">
                                                 <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
-                                                <p class="author" style="color:#1b334a;"><strong>{{author}}</strong></p>
+                                                <p class="author" style="color:#1b334a;"><a href="{{author_url}}"><strong>{{author}}</strong></a></p>
                                                 <p class="body">{{body}}</p>
                                                 {{#replies}}
                                                 <div class="reply-separator"></div>
@@ -107,7 +107,7 @@
                                                       <img src="{{avatar_url}}" width="25" height="25">
                                                     </td>
                                                     <td class="author" style="font-weight: bold;">
-                                                      <strong>{{author}}</strong>
+                                                      <a href="{{author_url}}"><strong>{{author}}</strong></a>
                                                     </td>
                                                   </tr>
                                                   <tr>
@@ -149,7 +149,7 @@
                                 <tr>
                                   <td><div class="post-separator"></div></td>
                                   <td width="100%">                      
-                                    <img src="{{event_icon_url}}" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}events-section-title{{/t}}</strong></span>	
+                                    <a href="{{list_events_url}}"><img src="{{event_icon_url}}" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}events-section-title{{/t}}</strong></span></a>
                                   </td>
                                 </tr>
                               </table>	
@@ -174,7 +174,7 @@
                                               </td>
                                               <td class="post_content">
                                                 <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
-                                                <p class="author" style="color:#1b334a; font-weight: bold;"><strong>{{author}}</strong></p>
+                                                <p class="author" style="color:#1b334a; font-weight: bold;"><a href="{{author_url}}"><strong>{{author}}</strong></a></p>
                                                 <p class="body">{{body}}</p>
                                                 <p>
                                                   {{#venue}}<span class="info">Venue:</span> {{venue}}<br>{{/venue}}
@@ -189,7 +189,7 @@
                                                       <img src="{{avatar_url}}" width="25" height="25">
                                                     </td>
                                                     <td class="author" style="font-weight: bold;">
-                                                      {{author}}
+                                                      <a href="{{author_url}}"><strong>{{author}}</strong></a>
                                                     </td>
                                                   </tr>
                                                   <tr>
@@ -232,7 +232,7 @@
                                 <tr>
                                   <td><div class="post-separator"></div></td>
                                   <td width="100%">                      
-                                    <img src="{{announcement_icon_url}}" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}announcements-section-title{{/t}}</strong></span>	
+                                    <a href="{{list_announcements_url}}"><img src="{{announcement_icon_url}}" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}announcements-section-title{{/t}}</strong></span></a>
                                   </td>
                                 </tr>
                               </table>	
@@ -249,7 +249,7 @@
                                               <td class="avatar" height="110" valign="top"><img src={{avatar_url}} alt="User Avatar" width="50" height="50"></td>
                                               <td class="post_content">
                                                 <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
-                                                <p class="author" style="color:#1b334a; font-weight: bold;"><strong>{{author}}</strong></p>
+                                                <p class="author" style="color:#1b334a; font-weight: bold;"><a href="{{author_url}}"><strong>{{author}}</strong></a></p>
                                                 <p class="body">{{body}}</p>
 
                                                 {{#replies}}
@@ -260,7 +260,7 @@
                                                       <img src="{{avatar_url}}" width="25" height="25">
                                                     </td>
                                                     <td class="author" style="font-weight: bold;">
-                                                      {{author}}
+                                                      <a href="{{author_url}}"><strong>{{author}}</strong></a>
                                                     </td>
                                                   </tr>
                                                   <tr>
@@ -313,7 +313,7 @@
                                         <td valign="top" class="footershow">
                                         <div class="post-separator"></div>
                                         <p class="website"><a href="{{settings_url}}"><span>Change my email settings</span></a> | <a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></p>
-                                        <p class="social-media">Follow us: <img src="{{facebook_icon_url}}" width="20" height="20" alt="Facebook" /> <img src="{{twitter_icon_url}}" width="20" height="20" alt="Twitter" /></span>
+                                        <p class="social-media">Follow us: <a href="{{facebook_url}}"><img src="{{facebook_icon_url}}" width="20" height="20" alt="Facebook" /></a> <a href="{{twitter_url}}"><img src="{{twitter_icon_url}}" width="20" height="20" alt="Twitter" /></a></span>
                                     </td></tr>
                                   </table><!--End footer-->
                                 </td>

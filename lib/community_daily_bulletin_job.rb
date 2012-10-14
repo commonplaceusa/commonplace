@@ -45,6 +45,10 @@ class CommunityDailyBulletinJob
     CommunityDailyBulletinJob.community_url(community, "/message/users/#{id}")
   end
 
+  def self.show_user_url(community, id)
+    CommunityDailyBulletinJob.community_url(community, "/show/users/#{id}")
+  end
+
   def self.perform(community_id, date)
     kickoff = KickOff.new
     community = Community.find(community_id)
@@ -57,10 +61,12 @@ class CommunityDailyBulletinJob
         post['replies'].each do |reply|
           reply['published_at'] = reply['published_at'].strftime("%l:%M%P")
           reply['avatar_url'] = CommunityDailyBulletinJob.asset_url(reply['avatar_url'])
+          reply['author_url'] = CommunityDailyBulletinJob.show_user_url(community, reply['author_id'])
         end
         post['avatar_url'] = CommunityDailyBulletinJob.asset_url(post['avatar_url'])
         post['url'] = CommunityDailyBulletinJob.show_post_url(community, post['id'])
         post['new_message_url'] = CommunityDailyBulletinJob.message_user_url(community, post['user_id'])
+        post['author_url'] = CommunityDailyBulletinJob.show_user_url(community, post['user_id'])
       end
     end
 
@@ -69,9 +75,11 @@ class CommunityDailyBulletinJob
         announcement['replies'].each {|reply| 
           reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
           reply['avatar_url'] = CommunityDailyBulletinJob.asset_url(reply['avatar_url'])
+          reply['author_url'] = CommunityDailyBulletinJob.show_user_url(community, reply['author_id'])
         }
         announcement['avatar_url'] = CommunityDailyBulletinJob.asset_url(announcement['avatar_url'])
         announcement['url'] = CommunityDailyBulletinJob.show_announcement_url(community, announcement['id'])
+        announcement['author_url'] = CommunityDailyBulletinJob.show_user_url(community, announcement['user_id'])
       end
     end
 
@@ -80,10 +88,12 @@ class CommunityDailyBulletinJob
         event['replies'].each {|reply| 
           reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
           reply['avatar_url'] = CommunityDailyBulletinJob.asset_url(reply['avatar_url'])
+          reply['author_url'] = CommunityDailyBulletinJob.show_user_url(community, reply['author_id'])
         }
         event["short_month"] = event['occurs_on'].strftime("%b")
         event["day"] = event['occurs_on'].strftime("%d")
         event['url'] = CommunityDailyBulletinJob.show_event_url(community, event['id'])
+        event['author_url'] = CommunityDailyBulletinJob.community_url(community, event['links']['author'])
       end
     end
 
