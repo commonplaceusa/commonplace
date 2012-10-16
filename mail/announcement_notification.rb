@@ -1,26 +1,24 @@
 class AnnouncementNotification < PostNotification
   
+  self.template_file = PostNotification.template_file
+
   def initialize(announcement_id, user_id)
     @announcement, @user = Announcement.find(announcement_id), User.find(user_id)
   end
 
   def subject
-    "#{poster_name} just posted an announcement to CommonPlace"
+    "#{author_name} just posted an announcement to CommonPlace"
   end
 
-  def announcement
+  def post
     @announcement
   end
 
   def reply_to
-    "reply+announcement_#{announcement.id}@ourcommonplace.com"
+    "reply+announcement_#{post.id}@ourcommonplace.com"
   end
 
-  def user
-    @user
-  end
-
-  def poster
+  def author
     @announcement.owner
   end
 
@@ -32,45 +30,33 @@ class AnnouncementNotification < PostNotification
     community.name
   end
 
-  def poster_name
-    poster.name
-  end
-
-  def short_poster_name
-    case poster
-    when User then poster.first_name
-    when Feed then poster.name
+  def short_author_name
+    case author
+    when User then author.first_name
+    when Feed then author.name
     end
   end
 
-  def announcement_url
-    community_url("/show/announcement/#{announcement.id}")
+  def post_url
+    show_announcement_url(post.id)
   end
 
   def new_message_url
-    case poster
-    when User then url("/message/user/#{poster.id}")
-    when Feed then url("/message/feed/#{poster.id}")
+    case author
+    when User then message_user_url(author.id)
+    when Feed then message_feed_url(author.id)
     else root_url
     end
   end
 
-  def announcement_subject
-    announcement.subject
+  def author_avatar_url
+    author.avatar_url
   end
 
-  def announcement_body
-    markdown(announcement.body)
-  end
-
-  def poster_avatar_url
-    poster.avatar_url
-  end
-
-  def poster_url
-    case poster
-    when User then url("/users/#{poster.id}")
-    when Feed then url("/feeds/#{poster.id}")
+  def author_url
+    case author
+    when User then show_user_url(author.id)
+    when Feed then show_feed_url(author.id)
     else root_url
     end
   end
