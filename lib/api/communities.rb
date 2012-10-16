@@ -113,7 +113,11 @@ class API
                 @events=Event.where(:owner_type=>"Feed").map {|a| a.owner_id}.uniq
                 @ids+=Event.where(:id=>@events).map {|a|a.user_id}.uniq
               when "reply"
-                @ids=Reply.all.map {|a| a.user_id}.uniq
+                @ids = find_community.users.where("replies_count > 0").reorder("replies_count DESC")
+
+                r = find_community.residents.where("user_id in (?)", @ids)
+
+                return r
               when "replied"
                 @postsids=Reply.all.map {|a| a.repliable_id}.uniq
                 @ids=Post.where(:id=>@postsids).map {|a| a.user_id}.uniq
@@ -304,10 +308,10 @@ class API
               @residents=User.where("residents.community_id = ? and users.posts_count <> ?",community_id,0).order("posts_count DESC").map &:resident
             end
           when "reply"
-            if ids[:userids].size>0
-              @residents=User.where("users.id in (?) AND residents.community_id = ? AND users.replies_count <> ?",ids[:userids],community_id,0).order("replies_count DESC").map &:resident
+            if ids[:userids].size > 0
+              @residents = User.where("users.id in (?)",ids[:userids]).order("replies_count DESC").map &:resident
             else
-              @residents=User.where("residents.community_id = ? and users.replies_count <> ?",community_id,0).order("replies_count DESC").map &:resident
+              @residents = User.where("residents.community_id = ? and users.replies_count <> ?",community_id,0).order("replies_count DESC").map &:resident
             end
           when "sitevisit"
             if ids[:userids].size>0

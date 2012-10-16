@@ -87,10 +87,6 @@ class Resident < ActiveRecord::Base
       tags << "Referral: " + r if !r.nil?
     end
 
-    if self.street_address.present?
-      tags |= Array(self.street_address.carrier_route)
-    end
-
     tags
   end
 
@@ -306,8 +302,10 @@ class Resident < ActiveRecord::Base
       r.metadata[:tags] = self.metadata[:tags]
     end
 
-    self.metadata[:tags].each do |tag|
-      r.add_tags(tag)
+    if !self.metadata[:tags]
+      self.metadata[:tags].each do |tag|
+        r.add_tags(tag)
+      end
     end
 
     r.sector_tag_list |= self.sector_tag_list
@@ -316,7 +314,7 @@ class Resident < ActiveRecord::Base
     r.PFO_statu_list |= self.PFO_statu_list
     r.organizer_list |= self.organizer_list
 
-    r.email = self.email if r.email.blank? && !self.email.blank?
+    r.email << (", " + self.email) if r.email.blank? && !self.email.blank?
     r.phone = self.phone if r.phone.blank? && !self.phone.blank?
     r.organization = self.organization if r.organization.blank? && !self.organization.blank?
     r.position = self.position if r.position.blank? && !self.position.blank?

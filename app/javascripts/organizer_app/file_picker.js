@@ -215,8 +215,10 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
 
     var deferred = $.Deferred();
     deferred.resolve(this.renderList(this.collection.models));
+    this.$("#total").text(total);
+    this.$("#amount").text(this.collection.models.length);
     //this.$("#amount").text(this.collection.models.length);
-    deferred.done(this.produceOrdertags());
+    //deferred.done(this.produceOrdertags());
   },
 
   renderList: function(list) {
@@ -380,8 +382,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
   },
 
   produceOrdertags: function(){
-    this.$("#total").text(total);
-    this.$("#amount").text(this.collection.models.length);
     var obj = this.$("#order-tags").empty();
     _.map(this.collection.commontags(),function(tag){
       this.$("#order-tags").append('<option value='+tag+'>'+tag+'</option>');
