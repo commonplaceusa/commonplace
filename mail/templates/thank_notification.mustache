@@ -33,11 +33,11 @@
                                 <tbody>
                                   <tr>
                                     <td>
-                                      <div class="p">Good news!</div>
+                                      <div class="p">Hi, {{short_user_name}},</div>
 
-                                      <div class="p">Your neighbor <a href="{{thanker_profile_url}}"><span>{{thanker_name}}</span></a> just thanked you on CommonPlace for your {{thanked_for}}.</div>
+                                      <div class="p">Your neighbor <a href="{{neighbor_profile_url}}"><span>{{neighbor_name}}</span></a> {{content}}{{#has_content_url}}<a href="{{content_url}}"><span>{{content_url_text}}</span></a>{{/has_content_url}}{{extra_content}}</div>
 
-                                      <div class="p">Regards,<br>The CommonPlace Team</div>
+                                      <div class="p">Regards,<br>The OurCommonPlace Team</div>
 
                                     </td>
                                   </tr>
@@ -57,7 +57,7 @@
                           <tr>
                            <td valign="top">
                              <div class="p copy"><a href="{{settings_url}}"><span>Change my email settings</span></a> | <a href="{{root_url}}"><span>{{community_slug}}.OurCommonPlace.com</span></a></div>
-                             <p class="social-media">Join us on: <img src="{{facebook_icon_url}}" width="20" height="20" alt="Facebook" class="Facebook"/> <img src="{{twitter_icon_url}}" width="20" height="20" alt="Twitter" class="Twitter"/></span>
+                            <p class="social-media">Follow us: <a href="{{facebook_url}}"><img src="{{facebook_icon_url}}" width="20" height="20" alt="Facebook" /></a> <a href="{{twitter_url}}"><img src="{{twitter_icon_url}}" width="20" height="20" alt="Twitter" /></a></span>
                           </td>
                         </tr>
                       </table>

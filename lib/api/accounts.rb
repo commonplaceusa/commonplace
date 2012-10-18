@@ -233,6 +233,7 @@ class API
       control_access :community_member, user.community
 
       current_user.people << user
+      kickoff.deliver_met_notification(user.id, current_user.id)
       serialize(Account.new(current_user))
     end
 
