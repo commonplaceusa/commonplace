@@ -99,14 +99,13 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
   initReferralQuestions: ->
     @$("select[name=referral_source]").bind "change", _.bind(->
       question =
-        "At a table or booth at an event": "What was the event?"
-        "In an email": "Who was the email from?"
-        "On Facebook or Twitter": "From what person or organization?"
-        "On another website": "What website?"
-        "In the news": "From which news source?"
-        "Word of mouth": "From what person or organization?"
-        "Flyer from a business or organization": "Which business or organization?"
-        Other: "Where?"
+        "On Facebook": "From who?"
+        "Postcard at a business": "What business?"
+        "Through a neighbor": "From who?"
+        "In an email": "From who?"
+        "In the news": "What news source?"
+        "From another website": "Which one?"
+        "Other": "Where?"
       [@$("select[name=referral_source] option:selected").val()]
       if question
         @$("input[name=referral_metadata]").attr("placeholder", question)

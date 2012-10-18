@@ -86,15 +86,13 @@ class CommunityExterior
       ]
     else
       [
-        "Received a flyer in the mail",
-        "Received a postcard from a local business",
-        "From the Civic Heroes Blog",
-        "In an email",
-        "By word of mouth",
-        "In the news",
         "On Facebook",
-        "On Twitter",
-        "At an event",
+        "Postcard at a business",
+        "Flyer in the mail",
+        "Through a neighbor",
+        "In an email",
+        "In the news",
+        "From another website",
         "Other"
       ]
     end
