@@ -104,7 +104,12 @@ SOR1x: Non-Responder,
 SOR2: Connected,
 SOR3: Call Scheduled,
 SOR4: Call Held,
+Status: Wants Leaderpack,
+Status: Wants Email Blurb,
+Status: Wants to join Friends of OurCommonPlace,
 Status: Friend of OurCommonPlace,
+Status: Email Blurb Sent,
+Status: Leaderpack Sent,
 Status: Leaderpack Sent,
 Status: Has Feed,Everyone who has a feed should have this
 Status: Joined CP,Everyone who has registered should have this

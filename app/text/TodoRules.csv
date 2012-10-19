@@ -170,3 +170,6 @@ ON3: Push to Call Scheduled,ON2: Connected,ON3: Scheduled Call,ON3: Call Schedul
 ON4: Push to Call Held,ON3: Call Scheduled,ON4: Prep and Hold Call,ON4: Call Held,Next Tag: ON4: Call Held
 ON5: Push to Ask Answered,ON4: Call Held,"Send Post-Call Email, Send Leaderpack, Add to Friends of CommonPlace",Type: Opinionated Neighbor Partner,Next Tag: Type: Opinionated Neighbor Partner
 Special To-Do,Q: Do Special To-Do,Q: Special To-Do,Q: Completed Special To-Do,Next Tag: Q: Completed Special To-Do
+Special To-Do,Send Leaderpack,Status: Wants Leaderpack,Status: Leaderpack Sent,Status: Leaderpack Sent
+Special To-Do,Send Email Blurb,Status: Wants Email Blurb,Status: Email Blurb Sent,Next Tag: Status: Email Blurb Sent
+Special To-Do,Add to Friends of CommonPlace,Status: Wants to join Friends of OurCommonPlace,Status: Friend of OurCommonPlace,Status: Friend of OurCommonPlace
