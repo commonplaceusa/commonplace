@@ -1,5 +1,6 @@
 module Trackable
   def track_posted_content
+    KM.record("Posted: #{self.class.name}", {'community' => self.community.name || "No Community"})
     KM.record('posted content', {'content type' => self.class.name, 'community' => self.community.name})
   end
 
