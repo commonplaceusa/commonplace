@@ -8,7 +8,6 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
   afterRender: ->
     @hasAvatarFile = false
     @initReferralQuestions()
-    @$("select.dk").dropkick()
     $("#current-registration-page").html @el
     @$("input[placeholder]").placeholder()
     url = "/api/communities/" + @communityExterior.id + "/address_completions"
@@ -97,20 +96,23 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
     @communityExterior.referral_sources
 
   initReferralQuestions: ->
-    @$("select[name=referral_source]").bind "change", _.bind(->
-      question =
-        "On Facebook": "From who?"
-        "Postcard at a business": "What business?"
-        "Through a neighbor": "From who?"
-        "In an email": "From who?"
-        "In the news": "What news source?"
-        "From another website": "Which one?"
-        "Other": "Where?"
-      [@$("select[name=referral_source] option:selected").val()]
-      if question
-        @$("input[name=referral_metadata]").attr("placeholder", question)
-        @$("#referral_metadata").show()
-      else
-        @$("#referral_metadata").hide()
-    , this)
+    @$("#referral_metadata").hide()
+    @$("select.dk").dropkick(
+      change: _.bind((value, label)->
+        question =
+          "On Facebook": "From who?"
+          "Postcard at a business": "What business?"
+          "Through a neighbor": "From who?"
+          "In an email": "From who?"
+          "In the news": "What news source?"
+          "From another website": "Which one?"
+          "Other": "Where?"
+        meta = question[value]
+        if meta
+          @$("input[name=referral_metadata]").attr("placeholder", meta)
+          @$("#referral_metadata").show()
+        else
+          @$("#referral_metadata").hide()
+      , this)
+    )
 )
