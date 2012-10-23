@@ -53,7 +53,7 @@ class SiteController < ApplicationController
   end
 
   def info
-    render layout: nil unless request.try(:location).try(:latitude).present? and request.try(:location).try(:longitude).present?
+    render layout: nil and return unless request.try(:location).try(:latitude).present? and request.try(:location).try(:longitude).present?
     unless params[:locate] == "false"
       # Get user's location from IP Address
       # Send them to the right community's about page
