@@ -23,6 +23,10 @@ class NewFeedSubscriberNotification < MailBase
     @feed
   end
 
+  def to
+    owner.email
+  end
+
   def town_name
     community.name
   end
