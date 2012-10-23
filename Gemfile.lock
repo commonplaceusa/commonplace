@@ -107,6 +107,9 @@ GEM
       activesupport (>= 3.0.0)
       rack (>= 1.1.0)
     addressable (2.2.8)
+    airbrake (3.1.2)
+      activesupport
+      builder
     amatch (0.2.10)
       tins (~> 0.3)
     amazon-ec2 (0.9.17)
@@ -513,6 +516,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 2.3.1)
   acts_as_api
+  airbrake
   amatch
   amazon-ec2
   aws-s3

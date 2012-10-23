@@ -72,8 +72,8 @@ class CommunityDailyBulletinJob
 
     announcements = community.announcements.between(yesterday, date).map do |announcement|
       Serializer::serialize(announcement).tap do |announcement|
-        announcement['replies'].each {|reply| 
-          reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
+        announcement['replies'].each {|reply|
+          reply['published_at'] = reply['published_at'].strftime("%l:%M%P")
           reply['avatar_url'] = CommunityDailyBulletinJob.asset_url(reply['avatar_url'])
           reply['author_url'] = CommunityDailyBulletinJob.show_user_url(community, reply['author_id'])
         }
@@ -85,8 +85,8 @@ class CommunityDailyBulletinJob
 
     events = community.events.between(date, date.advance(:weeks => 1)).map do |event|
       Serializer::serialize(event).tap do |event|
-        event['replies'].each {|reply| 
-          reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
+        event['replies'].each {|reply|
+          reply['published_at'] = reply['published_at'].strftime("%l:%M%P")
           reply['avatar_url'] = CommunityDailyBulletinJob.asset_url(reply['avatar_url'])
           reply['author_url'] = CommunityDailyBulletinJob.show_user_url(community, reply['author_id'])
         }
@@ -101,10 +101,23 @@ class CommunityDailyBulletinJob
     weather = barometer.measure
 
     community.users.receives_daily_bulletin.each do |user|
-      Exceptional.rescue do
-        kickoff.deliver_daily_bulletin(user.id, date, posts, announcements, events, weather.default)
+      begin
+        parameters = {
+          user_id: user.id,
+          date: date,
+          posts: posts,
+          announcements: announcements,
+          events: events,
+          weather: weather.default
+        }
+        kickoff.deliver_daily_bulletin(parameters[:user_id], parameters[:date], parameters[:posts], parameters[:announcements], parameters[:events], parameters[:weather])
+      rescue => ex
+        Airbrake.notify_or_ignore(
+          :error_class   => "Error Sending Daily Bulletin",
+          :error_message => "Could not send to #{user.email}: #{e.message}",
+          :parameters    => parameters
+        )
       end
     end
   end
-
 end
