@@ -7,6 +7,9 @@ class UsersOmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       @_community = Community.find_by_slug(cookies[:commonplace_community_slug]) if cookies[:commonplace_community_slug].present?
       @_community = Community.find(session["devise.community"]) if session["devise.community"].present?
+      unless @_community.present?
+        redirect_to root_url
+      end
       user = User.new_from_facebook({:community_id => @_community.id}, env["omniauth.auth"])
       user.save
       warden.set_user(user, :scope => :user)

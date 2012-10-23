@@ -411,7 +411,7 @@ class Resident < ActiveRecord::Base
       stories.each do |story|
         if story.id!=self.last_examined_story
           if story.content?
-            if story.content.include?(self.first_name+" "+self.last_name)
+            if story.content.include?((self.first_name || "")+" "+(self.last_name || ""))
               puts story.title
               new_stories << {"story_url"=>story.url,"title"=>story.title,"summary"=>story.summary}
               time << story.created_at

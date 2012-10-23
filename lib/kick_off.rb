@@ -173,7 +173,7 @@ class KickOff
   end
 
   def deliver_single_post_email(user_id, post)
-    enqueue(PostNotification, post.id, user_id)
+    enqueue(PostNotification, post.id, user_id) if post.present? and post.try(:id).present? and user_id.present?
   end
 
   def deliver_feed_owner_welcome(feed)
