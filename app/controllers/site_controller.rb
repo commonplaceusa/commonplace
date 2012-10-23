@@ -7,7 +7,7 @@ class SiteController < ApplicationController
   def terms ; end
 
   def about
-    render layout: nil unless request.location.latitude.present? and request.location.longitude.present?
+    render layout: nil and return unless request.try(:location).try(:latitude).present? and request.try(:location).try(:longitude).present?
     unless params[:locate] == "false"
       # Get user's location from IP Address
       # Send them to the right community's about page
@@ -46,7 +46,7 @@ class SiteController < ApplicationController
 
         redirect_to "/#{closest_community[:slug]}/about" and return
       rescue => ex
-        raise "#{ex.message}. REQUEST LOCATION: #{request.location.inspect}"
+        render layout: nil and return
       end
     end
     render layout: nil
