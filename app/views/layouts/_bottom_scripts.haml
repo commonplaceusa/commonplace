@@ -1,12 +1,5 @@
 
 - if Rails.env.production?
-  -# Mixpanel metrics
-  - if current_user.try(:email).present?
-    :javascript
-      mpq.identify("#{current_user.email}");
-      mpq.register({'email': '#{current_user.email}', 'community': '#{current_community.slug}', 'referral_source': '#{current_user.referral_source ? current_user.referral_source.gsub("'","") : ''}'});
-      mpq.name_tag("#{current_user.full_name} - #{current_user.email}");
-
   -# Chartbeat
   :javascript
     var _sf_async_config={uid:25400,domain:"ourcommonplace.com"};
@@ -26,4 +19,4 @@
           loadChartbeat : function() { oldonload(); loadChartbeat(); };
       })();
 
-  
+

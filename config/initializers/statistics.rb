@@ -1,4 +1,3 @@
-$MixpanelAPIToken = ENV['mixpanel_token']
 $MailgunAPIToken = ENV['mail_api_key']
 $MailgunAPIDomain = ENV['mail_domain']
 
