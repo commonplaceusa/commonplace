@@ -78,6 +78,7 @@ gem 'exceptional' # we use this to notify on exceptions
 gem 'airbrake'
 gem 'rpm_contrib' # we use this to monitor the app
 gem 'newrelic_rpm' # we use this to monitor the app
+gem 'guardrail_notifier' # catch validation errors
 
 # Features
 gem 'rollout' # we use this to control features

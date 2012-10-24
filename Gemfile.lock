@@ -238,6 +238,7 @@ GEM
     guard-spork (0.5.2)
       guard (>= 0.10.0)
       spork (>= 0.8.4)
+    guardrail_notifier (0.2.12)
     haml (3.1.4)
     hashie (1.2.0)
     heroku (2.28.7)
@@ -550,6 +551,7 @@ DEPENDENCIES
   guard-rspec
   guard-sass
   guard-spork
+  guardrail_notifier
   haml (~> 3.1)
   heroku
   heroku_san!
