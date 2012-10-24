@@ -149,6 +149,12 @@ class MailBase < Mustache
                             "X-Mailgun-Campaign-Id" => community ? community.slug : "administrative",
                             "X-Mailgun-Tag" => self.tag
                           })
+      KM.identify('resque_worker')
+      KM.record('email sent', {
+        type: self.tag,
+        community: community ? community.slug : "administrative",
+        recipient: self.to
+      })
     end
   end
 
