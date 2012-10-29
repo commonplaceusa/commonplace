@@ -157,6 +157,9 @@ class KickOff
     enqueue(Welcome, user.id)
   end
 
+  def deliver_safety_email(user_id)
+    enqueue(SafetyAnnouncement, user_id)
+  end
 
   def deliver_password_reset(user)
     enqueue(PasswordReset, user.id)

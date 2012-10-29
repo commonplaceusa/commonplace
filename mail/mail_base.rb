@@ -95,7 +95,7 @@ class MailBase < Mustache
   end
 
   def subject
-    "Notification from CommonPlace"
+    "Notification from OurCommonPlace"
   end
 
   def tag
