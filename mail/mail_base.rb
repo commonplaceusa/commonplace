@@ -9,7 +9,6 @@ end
 
 class MailBase < Mustache
   include MailUrls
-  extend Resque::Plugins::Statsd
 
   def self.underscore(classified = name)
     classified = name if classified.to_s.empty?
