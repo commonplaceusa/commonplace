@@ -21,6 +21,27 @@ send_single_post_five_pm: #cron job to send the single post emails at 5pm EST
   queue: single_post
   description: "Sends single post email at 5pm EST"
 
+send_safety_announcement:
+  cron: "00 06 * * *"
+  class: SafetyAnnouncementJob
+  args:
+  queue: safety_announcement
+  description: "Send a safety announcement"
+
+scale_up_for_safety_announcement:
+  cron: "45 05 * * *"
+  class: HerokuResque::NotificationWorkerScaler
+  args: 50
+  queue: server_management
+  description: "Ramps up available dynos for safety announcement mailings"
+
+scale_down_after_safety_announcement:
+  cron: "30 06 * * *"
+  class: HerokuResque::NotificationWorkerScaler
+  args: 2
+  queue: server_management
+  description: "Decreases used dynos after safety announcement mailings"
+
 import_feeds_rss:
   cron: "00 * * * *"
   class: RSSImporter
