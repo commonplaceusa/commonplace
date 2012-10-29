@@ -1,15 +1,15 @@
 uri = if Rails.env.development?
         URI.parse("localhost:6379")
-      elsif ENV["REDISTOGO_URL"].present?
-        URI.parse(ENV["REDISTOGO_URL"])
+      elsif ENV["OPENREDIS_URL"].present?
+        URI.parse(ENV["OPENREDIS_URL"])
       else
         ""
       end
 
 if uri.present?
-  $rollout = Rollout.new(Redis.new(:host => uri.host, 
-                                   :port => uri.port, 
-                                   :password => uri.password, 
+  $rollout = Rollout.new(Redis.new(:host => uri.host,
+                                   :port => uri.port,
+                                   :password => uri.password,
                                    :thread_safe => true))
   $rollout.define_group(:alpha) do |user|
     user.community.slug == "CommonPlace" or user.community.slug == "test"
@@ -20,7 +20,7 @@ if uri.present?
   end
 
   $rollout.define_group(:fallschurch) do |user|
-    user.community.slug == "fallschurch" 
+    user.community.slug == "fallschurch"
   end
 
   $rollout.define_group(:discount) do |user|
