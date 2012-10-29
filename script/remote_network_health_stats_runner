@@ -12,7 +12,7 @@ end
 unless ENV["MONGOLAB_URI"]
   raise 'MongoDB URL must be set for this to work...'
 end
-unless ENV["REDISTOGO_URL"]
+unless ENV["OPENREDIS_URL"]
   raise 'Could not load local Redis data...'
 end
 # Make sure we are connecting to the right instances...

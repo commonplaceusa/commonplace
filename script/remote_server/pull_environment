@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 COPY_KEYS = [
-  "REDISTOGO_URL",
+  "OPENREDIS_URL",
   "MONGOLAB_URI",
   "EC2_KEY_ID",
   "EC2_KEY_SECRET",
