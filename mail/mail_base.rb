@@ -152,11 +152,19 @@ class MailBase < Mustache
                             }.to_json
 
                           })
-      KM.identify('resque_worker')
+      if self.tag == "daily_bulletin"
+        DailyStatistic.increment_or_create("daily_bulletins_sent")
+      elsif self.tag == "single_post"
+        DailyStatistic.increment_or_create("single_posts_sent")
+      end
+      KM.identify(self.to)
       KM.record('email sent', {
         type: self.tag,
-        community: community ? community.slug : "administrative",
-        recipient: self.to
+        community: community ? community.slug : "administrative"
+      })
+      KM.record("#{self.tag} email sent", {
+        type: self.tag,
+        community: community ? community.slug : "administrative"
       })
     end
   end

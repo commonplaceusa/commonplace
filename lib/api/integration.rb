@@ -30,11 +30,15 @@ class API
     end
 
     post "/mailgun/opens" do
-      authentic_mail? || (halt 401)
+      authentic_mailgun? || (halt 401)
       begin
         if params['tag'] == 'daily_bulletin'
-          # Log to Leftronic somehow
+          DailyStatistic.increment_or_create("daily_bulletins_opened")
         end
+        if params['tag'] == 'single_post'
+          DailyStatistic.increment_or_create("single_posts_opened")
+        end
+        # TODO: Log the email
       rescue
         halt 501
       end
