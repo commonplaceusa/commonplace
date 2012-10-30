@@ -1,5 +1,5 @@
 class PostNotification < MailBase
-  
+
   def initialize(post_id, user_id)
     @post, @user = Post.find(post_id), User.find(user_id)
   end
@@ -31,7 +31,7 @@ class PostNotification < MailBase
   def community
     @post.community
   end
-    
+
   def author_name
     author.name
   end
@@ -73,7 +73,7 @@ class PostNotification < MailBase
   end
 
   def tag
-    'post'
+    'single_post'
   end
 
   def limited?
