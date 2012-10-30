@@ -72,7 +72,7 @@ gem 'sass' # used for stylesheets
 gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git'
 gem 'googlecharts' # used for admin/overview
 gem 'garb' # used to access the Google Analytics API
-gem 'geckoboard-push'
+gem 'geckoboard-push', :git => 'https://github.com/kickcode/geckoboard-push.git'
 
 # Monitoring
 gem 'exceptional' # we use this to notify on exceptions

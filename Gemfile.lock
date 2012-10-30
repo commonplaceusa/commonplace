@@ -40,6 +40,13 @@ GIT
       mongo
 
 GIT
+  remote: https://github.com/kickcode/geckoboard-push.git
+  revision: 70855b2ca44c511dd8254480707c16e856e3cb73
+  specs:
+    geckoboard-push (0.1.0)
+      httparty (~> 0.8.1)
+
+GIT
   remote: https://github.com/sferik/rails_admin.git
   revision: 1eda06e225b021febe3de6a543235c818dfa8150
   specs:
@@ -211,8 +218,6 @@ GEM
     garb (0.9.1)
       activesupport (>= 2.2.0)
       crack (>= 0.1.6)
-    geckoboard-push (0.1.0)
-      httparty (~> 0.8.1)
     geocoder (1.0.5)
     gherkin (2.5.1)
       json (>= 1.4.6)
@@ -543,7 +548,7 @@ DEPENDENCIES
   formtastic (= 2.0.2)
   fuubar
   garb
-  geckoboard-push
+  geckoboard-push!
   geocoder (~> 1.0.5)
   glebm-geokit
   googlecharts
