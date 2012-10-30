@@ -9,6 +9,7 @@ end
 
 class MailBase < Mustache
   include MailUrls
+  extend Resque::Plugins::JobStats
 
   def self.underscore(classified = name)
     classified = name if classified.to_s.empty?
@@ -55,14 +56,6 @@ class MailBase < Mustache
 
   def render_html(*args)
     inlined = Premailer.new(render(*args), :with_html_string => true, :inputencoding => 'UTF-8', :replace_html_entities => true).to_inline_css
-    self.insert_tracking_pixel(inlined, EmailTracker.create_with_tracking_pixel({
-        'recipient_email' => self.to,
-        'email_type' => self.class.name,
-        'tag_list' => self.tag_list,
-        'main_tag' => self.tag,
-        'originating_community_id' => (self.community) ? self.community.id : 0,
-        'updated_at' => DateTime.now
-    }))
   end
 
   def styles
@@ -134,6 +127,14 @@ class MailBase < Mustache
 
   def deliver
     if deliver?
+      email_id = EmailTracker.new_email({
+          'recipient_email' => self.to,
+          'email_type' => self.class.name,
+          'tag_list' => self.tag_list,
+          'main_tag' => self.tag,
+          'originating_community_id' => (self.community) ? self.community.id : 0,
+          'updated_at' => DateTime.now
+      })
       increase_email_count
       mail = Mail.deliver(:to => self.to,
                           :from => self.from,
@@ -145,8 +146,11 @@ class MailBase < Mustache
                           :headers => {
                             "Precedence" => "list",
                             "Auto-Submitted" => "auto-generated",
-                            "X-Mailgun-Campaign-Id" => community ? community.slug : "administrative",
-                            "X-Mailgun-Tag" => self.tag
+                            "X-Mailgun-Tag" => self.tag,
+                            "X-Mailgun-Variables" => {
+                              email_id: email_id
+                            }.to_json
+
                           })
       KM.identify('resque_worker')
       KM.record('email sent', {
