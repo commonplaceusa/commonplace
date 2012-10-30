@@ -9,6 +9,13 @@ GIT
       rake
 
 GIT
+  remote: https://github.com/alanpeabody/resque-job-stats.git
+  revision: a992e0c65e360dc6063b0a5780c59cfcab7800a1
+  specs:
+    resque-job-stats (0.3.0)
+      resque (~> 1.17)
+
+GIT
   remote: https://github.com/causes/mock_redis.git
   revision: 76d569567a16b7e6b8806489cc629b6d225bcf22
   specs:
@@ -408,8 +415,6 @@ GEM
       resque (~> 1.0)
     resque-exceptional (0.1.0)
       resque (>= 1.8.0)
-    resque-job-stats (0.3.0)
-      resque (~> 1.17)
     resque-scheduler (1.9.9)
       redis (>= 2.0.1)
       resque (>= 1.8.0)
@@ -599,7 +604,7 @@ DEPENDENCIES
   resque (~> 1.19.0)
   resque-cleaner
   resque-exceptional
-  resque-job-stats
+  resque-job-stats!
   resque-scheduler
   resque-statsd!
   rmagick
