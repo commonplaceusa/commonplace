@@ -38,7 +38,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
   geocoded_by :normalized_address
 
   has_one :resident

@@ -5,15 +5,17 @@ OrganizerApp.Main = Backbone.View.extend({
     page = 1;
     per = 75;
     this.fileViewer = new OrganizerApp.FileViewer({ el: this.$("#file-viewer") });
+    this.feedViewer = new OrganizerApp.FeedViewer({ el: this.$("#file-viewer") });
 
     this.filePicker = new OrganizerApp.FilePicker({
       el: this.$("#file-picker"),
       collection: this.collection,
+      other: this.options.other,
       fileViewer: this.fileViewer,
+      feedViewer: this.feedViewer,
       community: this.options.community
     });
   },
-
 
   render: function() {
     var params = {
@@ -24,7 +26,10 @@ OrganizerApp.Main = Backbone.View.extend({
       data: params,
       success: _.bind(function() {
         _.invoke([this.filePicker], "render");
-      }, this),
+      }, this)
+    });
+    this.options.other.fetch({
+      data: params
     });
   }
 

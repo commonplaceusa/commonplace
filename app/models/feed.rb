@@ -70,6 +70,7 @@ class Feed < ActiveRecord::Base
     t.add lambda {|f| "/feeds/#{f.id}/#{f.user_id}"}, :as => :messagable_author_url
     t.add lambda {|f| f.name}, :as => :messagable_author_name
     t.add :links
+    t.add lambda {|f| f.subscribers.count}, :as => :subscribers_count
   end
 
   def links

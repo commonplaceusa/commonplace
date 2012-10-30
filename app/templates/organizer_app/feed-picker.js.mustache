@@ -1,0 +1,28 @@
+<div id="feed-picker-filters">
+<button id="new-resident">New Resident</button>
+<button id="todo-list">Todo List</button>
+<button id="statistics-charts">Charts</button>
+<HR>
+<button id="files">Back</button>
+<HR>
+  <input type="text" placeholder="search" id="query-input" size=25>
+  <button id="search-button">Search</button>
+  <select id="query-select">
+    <option value="last name">by last name</option>
+    <option>by full name</option>
+    <option value="first name">by first name</option>
+    <option value="email">by e-mail</option>
+    <option value="address">by address</option>
+    <option value="notes">by notes</option>
+  </select>
+<HR>
+
+<button id="prev">Prev</button>Page: <label id="pg_num"></label><button id="next">Next</button>
+<br>
+&nbsp;&nbsp;&nbsp; Amount: <label id="amount" name="amount">Counting...</label>
+Total: <label id="total" name="total"></label>
+</div>
+
+<ul id="file-picker-list" style= "list-style:none; ">
+<li>Loading...</li>
+</ul>

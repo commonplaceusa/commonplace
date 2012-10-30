@@ -4,7 +4,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
   template: "organizer_app.viewer",
 
   events: {
-    "submit form#add-log": "addLog",
     "submit form#add-phone": "addPhone",
     "submit form#add-organization": "addOrganization",
     "submit form#add-position": "addPosition",
@@ -12,9 +11,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     "submit form#add-address": "addAddress",
     "submit form#add-email": "addEmail",
     "click #edit-resident":"editResident",
-    //"click .pick-user": "onClickFile",
     "click .interests": "filterByinterest"
-    //"click #get-stories": "getStories"
   },
 
   editResident: function(){
@@ -191,10 +188,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     return this.model.get('input_method');
   },
 
-  PFOstatus: function(){
-    return this.model.get('PFO_status');
-  },
-
   organizer: function(){
     return this.model.get('organizer');
   },
@@ -287,25 +280,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
       this.model.save({email: email}, {success: _.bind(this.render, this)});
       //this.model.addEmail({email: email}, {success: _.bind(this.render, this)});
       //location.reload();
-    }
-  },
-
-  addLog: function(e) {
-    e.preventDefault();
-    this.model.addLog({
-      date: $("#log-date").val(),
-      text: $("#log-text").val(),
-      //TODO: include tags. They are checkboxes and not CSVs now
-      /*tags: _.map(this.$("#log-").val().split(","), $.trim)*/
-    }, _.bind(this.render,this));
-  },
-
-  logs: function() {
-    var logs = this.model.get('logs');
-    if (logs) {
-      return logs
-    } else {
-      return "No logs in our records yet.";
     }
   },
 

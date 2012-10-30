@@ -33,10 +33,9 @@ module Serializer
       when Resident
       {
         "id" => o.id,
-
         "classtype" => o.class.name,
         "user_id" => o.user_id,
-        "first_name" => o.first_name, 
+        "first_name" => o.first_name,
         "last_name" => o.last_name,
         "address" => o.address,
         "phone" => o.phone,
@@ -45,10 +44,6 @@ module Serializer
         "notes" => o.notes,
         "sector" => o.sector_tag_list,
         "todos" => o.todos,
-        "type" => o.type_tag_list,
-        "input_method" => o.input_method_list,
-        "PFO_status" => o.PFO_statu_list,
-        "organizer" => o.organizer_list,
         "latitude" => o.latitude,
         "longitude" => o.longitude,
         "email" => o.email,

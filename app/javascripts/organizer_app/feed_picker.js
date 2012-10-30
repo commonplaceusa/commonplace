@@ -1,7 +1,6 @@
+OrganizerApp.FeedPicker = CommonPlace.View.extend({
 
-OrganizerApp.FilePicker = CommonPlace.View.extend({
-
-  template: "organizer_app.file-picker",
+  template: "organizer_app.feed-picker",
 
   events: {
     "click .pick-resident": "onClickFile",
@@ -19,14 +18,14 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     "click #new-resident": "addResident",
     "click #todo-list": "gotoTodo",
     "click #interest-picker": "interestPicker",
-    "click #merge": "merge",
-    "click #feeds": "gotoFeed",
+    "click #files": "goBack",
     "click #statistics-charts": "newCharts"
   },
 
   addNewselect: function(){
 
     var select=this.$(".multiselect").clone();
+    alert("!");
     this.$("#new-selects").append(select);
   },
 
@@ -39,7 +38,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
 
   onClickFile: function(e) {
     e.preventDefault();
-    this.options.fileViewer.show($(e.currentTarget).data('model'), this.options.community, this.collection,this);
+    this.options.feedViewer.show($(e.currentTarget).data('model'), this.options.community, this.collection,this);
   },
 
   previous: function(e) {
@@ -121,30 +120,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     }
   },
 
-  merge: function() {
-    var i = 0;
-    var arr = [];
-    _.map(this.collection.models, _.bind(function(model) {
-      if(checklist[model.getId()]) {
-
-        arr[i] = model.getId();
-        ++i;
-      }
-    }, this));
-
-    if(arr.length < 2) {
-      return;
-    }
-
-    var params = {
-      mergee: arr[0],
-      merger: arr[1]
-    };
-
-    var url = this.collection.url()+"/merge";
-    $.post(url, params).success(function() { alert("merged"); });
-  },
-
   addTag: function() {
     var tag = this.$("#tag-list option:selected").val();
 
@@ -164,10 +139,10 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     $.post(this.collection.url()+"/tags", {tags: tag, file_id: arr}).success(function() { alert("Added tag"); });
   },
 
-  gotoFeed: function (e) {
+  goBack: function (e) {
     $('#file-picker').unbind();
     $('#file-picker').empty();
-    new OrganizerApp.FeedPicker({el: $('#file-picker'), community: this.options.community, collection: this.options.other, other: this.collection, fileViewer: this.options.fileViewer, feedViewer: this.options.feedViewer}).render();
+    new OrganizerApp.FilePicker({el: $('#file-picker'), community: this.options.community, collection: this.options.other, other: this.collection, fileViewer: this.options.fileViewer, feedViewer: this.options.feedViewer}).render();
   },
 
   gotoTodo: function (e) {
@@ -213,7 +188,6 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
     deferred.resolve(this.renderList(this.collection.models));
     this.$("#total").text(total);
     this.$("#amount").text(this.collection.models.length);
-    //deferred.done(this.produceOrdertags());
   },
 
   renderList: function(list) {
@@ -222,7 +196,7 @@ OrganizerApp.FilePicker = CommonPlace.View.extend({
 
     this.$("#file-picker-list").append(
       _.map(list, _.bind(function(model) {
-        var li = $("<li/>", { text: model.full_name(), data: { model: model } })[0];
+        var li = $("<li/>", { text: model.name(), data: { model: model } })[0];
         var cb = $("<input/>", { type: "checkbox", checked: checklist[model.getId()], value: model.getId(), data: { model: model } })[0];
         $(cb).addClass("cb");
         $(li).prepend(cb);

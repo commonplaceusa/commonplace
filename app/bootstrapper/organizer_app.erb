@@ -2303,9 +2303,11 @@ body {
         $.getJSON("/api/communities/" + c_id, function(r) {
           var community = new Community(r);
           var files = new OrganizerApp.Files([], { community: community });
+          var feeds = new OrganizerApp.Feeds([], { community: community });
           var main = new OrganizerApp.Main({
             el: $("#main"),
             collection: files,
+            other: feeds,
             community: community
           });
           main.render();

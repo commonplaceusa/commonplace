@@ -87,9 +87,6 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
 		    phone = "No phone";
 		  }
 
-		  //var info = name + " | " + email + " | "+phone;
-
-		  //var li = $("<li/>",{ text: info, data: { model: model } })[0];
 		  var cb = $("<input/>", { type: "checkbox", name: value+"[]", checked: checklist[model.getId()], value: model.getId(), data: { model: model } })[0];
 		  $(cb).addClass("cb");
 		  var td=$("<td/>");
@@ -97,9 +94,6 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
 		  var tr=$("<tr/>");
 		  $(tr).append(td);
 		  $(tr).append("<td>"+name+"</td><td>"+email+"</td><td>"+phone+"</td>");
-
-		  //$(tr).prepend(cb)
-		  //$(li).prepend(cb);
 
 		  return tr;
 		}, this));

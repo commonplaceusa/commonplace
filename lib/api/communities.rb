@@ -407,6 +407,21 @@ CONDITION
       serialize residents
     end
 
+    # Returns the community's feeds, possibly a search result
+    #
+    # Query params:
+    #  query - a query to search with (optional)
+    get "/:id/org_feeds" do
+      control_access :admin
+
+      if params["query"].present?
+        search(Feed, params, find_community.id)
+      else
+        scope = find_community.feeds.reorder("name ASC")
+        serialize(paginate(scope).page(params[:page]).per(params[:per]))
+      end
+    end
+
     # Returns community's resident files
     #
     # Requires admin
@@ -508,6 +523,12 @@ CONDITION
       control_access :admin
 
       find_community.user_charts.to_json
+    end
+
+    get "/:id/subscribers" do
+      control_access :admin
+
+      Feed.find(params[:id]).subscribers.to_json
     end
 
     # Add a new resident
