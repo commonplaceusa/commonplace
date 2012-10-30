@@ -76,15 +76,23 @@ class Resident < ActiveRecord::Base
     tags += self.metadata[:tags] if self.metadata[:tags]
 
     if self.user.present?
+      u = self.user
       tags |= Array("Status: Joined CP")
 
       if !self.metadata[:tags].nil? && self.metadata[:tags].include?("Type: PFO")
         tags |= Array("PFO1: Joined CP")
-        tags |= Array("PFO2: Has Feed")
       end
 
-      r = self.user.referral_source
+      r = u.referral_source
       tags << "Referral: " + r if !r.nil?
+
+      u.feeds.each do |f|
+        tags |= Array("Subscriber: " + f.name)
+      end
+
+      u.feed_owners.each do |o|
+        tags |= Array("Member: " + o.feed.name)
+      end
     end
 
     tags

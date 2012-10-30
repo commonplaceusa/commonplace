@@ -24,6 +24,14 @@ OrganizerApp.File = Backbone.Model.extend({
     return this.get('phone');
   },
 
+  organization: function() {
+    return this.get('organization');
+  },
+
+  notes: function() {
+    return this.get('notes');
+  },
+
   address: function () {
     return this.get('address');
   },

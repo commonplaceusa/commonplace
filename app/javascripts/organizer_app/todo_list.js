@@ -71,20 +71,25 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
       if(profiles.length>0){
 	      $(list).empty();
 	      var tbody=  $("<tbody/>");
-	      var thead=$("<thead><tr><th><input type=checkbox class=checkall id=\""+value+"\"/></th> <th>Name</th> <th>Email</th> <th>Phone</th></tr> </thead>");
+	      var thead=$("<thead><tr><th><input type=checkbox class=checkall id=\""+value+"\"/></th> <th>Name</th> <th>Email</th> <th>Organization</th> <th>Notes</th></tr> </thead>");
 	      $(list).append(thead);
 	      var trs=
 		_.map(profiles, _.bind(function(model) {
 		  var name = model.full_name();
 		  var email = model.email();
-		  var phone = model.phone();
+      var organization = model.organization();
+      var notes = model.notes();
 
 		  if(email == null) {
 		    email = "No email";
 		  }
 
-		  if(phone == null) {
-		    phone = "No phone";
+      if(organization == null) {
+        organization = "No organization";
+      }
+
+		  if(notes == null) {
+		    notes = "No notes";
 		  }
 
 		  var cb = $("<input/>", { type: "checkbox", name: value+"[]", checked: checklist[model.getId()], value: model.getId(), data: { model: model } })[0];
@@ -93,7 +98,7 @@ OrganizerApp.TodoList = CommonPlace.View.extend({
 		  $(td).append(cb);
 		  var tr=$("<tr/>");
 		  $(tr).append(td);
-		  $(tr).append("<td>"+name+"</td><td>"+email+"</td><td>"+phone+"</td>");
+		  $(tr).append("<td>"+name+"</td><td>"+email+"</td><td>"+organization+"</td><td>"+notes+"</td>");
 
 		  return tr;
 		}, this));

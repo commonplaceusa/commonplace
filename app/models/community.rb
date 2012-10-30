@@ -313,6 +313,11 @@ class Community < ActiveRecord::Base
     tags |=  self.metadata[:resident_tags] if self.metadata[:resident_tags]
     tags |= self.exterior.referral_sources.reject {|ref| ref == ""}.map {|ref| "Referral: " << ref}
     tags |= Array("Status: Joined CP")
+
+    self.feeds.each do |f|
+      tags |= Array("Member: " + f.name)
+      tags |= Array("Subscriber: " + f.name)
+    end
     tags
   end
 
