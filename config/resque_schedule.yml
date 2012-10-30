@@ -76,3 +76,10 @@ load_daily_new_stories:
   args:
   queue: daily_new_stories
   description: "Pull new news of a community every midnight"
+
+ping_geckoboard:
+  cron: "0 * * * *"
+  class: GeckoBoardAnnouncer
+  args:
+  queue: statistics
+  description: "Send some statistics to our dashboard"
