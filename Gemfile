@@ -10,7 +10,6 @@ gem 'rack-contrib'
 gem 'rack-cache' # For caching
 gem 'dalli' # memcache client, for caching
 gem 'acts_as_api'
-gem 'barometer' #for weather forecasts
 
 # ActiveRecord
 gem 'sunspot_rails', "1.3.0"

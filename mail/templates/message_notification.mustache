@@ -13,7 +13,9 @@
 
       <tr>
         <td id="intro">
-          <p>{{#t}}intro{{/t}}</p>
+          <p>Hi {{user_name}},<br>
+            {{sender_name}} just sent you a private message.
+          </p>
         </td>
       </tr>
 
@@ -22,34 +24,29 @@
           <table>
             <tr>
               <td class="avatar" rowspan="4">
-                <img src="{{poster_avatar_url}}" width="50" height="50">
+                <img src="{{sender_avatar_url}}" width="50" height="50">
               </td>
 
               <td class="subject" colspan="2">
-                {{post_subject}}
+                {{message_subject}}
               </td>
             </tr>
 
             <tr>
               <td class="body" colspan="2">
-                {{{post_body}}}
+                {{{message_body}}}
               </td>
             </tr>
 
             <tr>
               <td class="reply">
-                <a href="{{post_url}}"><span>Reply to {{short_poster_name}}</span></a>
+                <a href="{{message_url}}"><span>Reply to {{short_sender_name}}</span></a>
               </td>
               <td class="reply-by-email">
                 <p>Or just reply to this email.</p>
               </td>
             </tr>
 
-            <tr>
-              <td class="message" colspan="2">
-                <a href="{{new_message_url}}"><span>Send {{short_poster_name}} a private message</span></a>
-              </td>
-            </tr>
           </table>
         </td>
       </tr>

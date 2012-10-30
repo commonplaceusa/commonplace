@@ -161,7 +161,6 @@ class API
       
       feeds.each do |feed|
         current_user.feeds << feed
-        kickoff.deliver_feed_subscription_notification(current_user.id, feed.id)
       end
       
       serialize(Account.new(current_user))

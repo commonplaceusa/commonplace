@@ -1,67 +1,41 @@
 class DailyBulletin < MailBase
 
-  def initialize(user_id, date, posts, announcements, events, weather)
-    @user = User.find(user_id)
+  def initialize(user_email, user_first_name, user_community_name, community_locale, community_slug, date, posts, announcements, events)
+    @user_email = user_email
+    @user_first_name = user_first_name
+    @user_community_name = user_community_name
+    @community_locale = community_locale
+    @community_slug = community_slug
     @date = DateTime.parse(date)
     @posts = posts
     @announcements = announcements
     @events = events
-    @weather = weather
-  end
-
-  def user
-    @user
-  end
-
-  def community
-    user.community
   end
 
   def logo_url
     asset_url("logo2.png")
   end
 
+  def reply_button_url
+    asset_url("reply-button.png")
+  end
+
   def invite_them_now_button_url
     asset_url("invite-them-now-button.png")
   end
 
-  def header_image_url
-    community_slug = community.slug.downcase
-    asset_url("headers/daily_bulletin/#{community_slug}.png")
-  end
-
   # TODO: Do this more elegantly. To make daily digests idempotent, this had to be hacked together.
   def short_user_name
-    user.first_name
-  end
-
-  def new_user_count
-    community.users.this_week.count
-  end
-
-  def community_user_count
-    community.user_count
-  end
-
-  def post_count
-    @posts.count
-  end
-
-  def announcement_count
-    @announcements.count
+    @user_first_name
   end
 
   def text
     # TODO: Do this more elegantly. To make daily digests idempotent, this had to be hacked together.
-    @text ||= YAML.load_file(File.join(File.dirname(__FILE__), "text", "#{community.locale}.yml"))[self.underscored_name]
-  end
-
-  def message_text
-    "Good morning #{community_name}! It's currently #{current_temp} degrees outside with a high today of #{high_today} degrees#{rain?}. In the past week, #{new_user_count} of your neighbors have joined OurCommonPlace #{community_name}, making the network #{community_user_count} people strong. In the past day, the community has shared #{post_count} neighborhood posts and #{announcement_count} organization announcements. Enjoy!"
+    @text ||= YAML.load_file(File.join(File.dirname(__FILE__), "text", "#{@community_locale}.yml"))[self.underscored_name]
   end
 
   def from
-    "#{community_name} CommonPlace <notifications@#{community.slug}.ourcommonplace.com>"
+    "#{community_name} CommonPlace <notifications@#{@community_slug}.ourcommonplace.com>"
   end
 
   def subject
@@ -69,66 +43,15 @@ class DailyBulletin < MailBase
   end
 
   def to
-    user.email 
+    @user_email
   end
 
   def header_text
     @date.strftime("%A, %B %d, %Y")
   end
 
-  def month_short
-    @date.strftime("%b")
-  end
-
-  def month_long
-    @date.strftime("%B")
-  end
-
-  def day_of_month
-    @date.strftime("%e")
-  end
-
-  def day_of_week
-    @date.strftime("%A")
-  end
-
-  def current_temp
-    Integer (@weather.current.temperature.fahrenheit)
-  end
-
-  def high_today
-    Integer (@weather.forecast.first.high.fahrenheit)
-  end
-
-  def low_today
-    Integer (@weather.forecast.first.low.fahrenheit)
-  end
-
-  def pop_today
-    Integer (@weather.forecast.first.pop)
-  end
-
-  def rain?
-    pop = pop_today
-    if pop > 25
-      " and a #{pop}% chance of #{rain_or_snow}"
-    end
-  end
-
-  def rain_or_snow
-    high = high_today
-    low = low_today
-    rain_snow = "rain/snow"
-    if high < 32
-      rain_snow = "snow"
-    elsif low > 32
-      rain_snow = "rain"
-    end
-    rain_snow
-  end
-
   def community_name
-    community.name
+    @user_community_name
   end
 
   def deliver?
@@ -147,7 +70,7 @@ class DailyBulletin < MailBase
                           :headers => {
                             "Precedence" => "list",
                             "Auto-Submitted" => "auto-generated",
-                            "X-Campaign-Id" => community.slug,
+                            "X-Campaign-Id" => @community_slug,
                             "X-Mailgun-Tag" => self.tag
                           })
     end
@@ -180,5 +103,5 @@ class DailyBulletin < MailBase
   def tag
     'daily_bulletin'
   end
-end
 
+end

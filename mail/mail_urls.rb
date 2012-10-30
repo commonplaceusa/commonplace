@@ -20,14 +20,6 @@ module MailUrls
     end
   end
 
-  def community_name
-    if community.is_a? Community
-      community.name
-    else
-      @community_name
-    end
-  end
-
   def community_url(path)
     url("/#{community_slug}#{path}")
   end
@@ -130,47 +122,6 @@ module MailUrls
 
   def logo_url
     asset_url("logo.png")
-  end
-
-  def facebook_icon_url
-    asset_url("facebook-icon.png")
-  end
-
-  def facebook_url
-    url("http://www.facebook.com/ourcommonplace")
-  end
-
-  def twitter_icon_url
-    asset_url("twitter-icon.png")
-  end
-
-  def twitter_url
-    url("http://twitter.com/commonplacehq")
-  end
-
-  def header_image_url
-    community_slug = community.slug.downcase
-    asset_url("headers/single_post/#{community_slug}.png")
-  end
-
-  def view_post_button_url
-    asset_url("view-post-btn.png")
-  end
-
-  def post_icon_url
-    asset_url("discussions-icon.png")
-  end
-
-  def event_icon_url
-    asset_url("events-icon.png")
-  end
-
-  def announcement_icon_url
-    asset_url("announcements-icon.png")
-  end
-
-  def reply_button_url
-    asset_url("reply-button.png")
   end
 
   def settings_url

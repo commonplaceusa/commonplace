@@ -125,7 +125,6 @@ class API
                          :thankable_id => id,
                          :thankable_type => scope.to_s)
         if thank.save
-          kickoff.deliver_thank_notification(thank.id)
           if scope == Reply
             serialize scope.find(id).repliable
           else

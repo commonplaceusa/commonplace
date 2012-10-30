@@ -63,9 +63,6 @@ class KickOff
     enqueue(NSubscribersFeedNotification, feed_id)
   end
 
-  def deliver_feed_subscription_notification(user_id, feed_id)
-    enqueue(NewFeedSubscriberNotification, user_id, feed_id)
-  end
 
   def deliver_group_post(post)
     # We're delivering a post to subscribers of the group
@@ -170,13 +167,8 @@ class KickOff
     enqueue(AdminQuestion, from_email, message, name)
   end
 
-
-  def deliver_daily_bulletin(user_id, date_string, posts, announcements, events, weather)
-    enqueue(DailyBulletin, user_id, date_string, posts, announcements, events, weather)
-  end
-
-  def deliver_single_post_email(user_id, post)
-    enqueue(PostNotification, post.id, user_id) if post.present? and post.try(:id).present? and user_id.present?
+  def deliver_daily_bulletin(user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events)
+    enqueue(DailyBulletin, user_email, user_first_name, user_community_name, community_locale, community_slug, date_string, posts, announcements, events)
   end
 
   def deliver_feed_owner_welcome(feed)
@@ -184,7 +176,7 @@ class KickOff
   end
 
   def deliver_thank_notification(thank)
-    enqueue(ThankNotification, thank)
+    # TODO: Implement
   end
 
   def deliver_met_notification(user_id, neighbor_id)
@@ -232,7 +224,7 @@ class KickOff
     unless post.is_publicity?
       # Send to the people in the neighborhood
       # Who receive posts live
-      recipient_ids = neighborhood.users.receives_posts_live_unlimited.map(&:id)
+      recipient_ids = neighborhood.users.receives_posts_live.map(&:id)
 
       # Who are not the poster
       recipient_ids.delete(post.user_id)

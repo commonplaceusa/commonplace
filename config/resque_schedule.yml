@@ -1,25 +1,11 @@
 # NOTE: All times are in server time.
 
-send_daily_digest: #cron job to send the daily bulletin
-  cron: "45 11 * * *"
+send_daily_digest:
+  cron: "00 21 * * *"
   class: DailyDigestJob
   args:
   queue: daily_digest
   description: "Sends daily digest"
-
-send_single_post_noon: #cron job to send the single post emails at 12pm EST
-  cron: "45 15 * * *"
-  class: SinglePostEmailJob
-  args:
-  queue: single_post
-  description: "Sends single post email at 12pm EST"
-
-send_single_post_five_pm: #cron job to send the single post emails at 5pm EST
-  cron: "45 20 * * *"
-  class: SinglePostEmailJob
-  args:
-  queue: single_post
-  description: "Sends single post email at 5pm EST"
 
 import_feeds_rss:
   cron: "00 * * * *"
