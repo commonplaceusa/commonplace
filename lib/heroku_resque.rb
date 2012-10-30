@@ -1,5 +1,6 @@
 module HerokuResque
   class WorkerScaler
+    extend Resque::Plugins::Statsd
     @queue = :server_management
 
     def self.perform(num_dynos)

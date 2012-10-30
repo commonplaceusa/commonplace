@@ -2,6 +2,7 @@ require 'rubygems'
 require 'barometer'
 
 class CommunityDailyBulletinJob
+  extend Resque::Plugins::JobStats
   include MailUrls
   @queue = :community_daily_bulletin
 

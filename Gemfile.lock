@@ -408,6 +408,8 @@ GEM
       resque (~> 1.0)
     resque-exceptional (0.1.0)
       resque (>= 1.8.0)
+    resque-job-stats (0.3.0)
+      resque (~> 1.17)
     resque-scheduler (1.9.9)
       redis (>= 2.0.1)
       resque (>= 1.8.0)
@@ -597,6 +599,7 @@ DEPENDENCIES
   resque (~> 1.19.0)
   resque-cleaner
   resque-exceptional
+  resque-job-stats
   resque-scheduler
   resque-statsd!
   rmagick

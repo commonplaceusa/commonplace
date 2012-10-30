@@ -1,4 +1,5 @@
 class DailyDigestJob
+  extend Resque::Plugins::JobStats
   @queue = :daily_digest
 
   def self.perform

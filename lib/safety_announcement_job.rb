@@ -1,4 +1,5 @@
 class SafetyAnnouncementJob
+  extend Resque::Plugins::JobStats
   @queue = :safety_announcement
 
   @community_ids = [2, 8, 9, 26, 28, 30, 34]
