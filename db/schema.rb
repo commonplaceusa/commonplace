@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023053933) do
+ActiveRecord::Schema.define(:version => 20121030020455) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20121023053933) do
   end
 
   create_table "communities", :force => true do |t|
-    t.string   "name",                                                                 :null => false
+    t.string   "name",                                                                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
@@ -142,12 +142,12 @@ ActiveRecord::Schema.define(:version => 20121023053933) do
     t.string   "organizer_name"
     t.string   "organizer_avatar_file_name"
     t.text     "organizer_about"
-    t.string   "time_zone",                  :default => "Eastern Time (US & Canada)"
-    t.integer  "households",                 :default => 0
+    t.string   "time_zone",                      :default => "Eastern Time (US & Canada)"
+    t.integer  "households",                     :default => 0
     t.boolean  "core"
-    t.boolean  "should_delete",              :default => false
-    t.boolean  "is_college",                 :default => false
-    t.date     "launch_date",                :default => '2010-01-01'
+    t.boolean  "should_delete",                  :default => false
+    t.boolean  "is_college",                     :default => false
+    t.date     "launch_date",                    :default => '2010-01-01'
     t.string   "google_docs_url"
     t.text     "discount_businesses"
     t.text     "feature_switches"
@@ -155,8 +155,9 @@ ActiveRecord::Schema.define(:version => 20121023053933) do
     t.text     "last_story"
     t.string   "state"
     t.date     "organize_start_date"
-    t.decimal  "latitude",                   :default => 0.0
-    t.decimal  "longitude",                  :default => 0.0
+    t.decimal  "latitude",                       :default => 0.0
+    t.decimal  "longitude",                      :default => 0.0
+    t.string   "geckoboard_population_chart_id"
   end
 
   create_table "conversation_memberships", :force => true do |t|
