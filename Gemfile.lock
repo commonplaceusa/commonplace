@@ -47,13 +47,6 @@ GIT
       mongo
 
 GIT
-  remote: https://github.com/kickcode/geckoboard-push.git
-  revision: 70855b2ca44c511dd8254480707c16e856e3cb73
-  specs:
-    geckoboard-push (0.1.0)
-      httparty (~> 0.8.1)
-
-GIT
   remote: https://github.com/sferik/rails_admin.git
   revision: 1eda06e225b021febe3de6a543235c818dfa8150
   specs:
@@ -304,6 +297,9 @@ GEM
     km (1.1.2)
     launchy (2.1.0)
       addressable (~> 2.2.6)
+    leftronic (0.0.3)
+      json (>= 1.4.6)
+      rest-client (>= 1.6.1)
     libnotify (0.7.2)
     libv8 (3.3.10.4)
     loofah (1.2.0)
@@ -555,7 +551,6 @@ DEPENDENCIES
   formtastic (= 2.0.2)
   fuubar
   garb
-  geckoboard-push!
   geocoder (~> 1.0.5)
   glebm-geokit
   googlecharts
@@ -576,6 +571,7 @@ DEPENDENCIES
   json (~> 1.6.0)
   km
   launchy
+  leftronic
   libnotify
   mail
   mcbean
