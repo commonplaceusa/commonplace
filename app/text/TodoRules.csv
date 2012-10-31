@@ -1,175 +1,79 @@
 To-Do Type,Should Display If Has Tag:,To-Do,Can't Display If Has Tag:,Script
-Push to Join,Type: PFO,Push to Join,PFO1: Joined CP,Next Tag: PFO1: Joined CP
-Push to Feed,PFO1: Joined CP,PFO2: Send Post-Join Followup and Transfer Feed,PFO2: Has Feed,Next Tag: PFO2: Has Feed
-Push to Post,PFO2: Has Feed,PFO3: Send Post-Feed Followup and Push to Post,PFO3: Posted to Feed,Next Tag: PFO3: Posted to Feed
-Push to PFO Partner,PFO3: Posted to Feed,PFO4: Send Post-Posting Followup and Push to Publicize and Join FoCP,Type: PFO Partner,Next Tag: Type: PFO Partner
-CL1: Push to Contacted,Type: Civic Leader,CL1: Send Phone Call Request Email,CL1: Contacted,Next Tag: CL1: Contacted
-CL2: Push to Connected,CL1: Contacted,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",CL2: Connected,"Next Tag: CL2: Connected, CL1x: Delayer, CL1x: Non-Responder, X: Referred Out"
-,,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",CL1x: Delayer,
-,,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",CL1x: Non-Responder,
-,,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",X: Referred Out,
-,,"CL2: Log Response (and in 7 days, send reminder and tag non-response)",CL1x: Dead Email,
-CL1x: Push to Connected,CL1x: Delayer,CL1x: Check back with Delayer List,CL2: Connected,"Next Tag: CL2: Connected, X: Referred Out"
-,,CL1x: Check back with Delayer List,X: Referred Out,
-CL1x: Push to Connected,CL1x: Non-Responder,CL1x: Check back with Non-Responder List,CL2: Connected,"Next Tag: CL2: Connected, CL1x: Delayer, X: Referred Out"
-,,CL1x: Check back with Non-Responder List,CL1x: Delayer,
-,,CL1x: Check back with Non-Responder List,X: Referred Out,
-CL1x: Push to Connected,CL1x: Dead Email,CL1x: Check back with Dead Email List,CL2: Connected,"Next Tag: CL2: Connected, CL1x: Delayer, CL1x: Non-Responder, X: Referred Out"
-,,CL1x: Check back with Dead Email List,CL1x: Delayer,
-,,CL1x: Check back with Dead Email List,CL1x: Non-Responder,
-,,CL1x: Check back with Dead Email List,X: Referred Out,
-CL3: Push to Call Scheduled,CL2: Connected,CL3: Scheduled Call,CL3: Call Scheduled,Next Tag: CL3: Call Scheduled
-CL4: Push to Call Held,CL3: Call Scheduled,CL4: Prep and Hold Call,CL4: Call Held,Next Tag: CL4: Call Held
-CL5: Push to Joined CP,CL4: Call Held,"Send Post-Call Email, Send Leaderpack, Add to Friends of CommonPlace",Type: Civic Leader Partner,
-,Type: Nominee,CH1: Send Phone Call Request Email,CH1: Contacted,Next Tag: CH1: Contacted
-CH1: Push to Contacted,Type: Civic Hero,CH1: Send Phone Call Request Email,CH1: Contacted,Next Tag: CH1: Contacted
-CH2: Push to Connected,CH1: Contacted,CH2: Log Response,CH2: Connected,"Next Tag: CH2: Connected, CH1x: Delayer, CH1x: Non-Responder, X: Referred Out"
-,,CH2: Log Response,X: Uninterested,
-,,CH2: Log Response,CH1x: Non-Responder,
-,,CH2: Log Response,X: Referred Out,
-,,CH2: Log Response,CH1x: Dead Email,
-CH1x: Push to Connected,CH1x: Delayer,CH1x: Check back with Delayer List,CH2: Connected,"Next Tag: CH2: Connected, X: Referred Out"
-,,CH1x: Check back with Delayer List,X: Referred Out,
-CH1x: Push to Connected,CH1x: Non-Responder,CH1x: Check back with Non-Responder List,CH2: Connected,"Next Tag: CH2: Connected, CH1x: Delayer, X: Referred Out"
-,,CH1x: Check back with Non-Responder List,CH1x: Delayer,
-,,CH1x: Check back with Non-Responder List,X: Referred Out,
-CH1x: Push to Connected,CH1x: Dead Email,CH1x: Check back with Dead Email List,CH2: Connected,"Next Tag: CH2: Connected, CH1x: Delayer, CH1x: Non-Responder, X: Referred Out"
-,,CH1x: Check back with Dead Email List,CH1x: Delayer,
-,,CH1x: Check back with Dead Email List,CH1x: Non-Responder,
-,,CH1x: Check back with Dead Email List,X: Referred Out,
-CH3: Push to Call Scheduled,CH2: Connected,CH3: Scheduled Interview,CH3: Interview Scheduled,Next Tag: CH3: Interview Scheduled
-CH4: Push to Call Held,CH3: Interview Scheduled,CH4: Prep and Hold Interview,CH4: Interview Held,Next Tag: CH4: Interview Held
-CH5: Push to Publish,CH4: Interview Held,CH5: Push to Publish,CH5: Published Post,Next Tag: CH5: Published Post
-CH6: Push to Publicize Post,CH5: Published Post,CH6: Publicize post (and tag as Type: Civic Leader if applicable),Type: Civic Hero Partner,Next Tag: Type: Civic Hero Partner
-SL1: Push to Contacted,Type: Super Leader,SL1: Send Phone Call Request Email,SL1: Contacted,Next Tag: SL1: Contacted
-SL2: Push to Connected,SL1: Contacted,"SL2: Log Response (and in 7 days, send reminder and tag non-response) ",SL2: Connected,"Next Tag: SL2: Connected, SL1x: Delayer, SL1x: Non-Responder, X: Referred Out"
-,,"SL2: Log Response (and in 7 days, send reminder and tag non-response) ",SL1x: Delayer,
-,,"SL2: Log Response (and in 7 days, send reminder and tag non-response) ",SL1x: Non-Responder,
-,,"SL2: Log Response (and in 7 days, send reminder and tag non-response) ",X: Referred Out,
-,,"SL2: Log Response (and in 7 days, send reminder and tag non-response) ",SL1x: Dead Email,
-SL1x: Push to Connected,SL1x: Delayer,SL1x: Check back with Delayer List,SL2: Connected,"Next Tag: SL2: Connected, X: Referred Out"
-,,SL1x: Check back with Delayer List,X: Referred Out,
-SL1x: Push to Connected,SL1x: Non-Responder,SL1x: Check back with Non-Responder List,SL2: Connected,"Next Tag: SL2: Connected, SL1x: Delayer, X: Referred Out"
-,,SL1x: Check back with Non-Responder List,SL1x: Delayer,
-,,SL1x: Check back with Non-Responder List,X: Referred Out,
-SL1x: Push to Connected,SL1x: Dead Email,SL1x: Check back with Dead Email List,SL2: Connected,"Next Tag: SL2: Connected, SL1x: Delayer, SL1x: Non-Responder, X: Referred Out"
-,,SL1x: Check back with Dead Email List,SL1x: Delayer,
-,,SL1x: Check back with Dead Email List,SL1x: Non-Responder,
-,,SL1x: Check back with Dead Email List,X: Referred Out,
-SL3: Push to Call Scheduled,SL2: Connected,SL3: Scheduled Call,SL3: Call Scheduled,Next Tag: SL3: Call Scheduled
-SL4: Push to Call Held,SL3: Call Scheduled,SL4: Prep and Hold Call,SL4: Call Held,Next Tag: SL4: Call Held
-SL5: Push to Joined CP,SL4: Call Held,"Send Post-Call Email, Send Leaderpack, Add to Friends of CommonPlace",Type: Super Leader Partner,"Next Tag: Type: Super Leader Partner, Type: PFO, Type: Civic Hero, Status: Added to Email List"
-PTA1: Push to Contacted,Type: PTA,PTA1: Send Phone Call Request Email,PTA1: Contacted,Next Tag: PTA1: Contacted
-PTA2: Push to Connected,PTA1: Contacted,"PTA2: Log Response (and in 7 days, send reminder and tag non-response) ",PTA2: Connected,"Next Tag: PTA2: Connected, PTA1x: Delayer, PTA1x: Non-Responder, X: Referred Out"
-,,"PTA2: Log Response (and in 7 days, send reminder and tag non-response) ",PTA1x: Delayer,
-,,"PTA2: Log Response (and in 7 days, send reminder and tag non-response) ",PTA1x: Non-Responder,
-,,"PTA2: Log Response (and in 7 days, send reminder and tag non-response) ",X: Referred Out,
-,,"PTA2: Log Response (and in 7 days, send reminder and tag non-response) ",PTA1x: Dead Email,
-PTA1x: Push to Connected,PTA1x: Delayer,PTA1x: Check back with Delayer List,PTA2: Connected,"Next Tag: PTA2: Connected, X: Referred Out"
-,,PTA1x: Check back with Delayer List,X: Referred Out,
-PTA1x: Push to Connected,PTA1x: Non-Responder,PTA1x: Check back with Non-Responder List,PTA2: Connected,"Next Tag: PTA2: Connected, PTA1x: Delayer, X: Referred Out"
-,,PTA1x: Check back with Non-Responder List,PTA1x: Delayer,
-,,PTA1x: Check back with Non-Responder List,X: Referred Out,
-PTA1x: Push to Connected,PTA1x: Dead Email,PTA1x: Check back with Dead Email List,PTA2: Connected,"Next Tag: PTA2: Connected, PTA1x: Delayer, PTA1x: Non-Responder, X: Referred Out"
-,,PTA1x: Check back with Dead Email List,PTA1x: Delayer,
-,,PTA1x: Check back with Dead Email List,PTA1x: Non-Responder,
-,,PTA1x: Check back with Dead Email List,X: Referred Out,
-PTA3: Push to Call Scheduled,PTA2: Connected,PTA3: Scheduled Call,PTA3: Call Scheduled,Next Tag: PTA3: Call Scheduled
-PTA4: Push to Call Held,PTA3: Call Scheduled,PTA4: Prep and Hold Call,PTA4: Call Held,Next Tag: PTA4: Call Held
-PTA5: Push to Post-Call Partnership,PTA4: Call Held,"Send Post-Call Email, Send Leaderpack, Add to Friends of CommonPlace",Type: PTA Partner,"Next Tag: Type: PTA Partner, Type: PFO, Type: Civic Hero, Status: Added to Email List"
-LCC1: Push to Contacted,Type: Library/CC,LCC1: Send Phone Call Request Email,LCC1: Contacted,Next Tag: LCC1: Contacted
-LCC2: Push to Connected,LCC1: Contacted,"LCC2: Log Response (and in 7 days, send reminder and tag non-response) ",LCC2: Connected,"Next Tag: LCC2: Connected, LCC1x: Delayer, LCC1x: Non-Responder, X: Referred Out"
-,,"LCC2: Log Response (and in 7 days, send reminder and tag non-response) ",LCC1x: Delayer,
-,,"LCC2: Log Response (and in 7 days, send reminder and tag non-response) ",LCC1x: Non-Responder,
-,,"LCC2: Log Response (and in 7 days, send reminder and tag non-response) ",X: Referred Out,
-,,"LCC2: Log Response (and in 7 days, send reminder and tag non-response) ",LCC1x: Dead Email,
-LCC1x: Push to Connected,LCC1x: Delayer,LCC1x: Check back with Delayer List,LCC2: Connected,"Next Tag: LCC2: Connected, X: Referred Out"
-,,LCC1x: Check back with Delayer List,X: Referred Out,
-LCC1x: Push to Connected,LCC1x: Non-Responder,LCC1x: Check back with Non-Responder List,LCC2: Connected,"Next Tag: LCC2: Connected, LCC1x: Delayer, X: Referred Out"
-,,LCC1x: Check back with Non-Responder List,LCC1x: Delayer,
-,,LCC1x: Check back with Non-Responder List,X: Referred Out,
-LCC1x: Push to Connected,LCC1x: Dead Email,LCC1x: Check back with Dead Email List,LCC2: Connected,"Next Tag: LCC2: Connected, LCC1x: Delayer, LCC1x: Non-Responder, X: Referred Out"
-,,LCC1x: Check back with Dead Email List,LCC1x: Delayer,
-,,LCC1x: Check back with Dead Email List,LCC1x: Non-Responder,
-,,LCC1x: Check back with Dead Email List,X: Referred Out,
-LCC3: Push to Call Scheduled,LCC2: Connected,LCC3: Scheduled Call,LCC3: Call Scheduled,Next Tag: LCC3: Call Scheduled
-LCC4: Push to Call Held,LCC3: Call Scheduled,LCC4: Prep and Hold Call,LCC4: Call Held,Next Tag: LCC4: Call Held
-LCC5: Push to Joined CP,LCC4: Call Held,"Send Post-Call Email, Send Leaderpack, Add to Friends of CommonPlace",Type: Library/CC Partner,"Next Tag: Type: Library/CC Partner, Type: PFO, Type: Civic Hero, Status: Added to Email List"
-P1: Push to Contacted,Type: Press,P1: Send Phone Call Request Email,P1: Contacted,Next Tag: P1: Contacted
-P2: Push to Connected,P1: Contacted,"P2: Log Response (and in 7 days, send reminder and tag non-response) ",P2: Connected,"Next Tag: P2: Connected, P1x: Delayer, P1x: Non-Responder, X: Referred Out"
-,,"P2: Log Response (and in 7 days, send reminder and tag non-response) ",P1x: Delayer,
-,,"P2: Log Response (and in 7 days, send reminder and tag non-response) ",P1x: Non-Responder,
-,,"P2: Log Response (and in 7 days, send reminder and tag non-response) ",X: Referred Out,
-,,"P2: Log Response (and in 7 days, send reminder and tag non-response) ",P1x: Dead Email,
-P1x: Push to Connected,P1x: Delayer,P1x: Check back with Delayer List,P2: Connected,"Next Tag: P2: Connected, X: Referred Out"
-,,P1x: Check back with Delayer List,X: Referred Out,
-P1x: Push to Connected,P1x: Non-Responder,P1x: Check back with Non-Responder List,P2: Connected,"Next Tag: P2: Connected, P1x: Delayer, X: Referred Out"
-,,P1x: Check back with Non-Responder List,P1x: Delayer,
-,,P1x: Check back with Non-Responder List,X: Referred Out,
-P1x: Push to Connected,P1x: Dead Email,P1x: Check back with Dead Email List,P2: Connected,"Next Tag: P2: Connected, P1x: Delayer, P1x: Non-Responder, X: Referred Out"
-,,P1x: Check back with Dead Email List,P1x: Delayer,
-,,P1x: Check back with Dead Email List,P1x: Non-Responder,
-,,P1x: Check back with Dead Email List,X: Referred Out,
-P3: Push to Call Scheduled,P2: Connected,P3: Scheduled Call,P3: Call Scheduled,Next Tag: P3: Call Scheduled
-P4: Push to Call Held,P3: Call Scheduled,P4: Prep and Hold Call,P4: Call Held,Next Tag: P4: Call Held
-P5: Push to Joined CP,P4: Call Held,P5: Send Post-Call Followup and Push to Join,P5: Joined CP,Next Tag: P5: Joined CP
-P6: Push to Has Feed,P5: Joined CP,"Send Post-Call Email, Send Leaderpack, Add to Friends of CommonPlace",Type: Press Partner,"Next Tag: Type: Press Partner, Type: PFO, Type: Civic Hero, Status: Added to Email List"
-NOM1,Type: Nominator,"NOM1: Send Nominator Email, Add to Excited Neighbor",Type: Nominator Complete,"Next Tag: Type: Nominator Complete, Type: Excited Neighbor"
-SOR1: Push to Contacted,Type: Student Organizer Recruiter,SOR1: Send Phone Call Request Email,SOR1: Contacted,Next Tag: SOR1: Contacted
-SOR2: Push to Connected,SOR1: Contacted,SOR2: Log Response,SOR2: Connected,"Next Tag: SOR2: Connected, SOR1x: Delayer, SOR1x: Non-Responder, X: Referred Out"
-,,SOR2: Log Response,X: Uninterested,
-,,SOR2: Log Response,SOR1x: Non-Responder,
-,,SOR2: Log Response,X: Referred Out,
-,,SOR2: Log Response,SOR1x: Dead Email,
-SOR1x: Push to Connected,SOR1x: Delayer,SOR1x: SOR back with Delayer List,SOR2: Connected,"Next Tag: SOR2: Connected, X: Referred Out"
-,,SOR1x: SOR back with Delayer List,X: Referred Out,
-SOR1x: Push to Connected,SOR1x: Non-Responder,SOR1x: Check back with Non-Responder List,SOR2: Connected,"Next Tag: SOR2: Connected, SOR1x: Delayer, X: Referred Out"
-,,SOR1x: Check back with Non-Responder List,SOR1x: Delayer,
-,,SOR1x: Check back with Non-Responder List,X: Referred Out,
-SOR1x: Push to Connected,SOR1x: Dead Email,SOR1x: Check back with Dead Email List,SOR2: Connected,"Next Tag: SOR2: Connected, SOR1x: Delayer, SOR1x: Non-Responder, X: Referred Out"
-,,SOR1x: Check back with Dead Email List,SOR1x: Delayer,
-,,SOR1x: Check back with Dead Email List,SOR1x: Non-Responder,
-,,SOR1x: Check back with Dead Email List,X: Referred Out,
-SOR3: Push to Call Scheduled,SOR2: Connected,SOR3: Scheduled Call,SOR3: Call Scheduled,Next Tag: SOR3: Call Scheduled
-SOR4: Push to Call Held,SOR3: Call Scheduled,SOR4: Prep and Hold Call,SOR4: Call Held,Next Tag: SOR4: Call Held
-SOR5: Push to Ask Answered,SOR4: Call Held,"Send Post-Call Email, Send Leaderpack, Add to Friends of CommonPlace",Type: Student Organizer Recruiter Partner,Next Tag: Type: Student Organizer Recruiter Partner
-EN1: Push to Contacted,Type: Excited Neighbor,EN1: Send Phone Call Request Email,EN1: Contacted,Next Tag: EN1: Contacted
-EN2: Push to Connected,EN1: Contacted,EN2: Log Response,EN2: Connected,"Next Tag: EN2: Connected, EN1x: Delayer, EN1x: Non-Responder, X: Referred Out"
-,,EN2: Log Response,X: Uninterested,
-,,EN2: Log Response,EN1x: Non-Responder,
-,,EN2: Log Response,X: Referred Out,
-,,EN2: Log Response,EN1x: Dead Email,
-EN1x: Push to Connected,EN1x: Delayer,EN1x: EN back with Delayer List,EN2: Connected,"Next Tag: EN2: Connected, X: Referred Out"
-,,EN1x: EN back with Delayer List,X: Referred Out,
-EN1x: Push to Connected,EN1x: Non-Responder,EN1x: Check back with Non-Responder List,EN2: Connected,"Next Tag: EN2: Connected, EN1x: Delayer, X: Referred Out"
-,,EN1x: Check back with Non-Responder List,EN1x: Delayer,
-,,EN1x: Check back with Non-Responder List,X: Referred Out,
-EN1x: Push to Connected,EN1x: Dead Email,EN1x: Check back with Dead Email List,EN2: Connected,"Next Tag: EN2: Connected, EN1x: Delayer, EN1x: Non-Responder, X: Referred Out"
-,,EN1x: Check back with Dead Email List,EN1x: Delayer,
-,,EN1x: Check back with Dead Email List,EN1x: Non-Responder,
-,,EN1x: Check back with Dead Email List,X: Referred Out,
-EN3: Push to Call Scheduled,EN2: Connected,EN3: Scheduled Call,EN3: Call Scheduled,Next Tag: EN3: Call Scheduled
-EN4: Push to Call Held,EN3: Call Scheduled,EN4: Prep and Hold Call,EN4: Call Held,Next Tag: EN4: Call Held
-EN5: Push to Ask Answered,EN4: Call Held,"Send Post-Call Email, Send Leaderpack, Add to Friends of CommonPlace",Type: Excited Neighbor Partner,Next Tag: Type: Excited Neighbor Partner
-ON1: Push to Contacted,Type: Opinionated Neighbor,ON1: Send Phone Call Request Email,ON1: Contacted,Next Tag: ON1: Contacted
-ON2: Push to Connected,ON1: Contacted,ON2: Log Response,ON2: Connected,"Next Tag: ON2: Connected, ON1x: Delayer, ON1x: Non-Responder, X: Referred Out"
-,,ON2: Log Response,X: Uninterested,
-,,ON2: Log Response,ON1x: Non-Responder,
-,,ON2: Log Response,X: Referred Out,
-,,ON2: Log Response,ON1x: Dead Email,
-ON1x: Push to Connected,ON1x: Delayer,ON1x: ON back with Delayer List,ON2: Connected,"Next Tag: ON2: Connected, X: Referred Out"
-,,ON1x: ON back with Delayer List,X: Referred Out,
-ON1x: Push to Connected,ON1x: Non-Responder,ON1x: Check back with Non-Responder List,ON2: Connected,"Next Tag: ON2: Connected, ON1x: Delayer, X: Referred Out"
-,,ON1x: Check back with Non-Responder List,ON1x: Delayer,
-,,ON1x: Check back with Non-Responder List,X: Referred Out,
-ON1x: Push to Connected,ON1x: Dead Email,ON1x: Check back with Dead Email List,ON2: Connected,"Next Tag: ON2: Connected, ON1x: Delayer, ON1x: Non-Responder, X: Referred Out"
-,,ON1x: Check back with Dead Email List,ON1x: Delayer,
-,,ON1x: Check back with Dead Email List,ON1x: Non-Responder,
-,,ON1x: Check back with Dead Email List,X: Referred Out,
-ON3: Push to Call Scheduled,ON2: Connected,ON3: Scheduled Call,ON3: Call Scheduled,Next Tag: ON3: Call Scheduled
-ON4: Push to Call Held,ON3: Call Scheduled,ON4: Prep and Hold Call,ON4: Call Held,Next Tag: ON4: Call Held
-ON5: Push to Ask Answered,ON4: Call Held,"Send Post-Call Email, Send Leaderpack, Add to Friends of CommonPlace",Type: Opinionated Neighbor Partner,Next Tag: Type: Opinionated Neighbor Partner
+Leaders,Type: Leader,"Leaders: Mapped, awaiting Contacted",L1: Contacted,L1: Contacted
+Leaders,L1: Contacted,"L1: Contacted, awaiting Connected",L2: Connected,"L2: Connected, L1x: Delayer, X: Referred Out, L1x: No Email"
+,,"L1: Contacted, awaiting Connected",L1x: Delayer,
+,,"L1: Contacted, awaiting Connected",X: Referred Out,
+,,"L1: Contacted, awaiting Connected",L1x: No Email,
+Leaders,L1x: No Email,"L1x: No Email, awaiting Connected",L2: Connected,"L2: Connected, X: Referred Out, L1x: Delayer"
+,,"L1x: No Email, awaiting Connected",X: Referred Out,
+,,"L1x: No Email, awaiting Connected",L1x: Delayer,
+Leaders,L1x: Delayer,"L1x: Delayer, awaiting Connected",L2: Connected,"L2: Connected, X: Referred Out"
+,,,X: Referred Out,
+Leaders,L2: Connected,"L2: Connected, awaiting Call Scheduled",L3: Call Scheduled,L3: Call Scheduled; Send Pre-Call Email
+Leaders,L3: Call Scheduled,"L3: Call Scheduled, awaiting Call Held",L4: Call Held,L4: Call Held
+Leaders,L4: Call Held,"L4: Call Held, tag with Type: Leader Partner",Type: Leader Partner,Tag Type: Leader Partner
+Leaders,Type: Leader Partner,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants Feed,"Ask: Wants Feed, Ask: Wants 50 Reasons; Ask: Wants Follow Up"
+,,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants 50 Reasons Post,
+,,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants Follow Up,
+Leaders,Ask: Wants Follow Up,Follow Up,Status: Followed Up,"Status: Followed Up, Tag with: Ask: Wants Friends of OurCommonPlace Add"
+Leaders,Ask: Wants Friends of OurCommonPlace,Add to Friends of OurCommonPlace,Status: Friend of OurCommonPlace,Status: On Friends of OurCommonPlace
+Leaders,Ask: Wants 50 Reasons Post,Compile 50 Reasons Post,Status: 50 Reasons Post Published,Status: 50 Reasons Post Published
+Leaders,Ask: Wants Feed,Transfer Feed,Status: Transferred Feed,Status: Transferred Feed
+Leaders,Status: Transferred Feed,"Send Post-Feed Email, Tag with Asks",Status: Briefed on Feed,"Status: Briefed on Feed, Tag with: Ask: Wants Blurb, Ask: Wants Cards"
+Leaders,Ask: Wants Blurb,Send Blurb,Status: Blurb sent,Status: Blurb sent
+Leaders,Ask: Wants Cards,Send Cards,Status: Cards sent,Status: Cards sent
+Excited Neighbors,Type: Excited Neighbor,"Excited Neighbors: Identified, awaiting Contacted",EN1: Contacted,EN1: Contacted
+Excited Neighbors,EN1: Contacted,"EN1: Contacted, awaiting Connected",EN2: Connected,"EN2: Connected, EN1x: Delayer, X: Referred Out, EN1x: No Email"
+,,"EN1: Contacted, awaiting Connected",EN1x: Delayer,
+,,"EN1: Contacted, awaiting Connected",X: Referred Out,
+,,"EN1: Contacted, awaiting Connected",EN1x: No Email,
+Excited Neighbors,EN1x: No Email,"EN1x: No Email, awaiting Connected",EN2: Connected,"EN2: Connected, X: Referred Out, EN1x: Delayer"
+,,"EN1x: No Email, awaiting Connected",X: Referred Out,
+,,"EN1x: No Email, awaiting Connected",EN1x: Delayer,
+Excited Neighbors,EN1x: Delayer,"EN1x: Delayer, awaiting Connected",EN2: Connected,"EN2: Connected, X: Referred Out"
+,,,X: Referred Out,
+Excited Neighbors,EN2: Connected,"EN2: Connected, awaiting Call Scheduled",EN3: Call Scheduled,EN3: Call Scheduled; Send Pre-Call Email
+Excited Neighbors,EN3: Call Scheduled,"EN3: Call Scheduled, awaiting Call Held",EN4: Call Held,EN4: Call Held
+Excited Neighbors,EN4: Call Held,"EN4: Call Held, tag with Type: Excited Neighbor Partner",Type: Excited Neighbor Partner,"Tag Type: Excited Neighbor Partner, Send Follow-Up"
+Excited Neighbors,Type: Excited Neighbor Partner,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Friends of OurCommonPlace,"Ask: Wants Friends of OurCommonPlace, Ask: Wants Blurb, Ask: Wants Cards, Ask: Wants 50 Reasons Post"
+,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Blurb,
+,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Cards,
+,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants 50 Reasons Post,
+Early Adopter,Status: Joined CP,"Early Adopter: Joined, awaiting Contacted",Type: Excited Neighbor,EA1: Contacted
+,,"Early Adopter: Joined, awaiting Contacted",Type: Leader,
+,,"Early Adopter: Joined, awaiting Contacted",Type: Press,
+,,"Early Adopter: Joined, awaiting Contacted",EA1: Contacted,
+Early Adopter,EA1: Contacted,"EA1: Contacted, awaiting Connected",EA2: Connected,"EA2: Connected, EA1x: Delayer"
+,,"EA1: Contacted, awaiting Connected",EA1x: Delayer,
+Early Adopter,EA1x: Delayer,EA1x: Delayer,EA2: Connected,EA2: Connected
+Early Adopter,EA2: Connected,"EA2: Connected, awaiting two week follow up and Call Scheduled",EA3: Call Scheduled,EA3: Call Scheduled; Send Pre-Call Email
+Early Adopter,EA3: Call Scheduled,"EA3: Call Scheduled, awaiting Call Held",EA4: Call Held,EA4: Call Held
+Early Adopter,EA4: Call Held,"EA4: Call Held, tag with Type: Excited Neighbor Partner",Type: Early Adopter Partner,"Tag Type: Excited Neighbor Partner, Send Follow-Up"
+Early Adopter,Type: Early Adopter Partner,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Friends of OurCommonPlace,"Ask: Wants Feed, Ask: Wants 50 Reasons; Ask: Wants Follow Up"
+,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Blurb,
+,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Cards,
+,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants 50 Reasons Post,
+Press,Type: Press,"Press: Mapped, awaiting Contacted",P1: Contacted,P1: Contacted
+Press,P1: Contacted,"P1: Contacted, awaiting Connected",P2: Connected,"P2: Connected, P1x: Delayer, X: Referred Out, P1x: No Email"
+,,"P1: Contacted, awaiting Connected",P1x: Delayer,
+,,"P1: Contacted, awaiting Connected",X: Referred Out,
+,,"P1: Contacted, awaiting Connected",P1x: No Email,
+Press,P1x: No Email,"P1x: No Email, awaiting Connected",P2: Connected,"P2: Connected, X: Referred Out, P1x: Delayer"
+,,"P1x: No Email, awaiting Connected",X: Referred Out,
+,,"P1x: No Email, awaiting Connected",P1x: Delayer,
+Press,P1x: Delayer,"P1x: Delayer, awaiting Connected",P2: Connected,"P2: Connected, X: Referred Out"
+,,,X: Referred Out,
+Press,P2: Connected,"P2: Connected, awaiting Call Scheduled",P3: Call Scheduled,P3: Call Scheduled; Send Pre-Call Email
+Press,P3: Call Scheduled,"P3: Call Scheduled, awaiting Call Held",P4: Call Held,P4: Call Held
+Press,P4: Call Held,"P4: Call Held, tag with Type: Press Partner",Type: Press Partner,Tag Type: Press Partner
+Press,Type: Press Partner,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants Feed,"Ask: Wants Feed, Ask: Wants 50 Reasons; Ask: Wants Follow Up"
+,,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants 50 Reasons Post,
+,,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants Follow Up,
+Press,Ask: Wants Follow Up,Follow Up,Status: Followed Up,"Status: Followed Up, Tag with: Ask: Wants Friends of OurCommonPlace Add"
+Press,Ask: Wants Friends of OurCommonPlace,Add to Friends of OurCommonPlace,Status: Friend of OurCommonPlace,Status: On Friends of OurCommonPlace
+Press,Ask: Wants 50 Reasons Post,Compile 50 Reasons Post,Status: 50 Reasons Post Published,Status: 50 Reasons Post Published
+Press,Ask: Wants Feed,Transfer Feed,Status: Transferred Feed,Status: Transferred Feed
+Press,Status: Transferred Feed,"Send Post-Feed Email, Tag with Asks",Status: Briefed on Feed,"Status: Briefed on Feed, Tag with: Ask: Wants Blurb, Ask: Wants Cards"
+Press,Ask: Wants Blurb,Send Blurb,Status: Blurb sent,Status: Blurb sent
+Press,Ask: Wants Cards,Send Cards,Status: Cards sent,Status: Cards sent
 Special To-Do,Q: Special To-Do,Q: Do Special To-Do,Q: Completed Special To-Do,Next Tag: Q: Completed Special To-Do
-Special To-Do,Status: Wants Leaderpack,Send Leaderpack,Status: Leaderpack Sent,Status: Leaderpack Sent
-Special To-Do,Status: Wants Email Blurb,Send Email Blurb,Status: Email Blurb Sent,Next Tag: Status: Email Blurb Sent
-Special To-Do,Status: Wants to join Friends of OurCommonPlace,Add to Friends of CommonPlace,Status: Friend of OurCommonPlace,Status: Friend of OurCommonPlace
