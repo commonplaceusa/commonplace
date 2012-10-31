@@ -32,11 +32,13 @@ class API
     post "/mailgun/opens" do
       authentic_mailgun? || (halt 401)
       begin
-        if params['tag'] == 'daily_bulletin'
-          DailyStatistic.increment_or_create("daily_bulletins_opened")
-        end
-        if params['tag'] == 'single_post'
-          DailyStatistic.increment_or_create("single_posts_opened")
+        if params['event'] == 'event'
+          if params['tag'] == 'daily_bulletin'
+            DailyStatistic.increment_or_create("daily_bulletins_opened")
+          end
+          if params['tag'] == 'single_post'
+            DailyStatistic.increment_or_create("single_posts_opened")
+          end
         end
         # TODO: Log the email
       rescue

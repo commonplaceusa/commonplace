@@ -30,6 +30,6 @@ class DailyStatistic
   end
 
   def self.value(key, redis = Resque.redis, namespace = "statistics:daily")
-    redis.get(key)
+    redis.get(namespace + ":" + key)
   end
 end
