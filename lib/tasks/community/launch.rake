@@ -1,10 +1,12 @@
 namespace :community do
-  task :launch, [:name, :slug] => :environment do |t, args|
+  task :launch, [:name, :slug, :zip_code, :state] => :environment do |t, args|
     ActiveRecord::Base.transaction do
       begin
         new_community = Community.create!(
           name: args[:name].titleize,
-          slug: args[:slug]
+          slug: args[:slug],
+          zip_code: args[:zip_code],
+          state: args[:state].upcase
         )
         new_neighborhood = Neighborhood.create!(
           name: args[:name],
