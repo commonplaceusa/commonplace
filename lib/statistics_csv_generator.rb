@@ -1,5 +1,4 @@
 class StatisticsCsvGenerator
-  extend Resque::Plugins::JobStats
   # TODO: This should be independent of StatisticsAggregator
   #
   @queue = :statistics

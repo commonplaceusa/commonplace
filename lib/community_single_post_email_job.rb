@@ -1,6 +1,5 @@
 class CommunitySinglePostEmailJob
   include MailUrls
-  extend Resque::Plugins::JobStats
   @queue = :community_single_post_email
 
   def self.url(path)

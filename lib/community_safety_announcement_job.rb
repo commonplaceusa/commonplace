@@ -1,7 +1,6 @@
 require 'rubygems'
 
 class CommunitySafetyAnnouncementJob
-  extend Resque::Plugins::JobStats
   include MailUrls
   @queue = :community_announcement
 

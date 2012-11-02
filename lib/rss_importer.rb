@@ -1,6 +1,5 @@
 
 class RSSImporter
-  extend Resque::Plugins::JobStats
   def self.perform
     Feed.find(:all, :conditions => ["feed_url != ?", "" ]).each do |feed|
       unless (feed.feed_url =~ URI::regexp).nil?

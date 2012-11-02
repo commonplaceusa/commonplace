@@ -1,5 +1,4 @@
 class SinglePostEmailJob
-  extend Resque::Plugins::JobStats
   @queue = :single_post_email
 
   def self.perform

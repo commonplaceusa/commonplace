@@ -1,5 +1,4 @@
 class EmailCountResetter
-  extend Resque::Plugins::JobStats
   @queue = :database
 
   def self.perform

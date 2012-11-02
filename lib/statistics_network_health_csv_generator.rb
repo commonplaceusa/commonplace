@@ -77,7 +77,6 @@ class NetworkHealthStats
 end
 
 class StatisticsNetworkHealthCsvGenerator
-  extend Resque::Plugins::JobStats
   @queue = :statistics
 
   def self.end_date

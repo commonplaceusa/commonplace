@@ -212,6 +212,10 @@ class KickOff
     end
   end
 
+  def enqueue_statistic_increment(key)
+    enqueue(StatisticsIncrementor, key)
+  end
+
   private
 
   def enqueue(*args)

@@ -1,5 +1,4 @@
 class CpCreditsCalculator
-  extend Resque::Plugins::JobStats
   @queue = :credits
 
   def self.perform

@@ -1,10 +1,9 @@
 class DailyStatisticClearer
-  @queue = :statistics
+  @queue = :statistics_cleansing
 
   def self.perform!(redis = Resque.redis)
-    keys = JSON.parse redis.get(DailyStatistic::REDIS_KEY_MIDNIGHT_CLEAR)
-    keys.each do |key|
-      DailyStatistic.clear(key)
+    redis.keys(StatisticsIncrementor::NAMESPACE + "*").each do |key|
+      redis.set(StatisticsIncrementor::NAMESPACE + key, 0)
     end
   end
 end
