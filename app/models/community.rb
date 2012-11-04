@@ -512,4 +512,23 @@ class Community < ActiveRecord::Base
     result.merge!({nominees: nominees})
     result.merge!({nominators: nominators})
   end
+
+  def growth_percentage(format = true, start = 1.week.ago, finish = DateTime.current)
+    value = (self.users.up_to(finish).count - self.users.up_to(start).count).to_f / (self.users.up_to(start).count || 1).to_f
+    if format
+      return value * 100
+    else
+      return value
+    end
+  end
+
+  def penetration_percentage(format = true)
+    return -1 unless self.households?
+    value = (self.users.count.to_f / self.households.to_f)
+    if format
+      return value * 100
+    else
+      return value
+    end
+  end
 end

@@ -55,7 +55,7 @@ gem 'resque-scheduler' # we use this to queue jobs at specific times
 gem 'resque-cleaner'
 gem 'resque-job-stats', :git => "https://github.com/alanpeabody/resque-job-stats.git"
 gem 'hirefireapp' # auto-scale web and worker processes
-gem "resque-statsd", :git => "https://github.com/cloudability/resque-statsd.git"
+# gem "resque-statsd", :git => "https://github.com/cloudability/resque-statsd.git"
 
 # Mail
 gem 'mail' # Used for mail
@@ -72,7 +72,7 @@ gem 'sass' # used for stylesheets
 gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git'
 gem 'googlecharts' # used for admin/overview
 gem 'garb' # used to access the Google Analytics API
-gem 'leftronic'
+gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref => "ac5614d0d14f3208b26e83ca5e4d7d"
 
 # Monitoring
 gem 'exceptional' # we use this to notify on exceptions

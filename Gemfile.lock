@@ -9,6 +9,15 @@ GIT
       rake
 
 GIT
+  remote: https://github.com/Jberlinsky/leftronic-gem.git
+  revision: ac5614d0d14f3208b26e83ca5e4d7d48fe39a485
+  ref: ac5614d0d14f3208b26e83ca5e4d7d
+  specs:
+    leftronic (0.0.4)
+      json (>= 1.4.6)
+      rest-client (>= 1.6.1)
+
+GIT
   remote: https://github.com/alanpeabody/resque-job-stats.git
   revision: a992e0c65e360dc6063b0a5780c59cfcab7800a1
   specs:
@@ -20,13 +29,6 @@ GIT
   revision: 76d569567a16b7e6b8806489cc629b6d225bcf22
   specs:
     mock_redis (0.4.1)
-
-GIT
-  remote: https://github.com/cloudability/resque-statsd.git
-  revision: a07359e81c11058045e2cb59c05f2a1d3389b386
-  specs:
-    resque-statsd (0.0.4)
-      jamster-statsd
 
 GIT
   remote: https://github.com/dabio/taps.git
@@ -260,7 +262,6 @@ GEM
       multi_json (~> 1.0)
       multi_xml
     i18n (0.6.0)
-    jamster-statsd (0.1.0)
     jar_wrapper (0.1.2)
       jeweler
       jeweler
@@ -293,9 +294,6 @@ GEM
     km (1.1.2)
     launchy (2.1.0)
       addressable (~> 2.2.6)
-    leftronic (0.0.3)
-      json (>= 1.4.6)
-      rest-client (>= 1.6.1)
     libnotify (0.7.2)
     libv8 (3.3.10.4)
     loofah (1.2.0)
@@ -566,7 +564,7 @@ DEPENDENCIES
   json (~> 1.6.0)
   km
   launchy
-  leftronic
+  leftronic!
   libnotify
   mail
   mcbean
@@ -597,7 +595,6 @@ DEPENDENCIES
   resque-exceptional
   resque-job-stats!
   resque-scheduler
-  resque-statsd!
   rmagick
   rollout
   rpm_contrib
