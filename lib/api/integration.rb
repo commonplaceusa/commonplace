@@ -36,6 +36,8 @@ class API
           DailyStatistic.increment_or_create("#{params['tag']}s_opened")
         end
         # TODO: Log the email
+        # KM.identify()
+        # KM.record("platform activity", { source: "email", email_tag: params['tag'] })
       rescue
         halt 501
       end

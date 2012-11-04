@@ -3,6 +3,7 @@ class GeckoBoardAnnouncer
 
   def self.perform
     dashboard = Leftronic.new(ENV['LEFTRONIC_API_KEY'] || 'pjdDJRzToCFGERGfIGl5QuBTJRgEdYwG')
+    dashboard.text("Statistics Information", "Update Started", "Began updating at #{DateTime.now.to_s}")
     dashboard.number("Users on Network", User.count)
     growths = []
     populations = []
@@ -46,5 +47,11 @@ class GeckoBoardAnnouncer
     dashboard.pie("Todays Emails by Tag", emails)
 
     dashboard.number("E-Mails in Queue", Resque.size("notifications"))
+
+    dashboard.text("Statistics Information", "Update Finished", "Finished updating at #{DateTime.now.to_s}")
+
+    unless Rails.env.production?
+      dashboard.text("Statistics Information", "Non-Authoritative Update", "The current update is not from production")
+    end
   end
 end
