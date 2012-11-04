@@ -44,5 +44,7 @@ class GeckoBoardAnnouncer
       }
     end
     dashboard.pie("Todays Emails by Tag", emails)
+
+    dashboard.number("E-Mails in Queue", Resque.size("notifications"))
   end
 end
