@@ -397,32 +397,8 @@ class Community < ActiveRecord::Base
 
   def user_charts
     charts = {}
-    residents = self.residents.all.reject { |x| x.metadata[:tags].nil? }
-
-    # Platform data
-    platform = []
-    platform << ["Users", "Posts", "Events"]
-
-    users = self.users.count
-    posts = self.posts.count
-    events = self.events.count
-
-    platform << [users, posts, events]
-
-    # Relationship Metrics
-    relationship = []
-    relationship << ["Phase", "Total # of Civic Leaders", "Total # of Connected", "Total # of Phone Call",
-      "Total # of Joined CP", "Total # with Feed", "Total # Posting to Feed", "Total # Publicized"]
-
-    leaders = residents.reject { |x| !x.metadata[:tags].include?("Type: Civic Leader") }
-
-    c_leaders = leaders.count
-    connected = residents.reject { |x| !x.metadata[:tags].include?("CL1: Responded to Civic Leader Phone Call Request Email") }.count
-    calls =  residents.reject { |x| !x.metadata[:tags].include?("CL2: Civic Leader Phone Call Held") }.count
-    joined = leaders.reject { |x| !x.metadata[:tags].include?("Joined CP") }.count
-    feeds = leaders.reject { |x| !x.metadata[:tags].include?("Feed Owner") }.count
-    posted = leaders.reject { |x| !x.metadata[:tags].include?("Has Posted") }.count
-    publicized = residents.reject { |x| !x.metadata[:tags].include?("CL4a: Received Publicity and Leaderbox Email") }.count
+    residents = self.residents.all.reject { |x| x.tags.nil? }
+    headers = ["Type", "#", "Conversion Rate"]
 
     def percent(n, d)
       if d == 0
@@ -432,90 +408,405 @@ class Community < ActiveRecord::Base
       (n.to_f / d * 100 * 100).round * 0.01
     end
 
-    a = percent(connected, c_leaders)
-    b = percent(calls, connected)
-    c = percent(joined, calls)
-    d = percent(feeds, joined)
-    e = percent(posted, feeds)
-    f = percent(publicized, posted)
+    def rejectx(list)
+      list.reject { |x| x.tags.include?("X: Referred Out") || x.tags.include?("X: Uninterested") }
+    end
 
-    v = percent(calls, c_leaders)
-    w = percent(joined, c_leaders)
-    x = percent(feeds, c_leaders)
-    y = percent(posted, c_leaders)
-    z = percent(publicized, c_leaders)
+    # Leaders Metrics
+    leaders = residents.reject { |x| !x.tags.include?("Type: Civic Leader") }
 
-    relationship << ["Absolute #", c_leaders, connected, calls, joined, feeds, posted, publicized]
-    relationship << ["Phase-to-Phase Conversion", "100.0", a, b, c, d, e, f]
-    relationship << ["Total Conversion", "100.0", a, v, w, x, y, z]
+    # Recruiting Leaders
+    r_leaders = []
+    r_leaders << headers
 
-    # PLS Metrics
-    pls = []
-    pls << ["", "Super Leaders", "PTA", "Press", "Library/CC"]
+    conn = leaders.reject { |x| !x.tags.include?("L1: Contacted") }
+    p_conn = rejectx(conn).reject { |x| x.tags.include?("L1x: No Email") || x.tags.include?("L2: Connected") }
+    no_resp = rejectx(p_conn).reject { |x| x.tags.include?("L1x: Delayer") }
+    delayers = rejectx(leaders).reject { |x| !x.tags.include?("L1x: Delayer") || x.tags.include?("L2: Connected") }
 
-    ts_leaders = residents.reject { |x| !x.metadata[:tags].include?("Type: Super Leader") }.count
-    t_pta = residents.reject { |x| !x.metadata[:tags].include?("Type: PTA") }.count
-    t_press = residents.reject { |x| !x.metadata[:tags].include?("Type: Press") }.count
-    t_cc = residents.reject { |x| !x.metadata[:tags].include?("Type: Library/CC") }.count
+    ref_out = leaders.reject { |x| !x.tags.include?("X: Referred Out") }
+    uninterest = leaders.reject { |x| !x.tags.include?("X: Uninterested") }
+    no_email = leaders.reject { |x| !x.tags.include?("L1x: No Email") }
+    c_leaders = ref_out | uninterest | no_email
 
-    rs_leaders = residents.reject { |x| !x.metadata[:tags].include?("SL1: Responded to Super Leader Phone Call Request Email") }.count
-    r_pta = residents.reject { |x| !x.metadata[:tags].include?("PTA1: Responded to PTA Phone Call Request Email") }.count
-    r_press = residents.reject { |x| !x.metadata[:tags].include?("P1: Responded to Press Phone Call Request Email") }.count
-    r_cc = residents.reject { |x| !x.metadata[:tags].include?("LCC1: Responded to Library/CC Phone Call Request Email") }.count
+    tlaunch = conn.reject { |x| !x.tags.include?("L2: Connected") }
+    tsuccess = leaders.reject { |x| !x.tags.include?("Email: Leader Non-Responder 1: Success") }
+    tpersonal = leaders.reject { |x| !x.tags.include?("Email: Leader Non-Responder 2: Personal") }
+    tlast_chance = leaders.reject { |x| !x.tags.include?("Email: Leader Non-Responder 3: Last Chance") }
 
-    ps_leaders = residents.reject { |x| !x.metadata[:tags].include?("Type: Super Leader Partner") }.count
-    p_pta = residents.reject { |x| !x.metadata[:tags].include?("Type: PTA Partner") }.count
-    p_press = residents.reject { |x| !x.metadata[:tags].include?("Type: Press Partner") }.count
-    p_cc = residents.reject { |x| !x.metadata[:tags].include?("Type: Library/CC Partner") }.count
+    l_conn = rejectx(tlaunch).reject { |x| x.tags.include?("Type: Leader Partner") }
+    last_chance = tlaunch & tlast_chance
+    personal = tlaunch & tpersonal - last_chance
+    success = tlaunch & tsuccess - personal
+    launch = tlaunch - success
 
-    pls << ["Total #", ts_leaders, t_pta, t_press, t_cc]
-    pls << ["# in Contact", rs_leaders, r_pta, r_press, r_cc]
-    pls << ["# of Partners", ps_leaders, p_pta, p_press, p_cc]
+    leader_p = leaders.reject{ |x| !x.tags.include?("Type: Leader Partner") }
+
+    l_count = leaders.count
+    p_conn = p_conn.count
+    no_resp = no_resp.count
+    delayers = delayers.count
+    c_leaders = c_leaders.count
+    l_conn = l_conn.count
+    launch = launch.count
+    success = success.count
+    personal = personal.count
+    last_chance = last_chance.count
+    leader_p = leader_p.count
+
+    a = percent(p_conn, l_count)
+    b = percent(c_leaders, l_count)
+    c = percent(l_conn, l_count)
+    d = percent(launch, conn.count)
+    e = percent(success, tsuccess.count)
+    f = percent(personal, tpersonal.count)
+    g = percent(last_chance, tlast_chance.count)
+    h = percent(leader_p, l_count)
+
+    r_leaders << ["Mapped Leaders", l_count, "Exactly what you'd expect"]
+    r_leaders << ["Possible Connections", p_conn, a.to_s + "% of total mapped leaders"]
+    r_leaders << ["==> Non-Responders", no_resp]
+    r_leaders << ["==> Delayers", delayers]
+    r_leaders << ["Closed Leaders", c_leaders, b.to_s + "% of total mapped leaders"]
+    r_leaders << ["==> Referred Out", ref_out.count]
+    r_leaders << ["==> Uninterested", uninterest.count]
+    r_leaders << ["==> Dead Email", no_email.count]
+    r_leaders << ["Live Connections", l_conn, c.to_s + "% of total mapped leaders"]
+    r_leaders << ["==> Launch Email", launch, d.to_s + "% of total emailed Launch Email"]
+    r_leaders << ["==> Success Email", success, e.to_s + "% of total emailed Success Email"]
+    r_leaders << ["==> Personal Email", personal, f.to_s + "% of total emailed Personal Email"]
+    r_leaders << ["==> Last Chance Email", last_chance, g.to_s + "% of total emailed Last Chance Email"]
+    r_leaders << ["Leader Partners", leader_p, h.to_s + "% of total mapped leaders"]
+
+    # Activating Leaders
+    a_leaders = []
+    a_leaders << headers
+
+    conn = leaders.reject { |x| !x.tags.include?("L2: Connected") }
+    scheduled = conn.reject { |x| !x.tags.include?("L3: Call Scheduled") }
+    held = scheduled.reject { |x| !x.tags.include?("L4: Call Held") }
+    l_partners = leaders.reject { |x| !x.tags.include?("Type: Leader Partner") }
+
+    feed_ask = leaders.reject { |x| !x.tags.include?("Ask: Wants Feed") }
+    feed_create = leaders.reject { |x| !x.tags.include?("Status: Transferred Feed") }
+    cards = leaders.reject { |x| !x.tags.include?("Status: Cards Sent") }
+    blurbs = leaders.reject { |x| !x.tags.include?("Status: Blurb Sent") }
+    focp = leaders.reject { |x| !x.tags.include?("Status: Friend of OurCommonPlace") }
+    reasons = leaders.reject { |x| !x.tags.include?("Status: 50 Reasons Post Published") }
+    follow = leaders.reject { |x| !x.tags.include?("Status: Followed Up") }
+
+    conn = conn.count
+    scheduled = scheduled.count
+    held = held.count
+    l_partners = l_partners.count
+    feed_ask = feed_ask.count
+    feed_create = feed_create.count
+    cards = cards.count
+    blurbs = blurbs.count
+    focp = focp.count
+    reasons = reasons.count
+    follow = follow.count
+
+    a = percent(scheduled, conn)
+    b = percent(held, conn)
+    c = percent(l_partners, conn)
+
+    a_leaders << ["Connected Leaders", conn, "Like, seriously"]
+    a_leaders << ["Calls Scheduled", scheduled, a.to_s + "%"]
+    a_leaders << ["Call Held", held, b.to_s + "%"]
+    a_leaders << ["Leader Partners", l_partners, c.to_s + "%"]
+    a_leaders << ["Feeds Asked For", feed_ask]
+    a_leaders << ["Feeds Created", feed_create]
+    a_leaders << ["Cards Sent", cards]
+    a_leaders << ["Blurbs Sent", blurbs]
+    a_leaders << ["Friends of CommonPlace", focp]
+    a_leaders << ["50 Reasons Published", reasons]
+    a_leaders << ["Follow Ups", follow]
+
+    # Excited Neighbors Metrics
+    neighbors = residents.reject { |x| !x.tags.include?("Type: Excited Neighbor") }
+
+    # Recruiting Excited Neighbors
+    r_neighbors = []
+    r_neighbors << headers
+
+    conn = neighbors.reject { |x| !x.tags.include?("EN1: Contacted") }
+    p_conn = rejectx(conn).reject { |x| x.tags.include?("EN1x: No Email") || x.tags.include?("EN2: Connected") }
+    no_resp = rejectx(p_conn).reject { |x| x.tags.include?("EN1x: Delayer") }
+    delayers = rejectx(neighbors).reject { |x| !x.tags.include?("EN1x: Delayer") || x.tags.include?("EN2: Connected") }
+
+    uninterest = neighbors.reject { |x| !x.tags.include?("X: Uninterested") }
+    no_email = neighbors.reject { |x| !x.tags.include?("EN1x: No Email") }
+    c_neighbors = uninterest | no_email
+
+    tlaunch = conn.reject { |x| !x.tags.include?("EN2: Connected") }
+    tremind = neighbors.reject { |x| !x.tags.include?("Email: Excited Neighbor Non-Responder 1: Reminder") }
+
+    l_conn = rejectx(tlaunch).reject { |x| x.tags.include?("Type: Excited Neighbor Partner") }
+    remind = tlaunch & tremind
+    launch = tlaunch - remind
+
+    neighbor_p = neighbors.reject { |x| !x.tags.include?("Type: Excited Neighbor Partner") }
+
+    n_count = neighbors.count
+    p_conn = p_conn.count
+    no_resp = no_resp.count
+    delayers = delayers.count
+    l_conn = l_conn.count
+    launch = launch.count
+    remind = remind.count
+
+    a = percent(p_conn, n_count)
+    b = percent(c_leaders, n_count)
+    c = percent(l_conn, n_count)
+    d = percent(launch, conn.count)
+    e = percent(remind, tlaunch.count)
+    f = percent(neighbor_p, n_count)
+
+    r_neighbors << ["Potential Excited Neighbor", n_count, "*Insert witty text here*"]
+    r_neighbors << ["Possible Connections", p_conn, a.to_s + "%"]
+    r_neighbors << ["==> Non-Responders", no_resp, ""]
+    r_neighbors << ["==> Delayers", delayers, ""]
+    r_neighbors << ["Closed Neighbors", c_leaders, b.to_s + "%"]
+    r_neighbors << ["==> Uninterested", uninterest.count, ""]
+    r_neighbors << ["==> Dead Email", no_email.count, ""]
+    r_neighbors << ["Live Connections", l_conn, c.to_s + "%"]
+    r_neighbors << ["==> Launch Email", launch, d.to_s + "%"]
+    r_neighbors << ["==> Reminder Email", remind, e.to_s + "%"]
+    r_neighbors << ["Excited Neighbor Partners", neighbor_p, f.to_s + "%"]
+
+    # Activating Excited Neighbors
+    a_neighbors = []
+    a_neighbors << headers
+
+    conn = neighbors.reject { |x| !x.tags.include?("EN2: Connected") }
+    scheduled = conn.reject { |x| !x.tags.include?("EN3: Call Scheduled") }
+    held = scheduled.reject { |x| !x.tags.include?("EN4: Call Held") }
+    n_partners = neighbors.reject { |x| !x.tags.include?("Type: Excited Neighbor Partner") }
+
+    cards = neighbors.reject { |x| !x.tags.include?("Status: Cards Sent") }
+    blurbs = neighbors.reject { |x| !x.tags.include?("Status: Blurb Sent") }
+    focp = neighbors.reject { |x| !x.tags.include?("Status: Friend of OurCommonPlace") }
+
+    conn = conn.count
+    scheduled = scheduled.count
+    held = held.count
+    n_partners = n_partners.count
+    cards = cards.count
+    blurbs = blurbs.count
+    focp = focp.count
+
+    a = percent(scheduled, conn)
+    b = percent(held, conn)
+    c = percent(n_partners, conn)
+
+    a_neighbors << ["Connected Excited Neighbors", conn, "1.0"]
+    a_neighbors << ["Call Scheduled", scheduled, a.to_s + "%"]
+    a_neighbors << ["Call Held", held, b.to_s + "%"]
+    a_neighbors << ["Excited Neighbor Partners", n_partners, c.to_s + "%"]
+    a_neighbors << ["Cards Sent", cards]
+    a_neighbors << ["Blurbs Sent", blurbs]
+    a_neighbors << ["Friends of CommonPlace", focp]
+
+    # Early Adopters Metrics
+    adopters = residents.reject { |x| !x.tags.include?("Status: Joined CP") || x.tags.include?("Type: Excited Neighbor") || x.tags.include?("Type: Leader") }
+
+    # Recruiting Early Adopters
+    r_adopters = []
+    r_adopters << headers
+
+    conn = adopters.reject { |x| !x.tags.include?("EA1: Contacted") }
+    p_conn = rejectx(conn).reject { |x| x.tags.include?("EA1x: No Email") || x.tags.include?("EA2: Connected") }
+    no_resp = rejectx(p_conn).reject { |x| x.tags.include?("EA1x: Delayer") }
+    delayers = rejectx(adopters).reject { |x| !x.tags.include?("EA1x: Delayer") || x.tags.include?("EA2: Connected") }
+
+    uninterest = adopters.reject { |x| !x.tags.include?("X: Uninterested") }
+    no_email = adopters.reject { |x| !x.tags.include?("EA1x: No Email") }
+    c_neighbors = uninterest | no_email
+
+    tlaunch = conn.reject { |x| !x.tags.include?("EA2: Connected") }
+    task = adopters.reject { |x| !x.tags.include?("Email: Early Adopter Non-Responder 1: Asks") }
+
+    l_conn = rejectx(tlaunch).reject { |x| x.tags.include?("Type: Early Adopter Partner") }
+    ask = tlaunch & task
+    launch = tlaunch - ask
+
+    adopter_p = adopters.reject { |x| !x.tags.include?("Type: Early Adopter Partner") }
+
+    a_count = neighbors.count
+    p_conn = p_conn.count
+    no_resp = no_resp.count
+    delayers = delayers.count
+    l_conn = l_conn.count
+    launch = launch.count
+    ask = ask.count
+
+    a = percent(p_conn, a_count)
+    b = percent(c_leaders, a_count)
+    c = percent(l_conn, a_count)
+    d = percent(launch, conn.count)
+    e = percent(ask, task.count)
+    f = percent(adopter_p, a_count)
+
+    r_adopters << ["Potential Early Adopters", a_count, "You can't handle the truth!"]
+    r_adopters << ["Possible Connections", p_conn, a.to_s + "%"]
+    r_adopters << ["==> Non-Responders", no_resp, ""]
+    r_adopters << ["==> Delayers", delayers, ""]
+    r_adopters << ["Closed Neighbors", c_leaders, b.to_s + "%"]
+    r_adopters << ["==> Uninterested", uninterest.count, ""]
+    r_adopters << ["==> Dead Email", no_email.count, ""]
+    r_adopters << ["Live Connections", l_conn, c.to_s + "%"]
+    r_adopters << ["==> Launch Email", launch, d.to_s + "%"]
+    r_adopters << ["==> Asks Email", ask, e.to_s + "%"]
+    r_adopters << ["Early Adopter Partners", adopter_p, f.to_s + "%"]
+
+    # Activating Early Adopters
+    a_adopters = []
+    a_adopters << headers
+
+    conn = adopters.reject { |x| !x.tags.include?("EA2: Connected") }
+    scheduled = conn.reject { |x| !x.tags.include?("EA3: Call Scheduled") }
+    held = scheduled.reject { |x| !x.tags.include?("EA4: Call Held") }
+    a_partners = adopters.reject { |x| !x.tags.include?("Type: Early Adopter Partner") }
+
+    cards = adopters.reject { |x| !x.tags.include?("Status: Cards Sent") }
+    blurbs = adopters.reject { |x| !x.tags.include?("Status: Blurb Sent") }
+    focp = adopters.reject { |x| !x.tags.include?("Status: Friend of OurCommonPlace") }
+
+    conn = conn.count
+    scheduled = scheduled.count
+    held = held.count
+    a_partners = a_partners.count
+    cards = cards.count
+    blurbs = blurbs.count
+    focp = focp.count
+
+    a = percent(scheduled, conn)
+    b = percent(held, conn)
+    c = percent(n_partners, conn)
+
+    a_adopters << ["Connected Early Adopters", conn, "Perfect"]
+    a_adopters << ["Call Scheduled", scheduled, a.to_s + "%"]
+    a_adopters << ["Call Held", held, b.to_s + "%"]
+    a_adopters << ["Excited Adopter Partners", n_partners, c.to_s + "%"]
+    a_adopters << ["Cards Sent", cards]
+    a_adopters << ["Blurbs Sent", blurbs]
+    a_adopters << ["Friends of CommonPlace", focp]
+
+    # Flyer Metrics
+    flyers = []
+    flyers << ["", "Dropped", "Dropped & Joined", "Dropped & Referral Source", "D&J Conversion Rate", "D&R Conversion Rate"]
+
+    flyer_a = residents.reject { |x| !x.tags.include?("Flyer: A") }
+    flyer_b = residents.reject { |x| !x.tags.include?("Flyer: B") }
+    flyer_c = residents.reject { |x| !x.tags.include?("Flyer: C") }
+    flyer_d = residents.reject { |x| !x.tags.include?("Flyer: D") }
+
+    joined_a = flyer_a.reject { |x| !x.tags.include?("Status: Joined CP") }
+    joined_b = flyer_a.reject { |x| !x.tags.include?("Status: Joined CP") }
+    joined_c = flyer_a.reject { |x| !x.tags.include?("Status: Joined CP") }
+    joined_d = flyer_a.reject { |x| !x.tags.include?("Status: Joined CP") }
+
+    mail_a = flyer_a.reject { |x| !x.tags.include?("Referral: Flyer in the mail") }
+    mail_b = flyer_a.reject { |x| !x.tags.include?("Referral: Flyer in the mail") }
+    mail_c = flyer_a.reject { |x| !x.tags.include?("Referral: Flyer in the mail") }
+    mail_d = flyer_a.reject { |x| !x.tags.include?("Referral: Flyer in the mail") }
+
+    flyer_a = flyer_a.count
+    flyer_b = flyer_b.count
+    flyer_c = flyer_c.count
+    flyer_d = flyer_d.count
+    joined_a = joined_a.count
+    joined_b = joined_b.count
+    joined_c = joined_c.count
+    joined_d = joined_d.count
+    mail_a = mail_a.count
+    mail_b = mail_b.count
+    mail_c = mail_c.count
+    mail_d = mail_d.count
+
+    a = percent(joined_a, flyer_a)
+    b = percent(joined_b, flyer_b)
+    c = percent(joined_c, flyer_c)
+    d = percent(joined_d, flyer_d)
+
+    aa = percent(mail_a, flyer_a)
+    bb = percent(mail_b, flyer_b)
+    cc = percent(mail_c, flyer_c)
+    dd = percent(mail_d, flyer_d)
+
+    flyers << ["Flyer A", flyer_a, joined_a, mail_a, a, aa]
+    flyers << ["Flyer B", flyer_b, joined_b, mail_b, b, bb]
+    flyers << ["Flyer C", flyer_c, joined_c, mail_c, c, cc]
+    flyers << ["Flyer D", flyer_d, joined_d, mail_d, d, dd]
+
+    # Press Metrics
+    press = []
+    press << ["Title", "#"]
+
+    p_press = residents.reject { |x| !x.tags.include?("Type: Press") }.count
+    press_p = residents.reject { |x| !x.tags.include?("Type: Press Partner") }.count
+    list = residents.reject { |x| !x.tags.include?("Type: List") }.count
+    list_p = residents.reject { |x| !x.tags.include?("Type: List Partner") }.count
+
+    press << ["Potential Press", p_press]
+    press << ["Press Partner", press_p]
+    press << ["List", list]
+    press << ["List Partner", list_p]
 
     # All the data
-    charts.merge!({ platform: platform })
-    charts.merge!({ relationship: relationship })
-    charts.merge!({ pls: pls })
+    charts.merge!({ r_leaders: r_leaders })
+    charts.merge!({ a_leaders: a_leaders })
+    charts.merge!({ r_neighbors: r_neighbors })
+    charts.merge!({ a_neighbors: a_neighbors })
+    charts.merge!({ r_adopters: r_adopters })
+    charts.merge!({ a_adopters: a_adopters })
+    charts.merge!({ flyers: flyers })
+    charts.merge!({ press: press })
   end
 
   def user_statistics
     result = {}
     residents = self.residents.all
 
-    civic_l = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Civic Leader") }.map { |x| x.id }
-    civics_l = Flag.where("name = ? AND resident_id in (?)", "CL2: Civic Leader Phone Call Held", civic_l)
+    leader = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("L2: Connected") }.map { |x| x.id }
+    leaders = Flag.where("name = ? AND resident_id in (?)", "L2: Connected", leader)
 
-    civic_p = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("CH3a: Post Published") }.map { |x| x.id }
-    civics_p = Flag.where("name = ? AND resident_id in (?)", "CH3a: Post Published", civic_p)
+    leader_p = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Leader Partner") }.map { |x| x.id }
+    leaders_p = Flag.where("name = ? AND resident_id in (?)", "Type: Leader Partner", leader_p)
 
-    civic_s = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Status: On Civic Heroes List") }.map { |x| x.id }
-    civics_s = Flag.where("name = ? AND resident_id in (?)", "Status: On Civic Heroes List", civic_s)
+    neighbor = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("EN2: Connected") }.map { |x| x.id }
+    neighbors = Flag.where("name = ? AND resident_id in (?)", "EN2: Connected", neighbor)
 
-    nominee_r = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominee") }.map { |x| x.id }
-    nominee = Flag.where("name = ? AND resident_id in (?)", "Type: Nominee", nominee_r)
+    neighbor_p = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Excited Neighbor Partner") }.map { |x| x.id }
+    neighbors_p = Flag.where("name = ? AND resident_id in (?)", "Type: Excited Neighbor Partner", neighbor_p)
 
-    nominator_r = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Nominator") }.map { |x| x.id }
-    nominator = Flag.where("name = ? AND resident_id in (?)", "Type: Nominator", nominator_r)
+    adopter = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("EA2: Connected") }.map { |x| x.id }
+    adopters = Flag.where("name = ? AND resident_id in (?)", "EA2: Connected", adopter)
 
-    phone = graph(civics_l)
-    posted = graph(civics_p)
-    status = graph(civics_s)
-
-    nominees = graph(nominee)
-    nominators = graph(nominator)
+    adopter_p = residents.reject { |x| x.metadata[:tags].nil? || !x.metadata[:tags].include?("Type: Early Adopter Partner") }.map { |x| x.id }
+    adopters_p = Flag.where("name = ? AND resident_id in (?)", "Type: Early Adopter Partner", adopter)
 
     users = graph(self.users.all)
     posts = graph(self.posts.all)
     events = graph(self.events.all)
 
+    leader = graph(leaders)
+    leader_p = graph(leaders_p)
+    neighbor = graph(neighbors)
+    neighbor_p = graph(neighbors_p)
+    adopter = graph(adopters)
+    adopter_p = graph(adopters_p)
+
     result.merge!({users: users})
     result.merge!({posts: posts})
     result.merge!({events: events})
-    result.merge!({phone: phone})
-    result.merge!({posted: posted})
-    result.merge!({c_status: status})
-    result.merge!({nominees: nominees})
-    result.merge!({nominators: nominators})
+    result.merge!({leaders: leader})
+    result.merge!({leaders_p: leader_p})
+    result.merge!({neighbors: neighbor})
+    result.merge!({neighbors_p: neighbor_p})
+    result.merge!({adopters: adopter})
+    result.merge!({adopters_p: adopter_p})
   end
 
   def growth_percentage(format = true, start = 1.week.ago, finish = DateTime.current)

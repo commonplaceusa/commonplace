@@ -79,7 +79,6 @@ class Flag < ActiveRecord::Base
     @@todos ||= {}
 
     @@todos.sort {|a, b| a[1] <=> b[1]}.map {|a, b, c, d| a}.compact
-    # @@todos.keys.compact
   end
 
   def self.get_rule(flag)
