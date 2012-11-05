@@ -66,6 +66,7 @@
       <% if Rails.env.production? %>
         <script type="text/javascript">
           _kmq.push(['record', 'Main Page', {'community': '<%= @community.name %>'}]);
+          _kmq.push(['record', 'platform activity', {'source': 'site_visit'}]);
         </script>
       <% end %>
     </div>
