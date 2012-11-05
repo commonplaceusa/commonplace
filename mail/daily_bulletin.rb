@@ -60,6 +60,15 @@ class DailyBulletin < MailBase
 
   def deliver
     if deliver?
+      email_id = EmailTracker.new_email({
+          'recipient_email' => self.to,
+          'email_type' => self.class.name,
+          'tag_list' => self.tag_list,
+          'main_tag' => self.tag,
+          'originating_community_id' => (self.community) ? self.community.id : 0,
+          'updated_at' => DateTime.now
+      })
+      # increase_email_count
       mail = Mail.deliver(:to => self.to,
                           :from => self.from,
                           :reply_to => self.reply_to,
@@ -70,9 +79,22 @@ class DailyBulletin < MailBase
                           :headers => {
                             "Precedence" => "list",
                             "Auto-Submitted" => "auto-generated",
-                            "X-Campaign-Id" => @community_slug,
-                            "X-Mailgun-Tag" => self.tag
+                            "X-Mailgun-Tag" => self.tag,
+                            "X-Mailgun-Variables" => {
+                              email_id: email_id
+                            }.to_json
+
                           })
+      DailyStatistic.increment_or_create("#{self.tag}s_sent")
+      KM.identify(self.to)
+      KM.record('email sent', {
+        type: self.tag,
+        community: community ? community.slug : "administrative"
+      })
+      KM.record("#{self.tag} email sent", {
+        type: self.tag,
+        community: community ? community.slug : "administrative"
+      })
     end
   end
 
