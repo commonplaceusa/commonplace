@@ -1,10 +1,13 @@
 module HerokuResque
   class WorkerScaler
-    extend Resque::Plugins::Statsd
     @queue = :server_management
 
     def self.perform(num_dynos)
       Heroku::Client.new(ENV['HEROKU_USER'], ENV['HEROKU_PASSWORD']).ps_scale(ENV['HEROKU_APP'], :type => 'worker', :qty => num_dynos)
+    end
+
+    def self.count(type)
+      Heroku::Client.new(ENV['HEROKU_USER'], ENV['HEROKU_PASSWORD']).ps(ENV['HEROKU_APP']).select { |ps| ps["process"] =~ /type/ }.count
     end
   end
 

@@ -46,6 +46,27 @@ class GeckoBoardAnnouncer
       # }
     # end
     # dashboard.pie("Todays Emails by Tag", emails)
+    #
+    postings = {}
+    [Post, Announcement, GroupPost, Event].each do |klass|
+      key = (klass.first.respond_to? :category) ? Proc.new { |obj| obj.category } : Proc.new { |obj| obj.class.name }
+      klass.today.each do |item|
+        if postings.include? key.call(item)
+          postings[key.call(item)] += 1
+        else
+          postings[key.call(item)] = 1
+        end
+      end
+    end
+    posts = []
+    postings.each do |k,c|
+      posts << {
+        k => c
+      }
+    end
+    dashboard.pie("Todays Posts by Category", posts)
+
+    dashboard.number("Active Workers", HerokuResque::WorkerScaler.count("worker"))
 
     dashboard.number("E-Mails in Queue", Resque.size("notifications"))
 
