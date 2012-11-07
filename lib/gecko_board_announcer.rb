@@ -3,7 +3,7 @@ class GeckoBoardAnnouncer
 
   def self.perform
     tz = "Eastern Time (US & Canada)"
-    dashboard = Leftronic.new(ENV['LEFTRONIC_API_KEY'] || 'pjdDJRzToCFGERGfIGl5QuBTJRgEdYwG')
+    dashboard = Leftronic.new(ENV['LEFTRONIC_API_KEY'] || '')
     dashboard.text("Statistics Information", "Update Started", "Began updating at #{DateTime.now.in_time_zone(tz).to_s}")
     dashboard.number("Users on Network", User.count)
     growths = []
