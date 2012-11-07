@@ -7,7 +7,7 @@ module HerokuResque
     end
 
     def self.count(type)
-      Heroku::Client.new(ENV['HEROKU_USER'], ENV['HEROKU_PASSWORD']).ps(ENV['HEROKU_APP']).select { |ps| ps["process"] =~ /type/ }.count
+      Heroku::Client.new(ENV['HEROKU_USER'], ENV['HEROKU_PASSWORD']).ps(ENV['HEROKU_APP']).select { |ps| ps["process"].include? type }.count
     end
   end
 
