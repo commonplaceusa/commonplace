@@ -19,6 +19,11 @@ class Bootstrapper < Sinatra::Base
         redirect "https://www.ourcommonplace.com#{request.path}"
         return
 
+      when %r{^hnn\.harvard\.edu}
+        if request.path == "/" || request.path == ""
+          redirect "https://hnn.harvard.edu/harvardneighbors"
+        end
+
       when %r{^(?:www\.)?([a-zA-Z]+)\.ourcommonplace\.com$}
         if request.path == "/" || request.path == ""
           redirect "https://www.ourcommonplace.com/#{$1}"
