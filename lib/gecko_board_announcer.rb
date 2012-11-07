@@ -16,7 +16,7 @@ class GeckoBoardAnnouncer
     populations = []
     growth_headers = ["Community", "Users", "Wkly Growth", "Penetration", "Posts Per Day"]
     Community.find_each do |community|
-      continue if EXCLUDED_COMMUNITIES.include? community.slug
+      next if EXCLUDED_COMMUNITIES.include? community.slug
       growth = (community.growth_percentage.round(2))
       growth = "DNE" if growth.infinite?
       penetration = community.penetration_percentage.round(2)
