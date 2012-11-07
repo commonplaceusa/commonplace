@@ -38,14 +38,14 @@ class GeckoBoardAnnouncer
     dashboard.number("Single Post Emails Sent Today", DailyStatistic.value("single_posts_sent") || 0)
     dashboard.number("Single Post Emails Opened Today", DailyStatistic.value("single_posts_opened") || 0)
     # dashboard.number("Single Post Email Open Rate Today", DailyStatistic.value("single_posts_opened").to_f / DailyStatistic.value("single_posts_sent").to_f)
-    emails = []
-    Resque.redis.keys("statistics:daily:*_sent").each do |key|
-      email_tag = key.gsub("statistics:daily:", "").gsub("_sent", "")
-      emails << {
-        email_tag => Resque.redis.get(key).to_i
-      }
-    end
-    dashboard.pie("Todays Emails by Tag", emails)
+    # emails = []
+    # Resque.redis.keys("statistics:daily:*_sent").each do |key|
+      # email_tag = key.gsub("statistics:daily:", "").gsub("_sent", "")
+      # emails << {
+        # email_tag => Resque.redis.get(key).to_i
+      # }
+    # end
+    # dashboard.pie("Todays Emails by Tag", emails)
 
     dashboard.number("E-Mails in Queue", Resque.size("notifications"))
 
