@@ -1,6 +1,12 @@
 class GeckoBoardAnnouncer
   @queue = :statistics
 
+  EXCLUDED_COMMUNITIES = %w[
+    Raleigh
+    Clarkston
+    GroveHall
+  ]
+
   def self.perform
     tz = "Eastern Time (US & Canada)"
     dashboard = Leftronic.new(ENV['LEFTRONIC_API_KEY'] || '')
@@ -8,13 +14,14 @@ class GeckoBoardAnnouncer
     dashboard.number("Users on Network", User.count)
     growths = []
     populations = []
-    growth_headers = ["Community", "Users", "Weekly Growth", "Penetration"]
+    growth_headers = ["Community", "Users", "Wkly Growth", "Penetration", "Posts Per Day"]
     Community.find_each do |community|
+      continue if EXCLUDED_COMMUNITIES.include? community.slug
       growth = (community.growth_percentage.round(2))
       growth = "DNE" if growth.infinite?
       penetration = community.penetration_percentage.round(2)
-      # penetration = 0
-      growths << [community.name, community.users.count, "#{growth}%", "#{penetration.to_s.gsub("-1.0", "0")}%"]
+      posts_per_day = ((community.posts.count + community.announcements.count + community.events.count + community.group_posts.count) / (Date.today - community.launch_date)).to_d.round(2).to_s
+      growths << [community.name, community.users.count, "#{growth}%", "#{penetration.to_s.gsub("-1.0", "0")}%", posts_per_day]
       populations << {
         community.name => community.users.count
       }
