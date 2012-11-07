@@ -21,7 +21,7 @@ class GeckoBoardAnnouncer
       growth = "DNE" if growth.infinite?
       penetration = community.penetration_percentage.round(2)
       begin
-        posts_per_day = ((community.posts.count + community.announcements.count + community.events.count + community.group_posts.count) / (Date.today - community.launch_date)).to_d.round(2).to_s
+        posts_per_day = ((community.posts.count + community.announcements.count + community.events.count + community.group_posts.count) / (Date.today - community.launch_date.to_date)).to_d.round(2).to_s
       rescue
         posts_per_day = ""
       end
