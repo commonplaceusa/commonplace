@@ -34,10 +34,10 @@ class GeckoBoardAnnouncer
 
     dashboard.number("Daily Bulletins Sent Today", DailyStatistic.value("daily_bulletins_sent") || 0)
     dashboard.number("Daily Bulletins Opened Today", DailyStatistic.value("daily_bulletins_opened") || 0)
-    # dashboard.number("Daily Bulletin Open Rate Today", DailyStatistic.value("daily_bulletins_opened").to_f / DailyStatistic.value("daily_bulletins_sent").to_f)
+    dashboard.number("Daily Bulletin Open Rate Today", DailyStatistic.value("daily_bulletins_opened").to_f / DailyStatistic.value("daily_bulletins_sent").to_f)
     dashboard.number("Single Post Emails Sent Today", DailyStatistic.value("single_posts_sent") || 0)
     dashboard.number("Single Post Emails Opened Today", DailyStatistic.value("single_posts_opened") || 0)
-    # dashboard.number("Single Post Email Open Rate Today", DailyStatistic.value("single_posts_opened").to_f / DailyStatistic.value("single_posts_sent").to_f)
+    dashboard.number("Single Post Email Open Rate Today", DailyStatistic.value("single_posts_opened").to_f / DailyStatistic.value("single_posts_sent").to_f)
     # emails = []
     # Resque.redis.keys("statistics:daily:*_sent").each do |key|
       # email_tag = key.gsub("statistics:daily:", "").gsub("_sent", "")
