@@ -18,8 +18,8 @@ OrganizerApp.FeedPicker = CommonPlace.View.extend({
     "click #new-resident": "addResident",
     "click #todo-list": "gotoTodo",
     "click #interest-picker": "interestPicker",
+    "click #statistics-charts": "newCharts",
     "click #files": "goBack",
-    "click #statistics-charts": "newCharts"
   },
 
   addNewselect: function(){
@@ -38,7 +38,7 @@ OrganizerApp.FeedPicker = CommonPlace.View.extend({
 
   onClickFile: function(e) {
     e.preventDefault();
-    this.options.feedViewer.show($(e.currentTarget).data('model'), this.options.community, this.collection,this);
+    this.options.feedViewer.show($(e.currentTarget).data('model'), this.options.community, this.options.other, this);
   },
 
   previous: function(e) {

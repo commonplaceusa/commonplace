@@ -3,8 +3,7 @@ OrganizerApp.FeedViewer = CommonPlace.View.extend({
   template: "organizer_app.feed-viewer",
 
   events: {
-    "click #edit-resident":"editResident",
-    "click .interests": "filterByinterest"
+    "click #transfer": "transferFeed"
   },
 
   editResident: function(){
@@ -16,34 +15,40 @@ OrganizerApp.FeedViewer = CommonPlace.View.extend({
     this.show($(e.currentTarget).data('model'), this.community, this.collection);
   },
 
-  interests: function(){
-    return this.model.get('interests');
-  },
-
-  filterByinterest: function(e){
-    this.filePicker.filtByinterest($(e.currentTarget).text());
-  },
-
   renderList: function(list) {
-    this.$("#user-picker-list").empty();
-    this.$("#user-picker-list").append(
+    this.$("#new-owner").empty();
+    this.$("#new-owner").append(
       _.map(list, _.bind(function(model) {
-        var li = $("<li/>", { text: model.name(), data: { model: model } })[0];
-        $(li).addClass("pick-user");
+        var li = $("<li/>", { text: model.full_name(), data: { model: model } })[0];
+        $(li).addClass("pick-resident");
         return li;
       }, this)));
   },
 
-  show: function(model,community,collection,filePicker) {
+  newOwner: function(e) {
+    o = $(e.currentTarget).data('model').getId();
+
+  },
+
+  transferFeed: function() {
+    o = this.$("#email").val();
+    $.post(this.model.url()+"/transfer", {new_owner: o}).success(function() { alert("Transferred"); });
+  },
+
+  show: function(model, community, collection, filePicker) {
     this.model = model;
-    this.filePicker=filePicker;
+    this.filePicker= filePicker;
     this.community = community;
-    this.collection=collection;
+    this.collection = collection;
     this.render();
   },
 
   ifuser: function() {
     return this.model.get("on_commonplace");
+  },
+
+  feed_owner: function() {
+    return this.model.owner();
   },
 
   subscribers_count: function() {

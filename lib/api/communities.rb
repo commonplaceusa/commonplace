@@ -422,6 +422,24 @@ CONDITION
       end
     end
 
+    # Transfers feed ownership
+    post "/:id/org_feeds/:feed_id/transfer" do
+      feed = find_community.feeds.find(params[:feed_id])
+      new_owner = find_community.users.find_by_email(params[:new_owner])
+
+      if !new_owner.nil?
+        old_owner = feed.user
+        f_owner = feed.feed_owners.find_by_user_id(old_owner.id)
+        f_owner.user = new_owner
+        f_owner.save!
+
+        feed.user =new_owner
+        feed.save!
+      else
+        [400, "errors"]
+      end
+    end
+
     # Returns community's resident files
     #
     # Requires admin

@@ -15,6 +15,10 @@ OrganizerApp.Feed = Backbone.Model.extend({
     return this.get('subscribers_count');
   },
 
+  owner: function() {
+    return this.get('owner')
+  },
+
   name: function() {
     return this.get('name');
   },

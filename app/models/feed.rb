@@ -71,6 +71,15 @@ class Feed < ActiveRecord::Base
     t.add lambda {|f| f.name}, :as => :messagable_author_name
     t.add :links
     t.add lambda {|f| f.subscribers.count}, :as => :subscribers_count
+    t.add lambda {|f| f.owner}, :as => :owner
+  end
+
+  def owner
+    if self.user.present?
+      self.user.name
+    else
+      "No Owner?"
+    end
   end
 
   def links
