@@ -5,6 +5,11 @@ class GeckoBoardAnnouncer
     Raleigh
     Clarkston
     GroveHall
+    Akron
+    Hinckley
+    MissionHill
+    GraduateCommons
+    HarvardNeighbors
   ]
 
   def self.perform
