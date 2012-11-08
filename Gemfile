@@ -57,7 +57,7 @@ gem 'resque-scheduler' # we use this to queue jobs at specific times
 gem 'resque-cleaner'
 gem 'resque-job-stats', :git => "https://github.com/alanpeabody/resque-job-stats.git"
 gem 'hirefireapp' # auto-scale web and worker processes
-# gem "resque-statsd", :git => "https://github.com/cloudability/resque-statsd.git"
+gem "resque-statsd", :git => "https://github.com/CloudabilityArchive/resque-statsd.git"
 
 # Mail
 gem 'mail' # Used for mail

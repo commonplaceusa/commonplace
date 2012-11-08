@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/CloudabilityArchive/resque-statsd.git
+  revision: a07359e81c11058045e2cb59c05f2a1d3389b386
+  specs:
+    resque-statsd (0.0.4)
+      jamster-statsd
+
+GIT
   remote: https://github.com/Jberlinsky/heroku_san.git
   revision: 3ad7d89733bc9aa82a514b9557d51f0486f0177f
   specs:
