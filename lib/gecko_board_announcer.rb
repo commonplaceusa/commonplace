@@ -42,10 +42,10 @@ class GeckoBoardAnnouncer
     dashboard.table("Growth by Community", growths)
     dashboard.pie("Population by Community", populations)
 
-    penetrations = Community.all.map { |c| c.penetration_percentage(false) }.reject { |v| v < 0 }
+    penetrations = Community.all.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.penetration_percentage(false) }.reject { |v| v < 0 }
     dashboard.number("Overall Penetration", 100 * penetrations.inject{ |sum, el| sum + el }.to_f / penetrations.size)
 
-    growth_rates = Community.all.map { |c| c.growth_percentage(false) }.reject { |v| v.infinite? }
+    growth_rates = Community.all.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.growth_percentage(false) }.reject { |v| v.infinite? }
     dashboard.number("Overall Weekly Growth Rate", 100 * growth_rates.inject{ |sum, el| sum + el }.to_f / growth_rates.size.to_f)
 
     dashboard.number("Daily Bulletins Sent Today", DailyStatistic.value("daily_bulletins_sent") || 0)
