@@ -6,8 +6,8 @@ class GeckoBoardAnnouncer
     Clarkston
     GroveHall
     Akron
-    Hinckley
-    MissionHill
+    hinckley
+    missionhill
     GraduateCommons
     HarvardNeighbors
   ]
