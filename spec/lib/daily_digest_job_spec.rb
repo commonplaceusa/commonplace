@@ -5,5 +5,15 @@ describe DailyDigestJob do
     subject { DailyDigestJob }
     its(instance_variable_get("@queue")) { should_not be_nil }
   end
-  # TODO: Test perform
+
+  describe "#perform" do
+    before do
+      ResqueSpec.reset!
+    end
+
+    it "should enqueue some community daily bulletin jobs" do
+      DailyDigestJob.perform
+      CommunityDailyBulletinJob.should have_queue_size_of(Community.count)
+    end
+  end
 end

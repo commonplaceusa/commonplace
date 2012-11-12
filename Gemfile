@@ -102,7 +102,7 @@ gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 # Analytics
 gem 'km'
 gem 'sqlite3-ruby'
-gem 'km-db', :path => "../km-db"
+gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "deb999f1a06a71afb5b4a381bc81f34cc27dcc0b"
 gem 'mysql2'
 
 group :assets do
@@ -152,6 +152,7 @@ group :osx do
 end
 
 group :test do
+  gem 'resque_spec'
   gem 'rspec-rails' # we use rspec-rails for tests
   gem 'vcr'
   gem 'fuubar' # we use fuubar for pretty rspec output

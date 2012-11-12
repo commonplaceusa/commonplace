@@ -9,6 +9,18 @@ GIT
       rake
 
 GIT
+  remote: https://github.com/Jberlinsky/km-db.git
+  revision: deb999f1a06a71afb5b4a381bc81f34cc27dcc0b
+  ref: deb999f1a06a71afb5b4a381bc81f34cc27dcc0b
+  specs:
+    km-db (0.2)
+      activerecord
+      andand
+      parallel
+      progressbar
+      yajl-ruby
+
+GIT
   remote: https://github.com/Jberlinsky/leftronic-gem.git
   revision: ac5614d0d14f3208b26e83ca5e4d7d48fe39a485
   ref: ac5614d0d14f3208b26e83ca5e4d7d
@@ -76,16 +88,6 @@ GIT
       json
       nokogiri
       oauth (= 0.3.6)
-
-PATH
-  remote: ../km-db
-  specs:
-    km-db (0.2)
-      activerecord
-      andand
-      parallel
-      progressbar
-      yajl-ruby
 
 GEM
   remote: http://rubygems.org/
@@ -423,6 +425,9 @@ GEM
       redis (>= 2.0.1)
       resque (>= 1.8.0)
       rufus-scheduler
+    resque_spec (0.12.5)
+      resque (>= 1.19.0)
+      rspec (>= 2.5.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rmagick (2.13.1)
@@ -612,6 +617,7 @@ DEPENDENCIES
   resque-exceptional
   resque-job-stats!
   resque-scheduler
+  resque_spec
   rmagick
   rollout
   rpm_contrib
