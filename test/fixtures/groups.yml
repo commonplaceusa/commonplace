@@ -1,0 +1,3691 @@
+--- 
+groups_001: 
+  id: "75"
+  name: Volunteer Opportunities
+  slug: volunteer
+  about: Sign up if you are interested in hearing about how you can help out around Harrisonburg.
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-05 14:12:02.088036
+  updated_at: 2011-10-03 16:45:21.115623
+groups_002: 
+  id: "76"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Harrisonburg.
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-05 14:12:02.165144
+  updated_at: 2011-10-03 16:45:21.120255
+groups_003: 
+  id: "77"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Harrisonburg.
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-05 14:12:02.168358
+  updated_at: 2011-10-03 16:45:21.124784
+groups_004: 
+  id: "78"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Harrisonburg Martha Stewart? "
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-05 14:12:02.172043
+  updated_at: 2012-02-02 15:17:36.560864
+groups_005: 
+  id: "79"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Harrisonburg restaurants!
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-05 14:12:02.175525
+  updated_at: 2011-10-03 16:45:21.069031
+groups_006: 
+  id: "80"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-05 14:12:02.179934
+  updated_at: 2011-10-03 16:45:21.093742
+groups_007: 
+  id: "81"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Harrisonburg.
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-05 14:12:02.183672
+  updated_at: 2011-10-03 16:45:21.097439
+groups_008: 
+  id: "82"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Harrisonburg.
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-05 14:12:02.193893
+  updated_at: 2011-10-03 16:45:21.104188
+groups_009: 
+  id: "83"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Harrisonburg.
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-05 14:12:02.220163
+  updated_at: 2011-10-03 16:45:21.134029
+groups_010: 
+  id: "84"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Harrisonburg better? Join up and get the discussion going!
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-05 14:12:02.224735
+  updated_at: 2012-02-02 15:17:36.609539
+groups_011: 
+  id: "85"
+  name: Environment
+  slug: environment
+  about: Get connected with other Harrisonburg environmentalists to discuss environmental issues in Harrisonburg.
+  community_id: "4"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-05 14:12:02.228665
+  updated_at: 2011-10-03 16:45:21.142772
+groups_012: 
+  id: "86"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around West Roxbury.
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.292534
+  updated_at: 2011-10-03 16:45:21.10834
+groups_013: 
+  id: "87"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in West Roxbury.
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:06.308227
+  updated_at: 2011-10-03 16:45:21.146517
+groups_014: 
+  id: "88"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around West Roxbury.
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:06.311683
+  updated_at: 2011-10-03 16:45:21.149785
+groups_015: 
+  id: "89"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a West Roxbury Martha Stewart? "
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:06.313779
+  updated_at: 2012-02-02 15:17:36.147057
+groups_016: 
+  id: "90"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about West Roxbury restaurants!
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:06.315535
+  updated_at: 2011-10-03 16:45:21.157717
+groups_017: 
+  id: "91"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:06.317296
+  updated_at: 2011-10-03 16:45:21.161215
+groups_018: 
+  id: "92"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in West Roxbury.
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:06.319838
+  updated_at: 2011-10-03 16:45:21.164854
+groups_019: 
+  id: "93"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in West Roxbury.
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:06.322125
+  updated_at: 2011-10-03 16:45:21.174276
+groups_020: 
+  id: "94"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in West Roxbury.
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:06.324358
+  updated_at: 2011-10-03 16:45:21.177797
+groups_021: 
+  id: "95"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make West Roxbury better? Join up and get the discussion going!
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:06.438819
+  updated_at: 2012-02-02 15:17:36.287315
+groups_022: 
+  id: "96"
+  name: Environment
+  slug: environment
+  about: Get connected with other West Roxbury environmentalists to discuss environmental issues in West Roxbury.
+  community_id: "1"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:06.441245
+  updated_at: 2011-10-03 16:45:21.184855
+groups_023: 
+  id: "97"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Falls Church.
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.443116
+  updated_at: 2011-10-03 16:45:21.112024
+groups_024: 
+  id: "98"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Falls Church.
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:06.444884
+  updated_at: 2011-10-03 16:45:21.188329
+groups_025: 
+  id: "99"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Falls Church.
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:06.446652
+  updated_at: 2011-10-03 16:45:21.194381
+groups_026: 
+  id: "100"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Falls Church Martha Stewart? "
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:06.448546
+  updated_at: 2012-02-02 15:17:36.715692
+groups_027: 
+  id: "101"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Falls Church restaurants!
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:06.450569
+  updated_at: 2011-10-03 16:45:21.200677
+groups_028: 
+  id: "102"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:06.45235
+  updated_at: 2011-10-03 16:45:21.203765
+groups_029: 
+  id: "103"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Falls Church.
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:06.454105
+  updated_at: 2011-10-03 16:45:21.20699
+groups_030: 
+  id: "104"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Falls Church.
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:06.455839
+  updated_at: 2011-10-03 16:45:21.210613
+groups_031: 
+  id: "105"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Falls Church.
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:06.457831
+  updated_at: 2011-10-03 16:45:21.214047
+groups_032: 
+  id: "106"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Falls Church better? Join up and get the discussion going!
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:06.459683
+  updated_at: 2012-02-02 15:17:36.904828
+groups_033: 
+  id: "107"
+  name: Environment
+  slug: environment
+  about: Get connected with other Falls Church environmentalists to discuss environmental issues in Falls Church.
+  community_id: "2"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:06.461506
+  updated_at: 2011-10-03 16:45:21.223626
+groups_034: 
+  id: "108"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Upper UWS.
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.463345
+  updated_at: 2011-10-19 19:11:48.595473
+groups_035: 
+  id: "109"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Upper UWS.
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:06.465059
+  updated_at: 2011-10-03 16:45:21.227083
+groups_036: 
+  id: "110"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Upper UWS.
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:06.466858
+  updated_at: 2011-10-03 16:45:21.230469
+groups_037: 
+  id: "111"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Upper UWS Martha Stewart? "
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:06.468666
+  updated_at: 2012-02-02 15:17:37.006076
+groups_038: 
+  id: "112"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Upper UWS restaurants!
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:06.470447
+  updated_at: 2011-10-03 16:45:21.238182
+groups_039: 
+  id: "113"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:06.473393
+  updated_at: 2011-10-03 16:45:21.244091
+groups_040: 
+  id: "114"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Upper UWS.
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:06.475889
+  updated_at: 2011-10-03 16:45:21.247723
+groups_041: 
+  id: "115"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Upper UWS.
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:06.47781
+  updated_at: 2011-10-03 16:45:21.252538
+groups_042: 
+  id: "116"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Upper UWS.
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:06.480552
+  updated_at: 2011-10-03 16:45:21.257344
+groups_043: 
+  id: "117"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Upper UWS better? Join up and get the discussion going!
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:06.482995
+  updated_at: 2012-02-02 15:17:37.161641
+groups_044: 
+  id: "118"
+  name: Environment
+  slug: environment
+  about: Get connected with other Upper UWS environmentalists to discuss environmental issues in Upper UWS.
+  community_id: "3"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:06.484807
+  updated_at: 2011-10-03 16:45:21.265837
+groups_045: 
+  id: "119"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Hinckley.
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.486701
+  updated_at: 2011-10-03 16:45:21.358665
+groups_046: 
+  id: "120"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Hinckley.
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:06.488956
+  updated_at: 2011-10-03 16:45:21.269692
+groups_047: 
+  id: "121"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Hinckley.
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:06.542264
+  updated_at: 2011-10-03 16:45:21.316175
+groups_048: 
+  id: "122"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Hinckley Martha Stewart? "
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:06.617424
+  updated_at: 2012-02-02 15:17:37.252419
+groups_049: 
+  id: "123"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Hinckley restaurants!
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:06.620656
+  updated_at: 2011-10-03 16:45:21.323673
+groups_050: 
+  id: "124"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:06.62417
+  updated_at: 2011-10-03 16:45:21.327267
+groups_051: 
+  id: "125"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Hinckley.
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:06.627381
+  updated_at: 2011-10-03 16:45:21.33038
+groups_052: 
+  id: "126"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Hinckley.
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:06.630282
+  updated_at: 2011-10-03 16:45:21.33359
+groups_053: 
+  id: "127"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Hinckley.
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:06.632902
+  updated_at: 2011-10-03 16:45:21.337654
+groups_054: 
+  id: "128"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Hinckley better? Join up and get the discussion going!
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:06.634896
+  updated_at: 2012-02-02 15:17:37.390492
+groups_055: 
+  id: "129"
+  name: Environment
+  slug: environment
+  about: Get connected with other Hinckley environmentalists to discuss environmental issues in Hinckley.
+  community_id: "5"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:06.637262
+  updated_at: 2011-10-03 16:45:21.345855
+groups_056: 
+  id: "130"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Mission Hill.
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.643069
+  updated_at: 2011-11-08 20:59:21.334426
+groups_057: 
+  id: "131"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Mission Hill.
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:06.647211
+  updated_at: 2011-10-03 16:45:21.34945
+groups_058: 
+  id: "132"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Mission Hill.
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:06.654265
+  updated_at: 2011-10-03 16:45:21.352369
+groups_059: 
+  id: "133"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Mission Hill Martha Stewart? "
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:06.659969
+  updated_at: 2012-02-02 15:17:37.532371
+groups_060: 
+  id: "134"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Mission Hill restaurants!
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:06.669072
+  updated_at: 2011-10-03 16:45:21.373265
+groups_061: 
+  id: "135"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:06.674035
+  updated_at: 2011-10-03 16:45:21.376632
+groups_062: 
+  id: "136"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Mission Hill.
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:06.677508
+  updated_at: 2011-10-03 16:45:21.379646
+groups_063: 
+  id: "137"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Mission Hill.
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:06.682415
+  updated_at: 2011-10-03 16:45:21.384131
+groups_064: 
+  id: "138"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Mission Hill.
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:06.688708
+  updated_at: 2011-10-03 16:45:21.387274
+groups_065: 
+  id: "139"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Mission Hill better? Join up and get the discussion going!
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:06.694565
+  updated_at: 2012-02-02 15:17:37.807784
+groups_066: 
+  id: "140"
+  name: Environment
+  slug: environment
+  about: Get connected with other Mission Hill environmentalists to discuss environmental issues in Mission Hill.
+  community_id: "6"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:06.698714
+  updated_at: 2011-10-03 16:45:21.393008
+groups_067: 
+  id: "141"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around CommonPlace.
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.701972
+  updated_at: 2011-11-08 21:01:05.10945
+groups_068: 
+  id: "142"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in CommonPlace.
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:06.707996
+  updated_at: 2011-10-03 16:45:21.396019
+groups_069: 
+  id: "143"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around CommonPlace.
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:06.713363
+  updated_at: 2011-10-03 16:45:21.398888
+groups_070: 
+  id: "144"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a CommonPlace Martha Stewart? "
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:06.719158
+  updated_at: 2012-02-02 15:17:37.933679
+groups_071: 
+  id: "145"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about CommonPlace restaurants!
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:06.724533
+  updated_at: 2011-10-03 16:45:21.404598
+groups_072: 
+  id: "146"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:06.734258
+  updated_at: 2011-10-03 16:45:21.407811
+groups_073: 
+  id: "147"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in CommonPlace.
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:06.741785
+  updated_at: 2011-10-03 16:45:21.414298
+groups_074: 
+  id: "148"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in CommonPlace.
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:06.746681
+  updated_at: 2011-10-03 16:45:21.417733
+groups_075: 
+  id: "149"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in CommonPlace.
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:06.750515
+  updated_at: 2011-10-03 16:45:21.421198
+groups_076: 
+  id: "150"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make CommonPlace better? Join up and get the discussion going!
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:06.756547
+  updated_at: 2012-02-02 15:17:38.169768
+groups_077: 
+  id: "151"
+  name: Environment
+  slug: environment
+  about: Get connected with other CommonPlace environmentalists to discuss environmental issues in CommonPlace.
+  community_id: "7"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:06.760229
+  updated_at: 2011-10-03 16:45:21.466924
+groups_078: 
+  id: "152"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Chelmsford.
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.763413
+  updated_at: 2011-10-03 16:45:21.367162
+groups_079: 
+  id: "153"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Chelmsford.
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:06.76694
+  updated_at: 2011-10-03 16:45:21.470022
+groups_080: 
+  id: "154"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Chelmsford.
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:06.890147
+  updated_at: 2011-10-03 16:45:20.989009
+groups_081: 
+  id: "155"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Chelmsford Martha Stewart? "
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:06.89318
+  updated_at: 2012-02-02 15:17:38.256731
+groups_082: 
+  id: "156"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Chelmsford restaurants!
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:06.895143
+  updated_at: 2011-10-03 16:45:21.477994
+groups_083: 
+  id: "157"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:06.896954
+  updated_at: 2011-10-03 16:45:21.480972
+groups_084: 
+  id: "158"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Chelmsford.
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:06.899778
+  updated_at: 2011-10-03 16:45:21.484561
+groups_085: 
+  id: "159"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Chelmsford.
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:06.90235
+  updated_at: 2011-10-03 16:45:21.487917
+groups_086: 
+  id: "160"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Chelmsford.
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:06.904647
+  updated_at: 2011-10-03 16:45:21.49081
+groups_087: 
+  id: "161"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Chelmsford better? Join up and get the discussion going!
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:06.906859
+  updated_at: 2012-02-02 15:17:38.403679
+groups_088: 
+  id: "162"
+  name: Environment
+  slug: environment
+  about: Get connected with other Chelmsford environmentalists to discuss environmental issues in Chelmsford.
+  community_id: "8"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:06.908644
+  updated_at: 2011-10-03 16:45:21.498492
+groups_089: 
+  id: "163"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Warwick.
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.910662
+  updated_at: 2011-10-03 16:45:21.519725
+groups_090: 
+  id: "164"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Warwick.
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:06.912447
+  updated_at: 2011-10-03 16:45:21.501338
+groups_091: 
+  id: "165"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Warwick.
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:06.914247
+  updated_at: 2011-10-03 16:45:21.504144
+groups_092: 
+  id: "166"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Warwick Martha Stewart? "
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:06.917222
+  updated_at: 2012-02-02 15:17:38.545098
+groups_093: 
+  id: "167"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Warwick restaurants!
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:06.919751
+  updated_at: 2011-10-03 16:45:21.510066
+groups_094: 
+  id: "168"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:06.921641
+  updated_at: 2011-10-03 16:45:21.51342
+groups_095: 
+  id: "169"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Warwick.
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:06.923475
+  updated_at: 2011-10-03 16:45:21.516408
+groups_096: 
+  id: "170"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Warwick.
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:06.925229
+  updated_at: 2011-10-03 16:45:21.52267
+groups_097: 
+  id: "171"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Warwick.
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:06.927305
+  updated_at: 2011-10-03 16:45:21.526332
+groups_098: 
+  id: "172"
+  name: Town Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Warwick better? Join up and get the discussion going!
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:06.929129
+  updated_at: 2012-02-02 15:17:38.783814
+groups_099: 
+  id: "173"
+  name: Environment
+  slug: environment
+  about: Get connected with other Warwick environmentalists to discuss environmental issues in Warwick.
+  community_id: "9"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:06.930939
+  updated_at: 2011-10-03 16:45:21.533325
+groups_100: 
+  id: "174"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Fayetteville.
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.932944
+  updated_at: 2011-10-03 16:45:21.626684
+groups_101: 
+  id: "175"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Fayetteville.
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:06.934858
+  updated_at: 2011-10-03 16:45:21.536623
+groups_102: 
+  id: "176"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Fayetteville.
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:06.936739
+  updated_at: 2011-10-03 16:45:21.539588
+groups_103: 
+  id: "177"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Fayetteville Martha Stewart? "
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:06.979482
+  updated_at: 2012-02-02 15:17:38.975159
+groups_104: 
+  id: "178"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Fayetteville restaurants!
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:06.981946
+  updated_at: 2011-10-03 16:45:21.545308
+groups_105: 
+  id: "179"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:06.983849
+  updated_at: 2011-10-03 16:45:21.548155
+groups_106: 
+  id: "180"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Fayetteville.
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:06.98594
+  updated_at: 2011-10-03 16:45:21.551091
+groups_107: 
+  id: "181"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Fayetteville.
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:06.987772
+  updated_at: 2011-10-03 16:45:21.553988
+groups_108: 
+  id: "182"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Fayetteville.
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:06.98963
+  updated_at: 2011-10-03 16:45:21.558066
+groups_109: 
+  id: "183"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Fayetteville better? Join up and get the discussion going!
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:06.992137
+  updated_at: 2012-02-02 15:17:39.232238
+groups_110: 
+  id: "184"
+  name: Environment
+  slug: environment
+  about: Get connected with other Fayetteville environmentalists to discuss environmental issues in Fayetteville.
+  community_id: "10"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:06.994919
+  updated_at: 2011-10-03 16:45:21.563914
+groups_111: 
+  id: "185"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Vienna.
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:06.997646
+  updated_at: 2011-10-03 16:45:20.945241
+groups_112: 
+  id: "186"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Vienna.
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:07.00057
+  updated_at: 2011-10-03 16:45:21.57013
+groups_113: 
+  id: "187"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Vienna.
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:07.002959
+  updated_at: 2011-10-03 16:45:21.57344
+groups_114: 
+  id: "188"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Vienna Martha Stewart? "
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:07.00486
+  updated_at: 2012-02-02 15:17:39.38019
+groups_115: 
+  id: "189"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Vienna restaurants!
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:07.006758
+  updated_at: 2011-10-03 16:45:21.579644
+groups_116: 
+  id: "190"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:07.008633
+  updated_at: 2011-10-03 16:45:21.583262
+groups_117: 
+  id: "191"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Vienna.
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:07.010531
+  updated_at: 2011-10-03 16:45:21.586157
+groups_118: 
+  id: "192"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Vienna.
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:07.013278
+  updated_at: 2011-10-03 16:45:21.58907
+groups_119: 
+  id: "193"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Vienna.
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:07.0157
+  updated_at: 2011-10-03 16:45:21.592193
+groups_120: 
+  id: "194"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Vienna better? Join up and get the discussion going!
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:07.01769
+  updated_at: 2012-02-02 15:17:39.696039
+groups_121: 
+  id: "195"
+  name: Environment
+  slug: environment
+  about: Get connected with other Vienna environmentalists to discuss environmental issues in Vienna.
+  community_id: "11"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:07.019613
+  updated_at: 2011-10-03 16:45:21.597887
+groups_122: 
+  id: "196"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Raleigh.
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:07.021554
+  updated_at: 2011-10-03 16:45:21.600742
+groups_123: 
+  id: "197"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Raleigh.
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:07.023345
+  updated_at: 2011-10-03 16:45:21.603594
+groups_124: 
+  id: "198"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Raleigh.
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:07.025237
+  updated_at: 2011-10-03 16:45:20.992705
+groups_125: 
+  id: "199"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Raleigh Martha Stewart? "
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:07.079522
+  updated_at: 2012-02-02 15:17:39.806258
+groups_126: 
+  id: "200"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Raleigh restaurants!
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:07.082066
+  updated_at: 2011-10-03 16:45:21.609284
+groups_127: 
+  id: "201"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:07.084039
+  updated_at: 2011-10-03 16:45:21.612113
+groups_128: 
+  id: "202"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Raleigh.
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:07.085876
+  updated_at: 2011-10-03 16:45:21.615141
+groups_129: 
+  id: "203"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Raleigh.
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:07.087952
+  updated_at: 2011-10-03 16:45:21.618177
+groups_130: 
+  id: "204"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Raleigh.
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:07.091051
+  updated_at: 2011-10-03 16:45:21.621032
+groups_131: 
+  id: "205"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Raleigh better? Join up and get the discussion going!
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:07.093619
+  updated_at: 2012-02-02 15:17:39.942414
+groups_132: 
+  id: "206"
+  name: Environment
+  slug: environment
+  about: Get connected with other Raleigh environmentalists to discuss environmental issues in Raleigh.
+  community_id: "12"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:07.096366
+  updated_at: 2011-10-03 16:45:21.636379
+groups_133: 
+  id: "207"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around St. Paul.
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:07.099608
+  updated_at: 2011-10-03 16:45:20.938903
+groups_134: 
+  id: "208"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in St. Paul.
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:07.102297
+  updated_at: 2011-10-03 16:45:21.639243
+groups_135: 
+  id: "209"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around St. Paul.
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:07.104582
+  updated_at: 2011-10-03 16:45:21.643276
+groups_136: 
+  id: "210"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a St. Paul Martha Stewart? "
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:07.10651
+  updated_at: 2012-02-02 15:17:40.243993
+groups_137: 
+  id: "211"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about St. Paul restaurants!
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:07.108382
+  updated_at: 2011-10-03 16:45:21.648907
+groups_138: 
+  id: "212"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:07.11041
+  updated_at: 2011-10-03 16:45:21.651759
+groups_139: 
+  id: "213"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in St. Paul.
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:07.112242
+  updated_at: 2011-10-03 16:45:21.654698
+groups_140: 
+  id: "214"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in St. Paul.
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:07.114045
+  updated_at: 2011-10-03 16:45:21.657585
+groups_141: 
+  id: "215"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in St. Paul.
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:07.115961
+  updated_at: 2011-10-03 16:45:21.685763
+groups_142: 
+  id: "216"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make St. Paul better? Join up and get the discussion going!
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:07.117687
+  updated_at: 2012-02-02 15:17:40.417296
+groups_143: 
+  id: "217"
+  name: Environment
+  slug: environment
+  about: Get connected with other St. Paul environmentalists to discuss environmental issues in St. Paul.
+  community_id: "13"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:07.119419
+  updated_at: 2011-10-03 16:45:21.692492
+groups_144: 
+  id: "218"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Farragut.
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:07.121279
+  updated_at: 2011-10-03 16:45:21.756766
+groups_145: 
+  id: "219"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Farragut.
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:07.12334
+  updated_at: 2011-10-03 16:45:21.695693
+groups_146: 
+  id: "220"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Farragut.
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:07.125083
+  updated_at: 2011-10-03 16:45:21.69864
+groups_147: 
+  id: "221"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Farragut Martha Stewart? "
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:07.127752
+  updated_at: 2012-02-02 15:17:40.577873
+groups_148: 
+  id: "222"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Farragut restaurants!
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:07.130314
+  updated_at: 2011-10-03 16:45:21.704474
+groups_149: 
+  id: "223"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:07.132117
+  updated_at: 2011-10-03 16:45:21.707375
+groups_150: 
+  id: "224"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Farragut.
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:07.134167
+  updated_at: 2011-10-03 16:45:21.710189
+groups_151: 
+  id: "225"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Farragut.
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:07.135928
+  updated_at: 2011-10-03 16:45:21.713158
+groups_152: 
+  id: "226"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Farragut.
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:07.137904
+  updated_at: 2011-10-03 16:45:21.716062
+groups_153: 
+  id: "227"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Farragut better? Join up and get the discussion going!
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:07.139658
+  updated_at: 2012-02-02 15:17:40.789452
+groups_154: 
+  id: "228"
+  name: Environment
+  slug: environment
+  about: Get connected with other Farragut environmentalists to discuss environmental issues in Farragut.
+  community_id: "14"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:07.142489
+  updated_at: 2011-10-03 16:45:21.721994
+groups_155: 
+  id: "229"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Grove Hall.
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:07.145017
+  updated_at: 2011-10-03 16:45:21.633489
+groups_156: 
+  id: "230"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Grove Hall.
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:07.147048
+  updated_at: 2011-10-03 16:45:21.725134
+groups_157: 
+  id: "231"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Grove Hall.
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:07.150503
+  updated_at: 2011-10-03 16:45:20.995908
+groups_158: 
+  id: "232"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Grove Hall Martha Stewart? "
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:07.1525
+  updated_at: 2012-02-02 15:17:40.929525
+groups_159: 
+  id: "233"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Grove Hall restaurants!
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:07.154389
+  updated_at: 2011-10-03 16:45:21.732014
+groups_160: 
+  id: "234"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:07.156411
+  updated_at: 2011-10-03 16:45:21.734955
+groups_161: 
+  id: "235"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Grove Hall.
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:07.158395
+  updated_at: 2011-10-03 16:45:21.737944
+groups_162: 
+  id: "236"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Grove Hall.
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:07.160392
+  updated_at: 2011-10-03 16:45:21.740838
+groups_163: 
+  id: "237"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Grove Hall.
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:07.162391
+  updated_at: 2011-10-03 16:45:21.743786
+groups_164: 
+  id: "238"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Grove Hall better? Join up and get the discussion going!
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:07.164135
+  updated_at: 2012-02-02 15:17:41.226624
+groups_165: 
+  id: "239"
+  name: Environment
+  slug: environment
+  about: Get connected with other Grove Hall environmentalists to discuss environmental issues in Grove Hall.
+  community_id: "15"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:07.166993
+  updated_at: 2011-10-03 16:45:21.750345
+groups_166: 
+  id: "240"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Kincardine.
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-13 19:28:07.169541
+  updated_at: 2011-10-03 16:45:21.629571
+groups_167: 
+  id: "241"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Kincardine.
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-13 19:28:07.171577
+  updated_at: 2011-10-03 16:45:21.753717
+groups_168: 
+  id: "242"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Kincardine.
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-13 19:28:07.173443
+  updated_at: 2011-10-03 16:45:20.999893
+groups_169: 
+  id: "243"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Kincardine Martha Stewart? "
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-13 19:28:07.175215
+  updated_at: 2012-02-02 15:17:41.387512
+groups_170: 
+  id: "244"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Kincardine restaurants!
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-13 19:28:07.177005
+  updated_at: 2011-10-03 16:45:21.764443
+groups_171: 
+  id: "245"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-13 19:28:07.178894
+  updated_at: 2011-10-03 16:45:21.768138
+groups_172: 
+  id: "246"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Kincardine.
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-13 19:28:07.180742
+  updated_at: 2011-10-03 16:45:21.771331
+groups_173: 
+  id: "247"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Kincardine.
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-13 19:28:07.182902
+  updated_at: 2011-10-03 16:45:21.774276
+groups_174: 
+  id: "248"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Kincardine.
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-13 19:28:07.184796
+  updated_at: 2011-10-03 16:45:21.777287
+groups_175: 
+  id: "249"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Kincardine better? Join up and get the discussion going!
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-13 19:28:07.18667
+  updated_at: 2012-02-02 15:17:41.53016
+groups_176: 
+  id: "250"
+  name: Environment
+  slug: environment
+  about: Get connected with other Kincardine environmentalists to discuss environmental issues in Kincardine.
+  community_id: "16"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-13 19:28:07.188484
+  updated_at: 2011-10-03 16:45:21.783024
+groups_177: 
+  id: "251"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Marquette.
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-05-15 05:07:47.254923
+  updated_at: 2011-10-03 16:45:21.78607
+groups_178: 
+  id: "252"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Marquette.
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-05-15 05:07:47.262008
+  updated_at: 2011-10-03 16:45:21.79101
+groups_179: 
+  id: "253"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Marquette.
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-05-15 05:07:47.389771
+  updated_at: 2011-10-03 16:45:21.793921
+groups_180: 
+  id: "254"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Marquette Martha Stewart? "
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-05-15 05:07:47.393265
+  updated_at: 2012-02-02 15:17:41.670134
+groups_181: 
+  id: "255"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Marquette restaurants!
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-05-15 05:07:47.395995
+  updated_at: 2011-10-03 16:45:21.007765
+groups_182: 
+  id: "256"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-05-15 05:07:47.398839
+  updated_at: 2011-10-03 16:45:21.014343
+groups_183: 
+  id: "257"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Marquette.
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-05-15 05:07:47.401357
+  updated_at: 2011-10-03 16:45:21.019073
+groups_184: 
+  id: "258"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Marquette.
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-05-15 05:07:47.403705
+  updated_at: 2011-10-03 16:45:21.023367
+groups_185: 
+  id: "259"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Marquette.
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-05-15 05:07:47.40629
+  updated_at: 2011-10-03 16:45:21.027954
+groups_186: 
+  id: "260"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Marquette better? Join up and get the discussion going!
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-05-15 05:07:47.409232
+  updated_at: 2012-02-02 15:17:35.806158
+groups_187: 
+  id: "261"
+  name: Environment
+  slug: environment
+  about: Get connected with other Marquette environmentalists to discuss environmental issues in Marquette.
+  community_id: "17"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-05-15 05:07:47.411934
+  updated_at: 2011-10-03 16:45:21.036782
+groups_188: 
+  id: "262"
+  name: Country Club Homes Garden
+  slug: raleigh-country-club-homes
+  about: A community discussion forum for the Country Club Homes community garden. Use this to ask questions, post suggestions, coordinate volunteer schedules, and announce events related to the Country Club Homes Community Garden project.
+  community_id: "12"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/262/normal.png
+  created_at: 2011-07-22 22:35:04.247737
+  updated_at: 2011-10-03 16:45:21.003486
+groups_189: 
+  id: "301"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around UMW.
+  community_id: "19"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-08-19 20:39:30.718701
+  updated_at: 2011-10-03 16:45:21.040323
+groups_190: 
+  id: "302"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around UMW.
+  community_id: "19"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-08-19 20:39:30.730988
+  updated_at: 2011-10-03 16:45:21.046347
+groups_191: 
+  id: "303"
+  name: Campus Problem Solving & Ideas
+  slug: campusproblemsolving
+  about: "Have a big idea about how to help make UMW better?  Join up and get the discussion going. "
+  community_id: "19"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-08-19 20:39:30.737434
+  updated_at: 2012-02-02 15:17:35.589749
+groups_192: 
+  id: "304"
+  name: Social Opportunities
+  slug: socialopportunities
+  about: Subscribe to stay in the loop about get-togethers with others at UMW.
+  community_id: "19"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-08-19 20:39:30.743235
+  updated_at: 2011-10-03 16:45:21.049957
+groups_193: 
+  id: "305"
+  name: Academic Life
+  slug: academiclife
+  about: Talk about courses and requirements.  Form study groups and share textbooks.
+  community_id: "19"
+  avatar_file_name: /assets/group-icons/academic-life.png
+  created_at: 2011-08-19 20:39:30.74889
+  updated_at: 2011-10-03 16:45:21.061397
+groups_194: 
+  id: "306"
+  name: Fredericksburg Happenings
+  slug: fredericksburghappenings
+  about: Stay in the loop about what's happening around Fredericksburg.
+  community_id: "19"
+  avatar_file_name: /assets/group-icons/fredericksburg-happenings.png
+  created_at: 2011-08-19 20:45:03.89056
+  updated_at: 2011-10-03 16:45:21.065398
+groups_195: 
+  id: "307"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities at UMW.
+  community_id: "19"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-08-20 20:47:55.731916
+  updated_at: 2012-02-02 15:17:41.704965
+groups_196: 
+  id: "308"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Clarkston.
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-08-23 15:24:09.514539
+  updated_at: 2011-10-03 16:45:20.942117
+groups_197: 
+  id: "309"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Clarkston.
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-08-23 15:24:09.556034
+  updated_at: 2011-10-03 16:45:21.803227
+groups_198: 
+  id: "310"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Clarkston.
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-08-23 15:24:09.560487
+  updated_at: 2011-10-03 16:45:21.807158
+groups_199: 
+  id: "311"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Clarkston Martha Stewart? "
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-08-23 15:24:09.564238
+  updated_at: 2012-02-02 15:17:41.864495
+groups_200: 
+  id: "312"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Clarkston restaurants!
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-08-23 15:24:09.568292
+  updated_at: 2011-10-03 16:45:21.813464
+groups_201: 
+  id: "313"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-08-23 15:24:09.572035
+  updated_at: 2011-10-03 16:45:21.816408
+groups_202: 
+  id: "314"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Clarkston.
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-08-23 15:24:09.575786
+  updated_at: 2011-10-03 16:45:21.819203
+groups_203: 
+  id: "315"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Clarkston.
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-08-23 15:24:09.579518
+  updated_at: 2011-10-03 16:45:21.823219
+groups_204: 
+  id: "316"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Clarkston.
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-08-23 15:24:09.583582
+  updated_at: 2011-10-03 16:45:21.826616
+groups_205: 
+  id: "317"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Clarkston better. Join up and get the discussion going!
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-08-23 15:24:09.587722
+  updated_at: 2012-02-02 15:17:42.01967
+groups_206: 
+  id: "318"
+  name: Environment
+  slug: environment
+  about: Get connected with other Clarkston environmentalists to discuss environmental issues in Clarkston.
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-08-23 15:24:09.591551
+  updated_at: 2011-10-03 16:45:21.832688
+groups_207: 
+  id: "319"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Burnsville.
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-08-30 03:21:16.515441
+  updated_at: 2011-10-03 16:45:21.906489
+groups_208: 
+  id: "320"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Burnsville.
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-08-30 03:21:16.544567
+  updated_at: 2011-10-03 16:45:21.836142
+groups_209: 
+  id: "321"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Burnsville.
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-08-30 03:21:16.551927
+  updated_at: 2011-10-03 16:45:21.839029
+groups_210: 
+  id: "322"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Burnsville Martha Stewart? "
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-08-30 03:21:16.559032
+  updated_at: 2012-02-02 15:17:42.184164
+groups_211: 
+  id: "323"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Burnsville restaurants!
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-08-30 03:21:16.565615
+  updated_at: 2011-10-03 16:45:21.844942
+groups_212: 
+  id: "324"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-08-30 03:21:16.572618
+  updated_at: 2011-10-03 16:45:21.847887
+groups_213: 
+  id: "325"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Burnsville.
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-08-30 03:21:16.579182
+  updated_at: 2011-10-03 16:45:21.871643
+groups_214: 
+  id: "326"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Burnsville.
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-08-30 03:21:16.606951
+  updated_at: 2011-10-03 16:45:21.874818
+groups_215: 
+  id: "327"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Burnsville.
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-08-30 03:21:16.616008
+  updated_at: 2011-10-03 16:45:21.878321
+groups_216: 
+  id: "328"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Burnsville better. Join up and get the discussion going!
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-08-30 03:21:16.625824
+  updated_at: 2012-02-02 15:17:42.33308
+groups_217: 
+  id: "329"
+  name: Environment
+  slug: environment
+  about: Get connected with other Burnsville environmentalists to discuss environmental issues in Burnsville.
+  community_id: "21"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-08-30 03:21:16.632048
+  updated_at: 2011-10-03 16:45:21.903115
+groups_218: 
+  id: "330"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Owosso/Corunna.
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-08-30 03:21:16.640866
+  updated_at: 2011-10-12 16:59:58.91438
+groups_219: 
+  id: "331"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Owosso/Corunna.
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-08-30 03:21:16.6467
+  updated_at: 2011-10-12 16:59:58.931309
+groups_220: 
+  id: "332"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Owosso/Corunna.
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-08-30 03:21:16.722971
+  updated_at: 2011-10-12 16:59:58.938436
+groups_221: 
+  id: "333"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Owosso/Corunna Martha Stewart? "
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-08-30 03:21:16.730308
+  updated_at: 2012-02-02 15:17:42.529904
+groups_222: 
+  id: "334"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Owosso/Corunna restaurants!
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-08-30 03:21:16.737306
+  updated_at: 2011-10-12 16:59:58.990648
+groups_223: 
+  id: "335"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-08-30 03:21:16.743391
+  updated_at: 2011-10-03 16:45:21.947437
+groups_224: 
+  id: "336"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Owosso/Corunna.
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-08-30 03:21:16.749578
+  updated_at: 2011-10-12 16:59:59.002505
+groups_225: 
+  id: "337"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Owosso/Corunna.
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-08-30 03:21:16.75551
+  updated_at: 2011-10-12 16:59:59.009593
+groups_226: 
+  id: "338"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Owosso/Corunna.
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-08-30 03:21:16.761175
+  updated_at: 2011-10-12 16:59:59.017248
+groups_227: 
+  id: "339"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Owosso/Corunna better. Join up and get the discussion going!
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-08-30 03:21:16.766656
+  updated_at: 2012-02-02 15:17:42.708797
+groups_228: 
+  id: "340"
+  name: Environment
+  slug: environment
+  about: Get connected with other Owosso/Corunna environmentalists to discuss environmental issues in Owosso/Corunna.
+  community_id: "22"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-08-30 03:21:16.772396
+  updated_at: 2011-10-12 16:59:59.03354
+groups_229: 
+  id: "341"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Golden Valley.
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-08-30 03:21:16.811795
+  updated_at: 2011-10-03 16:45:22.037014
+groups_230: 
+  id: "342"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Golden Valley.
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-08-30 03:21:16.818465
+  updated_at: 2011-10-03 16:45:21.967726
+groups_231: 
+  id: "343"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Golden Valley.
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-08-30 03:21:16.833562
+  updated_at: 2011-10-03 16:45:21.970603
+groups_232: 
+  id: "344"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Golden Valley Martha Stewart? "
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-08-30 03:21:16.849273
+  updated_at: 2012-02-02 15:17:42.844963
+groups_233: 
+  id: "345"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Golden Valley restaurants!
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-08-30 03:21:16.856033
+  updated_at: 2011-10-03 16:45:21.978881
+groups_234: 
+  id: "346"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-08-30 03:21:16.861634
+  updated_at: 2011-10-03 16:45:21.982378
+groups_235: 
+  id: "347"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Golden Valley.
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-08-30 03:21:16.867292
+  updated_at: 2011-10-03 16:45:21.986094
+groups_236: 
+  id: "348"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Golden Valley.
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-08-30 03:21:16.873224
+  updated_at: 2011-10-03 16:45:21.989099
+groups_237: 
+  id: "349"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Golden Valley.
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-08-30 03:21:16.880588
+  updated_at: 2011-10-03 16:45:21.992016
+groups_238: 
+  id: "350"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Golden Valley better. Join up and get the discussion going!
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-08-30 03:21:16.887378
+  updated_at: 2012-02-02 15:17:42.977322
+groups_239: 
+  id: "351"
+  name: Environment
+  slug: environment
+  about: Get connected with other Golden Valley environmentalists to discuss environmental issues in Golden Valley.
+  community_id: "23"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-08-30 03:21:16.895547
+  updated_at: 2011-10-03 16:45:21.997829
+groups_240: 
+  id: "352"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Greenwood Lake.
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-09-02 20:20:21.721068
+  updated_at: 2011-10-03 16:45:21.928158
+groups_241: 
+  id: "353"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Greenwood Lake.
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-09-02 20:20:21.76308
+  updated_at: 2011-10-03 16:45:22.000727
+groups_242: 
+  id: "354"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Greenwood Lake.
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-09-02 20:20:21.769683
+  updated_at: 2011-10-03 16:45:22.004758
+groups_243: 
+  id: "355"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Greenwood Lake Martha Stewart? "
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-09-02 20:20:21.776236
+  updated_at: 2012-02-02 15:17:43.076308
+groups_244: 
+  id: "356"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Greenwood Lake restaurants!
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-09-02 20:20:21.782472
+  updated_at: 2011-10-03 16:45:22.012582
+groups_245: 
+  id: "357"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-09-02 20:20:21.788621
+  updated_at: 2011-10-03 16:45:22.016598
+groups_246: 
+  id: "358"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Greenwood Lake.
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-09-02 20:20:21.795005
+  updated_at: 2011-10-03 16:45:22.01969
+groups_247: 
+  id: "359"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Greenwood Lake.
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-09-02 20:20:21.801276
+  updated_at: 2011-10-03 16:45:22.023257
+groups_248: 
+  id: "360"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Greenwood Lake.
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-09-02 20:20:21.807565
+  updated_at: 2011-10-03 16:45:22.026885
+groups_249: 
+  id: "361"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Greenwood Lake better. Join up and get the discussion going!
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-09-02 20:20:21.814548
+  updated_at: 2012-02-02 15:17:43.255169
+groups_250: 
+  id: "362"
+  name: Environment
+  slug: environment
+  about: Get connected with other Greenwood Lake environmentalists to discuss environmental issues in Greenwood Lake.
+  community_id: "24"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-09-02 20:20:21.820644
+  updated_at: 2011-10-03 16:45:22.033548
+groups_251: 
+  id: "363"
+  name: Schools
+  slug: schools
+  about: Stay involved with school events and discuss Clarkston schools.
+  community_id: "20"
+  avatar_file_name: /assets/group-icons/schools.png
+  created_at: 2011-09-06 19:27:38.349614
+  updated_at: 2011-10-03 16:45:21.909863
+groups_252: 
+  id: "364"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Southeast Georgia.
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2011-09-29 04:43:08.801059
+  updated_at: 2011-10-03 16:45:20.951671
+groups_253: 
+  id: "365"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Southeast Georgia.
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2011-09-29 04:43:08.842497
+  updated_at: 2011-10-03 16:45:20.955877
+groups_254: 
+  id: "366"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Southeast Georgia.
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2011-09-29 04:43:08.850192
+  updated_at: 2011-10-03 16:45:20.958905
+groups_255: 
+  id: "367"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Southeast Georgia Martha Stewart? "
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2011-09-29 04:43:08.860839
+  updated_at: 2012-02-02 15:17:35.303488
+groups_256: 
+  id: "368"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Southeast Georgia restaurants!
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2011-09-29 04:43:08.868136
+  updated_at: 2011-10-03 16:45:20.965167
+groups_257: 
+  id: "369"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2011-09-29 04:43:08.900264
+  updated_at: 2011-10-03 16:45:20.968287
+groups_258: 
+  id: "370"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Southeast Georgia.
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2011-09-29 04:43:08.906996
+  updated_at: 2011-10-03 16:45:20.971521
+groups_259: 
+  id: "371"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Southeast Georgia.
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2011-09-29 04:43:08.913639
+  updated_at: 2011-10-03 16:45:20.975508
+groups_260: 
+  id: "372"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Southeast Georgia.
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2011-09-29 04:43:08.919904
+  updated_at: 2011-10-03 16:45:20.979016
+groups_261: 
+  id: "373"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Southeast Georgia better. Join up and get the discussion going!
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2011-09-29 04:43:08.926085
+  updated_at: 2012-02-02 15:17:35.431912
+groups_262: 
+  id: "374"
+  name: Environment
+  slug: environment
+  about: Get connected with other Southeast Georgia environmentalists to discuss environmental issues in Southeast Georgia.
+  community_id: "25"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2011-09-29 04:43:08.934853
+  updated_at: 2011-10-03 16:45:20.985621
+groups_263: 
+  id: "375"
+  name: Veterans Affairs
+  slug: veterans
+  about: Share information about Veterans Affairs with other Burnsville veterans and veterans' supporters.
+  community_id: "21"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/veterans.png
+  created_at: 2011-10-07 23:45:15.87145
+  updated_at: 2011-10-07 23:45:15.87145
+groups_264: 
+  id: "376"
+  name: Education & Literacy (MyBurnsville)
+  slug: myburnsville_education_and_literacy
+  about: This is a Community Forum of MyBurnsville for Education & Literacy. Forum moderators are MyBurnsville Community Planning Team Co-Leaders Vicki Roy & Kitti Alexander.
+  community_id: "21"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/myburnsville.png
+  created_at: 2012-02-17 18:22:52.882436
+  updated_at: 2012-02-17 18:34:28.558211
+groups_265: 
+  id: "377"
+  name: Meeting Today's Education Needs (MyBurnsville)
+  slug: myburnsville_education_needs
+  about: This is a Community Forum of MyBurnsville for Meeting Today's Education Needs. Forum moderators are MyBurnsville Community Planning Team Co-Leaders Tom Taylor & Frances Potts.
+  community_id: "21"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/myburnsville.png
+  created_at: 2012-02-17 18:24:19.308146
+  updated_at: 2012-02-17 18:34:28.892256
+groups_266: 
+  id: "378"
+  name: Economy & Workforce (MyBurnsville)
+  slug: myburnsville_economy_and_workforce
+  about: This is a Community Forum of MyBurnsville for Economy & Workforce.  Forum moderators are MyBurnsville Community Planning Team Co-Leaders Richard Tucker & Peggy Johnson.
+  community_id: "21"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/myburnsville.png
+  created_at: 2012-02-17 18:25:35.050524
+  updated_at: 2012-02-17 18:34:28.974315
+groups_267: 
+  id: "379"
+  name: Civic Engagement (MyBurnsville)
+  slug: myburnsville_civic_engagement
+  about: This is a Community Forum of MyBurnsville for Civic Engagement. Forum moderators are MyBurnsville Community Planning Team Co-Leaders Godan Nambudiripad & Scott Peterson.
+  community_id: "21"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/myburnsville.png
+  created_at: 2012-02-17 18:26:40.066497
+  updated_at: 2012-02-17 18:34:29.020488
+groups_268: 
+  id: "380"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Belmont.
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/volunteering.png
+  created_at: 2012-03-19 17:01:42.592252
+  updated_at: 2012-03-19 19:27:55.992144
+groups_269: 
+  id: "381"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Belmont.
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/social.png
+  created_at: 2012-03-19 17:01:42.94678
+  updated_at: 2012-03-19 19:27:56.113843
+groups_270: 
+  id: "382"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Belmont.
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/musicandarts.png
+  created_at: 2012-03-19 17:01:43.02101
+  updated_at: 2012-03-19 19:27:56.142846
+groups_271: 
+  id: "383"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Belmont Martha Stewart? "
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/homeandgarden.png
+  created_at: 2012-03-19 17:01:43.176554
+  updated_at: 2012-03-19 19:27:56.167042
+groups_272: 
+  id: "384"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Belmont restaurants!
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/food.png
+  created_at: 2012-03-19 17:01:43.198961
+  updated_at: 2012-03-19 19:27:56.194193
+groups_273: 
+  id: "385"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/dogs.png
+  created_at: 2012-03-19 17:01:43.222968
+  updated_at: 2012-03-19 19:27:56.256922
+groups_274: 
+  id: "386"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Belmont.
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/parents.png
+  created_at: 2012-03-19 17:01:43.250837
+  updated_at: 2012-03-19 19:27:56.291593
+groups_275: 
+  id: "387"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Belmont.
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/moms.png
+  created_at: 2012-03-19 17:01:43.29755
+  updated_at: 2012-03-19 19:27:56.321235
+groups_276: 
+  id: "388"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Belmont.
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/sportsandrec.png
+  created_at: 2012-03-19 17:01:43.31958
+  updated_at: 2012-03-19 19:27:56.345893
+groups_277: 
+  id: "389"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Belmont better. Join up and get the discussion going!
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/city.png
+  created_at: 2012-03-19 17:01:43.344573
+  updated_at: 2012-03-19 19:27:56.441491
+groups_278: 
+  id: "390"
+  name: Environment
+  slug: environment
+  about: Get connected with other Belmont environmentalists to discuss environmental issues in Belmont.
+  community_id: "26"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/environment.png
+  created_at: 2012-03-19 17:01:43.366601
+  updated_at: 2012-03-19 19:27:56.468988
+groups_279: 
+  id: "391"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Harvard Neighbors.
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2012-05-10 05:23:05.990549
+  updated_at: 2012-05-10 16:01:33.377164
+groups_280: 
+  id: "392"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Harvard Neighbors.
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2012-05-10 05:23:06.284116
+  updated_at: 2012-05-10 16:01:15.302399
+groups_281: 
+  id: "393"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Harvard Neighbors.
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2012-05-10 05:23:06.337557
+  updated_at: 2012-05-10 16:00:19.945864
+groups_282: 
+  id: "394"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Harvard Neighbors Martha Stewart? "
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2012-05-10 05:23:06.393557
+  updated_at: 2012-05-10 16:00:25.387465
+groups_283: 
+  id: "395"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Harvard Neighbors restaurants!
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2012-05-10 05:23:06.42284
+  updated_at: 2012-05-10 16:00:29.698791
+groups_284: 
+  id: "396"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2012-05-10 05:23:06.453301
+  updated_at: 2012-05-10 15:57:54.868804
+groups_285: 
+  id: "397"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Harvard Neighbors.
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2012-05-10 05:23:06.48105
+  updated_at: 2012-05-10 15:57:12.407229
+groups_286: 
+  id: "398"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Harvard Neighbors.
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2012-05-10 05:23:06.509177
+  updated_at: 2012-05-10 16:00:10.54968
+groups_287: 
+  id: "399"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Harvard Neighbors.
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2012-05-10 05:23:06.570075
+  updated_at: 2012-05-10 16:01:24.793307
+groups_288: 
+  id: "400"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Harvard Neighbors better. Join up and get the discussion going!
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2012-05-10 05:23:06.594317
+  updated_at: 2012-05-10 15:59:21.979126
+groups_289: 
+  id: "401"
+  name: Environment
+  slug: environment
+  about: Get connected with other Harvard Neighbors environmentalists to discuss environmental issues in Harvard Neighbors.
+  community_id: "27"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2012-05-10 05:23:06.653519
+  updated_at: 2012-05-10 15:58:46.858505
+groups_290: 
+  id: "402"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Watertown.
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2012-05-28 05:48:29.399749
+  updated_at: 2012-05-29 22:57:13.82414
+groups_291: 
+  id: "403"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Watertown.
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2012-05-28 05:48:29.655527
+  updated_at: 2012-05-29 22:57:07.283633
+groups_292: 
+  id: "404"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Watertown.
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2012-05-28 05:48:29.676629
+  updated_at: 2012-05-29 22:56:21.746451
+groups_293: 
+  id: "405"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Watertown Martha Stewart? "
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2012-05-28 05:48:29.696377
+  updated_at: 2012-05-29 22:56:32.392134
+groups_294: 
+  id: "406"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Watertown restaurants!
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2012-05-28 05:48:29.716541
+  updated_at: 2012-05-29 22:56:39.27648
+groups_295: 
+  id: "407"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2012-05-28 05:48:29.736305
+  updated_at: 2012-05-29 22:56:42.429057
+groups_296: 
+  id: "408"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Watertown.
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2012-05-28 05:48:29.756534
+  updated_at: 2012-05-29 22:56:46.73508
+groups_297: 
+  id: "409"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Watertown.
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2012-05-28 05:48:29.776453
+  updated_at: 2012-05-29 22:49:17.059418
+groups_298: 
+  id: "410"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Watertown.
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2012-05-28 05:48:29.795599
+  updated_at: 2012-05-29 22:49:00.69308
+groups_299: 
+  id: "411"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Watertown better. Join up and get the discussion going!
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2012-05-28 05:48:29.820032
+  updated_at: 2012-05-29 22:48:51.354061
+groups_300: 
+  id: "412"
+  name: Environment
+  slug: environment
+  about: Get connected with other Watertown environmentalists to discuss environmental issues in Watertown.
+  community_id: "28"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2012-05-28 05:48:29.841897
+  updated_at: 2012-05-29 23:02:44.938147
+groups_301: 
+  id: "413"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Lexington.
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2012-06-09 17:53:46.022793
+  updated_at: 2012-06-09 17:54:37.852376
+groups_302: 
+  id: "414"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Lexington.
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2012-06-09 17:53:46.287815
+  updated_at: 2012-06-09 17:54:37.959075
+groups_303: 
+  id: "415"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Lexington.
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2012-06-09 17:53:46.341395
+  updated_at: 2012-06-09 17:54:37.993264
+groups_304: 
+  id: "416"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Lexington Martha Stewart? "
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2012-06-09 17:53:46.406738
+  updated_at: 2012-06-09 17:54:38.078049
+groups_305: 
+  id: "417"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Lexington restaurants!
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2012-06-09 17:53:46.436899
+  updated_at: 2012-06-09 17:54:38.177837
+groups_306: 
+  id: "418"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2012-06-09 17:53:46.460417
+  updated_at: 2012-06-09 17:54:38.202025
+groups_307: 
+  id: "419"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Lexington.
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2012-06-09 17:53:46.492454
+  updated_at: 2012-06-09 17:54:38.285448
+groups_308: 
+  id: "420"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Lexington.
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2012-06-09 17:53:46.548708
+  updated_at: 2012-06-09 17:54:38.31348
+groups_309: 
+  id: "421"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Lexington.
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2012-06-09 17:53:46.678743
+  updated_at: 2012-06-09 17:54:38.434396
+groups_310: 
+  id: "422"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Lexington better. Join up and get the discussion going!
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2012-06-09 17:53:46.717886
+  updated_at: 2012-06-09 17:54:38.465403
+groups_311: 
+  id: "423"
+  name: Environment
+  slug: environment
+  about: Get connected with other Lexington environmentalists to discuss environmental issues in Lexington.
+  community_id: "30"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2012-06-09 17:53:46.780717
+  updated_at: 2012-06-09 17:54:38.557853
+groups_312: 
+  id: "424"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Akron.
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/volunteering.png
+  created_at: 2012-06-11 23:27:07.914269
+  updated_at: 2012-08-14 03:30:27.31098
+groups_313: 
+  id: "425"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Akron.
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/social.png
+  created_at: 2012-06-11 23:27:08.250619
+  updated_at: 2012-08-14 03:30:28.018403
+groups_314: 
+  id: "426"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Akron.
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/musicandarts.png
+  created_at: 2012-06-11 23:27:08.28901
+  updated_at: 2012-08-14 03:30:28.041461
+groups_315: 
+  id: "427"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Akron Martha Stewart? "
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/homeandgarden.png
+  created_at: 2012-06-11 23:27:08.312908
+  updated_at: 2012-08-14 03:30:28.062277
+groups_316: 
+  id: "428"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Akron restaurants!
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/food.png
+  created_at: 2012-06-11 23:27:08.370023
+  updated_at: 2012-08-14 03:30:28.091064
+groups_317: 
+  id: "429"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/dogs.png
+  created_at: 2012-06-11 23:27:08.414583
+  updated_at: 2012-08-14 03:30:28.114527
+groups_318: 
+  id: "430"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Akron.
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/parents.png
+  created_at: 2012-06-11 23:27:08.465918
+  updated_at: 2012-08-14 03:30:28.143078
+groups_319: 
+  id: "431"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Akron.
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/moms.png
+  created_at: 2012-06-11 23:27:08.531793
+  updated_at: 2012-08-14 03:49:55.082747
+groups_320: 
+  id: "432"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Akron.
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/sportsandrec.png
+  created_at: 2012-06-11 23:27:08.646732
+  updated_at: 2012-08-14 03:49:55.141227
+groups_321: 
+  id: "433"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Akron better. Join up and get the discussion going!
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/city.png
+  created_at: 2012-06-11 23:27:08.681129
+  updated_at: 2012-08-14 03:49:55.191772
+groups_322: 
+  id: "434"
+  name: Environment
+  slug: environment
+  about: Get connected with other Akron environmentalists to discuss environmental issues in Akron.
+  community_id: "31"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/environment.png
+  created_at: 2012-06-11 23:27:08.71562
+  updated_at: 2012-08-14 03:49:55.220762
+groups_323: 
+  id: "435"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Cambridge.
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2012-06-14 03:46:27.698588
+  updated_at: 2012-06-14 03:48:56.49654
+groups_324: 
+  id: "436"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Cambridge.
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2012-06-14 03:46:28.041835
+  updated_at: 2012-06-14 03:48:56.539196
+groups_325: 
+  id: "437"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Cambridge.
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2012-06-14 03:46:28.066495
+  updated_at: 2012-06-14 03:48:56.690134
+groups_326: 
+  id: "438"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Cambridge Martha Stewart? "
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2012-06-14 03:46:28.094268
+  updated_at: 2012-06-14 03:48:56.723684
+groups_327: 
+  id: "439"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Cambridge restaurants!
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2012-06-14 03:46:28.153174
+  updated_at: 2012-06-14 03:48:56.773372
+groups_328: 
+  id: "440"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2012-06-14 03:46:28.195815
+  updated_at: 2012-06-14 03:48:56.806286
+groups_329: 
+  id: "441"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Cambridge.
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2012-06-14 03:46:28.217267
+  updated_at: 2012-06-14 03:48:56.835354
+groups_330: 
+  id: "442"
+  name: New Mothers
+  slug: Moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Cambridge.
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2012-06-14 03:46:28.250786
+  updated_at: 2012-06-14 03:46:28.250786
+groups_331: 
+  id: "443"
+  name: Sports & Recreation
+  slug: SportsAndRec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Cambridge.
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2012-06-14 03:46:28.273897
+  updated_at: 2012-06-14 03:46:28.273897
+groups_332: 
+  id: "444"
+  name: City Problem Solving & Ideas
+  slug: City
+  about: Have a big idea about how to help make Cambridge better. Join up and get the discussion going!
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2012-06-14 03:46:28.302958
+  updated_at: 2012-06-14 03:46:28.302958
+groups_333: 
+  id: "445"
+  name: Environment
+  slug: Environment
+  about: Get connected with other Cambridge environmentalists to discuss environmental issues in Cambridge.
+  community_id: "32"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2012-06-14 03:46:28.327153
+  updated_at: 2012-06-14 03:46:28.327153
+groups_334: 
+  id: "446"
+  name: Volunteer Opportunities
+  slug: Volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Graduate Commons.
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/volunteer-opportunities.png
+  created_at: 2012-07-04 03:45:20.794264
+  updated_at: 2012-07-04 03:45:20.794264
+groups_335: 
+  id: "447"
+  name: Social Opportunities
+  slug: Social
+  about: Subscribe to stay in the loop about get-togethers with others in Graduate Commons.
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/social-opportunities.png
+  created_at: 2012-07-04 03:45:21.160955
+  updated_at: 2012-07-04 03:45:21.160955
+groups_336: 
+  id: "448"
+  name: Music & The Arts
+  slug: MusicAndArts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Graduate Commons.
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/music-arts.png
+  created_at: 2012-07-04 03:45:21.188007
+  updated_at: 2012-07-04 03:45:21.188007
+groups_337: 
+  id: "449"
+  name: Gardening & Home Improvement
+  slug: HomeAndGarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Graduate Commons Martha Stewart? "
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/gardening-home-improvement.png
+  created_at: 2012-07-04 03:45:21.217738
+  updated_at: 2012-07-04 03:45:21.217738
+groups_338: 
+  id: "450"
+  name: Food & Dining
+  slug: Food
+  about: Share recommendations and reviews about Graduate Commons restaurants!
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/local-dining.png
+  created_at: 2012-07-04 03:45:21.242178
+  updated_at: 2012-07-04 03:45:21.242178
+groups_339: 
+  id: "451"
+  name: Dogs
+  slug: Dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/dogs.png
+  created_at: 2012-07-04 03:45:21.268051
+  updated_at: 2012-07-04 03:45:21.268051
+groups_340: 
+  id: "452"
+  name: Parents & Families
+  slug: Parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Graduate Commons.
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/parents-families.png
+  created_at: 2012-07-04 03:45:21.298201
+  updated_at: 2012-07-04 03:45:21.298201
+groups_341: 
+  id: "453"
+  name: New Mothers
+  slug: Moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Graduate Commons.
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/new-mothers.png
+  created_at: 2012-07-04 03:45:21.32734
+  updated_at: 2012-07-04 03:45:21.32734
+groups_342: 
+  id: "454"
+  name: Sports & Recreation
+  slug: SportsAndRec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Graduate Commons.
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/sports-recreation.png
+  created_at: 2012-07-04 03:45:21.384737
+  updated_at: 2012-07-04 03:45:21.384737
+groups_343: 
+  id: "455"
+  name: City Problem Solving & Ideas
+  slug: City
+  about: Have a big idea about how to help make Graduate Commons better. Join up and get the discussion going!
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/city-problem-solving.png
+  created_at: 2012-07-04 03:45:21.411923
+  updated_at: 2012-07-04 03:45:21.411923
+groups_344: 
+  id: "456"
+  name: Environment
+  slug: Environment
+  about: Get connected with other Graduate Commons environmentalists to discuss environmental issues in Graduate Commons.
+  community_id: "29"
+  avatar_file_name: /assets/group-icons/environment.png
+  created_at: 2012-07-04 03:45:21.442567
+  updated_at: 2012-07-04 03:45:21.442567
+groups_345: 
+  id: "457"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Concord.
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/volunteering.png
+  created_at: 2012-08-14 04:02:03.561684
+  updated_at: 2012-08-14 04:02:03.561684
+groups_346: 
+  id: "458"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Concord.
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/social.png
+  created_at: 2012-08-14 04:02:03.816024
+  updated_at: 2012-08-14 04:02:03.816024
+groups_347: 
+  id: "459"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Concord.
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/musicandarts.png
+  created_at: 2012-08-14 04:02:03.875794
+  updated_at: 2012-08-14 04:02:03.875794
+groups_348: 
+  id: "460"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Concord Martha Stewart? "
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/homeandgarden.png
+  created_at: 2012-08-14 04:02:03.9153
+  updated_at: 2012-08-14 04:02:03.9153
+groups_349: 
+  id: "461"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Concord restaurants!
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/food.png
+  created_at: 2012-08-14 04:02:03.941617
+  updated_at: 2012-08-14 04:02:03.941617
+groups_350: 
+  id: "462"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/dogs.png
+  created_at: 2012-08-14 04:02:03.970417
+  updated_at: 2012-08-14 04:02:03.970417
+groups_351: 
+  id: "463"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Concord.
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/parents.png
+  created_at: 2012-08-14 04:02:04.01999
+  updated_at: 2012-08-14 04:02:04.01999
+groups_352: 
+  id: "464"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Concord.
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/moms.png
+  created_at: 2012-08-14 04:02:04.048782
+  updated_at: 2012-08-14 04:02:04.048782
+groups_353: 
+  id: "465"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Concord.
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/sportsandrec.png
+  created_at: 2012-08-14 04:02:04.076594
+  updated_at: 2012-08-14 04:02:04.076594
+groups_354: 
+  id: "466"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Concord better. Join up and get the discussion going!
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/city.png
+  created_at: 2012-08-14 04:02:04.186645
+  updated_at: 2012-08-14 04:02:04.186645
+groups_355: 
+  id: "467"
+  name: Environment
+  slug: environment
+  about: Get connected with other Concord environmentalists to discuss environmental issues in Concord.
+  community_id: "34"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/environment.png
+  created_at: 2012-08-14 04:02:04.208833
+  updated_at: 2012-08-14 04:02:04.208833
+groups_356: 
+  id: "468"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Avon.
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/volunteering.png
+  created_at: 2012-09-20 00:57:03.902489
+  updated_at: 2012-09-20 00:57:03.902489
+groups_357: 
+  id: "469"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Avon.
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/social.png
+  created_at: 2012-09-20 00:57:04.633227
+  updated_at: 2012-09-20 00:57:04.633227
+groups_358: 
+  id: "470"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Avon.
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/musicandarts.png
+  created_at: 2012-09-20 00:57:04.653999
+  updated_at: 2012-09-20 00:57:04.653999
+groups_359: 
+  id: "471"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Avon Martha Stewart? "
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/homeandgarden.png
+  created_at: 2012-09-20 00:57:04.671424
+  updated_at: 2012-09-20 00:57:04.671424
+groups_360: 
+  id: "472"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Avon restaurants!
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/food.png
+  created_at: 2012-09-20 00:57:04.747465
+  updated_at: 2012-09-20 00:57:04.747465
+groups_361: 
+  id: "473"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/dogs.png
+  created_at: 2012-09-20 00:57:04.767797
+  updated_at: 2012-09-20 00:57:04.767797
+groups_362: 
+  id: "474"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Avon.
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/parents.png
+  created_at: 2012-09-20 00:57:04.786095
+  updated_at: 2012-09-20 00:57:04.786095
+groups_363: 
+  id: "475"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Avon.
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/moms.png
+  created_at: 2012-09-20 00:57:04.896271
+  updated_at: 2012-09-20 00:57:04.896271
+groups_364: 
+  id: "476"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Avon.
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/sportsandrec.png
+  created_at: 2012-09-20 00:57:04.932038
+  updated_at: 2012-09-20 00:57:04.932038
+groups_365: 
+  id: "477"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Avon better. Join up and get the discussion going!
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/city.png
+  created_at: 2012-09-20 00:57:04.945992
+  updated_at: 2012-09-20 00:57:04.945992
+groups_366: 
+  id: "478"
+  name: Environment
+  slug: environment
+  about: Get connected with other Avon environmentalists to discuss environmental issues in Avon.
+  community_id: "35"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/environment.png
+  created_at: 2012-09-20 00:57:05.011153
+  updated_at: 2012-09-20 00:57:05.011153
+groups_367: 
+  id: "479"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Westwood.
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/volunteering.png
+  created_at: 2012-09-20 00:58:23.750426
+  updated_at: 2012-09-20 00:58:23.750426
+groups_368: 
+  id: "480"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Westwood.
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/social.png
+  created_at: 2012-09-20 00:58:24.109518
+  updated_at: 2012-09-20 00:58:24.109518
+groups_369: 
+  id: "481"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Westwood.
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/musicandarts.png
+  created_at: 2012-09-20 00:58:24.125963
+  updated_at: 2012-09-20 00:58:24.125963
+groups_370: 
+  id: "482"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Westwood Martha Stewart? "
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/homeandgarden.png
+  created_at: 2012-09-20 00:58:24.142368
+  updated_at: 2012-09-20 00:58:24.142368
+groups_371: 
+  id: "483"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Westwood restaurants!
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/food.png
+  created_at: 2012-09-20 00:58:24.158892
+  updated_at: 2012-09-20 00:58:24.158892
+groups_372: 
+  id: "484"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/dogs.png
+  created_at: 2012-09-20 00:58:24.175664
+  updated_at: 2012-09-20 00:58:24.175664
+groups_373: 
+  id: "485"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Westwood.
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/parents.png
+  created_at: 2012-09-20 00:58:24.191293
+  updated_at: 2012-09-20 00:58:24.191293
+groups_374: 
+  id: "486"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Westwood.
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/moms.png
+  created_at: 2012-09-20 00:58:24.222518
+  updated_at: 2012-09-20 00:58:24.222518
+groups_375: 
+  id: "487"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Westwood.
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/sportsandrec.png
+  created_at: 2012-09-20 00:58:24.240564
+  updated_at: 2012-09-20 00:58:24.240564
+groups_376: 
+  id: "488"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Westwood better. Join up and get the discussion going!
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/city.png
+  created_at: 2012-09-20 00:58:24.260737
+  updated_at: 2012-09-20 00:58:24.260737
+groups_377: 
+  id: "489"
+  name: Environment
+  slug: environment
+  about: Get connected with other Westwood environmentalists to discuss environmental issues in Westwood.
+  community_id: "36"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/environment.png
+  created_at: 2012-09-20 00:58:24.278754
+  updated_at: 2012-09-20 00:58:24.278754
+groups_378: 
+  id: "490"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Carlisle.
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/volunteering.png
+  created_at: 2012-10-31 15:33:33.15667
+  updated_at: 2012-10-31 15:33:33.15667
+groups_379: 
+  id: "491"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Carlisle.
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/social.png
+  created_at: 2012-10-31 15:33:33.460956
+  updated_at: 2012-10-31 15:33:33.460956
+groups_380: 
+  id: "492"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Carlisle.
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/musicandarts.png
+  created_at: 2012-10-31 15:33:33.482775
+  updated_at: 2012-10-31 15:33:33.482775
+groups_381: 
+  id: "493"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Carlisle Martha Stewart? "
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/homeandgarden.png
+  created_at: 2012-10-31 15:33:33.499981
+  updated_at: 2012-10-31 15:33:33.499981
+groups_382: 
+  id: "494"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Carlisle restaurants!
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/food.png
+  created_at: 2012-10-31 15:33:33.520583
+  updated_at: 2012-10-31 15:33:33.520583
+groups_383: 
+  id: "495"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/dogs.png
+  created_at: 2012-10-31 15:33:33.554731
+  updated_at: 2012-10-31 15:33:33.554731
+groups_384: 
+  id: "496"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Carlisle.
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/parents.png
+  created_at: 2012-10-31 15:33:33.572949
+  updated_at: 2012-10-31 15:33:33.572949
+groups_385: 
+  id: "497"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Carlisle.
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/moms.png
+  created_at: 2012-10-31 15:33:33.590925
+  updated_at: 2012-10-31 15:33:33.590925
+groups_386: 
+  id: "498"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Carlisle.
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/sportsandrec.png
+  created_at: 2012-10-31 15:33:33.606734
+  updated_at: 2012-10-31 15:33:33.606734
+groups_387: 
+  id: "499"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Carlisle better. Join up and get the discussion going!
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/city.png
+  created_at: 2012-10-31 15:33:33.6371
+  updated_at: 2012-10-31 15:33:33.6371
+groups_388: 
+  id: "500"
+  name: Environment
+  slug: environment
+  about: Get connected with other Carlisle environmentalists to discuss environmental issues in Carlisle.
+  community_id: "37"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/environment.png
+  created_at: 2012-10-31 15:33:33.658499
+  updated_at: 2012-10-31 15:33:33.658499
+groups_389: 
+  id: "501"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Somerville.
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/volunteering.png
+  created_at: 2012-10-31 15:34:48.156447
+  updated_at: 2012-10-31 15:34:48.156447
+groups_390: 
+  id: "502"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Somerville.
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/social.png
+  created_at: 2012-10-31 15:34:48.828837
+  updated_at: 2012-10-31 15:34:48.828837
+groups_391: 
+  id: "503"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Somerville.
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/musicandarts.png
+  created_at: 2012-10-31 15:34:48.887084
+  updated_at: 2012-10-31 15:34:48.887084
+groups_392: 
+  id: "504"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Somerville Martha Stewart? "
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/homeandgarden.png
+  created_at: 2012-10-31 15:34:48.950015
+  updated_at: 2012-10-31 15:34:48.950015
+groups_393: 
+  id: "505"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Somerville restaurants!
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/food.png
+  created_at: 2012-10-31 15:34:48.970148
+  updated_at: 2012-10-31 15:34:48.970148
+groups_394: 
+  id: "506"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/dogs.png
+  created_at: 2012-10-31 15:34:49.005962
+  updated_at: 2012-10-31 15:34:49.005962
+groups_395: 
+  id: "507"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Somerville.
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/parents.png
+  created_at: 2012-10-31 15:34:49.03725
+  updated_at: 2012-10-31 15:34:49.03725
+groups_396: 
+  id: "508"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Somerville.
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/moms.png
+  created_at: 2012-10-31 15:34:49.066593
+  updated_at: 2012-10-31 15:34:49.066593
+groups_397: 
+  id: "509"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Somerville.
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/sportsandrec.png
+  created_at: 2012-10-31 15:34:49.149716
+  updated_at: 2012-10-31 15:34:49.149716
+groups_398: 
+  id: "510"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Somerville better. Join up and get the discussion going!
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/city.png
+  created_at: 2012-10-31 15:34:49.209429
+  updated_at: 2012-10-31 15:34:49.209429
+groups_399: 
+  id: "511"
+  name: Environment
+  slug: environment
+  about: Get connected with other Somerville environmentalists to discuss environmental issues in Somerville.
+  community_id: "38"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/environment.png
+  created_at: 2012-10-31 15:34:49.22884
+  updated_at: 2012-10-31 15:34:49.22884
+groups_400: 
+  id: "512"
+  name: Volunteer Opportunities
+  slug: volunteering
+  about: Sign up if you are interested in hearing about how you can help out around Sudbury.
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/volunteering.png
+  created_at: 2012-10-31 15:36:06.346708
+  updated_at: 2012-10-31 15:36:06.346708
+groups_401: 
+  id: "513"
+  name: Social Opportunities
+  slug: social
+  about: Subscribe to stay in the loop about get-togethers with others in Sudbury.
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/social.png
+  created_at: 2012-10-31 15:36:06.660899
+  updated_at: 2012-10-31 15:36:06.660899
+groups_402: 
+  id: "514"
+  name: Music & The Arts
+  slug: musicandarts
+  about: Share and receive announcements and events about upcoming concerts, art shows and creative get-togethers and arts-related happenings around Sudbury.
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/musicandarts.png
+  created_at: 2012-10-31 15:36:06.679665
+  updated_at: 2012-10-31 15:36:06.679665
+groups_403: 
+  id: "515"
+  name: Gardening & Home Improvement
+  slug: homeandgarden
+  about: "Have a question about tools or a tip about planting bulbs? Fancy yourself a Sudbury Martha Stewart? "
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/homeandgarden.png
+  created_at: 2012-10-31 15:36:06.812864
+  updated_at: 2012-10-31 15:36:06.812864
+groups_404: 
+  id: "516"
+  name: Food & Dining
+  slug: food
+  about: Share recommendations and reviews about Sudbury restaurants!
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/food.png
+  created_at: 2012-10-31 15:36:06.838888
+  updated_at: 2012-10-31 15:36:06.838888
+groups_405: 
+  id: "517"
+  name: Dogs
+  slug: dogs
+  about: Organize a pack walk, ask for vet recommendations, find a good dog sitter and much more.
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/dogs.png
+  created_at: 2012-10-31 15:36:06.927991
+  updated_at: 2012-10-31 15:36:06.927991
+groups_406: 
+  id: "518"
+  name: Parents & Families
+  slug: parents
+  about: Receive family-friendly event notifications, suggest babysitter recommendations, and discuss family life with other parents in Sudbury.
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/parents.png
+  created_at: 2012-10-31 15:36:06.949231
+  updated_at: 2012-10-31 15:36:06.949231
+groups_407: 
+  id: "519"
+  name: New Mothers
+  slug: moms
+  about: Find babysitters, organize nanny co-ops, plan playdates and share tips with other new moms in Sudbury.
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/moms.png
+  created_at: 2012-10-31 15:36:07.034087
+  updated_at: 2012-10-31 15:36:07.034087
+groups_408: 
+  id: "520"
+  name: Sports & Recreation
+  slug: sportsandrec
+  about: Stay in the loop about sports, health, wellness, and recreational activities in Sudbury.
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/sportsandrec.png
+  created_at: 2012-10-31 15:36:07.052696
+  updated_at: 2012-10-31 15:36:07.052696
+groups_409: 
+  id: "521"
+  name: City Problem Solving & Ideas
+  slug: city
+  about: Have a big idea about how to help make Sudbury better. Join up and get the discussion going!
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/city.png
+  created_at: 2012-10-31 15:36:07.072828
+  updated_at: 2012-10-31 15:36:07.072828
+groups_410: 
+  id: "522"
+  name: Environment
+  slug: environment
+  about: Get connected with other Sudbury environmentalists to discuss environmental issues in Sudbury.
+  community_id: "39"
+  avatar_file_name: https://s3.amazonaws.com/commonplace-avatars-production/groups/environment.png
+  created_at: 2012-10-31 15:36:07.145713
+  updated_at: 2012-10-31 15:36:07.145713

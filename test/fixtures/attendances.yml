@@ -1,0 +1,127 @@
+--- 
+attendances_001: 
+  id: "1"
+  event_id: "4"
+  user_id: "3"
+  created_at: 2010-11-08 22:41:17.962997
+  updated_at: 2010-11-08 22:41:17.962997
+attendances_002: 
+  id: "4"
+  event_id: "70"
+  user_id: "113"
+  created_at: 2011-02-10 01:31:18.99965
+  updated_at: 2011-02-10 01:31:18.99965
+attendances_003: 
+  id: "5"
+  event_id: "52"
+  user_id: "113"
+  created_at: 2011-02-10 22:07:08.210151
+  updated_at: 2011-02-10 22:07:08.210151
+attendances_004: 
+  id: "6"
+  event_id: "52"
+  user_id: "495"
+  created_at: 2011-02-12 16:35:08.752178
+  updated_at: 2011-02-12 16:35:08.752178
+attendances_005: 
+  id: "7"
+  event_id: "65"
+  user_id: "117"
+  created_at: 2011-02-13 22:29:33.618499
+  updated_at: 2011-02-13 22:29:33.618499
+attendances_006: 
+  id: "8"
+  event_id: "73"
+  user_id: "117"
+  created_at: 2011-02-13 22:29:51.62064
+  updated_at: 2011-02-13 22:29:51.62064
+attendances_007: 
+  id: "9"
+  event_id: "78"
+  user_id: "113"
+  created_at: 2011-02-19 19:49:45.147483
+  updated_at: 2011-02-19 19:49:45.147483
+attendances_008: 
+  id: "10"
+  event_id: "76"
+  user_id: "113"
+  created_at: 2011-02-19 19:49:53.57677
+  updated_at: 2011-02-19 19:49:53.57677
+attendances_009: 
+  id: "13"
+  event_id: "78"
+  user_id: "117"
+  created_at: 2011-02-23 01:14:11.850373
+  updated_at: 2011-02-23 01:14:11.850373
+attendances_010: 
+  id: "14"
+  event_id: "72"
+  user_id: "461"
+  created_at: 2011-02-28 20:39:29.885613
+  updated_at: 2011-02-28 20:39:29.885613
+attendances_011: 
+  id: "16"
+  event_id: "84"
+  user_id: "255"
+  created_at: 2011-03-01 20:15:00.626956
+  updated_at: 2011-03-01 20:15:00.626956
+attendances_012: 
+  id: "17"
+  event_id: "84"
+  user_id: "215"
+  created_at: 2011-03-08 17:58:47.521497
+  updated_at: 2011-03-08 17:58:47.521497
+attendances_013: 
+  id: "18"
+  event_id: "85"
+  user_id: "825"
+  created_at: 2011-03-11 02:23:36.707119
+  updated_at: 2011-03-11 02:23:36.707119
+attendances_014: 
+  id: "19"
+  event_id: "111"
+  user_id: "783"
+  created_at: 2011-03-19 17:44:24.384695
+  updated_at: 2011-03-19 17:44:24.384695
+attendances_015: 
+  id: "20"
+  event_id: "109"
+  user_id: "113"
+  created_at: 2011-03-20 02:49:43.312616
+  updated_at: 2011-03-20 02:49:43.312616
+attendances_016: 
+  id: "24"
+  event_id: "178"
+  user_id: "1091"
+  created_at: 2011-04-22 17:19:52.844115
+  updated_at: 2011-04-22 17:19:52.844115
+attendances_017: 
+  id: "26"
+  event_id: "173"
+  user_id: "1114"
+  created_at: 2011-04-29 19:07:39.511749
+  updated_at: 2011-04-29 19:07:39.511749
+attendances_018: 
+  id: "27"
+  event_id: "196"
+  user_id: "1165"
+  created_at: 2011-05-03 20:15:45.386333
+  updated_at: 2011-05-03 20:15:45.386333
+attendances_019: 
+  id: "28"
+  event_id: "197"
+  user_id: "1165"
+  created_at: 2011-05-03 20:16:07.159983
+  updated_at: 2011-05-03 20:16:07.159983
+attendances_020: 
+  id: "29"
+  event_id: "198"
+  user_id: "1165"
+  created_at: 2011-05-03 20:16:16.158937
+  updated_at: 2011-05-03 20:16:16.158937
+attendances_021: 
+  id: "30"
+  event_id: "188"
+  user_id: "1079"
+  created_at: 2011-05-08 23:52:47.081796
+  updated_at: 2011-05-08 23:52:47.081796

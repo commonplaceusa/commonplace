@@ -1,0 +1,1227 @@
+--- 
+communities_001: 
+  id: "1"
+  name: West Roxbury
+  created_at: 2010-11-08 05:45:08.995786
+  updated_at: 2012-02-06 22:30:59.016633
+  slug: westroxbury
+  zip_code: "02132"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: Pete@CommonPlaceUSA.com
+  organizer_name: Pete Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "1"
+  core: f
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: 
+  metadata: 
+  last_story: 
+  state: MA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_002: 
+  id: "2"
+  name: Falls Church
+  created_at: 2011-07-12 18:10:49.129847
+  updated_at: 2012-08-22 05:21:20.836288
+  slug: fallschurch
+  zip_code: "22040"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: Pete@CommonPlaceUSA.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "4471"
+  core: t
+  should_delete: 
+  is_college: 
+  launch_date: "2011-01-03"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - registered\n"
+  last_story: 
+  state: VA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_003: 
+  id: "4"
+  name: Harrisonburg
+  created_at: 2011-02-28 11:19:29.873735
+  updated_at: 2012-08-19 15:55:58.754488
+  slug: harrisonburg
+  zip_code: "22801"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: Ricky@CommonPlaceUSA.com
+  organizer_name: Ricky Porco
+  organizer_avatar_file_name: ricky.jpg
+  organizer_about: Ricky Porco is bringing CommonPlace to Harrisonburg. He's a JMU undergrad who loves Harrisonburg neighborhoods and thinks he can make them a better place. You can email him directly at Ricky@commonplaceusa.com
+  time_zone: Eastern Time (US & Canada)
+  households: "13100"
+  core: t
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - registered\n"
+  last_story: 
+  state: VA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_004: 
+  id: "5"
+  name: Hinckley
+  created_at: 2011-03-30 17:58:14.211099
+  updated_at: 2012-09-12 03:10:38.013504
+  slug: hinckley
+  zip_code: "60520"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Pete Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "1"
+  core: f
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: |+
+    --- {}
+    
+  last_story: 
+  state: IL
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_005: 
+  id: "6"
+  name: Mission Hill
+  created_at: 2011-03-30 19:06:54.990097
+  updated_at: 2012-02-06 22:30:59.12673
+  slug: missionhill
+  zip_code: "02120"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Pete Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "1"
+  core: f
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: 
+  metadata: 
+  last_story: 
+  state: MA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_006: 
+  id: "8"
+  name: Chelmsford
+  created_at: 2011-05-13 17:04:44.028089
+  updated_at: 2012-08-20 09:07:47.172462
+  slug: Chelmsford
+  zip_code: 01824
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "12000"
+  core: t
+  should_delete: 
+  is_college: 
+  launch_date: "2011-10-01"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: "--- \n\
+    :find_my_neighbor: false\n"
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - named john\n\
+    - named smith\n\
+    - dropped\n\
+    - foo\n\
+    - far\n\
+    - registered\n"
+  last_story: 
+  state: MA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_007: 
+  id: "9"
+  name: Warwick
+  created_at: 2011-05-13 17:04:44.094436
+  updated_at: 2012-09-13 01:32:23.941549
+  slug: Warwick
+  zip_code: "10990"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "2523"
+  core: t
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - registered\n"
+  last_story: 
+  state: NY
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_008: 
+  id: "10"
+  name: Fayetteville
+  created_at: 2011-05-13 17:04:44.098053
+  updated_at: 2012-09-13 01:29:59.692867
+  slug: Fayetteville
+  zip_code: "72701"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: ryan@commonplaceusa.com
+  organizer_name: Ryan Bancroft
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Central Time (US & Canada)
+  households: "23000"
+  core: f
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - registered\n"
+  last_story: 
+  state: AR
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_009: 
+  id: "11"
+  name: Vienna
+  created_at: 2011-05-13 17:04:44.101298
+  updated_at: 2012-08-22 03:34:42.685059
+  slug: Vienna
+  zip_code: "22181"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "5300"
+  core: t
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - registered\n"
+  last_story: 
+  state: VA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_010: 
+  id: "12"
+  name: Raleigh
+  created_at: 2011-05-13 17:04:44.10367
+  updated_at: 2012-09-13 01:29:59.712568
+  slug: Raleigh
+  zip_code: "27601"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "5000"
+  core: f
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: |+
+    --- {}
+    
+  last_story: 
+  state: NC
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_011: 
+  id: "15"
+  name: Grove Hall
+  created_at: 2011-05-13 17:04:44.109764
+  updated_at: 2012-05-01 04:51:29.675133
+  slug: GroveHall
+  zip_code: 02119
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "2"
+  core: f
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: |+
+    --- {}
+    
+  last_story: 
+  state: MA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_012: 
+  id: "17"
+  name: Marquette
+  created_at: 2011-05-15 05:06:09.33553
+  updated_at: 2012-09-13 20:04:41.167148
+  slug: Marquette
+  zip_code: "49855"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "8100"
+  core: t
+  should_delete: 
+  is_college: 
+  launch_date: 
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: |+
+    --- {}
+    
+  last_story: 
+  state: MA
+  organize_start_date: "2011-04-10"
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_013: 
+  id: "20"
+  name: Clarkston
+  created_at: 2011-08-22 19:44:37.949964
+  updated_at: 2012-09-12 02:35:10.490072
+  slug: Clarkston
+  zip_code: "30021"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "2500"
+  core: t
+  should_delete: f
+  is_college: f
+  launch_date: "2011-10-01"
+  google_docs_url: https://docs.google.com/spreadsheet/ccc?key=0AmMELNMSe7_VdHJ5RzhOc3kzcEdNb2ZTcjNNanBKS2c&hl=en_US
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - registered\n"
+  last_story: 
+  state: GA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_014: 
+  id: "21"
+  name: Burnsville
+  created_at: 2011-08-22 19:44:37.949964
+  updated_at: 2012-08-17 01:32:20.687561
+  slug: Burnsville
+  zip_code: "55337"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "24000"
+  core: t
+  should_delete: f
+  is_college: f
+  launch_date: "2011-10-01"
+  google_docs_url: https://docs.google.com/spreadsheet/ccc?key=0AmMELNMSe7_VdDVGUDJhYU9xRHhmdFo4VDhnUUxSNkE&hl=en_US
+  discount_businesses: |
+    --- 
+    - The Buzz Coffee & Cafe
+    - Jo Jo's Rise & Wine
+    - Mediterranean Cruise Cafe
+    - Roasted Pear
+    - Games by James
+    - Junior's Sports Cafe
+    - Carbone's Pizza and Sports Bar
+    - Valley Natural Foods
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - registered\n"
+  last_story: 
+  state: MN
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_015: 
+  id: "22"
+  name: Owosso/Corunna
+  created_at: 2011-08-22 19:44:37.949964
+  updated_at: 2012-08-20 12:00:39.742616
+  slug: OwossoCorunna
+  zip_code: "48867"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "7620"
+  core: t
+  should_delete: f
+  is_college: f
+  launch_date: "2011-10-01"
+  google_docs_url: https://docs.google.com/spreadsheet/ccc?key=0AmMELNMSe7_VdFVuWmZQM3Bkd1pROUxWU0w5RGxHZlE&hl=en_US
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - registered\n"
+  last_story: 
+  state: MI
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_016: 
+  id: "23"
+  name: Golden Valley
+  created_at: 2011-08-22 19:44:37.949964
+  updated_at: 2012-08-20 14:17:32.499365
+  slug: GoldenValley
+  zip_code: "55416"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: Jeremy@CommonPlaceUSA.com
+  organizer_name: Jeremy Foreman
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "8500"
+  core: t
+  should_delete: f
+  is_college: f
+  launch_date: "2011-10-01"
+  google_docs_url: https://docs.google.com/spreadsheet/ccc?key=0AmMELNMSe7_VdEhkRkJYZHl6YVFFNHRtbzU1TWJEMXc&hl=en_US
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - registered\n"
+  last_story: 
+  state: MN
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_017: 
+  id: "26"
+  name: Belmont
+  created_at: 2012-03-14 23:02:02.859038
+  updated_at: 2012-10-20 15:35:05.058906
+  slug: Belmont
+  zip_code: 02478
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: Pete@CommonPlaceUSA.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "1"
+  core: t
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: "--- \n\
+    :find_my_neighbor: true\n"
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - \"Type: Civic Hero\"\n\
+    - \"CH1: Contacted\"\n\
+    - \"CH2: Connected\"\n\
+    - \"CH3: Interview Scheduled\"\n\
+    - \"CH4: Interview Held\"\n\
+    - \"CH5: Published Post\"\n\
+    - \"Type: Civic Hero Partner\"\n\
+    - \"Type: Civic Leader\"\n\
+    - \"CL1: Contacted\"\n\
+    - \"CL2: Connected\"\n\
+    - \"CL3: Call Scheduled\"\n\
+    - \"CL4: Call Held\"\n\
+    - \"Type: Civic Leader Partner\"\n\
+    - \"Type: PFO\"\n\
+    - \"PFO1: Joined CP\"\n\
+    - \"PFO2: Has Feed\"\n\
+    - \"PFO3: Posted to Feed\"\n\
+    - \"CH3: Call Scheduled\"\n\
+    - \"CH4: Call Held\"\n\
+    - \"Type: Uninterested\"\n\
+    - \"Type: PTA\"\n\
+    - \"PTA1: Contacted\"\n\
+    - \"Type: Super Leader\"\n\
+    - \"SL1: Contacted\"\n\
+    - \"SL2: Connected\"\n\
+    - \"Type: Non-Leader\"\n\
+    - \"CH1x: Non-Responder\"\n\
+    - \"CL1x: Non-Responder\"\n\
+    - \"CL1x: Dead Email\"\n\
+    - \"Organizer: Ricky\"\n\
+    - \"Sector: Human services\"\n\
+    - \"Sector: Environment\"\n\
+    - \"Sector: Arts\"\n\
+    - \"Sector: Civic\"\n\
+    - \"Sector: Education\"\n\
+    - \"Sector: Municipal\"\n\
+    - \"Sector: Recreation\"\n\
+    - \"Organizer: Pete\"\n\
+    - \"Type: Excited Neighbor\"\n\
+    - \"Status: Friend of OurCommonPlace\"\n\
+    - \"EN1: Contacted\"\n\
+    - \"EN2: Connected\"\n\
+    - \"EN1x: Delayer\"\n\
+    - \"X: Uninterested\"\n\
+    - \"EN3: Call Scheduled\"\n\
+    - \"EN4: Call Held\"\n\
+    - \"Type: Excited Neighbor Partner\"\n\
+    - \"Status: Wants Leaderpack\"\n\
+    - \"Status: Wants Email Blurb\"\n\
+    - \"Status: Email Blurb Sent\"\n"
+  last_story: 
+  state: MA
+  organize_start_date: "2012-04-04"
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_018: 
+  id: "27"
+  name: Harvard Neighbors
+  created_at: 2012-05-10 05:22:16.471642
+  updated_at: 2012-09-13 01:29:59.772892
+  slug: HarvardNeighbors
+  zip_code: 02138
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: ""
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: ""
+  time_zone: Eastern Time (US & Canada)
+  households: "0"
+  core: f
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: ""
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- !map:ActiveSupport::HashWithIndifferentAccess {}
+    
+  metadata: |
+    --- !map:ActiveSupport::HashWithIndifferentAccess 
+    resident_tags: 
+    - registered
+
+  last_story: 
+  state: MA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_019: 
+  id: "28"
+  name: Watertown
+  created_at: 2012-05-20 06:57:24.654808
+  updated_at: 2012-10-20 00:05:13.779416
+  slug: watertown
+  zip_code: "02472"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "14629"
+  core: t
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - \"Type: Civic Leader\"\n\
+    - \"CL1: Contacted\"\n\
+    - \"CL2: Connected\"\n\
+    - \"Type: Super Leader\"\n\
+    - \"SL1: Contacted\"\n\
+    - \"SL2: Connected\"\n\
+    - \"Type: Library/CC\"\n\
+    - \"LCC1: Contacted\"\n\
+    - \"Type: Press\"\n\
+    - \"P1: Contacted\"\n\
+    - \"Type: PTA\"\n\
+    - \"PTA1: Contacted\"\n\
+    - \"Type: Non-Leader\"\n\
+    - \"CL1x: Delayer\"\n\
+    - \"CL1x: Dead Email\"\n\
+    - \"Organizer: Ricky\"\n\
+    - \"Sector: Human services\"\n\
+    - \"Sector: Arts\"\n\
+    - \"Sector: Recreation\"\n\
+    - \"Sector: Education\"\n\
+    - \"Sector: Religion\"\n\
+    - \"Sector: Municipal\"\n\
+    - \"Sector: Civic\"\n\
+    - \"Organizer: Pete\"\n\
+    - \"Sector: Library/cc\"\n\
+    - \"Sector: Chamber of commerce\"\n\
+    - \"Sector: Press\"\n\
+    - \"Type: Excited Neighbor\"\n\
+    - \"Status: Friend of OurCommonPlace\"\n\
+    - \"EN1: Contacted\"\n\
+    - \"EN2: Connected\"\n\
+    - \"X: Referred Out\"\n\
+    - \"X: Uninterested\"\n\
+    - \"EN3: Call Scheduled\"\n\
+    - \"EN4: Call Held\"\n\
+    - \"Type: Excited Neighbor Partner\"\n\
+    - \"Status: Wants Leaderpack\"\n"
+  last_story: 
+  state: MA
+  organize_start_date: "2012-05-30"
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_020: 
+  id: "29"
+  name: Graduate Commons
+  created_at: 2012-05-21 18:26:58.096265
+  updated_at: 2012-09-13 01:32:23.965853
+  slug: GraduateCommons
+  zip_code: 02138
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "1"
+  core: f
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: |+
+    --- {}
+    
+  last_story: 
+  state: MA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_021: 
+  id: "30"
+  name: Lexington
+  created_at: 2012-06-09 17:53:38.519982
+  updated_at: 2012-11-03 04:00:04.930401
+  slug: Lexington
+  zip_code: "02421"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: pete@commonplaceusa.com
+  organizer_name: Peter Davis
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "1"
+  core: f
+  should_delete: f
+  is_college: f
+  launch_date: "2012-06-09"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - C002\n\
+    - C005\n\
+    - C007\n\
+    - C010\n\
+    - C011\n\
+    - C016\n\
+    - C019\n\
+    - C020\n\
+    - C022\n\
+    - C023\n\
+    - C024\n\
+    - C026\n\
+    - C030\n\
+    - C031\n\
+    - C033\n\
+    - C038\n\
+    - C043\n\
+    - C044\n\
+    - C001\n\
+    - C004\n\
+    - C006\n\
+    - C008\n\
+    - C009\n\
+    - C012\n\
+    - C013\n\
+    - C017\n\
+    - C018\n\
+    - C021\n\
+    - C025\n\
+    - C027\n\
+    - C029\n\
+    - C032\n\
+    - C035\n\
+    - C036\n\
+    - C037\n\
+    - C039\n\
+    - C040\n\
+    - C042\n\
+    - C045\n\
+    - C047\n\
+    - \"Flyer A: I Love Lexington\"\n\
+    - \"Flyer B: Clipart\"\n\
+    - \"Type: Nominator\"\n\
+    - \"Type: Nominee\"\n\
+    - \"Organizer: Ricky\"\n\
+    - \"Type: Civic Leader\"\n\
+    - \"Type: Civic Leader Partner\"\n\
+    - \"CL1: Contacted\"\n\
+    - \"CL2: Connected\"\n\
+    - \"Type: Civic Hero\"\n\
+    - \"Type: Super Leader\"\n\
+    - \"SL1: Contacted\"\n\
+    - \"Type: Press\"\n\
+    - \"P1: Contacted\"\n\
+    - \"P2: Connected\"\n\
+    - \"Type: Library/CC\"\n\
+    - \"LCC1: Contacted\"\n\
+    - \"Type: Non-Leader Email List\"\n\
+    - \"Sector: Arts\"\n\
+    - \"Sector: Civic\"\n\
+    - \"Sector: Education\"\n\
+    - \"Sector: Environment\"\n\
+    - \"Sector: Municipal\"\n\
+    - \"Sector: Religion\"\n\
+    - \"Organizer: Pete\"\n\
+    - \"Sector: Chamber of commerce\"\n\
+    - \"Sector: Press\"\n\
+    - \"Sector: Library\"\n\
+    - \"Type: Excited Neighbor\"\n\
+    - \"Status: Friend of OurCommonPlace\"\n\
+    - \"EN1: Contacted\"\n\
+    - \"Metrics: Flyer C\"\n"
+  last_story: http://pubapi.outside.in/r?url=http://www.bostonherald.com/blogs/sports/high_school/index.php/2012/10/31/high-school-soccer-pairings/&publication_id=0&placement=list&region_name=Lexington_MA
+  state: MA
+  organize_start_date: "2012-08-08"
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_022: 
+  id: "31"
+  name: Akron
+  created_at: 2012-06-10 20:17:17.270198
+  updated_at: 2012-11-03 04:00:03.595357
+  slug: Akron
+  zip_code: "44301"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: "\r\n"
+  organizer_email: ""
+  organizer_name: ""
+  organizer_avatar_file_name: 
+  organizer_about: "\r\n"
+  time_zone: Eastern Time (US & Canada)
+  households: "0"
+  core: f
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: ""
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- !map:ActiveSupport::HashWithIndifferentAccess {}
+    
+  metadata: |
+    --- !map:ActiveSupport::HashWithIndifferentAccess 
+    resident_tags: 
+    - registered
+
+  last_story: http://pubapi.outside.in/r?url=http://www.newsnet5.com/dpp/news/local_news/oh_summit/akron-barbershop-robbed-at-gunpoint-men-getaway-with-400&publication_id=0&placement=list&region_name=Akron_OH
+  state: OH
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_023: 
+  id: "34"
+  name: Concord
+  created_at: 2012-08-14 04:02:03.170063
+  updated_at: 2012-11-03 04:00:04.771913
+  slug: concord
+  zip_code: 
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: 
+  organizer_name: 
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "0"
+  core: 
+  should_delete: f
+  is_college: f
+  launch_date: "2012-06-09"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: "--- \n\
+    :resident_tags: \n\
+    - C001\n\
+    - C002\n\
+    - C004\n\
+    - C005\n\
+    - C007\n\
+    - C008\n\
+    - C009\n\
+    - C010\n\
+    - C011\n\
+    - C012\n\
+    - C013\n\
+    - C014\n\
+    - C015\n\
+    - C016\n\
+    - C018\n\
+    - C019\n\
+    - C020\n\
+    - R001\n\
+    - R002\n\
+    - \"Type: Civic Leader\"\n\
+    - \"Sector: Civic\"\n\
+    - \"Organizer: Ricky\"\n\
+    - \"Sector: Municipal\"\n\
+    - \"Organizer: Pete\"\n\
+    - \"Sector: Public Safety\"\n\
+    - \"Sector: Religion\"\n\
+    - \"Sector: Environment\"\n\
+    - \"Sector: Arts\"\n\
+    - \"Sector: Recreation\"\n\
+    - \"Sector: Human Services\"\n\
+    - \"Type: Super Leader\"\n\
+    - \"Sector: Board of Selectmen\"\n\
+    - \"Sector: Chamber of Commerce\"\n\
+    - \"Sector: Education\"\n\
+    - \"Type: Gatekeeper\"\n\
+    - \"Type: Press\"\n\
+    - \"Type: Library/CC\"\n\
+    - \"Sector: Library\"\n\
+    - \"Type: Nominee\"\n\
+    - \"Type: Nominator\"\n\
+    - \"Organizer: Chava\"\n\
+    - \"Type: Civic Leader Partner\"\n\
+    - \"Type: Civic Hero Partner\"\n\
+    - \"Flyer: I Love Concord Informal\"\n\
+    - \"Flyer: I Love Concord Formal\"\n\
+    - \"Flyer: Nomination Drive\"\n\
+    - \"Flyer: Clip Art\"\n\
+    - \"CL1: Contacted\"\n\
+    - \"CL2: Connected\"\n\
+    - \"CL2: Connected,\"\n\
+    - \"CL1x: Delayer\"\n\
+    - \"X: Referred Out\"\n\
+    - \"SL1: Contacted\"\n\
+    - \"P1: Contacted\"\n\
+    - \"LCC1: Contacted\"\n\
+    - \"Type: PTA\"\n\
+    - \"PTA1: Contacted\"\n\
+    - \"Type: Non-Leader\"\n\
+    - \"Sector: Human services\"\n\
+    - \"Sector: Public safety\"\n\
+    - \"Sector: Board of selectmen\"\n\
+    - \"Sector: Chamber of commerce\"\n\
+    - \"Sector: Press\"\n\
+    - \"Type: Excited Neighbor\"\n\
+    - \"EN1: Contacted\"\n\
+    - \"EN2: Connected\"\n\
+    - \"EN3: Call Scheduled\"\n\
+    - \"Status: Wants Leaderpack\"\n"
+  last_story: http://pubapi.outside.in/r?url=http://feeds.boston.com/click.phdo?i%3D761cdfee09e7a315196b0057813653b6&publication_id=0&placement=list&region_name=Concord_MA
+  state: MA
+  organize_start_date: "2012-09-12"
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_024: 
+  id: "35"
+  name: Avon
+  created_at: 2012-09-20 00:57:03.494301
+  updated_at: 2012-09-20 00:57:03.494301
+  slug: Avon
+  zip_code: 
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: 
+  organizer_name: 
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "0"
+  core: 
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: 
+  discount_businesses: 
+  feature_switches: 
+  metadata: 
+  last_story: 
+  state: 
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_025: 
+  id: "36"
+  name: Westwood
+  created_at: 2012-09-20 00:58:23.339252
+  updated_at: 2012-09-20 00:58:23.339252
+  slug: Westwood
+  zip_code: 
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: 
+  organizer_name: 
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "0"
+  core: 
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: 
+  discount_businesses: 
+  feature_switches: 
+  metadata: 
+  last_story: 
+  state: 
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_026: 
+  id: "37"
+  name: Carlisle
+  created_at: 2012-10-31 15:33:32.838177
+  updated_at: 2012-11-03 04:00:06.065471
+  slug: Carlisle
+  zip_code: "01741"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: 
+  organizer_name: 
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "0"
+  core: 
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: |+
+    --- {}
+    
+  last_story: http://pubapi.outside.in/r?url=http://www.bostonherald.com/blogs/sports/high_school/index.php/2012/10/31/high-school-soccer-pairings/&publication_id=0&placement=list&region_name=Carlisle_MA
+  state: MA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_027: 
+  id: "38"
+  name: Somerville
+  created_at: 2012-10-31 15:34:47.734944
+  updated_at: 2012-11-03 04:00:06.153721
+  slug: Somerville
+  zip_code: "02143"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: 
+  organizer_name: 
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "0"
+  core: 
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: |+
+    --- {}
+    
+  last_story: http://pubapi.outside.in/r?url=http://feedproxy.google.com/~r/bostonherald/sports/~3/RSkUcXD0O5U/view.bg&publication_id=0&placement=list&region_name=Somerville_MA
+  state: MA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 
+communities_028: 
+  id: "39"
+  name: Sudbury
+  created_at: 2012-10-31 15:36:05.970709
+  updated_at: 2012-11-03 04:00:06.348298
+  slug: Sudbury
+  zip_code: "01776"
+  logo_file_name: 
+  email_header_file_name: 
+  signup_message: 
+  organizer_email: 
+  organizer_name: 
+  organizer_avatar_file_name: 
+  organizer_about: 
+  time_zone: Eastern Time (US & Canada)
+  households: "0"
+  core: 
+  should_delete: f
+  is_college: f
+  launch_date: "2010-01-01"
+  google_docs_url: 
+  discount_businesses: |
+    --- 
+
+  feature_switches: |+
+    --- {}
+    
+  metadata: |+
+    --- {}
+    
+  last_story: http://pubapi.outside.in/r?url=http://wayland.patch.com/announcements/curious-creatures-come-to-wayland-on-november-12-2012-from-10-am-11-am?ncid%3Dedlinkuspatc00000001%26utm_source%3DOutsideIn%26utm_medium%3DOutsideInAPI%26utm_campaign%3DOutsideInAPI&publication_id=0&placement=list&region_name=Sudbury_MA
+  state: MA
+  organize_start_date: 
+  latitude: "0.0"
+  longitude: "0.0"
+  geckoboard_population_chart_id: 

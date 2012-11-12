@@ -1,0 +1,57 @@
+--- 
+admin_users_001: 
+  id: "1"
+  email: admin@example.com
+  encrypted_password: $2a$10$Vkco9Z2DJmUyCGc8jSaW9eTPXUKT7m.QQ1GSk7xeYyGE4pGoxf9Da
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: "43"
+  current_sign_in_at: 2012-02-23 15:50:07.502953
+  last_sign_in_at: 2011-12-18 20:33:52.730802
+  current_sign_in_ip: 10.5.21.190
+  last_sign_in_ip: 10.78.91.226
+  created_at: 2011-06-20 00:33:00.878847
+  updated_at: 2012-02-23 15:50:07.504364
+admin_users_002: 
+  id: "2"
+  email: jason@jasonberlinsky.com
+  encrypted_password: $2a$10$C8rhDJVBbxKDpFEin6R7AeI12wQk4m08CfEzX2jSmUXvBa0/o1UHG
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: "14"
+  current_sign_in_at: 2011-12-04 23:59:37.187207
+  last_sign_in_at: 2011-10-14 23:04:05.370566
+  current_sign_in_ip: 10.218.45.239
+  last_sign_in_ip: 10.94.69.43
+  created_at: 2011-06-20 00:35:58.329199
+  updated_at: 2011-12-04 23:59:37.189294
+admin_users_003: 
+  id: "3"
+  email: rickyporco@gmail.com
+  encrypted_password: $2a$10$03C9YKQbtiTOfRviGK2jNurPTeYqfDyZODD8a4P7OFdXWs351TFJm
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 2011-08-10 15:10:45.084738
+  sign_in_count: "15"
+  current_sign_in_at: 2012-03-15 13:51:40.830397
+  last_sign_in_at: 2012-01-30 19:40:45.220861
+  current_sign_in_ip: 10.140.3.158
+  last_sign_in_ip: 10.84.109.192
+  created_at: 2011-06-21 18:29:05.785957
+  updated_at: 2012-03-15 13:51:40.833974
+admin_users_004: 
+  id: "4"
+  email: mnovendstern@gmail.com
+  encrypted_password: $2a$10$dtiDNjcHq0ORJXc/KV1/k.CI5QZqyECE0cPWzVolGme5zCug0qOru
+  reset_password_token: 
+  reset_password_sent_at: 
+  remember_created_at: 
+  sign_in_count: "6"
+  current_sign_in_at: 2012-02-24 19:54:05.805975
+  last_sign_in_at: 2012-01-29 22:19:44.373343
+  current_sign_in_ip: 10.126.253.233
+  last_sign_in_ip: 10.12.238.225
+  created_at: 2011-06-22 19:46:57.365463
+  updated_at: 2012-02-24 22:01:29.357535
