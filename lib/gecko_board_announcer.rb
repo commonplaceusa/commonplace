@@ -50,10 +50,10 @@ class GeckoBoardAnnouncer
 
     dashboard.number("Daily Bulletins Sent Today", DailyStatistic.value("daily_bulletins_sent") || 0)
     dashboard.number("Daily Bulletins Opened Today", DailyStatistic.value("daily_bulletins_opened") || 0)
-    dashboard.number("Daily Bulletin Open Rate Today", DailyStatistic.value("daily_bulletins_opened").to_f / DailyStatistic.value("daily_bulletins_sent").to_f)
+    # dashboard.number("Daily Bulletin Open Rate Today", DailyStatistic.value("daily_bulletins_opened").to_f / DailyStatistic.value("daily_bulletins_sent").to_f)
     dashboard.number("Single Post Emails Sent Today", DailyStatistic.value("single_posts_sent") || 0)
     dashboard.number("Single Post Emails Opened Today", DailyStatistic.value("single_posts_opened") || 0)
-    dashboard.number("Single Post Email Open Rate Today", DailyStatistic.value("single_posts_opened").to_f / DailyStatistic.value("single_posts_sent").to_f)
+    # dashboard.number("Single Post Email Open Rate Today", DailyStatistic.value("single_posts_opened").to_f / DailyStatistic.value("single_posts_sent").to_f)
     # emails = []
     # Resque.redis.keys("statistics:daily:*_sent").each do |key|
       # email_tag = key.gsub("statistics:daily:", "").gsub("_sent", "")
@@ -82,11 +82,34 @@ class GeckoBoardAnnouncer
     end
     dashboard.pie("Todays Posts by Category", posts)
 
-    dashboard.number("Active Workers", HerokuResque::WorkerScaler.count("worker"))
+    # dashboard.number("Active Workers", HerokuResque::WorkerScaler.count("worker"))
 
-    dashboard.number("E-Mails in Queue", Resque.size("notifications"))
+    # dashboard.number("E-Mails in Queue", Resque.size("notifications"))
 
-    dashboard.text("Statistics Information", "Update Finished", "Finished updating at #{DateTime.now.in_time_zone(tz).to_s}")
+    # dashboard.text("Statistics Information", "Update Finished", "Finished updating at #{DateTime.now.in_time_zone(tz).to_s}")
+
+    wau_start = 1.week.ago - 2.days
+    mau_start = 1.month.ago - 2.days
+    dau_start = 1.day.ago - 2.days
+    au_end = wau_start + 1.week - 2.days
+
+    # raise "Starting MAU calculation"
+
+    # This has to happen last, since it messes with ActiveRecord
+    $OriginalConnection = ActiveRecord::Base.connection
+    require 'kmdb'
+    wau = KMDB::Event.before(au_end).after(wau_start).named('Platform activity').map(&:user_id).uniq.count
+    mau = KMDB::Event.before(au_end).after(mau_start).named('Platform activity').map(&:user_id).uniq.count
+    dau = KMDB::Event.before(au_end).after(dau_start).named('Platform activity').map(&:user_id).uniq.count
+    dashboard.number("Weekly Active Users", wau)
+    dashboard.number("Monthly Active Users", mau)
+    dashboard.number("Daily Active Users", dau)
+
+    dashboard.number("WAU", wau)
+    dashboard.number("MAU", mau)
+    dashboard.number("DAU", dau)
+
+    ActiveRecord::Base.establish_connection
 
     unless Rails.env.production?
       dashboard.text("Statistics Information", "Non-Authoritative Update", "The current update is not from production")

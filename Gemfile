@@ -101,6 +101,9 @@ gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 
 # Analytics
 gem 'km'
+gem 'sqlite3-ruby'
+gem 'km-db', :path => "../km-db"
+gem 'mysql2'
 
 group :assets do
   gem 'uglifier'

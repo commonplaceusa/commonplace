@@ -77,6 +77,16 @@ GIT
       nokogiri
       oauth (= 0.3.6)
 
+PATH
+  remote: ../km-db
+  specs:
+    km-db (0.2)
+      activerecord
+      andand
+      parallel
+      progressbar
+      yajl-ruby
+
 GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
@@ -123,6 +133,7 @@ GEM
       tins (~> 0.3)
     amazon-ec2 (0.9.17)
       xml-simple (>= 1.0.12)
+    andand (1.3.3)
     arel (3.0.2)
     aws-s3 (0.6.2)
       builder
@@ -319,6 +330,7 @@ GEM
     multi_xml (0.5.1)
     multipart-post (1.1.5)
     mustache (0.99.4)
+    mysql2 (0.3.11)
     netrc (0.7.5)
     newrelic_rpm (3.3.2)
     nokogiri (1.5.2)
@@ -341,6 +353,7 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    parallel (0.5.19)
     permanent_records (2.1.2)
       activerecord
     pg (0.13.2)
@@ -351,6 +364,7 @@ GEM
     premailer (1.7.3)
       css_parser (>= 1.1.9)
       htmlentities (>= 4.0.0)
+    progressbar (0.11.0)
     pry (0.9.9.6)
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
@@ -513,6 +527,7 @@ GEM
     xml-simple (1.1.1)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yajl-ruby (1.1.0)
     zip (2.0.2)
 
 PLATFORMS
@@ -563,6 +578,7 @@ DEPENDENCIES
   jasmine
   json (~> 1.6.0)
   km
+  km-db!
   launchy
   leftronic!
   libnotify
@@ -571,6 +587,7 @@ DEPENDENCIES
   mock_redis!
   mongo_mapper
   mustache
+  mysql2
   newrelic_rpm
   omniauth
   omniauth-facebook
@@ -609,6 +626,7 @@ DEPENDENCIES
   simplecov
   sinatra (~> 1.2.7)
   spork
+  sqlite3-ruby
   sunspot_rails (= 1.3.0)
   sunspot_solr
   system_timer
