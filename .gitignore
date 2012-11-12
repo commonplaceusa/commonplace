@@ -40,3 +40,4 @@ neo4j
 .env
 coverage
 chromedriver.log
+km_dumps
