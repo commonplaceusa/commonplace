@@ -410,6 +410,8 @@ class Resident < ActiveRecord::Base
     r
   end
 
+  # This function takes too long when the lib/serializer.rb calls it for
+  # certain community-specific Resident models on production.
   def find_story
     stories=self.community.stories.order("created_at DESC")
     if stories.size>0

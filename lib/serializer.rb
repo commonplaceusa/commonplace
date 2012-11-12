@@ -55,7 +55,6 @@ module Serializer
         "on_commonplace" => o.on_commonplace?,
         "community_id" => o.community_id,
         "interests" => o.interest_list,
-        "stories" => o.find_story
       }
 
       when User
