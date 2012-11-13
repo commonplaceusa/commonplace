@@ -48,23 +48,30 @@ Getting Started
   * `sudo apt-get install postgresql libpq-dev`
   * `brew install postgres`
 
-12. Install MongoDB
+12. Initialize the db: for OS X, see http://www.rubyinside.com/how-to-install-and-use-postgres-on-os-x-for-ruby-and-rails-development-4999.html
+
+13. Install MongoDB
   * `sudo apt-get install mongodb`
   * `brew install mongodb`
 
-13. `bundle install`
-14. `cp config/database.yml.example config/database.yml`
-15. Authenticate for the database
+14. `bundle install`
+15. `cp config/database.yml.example config/database.yml`
+16. Authenticate for the database
   * `sudo su postgres`
   * `createuser `username
-16. Add the initial test community with `bundle exec rake db:setup`
+17. Run mongodb:
+  * `sudo start mongodb`
+  * `mongod`
+18. Run redis:
+  * `redis-server`
+19. Run sunspot:
+  * `bundle exec sunspot-solr run`
+20. Add the initial test community with `bundle exec rake db:setup`
 
-Run mongodb with `sudo start mongodb`
 
 Run the server with `bundle exec foreman start` or `bundle exec rails s thin`
 
-Run sunspot with `bundle exec sunspot-solr run`
-And reindex with `bundle exec rake sunspot:solr:reindex`
+And reindex solr with `bundle exec rake sunspot:solr:reindex`
 
 Go to [http://localhost:5000/test](http://localhost:5000/test) and login with test@example.com:password
 
