@@ -6527,3 +6527,69 @@ feed_owners_1088:
   user_id: "16632"
   created_at: 2012-11-02 21:31:43.943972
   updated_at: 2012-11-02 21:31:43.943972
+feed_owners_1089: 
+  id: "1134"
+  feed_id: "1078"
+  user_id: "9371"
+  created_at: 2012-11-04 20:06:04.681582
+  updated_at: 2012-11-04 20:06:04.681582
+feed_owners_1090: 
+  id: "1135"
+  feed_id: "1079"
+  user_id: "16681"
+  created_at: 2012-11-05 02:48:05.89413
+  updated_at: 2012-11-05 02:48:05.89413
+feed_owners_1091: 
+  id: "1136"
+  feed_id: "1080"
+  user_id: "1289"
+  created_at: 2012-11-05 04:10:59.602364
+  updated_at: 2012-11-05 04:10:59.602364
+feed_owners_1092: 
+  id: "1137"
+  feed_id: "1081"
+  user_id: "16685"
+  created_at: 2012-11-05 14:01:27.262262
+  updated_at: 2012-11-05 14:01:27.262262
+feed_owners_1093: 
+  id: "1138"
+  feed_id: "1082"
+  user_id: "11096"
+  created_at: 2012-11-07 02:16:21.962125
+  updated_at: 2012-11-07 02:16:21.962125
+feed_owners_1094: 
+  id: "1139"
+  feed_id: "1083"
+  user_id: "16775"
+  created_at: 2012-11-09 12:41:35.722825
+  updated_at: 2012-11-09 12:41:35.722825
+feed_owners_1095: 
+  id: "1140"
+  feed_id: "1084"
+  user_id: "16780"
+  created_at: 2012-11-09 15:19:41.07249
+  updated_at: 2012-11-09 15:19:41.07249
+feed_owners_1096: 
+  id: "1141"
+  feed_id: "1085"
+  user_id: "16788"
+  created_at: 2012-11-09 20:21:36.099399
+  updated_at: 2012-11-09 20:21:36.099399
+feed_owners_1097: 
+  id: "1142"
+  feed_id: "1086"
+  user_id: "14330"
+  created_at: 2012-11-09 20:42:53.066859
+  updated_at: 2012-11-09 20:42:53.066859
+feed_owners_1098: 
+  id: "1143"
+  feed_id: "1087"
+  user_id: "4831"
+  created_at: 2012-11-11 13:23:21.501537
+  updated_at: 2012-11-11 13:23:21.501537
+feed_owners_1099: 
+  id: "1144"
+  feed_id: "1088"
+  user_id: "16820"
+  created_at: 2012-11-12 02:56:29.569057
+  updated_at: 2012-11-12 02:56:29.569057

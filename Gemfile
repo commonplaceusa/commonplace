@@ -10,6 +10,7 @@ gem 'rack-contrib'
 gem 'rack-cache' # For caching
 gem 'dalli' # memcache client, for caching
 gem 'acts_as_api'
+gem 'barometer' #for weather forecasts
 
 # ActiveRecord
 gem 'sunspot_rails', "1.3.0"
@@ -159,7 +160,6 @@ group :test do
   gem 'spork' # we use spork to speed up tests
   gem 'rr' # we use rr for mocking
   gem 'rspec-rr' # we use rspec-rr for integration between rspec and rr
-  gem 'webmock' # we use webmock to mock google maps and other apis
   gem 'capybara', '1.1.2'
   gem 'launchy' # we use launchy to launch a browser during integration testing
   gem 'database_cleaner' # we use database_cleaner to clean the database between tests
