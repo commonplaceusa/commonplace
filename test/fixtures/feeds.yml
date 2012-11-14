@@ -729,7 +729,7 @@ feeds_028:
   kind: 
   password: 
   background_file_name: 
-  announcements_count: "7"
+  announcements_count: "8"
   events_count: "0"
 feeds_029: 
   id: "32"
@@ -1072,7 +1072,7 @@ feeds_041:
   kind: "1"
   password: 
   background_file_name: 
-  announcements_count: "11"
+  announcements_count: "13"
   events_count: "0"
 feeds_042: 
   id: "48"
@@ -1099,7 +1099,7 @@ feeds_042:
   password: 
   background_file_name: 
   announcements_count: "4"
-  events_count: "2"
+  events_count: "3"
 feeds_043: 
   id: "49"
   name: Tinner Hill Heritage Foundation
@@ -2331,7 +2331,7 @@ feeds_087:
   password: 
   background_file_name: 
   announcements_count: "81"
-  events_count: "0"
+  events_count: "1"
 feeds_088: 
   id: "96"
   name: SVBA Green Building Committee
@@ -2489,7 +2489,7 @@ feeds_093:
   kind: "4"
   password: 
   background_file_name: 
-  announcements_count: "371"
+  announcements_count: "379"
   events_count: "0"
 feeds_094: 
   id: "101"
@@ -2801,7 +2801,7 @@ feeds_105:
   kind: "1"
   password: 
   background_file_name: 
-  announcements_count: "394"
+  announcements_count: "399"
   events_count: "0"
 feeds_106: 
   id: "115"
@@ -3254,7 +3254,7 @@ feeds_122:
   kind: "3"
   password: 
   background_file_name: 
-  announcements_count: "23"
+  announcements_count: "29"
   events_count: "0"
 feeds_123: 
   id: "135"
@@ -3625,7 +3625,7 @@ feeds_136:
   password: 
   background_file_name: 
   announcements_count: "41"
-  events_count: "0"
+  events_count: "3"
 feeds_137: 
   id: "155"
   name: Sitti Restaurant
@@ -4010,7 +4010,7 @@ feeds_150:
   kind: "2"
   password: 
   background_file_name: 
-  announcements_count: "101"
+  announcements_count: "102"
   events_count: "0"
 feeds_151: 
   id: "170"
@@ -4062,7 +4062,7 @@ feeds_152:
   kind: "3"
   password: 
   background_file_name: 
-  announcements_count: "35"
+  announcements_count: "42"
   events_count: "0"
 feeds_153: 
   id: "172"
@@ -4681,7 +4681,7 @@ feeds_176:
   id: "192"
   name: The Hudson Valley Jazz Festival
   created_at: 2011-06-11 05:35:39.286165
-  updated_at: 2012-06-28 17:37:39.244275
+  updated_at: 2012-11-12 19:32:42.954455
   about: The Hudson Valley Jazz Festival, formerly the Warwick Valley Jazz Festival is a local grown idea, driven by  jazz players and supported by the venues that hire musicians , local businesses and the public.   It's a collaborative effort that is strengthened by the attending public and the promotion of this great American musical art form.
   phone: 845-986-8690 / (917)903-4380
   website: http://www.hudsonvalleyjazzfest.org
@@ -4693,7 +4693,7 @@ feeds_176:
   user_id: "1928"
   type: Feed
   feed_url: http://www.hudsonvalleyjazzfest.org
-  avatar_file_name: RackMultipart20120628-1-1rg03jb
+  avatar_file_name: RackMultipart20121112-2-1yawiya
   address: 1 Ridgeway Dr. Warwick, NY 10990
   hours: 
   slug: warwickjazz
@@ -4701,8 +4701,8 @@ feeds_176:
   kind: "1"
   password: 
   background_file_name: 
-  announcements_count: "50"
-  events_count: "0"
+  announcements_count: "52"
+  events_count: "1"
 feeds_177: 
   id: "193"
   name: WakeUP Wake County
@@ -4753,7 +4753,7 @@ feeds_178:
   kind: "1"
   password: 
   background_file_name: 
-  announcements_count: "38"
+  announcements_count: "41"
   events_count: "0"
 feeds_179: 
   id: "195"
@@ -6469,7 +6469,7 @@ feeds_241:
   kind: "2"
   password: 
   background_file_name: 
-  announcements_count: "150"
+  announcements_count: "151"
   events_count: "0"
 feeds_242: 
   id: "258"
@@ -6630,7 +6630,7 @@ feeds_247:
   kind: "2"
   password: 
   background_file_name: 
-  announcements_count: "47"
+  announcements_count: "48"
   events_count: "0"
 feeds_248: 
   id: "267"
@@ -7996,7 +7996,7 @@ feeds_298:
   kind: "0"
   password: 
   background_file_name: 
-  announcements_count: "61"
+  announcements_count: "62"
   events_count: "0"
 feeds_299: 
   id: "326"
@@ -9312,7 +9312,7 @@ feeds_347:
   password: 
   background_file_name: 
   announcements_count: "14"
-  events_count: "0"
+  events_count: "2"
 feeds_348: 
   id: "383"
   name: Marquette 24/7
@@ -9806,7 +9806,7 @@ feeds_365:
   kind: "4"
   password: 
   background_file_name: 
-  announcements_count: "169"
+  announcements_count: "172"
   events_count: "0"
 feeds_366: 
   id: "401"
@@ -17628,7 +17628,7 @@ feeds_652:
   kind: "3"
   password: 
   background_file_name: 
-  announcements_count: "25"
+  announcements_count: "26"
   events_count: "0"
 feeds_653: 
   id: "706"
@@ -17907,12 +17907,12 @@ feeds_663:
   id: "720"
   name: Crooked Tree Nursery
   created_at: 2011-11-27 15:57:49.341586
-  updated_at: 2011-11-27 16:01:58.666898
+  updated_at: 2012-11-05 18:43:36.31504
   about: |
     Full service landscape supply and nursery. 
     Christmas trees and decor Nov.-Dec.
 
-  phone: 517-455-7316
+  phone: 989-472-4408
   website: http://crookedtreenursery.com
   community_id: "22"
   category: 
@@ -17957,7 +17957,7 @@ feeds_664:
   password: 
   background_file_name: 
   announcements_count: "4"
-  events_count: "0"
+  events_count: "1"
 feeds_665: 
   id: "722"
   name: Pine Island Farmers Market / Indoors
@@ -17997,6 +17997,32 @@ feeds_665:
   announcements_count: "0"
   events_count: "0"
 feeds_666: 
+  id: "952"
+  name: Coast to Coast Organic
+  created_at: 2012-07-27 16:40:45.995348
+  updated_at: 2012-07-27 16:44:33.9675
+  about: Coast to Coast Organic Food Broker
+  phone: "845-987-8900  email eorganic@optonline.net "
+  website: http://eorganic@optonline.net
+  community_id: "9"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "14420"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: c2c logo slide.JPG
+  address: 26 Newport Bridge Road
+  hours: 
+  slug: coasttocoastorganic
+  twitter_name: 
+  kind: "3"
+  password: 
+  background_file_name: 
+  announcements_count: "1"
+  events_count: "0"
+feeds_667: 
   id: "724"
   name: Nurturing Healing Touch
   created_at: 2011-11-29 15:58:49.356325
@@ -18022,7 +18048,7 @@ feeds_666:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_667: 
+feeds_668: 
   id: "725"
   name: South Metro Vineyard Church
   created_at: 2011-11-30 01:19:20.765612
@@ -18048,7 +18074,7 @@ feeds_667:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_668: 
+feeds_669: 
   id: "726"
   name: Vantage Fitness
   created_at: 2011-11-30 01:43:27.98251
@@ -18093,7 +18119,7 @@ feeds_668:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_669: 
+feeds_670: 
   id: "727"
   name: Virginia Council of Churches Refugee Resettlement Program
   created_at: 2011-11-30 13:41:04.249911
@@ -18119,7 +18145,7 @@ feeds_669:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_670: 
+feeds_671: 
   id: "728"
   name: Calvary Lutheran Church
   created_at: 2011-11-30 17:26:54.376979
@@ -18145,7 +18171,7 @@ feeds_670:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_671: 
+feeds_672: 
   id: "729"
   name: Girl Scout Troop 15373
   created_at: 2011-11-30 17:28:53.074582
@@ -18171,7 +18197,7 @@ feeds_671:
   background_file_name: 
   announcements_count: "7"
   events_count: "0"
-feeds_672: 
+feeds_673: 
   id: "730"
   name: Rhino Magic Network
   created_at: 2011-11-30 17:37:15.829957
@@ -18197,7 +18223,7 @@ feeds_672:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_673: 
+feeds_674: 
   id: "731"
   name: feedIe9
   created_at: 2011-11-30 19:37:42.592131
@@ -18223,7 +18249,7 @@ feeds_673:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_674: 
+feeds_675: 
   id: "732"
   name: feed IE 8
   created_at: 2011-11-30 19:38:43.954091
@@ -18249,7 +18275,7 @@ feeds_674:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_675: 
+feeds_676: 
   id: "733"
   name: Minnesota Valley Transit Authority
   created_at: 2011-11-30 20:34:40.759169
@@ -18275,7 +18301,7 @@ feeds_675:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_676: 
+feeds_677: 
   id: "734"
   name: Immigration PSP
   created_at: 2011-11-30 20:56:38.382627
@@ -18301,7 +18327,7 @@ feeds_676:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_677: 
+feeds_678: 
   id: "735"
   name: "world wide candle light "
   created_at: 2011-12-01 04:19:30.762642
@@ -18327,7 +18353,7 @@ feeds_677:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_678: 
+feeds_679: 
   id: "736"
   name: Chelmsford Performing Arts Center/McCarthy Auditorium
   created_at: 2011-12-01 13:49:47.033686
@@ -18353,7 +18379,7 @@ feeds_678:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_679: 
+feeds_680: 
   id: "737"
   name: PRISM
   created_at: 2011-12-02 17:45:43.027271
@@ -18390,7 +18416,7 @@ feeds_679:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_680: 
+feeds_681: 
   id: "738"
   name: Golden Valley Girls Softball League
   created_at: 2011-12-02 21:28:41.60333
@@ -18416,7 +18442,7 @@ feeds_680:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_681: 
+feeds_682: 
   id: "739"
   name: Armstrong Cooper Youth Baseball Association
   created_at: 2011-12-02 22:53:45.951564
@@ -18442,7 +18468,7 @@ feeds_681:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_682: 
+feeds_683: 
   id: "740"
   name: Golden Valley Little League
   created_at: 2011-12-02 23:04:46.969244
@@ -18468,7 +18494,7 @@ feeds_682:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_683: 
+feeds_684: 
   id: "741"
   name: Phoenix Soccer
   created_at: 2011-12-02 23:26:11.75478
@@ -18494,7 +18520,7 @@ feeds_683:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_684: 
+feeds_685: 
   id: "742"
   name: KATHMANDU KITCHEN & GRILL
   created_at: 2011-12-03 03:28:55.562272
@@ -18520,7 +18546,7 @@ feeds_684:
   background_file_name: 
   announcements_count: "3"
   events_count: "0"
-feeds_685: 
+feeds_686: 
   id: "743"
   name: Thirty-One Gifts by Deb
   created_at: 2011-12-03 03:45:21.906129
@@ -18553,7 +18579,7 @@ feeds_685:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_686: 
+feeds_687: 
   id: "744"
   name: Contra Dancing in Clarkston
   created_at: 2011-12-03 11:46:32.970348
@@ -18581,7 +18607,7 @@ feeds_686:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_687: 
+feeds_688: 
   id: "745"
   name: Ideal Weight 4 Life
   created_at: 2011-12-03 19:30:29.454506
@@ -18607,7 +18633,7 @@ feeds_687:
   background_file_name: 
   announcements_count: "5"
   events_count: "0"
-feeds_688: 
+feeds_689: 
   id: "746"
   name: Budget Buddies
   created_at: 2011-12-04 19:26:03.393629
@@ -18634,9 +18660,9 @@ feeds_688:
   kind: "0"
   password: 
   background_file_name: 
-  announcements_count: "1"
-  events_count: "0"
-feeds_689: 
+  announcements_count: "2"
+  events_count: "1"
+feeds_690: 
   id: "747"
   name: SooperSaver
   created_at: 2011-12-05 16:42:23.399604
@@ -18662,7 +18688,7 @@ feeds_689:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_690: 
+feeds_691: 
   id: "748"
   name: Guiding Eyes For The Blind
   created_at: 2011-12-05 16:53:33.658041
@@ -18688,7 +18714,7 @@ feeds_690:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_691: 
+feeds_692: 
   id: "749"
   name: Town of Chelmsford
   created_at: 2011-12-06 20:19:01.179277
@@ -18714,7 +18740,7 @@ feeds_691:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_692: 
+feeds_693: 
   id: "750"
   name: Hennepin County Environmental Services
   created_at: 2011-12-07 17:11:08.62961
@@ -18742,7 +18768,7 @@ feeds_692:
   background_file_name: 
   announcements_count: "10"
   events_count: "0"
-feeds_693: 
+feeds_694: 
   id: "751"
   name: Burnsville Ice Center
   created_at: 2011-12-07 18:21:34.158809
@@ -18768,7 +18794,7 @@ feeds_693:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_694: 
+feeds_695: 
   id: "770"
   name: Covenant Village of Golden Valley
   created_at: 2011-12-15 21:50:19.363163
@@ -18794,7 +18820,7 @@ feeds_694:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_695: 
+feeds_696: 
   id: "752"
   name: UnitedWay211
   created_at: 2011-12-07 22:59:49.699531
@@ -18823,7 +18849,7 @@ feeds_695:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_696: 
+feeds_697: 
   id: "753"
   name: Quorum
   created_at: 2011-12-07 23:14:24.73828
@@ -18849,7 +18875,7 @@ feeds_696:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_697: 
+feeds_698: 
   id: "754"
   name: Communicycle
   created_at: 2011-12-08 14:35:53.789638
@@ -18875,7 +18901,7 @@ feeds_697:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_698: 
+feeds_699: 
   id: "755"
   name: Chelmsford High School PTO
   created_at: 2011-12-08 17:43:49.603856
@@ -18901,7 +18927,7 @@ feeds_698:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_699: 
+feeds_700: 
   id: "756"
   name: Robbinsdale Area Schools
   created_at: 2011-12-08 17:57:33.181528
@@ -18927,7 +18953,7 @@ feeds_699:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_700: 
+feeds_701: 
   id: "757"
   name: Clarkson High School
   created_at: 2011-12-09 19:04:30.930283
@@ -18953,7 +18979,7 @@ feeds_700:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_701: 
+feeds_702: 
   id: "758"
   name: "Disabled American Veterans of GA "
   created_at: 2011-12-10 17:05:15.486616
@@ -18979,7 +19005,7 @@ feeds_701:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_702: 
+feeds_703: 
   id: "759"
   name: Nor'East Classic Vehicle Club
   created_at: 2011-12-11 02:18:44.158108
@@ -19007,7 +19033,7 @@ feeds_702:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_703: 
+feeds_704: 
   id: "760"
   name: Clarkston First Baptist Church
   created_at: 2011-12-12 23:37:23.87374
@@ -19040,7 +19066,7 @@ feeds_703:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_704: 
+feeds_705: 
   id: "761"
   name: Clarkston First Baptist Church Academy
   created_at: 2011-12-12 23:51:00.778144
@@ -19072,7 +19098,7 @@ feeds_704:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_705: 
+feeds_706: 
   id: "762"
   name: Clarkston First Baptist Church After School Program
   created_at: 2011-12-12 23:57:20.066547
@@ -19110,7 +19136,7 @@ feeds_705:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_706: 
+feeds_707: 
   id: "763"
   name: Gladden Run
   created_at: 2011-12-13 19:46:17.712087
@@ -19136,7 +19162,7 @@ feeds_706:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_707: 
+feeds_708: 
   id: "764"
   name: Life's Journey Therapeutic Massage
   created_at: 2011-12-13 19:59:11.796333
@@ -19162,7 +19188,7 @@ feeds_707:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_708: 
+feeds_709: 
   id: "765"
   name: River Ridge Apartments
   created_at: 2011-12-13 23:35:24.18465
@@ -19192,7 +19218,7 @@ feeds_708:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_709: 
+feeds_710: 
   id: "766"
   name: UPDON
   created_at: 2011-12-14 14:57:39.046087
@@ -19218,7 +19244,7 @@ feeds_709:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_710: 
+feeds_711: 
   id: "767"
   name: Town of CHELMS Test
   created_at: 2011-12-14 17:37:52.0262
@@ -19244,7 +19270,7 @@ feeds_710:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_711: 
+feeds_712: 
   id: "768"
   name: Cliff Lake Dental Care
   created_at: 2011-12-15 20:04:30.548341
@@ -19270,7 +19296,7 @@ feeds_711:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_712: 
+feeds_713: 
   id: "769"
   name: Golden Valley Garden Club
   created_at: 2011-12-15 20:05:31.6979
@@ -19296,7 +19322,7 @@ feeds_712:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_713: 
+feeds_714: 
   id: "771"
   name: RRISA Savings Match Program
   created_at: 2011-12-16 14:44:50.114773
@@ -19326,7 +19352,7 @@ feeds_713:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_714: 
+feeds_715: 
   id: "772"
   name: Rocktown Beer & Music Festival
   created_at: 2011-12-17 16:28:48.763188
@@ -19352,7 +19378,7 @@ feeds_714:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_715: 
+feeds_716: 
   id: "773"
   name: CFBC-Family Life Center
   created_at: 2011-12-19 23:50:26.362956
@@ -19378,7 +19404,7 @@ feeds_715:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_716: 
+feeds_717: 
   id: "774"
   name: Rapid Tax
   created_at: 2011-12-21 21:32:05.804492
@@ -19404,7 +19430,7 @@ feeds_716:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_717: 
+feeds_718: 
   id: "775"
   name: Transition Falls Church
   created_at: 2011-12-22 00:19:34.603285
@@ -19430,7 +19456,7 @@ feeds_717:
   background_file_name: 
   announcements_count: "8"
   events_count: "0"
-feeds_718: 
+feeds_719: 
   id: "776"
   name: The Leukemia & Lymphoma Society
   created_at: 2011-12-22 19:36:58.670889
@@ -19459,7 +19485,7 @@ feeds_718:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_719: 
+feeds_720: 
   id: "777"
   name: Golden Valley Federated Women's Club
   created_at: 2012-01-02 18:37:43.15709
@@ -19485,7 +19511,7 @@ feeds_719:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_720: 
+feeds_721: 
   id: "778"
   name: "NING SIAN HUAI "
   created_at: 2012-01-04 02:43:48.944147
@@ -19511,7 +19537,7 @@ feeds_720:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_721: 
+feeds_722: 
   id: "779"
   name: Realtor  Dhana
   created_at: 2012-01-06 01:04:34.208437
@@ -19537,7 +19563,7 @@ feeds_721:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_722: 
+feeds_723: 
   id: "780"
   name: Turtles Crossing Wildscape Services
   created_at: 2012-01-06 03:44:07.596567
@@ -19563,7 +19589,7 @@ feeds_722:
   background_file_name: 
   announcements_count: "3"
   events_count: "0"
-feeds_723: 
+feeds_724: 
   id: "781"
   name: "Kathmandu featuring Breakfast of Nations "
   created_at: 2012-01-06 09:48:03.230342
@@ -19609,7 +19635,7 @@ feeds_723:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_724: 
+feeds_725: 
   id: "782"
   name: The Global Village School
   created_at: 2012-01-06 15:18:27.442632
@@ -19635,7 +19661,7 @@ feeds_724:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_725: 
+feeds_726: 
   id: "783"
   name: Jubilate Community Youth Choir
   created_at: 2012-01-09 03:59:25.125075
@@ -19661,7 +19687,7 @@ feeds_725:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_726: 
+feeds_727: 
   id: "784"
   name: Burnsville Blazette Dance Team
   created_at: 2012-01-09 17:18:51.278445
@@ -19687,7 +19713,7 @@ feeds_726:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_727: 
+feeds_728: 
   id: "785"
   name: WRITE 4 YOU
   created_at: 2012-01-09 20:31:17.852218
@@ -19713,7 +19739,7 @@ feeds_727:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_728: 
+feeds_729: 
   id: "786"
   name: Pink Courage, Inc.
   created_at: 2012-01-09 21:14:50.979915
@@ -19739,7 +19765,7 @@ feeds_728:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_729: 
+feeds_730: 
   id: "787"
   name: A Sparkling View, LLC
   created_at: 2012-01-09 23:41:52.257726
@@ -19770,7 +19796,7 @@ feeds_729:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_730: 
+feeds_731: 
   id: "788"
   name: DuctWorks Heating & Air Conditioning
   created_at: 2012-01-11 19:45:12.929874
@@ -19796,7 +19822,7 @@ feeds_730:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_731: 
+feeds_732: 
   id: "789"
   name: Upper Peninsula Animal Welfare Shelter
   created_at: 2012-01-13 00:50:39.295605
@@ -19833,7 +19859,7 @@ feeds_731:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_732: 
+feeds_733: 
   id: "791"
   name: Just Like Home Pet Sitting Service
   created_at: 2012-01-13 12:49:29.884741
@@ -19859,7 +19885,7 @@ feeds_732:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_733: 
+feeds_734: 
   id: "792"
   name: Let's Face it!
   created_at: 2012-01-13 16:29:50.378454
@@ -19885,7 +19911,7 @@ feeds_733:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_734: 
+feeds_735: 
   id: "793"
   name: selah yoga
   created_at: 2012-01-14 20:08:48.036521
@@ -19917,7 +19943,7 @@ feeds_734:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_735: 
+feeds_736: 
   id: "794"
   name: Gourmet girl
   created_at: 2012-01-14 20:25:50.871327
@@ -19943,7 +19969,7 @@ feeds_735:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_736: 
+feeds_737: 
   id: "795"
   name: Gary's Ice Cream
   created_at: 2012-01-16 01:24:43.128519
@@ -19969,7 +19995,7 @@ feeds_736:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_737: 
+feeds_738: 
   id: "796"
   name: "MICHAELS ART "
   created_at: 2012-01-16 13:57:45.301777
@@ -19995,7 +20021,7 @@ feeds_737:
   background_file_name: 
   announcements_count: "11"
   events_count: "0"
-feeds_738: 
+feeds_739: 
   id: "797"
   name: Shiawassee Arts Center
   created_at: 2012-01-16 22:05:24.199396
@@ -20021,7 +20047,7 @@ feeds_738:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_739: 
+feeds_740: 
   id: "798"
   name: Broadview Technology Solutions
   created_at: 2012-01-18 19:11:32.587821
@@ -20047,7 +20073,7 @@ feeds_739:
   background_file_name: 
   announcements_count: "17"
   events_count: "0"
-feeds_740: 
+feeds_741: 
   id: "799"
   name: MN Purse Lady
   created_at: 2012-01-19 02:10:36.214698
@@ -20084,7 +20110,7 @@ feeds_740:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_741: 
+feeds_742: 
   id: "800"
   name: Health & Happiness U.P. Magazine
   created_at: 2012-01-20 01:44:49.52668
@@ -20110,7 +20136,7 @@ feeds_741:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_742: 
+feeds_743: 
   id: "801"
   name: You Turn Life Coaching
   created_at: 2012-01-20 02:57:01.200017
@@ -20136,7 +20162,7 @@ feeds_742:
   background_file_name: 
   announcements_count: "5"
   events_count: "0"
-feeds_743: 
+feeds_744: 
   id: "802"
   name: Self Improvement Saga
   created_at: 2012-01-20 03:07:16.459711
@@ -20162,7 +20188,7 @@ feeds_743:
   background_file_name: 
   announcements_count: "13"
   events_count: "0"
-feeds_744: 
+feeds_745: 
   id: "803"
   name: Paris Flea Market of Warwick
   created_at: 2012-01-22 04:11:59.32726
@@ -20188,7 +20214,7 @@ feeds_744:
   background_file_name: 
   announcements_count: "9"
   events_count: "0"
-feeds_745: 
+feeds_746: 
   id: "804"
   name: Air Craft Heating, Air Conditioning and Plumbing
   created_at: 2012-01-22 04:33:03.937311
@@ -20214,7 +20240,7 @@ feeds_745:
   background_file_name: 
   announcements_count: "9"
   events_count: "0"
-feeds_746: 
+feeds_747: 
   id: "807"
   name: Chiropractic  LIFE Center, Dr. Ann Studer
   created_at: 2012-01-23 20:44:22.700267
@@ -20240,7 +20266,7 @@ feeds_746:
   background_file_name: 
   announcements_count: "5"
   events_count: "0"
-feeds_747: 
+feeds_748: 
   id: "808"
   name: Friends of the Market
   created_at: 2012-01-24 01:55:44.007658
@@ -20266,7 +20292,7 @@ feeds_747:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_748: 
+feeds_749: 
   id: "836"
   name: My new Organization
   created_at: 2012-03-02 22:57:58.082142
@@ -20292,7 +20318,7 @@ feeds_748:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_749: 
+feeds_750: 
   id: "809"
   name: Northern Virginia AIDS Ministry (NOVAM)
   created_at: 2012-01-24 14:42:56.556303
@@ -20318,7 +20344,7 @@ feeds_749:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_750: 
+feeds_751: 
   id: "810"
   name: Brookshire Inc
   created_at: 2012-01-24 15:54:58.052053
@@ -20348,7 +20374,7 @@ feeds_750:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_751: 
+feeds_752: 
   id: "811"
   name: Daytona Driving School
   created_at: 2012-01-24 16:22:49.784496
@@ -20377,7 +20403,7 @@ feeds_751:
   background_file_name: 
   announcements_count: "3"
   events_count: "0"
-feeds_752: 
+feeds_753: 
   id: "812"
   name: Seely & Durland Insurance
   created_at: 2012-01-26 03:56:36.767522
@@ -20403,7 +20429,7 @@ feeds_752:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_753: 
+feeds_754: 
   id: "813"
   name: WRITE 4 YOU
   created_at: 2012-01-26 17:58:15.487414
@@ -20429,7 +20455,7 @@ feeds_753:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_754: 
+feeds_755: 
   id: "814"
   name: Brookview Neighborhood
   created_at: 2012-01-28 17:06:08.38044
@@ -20455,7 +20481,7 @@ feeds_754:
   background_file_name: 
   announcements_count: "3"
   events_count: "0"
-feeds_755: 
+feeds_756: 
   id: "815"
   name: Connie's Thrift & More
   created_at: 2012-01-31 09:05:24.915526
@@ -20481,7 +20507,7 @@ feeds_755:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_756: 
+feeds_757: 
   id: "816"
   name: The First Tee Harrisonburg
   created_at: 2012-01-31 18:10:40.629043
@@ -20507,7 +20533,7 @@ feeds_756:
   background_file_name: 
   announcements_count: "3"
   events_count: "0"
-feeds_757: 
+feeds_758: 
   id: "817"
   name: Shenandoah Concierge And Courier
   created_at: 2012-01-31 20:34:38.878323
@@ -20553,7 +20579,7 @@ feeds_757:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_758: 
+feeds_759: 
   id: "818"
   name: Kiddie Exchange
   created_at: 2012-02-01 15:41:36.986405
@@ -20583,7 +20609,7 @@ feeds_758:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_759: 
+feeds_760: 
   id: "819"
   name: Mark SQuared Studios
   created_at: 2012-02-02 21:03:04.60759
@@ -20609,7 +20635,7 @@ feeds_759:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_760: 
+feeds_761: 
   id: "820"
   name: KAWinteractive
   created_at: 2012-02-07 21:59:43.894146
@@ -20650,33 +20676,33 @@ feeds_760:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_761: 
-  id: "952"
-  name: Coast to Coast Organic
-  created_at: 2012-07-27 16:40:45.995348
-  updated_at: 2012-07-27 16:44:33.9675
-  about: Coast to Coast Organic Food Broker
-  phone: "845-987-8900  email eorganic@optonline.net "
-  website: http://eorganic@optonline.net
+feeds_762: 
+  id: "953"
+  name: Always Reliable Garage Doors
+  created_at: 2012-07-31 19:38:08.352397
+  updated_at: 2012-10-07 16:26:50.08171
+  about: We Install  and Repair  Garage Doors and Garage Door Openers
+  phone: 845 544 7575
+  website: http://www.warwickgaragedoor.com
   community_id: "9"
   category: 
   cached_tag_list: 
   code: 
   claimed: t
-  user_id: "14420"
+  user_id: "11085"
   type: Feed
   feed_url: ""
-  avatar_file_name: c2c logo slide.JPG
-  address: 26 Newport Bridge Road
+  avatar_file_name: 100_2008.JPG
+  address: 47 Miriam Dr Warwick NY
   hours: 
-  slug: coasttocoastorganic
+  slug: The Garage Door Guy
   twitter_name: 
-  kind: "3"
+  kind: "2"
   password: 
   background_file_name: 
-  announcements_count: "1"
+  announcements_count: "4"
   events_count: "0"
-feeds_762: 
+feeds_763: 
   id: "821"
   name: Clementine
   created_at: 2012-02-08 23:53:45.676506
@@ -20702,9 +20728,9 @@ feeds_762:
   kind: "3"
   password: 
   background_file_name: 
-  announcements_count: "25"
-  events_count: "2"
-feeds_763: 
+  announcements_count: "28"
+  events_count: "5"
+feeds_764: 
   id: "822"
   name: Transition Marquette County
   created_at: 2012-02-09 21:11:43.662959
@@ -20730,7 +20756,7 @@ feeds_763:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_764: 
+feeds_765: 
   id: "823"
   name: Daytona Driving School
   created_at: 2012-02-13 17:28:52.900935
@@ -20756,7 +20782,7 @@ feeds_764:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_765: 
+feeds_766: 
   id: "824"
   name: Market in the Valley Farmers Market
   created_at: 2012-02-14 01:53:42.305998
@@ -20782,7 +20808,7 @@ feeds_765:
   background_file_name: 
   announcements_count: "4"
   events_count: "0"
-feeds_766: 
+feeds_767: 
   id: "825"
   name: Protect Arkansas Wildlife (PAW)
   created_at: 2012-02-15 01:24:31.187068
@@ -20808,7 +20834,7 @@ feeds_766:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_767: 
+feeds_768: 
   id: "826"
   name: Green Party of Arkansas
   created_at: 2012-02-15 01:43:59.337176
@@ -20834,7 +20860,7 @@ feeds_767:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_768: 
+feeds_769: 
   id: "827"
   name: Central Co-Operative Nursery School
   created_at: 2012-02-17 01:59:48.671523
@@ -20860,7 +20886,7 @@ feeds_768:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_769: 
+feeds_770: 
   id: "828"
   name: Classic Board&Card Games
   created_at: 2012-02-23 03:22:30.527921
@@ -20885,8 +20911,8 @@ feeds_769:
   password: 
   background_file_name: 
   announcements_count: "4"
-  events_count: "1"
-feeds_770: 
+  events_count: "2"
+feeds_771: 
   id: "829"
   name: Warwick Valley Chamber of Commerce
   created_at: 2012-02-23 18:15:55.648941
@@ -20912,7 +20938,7 @@ feeds_770:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_771: 
+feeds_772: 
   id: "830"
   name: Great Lakes Coins & Collectibles
   created_at: 2012-02-23 22:50:33.860736
@@ -20943,7 +20969,7 @@ feeds_771:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_772: 
+feeds_773: 
   id: "831"
   name: Cornerstone Copy Center
   created_at: 2012-02-24 16:10:11.033862
@@ -20969,7 +20995,7 @@ feeds_772:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_773: 
+feeds_774: 
   id: "832"
   name: Focus in Pix
   created_at: 2012-02-24 16:21:48.544254
@@ -20998,7 +21024,7 @@ feeds_773:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_774: 
+feeds_775: 
   id: "833"
   name: Atlanta Area School for the Deaf
   created_at: 2012-02-24 19:45:42.481547
@@ -21027,7 +21053,7 @@ feeds_774:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_775: 
+feeds_776: 
   id: "834"
   name: Arkansans for Transportation Alternatives
   created_at: 2012-02-27 06:37:13.587042
@@ -21056,7 +21082,7 @@ feeds_775:
   background_file_name: 
   announcements_count: "3"
   events_count: "0"
-feeds_776: 
+feeds_777: 
   id: "835"
   name: Golden Valley Orchestra
   created_at: 2012-02-28 22:54:36.074629
@@ -21094,7 +21120,7 @@ feeds_776:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_777: 
+feeds_778: 
   id: "837"
   name: League of Women Voters of Golden Valley
   created_at: 2012-03-04 21:29:23.457385
@@ -21123,7 +21149,7 @@ feeds_777:
   background_file_name: 
   announcements_count: "10"
   events_count: "0"
-feeds_778: 
+feeds_779: 
   id: "838"
   name: Test org
   created_at: 2012-03-05 17:26:35.906193
@@ -21149,7 +21175,7 @@ feeds_778:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_779: 
+feeds_780: 
   id: "839"
   name: Paul Handly for City Council
   created_at: 2012-03-08 05:44:42.521414
@@ -21175,7 +21201,7 @@ feeds_779:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_780: 
+feeds_781: 
   id: "840"
   name: Amenity's Hair Studio
   created_at: 2012-03-13 15:32:11.824666
@@ -21201,7 +21227,7 @@ feeds_780:
   background_file_name: 
   announcements_count: "4"
   events_count: "0"
-feeds_781: 
+feeds_782: 
   id: "841"
   name: Massage with Erik
   created_at: 2012-03-13 18:23:31.181564
@@ -21229,7 +21255,7 @@ feeds_781:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_782: 
+feeds_783: 
   id: "842"
   name: "Golden Valley Envision Connection Project "
   created_at: 2012-03-14 23:41:59.068552
@@ -21255,7 +21281,7 @@ feeds_782:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_783: 
+feeds_784: 
   id: "845"
   name: The Belmont CommonPlace Team
   created_at: 2012-03-16 21:12:56.871608
@@ -21281,7 +21307,7 @@ feeds_783:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_784: 
+feeds_785: 
   id: "846"
   name: All Natural Products N Gifts
   created_at: 2012-03-20 14:40:41.094311
@@ -21307,7 +21333,7 @@ feeds_784:
   background_file_name: 
   announcements_count: "5"
   events_count: "0"
-feeds_785: 
+feeds_786: 
   id: "847"
   name: Belmont Farmer's Market
   created_at: 2012-03-21 20:45:28.053528
@@ -21333,7 +21359,7 @@ feeds_785:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_786: 
+feeds_787: 
   id: "848"
   name: The Belmont Garden Club
   created_at: 2012-03-21 20:48:16.515617
@@ -21362,7 +21388,7 @@ feeds_786:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_787: 
+feeds_788: 
   id: "849"
   name: Belmont Historical Society
   created_at: 2012-03-21 21:14:57.774555
@@ -21388,7 +21414,7 @@ feeds_787:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_788: 
+feeds_789: 
   id: "850"
   name: The Belmont Citizen's Forum
   created_at: 2012-03-21 21:17:38.287391
@@ -21420,7 +21446,7 @@ feeds_788:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_789: 
+feeds_790: 
   id: "851"
   name: Boy Scouts Troop 304
   created_at: 2012-03-21 21:19:43.380785
@@ -21446,7 +21472,7 @@ feeds_789:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_790: 
+feeds_791: 
   id: "852"
   name: Belmont High School
   created_at: 2012-03-21 21:20:56.56774
@@ -21472,33 +21498,35 @@ feeds_790:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_791: 
-  id: "953"
-  name: Always Reliable Garage Doors
-  created_at: 2012-07-31 19:38:08.352397
-  updated_at: 2012-10-07 16:26:50.08171
-  about: We Install  and Repair  Garage Doors and Garage Door Openers
-  phone: 845 544 7575
-  website: http://www.warwickgaragedoor.com
+feeds_792: 
+  id: "1008"
+  name: "Allmychildrendaycare "
+  created_at: 2012-09-13 23:15:45.857913
+  updated_at: 2012-09-13 23:16:51.056227
+  about: |
+    Daycare
+
+  phone: 845-986-1689
+  website: ""
   community_id: "9"
   category: 
   cached_tag_list: 
   code: 
   claimed: t
-  user_id: "11085"
+  user_id: "12946"
   type: Feed
   feed_url: ""
-  avatar_file_name: 100_2008.JPG
-  address: 47 Miriam Dr Warwick NY
+  avatar_file_name: 
+  address: 43 Maple Ave Warwick NY10990
   hours: 
-  slug: The Garage Door Guy
+  slug: allmychildrendaycare
   twitter_name: 
   kind: "2"
   password: 
   background_file_name: 
-  announcements_count: "4"
+  announcements_count: "1"
   events_count: "0"
-feeds_792: 
+feeds_793: 
   id: "853"
   name: Belmont Lions Club
   created_at: 2012-03-21 21:24:11.718532
@@ -21531,7 +21559,7 @@ feeds_792:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_793: 
+feeds_794: 
   id: "854"
   name: Advocates for Public Transit in NW Arkansas
   created_at: 2012-03-28 02:51:04.891676
@@ -21557,7 +21585,7 @@ feeds_793:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_794: 
+feeds_795: 
   id: "855"
   name: Pcasso Pottery Painting & Art Studio
   created_at: 2012-03-28 22:05:10.215836
@@ -21583,7 +21611,7 @@ feeds_794:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_795: 
+feeds_796: 
   id: "856"
   name: International Rescue Committee
   created_at: 2012-03-29 15:53:13.885798
@@ -21609,7 +21637,7 @@ feeds_795:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_796: 
+feeds_797: 
   id: "857"
   name: Better Business Bureau of Minnesota & North Dakota
   created_at: 2012-04-04 00:58:37.292521
@@ -21635,7 +21663,7 @@ feeds_796:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_797: 
+feeds_798: 
   id: "858"
   name: Harbor of Hope Christian Church
   created_at: 2012-04-04 13:50:37.70077
@@ -21666,7 +21694,7 @@ feeds_797:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_798: 
+feeds_799: 
   id: "859"
   name: Warwick Valley Community Center
   created_at: 2012-04-10 22:35:26.690893
@@ -21692,7 +21720,7 @@ feeds_798:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_799: 
+feeds_800: 
   id: "860"
   name: Vision 21 Implementation Committee
   created_at: 2012-04-13 01:22:08.728222
@@ -21721,7 +21749,7 @@ feeds_799:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_800: 
+feeds_801: 
   id: "861"
   name: Benton Library
   created_at: 2012-04-13 01:26:17.972827
@@ -21749,7 +21777,7 @@ feeds_800:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_801: 
+feeds_802: 
   id: "862"
   name: The Healing Nest
   created_at: 2012-04-16 02:51:49.807875
@@ -21775,7 +21803,7 @@ feeds_801:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
-feeds_802: 
+feeds_803: 
   id: "863"
   name: Harrisonburg Rugby Football Club
   created_at: 2012-04-23 22:14:24.00898
@@ -21801,7 +21829,7 @@ feeds_802:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_803: 
+feeds_804: 
   id: "865"
   name: Bike Belmont
   created_at: 2012-04-27 15:43:36.802598
@@ -21827,7 +21855,7 @@ feeds_803:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_804: 
+feeds_805: 
   id: "866"
   name: Northeast Dance Movement
   created_at: 2012-04-28 18:23:57.839395
@@ -21853,7 +21881,7 @@ feeds_804:
   background_file_name: 
   announcements_count: "1"
   events_count: "0"
-feeds_805: 
+feeds_806: 
   id: "867"
   name: Bridge Builders
   created_at: 2012-04-29 00:13:35.552707
@@ -21889,7 +21917,7 @@ feeds_805:
   background_file_name: 
   announcements_count: "2"
   events_count: "0"
-feeds_806: 
+feeds_807: 
   id: "869"
   name: MH Tank Co
   created_at: 2012-05-01 16:15:06.611116
@@ -21916,34 +21944,6 @@ feeds_806:
   password: 
   background_file_name: 
   announcements_count: "2"
-  events_count: "0"
-feeds_807: 
-  id: "1008"
-  name: "Allmychildrendaycare "
-  created_at: 2012-09-13 23:15:45.857913
-  updated_at: 2012-09-13 23:16:51.056227
-  about: |
-    Daycare
-
-  phone: 845-986-1689
-  website: ""
-  community_id: "9"
-  category: 
-  cached_tag_list: 
-  code: 
-  claimed: t
-  user_id: "12946"
-  type: Feed
-  feed_url: ""
-  avatar_file_name: 
-  address: 43 Maple Ave Warwick NY10990
-  hours: 
-  slug: allmychildrendaycare
-  twitter_name: 
-  kind: "2"
-  password: 
-  background_file_name: 
-  announcements_count: "1"
   events_count: "0"
 feeds_808: 
   id: "870"
@@ -22960,7 +22960,7 @@ feeds_843:
   password: 
   background_file_name: 
   announcements_count: "0"
-  events_count: "0"
+  events_count: "3"
 feeds_844: 
   id: "913"
   name: asdkljasd
@@ -24393,7 +24393,7 @@ feeds_896:
   kind: "2"
   password: 
   background_file_name: 
-  announcements_count: "2"
+  announcements_count: "3"
   events_count: "0"
 feeds_897: 
   id: "974"
@@ -24778,7 +24778,7 @@ feeds_910:
   kind: "4"
   password: 
   background_file_name: 
-  announcements_count: "176"
+  announcements_count: "198"
   events_count: "0"
 feeds_911: 
   id: "990"
@@ -25908,7 +25908,7 @@ feeds_947:
   id: "1033"
   name: Japanese Culture Group
   created_at: 2012-10-02 22:01:25.84149
-  updated_at: 2012-10-02 22:01:38.543539
+  updated_at: 2012-11-04 06:18:06.65421
   about: A group to show Japanese Culture to Americans and host guests from abroad
   phone: ""
   website: ""
@@ -25920,7 +25920,7 @@ feeds_947:
   user_id: "15791"
   type: Feed
   feed_url: ""
-  avatar_file_name: 
+  avatar_file_name: RackMultipart20121104-2-65h81i
   address: ""
   hours: 
   slug: japaneseculturegroup2
@@ -26435,7 +26435,7 @@ feeds_966:
   kind: "1"
   password: 
   background_file_name: 
-  announcements_count: "1"
+  announcements_count: "2"
   events_count: "0"
 feeds_967: 
   id: "1054"
@@ -27025,3 +27025,299 @@ feeds_988:
   background_file_name: 
   announcements_count: "0"
   events_count: "0"
+feeds_989: 
+  id: "1078"
+  name: Kelly_eurich@yahoo.com
+  created_at: 2012-11-04 20:06:04.571894
+  updated_at: 2012-11-04 20:06:04.571894
+  about: 
+  phone: 
+  website: 
+  community_id: "9"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "9371"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: 
+  address: 
+  hours: 
+  slug: kellyeurichyahoocom
+  twitter_name: 
+  kind: 
+  password: 
+  background_file_name: 
+  announcements_count: "0"
+  events_count: "0"
+feeds_990: 
+  id: "1079"
+  name: 3 Sons Metal Recycling
+  created_at: 2012-11-05 02:48:04.894065
+  updated_at: 2012-11-05 03:20:21.034456
+  about: At 3 Sons Recycling, we offer FREE scrap metal removal and FREE computer recycling. We are professional, polite and prompt. We come to your location once an appointment is made and on most occassions, can offer same day services. Our FREE metal and computer recycling services are available to residential customers as well as business owners, schools and churches. Not sure if we take it? Just ask! Call us at 845-414-4197.
+  phone: 845-414-4197
+  website: https://www.facebook.com/threesonsmetalrecycling
+  community_id: "9"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "16681"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: 3 sons (640x368).jpg
+  address: ""
+  hours: 
+  slug: 3sonsmetalrecycling
+  twitter_name: 
+  kind: "2"
+  password: 
+  background_file_name: 
+  announcements_count: "0"
+  events_count: "0"
+feeds_991: 
+  id: "1080"
+  name: Chelmsford Center for the Arts
+  created_at: 2012-11-05 04:10:58.965604
+  updated_at: 2012-11-05 04:12:18.217716
+  about: "The Chelmsford Center for the Arts located in historic Town Hall is Chelmsford\xE2\x80\x99s only public art institution. Opened on November 7, 2009, it is the home to the CCA Gallery, Artists-in-Residence Studios, Chelmsford Art Society, Chelmsford Community Band, Chelmsford Community Jazz Band, Toastmasters, and Illumination Opera."
+  phone: 978-250-3780
+  website: http://www.chelmsfordarts.org
+  community_id: "8"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "1289"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: CCA Logo Last Final.jpg
+  address: 1A North Road, Chelmsford, MA 01824
+  hours: 
+  slug: chelmsfordcenterforthearts
+  twitter_name: 
+  kind: "0"
+  password: 
+  background_file_name: 
+  announcements_count: "0"
+  events_count: "4"
+feeds_992: 
+  id: "1081"
+  name: ASKDesign
+  created_at: 2012-11-05 14:01:26.552053
+  updated_at: 2012-11-05 14:04:51.416811
+  about: Smart, reliable web/graphic designer committed to environmental sustainability.
+  phone: 617-797-9271
+  website: http://www.askdesign.biz
+  community_id: "26"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "16685"
+  type: Feed
+  feed_url: feeds.feedsburner.com/askdesignblog
+  avatar_file_name: logo-sm.png
+  address: 30 Gilbert Rd.
+  hours: 
+  slug: askdesign
+  twitter_name: 
+  kind: "3"
+  password: 
+  background_file_name: 
+  announcements_count: "0"
+  events_count: "0"
+feeds_993: 
+  id: "1082"
+  name: LeaderView
+  created_at: 2012-11-07 02:16:20.613336
+  updated_at: 2012-11-07 02:16:20.613336
+  about: 
+  phone: 
+  website: 
+  community_id: "21"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "11096"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: march20121 032.jpg
+  address: 
+  hours: 
+  slug: leaderview
+  twitter_name: 
+  kind: "2"
+  password: 
+  background_file_name: 
+  announcements_count: "0"
+  events_count: "0"
+feeds_994: 
+  id: "1083"
+  name: Nerium Skin Care
+  created_at: 2012-11-09 12:41:35.014864
+  updated_at: 2012-11-09 12:52:45.320321
+  about: |-
+    NeriumAD is an Age-Defying Treatment that has been proven to reduce the appearance of: Fine lines & Wrinklles, Hyperpigmentation, Uneven skin texture, Enlarged pores and Aging or sun damaged skin.
+    You can start today with our 30-day money back guarantee. Plus have the chance to get your product for free!
+  phone: 845-325-4028
+  website: http://www.tristin.nerium.com
+  community_id: "9"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "16775"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: thumb-neriumad-bottle.jpg
+  address: 11 Deer Meadow Road
+  hours: 
+  slug: neriumskincare
+  twitter_name: 
+  kind: "2"
+  password: 
+  background_file_name: 
+  announcements_count: "1"
+  events_count: "0"
+feeds_995: 
+  id: "1084"
+  name: Paul's Landscaping
+  created_at: 2012-11-09 15:19:40.354572
+  updated_at: 2012-11-09 15:34:25.706181
+  about: We are a year round reliable yard service. No matter what season it is, we have your lawn covered. From spring mowing to fall cleanups, to storm tree removals, to winter plowing & firewood, we have just what your yard needs to look beautiful from January to December.
+  phone: 1-845-545-3512
+  website: ""
+  community_id: "9"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "16780"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: DSCF1164.JPG
+  address: 216 Pine Island Turnpike, Warwick
+  hours: 
+  slug: paulslandscaping
+  twitter_name: 
+  kind: "2"
+  password: 
+  background_file_name: 
+  announcements_count: "1"
+  events_count: "0"
+feeds_996: 
+  id: "1085"
+  name: SETU
+  created_at: 2012-11-09 20:21:35.459778
+  updated_at: 2012-11-09 20:23:36.820277
+  about: |
+    Our mission is to build bridges between Indian and Western cultures through the medium of theater.
+    
+    SETU will selectively produce plays to project the ways of life in India in a global context. It will attempt to highlight India's social, political and economic scenarios from the past and the present. India has rich and diverse tradition in drama beginning from ancient times by Sanskrit playwrights. Indian theater has found expressions in diverse forms from folk theater to musicals to modern drama forms. SETU will attempt to present some of these in the contemporary context and, in the process, create a better appreciation of India's heritage and culture
+
+  phone: ""
+  website: http://www.setu.us
+  community_id: "26"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "16788"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: SETU_logo.gif
+  address: 2 York Road, Belmont MA 02478
+  hours: 
+  slug: setu
+  twitter_name: 
+  kind: "0"
+  password: 
+  background_file_name: 
+  announcements_count: "0"
+  events_count: "2"
+feeds_997: 
+  id: "1086"
+  name: "D\xC3\xA9licious All-natural Snacks, home made traditional french cookies. "
+  created_at: 2012-11-09 20:42:52.262103
+  updated_at: 2012-11-09 20:51:35.377079
+  about: "My name is Janique and my family settled in USA from the UK in 1997.  From day one we were overwhelmed by the warmth and hospitality of our neighbors, and we rapidly build a great network of friends. \n\
+    Since my early childhood back in Burgundy France, I have always loved baking.  While my mother cooked the main course I prepared starters and desserts.  I introduced my \xE2\x80\x9Csavoir faire\xE2\x80\x9D to my Americans friends and they all seemed to have a preference for my Madeleines.   Over the years they became so popular that requests for them came not only from friends and neighbors, but also from schools and charity events around town. Soon I was known as the \xE2\x80\x9Cmadeleine lady\xE2\x80\x9D\n\
+    The year my daughter started school, I decided to pursue my passion and launched my baking company out of my kitchen.  My business took off well and I have since been baking for nearby stores, and online orders.  There is a high demand for my madeleines, but as well-equipped as my kitchen is, I have limited production capability.\n\
+    I have deliberately kept my business small in order to be home for my family, but now that my son is in College and my daughter in High School, I want to take my business to the next level, meet the demand and develop my ideas.\n\
+    My dream is to open a \xE2\x80\x9CMadeleine boutique\xE2\x80\x9D where my customers can choose from a large variety of flavors, and eat them on site with a cup of tea, coffee or milk, or take them to go.  I would also reserve a play area for little kids (they are my best customers). \n"
+  phone: 617 418 0756
+  website: http://www.janiquedas.com
+  community_id: "26"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "14330"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: RackMultipart20121109-2-qya9o5
+  address: 2 York Road Belmont MA 02478
+  hours: 
+  slug: dliciousall-naturalsnacks-homemadetraditionalfrenchcookies
+  twitter_name: 
+  kind: "3"
+  password: 
+  background_file_name: 
+  announcements_count: "0"
+  events_count: "0"
+feeds_998: 
+  id: "1087"
+  name: Joyce R.
+  created_at: 2012-11-11 13:23:21.428695
+  updated_at: 2012-11-11 13:30:40.400785
+  about: ""
+  phone: ""
+  website: ""
+  community_id: "4"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "4831"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: 
+  address: ""
+  hours: 
+  slug: joycer
+  twitter_name: 
+  kind: "6"
+  password: 
+  background_file_name: 
+  announcements_count: "1"
+  events_count: "1"
+feeds_999: 
+  id: "1088"
+  name: Pure Chiropractic
+  created_at: 2012-11-12 02:56:28.539567
+  updated_at: 2012-11-12 02:59:04.638493
+  about: Our purpose is to empower a community of health conscious families to achieve their optimal health potential through a wellness chiropractic lifestyle.
+  phone: "7033191212"
+  website: http://www.purechiropractic.com
+  community_id: "11"
+  category: 
+  cached_tag_list: 
+  code: 
+  claimed: t
+  user_id: "16820"
+  type: Feed
+  feed_url: ""
+  avatar_file_name: RackMultipart20121112-2-1spchh5
+  address: "303 Maple Ave W Ste B "
+  hours: 
+  slug: purechiropractic
+  twitter_name: 
+  kind: "2"
+  password: 
+  background_file_name: 
+  announcements_count: "0"
+  events_count: "1"

@@ -6137,3 +6137,45 @@ mets_1023:
   requester_id: "14016"
   created_at: 2012-10-30 23:02:07.221361
   updated_at: 2012-10-30 23:02:07.221361
+mets_1024: 
+  id: "1325"
+  requestee_id: "438"
+  requester_id: "15375"
+  created_at: 2012-11-06 21:38:09.871224
+  updated_at: 2012-11-06 21:38:09.871224
+mets_1025: 
+  id: "1326"
+  requestee_id: "16746"
+  requester_id: "11905"
+  created_at: 2012-11-08 00:33:15.751765
+  updated_at: 2012-11-08 00:33:15.751765
+mets_1026: 
+  id: "1327"
+  requestee_id: "7277"
+  requester_id: "14226"
+  created_at: 2012-11-08 21:31:36.822365
+  updated_at: 2012-11-08 21:31:36.822365
+mets_1027: 
+  id: "1328"
+  requestee_id: "16662"
+  requester_id: "16778"
+  created_at: 2012-11-09 13:14:12.975253
+  updated_at: 2012-11-09 13:14:12.975253
+mets_1028: 
+  id: "1329"
+  requestee_id: "15299"
+  requester_id: "16787"
+  created_at: 2012-11-09 19:24:41.533279
+  updated_at: 2012-11-09 19:24:41.533279
+mets_1029: 
+  id: "1330"
+  requestee_id: "16256"
+  requester_id: "4701"
+  created_at: 2012-11-09 19:34:37.542841
+  updated_at: 2012-11-09 19:34:37.542841
+mets_1030: 
+  id: "1331"
+  requestee_id: "7342"
+  requester_id: "7966"
+  created_at: 2012-11-12 21:27:35.003343
+  updated_at: 2012-11-12 21:27:35.003343

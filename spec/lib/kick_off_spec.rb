@@ -1,96 +1,70 @@
 require 'spec_helper'
 
 describe KickOff do
-  let(:queuer) { Object.new.tap {|o| stub(o).enqueue } }
-  let(:kickoff) { KickOff.new(queuer) }
+  # let(:kickoff) { KickOff.new(queuer) }
+  let(:kickoff) { KickOff.new }
 
-  before { stub(queuer).enqueue }
-
-  subject { queuer }
+  # before { stub(queuer).enqueue }
+  before do
+    ResqueSpec.reset!
+  end
 
   describe "#deliver_post" do
-    let(:post) {
-      Post.new.tap do |p|
-        stub(p).id { 23 }
-        stub(p).user_id { 5 }
-        stub(p).neighborhood.stub!.users.
-          stub!.receives_posts_live {
-          (1..5).map {|id| User.new {|u| u.id = id } }
-        }
-      end
-    }
+    let(:post) { Post.first }
 
-    before { kickoff.deliver_post(post) }
+    before do
+      kickoff.deliver_post(post)
+    end
 
     it "queues a PostNotification for users in the neighborhood who receive posts live" do
-      (1..4).each do |id|
-        should have_queued(PostNotification, post.id, id)
-      end
+      PostNotification.should have_queue_size_of(post.neighborhood.users.receives_posts_live.count - 1)
     end
 
     it "doesn't queue a PostNotification for the poster" do
-      should_not have_queued(PostNotification, post.id, 5)
+      PostNotification.should_not have_queued(post.id, post.owner.id)
     end
 
   end
 
   describe "#deliver_announcement" do
 
-    context "when owner isn't a Feed" do
-      let(:post) {
-        Announcement.new.tap do |a|
-          stub(a).id { 24 }
-          stub(a).owner { User.new }
-        end
-      }
+    # context "when owner isn't a Feed" do
+      # let(:post) { Announcement.where("owner_type != 'Feed'").first }
 
-      before { kickoff.deliver_announcement(post) }
+      # before do
+        # post.should be_present
+        # kickoff.deliver_announcement(post)
+      # end
 
-      it "doesn't enqueue anything" do
-        should_not have_queued
-      end
-    end
+      # it "doesn't enqueue anything" do
+        # AnnouncementNotification.should have_queue_size_of 0
+      # end
+    # end
 
     context "when owner is a Feed" do
-      let(:post) {
-        owner = Feed.new
-        stub(owner).live_subscribers { (1..5).map {|id| User.new {|u| u.id = id } } }
-        Announcement.new.tap do |a|
-          stub(a).id { 24 }
-          stub(a).owner { owner }
-        end
-      }
+      let(:post) { Announcement.where("owner_type = 'Feed'").first }
 
       before { kickoff.deliver_announcement(post) }
 
       it "enqueues an AnnouncementNotification for each live subscriber" do
-        (1..5).each do |id|
-          should have_queued(AnnouncementNotification, post.id, id)
-        end
-
+        AnnouncementNotification.should have_queue_size_of(post.owner.live_subscribers.count)
       end
     end
   end
 
   describe "#deliver_reply" do
     let(:repliable) {
+      Post.find(4)
     }
     let(:reply) {
-      repliable = Post.new
-      stub(repliable).replies { [1,2,3,4,5,4,3].map {|id| Reply.new(:user_id => id) } }
-      stub(repliable).user_id { 6 }
-
-      Reply.new.tap do |r|
-        stub(r).user_id { 5 }
-        stub(r).id { 76 }
-        stub(r).repliable { repliable }
-      end
+      repliable.replies.first
     }
 
     before { kickoff.deliver_reply(reply) }
 
     it "delivers a (single) ReplyNotification to the Post owner" do
-      should have_queued(ReplyNotification, reply.id, reply.repliable.user_id).times(1)
+      ReplyNotification.should have_queued(reply.id, reply.repliable.user_id)
+      # should have_queued(ReplyNotification, reply.id, reply.repliable.user_id).times(1)
     end
 
     it "delivers a (single) ReplyNotification to people who have replied" do

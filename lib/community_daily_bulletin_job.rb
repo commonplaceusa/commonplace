@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'barometer'
+
 class CommunityDailyBulletinJob
   include MailUrls
   @queue = :community_daily_bulletin
@@ -94,9 +97,30 @@ class CommunityDailyBulletinJob
       end
     end
 
-    community.users.where("post_receive_method != 'Never'").find_each do |user|
-      Exceptional.rescue do
-        kickoff.deliver_daily_bulletin(user.email, user.first_name, user.community.name, user.community.locale, user.community.slug, date, posts, announcements, events)
+    begin
+      barometer = Barometer.new(community.zip_code)
+      weather = barometer.measure
+    rescue
+      raise "Problem with barometer for #{community.name}"
+    end
+
+    community.users.receives_daily_bulletin.each do |user|
+      begin
+        parameters = {
+          user_id: user.id,
+          date: date,
+          posts: posts,
+          announcements: announcements,
+          events: events,
+          weather: weather.default
+        }
+        kickoff.deliver_daily_bulletin(parameters[:user_id], parameters[:date], parameters[:posts], parameters[:announcements], parameters[:events], parameters[:weather])
+      rescue => ex
+        Airbrake.notify_or_ignore(
+          :error_class   => "Error Sending Daily Bulletin",
+          :error_message => "Could not send to #{user.email}: #{ex.message}",
+          :parameters    => parameters
+        )
       end
     end
   end

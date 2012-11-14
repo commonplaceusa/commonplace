@@ -5076,56 +5076,110 @@ announcement_cross_postings_846:
   created_at: 2012-10-20 12:13:38.771491
   updated_at: 2012-10-20 12:13:38.771491
 announcement_cross_postings_847: 
-  id: "931"
-  announcement_id: "19827"
-  group_id: "255"
-  created_at: 2012-10-22 15:16:48.889808
-  updated_at: 2012-10-22 15:16:48.889808
-announcement_cross_postings_848: 
-  id: "932"
-  announcement_id: "19827"
-  group_id: "252"
-  created_at: 2012-10-22 15:16:48.894628
-  updated_at: 2012-10-22 15:16:48.894628
-announcement_cross_postings_849: 
   id: "933"
   announcement_id: "20308"
   group_id: "318"
   created_at: 2012-10-24 18:00:41.872669
   updated_at: 2012-10-24 18:00:41.872669
-announcement_cross_postings_850: 
+announcement_cross_postings_848: 
   id: "934"
   announcement_id: "20308"
   group_id: "308"
   created_at: 2012-10-24 18:00:41.887661
   updated_at: 2012-10-24 18:00:41.887661
-announcement_cross_postings_851: 
+announcement_cross_postings_849: 
   id: "935"
   announcement_id: "20481"
   group_id: "79"
   created_at: 2012-10-25 12:22:29.644501
   updated_at: 2012-10-25 12:22:29.644501
-announcement_cross_postings_852: 
+announcement_cross_postings_850: 
   id: "936"
   announcement_id: "20749"
   group_id: "80"
   created_at: 2012-10-26 13:42:50.226634
   updated_at: 2012-10-26 13:42:50.226634
-announcement_cross_postings_853: 
+announcement_cross_postings_851: 
   id: "937"
   announcement_id: "22737"
   group_id: "510"
   created_at: 2012-11-02 17:27:06.531091
   updated_at: 2012-11-02 17:27:06.531091
-announcement_cross_postings_854: 
+announcement_cross_postings_852: 
   id: "938"
   announcement_id: "22737"
   group_id: "502"
   created_at: 2012-11-02 17:27:06.53844
   updated_at: 2012-11-02 17:27:06.53844
-announcement_cross_postings_855: 
+announcement_cross_postings_853: 
   id: "939"
   announcement_id: "22737"
   group_id: "501"
   created_at: 2012-11-02 17:27:06.542138
   updated_at: 2012-11-02 17:27:06.542138
+announcement_cross_postings_854: 
+  id: "940"
+  announcement_id: "23748"
+  group_id: "255"
+  created_at: 2012-11-05 16:08:52.985561
+  updated_at: 2012-11-05 16:08:52.985561
+announcement_cross_postings_855: 
+  id: "941"
+  announcement_id: "23748"
+  group_id: "252"
+  created_at: 2012-11-05 16:08:52.990662
+  updated_at: 2012-11-05 16:08:52.990662
+announcement_cross_postings_856: 
+  id: "942"
+  announcement_id: "25168"
+  group_id: "170"
+  created_at: 2012-11-09 13:00:26.629837
+  updated_at: 2012-11-09 13:00:26.629837
+announcement_cross_postings_857: 
+  id: "943"
+  announcement_id: "25168"
+  group_id: "169"
+  created_at: 2012-11-09 13:00:26.64325
+  updated_at: 2012-11-09 13:00:26.64325
+announcement_cross_postings_858: 
+  id: "944"
+  announcement_id: "25168"
+  group_id: "164"
+  created_at: 2012-11-09 13:00:26.645543
+  updated_at: 2012-11-09 13:00:26.645543
+announcement_cross_postings_859: 
+  id: "945"
+  announcement_id: "25206"
+  group_id: "166"
+  created_at: 2012-11-09 15:40:13.582
+  updated_at: 2012-11-09 15:40:13.582
+announcement_cross_postings_860: 
+  id: "946"
+  announcement_id: "25983"
+  group_id: "163"
+  created_at: 2012-11-11 16:16:53.343546
+  updated_at: 2012-11-11 16:16:53.343546
+announcement_cross_postings_861: 
+  id: "947"
+  announcement_id: "26107"
+  group_id: "83"
+  created_at: 2012-11-12 00:36:02.949091
+  updated_at: 2012-11-12 00:36:02.949091
+announcement_cross_postings_862: 
+  id: "948"
+  announcement_id: "26108"
+  group_id: "76"
+  created_at: 2012-11-12 00:54:45.177026
+  updated_at: 2012-11-12 00:54:45.177026
+announcement_cross_postings_863: 
+  id: "949"
+  announcement_id: "26109"
+  group_id: "79"
+  created_at: 2012-11-12 00:59:13.724078
+  updated_at: 2012-11-12 00:59:13.724078
+announcement_cross_postings_864: 
+  id: "950"
+  announcement_id: "26109"
+  group_id: "76"
+  created_at: 2012-11-12 00:59:13.745258
+  updated_at: 2012-11-12 00:59:13.745258
