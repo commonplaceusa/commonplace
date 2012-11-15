@@ -102,7 +102,6 @@ gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 
 # Analytics
 gem 'km'
-gem 'sqlite3-ruby'
 gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "deb999f1a06a71afb5b4a381bc81f34cc27dcc0b"
 gem 'mysql2'
 
