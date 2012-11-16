@@ -135,6 +135,18 @@ class MailBase < Mustache
           'updated_at' => DateTime.now
       })
       increase_email_count
+
+      mail_headers = {
+        "Precedence" => "list",
+        "Auto-Submitted" => "auto-generated",
+        "X-Mailgun-Tag" => self.tag,
+        "X-Mailgun-Variables" => {
+          email_id: email_id
+        }.to_json
+      }
+
+      mail_headers.merge!({"X-Campaign-Id" => self.campaign}) unless self.campaign == nil
+
       mail = Mail.deliver(:to => self.to,
                           :from => self.from,
                           :reply_to => self.reply_to,
@@ -142,15 +154,8 @@ class MailBase < Mustache
                           :content_type => "text/html",
                           :body => self.render_html,
                           :charset => 'UTF-8',
-                          :headers => {
-                            "Precedence" => "list",
-                            "Auto-Submitted" => "auto-generated",
-                            "X-Mailgun-Tag" => self.tag,
-                            "X-Mailgun-Variables" => {
-                              email_id: email_id
-                            }.to_json
-
-                          })
+                          :headers => mail_headers
+      )
       DailyStatistic.increment_or_create("#{self.tag}s_sent")
       KM.identify(self.to)
       KM.record('email sent', {
@@ -162,6 +167,10 @@ class MailBase < Mustache
         community: community ? community.slug : "administrative"
       })
     end
+  end
+
+  def self.campaign
+    (community.slug.downcase == "warwick") ? "warwick_deals" : nil
   end
 
   def self.queue
