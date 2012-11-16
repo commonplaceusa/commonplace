@@ -76,6 +76,76 @@
                               </table>
                               <!--END INTRO-->
 
+                              {{#announcements_present}}
+                              <table width="100%" cellpadding="25" cellspacing="0" border="0" class="section_container">
+                                <tr>
+                                  <td><div class="post-separator"></div></td>
+                                  <td width="100%">                      
+                                    <a href="{{list_announcements_url}}"><img src="{{announcement_icon_url}}" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}announcements-section-title{{/t}}</strong></span></a>
+                                  </td>
+                                </tr>
+                              </table>	
+
+                              {{#announcements}}
+                              <table width="100%" cellpadding="0" cellspacing="0" border="0" class="posts">
+                                <tr>
+                                  <td width="100%" bgcolor="#ffffff">
+                                    <table width="100%" cellpadding="20" cellspacing="0" border="0">
+                                      <tr>
+                                        <td bgcolor="#ffffff" class="contentblock">
+                                          <table>
+                                            <tr class="post"><!--A Post-->
+                                              <td class="avatar" height="110" valign="top"><img src={{avatar_url}} alt="User Avatar" width="50" height="50"></td>
+                                              <td class="post_content">
+                                                <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
+                                                <p class="author" style="color:#1b334a; font-weight: bold;"><a href="{{author_url}}"><strong>{{author}}</strong></a></p>
+                                                <p class="body">{{body}}</p>
+
+                                                {{#replies}}
+                                                <div class="reply-separator"></div>
+                                                <table class="reply">
+                                                  <tr>
+                                                    <td class="avatar" rowspan="2">
+                                                      <img src="{{avatar_url}}" width="25" height="25">
+                                                    </td>
+                                                    <td class="author" style="font-weight: bold;">
+                                                      <a href="{{author_url}}"><strong>{{author}}</strong></a>
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td class="body">
+                                                      <p>{{body}}</p>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                                {{/replies}}
+                                                <table width="100%" class="links">
+                                                  <tr>
+                                                      <td class="new_message">
+                                                        <a href="{{new_message_url}}">
+                                                          <span class="viewall">Send a Private Message</span>
+                                                        </a>
+                                                      </td>
+                                                    <td class="view_post_td">
+                                                      <a href="{{url}}"class="reply-now"><img src="{{view_post_button_url}}" width="90" height="25" alt="View Post" />
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><div class="post-separator"></div></td>
+                                </tr>
+                              </table>
+                              {{/announcements}}
+                              {{/announcements_present}}
+
                               {{#posts_present}}
                               <table width="650" cellpadding="25" cellspacing="0" border="0" class="section_container">
                                 <tr>
@@ -227,75 +297,6 @@
                               {{/events}}
                               {{/events_present}}
 
-                              {{#announcements_present}}
-                              <table width="100%" cellpadding="25" cellspacing="0" border="0" class="section_container">
-                                <tr>
-                                  <td><div class="post-separator"></div></td>
-                                  <td width="100%">                      
-                                    <a href="{{list_announcements_url}}"><img src="{{announcement_icon_url}}" width="20" height="20" alt="&#9733;" class="section_icon"> &nbsp; <span class="section_header"><strong>{{#t}}announcements-section-title{{/t}}</strong></span></a>
-                                  </td>
-                                </tr>
-                              </table>	
-
-                              {{#announcements}}
-                              <table width="100%" cellpadding="0" cellspacing="0" border="0" class="posts">
-                                <tr>
-                                  <td width="100%" bgcolor="#ffffff">
-                                    <table width="100%" cellpadding="20" cellspacing="0" border="0">
-                                      <tr>
-                                        <td bgcolor="#ffffff" class="contentblock">
-                                          <table>
-                                            <tr class="post"><!--A Post-->
-                                              <td class="avatar" height="110" valign="top"><img src={{avatar_url}} alt="User Avatar" width="50" height="50"></td>
-                                              <td class="post_content">
-                                                <a href="{{url}}"><p class="title"><strong>{{title}}</strong></p></a>
-                                                <p class="author" style="color:#1b334a; font-weight: bold;"><a href="{{author_url}}"><strong>{{author}}</strong></a></p>
-                                                <p class="body">{{body}}</p>
-
-                                                {{#replies}}
-                                                <div class="reply-separator"></div>
-                                                <table class="reply">
-                                                  <tr>
-                                                    <td class="avatar" rowspan="2">
-                                                      <img src="{{avatar_url}}" width="25" height="25">
-                                                    </td>
-                                                    <td class="author" style="font-weight: bold;">
-                                                      <a href="{{author_url}}"><strong>{{author}}</strong></a>
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td class="body">
-                                                      <p>{{body}}</p>
-                                                    </td>
-                                                  </tr>
-                                                </table>
-                                                {{/replies}}
-                                                <table width="100%" class="links">
-                                                  <tr>
-                                                      <td class="new_message">
-                                                        <a href="{{new_message_url}}">
-                                                          <span class="viewall">Send a Private Message</span>
-                                                        </a>
-                                                      </td>
-                                                    <td class="view_post_td">
-                                                      <a href="{{url}}"class="reply-now"><img src="{{view_post_button_url}}" width="90" height="25" alt="View Post" />
-                                                    </td>
-                                                  </tr>
-                                                </table>
-                                              </td>
-                                            </tr>
-                                          </table>
-                                        </td>
-                                      </tr>
-                                    </table>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td><div class="post-separator"></div></td>
-                                </tr>
-                              </table>  
-                              {{/announcements}}
-                              {{/announcements_present}}
                             </td>
                           </tr>
                         </table>
