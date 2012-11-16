@@ -145,7 +145,9 @@ class MailBase < Mustache
         }.to_json
       }
 
-      mail_headers.merge!({"X-Campaign-Id" => self.campaign}) unless self.campaign == nil
+      if community.slug.downcase == "warwick"
+        mail_headers.merge!({"X-Campaign-Id" => 'warwick_deals'})
+      end
 
       mail = Mail.deliver(:to => self.to,
                           :from => self.from,
@@ -167,10 +169,6 @@ class MailBase < Mustache
         community: community ? community.slug : "administrative"
       })
     end
-  end
-
-  def self.campaign
-    (community.slug.downcase == "warwick") ? "warwick_deals" : nil
   end
 
   def self.queue
