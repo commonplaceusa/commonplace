@@ -78,8 +78,6 @@ gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref
 # Monitoring
 gem 'exceptional' # we use this to notify on exceptions
 gem 'airbrake'
-gem 'rpm_contrib' # we use this to monitor the app
-gem 'newrelic_rpm' # we use this to monitor the app
 gem 'guardrail_notifier' # catch validation errors
 
 # Features
