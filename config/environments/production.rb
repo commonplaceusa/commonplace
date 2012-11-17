@@ -5,13 +5,16 @@ Commonplace::Application.configure do
   config.assets.compress = true
 
   # Generate digests for assets URLs
-  # config.assets.digest = true
+  config.assets.digest = true
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
   config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :scss
+  config.assets.css_compressor = :yui
+
+  # Don't compile on the fly
+  config.assets.compile = false
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
