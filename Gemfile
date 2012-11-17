@@ -29,6 +29,7 @@ gem 'embedded-mongo', :git => "https://github.com/gdb/embedded-mongo.git"
 
 # Deployment
 gem 'thin' # lighter than mongrel, faster than webrick
+gem 'unicorn' # Magical unicorns are going to help with our concurrency issues
 
 # Authentication
 gem 'devise' # used for authentication

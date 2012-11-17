@@ -76,5 +76,9 @@ module Commonplace
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # Set the logger
+    # This makes Heroku logging with Unicorn work
+    config.logger = Logger.new(STDOUT)
   end
 end
