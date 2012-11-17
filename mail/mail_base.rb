@@ -146,7 +146,7 @@ class MailBase < Mustache
       }
 
       if community.slug.downcase == "warwick"
-        mail_headers.merge!({"X-Campaign-Id" => 'warwick_deals'})
+        mail_headers.merge!({"X-Mailgun-Campaign-Id" => 'warwick_deals'})
       end
 
       mail = Mail.deliver(:to => self.to,
