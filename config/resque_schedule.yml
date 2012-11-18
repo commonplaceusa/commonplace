@@ -42,20 +42,6 @@ recalculate_cp_credits:
   queue: credits
   description: "Checks for invalidated users and recalculates their CP Credits"
 
-scale_up_for_daily_digest:
-  cron: "30 11 * * *"
-  class: HerokuResque::NotificationWorkerScaler
-  args: 50
-  queue: server_management
-  description: "Ramps up available dynos for daily digest mailings"
-
-scale_down_post_daily_digest:
-  cron: "30 12 * * *"
-  class: HerokuResque::NotificationWorkerScaler
-  args: 2
-  queue: server_management
-  description: "Decreases used dynos after daily digest mailings"
-
 send_weekly_network_health_stats:
   cron: "0 0 * * 0"
   class: StatisticsNetworkHealthCsvGenerator
@@ -69,13 +55,6 @@ send_monthly_network_health_stats:
   args:
   queue: statistics
   description: "Sends out a monthly digest of network health statistics"
-
-load_daily_new_stories:
-  cron: "0 4 * * *"
-  class: LoadStories
-  args:
-  queue: daily_new_stories
-  description: "Pull new news of a community every midnight"
 
 ping_geckoboard:
   cron: "0 * * * *"
