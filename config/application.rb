@@ -22,12 +22,12 @@ module Commonplace
     config.assets.enabled = true
 
     # Heroku...
-    config.assets.initialize_on_precompile = false
+    # config.assets.initialize_on_precompile = false
 
-    config.static_cache_control = "public, max-age=31536000"
+    # config.static_cache_control = "public, max-age=31536000"
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = '1.1'
 
     config.assets.paths += [File.join(Rails.root, 'app', 'javascripts'),
                             File.join(Rails.root, 'app', 'stylesheets'),
@@ -41,7 +41,7 @@ module Commonplace
                            ]
 
     config.assets.precompile += ['main_page.js', 'group_page.js', 'inbox.js',
-                                 'feed_page.js', 'invite_page.js', 
+                                 'feed_page.js', 'invite_page.js',
                                  'registration_page.js', 'feed_registration.js',
                                  'sign_in.js', 'accounts.js']
 

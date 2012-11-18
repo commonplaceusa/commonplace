@@ -11,10 +11,10 @@ Commonplace::Application.configure do
   # config.assets.manifest = YOUR_PATH
 
   config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :yui
+  config.assets.css_compressor = :scss
 
   # Don't compile on the fly
-  config.assets.compile = false
+  # config.assets.compile = false
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests

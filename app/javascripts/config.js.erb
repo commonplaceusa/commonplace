@@ -2,5 +2,5 @@ if (!window.CommonPlace) { window.CommonPlace = {main: {}, registration: {}, sha
 
 _.extend(CommonPlace, {
   autoActionTimeout: 500,
-  facebookAppId: "<%= $FacebookConfig['app_id'] || "abc123" %>"
+  facebookAppId: "<%= $FacebookConfig.present? ? $FacebookConfig['app_id'] || "abc123" : "abc123" %>"
 });
