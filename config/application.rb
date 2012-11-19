@@ -84,6 +84,6 @@ module Commonplace
 
     # Set the logger
     # This makes Heroku logging with Unicorn work
-    config.logger = Logger.new(STDOUT)
+    # config.logger = Logger.new(STDOUT)
   end
 end
