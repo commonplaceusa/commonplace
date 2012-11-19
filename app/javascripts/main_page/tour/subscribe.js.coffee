@@ -1,7 +1,7 @@
 CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
   template: "main_page.tour.subscribe"
-  feed_kinds: [ "Community Group", "Community Group", "Business", "Municipal", "News", "Discussion" ]
-  feed_categories: [ "Community Group", "Municipal", "News", "Discussion", "Business" ]
+  feed_kinds: [ "communitygroup", "communitygroup", "business", "municipal", "news", "discussion" ]
+  feed_categories: [ {name: "Community Group", id:"communitygroup"}, {name:"Municipal", id:"municipal"}, {name:"News", id:"name"}, {name:"Discussion", id:"discussion"}, {name:"Business", id:"business"} ]
   events:
     "click input.continue": "submit"
     "submit form": "submit"
