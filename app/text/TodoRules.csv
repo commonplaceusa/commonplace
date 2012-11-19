@@ -1,16 +1,4 @@
 To-Do Type,Should Display If Has Tag:,To-Do,Can't Display If Has Tag:,Script
-Leaders,Type: Leader,"Leaders: Mapped, awaiting Contacted",L1: Contacted,L1: Contacted
-Leaders,L1: Contacted,"L1: Contacted, awaiting Connected",L2: Connected,"L2: Connected, L1x: Delayer, X: Referred Out, L1x: No Email"
-,,"L1: Contacted, awaiting Connected",L1x: Delayer,
-,,"L1: Contacted, awaiting Connected",X: Referred Out,
-,,"L1: Contacted, awaiting Connected",L1x: No Email,
-Leaders,L1x: No Email,"L1x: No Email, awaiting Connected",L2: Connected,"L2: Connected, X: Referred Out, L1x: Delayer"
-,,"L1x: No Email, awaiting Connected",X: Referred Out,
-,,"L1x: No Email, awaiting Connected",L1x: Delayer,
-Leaders,L1x: Delayer,"L1x: Delayer, awaiting Connected",L2: Connected,"L2: Connected, X: Referred Out"
-,,,X: Referred Out,
-Leaders,L2: Connected,"L2: Connected, awaiting Call Scheduled",L3: Call Scheduled,L3: Call Scheduled; Send Pre-Call Email
-Leaders,L3: Call Scheduled,"L3: Call Scheduled, awaiting Call Held",L4: Call Held,L4: Call Held
 Leaders,L4: Call Held,"L4: Call Held, tag with Type: Leader Partner",Type: Leader Partner,Tag Type: Leader Partner
 Leaders,Type: Leader Partner,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants Feed,"Ask: Wants Feed, Ask: Wants 50 Reasons; Ask: Wants Follow Up"
 ,,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants 50 Reasons Post,
@@ -39,20 +27,12 @@ Excited Neighbors,Type: Excited Neighbor Partner,"Tag with Asks: Friends, Cards,
 ,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Blurb,
 ,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Cards,
 ,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants 50 Reasons Post,
-Early Adopter,Status: Joined CP,"Early Adopter: Joined, awaiting Contacted",Type: Excited Neighbor,EA1: Contacted
-,,"Early Adopter: Joined, awaiting Contacted",Type: Leader,
-,,"Early Adopter: Joined, awaiting Contacted",Type: Press,
-,,"Early Adopter: Joined, awaiting Contacted",EA1: Contacted,
-Early Adopter,EA1: Contacted,"EA1: Contacted, awaiting Connected",EA2: Connected,"EA2: Connected, EA1x: Delayer"
-,,"EA1: Contacted, awaiting Connected",EA1x: Delayer,
-Early Adopter,EA1x: Delayer,EA1x: Delayer,EA2: Connected,EA2: Connected
-Early Adopter,EA2: Connected,"EA2: Connected, awaiting two week follow up and Call Scheduled",EA3: Call Scheduled,EA3: Call Scheduled; Send Pre-Call Email
-Early Adopter,EA3: Call Scheduled,"EA3: Call Scheduled, awaiting Call Held",EA4: Call Held,EA4: Call Held
-Early Adopter,EA4: Call Held,"EA4: Call Held, tag with Type: Excited Neighbor Partner",Type: Early Adopter Partner,"Tag Type: Excited Neighbor Partner, Send Follow-Up"
-Early Adopter,Type: Early Adopter Partner,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Friends of OurCommonPlace,"Ask: Wants Feed, Ask: Wants 50 Reasons; Ask: Wants Follow Up"
-,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Blurb,
-,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants Cards,
-,,"Tag with Asks: Friends, Cards, Blurb, 50 Reasons",Ask: Wants 50 Reasons Post,
+Early Adopter,Status: Joined CP,Send Early Adopter Launch Email,Type: Excited Neighbor,Status: Early Adopter Launch Email Sent
+,,Send Early Adopter Launch Email,Type: Leader,
+,,Send Early Adopter Launch Email,Type: Press,
+,,Send Early Adopter Launch Email,Status: Early Adopter Launch Email Sent,
+Early Adopter,Status: Early Adopter Launch Email Sent,Tag as Type: Excited Neighbor OR Send Early Adopter Asks Email,Status: Early Adopter Asks Email Sent,Type: Excited Neighbor OR Status: Early Adopter Asks Email Sent
+,,Tag as Type: Excited Neighbor OR Send Early Adopter Asks Email,Type: Excited Neighbor,
 Press,Type: Press,"Press: Mapped, awaiting Contacted",P1: Contacted,P1: Contacted
 Press,P1: Contacted,"P1: Contacted, awaiting Connected",P2: Connected,"P2: Connected, P1x: Delayer, X: Referred Out, P1x: No Email"
 ,,"P1: Contacted, awaiting Connected",P1x: Delayer,
@@ -76,4 +56,3 @@ Press,Ask: Wants Feed,Transfer Feed,Status: Transferred Feed,Status: Transferred
 Press,Status: Transferred Feed,"Send Post-Feed Email, Tag with Asks",Status: Briefed on Feed,"Status: Briefed on Feed, Tag with: Ask: Wants Blurb, Ask: Wants Cards"
 Press,Ask: Wants Blurb,Send Blurb,Status: Blurb sent,Status: Blurb sent
 Press,Ask: Wants Cards,Send Cards,Status: Cards sent,Status: Cards sent
-Special To-Do,Q: Special To-Do,Q: Do Special To-Do,Q: Completed Special To-Do,Next Tag: Q: Completed Special To-Do
