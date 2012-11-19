@@ -1,4 +1,4 @@
-web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
+web: bundle exec rails server thin -p $PORT
 worker: bundle exec rake environment resque:work QUEUE=* READ_ONLY_DATABASE=true --trace
 notification_worker: bundle exec rake environment resque:work QUEUE=notifications READ_ONLY_DATABASE=true
 forgot_password_worker: bundle exec rake environment resque:work QUEUE=password_resets
