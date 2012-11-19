@@ -134,7 +134,7 @@ class MailBase < Mustache
           'originating_community_id' => (self.community) ? self.community.id : 0,
           'updated_at' => DateTime.now
       })
-      increase_email_count
+      # increase_email_count
 
       mail_headers = {
         "Precedence" => "list",
