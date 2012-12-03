@@ -73,7 +73,7 @@ class NewFeedSubscriberNotification < MailBase
   end
 
   def subject
-    "#{short_user_name} subscribed to #{feed_name} on The #{town_name} CommonPlace"
+    "#{user_name} subscribed to #{feed_name} on The #{town_name} CommonPlace"
   end
 
   def tag
