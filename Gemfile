@@ -76,6 +76,9 @@ gem 'googlecharts' # used for admin/overview
 gem 'garb' # used to access the Google Analytics API
 gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref => "ac5614d0d14f3208b26e83ca5e4d7d"
 
+# Tech admin
+gem 'newrelic_rpm'
+
 # Monitoring
 gem 'exceptional' # we use this to notify on exceptions
 gem 'airbrake'

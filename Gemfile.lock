@@ -339,6 +339,7 @@ GEM
     mustache (0.99.4)
     mysql2 (0.3.11)
     netrc (0.7.5)
+    newrelic_rpm (3.5.0.1)
     nokogiri (1.5.2)
     oauth (0.3.6)
       ruby-hmac (>= 0.3.1)
@@ -597,6 +598,7 @@ DEPENDENCIES
   mongo_mapper
   mustache
   mysql2
+  newrelic_rpm
   omniauth
   omniauth-facebook
   paperclip (~> 2.4.4)
