@@ -322,7 +322,8 @@ class Community < ActiveRecord::Base
   end
 
   def manual_tags
-    Flag.all.map &:name
+    #Flag.all.map &:name
+    []
   end
 
   # Calculates datas over time and data per day for graphs in Organizer App
