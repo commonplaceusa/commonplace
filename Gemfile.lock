@@ -22,12 +22,10 @@ GIT
 
 GIT
   remote: https://github.com/Jberlinsky/leftronic-gem.git
-  revision: ac5614d0d14f3208b26e83ca5e4d7d48fe39a485
-  ref: ac5614d0d14f3208b26e83ca5e4d7d
+  revision: a090bf1d49004f501c9164d5dcd51761b48803e4
+  ref: a090bf1d49004f501c9164d5dcd51761b48803e4
   specs:
     leftronic (0.0.4)
-      json (>= 1.4.6)
-      rest-client (>= 1.6.1)
 
 GIT
   remote: https://github.com/alanpeabody/resque-job-stats.git
