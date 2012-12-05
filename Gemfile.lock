@@ -623,6 +623,7 @@ DEPENDENCIES
   resque-job-stats!
   resque-scheduler
   resque_spec
+  rest-client (>= 1.6.1)
   rmagick
   rollout
   rr
