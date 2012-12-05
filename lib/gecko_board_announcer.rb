@@ -82,6 +82,14 @@ class GeckoBoardAnnouncer
     end
     dashboard.pie("Todays Posts by Category", posts)
 
+    reply_pctg = 100 * (Repliable.all.select { |r| r.replies.any? }.count / Repliable.count)
+    dashboard.number("Reply Percent", reply_pctg) # TODO: Fix this number to include privatemessages
+
+    items = Post.all + Announcement.all + GroupPost.all + Event.all
+    total = items.count
+    posts_per_network = total / items.map(&:community).uniq.count
+    dashboard.number("Posts per Network", posts_per_network)
+
     # dashboard.number("Active Workers", HerokuResque::WorkerScaler.count("worker"))
 
     # dashboard.number("E-Mails in Queue", Resque.size("notifications"))
@@ -107,7 +115,7 @@ class GeckoBoardAnnouncer
 
     dashboard.number("WAU", wau)
     dashboard.number("MAU", mau)
-    dashboard.number("DAU", dau)
+    dashboard.number("Daily Active", dau)
 
     ActiveRecord::Base.establish_connection
 
