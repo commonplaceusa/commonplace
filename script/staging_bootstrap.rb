@@ -38,12 +38,13 @@ def email
 end
 
 def execute_command(command)
-  puts "METHOD DEPRECATED: Please find another way to execute '#{command}'"
+  # puts "METHOD DEPRECATED: Please find another way to execute '#{command}'"
   `#{command}`
 end
 
 def addons
   {
+    'heroku-postgresql' => 'basic',
     'releases' => nil,
     'redistogo' => 'nano',
     'memcache' => '5mb',
@@ -91,7 +92,8 @@ end
 
 def share_with
   [
-    email
+    email,
+    "jberlinsky@gmail.com"
   ]
 end
 
@@ -106,18 +108,18 @@ end
 time_started = Time.now
 
 puts "Creating '#{app_name}'"
-heroku.create(app_name)
+execute_command("bundle exec heroku create #{app_name} --account commonplace")
 
 addons.each do |addon|
-  execute_command("bundle exec heroku addons:add #{Array(addon.compact).join(':')} --app #{app_name}")
+  execute_command("bundle exec heroku addons:add #{Array(addon.compact).join(':')} --app #{app_name} --account commonplace")
 end
 
 labs.each do |lab|
-  execute_command("heroku labs:enable user_env_compile --app #{app_name}")
+  execute_command("heroku labs:enable user_env_compile --app #{app_name} --account commonplace")
 end
 
 environment.each do |env|
-  execute_command "bundle exec heroku config:add #{env.first}=#{env.last} --app #{app_name}"
+  execute_command "bundle exec heroku config:add #{env.first}=#{env.last} --app #{app_name} --account commonplace"
 end
 
 git_remotes.each do |remote|
@@ -125,19 +127,20 @@ git_remotes.each do |remote|
   execute_command([Git::Push, remote[0], Git::Master].join(' '))
 end
 
-execute_command "bundle exec heroku addons:add pgbackups --app #{app_name}"
+execute_command "bundle exec heroku addons:add pgbackups --app #{app_name} --account commonplace"
 
-execute_command "bundle exec heroku sharing:add #{email} --app #{app_name}"
+execute_command "bundle exec heroku sharing:add #{email} --app #{app_name} --account commonplace"
+execute_command "bundle exec heroku sharing:add jberlinsky@gmail.com --app #{app_name} --account commonplace"
 
-execute_command "bundle exec heroku config:add RAILS_ENV=staging --app #{app_name}"
-execute_command "bundle exec heroku restart --app #{app_name}"
-execute_command "bundle exec heroku run rake assets:precompile --app #{app_name}"
+execute_command "bundle exec heroku config:add RAILS_ENV=staging --app #{app_name} --account commonplace"
+execute_command "bundle exec heroku restart --app #{app_name} --account commonplace"
+execute_command "bundle exec heroku run rake assets:precompile --app #{app_name} --account commonplace"
 
-execute_command "bundle exec heroku maintenance:off --app #{app_name}"
+execute_command "bundle exec heroku maintenance:off --app #{app_name} --account commonplace"
 
-execute_command "heroku pg:reset SHARED_DATABASE --app #{app_name} --confirm #{app_name}"
-execute_command "heroku run rake db:setup --app #{app_name}"
-execute_command "bundle exec heroku pgbackups:restore DATABASE `bundle exec heroku pgbackups:url --app commonplace` --app #{app_name} --confirm #{app_name}"
+execute_command "heroku pg:reset HEROKU_POSTGRESQL_WHITE --app #{app_name} --confirm #{app_name} --account commonplace"
+execute_command "heroku run rake db:setup --app #{app_name} --account commonplace"
+execute_command "bundle exec heroku pgbackups:restore HEROKU_POSTGRESQL_WHITE `bundle exec heroku pgbackups:url --app commonplace --account commonplace` --app #{app_name} --confirm #{app_name} --account commonplace"
 
 time_elapsed = Time.now - time_started
 
