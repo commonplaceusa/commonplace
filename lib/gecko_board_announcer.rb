@@ -20,6 +20,9 @@ class GeckoBoardAnnouncer
     growths = []
     populations = []
     growth_headers = ["Community", "Users", "Wkly Growth", "Penetration", "Posts Per Day"]
+    network_sizes = []
+    network_size_headers = ["Age", "# of Networks", "Avg Size", "Avg Penetration"]
+    network_sizes << network_size_headers
     Community.find_each do |community|
       next if EXCLUDED_COMMUNITIES.include? community.slug
       growth = (community.growth_percentage.round(2))
@@ -35,6 +38,21 @@ class GeckoBoardAnnouncer
         community.name => community.users.count
       }
     end
+
+    # Do the network sizes
+
+    # <= 1m
+    # 1m < community <= 4m
+    # 4m < community <= 11m
+    # TOTAL
+
+    dashboard.table("Community Sizes", network_sizes)
+
+    # Break down growth by organic vs not organic
+    growth_breakdown = [["", "%", "# of users"]]
+    # Organic growth
+    # Launch growth
+    dashboard.table("Growth Breakdown", growth_breakdown)
 
     growths = growths.sort_by do |v|
       v[1]
