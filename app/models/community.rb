@@ -556,6 +556,7 @@ class Community < ActiveRecord::Base
     l_conn = l_conn.count
     launch = launch.count
     remind = remind.count
+    neighbor_p = neighbor_p.count
 
     a = percent(p_conn, n_count)
     b = percent(c_leaders, n_count)
@@ -641,6 +642,7 @@ class Community < ActiveRecord::Base
     l_conn = l_conn.count
     launch = launch.count
     ask = ask.count
+    adopter_p = adopter_p.count
 
     a = percent(p_conn, a_count)
     b = percent(c_leaders, a_count)

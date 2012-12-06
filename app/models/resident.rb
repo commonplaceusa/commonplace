@@ -72,8 +72,9 @@ class Resident < ActiveRecord::Base
   end
 
   def tags
+    self.metadata[:tags] ||= []
     tags = []
-    tags += self.metadata[:tags] if self.metadata[:tags]
+    tags += self.metadata[:tags]
 
     if self.user.present?
       u = self.user
@@ -91,7 +92,7 @@ class Resident < ActiveRecord::Base
       end
 
       u.feed_owners.each do |o|
-        tags |= Array("Member: " + o.feed.name)
+        tags |= Array("Member: " + o.feed.name) if !o.feed.nil?
       end
     end
 
@@ -142,13 +143,6 @@ class Resident < ActiveRecord::Base
     todos = []
     todos |= self.metadata[:todos] if self.metadata[:todos]
     todos
-  end
-
-  def registered
-    self.metadata[:tags] ||= []
-    self.metadata[:tags] |= "Joined CP"
-    self.community.add_resident_tags(Array("Joined CP"))
-    self.save
   end
 
   # Creates tags associated with the resident

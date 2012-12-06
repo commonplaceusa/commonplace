@@ -199,7 +199,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
       alert("Please enter a non-empty address.");
     } else {
       this.model.save({address: address}, {success: _.bind(this.render, this)});
-      //location.reload();
     }
   },
 
@@ -209,11 +208,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     if (!newphone) {
       alert("Please enter a non-empty phone number.");
     } else {
-      //this.model.set({phone: phone});
-      //this.model.save();
-      //alert(this.model.get('phone'));
       this.model.save({phone: newphone}, {success: _.bind(this.render, this)});
-      location.reload();
     }
   },
 
@@ -223,11 +218,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     if (!organization) {
       alert("Please enter a non-empty organization.");
     } else {
-      //this.model.set({phone: phone});
-      //this.model.save();
-      //alert(this.model.get('phone'));
       this.model.save({organization: organization}, {success: _.bind(this.render, this)});
-      location.reload();
     }
   },
 
@@ -237,11 +228,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     if (!notes) {
       alert("Please enter a non-empty notes.");
     } else {
-      //this.model.set({phone: phone});
-      //this.model.save();
-      //alert(this.model.get('phone'));
       this.model.save({notes: notes}, {success: _.bind(this.render, this)});
-      location.reload();
     }
   },
 
@@ -251,11 +238,7 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
     if (!position) {
       alert("Please enter a non-empty position.");
     } else {
-      //this.model.set({phone: phone});
-      //this.model.save();
-      //alert(this.model.get('phone'));
       this.model.save({position: position}, {success: _.bind(this.render, this)});
-      location.reload();
     }
   },
 
@@ -278,8 +261,6 @@ OrganizerApp.FileViewer = CommonPlace.View.extend({
       alert("Please enter a valid email address.");
     } else {
       this.model.save({email: email}, {success: _.bind(this.render, this)});
-      //this.model.addEmail({email: email}, {success: _.bind(this.render, this)});
-      //location.reload();
     }
   },
 

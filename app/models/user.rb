@@ -711,6 +711,7 @@ WHERE
       end
 
       r.user = self
+      r.add_tags(Array("Status: Joined CP"))
       r.save
     else
       r = Resident.create(
@@ -722,6 +723,9 @@ WHERE
         :street_address => addr,
         :user => self,
         :community_id => self.community_id)
+
+      r.add_tags(Array("Status: Joined CP"))
+      r.save
     end
   end
 
