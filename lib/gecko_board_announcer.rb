@@ -48,7 +48,7 @@ class GeckoBoardAnnouncer
     end
 
     # Do the network sizes
-
+    puts "Computing network sizes..."
     first_bucket = Community.all.select do |c|
       c.launch_date >= Date.today - 1.month
     end
@@ -65,6 +65,8 @@ class GeckoBoardAnnouncer
 
     dashboard.table("Community Sizes", network_sizes)
 
+    puts "Computing organic and paid growth..."
+
     # Break down growth by organic vs not organic
     growth_breakdown = [["", "%", "# of users"]]
     # Organic growth
@@ -74,6 +76,7 @@ class GeckoBoardAnnouncer
 
     dashboard.table("Growth Breakdown", growth_breakdown)
 
+    puts "Computing post distribution..."
     # Post distribution
     post_distribution = [["", "#", "Reply #", "PM #"]]
     post_distribution << ["Questions"]
@@ -85,18 +88,22 @@ class GeckoBoardAnnouncer
 
     dashboard.table("Post Breakdown", post_distribution)
 
+    puts "Computing growths..."
     growths = growths.sort_by do |v|
       v[1]
     end.append(growth_headers).reverse
     dashboard.table("Growth by Community", growths)
     dashboard.pie("Population by Community", populations)
 
+    puts "Computing penetrations..."
     penetrations = Community.all.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.penetration_percentage(false) }.reject { |v| v < 0 }
     dashboard.number("Overall Penetration", 100 * penetrations.inject{ |sum, el| sum + el }.to_f / penetrations.size)
 
+    puts "Computing growth rates..."
     growth_rates = Community.all.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.growth_percentage(false) }.reject { |v| v.infinite? }
     dashboard.number("Overall Weekly Growth Rate", 100 * growth_rates.inject{ |sum, el| sum + el }.to_f / growth_rates.size.to_f)
 
+    puts "Getting email values..."
     dashboard.number("Daily Bulletins Sent Today", DailyStatistic.value("daily_bulletins_sent") || 0)
     dashboard.number("Daily Bulletins Opened Today", DailyStatistic.value("daily_bulletins_opened") || 0)
     # dashboard.number("Daily Bulletin Open Rate Today", DailyStatistic.value("daily_bulletins_opened").to_f / DailyStatistic.value("daily_bulletins_sent").to_f)
@@ -131,11 +138,13 @@ class GeckoBoardAnnouncer
     end
     dashboard.pie("Todays Posts by Category", posts)
 
-    all_posts = Post.all + Announcement.all + GroupPost.all + Event.all
+    puts "Computing reply percentages..."
+    # all_posts = Post.all + Announcement.all + GroupPost.all + Event.all
 
-    reply_pctg = 100 * (all_posts.select { |r| r.replies.any? }.count / all_posts.count)
-    dashboard.number("Reply Percent", reply_pctg) # TODO: Fix this number to include privatemessages
+    # reply_pctg = 100 * (all_posts.select { |r| r.replies.any? }.count / all_posts.count)
+    # dashboard.number("Reply Percent", reply_pctg) # TODO: Fix this number to include privatemessages
 
+    puts "Computing posts per network..."
     items = all_posts
     total = items.count
     posts_per_network = total / items.map(&:community).uniq.count
@@ -147,6 +156,7 @@ class GeckoBoardAnnouncer
 
     # dashboard.text("Statistics Information", "Update Finished", "Finished updating at #{DateTime.now.in_time_zone(tz).to_s}")
 
+    puts "Doing AUs..."
     wau_start = 1.week.ago - 2.days
     mau_start = 1.month.ago - 2.days
     dau_start = 1.day.ago - 2.days
@@ -167,6 +177,8 @@ class GeckoBoardAnnouncer
     dashboard.number("WAU", wau)
     dashboard.number("MAU", mau)
     dashboard.number("Daily Active", dau)
+
+    puts "Done"
 
     ActiveRecord::Base.establish_connection
 
