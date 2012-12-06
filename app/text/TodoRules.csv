@@ -1,4 +1,16 @@
 To-Do Type,Should Display If Has Tag:,To-Do,Can't Display If Has Tag:,Script
+Leaders,Type: Leader,"Leaders: Mapped, awaiting Contacted",L1: Contacted,L1: Contacted
+Leaders,L1: Contacted,"L1: Contacted, awaiting Connected",L2: Connected,"L2: Connected, L1x: Delayer, X: Referred Out, L1x: No Email"
+,,"L1: Contacted, awaiting Connected",L1x: Delayer,
+,,"L1: Contacted, awaiting Connected",X: Referred Out,
+,,"L1: Contacted, awaiting Connected",L1x: No Email,
+Leaders,L1x: No Email,"L1x: No Email, awaiting Connected",L2: Connected,"L2: Connected, X: Referred Out, L1x: Delayer"
+,,"L1x: No Email, awaiting Connected",X: Referred Out,
+,,"L1x: No Email, awaiting Connected",L1x: Delayer,
+Leaders,L1x: Delayer,"L1x: Delayer, awaiting Connected",L2: Connected,"L2: Connected, X: Referred Out"
+,,,X: Referred Out,
+Leaders,L2: Connected,"L2: Connected, awaiting Call Scheduled",L3: Call Scheduled,L3: Call Scheduled; Send Pre-Call Email
+Leaders,L3: Call Scheduled,"L3: Call Scheduled, awaiting Call Held",L4: Call Held,L4: Call Held
 Leaders,L4: Call Held,"L4: Call Held, tag with Type: Leader Partner",Type: Leader Partner,Tag Type: Leader Partner
 Leaders,Type: Leader Partner,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants Feed,"Ask: Wants Feed, Ask: Wants 50 Reasons; Ask: Wants Follow Up"
 ,,"Tag with Asks: Feed, 50 Reasons, Follow Up",Ask: Wants 50 Reasons Post,
