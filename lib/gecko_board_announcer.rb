@@ -114,10 +114,12 @@ class GeckoBoardAnnouncer
     end
     dashboard.pie("Todays Posts by Category", posts)
 
-    reply_pctg = 100 * (Repliable.all.select { |r| r.replies.any? }.count / Repliable.count)
+    all_posts = Post.all + Announcement.all + GroupPost.all + Event.all
+
+    reply_pctg = 100 * (all_posts.select { |r| r.replies.any? }.count / all_posts.count)
     dashboard.number("Reply Percent", reply_pctg) # TODO: Fix this number to include privatemessages
 
-    items = Post.all + Announcement.all + GroupPost.all + Event.all
+    items = all_posts
     total = items.count
     posts_per_network = total / items.map(&:community).uniq.count
     dashboard.number("Posts per Network", posts_per_network)
