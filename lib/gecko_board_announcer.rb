@@ -12,6 +12,14 @@ class GeckoBoardAnnouncer
     HarvardNeighbors
   ]
 
+  def self.average_size(communities)
+    (communities.map { |c| c.users.count }.inject{ |sum, el| sum + el }.to_f / communities.size).round(2)
+  end
+
+  def self.average_penetration(communities)
+    (communities.map(&:penetration_percentage).inject{ |sum, el| sum + el }.to_f / communities.size).round(2)
+  end
+
   def self.perform
     tz = "Eastern Time (US & Canada)"
     dashboard = Leftronic.new(ENV['LEFTRONIC_API_KEY'] || '')
@@ -41,10 +49,19 @@ class GeckoBoardAnnouncer
 
     # Do the network sizes
 
-    network_sizes << ["1m"]
-    network_sizes << ["4m"]
-    network_sizes << ["11m"]
-    network_sizes << ["TOTAL"]
+    first_bucket = Community.all.select do |c|
+      c.launch_date >= Date.today - 1.month
+    end
+    second_bucket = Community.all.select do |c|
+      c.launch_date >= Date.today - 4.months and c.launch_date < Date.today - 1.month
+    end
+    third_bucket = Community.all.select do |c|
+      c.launch_date >= Date.today - 11.months and c.launch_date < Date.today - 4.month
+    end
+    network_sizes << ["1m", first_bucket.count, average_size(first_bucket), average_penetration(first_bucket)]
+    network_sizes << ["4m", second_bucket.count, average_size(second_bucket), average_penetration(second_bucket)]
+    network_sizes << ["11m", third_bucket.count, average_size(third_bucket), average_penetration(third_bucket)]
+    network_sizes << ["TOTAL", Community.all.count, average_size(Community.all), average_penetration(Community.all)]
 
     dashboard.table("Community Sizes", network_sizes)
 
