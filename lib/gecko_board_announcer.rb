@@ -41,18 +41,32 @@ class GeckoBoardAnnouncer
 
     # Do the network sizes
 
-    # <= 1m
-    # 1m < community <= 4m
-    # 4m < community <= 11m
-    # TOTAL
+    network_sizes << ["1m"]
+    network_sizes << ["4m"]
+    network_sizes << ["11m"]
+    network_sizes << ["TOTAL"]
 
     dashboard.table("Community Sizes", network_sizes)
 
     # Break down growth by organic vs not organic
     growth_breakdown = [["", "%", "# of users"]]
     # Organic growth
+    growth_breakdown << ["Organic Growth", "", ""]
     # Launch growth
+    growth_breakdown << ["Launch Growth", "", ""]
+
     dashboard.table("Growth Breakdown", growth_breakdown)
+
+    # Post distribution
+    post_distribution = [["", "#", "Reply #", "PM #"]]
+    post_distribution << ["Questions"]
+    post_distribution << ["Marketplace"]
+    post_distribution << ["Events"]
+    post_distribution << ["Town Discussions"]
+    post_distribution << ["Announcements"]
+    post_distribution << ["Private Messages"]
+
+    dashboard.table("Post Breakdown", post_distribution)
 
     growths = growths.sort_by do |v|
       v[1]
