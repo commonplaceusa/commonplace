@@ -284,6 +284,7 @@ GEM
       multi_json (~> 1.0)
       multi_xml
     i18n (0.6.0)
+    jamster-statsd (0.1.0)
     jar_wrapper (0.1.2)
       jeweler
       jeweler
@@ -627,6 +628,7 @@ DEPENDENCIES
   resque-exceptional
   resque-job-stats!
   resque-scheduler
+  resque-statsd!
   resque_spec
   rest-client (>= 1.6.1)
   rmagick

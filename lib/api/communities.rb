@@ -130,7 +130,7 @@ class API
           when "flag"
             @resident=true
 
-            residents = find_community.residents.all
+            residents = find_community.residents.all.reject { |x| x.tags.nil? || x.tags.count == 0 }
             if haveornot == "yes"
               residents.reject! { |x| !x.tags.include?(@tag['tag']) }.map { |x| x.id }
             else
