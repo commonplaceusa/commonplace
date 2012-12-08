@@ -91,9 +91,13 @@ class Resident < ActiveRecord::Base
         tags |= Array("Subscriber: " + f.name)
       end
 
-      u.feed_owners.each do |o|
-        tags |= Array("Member: " + o.feed.name) if !o.feed.nil?
+=begin
+      if !u.feed_owners.nil?
+        u.feed_owners.each do |o|
+          tags |= Array("Member: " + o.feed.name) if !o.feed.nil?
+        end
       end
+=end
     end
 
     tags

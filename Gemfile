@@ -57,7 +57,7 @@ gem 'resque-scheduler' # we use this to queue jobs at specific times
 gem 'resque-cleaner'
 gem 'resque-job-stats', :git => "https://github.com/alanpeabody/resque-job-stats.git"
 gem 'hirefireapp' # auto-scale web and worker processes
-# gem "resque-statsd", :git => "https://github.com/cloudability/resque-statsd.git"
+gem "resque-statsd", :git => "https://github.com/CloudabilityArchive/resque-statsd.git"
 
 # Mail
 gem 'mail' # Used for mail
@@ -137,7 +137,6 @@ group :development, :test, :remote_worker do
   gem 'therubyracer' # because something was yelling at us for not having a javascript runtime
   gem 'cucumber'
   gem 'simplecov', :require => false
-  gem 'cucumber-rails'
   gem 'selenium'
   gem 'trollop'
   #gem 'capybara-webkit'
@@ -166,6 +165,7 @@ group :test do
   gem 'launchy' # we use launchy to launch a browser during integration testing
   gem 'database_cleaner' # we use database_cleaner to clean the database between tests
   gem 'jasmine' # we use jasmine for javascript tests
+  gem 'cucumber-rails'
 end
 
 gem 'rb-readline'

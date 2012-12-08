@@ -398,7 +398,7 @@ class Community < ActiveRecord::Base
 
   def user_charts
     charts = {}
-    residents = self.residents.all.reject { |x| x.tags.nil? }
+    residents = self.residents.all.reject { |x| x.tags.nil? || x.tags.count == 0 }
     headers = ["Type", "#", "Conversion Rate"]
 
     def percent(n, d)
@@ -414,7 +414,7 @@ class Community < ActiveRecord::Base
     end
 
     # Leaders Metrics
-    leaders = residents.reject { |x| !x.tags.include?("Type: Civic Leader") }
+    leaders = residents.reject { |x| !x.tags.include?("Type: Leader") }
 
     # Recruiting Leaders
     r_leaders = []
