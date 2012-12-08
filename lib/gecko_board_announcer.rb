@@ -58,10 +58,10 @@ class GeckoBoardAnnouncer
     third_bucket = Community.all.select do |c|
       c.launch_date >= Date.today - 11.months and c.launch_date < Date.today - 4.month
     end
-    network_sizes << ["1m", first_bucket.count, average_size(first_bucket), average_penetration(first_bucket)]
-    network_sizes << ["4m", second_bucket.count, average_size(second_bucket), average_penetration(second_bucket)]
-    network_sizes << ["11m", third_bucket.count, average_size(third_bucket), average_penetration(third_bucket)]
-    network_sizes << ["TOTAL", Community.all.count, average_size(Community.all), average_penetration(Community.all)]
+    # network_sizes << ["1m", first_bucket.count, average_size(first_bucket), average_penetration(first_bucket)]
+    # network_sizes << ["4m", second_bucket.count, average_size(second_bucket), average_penetration(second_bucket)]
+    # network_sizes << ["11m", third_bucket.count, average_size(third_bucket), average_penetration(third_bucket)]
+    # network_sizes << ["TOTAL", Community.all.count, average_size(Community.all), average_penetration(Community.all)]
 
     dashboard.table("Community Sizes", network_sizes)
 
@@ -69,22 +69,34 @@ class GeckoBoardAnnouncer
 
     # Break down growth by organic vs not organic
     growth_breakdown = [["", "%", "# of users"]]
+
+    launch_communities = Community.all.select do |c|
+      c.launch_date >= Date.today - 2.months
+    end
+    organic_communities = Community.all - launch_communities
+
     # Organic growth
-    growth_breakdown << ["Organic Growth", "", ""]
+    growth_breakdown << ["Organic Growth", "", organic_communities.map { |c| c.users.count }.inject(:+).to_s]
     # Launch growth
-    growth_breakdown << ["Launch Growth", "", ""]
+    growth_breakdown << ["Launch Growth", "", launch_communities.map { |c| c.users.count }.inject(:+).to_s]
 
     dashboard.table("Growth Breakdown", growth_breakdown)
 
     puts "Computing post distribution..."
     # Post distribution
     post_distribution = [["", "#", "Reply #", "PM #"]]
-    post_distribution << ["Questions"]
-    post_distribution << ["Marketplace"]
-    post_distribution << ["Events"]
-    post_distribution << ["Town Discussions"]
-    post_distribution << ["Announcements"]
-    post_distribution << ["Private Messages"]
+    posts = Post.where(subject: "help")
+    post_distribution << ["Questions", posts.count, posts.map(&:replies).flatten.count]
+    posts = Post.where(subject: "offers")
+    post_distribution << ["Marketplace", posts.count, posts.map(&:replies).flatten.count]
+    posts = Event.all
+    post_distribution << ["Events", posts.count, posts.map(&:replies).flatten.count]
+    posts = Post.where(subject: "neighborhood")
+    post_distribution << ["Town Discussions", posts.count, posts.map(&:replies).flatten.count]
+    posts = Announcement.all
+    post_distribution << ["Announcements", posts.count, posts.map(&:replies).flatten.count]
+    posts = Message.all
+    post_distribution << ["Private Messages", posts.count, posts.map(&:replies).flatten.count]
 
     dashboard.table("Post Breakdown", post_distribution)
 
@@ -104,21 +116,21 @@ class GeckoBoardAnnouncer
     dashboard.number("Overall Weekly Growth Rate", 100 * growth_rates.inject{ |sum, el| sum + el }.to_f / growth_rates.size.to_f)
 
     puts "Getting email values..."
-    dashboard.number("Daily Bulletins Sent Today", DailyStatistic.value("daily_bulletins_sent") || 0)
-    dashboard.number("Daily Bulletins Opened Today", DailyStatistic.value("daily_bulletins_opened") || 0)
-    # dashboard.number("Daily Bulletin Open Rate Today", DailyStatistic.value("daily_bulletins_opened").to_f / DailyStatistic.value("daily_bulletins_sent").to_f)
-    dashboard.number("Single Post Emails Sent Today", DailyStatistic.value("single_posts_sent") || 0)
-    dashboard.number("Single Post Emails Opened Today", DailyStatistic.value("single_posts_opened") || 0)
-    # dashboard.number("Single Post Email Open Rate Today", DailyStatistic.value("single_posts_opened").to_f / DailyStatistic.value("single_posts_sent").to_f)
-    # emails = []
-    # Resque.redis.keys("statistics:daily:*_sent").each do |key|
-      # email_tag = key.gsub("statistics:daily:", "").gsub("_sent", "")
-      # emails << {
-        # email_tag => Resque.redis.get(key).to_i
-      # }
-    # end
-    # dashboard.pie("Todays Emails by Tag", emails)
-    #
+    # dashboard.number("Daily Bulletins Sent Today", DailyStatistic.value("daily_bulletins_sent") || 0)
+    # dashboard.number("Daily Bulletins Opened Today", DailyStatistic.value("daily_bulletins_opened") || 0)
+    # # dashboard.number("Daily Bulletin Open Rate Today", DailyStatistic.value("daily_bulletins_opened").to_f / DailyStatistic.value("daily_bulletins_sent").to_f)
+    # dashboard.number("Single Post Emails Sent Today", DailyStatistic.value("single_posts_sent") || 0)
+    # dashboard.number("Single Post Emails Opened Today", DailyStatistic.value("single_posts_opened") || 0)
+    # # dashboard.number("Single Post Email Open Rate Today", DailyStatistic.value("single_posts_opened").to_f / DailyStatistic.value("single_posts_sent").to_f)
+    # # emails = []
+    # # Resque.redis.keys("statistics:daily:*_sent").each do |key|
+      # # email_tag = key.gsub("statistics:daily:", "").gsub("_sent", "")
+      # # emails << {
+        # # email_tag => Resque.redis.get(key).to_i
+      # # }
+    # # end
+    # # dashboard.pie("Todays Emails by Tag", emails)
+    # #
     postings = {}
     [Post, Announcement, GroupPost, Event].each do |klass|
       key = (klass.first.respond_to? :category) ? Proc.new { |obj| obj.category } : Proc.new { |obj| obj.class.name }
