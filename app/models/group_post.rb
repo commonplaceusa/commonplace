@@ -36,7 +36,7 @@ class GroupPost < ActiveRecord::Base
   end
 
   def community
-    self.user.community
+    self.user.try(:community)
   end
 
   def between?(start_date, end_date)
