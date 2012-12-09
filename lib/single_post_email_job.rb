@@ -7,8 +7,9 @@ class SinglePostEmailJob
     start_date = now.ago(5*60*60).to_s(:db)  # go back 5 hours
 
     Community.all.each do |community|
-      Exceptional.rescue do
+      begin
         Resque.enqueue(CommunitySinglePostEmailJob, community.id, start_date, end_date)
+      rescue
       end
     end
   end

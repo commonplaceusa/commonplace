@@ -388,8 +388,6 @@ GEM
       vegas (~> 0.1.2)
     resque-cleaner (0.2.7)
       resque (~> 1.0)
-    resque-exceptional (0.1.0)
-      resque (>= 1.8.0)
     resque-scheduler (1.9.9)
       redis (>= 2.0.1)
       resque (>= 1.8.0)
@@ -569,7 +567,6 @@ DEPENDENCIES
   require_all (~> 1.2.1)
   resque (~> 1.19.0)
   resque-cleaner
-  resque-exceptional
   resque-scheduler
   resque_spec
   rest-client (>= 1.6.1)
