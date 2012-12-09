@@ -1,4 +1,4 @@
 selenium
 autotest
 spec
-test
+test/fixture
