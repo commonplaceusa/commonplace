@@ -25,11 +25,10 @@ gem 'glebm-geokit', :require => 'geokit' # use this to find latlngs from address
 # MongoDB
 gem 'bson_ext'
 gem 'mongo_mapper' # used to represent site visits
-gem 'embedded-mongo', :git => "https://github.com/gdb/embedded-mongo.git"
 
 # Deployment
 gem 'thin' # lighter than mongrel, faster than webrick
-gem 'unicorn' # Magical unicorns are going to help with our concurrency issues
+# gem 'unicorn' # Magical unicorns are going to help with our concurrency issues
 
 # Authentication
 gem 'devise' # used for authentication
@@ -55,9 +54,6 @@ gem 'resque', "~> 1.19.0" # use this to queue worker processes
 gem 'resque-exceptional' # we use this to send notify of exceptions with worker processes
 gem 'resque-scheduler' # we use this to queue jobs at specific times
 gem 'resque-cleaner'
-gem 'resque-job-stats', :git => "https://github.com/alanpeabody/resque-job-stats.git"
-gem 'hirefireapp' # auto-scale web and worker processes
-gem "resque-statsd", :git => "https://github.com/CloudabilityArchive/resque-statsd.git"
 
 # Mail
 gem 'mail' # Used for mail
@@ -72,8 +68,6 @@ gem 'sass' # used for stylesheets
 
 # Admin
 gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git'
-gem 'googlecharts' # used for admin/overview
-gem 'garb' # used to access the Google Analytics API
 gem 'rest-client', '>=1.6.1'
 gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref => "a090bf1d49004f501c9164d5dcd51761b48803e4"
 
@@ -81,25 +75,17 @@ gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref
 gem 'newrelic_rpm'
 
 # Monitoring
-gem 'exceptional' # we use this to notify on exceptions
 gem 'airbrake'
 gem 'guardrail_notifier' # catch validation errors
-
-# Features
-gem 'rollout' # we use this to control features
 
 # Contacts
 gem 'hpricot'
 gem 'turing-contacts', :git => "https://github.com/turingstudio/contacts.git", :require => 'contacts'
 
-# Data Export
-gem 'simple_xlsx_writer', :require => false
-
 # Misc
 gem 'json', "~> 1.6.0" # isn't json built-in?
 gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku' # access heroku api
-gem 'heroku_san', :git => "https://github.com/Jberlinsky/heroku_san.git" # some nice additions to the Heroku gem
 gem 'rack-timeout' # Timeout requests that take too long
 gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 
@@ -115,14 +101,11 @@ end
 
 group :development do
   gem 'taps', :git => 'https://github.com/dabio/taps.git'
-  # gem 'jammit'
+  gem 'heroku_san', :git => "https://github.com/Jberlinsky/heroku_san.git" # some nice additions to the Heroku gem
 end
 
 group :development, :test, :remote_worker do
-  gem 'guard-jslint-on-rails'
-  gem 'guard-rails-assets'
-  gem 'guard-rspec'
-  gem 'guard-sass'
+  gem 'pry'
   gem 'colored'
   gem 'deadweight', :require => 'deadweight/hijack/rails'
 
@@ -141,6 +124,9 @@ group :development, :test, :remote_worker do
   gem 'trollop'
   #gem 'capybara-webkit'
   #gem 'progress_bar'
+  # Data Export
+  gem 'simple_xlsx_writer', :require => false
+
 end
 
 group :linux do
@@ -171,4 +157,3 @@ end
 gem 'rb-readline'
 gem 'acts-as-taggable-on', '~> 2.3.1'
 gem 'amatch'
-gem 'pry'

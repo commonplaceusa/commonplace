@@ -1,6 +1,6 @@
 require 'resque'
 require 'resque_scheduler'
-require 'resque-job-stats/server'
+# require 'resque-job-stats/server'
 
 uri = if Rails.env.development?
         URI.parse("localhost:6379")

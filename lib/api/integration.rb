@@ -58,7 +58,7 @@ class API
     end
 
     # When an exception is triggered, record it in graphite
-    post "/exceptional/error" do
+    post "/airbrake/error" do
       200
     end
 

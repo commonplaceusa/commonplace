@@ -4,7 +4,6 @@ require ::File.expand_path('../config/environment',  __FILE__)
 use Rack::Deflater
 require 'resque/server'
 require 'resque-cleaner'
-require 'exceptional'
 
 app = Rack::Builder.new do 
 

@@ -67,21 +67,6 @@ script
 script
   end
 
-  def include_exceptional
-    key = Rails.env.production? ? '0556a141945715c3deb50a0288ec3bea5417f6bf' : 'staging/testing key'
-    raw <<script
-<script type='text/javascript' src="https://exceptional-js.heroku.com/exceptional.js"></script>
-<script type='text/javascript'>
-//<![CDATA[
-if(window['Exceptional'] !== undefined){
-  Exceptional.setHost('exceptional-api.heroku.com');
-  Exceptional.setKey('#{key}');
-}
-//]]>
-</script>
-script
-  end
-
   def include_commonplace(title = '')
     raw <<script
 <script type='text/javascript'>

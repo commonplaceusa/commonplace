@@ -1,6 +1,4 @@
 <% if  Rails.env.production? %>
-<script type='text/javascript' src="https://exceptional-js.heroku.com/exceptional.js"></script>
-
 <script type="text/javascript">
   var _kmq = _kmq || [];
   var _kmk = _kmk || '<%= $KissmetricsAPIToken %>';
@@ -34,11 +32,6 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-if(window['Exceptional'] !== undefined){
-  Exceptional.setHost('exceptional-api.heroku.com');
-  Exceptional.setKey('#{key}');
-}
 </script>
 
 <% end %>

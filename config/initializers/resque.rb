@@ -1,5 +1,4 @@
 require 'resque'
-require 'resque-exceptional'
 
 require 'resque/failure/multiple'
 require 'resque/failure/redis'
