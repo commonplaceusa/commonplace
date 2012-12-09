@@ -6,10 +6,11 @@ class SafetyAnnouncementJob
   def self.perform
 
     Community.all.each do |community|
-      Exceptional.rescue do
+      begin
         if @community_ids.include?(community.id)
           Resque.enqueue(CommunitySafetyAnnouncementJob, community.id)
         end
+      rescue
       end
     end
   end

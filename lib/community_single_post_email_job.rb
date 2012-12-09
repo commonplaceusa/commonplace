@@ -62,8 +62,9 @@ class CommunitySinglePostEmailJob
     end
 
     community.users.receives_posts_live_limited.each do |user|
-      Exceptional.rescue do
+      begin
         kickoff.deliver_single_post_email(user.id, posts.sample)
+      rescue
       end
     end
   end
