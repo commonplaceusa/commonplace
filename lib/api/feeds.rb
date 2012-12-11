@@ -6,7 +6,7 @@ class API
       # Finds the feed by params[:id] or halts with 404
       def find_feed
         @feed ||= case params[:id]
-                  when /^\d+/
+                  when /^\d+$/
                     Feed.find_by_id(params[:id])
                   else
                     Feed.find_by_slug(params[:id])
