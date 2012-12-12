@@ -86,16 +86,6 @@ class Resident < ActiveRecord::Base
 
       r = u.referral_source
       tags << "Referral: " + r if !r.nil?
-
-      u.feeds.each do |f|
-        tags |= Array("Subscriber: " + f.name)
-      end
-
-      if !u.feed_owners.nil?
-        u.feed_owners.each do |o|
-          tags |= Array("Member: " + o.feed.name) if !o.feed.nil?
-        end
-      end
     end
 
     tags
