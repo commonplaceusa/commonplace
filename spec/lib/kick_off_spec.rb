@@ -17,7 +17,7 @@ describe KickOff do
     end
 
     it "queues a PostNotification for users in the neighborhood who receive posts live" do
-      PostNotification.should have_queue_size_of(post.neighborhood.users.receives_posts_live.count - 1)
+      PostNotification.should have_queue_size_of(post.neighborhood.users.receives_posts_live_unlimited.count - 1)
     end
 
     it "doesn't queue a PostNotification for the poster" do
@@ -141,14 +141,14 @@ describe KickOff do
   describe "#deliver_post_to_community" do
     let(:post_neighborhood) {
       Neighborhood.new.tap do |n|
-        stub(n).users.stub!.receives_posts_live {
+        stub(n).users.stub!.receives_posts_live_unlimited {
           (6..10).map {|id| User.new {|u| u.id = id } }
         }
       end
     }
     let(:other_neighborhood) {
       Neighborhood.new.tap do |n|
-        stub(n).users.stub!.receives_posts_live {
+        stub(n).users.stub!.receives_posts_live_unlimited {
           (1..5).map {|id| User.new {|u| u.id = id } }
         }
       end
