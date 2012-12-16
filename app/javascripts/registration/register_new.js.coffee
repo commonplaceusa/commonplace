@@ -6,6 +6,10 @@ CommonPlace.registration.NewUserView = CommonPlace.registration.RegistrationModa
     "click .next-button": "submit"
     "click .facebook": "facebook"
 
+  beforeRender: ->
+    if @community_slug() == 'HarvardNeighbors'
+      @template = 'registration.harvard_new'
+
   afterRender: ->
     unless @current
       @slideIn @el

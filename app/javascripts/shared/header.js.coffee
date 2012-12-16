@@ -1,6 +1,11 @@
 CommonPlace.shared.HeaderView = CommonPlace.View.extend(
   template: "shared.new_header.header-view"
   id: "header"
+
+  beforeRender: ->
+    if @community_slug() == 'HarvardNeighbors'
+      @template = 'shared.new_header.harvard-header-view'
+
   afterRender: ->
     nav = undefined
     if CommonPlace.account.isAuth()

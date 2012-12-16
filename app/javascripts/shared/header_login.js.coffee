@@ -8,6 +8,10 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
     "click button[name=signin]": "login"
     "submit form": "login"
 
+  beforeRender: ->
+    if @community_slug() == 'HarvardNeighbors'
+      @template = 'shared.new_header.harvard-header-login'
+
   afterRender: ->
     @$("#sign_in").hide()
     @$("#choose_town").hide()
