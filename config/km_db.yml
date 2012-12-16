@@ -1,5 +1,5 @@
-adapter: mysql2
-host: <%= ENV['KISSMETRICS_MYSQL_HOST'] %>
-database: <%= ENV['KISSMETRICS_MYSQL_DATABASE'] %>
-username: <%= ENV['KISSMETRICS_MYSQL_USER'] %>
-password: <%= ENV['KISSMETRICS_MYSQL_PASSWORD'] %>
+adapter: postgresql
+host: <%= ENV['KISSMETRICS_POSTGRESQL_HOST'] %>
+database: <%= ENV['KISSMETRICS_POSTGRESQL_DATABASE'] %>
+username: <%= ENV['KISSMETRICS_POSTGRESQL_USER'] %>
+password: <%= ENV['KISSMETRICS_POSTGRESQL_PASSWORD'] %>

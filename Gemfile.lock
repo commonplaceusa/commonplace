@@ -10,8 +10,8 @@ GIT
 
 GIT
   remote: https://github.com/Jberlinsky/km-db.git
-  revision: deb999f1a06a71afb5b4a381bc81f34cc27dcc0b
-  ref: deb999f1a06a71afb5b4a381bc81f34cc27dcc0b
+  revision: 1a8acbeaed7817bde8fcf5903de1b782a80a00b0
+  ref: 1a8acbeaed7817bde8fcf5903de1b782a80a00b0
   specs:
     km-db (0.2)
       activerecord
@@ -324,7 +324,7 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
-    parallel (0.5.19)
+    parallel (0.6.1)
     permanent_records (2.1.2)
       activerecord
     pg (0.13.2)
@@ -335,7 +335,7 @@ GEM
     premailer (1.7.3)
       css_parser (>= 1.1.9)
       htmlentities (>= 4.0.0)
-    progressbar (0.11.0)
+    progressbar (0.12.0)
     pry (0.9.9.6)
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)

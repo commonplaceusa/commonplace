@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd ~/commonplace/ && git fetch && git checkout origin/master
+
+script/remote_server/pull_environment
+source ./.env
+
+bundle exec rails runner KissmetricsDumpDownload.perform
+bundle exec km_db_import km_dump
