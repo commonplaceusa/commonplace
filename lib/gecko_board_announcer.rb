@@ -145,6 +145,10 @@ class GeckoBoardAnnouncer
       dashboard.number("Monthly Active Users", mau)
       dashboard.number("Daily Active Users", dau)
 
+      puts "WAU: #{wau}"
+      puts "DAU: #{dau}"
+      puts "MAU: #{mau}"
+
       dashboard.number("WAU", wau)
       dashboard.number("MAU", mau)
       dashboard.number("Daily Active", dau)
