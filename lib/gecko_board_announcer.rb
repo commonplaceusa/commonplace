@@ -17,7 +17,8 @@ class GeckoBoardAnnouncer
   end
 
   def self.average_penetration(communities)
-    (communities.map(&:penetration_percentage).inject{ |sum, el| sum + el }.to_f / communities.size).round(2)
+    penetrations = communities.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.penetration_percentage(false) }.reject { |v| v < 0 }
+    (100 * (penetrations.inject{ |sum, el| sum + el }.to_f / communities.size)).round(3)
   end
 
   def self.perform
@@ -27,9 +28,9 @@ class GeckoBoardAnnouncer
     dashboard.number("Users on Network", User.count)
     growths = []
     populations = []
-    growth_headers = ["Community", "Users", "Wkly Growth", "Penetration", "Posts Per Day"]
+    growth_headers = ["Community", "Users", "Wkly Growth", "Penetration", "Posts/Day"]
     network_sizes = []
-    network_size_headers = ["Age", "# of Networks", "Avg Size", "Avg Penetration"]
+    network_size_headers = ["Age", "# of Networks", "Avg Size", "Avg Pen"]
     network_sizes << network_size_headers
     Community.find_each do |community|
       next if EXCLUDED_COMMUNITIES.include? community.slug
@@ -58,10 +59,10 @@ class GeckoBoardAnnouncer
     third_bucket = Community.all.select do |c|
       c.launch_date >= Date.today - 11.months and c.launch_date < Date.today - 4.month
     end
-    # network_sizes << ["1m", first_bucket.count, average_size(first_bucket), average_penetration(first_bucket)]
-    # network_sizes << ["4m", second_bucket.count, average_size(second_bucket), average_penetration(second_bucket)]
-    # network_sizes << ["11m", third_bucket.count, average_size(third_bucket), average_penetration(third_bucket)]
-    # network_sizes << ["TOTAL", Community.all.count, average_size(Community.all), average_penetration(Community.all)]
+    network_sizes << ["1m", first_bucket.count, average_size(first_bucket), average_penetration(first_bucket)].map(&:to_s)
+    network_sizes << ["4m", second_bucket.count, average_size(second_bucket), average_penetration(second_bucket)].map(&:to_s)
+    network_sizes << ["11m", third_bucket.count, average_size(third_bucket), average_penetration(third_bucket)].map(&:to_s)
+    network_sizes << ["TOTAL", Community.all.count, average_size(Community.all), average_penetration(Community.all)].map(&:to_s)
 
     dashboard.table("Community Sizes", network_sizes)
 
@@ -70,33 +71,38 @@ class GeckoBoardAnnouncer
     # Break down growth by organic vs not organic
     growth_breakdown = [["", "%", "# of users"]]
 
-    launch_communities = Community.all.select do |c|
-      c.launch_date >= Date.today - 2.months
+    all_users = User.all
+    launch_users = all_users.select do |u|
+      u.created_at.to_date <= (u.community.launch_date + 3.months).to_date
     end
-    organic_communities = Community.all - launch_communities
+    organic_users = all_users - launch_users
 
     # Organic growth
-    growth_breakdown << ["Organic Growth", "", organic_communities.map { |c| c.users.count }.inject(:+).to_s]
+    # growth_breakdown << ["Organic Growth", "", organic_users.count.to_s]
     # Launch growth
-    growth_breakdown << ["Launch Growth", "", launch_communities.map { |c| c.users.count }.inject(:+).to_s]
+    # growth_breakdown << ["Launch Growth (<= 3m)", "", launch_users.count.to_s]
 
-    dashboard.table("Growth Breakdown", growth_breakdown)
+    # dashboard.table("Growth Breakdown", growth_breakdown)
+    dashboard.pie("Growth Breakdown Pie", [
+      { "Organic" => organic_users.count },
+      { "Paid" => launch_users.count }
+    ])
 
     puts "Computing post distribution..."
     # Post distribution
-    post_distribution = [["", "#", "Reply #", "PM #"]]
-    posts = Post.where(subject: "help")
-    post_distribution << ["Questions", posts.count, posts.map(&:replies).flatten.count]
-    posts = Post.where(subject: "offers")
-    post_distribution << ["Marketplace", posts.count, posts.map(&:replies).flatten.count]
+    post_distribution = [["", "#", "Replies"]]
+    posts = Post.where(category: "help")
+    post_distribution << ["Questions", posts.count, posts.map(&:replies).flatten.count].map(&:to_s)
+    posts = Post.where(category: "offers")
+    post_distribution << ["Marketplaces", posts.count, posts.map(&:replies).flatten.count].map(&:to_s)
     posts = Event.all
-    post_distribution << ["Events", posts.count, posts.map(&:replies).flatten.count]
-    posts = Post.where(subject: "neighborhood")
-    post_distribution << ["Town Discussions", posts.count, posts.map(&:replies).flatten.count]
+    post_distribution << ["Events", posts.count, posts.map(&:replies).flatten.count].map(&:to_s)
+    posts = Post.where(category: "neighborhood")
+    post_distribution << ["Town Discussions", posts.count, posts.map(&:replies).flatten.count].map(&:to_s)
     posts = Announcement.all
-    post_distribution << ["Announcements", posts.count, posts.map(&:replies).flatten.count]
+    post_distribution << ["Announcements", posts.count, posts.map(&:replies).flatten.count].map(&:to_s)
     posts = Message.all
-    post_distribution << ["Private Messages", posts.count, posts.map(&:replies).flatten.count]
+    post_distribution << ["Private Messages", posts.count, posts.map(&:replies).flatten.count].map(&:to_s)
 
     dashboard.table("Post Breakdown", post_distribution)
 
@@ -108,8 +114,7 @@ class GeckoBoardAnnouncer
     dashboard.pie("Population by Community", populations)
 
     puts "Computing penetrations..."
-    penetrations = Community.all.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.penetration_percentage(false) }.reject { |v| v < 0 }
-    dashboard.number("Overall Penetration", 100 * penetrations.inject{ |sum, el| sum + el }.to_f / penetrations.size)
+    dashboard.number("Overall Penetration", average_penetration(Community.all))
 
     puts "Computing growth rates..."
     growth_rates = Community.all.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.growth_percentage(false) }.reject { |v| v.infinite? }
@@ -151,15 +156,15 @@ class GeckoBoardAnnouncer
     dashboard.pie("Todays Posts by Category", posts)
 
     puts "Computing reply percentages..."
-    # all_posts = Post.all + Announcement.all + GroupPost.all + Event.all
+    all_posts = Post.all + Announcement.all + GroupPost.all + Event.all
 
-    # reply_pctg = 100 * (all_posts.select { |r| r.replies.any? }.count / all_posts.count)
-    # dashboard.number("Reply Percent", reply_pctg) # TODO: Fix this number to include privatemessages
+    reply_pctg = 100 * (all_posts.select { |r| r.replies.any? }.count.to_f / all_posts.count.to_f).round(2)
+    dashboard.number("Reply Percent", reply_pctg) # TODO: Fix this number to include privatemessages
 
     puts "Computing posts per network..."
-    items = all_posts
+    items = Post.all #all_posts.uniq
     total = items.count
-    posts_per_network = total / items.map(&:community).uniq.count
+    posts_per_network = total / items.compact.map { |c| c.try(:community) }.uniq.compact.count
     dashboard.number("Posts per Network", posts_per_network)
 
     # dashboard.number("Active Workers", HerokuResque::WorkerScaler.count("worker"))
@@ -177,22 +182,24 @@ class GeckoBoardAnnouncer
     # raise "Starting MAU calculation"
 
     # This has to happen last, since it messes with ActiveRecord
-    $OriginalConnection = ActiveRecord::Base.connection
-    require 'kmdb'
-    wau = KMDB::Event.before(au_end).after(wau_start).named('Platform activity').map(&:user_id).uniq.count
-    mau = KMDB::Event.before(au_end).after(mau_start).named('Platform activity').map(&:user_id).uniq.count
-    dau = KMDB::Event.before(au_end).after(dau_start).named('Platform activity').map(&:user_id).uniq.count
-    dashboard.number("Weekly Active Users", wau)
-    dashboard.number("Monthly Active Users", mau)
-    dashboard.number("Daily Active Users", dau)
+    if Rails.env.production?
+      $OriginalConnection = ActiveRecord::Base.connection
+      require 'kmdb'
+      wau = KMDB::Event.before(au_end).after(wau_start).named('Platform activity').map(&:user_id).uniq.count
+      mau = KMDB::Event.before(au_end).after(mau_start).named('Platform activity').map(&:user_id).uniq.count
+      dau = KMDB::Event.before(au_end).after(dau_start).named('Platform activity').map(&:user_id).uniq.count
+      dashboard.number("Weekly Active Users", wau)
+      dashboard.number("Monthly Active Users", mau)
+      dashboard.number("Daily Active Users", dau)
 
-    dashboard.number("WAU", wau)
-    dashboard.number("MAU", mau)
-    dashboard.number("Daily Active", dau)
+      dashboard.number("WAU", wau)
+      dashboard.number("MAU", mau)
+      dashboard.number("Daily Active", dau)
+
+      ActiveRecord::Base.establish_connection
+    end
 
     puts "Done"
-
-    ActiveRecord::Base.establish_connection
 
     unless Rails.env.production?
       dashboard.text("Statistics Information", "Non-Authoritative Update", "The current update is not from production")
