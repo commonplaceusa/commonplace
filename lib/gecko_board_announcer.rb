@@ -18,7 +18,7 @@ class GeckoBoardAnnouncer
 
   def self.average_penetration(communities)
     penetrations = communities.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.penetration_percentage(false) }.reject { |v| v < 0 }
-    (100 * (penetrations.inject{ |sum, el| sum + el }.to_f / communities.size)).round(3)
+    (100 * (penetrations.inject{ |sum, el| sum + el }.to_f / communities.size)).round(2)
   end
 
   def self.perform
@@ -30,7 +30,8 @@ class GeckoBoardAnnouncer
     populations = []
     growth_headers = ["Community", "Users", "Wkly Growth", "Penetration", "Posts/Day"]
     network_sizes = []
-    network_size_headers = ["Age", "# of Networks", "Avg Size", "Avg Pen"]
+    network_size_headers = ["Age", "#", "Avg Size", "Avg Pen"]
+    action_frequencies = [["Action", "Daily %", "Weekly %", "Monthly %"]]
     network_sizes << network_size_headers
     Community.find_each do |community|
       next if EXCLUDED_COMMUNITIES.include? community.slug
@@ -49,38 +50,42 @@ class GeckoBoardAnnouncer
     end
 
     # Do the network sizes
-    # puts "Computing network sizes..."
-    # first_bucket = Community.all.select do |c|
-      # c.launch_date >= Date.today - 1.month
-    # end
-    # second_bucket = Community.all.select do |c|
-      # c.launch_date >= Date.today - 4.months and c.launch_date < Date.today - 1.month
-    # end
-    # third_bucket = Community.all.select do |c|
-      # c.launch_date >= Date.today - 11.months and c.launch_date < Date.today - 4.month
-    # end
-    # network_sizes << ["1m", first_bucket.count, average_size(first_bucket), average_penetration(first_bucket)].map(&:to_s)
-    # network_sizes << ["4m", second_bucket.count, average_size(second_bucket), average_penetration(second_bucket)].map(&:to_s)
-    # network_sizes << ["11m", third_bucket.count, average_size(third_bucket), average_penetration(third_bucket)].map(&:to_s)
-    # network_sizes << ["TOTAL", Community.all.count, average_size(Community.all), average_penetration(Community.all)].map(&:to_s)
+    puts "Computing network sizes..."
+    first_bucket = Community.all.select do |c|
+      c.launch_date >= Date.today - 1.month
+    end
+    second_bucket = Community.all.select do |c|
+      c.launch_date >= Date.today - 6.months and c.launch_date < Date.today - 1.month
+    end
+    third_bucket = Community.all.select do |c|
+      c.launch_date >= Date.today - 12.months and c.launch_date < Date.today - 6.month
+    end
+    fourth_bucket = Community.all.select do |c|
+      c.launch_date >= Date.today - 18.months and c.launch_date < Date.today - 12.month
+    end
+    network_sizes << ["1m", first_bucket.count, average_size(first_bucket), average_penetration(first_bucket)].map(&:to_s)
+    network_sizes << ["6m", second_bucket.count, average_size(second_bucket), average_penetration(second_bucket)].map(&:to_s)
+    network_sizes << ["12m", third_bucket.count, average_size(third_bucket), average_penetration(third_bucket)].map(&:to_s)
+    network_sizes << ["18+m", fourth_bucket.count, average_size(fourth_bucket), average_penetration(fourth_bucket)].map(&:to_s)
+    network_sizes << ["TOTAL", Community.all.count, average_size(Community.all), average_penetration(Community.all)].map(&:to_s)
 
-    # dashboard.table("Community Sizes", network_sizes)
+    dashboard.table("Community Sizes", network_sizes)
 
-    # puts "Computing organic and paid growth..."
+    puts "Computing organic and paid growth..."
 
-    # # Break down growth by organic vs not organic
-    # growth_breakdown = [["", "%", "# of users"]]
+    # Break down growth by organic vs not organic
+    growth_breakdown = [["", "%", "# of users"]]
 
-    # all_users = User.all
-    # launch_users = all_users.select do |u|
-      # u.created_at.to_date <= (u.community.launch_date + 3.months).to_date
-    # end
-    # organic_users = all_users - launch_users
+    all_users = User.all
+    launch_users = all_users.select do |u|
+      u.created_at.to_date <= (u.community.launch_date + 3.months).to_date
+    end
+    organic_users = all_users - launch_users
 
-    # dashboard.pie("Growth Breakdown Pie", [
-      # { "Organic" => organic_users.count },
-      # { "Paid" => launch_users.count }
-    # ])
+    dashboard.pie("Growth Breakdown Pie", [
+      { "Organic" => organic_users.count },
+      { "Paid" => launch_users.count }
+    ])
 
     # puts "Computing post distribution..."
     # # Post distribution
@@ -107,12 +112,12 @@ class GeckoBoardAnnouncer
     # dashboard.table("Growth by Community", growths)
     # dashboard.pie("Population by Community", populations)
 
-    # puts "Computing penetrations..."
-    # dashboard.number("Overall Penetration", average_penetration(Community.all))
+    puts "Computing penetrations..."
+    dashboard.number("Overall Penetration", average_penetration(Community.all).round(2))
 
-    # puts "Computing growth rates..."
-    # growth_rates = Community.all.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.growth_percentage(false) }.reject { |v| v.infinite? }
-    # dashboard.number("Overall Weekly Growth Rate", 100 * growth_rates.inject{ |sum, el| sum + el }.to_f / growth_rates.size.to_f)
+    puts "Computing growth rates..."
+    growth_rates = Community.all.reject { |c| EXCLUDED_COMMUNITIES.include? c.slug }.map { |c| c.growth_percentage(false) }.reject { |v| v.infinite? }
+    dashboard.number("Overall Weekly Growth Rate", (100 * growth_rates.inject{ |sum, el| sum + el }.to_f / growth_rates.size.to_f).round(2))
 
     # puts "Computing reply percentages..."
     # all_posts = Post.all + Announcement.all + GroupPost.all + Event.all
@@ -129,7 +134,7 @@ class GeckoBoardAnnouncer
     puts "Doing AUs..."
     wau_start = 1.week.ago - 2.days
     mau_start = 1.month.ago - 2.days
-    dau_start = 1.day.ago - 2.days
+    dau_start = 1.day.ago - 4.days
     au_end = wau_start + 1.week - 2.days
 
     # raise "Starting MAU calculation"
@@ -138,20 +143,59 @@ class GeckoBoardAnnouncer
     if Rails.env.production?
       $OriginalConnection = ActiveRecord::Base.connection
       require 'kmdb'
-      wau = KMDB::Event.before(au_end).after(wau_start).named('Platform activity').map(&:user_id).uniq.count
-      mau = KMDB::Event.before(au_end).after(mau_start).named('Platform activity').map(&:user_id).uniq.count
-      dau = KMDB::Event.before(au_end).after(dau_start).named('Platform activity').map(&:user_id).uniq.count
-      dashboard.number("Weekly Active Users", wau)
-      dashboard.number("Monthly Active Users", mau)
-      dashboard.number("Daily Active Users", dau)
+      wau = KMDB::Event.before(au_end).after(wau_start).named('platform activity').map(&:user_id).uniq.count
+      mau = KMDB::Event.before(au_end).after(mau_start).named('platform activity').map(&:user_id).uniq.count
+      dau = KMDB::Event.before(au_end).after(dau_start).named('platform activity').map(&:user_id).uniq.count
+      dashboard.number("Weekly Active Users", wau.to_s)
+      dashboard.number("Monthly Active Users", mau.to_s)
+      dashboard.number("Daily Active Users", dau.to_s)
 
       puts "WAU: #{wau}"
       puts "DAU: #{dau}"
       puts "MAU: #{mau}"
 
-      dashboard.number("WAU", wau)
-      dashboard.number("MAU", mau)
-      dashboard.number("Daily Active", dau)
+      # Make them percentages of the user base
+      wau = (wau.to_f / User.count).round(2)
+      dau = (dau.to_f / User.count).round(2)
+      mau = (mau.to_f / User.count).round(2)
+
+      dashboard.number("WAU", wau.to_s)
+      dashboard.number("MAU", mau.to_s)
+      dashboard.number("Daily Active", dau.to_s)
+
+      # Daily frequencies
+
+      # action_frequencies << ["Open Daily Bulletin",
+                             # (KMDB::Event.before(au_end).after(dau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             # (KMDB::Event.before(au_end).after(wau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             # (KMDB::Event.before(au_end).after(mau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+      action_frequencies << ["Open Daily Bulletin", "N/A", "N/A", "N/A"]
+      action_frequencies << ["Open Single Post", "N/A", "N/A", "N/A"]
+      action_frequencies << ["Visit Site",
+                             (KMDB::Event.before(au_end).after(dau_start).named('visited site').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(wau_start).named('visited site').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(mau_start).named('visited site').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+      # TODO: Check this one's name
+      action_frequencies << ["Reply",
+                             (KMDB::Event.before(au_end).after(dau_start).named('posted  reply').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(wau_start).named('posted  reply').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(mau_start).named('posted  reply').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+      action_frequencies << ["PM",
+                             (KMDB::Event.before(au_end).after(dau_start).named('posted  message').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(wau_start).named('posted  message').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(mau_start).named('posted  message').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+      action_frequencies << ["Post",
+                             (KMDB::Event.before(au_end).after(dau_start).named('posted  post').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(wau_start).named('posted  post').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(mau_start).named('posted  post').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+      action_frequencies << ["Add Data",
+                             (KMDB::Event.before(au_end).after(dau_start).named('posted content').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(wau_start).named('posted content').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                             (KMDB::Event.before(au_end).after(mau_start).named('posted content').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+      dashboard.table("Action Frequencies", action_frequencies)
+
+      puts "ACTION FREQUENCIES"
+      puts action_frequencies.inspect
 
       ActiveRecord::Base.establish_connection
     end
