@@ -163,9 +163,9 @@ class GeckoBoardAnnouncer
     puts "Doing as percentages..."
 
     # Make them percentages of the user base
-    wau = (wau.to_f / User.count).round(2)
-    dau = (dau.to_f / User.count).round(2)
-    mau = (mau.to_f / User.count).round(2)
+    wau = (100*wau.to_f / User.count).round(2)
+    dau = (100*dau.to_f / User.count).round(2)
+    mau = (100*mau.to_f / User.count).round(2)
 
     dashboard.number("WAU", wau.to_s)
     dashboard.number("MAU", mau.to_s)
@@ -176,32 +176,32 @@ class GeckoBoardAnnouncer
     # Daily frequencies
 
     # action_frequencies << ["Open Daily Bulletin",
-                           # (KMDB::Event.before(au_end).after(dau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           # (KMDB::Event.before(au_end).after(wau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           # (KMDB::Event.before(au_end).after(mau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+                           # (100*KMDB::Event.before(au_end).after(dau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           # (100*KMDB::Event.before(au_end).after(wau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           # (100*KMDB::Event.before(au_end).after(mau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
     action_frequencies << ["Open Daily Bulletin", "N/A", "N/A", "N/A"]
     action_frequencies << ["Open Single Post", "N/A", "N/A", "N/A"]
     action_frequencies << ["Visit Site",
-                           (KMDB::Event.before(au_end).after(dau_start).named('visited site').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(wau_start).named('visited site').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(mau_start).named('visited site').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+                           (100*KMDB::Event.before(au_end).after(dau_start).named('visited site').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(wau_start).named('visited site').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(mau_start).named('visited site').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
     # TODO: Check this one's name
     action_frequencies << ["Reply",
-                           (KMDB::Event.before(au_end).after(dau_start).named('posted  reply').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(wau_start).named('posted  reply').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(mau_start).named('posted  reply').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+                           (100*KMDB::Event.before(au_end).after(dau_start).named('posted  reply').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(wau_start).named('posted  reply').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(mau_start).named('posted  reply').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
     action_frequencies << ["PM",
-                           (KMDB::Event.before(au_end).after(dau_start).named('posted  message').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(wau_start).named('posted  message').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(mau_start).named('posted  message').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+                           (100*KMDB::Event.before(au_end).after(dau_start).named('posted  message').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(wau_start).named('posted  message').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(mau_start).named('posted  message').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
     action_frequencies << ["Post",
-                           (KMDB::Event.before(au_end).after(dau_start).named('posted  post').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(wau_start).named('posted  post').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(mau_start).named('posted  post').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+                           (100*KMDB::Event.before(au_end).after(dau_start).named('posted  post').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(wau_start).named('posted  post').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(mau_start).named('posted  post').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
     action_frequencies << ["Add Data",
-                           (KMDB::Event.before(au_end).after(dau_start).named('posted content').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(wau_start).named('posted content').map(&:user_id).uniq.count.to_f / User.count).round(2),
-                           (KMDB::Event.before(au_end).after(mau_start).named('posted content').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
+                           (100*KMDB::Event.before(au_end).after(dau_start).named('posted content').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(wau_start).named('posted content').map(&:user_id).uniq.count.to_f / User.count).round(2),
+                           (100*KMDB::Event.before(au_end).after(mau_start).named('posted content').map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
     dashboard.table("Action Frequencies", action_frequencies)
 
     puts "ACTION FREQUENCIES"
