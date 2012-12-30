@@ -142,17 +142,23 @@ class GeckoBoardAnnouncer
     puts "Starting MAU calculation"
     $OriginalConnection = ActiveRecord::Base.connection
     require 'kmdb'
+    t1 = Time.now
+
     puts "Connected to MySQL"
     wau = KMDB::Event.before(au_end).after(wau_start).named('platform activity').map(&:user_id).uniq.count
-    mau = KMDB::Event.before(au_end).after(mau_start).named('platform activity').map(&:user_id).uniq.count
-    dau = KMDB::Event.before(au_end).after(dau_start).named('platform activity').map(&:user_id).uniq.count
     dashboard.number("Weekly Active Users", wau.to_s)
+    puts "WAU: #{wau}"
+    puts "WAU took #{Time.now - t1} seconds"
+    mau = KMDB::Event.before(au_end).after(mau_start).named('platform activity').map(&:user_id).uniq.count
+    puts "MAU: #{mau}"
     dashboard.number("Monthly Active Users", mau.to_s)
+    dau = KMDB::Event.before(au_end).after(dau_start).named('platform activity').map(&:user_id).uniq.count
+    puts "DAU: #{dau}"
     dashboard.number("Daily Active Users", dau.to_s)
 
-    puts "WAU: #{wau}"
-    puts "DAU: #{dau}"
-    puts "MAU: #{mau}"
+    puts "Took #{Time.now - t1} seconds"
+
+    puts "Doing as percentages..."
 
     # Make them percentages of the user base
     wau = (wau.to_f / User.count).round(2)
