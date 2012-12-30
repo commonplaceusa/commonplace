@@ -133,7 +133,9 @@ class GeckoBoardAnnouncer
 
     puts "Doing AUs..."
     wau_start = 1.week.ago - 2.days
-    mau_start = 1.month.ago - 2.days
+    # mau_start = 1.month.ago - 2.days
+    # FIXME make this one month
+    mau_start = wau_start
     dau_start = 1.day.ago - 4.days
     au_end = wau_start + 1.week - 2.days
 
