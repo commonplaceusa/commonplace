@@ -198,9 +198,9 @@ class GeckoBoardAnnouncer
                            # (100*KMDB::Event.before(au_end).after(dau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2),
                            # (100*KMDB::Event.before(au_end).after(wau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2),
                            # (100*KMDB::Event.before(au_end).after(mau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
-    action_frequencies << ["Open Daily Bulletin", "N/A", "N/A", "N/A", "N/A"]
-    action_frequencies << ["Open Single Post", "N/A", "N/A", "N/A", "N/A"]
     event_map = {
+      "Open Daily Bulletin" => "opened daily_bulletin email",
+      "Open Single Post" => "opened single_post email",
       "Visit Site" => "visited site",
       "Reply" => "posted  reply",
       "PM" => "posted  message",
