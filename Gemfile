@@ -90,7 +90,7 @@ gem 'require_all', '~> 1.2.1' # require all ruby files in a directory
 
 # Analytics
 gem 'km'
-gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "f530c8b67223cde2e076c3516ef875cfed32c025"
+gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "1d6ecc6eb3007cb7b78f8352479f4f698660b270"
 gem 'mysql2'
 
 group :assets do

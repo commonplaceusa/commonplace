@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/commonplace/ && git fetch && git checkout origin/leftronic
+cd ~/commonplace/ && git fetch && git checkout origin/leftronic && bundle
 
 script/remote_server/pull_environment
 source ./.env
