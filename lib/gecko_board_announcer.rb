@@ -154,9 +154,11 @@ class GeckoBoardAnnouncer
     puts "Doing AUs..."
     au_end = 2.days.ago
     wau_start = au_end - 1.week
-    # FIXME make this one month
-    # mau_start = au_end - 1.month
-    mau_start = wau_start
+    if ENV['MONTHLY_IS_WEEKLY'] == 'true'
+      mau_start = wau_start
+    else
+      mau_start = au_end - 1.month
+    end
     dau_start = au_end - 1.day
 
     puts "Considering the week to start on #{wau_start.to_date} and end on #{au_end.to_date}"
