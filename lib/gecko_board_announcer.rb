@@ -131,7 +131,7 @@ class GeckoBoardAnnouncer
         }
         posts_map.each do |title, posts|
           posts_with_replies = posts.select { |p| p.replies.any? }
-          post_distribution << [title, posts.count, posts.map(&:replies).flatten.count, (100*posts_with_replies.count / posts.count).round(2)].map(&:to_s)
+          post_distribution << [title, posts.count, posts.map(&:replies).flatten.count, (100*posts_with_replies.count.to_f / posts.count.to_f).round(2)].map(&:to_s)
         end
         puts "POST BREAKDOWN"
         puts post_distribution.inspect
