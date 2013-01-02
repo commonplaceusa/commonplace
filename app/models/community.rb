@@ -813,7 +813,7 @@ class Community < ActiveRecord::Base
   end
 
   def growth_percentage(format = true, start = 1.week.ago, finish = DateTime.current)
-    value = (self.users.up_to(finish).count - self.users.up_to(start).count).to_f / (self.users.up_to(start).count || 1).to_f
+    value = (self.users.up_to(finish).count - self.users.up_to(start).count).to_f / (((self.users.up_to(start).count || 1) + (self.users.up_to(finish).count))/2).to_f
     if format
       return value * 100
     else

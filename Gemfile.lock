@@ -10,8 +10,8 @@ GIT
 
 GIT
   remote: https://github.com/Jberlinsky/km-db.git
-  revision: 1dbf2dbf60b34a2b6fa2c473368f4ee5b2eef8ae
-  ref: 1dbf2dbf60b34a2b6fa2c473368f4ee5b2eef8ae
+  revision: 1d6ecc6eb3007cb7b78f8352479f4f698660b270
+  ref: 1d6ecc6eb3007cb7b78f8352479f4f698660b270
   specs:
     km-db (0.2)
       activerecord

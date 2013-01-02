@@ -1,9 +1,8 @@
 #!/bin/bash
 
-cd ~/commonplace/ && git fetch && git checkout origin/master
+cd ~/commonplace/ && git fetch && git checkout origin/leftronic && bundle
 
 script/remote_server/pull_environment
 source ./.env
 
-bundle exec rails runner KissmetricsDumpDownload.perform
-bundle exec km_db_import km_dump
+RAILS_ENV=remote_worker bundle exec rails runner KissmetricsDumpDownload.perform && bundle exec km_db_import km_dump
