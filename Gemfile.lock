@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/CloudabilityArchive/resque-statsd.git
-  revision: a07359e81c11058045e2cb59c05f2a1d3389b386
-  specs:
-    resque-statsd (0.0.4)
-      jamster-statsd
-
-GIT
   remote: https://github.com/Jberlinsky/heroku_san.git
   revision: 3ad7d89733bc9aa82a514b9557d51f0486f0177f
   specs:
@@ -246,14 +239,12 @@ GEM
     heroku-api (0.2.6)
       excon (~> 0.14.0)
     hike (1.2.1)
-    hirefireapp (0.0.8)
     hpricot (0.8.6)
     htmlentities (4.3.1)
     httparty (0.8.3)
       multi_json (~> 1.0)
       multi_xml
     i18n (0.6.0)
-    jamster-statsd (0.1.0)
     jar_wrapper (0.1.2)
       jeweler
       jeweler
@@ -541,7 +532,6 @@ DEPENDENCIES
   haml (~> 3.1)
   heroku
   heroku_san!
-  hirefireapp
   hpricot
   jasmine
   json (~> 1.6.0)
@@ -578,7 +568,6 @@ DEPENDENCIES
   resque (~> 1.19.0)
   resque-cleaner
   resque-scheduler
-  resque-statsd!
   resque_spec
   rest-client (>= 1.6.1)
   rmagick
