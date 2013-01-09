@@ -14,6 +14,10 @@ class CommunityWire
     @community.events.upcoming.reorder("date ASC").limit(3)
   end
 
+  def transactions
+    @community.transactions.reorder("created_at DESC").limit(3)
+  end
+
   def neighborhood
     @community.posts.where(category: 'neighborhood').limit(3)
   end
@@ -58,6 +62,7 @@ class CommunityWire
     t.add :other
     t.add :past
     t.add :meetups
+    t.add :transactions
   end
   
 end

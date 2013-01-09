@@ -2,7 +2,6 @@
 <html>
   <head>
     <link href="/assets/art_project.css" rel="stylesheet" type="text/css">
-    <link href="//webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
     <link href="/assets/favicon.png" rel="icon" type="image/png">
   </head>
@@ -26,7 +25,7 @@
     <script type="text/javascript">
       $(function() {
       CommonPlace.account = new Account({});
-      var header = new HeaderView({ el: $("#header") });
+      var header = new CommonPlace.shared.HeaderView({ el: $("#header") });
       header.render();
         var project = new ArtProjectView({ communityExterior: <%= @community.exterior.as_api_response(:default).to_json %> });
         project.render();

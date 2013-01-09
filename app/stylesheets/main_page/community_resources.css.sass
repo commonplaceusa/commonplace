@@ -4,20 +4,17 @@
   position: relative
 
   .resources
-    background-color: white
-    border: 1px solid #bebebe
-      top: 0
-      
+
     li.wire-item
       &:first-child
         border-top: 0
-      
+
   .sub-navigation
     background-color: #f3f3f3
     border-bottom: solid 1px #bebebe
     border-top: solid 1px #bebebe
     padding: 14px
-    
+
     h2
       font-size: 20px
       padding: 0
@@ -41,15 +38,17 @@
     background-color: #fff
     padding: 20px
     text-align: center
-      
+
   .loading
-    background-color: #fff
+    display: none
     padding: 20px
+      top: 45px
+    color: #fff
+    font-size: 18px
     text-align: center
     background-image: image-url("loading.gif")
-    background-position: center center
+    background-position: top center
     background-repeat: no-repeat
-    height: 50px
 
   form.search
     margin: 10px 10px 0
@@ -57,7 +56,7 @@
     position: absolute
     cursor: default
     right: 0px
-    
+
     .search-switch
       display: none
       &.active
@@ -83,7 +82,7 @@
         background-image: none
 
     input[placeholder]
-      color: #333 
+      color: #333
 
     .cancel
       height: 25px
@@ -97,7 +96,7 @@
       background-repeat: no-repeat
       &.waiting
         background-image: image-url("shared/icons/waiting.gif")
-          
+
 
 
 body.fixedLayout
@@ -107,7 +106,7 @@ body.fixedLayout
     top: 65px
     width: 490px
     height: 50px
-    background-color: #333
+    background-color: #cee7fe
 
   #community-resources > .navigation
     position: fixed
@@ -126,10 +125,10 @@ body.fixedLayout
       .sub-navigation
         height: 24px
         padding-bottom: 12px
-  
+
     .resources
-      margin-top: 104px
-      
+      margin-top: 85px !important
+
       .sub-navigation
         z-index: 21
         position: relative

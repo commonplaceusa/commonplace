@@ -9,7 +9,6 @@ var ProfileBox = CommonPlace.View.extend({
   afterRender: function() {
     this.lists = new ProfileBoxLists({ 
       el: this.$("#profile-box-lists"), 
-      showProfile: _.bind(this.profileDisplayer.show, this.profileDisplayer),
       removeSearchSpinner: _.bind(this.removeSearchSpinner, this)
     });
 
@@ -45,7 +44,7 @@ var ProfileBox = CommonPlace.View.extend({
       this.lists.showList(schema);
       this.profileDisplayer.show(CommonPlace.account);
     } else {
-      this.lists.showList(schema, { showProfile: true });
+      this.lists.showList(schema, { });
     }
 
     this.switchFilterClass(schema);
@@ -59,7 +58,7 @@ var ProfileBox = CommonPlace.View.extend({
       this.removeSearch();
       this.removeSearchSpinner();
     } else {
-      this.lists.showSearch(search_term, { showProfile: true });
+      this.lists.showSearch(search_term, { });
       this.$(".filters a").removeClass("current");
     }
   }, 500),
@@ -70,6 +69,5 @@ var ProfileBox = CommonPlace.View.extend({
   },
   
   removeSearchSpinner: function() { this.$(".search").removeClass("loading"); }
-  
 
 });

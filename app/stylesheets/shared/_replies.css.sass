@@ -1,146 +1,268 @@
 .replies-area
-  padding: 1px 0px 0 22px
+  padding: 1px 0px 0 18px
   position: relative
   font-family: Helvetica, sans-serif
   margin-top: 0
-  
+  .replies
+    .comment
+      //margin-top: 15px
+      display: inline-block
+      .avatar-container
+        width: 32px
+        height: 32px
+        float: left
+        background-size: cover
+        background-repeat: no-repeat
+        border-radius: 4px
+        margin-top: 0px
+  .thanks
+    padding-bottom: 10px
+  .thanks-list
+    margin: -10px 0px 15px 0px !important
+    width: 520px !important
+    padding-left: 63px !important
+    .avatar
+      display: none
+    .reply-item
+      margin-top: 0px !important
+      padding: 10px 0px 0px 0px !important
+      border: 0px none !important
+      &:last-child
+        border: 0px none
+      .reply-info
+        margin-left: 0px !important
+        
   .replies-more
     display: block
     font-size: 11px
     text-transform: uppercase
-    color: #B7403C
+    //color: #B7403C
     font-weight: bold
-    padding: 4px
-    text-align: center
-    color: #243248
-    margin-top: 10px
-    text-decoration: none
-    background: #F8F8F8
-    &:hover
-      text-decoration: underline
-    .small 
-      font-size: 8px
-
-.replies-area .reply-item
-  margin-top: 12px
-  padding: 0
-
-  &:hover
-    a.delete-reply, a.thank-reply, .thanked-reply
-      color: #b7403c
-    .thanked-reply
-      color: #bebebe
-      
-  .avatar 
-    float: left
-    width: 30px
-    height: 30px
-    +border-radius(0)
-    border: 0
-
-  .reply-info
-    padding-top: 5px
-    margin-left: 40px
-    border-top: 1px solid #efefef
-
-  .author, .body
-    margin-left: 0
-    line-height: 18px
-    font-size: 13px
-
-  .author
-    margin-bottom: 0
-    margin-right: 5px
-    position: relative
-    font-weight: bold
-    color: #1b334a
-    float: left
-
-  .body, h1, h2, h3, h4, h5, h6
-    color: #444
+    text-align: left
+    color: #333
     margin-top: 0px
-    margin-bottom: 0px
-    p
-      margin-top: 0px
-
-  h1, h2, h3, h4, h5, h6
-    font-weight: bold
-
-  .time
-    color: #243248
-    font-size: 12px
-    margin-left: 5px
-    white-space: nowrap
-    
-  .thanks_count:hover
-    text-decoration: underline
-    cursor: pointer
-  
-
-
-  a.delete-reply, a.thank-reply, .thanked-reply
-    display: inline
-    font-size: 10px
-    margin-left: 5px
-    padding-right: 10px
     text-decoration: none
-    font-weight: bold
-      
-  a.delete-reply, a.thank-reply
-    color: white
+    border-top: 1px dotted #ddd
+    padding-top: 12px
+    padding-bottom: 10px
+    margin-left: 65px
+    margin-right: 20px
+    padding-left: 170px
     &:hover
-      text-decoration: underline
-    
-  .thanked-reply
-    color: white
-    
-  .controls
-    white-space: nowrap
+      color: $red
+    .small 
+      font-size: 9px
+      margin-left: 4px
+      color: #bbb
+
+  .reply-list, .thanks-list
+    width: 569px 
+    margin-left: 15px
+    float: left
+    a
+      color: #333
+      &:hover
+        color: $red
+        //text-decoration: underline
+    .reply-item
+      margin: 0px
+      padding: 0px 0px 7px 0px
+      &:first-child
+        .reply-info
+          padding-top: 15px
+        .avatar-container
+          margin-top: 18px
+      &:last-child
+        padding-bottom: 10px
+      &:hover
+        a.delete-reply, a.thank-reply, .thanked-reply, a.reply-message-link
+          color: $dark-grey !important
+          &:hover
+            color: $red !important
+        .thanked-reply
+          color: #bebebe
+          
+      .avatar 
+        float: left
+        width: 32px
+        height: 32px
+        +border-radius(5px)
+        border: 0
+        display: none
+        
+      .avatar-container
+        width: 32px
+        height: 32px
+        float: left
+        background-size: cover
+        background-repeat: no-repeat
+        background-position: center center
+        border-radius: 4px
+        margin-top: 14px
+        
+      .reply-info
+        padding-top: 10px
+        margin-left: 47px
+        border-top: 1px dotted #ddd
+
+      .author, .body
+        margin-left: 0
+        line-height: 18px
+        font-size: 13px
+
+      .author
+        margin-bottom: 0
+        margin-right: 5px
+        position: relative
+        font-weight: bold
+        color: #333
+        float: left
+        &:hover
+          color: $red
+          cursor: pointer
+
+      .body, h1, h2, h3, h4, h5, h6
+        color: #444
+        margin-top: 0px
+        margin-bottom: 0px
+        p
+          margin-top: 0px
+
+      h1, h2, h3, h4, h5, h6
+        font-weight: bold
+        
+      .controls
+        white-space: nowrap   
+        margin-top: 0px
+        float: left
+        clear: none
+        width: 100%
+        .time
+          color: #aaa
+          font-size: 12px
+          white-space: nowrap
+        .thank-divider
+          margin: 0px 3px 0px 0px
+          color: #aaa
+          font-size: 11px
+        .thanks-count
+          color: #aaa
+          font-size: 12px
+          &:hover
+            color: #888
+            //text-decoration: underline
+            cursor: pointer
+        
+
+      a.delete-reply, a.thank-reply, .thanked-reply, a.reply-message-link
+        display: inline
+        font-size: 10px
+        margin-left: 10px
+        text-decoration: none
+        font-weight: bold
+        text-transform: uppercase
+          
+      a.delete-reply, a.thank-reply, a.reply-message-link
+        color: white
+        &:hover
+          color: $red
+          //text-decoration: underline
+        
+      .thanked-reply
+        color: white
+
 
 .replies form.new-reply
-  margin-top: 13px
-
+  margin-left: 15px
   .avatar 
     float: left
-    width: 30px
-    height: 30px
-    +border-radius(0)
+    width: 32px
+    height: 32px
+    border-radius: 5px
     border: 0
     
   .reply-text
-    float: right
-
+    float: left 
+    margin-left: 15px
     textarea 
       font-family: Helvetica, Arial, sans-serif
-      font-size: 12px
-      color: #888
+      font-size: 13px
+      color: #555
       background: white
-      border: 1px solid #c3c3c3
+      box-shadow: none
+      border: 1px dotted #d9d9d9
       padding: 8px 10px
-      height: 12px
-      width: 380px
+      height: 14px
+      width: 500px
       line-height: 14px
-      
+      font-weight: normal
+      -webkit-font-smoothing: antialiased
+      input::-webkit-input-placeholder
+        color: #888
+      &:hover
+        border-color: #c0c0c0
       &:focus
-        outline: none
-        color: #444
-        
+        color: #131313 !important
     .enter-hint
       display: none
       font-size: 12px
-      color: #909090
+      color: #aaa
       
 
 .submit-c
+  background: $red
+  border-radius: 4px
+  color: #fff
+  text-shadow: 0px -1px 0px #64100D
+  font-weight: bold
+  letter-spacing: 1px
+  font-family: $body
+  +linear-gradient(color-stops(#d0413d, #ac322f), top)
+  display: block
+  font-size: 11px
+  text-decoration: none
+  border: 1px solid
+  border-color: #ac322f
+  box-shadow: inset 0px 1px 0.5px #e28986
+  padding: 6px
+  float: right
+  text-align: center
   display: none
-  padding: 7px
-  background: #ac322f
+  clear: both
+  width: 55px
+  text-transform: uppercase
+  margin: 0px 0px 10px 0px
+  &:hover, &:focus
+    color: #fff
+    +linear-gradient(color-stops(#ee5a56, #b53633), top)
+    box-shadow: 0px 2px 4px #adab9f
+    cursor: pointer
+  &:active
+    color: #fff
+    +linear-gradient(color-stops(#d64541, #ac322f), bottom)
+    text-shadow: 0px 1px 0px #64100D
+  behavior: url("/assets/PIE.htc")
+  
+//.submit-c
+  display: none
+  padding: 6px
+  background: -moz-linear-gradient(top, #ee432e 0%, #ac322f 50%, #ac322f 50%, #ac322f 100%)
+  background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #d1433f), color-stop(0.5, #ac322f), color-stop(0.5, #ac322f), color-stop(1, #ac322f))
+  -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #555555
+  -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #555555
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #555555
+  text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.8)
+  border: 1px solid #8f2927
   float: right
   font-size: 11px
   color: white
   text-transform: uppercase
-  margin-top: 6px
-  width: 31px
+  width: 55px
+  text-align: center
+  border-radius: 4px 
+  font-weight: bold 
+  margin: 0 0px 12px 0
+  clear: both
   &:hover
     cursor: pointer
 .waiting

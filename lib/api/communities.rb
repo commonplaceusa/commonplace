@@ -786,6 +786,34 @@ CONDITION
       end
     end
 
+    # Requires community membership
+    #
+    # Creates a new Transaction model
+    post "/:id/transactions" do
+      control_access :community_member, find_community
+
+      transaction = Transaction.new(
+        :community_id => find_community.id,
+        :seller => current_user,
+        :title => request_body['title'],
+        :price_in_cents => request_body['price'],
+        :description => request_body['body']
+      )
+
+      if transaction.save
+        serialize(transaction)
+      else
+        [400, "errors"]
+      end
+    end
+
+    # Logs who's interested in a given transaction
+    post "/:trans_id/buy_log" do
+      t = Transaction.find(params[:trans_id])
+
+      t.add_buyer(params[:buyer])
+    end
+
     # Returns a list of completed versions of community names
     #
     # Note: This should not be bound to a community, but when
@@ -966,6 +994,19 @@ CONDITION
       end
     end
 
+    # Returns the community's transactions, possibly a search result
+    get "/:id/transactions" do
+      control_access :community_member, find_community
+
+      last_modified_by_replied_at(Transaction)
+
+      if params["query"].present?
+        chronological_search(Transaction, params, find_community.id)
+      else
+        serialize(paginate(find_community.transactions).reorder("created_at DESC"))
+      end
+    end
+
     # Returns the community's announcements, possibly a search result
     #
     # Query params:
@@ -996,7 +1037,7 @@ CONDITION
       if params["query"].present?
         chronological_search(GroupPost, params, find_community.id)
       else
-        serialize(paginate(GroupPost.order("group_posts.replied_at DESC").
+        serialize(paginate(GroupPost.order("group_posts.updated_at DESC").
                              includes(:group, :user).
                              where(:groups => {:community_id => find_community.id})))
       end
@@ -1090,9 +1131,9 @@ CONDITION
       control_access :community_member, find_community
 
       if params["query"].present?
-        chronological_search([Announcement, Event, Post, GroupPost], params, find_community.id)
+        chronological_search([Announcement, Event, Post, GroupPost, Transaction], params, find_community.id)
       else
-        chronological([Announcement, Event, Post, GroupPost], params, find_community.id)
+        chronological([Announcement, Event, Post, GroupPost, Transaction], params, find_community.id)
       end
     end
 

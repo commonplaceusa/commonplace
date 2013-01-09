@@ -24,7 +24,33 @@
       color: #aaa
       cursor: not-allowed
       text-shadow: none
+
 @mixin red-button
+  +shiny-button
+  background: $red
+  border-radius: 5px
+  -moz-border-radius: 5px
+  -webkit-border-radius: 5px
+  color: #fff
+  text-shadow: 0px -1px 0px #64100D
+  font-weight: bold
+  font-family: $heading
+  +linear-gradient(color-stops(#d0413d, #ac322f), top)
+  display: block
+  font-size: 21px
+  text-decoration: none
+  border: 1px solid #ac322f
+  box-shadow: inset 0px 1px 0.5px #e28986
+  padding: 10px 15px
+  &:hover, &:focus
+    color: #fff
+    +linear-gradient(color-stops(#ee5a56, #b53633), top)
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.5)
+  &:active
+    color: #fff
+    +linear-gradient(color-stops(#d64541, #ac322f), bottom)
+    text-shadow: 0px 1px 0px #64100D
+//@mixin red-button
   +shiny-button
   background: #ac322f
   background: -moz-linear-gradient(top, #ee432e 0%, #ac322f 50%, #ac322f 50%, #ac322f 100%)

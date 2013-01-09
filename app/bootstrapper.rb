@@ -210,9 +210,9 @@ class Bootstrapper < Sinatra::Base
 
     return 404 unless @community
 
-    @login_error = "You must log in to view this content"
+    @login_error = "Welcome to OurCommonPlace #{@community.name}! Before you can view this content you must login or reigster to verify that you are a member of the community."
     @login_redirect = request.url
-    erb @account ? :application : :login
+    erb @account ? :application : :register
   end
 
 

@@ -27,7 +27,8 @@ var PostLikes = Model.extend({
       "events": Event,
       "announcements": Announcement,
       "posts": Post,
-      "group_posts": GroupPost
+      "group_posts": GroupPost,
+      "transactions": Transaction
     }[data.schema](data);
     return x;
   },

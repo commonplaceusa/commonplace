@@ -1,25 +1,2 @@
-<div class="sub-navigation post">
-  <h2 {{#isInAllWire}}class="smaller"{{/isInAllWire}}>
-  {{^isInAllWire}}
-    <a href="/{{community_slug}}/list/posts" class="current" data-remote>
-      {{#t}}posts.a{{/t}}
-    </a>
-  {{/isInAllWire}}
-  {{#isInAllWire}}
-    <a href="/{{community_slug}}/list/neighborhood" data-remote>{{#t}}neighborhood.a{{/t}}</a>
-    &sdot;
-    <a href="/{{community_slug}}/list/help" data-remote>{{#t}}help.a{{/t}}</a>
-    &sdot;
-    <a href="/{{community_slug}}/list/offers" data-remote>{{#t}}offers.a{{/t}}</a>
-    &sdot;
-    <a href="/{{community_slug}}/list/publicity" data-remote>{{#t}}publicity.a{{/t}}</a>
-    &sdot;
-    <a href="/{{community_slug}}/list/meetup" data-remote>{{#t}}meetup.a{{/t}}</a>
-    &sdot;
-    <a href="/{{community_slug}}/list/other" data-remote>{{#t}}other.a{{/t}}</a>
-  {{/isInAllWire}}
-  </h2>
-  <div style="clear:both;"></div>
-</div>
 <div class="no-results"><p>There were no results</p></div>
 <div class="posts wire">{{>wires.wire}}</div>

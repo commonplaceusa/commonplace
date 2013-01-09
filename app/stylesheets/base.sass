@@ -1,0 +1,140 @@
+/* Woo Buttons */
+.red-button
+  border-radius: 5px
+  color: #fff
+  text-shadow: 0px -1px 0px #64100D
+  font-weight: bold
+  height: 18px
+  font-family: $heading
+  @include background(linear-gradient(top center, #d0413d, #ac322f))
+  display: block
+  font-size: 21px
+  text-decoration: none
+  border: 1px solid
+  border-color: #ac322f
+  box-shadow: inset 0px 1px 0.5px #e28986
+  padding: 15px
+  behavior: url("/assets/PIE.htc")
+    top: 8px
+    bottom: 16px
+  &:hover, &:focus
+    color: #fff
+    @include background(linear-gradient(top center, #ee5a56, #b53633))
+    box-shadow: 0px 2px 4px #adab9f
+  &:active
+    color: #fff
+    @include background(linear-gradient(bottom center, #d64541, #ac322f))
+    text-shadow: 0px 1px 0px #64100D
+
+.green-button
+  background: green
+  border-radius: 5px
+  color: #eeecdf
+  text-shadow: 1px 1px 1px black
+  font-weight: bold
+  height: 18px
+  font-family: $heading
+  +linear-gradient(color-stops(#62AF46, #569E3F), top)
+  display: block
+  font-size: 20px
+  text-decoration: none
+  border: 1px solid
+  border-color: #569E3F
+  box-shadow: inset 0px 1px 1px #569E3F
+  padding: 15px
+    top: 13px
+    bottom: 13px
+  &:hover, &:focus
+    color: #fff
+    +linear-gradient(color-stops(#62AF46, #569E3F), top)
+    box-shadow: 0px 2px 4px #adab9f
+  &:active
+    color: #fff
+    +linear-gradient(color-stops(#62AF46, #569E3F), bottom) 
+    
+/* Overall Styles */
+.right
+  float: right
+.left
+  float: left
+.clear
+  clear: both
+.full-width
+  width: 1100px
+  margin: 0 auto
+sup
+  font-size: 0.85em
+  vertical-align: top
+
+html
+  background-color: #fafafa
+  background-size: cover
+  -webkit-background-size: cover
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+
+#wrapper
+  width: 1100px
+  margin: 0px auto
+  
+//#content div.list div.wire div.post-replies p.replies
+  display: none
+
+input::-webkit-input-placeholder
+  color: #555
+
+.wire div.post-replies .post-reply
+  height: 0
+  margin-left: 60px
+  margin-top: 10px
+  width: 650px
+  font-size: 13px
+  padding: 15px 7px
+  border: 1px solid $light-grey
+  &:hover, &:focus, &:active
+    border: 1px solid #bababa
+
+.wire div.post-replies .post-reply-button
+  color: #fffefe
+  text-decoration: none
+  text-transform: uppercase
+  position: relative
+  font: bold 11px "Helvetica Neue", "Helvetica", "Arial"
+  background-color: #ac322f
+  width: 90px
+  height: 24px
+  border-radius: 4px
+  border: 1px solid
+  border-color: #ac322f
+  float: right
+  margin-top: 0
+  margin-bottom: 20px
+
+ul.actions li
+  cursor: pointer
+
+div.bottom input.next-button
+  height: 50px
+
+a span.community
+  float: left
+  color: #ac322f
+  text-decoration: none
+  margin-top: 24px
+  margin-left: 5px
+
+//#nav_wrapper div.community-name
+  width: 244px
+
+//#user_sign_in div.top-bar
+  width: 665px
+
+//#nav_wrapper div.community-name a h1
+  float: left
+
+//#nav_wrapper div.community-name a span.community
+  float: left
+  margin-top: 21px
+  color: #991a17
+  font: bold 18px Rokkitt, "Rockwell STD", Serif
+  margin-left: 6px

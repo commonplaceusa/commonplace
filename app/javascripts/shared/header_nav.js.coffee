@@ -2,14 +2,25 @@ CommonPlace.shared.HeaderNav = CommonPlace.View.extend(
   template: "shared.new_header.header-nav"
   className: "nav"
   unreadMessageCount: 0
-  afterRender: ->
+
+  events:
+    "keyup #search-header": "search"
+
+  initialize: ->
     @updateUnreadMessages()
+
+  afterRender: ->
     @updateUnreadMessagesBadge()
+    @$("input[placeholder], textarea[placeholder]").placeholder()
     self = this
     CommonPlace.account.on "sync", ->
       self.updateUnreadMessages()
       self.updateUnreadMessagesBadge()
 
+  search: (event) ->
+    @query = @$("#search-header").val()
+    @eventAggregator.query = @query
+    @eventAggregator.trigger("searchBox:submit", @query)
 
   slug: ->
     if CommonPlace.account.isAuth()
@@ -28,6 +39,9 @@ CommonPlace.shared.HeaderNav = CommonPlace.View.extend(
 
   account_url: ->
     "/" + @slug() + "/account"
+
+  user_url: ->
+    "/" + @slug() + "/show/users/" + CommonPlace.account.get("id")
 
   faq_url: ->
     "/" + @slug() + "/faq"
@@ -61,7 +75,7 @@ CommonPlace.shared.HeaderNav = CommonPlace.View.extend(
 
   updateUnreadMessagesBadge: ->
     if @hasUnreadMessages()
-      @$(".inbox .file").badger "" + @unreadMessages()
+      @$(".account").badger "" + @unreadMessages()
     else
-      @$(".inbox .file").badger ""
+      @$(".account").badger ""
 )

@@ -1,40 +1,76 @@
-<div class="event">
-
-  <div class="corner">{{publishedAt}}{{#canEdit}} - <a href="#" class="editlink">EDIT</a>{{/canEdit}}</div>
-
+<div class="wire-top" data-published-at="{{eventDateISO}}">
+  <!--<a href="#"><div class="icon-container {{wireCategoryClass}}"></div><h3>{{wireCategoryName}}</h3></a>-->
+  <p>{{#canEdit}} - <a href="#" class="editlink">EDIT</a>{{/canEdit}}</p>
+  <p><a href="{{share_url}}">{{eventDate}}</a></p>
+</div>
+<div class="post-content">
   <div class="calendar avatar">
     <div class="month">{{short_month_name}}</div>
     <div class="day-of-month">{{day_of_month}}</div>
-  </div>
-
   {{#time}}
-    <div class="event-time">
-      {{time}}
-    </div>
+  <div class="event-time">
+    {{time}}
+  </div>
   {{/time}}
-
-  <div class="title">{{title}}</div>
-
-  <div class="author">
-    <a {{#isFeed}}href="{{feedUrl}}"{{/isFeed}}>{{author}}</a>
   </div>
 
-  <div class="body event-body">{{#markdown}}{{body}}{{/markdown}}</div>
-  
-  <table class="event-location">
-    {{#venue}}<tr><th>Venue:</th><td>{{venue}}</td></tr>{{/venue}}
-    {{#address}}<tr><th>Address:</th><td>{{address}}</td></tr>{{/address}}
-  </table>
 
-  <div style="clear:both;"></div>
-
+  <h3><a class="title" href="{{share_url}}">{{title}}</a></h3>
+  <p class="author"><a {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a></p>
+  {{#markdown}}
+   {{body}}
+    {{#venue}}<p class="venue"><span class="bold">Venue:</span> {{venue}}</p>{{/venue}}
+    {{#address}}<p class="address"><span class="bold">Address:</span> {{address}}</p>{{/address}}
+  {{/markdown}}
+</div>
+<div class="post-action clear">
+  <ul class="actions">
+    <li class="reply-link">
+      <i class="icon"></i>
+      <span>Reply</span>
+    </li>
+    <li class="message-link">
+      <i class="icon"></i>
+      <span>Message {{first_name}}</span>
+    </li>
+    <li class="share-link">
+      <i class="icon"></i>
+      <span>Share</span>
+    </li>
+    <li class="thank-link">
+      <i class="icon"></i>
+      <span>Thank</span>
+    </li>
+    <li class="flag-link">
+      <i class="icon"></i>
+      <span>Flag</span>
+    </li>
+   </ul>
+</div>
+<div class="post-interaction">
+  <div class="interaction">
+    {{#numThank}}
+    <p class="thanked">
+    <span class="blue">{{numThank}} {{peoplePerson}}</span> thanked this post:
+    {{#thanks}}
+    <span class="blue">{{thanker}} </span>
+    {{/thanks}}
+    </p>
+    {{/numThank}}
+    {{#num_shares}}
+    <!--
+    <p class="publicized">
+    <span class="blue">{{num_shares}} {{share_people}}</span> shared this post:
+    {{#shares}}
+    <span class="blue">{{sharer}}</span>
+    {{/shares}}
+    </p>
+    -->
+    {{/num_shares}}
+  </div>
 </div>
 
-<ul class="thank-share">
-  <li class="reply-link">Reply</li>
-  <span class="dot">&bull;</span>
-  <li class="thank-link"> Thank {{first_name}}</li>
-</ul>
-<a class="ts-text" href="#"><span class="thank_count">{{numThanks}}</span> <span class="people_person">{{peoplePerson}}</span> <span class="people-thanked">thanked {{first_name}}</span></a>
-
 <div class="replies-area"></div>
+
+<div class="clear">
+</div>

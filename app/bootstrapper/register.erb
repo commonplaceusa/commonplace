@@ -6,7 +6,6 @@
     <title>CommonPlace</title>
     <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
 
-    <link href="//webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
     <link href="/assets/favicon.png" rel="icon" type="image/png">
 
@@ -21,7 +20,7 @@
     <style type="text/css" media="screen">
          body {
              background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
-             background-color: #CEE7FE;
+             background-color: #F5F3E9;
              background-size: cover;
              -webkit-background-size: cover;
              -webkit-font-smoothing: antialiased;
@@ -50,6 +49,12 @@
       <img src="/assets/loading.gif" style="display:none;">
     <div id="wrapper">
       <div id="header"></div>
+      <div id="notice">
+        <% if @login_redirect %>
+          <input id="login_redirect" type="hidden" name="login_redirect" value="<%= @login_redirect %>" />
+        <% end %>
+        <h2 class="notice"><%= (@login_error) ? @login_error : "" %></h2>
+      </div>
 
       <div id="main">
         <div id="fb-root"></div>
@@ -59,10 +64,10 @@
 
 
       </div>
-      <div id="wrapper-footer"></div>
+      <!--<div id="wrapper-footer"></div>-->
     </div>
 
-    <%= erb :footer %>
+    <!--<%= erb :footer %>-->
 
     <script type="text/javascript" src="/assets/registration.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -84,6 +89,12 @@
 
       // Call function once the client has loaded
       google.setOnLoadCallback(onGoogleDataLoad);
+      <% if @login_redirect %>
+        $(document).ready(function() {
+            $("#notice").show();
+            $("input[type=hidden][name=login_redirect]").val(window.location.href);
+          });
+      <% end %>
     </script>
     <%= erb :tracking %>
     <% if Rails.env.production? %>

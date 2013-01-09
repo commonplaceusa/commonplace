@@ -15,10 +15,17 @@ CommonPlace.registration.Router = Backbone.Router.extend(
       communityExterior: options.communityExterior
       template: "registration.modal"
       complete: ->
-        if Modernizr.history
-          window.location.pathname = options.communityExterior.links.tour
+        $redirect = $("#login_redirect")
+        if $redirect and $redirect.val() isnt undefined
+          if $redirect.val() is window.location.href
+            window.location.reload(true)
+          else
+            window.location = $redirect.val()
         else
-          window.location.href = window.location.protocol + "//" + window.location.host + "/" + options.communityExterior.slug + "/#" + options.communityExterior.slug + "/registration"
+          if Modernizr.history
+            window.location.pathname = options.communityExterior.links.tour
+          else
+            window.location.href = window.location.protocol + "//" + window.location.host + "/" + options.communityExterior.slug + "/#" + options.communityExterior.slug + "/registration"
 
       el: $("#registration-modal")
     )
@@ -29,6 +36,8 @@ CommonPlace.registration.Router = Backbone.Router.extend(
       url = window.location.pathname.split("/")[2]
       if url is "about" or url is "our-mission" or url is "our-story" or url is "our-platform" or url is "press" or url is "nominate"
         @new_user_about()
+      else
+        @modal.showPage "new_user"
     else
       @modal.showPage "new_user"
 

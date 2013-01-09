@@ -3,7 +3,7 @@ var GroupPageRouter = Backbone.Router.extend({
   routes: {},
 
   initialize: function(options) {
-    var header = new HeaderView({ el: $("#header") });
+    var header = new CommonPlace.shared.HeaderView({ el: $("#header") });
     header.render();
 
     this.account = new Account(options.account);

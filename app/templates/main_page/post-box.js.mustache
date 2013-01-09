@@ -1,54 +1,46 @@
-<div class="wrapper">
-
-<div class="navigation">
-
-    <h3 class="postbox-head">Post something:</h3>
-
-    <ul>
-      <li class="post" data-tab="post">
-        Post a Conversation Starter
-      </li>
-      <li class="offers" data-tab="offers">
-        Post an Offer
-      </li>
-      <li class="help" data-tab="help">
-        Post a Request
-      </li>
-      <li class="event" data-tab="event">
-        Post an Event
-      </li>
-      <li class="meetups" data-tab="meetups">
-        Propose a Meet-up
-      </li>
-      <li class="publicity" data-tab="publicity">
-        Publicize a Service or Organization
-      </li>
-      <li class="group" data-tab="group">
-        Discussion Group
-      </li>
-
-      {{#feeds}}
-        <li class="feed-{{id}}" data-tab="feed-{{id}}">
-          Post to {{name}}
+<div class="modal-border post-box">
+  <div class="links scroll-pane">
+    <div id="posting_navlinks" class="navigation">
+      <ul class="overview">
+        <li class="request" data-tab="request">
+          <i class="icon"></i>
+          <div class="left">
+            Ask a Question<br />
+            <span>Request help from your neighbors</span>
+          </div>
         </li>
-      {{/feeds}}
-
-      <li class="other" data-tab="other">
-        Other
-      </li>
-      <li class="nothing"></li>
-    </ul>
-
+        <li class="transaction" data-tab="transaction">
+          <i class="icon"></i>
+          <div class="left">
+            Sell on the Marketplace<br />
+            <span>Post an item (or give it away for free!)</span>
+          </div>   
+        </li>
+        <li class="discussion" data-tab="discussion">
+          <i class="icon"></i>
+          <div class="left">
+            Share Community Thoughts<br />
+            <span>Discuss a town topic with your neighbors</span>
+          </div>
+        </li>        
+        <li class="event" data-tab="event">
+          <i class="icon"></i>
+          <div class="left">
+            Publicize an Event<br />
+            <span>Add to the community's events board</span>
+          </div>   
+        </li>
+        <li class="promote" data-tab="promote">
+          <i class="icon"></i>
+          <div class="left">
+            <h4>{{promote_header}}</h4>
+            <span>Advertise your organization or business</span>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-
-  <div id="invalid_post_tooltip" style="">
-    <img src="/images/arrow_left_up.png" />
-    <span id="invalid_post_text">Choose a category before posting!</span>
-  </div>
-
-  <div class="form-container">
-    <form></form>
-  </div>
-
-  <div style="clear: both;"></div>
+    <div class="close">
+      x
+    </div>
 </div>

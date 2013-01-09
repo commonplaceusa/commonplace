@@ -13,10 +13,12 @@ class Community < ActiveRecord::Base
            :order => "events.date ASC",
            :include => [:replies])
 
+  has_many :transactions
   has_many :users, :order => "last_name, first_name"
   has_many :mets, :through => :users
   has_many :residents
   has_many :street_addresses
+
   def organizers
     self.users.select { |u| u.admin }
   end
@@ -91,6 +93,7 @@ class Community < ActiveRecord::Base
       "feeds" => "/communities/#{id}/feeds",
       "posts" => "/communities/#{id}/posts",
       "events" => "/communities/#{id}/events",
+      "transactions" => "/communities/#{id}/transactions",
       "announcements" => "/communities/#{id}/announcements",
       "group_posts" => "/communities/#{id}/group_posts",
       "post_likes" => "/communities/#{id}/post-like",
@@ -111,7 +114,6 @@ class Community < ActiveRecord::Base
       "shares" => "/communities/#{id}/shares",
       "landing_wires" => "/communities/#{id}/wire",
       "residents" => "/communities/#{id}/residents",
-      "email_contact_authorization_callback" => "find_neighbors/callback",
       "facebook_login" => "/users/auth/facebook",
       "registration" => {
         "validate" => "/registration/#{id}/validate",

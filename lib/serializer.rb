@@ -26,6 +26,13 @@ module Serializer
         "thankable_author" => o.thankable.user.name
       }
 
+      when Warning
+      {
+        "warner" => o.user.name,
+        "warnable_type" => o.warnable_type,
+        "warnable_author" => o.warnable.user.name
+      }
+
       when EventRecommendation
         o.as_api_response(:default)
       when EventNote
@@ -74,15 +81,44 @@ module Serializer
         "user_id" => o.user_id,
         "replies" => serialize(o.replies.to_a),
         "thanks" => serialize(o.all_thanks.to_a),
+        "flags" => serialize(o.all_flags.to_a),
         "last_activity" => o.last_activity.utc,
         "category" => o.category,
         "links" => {
           "author" => "/users/#{o.user_id}",
           "replies" => "/posts/#{o.id}/replies",
           "self" => "/posts/#{o.id}",
+          "flag" => "/posts/#{o.id}/flag",
           "thank" => "/posts/#{o.id}/thank"
         }
       }
+
+      when Transaction
+        {
+          "id" => o.id,
+          "schema" => "transactions",
+          "published_at" => o.created_at.utc,
+          "avatar_url" => o.seller.avatar_url(:thumb),
+          "url" => "/transactions/#{o.id}",
+          "title" => o.title,
+          "author" => o.seller.name,
+          "user_id" => o.user_id,
+          "replies" => serialize(o.replies.to_a),
+          "thanks" => serialize(o.thanks.to_a),
+          "flags" => serialize(o.warnings.to_a),
+          "first_name" => o.seller.first_name,
+          "price" => o.price_in_cents,
+          "body" => o.description,
+          "images" => serialize(o.images.to_a),
+          "links" => {
+            "author" => "/users/#{o.user_id}",
+            "buy" => "/communities/#{o.id}/buy_log",
+            "replies" => "/transactions/#{o.id}/replies",
+            "self" => "/transactions/#{o.id}",
+            "flag" => "/transactions/#{o.id}/flag",
+            "thank" => "/transactions/#{o.id}/thank"
+          }
+        }
 
       when Event
         {
@@ -109,10 +145,12 @@ module Serializer
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
         "thanks" => serialize(o.all_thanks.to_a),
+        "flags" => serialize(o.all_flags.to_a),
         "links" => {
           "replies" => "/events/#{o.id}/replies",
           "self" => "/events/#{o.id}",
           "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
+          "flag" => "/events/#{o.id}/flag",
           "thank" => "/events/#{o.id}/thank"
         }
       }
@@ -136,10 +174,12 @@ module Serializer
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
         "thanks" => serialize(o.all_thanks.to_a),
+        "flags" => serialize(o.all_flags.to_a),
         "links" => {
           "replies" => "/announcements/#{o.id}/replies",
           "self" => "/announcements/#{o.id}",
           "author" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
+          "flag" => "/announcements/#{o.id}/flag",
           "thank" => "/announcements/#{o.id}/thank"
         }
       }
@@ -152,7 +192,7 @@ module Serializer
         "published_at" => o.created_at.utc,
         "author" => o.user.name,
         "first_name" => o.user.first_name,
-        "avatar_url" => o.group.avatar_url(:thumb),
+        "avatar_url" => o.user.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
         "group" => o.group.name,
         "group_url" => "/groups/#{o.group_id}",
@@ -162,11 +202,13 @@ module Serializer
         "body" => o.body,
         "replies" => serialize(o.replies.to_a),
         "thanks" => serialize(o.all_thanks.to_a),
+        "flags" => serialize(o.all_flags.to_a),
         "links" => {
           "replies" => "/group_posts/#{o.id}/replies",
           "author" => "/users/#{o.user_id}",
           "group" => "/groups/#{o.group_id}",
           "self" => "/group_posts/#{o.id}",
+          "flag" => "/group_posts/#{o.id}/flag",
           "thank" => "/group_posts/#{o.id}/thank"
         }
         }
@@ -202,17 +244,29 @@ module Serializer
         "id" => o.id,
         "schema" => "replies",
         "author" => o.user.name,
+        "first_name" => o.user.first_name,
         "avatar_url" => o.user.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
         "author_id" => o.user.id,
         "body" => o.body,
         "published_at" => o.created_at.utc,
         "thanks" => serialize(o.thanks.to_a),
+        "flags" => serialize(o.warnings.to_a),
         "links" => {
           "author" => "/users/#{o.user_id}",
           "self" => "/replies/#{o.id}",
           "thank" => "/replies/#{o.id}/thank"
         }
+        }
+
+      when Image
+        {
+        "id" => o.id,
+        "image_url" => o.image_url(:normal),
+        "image_url_large" => o.image_url(:large),
+        "owner_url" => "/users/#{o.user_id}",
+        "user_id" => o.user_id,
+        "published_at" => o.created_at.utc,
         }
 
       when Feed
@@ -298,6 +352,7 @@ module Serializer
         "publicity" => serialize(o.publicity),
         "group" => serialize(o.group),
         "other" => serialize(o.other),
+        "transactions" => serialize(o.transactions),
         "meetups" => serialize(o.meetups)
       }
 

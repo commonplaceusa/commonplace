@@ -8,22 +8,53 @@
     font-size: inherit
     font-weight: inherit
 
-  a
-    color: #b7403c
+  //a
+    color: $red
+    font-family: $body
+    text-decoration: none
+    &:hover
+      //text-decoration: underline
+      color: #888
 
   ul
     margin-top: 0
     margin-left: 10px
-    clear: left
+    clear: left    
     li
       list-style-type: disc
+      list-style-position: inside
+      margin-bottom: 15px
+      &:first-child
+        margin-top: 15px
+      &:last-child
+        margin-bottom: 0px
+      ul
+        margin-top: 15px
+        li
+          list-style-type: circle
+          margin-bottom: 15px
+          &:last-child
+            margin-bottom: 0px
 
   ol
     margin-top: 0
     margin-left: 10px
     clear: left
     li
-      list-style-type: upper-roman
+      list-style-type: decimal
+      list-style-position: inside
+      margin-bottom: 15px
+      &:first-child
+        margin-top: 15px
+      &:last-child
+        margin-bottom: 0px
+      ol
+        margin-top: 15px
+        li
+          margin-bottom: 15px
+          list-style-type: lower-alpha
+          &:last-child
+            margin-bottom: 0px
 
   hr
     display: none

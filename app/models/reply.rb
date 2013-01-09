@@ -11,6 +11,7 @@ class Reply < ActiveRecord::Base
   validates_presence_of :body
 
   has_many :thanks, :as => :thankable, :dependent => :destroy
+  has_many :warnings, :as => :warnable, :dependent => :destroy
 
   scope :between, lambda { |start_date, end_date| { :conditions => ["? <= replies.created_at AND replies.created_at < ?", start_date.utc, end_date.utc] } }
 

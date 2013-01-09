@@ -1,14 +1,52 @@
-<div class="error"></div>
+<div id="post-box" class="form modal">
+	<div class="error"></div>
 
-<input name="title" type="text" placeholder="Title">
+  <div class="form-container announcement">
+    {{^hasFeeds}}
+      <div class="new-announcement">
+       <ul>
+         <li>
+           Promote Your Work
+         </li>
+       </ul>
+       <span class="divider">
+       </span>
+      <p>You must first register a service or organization before you can promote it.</p>
+      </div>
+    <div class="controls wide">
+         <button class="red-button" href="/feed_registrations/new">Register a New Page</button>
+         <a class="back" href="#">Back</a>
+    </div>
+    {{/hasFeeds}}
+    {{#hasFeeds}}
+    <div class="posting-header promote">
+      <i class="icon"></i>
+      <div class="left">
+      <h1>Promote Your Work</h1>
+      <span>Advertise your organization or business</span>
+      </div>
+    </div>
+    <span class="divider">
+    </span>
+    <div class="post_category">
+      <form>
+        <select name="feed_selector" class="chzn-select" tabindex="1">
+          <option value="">What organization do you want to promote?&nbsp;&nbsp;&nbsp;&nbsp;</option>
+          {{#feeds}}
+          <option value="{{id}}">{{name}}</option>
+          {{/feeds}}
+        </select>
 
-<textarea name="body" placeholder="Post an announcement to everyone interested in {{name}}"></textarea>
+        <input type="text" placeholder="Post Title" name="title" class="rounded_corners">
+        <textarea placeholder="Write your post here!" name="body" rows="15" cols="55" class="rounded_corners"></textarea>
 
-<div class="spinner"></div>
-<div class="on-focus">
-
-  <button>Post Now</button>
-
-
-  <div style="clear: both"></div>
+        <div class="controls">
+           <button class="red-button submit">POST NOW</button>
+           <a class="back" href="#">Back</a>
+           <div class="spinner"><img src='/assets/loading-post.gif' /></div>
+        </div>
+      </form>
+    </div>
+    {{/hasFeeds}}
+  </div>
 </div>

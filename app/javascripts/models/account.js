@@ -19,7 +19,7 @@ var Account = Model.extend({
   neighborhoodsPosts: function() {
     return new Posts([], { uri: this.link('neighborhoods_posts') });
   },
-  
+
   isFeedOwner: function(feed) {
     return _.any(this.get('accounts'), function(account) {
       return account.uid === "feed_" + feed.id;
@@ -39,7 +39,7 @@ var Account = Model.extend({
       data: JSON.stringify({ id: feed_ids }),
       type: "post",
       dataType: "json",
-      success: function(account) { 
+      success: function(account) {
         self.set(account);
         if (callback) { callback(); }
       }
@@ -53,7 +53,7 @@ var Account = Model.extend({
       url: "/api" + this.get('links').feed_subscriptions + '/' + feed.id,
       type: "delete",
       dataType: "json",
-      success: function(account) { 
+      success: function(account) {
         self.set(account);
         if (callback) { callback(); }
       }
@@ -154,13 +154,16 @@ var Account = Model.extend({
       return post.get('user_id') == this.id;
     }
   },
-  
+
   canEditReply: function(reply) {
     return reply.get("author_id") == this.id || this.get("is_admin");
   },
 
   canTryFeatures: function() { return this.get('is_admin'); },
 
+  canEditTransaction: function(transaction) {
+    return transaction.get('user_id') == this.id || this.get('is_admin');
+  },
   deleteAvatar: function(callback) {
     var self = this;
     $.ajax({
@@ -168,7 +171,7 @@ var Account = Model.extend({
       url: "/api" + this.get('links').avatar,
       type: "delete",
       dataType: "json",
-      success: function(account) { 
+      success: function(account) {
         self.set(account);
         if (callback) {
           callback();
@@ -176,7 +179,7 @@ var Account = Model.extend({
       }
     });
   },
-  
+
   cropAvatar: function(coords, callback) {
     $.ajax({
       contentType: "application/json",
@@ -217,7 +220,7 @@ var Account = Model.extend({
       this.set_metadata('has_used_postbox', true, function() { });
     }
   },
-  
+
   isAuth: function() { return !_.isEmpty(this.attributes); }
 
 });

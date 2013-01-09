@@ -29,6 +29,7 @@ class API
       map("/registration") { run Registrations }
       map("/swipe") { run Swipes }
       map("/sessions") { run Sessions }
+      map("/transactions") { run Transactions }
 
       map("/integration") { run Integration }
 

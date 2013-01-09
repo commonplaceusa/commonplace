@@ -1,15 +1,30 @@
-<div class="error"></div>
-
-<input name="title" type="text" placeholder="Title">
-
-<textarea name="body" placeholder="Post a message to your neighbors"></textarea>
-
-<div class="spinner"></div>
-<div class="on-focus">
-
-  <input type="checkbox" name="commercial" /> <span class="checkbox-label">Check here if this is a commercial post or advertisement</span>
-  <button>Post Now</button>
-
-
-  <div style="clear: both"></div>
+<div id="post-box">
+  <div class="error"></div>
+  <div class="form-container">
+    <div class="posting-header discussion">
+      <i class="icon"></i>
+      <div class="left">
+        <h1>Share Community Thoughts</h1>
+        <span>Discuss a town topic with your neighbors</span>
+      </div>
+    </div>
+    <span class="divider">
+    </span>
+    <form>
+      <form>
+        <select name="group_selector" class="chzn-select" tabindex="1">
+          <option value="">What topic are you posting to?&nbsp;&nbsp;&nbsp;&nbsp;</option>
+          {{#groups}}
+          <option value="{{id}}">{{name}}</option>
+          {{/groups}}
+        </select>
+        <input type="text" placeholder="Post Title" name="title" class="rounded_corners"></input>
+        <textarea placeholder="Write your post here!" name="body" rows="15" cols="55" class="rounded_corners"></textarea>
+      <div class="controls">
+         <button class="red-button submit">POST NOW</button>
+         <a class="back" href="#">Back</a>
+         <div class="spinner"><img src='/assets/loading-post.gif' /></div>
+      </div>      
+    </form>
+  </div>
 </div>

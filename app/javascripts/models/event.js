@@ -18,6 +18,7 @@ var Event = Repliable.extend({
     if (!attribs.title) { missing.push("title"); }
     if (!attribs.about && !attribs.body) { missing.push("body"); }
     if (!attribs.date && !attribs.occurs_at) { missing.push("date"); }
+    if (!attribs.address) { missing.push("address"); }
     if (missing.length > 0) {
       var responseText = "Please fill in the " + missing.shift();
       _.each(missing, function(field) {

@@ -1,53 +1,72 @@
 <!DOCTYPE html>
-
 <html xmlns="https://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
-
   <head>
     <title>CommonPlace</title>
     <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
-
-    <link href="//webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
-    <link href="/assets/favicon.png" rel="icon" type="image/png">
-
     <link href="/assets/application.css" rel="stylesheet" type="text/css">
-
-    <script type="text/javascript" src="/assets/application.js"></script>
-    <% if Rails.env.production? %>
-    <script type="text/javascript">
-      var _errs=["4f947d86c30155957702de85"];(function(a,b){a.onerror=function(){_errs.push(arguments)};
-      var d=function(){var a=b.createElement("script"),c=b.getElementsByTagName("script")[0];
-      a.src="//d15qhc0lu1ghnk.cloudfront.net/beacon.js";a.async=!0;
-      c.parentNode.insertBefore(a,c)};a.addEventListener?a.addEventListener("load",d,!1):
-      a.attachEvent("onload",d)})(window,document);
-    </script>
-    <% end %>
+    <link href="/assets/favicon.png" rel="icon" type="image/png">
     <style type="text/css" media="screen">
-       body {
-           background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
-           background-color: #CEE7FE;
-           background-size: cover;
+       html {
+           background-color: #FCFAF4;
+           background-size: cover !important;
            -webkit-background-size: cover;
            -webkit-font-smoothing: antialiased;
            text-rendering: optimizeLegibility;
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
+          }
+
+       /**
+        @media all and (max-device-width: 3000px) {
+          html {
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
+          }
+        }
+
+        @media all and (max-device-width: 1500px) {
+          html {
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>-1500.jpg') no-repeat center center fixed;
+          }
+        }
+
+        @media all and (max-device-width: 1400px) {
+          html {
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>-1400.jpg') no-repeat center center fixed;
+          }
+        }
+
+        @media all and (max-device-width: 1300px) {
+          html {
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>-1300.jpg') no-repeat center center fixed;
+          }
+        }
+
+        @media all and (max-device-width: 1100px) {
+          html {
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>-1100.jpg') no-repeat center center fixed;
+          }
+        }
+
+        @media all and (max-device-width: 800px) {
+          html {
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>-800.jpg') no-repeat center center fixed;
+          }
+        }
+        **/
+
+          body {
+            background: none !important;
+            -webkit-font-smoothing: antialiased;
           }
      </style>
+     <!--[if lt IE 9]>
+         <link rel="stylesheet" type="text/css" href="/assets/mainpage-ie.css" />
+     <![endif]-->
+     <!--[if lt IE 8]>
+         <link rel="stylesheet" type="text/css" href="/assets/ie7.css" />
+     <![endif]-->
   </head>
 
   <body class="application">
-    <img src="/assets/shared/redesign/welcomebg.png" style="display:none;">
-    <img src="/assets/shared/redesign/tan-bg.png" style="display:none;">
-    <img src="/assets/shared/redesign/red-bg.png" style="display:none;">
-    <img src="/assets/shared/redesign/blue-bg.png" style="display:none;">
-    <img src="/assets/shared/redesign/star-red.png" style="display:none;">
-    <img src="/assets/shared/redesign/welcome-divider.png" style="display:none;">
-    <img src="/assets/shared/redesign/error-bg.png" style="display:none;">
-    <img src="/assets/shared/redesign/fbreg.png" style="display:none;">
-    <img src="/assets/shared/redesign/arrow.png" style="display:none;">
-    <img src="/assets/use_facebook.png" style="display:none;">
-    <img src="/avatars/missing.png" style="display:none;">
-    <img src="/assets/loading.gif" style="display:none;">
-
     <div id="sticky-wrapper">
       <div id="fb-root"></div>
 
@@ -59,7 +78,7 @@
 
       <div id="main"></div>
 
-      <div id="sticky-footer"></div>
+      <!--<div id="sticky-footer"></div>-->
 
       <%= erb :tracking %>
       <% if Rails.env.production? %>
@@ -67,10 +86,35 @@
           _kmq.push(['record', 'Main Page', {'community': '<%= @community.name %>'}]);
           _kmq.push(['record', 'platform activity', {'source': 'site_visit'}]);
         </script>
+        <script type="text/javascript">
+          var _errs=["4f947d86c30155957702de85"];(function(a,b){a.onerror=function(){_errs.push(arguments)};
+          var d=function(){var a=b.createElement("script"),c=b.getElementsByTagName("script")[0];
+          a.src="//d15qhc0lu1ghnk.cloudfront.net/beacon.js";a.async=!0;
+          c.parentNode.insertBefore(a,c)};a.addEventListener?a.addEventListener("load",d,!1):
+          a.attachEvent("onload",d)})(window,document);
+        </script>
       <% end %>
     </div>
+    <img src="/assets/shared/redesign/check-off.png" style="display: none" />
+    <!--<%= erb :footer %>-->
+    <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/assets/application.js"></script>
 
-    <%= erb :footer %>
+    <script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.5/zenbox.js"></script>
+    <style type="text/css" media="screen, projection">
+      @import url(//assets.zendesk.com/external/zenbox/v2.5/zenbox.css);
+    </style>
+    <script type="text/javascript">
+      if (typeof(Zenbox) !== "undefined") {
+        Zenbox.init({
+          dropboxID:   "20129567",
+          url:         "https://commonplace.zendesk.com",
+          tabID:       "Feedback",
+          tabColor:    "black",
+          tabPosition: "Right"
+        });
+      }
+    </script>
 
   </body>
 

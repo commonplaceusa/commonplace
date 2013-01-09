@@ -1,18 +1,18 @@
 
-%h1 Create a Community Feed
+%h1 Create a Community Page
 
 %ul#registration_information
 
   %li 
     Any organization, business, city service or cause can create a
-    "Community Feed" on CommonPlace.
+    "Community Page" on CommonPlace.
 
   %li
     This allows you to send out announcements and events from your
     organization to everyone on CommonPlace.
 
   %li 
-    People can subscribe to your community feed and receive your
+    People can subscribe to your Community Page and receive your
     announcements and events by email.
 
 = semantic_form_for registration.feed, :url => feed_registrations_url, :html => {:multipart => true} do |f|
@@ -20,7 +20,7 @@
   = f.inputs do
     = f.input :name, :input_html => {'autocomplete' => "off"}
 
-    = f.input(:slug, :label => "Feed address:", :hint => "Your feed address serves as your CommonPlace URL: www.OurCommonPlace.com/pages/____. Also, you can send announcements by email using this email address: ____@OurCommonPlace.com")
+    = f.input(:slug, :label => "Page address:", :hint => "Your page address serves as your CommonPlace URL: www.OurCommonPlace.com/pages/____. Also, you can send announcements by email using this email address: ____@OurCommonPlace.com")
 
     - unless current_community.is_college
       = f.input :kind, :as => :radio, :collection => Feed.kinds.to_hash

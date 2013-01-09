@@ -18,7 +18,7 @@ var FeedPageRouter = Backbone.Router.extend({
   show: function(slug) {
     var self = this;
     
-    var header = new HeaderView();
+    var header = new CommonPlace.shared.HeaderView();
     header.render();
     $("#header").replaceWith(header.el);
     

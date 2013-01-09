@@ -4,14 +4,13 @@
     <title>CommonPlace</title>
     <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
 
-  <link href="//webfonts.fontslive.com/css/0a25c9dc-bb5a-4ea9-88b2-1c7a8802e172.css" rel="stylesheet" type="text/css">
   <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
   <link href="/assets/favicon.png" rel="icon" type="image/png">
   <link href="/assets/about.css" rel="stylesheet" type="text/css">
   <style type="text/css" media="screen">
        body {
           background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
-          background-color: #CEE7FE;
+          background-color: #FCFAF4;
           background-size: cover;
           -webkit-background-size: cover;
           -webkit-font-smoothing: antialiased;
@@ -38,23 +37,44 @@
       });
     </script>
     <body>
-          <img src="/assets/shared/redesign/welcomebg.png" style="display:none;">
-          <img src="/assets/shared/redesign/logo3.png" style="display:none;">
-          <img src="/assets/shared/redesign/tan-bg.png" style="display:none;">
-          <img src="/assets/shared/redesign/red-bg.png" style="display:none;">
-          <img src="/assets/shared/redesign/blue-bg.png" style="display:none;">
-          <img src="/assets/shared/redesign/star-red.png" style="display:none;">
-          <img src="/assets/shared/redesign/welcome-divider.png" style="display:none;">
-          <img src="/assets/shared/redesign/norms-1.png" style="display:none;">
-          <img src="/assets/shared/redesign/norms-2.png" style="display:none;">
-          <img src="/assets/shared/redesign/norms-3.png" style="display:none;">
-          <img src="/assets/shared/redesign/error-bg.png" style="display:none;">
-          <img src="/assets/shared/redesign/fbreg.png" style="display:none;">
-          <img src="/assets//shared/redesign/arrow.png" style="display:none;">
-          <img src="/assets/shared/redesign/about-stars.png" style="display:none;">
-          <img src="/assets/use_facebook.png" style="display:none;">
-          <img src="/avatars/missing.png" style="display:none;">
-          <img src="/assets/loading.gif" style="display:none;">
+       <img src="/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg" style="display:none;">
+        <img src="/assets/shared/redesign/logo3.png" style="display:none;">
+        <img src="/assets/shared/redesign/requests-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/marketplace-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/events-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/discussions-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/announcements-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/welcomebg.png" style="display:none;">
+        <img src="/assets/shared/redesign/reply-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/message-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/publicize-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/thank-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/flag-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/tan-bg.png" style="display:none;">
+        <img src="/assets/shared/redesign/red-bg.png" style="display:none;">
+        <img src="/assets/shared/redesign/blue-bg.png" style="display:none;">
+        <img src="/assets/shared/redesign/star-red.png" style="display:none;">
+        <img src="/assets/shared/redesign/star-blue.png" style="display:none;">
+        <img src="/assets/shared/redesign/welcome-divider.png" style="display:none;">
+        <img src="/assets/shared/redesign/error-bg.png" style="display:none;">
+        <img src="/assets/shared/redesign/fbreg.png" style="display:none;">
+        <img src="/assets/shared/redesign/arrow.png" style="display:none;">
+        <img src="/assets/shared/redesign/close-icon.png" style="display:none;">
+        <img src="/assets/use_facebook.png" style="display:none;">
+        <img src="/avatars/missing.png" style="display:none;">
+        <img src="/assets/loading.gif" style="display:none;">
+        <img src="/assets/group-icons/dogs.png" style="display:none;">
+        <img src="/assets/group-icons/environment.png" style="display:none;">
+        <img src="/assets/group-icons/volunteer-opportunities.png" style="display:none;">
+        <img src="/assets/group-icons/sports-recreation.png" style="display:none;">
+        <img src="/assets/group-icons/social-opportunities.png" style="display:none;">
+        <img src="/assets/group-icons/schools.png" style="display:none;">
+        <img src="/assets/group-icons/parents-families.png" style="display:none;">
+        <img src="/assets/group-icons/new-mothers.png" style="display:none;">
+        <img src="/assets/group-icons/music-arts.png" style="display:none;">
+        <img src="/assets/group-icons/local-dining.png" style="display:none;">
+        <img src="/assets/group-icons/gardening-home-improvement.png" style="display:none;">
+        <img src="/assets/group-icons/city-problem-solving.png" style="display:none;">
     <div id="header">
 
     </div>
@@ -189,7 +209,7 @@
     <script type="text/javascript">
       CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
       CommonPlace.account = new Account(<%= @account.try(:persisted?) ? Serializer::serialize(Account.new(@account)).to_json : "{}" %>);
-      var header = new HeaderView({el: $("#header")});
+      var header = new CommonPlace.shared.HeaderView({el: $("#header")});
       header.render();
 
       <% if @active_tab %>

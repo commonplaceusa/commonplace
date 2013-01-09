@@ -38,13 +38,12 @@
 //= require invite_page
 //= require faq_page
 //= require discount_page
-//= require community_page
+//= require main_page
 //= require inbox_page
 //= require feed_inbox_page
 //= require outbox_page
 //= require account_page
 //= require stats_page
-//= require find_my_neighbors_page
 //
 //= require facebook
 
@@ -55,7 +54,8 @@
 var Application = Backbone.Router.extend({
 
   initialize: function() {
-    var header = new HeaderView({ el: $("#header") });
+    Backbone.View.prototype.eventAggregator = _.extend({}, Backbone.Events);
+    var header = new CommonPlace.shared.HeaderView({ el: $("#header") });
     header.render();
 
     $("#notification").hide();
@@ -64,13 +64,12 @@ var Application = Backbone.Router.extend({
       faq: new FaqPage({ el: $("#main") }),
       invite: new InvitePage({ el: $("#main") }),
       discount: new DiscountPage({ el: $("#main") }),
-      community: new CommunityPage({ el: $("#main") }),
+      community: new CommonPlace.CommunityPage({ el: $("#main") }),
       inbox: new InboxPage({ el: $("#main") }),
       outbox: new OutboxPage({ el: $("#main") }),
       feed_inbox: new FeedInboxPage({ el: $("#main") }),
       account: new AccountPage({ el: $("#main") }),
-      stats: new StatsPage({ el: $("#main") }),
-      find_neighbors: new FindMyNeighborsPage({ el: $("#main") })
+      stats: new StatsPage({ el: $("#main") })
     };
 
     _.invoke(this.pages, "unbind");
@@ -88,11 +87,15 @@ var Application = Backbone.Router.extend({
     ":community/list/:tab": "communityWire",
     ":community/share/:tab": "communityPostBox",
 
+    ":community/pages/:id": "showFeedPage",
+    ":community/groups/:id": "showGroupPage",
+
     ":community/show/posts/:id": "showPost",
     ":community/show/events/:id": "showEvent",
     ":community/show/group_posts/:id": "showGroupPost",
     ":community/show/announcements/:id": "showAnnouncement",
     ":community/show/users/:id": "showUserWire",
+    ":community/show/transactions/:id": "showTransaction",
 
     ":community/message/users/:id": "messageUser",
     ":community/message/feeds/:id": "messageFeed",
@@ -107,8 +110,6 @@ var Application = Backbone.Router.extend({
 
     ":community/stats": "stats",
 
-    ":community/find_neighbors": "find_neighbors",
-    ":community/find_neighbors/callback?oauth_token=:token&oauth_verifier=:verifier": "find_neighbors_with_callback"
   },
 
   stats: function(c) {
@@ -124,14 +125,6 @@ var Application = Backbone.Router.extend({
   invite: function(c) { this.showPage("invite"); },
 
   discount: function(c) { this.showPage("discount"); },
-
-  find_neighbors: function(c) { this.showPage("find_neighbors"); },
-  find_neighbors_with_callback: function(c, token, verifier) {
-    this.pages.find_neighbors.is_callback = true;
-    this.pages.find_neighbors.callback_token = token;
-    this.pages.find_neighbors.callback_verifier = verifier;
-    this.showPage("find_neighbors");
-  },
 
   community: function(c) {
     this.showPage("community");
@@ -158,9 +151,24 @@ var Application = Backbone.Router.extend({
     this.pages.community.lists.showEvent(new Event({links: {self: "/events/" + id }}));
   },
 
+  showTransaction: function(c, id) {
+    this.showPage("community");
+    this.pages.community.lists.showTransaction(new Transaction({links: {self: "/transactions/" + id }}));
+  },
+
   showGroupPost: function(c, id) {
     this.showPage("community");
     this.pages.community.lists.showGroupPost(new GroupPost({links: {self: "/group_posts/" + id}}));
+  },
+
+  showFeedPage: function(c, id) {
+    this.showPage("community");
+    this.pages.community.lists.showFeedPage(id);
+  },
+
+  showGroupPage: function(c, id) {
+    this.showPage("community");
+    this.pages.community.lists.showGroupPage(id);
   },
 
   showAnnouncement: function(c, id) {
@@ -175,7 +183,6 @@ var Application = Backbone.Router.extend({
 
   messageUser: function(c, id) {
     this.showPage("community");
-    this.pages.community.lists.switchTab("all_posts");
     var user = new User({ links: { self: "/users/" + id } });
     user.fetch({
       success: function() {
@@ -234,7 +241,7 @@ var Application = Backbone.Router.extend({
   bindNewPosts: function() {
     var self = this;
     var community = CommonPlace.community;
-    var postlikes = [community.posts, community.events, community.groupPosts, community.announcements];
+    var postlikes = [community.posts, community.events, community.groupPosts, community.announcements, community.transactions];
     _.each(postlikes, function(postlike) {
       postlike.on("sync", function() {
         self.navigate("/", true);

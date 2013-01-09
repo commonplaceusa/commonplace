@@ -70,7 +70,7 @@ class API
     get "/:id/postlikes" do
       control_access :community_member, find_user.community
       
-      search = Sunspot.search([Announcement, Post, GroupPost, Event]) do
+      search = Sunspot.search([Announcement, Post, GroupPost, Event, Transaction]) do
         order_by(:created_at, :desc)
         paginate(:page => params["page"].to_i + 1, :per_page => params["limit"])
         with(:community_id, find_user.community.id)

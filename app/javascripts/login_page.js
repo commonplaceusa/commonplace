@@ -6,6 +6,7 @@
 //= require backbone
 //= require views
 //= require models
+//= require placeholder
 //= require_tree ./shared
 //= require_tree ../templates
 

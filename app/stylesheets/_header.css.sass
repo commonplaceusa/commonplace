@@ -1,14 +1,124 @@
+$blue: #1b334a
+$dark-blue: #151f28
+$light-blue: #32485c
+$red: #ac322f
+$dark-red: darken($red, 20%)
+$black: #333
+$dark-grey: #888
+$light-grey: #e8e8e8
+$off-grey: #eeecdf
+$search-box: #b7c3cf
+$dark-tan: #bcbbae
+$tan: #F5F3E9
+$light-tan: #FCFAF4
+
+$Ultra: 'Ultra'
+$Yellowtail: 'Yellowtail'
+$Rokkitt: 'Rokkitt'
+
+$heading: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+$body: Helvetica Neue, Helvetica, Tahoma, serif
+
+$black-shadow: 0px 2px 1px black
+
 #header
-  background: #1b334a
+  background-color: $blue
+  //background-image: url("shared/redesign/blue-bg.png")
   height: 31px
   padding: 15px 0px
-  border-bottom: 4px solid #fff
   margin: 0
+  height: 30px
+  width: 100%
+  padding: 18px 0px
+  z-index: 1000
+  position: fixed
+  top: 0px
+  left: 0px
+  right: 0px
+  box-shadow: 0px 3px 5px rgba(0,0,0,0.25)
+  border-bottom: 1px solid #000
+  .community-name
+    width: 260px
+    float: left
+    //background: image-url("shared/redesign/logo3.png") no-repeat
+    //padding-left: 53px
+    height: 67px
+    //background-position: 16px 17px
+    position: relative
+    //border-right: 1px solid $dark-blue
+    border-left: 1px solid #31465b
+    box-shadow: inset -1px 1px 0 0 $dark-blue
+    border-right: 1px solid #31465b
+    .button-wrapper
+      background-image: url("shared/redesign/button-tail.png")
+      background-color: transparent
+      background-repeat: no-repeat
+      background-position: 0px -2px
+      overflow: hidden
+      width: 195px
+      height: 35px
+      margin: 16px 15px 0px 0px
+      float: right
+      &:hover
+        background-position: 0px -42px
+      &:active
+        background-position: 0px -82px
+      .red-button
+        width: 170px
+        font-size: 17px
+        text-align: center
+        padding: 10px 9px 6px
+        font-weight: normal
+        float: right
+        border: 0px
+        border-bottom: 2px solid rgba(0,0,0,0.75)
+        //border-color: #8a2a23
+        box-shadow: inset 0px -1px 0px rgba(255,255,255,0.25)
+        behavior: url("/assets/PIE.htc")
+        &:hover, &:focus
+          box-shadow: inset 0px 1px 0px rgba(255,255,255,0.35)
+        &:active
+          box-shadow: inset 0px 1px 0px rgba(255,255,255,0.20)
+        //&:after
+          content: ""
+          position: absolute
+          top: 14px
+          left: -12px
+          border-top: 8px transparent #8a2a23
+          border-left: 8px transparent
+          border-right: 8px transparent
+          -webkit-transform: rotate(90deg)
+          &:hover, &:focus
+            border-top: 8px solid #cf4643
+          &:active
+            border-top: 8px solid #c33c39
+    h1
+      color: white
+      text-shadow: $black-shadow
+      font-size: 32px
+      letter-spacing: -2px
+      margin-top: 21px
+      font-family: $heading
+      float: left
+      text-align: left
+      font-weight: bold
+      margin-left: 20px
+      width: auto
+      a
+        text-decoration: none
+        color: white
+      .cp_logo
+        width: 25px
   #nav_wrapper
-    width: 1004px
+    width: 910px
     margin: 0 auto
     position: relative
-    left: 2px
+    top: -19px
+    height: 67px
+    border-left: 1px solid #151f28
+    border-right: 1px solid #31465b
+    box-shadow: inset -1px 1px 0 0 $dark-blue
+    behavior: url("/assets/PIE.htc")
     #logo
       margin-top: 10px
       text-decoration: none
@@ -18,7 +128,7 @@
       line-height: 30px
       +text-shadow(#000 -1px 1px 0)
       span
-        font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+        font-family: $heading
         color: #AC322F
         font-size: 25px
         position: relative
@@ -27,13 +137,47 @@
         vertical-align: bottom
     .nav
       float: right
-      a, .disabled_link
+      width: 647px      
+      #search-header
+        margin-left: 15px
+        margin-right: 10px
+        margin-top: 16px
+        width: 463px
+        font-size: 18px
+        padding: 7px 10px 5px
+        border-radius: 4px
+        background-color: rgba(0,0,0,0.10)
+        color: #FCFAF4
+        font-weight: bold
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.65)
+        -webkit-font-smoothing: antialiased
+        border: 1px solid #151f28
+        box-shadow: 0px 1px 0px rgba(255,255,255,0.15), inset 1px 1px 3px rgba(0,0,0,0.20)
+        behavior: url("/assets/PIE.htc")
+        &:active, &:focus
+          outline: none
+          //background-color: #FCFAF4
+          background-color: rgba(92,143,189,0.15)
+          //background-color: rgba(0,0,0,0.15)
+          color: white
+          text-shadow: none
+          box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.20), 0px 1px 0px rgba(255, 255, 255, 0.15)
+          behavior: url("/assets/PIE.htc")
+          &:focus::-webkit-input-placeholder
+            color: white !important
+            text-shadow: none
+            behavior: url("/assets/PIE.htc")
+      #search-header::-webkit-input-placeholder
+        color: #FCFAF4 !important
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.65)
+        behavior: url("/assets/PIE.htc")
+      //a, .disabled_link
         font-size: 12px
         letter-spacing: .7px
         padding: 3px 0 3px 10px
         color: #8faac2
         font-weight: bold
-        font-family: Helvetica, sans-serif
+        font-family: $body
         text-decoration: none
         +text-shadow(#000 1px 1px 0px)
         .notif
@@ -45,7 +189,7 @@
         span
           vertical-align: top
       li
-        margin-top: -6px
+        margin-top: 5px
         height: 30px
         vertical-align: middle
         padding-top: 12px
@@ -63,7 +207,7 @@
           width: 240px 
           margin-top: 13px
           padding: 10px
-          font-family: Helvetica, Sans Serif
+          font-family: $body
           font-size: 13px
           right: -1px
           border: 1px solid #d7d7d7
@@ -109,7 +253,7 @@
             float: right
             font-weight: bold
             font-size: 22px
-            font-family: Helvetica Neue, Helvetica, Tahoma
+            font-family: $body
             margin-top: -4px
             padding: 5px
             color: white
@@ -125,7 +269,7 @@
             margin-right: 5px
             font-weight: bold
             font-size: 14px
-            text-align: center !important
+            text-align: center !importantt
           span.sub-total-week
             float: right
             width: 27px
@@ -218,7 +362,7 @@
           display: none
           width: 500px
           +border-radius(5px 0 5px 5px)
-          font-family: Helvetica, Tahoma, Sans-Serif
+          font-family: $body
           overflow-x: hidden
           position: relative
           left: -425px
@@ -243,46 +387,165 @@
             float: right
       li.register_feed
         margin-right: 35px
-
+      .avatar-container 
+        height: 18px 
+        width: 18px
+        margin-right: 8px
+        float: left
+        border-radius: 2px
+        //box-shadow: 0px 1px 0px rgba(255,255,255,0.35), inset 0px 1px 1px rgba(0,0,0,0.75)
+        margin-top: -1px
+        background-size: cover
+        background-position: center center
+        behavior: url("/assets/PIE.htc")
+      //li.account 
+        margin-top: 11px !important
+        width: 94px
+        padding-left: 8px
+        color: white
       li.account
+        -webkit-font-smoothing: antialiased
+        background: $blue
+        width: 100px
+        padding: 10px 8px 6px 8px
+        height: 20px
+        float: right
+        margin-right: 16px
+        margin-top: -2px !important
+        font-family: $heading
+        font-size: 16px
+        font-weight: normal
+        border: 1px solid #151f28 !important
+        color: rgba(255,255,255,0.65)
+        text-transform: capitalize
+        border-radius: 5px
+        top: 17px
+        +linear-gradient(color-stops(#2e5274, #1b334a), top)
+        box-shadow: 0px 1px 3px rgba(0,0,0,0.25), inset -0px -1px 0px rgba(255,255,255,0.15) 
+        //text-shadow: 1px 1px 0px rgba(0,0,0,0.75)
+        cursor: pointer
         position: relative
-        margin-right: 0px
-        border: 1px solid transparent
-        padding-right: 8px
+        z-index: 800
+        behavior: url("/assets/PIE.htc")
+        a
+          //color: rgba(255,255,255,0.65)
+          color: white
+          text-shadow: none
+        &:hover, &:focus
+          color: rgba(255,255,255,0.65)
+          height: 25px
+          border-bottom: 0px
+          box-shadow: 0px 2px 2px rgba(0,0,0,0.40)
+          //box-shadow: inset 0px 1px 0px rgba(255,255,255,0.12) 
+          //+linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          //text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+          //box-shadow: 0px 1px 2px rgba(0,0,0,.15), inset 0px 1px 0px rgba(255,255,255,0.15) 
+          +border-bottom-right-radius(0px)
+          +border-bottom-left-radius(0px)
+          z-index: 900
+          behavior: url("/assets/PIE.htc")
+          ul.account-sub
+            display: block
+            z-index: 100
+          //a 
+            text-shadow: none
+            color: rgba(255,255,255,0.65)
+            &:hover, &:active
+              color: white
+              text-shadow: none
+          span.arrow
+            //color: #497ba7
+            color: rgba(255,255,255,0.65)
+            text-shadow: -1px -1px 0px rgba(0,0,0, 0.85)
+        //&:active
+          color: #fff
+          +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+          box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+        span.arrow
+          font-size: 17px
+          position: absolute
+          top: 9px
+          right: 10px
+          color: rgba(0,0,0, 0.80)
+          font-weight: bold
+          text-shadow: 1px 1px 0px rgba(255,255,255, 0.25)
+          -webkit-font-smoothing: antialiased
         ul.account-sub
           position: absolute
           display: none
-          background: white
-          color: #505250
-          width: 145px
-          margin-top: 13px
-          font-family: Helvetica, Sans Serif
-          font-size: 13px
+          background-color: #1b334a
+          //+linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          box-shadow: 0px 2px 2px rgba(0,0,0,0.40), inset 0px -1px 0px rgba(255,255,255,0.15) 
+          width: 155px
+          margin-top: 15px
+          font-family: $heading
+          text-shadow: 1px 1px 1px #000
           right: -1px
-          border: 1px solid #d7d7d7
-          border-top: 0px
+          //border-top: 0px !important
+          border: 1px solid #151f28
+          +border-top-right-radius(0px)
           +border-bottom-right-radius(5px)
           +border-top-left-radius(5px)
           +border-bottom-left-radius(5px)
-          z-index: 9999
-          padding: 10px 0
+          z-index: 100
+          padding: 0
+          behavior: url("/assets/PIE.htc")
           li
-            margin-top: 0
+            margin: 0
             height: auto
             float: none
-            width: 125px
-            padding: 0 10px
-            margin-right: 0
-            padding: 8px 10px
+            width: 155px
+            padding: 0
+            border-bottom: 1px solid rgba(0,0,0,0.40)
+            border-top: 1px solid rgba(255,255,255,0.10)
+            &:first-child
+              border-top: 0px none
+              +border-top-left-radius(5px)
+              box-shadow: inset 0px 1px 0px rgba(255,255,255,0.10)
+              padding-top: 2px 
+            &:last-child
+              border-bottom: 0px none
             &:hover
-              background: #E8E8E8
-              color: #333
+              background-color: rgba(92,143,189,0.30)
+              //color: rgba(255,255,255,0.65)
             a
               margin: 0
-              padding: 0
+              padding: 10px 10px 9px 10px
+              font-family: $heading
+              font-size: 16px
               font-weight: normal
-        &:hover
-          background: white
+              color: rgba(255,255,255,0.65)
+              display: block
+              width: 135px
+              height: 100%
+              position: relative
+              span.inbox_number
+                //background-color: $red
+                color: rgba(255,255,255,0.65)              
+                border-radius: 30px
+                padding: 3px 4px 4px 4px
+                float: right
+                right: 10px
+                top: 7px
+                text-align: center
+                min-width: 15px
+                margin-right: 0px
+                background-color: rgba(0,0,0,0.25)
+                box-shadow: 0px 1px 0px rgba(255,255,255,0.15), inset 1px 1px 1px rgba(0,0,0,0.45)
+                font-size: 11px
+                font-weight: bold
+                font-family: $body
+                position: absolute
+              &:hover
+                color: #fff
+                //text-shadow: 1px 1px 0px rgba(0,0,0,0.75)
+                span.inbox_number
+                  color: #fff
+                  text-shadow: 1px 1px 0px #000
+              
+        //&:hover
+          background: $blu
           color: #1B334A
           border: white 1px solid
           border: 1px solid #d7d7d7
@@ -293,11 +556,168 @@
           a 
             text-shadow: none
             color: #1B334A
-        
+              .button
+                padding: 5px
+                border-radius: 4px 
+                box-shadow: inset 0 1px 1px rgba(255,255,255,.4)
+                cursor: pointer
+                width: 70px
+                float: left
+                margin-top: 14px
+                font-family: $heading
+                font-size: 18px
+                color: white
+                border: 1px solid black
+                text-align: center
+                text-shadow: 0px 2px 0px #424242
+              .blue
+                margin-right: 20px
+                +linear-gradient(color-stops(#2e5274, #1b334a))
+                &:hover, &:focus
+                  color: #fff
+                  +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+                  box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+                &:active
+                  color: #fff
+                  +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+              .red
+                background: $red
+                +linear-gradient(color-stops(#cc4441, #ac322f))
+                &:hover, &:focus
+                  color: #fff
+                  +linear-gradient(color-stops(#ea4e4a, #ac322f), top)
+                  box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+                &:active
+                  color: #fff
+                  +linear-gradient(color-stops(#cc4441, #ac322f), bottom)
+            .dropdown
+              width: 300px
+              background: #EEECDF
+              text-align: center
+              z-index: 4000000
+              display:none
+              +border-radius(4px)
+              position: absolute
+              box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), inset 0px -1px 0px #AAA
+              right: 0px
+              top: 61px
+              .arrow
+                width: 150px
+                height: 20px
+                background: url("shared/redesign/arrow.png") no-repeat
+                background-position: 100px 12px
+                position: absolute
+                top: -19px 
+                display: block
+                right: 0
+              input
+                width: 253px
+                -webkit-appearance: none
+                font-size: 16px
+                padding: 8px
+                height: auto
+                margin-top: 4px
+                margin-bottom: 10px
+                margin-right: 2px
+                border: 1px solid #d7d5c5
+                font-family: $Rokkitt
+                color: #131313
+                box-shadow: inset #eee 0px 0px 3px 2px, rgba(255,255,255,1.0) 0px 1px 0px
+                -webkit-font-smoothing: antialiased
+
+              input::-webkit-input-placeholder
+                color: #555
+              input:-moz-placeholder
+                color: #555
+              .email
+                margin: 14px 2px 10px 0px
+              button.signin
+                text-align: center
+                float: right
+                width: 110px
+                +linear-gradient(color-stops(#2e5274, #1b334a))
+                font-weight: bold
+                font-size: 16px
+                margin-right: 15px
+                padding-top: 10px
+                padding-bottom: 8px
+                margin-top: 5px
+                height: auto
+                -webkit-font-smoothing: antialiased
+                background-color: #1b334a
+                text-shadow: 0px 2px 0px #333
+                &:hover, &:focus
+                  color: #fff
+                  +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+                  box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+                &:active
+                  color: #fff
+                  +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+              button.signin.facebook
+                width: 148px
+                height: auto
+                margin-right: 12px
+                font-size: 16px
+                padding: 10px 0 8px 0
+                +linear-gradient(color-stops(#4e6fb6, #3b5998))
+                -webkit-font-smoothing: antialiased
+                background-color: #3b5998
+                text-shadow: 0px 2px 0px #333
+                &:hover, &:focus
+                  color: #fff
+                  +linear-gradient(color-stops(#5c83d7, #3b5998), top)
+                  box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+                &:active
+                  color: #fff
+                  +linear-gradient(color-stops(#4e6fb6, #3b5998), bottom)
+              p 
+                clear: both
+                margin-left: 14px
+                padding: 12px 0px 13px 0px
+                text-align: left
+                font-family: $heading
+                cursor: pointer
+                color: #565656
+                font-weight: bold
+                -webkit-font-smoothing: antialiased
+                &:hover
+                  text-decoration: underline
+            #choose_town.dropdown
+              right: 223px !important
+              padding: 14px
+              width: 250px
+              .arrow
+                width: 145px
+              ul#town_list
+                overflow-x: hidden
+                max-height: 286px
+                box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
+                border: 1px solid #d7d5c5
+                li
+                  border-bottom: 1px dotted #ddd
+                  font-family: $heading
+                  font-size: 18px
+                  line-height: 24px
+                  text-align: left
+                  color: $black
+                  background-color: #fff
+                  &:last-child
+                    border: 0px
+                  &:hover
+                    background-color: #eee
+                    color: $black
+                    cursor: pointer
+                  a
+                    padding: 8px 10px
+                    color: #555
+                    display: block
+                    cursor: pointer
+                    &:hover
+                      color: $red  
       .number 
         background: #d5d5d5
         color: #ac322f
-        font-family: Helvetica
+        font-family: $body
         font-size: 13px
         text-shadow: 1px white
         margin-left: 9px
@@ -335,7 +755,7 @@
           font-weight: normal
           height: 20px
           width: 66px
-          font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+          font-family: $heading
           display: inline
           vertical-align: top
           padding: 3px 10px
@@ -396,7 +816,7 @@
     float: right
     margin-top: 2px
     position: relative
-    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+    font-family: $heading
 
     > li
       margin: 0 5px

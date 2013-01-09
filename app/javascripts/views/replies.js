@@ -24,9 +24,8 @@ var RepliesView = CommonPlace.View.extend({
     var $ul = this.$("ul.reply-list");
 
     this.collection.each(function(reply, index) {
-      var replyview = new ReplyWireItem({ 
+      var replyview = new CommonPlace.wire_item.ReplyWireItem({ 
         model: reply, 
-        showProfile: self.options.showProfile ,
         thankReply: self.options.thankReply,
         showThanks: self.options.showThanks
       });
@@ -64,6 +63,9 @@ var RepliesView = CommonPlace.View.extend({
         },
         {
           success: _.bind(function() {
+            if (typeof _kmq !== "undefined" && _kmq !== null) {
+              _kmq.push(['record', 'Sent Reply']);
+            }
             this.$("div.submit-c").removeClass("waiting");
             this.collection.trigger("sync");
           }, this),
@@ -79,7 +81,7 @@ var RepliesView = CommonPlace.View.extend({
     this.$('.replies-more').hide();
   },
   
-  showButton: function(e) { this.$(".submit-c").show(); },
+  showButton: function(e) { this.$(".submit-c").fadeIn(); },
   
   hideButton: function(e) { 
     if (!this.$("form textarea").val()) { this.$(".submit-c").hide(); }

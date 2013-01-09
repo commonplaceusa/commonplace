@@ -19,6 +19,7 @@ class Event < ActiveRecord::Base
   belongs_to :community
 
   has_many :thanks, :as => :thankable, :dependent => :destroy
+  has_many :warnings, :as => :warnable, :dependent => :destroy
 
   has_many :invites, :as => :inviter
 
@@ -119,6 +120,10 @@ class Event < ActiveRecord::Base
 
   def all_thanks
     (self.thanks + self.replies.map(&:thanks)).flatten.sort_by {|t| t.created_at }
+  end
+
+  def all_flags
+    (self.warnings + self.replies.map(&:warnings)).flatten.sort_by { |t| t.created_at }
   end
 
   searchable do

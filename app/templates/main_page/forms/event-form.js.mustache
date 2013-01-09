@@ -1,49 +1,48 @@
-<div class="error"></div>
+<div id="post-box" class="form">
+  <div class="error"></div>
+  <div class="form-container event">
+    <div class="posting-header event">
+      <i class="icon"></i>
+      <div class="left">
+        <h1>Publicize an Event</h1>
+        <span>Add to the community's events board</span>
+      </div>
+    </div>
+    <span class="divider">
+    </span>
+    <form>
+      <input type="text" placeholder="Event Name" name="title" class="rounded_corners">
+      <textarea placeholder="Description of your event" name="about" class="rounded_corners"></textarea>
+      
+      <div id="event_date">
+        <input class="date rounded_corners" id="date" placeholder="Date" name="date" value="{{date}}" type="text">
+      </div>
+      
+      <div id="start_at_time">
+        <select name="start" id="start_time" class="chzn-select" tabindex="1">
+          <option value="">Starts</option>
+          {{#time_values}}
+            <option value="{{.}}">{{.}}</option>
+          {{/time_values}}
+        </select>
+      </div>
+      
+      <div id="end_at_time">
+        <select name="end" id="end_time" class="chzn-select" tabindex="1">
+          <option value="">Ends</option
+          {{#time_values}}
+            <option value="{{.}}">{{.}}</option>
+          {{/time_values}}
+        </select>
+      </div>
+      <input id="address" type="text" placeholder="Address" name="address" class="rounded_corners">
+      <input id="venue" type="text" placeholder="Venue Name" name="venue" class="rounded_corners">
+      <div class="controls">
+         <button class="red-button submit">POST NOW</button>
+         <a class="back" href="#">Back</a>
+         <div class="spinner"><img src='/assets/loading-post.gif' /></div>
+      </div>
+      </form>
+  </div>
+</div>
 
-<input name="title" type="text" placeholder="Event name">
-
-<textarea name="about" placeholder="Description of your event" rows="4"></textarea>
-
-<input class="date" type="text" name="date" placeholder="Event date">
-
-<fieldset class="event-times">
-
-  <label for="start" class="time">
-    <select name="start" class="time dk">
-      <option value="">Starts at</option>
-      {{#time_values}}
-        <option value="{{.}}">{{.}}</option>
-      {{/time_values}}
-    </select>
-  </label>
-  <label for="end" class="time">
-    <select name="end" class="time dk">
-      <option value="">Ends at</option>
-      {{#time_values}}
-        <option value="{{.}}">{{.}}</option>
-      {{/time_values}}
-    </select>
-  </label>
-  <div style="clear: both;"></div>
-</fieldset>
-
-<input name="venue" type="text" placeholder="Venue">
-
-<input name="address" type="text" placeholder="Event address">
-
-<label>Label this post?</label>
-<ul class="post-label-selector">
-  {{#groups}}
-    <li>
-      <label>
-        <img src="{{avatar_url}}" height="25" width="25">
-        {{name}}
-        <input name="groups" value="{{id}}" type="checkbox">
-      </label>
-    </li>
-  {{/groups}}
-</ul>
-
-<button>Post your Event</button>
-
-<div class="spinner"></div>

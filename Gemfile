@@ -53,6 +53,9 @@ gem 'redcarpet', "~> 2.0.1" # We use this to format user messages in emails
 gem 'resque', "~> 1.19.0" # use this to queue worker processes
 gem 'resque-scheduler' # we use this to queue jobs at specific times
 gem 'resque-cleaner'
+gem 'hirefireapp' # auto-scale web and worker processes
+gem "resque-statsd", :git => "https://github.com/CloudabilityArchive/resque-statsd.git"
+
 
 # Mail
 gem 'mail' # Used for mail

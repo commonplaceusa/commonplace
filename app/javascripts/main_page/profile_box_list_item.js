@@ -37,11 +37,5 @@ var ProfileBoxListItem = CommonPlace.View.extend({
   
   clickA: function(e) {
     if (e && this.model.get("schema") != "users") { e.preventDefault(); }
-    this.showProfile();
-  },
-  
-  showProfile: function(e) {
-    this.options.showProfile(this.model);
   }
-    
 });

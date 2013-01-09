@@ -41,58 +41,44 @@ var DynamicLandingResources = CommonPlace.View.extend({
       (new LandingPreview({
         template: "main_page.post-neighborhood-resources",
         collection: self.raw.neighborhood,
-        fullWireLink: "#/posts",
         emptyMessage: "No posts here yet.",
         callback: self.callback,
-        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-offer-resources",
         collection: self.raw.offers,
-        fullWireLink: "#/posts",
         emptyMessage: "No offers here yet.",
         callback: self.callback,
-        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-help-resources",
         collection: self.raw.help,
-        fullWireLink: "#/posts",
         emptyMessage: "No help requests here yet.",
         callback: self.callback,
-        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-publicity-resources",
         collection: self.raw.publicity,
-        fullWireLink: "#/posts",
         emptyMessage: "No posts here yet.",
         callback: self.callback,
-        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-other-resources",
         collection: self.raw.other,
-        fullWireLink: "#/posts",
         emptyMessage: "No posts here yet.",
         callback: self.callback,
-        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.group-post-resources",
         collection: self.raw.groupPosts,
-        fullWireLink: "#/groupPosts",
         emptyMessage: "No posts here yet.",
         callback: self.callback,
-        showProfile: self.options.showProfile
       })),
       (new LandingPreview({
         template: "main_page.post-meetup-resources",
         collection: self.raw.meetups,
-        fullWireLink: "#/posts",
         emptyMessage: "No meetups here yet.",
         callback: self.callback,
-        showProfile: self.options.showProfile
       }))
     ];
     
@@ -116,27 +102,32 @@ var DynamicLandingResources = CommonPlace.View.extend({
     var events = new LandingPreview({
       template: "main_page.event-resources",
       collection: self.raw.events,
-      fullWireLink: "#/events",
       emptyMessage: "No events here yet.",
       callback: self.callback,
-      showProfile: self.options.showProfile
     });
-    
+   
+    var transactions = new LandingPreview({
+      template: "main_page.transaction-resources",
+      collection: self.raw.transactions,
+      emptyMessage: "No items here yet.",
+      callback: self.callback,
+    });
+ 
     var chrono = new Wire({
       template: "main_page.chrono-resources",
       collection: CommonPlace.community.postlikes,
       emptyMessage: "No posts here yet.",
       perPage: 22,
       callback: self.callback,
-      showProfile: self.options.showProfile
     });
     
     _.each(self.raw.all(), function(collection) { duplicates.push(collection.models); })
     chrono.collection.setDupes(_.flatten(duplicates));
     
     self._wires = [first];
-    if (events.collection.length) { self._wires.push(events); }
     self._wires.push(sorted);
+    if (transactions.collection.length) { self._wires.push(transactions); }
+    if (events.collection.length) { self._wires.push(events); }
     self._wires.push(chrono);
     self._wires = _.flatten(self._wires);
   },
@@ -148,7 +139,6 @@ var DynamicLandingResources = CommonPlace.View.extend({
       emptyMessage: "No results.",
       perPage: 22,
       callback: this.callback,
-      showProfile: this.options.showProfile
     });
     searchWire.search(this.currentQuery);
     this._wires = [searchWire];
@@ -169,7 +159,6 @@ var LandingPreview = PreviewWire.extend({
   template: "wires.preview-wire",
   _defaultPerPage: 3,
   aroundRender: function(render) { render(); },
-  fullWireLink: function() { return this.options.fullWireLink; },
   showMore: function() {},
   areMore: function() { return false; },
   isRecent: function() { return true; }

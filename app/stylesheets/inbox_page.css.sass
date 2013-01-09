@@ -20,7 +20,7 @@ body.inbox, body.feed_inbox, body.outbox
 
   #main
     width: 800px
-    margin: auto
+    margin: 65px auto 0px auto
     position: relative
 
   #inbox-nav
@@ -84,8 +84,15 @@ body.inbox, body.feed_inbox, body.outbox
           clear: both
     
         .replies-area
-          .reply-info
-            margin-left: 60px
+          margin-top: 10px
+          padding-left: 28px
+          .replies
+            .reply-list
+              width: 100%
+              .reply-item
+                margin-right: 15px
+                .reply-info
+                  margin-left: 47px
           img.avatar
             width: 50px
             height: 50px
@@ -97,7 +104,7 @@ body.inbox, body.feed_inbox, body.outbox
             display: block
             font-size: 14px
             float: none
-            margin-bottom: 5px
+            margin-bottom: 0px
           .body
             display: block
             font-size: 14px
@@ -116,7 +123,8 @@ body.inbox, body.feed_inbox, body.outbox
         .main-message
           img.avatar
             float: left
-            margin-right: 10px
+            margin-right: 15px
+            border-radius: 5px
     
           .corner
             float: right
@@ -131,18 +139,19 @@ body.inbox, body.feed_inbox, body.outbox
             font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
     
           .messagable
-            color: #b65951
+            color: #ad312f
             text-decoration: none
     
           .date
-            color: #bab9bf
+            color: #888
             font-size: 16px
             margin-bottom: 5px
     
           .body
-            margin-left: 85px
-            color: #3b3b3b
+            color: #333
             line-height: 22px
+            font-family: Helvetica, Arial, sans-serif
+            font-size: 15px
             li
               margin-left: 10px
             p, ul, ol, h1, h2, h3, h4, h5, h6

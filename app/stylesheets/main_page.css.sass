@@ -1,0 +1,56 @@
+@import tour
+@import base
+@import main_page/post_box
+@import main_page/community_resources
+@import main_page/profile_box
+
+
+.important-notification
+  +neutral-notification
+  z-index: 100
+  
+  .cancel
+    float: right
+    height: 12px
+    width: 25px
+    background-image: image-url("shared/icons/cancel.png")
+    background-repeat: no-repeat
+
+
+body.fixedLayout.community 
+
+  .important-notification
+    position: fixed
+    top: 64px
+    left: 0
+    right: 0
+
+  #main 
+    margin-top: 0
+
+  #header
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 980
+  #footer 
+    display: none
+
+  #right-column
+    margin-left: 0
+    float: right
+
+  #left-column
+    float: none
+    position: absolute
+    top: 15px
+    bottom: 15px
+
+  #profile-box
+    position: fixed
+    bottom: 15px
+    
+    #profile-box-upper
+      position: absolute
+      

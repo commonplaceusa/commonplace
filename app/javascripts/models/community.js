@@ -7,6 +7,7 @@ var Community = Model.extend({
     this.groupPosts = this.setup(GroupPosts, "group_posts");
     this.postlikes = this.setup(PostLikes, "post_likes");
     this.postsAndGroupPosts = this.setup(PostLikes, "posts_and_group_posts");
+    this.transactions = this.setup(Transactions, "transactions");
 
     this.users = this.setup(Users, "users");
     this.featuredUsers = this.setup(Users, "featured_users");

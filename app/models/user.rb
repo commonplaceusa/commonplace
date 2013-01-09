@@ -44,9 +44,13 @@ class User < ActiveRecord::Base
   belongs_to :community
   belongs_to :neighborhood
   has_many :thanks, :dependent => :destroy
+  has_many :warns, :dependent => :destroy
 
   has_many :swipes
   has_many :swiped_feeds, :through => :swipes, :class_name => "Feed", :source => :feed
+
+  has_many :sell_transactions, :class_name => 'Transaction', :foreign_key => 'seller_id'
+  has_many :buy_transactions, :class_name => 'Transaction', :foreign_key => 'buyer_id'
 
   def organizer_data_points
     OrganizerDataPoint.find_all_by_organizer_id(self.id)
@@ -147,6 +151,7 @@ class User < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_many :group_posts, :dependent => :destroy
   has_many :announcements, :dependent => :destroy, :as => :owner, :include => :replies
+  has_many :images, :as => :imageable, :dependent => :destroy
   has_many :essays, :dependent => :destroy
 
   has_many :replies, :dependent => :destroy
@@ -503,6 +508,10 @@ WHERE
     self.posted_content.map(&:thanks).flatten
   end
 
+  def flags_received
+    self.posted_content.map(&:warnings).flatten
+  end
+
   def thanks_received_this_week
     self.posted_content.map{ |content| content.thanks.this_week }.flatten
   end
@@ -528,6 +537,7 @@ WHERE
       self.direct_events +
       self.announcements +
       self.group_posts +
+      self.sell_transactions +
       self.replies.where("repliable_type != 'Message'")
   end
 

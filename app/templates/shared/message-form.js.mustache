@@ -1,14 +1,26 @@
-<form>
-  <div class="error"></div>
-  <h1>Write a private message to <strong>{{name}}</strong></h1>
-  <label for="subject">Subject:</label>
-  <input name="subject" type="text">
+<div class="modal-border post-box pie-element">
+   <div id="post-box" class="question">
+     <div class="error"></div>
 
-  <label for="body">Body:</label>
-  <textarea name="body" rows="3"></textarea>
-
-  <div class="controls">
-    <a class="cancel" href="#">Cancel</a>
-    <button>Send Message</button>
-  </div>
-</form>
+     <div class="form-container">
+        <div class="posting-header discussion">
+           <i class="icon"></i>
+           <div class="left">
+             <h1>Write a private message to<br/><strong>{{name}}</strong></h1>
+           </div>
+         </div>
+         <span class="divider">
+         </span>
+       <form>
+         <input type="text" placeholder="Subject" name="subject" class="rounded_corners pie-element"></input>
+         <textarea placeholder="Message" name="body" class="rounded_corners pie-element"></textarea>
+         <div id="message_controls" class="controls">
+            <button class="pie-element">Send Message</button>
+            <a class="cancel" href="#">Cancel</a>
+            <div class="spinner"><img src='/assets/loading-post.gif' /></div>
+         </div>
+       </form>
+     </div>
+   </div>
+</div>
+<div class="close">x</div>

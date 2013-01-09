@@ -1,4 +1,4 @@
-var CommonPlace = CommonPlace || {main: {}, registration: {}, shared: {}};
+var CommonPlace = CommonPlace || {main: {}, pages: {}, shared: {}, registration: {}, views: {}, wire_item: {}};
 
 CommonPlace.View = Backbone.View.extend({
 
@@ -104,7 +104,7 @@ CommonPlace.View = Backbone.View.extend({
     var markdownify = function(text,render) {
       render || (render = function(t) { return t; });
       text = render(text).replace(/!\[/g, "[");
-      return '<div class="markdown">' +
+      return '<div class="markdown body">' +
         (new Showdown.converter()).makeHtml(text) +
         '</div>';
     };
@@ -143,16 +143,21 @@ CommonPlace.View = Backbone.View.extend({
 
 var FormView = CommonPlace.View.extend({
   initialize: function(options) {
-    this.template = (this.options.template || this.template);
+    this.template = (options.template || this.template);
+    this.el = (options.el || this.el)
     this.modal = new ModalView({form: this.el});
   },
 
   afterRender: function() {
+    if (this.options && this.options.subject) {
+      this.$("[name=subject]").val(this.options.subject);
+    }
     this.modal.render();
   },
 
   events: {
     "click form a.cancel": "exit",
+    "click .close": "exit",
     "click form a.delete": "deletePost",
     "submit form": "send"
   },

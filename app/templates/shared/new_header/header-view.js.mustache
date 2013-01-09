@@ -1,22 +1,18 @@
-<div id="nav_wrapper">
+<div id="nav_wrapper" class="pie-element">
   
   <div class="community-name">
     <a href="{{community_url}}">
       {{#isAuth}}
-        {{#hasCommunity}}
           <h1 class="community">
-            {{community_name}}
+            <img src="/assets/shared/redesign/flag-logo.png" alt="OurCommonPlace" class="cp_logo">
           </h1>
-        {{/hasCommunity}}
+            <div class="button-wrapper">
+               <a href="" class="red-button post pie-element">Post To Your Neighbors!</a>
+            </div>
       {{/isAuth}}
-      {{#notAuth}}
+      {{^isAuth}}
         <img src="/assets/shared/redesign/logo3.png" alt="OurCommonPlace" class="cp_logo">
-        {{#hasCommunity}}
-          <span class="community">
-            {{community_name}}
-          </span>
-        {{/hasCommunity}}
-      {{/notAuth}}
+      {{/isAuth}}
     </a>
   </div>
   <div class="nav"></div>

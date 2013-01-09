@@ -1,16 +1,17 @@
-<img class="avatar" src="{{authorAvatarUrl}}" height="30" width="30">
-
+<img class="avatar-container" src="{{avatarUrl}}" />
 <div class="reply-info">
   <div class="reply-text">
-    <span class="author">{{author}}</span>
+    <span class="author"><a href="{{author_url}}">{{author}}</a></span>
     <div class="body reply-body">
-      {{#markdown}}{{body}} <span class="time">{{time}}</span> {{/markdown}}
+      {{#markdown}}{{body}}{{/markdown}}
       <span class="controls">
-        {{#hasThanks}}<span class="thanks_count">{{numThanks}} {{peoplePerson}} thanked {{first_name}}</span>{{/hasThanks}}
+        <span class="time">{{publishedAt}}</span>
+        {{#hasThanks}}<span class="thank-divider">&#9734;</span><span class="thanks-count">{{numThanks}} {{peoplePerson}} thanked {{first_name}}</span>{{/hasThanks}}
         {{#canThank}}
           {{#hasThanked}}<span class="thanked-reply">THANKED!</span>{{/hasThanked}}
-          {{^hasThanked}}<a href="#" class="thank-reply">THANK</a>{{/hasThanked}}
+          {{^hasThanked}}<a href="#" class="thank-reply">Thank</a>{{/hasThanked}}
         {{/canThank}}
+        <a href="#" class="reply-message-link">Send Message</a>
         {{#canEdit}}<a href="#" class="delete-reply">DELETE</a>{{/canEdit}}
       </span>
     </div>

@@ -2,9 +2,8 @@ CommonPlace.shared.HeaderView = CommonPlace.View.extend(
   template: "shared.new_header.header-view"
   id: "header"
 
-  beforeRender: ->
-    if @community_slug() == 'HarvardNeighbors'
-      @template = 'shared.new_header.harvard-header-view'
+  events:
+    "click .post": "showPostbox"
 
   afterRender: ->
     nav = undefined
@@ -15,6 +14,14 @@ CommonPlace.shared.HeaderView = CommonPlace.View.extend(
     window.HeaderNavigation = nav
     nav.render()
     @$(".nav").replaceWith nav.el
+
+  showPostbox: (e) ->
+    if e
+      e.preventDefault()
+    @postbox = new CommonPlace.main.PostBox
+      account: CommonPlace.account
+      community: CommonPlace.community
+    @postbox.render()
 
   root_url: ->
     if CommonPlace.account.isAuth()
@@ -40,6 +47,4 @@ CommonPlace.shared.HeaderView = CommonPlace.View.extend(
   isAuth: ->
     CommonPlace.account.isAuth()
 
-  notAuth: ->
-    not CommonPlace.account.isAuth()
 )

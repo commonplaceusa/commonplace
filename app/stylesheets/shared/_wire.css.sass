@@ -1,244 +1,579 @@
-.wire 
-  background-color: white
-  
-  .end
-    margin: 0px 10px 10px
-    .loading
-      display: none
-      color: #333
-      text-align: center
-      background-image: image-url("loading.gif")
-      background-position: bottom center
-      background-repeat: no-repeat
-      height: 50px
+@import "../base.sass"
 
-  a.more
-    +blue-button
-    display: block
-    margin: 0px 10px 10px
-
-  p.wire-empty-message
-    text-align: center
-    padding: 20px 0px 10px
-    font-family: Helvetica, sans-serif
-    color: #888
-
-.wire-item
+#right-column 
+  width: 648px
+  height: 100%
   position: relative
-  border-top: 1px solid #bebebe
-  padding: 13px
-  .title, .author, .body, .message-user 
-    margin-left: 62px
-  .body
-    font-family: Helvetica, sans-serif
-    font-size: 0.8em
-    line-height: 1.3
-    color: $textColor
-    word-wrap: break-word
-    a
-      color: #ac322f
-      text-decoration: none
-    p
-      margin-top: 10px
-  .title, h1, h2, h3, h4, h5, h6
-    color: black
-    font-size: 19px
-    margin-bottom: 3px
-    display: block
-    text-decoration: none
-    font-family: Helvetica, sans-serif
-
-    a
-      color: #ac322f
-      text-decoration: underline
-
-      
-  .highlight
-    background-color: #efefaa
-  .author
-    font-size: 14px
-    color: #333
-    line-height: 1.2
-    margin-bottom: 5px
-    font-weight: normal
-    font-family: Helvetica, sans-serif
-    a
-      color: #1b334a
-      font-weight: bold
-      text-decoration: none
-    
-  .corner
-    float: right
-    color: #888
-    font-family: Helvetica, sans-serif
-    font-size: 12px
-    font-weight: normal
-    a
-      color: #ac322f
-      text-decoration: none
-      font-weight: bold
-  .avatar
-    float: left
-    width: 50px                           
-    height: 50px
-    display: block 
-    border: 1px solid #aaa
-    +border-radius(3px)                   
-
-  .thank-share
-    margin-left: 63px
-    width: 220px
-    font-family: helvetica, tahoma, sans-serif
-    margin-top: 10px
-    li
-      display: inline
-      font-size: 12px
-      font-weight: bold
-      color: #ac322f
-      &:hover 
-        text-decoration: underline
-        cursor: pointer
-      &.thanked-post
-        color: #bebebe
-    .dot 
-      font-weight: bold
-      font-size: 11px
-      color: #666
-    .current 
-      text-decoration: underline
-  
-  #share-email
-    input
-      margin-top: 10px 
-      font-family: Helvetica, Arial, sans-serif
-      font-size: 12px
-      color: #888
+#community-resources
+  z-index: 50
+#main 
+  width: 910px 
+  margin: 0 auto
+  position: relative
+  #wire-overlay
+    background-color: rgba(0, 0, 0, 0.25)
+    position: fixed
+    overflow: hidden
+    background-attachment: fixed
+    min-height: 4000px
+    height: 100%
+    width: 910px
+    z-index: 0
+  .wire
+    width: 616px
+    margin: 0px auto
+    position: relative
+    padding-bottom: 1px
+    .wire-item 
       background: white
-      border: 1px solid #c3c3c3
-      padding: 8px 10px
-      height: 12px
-      width: 377px
-      line-height: 14px
-      
-      &:focus
-        outline: none
-        color: #333
-    .email-button
+      margin-bottom: 15px
+      border-radius: 5px
+      box-shadow: 0px 1px 1px rgba(0,0,0,0.50)
+    .wire-top
+      //height: 25px
+      //border-radius: 4px
+      //border-bottom-left-radius: 0
+      //padding: 2px
+      margin-top: 15px
+      margin-right: 10px
+      margin-left: 15px
+      font-family: $body
       float: right
-      padding: 7px
-      background: #e5e5e5
-      margin-top: 6px
-      color: white
-      text-transform: uppercase
-      font-size: 11px
-      background: #AC322F
-      cursor: pointer
-  .ts-text
-    width: 200px
-    font-size: 12px
-    float: right
-    margin-top: -12px
-    text-align: right
-    font-family: Helvetica
-    text-decoration: none
-    cursor: pointer
-    color: #444
-    &:hover
-      text-decoration: underline
-  .people-thanked
-    color: #1B334A
-    font-weight: bold
-  
-    
-    
+      width: auto
+      position: relative
+      z-index: 500
+      //border-bottom-right-radius: 0      
+      //background: $light-grey image-url("shared/redesign/background.gif")
+      //box-shadow: inset 0px 1px 0px #fff
+      //border-bottom: 1px solid #eee
+      //border-bottom: 1px dotted #D7D5C6
+      //background-color: #F5F3E9
+      .icon-container
+        width: 20px
+        height: 20px
+        float: left
+        background-repeat: no-repeat
+        border-radius: 4px
+        margin: 2px 0px 0px 2px
+        background-size: cover
+      .question
+        background-image: url("shared/redesign/requests-icon-20.png")
+      .marketplace
+        background-image: url("shared/redesign/marketplace-icon-20.png")
+      .event
+        background-image: url("shared/redesign/events-icon-20.png")
+      .meetup
+        background-image: url("shared/redesign/meetup-icon.png")
+      .announcement
+        background-image: url("shared/redesign/announcements-icon-20.png")
+      .post
+        background-image: url("shared/redesign/wire-icon.png")
+      .dogs
+        background-image: url("group-icons/dogs.png")
+      .gardening-and-home-improvement
+        background-image: url("group-icons/gardening-home-improvement.png")
+      .environment
+        background-image: url("group-icons/environment.png")
+      .volunteer-opportunities
+        background-image: url("group-icons/volunteer-opportunities.png")
+      .sports-and-recreation
+        background-image: url("group-icons/sports-recreation.png")
+      .schools
+        background-image: url("group-icons/schools.png")
+      .parents-and-families
+        background-image: url("group-icons/parents-families.png")
+      .new-mothers
+        background-image: url("group-icons/new-mothers.png")
+      .food-and-dining
+        background-image: url("group-icons/local-dining.png")
+      .music-and-the-arts
+        background-image: url("group-icons/music-arts.png")
+      .social-opportunities
+        background-image: url("group-icons/social-opportunities.png")
+      .town-problem-solving-and-ideas
+        background-image: url("group-icons/city-problem-solving.png")
 
-  .share
-    margin-left: 41px
-    margin-top: 15px
-    li
-      display: inline
-      font-size: 12px
+      h3
+        font: 16px $body
+        float: left
+        color: $blue
+        //padding-left: 30px
+        //background: image-url("shared/redesign/wire-icon.png") left no-repeat       
+        //background-position: 3px 3px
+        //padding: 5px 0px 2px 26px
+        max-width: 370px
+        margin: 5px 6px
+        text-shadow: 1px 1px 0px #fff
+        &:hover
+          color: #7b7a6f
+      p
+        font-family: $body
+        font-size: 12px
+        color: #aaa
+        //text-shadow: 1px 1px 0px white
+        float: right
+        //padding: 6px 5px 0px 0px
+        width: auto
+        display: block
+        a 
+          color: #aaa
+          display: block
+          width: 100%
+          &:hover
+            color: $red
+
+      p:last-child
+        padding-right: 4px
+      .editlink 
+        color: $red
+        font-weight: bold
+        font-size: 11px
+    .post-content
+      position: relative
+      padding: 15px
+        bottom: 10px
+        //right: 20px
+      .image_container
+        max-width: 250px
+        float: right
+        text-align: right
+        margin: 30px 0px 15px 15px
+        border-left: 1px dotted #ddd
+        padding-left: 15px
+      .post_image
+        max-width: 250px
+      .price
+        +red-button
+        width: auto !important
+        float: left !important
+        color: white !important
+        font-weight: normal !important
+        font-size: 13px !important
+        margin: 7px 0px 15px 65px !important
+        padding: 7px 10px
+        font-family: $body
+      .markdown
+      .body
+        margin-top: 5px
+      h3, p, pre, code, ol, ul
+        font-family: $body
+        color: $black
+        font: 13px/17px $body        
+      h3 
+        font-size: 20px
+        font-weight: normal
+        margin: 0px
+          right: 75px
+          left: 65px
+        position: relative
+        top: -2px
+        text-shadow: none
+        line-height: 22px
+        a 
+          color: #333
+          cursor: pointer
+          &:hover
+            //color: #888
+            text-decoration: none
+      p.author
+        font-size: 13px
+        color: $dark-grey
+        font-weight: bold
+        margin: 4px 0px 0px 65px
+        position: relative
+        a
+          color: #333
+          cursor: pointer
+          &:hover
+            color: $red
+            text-decoration: none
+      .body p, pre, code, ol, ul
+        margin: 0px 0px 10px 65px
+        &:last-child
+          margin-bottom: 3px !important
+        a, .markdown a
+          color: $dark-grey
+          font-family: $body
+          text-decoration: none
+          &:hover
+            text-decoration: none
+            color: $red !important
+        ol, ul
+          margin-left: 15px !important
+      .avatar-container
+        width: 50px
+        height: 50px
+        float: left
+        margin-right: 15px
+        background-size: cover
+        background-repeat: no-repeat
+        background-position: center center
+        border-radius: 5px
+      p.venue, p.address
+        margin-bottom: 5px
+        span.bold
+          color: $red
+          font-weight: bold
+      .calendar 
+        float: left
+        width: 50px
+        margin-right: 15px
+        .month 
+          background: $red
+          padding: 5px
+          text-align: center
+          color: white
+          font-weight: bold
+          text-transform: uppercase
+          font-size: 12px
+          border-radius: 5px 5px 0 0
+          font-family: Helvetica Neue, Helvetica, Verdana, sans-serif
+          text-shadow: 0px -1px 0px #64100D
+        .day-of-month
+          background-color: #F6F4ED
+          //background-image: url(/assets/shared/redesign/tan-bg.png)
+          padding: 5px 0
+          text-align: center
+          border-radius: 0 0 5px 5px
+          color: #333
+          text-shadow: 1px 1px 0px white
+          font-family: Helvetica Neue, Helvetica, Verdana, sans-serif
+          border: 1px solid #D5D1C8
+            top: none
+          font-size: 19px
+        .event-time 
+          text-align: center
+          font-size: 12px
+          font-family: Helvetica
+          margin-top: 11px
+          font-weight: bold
+          color: $dark-grey
+
+      //img
+        width: 100%
+        height: 100%
+    .post-action
+      margin-left: 80px
+      font-family: $body
+      font-size: 10px
       font-weight: bold
-      cursor: pointer
-      margin-right: 18px
-    .share-e
-      background: image-url("icons/email.png") no-repeat
+      color: $dark-grey
+      height: 32px
+      margin-right: 15px
+      margin-bottom: 0px
+      span.thank
+        color: $dark-grey
+      p
+        float: left
+      p.how-many
+        float: right
+        color: $dark-grey
+        text-shadow: 1px 1px 1px white
+        text-transform: none
+        font-size: 11px
+      .actions
+        border-top: 1px dotted
+        //border-bottom: 1px dotted
+        height: 32px
+        border-color: #ddd
+        a
+          color: $dark-grey
+        a:hover
+          color: $red
+        a:active
+          color: $red
+        li
+          border-right: 1px dotted
+          border-color: #ddd
+          float: left
+          font-size: 12px
+          padding: 9px 12px 9px 10px
+          height: 15px
+          &:first-child
+            padding-left: 0px
+          &:last-child
+            border-right: none 
+          span  
+            float: left
+            display: block 
+            margin-left: 5px
+          .icon
+            display: inline-block
+            float: left
+            vertical-align: text-top
+            background-position: 0px 0px
+            background-repeat: no-repeat
+            background-image: image-url("shared/redesign/post-action-icons.png")
+
+
+        li.reply-link
+          margin-left: 0
+          .icon
+            background-position: -15px -27px
+            width: 14px
+            height: 14px
+            margin-top: 2px
+          &:hover, &:focus, &:active
+            color: $red
+            .icon 
+              background-position: -15px 0px
+        li.message-link
+          margin-left: 0
+          border-right: 1px dotted
+          border-color: #ddd
+          .icon 
+            margin-top: 2px
+            background-position: 0px -30px
+            width: 15px 
+            height: 10px
+          &:hover, &:focus, &:active
+            color: $red
+            .icon 
+              background-position: 0px 0px
+
+        li.share-link
+          .icon
+            background-position: -29px -42px
+            width: 15px 
+            height: 18px
+          span 
+            margin-top: 1px
+          &:hover, &:focus, &:active
+            color: $red
+            .icon 
+              background-position: -29px 0px
+
+        li.thank-link
+          .icon
+            background-position: -58px -27px
+            width: 15px
+            margin-top: 1px
+            height: 13px
+          &:hover, &:focus, &:active
+            color: $red
+            .icon 
+              background-position: -58px 0px
+
+        li.flag-link
+          .icon
+            background-position: -44px -26px
+            width: 14px
+            height: 14px
+          &:hover, &:focus, &:active
+            color: $red
+            .icon 
+              background-position: -44px 0px
+
+
+
+
+    .post-interaction
+      margin-left: 80px
+      font-size: 12px
+      margin-right: 15px
+      .interaction
+        border-color: #e6e6e6
+        margin-left: 0
+        margin-right: 0
+        font-family: Helvetica Neue, Helvetica, Tahoma, serif
+        color: #555555
+        border-bottom-style: none
+        border-bottom-width: 1px
+        height: 1px
+        .blue
+          color: $blue
+          font-weight: bold
+        .thanked
+          padding-left: 22px
+          padding-top: 13px
+          background: image-url("shared/redesign/thanked.png") no-repeat
+          height: 13px
+          background-position-y: 13px
+          margin-bottom: 13px
+          border-top: 1px dotted #e4e4e4
+        .publicized
+          padding-left: 22px
+          background: image-url("shared/redesign/publicized.png") no-repeat
+          height: 15px
+          padding-top: 3px
+          border-top: 1px dotted #e4e4e4
+    .post-replies
+      padding: 0px 20px 5px 20px
+      p
+        margin-left: 60px
+        padding-top: 13px
+      p.author
+        font-size: 13px
+        color: $blue
+        font-weight: bold
+        font-family: $body
+        float: left
+        margin-left: 15px
+        margin-right: 10px
+        vertical-align: bottom
+        cursor: pointer
+        a 
+          cursor: pointer
+      p.reply-text
+        font-size: 13px
+        font-family: $body
+        border-top: 1px dotted #E4E4E4
+      p.reply-actions
+        margin: 5px 0px 10px 60px
+        font-size: 12px
+        font-family: $body
+        padding-top: 0
+        color: lighten($dark-grey, 15%)
+        span.reply-thank
+          color: $red
+        span.reply-thanked
+          color: lighten($dark-grey, 15%)
+      img
+        width: 25px
+        padding-top: 13px
+        height: 25px
+        float: left
+        margin-left: 20px
+    &.multi-column
+      margin: 20px 0px 0px 20px
+      float: left
+      width: 382px
+      .post-content
+        p.post-text
+          margin-left: 10px
+      .post-action
+        margin-left: 0px
+      .post-interaction
+        margin-left: 0px
+      .post-replies
+        .post-reply
+          width: 250px
+        p
+          margin-left: 35px
+        img
+          margin-left: 0px
+    .post-shadow
+      width: 100%
+      height: 5px
+      position: relative !important
+      bottom: -15px
+    .shadow_left
+      float: left
+      width: 50%
+      height: 15px
+      background: image-url("shared/redesign/post-shadow-left.png") no-repeat
+      background-position: bottom left
+      position: absolute
+      bottom: 0px
+      left: 5px
+    .shadow_right
+      float: right
+      width: 50%
+      height: 15px
+      background: image-url("shared/redesign/post-shadow-right.png") no-repeat
+      background-position: bottom right
+      position: absolute
+      bottom: 0px
+      right: 5px
+    .wire-group
+      width: 100%
+      float: left
+    .wire-header
+      margin: 20px 20px 0px
+      height: 40px
+      .header-display
+        margin: auto
+        border-radius: 4px
+        background: $light-grey image-url("shared/redesign/background.gif")
+        box-shadow: inset 0px 1px 0px 0px white
+        border-bottom: 1px solid 
+        border-color: lighten($dark-grey, 20%)
+        h3
+          font-family: $heading
+          text-align: center
+          color: $blue
+          font-size: 18px
+          background-position: 5px 5px
+          padding: 11px
+
+/* Marketplace Wire Post */
+
+.transactions, .user-wire 
+  .wire-top
+    top: 15px !important
+    margin-top: 0px !important
+  //.post-content
+    .avatar-container
+      margin-bottom: 40px
+  //.post-content
+    .avatar-container
+      margin-right: 15px
+    h3
+      margin-left: 0px !important
+      display: inline
+      position: relative
+      top: -5px
+    p.author
+      margin-top: 0px !important
+    .image_container
+      width: 250px
+      float: right
+      text-align: right
+      margin: 5px 0px 15px 15px
+      border-left: 1px dotted #ddd
       padding-left: 20px
-      background-position: 1px 2px
-    .share-f
-      background: image-url("icons/facebook.png") no-repeat
-      padding-left: 17px
-      background-position: 1px 1px
-    .share-t
-      background: image-url("icons/twitter.png") no-repeat
-      padding-left: 23px
-      background-position: 0px 1px
-      
-  .reply-count 
-    float: left
-    width: 50px
-    margin-top: 5px
-    text-align: center
-    font-size: 10px
-    clear: left
-    font-family: Helvetica, sans-serif
+    .post_image
+      max-width: 250px
+    //p
+      width: 245px
+      margin-left: 15px !important
+      float: left
+    //.text_container
+      float: left
+      width: 245px
+      margin-left: 15px
+      padding-bottom: 20px
+      p
+        margin-left: 0px !important
 
-  .avatar.calendar
-    font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
-    border: 0
 
-    .month
-      background-color: #ac322f
-      text-align: center
-      color: #fff
-      padding: 3px 0
-      +border-top-radius(3px)
+//#content div.list div.wire div.post-replies p.replies
+  display: none
 
-    .day-of-month
-      background-color: #e0e0e0
-      text-align: center
-      padding: 3px 0
-      font-size: 26px
-      color: #081428
-      +border-bottom-radius(3px)
-      +box-shadow(0 0 0 1px #ccc inset)
-      +text-shadow(1px 1px 0 white)
+input::-webkit-input-placeholder
+  color: #888
 
-  .message-user
-    +red-button
-    display: block
-    margin-top: 10px
-    padding: 5px 
+ul.actions li
+  cursor: pointer
+
+div.bottom input.next-button
+  height: 50px
+
+
+div.post-action.clear ul.actions li
+  font: bold 12px $body
+  padding-left: 33px
+
+#community-resources div.resources div.wire div.events.wire ul.wire-list li.wire-item div.post-content table.event-location
+  margin-left: 65px
+  margin-top: 10px
+  font: 12px/20px "Helvetica Neue", Helvetica, sans-serif
+  color: $black
+  th
+    font-weight: bold
+    color: $red
   
+.wire-empty-message
+  color: #fff
+  text-align: center
 
-  button.subscribe, button.unsubscribe
-    +blue-button
-    display: block
-    margin-top: 10px
-    padding: 5px 
-    float: right
+.highlight
+  background-color: #fffa6c
 
-.wire-item .event
-  .event-time
-    margin-top: 10px
-    font-size: 13px
-    float: left
-    width: 50px
-    color: #1B334A
-    clear: left
-    text-align: center
-
-  .event-location
-    margin-top: 10px
-    margin-left: 60px
-    font-size: 13px
-    font-family: Helvetica, sans-serif
-    th
-      color: #B7403C
-      padding-right: 10px
-      padding-bottom: 5px
-    td
-      color: $textColor
-      
-group-post:first
-  margin-top: 60px
+#zenbox_tab.ZenboxTabRight
+  background-color: $blue !important
+  border: 0px none !important
+  &:hover
+    background-color: $red !important
+  &:active
+    background-color: $blue !important

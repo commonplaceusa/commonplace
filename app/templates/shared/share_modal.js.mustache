@@ -1,0 +1,38 @@
+<div class="form-container modal-border share pie-element">
+  {{#header}}<h1>{{header}}</h1>{{/header}}
+  <span class="divider"></span>
+  {{#message}}<h3>{{message}}</h3>{{/message}}
+  <ul class="share">
+    <li id="facebookshare" class="share-f"
+      data-name="{{item_name}}"
+      data-url="{{share_url}}"
+      data-picture="{{avatar_url}}"
+      data-caption="Join {{community_name}} CommonPlace to share with your neighborhood."
+      data-description=""
+      data-message="{{share_message}}">Share with my Facebook friends
+    </li>
+    <li id="emailshare"><a id="mailto-share" href="mailto:?subject={{email_subject}}&body={{email_body}}" target="_blank">Send an email to my friends in town</a></li>
+    <div id="share-email">
+      <form>
+        <input placeholder="e.g. john@gmail.com, jane@gmail.com" name="share-email" class="rounded_corners">
+        <!-- <a href="#" class="share rounded_corners">Connect your Email</a> -->
+        <a href="#" class="share rounded_corners" id="submit_email_share" target="_blank">Send</a>
+      </form><br /><br />
+    </div>
+    <li id="twittershare" class="share-t"
+      data-url="{{share_url}}"
+      data-message="{{share_message}}" target="_blank">
+      Share with my Twitter followers
+    </li>
+    <li id="linkshare">Copy public link</li>
+    <div id="share_link">
+      <form>
+        <input value="{{share_url}}" name="share-link" class="rounded_corners" readonly>
+      </form>
+      <p>Right-click "Copy" or: CTRL+C (Windows), <span style="font-size: 11px;">&#8984;</span>+C (Mac).</p>
+    </div>
+  </ul>
+  <br />
+  <button class="red-button pie-element">All Done!</button>
+</div>
+<div class="close">x</div>

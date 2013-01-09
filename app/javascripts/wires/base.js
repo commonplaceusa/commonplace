@@ -2,8 +2,8 @@ var Wire = CommonPlace.View.extend({
   className: "wire",
   template: "wires/wire",
 
-  initialize: function(options) { this.options.showProfile = this.options.showProfile || $.noop; },
-  
+  initialize: function(options) { $.noop; },
+
   aroundRender: function(render) {
     var self = this;
     this.fetchCurrentPage(function() { render(); });
@@ -11,22 +11,16 @@ var Wire = CommonPlace.View.extend({
 
   afterRender: function() {
     var self = this;
-    
+
     this.appendCurrentPage();
-    
-    this.header = this.$(".sub-navigation");
-    
+
     $(window).on("scroll.wire", function() { self.onScroll(); });
-    
-    if (!_.isEmpty(this.currentUser)) {
-      this.$(".sub-navigation .username").text(this.currentUser.get("first_name"));
-    }
-    
+
     this.options.callback && this.options.callback();
   },
-  
+
   onScroll: _.debounce(function() {
-  
+
     var isOnScreen = function($el) {
       if ($el.length < 1) { return false; }
       var $window = $(window);
@@ -36,7 +30,7 @@ var Wire = CommonPlace.View.extend({
       return (elOffset < $window.scrollTop() + $window.height() &&
               $window.scrollTop() < elOffset + $el.height());
     };
-  
+
     var $end = this.$(".end");
 
     if (isOnScreen($end) && this.$(".loading:visible").length < 1) {
@@ -44,11 +38,11 @@ var Wire = CommonPlace.View.extend({
       this.showMore();
     }
   }, CommonPlace.autoActionTimeout),
-  
+
   fetchCurrentPage: function(callback) {
     var data = { limit: this.perPage(), page: this.currentPage() };
     if (this.currentQuery) { data.query = this.currentQuery; }
-    
+
     var self = this;
     this.collection.fetch({
       data: data,
@@ -68,23 +62,25 @@ var Wire = CommonPlace.View.extend({
       $ul.append(view.render().el);
       self.highlightSearch(view);
       self.highlightUser(view, model);
+      self.highlightPage(view, model);
     });
   },
-  
+
   schemaToView: function(model) {
     var schema = model.get("schema");
     return new {
-      "events": EventWireItem,
-      "announcements": AnnouncementWireItem,
-      "posts": PostWireItem,
-      "group_posts": GroupPostWireItem,
-      "feeds": FeedWireItem,
-      "users": UserWireItem,
-      "groups": GroupWireItem,
-      "messages": MessageWireItem
-    }[schema]({model: model, showProfile: this.options.showProfile });
+      "events": CommonPlace.wire_item.EventWireItem,
+      "announcements": CommonPlace.wire_item.AnnouncementWireItem,
+      "transactions": CommonPlace.wire_item.TransactionWireItem,
+      "posts": CommonPlace.wire_item.PostWireItem,
+      "group_posts": CommonPlace.wire_item.GroupPostWireItem,
+      "feeds": CommonPlace.wire_item.FeedWireItem,
+      "users": CommonPlace.wire_item.UserWireItem,
+      "groups": CommonPlace.wire_item.GroupWireItem,
+      "messages": CommonPlace.wire_item.MessageWireItem
+    }[schema]({model: model });
   },
-  
+
   isEmpty: function() { return this.collection.isEmpty(); },
 
   emptyMessage: function() { return this.options.emptyMessage; },
@@ -113,23 +109,32 @@ var Wire = CommonPlace.View.extend({
   nextPage: function() {
     this._currentPage = this.currentPage() + 1;
   },
-  
+
   search: function(query) {
     this.currentQuery = query;
     this.currentUser = {};
+    this.currentFeed = {};
   },
-  
+
   searchUser: function(model) {
     this.currentUser = model;
     this.currentQuery = "";
+    this.currentFeed = {};
   },
-  
+
+  searchPage: function(model) {
+    this.currentFeed = model;
+    this.currentQuery = "";
+    this.currentUser = {};
+  },
+
   cancelSearch: function() {
     $(this.el).removeHighlight();
     this.currentQuery = "";
     this.currentUser = {};
+    this.currentFeed = {};
   },
-  
+
   highlightSearch: function(view) {
     if (this.currentQuery) {
       _.each(this.currentQuery.split(" "), function(query) {
@@ -139,7 +144,7 @@ var Wire = CommonPlace.View.extend({
       });
     }
   },
-  
+
   highlightUser: function(view, model) {
     if (!_.isEmpty(this.currentUser)) {
       var fullName = this.currentUser.get("name");
@@ -153,6 +158,15 @@ var Wire = CommonPlace.View.extend({
       } else {
         view.$(".replies-more").click();
       }
+    }
+  },
+
+  highlightPage: function(view, model) {
+    if (!_.isEmpty(this.currentFeed)) {
+      var fullName = this.currentFeed.get("name");
+      view.$(".title").highlight(fullName);
+      view.$(".author").highlight(fullName);
+      view.$(".body").highlight(fullName);
     }
   },
 
