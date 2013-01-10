@@ -19,6 +19,7 @@ CommonPlace.main.CommunityResources = CommonPlace.View.extend(
 
   changeSearchText: (text) ->
     search = $("#search-header")
+    @cancelSearch()
     search_text = "Search " + CommonPlace.community.get("name").trim() + "..."
     if text
       search_text = "Search " + text.trim() + "..."
