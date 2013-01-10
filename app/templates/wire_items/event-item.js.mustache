@@ -7,11 +7,16 @@
   <div class="calendar avatar">
     <div class="month">{{short_month_name}}</div>
     <div class="day-of-month">{{day_of_month}}</div>
-  {{#time}}
+  {{#start_time}}
   <div class="event-time">
-    {{time}}
+    {{start_time}}
   </div>
-  {{/time}}
+  {{/start_time}}
+  {{#end_time}}
+  <div class="event-time">
+    {{end_time}}
+  </div>
+  {{/end_time}}
   </div>
 
 

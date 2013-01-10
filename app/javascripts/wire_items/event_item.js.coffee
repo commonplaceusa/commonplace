@@ -40,8 +40,11 @@ CommonPlace.wire_item.EventWireItem = CommonPlace.wire_item.WireItem.extend(
   address: ->
     @model.get "address"
 
-  time: ->
+  start_time: ->
     @model.get "starts_at"
+
+  end_time: ->
+    @model.get "ends_at"
 
   editEvent: (e) ->
     e and e.preventDefault()
