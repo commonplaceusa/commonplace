@@ -111,7 +111,9 @@ feed_invitation:
     </p>
 
 daily_bulletin:
-  posts-section-title: Recent Neighborhood Posts
+  posts-section-title: Recent Neighborhood Questions
+  group-posts-section-title: Recent Discussion Topics
+  transactions-section-title: Recent Marketplace Listings
   events-section-title: Upcoming Community Events
   announcements-section-title: Recent Community Announcements
 

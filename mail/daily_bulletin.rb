@@ -1,9 +1,11 @@
 class DailyBulletin < MailBase
 
-  def initialize(user_id, date, posts, announcements, events, weather)
+  def initialize(user_id, date, posts, group_posts, transactions, announcements, events, weather)
     @user = User.find(user_id)
     @date = DateTime.parse(date)
     @posts = posts
+    @group_posts = group_posts
+    @transactions = transactions
     @announcements = announcements
     @events = events
     @weather = weather
@@ -187,6 +189,22 @@ class DailyBulletin < MailBase
 
   def posts
     @posts
+  end
+
+  def group_posts_present
+    @group_posts.present?
+  end
+
+  def group_posts
+    @group_posts
+  end
+
+  def transactions_present
+    @transactions.present?
+  end
+
+  def transactions
+    @transactions
   end
 
   def announcements_present

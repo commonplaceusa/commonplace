@@ -37,6 +37,14 @@ class CommunityDailyBulletinJob
     CommunityDailyBulletinJob.community_url(community, "/show/posts/#{id}")
   end
 
+  def self.show_group_post_url(community, id)
+    CommunityDailyBulletinJob.community_url(community, "/show/group_posts/#{id}")
+  end
+
+  def self.show_transaction_url(community, id)
+    CommunityDailyBulletinJob.community_url(community, "/show/transactions/#{id}")
+  end
+
   def self.show_event_url(community, id)
     CommunityDailyBulletinJob.community_url(community, "/show/events/#{id}")
   end
@@ -67,6 +75,39 @@ class CommunityDailyBulletinJob
         post['url'] = CommunityDailyBulletinJob.show_post_url(community, post['id'])
         post['new_message_url'] = CommunityDailyBulletinJob.message_user_url(community, post['user_id'])
         post['author_url'] = CommunityDailyBulletinJob.show_user_url(community, post['user_id'])
+      end
+    end
+
+    group_posts = community.group_posts.between(yesterday, date).map do |group_post|
+      Serializer::serialize(group_post).tap do |group_post|
+        group_post['replies'].each do |reply|
+          reply['published_at'] = reply['published_at'].strftime("%l:%M%P")
+          reply['avatar_url'] = CommunityDailyBulletinJob.asset_url(reply['avatar_url'])
+          reply['author_url'] = CommunityDailyBulletinJob.show_user_url(community, reply['author_id'])
+        end
+        group_post['avatar_url'] = CommunityDailyBulletinJob.asset_url(group_post['avatar_url'])
+        group_post['url'] = CommunityDailyBulletinJob.show_group_post_url(community, group_post['id'])
+        group_post['new_message_url'] = CommunityDailyBulletinJob.message_user_url(community, group_post['user_id'])
+        group_post['author_url'] = CommunityDailyBulletinJob.show_user_url(community, group_post['user_id'])
+      end
+    end
+
+    transactions = community.transactions.between(yesterday, date).map do |trans|
+      Serializer::serialize(trans).tap do |trans|
+        trans['replies'].each do |reply|
+          reply['published_at'] = reply['published_at'].strftime("%l:%M%P")
+          reply['avatar_url'] = CommunityDailyBulletinJob.asset_url(reply['avatar_url'])
+          reply['author_url'] = CommunityDailyBulletinJob.show_user_url(community, reply['author_id'])
+        end
+        trans['avatar_url'] = CommunityDailyBulletinJob.asset_url(trans['avatar_url'])
+        trans['url'] = CommunityDailyBulletinJob.show_transaction_url(community, trans['id'])
+        trans['new_message_url'] = CommunityDailyBulletinJob.message_user_url(community, trans['user_id'])
+        trans['author_url'] = CommunityDailyBulletinJob.show_user_url(community, trans['user_id'])
+        if trans['price'] == 0
+          trans['price'] = "Free"
+        else
+          trans['price'] = "$%.2f" % (trans['price']/100).to_f
+        end
       end
     end
 
@@ -110,11 +151,13 @@ class CommunityDailyBulletinJob
           user_id: user.id,
           date: date,
           posts: posts,
+          group_posts: group_posts,
+          transactions: transactions,
           announcements: announcements,
           events: events,
           weather: weather.default
         }
-        kickoff.deliver_daily_bulletin(parameters[:user_id], parameters[:date], parameters[:posts], parameters[:announcements], parameters[:events], parameters[:weather])
+        kickoff.deliver_daily_bulletin(parameters[:user_id], parameters[:date], parameters[:posts], parameters[:group_posts], parameters[:transactions], parameters[:announcements], parameters[:events], parameters[:weather])
       rescue => ex
         Airbrake.notify_or_ignore(
           :error_class   => "Error Sending Daily Bulletin",

@@ -84,6 +84,14 @@ module MailUrls
     community_url("/list/posts")
   end
 
+  def list_group_posts_url
+    community_url("/list/discussions")
+  end
+
+  def list_transactions_url
+    community_url("/list/transactions")
+  end
+
   def list_events_url
     community_url("/list/events")
   end
@@ -158,6 +166,14 @@ module MailUrls
   end
 
   def post_icon_url
+    asset_url("questions-icon.png")
+  end
+
+  def transaction_icon_url
+    asset_url("transactions-icon.png")
+  end
+
+  def group_post_icon_url
     asset_url("discussions-icon.png")
   end
 

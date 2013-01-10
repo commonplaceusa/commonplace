@@ -23,6 +23,16 @@ class Transaction < ActiveRecord::Base
     t.add :title
   end
 
+  default_scope where(:deleted_at => nil)
+
+  scope :between, lambda { |start_date, end_date|
+    { :conditions =>
+      ["transactions.created_at between ? and ?", start_date.utc, end_date.utc] }
+  }
+  scope :up_to, lambda { |end_date| { :conditions => ["transactions.created_at <= ?", end_date.utc] } }
+
+  scope :created_on, lambda { |date| { :conditions => ["transactions.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
+
   def user
     self.seller
   end
