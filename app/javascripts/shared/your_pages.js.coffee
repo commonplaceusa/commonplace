@@ -85,4 +85,6 @@ CommonPlace.shared.YourPages = CommonPlace.View.extend
 
   clickPage: (e) ->
     e.preventDefault() if e
+    $(".current").removeClass("current")
+    $(e.currentTarget).parent().addClass("current")
     _kmq.push(['record', 'Clicked Directory Page', {"Page Name": e.currentTarget.innerText}]) if _kmq?

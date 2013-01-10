@@ -1,6 +1,9 @@
 CommonPlace.shared.Neighbors = CommonPlace.View.extend
   template: "shared.sidebar.neighbors"
 
+  events:
+    "click .neighbor_link": "clickNeighbor"
+
   initialize: ->
     CommonPlace.account.featuredUsers.fetch
       success: _.bind((neighbors) ->
@@ -57,3 +60,9 @@ CommonPlace.shared.Neighbors = CommonPlace.View.extend
         neighbor.url = CommonPlace.community.get("slug") + '/show' + neighbor.url #for IE to handle routing properly
       html = this.renderTemplate("shared.sidebar.neighbor", neighbor)
       this.$(".list").append html
+
+  clickNeighbor: (e) ->
+    e.preventDefault() if e
+    $(".current").removeClass("current")
+    $(e.currentTarget).parent().addClass("current")
+    _kmq.push(['record', 'Clicked Directory Neighbor', {"Neighbor": e.currentTarget.innerText}]) if _kmq?
