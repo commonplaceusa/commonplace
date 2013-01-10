@@ -9,7 +9,7 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
     "submit form": "login"
 
   beforeRender: ->
-    if @community_slug() == 'HarvardNeighbors'
+    if CommonPlace.community and @community_slug() == 'HarvardNeighbors'
       @template = 'shared.new_header.harvard-header-login'
 
   afterRender: ->
