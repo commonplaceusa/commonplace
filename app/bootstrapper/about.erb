@@ -8,14 +8,20 @@
   <link href="/assets/favicon.png" rel="icon" type="image/png">
   <link href="/assets/about.css" rel="stylesheet" type="text/css">
   <style type="text/css" media="screen">
-       body {
+       html {
+           background-color: #FCFAF4;
+           background-size: cover !important;
+           -webkit-background-size: cover;
+           -webkit-font-smoothing: antialiased;
+           text-rendering: optimizeLegibility;
           background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
-          background-color: #FCFAF4;
-          background-size: cover;
-          -webkit-background-size: cover;
-          -webkit-font-smoothing: antialiased;
-          text-rendering: optimizeLegibility;
-         }
+          }
+
+          body {
+            background: none !important;
+            -webkit-font-smoothing: antialiased;
+            overflow-y: scroll;            
+          }
      </style>
        <!--[if lt IE 9]>
                <link rel="stylesheet" type="text/css" href="/assets/ie.css" />

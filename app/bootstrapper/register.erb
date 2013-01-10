@@ -18,14 +18,20 @@
              <link rel="stylesheet" type="text/css" href="/assets/ie7.css" />
      <![endif]-->
     <style type="text/css" media="screen">
-         body {
-             background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
-             background-color: #F5F3E9;
-             background-size: cover;
-             -webkit-background-size: cover;
-             -webkit-font-smoothing: antialiased;
-             text-rendering: optimizeLegibility;
-            }
+       html {
+           background-color: #FCFAF4;
+           background-size: cover !important;
+           -webkit-background-size: cover;
+           -webkit-font-smoothing: antialiased;
+           text-rendering: optimizeLegibility;
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
+          }
+
+          body {
+            background: none !important;
+            -webkit-font-smoothing: antialiased;
+            overflow-y: scroll;            
+          }
        </style>
   </head>
 
