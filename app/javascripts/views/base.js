@@ -153,6 +153,7 @@ var FormView = CommonPlace.View.extend({
       this.$("[name=subject]").val(this.options.subject);
     }
     this.modal.render();
+    this.$("input[placeholder], textarea[placeholder]").placeholder();
   },
 
   events: {
