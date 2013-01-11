@@ -4,11 +4,16 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
 
   afterRender: ->
     @data = {}
-    @hasImageFile = false
     @$("input[placeholder], textarea[placeholder]").placeholder()
-    @initImageUploader @$(".image_file_browser")
+    @initImageUploader @$(".image_file_browser") if @imageUploadSupported()
     @hideSpinner()
     self = this
+
+  imageUploadSupported: ->
+    if $.browser.msie and $.browser.version < 9
+      false
+    else
+      true
 
   initImageUploader: ($el) ->
     self = this
@@ -54,21 +59,20 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
     self = this
     transactionCollection.create data,
       success: _.bind((post) ->
-        _kmq.push(['record', 'Post', {'Schema': post.get("schema"), 'ID': post.id}]) if _kmq?
+        if self.imageUploadSupported()
+          if self.imageUploader.hasImageFile
+            $.ajax(
+              type: "POST"
+              url: "/api" + post.get("links").self + "/add_image"
+              data:
+                "image_id" : post.get("image_id")
+              success: (response) ->
+              dataType: "JSON"
+            )
+        self.render()
         CommonPlace.community.transactions.trigger "sync"
         @showShareModal(post, "Thanks for posting!", "You've just shared this post with #{@getUserCount()} neighbors in #{@community_name()}. Share with some more people!")
-        if self.hasImageFile
-          self.imageUploader.submit()
-
-        $.ajax(
-          type: "POST"
-          url: "/api" + post.get("links").self + "/add_image"
-          data:
-            "image_id" : post.get("image_id")
-          success: (response) ->
-          dataType: "JSON"
-        )
-        self.render()
+        _kmq.push(['record', 'Post', {'Schema': post.get("schema"), 'ID': post.id}]) if _kmq?
       , this)
 
       error: (attribs, response) ->

@@ -14,12 +14,14 @@
     <form>
       <input type="text" placeholder="Title" name="title" class="rounded_corners" >
       <textarea placeholder="Message" name="body" rows="15" cols="55" class="rounded_corners description"></textarea>
+      {{#imageUploadSupported}}
       <div class="upload-section">
         <div class="box">
           <img class="item_pic" src="/assets/shared/redesign/upload-default.png" alt="This is a picture of the item for sale" />
         </div>
         <button class="image_file_browser">Upload Image</button>
       </div>
+      {{/imageUploadSupported}}
       <input type="text" placeholder="Price" name="price" class="rounded_corners price" >
 
       <div class="controls">
