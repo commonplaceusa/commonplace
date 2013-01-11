@@ -4,7 +4,8 @@ CommonPlace.wire_item.TransactionWireItem = CommonPlace.wire_item.WireItem.exten
   className: "wire-item"
 
   events:
-    "click .buy-link": "messageUser"
+    "click .buy-link": "buyItem"
+    "click .message-link": "messageUser"
     "click .editlink": "editTransaction"
     "click .thank-link": "thank"
     "click .flag-link": "flag"
@@ -23,7 +24,7 @@ CommonPlace.wire_item.TransactionWireItem = CommonPlace.wire_item.WireItem.exten
     else
       "$" + (cents / 100.0).toFixed(2).toLocaleString()
 
-  messageUser: (e) ->
+  buyItem: (e) ->
     e.preventDefault()  if e
     params = { buyer: CommonPlace.account.id }
     $.post "/api" + @model.link("buy"), params, _.bind((response) ->
