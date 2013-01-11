@@ -70,6 +70,7 @@ $body: Helvetica Neue, Helvetica, Tahoma, serif
 /* Hack to remove Safari's extra padding. Remove if you don't care about pixel-perfection. */
 @media screen and (-webkit-min-device-pixel-ratio:0)
   .placeholder input, .placeholder textarea
+    color: #555
     padding: 4px 
 
 
@@ -408,7 +409,7 @@ body.application.logged_out
 
 
 input.placeholder, textarea.placeholder
-  color: #aaa
+  color: #555 !important
 
 .notification
   position: fixed

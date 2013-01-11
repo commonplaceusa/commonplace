@@ -8,6 +8,9 @@
       hooks,
       placeholder;
 
+      // isInputSupported = false;
+      // isTextareaSupported = false;
+
   if (isInputSupported && isTextareaSupported) {
 
     placeholder = prototype.placeholder = function() {
