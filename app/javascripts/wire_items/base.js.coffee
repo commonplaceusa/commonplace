@@ -116,8 +116,7 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
       @repliesView.render()
       @$(".replies-area").append @repliesView.el
     unless isFirst
-      @$(".reply-text-entry").focus() if $.fn.placeholder.input #only focus on the reply box if the browser supports placeholders
-      @$(".reply-text-entry").focus() if $.fn.placeholder.input and $.browser.webkit #only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
+      @$(".reply-text-entry").focus() if @browserSupportsPlaceholders() and $.browser.webkit #only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
       @state = "reply"
 
   messageUser: (e) ->

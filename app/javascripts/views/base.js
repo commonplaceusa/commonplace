@@ -121,6 +121,14 @@ CommonPlace.View = Backbone.View.extend({
     });
   },
 
+  isIE8orBelow: function() {
+    return ($.browser.msie && $.browser.version < 9);
+  },
+
+  browserSupportsPlaceholders: function() {
+    return $.fn.placeholder.input;
+  },
+
   isActive: function(feature) {
     return window.Features.isActive(feature);
   },

@@ -25,12 +25,12 @@ CommonPlace.main.PostBox = FormView.extend(
     @$(".post-box").removeClass "first"
     @$(".links").html view.el
     @$("[placeholder]").placeholder()
-    @$("input:visible:first").focus() if $.fn.placeholder.input and $.browser.webkit #only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
+    @$("input:visible:first").focus() if @browserSupportsPlaceholders() and $.browser.webkit #only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
     CommonPlace.layout.reset()
     view.onFormFocus()  if view.onFormFocus
-    $(".dropdown").chosen()
-    $(".chzn-select").chosen()
-    $(".chzn-drop").css('width','413px')
+    if @browserSupportsPlaceholders()
+      $(".chzn-select").chosen()
+      $(".chzn-drop").css('width','413px')
     @modal.centerEl()  # needs to be done after the form has fully rendered otherwise it will not be centered
 
   tabs: (tab) ->

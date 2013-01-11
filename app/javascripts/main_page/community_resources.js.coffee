@@ -25,10 +25,10 @@ CommonPlace.main.CommunityResources = CommonPlace.View.extend(
       search_text = "Search " + text.trim() + "..."
       search.attr "placeholder", "Search " + text.trim() + "..."
     search.attr("placeholder", search_text)
-    if $.fn.placeholder.input
+    if @browserSupportsPlaceholders()
       search.attr("value", '')
     else
-      #if the browser doesnt support placeholders, set the value of the search input to the placeholder text
+      #set the value of the search input to the placeholder text
       search.attr("value", search_text)
 
   switchTab: (tab, single) ->

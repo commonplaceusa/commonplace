@@ -10,10 +10,7 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
     self = this
 
   imageUploadSupported: ->
-    if $.browser.msie and $.browser.version < 9
-      false
-    else
-      true
+    (not @isIE8orBelow())
 
   initImageUploader: ($el) ->
     self = this
