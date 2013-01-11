@@ -40,7 +40,7 @@ CommonPlace.registration.NewUserView = CommonPlace.registration.RegistrationModa
 
         empty: (element) ->
           $(".error.email").hide()
-    @$("input:visible:first").focus() if $.fn.placeholder.input #only focus the input if the browser supports placeholders
+    @$("input:visible:first").focus() if $.fn.placeholder.input and $.browser.webkit #only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
 
   community_name: ->
     @communityExterior.name

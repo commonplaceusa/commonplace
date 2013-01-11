@@ -25,7 +25,7 @@ CommonPlace.main.PostBox = FormView.extend(
     @$(".post-box").removeClass "first"
     @$(".links").html view.el
     @$("[placeholder]").placeholder()
-    @$("input:visible:first").focus() if $.fn.placeholder.input #only focus on the first input if the browser suppoarts placeholders
+    @$("input:visible:first").focus() if $.fn.placeholder.input and $.browser.webkit #only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
     CommonPlace.layout.reset()
     view.onFormFocus()  if view.onFormFocus
     $(".dropdown").chosen()

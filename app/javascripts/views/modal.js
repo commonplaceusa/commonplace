@@ -13,6 +13,9 @@ var ModalView = CommonPlace.View.extend({
     $(".modal-container").append(this.form);
     this.$("textarea").autoResize();
     this.centerEl();
+    if ($.fn.placeholder.input && $.browser.webkit) {
+      this.$("textarea:visible:last").focus(); //only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
+    }
   },
 
   centerEl: function() {
