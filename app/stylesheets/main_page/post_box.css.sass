@@ -739,16 +739,23 @@ textarea.description
   width: 155px
   margin-top: 2px 
   position: relative
+  display: table
   .box 
     background-color: #fff
     box-shadow: #C8C8C8 0px 0px 4px 1px inset, rgba(255, 255, 255, 0.247059) 0px 4px 4px
     border: 1px solid $dark-tan  
-    padding: 8px
+    //padding: 8px
       bottom: 4px
     border-radius: 4px
-    img 
-      width: 136px 
-      height: 104px
+    display: table-cell
+    text-align: center
+    vertical-align: middle
+    width: 157px
+    height: 120px
+    img.item_pic 
+      max-width: 136px 
+      max-height: 104px
+      margin-top: 5px
   .image_file_browser
     position: absolute
     width: 154px
