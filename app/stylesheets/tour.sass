@@ -352,7 +352,6 @@ p.welcome-divider
   .civic_right
     float: right
     width: 396px
-    color: #333
     input
       width: 378px
       margin-top: 0px
@@ -362,11 +361,10 @@ p.welcome-divider
       padding: 8px
       height: auto
       font-family: $heading
-      color: #131313
       border: 1px solid #C9C4B4
       box-shadow: inset #DDD 0px 0px 3px 2px, white 0px 1px 0px
       background-color: #fff
-      input::-webkit-input-placeholder
+      input::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder
         color: #555
     textarea
       width: 378px
@@ -377,11 +375,10 @@ p.welcome-divider
       font-size: 18px
       padding: 8px
       font-family: $heading
-      color: #131313
       border: 1px solid #C9C4B4
       box-shadow: inset #DDD 0px 0px 3px 2px, white 0px 1px 0px
       background-color: #fff
-      input::-webkit-input-placeholder
+      textarea::-webkit-input-placeholder, textarea:-moz-placeholder, textarea::-moz-placeholder
         color: #555
   
 #civicProfile div.civic_left div.not-facebook div a.avatar_file_browse
@@ -901,10 +898,10 @@ div#RealFindNeighbors.container #find_button a.blue-button.next-button
     border: 0 none
     color: #555
 
-input::-webkit-input-placeholder
+input::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder
   color: #555 !important
 
-textarea::-webkit-input-placeholder
+textarea::-webkit-input-placeholder, textarea:-moz-placeholder, textarea::-moz-placeholder
   color: #555 !important  
 
 #civicProfile div.chzn-drop
@@ -930,7 +927,7 @@ textarea::-webkit-input-placeholder
   color: #131313 !important
 .chzn-container-active .chzn-choices .search-field input
   color: #131313 !important
-  input::-webkit-input-placeholder
+  input::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder
     color: #555 !important
 div#subscribe_pages ul.subscribe_pages div.page_item
   float: left
