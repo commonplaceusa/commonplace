@@ -163,8 +163,13 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
       @showUserWire()
 
   showUserWire: (e) ->
-    e.preventDefault() if e
-    app.showUserWire(CommonPlace.community.get("slug"), @model.get("user_id"))
+    if e
+      e.preventDefault()
+      e.stopPropagation()
+    if @model.get("schema") is "replies"
+      app.showUserWire(CommonPlace.community.get("slug"), @model.get("author_id"))
+    else
+      app.showUserWire(CommonPlace.community.get("slug"), @model.get("user_id"))
 
   showFeedWire: (e) ->
     e.preventDefault() if e
