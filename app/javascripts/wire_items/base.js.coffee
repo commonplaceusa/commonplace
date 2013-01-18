@@ -228,7 +228,7 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
     category = @model.get "category"
     if category
       if category is "offers"
-        category = "question"
+        category = "town questions"
       category
     else
       if schema is "transactions"
