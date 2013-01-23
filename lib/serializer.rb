@@ -165,7 +165,7 @@ module Serializer
         "avatar_url" => o.owner.avatar_url(:thumb),
         "author_url" => "/#{o.owner_type.downcase.pluralize}/#{o.owner_id}",
         "author" => o.owner.name,
-        "first_name" => o.user.first_name,
+        "first_name" => o.owner_type == "User" ? o.user.first_name : nil,
         "user_id" => o.user_id,
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "feed_url" => o.owner_type == "Feed" ? "/pages/#{o.owner.slug}" : nil,
