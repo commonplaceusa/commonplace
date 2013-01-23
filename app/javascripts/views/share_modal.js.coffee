@@ -16,7 +16,10 @@ CommonPlace.views.ShareModal = FormView.extend(
   avatar_url: ->
     url = @model.get("avatar_url")
     return "https://www.ourcommonplace.com/images/logo-pin.png"  if url is "https://s3.amazonaws.com/commonplace-avatars-production/missing.png"
-    url
+    if url
+      return url
+    else
+      return ""
 
   share_url: ->
     CommonPlace.community.get("links")["base"] + "/show/" + @model.get("schema") + "/" + @model.get("id")

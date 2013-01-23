@@ -142,6 +142,7 @@ module Serializer
         "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
         "feed_url" => o.owner_type == "Feed" ? "/pages/#{o.owner.slug}" : nil,
         "user_url" => o.owner_type == "User" ? "/users/#{o.owner_id}" : nil,
+        "avatar_url" => o.owner.avatar_url,
         "owner_type" => o.owner_type,
         "replies" => serialize(o.replies.to_a),
         "thanks" => serialize(o.all_thanks.to_a),
