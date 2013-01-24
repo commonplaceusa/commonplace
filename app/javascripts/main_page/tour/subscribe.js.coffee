@@ -20,7 +20,7 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
           $("#Discussion").show()
         , this)
     )
-    feeds = @community.featuredFeeds
+    feeds = @community.feeds
     feeds.fetch(
       success: ->
         _.each feeds.models, _.bind((feed) ->
