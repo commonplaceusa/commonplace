@@ -164,7 +164,7 @@
         font-size: 20px
         font-weight: normal
         margin: 0px
-          right: 95px
+          right: 105px
           left: 65px
         position: relative
         top: -2px
@@ -178,13 +178,16 @@
             text-decoration: none
       p.author
         font-size: 13px
-        color: $dark-grey
-        font-weight: bold
+        color: #333
+        font-weight: normal
         margin: 4px 0px 0px 65px
         position: relative
+        .bold
+          font-weight: bold
         a
           color: #333
           cursor: pointer
+          font-weight: bold
           &:hover
             color: $red
             text-decoration: none
@@ -246,9 +249,11 @@
           text-align: center
           font-size: 12px
           font-family: Helvetica
-          margin-top: 11px
+          margin-top: 13px
           font-weight: bold
           color: $dark-grey
+          &:last-child
+            margin-top: 0px
 
       //img
         width: 100%
