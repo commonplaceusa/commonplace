@@ -1,7 +1,6 @@
 @import core
 @import shared/buttons
 @import header
-@import header
 @import footer
 @import date_picker
 @import shared/replies
@@ -14,13 +13,17 @@
 body
   background-color: #eee
   margin: 0
-
+  font-family: $heading !important
+a
+  text-decoration: none
+  color: $red
 #main
-  width: 980px
+  width: 875px
   margin: auto
+    top: 45px
   position: relative
 
-#feed-admin-bar
+//#feed-admin-bar
   margin: auto
   text-align: right
   font-family: Rokkitt, Rockwell, Helvetica, sans-serif
@@ -48,8 +51,8 @@ body
   padding-bottom: 1px
 
   h1
-    color: #262626
-    font-size: 44px
+    color: #333
+    font-size: 42px
     display: inline
     padding-right: 10px
 
@@ -60,21 +63,23 @@ body
     font-size: 18px
     text-decoration: none
     font-weight: bold
-
+    &:hover
+      color: #888
 
 #left-column 
   width: 235px
-  padding-right: 10px
+  padding-right: 20px
   float: left
 
 #center-column
-  width: 485px
-  padding-right: 10px
-  float: left
+  width: 620px
+  //padding-right: 10px
+  float: right
 
 #right-column
   width: 240px
   float: left
+  display: none
 
 #feed-profile
   background-color: #fff
@@ -126,7 +131,12 @@ body
     +blue-button
     display: block
     text-decoration: none
-    font-size: 12px
+    font-size: 18px !important
+    font-weight: normal !important
+    letter-spacing: normal !important
+    -webkit-font-smoothing: antialiased !important
+    font-family: $heading !important
+    padding: 15px 20px
     width: auto
     text-align: center
     margin-bottom: 20px
@@ -134,7 +144,7 @@ body
     margin-right: 15px
     a
       text-decoration: none
-      font-size: 12px
+      font-size: 18px
       text-align: center
       color: white
 
@@ -201,7 +211,7 @@ body
     a 
       display: block
       float: left
-      width: 100px
+      width: 145px
       background-color: #1b334a
       height: 25px
       padding: 20px 10px 20px 50px
@@ -277,12 +287,18 @@ body
     input,
     textarea
       display: block
-      width: 375px
+      width: 485px
 
 
     button
       +blue-button
       float: right
+      font-size: 18px !important
+      font-weight: normal !important
+      letter-spacing: normal !important
+      -webkit-font-smoothing: antialiased !important
+      font-family: $heading !important
+      padding: 15px 20px
       margin: 20px 0 
 
     label
@@ -314,7 +330,7 @@ body
         +border-radius(5px)
         background-image: image-url("feed_page/check-off.png")
         background-repeat: no-repeat
-        background-position: 340px 9px
+        background-position: 475px 8px
 
         &.checked
           background-image: image-url("feed_page/check-on.png")
@@ -391,25 +407,26 @@ body
 
 
 #feed-subresources, #feed-about
-  border: 2px solid #bebebe
-  +border-radius(4px)
+  //border: 2px solid #bebebe
+  //+border-radius(4px)
 
   margin-top: 15px
   
   .feed-sub-header
-    background-color: #e0e0e0
-    color: #656565
-    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
-    font-size: 15px
-    +border-top-radius(2px)
-    padding: 5px
-    text-align: center
+    //background-color: #e0e0e0
+    color: $blue
+    //font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+    font-size: 20px
+    //padding: 6px
+    text-align: left
+    margin-bottom: 15px
 
 #feed-about
   .about
-    border-top: 1px solid #bebebe
     padding: 15px
+    border-radius: 5px
     background-color: #fff
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5)
   p
     margin-top: 5px
     font-family: Helvetica, sans-serif
