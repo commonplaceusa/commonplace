@@ -24,7 +24,7 @@ class API
         find_postlike.update_attributes(
           title:  request_body["title"],
           description:  request_body["body"],
-          price:  request_body["category"]
+          price_in_cents:  request_body["price"]
         )
       end
 

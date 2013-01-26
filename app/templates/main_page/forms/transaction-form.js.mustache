@@ -25,8 +25,14 @@
       <input type="text" placeholder="Price" name="price" class="rounded_corners price" >
 
       <div class="controls">
-         <button class="red-button submit">POST NOW</button>
-         <a class="back" href="#">Back</a>
+          {{^isPostEdit}}
+           <button class="red-button submit">POST NOW</button>
+           <a class="back" href="#">Back</a>
+           {{/isPostEdit}}
+          {{#isPostEdit}}
+           <button class="red-button submit">SUBMIT EDIT</button>
+           <a class="delete" href="#">Delete</a>
+           {{/isPostEdit}}
          <div class="spinner"><img src='/assets/loading-post.gif' /></div>
       </div>
     </form>

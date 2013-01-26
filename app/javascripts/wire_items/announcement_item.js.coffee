@@ -2,9 +2,10 @@ CommonPlace.wire_item.AnnouncementWireItem = CommonPlace.wire_item.WireItem.exte
   template: "wire_items/announcement-item"
   tagName: "li"
   className: "wire-item"
+  tabName: "promote"
 
   events:
-    "click .editlink": "editAnnouncement"
+    "click .editlink": "edit"
     "click .thank-link": "thank"
     "click .flag-link": "flag"
     "click .share-link": "share"
@@ -15,14 +16,5 @@ CommonPlace.wire_item.AnnouncementWireItem = CommonPlace.wire_item.WireItem.exte
     blur: "removeFocus"
 
   canEdit: ->
-    #CommonPlace.account.canEditAnnouncement @model
-    false
-
-  editAnnouncement: (e) ->
-    e.preventDefault()  if e
-    formview = new CommonPlace.main.AnnouncementForm(
-      model: @model
-      template: "shared/announcement-edit-form"
-    )
-    formview.render()
+    CommonPlace.account.canEditAnnouncement @model
 )

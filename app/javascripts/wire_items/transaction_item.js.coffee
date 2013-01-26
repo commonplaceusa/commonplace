@@ -2,11 +2,12 @@ CommonPlace.wire_item.TransactionWireItem = CommonPlace.wire_item.WireItem.exten
   template: "wire_items/transaction-item"
   tagName: "li"
   className: "wire-item"
+  tabName: "transaction"
 
   events:
     "click .buy-link": "buyItem"
     "click .message-link": "messageUser"
-    "click .editlink": "editTransaction"
+    "click .editlink": "edit"
     "click .thank-link": "thank"
     "click .flag-link": "flag"
     "click .share-link": "share"
@@ -36,14 +37,6 @@ CommonPlace.wire_item.TransactionWireItem = CommonPlace.wire_item.WireItem.exten
     , this)
 
   canEdit: ->
-    #CommonPlace.account.canEditTransaction @model
-    false
+    CommonPlace.account.canEditTransaction @model
 
-  editTransaction: (e) ->
-    e.preventDefault()
-    formview = new CommonPlace.main.TransactionForm(
-      model: @model
-      template: "shared/transaction-edit-form"
-    )
-    formview.render()
 )

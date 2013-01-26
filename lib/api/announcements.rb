@@ -23,8 +23,7 @@ class API
       def update_attributes
         find_postlike.update_attributes(
           subject:  request_body["title"],
-          body:  request_body["body"],
-          tag_list:  request_body["tags"]
+          body:  request_body["body"]
           )
       end
 

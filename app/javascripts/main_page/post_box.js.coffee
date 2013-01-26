@@ -16,11 +16,11 @@ CommonPlace.main.PostBox = FormView.extend(
     @switchTab $(e.currentTarget).attr("data-tab"), e
 
   switchTab: (tab, e) ->
-    @showTab tab, e
+    @showTab tab
 
-  showTab: (tab, e) ->
+  showTab: (tab, model) ->
     view = undefined
-    view = @tabs(tab)
+    view = @tabs(tab, model)
     view.render()
     @$(".post-box").removeClass "first"
     @$(".links").html view.el
@@ -33,26 +33,43 @@ CommonPlace.main.PostBox = FormView.extend(
       $(".chzn-drop").css('width','413px')
     @modal.centerEl()  # needs to be done after the form has fully rendered otherwise it will not be centered
 
-  tabs: (tab) ->
+  tabs: (tab, model) ->
+    self = this
     view = undefined
     constant =
       nothing: ->
-        new CommonPlace.main.PostForm()
+        new CommonPlace.main.PostForm(
+          model: model
+          modal: self.modal
+        )
       event: ->
-        new CommonPlace.main.EventForm()
+        new CommonPlace.main.EventForm(
+          model: model
+          modal: self.modal
+        )
       promote: ->
-        new CommonPlace.main.AnnouncementForm()
+        new CommonPlace.main.AnnouncementForm(
+          model: model
+          modal: self.modal
+        )
       transaction: ->
-        new CommonPlace.main.TransactionForm()
+        new CommonPlace.main.TransactionForm(
+          model: model
+          modal: self.modal
+        )
       discussion: ->
         new CommonPlace.main.PostForm(
           category: "neighborhood"
           template: "main_page.forms.post-form"
+          model: model
+          modal: self.modal
         )
       request: ->
         new CommonPlace.main.PostForm(
           category: "offers"
           template: "main_page.forms.question-form"
+          model: model
+          modal: self.modal
         )
     unless constant[tab]
       view = new CommonPlace.main.AnnouncementForm()

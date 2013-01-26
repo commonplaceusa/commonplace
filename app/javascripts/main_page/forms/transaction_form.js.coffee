@@ -5,12 +5,16 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
   afterRender: ->
     @data = {}
     @$("input[placeholder], textarea[placeholder]").placeholder()
-    @initImageUploader @$(".image_file_browser") if @imageUploadSupported()
+    if @imageUploadSupported() and not @isPostEdit()
+      @initImageUploader @$(".image_file_browser")
+    else
+      @$(".image_file_browser").hide()
     @hideSpinner()
     self = this
+    @populateFormData()
 
   imageUploadSupported: ->
-    (not @isIE8orBelow())
+    return (not @isIE8orBelow())
 
   initImageUploader: ($el) ->
     self = this
@@ -54,27 +58,36 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
 
   sendPost: (transactionCollection, data) ->
     self = this
-    transactionCollection.create data,
-      success: _.bind((post) ->
-        if self.imageUploadSupported()
-          if self.imageUploader.hasImageFile
-            $.ajax(
-              type: "POST"
-              url: "/api" + post.get("links").self + "/add_image"
-              data:
-                "image_id" : post.get("image_id")
-              success: (response) ->
-              dataType: "JSON"
-            )
-        self.render()
-        CommonPlace.community.transactions.trigger "sync"
-        @showShareModal(post, "Thanks for posting!", "You've just shared this post with #{@getUserCount()} neighbors in #{@community_name()}. Share with some more people!")
-        _kmq.push(['record', 'Post', {'Schema': post.get("schema"), 'ID': post.id}]) if _kmq?
-      , this)
+    if @isPostEdit()
+      for key, value of data
+        @model.set(key, value)
+      @model.save()
+      @exit()
+    else
+      transactionCollection.create data,
+        success: _.bind((post) ->
+          if self.imageUploadSupported()
+            if self.imageUploader.hasImageFile
+              self.addImageToPost(post)
+          self.render()
+          CommonPlace.community.transactions.trigger "sync"
+          @showShareModal(post, "Thanks for posting!", "You've just shared this post with #{@getUserCount()} neighbors in #{@community_name()}. Share with some more people!")
+          _kmq.push(['record', 'Post', {'Schema': post.get("schema"), 'ID': post.id}]) if _kmq?
+        , this)
 
-      error: (attribs, response) ->
-        _kmq.push(['record', 'Post Error', {'Attributes': attribs}]) if _kmq?
-        self.enableSubmitButton()
-        self.showError response
-        self.showError response
+        error: (attribs, response) ->
+          _kmq.push(['record', 'Post Error', {'Attributes': attribs}]) if _kmq?
+          self.enableSubmitButton()
+          self.showError response
+          self.showError response
+
+  addImageToPost: (post) ->
+    $.ajax(
+      type: "POST"
+      url: "/api" + post.get("links").self + "/add_image"
+      data:
+        "image_id" : post.get("image_id")
+      success: (response) ->
+      dataType: "JSON"
+    )
 )

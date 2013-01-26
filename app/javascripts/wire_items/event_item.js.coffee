@@ -2,11 +2,12 @@ CommonPlace.wire_item.EventWireItem = CommonPlace.wire_item.WireItem.extend(
   template: "wire_items/event-item"
   tagName: "li"
   className: "wire-item"
+  tabName: "event"
 
   monthAbbrevs: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ]
 
   events:
-    "click .editlink": "editEvent"
+    "click .editlink": "edit"
     "click .thank-link": "thank"
     "click .flag-link": "flag"
     "click .share-link": "share"
@@ -46,15 +47,6 @@ CommonPlace.wire_item.EventWireItem = CommonPlace.wire_item.WireItem.extend(
   end_time: ->
     @model.get "ends_at"
 
-  editEvent: (e) ->
-    e and e.preventDefault()
-    formview = new CommonPlace.main.EventForm(
-      model: @model
-      template: "shared/event-edit-form"
-    )
-    formview.render()
-
   canEdit: ->
-    #CommonPlace.account.canEditEvent @model
-    false
+    CommonPlace.account.canEditEvent @model
 )

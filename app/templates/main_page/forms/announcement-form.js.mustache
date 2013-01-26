@@ -41,8 +41,14 @@
         <textarea placeholder="Write your post here!" name="body" rows="15" cols="55" class="rounded_corners"></textarea>
 
         <div class="controls">
+          {{^isPostEdit}}
            <button class="red-button submit">POST NOW</button>
            <a class="back" href="#">Back</a>
+           {{/isPostEdit}}
+          {{#isPostEdit}}
+           <button class="red-button submit">SUBMIT EDIT</button>
+           <a class="delete" href="#">Delete</a>
+           {{/isPostEdit}}
            <div class="spinner"><img src='/assets/loading-post.gif' /></div>
         </div>
       </form>

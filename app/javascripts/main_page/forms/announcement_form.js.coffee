@@ -18,7 +18,7 @@ CommonPlace.main.AnnouncementForm = CommonPlace.main.BaseForm.extend(
 
     feed_id = @$("[name=feed_selector]").val()
     if feed_id isnt undefined and feed_id isnt ""
-      feed = new Group({links: {self: "/feeds/" + feed_id, announcements: "/feeds/" + feed_id + "/announcements"}})
+      feed = new Feed({links: {self: "/feeds/" + feed_id, announcements: "/feeds/" + feed_id + "/announcements"}})
       data =
         title: @$("[name=title]").val()
         body: @$("[name=body]").val()

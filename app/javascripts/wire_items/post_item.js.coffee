@@ -2,9 +2,10 @@ CommonPlace.wire_item.PostWireItem = CommonPlace.wire_item.WireItem.extend(
   template: "wire_items/post-item"
   tagName: "li"
   className: "wire-item"
+  tabName: "discussion"
 
   events:
-    "click .editlink": "editPost"
+    "click .editlink": "edit"
     "click .thank-link": "thank"
     "click .flag-link": "flag"
     "click .share-link": "share"
@@ -15,14 +16,5 @@ CommonPlace.wire_item.PostWireItem = CommonPlace.wire_item.WireItem.extend(
     blur: "removeFocus"
 
   canEdit: ->
-    #CommonPlace.account.canEditPost @model
-    false
-
-  editPost: (e) ->
-    e.preventDefault()
-    formview = new CommonPlace.main.PostForm(
-      model: @model
-      template: "shared/post-edit-form"
-    )
-    formview.render()
+    CommonPlace.account.canEditPost @model
 )

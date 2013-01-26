@@ -8,15 +8,56 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
     "keydown textarea": "resetLayout"
     "focusout input, textarea": "onFormBlur"
     "click .back": "showPostbox"
+    "click .delete": "deletePost"
 
   initialize: (options) ->
     if options
       @template = options.template or @template if options.template
       @category = options.category or @category if options.category
+      if options.model
+        @model = options.model
+      else
+        @model = undefined
+      @modal = options.modal if options.modal
 
   afterRender: ->
     @$("input[placeholder], textarea[placeholder]").placeholder()
     @hideSpinner()
+    @populateFormData()
+
+  populateFormData: ->
+    if @isPostEdit()
+      group_id = @model.get("group_id")
+      feed_id = @model.get("feed_id")
+      @$("[name=title]").val(@model.get("title")) if @model.get("title")
+      @$("[name=body]").val(@model.get("body")) if @model.get("body")
+      if group_id
+        @$('"[value=' + group_id + ']"').attr("selected", "selected")
+        @$("[name='group_selector']").attr("disabled", "disabled")
+      if feed_id
+        @$('"[value=' + feed_id + ']"').attr("selected", "selected")
+        @$("[name='feed_selector']").attr("disabled", "disabled")
+
+      @$("[name=date]").val(@model.get("date").split("T")[0]) if @model.get("date")
+      @$("[name=venue]").val(@model.get("venue")) if @model.get("venue")
+      @$("[name=address]").val(@model.get("address")) if @model.get("address")
+      @$(".starting_times[value='" + @model.get("starts_at").trim() + "']").attr("selected", "selected") if @model.get("starts_at")
+      @$(".ending_times[value='" + @model.get("ends_at").trim() + "']").attr("selected", "selected") if @model.get("ends_at")
+      @$("[name=price]").val(@model.get("price")/100) if @model.get("price")
+      images = @model.get("images")
+      @$(".item_pic").attr("src", images[0].image_url) if images and images[0]
+      @$(".chzn-select").trigger("liszt:updated")
+
+  isPostEdit: ->
+    if @model
+      return true
+    else
+      return false
+
+  deletePost: ->
+    if @isPostEdit()
+      @model.destroy()
+      @exit()
 
   showSpinner: ->
     @$(".spinner").show()
@@ -57,21 +98,30 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
 
   sendPost: (collection, data, callback) ->
     self = this
-    collection.create data,
-      success: _.bind((post) ->
-        collection.trigger "sync"
-        self.render()
-        self.resetLayout()
-        _kmq.push(['record', 'Post', {'Schema': post.get("schema"), 'ID': post.id}]) if _kmq?
-        @showShareModal(post, "Thanks for posting!", "You've just shared this post with #{@getUserCount()} neighbors in #{@community_name()}. Share with some more people!")
-        callback() if callback
-      , this)
+    if @isPostEdit()
+      for key, value of data
+        @model.set(key, value)
+      @model.save()
+      @exit()
+    else
+      collection.create data,
+        success: _.bind((post) ->
+          collection.trigger "sync"
+          self.render()
+          self.resetLayout()
+          _kmq.push(['record', 'Post', {'Schema': post.get("schema"), 'ID': post.id}]) if _kmq?
+          @showShareModal(post, "Thanks for posting!", "You've just shared this post with #{@getUserCount()} neighbors in #{@community_name()}. Share with some more people!")
+          callback() if callback
+        , this)
 
-      error: (attribs, response) ->
-        _kmq.push(['record', 'Post Error', {'Attributes': attribs}]) if _kmq?
-        self.hideSpinner()
-        self.enableSubmitButton()
-        self.showError response
+        error: (attribs, response) ->
+          _kmq.push(['record', 'Post Error', {'Attributes': attribs}]) if _kmq?
+          self.hideSpinner()
+          self.enableSubmitButton()
+          self.showError response
+
+  exit: ->
+    @modal.exit() if @modal
 
   getUserCount: () ->
     CommonPlace.community.get("user_count")

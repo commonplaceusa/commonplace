@@ -781,10 +781,10 @@ CONDITION
 
       event = Event.new(:owner => current_user,
                         :name => request_body['title'],
-                        :description => request_body['about'],
+                        :description => request_body['body'],
                         :date => request_body['date'],
-                        :start_time => request_body['start'],
-                        :end_time => request_body['end'],
+                        :start_time => request_body['starts_at'],
+                        :end_time => request_body['ends_at'],
                         :venue => request_body['venue'],
                         :address => request_body['address'],
                         :tag_list => request_body['tags'],

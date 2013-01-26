@@ -32,7 +32,7 @@ class API
         find_postlike.update_attributes(
           name:  request_body["title"],
           description:  request_body["body"],
-          date:  request_body["occurs_on"],
+          date:  request_body["date"],
           start_time:  request_body["starts_at"],
           end_time:  request_body["ends_at"],
           venue:  request_body["venue"],

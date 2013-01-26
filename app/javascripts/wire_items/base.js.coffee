@@ -12,6 +12,16 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
     @checkThanked()
     @checkFlagged()
 
+  edit: (e) ->
+    e.preventDefault()
+    postbox = new CommonPlace.main.PostBox
+      account: CommonPlace.account
+      community: CommonPlace.community
+    postbox.render()
+    if @model.get("category") is "offers"
+      @tabName = "request"
+    postbox.showTab(@tabName, @model)
+
   checkThanked: ->
     if @thanked()
       @$(".thank-link").html "Thanked!"

@@ -12,7 +12,7 @@
     </span>
     <form>
       <input type="text" placeholder="Event Name" name="title" class="rounded_corners">
-      <textarea placeholder="Description of your event" name="about" class="rounded_corners"></textarea>
+      <textarea placeholder="Description of your event" name="body" class="rounded_corners"></textarea>
       
       <div id="event_date">
         <input class="date rounded_corners" id="date" placeholder="Date" name="date" value="{{date}}" type="text">
@@ -22,7 +22,7 @@
         <select name="start" id="start_time" class="chzn-select" tabindex="1">
           <option value="">Starts</option>
           {{#time_values}}
-            <option value="{{.}}">{{.}}</option>
+            <option class="starting_times" value="{{.}}">{{.}}</option>
           {{/time_values}}
         </select>
       </div>
@@ -31,15 +31,21 @@
         <select name="end" id="end_time" class="chzn-select" tabindex="1">
           <option value="">Ends</option>
           {{#time_values}}
-            <option value="{{.}}">{{.}}</option>
+            <option class="ending_times" value="{{.}}">{{.}}</option>
           {{/time_values}}
         </select>
       </div>
       <input id="address" type="text" placeholder="Address" name="address" class="rounded_corners">
       <input id="venue" type="text" placeholder="Venue Name" name="venue" class="rounded_corners">
       <div class="controls">
-         <button class="red-button submit">POST NOW</button>
-         <a class="back" href="#">Back</a>
+          {{^isPostEdit}}
+           <button class="red-button submit">POST NOW</button>
+           <a class="back" href="#">Back</a>
+           {{/isPostEdit}}
+          {{#isPostEdit}}
+           <button class="red-button submit">SUBMIT EDIT</button>
+           <a class="delete" href="#">Delete</a>
+           {{/isPostEdit}}
          <div class="spinner"><img src='/assets/loading-post.gif' /></div>
       </div>
       </form>

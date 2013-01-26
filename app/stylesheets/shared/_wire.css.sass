@@ -36,13 +36,14 @@
       //padding: 2px
       top: 15px
       margin-top: 0px
-      margin-right: 10px
+      margin-right: 12px
       margin-left: 15px
       font-family: $body
       float: right
       width: auto
       position: relative
       z-index: 500
+      text-align: right
       //border-bottom-right-radius: 0      
       //background: $light-grey image-url("shared/redesign/background.gif")
       //box-shadow: inset 0px 1px 0px #fff
@@ -111,11 +112,14 @@
         font-family: $body
         font-size: 12px
         color: #aaa
+        clear: both
         //text-shadow: 1px 1px 0px white
         float: right
+        text-align: right
         //padding: 6px 5px 0px 0px
         width: auto
         display: block
+        margin-right: 0px
         a 
           color: #aaa
           display: block
@@ -123,12 +127,17 @@
           &:hover
             color: $red
 
-      p:last-child
-        padding-right: 4px
       .editlink 
         color: $red
         font-weight: bold
-        font-size: 11px
+        font-size: 12px
+        margin-bottom: 7px
+        float: right
+        text-align: right
+        a
+          color: $red
+          &:hover
+            color: #888
     .post-content
       position: relative
       padding: 15px

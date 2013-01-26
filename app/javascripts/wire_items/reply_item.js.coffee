@@ -16,8 +16,7 @@ CommonPlace.wire_item.ReplyWireItem = CommonPlace.wire_item.WireItem.extend(
     "click .thank-reply": "thankReply"
 
   canEdit: ->
-    #CommonPlace.account.canEditReply @model
-    false
+    CommonPlace.account.canEditReply @model
 
   deleteReply: (e) ->
     e.preventDefault()
