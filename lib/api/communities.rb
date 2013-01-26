@@ -1126,11 +1126,7 @@ CONDITION
       control_access :community_member, find_community
 
       if params['query'].present?
-        if current_user.admin
-          auth_search([Feed, Group], params)
-        else
-          search([Feed, Group], params, find_community.id)
-        end
+        search([Feed, Group], params, find_community.id)
       else
         list_all([Feed, Group], params, find_community.id)
       end
