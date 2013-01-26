@@ -1,30 +1,5 @@
 
 var FixedLayout = function() {
-  function adjustProfileBox() {
-    var $postBox = $("#post-box");
-    var $infoBox = $("#profile-box");
-
-    $("#right-column").show();
-        
-    $infoBox.css({
-      top: $postBox.outerHeight() + parseInt($postBox.css("top"),10) + 4
-    });
-
-    $infoBox.show();
-    if ($infoBox.height() < 20) { 
-      $infoBox.hide();
-    }
-  };
-
-  function dealWithNag() {
-    var nag_height = parseInt($(".important-notification:visible").outerHeight());
-    if (!nag_height) { nag_height = 0; }
-    $("#post-box").css({ top: 75 + nag_height });
-    $("#community-resources .navigation").css({ top: 48 + nag_height });
-    $("#community-resources .sticky").css({ top: 114 + nag_height });
-    $(".resources").css({ "margin-top": 104 + nag_height });
-  }
-
   function adjustWireElementsHorizontally() {
     if ($("#community-resources").offset()) {
       var left = $("#community-resources").offset().left;
@@ -36,8 +11,6 @@ var FixedLayout = function() {
 
   this.reset = function() {
     adjustWireElementsHorizontally();
-    dealWithNag();
-    adjustProfileBox();
   };
 
   this.bind = function() {

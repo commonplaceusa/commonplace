@@ -65,6 +65,18 @@ class API
         serialize(search)
       end
 
+      # Performs a Sunspot search with no keywords
+      #
+      # Returns a JSON string of the results
+      def list_all(klass, params, community_id)
+        search = Sunspot.search(klass) do
+          paginate(:page => params["page"].to_i + 1)
+          with(:community_id, community_id)
+          yield(self) if block_given?
+        end
+        serialize(search)
+      end
+
       # Returns the JSON results of an Event search in the given community
       def event_search(params, community_id)
         keywords = phrase(params["query"])
@@ -1106,20 +1118,21 @@ CONDITION
       serialize(find_community.users.count)
     end
 
-    # Returns a search on [Feed, Group, User]
+    # Returns all [Feed, Group]s
     #
     # Query params:
     #   query = the query to search with
     get "/:id/group-like" do
       control_access :community_member, find_community
 
-      # only search
-      halt [200, {}, "[]"] if params["query"].blank?
-
-      if current_user.admin
-        auth_search([Feed, Group, User], params)
+      if params['query'].present?
+        if current_user.admin
+          auth_search([Feed, Group], params)
+        else
+          search([Feed, Group], params, find_community.id)
+        end
       else
-        search([Feed, Group, User], params, find_community.id)
+        list_all([Feed, Group], params, find_community.id)
       end
     end
 

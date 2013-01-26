@@ -14,17 +14,8 @@ CommonPlace.CommunityPage = CommonPlace.View.extend(
       community: @community
     )
     @sidebar = new CommonPlace.shared.Sidebar(
-      tabs: [{
-        title: "pages"
-        text: "Your Pages"
-      }, {
-        title: "neighbors"
-        text: "Your Neighbors"
-      }]
-      tabviews:
-        pages: new CommonPlace.shared.YourPages()
-        neighbors: new CommonPlace.shared.Neighbors()
       nav: new CommonPlace.shared.YourTown()
+      directory: new CommonPlace.shared.Directory()
     )
       
     @views = [@sidebar, @lists]
