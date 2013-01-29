@@ -188,6 +188,10 @@ class DailyBulletin < MailBase
   end
 
   def posts
+    @posts.each do |p|
+      p.body.gsub!(/\n/, "<br>")
+    end
+
     @posts
   end
 
@@ -196,6 +200,10 @@ class DailyBulletin < MailBase
   end
 
   def group_posts
+    @group_posts.each do |p|
+      p.body.gsub!(/\n/, "<br>")
+    end
+
     @group_posts
   end
 
@@ -204,6 +212,10 @@ class DailyBulletin < MailBase
   end
 
   def transactions
+    @transactions.each do |p|
+      p.body.gsub!(/\n/, "<br>")
+    end
+
     @transactions
   end
 
@@ -212,6 +224,10 @@ class DailyBulletin < MailBase
   end
 
   def announcements
+    @announcements.each do |p|
+      p.body.gsub!(/\n/, "<br>")
+    end
+
     @announcements
   end
 
@@ -220,6 +236,10 @@ class DailyBulletin < MailBase
   end
 
   def events
+    @events.each do |p|
+      p.body.gsub!(/\n/, "<br>")
+    end
+
     @events
   end
 
@@ -227,4 +247,3 @@ class DailyBulletin < MailBase
     'daily_bulletin'
   end
 end
-

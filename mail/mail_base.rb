@@ -57,6 +57,11 @@ class MailBase < Mustache
     inlined = Premailer.new(render(*args), :with_html_string => true, :inputencoding => 'UTF-8', :replace_html_entities => true).to_inline_css
   end
 
+  def escapeHTML(str)
+    CGI.escapeHTML(str)
+    CGI.unescapeElement(str, "br")
+  end
+
   def styles
     style_file = self.class.ancestors.map { |klass|
       File.join(File.dirname(__FILE__), "stylesheets/#{MailBase.underscore(klass.name)}.scss")
