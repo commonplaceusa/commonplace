@@ -181,7 +181,7 @@ class GeckoBoardAnnouncer
 
     # This has to happen last, since it messes with ActiveRecord
     puts "Starting MAU calculation"
-    USER_COUNT = User.count # Save so that when we switch models, there isn't a calculation error
+    $UserCount = User.count # Save so that when we switch models, there isn't a calculation error
     $OriginalConnection = ActiveRecord::Base.connection
     require 'kmdb'
     t1 = Time.now
@@ -202,9 +202,9 @@ class GeckoBoardAnnouncer
     puts "Doing as percentages..."
 
     # Make them percentages of the user base
-    wau = (100*wau.to_f / USER_COUNT).round(2)
-    dau = (100*dau.to_f / USER_COUNT).round(2)
-    mau = (100*mau.to_f / USER_COUNT).round(2)
+    wau = (100*wau.to_f / $UserCount).round(2)
+    dau = (100*dau.to_f / $UserCount).round(2)
+    mau = (100*mau.to_f / $UserCount).round(2)
 
     dashboard.number("WAU", wau.to_s)
     dashboard.number("MAU", mau.to_s)
@@ -274,23 +274,23 @@ class GeckoBoardAnnouncer
       end
     end
     action_frequencies << ["Open Daily Bulletin",
-                           100 * daily_bulletin_opens[:daily].to_f / USER_COUNT,
-                           100 * daily_bulletin_opens[:weekly].to_f / USER_COUNT,
-                           100 * daily_bulletin_opens[:monthly].to_f / USER_COUNT,
+                           100 * daily_bulletin_opens[:daily].to_f / $UserCount,
+                           100 * daily_bulletin_opens[:weekly].to_f / $UserCount,
+                           100 * daily_bulletin_opens[:monthly].to_f / $UserCount,
                            daily_bulletin_opens[:weekly]
     ]
     action_frequencies << ["Open Single Post",
-                           100 * single_post_opens[:daily].to_f / USER_COUNT,
-                           100 * single_post_opens[:weekly].to_f / USER_COUNT,
-                           100 * single_post_opens[:monthly].to_f / USER_COUNT,
+                           100 * single_post_opens[:daily].to_f / $UserCount,
+                           100 * single_post_opens[:weekly].to_f / $UserCount,
+                           100 * single_post_opens[:monthly].to_f / $UserCount,
                            single_post_opens[:weekly]
     ]
 
     event_map.each do |title, event|
       action_frequencies << [title.to_s,
-                             (100*KMDB::Event.before(au_end).after(dau_start).named(event).map(&:user_id).uniq.count.to_f / USER_COUNT).round(2).to_s,
-                             (100*KMDB::Event.before(au_end).after(wau_start).named(event).map(&:user_id).uniq.count.to_f / USER_COUNT).round(2).to_s,
-                             (100*KMDB::Event.before(au_end).after(mau_start).named(event).map(&:user_id).uniq.count.to_f / USER_COUNT).round(2).to_s,
+                             (100*KMDB::Event.before(au_end).after(dau_start).named(event).map(&:user_id).uniq.count.to_f / $UserCount).round(2).to_s,
+                             (100*KMDB::Event.before(au_end).after(wau_start).named(event).map(&:user_id).uniq.count.to_f / $UserCount).round(2).to_s,
+                             (100*KMDB::Event.before(au_end).after(mau_start).named(event).map(&:user_id).uniq.count.to_f / $UserCount).round(2).to_s,
                               KMDB::Event.before(au_end).after(wau_start).named(event).map(&:user_id).uniq.count.to_s]
     end
     dashboard.table("Action Frequencies", action_frequencies)
@@ -315,9 +315,9 @@ class GeckoBoardAnnouncer
           KMDB::Event.named(event).before(au_end).after(DateTime.parse(e.t_before_type_cast)).where(user_id: e.user_id).any?
         }.map(&:user_id).uniq.count.to_f
         repeated_engagement << [title.to_s,
-          (100*daily_repetitions / USER_COUNT).round(2).to_s,
-          (100*weekly_repetitions / USER_COUNT).round(2).to_s,
-          (100*monthly_repetitions / USER_COUNT).round(2).to_s
+          (100*daily_repetitions / $UserCount).round(2).to_s,
+          (100*weekly_repetitions / $UserCount).round(2).to_s,
+          (100*monthly_repetitions / $UserCount).round(2).to_s
         ]
       end
 
