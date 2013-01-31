@@ -136,6 +136,16 @@ class MailBase < Mustache
     self.tag
   end
 
+  def format_tag(tag)
+    # Shorten the tag for Mailgun campaigns
+    case tag.downcase
+    when "daily_bulletin"
+      return "daily"
+    when "single_post"
+      return "post"
+    end
+  end
+
   def deliver
     if deliver?
       email_id = EmailTracker.new_email({
@@ -157,7 +167,7 @@ class MailBase < Mustache
         }.to_json
       }
 
-      mail_headers.merge!({"X-Mailgun-Campaign-Id" => community.slug.downcase})
+      mail_headers.merge!({"X-Mailgun-Campaign-Id" => "#{community.slug.downcase}_#{format_tag(self.tag.downcase)}"})
 
       mail = Mail.deliver(:to => self.to,
                           :from => self.from,
