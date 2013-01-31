@@ -211,7 +211,6 @@ class GeckoBoardAnnouncer
     dashboard.number("Daily Active", dau.to_s)
 
 
-    puts "Doing daily frequencies"
 
     # Daily frequencies
 
@@ -227,6 +226,7 @@ class GeckoBoardAnnouncer
       "Add Data" => "posted content",
       "Concatenation" => "platform activity"
     }
+    puts "Pulling and coallating data from Mailgun..."
     mailgun_campaign_list = JSON.parse(mailgun['campaigns'].get)['items'].map { |i| i['name'] }
     mailgun_daily_bulletin_campaigns = mailgun_campaign_list.select { |name| name.include? "_daily" }
     mailgun_single_post_campaigns = mailgun_campaign_list.select { |name| name.include? "_post" }
@@ -274,18 +274,19 @@ class GeckoBoardAnnouncer
       end
     end
     action_frequencies << ["Open Daily Bulletin",
-                           100 * daily_bulletin_opens[:daily].to_f / $UserCount,
-                           100 * daily_bulletin_opens[:weekly].to_f / $UserCount,
-                           100 * daily_bulletin_opens[:monthly].to_f / $UserCount,
+                           (100 * daily_bulletin_opens[:daily].to_f / $UserCount).round(2),
+                           (100 * daily_bulletin_opens[:weekly].to_f / $UserCount).round(2),
+                           (100 * daily_bulletin_opens[:monthly].to_f / $UserCount).round(2),
                            daily_bulletin_opens[:weekly]
     ]
     action_frequencies << ["Open Single Post",
-                           100 * single_post_opens[:daily].to_f / $UserCount,
-                           100 * single_post_opens[:weekly].to_f / $UserCount,
-                           100 * single_post_opens[:monthly].to_f / $UserCount,
+                           (100 * single_post_opens[:daily].to_f / $UserCount).round(2),
+                           (100 * single_post_opens[:weekly].to_f / $UserCount).round(2),
+                           (100 * single_post_opens[:monthly].to_f / $UserCount).round(2),
                            single_post_opens[:weekly]
     ]
 
+    puts "Doing daily frequencies"
     event_map.each do |title, event|
       action_frequencies << [title.to_s,
                              (100*KMDB::Event.before(au_end).after(dau_start).named(event).map(&:user_id).uniq.count.to_f / $UserCount).round(2).to_s,
