@@ -23,6 +23,7 @@ class GeckoBoardAnnouncer
   end
 
   def self.perform
+    mailgun = RestClient::Resource.new 'https://api:key-1os8gyo-wfo1ia85yzrih0ib8xq7n050@api.mailgun.net/v2/ourcommonplace.com'
     tz = "Eastern Time (US & Canada)"
     dashboard = Leftronic.new(ENV['LEFTRONIC_API_KEY'] || '')
     dashboard.text("Statistics Information", "Update Started", "Began updating at #{DateTime.now.in_time_zone(tz).to_s}")
@@ -180,6 +181,7 @@ class GeckoBoardAnnouncer
 
     # This has to happen last, since it messes with ActiveRecord
     puts "Starting MAU calculation"
+    USER_COUNT = User.count # Save so that when we switch models, there isn't a calculation error
     $OriginalConnection = ActiveRecord::Base.connection
     require 'kmdb'
     t1 = Time.now
@@ -200,9 +202,9 @@ class GeckoBoardAnnouncer
     puts "Doing as percentages..."
 
     # Make them percentages of the user base
-    wau = (100*wau.to_f / User.count).round(2)
-    dau = (100*dau.to_f / User.count).round(2)
-    mau = (100*mau.to_f / User.count).round(2)
+    wau = (100*wau.to_f / USER_COUNT).round(2)
+    dau = (100*dau.to_f / USER_COUNT).round(2)
+    mau = (100*mau.to_f / USER_COUNT).round(2)
 
     dashboard.number("WAU", wau.to_s)
     dashboard.number("MAU", mau.to_s)
@@ -218,8 +220,6 @@ class GeckoBoardAnnouncer
                            # (100*KMDB::Event.before(au_end).after(wau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2),
                            # (100*KMDB::Event.before(au_end).after(mau_start).named().map(&:user_id).uniq.count.to_f / User.count).round(2)].map(&:to_s)
     event_map = {
-      "Open Daily Bulletin" => "opened daily_bulletin email",
-      "Open Single Post" => "opened single_post email",
       "Visit Site" => "visited site",
       "Reply" => "posted  reply",
       "PM" => "posted  message",
@@ -227,11 +227,70 @@ class GeckoBoardAnnouncer
       "Add Data" => "posted content",
       "Concatenation" => "platform activity"
     }
+    mailgun_campaign_list = JSON.parse(mailgun['campaigns'].get)['items'].map { |i| i['name'] }
+    mailgun_daily_bulletin_campaigns = mailgun_campaign_list.select { |name| name.include? "_daily" }
+    mailgun_single_post_campaigns = mailgun_campaign_list.select { |name| name.include? "_post" }
+    # Coallate
+    daily_bulletin_opens = {
+      daily: 0,
+      weekly: 0,
+      monthly: 0
+    }
+    single_post_opens = daily_bulletin_opens.dup
+    mailgun_daily_bulletin_campaigns.each do |campaign_name|
+      # Access campaign open stats
+      # Coallate into daily_bulletin_opens
+      open_stats = JSON.parse(mailgun["campaigns/#{campaign_name}/opens?groupby=day&limit=30"].get)
+      open_stats.each do |daily_dump|
+        opened_at = DateTime.parse(daily_dump['day'])
+        unique_recipients = daily_dump['unique']['recipient'].to_i
+        if opened_at > 1.day.ago
+          daily_bulletin_opens[:daily] += unique_recipients
+          daily_bulletin_opens[:weekly] += unique_recipients
+          daily_bulletin_opens[:monthly] += unique_recipients
+        elsif opened_at > 7.days.ago
+          daily_bulletin_opens[:weekly] += unique_recipients
+          daily_bulletin_opens[:monthly] += unique_recipients
+        elsif opened_at > 30.days.ago
+          daily_bulletin_opens[:monthly] += unique_recipients
+        end
+      end
+    end
+    mailgun_single_post_campaigns.each do |campaign_name|
+      open_stats = JSON.parse(mailgun["campaigns/#{campaign_name}/opens?groupby=day&limit=30"].get)
+      open_stats.each do |daily_dump|
+        opened_at = DateTime.parse(daily_dump['day'])
+        unique_recipients = daily_dump['unique']['recipient'].to_i
+        if opened_at > 1.day.ago
+          single_post_opens[:daily] += unique_recipients
+          single_post_opens[:weekly] += unique_recipients
+          single_post_opens[:monthly] += unique_recipients
+        elsif opened_at > 7.days.ago
+          single_post_opens[:weekly] += unique_recipients
+          single_post_opens[:monthly] += unique_recipients
+        elsif opened_at > 30.days.ago
+          single_post_opens[:monthly] += unique_recipients
+        end
+      end
+    end
+    action_frequencies << ["Open Daily Bulletin",
+                           100 * daily_bulletin_opens[:daily].to_f / USER_COUNT,
+                           100 * daily_bulletin_opens[:weekly].to_f / USER_COUNT,
+                           100 * daily_bulletin_opens[:monthly].to_f / USER_COUNT,
+                           daily_bulletin_opens[:weekly]
+    ]
+    action_frequencies << ["Open Single Post",
+                           100 * single_post_opens[:daily].to_f / USER_COUNT,
+                           100 * single_post_opens[:weekly].to_f / USER_COUNT,
+                           100 * single_post_opens[:monthly].to_f / USER_COUNT,
+                           single_post_opens[:weekly]
+    ]
+
     event_map.each do |title, event|
       action_frequencies << [title.to_s,
-                             (100*KMDB::Event.before(au_end).after(dau_start).named(event).map(&:user_id).uniq.count.to_f / User.count).round(2).to_s,
-                             (100*KMDB::Event.before(au_end).after(wau_start).named(event).map(&:user_id).uniq.count.to_f / User.count).round(2).to_s,
-                             (100*KMDB::Event.before(au_end).after(mau_start).named(event).map(&:user_id).uniq.count.to_f / User.count).round(2).to_s,
+                             (100*KMDB::Event.before(au_end).after(dau_start).named(event).map(&:user_id).uniq.count.to_f / USER_COUNT).round(2).to_s,
+                             (100*KMDB::Event.before(au_end).after(wau_start).named(event).map(&:user_id).uniq.count.to_f / USER_COUNT).round(2).to_s,
+                             (100*KMDB::Event.before(au_end).after(mau_start).named(event).map(&:user_id).uniq.count.to_f / USER_COUNT).round(2).to_s,
                               KMDB::Event.before(au_end).after(wau_start).named(event).map(&:user_id).uniq.count.to_s]
     end
     dashboard.table("Action Frequencies", action_frequencies)
@@ -256,9 +315,9 @@ class GeckoBoardAnnouncer
           KMDB::Event.named(event).before(au_end).after(DateTime.parse(e.t_before_type_cast)).where(user_id: e.user_id).any?
         }.map(&:user_id).uniq.count.to_f
         repeated_engagement << [title.to_s,
-          (100*daily_repetitions / User.count).round(2).to_s,
-          (100*weekly_repetitions / User.count).round(2).to_s,
-          (100*monthly_repetitions / User.count).round(2).to_s
+          (100*daily_repetitions / USER_COUNT).round(2).to_s,
+          (100*weekly_repetitions / USER_COUNT).round(2).to_s,
+          (100*monthly_repetitions / USER_COUNT).round(2).to_s
         ]
       end
 
