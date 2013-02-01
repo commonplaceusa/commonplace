@@ -122,6 +122,8 @@ group :test do
   gem 'resque_spec', '= 0.12.5'
   gem 'rspec-rails', '= 2.8.1' # we use rspec-rails for tests
   gem 'fuubar', '= 1.0.0' # we use fuubar for pretty rspec output
+  gem 'spork', '= 0.9.2'
+  gem 'rr', '= 1.0.4'
   gem 'capybara', '1.1.2'
   gem 'launchy', '= 2.1.0' # we use launchy to launch a browser during integration testing
   gem 'database_cleaner', '= 0.7.1' # we use database_cleaner to clean the database between tests
