@@ -14,5 +14,11 @@ describe "The bundler Gemfile", :nanny => true do
         fail(line) if line=~ /@github.com/
       end
     end
+
+    it "should contain exact version numbers for all gems" do
+      gemfile_contents.split("\n").select { |l| l.include? 'gem "' or l.include? "gem '" }.each do |line|
+        fail(line) unless line =~ /(["']= (.*)["']|ref)/
+      end
+    end
   end
 end

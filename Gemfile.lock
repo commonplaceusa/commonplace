@@ -464,7 +464,6 @@ GEM
       sunspot (= 1.3.0)
     sunspot_solr (1.3.0)
       escape (~> 0.0.4)
-    system_timer (1.2.4)
     term-ansicolor (1.0.7)
     therubyracer (0.9.10)
       libv8 (~> 3.3.10)
@@ -551,7 +550,7 @@ DEPENDENCIES
   permanent_records (= 2.1.2)
   pg (= 0.13.2)
   premailer (= 1.7.3)
-  pry
+  pry (= 0.9.11.4)
   rack (= 1.4.1)
   rack-cache (= 1.2)
   rack-contrib (= 1.1.0)
@@ -584,7 +583,6 @@ DEPENDENCIES
   sprockets (= 2.2.1)
   sunspot_rails (= 1.3.0)
   sunspot_solr (= 1.3.0)
-  system_timer
   taps!
   therubyracer (= 0.9.10)
   thin (= 1.3.1)

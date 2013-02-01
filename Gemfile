@@ -28,7 +28,6 @@ gem 'mongo_mapper', '= 0.11.0' # used to represent site visits
 
 # Deployment
 gem 'thin', '= 1.3.1' # lighter than mongrel, faster than webrick
-# gem 'unicorn' # Magical unicorns are going to help with our concurrency issues
 
 # Authentication
 gem 'devise', '= 2.0.4' # used for authentication
@@ -85,7 +84,6 @@ gem 'turing-contacts', :git => "https://github.com/turingstudio/contacts.git", :
 
 # Misc
 gem 'json', "= 1.6.6" # isn't json built-in?
-gem 'system_timer', :platforms => [:ruby_18] # this is annoying
 gem 'heroku', '= 2.28.7' # access heroku api
 gem 'rack-timeout', '= 0.0.3' # Timeout requests that take too long
 gem 'require_all', '= 1.2.1' # require all ruby files in a directory
@@ -97,7 +95,7 @@ gem 'mysql2', '= 0.3.11'
 
 group :assets do
   gem 'uglifier', '= 1.2.3'
-  gem 'compass', '0.12.alpha.0'
+  gem 'compass', '= 0.12.alpha.0'
 end
 
 group :development do
@@ -106,13 +104,13 @@ group :development do
 end
 
 group :development, :test, :remote_worker do
-  gem 'pry'
+  gem 'pry', '= 0.9.11.4'
   gem 'colored', '= 1.2'
   gem 'deadweight', '= 0.2.1', :require => 'deadweight/hijack/rails'
 
   gem 'factory_girl', '= 2.6.3' # we use factory_girl to generate models for tests
   gem 'forgery', '= 0.5.0' # we use forgery to generate data for tests
-  gem 'foreman', '0.40.0' # we use foreman to start all the processes we need for development
+  gem 'foreman', '= 0.40.0' # we use foreman to start all the processes we need for development
   gem 'therubyracer', '= 0.9.10' # because something was yelling at us for not having a javascript runtime
   gem 'cucumber', '= 1.1.0'
   gem 'simplecov', '= 0.6.4', :require => false
@@ -126,7 +124,7 @@ group :test do
   gem 'fuubar', '= 1.0.0' # we use fuubar for pretty rspec output
   gem 'spork', '= 0.9.2'
   gem 'rr', '= 1.0.4'
-  gem 'capybara', '1.1.2'
+  gem 'capybara', '= 1.1.2'
   gem 'launchy', '= 2.1.0' # we use launchy to launch a browser during integration testing
   gem 'database_cleaner', '= 0.7.1' # we use database_cleaner to clean the database between tests
   gem 'jasmine', '= 1.2.1' # we use jasmine for javascript tests
