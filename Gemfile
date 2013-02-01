@@ -30,7 +30,7 @@ gem 'mongo_mapper', '= 0.11.0' # used to represent site visits
 gem 'thin', '= 1.3.1' # lighter than mongrel, faster than webrick
 
 # Authentication
-gem 'devise', '= 2.0.4' # used for authentication
+gem 'devise', '= 2.0.5' # used for authentication
 gem 'omniauth', '= 1.0.3' # used for authentication with facebook
 gem 'omniauth-facebook', '= 1.2.0' # Facebook strategy for OmniAuth
 
