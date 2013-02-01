@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/Jberlinsky/heroku_san.git
   revision: 3ad7d89733bc9aa82a514b9557d51f0486f0177f
+  ref: 3ad7d89
   specs:
     heroku_san (3.0.1)
       activesupport
@@ -30,12 +31,14 @@ GIT
 GIT
   remote: https://github.com/causes/mock_redis.git
   revision: fe0188048dad03c9e18d2ae199c0992b7bd48e27
+  ref: fe01880
   specs:
     mock_redis (0.6.3)
 
 GIT
   remote: https://github.com/dabio/taps.git
   revision: a56d8e8494d6bcb529628ee602b9198086a20b9c
+  ref: a56d8e8
   specs:
     taps (0.3.23)
       rack
@@ -47,6 +50,7 @@ GIT
 GIT
   remote: https://github.com/sferik/rails_admin.git
   revision: 1eda06e225b021febe3de6a543235c818dfa8150
+  ref: 1eda06e
   specs:
     rails_admin (0.0.4)
       bbenezech-nested_form (~> 0.0.6)
@@ -65,6 +69,7 @@ GIT
 GIT
   remote: https://github.com/turingstudio/contacts.git
   revision: aa86d2ff8e566a801953300dd1848725f722c020
+  ref: aa86d2f
   specs:
     turing-contacts (0.2.6)
       hpricot
@@ -131,8 +136,8 @@ GEM
       tzinfo (>= 0.3.14)
     bbenezech-nested_form (0.0.6)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.0.3.1)
-    bson (1.6.1)
+    bootstrap-sass (2.1.1.0)
+    bson (1.6.4)
     bson_ext (1.6.1)
       bson (~> 1.6.1)
     builder (3.0.0)
@@ -144,24 +149,27 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    childprocess (0.3.1)
-      ffi (~> 1.0.6)
-    chunky_png (1.2.5)
-    cocaine (0.2.1)
-    coderay (1.0.5)
+    childprocess (0.3.7)
+      ffi (~> 1.0, >= 1.0.6)
+    chunky_png (1.2.7)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
+    coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.3.3)
+    coffee-script-source (1.4.0)
     colored (1.2)
     compass (0.12.alpha.0)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    creole (0.4.2)
+    creole (0.5.0)
     css_parser (1.2.6)
       addressable
       rdoc
@@ -175,7 +183,7 @@ GEM
       capybara (>= 1.1.1)
       cucumber (>= 1.1.0)
       nokogiri (>= 1.5.0)
-    daemons (1.1.8)
+    daemons (1.1.9)
     dalli (1.1.5)
     database_cleaner (0.7.1)
     deadweight (0.2.1)
@@ -188,45 +196,31 @@ GEM
     diff-lcs (1.1.3)
     erubis (2.7.0)
     escape (0.0.4)
-    eventmachine (0.12.10)
-    excon (0.14.2)
-    execjs (1.3.0)
+    eventmachine (1.0.0)
+    excon (0.15.5)
+    execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (2.6.3)
       activesupport (>= 2.3.9)
-    faraday (0.7.6)
-      addressable (~> 2.2)
+    faraday (0.8.4)
       multipart-post (~> 1.1)
-      rack (~> 1.1)
-    fast_xs (0.8.0)
-    ffi (1.0.11)
+    ffi (1.3.1)
     foreman (0.40.0)
       term-ansicolor (~> 1.0.7)
       thor (>= 0.13.6)
     forgery (0.5.0)
     formtastic (2.0.2)
       rails (~> 3.0)
-    fssm (0.2.8.1)
+    fssm (0.2.10)
     fuubar (1.0.0)
       rspec (~> 2.0)
       rspec-instafail (~> 0.2.0)
       ruby-progressbar (~> 0.0.10)
     geocoder (1.0.5)
-    gherkin (2.5.1)
+    gherkin (2.5.4)
       json (>= 1.4.6)
     git (1.2.5)
     glebm-geokit (1.5.2)
-    guard (1.0.1)
-      ffi (>= 0.5.0)
-      thor (~> 0.14.6)
-    guard-bundler (0.1.3)
-      bundler (>= 1.0.0)
-      guard (>= 0.2.2)
-    guard-rspec (0.6.0)
-      guard (>= 0.10.0)
-    guard-spork (0.5.2)
-      guard (>= 0.10.0)
-      spork (>= 0.8.4)
     guardrail_notifier (0.2.12)
     haml (3.1.4)
     hashie (1.2.0)
@@ -236,14 +230,15 @@ GEM
       netrc (~> 0.7.5)
       rest-client (~> 1.6.1)
       rubyzip
-    heroku-api (0.2.6)
-      excon (~> 0.14.0)
+    heroku-api (0.2.13)
+      excon (~> 0.15.4)
     hike (1.2.1)
     hpricot (0.8.6)
     htmlentities (4.3.1)
-    httparty (0.8.3)
+    httparty (0.10.2)
       multi_json (~> 1.0)
-      multi_xml
+      multi_xml (>= 0.5.2)
+    httpauth (0.2.0)
     i18n (0.6.0)
     jar_wrapper (0.1.2)
       jeweler
@@ -255,30 +250,30 @@ GEM
       rack (~> 1.0)
       rspec (>= 1.3.1)
       selenium-webdriver (>= 0.1.3)
-    jasmine-core (1.2.0)
-    jeweler (1.8.3)
+    jasmine-core (1.3.1)
+    jeweler (1.8.4)
       bundler (~> 1.0)
       git (>= 1.2.5)
       rake
       rdoc
     journey (1.0.3)
-    jquery-rails (2.0.2)
-      railties (>= 3.2.0, < 5.0)
-      thor (~> 0.14)
+    jquery-rails (2.2.0)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
     jquery-ui-rails (0.2.2)
       jquery-rails
       railties (>= 3.1.0)
     json (1.6.6)
-    kaminari (0.13.0)
+    jwt (0.1.5)
+      multi_json (>= 1.0)
+    kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-      railties (>= 3.0.0)
     km (1.1.2)
     launchy (2.1.0)
       addressable (~> 2.2.6)
-    libnotify (0.7.2)
     libv8 (3.3.10.4)
-    loofah (1.2.0)
+    loofah (1.2.1)
       nokogiri (>= 1.4.4)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -289,34 +284,37 @@ GEM
       creole (>= 0.3.7)
       loofah (>= 0.4.7)
       rdiscount (>= 1.6.0)
-    method_source (0.7.1)
+    method_source (0.8.1)
     mime-types (1.19)
-    mongo (1.6.1)
-      bson (~> 1.6.1)
+    mongo (1.6.4)
+      bson (~> 1.6.4)
     mongo_mapper (0.11.0)
       activemodel (~> 3.0)
       activesupport (~> 3.0)
       plucky (~> 0.4.0)
     multi_json (1.2.0)
-    multi_xml (0.5.1)
+    multi_xml (0.5.2)
     multipart-post (1.1.5)
     mustache (0.99.4)
     mysql2 (0.3.11)
-    netrc (0.7.5)
+    netrc (0.7.7)
     newrelic_rpm (3.5.0.1)
-    nokogiri (1.5.2)
+    nokogiri (1.5.6)
     oauth (0.3.6)
       ruby-hmac (>= 0.3.1)
-    oauth2 (0.5.2)
-      faraday (~> 0.7)
+    oauth2 (0.8.0)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
       multi_json (~> 1.0)
+      rack (~> 1.2)
     omniauth (1.0.3)
       hashie (~> 1.2)
       rack
     omniauth-facebook (1.2.0)
       omniauth-oauth2 (~> 1.0.0)
-    omniauth-oauth2 (1.0.0)
-      oauth2 (~> 0.5.0)
+    omniauth-oauth2 (1.0.3)
+      oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.0.7)
     paperclip (2.4.5)
@@ -336,17 +334,17 @@ GEM
       css_parser (>= 1.1.9)
       htmlentities (>= 4.0.0)
     progressbar (0.12.0)
-    pry (0.9.9.6)
+    pry (0.9.11.4)
       coderay (~> 1.0.5)
-      method_source (~> 0.7.1)
-      slop (>= 2.4.4, < 3)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
-    rack-pjax (0.5.9)
-      hpricot (~> 0.8.6)
+    rack-pjax (0.7.0)
+      nokogiri (~> 1.5)
       rack (~> 1.3)
     rack-ssl (1.3.2)
       rack
@@ -369,8 +367,6 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2.2)
-    rb-inotify (0.8.8)
-      ffi (>= 0.5.0)
     rb-readline (0.4.2)
     rdiscount (1.6.8)
     rdoc (3.12)
@@ -398,8 +394,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rmagick (2.13.1)
-    rr (1.0.4)
-    rsolr (1.0.7)
+    rsolr (1.0.8)
       builder (>= 2.1.2)
     rspec (2.8.0)
       rspec-core (~> 2.8.0)
@@ -408,18 +403,17 @@ GEM
     rspec-core (2.8.0)
     rspec-expectations (2.8.0)
       diff-lcs (~> 1.1.2)
-    rspec-instafail (0.2.2)
+    rspec-instafail (0.2.4)
     rspec-mocks (2.8.0)
     rspec-rails (2.8.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.8.0)
-    rspec-rr (0.1.0)
     ruby-hmac (0.4.0)
     ruby-progressbar (0.0.10)
     rubyzip (0.9.9)
-    rufus-scheduler (2.0.16)
+    rufus-scheduler (2.0.17)
       tzinfo (>= 0.3.23)
     sanitize (2.0.3)
       nokogiri (>= 1.4.4, < 1.6)
@@ -431,15 +425,12 @@ GEM
     selenium (0.2.5)
       jar_wrapper
       jeweler
-    selenium-webdriver (2.20.0)
+    selenium-webdriver (2.29.0)
       childprocess (>= 0.2.5)
-      ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
-    sequel (3.33.0)
-    simple_xlsx_writer (0.5.3)
-      fast_xs (>= 0.7.3)
-      rubyzip (>= 0.9.4)
+      websocket (~> 1.0.4)
+    sequel (3.43.0)
     simplecov (0.6.4)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -447,13 +438,12 @@ GEM
     sinatra (1.2.7)
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
-    slop (2.4.4)
-    spork (0.9.0)
+    slop (3.4.3)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.5)
+    sqlite3 (1.3.7)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
     sunspot (1.3.0)
@@ -475,7 +465,7 @@ GEM
       rack (>= 1.0.0)
     thor (0.14.6)
     tilt (1.3.3)
-    tins (0.5.0)
+    tins (0.6.0)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
@@ -484,12 +474,12 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    vcr (2.1.1)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.1.1)
       rack (>= 1.0)
-    xml-simple (1.1.1)
+    websocket (1.0.7)
+    xml-simple (1.1.2)
     xpath (0.1.4)
       nokogiri (~> 1.3)
     yajl-ruby (1.1.0)
@@ -499,96 +489,96 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on (~> 2.3.1)
-  acts_as_api
-  airbrake
-  amatch
-  amazon-ec2
-  aws-s3
-  barometer
-  bson_ext
-  cancan
+  acts-as-taggable-on (= 2.3.1)
+  acts_as_api (= 0.3.11)
+  airbrake (= 3.1.2)
+  amatch (= 0.2.10)
+  amazon-ec2 (= 0.9.17)
+  aws-s3 (= 0.6.2)
+  barometer (= 0.7.3)
+  bson_ext (= 1.6.1)
+  builder (= 3.0.0)
+  cancan (= 1.6.7)
   capybara (= 1.1.2)
-  colored
+  colored (= 1.2)
   compass (= 0.12.alpha.0)
-  cucumber
-  cucumber-rails
-  dalli
-  database_cleaner
-  deadweight
-  devise
-  factory_girl
-  foreman
-  forgery
+  cucumber (= 1.1.0)
+  cucumber-rails (= 1.1.1)
+  dalli (= 1.1.5)
+  database_cleaner (= 0.7.1)
+  deadweight (= 0.2.1)
+  devise (= 2.0.4)
+  factory_girl (= 2.6.3)
+  foreman (= 0.40.0)
+  forgery (= 0.5.0)
   formtastic (= 2.0.2)
-  fuubar
-  geocoder (~> 1.0.5)
-  glebm-geokit
-  guard
-  guard-bundler
-  guard-rspec
-  guard-spork
-  guardrail_notifier
-  haml (~> 3.1)
-  heroku
+  fuubar (= 1.0.0)
+  geocoder (= 1.0.5)
+  glebm-geokit (= 1.5.2)
+  guardrail_notifier (= 0.2.12)
+  haml (= 3.1.4)
+  heroku (= 2.28.7)
   heroku_san!
-  hpricot
-  jasmine
-  json (~> 1.6.0)
-  km
+  hpricot (= 0.8.6)
+  i18n (= 0.6.0)
+  jasmine (= 1.2.1)
+  journey (= 1.0.3)
+  json (= 1.6.6)
+  km (= 1.1.2)
   km-db!
-  launchy
+  launchy (= 2.1.0)
   leftronic!
-  libnotify
-  mail
-  mcbean
+  mail (= 2.4.4)
+  mcbean (= 0.4.0)
   mock_redis!
-  mongo_mapper
-  mustache
-  mysql2
-  newrelic_rpm
-  omniauth
-  omniauth-facebook
-  paperclip (~> 2.4.4)
-  permanent_records
-  pg
-  premailer
+  mongo_mapper (= 0.11.0)
+  multi_json (= 1.2.0)
+  mustache (= 0.99.4)
+  mysql2 (= 0.3.11)
+  newrelic_rpm (= 3.5.0.1)
+  omniauth (= 1.0.3)
+  omniauth-facebook (= 1.2.0)
+  paperclip (= 2.4.5)
+  permanent_records (= 2.1.2)
+  pg (= 0.13.2)
+  premailer (= 1.7.3)
   pry
-  rack-cache
-  rack-contrib
-  rack-timeout
-  rails (~> 3.2.0)
+  rack (= 1.4.1)
+  rack-cache (= 1.2)
+  rack-contrib (= 1.1.0)
+  rack-ssl (= 1.3.2)
+  rack-test (= 0.6.1)
+  rack-timeout (= 0.0.3)
+  rails (= 3.2.3)
   rails_admin!
-  rb-inotify
-  rb-readline
-  redcarpet (~> 2.0.1)
-  redis
-  redis-namespace
-  require_all (~> 1.2.1)
-  resque (~> 1.19.0)
-  resque-cleaner
-  resque-scheduler
-  resque_spec
-  rest-client (>= 1.6.1)
-  rmagick
-  rr
-  rspec-rails
-  rspec-rr
-  sanitize
-  sass
-  sass-rails
-  selenium
-  simple_xlsx_writer
-  simplecov
-  sinatra (~> 1.2.7)
-  spork
+  rake (= 0.9.2.2)
+  rb-readline (= 0.4.2)
+  redcarpet (= 2.0.1)
+  redis (= 2.2.2)
+  redis-namespace (= 1.0.3)
+  require_all (= 1.2.1)
+  resque (= 1.19.0)
+  resque-cleaner (= 0.2.7)
+  resque-scheduler (= 1.9.9)
+  resque_spec (= 0.12.5)
+  rest-client (= 1.6.7)
+  rmagick (= 2.13.1)
+  rspec-rails (= 2.8.1)
+  sanitize (= 2.0.3)
+  sass (= 3.1.15)
+  sass-rails (= 3.2.4)
+  selenium (= 0.2.5)
+  simplecov (= 0.6.4)
+  sinatra (= 1.2.7)
+  sprockets (= 2.1.2)
   sunspot_rails (= 1.3.0)
-  sunspot_solr
+  sunspot_solr (= 1.3.0)
   system_timer
   taps!
-  therubyracer
-  thin
-  trollop
+  therubyracer (= 0.9.10)
+  thin (= 1.3.1)
+  treetop (= 1.4.10)
+  trollop (= 1.16.2)
   turing-contacts!
-  uglifier
-  vcr
+  tzinfo (= 0.3.32)
+  uglifier (= 1.2.3)
