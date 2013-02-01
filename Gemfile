@@ -71,7 +71,9 @@ gem 'rest-client', '= 1.6.7'
 gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref => "a090bf1d49004f501c9164d5dcd51761b48803e4"
 
 # Tech admin
-gem 'newrelic_rpm', '= 3.5.0.1'
+group :only_production do
+  gem 'newrelic_rpm', '= 3.5.0.1'
+end
 
 # Monitoring
 gem 'airbrake', '= 3.1.2'
