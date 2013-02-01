@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 source "http://gems.github.com"
 
-gem 'rails', "= 3.2.3"
+gem 'rails', "= 3.2.4"
 gem 'sass-rails', '= 3.2.4'
 
 # API
@@ -141,6 +141,6 @@ gem 'rack', '= 1.4.1'
 gem 'rack-ssl', '= 1.3.2'
 gem 'rack-test', '= 0.6.1'
 gem 'rake', '= 0.9.2.2'
-gem 'sprockets', '= 2.1.2'
+gem 'sprockets', '= 2.1.3'
 gem 'treetop', '= 1.4.10'
 gem 'tzinfo', '= 0.3.32'
