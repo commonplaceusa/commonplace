@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 source "http://gems.github.com"
 
-gem 'rails', "= 3.2.4"
+gem 'rails', "= 3.2.10"
 gem 'sass-rails', '= 3.2.4'
 
 # API
@@ -135,12 +135,12 @@ gem 'amatch', '= 0.2.10'
 
 gem 'builder', '= 3.0.0'
 gem 'i18n', '= 0.6.0'
-gem 'journey', '= 1.0.3'
+gem 'journey', :git => "git://github.com/Jberlinsky/journey.git", :ref => "v1.0.3-shim"# :ref => "cd6aa3e"
 gem 'multi_json', '= 1.2.0'
 gem 'rack', '= 1.4.1'
 gem 'rack-ssl', '= 1.3.2'
 gem 'rack-test', '= 0.6.1'
 gem 'rake', '= 0.9.2.2'
-gem 'sprockets', '= 2.1.3'
+gem 'sprockets', '= 2.2.1'
 gem 'treetop', '= 1.4.10'
 gem 'tzinfo', '= 0.3.32'
