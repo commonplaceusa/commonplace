@@ -1,7 +1,7 @@
 <div class="registration1">
 
   <div class="redbox address">
-  
+
     <div class="registration_border">
        <h2>Resident of {{community_name}}?</h2>
        <span class="divider"></span>
@@ -10,6 +10,9 @@
          <input name="address" type="input" type="text" class="address" placeholder="Enter your {{community_name}} street address" /><br />
          <span class="error address"></span>
        </div>
+       <span id="bypass" class="error" style="display:none">
+         Did we make a mistake? <a href="#" class="confirm">Click here to continue</a>
+       </span>
        <div id="address_verification" style="display:none">
          Please confirm your street address:<Br />
          <input type="radio" id="suggested" checked="checked" name="verify_address" value="suggested" class="address_verify_radio" /> <span class="address_verify_radio">Use the address we have in our system:</span>
@@ -32,13 +35,13 @@
          <input name="referral_metadata" type="input" type="text" class="referral_metadata" placeholder="From who?" /><br />
          <span class="error referral_metadata"></span>
        </div>
-       
+
        <div id="find_button">
          <a href="#" class="blue-button next-button">Confirm Address</a>
        </div>
-       
+
      </div>
-     
+
   </div>
-  
+
 </div>
