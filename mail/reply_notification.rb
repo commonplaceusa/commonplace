@@ -60,15 +60,7 @@ class ReplyNotification < PostNotification
     post_text = 
       case @post
       when Message then "private message"
-      when Post 
-        case @post.category
-        when "offers" then "offer"
-        when "neighborhood" then "neighborhood update"
-        when "meetups" then "meet-up proposal"
-        when "help" then "request"
-        when "publicity" "post"
-        when "other" then "post"
-        end
+      when Post then "post"
       when Event then "event"
       when Announcement then "an announcement"
       when GroupPost then "a post on the #{community_name} #{@post.group.name} Group"
