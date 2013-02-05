@@ -1,5 +1,5 @@
 #= require json2
-#= require jquery
+#= require jquery.1.7
 #= require underscore
 #= require mustache
 #= require backbone

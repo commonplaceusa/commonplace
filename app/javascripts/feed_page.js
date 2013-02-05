@@ -1,6 +1,6 @@
 //= require showdown
-//= require jquery
-//= require jquery-ui
+//= require jquery.1.7
+//= require jquery-ui.1.8
 //= require jquery-badger
 //= require placeholder
 //= require time_ago_in_words

@@ -1,5 +1,5 @@
 //= require json2
-//= require jquery
+//= require jquery.1.7
 //= require chosen
 //= require underscore
 //= require mustache
@@ -10,6 +10,6 @@
 
 //= require_tree ../templates/organizer_app
 
-//= require jquery-ui
+//= require jquery-ui.1.8
 //= require jquery-dataTables
 

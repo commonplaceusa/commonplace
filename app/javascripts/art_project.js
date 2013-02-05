@@ -1,5 +1,5 @@
-//= require jquery
-//= require jquery-ui
+//= require jquery.1.7
+//= require jquery-ui.1.8
 //= require placeholder
 //= require underscore
 //= require mustache
@@ -18,14 +18,14 @@
 var ArtProjectView = CommonPlace.View.extend({
   template: "art_project.main",
   id: "art_project",
-  
+
   initialize: function(options) {
     this.communityExterior = options.communityExterior;
   },
-  
+
   afterRender: function() {
     $("#main").append(this.el);
   },
-  
+
   community_name: function() { return this.communityExterior.name; }
 });

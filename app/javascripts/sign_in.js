@@ -1,4 +1,4 @@
-//= require jquery
+//= require jquery.1.7
 
 $(function() {
   $('#sign_in_button').click(function() {
