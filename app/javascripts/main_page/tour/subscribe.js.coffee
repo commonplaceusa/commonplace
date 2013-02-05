@@ -1,6 +1,6 @@
 CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
   template: "main_page.tour.subscribe"
-  feed_kinds: [ "communitygroup", "communitygroup", "business", "municipal", "news", "discussion" ]
+  feed_kinds: [ "communitygroup", "communitygroup", "business", "municipal", "news", "communitygroup" ]
   feed_categories: [ {name: "Community Group", id:"communitygroup"}, {name:"Municipal", id:"municipal"}, {name:"News", id:"name"}, {name:"Discussion", id:"discussion"}, {name:"Business", id:"business"} ]
   events:
     "click input.continue": "submit"
@@ -16,8 +16,8 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
         _.each groups.models, _.bind((group) ->
           itemView = new self.GroupItem(model: group)
           itemView.render()
-          $(".Discussion").append itemView.el
-          $("#Discussion").show()
+          $(".discussion").append itemView.el
+          $("#discussion").show()
         , this)
     )
     feeds = @community.feeds
