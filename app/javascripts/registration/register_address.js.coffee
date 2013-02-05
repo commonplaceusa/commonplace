@@ -4,6 +4,7 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
     "click input.continue": "submit"
     "submit form": "submit"
     "click .next-button": "submit"
+    "click .confirm": "verified"
 
   afterRender: ->
     @hasAvatarFile = false
@@ -49,6 +50,7 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
         if weight != -1
           if response[1].length < 1 || weight < 0.84
             @showError @$("input[name=address]"), @$(".error.address"), "Please enter a valid address"
+            @$("#bypass").show()
             return
           else if weight < 0.94
             @data.suggest = response[1]
