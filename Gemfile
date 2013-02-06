@@ -101,6 +101,7 @@ end
 group :development do
   gem 'taps', :git => 'https://github.com/dabio/taps.git', :ref => "a56d8e8"
   gem 'heroku_san', :git => "https://github.com/Jberlinsky/heroku_san.git", :ref => "3ad7d89" # some nice additions to the Heroku gem
+  gem 'brakeman'
 end
 
 group :development, :test, :remote_worker do
