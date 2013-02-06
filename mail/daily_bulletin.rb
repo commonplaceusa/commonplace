@@ -157,9 +157,7 @@ class DailyBulletin < MailBase
         }.to_json
       }
 
-      if community.slug.downcase == "warwick"
-        mail_headers.merge!({"X-Mailgun-Campaign-Id" => 'warwick_deals'})
-      end
+      mail_headers.merge!({"X-Mailgun-Campaign-Id" => "#{community.slug.downcase}_#{format_tag(self.tag.downcase)}"})
 
       mail = Mail.deliver(:to => self.to,
                           :from => self.from,

@@ -48,10 +48,3 @@ ping_geckoboard:
   args:
   queue: statistics
   description: "Send some statistics to our dashboard"
-
-flush_daily_statistics:
-  cron: "0 0 * * *"
-  class: DailyStatisticsClearer
-  args:
-  queue: statistics
-  description: "Flush daily statistics from Redis"

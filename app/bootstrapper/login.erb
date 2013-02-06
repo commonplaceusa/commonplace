@@ -5,6 +5,9 @@
   <head>
     <title>CommonPlace</title>
     <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
+    <% if ENV['TINFOIL_VERIFICATION'].present? %>
+      <meta name="tinfoil-site-verification" content="<%= ENV['TINFOIL_VERIFICATION'] %>">
+    <% end %>
 
     <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
     <link href="/assets/favicon.png" rel="icon" type="image/png">

@@ -26,7 +26,6 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
     @data.address = @$("input[name=address]").val()
     @data.referral_source = @$("select[name=referral_source]").val()
     @data.referral_metadata = @$("input[name=referral_metadata]").val()
-    @data.organizations = ""
 
     if @data.address.length < 1
       @showError @$("input[name=address]"), @$(".error.address"), "Please enter a valid address"
