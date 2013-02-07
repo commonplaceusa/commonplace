@@ -86,13 +86,11 @@ class CommunityExterior
       ]
     else
       [
-        "On Facebook",
-        "Postcard at a business",
-        "Flyer in the mail",
-        "Through a neighbor",
-        "In an email",
-        "In the news",
-        "From another website",
+        "Received a postcard in my mailbox",
+        "Received an email from Ricky Porco",
+        "Heard about it from a friend or neighbor",
+        "Heard about it in a news story",
+        "Heard about it through 50 Reasons #{name} is Awesome",
         "Other"
       ]
     end

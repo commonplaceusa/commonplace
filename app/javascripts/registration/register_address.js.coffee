@@ -35,6 +35,10 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
       @showError @$("select[name=referral_source]"), @$(".error.referral_source"), "Please tell us how you heard about OurCommonPlace"
       return
 
+    if !@$("#referral_metadata").is(":hidden")
+      @showError @$("select[name=referral_metadata]"), @$(".error.referral_metadata"), "Please fill out the field above. It'll give us a chance to thank who brought you aboard!"
+      return
+
     if @$("#address_verification").is(":hidden")
       @data.term = @data.address
 
@@ -101,13 +105,9 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
     @$("select.dk").dropkick(
       change: _.bind((value, label)->
         question =
-          "On Facebook": "From who?"
-          "Postcard at a business": "What business?"
-          "Through a neighbor": "From who?"
-          "In an email": "From who?"
-          "In the news": "What news source?"
-          "From another website": "Which one?"
-          "Other": "Where?"
+          "Heard about it from a friend or neighbor": "From who? We'd love to thank them!"
+          "Heard about it in a news story": "Which news source? We'd love to thank them!"
+          "Other": "What made you join? It'll help our effort to let us know!"
         meta = question[value]
         if meta
           @$("input[name=referral_metadata]").attr("placeholder", meta)
