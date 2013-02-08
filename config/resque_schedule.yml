@@ -43,8 +43,15 @@ send_monthly_network_health_stats:
   description: "Sends out a monthly digest of network health statistics"
 
 ping_geckoboard:
-  cron: "0 0 * * *"
+  cron: "0 * * * *"
   class: GeckoBoardAnnouncer
   args:
+  queue: statistics
+  description: "Send some statistics to our dashboard"
+
+fully_update_geckoboard:
+  cron: "0 13 * * *"
+  class: GeckoBoardAnnouncer
+  args: false
   queue: statistics
   description: "Send some statistics to our dashboard"
