@@ -10,14 +10,23 @@
     </div>
     <span class="divider">
     </span>
+    {{#hasFeeds}}
+      <select name="feed_selector" class="chzn-select" tabindex="1">
+        <option value="">Who do you want to post this as?&nbsp;&nbsp;&nbsp;&nbsp;</option>
+        <option value="self">{{user}}</option>
+        {{#feeds}}
+        <option value="{{id}}">{{name}}</option>
+        {{/feeds}}
+      </select>
+    {{/hasFeeds}}
     <form>
       <input type="text" placeholder="Event Name" name="title" class="rounded_corners">
       <textarea placeholder="Description of your event" name="body" class="rounded_corners"></textarea>
-      
+
       <div id="event_date">
         <input class="date rounded_corners" id="date" placeholder="Date" name="date" value="{{date}}" type="text">
       </div>
-      
+
       <div id="start_at_time">
         <select name="start" id="start_time" class="chzn-select" tabindex="1">
           <option value="">Starts</option>
@@ -26,7 +35,7 @@
           {{/time_values}}
         </select>
       </div>
-      
+
       <div id="end_at_time">
         <select name="end" id="end_time" class="chzn-select" tabindex="1">
           <option value="">Ends</option>

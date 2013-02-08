@@ -2,11 +2,19 @@ CommonPlace.main.EventForm = CommonPlace.main.BaseForm.extend(
   template: "main_page.forms.event-form"
   className: "create-event event"
 
+  initialize: (options) ->
+    CommonPlace.main.BaseForm.prototype.initialize options
+    @feeds = CommonPlace.account.get("feeds")
+    @user = CommonPlace.account.get("name")
+    @hasFeeds = false
+    if @feeds.length > 0
+      @hasFeeds = true
+
   afterRender: ->
     @$("input.date", @el).datepicker dateFormat: "yy-mm-dd"
     @$("input[placeholder], textarea[placeholder]").placeholder()
     @hideSpinner()
-    
+
     @$("select.time").dropkick()
     self = this
     @$("input.date").bind "change", ->
@@ -19,6 +27,8 @@ CommonPlace.main.EventForm = CommonPlace.main.BaseForm.extend(
     @disableSubmitButton()
     self = this
     @cleanUpPlaceholders()
+
+
     data =
       title: @$("[name=title]").val()
       body: @$("[name=body]").val()
@@ -30,7 +40,24 @@ CommonPlace.main.EventForm = CommonPlace.main.BaseForm.extend(
       groups: @$("[name=groups]:checked").map(->
         $(this).val()
       ).toArray()
-    @sendPost CommonPlace.community.events, data
+
+    feed_id = @$("[name=feed_selector]").val()
+    if feed_id is ""
+      $error = @$(".error")
+      $error.html("Please choose who to post as")
+      $error.show()
+      @hideSpinner()
+      @enableSubmitButton()
+      return
+
+    if feed_id isnt undefined and feed_id isnt "self"
+      feed = new Feed({links: {self: "/feeds/" + feed_id, events: "/feeds/" + feed_id + "/events"}})
+      @sendPost feed.events, data, @eventSuccess
+    else
+      @sendPost CommonPlace.community.events, data
+
+  eventSuccess: ->
+    CommonPlace.community.events.trigger "sync"
 
   groups: ->
     CommonPlace.community.get "groups"
