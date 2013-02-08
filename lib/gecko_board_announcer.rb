@@ -23,11 +23,11 @@ class GeckoBoardAnnouncer
     (100 * (penetrations.inject{ |sum, el| sum + el }.to_f / communities.size)).round(2)
   end
 
-  def self.perform
-    run()
+  def self.perform(quick = true)
+    run(quick)
   end
 
-  def self.run(quick = false)
+  def self.run(quick = true)
     if quick == true
       ENV['SKIP_POST_DISTRIBUTION'] = 'true'
       ENV['SKIP_REPLY'] = 'true'
