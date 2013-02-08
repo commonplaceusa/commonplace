@@ -835,14 +835,17 @@ class Community < ActiveRecord::Base
   end
 
   def create_email_tracking_campaigns
-    mailgun = RestClient::Resource.new 'https://api:key-1os8gyo-wfo1ia85yzrih0ib8xq7n050@api.mailgun.net/v2/ourcommonplace.com'
-    campaign_names = ["#{self.slug.downcase}_daily", "#{self.slug.downcase}_post"]
-    campaign_names.each do |campaign_name|
-      parameters = {
-        name: campaign_name,
-        id: campaign_name
-      }
-      mailgun['/campaigns'].post parameters
+    begin
+      mailgun = RestClient::Resource.new 'https://api:key-1os8gyo-wfo1ia85yzrih0ib8xq7n050@api.mailgun.net/v2/ourcommonplace.com'
+      campaign_names = ["#{self.slug.downcase}_daily", "#{self.slug.downcase}_post"]
+      campaign_names.each do |campaign_name|
+        parameters = {
+          name: campaign_name,
+          id: campaign_name
+        }
+        mailgun['/campaigns'].post parameters
+      end
+    rescue
     end
   end
 end
