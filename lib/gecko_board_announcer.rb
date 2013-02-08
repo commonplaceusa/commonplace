@@ -11,6 +11,7 @@ class GeckoBoardAnnouncer
     GraduateCommons
     HarvardNeighbors
     Avon
+    Springfield
   ]
 
   def self.average_size(communities)
