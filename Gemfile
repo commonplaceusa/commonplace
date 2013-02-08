@@ -17,6 +17,7 @@ gem 'sunspot_rails', "= 1.3.0"
 gem 'sunspot_solr', '= 1.3.0'
 gem 'pg', '= 0.13.2' # for postgres
 gem 'permanent_records', '= 2.1.2' # adds soft-delete if a model has a deleted_at column
+gem 'cocaine', '= 0.3.2'
 gem 'paperclip', "= 2.4.5" # we use this to store avatars
 gem 'rmagick', '= 2.13.1' # we use this to crop avatars
 gem 'geocoder', '= 1.0.5' # we use geocoder to find user latlngs from addresses
@@ -101,7 +102,6 @@ end
 group :development do
   gem 'taps', :git => 'https://github.com/dabio/taps.git', :ref => "a56d8e8"
   gem 'heroku_san', :git => "https://github.com/Jberlinsky/heroku_san.git", :ref => "3ad7d89" # some nice additions to the Heroku gem
-  gem 'brakeman'
 end
 
 group :development, :test, :remote_worker do
@@ -117,6 +117,7 @@ group :development, :test, :remote_worker do
   gem 'simplecov', '= 0.6.4', :require => false
   gem 'selenium', '= 0.2.5'
   gem 'trollop', '= 1.16.2'
+  gem 'brakeman', '= 1.8.2'
 end
 
 group :test do
