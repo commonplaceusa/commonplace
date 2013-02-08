@@ -23,6 +23,15 @@ class GeckoBoardAnnouncer
   end
 
   def self.perform
+    run()
+  end
+
+  def self.run(quick = false)
+    if quick == true
+      ENV['SKIP_POST_DISTRIBUTION'] = true
+      ENV['SKIP_REPLY'] = true
+      ENV['SKIP_REPEATED_ENGAGEMENT'] = true
+    end
     mailgun = RestClient::Resource.new 'https://api:key-1os8gyo-wfo1ia85yzrih0ib8xq7n050@api.mailgun.net/v2/ourcommonplace.com'
     tz = "Eastern Time (US & Canada)"
     dashboard = Leftronic.new(ENV['LEFTRONIC_API_KEY'] || '')
