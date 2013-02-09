@@ -14,17 +14,12 @@ end
 
 Capybara.javascript_driver = :chrome
 
-VCR.configure do |c|
-  c.hook_into :webmock
-  c.cassette_library_dir = 'features/cassettes'
-  c.allow_http_connections_when_no_cassette = true
-end
-VCR.cucumber_tags do |t|
-  t.tags '@uses_api', '@external_request'
-end
+# VCR.cucumber_tags do |t|
+  # t.tags '@uses_api', '@external_request'
+# end
 
 # Allow local network access
-WebMock.disable_net_connect!(:allow_localhost => true)
+# WebMock.disable_net_connect!(:allow_localhost => true)
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
