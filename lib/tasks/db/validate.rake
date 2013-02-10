@@ -41,6 +41,7 @@ namespace :db do
     end
 
     records = []
+    blanks = []
     models = (ActiveRecord::Base.descendants - flaky_models - ignored_models).uniq.sort_by(&:table_name)
     models.reject!{|m| models.include?(m.parent)}
     models.each do |model|
@@ -105,6 +106,7 @@ namespace :db do
         formatter.example_passed(example)
       elsif model_count == 0 and !allowable_blank_models.include?(model.name)
         example.exception = "No records for #{model.name} model"
+        blanks << model
         formatter.example_failed(example)
       else
         example.exception = invalid_records_for_model
@@ -120,7 +122,7 @@ namespace :db do
       puts ""
       records.flatten.uniq.each{|r| puts "#{r.class.name} - #{r.id} - #{r.errors.full_messages.uniq}" }
     end
-    exit 1 unless records.empty?
+    exit 1 unless records.empty? and blanks.empty?
   end
 
   desc "Validate all model objects eg rake db:validate OR rake db:validate[cases]"
