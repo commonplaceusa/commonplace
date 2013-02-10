@@ -43,9 +43,7 @@ CommonPlace.main.EventForm = CommonPlace.main.BaseForm.extend(
 
     feed_id = @$("[name=feed_selector]").val()
     if feed_id is ""
-      $error = @$(".error")
-      $error.html("Please choose who to post as")
-      $error.show()
+      @showError "Please choose who to post as"
       @hideSpinner()
       @enableSubmitButton()
       return

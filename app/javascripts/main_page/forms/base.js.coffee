@@ -84,8 +84,7 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
     if @options.category is `undefined`
       
       # Show a notification
-      $(".error").html("Please select a category")
-      $(".error").show()
+      @showError "Please select a category"
       @hideSpinner()
       @enableSubmitButton()
     else
@@ -118,7 +117,7 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
           _kmq.push(['record', 'Post Error', {'Attributes': attribs}]) if _kmq?
           self.hideSpinner()
           self.enableSubmitButton()
-          self.showError response
+          self.showError response.responseText
 
   exit: ->
     @modal.exit() if @modal
@@ -141,8 +140,8 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
       community: CommonPlace.community
     postbox.render()
 
-  showError: (response) ->
-    @$(".error").text response.responseText
+  showError: (message) ->
+    @$(".error").text message
     @$(".error").show()
 
   onFormFocus: ->

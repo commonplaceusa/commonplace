@@ -78,8 +78,7 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
         error: (attribs, response) ->
           _kmq.push(['record', 'Post Error', {'Attributes': attribs}]) if _kmq?
           self.enableSubmitButton()
-          self.showError response
-          self.showError response
+          self.showError response.responseText
 
   addImageToPost: (post) ->
     $.ajax(

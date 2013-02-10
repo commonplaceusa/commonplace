@@ -26,9 +26,7 @@ CommonPlace.main.AnnouncementForm = CommonPlace.main.BaseForm.extend(
       @sendPost feed.announcements, data, @announcementSuccess
     else
       # Show an error message to select a feed
-      $error = @$(".error")
-      $error.html("Please select an organization to promote")
-      $error.show()
+      @showError "Please select an organization to promote"
       @hideSpinner()
       @enableSubmitButton()
 
