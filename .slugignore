@@ -2,3 +2,4 @@ selenium
 autotest
 spec
 test/fixture
+db/validation_seed.db
