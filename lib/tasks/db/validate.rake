@@ -5,47 +5,38 @@ namespace :db do
     Dir.glob(Rails.root.join('app/models/**/*.rb')).each { |f| require f }
 
     flaky_models = [ ]
-    allowable_blank_models = [Essay].map(&:name)
+    allowable_blank_models = [].map(&:name)
     ignored_models = [ ]
 
     $LOAD_PATH << (Rails.root + "tc/common") << (Rails.root + "tc/bdd")
     formatter = nil
-    begin
-      require "teamcity/spec/runner/formatter/teamcity/formatter"
-      formatter = Spec::Runner::Formatter::TeamcityFormatter.new($STDOUT)
-    rescue LoadError => e
-      if ENV["CI"]
-        raise e
-      else
-        puts "WARNING: unable to load teamcity formatter, loading rspec formatter"
-        require "rspec/core/formatters/documentation_formatter"
-        formatter = RSpec::Core::Formatters::DocumentationFormatter
-        formatter.class_eval do
-          def self.example_group_started(*args)
-          end
+    puts "WARNING: unable to load teamcity formatter, loading rspec formatter"
+    require "rspec/core/formatters/documentation_formatter"
+    formatter = RSpec::Core::Formatters::DocumentationFormatter
+    formatter.class_eval do
+      def self.example_group_started(*args)
+      end
 
-          def self.example_started(*args)
-          end
+      def self.example_started(*args)
+      end
 
-          def self.example_passed(*args)
-            print "\033[0;32mall valid\033[0m"
-          end
+      def self.example_passed(*args)
+        print "\033[0;32mall valid\033[0m"
+      end
 
-          def self.example_failed(record)
-            puts "\n\033[0;31m"
-            if record.exception.respond_to?(:each)
-              record.exception.each do |key, value|
-                puts "#{key} affecting records #{value.join(', ')}"
-              end
-            else
-              puts record.exception.inspect
-            end
-            puts "\033[0m\n"
+      def self.example_failed(record)
+        puts "\n\033[0;31m"
+        if record.exception.respond_to?(:each)
+          record.exception.each do |key, value|
+            puts "#{key} affecting records #{value.join(', ')}"
           end
-
-          def self.example_group_finished(*args)
-          end
+        else
+          puts record.exception.inspect
         end
+        puts "\033[0m\n"
+      end
+
+      def self.example_group_finished(*args)
       end
     end
 
