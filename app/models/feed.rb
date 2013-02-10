@@ -39,8 +39,6 @@ class Feed < ActiveRecord::Base
 
   has_many :announcements, :dependent => :destroy, :as => :owner, :include => :replies
 
-  has_many :essays, :dependent => :destroy
-
   has_many :subscriptions, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions, :source => :user, :uniq => true
 

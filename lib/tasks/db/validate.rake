@@ -126,12 +126,6 @@ namespace :db do
   desc "Validate all model objects eg rake db:validate OR rake db:validate[cases]"
   task :delete_invalid_records => [:environment, :delete_invalid_records_first_pass] do
     Dir.glob(Rails.root.join('app/models/**/*.rb')).each { |f| require f }
-
-    ActiveRecord::Base.connection.execute("alter table assistance_group_people drop constraint assistance_group_people_person_id_fkey")
-    ActiveRecord::Base.connection.execute("alter table assistance_group_people add FOREIGN KEY (person_id) references people(id) on delete cascade")
-    ActiveRecord::Base.connection.execute("ALTER TABLE ONLY intakes DROP CONSTRAINT intakes_incident_address_id_fkey")
-    ActiveRecord::Base.connection.execute("ALTER TABLE ONLY intakes ADD CONSTRAINT intakes_incident_address_id_fkey FOREIGN KEY (incident_address_id) REFERENCES addresses(id) on delete cascade")
-
     num_wrong = 1
     while num_wrong > 0 do
       num_wrong = 0

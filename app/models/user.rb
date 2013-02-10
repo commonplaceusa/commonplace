@@ -152,7 +152,6 @@ class User < ActiveRecord::Base
   has_many :group_posts, :dependent => :destroy
   has_many :announcements, :dependent => :destroy, :as => :owner, :include => :replies
   has_many :images, :as => :imageable, :dependent => :destroy
-  has_many :essays, :dependent => :destroy
 
   has_many :replies, :dependent => :destroy
 

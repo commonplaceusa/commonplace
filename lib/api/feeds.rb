@@ -15,13 +15,13 @@ class API
       end
 
     end
-    
+
     # Updates the feed attributes
     #
     # Requires ownership
     put "/:id" do
       control_access :owner, find_feed
-      
+
       find_feed.name = request_body["name"]
       find_feed.about = request_body["about"]
       find_feed.kind = request_body["kind"]
@@ -30,7 +30,7 @@ class API
       find_feed.address = request_body["address"]
       find_feed.slug = request_body["slug"]
       find_feed.feed_url = request_body["rss"]
-      
+
       if find_feed.save
         serialize(find_feed)
       else
@@ -39,11 +39,11 @@ class API
     end
 
     # Creates a feed announcement
-    # 
+    #
     # Requires feed ownership
     post "/:id/announcements" do
       control_access :owner, find_feed
-      
+
       announcement = Announcement.new(:owner_type => "Feed",
                                       :owner_id => find_feed.id,
                                       :subject => request_body['title'],
@@ -61,13 +61,13 @@ class API
     # Gets a list of the feed's announcements
     get "/:id/announcements" do
       control_access :public
-      
+
       scope = Announcement.where("owner_id = ? AND owner_type = ?", find_feed.id, "Feed")
       serialize(paginate(scope.includes(:replies, :owner).reorder("GREATEST(replied_at,created_at) DESC")))
     end
 
     # Creates a feed event
-    # 
+    #
     # Requires feed ownership
     post "/:id/events" do
       control_access :owner, find_feed
@@ -97,30 +97,6 @@ class API
 
       scope = Event.where("owner_id = ? AND owner_type = ?",find_feed.id, "Feed")
       serialize(paginate(scope.upcoming.includes(:replies).reorder("date ASC")))
-    end
-    
-    # Creates a feed essay
-    # 
-    # Requires feed ownership
-    post "/:id/essays" do
-      control_access :owner, find_feed
-
-      essay = Essay.new(:feed_id => find_feed.id,
-                        :user_id => current_user.id,
-                        :subject => request_body["title"],
-                        :body => request_body["body"])
-      if essay.save
-        serialize essay
-      else
-        [400, "errors"]
-      end
-    end
-    
-    # Gets the feed essays
-    get "/:id/essays" do
-      control_access :public
-
-      serialize(paginate(find_feed.essays))
     end
 
     # Gets the feed subscribers
@@ -152,7 +128,7 @@ class API
         [400, "errors"]
       end
     end
-    
+
     # Returns the serialized feed info
     get "/:id" do
       control_access :public
@@ -169,7 +145,7 @@ class API
         [401, "unauthorized"]
       end
     end
-    
+
     # Get the feed's swipes
     get "/:id/swipes" do
       control_access :public
@@ -208,7 +184,7 @@ class API
       find_feed.save
       serialize find_feed
     end
-    
+
     # Updates the feed avatar's cropping
     #
     # Requires authentication

@@ -237,9 +237,6 @@ module Serializer
         }
         }
 
-      when Essay
-        o.as_api_response(:default)
-
       when Reply
         {
         "id" => o.id,
