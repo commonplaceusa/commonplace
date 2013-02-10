@@ -104,12 +104,6 @@ class KickOff
     end
   end
 
-
-  def deliver_clipboard_welcome(half_user)
-    enqueue(ClipboardWelcome, half_user.id)
-  end
-
-
   def deliver_user_invite(emails, from_user, message = nil)
     # emails is an array
     emails = Array(emails)
