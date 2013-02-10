@@ -21,7 +21,7 @@
 
 
   <h3><a class="title" href="{{share_url}}">{{title}}</a></h3>
-  <p class="author"><a {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a> posted an {{wireCategoryName}}</p>
+  <p class="author"><a {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a> posted in {{wireCategoryName}}</p>
   {{#markdown}}
   {{body}}
   {{#venue}}<p class="venue"><span class="bold">Venue:</span> {{venue}}</p>{{/venue}}

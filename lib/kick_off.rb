@@ -67,6 +67,10 @@ class KickOff
     enqueue(NewFeedSubscriberNotification, user_id, feed_id)
   end
 
+  def deliver_met_notification(user_id, current_user_id)
+    enqueue(MetNotification, user_id, current_user_id)
+  end
+
   def deliver_group_post(post)
     # We're delivering a post to subscribers of the group
     recipients = post.group.live_subscribers.map(&:id)

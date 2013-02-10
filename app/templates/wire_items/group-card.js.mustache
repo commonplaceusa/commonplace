@@ -1,0 +1,27 @@
+<div>
+   <div class="left">
+      <img class="avatar-container" src={{avatar}} />
+      {{^isSubscribed}}<a href="#" class="red-button subscribe">Subscribe</a>{{/isSubscribed}}
+      {{#isSubscribed}}<a href="#" class="red-button unsubscribe">Unsubscribe</a>{{/isSubscribed}}
+   </div>
+   <div class="right">
+      <h2 class="name"><a href="#">{{name}}</a></h2>
+      <div class="stat-bar">
+         <ul>
+            <li>
+              <span class="big">{{post_count}}</span>
+              <span class="little">Posts</span>
+            </li>
+            <li>
+              <span class="big">{{event_count}}</span>
+              <span class="little">Events</span>
+            </li>
+            <li>
+              <span class="big">{{subscribers}}</span>
+              <span class="little">Subscribers</span>
+            </li>
+         </ul>
+      </div>
+      <p>{{about}}</p>
+  </div>
+</div>

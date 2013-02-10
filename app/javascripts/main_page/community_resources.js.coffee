@@ -200,6 +200,7 @@ CommonPlace.main.CommunityResources = CommonPlace.View.extend(
       feed = new Feed(response)
       wire = new @PostLikeWire(
         template: "main_page.announcement-resources"
+        card: "feed"
         emptyMessage: "No announcements here yet."
         collection: feed.announcements
       )
@@ -214,6 +215,7 @@ CommonPlace.main.CommunityResources = CommonPlace.View.extend(
       group = new Group(response)
       wire = new @PostLikeWire(
         template: "main_page.announcement-resources"
+        card: "group"
         emptyMessage: "No announcements here yet."
         collection: group.posts
       )
@@ -278,6 +280,7 @@ CommonPlace.main.CommunityResources = CommonPlace.View.extend(
       )
       wire = new Wire(
         template: "main_page.user-wire-resources"
+        card: "user"
         collection: collection
         emptyMessage: "No posts here yet."
       )

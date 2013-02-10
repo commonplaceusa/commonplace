@@ -214,16 +214,30 @@ class User < ActiveRecord::Base
     t.add :first_name
     t.add :last_name
     t.add :about
+    t.add :organizations
     t.add :interest_list, :as => :interests
     t.add :good_list, :as => :goods
     t.add :skill_list, :as => :skills
     t.add :links
     t.add lambda {|u| u.posts.count}, :as => :post_count
     t.add lambda {|u| u.replies.count}, :as => :reply_count
+    t.add lambda {|u| u.sell_transactions.count}, :as => :sell_count
+    t.add lambda {|u| u.thanks_received.count}, :as => :thank_count
+    t.add lambda {|u| u.people.count}, :as => :met_count
+    t.add lambda {|u| u.pages}, :as => :pages
     t.add lambda {|u| "true" }, :as => :success
     t.add :unread
     t.add lambda {|u| "User"}, :as => :classtype
     t.add lambda {|u| u.action_tags}, :as => :actionstags
+  end
+
+  def pages
+    self.managable_feeds.map do |feed|
+      {"name" => feed.name, 
+        "id" => feed.id, 
+        "slug" => feed.slug.blank? ? feed.id : feed.slug
+      }
+    end
   end
 
   def links

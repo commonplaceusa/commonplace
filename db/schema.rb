@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109171822) do
+ActiveRecord::Schema.define(:version => 20130109171713) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -139,6 +139,19 @@ ActiveRecord::Schema.define(:version => 20130109171822) do
     t.decimal  "latitude",                       :default => 0.0
     t.decimal  "longitude",                      :default => 0.0
     t.string   "geckoboard_population_chart_id"
+  end
+
+  create_table "conversation_memberships", :force => true do |t|
+    t.integer  "user_id",         :null => false
+    t.integer  "conversation_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "conversations", :force => true do |t|
+    t.string   "subject",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -316,6 +329,15 @@ ActiveRecord::Schema.define(:version => 20130109171822) do
     t.integer  "invitee_id"
   end
 
+  create_table "links", :force => true do |t|
+    t.integer  "linkable_id",   :null => false
+    t.string   "linkable_type", :null => false
+    t.integer  "linker_id",     :null => false
+    t.string   "linker_type",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
@@ -354,6 +376,30 @@ ActiveRecord::Schema.define(:version => 20130109171822) do
     t.decimal  "longitude"
   end
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id",         :null => false
+    t.integer  "notifiable_id",   :null => false
+    t.string   "notifiable_type", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organizations", :force => true do |t|
+    t.string   "name",                :null => false
+    t.string   "address"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.text     "about"
+    t.string   "phone"
+    t.string   "website"
+    t.integer  "community_id"
+    t.string   "category"
+  end
+
   create_table "organizer_data_points", :force => true do |t|
     t.integer  "organizer_id"
     t.string   "address"
@@ -363,6 +409,13 @@ ActiveRecord::Schema.define(:version => 20130109171822) do
     t.float    "lat"
     t.float    "lng"
     t.boolean  "attempted_geolocating"
+  end
+
+  create_table "platform_updates", :force => true do |t|
+    t.string   "subject",    :null => false
+    t.text     "body",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "posts", :force => true do |t|
@@ -377,6 +430,15 @@ ActiveRecord::Schema.define(:version => 20130109171822) do
     t.boolean  "published",         :default => true
     t.datetime "deleted_at"
     t.datetime "replied_at"
+  end
+
+  create_table "profile_fields", :force => true do |t|
+    t.string   "subject",         :null => false
+    t.text     "body",            :null => false
+    t.integer  "organization_id", :null => false
+    t.integer  "position",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -445,6 +507,13 @@ ActiveRecord::Schema.define(:version => 20130109171822) do
     t.string   "PFO_status"
     t.string   "organizer"
     t.integer  "last_examined_story"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.integer  "user_id",         :null => false
+    t.integer  "organization_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

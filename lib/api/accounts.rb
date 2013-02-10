@@ -47,6 +47,7 @@ class API
       current_user.interest_list = request_body["interests"]
       current_user.skill_list = request_body["skills"]
       current_user.good_list = request_body["goods"]
+      current_user.organizations = request_body["organizations"]
       current_user.email = request_body["email"]
       current_user.post_receive_method = request_body["neighborhood_posts"]
       current_user.receive_weekly_digest = request_body["bulletin"]

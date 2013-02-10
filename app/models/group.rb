@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
   #track_on_creation
-  
+
   validates_presence_of :name, :slug, :about, :community
 
   before_validation(:on => :create) do
@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
 
 
   belongs_to :community
-  
+
   has_many :group_posts
 
   has_many :memberships
@@ -23,7 +23,7 @@ class Group < ActiveRecord::Base
   has_many :announcements, :through => :announcement_cross_postings
 
   acts_as_api
-  
+
   api_accessible :default do |t|
     t.add :id
     t.add lambda {|g| "groups"}, :as => :schema
@@ -33,8 +33,11 @@ class Group < ActiveRecord::Base
     t.add :avatar_url
     t.add :slug
     t.add :links
+    t.add lambda {|g| g.events.count}, :as => :event_count
+    t.add lambda {|g| g.subscribers.count}, :as => :subscriber_count
+    t.add lambda {|g| g.group_posts.count}, :as => :post_count
   end
-  
+
   def links
     {
       "posts" => "/groups/#{id}/posts",
@@ -87,5 +90,5 @@ class Group < ActiveRecord::Base
     text :about
     integer :community_id
   end
-  
+
 end

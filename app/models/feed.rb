@@ -68,7 +68,9 @@ class Feed < ActiveRecord::Base
     t.add lambda {|f| "/feeds/#{f.id}/#{f.user_id}"}, :as => :messagable_author_url
     t.add lambda {|f| f.name}, :as => :messagable_author_name
     t.add :links
-    t.add lambda {|f| f.subscribers.count}, :as => :subscribers_count
+    t.add lambda {|f| f.announcements.count}, :as => :announcement_count
+    t.add lambda {|f| f.events.count}, :as => :event_count
+    t.add lambda {|f| f.subscribers.count}, :as => :subscriber_count
     t.add lambda {|f| f.owner}, :as => :owner
   end
 
