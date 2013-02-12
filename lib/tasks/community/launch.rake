@@ -1,15 +1,21 @@
+require 'area'
+
+def zip_code_for_community(locale, state)
+  "#{locale.titleize}, #{state}".to_zip.try(:first)
+end
+
 namespace :community do
-  task :launch, [:name, :slug, :zip_code, :state] => :environment do |t, args|
+  task :launch, [:slug, :state] => :environment do |t, args|
     ActiveRecord::Base.transaction do
       begin
         new_community = Community.create!(
-          name: args[:name].titleize,
+          name: args[:slug].titleize,
           slug: args[:slug],
-          zip_code: args[:zip_code],
+          zip_code: zip_code_for_community(args[:slug], args[:state].upcase),
           state: args[:state].upcase
         )
         new_neighborhood = Neighborhood.create!(
-          name: args[:name],
+          name: args[:slug].titleize,
           community: new_community
         )
         new_community.add_default_groups!
@@ -42,7 +48,7 @@ namespace :community do
     communities.each do |slug|
       puts "Creating community for #{slug}"
       # Look up the zip code given the state
-      zip_code = "#{slug.titleize}, #{state}".to_zip.first
+      zip_code = zip_code_for_community(slug, state)
       Rake::Task["community:launch"].invoke(slug, slug, zip_code.to_s, state)
       Rake::Task["community:launch"].reenable
     end
