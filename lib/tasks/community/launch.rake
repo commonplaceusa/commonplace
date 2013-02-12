@@ -12,8 +12,6 @@ namespace :community do
           name: args[:name],
           community: new_community
         )
-        # new_community.neighborhood = new_neighborhood
-        # new_community.save!
         new_community.add_default_groups!
         Rake.application.invoke_task("community:fix_group_images[#{args[:slug]}]")
       rescue => e
@@ -42,9 +40,11 @@ namespace :community do
     communities = args[:names].split ";"
     state = args[:state]
     communities.each do |slug|
+      puts "Creating community for #{slug}"
       # Look up the zip code given the state
       zip_code = "#{slug.titleize}, #{state}".to_zip.first
-      Rake.application.invoke_task("community:launch[#{slug},#{slug},#{zip_code},#{state}]")
+      Rake::Task["community:launch"].invoke(slug, slug, zip_code.to_s, state)
+      Rake::Task["community:launch"].reenable
     end
   end
 end
