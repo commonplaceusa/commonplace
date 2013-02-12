@@ -35,7 +35,7 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
       @showError @$("select[name=referral_source]"), @$(".error.referral_source"), "Please tell us how you heard about OurCommonPlace"
       return
 
-    if !@$("#referral_metadata").is(":hidden")
+    if not @$("#referral_metadata").is(":hidden") and not @data.referral_metadata
       @showError @$("select[name=referral_metadata]"), @$(".error.referral_metadata"), "Please fill out the field above. It'll give us a chance to thank who brought you aboard!"
       return
 
