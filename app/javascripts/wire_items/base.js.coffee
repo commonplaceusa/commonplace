@@ -281,11 +281,10 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
     e.preventDefault() if e
     page = @model.get("schema")
     category = @model.get("category")
-    console.log(page)
     if category is "offers"
       page = "questions"
     else if page is "group_posts"
-      page = @model.get("id")
+      page = @model.get("group_id")
       app.showGroupPage(CommonPlace.community.get("slug"), page)
       return
 
