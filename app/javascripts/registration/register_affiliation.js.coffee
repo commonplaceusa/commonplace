@@ -6,7 +6,6 @@ CommonPlace.registration.AffiliationView = CommonPlace.registration.Registration
     "click .next-button": "submit"
 
   afterRender: ->
-    @hasAvatarFile = false
     @$("select.dk").dropkick()
     $("#current-registration-page").html @el
     @$("input[placeholder]").placeholder()
@@ -32,10 +31,7 @@ CommonPlace.registration.AffiliationView = CommonPlace.registration.Registration
     $.post new_api, @data, _.bind((response) ->
       if response.success is "true" or response.id
         CommonPlace.account = new Account(response)
-        if @hasAvatarFile and not @data.isFacebook
-          @avatarUploader.submit()
-        else
-          @complete()
+        @complete()
       else
         unless _.isEmpty(response.facebook)
           window.location.pathname = @communityExterior.links.facebook_login

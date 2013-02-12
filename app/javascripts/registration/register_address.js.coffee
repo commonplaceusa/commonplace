@@ -7,7 +7,6 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
     "click .confirm": "verified"
 
   afterRender: ->
-    @hasAvatarFile = false
     @initReferralQuestions()
     $("#current-registration-page").html @el
     @$("input[placeholder]").placeholder()
@@ -83,12 +82,9 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
     $.post new_api, @data, _.bind((response) ->
       if response.success is "true" or response.id
         CommonPlace.account = new Account(response)
-        if @hasAvatarFile and not @data.isFacebook
-          @avatarUploader.submit()
-        else
-          delete @data.term
-          delete @data.suggest
-          @complete()
+        delete @data.term
+        delete @data.suggest
+        @complete()
       else
         unless _.isEmpty(response.facebook)
           window.location.pathname = @communityExterior.links.facebook_login
