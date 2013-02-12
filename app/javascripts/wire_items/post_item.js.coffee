@@ -5,6 +5,7 @@ CommonPlace.wire_item.PostWireItem = CommonPlace.wire_item.WireItem.extend(
   tabName: "discussion"
 
   events:
+    "click .wire_filter": "loadWire"
     "click .editlink": "edit"
     "click .thank-link": "thank"
     "click .flag-link": "flag"
