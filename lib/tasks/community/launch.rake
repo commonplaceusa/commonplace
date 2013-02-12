@@ -36,4 +36,15 @@ namespace :community do
       group.save!
     end
   end
+
+  task :launch_list, [:names, :state] => :environment do |t, args|
+    require 'area'
+    communities = args[:names].split ";"
+    state = args[:state]
+    communities.each do |slug|
+      # Look up the zip code given the state
+      zip_code = "#{slug.titleize}, #{state}".to_zip.first
+      Rake.application.invoke_task("community:launch[#{slug},#{slug},#{zip_code},#{state}]")
+    end
+  end
 end

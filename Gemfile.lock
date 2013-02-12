@@ -132,6 +132,8 @@ GEM
     amazon-ec2 (0.9.17)
       xml-simple (>= 1.0.12)
     andand (1.3.3)
+    area (0.9.0)
+      fastercsv (~> 1.5)
     arel (3.0.2)
     aws-s3 (0.6.2)
       builder
@@ -521,6 +523,7 @@ DEPENDENCIES
   airbrake (= 3.1.2)
   amatch (= 0.2.10)
   amazon-ec2 (= 0.9.17)
+  area (= 0.9.0)
   aws-s3 (= 0.6.2)
   barometer (= 0.7.3)
   brakeman (= 1.8.2)
