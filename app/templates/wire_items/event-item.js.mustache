@@ -9,7 +9,7 @@
     <div class="day-of-month">{{day_of_month}}</div>
   {{#start_time}}
   <div class="event-time">
-    {{start_time}} 
+    {{start_time}}
   </div>
   {{/start_time}}
   {{#end_time}}
@@ -21,7 +21,7 @@
 
 
   <h3><a class="title" href="{{share_url}}">{{title}}</a></h3>
-  <p class="author"><a {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a> posted in {{wireCategoryName}}</p>
+  <p><a class="author" {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a> posted in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
   {{#markdown}}
   {{body}}
   {{#venue}}<p class="venue"><span class="bold">Venue:</span> {{venue}}</p>{{/venue}}

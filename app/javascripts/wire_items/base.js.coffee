@@ -277,6 +277,20 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
   isFeed: ->
     @model.get("owner_type") is "Feed"
 
+  loadWire: (e) ->
+    e.preventDefault() if e
+    page = @model.get("schema")
+    category = @model.get("category")
+    console.log(page)
+    if category is "offers"
+      page = "questions"
+    else if page is "group_posts"
+      page = @model.get("id")
+      app.showGroupPage(CommonPlace.community.get("slug"), page)
+      return
+
+    app.communityWire(CommonPlace.community.get("slug"), page)
+
   feedUrl: ->
     '/' + CommonPlace.community.get("slug") + @model.get "feed_url"
 )

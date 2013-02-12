@@ -5,6 +5,7 @@ CommonPlace.wire_item.AnnouncementWireItem = CommonPlace.wire_item.WireItem.exte
   tabName: "promote"
 
   events:
+    "click .wire_filter": "loadWire"
     "click .editlink": "edit"
     "click .thank-link": "thank"
     "click .flag-link": "flag"

@@ -7,6 +7,7 @@ CommonPlace.wire_item.EventWireItem = CommonPlace.wire_item.WireItem.extend(
   monthAbbrevs: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ]
 
   events:
+    "click .wire_filter": "loadWire"
     "click .editlink": "edit"
     "click .thank-link": "thank"
     "click .flag-link": "flag"

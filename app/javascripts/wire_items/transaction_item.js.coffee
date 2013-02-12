@@ -5,6 +5,7 @@ CommonPlace.wire_item.TransactionWireItem = CommonPlace.wire_item.WireItem.exten
   tabName: "transaction"
 
   events:
+    "click .wire_filter": "loadWire"
     "click .buy-link": "buyItem"
     "click .message-link": "messageUser"
     "click .editlink": "edit"
