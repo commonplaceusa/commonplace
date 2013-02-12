@@ -148,4 +148,4 @@ gem 'rake', '= 0.9.2.2'
 gem 'sprockets', '= 2.2.1'
 gem 'treetop', '= 1.4.10'
 gem 'tzinfo', '= 0.3.32'
-gem 'area', '= 0.9.0', require: false
+gem 'area', '= 0.9.0', :require => false
