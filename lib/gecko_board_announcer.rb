@@ -256,7 +256,8 @@ class GeckoBoardAnnouncer
     mailgun_daily_bulletin_campaigns.each do |campaign_name|
       # Access campaign open stats
       # Coallate into daily_bulletin_opens
-      community_slug = campaign_name.split("_").first.to_sym
+      arr = campaign_name.gsub(" ", "_").split("_")
+      community_slug = arr.take(arr.size - 1).join("_")
       open_stats = JSON.parse(mailgun["campaigns/#{campaign_name}/opens?groupby=day&limit=30"].get)
       open_stats.each do |daily_dump|
         opened_at = DateTime.parse(daily_dump['day'])
@@ -281,7 +282,8 @@ class GeckoBoardAnnouncer
     end
     mailgun_single_post_campaigns.each do |campaign_name|
       open_stats = JSON.parse(mailgun["campaigns/#{campaign_name}/opens?groupby=day&limit=30"].get)
-      community_slug = campaign_name.split("_").first.to_sym
+      arr = campaign_name.gsub(" ", "_").split("_")
+      community_slug = arr.take(arr.size - 1).join("_")
       open_stats.each do |daily_dump|
         opened_at = DateTime.parse(daily_dump['day'])
         unique_recipients = daily_dump['unique']['recipient'].to_i
