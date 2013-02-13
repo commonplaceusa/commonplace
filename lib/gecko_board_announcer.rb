@@ -252,7 +252,17 @@ class GeckoBoardAnnouncer
         total: 0
       }
     }
-    single_post_opens = daily_bulletin_opens.dup
+    single_post_opens = {
+      daily: {
+        total: 0
+      },
+      weekly: {
+        total: 0
+      },
+      monthly: {
+        total: 0
+      }
+    }
     mailgun_daily_bulletin_campaigns.each do |campaign_name|
       # Access campaign open stats
       # Coallate into daily_bulletin_opens
