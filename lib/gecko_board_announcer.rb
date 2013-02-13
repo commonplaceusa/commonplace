@@ -40,7 +40,7 @@ class GeckoBoardAnnouncer
     dashboard.number("Users on Network", User.count)
     growths = []
     populations = []
-    growth_headers = ["Community", "Users", "Weekly Growth", "Penetration", "Posts/Day", "DAU %"]
+    growth_headers = ["Community", "Users", "Weekly Growth", "Penetration", "Posts/Day", "Daily Bulletins Opened/Wk", "Single Posts Opened/Wk"]
     network_sizes = []
     network_size_headers = ["Age", "#", "Avg Size", "Avg Pen"]
     action_frequencies = [["Action", "Daily %", "Weekly %", "Monthly %", "Weekly #"]]
@@ -56,7 +56,7 @@ class GeckoBoardAnnouncer
         rescue
           posts_per_day = ""
         end
-        growths << [community.name, community.users.count, "#{growth}%", "#{penetration.to_s.gsub("-1.0", "0")}%", posts_per_day]
+        growths << [community.slug, community.users.count, "#{growth}%", "#{penetration.to_s.gsub("-1.0", "0")}%", posts_per_day]
         populations << {
           community.name => community.users.count
         }
@@ -242,59 +242,95 @@ class GeckoBoardAnnouncer
     mailgun_single_post_campaigns = mailgun_campaign_list.select { |name| name.include? "_post" }
     # Coallate
     daily_bulletin_opens = {
-      daily: 0,
-      weekly: 0,
-      monthly: 0
+      daily: {
+        total: 0
+      },
+      weekly: {
+        total: 0
+      },
+      monthly: {
+        total: 0
+      }
     }
     single_post_opens = daily_bulletin_opens.dup
     mailgun_daily_bulletin_campaigns.each do |campaign_name|
       # Access campaign open stats
       # Coallate into daily_bulletin_opens
+      community_slug = campaign_name.split("_").first.to_sym
       open_stats = JSON.parse(mailgun["campaigns/#{campaign_name}/opens?groupby=day&limit=30"].get)
       open_stats.each do |daily_dump|
         opened_at = DateTime.parse(daily_dump['day'])
         unique_recipients = daily_dump['unique']['recipient'].to_i
         if opened_at > 1.day.ago
-          daily_bulletin_opens[:daily] += unique_recipients
-          daily_bulletin_opens[:weekly] += unique_recipients
-          daily_bulletin_opens[:monthly] += unique_recipients
+          daily_bulletin_opens[:daily][:total] += unique_recipients
+          daily_bulletin_opens[:weekly][:total] += unique_recipients
+          daily_bulletin_opens[:monthly][:total] += unique_recipients
+          daily_bulletin_opens[:daily][community_slug] += unique_recipients
+          daily_bulletin_opens[:weekly][community_slug] += unique_recipients
+          daily_bulletin_opens[:monthly][community_slug] += unique_recipients
         elsif opened_at > 7.days.ago
-          daily_bulletin_opens[:weekly] += unique_recipients
-          daily_bulletin_opens[:monthly] += unique_recipients
+          daily_bulletin_opens[:weekly][:total] += unique_recipients
+          daily_bulletin_opens[:monthly][:total] += unique_recipients
+          daily_bulletin_opens[:weekly][community_slug] += unique_recipients
+          daily_bulletin_opens[:monthly][community_slug] += unique_recipients
         elsif opened_at > 30.days.ago
-          daily_bulletin_opens[:monthly] += unique_recipients
+          daily_bulletin_opens[:monthly][:total] += unique_recipients
+          daily_bulletin_opens[:monthly][community_slug] += unique_recipients
         end
       end
     end
     mailgun_single_post_campaigns.each do |campaign_name|
       open_stats = JSON.parse(mailgun["campaigns/#{campaign_name}/opens?groupby=day&limit=30"].get)
+      community_slug = campaign_name.split("_").first.to_sym
       open_stats.each do |daily_dump|
         opened_at = DateTime.parse(daily_dump['day'])
         unique_recipients = daily_dump['unique']['recipient'].to_i
         if opened_at > 1.day.ago
-          single_post_opens[:daily] += unique_recipients
-          single_post_opens[:weekly] += unique_recipients
-          single_post_opens[:monthly] += unique_recipients
+          single_post_opens[:daily][:total] += unique_recipients
+          single_post_opens[:weekly][:total] += unique_recipients
+          single_post_opens[:monthly][:total] += unique_recipients
+          single_post_opens[:daily][community_slug] += unique_recipients
+          single_post_opens[:weekly][community_slug] += unique_recipients
+          single_post_opens[:monthly][community_slug] += unique_recipients
         elsif opened_at > 7.days.ago
-          single_post_opens[:weekly] += unique_recipients
-          single_post_opens[:monthly] += unique_recipients
+          single_post_opens[:weekly][:total] += unique_recipients
+          single_post_opens[:monthly][:total] += unique_recipients
+          single_post_opens[:weekly][community_slug] += unique_recipients
+          single_post_opens[:monthly][community_slug] += unique_recipients
         elsif opened_at > 30.days.ago
-          single_post_opens[:monthly] += unique_recipients
+          single_post_opens[:monthly][:total] += unique_recipients
+          single_post_opens[:monthly][community_slug] += unique_recipients
         end
       end
     end
     action_frequencies << ["Open Daily Bulletin",
-                           (100 * daily_bulletin_opens[:daily].to_f / $UserCount).round(2),
-                           (100 * daily_bulletin_opens[:weekly].to_f / $UserCount).round(2),
-                           (100 * daily_bulletin_opens[:monthly].to_f / $UserCount).round(2),
-                           daily_bulletin_opens[:weekly]
+                           (100 * daily_bulletin_opens[:daily][:total].to_f / $UserCount).round(2),
+                           (100 * daily_bulletin_opens[:weekly][:total].to_f / $UserCount).round(2),
+                           (100 * daily_bulletin_opens[:monthly][:total].to_f / $UserCount).round(2),
+                           daily_bulletin_opens[:weekly][:total]
     ]
     action_frequencies << ["Open Single Post",
-                           (100 * single_post_opens[:daily].to_f / $UserCount).round(2),
-                           (100 * single_post_opens[:weekly].to_f / $UserCount).round(2),
-                           (100 * single_post_opens[:monthly].to_f / $UserCount).round(2),
-                           single_post_opens[:weekly]
+                           (100 * single_post_opens[:daily][:total].to_f / $UserCount).round(2),
+                           (100 * single_post_opens[:weekly][:total].to_f / $UserCount).round(2),
+                           (100 * single_post_opens[:monthly][:total].to_f / $UserCount).round(2),
+                           single_post_opens[:weekly][:total]
     ]
+    # Break it down by community
+    (1..(growths.count-1)).each do |i|
+      community_name = growths[i][0].to_sym
+      if daily_bulletin_opens[:weekly][community_name].nil?
+        growths[i] << "N/A"
+      else
+        growths[i] << daily_bulletin_opens[:weekly][community_name].to_s
+      end
+
+      if single_post_opens[:weekly][community_name].nil?
+        growths[i] << "N/A"
+      else
+        growths[i] << single_post_opens[:weekly][community_name].to_s
+      end
+    end
+    dashboard.table("Growth by Community", growths)
 
     puts "Doing daily frequencies"
     event_map.each do |title, event|
@@ -338,23 +374,13 @@ class GeckoBoardAnnouncer
     ActiveRecord::Base.establish_connection
 
     # Segment dau_users by community
-    grouped_dau = dau_users.group_by do |uid|
-      begin
-        User.find(uid).community.name
-      rescue
-        0
-      end
-    end
-    # TODO: Break it down by community for growth chart
-    (1..(growths.count-1)).each do |i|
-      community_name = growths[i][0]
-      if grouped_dau[community_name].nil?
-        growths[i] << "0"
-      else
-        growths[i] << (100*grouped_dau[community_name].count.to_f / Community.find_by_name(growths[i][0]).users.count.to_f).round(2).to_s
-      end
-    end
-    dashboard.table("Growth by Community", growths)
+    # grouped_dau = dau_users.group_by do |uid|
+      # begin
+        # User.find(uid).community.name
+      # rescue
+        # 0
+      # end
+    # end
 
     puts "Done"
 
