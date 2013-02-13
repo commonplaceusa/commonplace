@@ -284,10 +284,10 @@ class GeckoBoardAnnouncer
     end
     mailgun_single_post_campaigns.each do |campaign_name|
       open_stats = JSON.parse(mailgun["campaigns/#{campaign_name}/opens?groupby=day&limit=30"].get)
+      community_slug = campaign_name.split("_").first.to_sym
       single_post_opens[:daily][community_slug] = 0
       single_post_opens[:weekly][community_slug] = 0
       single_post_opens[:monthly][community_slug] = 0
-      community_slug = campaign_name.split("_").first.to_sym
       open_stats.each do |daily_dump|
         opened_at = DateTime.parse(daily_dump['day'])
         unique_recipients = daily_dump['unique']['recipient'].to_i
