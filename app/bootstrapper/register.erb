@@ -106,6 +106,7 @@
       <% end %>
     </script>
     <%= erb :tracking %>
+    <%= erb :remarketing %>
     <% if Rails.env.production? %>
       <script type="text/javascript">
         _kmq.push(['record', 'Registration Page', {'community': '<%= @community.name %>'}]);
