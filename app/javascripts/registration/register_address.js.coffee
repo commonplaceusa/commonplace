@@ -84,6 +84,7 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
         CommonPlace.account = new Account(response)
         delete @data.term
         delete @data.suggest
+        @googleAdWordsConversion()
         @complete()
       else
         unless _.isEmpty(response.facebook)
@@ -92,6 +93,15 @@ CommonPlace.registration.AddressView = CommonPlace.registration.RegistrationModa
           @$(".error").text response.password[0]
           @$(".error").show()
     , this)
+
+  googleAdWordsConversion: ->
+    google_conversion_id = 978921053
+    google_conversion_language = "en"
+    google_conversion_format = "3"
+    google_conversion_color = "ffffff"
+    google_conversion_label = "lkjGCNuX-QQQ3czk0gM"
+    google_conversion_value = 0
+    $.getScript("http://www.googleadservices.com/pagead/conversion.js")
 
   referrers: ->
     @communityExterior.referral_sources
