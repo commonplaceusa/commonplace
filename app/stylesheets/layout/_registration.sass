@@ -1,0 +1,223 @@
+/*  Registration Step 2: Verify Address  */
+
+.address
+  width: 468px
+  #address
+    float: left
+  .error
+    clear: both
+    font-family: $body
+    font-size: 11px
+    font-weight: bold
+    color: $red
+    text-transform: uppercase
+    margin-top: 6px
+    float: left
+    //color: #fff
+    //padding: 10px 12px 18px 12px
+    //background: url('shared/redesign/error-bg.png') no-repeat bottom left
+    //top: 155px
+    //right: -85px
+    display: none
+  h2 
+    font-size: 46px
+    //background: url("shared/redesign/stars-address.png") no-repeat 7px 10px
+    text-align: center
+    font-family: $Yellowtail
+    text-shadow: 0px 2px 0px #fff
+    color: $red
+    margin: 0px auto
+    padding-bottom: 0px
+    background-image: none !important
+  p 
+    color: $black
+    font-family: $Rokkitt
+    font-size: 18px
+    margin: 0 0 20px 0
+    line-height: 1.2em
+    text-shadow: 1px 1px 0px #fff
+  input.address
+    -webkit-font-smoothing: antialiased
+    font-size: 18px
+    border: 1px solid #C9C4B4
+    box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
+    font-family: $Rokkitt
+    width: 450px
+    padding: 8px
+    margin: 0px 0px 5px 0px
+    z-index: 150 !important
+  img 
+    border: 1px solid #821916
+    margin-top: -5px
+  p.caption
+    font-size: 14px
+    float: right
+    margin: 5px 0 20px 0 
+    font-family: $Rokkitt
+    text-align: right
+  input[type=button]
+    -webkit-appearance: none
+    background: $blue
+    @include background(linear-gradient(top center, #2e5274, #1b334a))
+    width: 393px
+    padding: 10px 0
+    letter-spacing: 1px
+    font-family: $Ultra
+    font-size: 20px
+    border: 1px solid #151f28
+    color: white
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255,255,255,.3)
+    text-shadow: 1px 2px 3px rgba(0,0,0,.5)
+    cursor: pointer
+  select
+    width: 450px
+    
+.address span.divider
+  float: left
+  width: 100%
+  height: 3px
+  margin: 20px auto
+  background-color: #CFCCC1
+  border-bottom: 1px solid #fff
+      
+.address div#find_button
+  margin-top: 20px
+  float: left
+  width: 100%  
+
+.address div#find_button a.blue-button
+  -webkit-font-smoothing: antialiased
+  background: $blue
+  width: 467px
+  float: left
+  padding: 10px 0
+  letter-spacing: 1px
+  font-family: $Ultra
+  font-size: 20px
+  border: 1px solid #151f28
+  color: white
+  text-transform: uppercase
+  +linear-gradient(color-stops(#2e5274, #1b334a), top)
+  box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+  text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+  cursor: pointer
+  margin-top: 12px
+  text-decoration: none
+  text-align: center
+  &:hover, &:focus
+    color: #fff
+    +linear-gradient(color-stops(#2e5274, #1b334a), top)
+    text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+    box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+  &:active
+    color: #fff
+    +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+    text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+    box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+#dk_container_hear 
+  width: 465px
+  z-index: 10 !important
+  float: left
+  margin-bottom: 0px
+  font-family: $heading
+  a.dk_toggle 
+    height: 16px
+    margin-bottom: 0
+    border: 1px solid #C9C4B4
+    box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
+    width: 458px !important
+    color: $black
+    border-radius: 0px !important
+    z-index: 10 !important
+    span.dk_arrow.button.blue 
+      border-radius: 0px !important
+      border: 1px solid #0F1E2C
+      height: 15px
+      box-shadow: 0px 1px 0px white
+      right: 0px
+    span.dk_label 
+      width: 390px
+      color: $black
+      font-size: 18px
+      font-family: $heading
+  .dk_options
+    border-radius: 0px !important
+    li
+      &:hover
+        color: $black !important
+      a
+        font-family: $heading !important
+        border-bottom: 1px dotted #ccc !important
+        line-height: 24px !important
+        font-size: 18px !important
+        display: block
+        &:hover
+          background-color: #eee
+          color: $red
+        &:last-child
+          border: 0px none
+          
+.dk_options_inner, .dk_touch .dk_options
+  max-height: 200px !important
+  
+ul.ui-autocomplete
+  background: white
+  width: 366px
+  border: 1px solid #C9C4B4
+  overflow: auto
+  max-height: 250px
+  z-index: 150 !important
+
+li.ui-menu-item
+  border-bottom: 1px dotted #ccc
+  line-height: 44px
+  font-family: $heading
+  padding: 0px 8px
+  font-size: 18px
+  color: $black
+  -webkit-font-smoothing: antialiased
+  &:hover
+    background-color: #eee
+  &:last-child
+    border: 0px none
+  a
+    &:hover
+      color: $red
+      cursor: pointer
+      
+#about .about_border .right #address_verification
+  color: $black
+  font-family: $Rokkitt
+  font-size: 18px
+  margin: 15px 0px 10px 0px
+  text-shadow: 1px 1px 0px #fff
+
+#about .about_border .right #address_verification input
+  width: 15px
+  height: 15px
+  margin-top: 15px
+  margin-left: 0px
+  margin-right: 5px
+  color: #131313
+
+#suggested_address
+  margin-left: 24px
+  font-weight: bold
+  line-height: 21px
+  font-size: 18px
+  
+#about .content .registration1 .address .error
+  clear: both
+  font-family: $body
+  font-size: 11px
+  font-weight: bold
+  color: $red
+  text-transform: uppercase
+  margin-top: 6px
+  float: left
+  background: none
+  padding: 0px
+  position: static
+  max-width: 100%
+  width: 100%
+  display: none

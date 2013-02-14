@@ -1,0 +1,280 @@
+#wire-overlay 
+  background-color: rgba(0,0,0,0.25)
+  background-attachment: fixed
+
+#right-column 
+  #community-resources
+    .resources 
+      .wire 
+        padding-bottom: 1px
+        .no-results 
+          background-color: #fff 
+          padding: 20px
+          text-align: center 
+        .wire-item 
+          background: white
+          border-radius: 5px
+          box-shadow: 0px 1px 1px rgba(0,0,0,0.50)
+          a 
+            text-decoration: none
+          .wire-top
+            h3
+              font: 16px $body
+              color: $blue
+              text-shadow: 1px 1px 0px #fff
+              &:hover
+                color: #7b7a6f
+            p
+              font-family: $body
+              font-size: 12px
+              color: #aaa
+              a 
+                color: #aaa
+                &:hover
+                  color: $red
+            p:last-child
+              padding-right: 4px
+            .editlink 
+              color: $red
+              font-weight: bold
+              font-size: 11px
+
+          .post-content
+            padding: 15px
+              bottom: 10px
+            .image_container
+              text-align: right
+              border-left: 1px dotted #ddd
+              padding-left: 15px
+            .price
+              +red-button
+              color: white 
+              height: auto
+              font-weight: normal
+              font-size: 13px
+              padding: 7px 10px
+              font-family: $body
+            .markdown
+              color: $dark-grey
+
+            table.event-location 
+              font: 12px/20px "Helvetica Neue", Helvetica, sans-serif
+              color: $black
+              th
+                font-weight: bold
+                color: $red
+
+            h3, p, pre, code, ol, ul
+              font-family: $body
+              color: $black
+              font: 13px/17px $body        
+            h3 
+              font-size: 20px
+              font-weight: normal
+              text-shadow: none
+              line-height: 22px
+              a 
+                color: #333
+                cursor: pointer
+                &:hover
+                  text-decoration: none
+            p.author
+              font-size: 13px
+              color: $dark-grey
+              font-weight: bold
+              a
+                color: #333
+                cursor: pointer
+                &:hover
+                  color: $red
+                  text-decoration: none
+            .body p, pre, code, ol, ul
+              &:last-child
+              a, .markdown a
+                color: $dark-grey
+                font-family: $body
+                text-decoration: none
+                &:hover
+                  text-decoration: none
+                  color: $red 
+            .avatar-container
+              background-size: cover
+              background-repeat: no-repeat
+              background-position: center center
+              border-radius: 5px
+            p.venue, p.address
+              margin-bottom: 5px
+              span.bold
+                color: $red
+                font-weight: bold
+            .calendar 
+              .month 
+                background: $red
+                padding: 5px
+                text-align: center
+                color: white
+                font-weight: bold
+                text-transform: uppercase
+                font-size: 12px
+                border-radius: 5px 5px 0 0
+                font-family: Helvetica Neue, Helvetica, Verdana, sans-serif
+                text-shadow: 0px -1px 0px #64100D
+              .day-of-month
+                background-color: #F6F4ED
+                padding: 5px 0
+                text-align: center
+                border-radius: 0 0 5px 5px
+                color: #333
+                text-shadow: 1px 1px 0px white
+                font-family: Helvetica Neue, Helvetica, Verdana, sans-serif
+                border: 1px solid #D5D1C8
+                  top: none
+                font-size: 19px
+              .event-time 
+                text-align: center
+                font-size: 12px
+                font-family: Helvetica
+                margin-top: 11px
+                font-weight: bold
+                color: $dark-grey
+                
+          .post-action
+            font-family: $body
+            font-size: 10px
+            font-weight: bold
+            color: $dark-grey
+            span.thank
+              color: $dark-grey
+            p.how-many
+              color: $dark-grey
+              text-shadow: 1px 1px 1px white
+              text-transform: none
+              font-size: 11px
+            .actions
+              border-top: 1px dotted
+              border-color: #ddd
+              a
+                color: $dark-grey
+              a:hover
+                color: $red
+              a:active
+                color: $red
+              li
+                border-right: 1px dotted
+                border-color: #ddd
+                font: bold 12px $body
+                padding: 9px 12px 9px 10px
+                cursor: pointer
+                &:first-child
+                  padding-left: 0px
+                &:last-child
+                  border-right: none 
+                .icon
+                  vertical-align: text-top
+                  background-position: 0px 0px
+                  background-repeat: no-repeat
+                  background-image: image-url("shared/redesign/post-action-icons.png")
+
+              li.reply-link
+                .icon
+                  background-position: -15px -27px
+                &:hover, &:focus, &:active
+                  color: $red
+                  .icon 
+                    background-position: -15px 0px
+              li.message-link
+                border-right: 1px dotted
+                border-color: #ddd
+                .icon 
+                  background-position: 0px -30px
+                &:hover, &:focus, &:active
+                  color: $red
+                  .icon 
+                    background-position: 0px 0px
+
+              li.share-link
+                .icon
+                  background-position: -29px -42px
+                span 
+                  margin-top: 1px
+                &:hover, &:focus, &:active
+                  color: $red
+                  .icon 
+                    background-position: -29px 0px
+
+              li.thank-link
+                .icon
+                  background-position: -58px -27px
+                &:hover, &:focus, &:active
+                  color: $red
+                  .icon 
+                    background-position: -58px 0px
+
+              li.flag-link
+                .icon
+                  background-position: -44px -26px
+                &:hover, &:focus, &:active
+                  color: $red
+                  .icon 
+                    background-position: -44px 0px
+
+          .post-interaction
+            font-size: 12px
+            .interaction
+              border-color: #e6e6e6
+              font-family: Helvetica Neue, Helvetica, Tahoma, serif
+              color: #555555
+              border-bottom-style: none
+              border-bottom-width: 1px
+              .blue
+                color: $blue
+                font-weight: bold
+              .thanked
+                padding-left: 22px
+                padding-top: 13px
+                background: image-url("shared/redesign/thanked.png") no-repeat
+                background-position-y: 13px
+                border-top: 1px dotted #e4e4e4
+              .publicized
+                padding-left: 22px
+                background: image-url("shared/redesign/publicized.png") no-repeat
+                padding-top: 3px
+                border-top: 1px dotted #e4e4e4
+ 
+        .shadow_left
+          background: image-url("shared/redesign/post-shadow-left.png") no-repeat
+          background-position: bottom left
+
+        .shadow_right
+          background: image-url("shared/redesign/post-shadow-right.png") no-repeat
+          background-position: bottom right
+
+        .wire-header
+          .header-display
+            border-radius: 4px
+            background: $light-grey image-url("shared/redesign/background.gif")
+            box-shadow: inset 0px 1px 0px 0px white
+            border-bottom: 1px solid 
+            border-color: lighten($dark-grey, 20%)
+            h3
+              font-family: $heading
+              text-align: center
+              color: $blue
+              font-size: 18px
+              background-position: 5px 5px
+              padding: 11px
+
+      .wire-empty-message
+        color: #fff
+        text-align: center
+
+      .highlight
+        background-color: #fffa6c
+
+#zenbox_tab.ZenboxTabRight
+  background-color: $blue !important
+  border: 0px none !important
+  &:hover
+    background-color: $red !important
+  &:active
+    background-color: $blue !important

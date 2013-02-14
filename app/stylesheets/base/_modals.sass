@@ -1,0 +1,396 @@
+.modal-container
+  position: absolute
+  background-image: url(shared/redesign/tan-bg.png)
+  +border-radius(5px)
+  z-index: 2000
+  width: auto
+  overflow: none
+  background-color: #eeecdf
+  float: left
+  border: 1px solid #fff
+  color: #333
+  padding: 8px
+  box-shadow: 0px 2px 1px #000, inset 0px 1px 0px #fff
+  font-family: $heading
+  behavior: url("/assets/PIE.htc")
+  span.divider
+    margin-bottom: 30px
+    float: left
+    width: 100%
+    height: 2px
+    background-color: #d5d1c8
+    border-bottom: 1px solid #fff
+    
+  .modal-border
+    float: left
+    padding: 20px
+    border: 2px solid #d5d1c8
+    border-radius: 5px
+    box-shadow: 1px 1px 0px white, inset 1px 1px 0px white
+    width: auto
+    h1
+      font-size: 20px
+      font-weight: bold
+      margin-bottom: 20px
+      color: $blue
+      font-family: $heading
+      text-shadow: 1px 1px 0px white
+      text-align: center
+      max-width: 322px
+      strong
+        color: $red
+    
+  .close 
+    position: absolute
+    top: 3px
+    right: 3px
+    width: 15px
+    height: 15px 
+    cursor: pointer
+    font-size: 20px
+    background: url(shared/redesign/close-icon.png) no-repeat
+    background-position: 0px 0px
+    text-indent: -9999em
+    font-family: Helvetica, Arial, sans-serif
+    &:hover
+      background: url(shared/redesign/close-icon.png) no-repeat
+      background-position: 0px -15px
+
+  .error
+    background-color: #f4e15f
+    border: 2px solid #ffe534
+    +border-radius(3px)
+    color: #363636
+    display: none
+    margin-top: 5px
+    margin-bottom: 15px
+    padding: 5px
+    font-family: Helvetica, Arial, sans-serif
+    font-size: 14px
+    text-align: center
+
+  table
+    width: 390px
+    margin-top: 2px
+    border: none
+    +border-radius(5px)
+    tr:nth-child(even)
+      background-color: #ddd
+    tr:nth-child(odd)
+      background-color: white
+    tr:first-child
+      td:first-child
+        +border-top-left-radius(5px)
+      td:last-child
+        +border-top-right-radius(5px)
+    tr:last-child
+      td:first-child
+        +border-bottom-left-radius(5px)
+      td:last-child
+        +border-bottom-right-radius(5px)
+    td
+      padding: 10px 9px
+      font-size: 13px
+      font-family: Helvetica, sans-serif
+      a
+        color: #ac322f
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+    .right
+      text-align: right
+
+  .unimportant
+    color: #aaa
+
+  .avatar
+    text-align: center
+    margin-top: 15px
+
+    img
+      vertical-align: middle
+      margin-right: 5px
+      +border-radius(2px)
+
+    .avatar-controls
+      margin: 15px auto
+
+      a
+        background-color: #555
+        color: white
+        font-weight: bold
+        padding: 5px
+        border-left: 1px solid #888
+        margin: 0
+        margin-left: -4px
+        Helvetica, sans-serif
+        text-decoration: none
+
+        &:first-child
+          border-left: 0px
+          +border-left-radius(5px)
+
+        &:last-child
+          +border-right-radius(5px)
+
+        &:hover
+          background-color: #888
+          text-decoration: underline
+
+  form
+    //width: 392px
+    //padding: 15px
+    display: block
+    -webkit-font-smoothing: antialiased
+
+    h1
+      font-family: $heading
+      font-size: 16px
+      color: #fff
+      text-align: center
+
+    label
+      display: block
+      margin-top: 20px
+      font-size: 16px
+      color: #555
+      font-family: $heading
+      font-weight: bold
+      margin-bottom: 5px
+      text-shadow: 1px 1px 1px white
+
+    input[type=text]
+      //margin-top: 5px
+      //width: 439px
+      border-radius: 4px
+      behavior: url("/assets/PIE.htc")
+      
+    textarea
+      margin-top: 2px
+      transition-property: all 1s ease
+      border-radius: 4px
+      -webkit-font-smoothing: antialiased
+      behavior: url("/assets/PIE.htc")
+      
+
+#modal-shadow
+  +opacity(0.8)
+  background-color: #000
+  position: fixed
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
+  z-index: 1000
+
+div.form-container.share ul
+  margin-top: 15px
+
+div.form-container.share ul li
+  list-style-type: none
+  padding-top: 6px
+  padding-bottom: 9px
+  text-shadow: black 0 0 0
+  padding-left: 40px
+  background: url(shared/redesign/check-off.png) no-repeat left top
+  cursor: pointer
+  clear: both
+  font-size: 18px
+  text-shadow: 1px 1px 0px white
+  color: $blue
+  margin-bottom: 6px  
+  &:hover, &:focus, &:active
+    //background-color: rgba(255, 255, 255, 0.4)
+    color: $red
+    a
+      color: $red
+  a
+    color: $blue
+    text-decoration: none
+
+div.form-container.share ul li.checked
+  background: url(shared/redesign/check-on.png) no-repeat left top  
+
+  div
+    font: 18px/20px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+    color: $blue
+    position: relative
+    top: 3px
+    margin-left: 10px
+    &:hover, &:focus, &:active
+      color: $red
+  a:hover
+    color: $red
+//div.form-container.share ul li#facebookshare
+  font: 18px/20px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+  color: $blue
+  position: relative
+  top: 3px
+  margin-left: 0px
+  padding-left: 40px
+  &:hover, &:focus, &:active
+    color: $red
+  a:hover
+    color: $red
+div.form-container.share
+  width: 340px
+  text-decoration: none
+  h1
+    margin-bottom: 15px
+  span.divider
+    margin-bottom: 15px
+  h3
+    font: 13px/18px Helvetica, Arial, sans-serif
+    margin: 15px 0px 0px 0px
+    color: #333
+    text-align: center
+    text-shadow: 1px 1px 0px white
+  button.red-button
+    float: left
+    font-size: 20px
+    padding: 10px 5px
+    width: 100%
+    height: 40px
+    margin: -10px 0px 0px 0px
+    text-decoration: none
+    cursor: pointer
+    text-transform: uppercase
+    -webkit-font-smoothing: antialiased
+    behavior: url("/assets/PIE.htc")
+  #share_email
+    input
+      width: 308px
+      padding: 8px 10px
+      margin-bottom: 15px
+  #share_link
+    input
+      width: 318px
+      padding: 8px 10px
+      margin: 0px
+      font-size: 12px
+      color: $black
+      font-family: $body
+      &:hover, &:focus
+        border: 1px solid #7ba2c5
+        outline: none !important
+        //background-color: #fffcdb
+        cursor: text
+    .controls
+      margin-top: 0px
+    p
+      float: left
+      text-align: center
+      width: 100%
+      margin: 10px 0px 25px
+      text-shadow: 1px 1px 0px white
+      font-size: 14px
+
+h1
+  font: 32px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+  text-align: center
+  text-shadow: 1px 1px 1px white
+  color: $blue
+
+h3
+  font: 16px Helvetica, sans-serif
+  text-shadow: 1px 1px 1px white
+  color: black
+  margin-bottom: 10px
+
+a.share
+  color: $red
+  text-decoration: none
+  text-transform: uppercase
+  position: relative
+  font: bold 11px "Helvetica Neue", "Helvetica", "Arial"
+  padding: 8px
+  float: right
+  bottom: 15px
+  background-color: #D7D5C6
+  margin-top: 10px
+  &:hover, &:focus, &:active
+    background-color: $red
+    color: white
+    border-color: #aaa
+    
+#share-email
+  display: none
+  height: 48px
+
+#share_link
+  display: none
+  height: 48px
+
+#share-email form input.rounded_corners
+  width: 252px
+  margin-top: -10px
+  margin-left: 17px
+
+#submit_email_share
+  position: relative
+  right: 53px
+
+#share_link form input.rounded_corners
+  width: 300px
+  margin-top: -10px
+  margin-left: 17px
+
+
+//.modal-container.first 
+  width: 340px
+  
+.controls.wide
+  button.red-button
+    width: 100% !important
+    margin-top: 10px !important
+  a.back
+    clear: both
+    margin-top: 10px
+    text-align: center
+    width: 100%
+    margin-bottom: 0px
+    height: auto !important
+    
+.controls
+  margin-top: 5px
+  clear: both
+  width: 100%
+  float: right
+  position: relative
+  button 
+    float: right
+    +red-button
+    margin-left: 15px
+    margin-right: 0px
+    font-size: 18px
+    font-weight: bold
+    padding: 10px 15px
+    -webkit-font-smoothing: antialiased
+    margin-top: 0px
+    behavior: url("/assets/PIE.htc")
+  a.cancel, a.delete, a.back 
+    margin-top: 14px !important 
+    display: block !important 
+    float: right !important 
+    color: $red
+    font-size: 15px
+    font-family: $heading
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+  a.delete
+    right: 15px
+    position: absolute
+    margin-top: 2px
+  .spinner
+    position: absolute
+    left: 0px
+    bottom: 10px
+    width: 22px
+    height: 22px
+    display: none
+
+input:focus, textarea:focus
+  //box-shadow: 0px 0px 8px 5px rgba(255,255,255,0.45)
+  border: 1px solid #7ba2c5
+  outline: none !important

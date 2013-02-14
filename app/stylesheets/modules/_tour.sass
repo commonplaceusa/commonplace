@@ -1,0 +1,500 @@
+#tour-shadow
+  background-color: #000 
+  @include opacity(0.65)
+
+#tour
+  -webkit-font-smoothing: antialiased
+  a
+    text-decoration: none
+
+#current-tour-page, #next-tour-page
+  font-family: $heading
+
+.welcome
+  background: image-url("shared/redesign/welcomebg.png") no-repeat center
+  padding: 70px 35px 100px 35px
+
+.welcome-to
+  background: image-url("tour/welcome-to.png") no-repeat center
+
+  .community-name 
+  color: $cp-blue
+  font-size: 50px
+  font-family: Rockwell, Georgia, Times, serif
+  text-shadow: 1px 1px 1px #fff, 2px 2px 0 $cp-red
+  font-weight: bold
+  text-align: center
+
+.welcome h4 
+  font-family: $Yellowtail
+  color: $blue
+  font-size: 40px
+  text-align: center 
+  text-shadow: 1px 2px 0px #fff
+
+.welcome h3 
+  font-family: $heading
+  font-size: 72px
+  text-align: center
+  letter-spacing: 1px
+  text-shadow: 2px 2px 0px #fff
+  color: white
+  text-transform: capitalize 
+  font-weight: bold
+  color: $red
+  line-height: 58px
+
+.welcome .white-box 
+  padding: 15px
+  padding-top: 20px
+  padding-bottom: 18px
+  border-radius: 5px
+  background-color: #f8f6ec
+  text-align: center 
+  border: 1px solid #C9C4B4
+  box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 0px
+
+.welcome p 
+  font-family: $heading
+  color: $black
+  font-size: 20px
+  font-weight: bold
+  text-shadow: 0px 1px 0px #fff
+
+p.welcome-divider
+  background: image-url("shared/redesign/welcome-divider.png") no-repeat center
+  text-align: center
+  color: $red
+
+.welcome .bottom 
+  font-size: 18px
+  color: white
+  font-family: $heading 
+
+.welcome ul 
+  font-family: $heading
+  padding-left: 5px
+
+.welcome ul li 
+  color: $black
+  font-size: 18px
+  line-height: 30px
+  background: url("shared/redesign/star-red.png") no-repeat 0 6px
+  text-indent: 26px
+  text-shadow: 0px 1px 0px #fff
+    
+.white-box p 
+  color: $blue
+  font-size: 24px
+  font-weight: normal
+  
+.registration_border
+  padding: 30px
+  border: 3px solid #CFCCC1
+  border-radius: 5px
+  box-shadow: 1px 1px 0px white, inset 1px 1px 0px white
+
+#findNeighbors 
+  background-color: #eeecdf
+  background: url(shared/redesign/tan-bg.png) center center
+  padding: 15px
+  border-radius: 5px
+  box-shadow: 0px 2px 1px #000, inset 0px 1px 0px #fff
+  border: 1px solid white
+  .find_title
+    font-size: 46px
+    text-align: center
+    font-family: $Yellowtail
+    text-shadow: 0px 2px 0px #fff
+    color: $red
+    padding-bottom: 0px
+    
+#civicProfile, #norms
+  overflow: none
+  background-color: #eeecdf
+  background: url(shared/redesign/tan-bg.png) center center
+  border-radius: 5px
+  border: 1px solid #fff
+  color: #333
+  padding: 15px
+  box-shadow: 0px 2px 1px #000, inset 0px 1px 0px #fff
+  span.divider
+    background-color: #CFCCC1
+    border-bottom: 1px solid #fff
+  .civic_title, .norms_title
+    font-size: 46px
+    text-align: center
+    font-family: $Yellowtail
+    text-shadow: 0px 2px 0px #fff
+    color: $red
+    padding-bottom: 0px
+  .civic_left
+    color: #888
+    text-shadow: 0px 1px 0px #fff
+    text-align: center
+    font-family: $heading
+    font-size: 18px
+    .not-facebook
+      line-height: 11px
+  .civic_right
+    input
+      -webkit-font-smoothing: antialiased
+      font-size: 18px
+      padding: 8px
+      font-family: $heading
+      border: 1px solid #C9C4B4
+      box-shadow: inset #DDD 0px 0px 3px 2px, white 0px 1px 0px
+      background-color: #fff
+    textarea
+      -webkit-font-smoothing: antialiased
+      font-size: 18px
+      padding: 8px
+      font-family: $heading
+      border: 1px solid #C9C4B4
+      box-shadow: inset #DDD 0px 0px 3px 2px, white 0px 1px 0px
+      background-color: #fff
+  
+#civicProfile div.civic_left div.not-facebook div a.avatar_file_browse
+  text-transform: uppercase
+  color: white
+  font: bold 10px $body
+  background-color: #1B334A
+  padding: 7px 0px
+  border-radius: 5px
+  text-shadow: none
+  
+#civic_button
+  .next-button
+    text-align: center
+  
+#buttons a 
+  background: #2e5172
+  border-radius: 0px
+  color: #ffffff
+  text-shadow: 1px 1px 1px black
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #2e5172), color-stop(100%, #1c344b))
+  background-image: -webkit-linear-gradient(top, #2e5172, #1c344b)
+  background-image: -moz-linear-gradient(top, #2e5172, #1c344b)
+  background-image: -o-linear-gradient(top, #2e5172, #1c344b)
+  background-image: -ms-linear-gradient(top, #2e5172, #1c344b)
+  background-image: linear-gradient(top, #2e5172, #1c344b)
+  text-decoration: none
+  border: 1px solid
+  border-color: #1c344b
+  box-shadow: inset 0px 1px 1px #2e5172
+  padding: 0px 15px 11px
+  font: bold 13px/0 "Rokkitt", RockwellSTD, Rockwell, sans-serif
+
+#find_left h3 
+  font-family: $heading
+  color: #fffeff
+  text-shadow: #000000 0px 0px 0
+
+#search 
+  font-size: 13px
+
+#invite_friends 
+  font-size: 13px
+  font-family: $heading
+  line-height: 20px
+  color: $black
+  text-align: left
+
+#neighbor_find 
+  background-color: #eeede0
+
+#findNeighbors ul.subscribe_categories
+  padding-bottom: 20px
+  text-align: center
+
+  li 
+    padding: 6px 7px 4px 7px
+    border-radius: 5px
+    &:hover
+      background-color: $blue
+      a
+        color: #fff
+        text-shadow: none
+
+#findNeighbors ul.subscribe_categories li a 
+  color: $blue
+  font-size: 18px
+  text-decoration: none
+  padding: 0px
+  font-weight: bold
+  text-shadow: 0px 1px 0px #fff
+
+#subscribe_pages
+  overflow: auto
+  overflow-x: hidden
+  background-color: #F7F5EA
+  border: 1px solid #C9C4B4
+  box-shadow: inset #dfdbcd 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 0px
+  padding: 0px 10px 10px 15px
+  border-radius: 0px
+  div.page_category
+
+#subscribe_pages ul.subscribe_pages li 
+  overflow: hidden
+  padding: 15px
+  background-color: #fff
+  border-radius: 5px
+  border: 1px solid #ddd
+  
+#subscribe_pages div.check
+  overflow: hidden
+
+#subscribe_pages ul.subscribe_pages li:hover
+  border: 1px solid #aaa
+  cursor: pointer
+  box-shadow: 0px 3px 3px #ccc
+  a h4
+    color: $red
+    font: 14px Helvetica, sans-serif
+  a span.page_text
+    color: $red
+    font: 12px Helvetica, sans-serif
+
+#subscribe_pages ul.subscribe_pages li:active
+  border: 1px solid #bbb
+  
+#subscribe_pages ul.subscribe_pages li a 
+  color: $dark-tan
+
+#subscribe_pages ul.subscribe_pages li img.avatar-container
+  border-radius: 5px
+
+#subscribe_pages ul.subscribe_pages li h4 
+  font: bold 14px Helvetica, Arial, sans-serif
+  overflow: hidden
+  color: $blue
+
+#subscribe_pages ul.subscribe_pages li span.page_text 
+  color: #333
+  font: 12px Helvetica, Arial, sans-serif
+  line-height: 16px
+  
+#subscribe_pages ul.subscribe_pages li .description-container
+  overflow: hidden
+
+#subscribe_pages ul.subscribe_pages li.check.checked
+  border-color: $blue
+
+#invite_friends p
+  font-size: 16px
+  line-height: 22px
+  color: $black
+
+#invite_friends p a 
+  font-size: 16px
+  line-height: 20px
+  color: $red
+  font-weight: bold
+  text-decoration: underline
+  &:hover
+    text-decoration: none
+
+#subscribe_pages a h2
+  color: $red
+  padding-top: 20px
+  padding-bottom: 15px
+  font-size: 18px
+  font-weight: bold
+  text-shadow: 1px 1px 0px #fff
+  padding-left: 1px
+
+.find_neighbors
+  div.button
+    text-transform: uppercase
+    font-weight: bold
+    font-size: 10px
+    background: #1b334a
+    padding: 4px 12px
+    color: white
+  input.search
+    +border-radius(5px)
+    +box-shadow(#ccc 1px 1px 2px 0 inset)
+    border: 1px solid #ccc
+    padding: 5px 5px
+    font-size: 18px
+    font-weight: 300
+    font-family: Helvetica, sans-serif
+  .know
+    line-height: 25px
+    background: #8C2523
+    +border-radius(4px)
+    padding: 5px
+    color: white
+    font-family: Helvetica
+    font-size: 14px
+    text-align: center
+  .remove_search
+    background-repeat: no-repeat
+    &.loading
+      background-image: image-url("shared/icons/waiting.gif")
+    &.active
+      background-image: image-url("shared/icons/cancel.png")
+      cursor: pointer
+    &.inactive
+      background-image: image-url("icons/search.png")
+  
+  .neighbor_finder, .search_finder
+    background: white
+    overflow-y: scroll
+    +border-radius(5px)
+    border: 1px solid black
+    
+    .no_results, .initial_load
+      background: white
+      +border-radius(5px)
+      text-align: center
+      padding: 5px
+      .query
+        color: #1b334a
+        font-weight: bold
+        
+    .initial_load
+      background-image: image-url("loading.gif")
+      background-position: center center
+      background-repeat: no-repeat
+    
+    table 
+      font-family: Helvetica
+      font-size: 13px
+      border-spacing: 10px
+      border-collapse: separate
+      background: white
+      
+      td
+        padding: 10px
+        border: 1px solid #dadada
+        border-collapse: collapse
+        &.checked, &:hover
+          &.checked, &:hover
+            background: #EEF5DF
+            cursor: pointer
+          &.checked
+            border: 1px solid #CCDAAE
+            +box-shadow(#bbb 2px 2px 2px)
+        .on-commonplace
+          font-size: 8px
+          color: #ac322f
+
+#RealFindNeighbors
+  background-color: #eeecdf
+  background: url(shared/redesign/red-bg.png)
+  padding: 10px 0px 20px 0px
+  font-family: $heading
+  color: #fff
+  border-radius: 5px
+  -webkit-font-smoothing: antialiased
+
+  #search 
+    font-size: 18px
+    padding: 8px
+    font-family: $Rokkitt
+    color: $blue
+    background: #fff
+    border: 1px solid #821916
+    box-shadow: inset #C8C8C8 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 2px 0px
+    -webkit-font-smoothing: antialiased
+
+  .find_known
+    font-size: 24px
+    padding: 18px 0px 18px 0px
+    text-align: center
+    background: darken($red, 13%)
+
+  .find_steps
+    p
+      line-height: 14px
+      font-size: 17px
+
+  #buttons
+    a 
+      background: #2e5172
+      border-radius: 0px
+      color: #ffffff
+      text-shadow: 1px 1px 1px black
+      text-decoration: none
+      padding: 0px 10px 15px 10px
+      font: bold 16px/0 $heading
+      border: 1px solid #151f28
+      +linear-gradient(color-stops(#2e5274, #1b334a), top)
+      box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+      text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+      cursor: pointer
+      &:hover, &:focus
+        color: #fff
+        +linear-gradient(color-stops(#2e5274, #1b334a), top)
+        text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+        box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+      &:active
+        color: #fff
+        +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+        text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+        box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+
+  #invite_friends
+    p
+      font-size: 18px
+
+div#RealFindNeighbors div#find_bottom #invite_friends
+  font-size: 18px
+  
+div#findNeighbors.container div#find_bottom #find_button a.blue-button.next-button
+  padding: 10px 20px
+  text-align: center
+
+div#RealFindNeighbors.container #find_button a.blue-button.next-button
+  text-align: center
+
+#civicProfile div.civic_right ul.chzn-choices
+  border: 1px solid #c9c4b4
+  box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
+  li.search-field input
+    box-shadow: none
+    border: 0 none
+    color: #555
+
+#civicProfile div.chzn-drop
+  border: 1px solid #c9c4b4
+  box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
+  ul.chzn-results li
+    border-bottom: 1px dotted #ccc
+    padding: 12px 8px
+    color: #333
+    font-size: 16px
+    font-family: $heading
+    &:hover
+      color: $red
+      background-color: #eee
+.chzn-container .chzn-results .highlighted
+  background-color: #eee
+.chzn-container-multi .chzn-choices .search-choice
+  font-size: 16px
+  color: #131313
+.chzn-container-active .chzn-choices .search-field input
+  color: #131313
+  
+/* Norms Page */
+
+#norms
+  font-size: 18px
+  p
+    line-height: 22px
+    a
+      color: $red
+      &:hover
+        text-decoration: underline
+  ol#rules
+    li
+      list-style-type: none
+      list-style-position: inside
+      img
+        border-radius: 5px
+      strong
+        color: $red
+        font-size: 17px
+  #norms_button
+    text-align: center

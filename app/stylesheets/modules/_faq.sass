@@ -1,0 +1,78 @@
+body.faq #main
+  text-align: left
+  h2
+    color: #525252
+    font-size: 20px
+    text-align: center
+
+  #sections_picker
+    background-color: #b53f3c
+    color: white
+    padding: 10px 5px 10px 30px
+    +border-radius(15px)
+    border: 10px solid #922f2c
+    +box-shadow($default-box-shadow-color 0 0 $default-box-shadow-blur 0 inset)
+    h2
+      color: white
+    li
+      a
+        color: white
+        text-decoration: none
+
+      
+  #content
+    +lightbox
+    color: #3A3A3A
+    h2
+      font-size: 26px
+    ul
+      li
+        a
+          color: #b53f3c
+          font-size: 18px
+          text-decoration: none
+        ul
+          li
+            a
+              font-size: 16px
+              color: #525252
+              text-decoration: underline
+
+      
+    .section_head
+      font-size: 22px   
+      border-bottom: 1px solid #ddd
+      border-top: 1px solid #ddd
+      padding: 10px 0
+    .item_head
+      color: #b53f3c
+      border-bottom: 1px solid #ddd
+      padding-bottom: 2px
+  
+    .answer
+      font-family: Georgia, times, serif
+      font-size: 14px
+      p
+        a
+          color: #3b6085
+          text-decoration: none
+    form
+      p.confirm
+        color: #a3b233
+        text-align: center
+      input[type="text"]
+        border: 1px solid #999
+        +border-radius(5px)
+        +box-shadow(#ccc 1px 1px 2px 0 inset)
+        padding: 0px 5px
+        font-size: 22px
+        +serif
+      textarea
+        margin: 10px 0 0
+        border: 1px solid #999
+        +border-radius(5px)
+        +box-shadow(#ccc 1px 1px 2px 0 inset)
+        padding: 0px 5px
+        font-size: 22px
+        +serif
+         

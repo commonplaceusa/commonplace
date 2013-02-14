@@ -1,0 +1,1042 @@
+.navigation
+  width: auto
+  h3.postbox-head
+    color: white
+    font-family: Helvetica, Arial, sans-serif
+    font-size: 13px
+    padding: 10px
+    font-weight: bold
+    margin-top: 10px
+    background: #1B334A
+    +border-radius(3px 3px 0 0)
+    line-height: 16px
+    width: 127px
+    border: #142434 1px solid
+      bottom: 1px solid #142434
+
+#invalid_post_tooltip
+  position: absolute
+  left: 73.5px
+  top: 190px
+  height: 30px
+  display: none
+
+#invalid_post_text
+  position: absolute
+  top: 20px
+  left: 110px
+  width: 200px
+  vertical-align: top
+  color: white
+  font-weight: bold
+  line-height: 1.2em
+  font-family: Helvetica, Arial, sans-serif
+  text-shadow: 1px 1px 0 black
+  font-size: 12px
+
+  form
+    .error
+      background-color: #f4e15f
+      border: 2px solid #ffe534
+      +border-radius(3px)
+      color: #363636
+      display: none
+      padding: 5px
+      font-family: Helvetica, Arial, sans-serif
+      font-size: 14px
+      margin-bottom: 10px
+      width: 295px
+
+    input[type=text]
+      width: 288px
+      +input()
+      &.date
+        margin-top: 10px
+
+    textarea
+      +input()
+      width: 288px
+      height: 115px
+      margin-bottom: 10px
+
+    label.radio
+      display: inline
+
+    p.warning
+      display: none
+      color: #fff
+      font-size: 13px
+    input[type=checkbox]
+      float: left  
+
+    .checkbox-label
+      color: white
+      font-size: 12px
+      height: 10px
+      font-family: Helvetica
+      margin-left: 2px
+      float: left
+      width: 205px
+      line-height: 14px
+      margin-top: 2px
+    .post-label-selector
+      margin-top: 15px
+      margin-bottom: 10px
+      height: 125px
+      width: 308px
+      overflow-y: scroll
+
+      li 
+        &:first-child
+          margin-top: 0px
+
+        margin-top: 10px
+        padding: 7px 10px 3px
+        background-color: #fff
+        +border-radius(5px)
+        background-image: image-url("feed_page/check-off.png")
+        background-repeat: no-repeat
+        background-position: 265px 7px
+
+        &.checked
+          background-image: image-url("feed_page/check-on.png")
+
+        label
+          display: block
+          font-size: 18px
+          font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+          color: #333
+          margin: 0
+          padding: 0
+
+        img 
+          position: relative
+          top: -3px
+          vertical-align: middle
+          margin-right: 5px
+          border: 0
+
+        input
+          display: none
+
+    button
+      font-size: 11px
+      padding: 7px
+      margin-bottom: 12px
+      background: #1B334A
+      border: none
+      box-shadow: none
+      cursor: pointer
+      +border-radius(3px)
+      float: right
+      margin-right: 0
+      color: white
+      text-transform: uppercase
+
+    .on-focus
+      display: none
+      width: 308px
+
+    input.date
+      position: relative
+      z-index: 10000
+
+  form.create-group-post
+
+    .group-select
+      background-color: #fff
+      height: 180px
+      overflow-y: scroll
+      +border-radius(5px)
+      li a
+        display: block
+        padding: 10px 0 10px 10px
+        height: 50px
+        font-size: 16px
+        font-family: Rokkitt, Rockwell
+        font-weight: bold
+        color: #1B334A
+        text-decoration: none
+        background-position: 10px center
+        background-repeat: no-repeat
+
+        &.odd
+          background-color: #EEE
+
+        &.even
+
+
+        &:hover
+          background-color: #DEDEDE
+
+        img
+          +border-radius(5px)
+          margin-right: 10px
+          float: left
+        span
+          display: block
+          width: 230px
+          margin-top: 10px
+
+    .group-post-inputs
+      display: none
+
+a
+  text-decoration: none
+
+#posting_navlinks
+  overflow: hidden
+
+  ul li a
+    font: 20px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+
+  ul li a
+    position: relative
+    top: 1px
+    text-decoration: none
+    color: $blue
+    position: relative
+    font: 20px/30px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+    padding-left: 6px
+
+  ul li a:hover
+    color: $red
+
+#modal
+  width: 1000px
+  margin-right: 0px
+  margin-left: 0px
+  position: fixed
+  top: 150px
+  left: 100px
+  z-index: 1000
+
+.post-box
+  width: 340px
+  span.divider
+    margin-bottom: 15px
+    margin-top: 3px
+
+  .posting-header
+    margin-bottom: 15px
+    background-size: 32px !important
+    height: 32px
+    font-family: $heading
+    h1 
+      margin: -1px 0px 2px 0px 
+      text-align: left
+      float: left
+      color: $blue
+      padding: 0
+      text-shadow: white 1px 1px 0px
+      font-size: 18px
+      font-weight: bold
+      line-height: 19px
+    span 
+      display: block 
+      margin: 0 
+      color: #555
+      font-weight: normal
+      text-shadow: white 1px 1px 0px
+      padding: 0
+      float: left
+      font-size: 16px 
+    .icon
+      display: inline-block
+      width: 32px
+      height: 32px
+      float: left
+      line-height: 32px
+      vertical-align: text-top
+      background-position: 0px 0px
+      background-repeat: no-repeat
+      background-image: url("shared/redesign/your-town-links.png") 
+      margin-right: 10px
+
+  .posting-header.request
+    .icon
+      background-position: 0px 0px
+
+  .posting-header.transaction
+    .icon 
+      background-position: -128px 0px
+
+  .posting-header.event
+    .icon
+      background-position: -64px 0px
+
+  .posting-header.discussion
+    .icon
+      background-position: -96px 0px
+
+  .posting-header.promote
+    .icon
+      background-position: -32px 0
+
+  .seam 
+    +seam()
+    margin-bottom: 25px
+  
+  .discuss 
+    input[type="text"]
+      margin-top: 15px
+      clear: both
+    textarea
+      clear: both
+  
+  .meetups
+    .meetup
+      width: 345px 
+      float: right
+    p 
+      font-size: 20px 
+      float: left
+
+  div.navigation   
+    width: auto 
+    ul 
+      width: auto
+
+    div.links-conversation
+      display: none
+      height: 350px	
+
+      form
+        font-family: $heading
+        color: $blue
+        overflow: hidden
+
+        ul input
+          display: none
+
+    div.links-request
+      display:none  
+
+      form
+        width: 250px
+        height: 100px
+        font-family: $heading
+        color: $blue
+        overflow: scroll
+
+      ul input
+        display: none
+
+    div.links-event
+      display: none
+
+      form
+        overflow: scroll
+        width: 250px
+        height: 100px
+        font-family: $heading
+        color: $blue
+
+      ul input
+        display: none
+
+  div.help   
+    position: relative  
+    top: 10px  
+    padding: 25px 20px 15px 20px         
+    background-color: $off-grey  
+    color: $dark-grey  
+    font: 12px/18px Helvetica  
+    width: 200px            
+    background: url(post-help-box.png) no-repeat
+
+  div.links   
+    padding: 0px
+    margin: 0px auto
+
+
+    ul.overview 
+      li   
+        font-family: $heading
+        list-style-type: none  
+        margin-top: 10px  
+        margin-bottom: 10px  
+        text-shadow: white 1px 1px 0px
+        font-weight: bold
+        font-size: 18px
+        color: $blue
+        line-height: 17px
+        width: 335px
+        height: 32px
+        cursor: pointer
+        float: left
+        &:first-child
+          margin-top: 0px
+        &:last-child 
+          margin-bottom: 5px
+        .icon
+          display: inline-block
+          width: 32px
+          height: 32px
+          float: left
+          line-height: 32px
+          vertical-align: text-top
+          background-position: 0px 0px
+          background-repeat: no-repeat
+          background-image: url("shared/redesign/your-town-links.png") 
+          margin-right: 10px
+        span 
+          margin-top: 4px
+          display: block
+          font-size: 16px
+          line-height: 14px
+          color: #555
+          font-weight: normal
+          text-shadow: white 1px 1px 0px
+          &:first-child
+            margin-top: 0px
+          //&:last-child 
+            margin-bottom: 5px
+            //margin-top: 4px
+      h4
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        width: 285px
+
+      li.request
+        .icon
+          background-position: 0px 0px
+        &:hover
+          .icon
+            background-position: 0px -32px
+      li.transaction
+        .icon 
+          background-position: -128px 0px
+        &:hover
+          .icon
+            background-position: -128px -32px
+      li.event
+        .icon
+          background-position: -64px 0px
+        &:hover
+          .icon
+            background-position: -64px -32px
+      li.discussion
+        .icon
+          background-position: -96px 0px
+        &:hover
+          .icon
+            background-position: -96px -32px
+      li.promote
+        .icon
+          background-position: -32px 0px
+        &:hover
+          .icon
+            background-position: -32px -32px     
+    ul li:hover
+      color: $red
+      clear: both
+      background-position: 0px -32px
+      span 
+        color: #333
+      //.icon 
+        background-position-y: -32px !important
+
+
+  div.form-container.default
+    opacity: 1
+
+    form
+      position: relative
+      bottom: 48px
+
+      label.disclaimerLabel input
+        position: relative
+        top: 0
+
+      input
+        position: relative
+        top: 16px
+        background: $dark-tan
+
+      textarea
+        background: $dark-tan
+
+  div.form-container   
+    position: relative
+
+    form   
+      margin-top: 9px
+
+    .chzn-container
+      width: 322px !important
+      float: left
+      margin-bottom: 15px
+      .chzn-search 
+        display: none !important
+      .chzn-single 
+        width: 322px  
+        background-color: #fefffe
+        border: 1px solid $dark-tan  
+        padding: 0 8px
+        height: 36px 
+        line-height: 38px
+        font-family: $Rokkitt
+        color: $black
+        font-size: 18px
+        background: #fff
+        float: left
+        box-shadow: #C8C8C8 0px 0px 4px 1px inset, rgba(255, 255, 255, 0.247059) 0px 4px 4px
+        span
+          color: #555
+        div 
+          background: none 
+          border-left: none
+          b 
+            background-image: url(shared/redesign/down.png)
+            background-position: 0
+            margin-left: -8px 
+      
+      .chzn-results
+        width: 338px
+        border: 1px solid #c9c4b4
+        box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
+        margin: 0px
+        padding: 0px
+        max-height: 202px
+        -webkit-border-radius: 0 0 4px 4px
+        -moz-border-radius: 0 0 4px 4px
+        border-radius: 0 0 4px 4px
+        li
+          border-bottom: 1px dotted #ccc
+          padding: 12px 8px
+          color: #333
+          font-size: 18px
+          font-family: $heading
+          &:hover
+            color: $red
+            background-color: #eee 
+
+      ul.chzn-choices 
+        border: 1px solid $dark-tan  
+        font-family: $Rokkitt
+        border-radius: 4px
+        color: #333
+        font-size: 18px
+        width: 362px !important
+        box-shadow: #C8C8C8 0px 0px 4px 1px inset, rgba(255, 255, 255, 0.247059) 0px 4px 4px
+        .chzn-drop 
+          width: 322px
+          border: 0px none
+        .chzn-results
+          width: 322px
+        .search-field 
+          input 
+            padding: 9px 5px 5px 8px !important
+          .default 
+            color: #555
+    #start_time_chzn, #end_time_chzn
+      margin-top: 0 
+      width: 98px !important
+      color: #555
+      a 
+        width: 82px 
+        span
+          color: #555
+      .chzn-drop 
+        width: 98px !important
+        max-height: 165px 
+        .chzn-results
+          width: 98px 
+          overflow: scroll
+          max-height: 165px 
+        .highlighted
+          width: 82px
+        li 
+          width: 82px
+    button.green-button   
+      float: right
+      margin-right: 10px
+      font-size: 20px
+      padding: 10px 5px
+      width: 405px
+      height: 39px
+      text-decoration: none
+      margin-bottom: 15px
+      cursor: pointer
+
+      a
+        text-decoration: none
+
+    label.disclaimerLabel input
+      width: 25px
+      float: left
+
+strong   
+  font-weight: bold  
+
+.rounded_corners   
+  -moz-border-radius: 4px  
+  -webkit-border-radius: 4px  
+  border-radius: 4px  
+  behavior: url("/assets/PIE.htc")
+
+.half_rounded_corners   
+  -moz-border-radius: 4px 4px 0px 0px  
+  -webkit-border-radius: 4px 4px 0px 0px  
+  border-radius: 4px 4px 0px 0px  
+
+input, textarea
+  width: 322px
+  background-color: #fefffe
+  margin-bottom: 15px  
+  border: 1px solid $dark-tan  
+  padding: 8px
+  font-family: $heading
+  font-size: 18px
+  float: left
+  resize: none
+  box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 0px
+  font-weight: normal
+  -webkit-font-smoothing: antialiased
+  behavior: url("/assets/PIE.htc")
+
+.chzn-search
+  input[type="text"]
+    display: none
+    width: 378px !important
+    box-shadow: none
+    margin: 1px 0 !important
+
+
+textarea.description
+  width: 150px
+  float: left
+  height: 155px
+.upload-section 
+  float: right 
+  width: 155px
+  margin-top: 2px 
+  position: relative
+  display: table
+  .box 
+    background-color: #fff
+    box-shadow: #C8C8C8 0px 0px 4px 1px inset, rgba(255, 255, 255, 0.247059) 0px 4px 4px
+    border: 1px solid $dark-tan  
+    //padding: 8px
+      bottom: 4px
+    border-radius: 4px
+    display: table-cell
+    text-align: center
+    vertical-align: middle
+    width: 157px
+    height: 120px
+    img.item_pic 
+      max-width: 136px 
+      max-height: 104px
+      margin-top: 5px
+  .image_file_browser
+    position: absolute
+    width: 154px
+    height: 104px
+    background: none
+    text-indent: -9999px
+    border: 0 none
+    top: 8px
+    left: 8px
+    padding: 0px
+    cursor: pointer
+input.price
+  float: right
+  width: 137px
+  margin: 18px 0px 0px 0px
+textarea   
+  width: 322px  
+  background-color: #fefffe  
+  height: 110px  
+  margin-bottom: 15px  
+  border: 1px solid $dark-tan  
+  padding: 10px 8px
+  line-height: 18px  
+  font-family: $Rokkitt
+  font-size: 18px
+  overflow: auto
+  font-weight: normal !important
+
+#disclaimer   
+  width: 174px  
+  color: $dark-tan  
+  top: 0px
+  right: 0px
+  bottom: 0px
+  left: 0px  
+  position: relative  
+  text-shadow: #fffeff 2px 1px 0  
+  font: 11.4px/16px Helvetica  
+  float: left
+
+  label   
+    position: relative
+    width: 200px
+    display: inline-block
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+    p.disclaimer_text
+      position: relative
+      top: 3px
+      right: 5px
+
+    .disclaimerLabel input
+      position: relative
+      right: 0px
+      bottom: 0px
+      left: 0px
+
+.jspContainer
+  overflow: hidden
+  position: relative
+
+.jspPane
+  position: absolute
+
+.jspVerticalBar
+  position: absolute
+  top: 0
+  right: 0
+  width: 16px
+  height: 100%
+  background: red
+
+.jspHorizontalBar
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  height: 16px
+  background: red
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+  margin: 0
+  padding: 0
+
+.jspCap
+  display: none
+
+.jspHorizontalBar .jspCap
+  float: left
+
+.jspTrack
+  background: #dde
+  position: relative
+
+.jspDrag
+  background: #bbd
+  position: relative
+  top: 0
+  left: 0
+  cursor: pointer
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+  float: left
+  height: 100%
+
+.jspArrow
+  background: #50506d
+  text-indent: -20000px
+  display: block
+  cursor: pointer
+
+.jspArrow.jspDisabled
+  cursor: default
+  background: #80808d
+
+.jspVerticalBar .jspArrow
+  height: 16px
+
+.jspHorizontalBar .jspArrow
+  width: 16px
+  float: left
+  height: 100%
+
+.jspVerticalBar .jspArrow:focus
+  outline: none
+
+.jspCorner
+  background: #eeeef4
+  float: left
+  height: 100%
+
+* html .jspCorner
+  margin: 0 -3px 0 0
+
+#posting_right
+  width: 725px
+  height: 320px
+
+div.posting
+  padding: 40px
+
+  ul li
+    list-style-type: none
+    padding-top: 10px
+    padding-bottom: 10px
+    text-shadow: white 1 1 0
+    padding-left: 30px
+
+    a
+      font: 18px/40px $heading
+      color: $blue
+      position: relative
+      top: 4px
+
+    a:hover
+      color: $red
+
+  ul li:hover
+    list-style-type: none
+    padding-top: 10px
+    padding-bottom: 10px
+    text-shadow: white 1 1 0
+    padding-left: 30px
+    a
+      font: 18px/40px $heading
+      color: $blue
+      position: relative
+      top: 4px
+
+    a:hover
+      color: $red
+div.go-back
+  margin-bottom: -40px
+  bottom: 45px
+  position: relative
+div.go-back a
+  color: $red
+  text-decoration: none
+  text-transform: uppercase
+  position: relative
+  bottom: 15px
+  left: 20px
+  font: bold 11px "Helvetica Neue", "Helvetica", "Arial"
+
+#sharePost div.form-container form button.red-button
+  width: 200px
+  height: 60px
+  padding-top: 16px
+  position: relative
+  bottom: 25px
+  font-size: 26px
+  float: right
+  margin-right: 0px
+
+#business
+  width: 400px
+  font: 12px Helvetica, Arial, sans-serif
+  color: #1b334a
+  float: right
+  text-align: right
+
+//#request
+  width: 403px
+  font: 14px 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+  color: $blue
+  margin-bottom: 20px
+  z-index: 11999
+
+  ul
+    height: 23px
+    position: relative
+    bottom: 7px
+    margin-bottom: 10px
+
+  ul li
+    display: inline-block
+    margin-right: 30px
+
+    input
+      width: 25px
+      height: 25px
+      position:  relative
+      top: 5px
+
+form select
+  width: 404px
+  margin-bottom: 12px
+
+#site_overlay
+  background-color: black
+  width:  1000px
+  height:  1000px
+
+#discussion_dk
+  width: 414px
+  
+.event
+  textarea
+    height: 90px
+    
+#start_at_time
+  width: 100px
+  float: left
+  margin-right: 10px
+
+#end_at_time
+  width: 100px
+  float: right
+
+#event_date input
+  width: 96px
+  float: left
+  margin-right: 13px
+  margin-top: 0px
+
+#address
+  float: left
+  width: 322px
+  margin-top: 0px
+  clear: both
+  
+#venue
+  float: right
+  width: 322px
+  margin-top: 0px
+
+div.meetup_lets
+  font-family: $heading
+  color: $blue
+  display: inline
+
+  p
+    float: left
+    margin-right: 12px
+    padding-top: 8px
+    font-size: 22px
+
+  input
+    width: 328px
+    float: left
+
+//New Code
+
+#business
+  width: 200px
+  float: left
+  font: 12px Helvetica, Arial, sans-serif
+  color: #6e6e65
+  text-align: left
+  margin-top: 15px
+  ul
+    height: 23px
+    position: relative
+    bottom: 7px
+    margin-bottom: 10px
+
+  ul li
+    display: inline-block
+    margin-left: -4px
+    margin-right: 20px
+    color: #6e6e65
+
+    input
+      width: 25px
+      height: 25px
+      position: relative
+      top: 7px
+
+div.form-container   
+  position: relative
+
+  form   
+    margin-top: 9px
+
+    button.red-button   
+      float: right
+      margin-right: 0px
+      font-size: 20px
+      padding: 10px 5px
+      height: 40px !important
+      text-decoration: none
+      cursor: pointer
+      letter-spacing: 1px
+
+#invalid_post_tooltip
+  display: none
+
+#post-box
+  width: 340px
+  
+//#post-box.question
+  width: 330px !important
+  input, textarea
+    width: 312px !important
+  textarea
+    height: 110px
+    
+.modal-border.post-box.first 
+  width: 330px!important
+  padding: 25px
+    //bottom: 16px
+
+#post-box div.form-container button.red-button
+  width: 140px
+  height: 40px !important
+  float: right
+  //margin-top: 16px
+  cursor: pointer
+
+#post-box div.form-container div.categorize input.rounded_corners
+  float: right
+  width: 360px
+
+#post-box div.form-container div.categorize p
+  float: left
+  margin-top: 12px
+  
+//form.create-announcement
+  width: 320px
+.new-announcement
+  span.divider
+    margin-top: 15px !important
+    margin-bottom: 0px !important
+  h3
+    font-family: $heading
+    font-size: 15px
+    color: $blue
+    text-shadow: 1px 1px 1px white
+    border-bottom: 1px solid #c5c2b5
+    padding-bottom: 5px
+  ul 
+    padding: 0px
+    li
+      padding: 3px 8px
+      text-decoration: none
+      font-family: $heading
+      color: $blue
+      text-shadow: none
+      font-size: 18px!important
+      font-weight: bold
+      padding-top: 7px
+      padding-bottom: 7px
+      padding-left: 42px
+      background-image: url("shared/redesign/announcements-icon.png")   
+      background-repeat: no-repeat    
+      line-height: 20px
+      width: 210px
+      height: 18px
+      text-shadow: 1px 1px 0px white
+      background-position: top left     
+      display: block  
+      overflow:hidden
+      &:hover
+        color: $blue !important
+        background-position: top left !important 
+  p
+    font-family: $heading
+    font-size: 15px
+    line-height: 18px
+    color: #555
+    float: left
+    margin-top: 13px
+    text-shadow: 1px 1px 0px white
+    font-weight: bold

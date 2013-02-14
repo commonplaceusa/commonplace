@@ -1,0 +1,221 @@
+#about
+  .header
+    background: url("shared/redesign/red-bg.png")
+    padding: 13px 0 18px 40px
+    border: 1px solid #741A18
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.25)
+    border-radius: 5px 5px 0px 0px
+    h2
+      color: white
+      font-family: $Yellowtail
+      text-shadow: 3px 3px 0px $blue
+      font-size: 40px
+    ul.nav
+      list-style-type: none
+      li
+        a
+          font-family: $Rokkitt
+          text-decoration: none
+          color: white
+          font-size: 18px
+          padding: 5px 10px
+        &:hover
+          a
+            background-color: #741A18
+            border-radius: 4px
+            box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.25)
+        &:active
+          a
+            background-color: #741A18
+            border-radius: 4px
+            color: #eee
+            box-shadow: inset 0px 1px 8px rgba(0, 0, 0, 0.65), 0px 1px 0px rgba(255, 255, 255, 0.20)
+      li.selected
+        a
+          background-color: #741A18
+          border-radius: 4px
+          box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.25)
+          text-shadow: 0px 2px 1px #333
+
+  .content
+    background: url("shared/redesign/tan-bg.png") repeat
+    background-color: $tan
+    padding: 15px
+    border-radius: 0px 0px 5px 5px
+    box-shadow: 0px 2px 1px black
+    border: 1px solid #fff
+  .about_border
+    padding: 30px
+    border: 3px solid #CFCCC1
+    border-radius: 0px 0px 5px 5px
+    box-shadow: 1px 1px 0px white, inset 1px 1px 0px white
+    .left
+      border-right: 1px solid #d3d1c9
+      a
+        color: $red
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+      h3
+        font-family: $Rokkitt
+        color: $blue
+        font-size: 23px
+        padding-bottom: 20px
+        font-weight: normal
+        text-shadow: 1px 1px 0px #fff
+      p
+        color: #424242
+        font-family: $Rokkitt
+        font-size: 18px
+        line-height: 1.25em
+        text-shadow: 1px 1px 0px #fff
+        padding-right: 20px
+      .highlight
+        color: $blue
+        font-size: 20px
+        font-weight: bold
+      div.section_list
+        border-top: 1px solid #D6D2C2
+        padding-top: 20px
+      h4.headline
+        font-family: $Rokkitt
+        color: $blue
+        font-size: 22px
+        font-weight: bold
+        text-transform: capitalize
+        text-shadow: 1px 1px 0px #fff
+        a
+          color: $blue
+      h4.headline_platform
+        font-family: $Rokkitt
+        color: $red
+        font-size: 26px
+        font-weight: normal
+        text-shadow: 1px 1px 0px #fff
+      .author
+        color: #424242
+        font-size: 18px
+      .author_quote
+        font-size: 18px
+        text-align: right
+        font-weight: bold
+        color: #969488
+      p.quote
+        font-size: 24px
+        line-height: 1.35em
+        font-style: italic
+        color: $blue
+      p.read_more
+        font-weight: bold
+      img.platform_thumb
+        background-color: #D6D2C2
+        padding: 0px 81px 0px 81px
+        text-align: center
+      ul.neighborhood_list
+        li
+          font-family: $Rokkitt
+          font-size: 18px
+          color: #424242
+          background: url("shared/redesign/about-stars.png") no-repeat -420px 2px
+          padding-left: 25px
+
+    .right
+      border-left: 1px solid white
+      padding-left: 29px
+      h3
+        font-family: $Rokkitt
+        color: $blue
+        font-size: 23px
+        font-weight: normal
+        text-align: center
+        padding-bottom: 20px
+        text-shadow: 1px 1px 0px #fff
+      h2
+        font-family: $Yellowtail
+        font-size: 38px
+        color: $red
+        text-align: center
+        font-weight: normal
+        background: url("shared/redesign/about-stars.png") no-repeat center
+        text-shadow: 1px 1px 0px #fff
+      .input_error
+        background: #EEECDF url(/assets/shared/redesign/background.gif) center
+        box-shadow: inset #B5B196 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
+      .input_error::-webkit-input-placeholder
+        color: $red
+      .error
+        font-size: 11px
+        color: #fff
+        font-family: Helvetica, Arial, sans-serif
+        font-weight: bold
+        background: url("shared/redesign/error-bg.png")
+        background-repeat: no-repeat
+        background-position: bottom left
+        padding: 10px 12px 18px 12px
+        line-height: 14px
+        text-align: left
+      .registration
+        input.placeholder, textarea.placeholder
+          color: #555
+        input:-ms-input-placeholder
+          color: #555
+      input
+        padding: 8px
+        font-family: $Rokkitt
+        font-size: 18px
+        color: #131313
+        background: white
+        box-shadow: inset #eaeaea 0px 0px 3px 2px, rgba(255,255,255,1.0) 0px 1px 0px
+        border: 1px solid #dad8cb
+        &:last-child
+        -webkit-font-smoothing: antialiased
+
+      textarea
+        -webkit-font-smoothing: antialiased
+        padding: 8px
+        color: #131313
+        font-family: $Rokkitt
+        font-size: 18px
+        background: white
+        box-shadow: inset #eaeaea 0px 0px 3px 2px, rgba(255,255,255,1.0) 0px 1px 0px
+        border: 1px solid #dad8cb
+        .placeholder
+          color: #555
+
+      button
+        -webkit-font-smoothing: antialiased
+        background: $blue
+        padding: 10px 0
+        letter-spacing: 1px
+        font-family: $Ultra
+        font-size: 20px
+        border: 1px solid #151f28
+        color: white
+        text-transform: uppercase
+        +linear-gradient(color-stops(#2e5274, #1b334a), top)
+        box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+        text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+        cursor: pointer
+        &:hover, &:focus
+          color: #fff
+          +linear-gradient(color-stops(#2e5274, #1b334a), top)
+          text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+          box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+        &:active
+          color: #fff
+          +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+          box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+      .facebook, .leader-button
+        text-align: left
+        a
+          cursor: pointer
+          background: url("shared/redesign/fbreg.png") no-repeat center
+          text-indent: -9999px
+          font-size: 18px
+          text-transform: uppercase
+        p
+          color: #555
+          font-family: $Rokkitt
+          padding-top: 6px
+          font-size: 20px

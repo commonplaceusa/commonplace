@@ -1,455 +1,102 @@
-//= require chosen
-@import core
-@import form
-@import accounts
-@import site_info
-@import feeds
-@import password_resets
-@import shared/buttons
-@import header
-@import footer
-@import date_picker
-@import neutral_notification
-@import "compass/reset"
-@import "compass/css3/gradient"
-@import "compass/css3/pie"
-@import pie
+/**************************************************************************************
+/** Requires self 
+/**************************************************************************************
 
-@import shared/wire
-@import shared/replies
-@import shared/form
-@import shared/modal
-@import shared/markdown
-@import shared/dropkick_selects
-@import shared/feature_switching
-@import shared/sidebar
-
-@import faq_page
-@import discount_page
-@import invite_page
-@import main_page
-@import inbox_page
-@import account_page
-@import find_my_neighbors_page
-@import main_page/profile_card
-
-@import badger
-
-@import placeholder
-
-@import url(//fonts.googleapis.com/css?family=Rokkitt:400,700)
-@import url(http://fonts.googleapis.com/css?family=Ultra)
-@import url(http://fonts.googleapis.com/css?family=Yellowtail)
+= require_self
 
 
-/* Woo colors */
+/**************************************************************************************
+/**  Main Compass extensions
+/**************************************************************************************
 
-$blue: #1b334a
-$dark-blue: #151f28
-$light-blue: #32485c
-$red: #ac322f
-$dark-red: darken($red, 20%)
-$black: #333
-$dark-grey: #888
-$light-grey: #e8e8e8
-$off-grey: #eeecdf
-$search-box: #b7c3cf
-$dark-tan: #bcbbae
-$tan: #F5F3E9
-$light-tan: #FCFAF4
-
-$Ultra: 'Ultra'
-$Yellowtail: 'Yellowtail'
-$Rokkitt: 'Rokkitt'
-
-/* Woo Fonts */
-$heading: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
-$body: Helvetica Neue, Helvetica, Tahoma, serif
+@import "compass"
 
 
+/**************************************************************************************
+/** Base files include overall skinning, resets, global, and foundation styling
+/** These are very generic and overall, no really specific rules should go in here
+/**************************************************************************************
 
-/* Hack to remove Safari's extra padding. Remove if you don't care about pixel-perfection. */
-@media screen and (-webkit-min-device-pixel-ratio:0)
-  .placeholder input, .placeholder textarea
-    color: #555
-    padding: 4px 
+@import "base/reset"
+@import "base/colors"
+@import "base/gradients"
+@import "base/typography"
+@import "base/buttons"
+@import "base/inputs"
+@import "base/dropkick"
+@import "base/mixins"
+@import "base/modals"
+@import "base/chosen"
+@import "base/calendar"
+@import "base/general"
 
+/**************************************************************************************
+/** Layout files are for grids, positioning, widths, "faceless" containers
+/** Prefix these with l for layout, ie l-full-width, l-sidebar, etc
+/**************************************************************************************
 
-/* Woo Shadows */
-$black-shadow: 0px 2px 1px black
-#footer_grad
-  height: 10px
-  width: 100%
-  +background-image(linear-gradient(#ddd,  #efefef))
-footer, #footer
-  +clearfix
-  +sans
-  font-size: 0.8em
-  width: 972px
-  margin: 1em auto
-  color: #333
-  .left_text
-    float: left
-  .right_text
-    float: right
-  a
-    font-weight: bold
-    color: #333
-    text-decoration: none
-    &:hover
-      text-decoration: underline
+//Shared
+@import "layout/header"
 
-.clear
-  clear: both
+//Logged Out
+@import "layout/info"
+@import "layout/about"
+@import "layout/login"
+@import "layout/registration"
+@import "layout/verification"
+@import "layout/tour"
 
-body
-  //background-color: #cee7fe
-  //+serif
-  font-family: $heading
-
-  #sticky-wrapper
-    +pie-clearfix
-    position: relative
-    min-height: 100% // real browsers
-    height: auto !important // real browsers
-    height: 100% // IE6: treaded as min-height
-
-    footer, #footer
-      width: 100%
-      position: absolute
-      bottom: 0
-
-  #main
-    +pie-clearfix
-    margin: 10px auto 0
-
-  footer, #footer
-    width: auto
-    background: #1b334a
-    height: 30px
-    border-top: 4px solid #fff
-    padding: 20px 0 0
-    margin: 0
-    color: #fff
-    #cont
-      +serif
-      width: 980px
-      margin: 0 auto
-      font-size: 12px
-      color: #3b6085
-      a
-        color: #3b6085+#222
-        font-weight: normal
-      .right_text
-        font-size: 30px
-        line-height: 12px
-        a
-          display: inline-block
-          vertical-align: middle
-          margin-top: -8px
-          margin-left: 3px
-          font-size: 12px
-
-  #wrap
-    +clearfix
-    width: 972px
-    margin: auto
-    color: $baseText
-
-  #say-something
-    width: 485px
-  #community-profiles
-    width: 487px
-    margin-top: 10px
-    +border-radius(5px)
-  #whats-happening
-    width: 485px
-    +border-bottom-radius(5px)
-
-  #information
-    +single-box-shadow(#666, 0px, 2px, 7px, -2px)
-    
-  form.crop
-    margin: auto
-    float: none
-    padding: 25px
-    background-color: #ac322f
-    +border-radius(4px)
-    
-    .jcrop-holder
-      margin: auto
-      
-    input[type=image]
-      margin: 20px auto 0
-      display: block
-
-body.application.logged_out
-  background-image: none
-  background-color: #cee7fe
-  background-attachment: fixed
-  +serif
-
-  header, #header
-    text-align: center
-    background: #1b334a
-    border-bottom: 4px solid #fff
-    height: 31px
-    width: 100%
-    #logo
-      margin-top: 10px
-      text-decoration: none
-      text-align: left
-      color: #444545
-      font-size: 30px
-      line-height: 30px
-      span
-        color: #b7430c
-        font-size: 25px
-        position: relative
-        bottom: 1px
-      img
-        vertical-align: bottom
-
-    #nav_wrapper
-      margin: 0px auto 20px
-      width: 976px
-      text-align: left
-    nav, .nav
-      padding: 8px 0 12px 0
-      float: right
-      display: inline
-      a, .disabled_link
-        vertical-align: top
-        font-size: 11px
-        padding: 5px 5px
-        color: $baseText + #222
-        font-weight: bold
-        +sans
-        text-decoration: none
-      a.selected_nav
-        color: #3b6085
-      a:hover
-        color: #3b6085
-      div.user-feeds
-        display: inline
-        position: relative
-        padding-top: 5px
-        height: 22px
-        vertical-align: top
-        h4
-          font-size: 11px
-          color: $baseText + #222
-          font-weight: bold
-          height: 14px
-          width: 66px
-          +sans
-          display: inline
-          vertical-align: top
-          padding: 5px
-            right: 20px
-          background-image: image-url('nav-down-arrow.png')
-          background-repeat: no-repeat
-          background-position: 48px
-          border: 1px solid transparent
-        ul
-          display: none
-          top: 25px
-          left: 0px
-          position: absolute
-          z-index: 1
-          width: 150px
-          background-color: white
-          border: 1px solid #3b6085
-          +border-bottom-radius(5px)
-          +border-top-right-radius(5px)
-          li
-            &:first-child
-              +border-top-right-radius(5px)
-            &:last-child
-              +border-bottom-radius(5px)
-              border-bottom: 0px
-            &:hover
-              background-color: #eee
-            padding: 5px 5px 3px
-            border-bottom: 1px solid #3b6085
-            a
-              display: block
-
-        &:hover
-          h4
-            +border-top-radius(5px)
-            border: 1px solid #3b6085
-              bottom-color: #fff
-            color: #3b6085
-            position: relative
-            z-index: 4
-            background-color: white
-          ul
-            display: block
-    #user_sign_in
-      float: right
-      position: relative
-      margin-top: 2px
-      li
-        margin: 0 5px
-        +inline-block
-        color: #BCD5EC
-        font-size: 13px
-        font-weight: 300
-
-      #sign_in_button
-        background: image-url("nav-down-arrow.png") no-repeat 95% 40% #e0e0e0
-        padding: 2px 27px 3px 10px
-        line-height: 22px
-        position: relative
-        color: #1B334A
-        font-size: 13px
-        z-index: 100
-        cursor: pointer
-        border: 1px solid #ccc
-        +border-radius(5px)
-        &.open
-          border-bottom: 0px
-          +border-radius(5px 5px 0px 0px)
-      #sign_in_form
-        position: absolute
-        right: -1px
-        top: 15px
-
-    form.user
-      position: absolute
-      right: 1px
-      top: 18px
-      z-index: 90
-      width: 200px
-      background: #fff
-      border: 1px solid #ccc
-      +border-radius(5px 0px 5px 5px)
-      padding: 10px 5px 10px 15px
-      display: none
-      .inputs, .buttons
-        +inline-block
-        li
-          margin: 0px 0px 0px 10px
-          display: block
-          width: 180px
-          padding:  2px 0px 5px 0px
-          text-align: center
-
-          label
-            display: block
-            padding: 4px 2px
-            color: #1b334a
-            +sans
-            text-align: left
-            font-weight: bold
-            font-size: 11px
-
-          input[type=text], input[type=password]
-            +border-radius(5px)
-            width: 165px
-            outline: none
-            padding: 5px 7px
-            font-size: 0.9em
-            +box-shadow(#ccc 1px 1px 2px 0 inset)
-            margin: 0
-            border: 1px solid #ddd
-      #facebook
-        padding-top: 5px
-        +inline-block
-        float: left
-        margin-left: 58px
-        margin-top: 2px
-      fieldset.buttons
-        margin-top: 3px
-        .commit
-          float: right
-          width: 60px
-          vertical-align: middle
-          padding-bottom: 2px
-          +inline-block
-
-    .forgot-password
-      text-align: right
-      display: block
-      padding: 3px 15px 10px
-      font-size: 12px
-      color: #3b6085
-    ul.errors li
-      margin: 0px
-      text-align: right
-      padding: 0 10px 10px
-      color: #b7403c
-      font-size: 13px
-    #fb-login
-      position: relative
-      top: -4px
-      border: 1px solid #314A63
-      +border-radius(5px)
-      background: #3B6085
-      color: white
-      padding: 5px 5px
-      +box-shadow(inset 0px -1px 2px #335170, inset 0px 1px 0px #5883AD, 1px 1px 2px #999)
-      font-family: Rockwell, Georgia, serif
-      font-size: 11px
-      +text-shadow(#454545 1px 1px 0px)
-
-  footer, #footer
-    clear: both
-    background: transparent image-url('footer-houses.png') repeat-x center bottom
-    border: none
-    padding: 200px 0 10px
-    height: 20px
-    margin: 0
-    color: #ADD794 !important
-    .left_text
-      color: #ADD794 !important
-    .right_text
-      color: #ADD794 !important
-    a
-      color: #BFF4A0 !important
+//Logged In
+@import "layout/wire"
+@import "layout/replies"
+@import "layout/sidebar"
+@import "layout/postbox"
+@import "layout/inbox"
+@import "layout/settings"
+@import "layout/share"
+@import "layout/feed-page"
+@import "layout/feed-registration"
+@import "layout/personal-feed"
+@import "layout/account-page"
+@import "layout/faq"
 
 
-input.placeholder, textarea.placeholder
-  color: #555555 !important
+/**************************************************************************************
+/** Module files are reusable, context-independant
+/** Prefix these with m for module, ie m-box, m-dialog, m-horizontal-list
+/**************************************************************************************
 
-input:-moz-placeholder
-  color: #555555 !important
+//Shared
+@import "modules/header"
 
-textarea:-moz-placeholder
-  color: #555 !important
+//Logged Out
 
-#header #nav_wrapper .nav input:-moz-placeholder
-  color: white !important
+@import "modules/registration"
+@import "modules/tour"
 
-#header #nav_wrapper .nav input:-webkit-placeholder
-  color: white !important
+//Logged In
+@import "modules/wire"
+@import "modules/replies"
+@import "modules/sidebar"
+@import "modules/postbox"
+@import "modules/share"
+@import "modules/feed-page"
+@import "modules/feed-registration"
+@import "modules/personal-feed"
+@import "modules/faq"
 
 
-#civicProfile div.civic_right ul.chzn-choices li.search-field input
-  color: #555
+/**************************************************************************************
+/** Non-Modular files are overrides, page mentality, glue code, backend dev sandbox ;)
+/**************************************************************************************
 
-.notification
-  position: fixed
-  top: 200px
-  margin: 0 220px
-  width: 500px
-  background-color: white
-  padding: 5px
-  border: 5px solid #1B334A
-  z-index: 3000
-  +border-radius(5px)
-  text-align: center
+//Logged Out
+@import "non-modular/info"
+@import "non-modular/about"
+@import "non-modular/login"
+@import "non-modular/verification"
 
-.chzn-container
-  margin-top: 5px
-    
-select[multiple]
-  width: 365px
-
-form.formtastic.user
-  label
-    margin-top: 8px
-    width: 150px
-
-+sticky_footer(54px, "#sticky-wrapper", "#sticky-footer", "#footer")
+//Logged In
+@import "non-modular/inbox"
+@import "non-modular/account-page"
+@import "non-modular/settings"

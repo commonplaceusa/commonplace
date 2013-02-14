@@ -1,0 +1,110 @@
+body.account
+  background-color: #eee
+
+  #delete-account-form
+    
+    p 
+      padding: 20px
+      background-color: #ddd
+    .controls
+      text-align: center
+
+        
+  #account-edit
+    font-family: Rockwell, Georgia, Times, "Times New Roman", serif
+    font-weight: thin
+    +lightbox
+    h1
+      color: #3b6085
+      line-height: 1.2
+      font-size: 24px
+      padding: 0 20px
+      text-align: center
+      +text-shadow(#bfc8cf 1px 1px 1px)
+    
+    .settings
+      background-color: #AC322F
+      color: white
+      +border-radius(5px)
+      
+      a
+        text-decoration: none
+        text-align: center
+        color: white
+        &:hover
+          text-decoration: underline
+      
+      > li
+        padding: 5px
+        &:hover
+          background-color: #8f2927
+          
+      .get-posts
+        li
+          font-size: 13px
+          &:hover
+            text-decoratoin: underline
+          input 
+            padding: 0 
+
+      .avatar
+        text-align: center
+        font-family: Helvetica, sans-serif
+        font-size: 14px
+    
+        img
+          +border-radius(2px)
+    
+        .avatar-controls 
+    
+          a 
+            background-color: #555
+            color: white
+            font-weight: bold
+            padding: 5px
+            border-left: 1px solid #888
+    
+            &:first-child
+              border-left: 0px
+              +border-left-radius(5px)
+    
+            &:last-child
+              +border-right-radius(5px)
+      
+    .profile
+      
+      label, input.normal, textarea
+        color: #444545
+        padding: 0px 3px
+        font-size: 18px
+        line-height: 18px
+        +border-radius(5px)
+        +box-shadow(#eee 1px 1px 3px 0 inset)
+      label 
+        padding: 5px 0
+
+      input.normal, textarea 
+        padding: 7px 10px
+        
+    .controls
+      text-align: right
+      
+        
+    .error, .success
+      border: 2px solid
+      +border-radius(3px)
+      color: #363636
+      padding: 5px
+      font-family: Helvetica, Arial, sans-serif
+      text-align: center
+      font-size: 14px
+      
+    .error
+      background-color: #f4e15f
+      border-color: #ffe534
+      
+    .success
+      background-color: #9FF781
+      border-color: #04B404
+    
+    

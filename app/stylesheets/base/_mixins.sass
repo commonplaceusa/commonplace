@@ -1,0 +1,81 @@
+@mixin lightbox
+  background-color: #ebebeb
+  +border-radius(15px)
+  border: 10px solid #c5c5c5
+  +box-shadow($default-box-shadow-color 0 0 $default-box-shadow-blur 0 inset)
+  padding: 25px
+
+@mixin redlightbox
+  background-color: #ac322f
+  +border-radius(4px)
+  padding: 24px
+  box-shadow: 0 0 18px 4px #f6fbeb
+  -webkit-box-shadow: 0 0 18px 4px #f6fbeb
+  -moz-box-shadow: 0 0 18px 4px #f6fbeb
+
+@mixin styled-item($color)
+  .header .header_text span.author
+    color: $color
+  a .reply_count
+    color: $color
+
+@mixin styledBox
+  +box-shadow($lightestGray 1px 1px 3px)
+  +border-radius($defaultRadius)
+  border: 1px solid $lightGray
+  background: $itemBackground + #020202
+  +background-image(linear-gradient($itemBackground + #060606, $itemBackground))
+
+@mixin starBullet
+  margin: 0 3px 15px 0px
+  background: image-url('bullet-star.png') 
+  background-position: 0px 0px 
+  background-repeat: no-repeat
+  line-height: 1.5
+  font-weight: normal
+
+@mixin sans
+  font-family: Helvetica, Arial, Verdana, sans-serif
+
+@mixin serif
+  font-family: Georgia, Times, serif
+  font-family: Rockwell, Georgia, Times, "Times New Roman", serif
+
+@mixin styledInput
+  height: 14px
+  padding: 4px
+  border: 1px solid $mediumGray
+  @include sans
+  +border-radius(5px)
+
+@mixin styled-button
+  font-size: 1em
+  cursor: pointer
+  +border-radius(7px)
+  +serif
+  padding: 4px 7px
+  background-color: $offWhite
+  border: 1px solid $lightGray
+  &:hover 
+    border-color: #888
+
+@mixin seam
+  clear: both
+  display: block
+  height: 0px
+  border-top: 1px solid #cfccc1
+  border-bottom: 1px solid white
+
+@mixin input
+  font-family: Helvetica, Arial, sans-serif
+  font-size: 14px
+  color: #888
+  background: white
+  border: none
+  width: 288px
+  @include border-radius(4px)
+  padding: 10px
+  margin: 0 0 10px 0
+  resize: none
+  -webkit-font-smoothing: antialiased
+  @include box-shadow(0 0 0 1px #8b2324, 2px 2px 5px #ccc inset)

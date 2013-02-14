@@ -1,0 +1,51 @@
+.red-button
+  border-radius: 5px
+  color: #fff
+  text-shadow: 0px -1px 0px #64100D
+  font-weight: bold
+  font-family: $heading
+  @include background(linear-gradient(top center, #d0413d, #ac322f))
+  display: block
+  font-size: 21px
+  text-decoration: none
+  border: 1px solid
+  border-color: #ac322f
+  box-shadow: inset 0px 1px 0.5px #e28986
+  padding: 15px
+  behavior: url("/assets/PIE.htc")
+    top: 8px
+    bottom: 16px
+  &:hover, &:focus
+    color: #fff
+    @include background(linear-gradient(top center, #ee5a56, #b53633))
+    box-shadow: 0px 2px 4px #adab9f
+  &:active
+    color: #fff
+    @include background(linear-gradient(bottom center, #d64541, #ac322f))
+    text-shadow: 0px 1px 0px #64100D
+
+@mixin red-button 
+  border-radius: 5px
+  color: #fff
+  text-shadow: 0px -1px 0px #64100D
+  font-weight: bold
+  font-family: $heading
+  @include background(linear-gradient(top center, #d0413d, #ac322f))
+  display: block
+  font-size: 21px
+  text-decoration: none
+  border: 1px solid
+  border-color: #ac322f
+  box-shadow: inset 0px 1px 0.5px #e28986
+  padding: 15px
+  behavior: url("/assets/PIE.htc")
+    top: 8px
+    bottom: 16px
+  &:hover, &:focus
+    color: #fff
+    @include background(linear-gradient(top center, #ee5a56, #b53633))
+    box-shadow: 0px 2px 4px #adab9f
+  &:active
+    color: #fff
+    @include background(linear-gradient(bottom center, #d64541, #ac322f))
+    text-shadow: 0px 1px 0px #64100D

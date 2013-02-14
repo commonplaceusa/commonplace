@@ -1,0 +1,92 @@
+body.inbox, body.feed_inbox, body.outbox
+  margin: 0
+  .end
+    margin: 0px 10px 10px
+    .loading
+      display: none
+      height: 50px
+  a.more
+    display: block
+    margin: 0px 10px 10px
+
+  #main
+    width: 800px
+    margin: 65px auto 0px auto
+    position: relative
+
+  #inbox-nav
+    width: 100px
+    margin-top: 20px
+    float: left
+    a 
+      display: block    
+
+  #inbox
+    width: 598px
+    margin-top: 20px
+    float: left
+    
+    .more
+      margin-top: 10px
+
+    div#message-list.loading
+      height: 50px
+
+    ul.list
+      +min-height(500px)
+      .clear
+        clear: both
+    
+      .replies-area
+        margin-top: 10px
+        .replies
+          .reply-list
+            width: 100%
+            .reply-item
+              margin-right: 15px
+              .reply-info
+                margin-left: 47px
+          img.avatar
+            width: 50px
+            height: 50px
+          textarea
+            width: 455px
+            height: 43px
+            margin-bottom: 10px
+          .author
+            display: block
+            float: none
+            margin-bottom: 0px
+          .body
+            display: block
+            margin-bottom: 5px
+          .time
+          .reply-arrow
+            left: 25px
+          .ts-text
+            display: none
+          .thank-share
+            display: none
+          .submit-c
+            clear: both
+
+        .main-message
+          img.avatar
+            float: left
+            margin-right: 15px
+    
+          .corner
+            float: right
+    
+          h3
+            margin-bottom: 10px
+    
+    
+          .date
+            margin-bottom: 5px
+    
+          .body
+            li
+              margin-left: 10px
+            p, ul, ol, h1, h2, h3, h4, h5, h6
+              margin-bottom: 10px

@@ -1,0 +1,93 @@
+body.inbox, body.feed_inbox, body.outbox
+  background-color: #eee
+  .end
+    .loading
+      color: #333
+      text-align: center
+      background-image: image-url("loading.gif")
+      background-position: bottom center
+      background-repeat: no-repeat
+  a.more
+
+  #inbox-nav
+    font-family: Rokkitt, Rockwell, Helvetica, sans-serif
+    font-size: 18px
+    padding-left: 30px
+    padding-right: 30px
+    
+    a 
+      +border-radius(3px)
+      padding: 5px 20px
+      color: #1b334a
+      text-decoration: none
+    
+    .current
+      background-color: #ac322f
+      color: white
+
+  #inbox
+    border: #bbb
+    +border-radius(5px)
+    border: 1px solid #bbb
+    background-color: white
+    
+    div#message-list.loading
+      color: #333
+      text-align: center
+      background-image: image-url("loading.gif")
+      background-position: bottom center
+      background-repeat: no-repeat
+    h2
+      background-color: #f2f2f2
+      color: #67769e
+      text-align: center
+      padding: 6px
+      border-bottom: 1px solid #d5d6d6
+      +border-top-radius(5px)
+      font-family: Helvetica, Arial, sans-serif
+      font-size: 14px
+    
+    ul.list
+      +border-bottom-radius(4px)
+    
+      .message-item
+        border-bottom: 1px solid #bbb
+        padding: 15px
+        
+        .replies-area
+          padding-left: 28px
+
+          .author
+            font-size: 14px
+          .body
+            font-size: 14px
+          .time
+            font-size: 14px
+
+        .main-message
+          img.avatar
+            border-radius: 5px
+    
+          .corner
+            color: #bab9bf
+            font-size: 18px
+    
+          h3
+            color: #af473e
+            font-size: 24px
+            font-weight: bold
+            font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
+    
+          .messagable
+            color: #ad312f
+            text-decoration: none
+    
+          .date
+            color: #888
+            font-size: 16px
+    
+          .body
+            color: #333
+            line-height: 22px
+            font-family: Helvetica, Arial, sans-serif
+            font-size: 15px

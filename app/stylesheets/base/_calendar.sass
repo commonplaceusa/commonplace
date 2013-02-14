@@ -1,0 +1,82 @@
+.ui-datepicker
+  border: 1px solid $lightGray
+  font-family: $heading
+  display: none
+  background-color: white
+  width: 240px
+  box-shadow: 0px 2px 1px #000
+  +border-radius(5px)
+
+  .ui-datepicker-header
+    //background-color: $calendarTopColor
+    background-color: #ad312f
+    +border-radius(5px)
+    padding: 7px
+    font-size: 14px
+    margin: 5px
+    color: white
+    .ui-datepicker-prev
+      float: left
+      margin-top: -3px
+      margin-left: -1px
+    .ui-datepicker-next
+      float: right
+      margin-top: -3px
+      margin-right: -1px
+    .ui-datepicker-next, .ui-datepicker-prev
+      font-size: 12px
+      color: white
+      cursor: pointer
+      padding: 3px 5px
+      color: #f19a98
+      +border-radius(3px)
+      &:hover
+        text-decoration: none
+        //background-color:  $calendarTopColor + #222
+        background-color: #902a29
+        color: #fff
+    .ui-datepicker-title
+      text-align: center
+    .ui-datepicker-month
+    .ui-datepicker-year  
+  .ui-datepicker-calendar
+    border-collapse: collapse
+    margin: 5px
+    +sans
+    font-size: 12px
+    td, th
+      width: 28.5px
+      padding: 4px      
+      text-align: center
+    td
+      border: 2px solid white
+    th
+      font-weight: bold
+      font-size: 12px
+      color: #424242
+      background-color: $lightGray
+    td
+      &:hover
+        background-color: #eee
+    .ui-datepicker-week-end
+    .ui-datepicker-today
+      background-color: #ddd
+      a
+        color: #888 !important
+    .ui-datepicker-current-day
+      background-color: #ad312f
+      a
+        color: #fff !important
+    .ui-state-default
+      +inline-block
+    a.ui-state-default
+      //text-decoration: underline
+      color: #ad312f
+    .ui-datepicker-other-month
+      color: $mediumGray
+      &:hover
+        background-color: white
+      &.ui-datepicker-today
+        &:hover
+          border: 1px solid $lightGray
+  

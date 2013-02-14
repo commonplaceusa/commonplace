@@ -1,0 +1,170 @@
+#main.about
+  background: none
+  .community-name
+    padding-left: 20px
+    border-style: none
+    h1
+      background: url("shared/redesign/logo2.png") left no-repeat
+      font-weight: normal
+      font-size: 33px
+      text-indent: -9999px
+    span
+      font-size: 28px
+      text-shadow: black 1px 1px 1px
+      font-weight: normal
+      font-family: $Rokkitt
+      color: $red
+
+#registration_modal
+  background:none
+
+.registration1
+  .left 
+    h1
+      color: #fff
+      font-family: $Yellowtail
+      background: url("shared/redesign/red-bg.png")
+      text-shadow: 3px 3px 0px $blue
+      font-size: 42px
+      padding: 20px
+      padding-right: 28px
+    .tab-description
+      padding: 0px
+    p
+      color: #1c344b
+      font-family: $Rokkitt
+      background: #fff
+      padding: 7px
+        left: 15px 
+        right: 15px
+      font-size: 26px
+      line-height: 38px
+      &:last-child
+        padding-top: 0px
+    p.first
+      padding-top: 15px
+    .learn-more
+      text-decoration: none
+      color: $red
+      cursor: pointer
+      &:hover
+        text-decoration: underline
+
+    .navbar
+      background: url("shared/redesign/blue-bg.png")
+      ul
+        padding-left: 13px
+        list-style-type: none
+        li 
+          color: white
+          font-family: $Rokkitt
+          font-size: 15px
+          text-shadow: 1px 1px 1px black
+          a 
+            text-decoration: none
+            color: white
+            font-size: 17px
+            padding-left: 0px
+            font-weight: bold
+            &:hover 
+              color: $red
+          a.selected
+            color: $red
+  .right 
+    -webkit-perspective: 800px
+    #redbox
+      text-align: center
+      background: $red url("shared/redesign/red-bg.png")
+      .input_error
+        background: #EEECDF url(/assets/shared/redesign/background.gif) center
+        box-shadow: inset #B5B196 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
+      .input_error::-webkit-input-placeholder
+        color: $red
+      
+      .error
+        font-size: 11px
+        color: #fff
+        font-family: Helvetica, Arial, sans-serif
+        font-weight: bold
+        background: url('shared/redesign/error-bg.png')
+        background-repeat: no-repeat
+        background-position: bottom left
+        padding: 10px 12px 18px 12px
+        line-height: 14px
+        text-align: left
+      h2
+        font-size: 42px
+        background: url("shared/redesign/stars.png") no-repeat center
+        text-align: center
+        font-family: $Yellowtail
+        text-shadow: 3px 3px 0px $blue
+        font-weight: normal
+        color: #fff
+        padding-bottom: 15px
+      input
+        padding: 8px
+        font-family: $Rokkitt
+        font-size: 18px
+        background: #fff
+        border: 1px solid #821916
+        box-shadow: inset #C8C8C8 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
+        input::-webkit-input-placeholder
+          color: #555
+        input:-moz-placeholder
+          color: #555
+    .registration 
+      button 
+        -webkit-font-smoothing: antialiased
+        background: $blue
+        padding: 10px 0
+        letter-spacing: 1px
+        font-family: $Ultra
+        font-size: 20px
+        border: 1px solid #151f28
+        color: white
+        text-transform: uppercase
+        +linear-gradient(color-stops(#2e5274, #1b334a), top)
+        box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+        text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+        cursor: pointer
+        &:hover, &:focus
+          color: #fff
+          +linear-gradient(color-stops(#2e5274, #1b334a), top)
+          text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+          box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+        &:active
+          color: #fff
+          +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+          box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+    .facebook
+      text-align: left
+      a 
+        cursor: pointer
+        background: url("shared/redesign/fbreg.png") no-repeat center
+        text-indent: -9999px
+        font-size: 18px
+        text-transform: uppercase
+        &:hover
+          box-shadow: 0px 0px 8px rgba(255,255,255,.35)
+        &:active
+          box-shadow: none
+      p
+        color: white
+        font-family: $Rokkitt 
+        padding-top: 6px
+        font-size: 18px
+
+
+
+#user_sign_in div.community-name span.community
+  color: $red
+  font: 18px $Rokkitt, Rockwell, Arial, sans-serif
+  
+/* Default Community */
+
+.right.default
+  #redbox
+    h2
+      background: url('shared/redesign/stars-3.png') no-repeat -35px 10px
+

@@ -1,0 +1,60 @@
+textarea::-webkit-input-placeholder
+  color: #555
+textarea:-moz-placeholder
+  color: #555
+textarea.placeholder
+  color: #555
+
+input.placeholder, textarea.placeholder
+  color: #555
+input:-ms-input-placeholder
+  color: #555
+input::-webkit-input-placeholder
+  color: #555
+input:-moz-placeholder
+  color: #555
+
+
+#search-header::-webkit-input-placeholder
+  color: #FCFAF4 !important
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.65)
+  behavior: url("/assets/PIE.htc")
+
+#search-header
+  &:focus::-webkit-input-placeholder
+    color: white !important
+    text-shadow: none
+    behavior: url("/assets/PIE.htc")
+    
+#directory_search
+  input 
+    width: 183px
+    border-radius: 0px 0px 5px 5px
+    box-shadow: white 0px 1px 0px
+    margin-top: -1px
+    border-top: none
+    border: 1px solid #d5d1c8
+    padding-left: 46px
+    font-size: 17px
+    text-shadow: 1px 1px 0px white
+    background-color: #fff
+    background-image: url("shared/redesign/search-icon.png")
+    background-position: 11px 9px
+    background-repeat: no-repeat
+    &:hover, &:focus
+      outline: none
+      border: 1px solid #d5d1c8
+      color: #131313
+      background-color: white
+      box-shadow: inset #EAEAEA 0px 0px 3px 2px, white 0px 1px 0px
+      -webkit-input-placeholder: #ccc !important
+
+.wire 
+  input.placeholder, textarea.placeholder
+    color: #888
+  input:-ms-input-placeholder
+    color: #888
+  input::-webkit-input-placeholder
+    color: #888
+  input:-moz-placeholder
+    color: #888
