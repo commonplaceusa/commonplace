@@ -5,6 +5,7 @@ CommonPlace.shared.HeaderNav = CommonPlace.View.extend(
 
   events:
     "keyup #search-header": "search"
+    "click .feed-link": "goToFeed"
 
   initialize: ->
     @updateUnreadMessages()
@@ -21,6 +22,12 @@ CommonPlace.shared.HeaderNav = CommonPlace.View.extend(
     @query = @$("#search-header").val()
     @eventAggregator.query = @query
     @eventAggregator.trigger("searchBox:submit", @query)
+
+  goToFeed: (e) ->
+    e.preventDefault() if e
+    slug = CommonPlace.community.get("slug")
+    id = e.currentTarget.id
+    app.showFeedPage(slug, id)
 
   slug: ->
     if CommonPlace.account.isAuth()

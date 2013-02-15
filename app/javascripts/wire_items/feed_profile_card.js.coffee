@@ -4,9 +4,20 @@ CommonPlace.wire_item.FeedProfileCard = CommonPlace.wire_item.ProfileCard.extend
   className: "profile-card"
 
   events:
+    "click .editlink": "edit"
     "click .message-link": "messageUser"
     "click .subscribe": "subscribe"
     "click .unsubscribe": "unsubscribe"
+
+  canEdit: ->
+    CommonPlace.account.canEditFeed @model
+
+  edit: (e) ->
+    e.preventDefault() if e
+    formview = new FeedEditFormView({
+      model: @model
+    })
+    formview.render()
 
   site_url: ->
     @model.get "website"

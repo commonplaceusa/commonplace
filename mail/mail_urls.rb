@@ -198,7 +198,7 @@ module MailUrls
   end
 
   def feed_profile(feed)
-    url("/pages/#{feed.slug}")
+    community_url("/pages/#{feed.slug}")
   end
 
   def inbox_url
