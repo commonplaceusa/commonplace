@@ -1,6 +1,7 @@
 #wire-overlay 
   background-color: rgba(0,0,0,0.25)
   background-attachment: fixed
+  display: none
 
 #right-column 
   #community-resources
@@ -13,9 +14,33 @@
           text-align: center 
         .wire-item 
           background: white
-          border-radius: 5px
-          box-shadow: 0px 1px 1px rgba(0,0,0,0.50)
-          a 
+          //box-shadow: 0px 1px 3px rgba(0,0,0,0.65)
+          -moz-box-shadow: 1px 1px 4px rgba(0,0,0,0.4)
+          -webkit-filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.4))
+          filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.4))
+          padding: 5px
+          position: relative
+          &:after, &:before
+            left: 100%
+            border: solid transparent
+            content: " "
+            height: 0
+            width: 0
+            position: absolute
+            pointer-events: none
+          &:after
+            border-color: rgba(255, 255, 15, 0)
+            border-left-color: #ffffff
+            border-width: 10px
+            top: 25px
+            margin-top: -10px
+          &:before
+            border-color: rgba(255, 255, 255, 0)
+            border-left-color: #ffffff
+            border-width: 11px
+            top: 25px
+            margin-top: -11px
+          a
             text-decoration: none
           .wire-top
             h3
@@ -73,17 +98,16 @@
               font-weight: normal
               text-shadow: none
               line-height: 22px
+              margin-bottom: 3px
               a 
                 color: #333
                 cursor: pointer
                 &:hover
                   text-decoration: none
-            p.author
-              font-size: 13px
-              color: $dark-grey
-              font-weight: bold
-              a
+            p
+              a, a.author, a.wire_filter
                 color: #333
+                font-weight: bold
                 cursor: pointer
                 &:hover
                   color: $red
@@ -101,7 +125,7 @@
               background-size: cover
               background-repeat: no-repeat
               background-position: center center
-              border-radius: 5px
+              border: 4px solid white
             p.venue, p.address
               margin-bottom: 5px
               span.bold
@@ -160,10 +184,10 @@
               a:active
                 color: $red
               li
-                border-right: 1px dotted
+                //border-right: 1px dotted
                 border-color: #ddd
                 font: bold 12px $body
-                padding: 9px 12px 9px 10px
+                padding: 9px 10px
                 cursor: pointer
                 &:first-child
                   padding-left: 0px
@@ -176,15 +200,14 @@
                   background-image: image-url("shared/redesign/post-action-icons.png")
 
               li.reply-link
+                color: $red
                 .icon
-                  background-position: -15px -27px
+                  background-position: -15px 0px
                 &:hover, &:focus, &:active
-                  color: $red
+                  color: $dark-grey
                   .icon 
-                    background-position: -15px 0px
+                    background-position: -15px -27px
               li.message-link
-                border-right: 1px dotted
-                border-color: #ddd
                 .icon 
                   background-position: 0px -30px
                 &:hover, &:focus, &:active

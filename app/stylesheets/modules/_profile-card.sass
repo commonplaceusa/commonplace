@@ -1,0 +1,139 @@
+.profile-card
+  background-image: url(shared/redesign/tan-bg.png)
+  overflow: none
+  background-color: #f5f3e9
+  border: 1px solid #fff
+  color: #333
+  margin-bottom: 13px
+  padding: 15px
+  width: 543px
+  display: inline-block
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5)
+  font-family: $heading
+  behavior: url("/assets/PIE.htc")
+  span.divider
+    margin-bottom: 30px
+    float: left
+    width: 100%
+    height: 2px
+    background-color: #d5d1c8
+    border-bottom: 1px solid #fff 
+  .left 
+    float: left 
+    width: 100px
+    .avatar-container 
+      width: 100px
+      height: 100px
+      //border-radius: 5px
+      box-shadow: 1px 1px 0px #fff, inset 1px 1px 2px rgba(0,0,0,0.25)
+  .red-button, .blue-button, .grey-button
+    font-size: 11px
+    padding: 5px
+    font-family: $body
+    color: white
+    height: auto
+    float: left
+    margin-right: 15px
+    margin-top: 5px
+    line-height: 16px
+    text-align: center
+    width: 89px
+  .unmeet, .unsubscribe, .just-met
+    @include background(linear-gradient(top center, #f4f1ea, #dcd9d0))
+    border: 1px solid #d5d1c8
+    color: #888
+    text-shadow: 1px 1px 0px white !important
+    box-shadow: 0px 1px 0px #fff, inset 0px 1px 0px #fff
+    &:hover
+      @include background(linear-gradient(top center, #FAF8F2, #E3E0D5))
+      color: white
+    &:active
+      @include background(linear-gradient(top center, #dcd9d0, #f4f1ea))
+      color: #bbb !important
+  .just-met
+    cursor: default
+    &:hover, &:active
+      @include background(linear-gradient(top center, #f4f1ea, #dcd9d0))
+    &:active
+      color: #888 !important
+          
+          
+
+  .right 
+    float: right 
+    width: 426px
+    h2, h2 a
+      font-size: 36px
+      color: $red
+      font-family: $Yellowtail
+      text-shadow: 1px 1px 0px white
+      margin-top: -2px
+    .stat-bar
+      ul 
+        @include background(linear-gradient(top center, #f4f1ea, #dcd9d0))
+        border: 1px solid #d5d1c8
+        border-radius: 4px
+        //height: 54px
+        margin-top: 20px
+        box-shadow: 0px 1px 0px #fff, inset 0px 1px 0px #fff
+        display: table
+        width: 100%
+        li
+          //float: left
+          //min-width: 60px
+          //margin-top: 3px 
+          //margin-bottom: 3px
+          text-align: center
+          font-family: $heading
+          border-right: 1px solid #d5d1c8
+          border-left: 1px solid #fbfaf7
+          //height: 43px
+          padding: 4px 10px
+          //cursor: pointer
+          display: table-cell
+          vertical-align: middle
+          //width: auto
+          //display: inline-block
+          &:first-child 
+            border-left: none
+          &:last-child 
+            border-right: none
+          span.big
+            color: $red
+            font-size: 20px
+            text-shadow: 1px 1px 0px white
+          span.little 
+            color: #333
+            clear: both
+            display: block
+            font-size: 16px
+            text-shadow: 1px 1px 0px white
+          //&:hover 
+            span.little 
+              color: $red
+          //&:active
+            span.big, span.little
+              color: #888 !important
+            
+
+  p 
+    color: $black
+    text-shadow: 1px 1px 0px white
+    font-size: 16px 
+    line-height: 18px
+    clear: both
+    margin-top: 10px
+    float: left
+    width: 100%
+    &:last-child
+      margin-top: 5px
+      margin-bottom: 5px
+  p.bio
+    margin-bottom: 5px
+  .bold
+    font-weight: bold
+  a
+    color: #777
+    text-decoration: none
+    &:hover
+      color: $red
