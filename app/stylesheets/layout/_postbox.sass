@@ -398,6 +398,7 @@ a
         overflow: hidden
         text-overflow: ellipsis
         width: 285px
+        font-weight: bold
 
       li.request
         .icon
@@ -468,6 +469,11 @@ a
       width: 322px !important
       float: left
       margin-bottom: 15px
+      a
+        &:focus
+          outline: none
+      .chzn-drop
+        width: 338px !important
       .chzn-search 
         display: none !important
       .chzn-single 
@@ -482,7 +488,7 @@ a
         font-size: 18px
         background: #fff
         float: left
-        box-shadow: #C8C8C8 0px 0px 4px 1px inset, rgba(255, 255, 255, 0.247059) 0px 4px 4px
+        box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
         span
           color: #555
         div 
@@ -495,7 +501,7 @@ a
       
       .chzn-results
         width: 338px
-        border: 1px solid #c9c4b4
+        border-top: 1px solid $dark-tan
         box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
         margin: 0px
         padding: 0px
@@ -514,13 +520,13 @@ a
             background-color: #eee 
 
       ul.chzn-choices 
-        border: 1px solid $dark-tan  
+        border: 1px solid $dark-tan
         font-family: $Rokkitt
         border-radius: 4px
         color: #333
         font-size: 18px
         width: 362px !important
-        box-shadow: #C8C8C8 0px 0px 4px 1px inset, rgba(255, 255, 255, 0.247059) 0px 4px 4px
+        box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
         .chzn-drop 
           width: 322px
           border: 0px none
@@ -536,16 +542,21 @@ a
       width: 98px !important
       color: #555
       a 
-        width: 82px 
+        width: 82px
+        &:focus
+          outline: none!important
         span
           color: #555
       .chzn-drop 
         width: 98px !important
-        max-height: 165px 
+        max-height: 164px 
         .chzn-results
           width: 98px 
-          overflow: scroll
-          max-height: 165px 
+          max-height: 164px 
+          li
+            &:hover
+              color: $red
+              background-color: #eee
         .highlighted
           width: 82px
         li 
@@ -885,6 +896,10 @@ form select
   width: 100px
   float: right
 
+#start_at_time select, #end_at_time select
+  &:focus
+    outline: none!important
+  
 #event_date input
   width: 96px
   float: left
