@@ -8,6 +8,8 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
 
   afterRender: ->
     @model.on "change", @render, this
+    replies = @model.get("replies")
+    @reply() if replies and replies.length > 0
     @checkThanked()
     @checkFlagged()
 
