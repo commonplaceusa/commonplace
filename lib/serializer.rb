@@ -260,12 +260,14 @@ module Serializer
       when Image
         {
         "id" => o.id,
-        "image_url" => o.image_url(:normal),
-        "image_url_large" => o.image_url(:large),
         "owner_url" => "/users/#{o.user_id}",
         "user_id" => o.user_id,
         "published_at" => o.created_at.utc,
-        }
+        "image_thumb" => o.image_url(:thumb),
+        "image_normal" => o.image_url(:normal),
+        "image_large" => o.image_url(:large),
+        "image_original" => o.image_url(:original),
+      }
 
       when Feed
         o.as_api_response(:default)
