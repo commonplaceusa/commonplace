@@ -1,5 +1,306 @@
+/* Woo colors */
+
+$blue: #1b334a
+$dark-blue: #151f28
+$light-blue: #32485c
+$red: #ac322f
+$dark-red: darken($red, 20%)
+$black: #333
+$dark-grey: #888
+$light-grey: #e8e8e8
+$off-grey: #eeecdf
+$search-box: #b7c3cf
+$dark-tan: #bcbbae
+$tan: #F5F3E9
+$light-tan: #FCFAF4
+
+$Ultra: 'Ultra'
+$Yellowtail: 'Yellowtail'
+$Rokkitt: 'Rokkitt'
+
+/* Woo Fonts */
+$heading: 'Rokkitt', RockwellSTD, Rockwell, sans-serif
+$body: Helvetica Neue, Helvetica, Tahoma, serif
+
+/* Woo Shadows */
+$black-shadow: 0px 2px 1px black
+
+html
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+  
+body
+  background: image-url("shared/redesign/backgrounds/Driveway.jpg") repeat center center fixed
+  background-color: #CEE7FE
+  background-size: cover
+  -webkit-background-size: cover
+  
+em
+  font-style: italic
+
+.slide
+  display: none
+.selected
+  display: block
+
+#header
+  height: 60px
+  width: 100%
+  background: $blue
+  padding: 0px
+  z-index: 1000
+  position: fixed
+  top: 0px
+  left: 0px
+  right: 0px
+  box-shadow: 0px 3px 5px rgba(0,0,0,0.25)
+  border: 2px solid $light-blue
+    left: none
+    right: none
+    bottom: 1px solid #000
+  a
+    text-decoration: none
+  .community-name
+    width: auto
+    border: 0px none
+    box-shadow: none
+    padding-top: 12px
+    img.cp_logo
+      float: left
+      margin: 0px
+      padding: 0px
+    h1
+      color: white
+      text-shadow: $black-shadow
+      font-size: 30px
+      margin-top: 16px
+      font-family: $heading
+      float: left
+      text-align: left
+      font-weight: bold
+      a
+        text-decoration: none
+        color: white
+  .registration_right
+    top: 0
+    width: 420px
+    float: right
+  .top-bar
+    width: 300px
+    border-style: none
+    border-right: none
+    float: right
+    h3
+      color: white
+      font-size: 16px
+      text-shadow: 1px 1px 1px black
+      margin-right: 10px
+      float: left 
+      margin-top: 22px
+      font-family: $heading
+    .button
+      padding: 5px
+      border-radius: 4px 
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.4)
+      cursor: pointer
+      width: 70px
+      float: left
+      margin-top: 14px
+      font-family: $heading
+      font-size: 18px
+      color: white
+      border: 1px solid black
+      text-align: center
+    .blue
+      margin-right: 20px
+      +linear-gradient(color-stops(#2e5274, #1b334a))
+      &:hover, &:focus
+        color: #fff
+        +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+        box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+      &:active
+        color: #fff
+        +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+    .red
+      background: $red
+      +linear-gradient(color-stops(#cc4441, #ac322f))
+      &:hover, &:focus
+        color: #fff
+        +linear-gradient(color-stops(#ea4e4a, #ac322f), top)
+        box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+      &:active
+        color: #fff
+        +linear-gradient(color-stops(#cc4441, #ac322f), bottom)
+    .dropdown
+      width: 300px
+      background: #EEECDF
+      text-align: center
+      z-index: 4000000
+      display:none
+      +border-radius(4px)
+      position: absolute
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), inset 0px -1px 0px #AAA
+      right: 0px
+      top: 61px
+      .arrow
+        width: 150px
+        height: 20px
+        background: url("shared/redesign/arrow.png") no-repeat
+        background-position: 100px 12px
+        position: absolute
+        top: -19px 
+        display: block
+        right: 0
+      input
+        width: 253px
+        -webkit-appearance: none
+        font-size: 16px
+        padding: 8px
+        height: auto
+        margin-top: 4px
+        margin-bottom: 10px
+        margin-right: 2px
+        border: 1px solid #d7d5c5
+        font-family: $Rokkitt
+        color: #131313
+        box-shadow: inset #eee 0px 0px 3px 2px, rgba(255,255,255,1.0) 0px 1px 0px
+        -webkit-font-smoothing: antialiased
+        &:focus
+          outline: none
+      input::-webkit-input-placeholder
+        color: #555
+      input:-moz-placeholder
+        color: #555
+      .email
+        margin: 14px 2px 10px 0px
+      button.signin
+        text-align: center
+        float: right
+        width: 110px
+        +linear-gradient(color-stops(#2e5274, #1b334a))
+        font-weight: bold
+        font-size: 16px
+        margin-right: 15px
+        padding-top: 10px
+        padding-bottom: 8px
+        margin-top: 5px
+        height: auto
+        -webkit-font-smoothing: antialiased
+        background-color: #1b334a
+        text-shadow: 0px 2px 0px #333
+        &:hover, &:focus
+          color: #fff
+          +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+          box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+        &:active
+          color: #fff
+          +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+      button.signin.facebook
+        width: 148px
+        height: auto
+        margin-right: 12px
+        font-size: 16px
+        padding: 10px 0 8px 0
+        +linear-gradient(color-stops(#4e6fb6, #3b5998))
+        -webkit-font-smoothing: antialiased
+        background-color: #3b5998
+        text-shadow: 0px 2px 0px #333
+        &:hover, &:focus
+          color: #fff
+          +linear-gradient(color-stops(#5c83d7, #3b5998), top)
+          box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+        &:active
+          color: #fff
+          +linear-gradient(color-stops(#4e6fb6, #3b5998), bottom)
+      p 
+        clear: both
+        margin-left: 14px
+        padding: 12px 0px 13px 0px
+        text-align: left
+        font-family: $Rokkitt
+        cursor: pointer
+        color: #565656
+        font-weight: bold
+        -webkit-font-smoothing: antialiased
+        &:hover
+          text-decoration: underline
+    #choose_town.dropdown
+      right: 223px !important
+      padding: 14px
+      width: 250px
+      .arrow
+        width: 145px
+      ul#town_list
+        overflow-x: hidden
+        max-height: 286px
+        box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
+        border: 1px solid #d7d5c5
+        li
+          border-bottom: 1px dotted #ddd
+          font-family: $heading
+          font-size: 18px
+          line-height: 24px
+          text-align: left
+          color: $black
+          background-color: #fff
+          &:last-child
+            border: 0px
+          &:hover
+            background-color: #eee
+            color: $black
+            cursor: pointer
+          a
+            padding: 8px 10px
+            color: #555
+            display: block
+            cursor: pointer
+            &:hover
+              color: $red
+  #nav_wrapper
+    width: 1100px
+    left: 0px
+    top: 0px
+    border: 0px none
+    box-shadow: none
+#header #nav_wrapper div.community-name
+  width: auto
+  border: 0px none
+  box-shadow: none
+  padding-top: 12px
+  img.cp_logo
+    float: left
+    margin: 0px
+    padding: 0px
+
+#header #user_sign_in
+  margin-top: 0px
+
+#header #user_sign_in div.top-bar
+  width: auto
+  margin-right: -20px
+  border: 0px none
+  box-shadow: none
+
+#header #nav_wrapper div.community-name a h1
+  float: left
+
+#header #nav_wrapper div.community-name a span.community
+  float: left
+  margin-top: 7px
+  color: $red
+  font-family: $heading
+  font-size: 24px
+  font-weight: bold
+  margin-left: 8px
+  text-shadow: 1px 1px 1px black
+  
 #about
+  width: 1100px
+  margin: 0 auto
+  position: relative
+  top: 95px
   .header
+    height: 37px
     background: url("shared/redesign/red-bg.png")
     padding: 13px 0 18px 40px
     border: 1px solid #741A18
@@ -10,9 +311,15 @@
       font-family: $Yellowtail
       text-shadow: 3px 3px 0px $blue
       font-size: 40px
+      float: left
     ul.nav
       list-style-type: none
+      position: relative
+      left: 40px
+      top: 13px
       li
+        float: left
+        margin-right: 15px
         a
           font-family: $Rokkitt
           text-decoration: none
@@ -41,16 +348,24 @@
     background: url("shared/redesign/tan-bg.png") repeat
     background-color: $tan
     padding: 15px
+    min-height: 512px
     border-radius: 0px 0px 5px 5px
     box-shadow: 0px 2px 1px black
     border: 1px solid #fff
+    margin: 0px auto
+    display: inline-block
   .about_border
+    float: left
     padding: 30px
     border: 3px solid #CFCCC1
     border-radius: 0px 0px 5px 5px
     box-shadow: 1px 1px 0px white, inset 1px 1px 0px white
     .left
+      width: 500px
       border-right: 1px solid #d3d1c9
+      float: left
+      overflow-y: auto
+      height: 445px
       a
         color: $red
         text-decoration: none
@@ -61,27 +376,37 @@
         color: $blue
         font-size: 23px
         padding-bottom: 20px
-        font-weight: normal
+        font-weight: bold
         text-shadow: 1px 1px 0px #fff
       p
         color: #424242
         font-family: $Rokkitt
         font-size: 18px
+        margin-bottom: 15px
         line-height: 1.25em
         text-shadow: 1px 1px 0px #fff
         padding-right: 20px
       .highlight
         color: $blue
         font-size: 20px
+        margin-top: 15px
+        margin-bottom: 15px
         font-weight: bold
       div.section_list
         border-top: 1px solid #D6D2C2
         padding-top: 20px
+        margin: 0px 0px 20px 0px
+        float: left
+        width: 460px
+      div.section_list:last-child
+        margin-bottom: 0px
       h4.headline
         font-family: $Rokkitt
         color: $blue
         font-size: 22px
         font-weight: bold
+        margin-bottom: 20px
+        width: 460px
         text-transform: capitalize
         text-shadow: 1px 1px 0px #fff
         a
@@ -90,16 +415,27 @@
         font-family: $Rokkitt
         color: $red
         font-size: 26px
-        font-weight: normal
+        font-weight: bold
+        margin-bottom: 20px
+        width: 460px
         text-shadow: 1px 1px 0px #fff
       .author
         color: #424242
         font-size: 18px
+        margin-top: 0px
+        margin-bottom: 15px
       .author_quote
+        margin-top: 15px
+        margin-bottom: 0px
         font-size: 18px
         text-align: right
         font-weight: bold
         color: #969488
+      object
+        margin-bottom: 15px
+        float: left
+      p:last-child
+        margin-bottom: 0px
       p.quote
         font-size: 24px
         line-height: 1.35em
@@ -107,26 +443,39 @@
         color: $blue
       p.read_more
         font-weight: bold
+        margin-bottom: 0px
       img.platform_thumb
         background-color: #D6D2C2
         padding: 0px 81px 0px 81px
         text-align: center
+        margin: 0px auto
+        margin-bottom: 20px
+        float: left
       ul.neighborhood_list
+        float: left
         li
           font-family: $Rokkitt
           font-size: 18px
           color: #424242
+          float: left
+          margin: 0px 0px 10px 0px
           background: url("shared/redesign/about-stars.png") no-repeat -420px 2px
           padding-left: 25px
+          width: 440px
+        li:last-child
+          margin-bottom: 0px
+
 
     .right
       border-left: 1px solid white
+      min-height: 445px
+      width: 470px
+      float: left
       padding-left: 29px
       h3
         font-family: $Rokkitt
         color: $blue
         font-size: 23px
-        font-weight: normal
         text-align: center
         padding-bottom: 20px
         text-shadow: 1px 1px 0px #fff
@@ -135,9 +484,16 @@
         font-size: 38px
         color: $red
         text-align: center
-        font-weight: normal
         background: url("shared/redesign/about-stars.png") no-repeat center
         text-shadow: 1px 1px 0px #fff
+      #password, #full_name
+        position: relative
+        float: left
+        width: 100%
+      .input_wrapper
+        position: relative
+        float: left
+        width: 100%
       .input_error
         background: #EEECDF url(/assets/shared/redesign/background.gif) center
         box-shadow: inset #B5B196 0px 0px 3px 2px, rgba(255,255,255,.25) 0px 1px 1px
@@ -146,45 +502,80 @@
       .error
         font-size: 11px
         color: #fff
+        max-width: 250px
         font-family: Helvetica, Arial, sans-serif
         font-weight: bold
+        position: absolute
+        bottom: 40px
+        right: -10px
         background: url("shared/redesign/error-bg.png")
         background-repeat: no-repeat
         background-position: bottom left
         padding: 10px 12px 18px 12px
         line-height: 14px
         text-align: left
+        display: none
       .registration
+        margin-top: 25px
+        width: 470px
         input.placeholder, textarea.placeholder
           color: #555
         input:-ms-input-placeholder
           color: #555
+      .your-name
+        width: 215px
+        float: left
+      .your-email
+        float: right
+        width: 215px
       input
+        width: 453px
+        height: 20px
         padding: 8px
         font-family: $Rokkitt
         font-size: 18px
         color: #131313
         background: white
+        margin-bottom: 10px
         box-shadow: inset #eaeaea 0px 0px 3px 2px, rgba(255,255,255,1.0) 0px 1px 0px
         border: 1px solid #dad8cb
         &:last-child
+          margin-bottom: 30px
         -webkit-font-smoothing: antialiased
-
+        .placeholder
+          color: #555
+      input.placeholder, textarea.placeholder
+        color: #555
+      input:-ms-input-placeholder
+        color: #555
+      input::-webkit-input-placeholder
+        color: #555
+      input:-moz-placeholder
+        color: #555
       textarea
         -webkit-font-smoothing: antialiased
+        width: 452px
+        height: 100px
         padding: 8px
         color: #131313
         font-family: $Rokkitt
         font-size: 18px
         background: white
+        margin-bottom: 10px
         box-shadow: inset #eaeaea 0px 0px 3px 2px, rgba(255,255,255,1.0) 0px 1px 0px
         border: 1px solid #dad8cb
         .placeholder
           color: #555
-
+      textarea::-webkit-input-placeholder
+        color: #555
+      textarea:-moz-placeholder
+        color: #555
+      textarea.placeholder
+        color: #555
       button
         -webkit-font-smoothing: antialiased
         background: $blue
+        width: 470px
         padding: 10px 0
         letter-spacing: 1px
         font-family: $Ultra
@@ -196,6 +587,7 @@
         box-shadow: 1px 1px 1px rgba(0,0,0,.25)
         text-shadow: 1px 2px 3px rgba(0,0,0,.65)
         cursor: pointer
+        margin-top: 12px
         &:hover, &:focus
           color: #fff
           +linear-gradient(color-stops(#2e5274, #1b334a), top)
@@ -207,15 +599,395 @@
           text-shadow: -1px -1px -1px rgba(0,0,0,.65)
           box-shadow: 1px 1px 1px rgba(0,0,0,.25)
       .facebook, .leader-button
+        margin: 0 auto
+          top: 15px
+        width: 345px
         text-align: left
         a
           cursor: pointer
           background: url("shared/redesign/fbreg.png") no-repeat center
           text-indent: -9999px
+          height: 32px
+          display: block
+          margin-left: 100px
+          width: 245px
           font-size: 18px
           text-transform: uppercase
         p
           color: #555
           font-family: $Rokkitt
           padding-top: 6px
+          float: left
           font-size: 20px
+      .leader-button
+        width: 97%
+
+span#apply-btn, span#nominate-btn, .register-btn
+  font-size: 20px
+  @include background(linear-gradient(top center, #ce403c $red))
+  padding: 3px 25px
+  color: white
+  font-family: $Rokkitt
+  box-shadow: inset 0px 1px 1px rgba(255,255,255,.2)
+  border: 1px solid $red
+  background-color: $red
+  text-shadow: 1px 1px 1px black
+  cursor: pointer
+  margin-left: 10px
+  margin-top: 1px
+  display: block
+  float: left
+
+.register-btn
+  margin: 0
+    left: 105px
+    top: -6px
+  a
+    text-decoration: none
+
+#about
+  .content
+    .right
+      .nominate-after
+        h2
+          margin-bottom: 30px
+          font-size: 45px
+          background-image: none
+        p
+          font-family: $Rokkitt
+          font-size: 18px
+          color: #424242
+          clear: both
+          line-height: 1.25em
+          margin-bottom: 15px
+        a.facebook
+          background: image-url("shared/redesign/facebook_share.png") no-repeat
+          width: 205px
+          height: 32px
+          display: block
+          text-align: left
+          float: left
+          color: $blue
+          margin-top: 0
+          margin-bottom: 15px
+        .next-button
+          margin-top: 60px
+        button
+          -webkit-font-smoothing: antialiased
+          background: $blue
+          width: 475px
+          padding: 10px 0
+          letter-spacing: 1px
+          font-family: $Ultra
+          font-size: 20px
+          border: 1px solid #151f28
+          color: white
+          text-transform: uppercase
+          +linear-gradient(color-stops(#2e5274, #1b334a), top)
+          box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+          text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+          cursor: pointer
+          margin-top: 12px
+          &:hover, &:focus
+            color: #fff
+            +linear-gradient(color-stops(#2e5274, #1b334a), top)
+            text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+            box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+          &:active
+            color: #fff
+            +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+            text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+            box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+        .bottom
+          margin-top: 260px
+
+ul.ui-autocomplete
+  background: white
+  border: 1px solid #bbb
+  width: 460px
+  overflow: auto
+  max-height: 250px
+li.ui-menu-item
+  border-bottom: dotted #ccc 1px
+  padding: 10px 8px
+  color: #424242
+  font-family: $Rokkitt
+  font-size: 18px
+  a
+    display: block
+    &:hover
+      cursor: pointer
+      color: $red
+  &:hover
+    background-color: #eee
+li.ui-menu-item:last-child
+  border: 0px none
+  
+.nominate-after
+  a
+    color: $red
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+#nominate-form
+  input.placeholder, textarea.placeholder
+    color: #555
+  input:-ms-input-placeholder
+    color: #555
+#apply-form
+  input.placeholder, textarea.placeholder
+    color: #555
+  input:-ms-input-placeholder
+    color: #555
+.hasPlaceholder
+  color: #555
+
+/*  Registration Step 2: Verify Address  */
+
+.address
+  width: 468px
+  #address
+    float: left
+  .error
+    clear: both
+    font-family: $body
+    font-size: 11px
+    font-weight: bold
+    color: $red
+    text-transform: uppercase
+    margin-top: 6px
+    float: left
+    //color: #fff
+    //padding: 10px 12px 18px 12px
+    //background: url('shared/redesign/error-bg.png') no-repeat bottom left
+    //top: 155px
+    //right: -85px
+    display: none
+  h2 
+    font-size: 46px
+    //background: url("shared/redesign/stars-address.png") no-repeat 7px 10px
+    text-align: center
+    font-family: $Yellowtail
+    text-shadow: 0px 2px 0px #fff
+    color: $red
+    margin: 0px auto
+    padding-bottom: 0px
+    background-image: none !important
+  p 
+    color: $black
+    font-family: $Rokkitt
+    font-size: 18px
+    margin: 0 0 20px 0
+    line-height: 1.2em
+    text-shadow: 1px 1px 0px #fff
+  input.address
+    -webkit-font-smoothing: antialiased
+    font-size: 18px
+    border: 1px solid #C9C4B4
+    box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
+    font-family: $Rokkitt
+    width: 450px
+    padding: 8px
+    margin: 0px 0px 5px 0px
+    z-index: 150 !important
+  input.address::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder
+    color: #555
+  img 
+    border: 1px solid #821916
+    margin-top: -5px
+  p.caption
+    font-size: 14px
+    float: right
+    margin: 5px 0 20px 0 
+    font-family: $Rokkitt
+    text-align: right
+  input[type=button]
+    -webkit-appearance: none
+    background: $blue
+    @include background(linear-gradient(top center, #2e5274, #1b334a))
+    width: 393px
+    padding: 10px 0
+    letter-spacing: 1px
+    font-family: $Ultra
+    font-size: 20px
+    border: 1px solid #151f28
+    color: white
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255,255,255,.3)
+    text-shadow: 1px 2px 3px rgba(0,0,0,.5)
+    cursor: pointer
+  select
+    width: 450px
+    
+.address span.divider
+  //background: url("shared/redesign/divider.png") no-repeat top center
+  //background-size: 95%
+  float: left
+  width: 100%
+  height: 3px
+  margin: 20px auto
+  background-color: #CFCCC1
+  border-bottom: 1px solid #fff
+      
+.address div#find_button
+  margin-top: 20px
+  float: left
+  width: 100%  
+
+.address div#find_button a.blue-button
+  -webkit-font-smoothing: antialiased
+  background: $blue
+  width: 467px
+  float: left
+  padding: 10px 0
+  letter-spacing: 1px
+  font-family: $Ultra
+  font-size: 20px
+  border: 1px solid #151f28
+  color: white
+  text-transform: uppercase
+  +linear-gradient(color-stops(#2e5274, #1b334a), top)
+  box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+  text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+  cursor: pointer
+  margin-top: 12px
+  text-decoration: none
+  text-align: center
+  &:hover, &:focus
+    color: #fff
+    +linear-gradient(color-stops(#2e5274, #1b334a), top)
+    text-shadow: 1px 2px 3px rgba(0,0,0,.65)
+    box-shadow: 0px 2px 4px rgba(0,0,0,.65)
+  &:active
+    color: #fff
+    +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+    text-shadow: -1px -1px -1px rgba(0,0,0,.65)
+    box-shadow: 1px 1px 1px rgba(0,0,0,.25)
+#dk_container_hear 
+  width: 465px
+  z-index: 10 !important
+  float: left
+  margin-bottom: 0px
+  font-family: $heading
+  a.dk_toggle 
+    height: 16px
+    margin-bottom: 0
+    border: 1px solid #C9C4B4
+    box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
+    width: 458px !important
+    color: $black
+    border-radius: 0px !important
+    z-index: 10 !important
+    span.dk_arrow.button.blue 
+      border-radius: 0px !important
+      border: 1px solid #0F1E2C
+      height: 15px
+      box-shadow: 0px 1px 0px white
+      right: 0px
+    span.dk_label 
+      width: 390px
+      color: $black
+      font-size: 18px
+      font-family: $heading
+  .dk_options
+    border-radius: 0px !important
+    li
+      &:hover
+        color: $black !important
+      a
+        font-family: $heading !important
+        border-bottom: 1px dotted #ccc !important
+        line-height: 24px !important
+        font-size: 18px !important
+        display: block
+        &:hover
+          background-color: #eee
+          color: $red
+        &:last-child
+          border: 0px none
+          
+.dk_options_inner, .dk_touch .dk_options
+  max-height: 200px !important
+  
+ul.ui-autocomplete
+  background: white
+  width: 366px
+  border: 1px solid #C9C4B4
+  overflow: auto
+  max-height: 250px
+  z-index: 150 !important
+
+li.ui-menu-item
+  border-bottom: 1px dotted #ccc
+  line-height: 44px
+  font-family: $heading
+  padding: 0px 8px
+  font-size: 18px
+  color: $black
+  -webkit-font-smoothing: antialiased
+  &:hover
+    background-color: #eee
+  &:last-child
+    border: 0px none
+  a
+    &:hover
+      color: $red
+      cursor: pointer
+      
+#about .about_border .right #address_verification
+  color: $black
+  font-family: $Rokkitt
+  font-size: 18px
+  margin: 15px 0px 10px 0px
+  text-shadow: 1px 1px 0px #fff
+
+#about .about_border .right #address_verification input
+  width: 15px
+  height: 15px
+  margin-top: 15px
+  margin-left: 0px
+  margin-right: 5px
+  color: #131313
+
+#suggested_address
+  margin-left: 24px
+  font-weight: bold
+  line-height: 21px
+  font-size: 18px
+  
+#about .content .registration1 .address .error
+  clear: both
+  font-family: $body
+  font-size: 11px
+  font-weight: bold
+  color: $red
+  text-transform: uppercase
+  margin-top: 6px
+  float: left
+  background: none
+  padding: 0px
+  position: static
+  max-width: 100%
+  width: 100%
+  display: none
+
+/* Default About Page Form (Find Your Community) */
+
+#about
+  .about_border
+    .right.default
+      button
+        margin-top: 0px
+#about
+  .about_border
+    .right.default
+      h2 
+        background: url("shared/redesign/stars-3.png") no-repeat 7px 10px
+        text-align: center
+        font-family: $Yellowtail
+        text-shadow: 0px 2px 0px #fff
+        color: $red
+        padding-bottom: 0px
+        margin: 0px auto 15px auto
+
+#header #sign_in_form
+  position: static
