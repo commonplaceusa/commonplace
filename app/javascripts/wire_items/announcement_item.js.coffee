@@ -14,7 +14,6 @@ CommonPlace.wire_item.AnnouncementWireItem = CommonPlace.wire_item.WireItem.exte
     "click .message-link": "messageUser"
     "click .author": "showAuthorWire"
     "click .title": "showWireItem"
-    blur: "removeFocus"
 
   canEdit: ->
     CommonPlace.account.canEditAnnouncement @model

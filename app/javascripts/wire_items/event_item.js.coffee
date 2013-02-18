@@ -16,7 +16,6 @@ CommonPlace.wire_item.EventWireItem = CommonPlace.wire_item.WireItem.extend(
     "click .message-link": "messageUser"
     "click .author": "showAuthorWire"
     "click .title": "showWireItem"
-    blur: "removeFocus"
 
   eventDateISO: ->
     @model.get("occurs_on")

@@ -15,7 +15,6 @@ CommonPlace.wire_item.TransactionWireItem = CommonPlace.wire_item.WireItem.exten
     "click .reply-link": "reply"
     "click .author": "showUserWire"
     "click .title": "showWireItem"
-    blur: "removeFocus"
 
   price: ->
     @format @model.get("price")

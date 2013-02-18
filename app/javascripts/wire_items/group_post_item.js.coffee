@@ -14,7 +14,6 @@ CommonPlace.wire_item.GroupPostWireItem = CommonPlace.wire_item.WireItem.extend(
     "click .message-link": "messageUser"
     "click .author": "showUserWire"
     "click .title": "showWireItem"
-    blur: "removeFocus"
 
   canEdit: ->
     CommonPlace.account.canEditGroupPost @model
