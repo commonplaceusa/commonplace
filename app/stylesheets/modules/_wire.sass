@@ -68,7 +68,7 @@
             padding: 15px
               bottom: 10px
             .image_container
-              text-align: center
+              text-align: left
             .price
               +red-button
               color: white 
@@ -224,6 +224,14 @@
                   .icon 
                     background-position: -15px 0px
               li.reply-link.current
+                color: $red
+                .icon
+                  background-position: -15px 0px
+                &:hover, &:focus, &:active
+                  color: $dark-grey
+                  .icon 
+                    background-position: -15px -27px
+              li.buy-link.current
                 color: $red
                 .icon
                   background-position: -15px 0px
