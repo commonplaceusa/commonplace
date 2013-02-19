@@ -31,15 +31,15 @@
           &:after
             border-color: rgba(255, 255, 15, 0)
             border-left-color: #ffffff
-            border-width: 10px
-            top: 25px
-            margin-top: -10px
+            border-width: 7px
+            top: 28px
+            margin-top: -7px
           &:before
             border-color: rgba(255, 255, 255, 0)
             border-left-color: #ffffff
-            border-width: 11px
-            top: 25px
-            margin-top: -11px
+            border-width: 8px
+            top: 28px
+            margin-top: -8px
           a
             text-decoration: none
           .wire-top
@@ -80,8 +80,11 @@
               padding: 7px 10px
               font-family: $body
             .markdown
-              color: $dark-grey
-
+              font-family: $body
+              color: $black
+              font: 13px/17px $body
+              br
+                display: none
             table.event-location 
               font: 12px/20px "Helvetica Neue", Helvetica, sans-serif
               color: $black
@@ -98,7 +101,6 @@
               font-weight: normal
               text-shadow: none
               line-height: 22px
-              margin-bottom: 3px
               a 
                 color: #333
                 cursor: pointer
@@ -112,6 +114,21 @@
                 &:hover
                   color: $red
                   text-decoration: none
+            p.post-info
+              color: $dark-grey !important
+              font-weight: normal
+              a.author
+                color: $dark-grey
+                font-weight: normal
+                &:hover
+                  text-decoration: none
+                  color: #333
+              a
+                font-weight: normal
+                color: $dark-grey
+                &:hover
+                  text-decoration: none
+                  color: #333
             .body p, pre, code, ol, ul
               &:last-child
               a, .markdown a
@@ -126,6 +143,7 @@
               background-repeat: no-repeat
               background-position: center center
               border: 4px solid white
+              background-color: #ccc
             p.venue, p.address
               margin-bottom: 5px
               span.bold
@@ -139,13 +157,13 @@
                 color: white
                 font-weight: bold
                 text-transform: uppercase
-                font-size: 12px
+                font-size: 18px
                 border-radius: 5px 5px 0 0
                 font-family: Helvetica Neue, Helvetica, Verdana, sans-serif
                 text-shadow: 0px -1px 0px #64100D
               .day-of-month
                 background-color: #F6F4ED
-                padding: 5px 0
+                padding: 10px 5px
                 text-align: center
                 border-radius: 0 0 5px 5px
                 color: #333
@@ -153,7 +171,7 @@
                 font-family: Helvetica Neue, Helvetica, Verdana, sans-serif
                 border: 1px solid #D5D1C8
                   top: none
-                font-size: 19px
+                font-size: 36px
               .event-time 
                 text-align: center
                 font-size: 12px
@@ -200,6 +218,14 @@
                   background-image: image-url("shared/redesign/post-action-icons.png")
 
               li.reply-link
+                color: $dark-grey
+                .icon
+                  background-position: -15px -27px
+                &:hover, &:focus, &:active
+                  color: $red
+                  .icon 
+                    background-position: -15px 0px
+              li.reply-link.current
                 color: $red
                 .icon
                   background-position: -15px 0px

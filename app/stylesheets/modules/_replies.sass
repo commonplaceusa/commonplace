@@ -1,5 +1,5 @@
 .replies-area
-  padding: 1px 0px 0 18px
+  padding: 3px 0px 0 0px
   font-family: Helvetica, sans-serif
   .replies
     .comment
@@ -10,24 +10,22 @@
   .thanks
     padding-bottom: 10px
   .thanks-list
-    padding-left: 63px
+    padding: 0px
     .reply-item
       padding: 10px 0px 0px 0px
-      border: 0px none 
       &:last-child
-        border: 0px none
+        padding-bottom: 0px !important
         
   .replies-more
     font-size: 11px
     text-transform: uppercase
     font-weight: bold
-    text-align: left
+    text-align: center
     color: #333
     text-decoration: none
     border-top: 1px dotted #ddd
     padding-top: 12px
     padding-bottom: 10px
-    padding-left: 170px
     &:hover
       color: $red
     .small 
@@ -35,16 +33,18 @@
       color: #bbb
 
   .reply-list, .thanks-list
+    //border-top: 1px dotted #ddd
     a
       color: #333
       &:hover
         color: $red
         //text-decoration: underline
     .reply-item
-      padding: 0px 0px 7px 0px
+      padding: 0px 0px 9px 0px
+      border-top: 1px dotted #ddd 
       &:first-child
         .reply-info
-          padding-top: 15px
+          padding-top: 10px
       &:last-child
         padding-bottom: 10px
       &:hover
@@ -67,7 +67,7 @@
         
       .reply-info
         padding-top: 10px
-        border-top: 1px dotted #ddd
+        //border-top: 1px dotted #ddd
 
       .author, .body
         line-height: 18px
