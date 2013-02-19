@@ -1,36 +1,34 @@
 <div class="wire-top" data-published-at="{{eventDateISO}}">
-  <!--<a href="#"><div class="icon-container {{wireCategoryClass}}"></div><h3>{{wireCategoryName}}</h3></a>-->
-  <p class="editlink">{{#canEdit}}<a href="#">EDIT POST</a>{{/canEdit}}</p>
-  <p><a href="{{share_url}}">{{eventDate}}</a></p>
 </div>
 <div class="post-content">
   <div class="calendar avatar">
     <div class="month">{{short_month_name}}</div>
     <div class="day-of-month">{{day_of_month}}</div>
-  {{#start_time}}
-  <div class="event-time">
-    {{start_time}}
   </div>
-  {{/start_time}}
-  {{#end_time}}
-  <div class="event-time">
-    &#8211; {{end_time}}
-  </div>
-  {{/end_time}}
-  </div>
-
 
   <h3><a class="title" href="{{share_url}}">{{title}}</a></h3>
-  <p><a class="author" {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a> posted in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
   {{#markdown}}
   {{body}}
+  <!--{{#start_time}}
+    <div class="event-time">
+      {{start_time}}
+    </div>
+    {{/start_time}}
+    {{#end_time}}
+    <div class="event-time">
+      &#8211; {{end_time}}
+    </div>
+    {{/end_time}}-->
+  <p class="address"><span class="bold">Date:</span> {{short_month_name}} {{day_of_month}} <span class="event-timestamp">({{eventDate}})</span></p>
+  <p class="address"><span class="bold">Time:</span> {{start_time}} &#8211; {{end_time}}</span></p>
   {{#venue}}<p class="venue"><span class="bold">Venue:</span> {{venue}}</p>{{/venue}}
   {{#address}}<p class="address"><span class="bold">Address:</span> {{address}}</p>{{/address}}
   {{/markdown}}
+  <p class="post-info"><a class="author" {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a> posted in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
 </div>
 <div class="post-action clear">
   <ul class="actions">
-    <li class="reply-link">
+    <li class="reply-link current">
       <i class="icon"></i>
       <span>Reply</span>
     </li>
@@ -50,6 +48,12 @@
       <i class="icon"></i>
       <span>Flag</span>
     </li>
+    {{#canEdit}}
+    <li class="edit-link">
+      <i class="icon"></i>
+      <span class="editlink"><a href="#">Edit Post</a></span>
+    </li>
+    {{/canEdit}}
    </ul>
 </div>
 <div class="post-interaction">
