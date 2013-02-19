@@ -1,5 +1,4 @@
 <div>
-<<<<<<< HEAD
   <div class="left">
     <img class="avatar-container" src={{avatar}} />
     <a class="contact message-link" href="#">Send Message</a>
@@ -7,7 +6,7 @@
     {{#isSubscribed}}<a href="#" class="unsubscribe">Unsubscribe</a>{{/isSubscribed}}
   </div>
   <div class="right">
-    <p class="editlink">{{#canEdit}}<a href="">Edit</a>{{/canEdit}}</p>
+    {{#canEdit}}<span class="editlink"><a href="">Edit</a></span>{{/canEdit}}
     <h2 class="name">{{name}}</h2>
     <div class="stat-bar">
       <ul>

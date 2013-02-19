@@ -129,6 +129,10 @@ var Account = Model.extend({
     return _.include(this.get("mets"), user.id);
   },
 
+  canEditProfile: function(user) {
+    return user.get('id') == this.id
+  },
+
   canEditFeed: function(feed) {
     return feed.get('user_id') == this.id || this.get('is_admin');
   },

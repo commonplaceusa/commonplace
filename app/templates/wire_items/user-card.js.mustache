@@ -9,6 +9,7 @@
     {{#hasMet}}<a href="#" class="unmeet">Already Met!</a>{{/hasMet}}
   </div>
   <div class="right">
+    {{#canEdit}}<span class="editlink"><a href="{{account_url}}">Edit</a></span>{{/canEdit}}
     <h2 class="name">{{name}}</h2>
     <div class="stat-bar">
       <ul>
