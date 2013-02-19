@@ -1,0 +1,183 @@
+.feed
+  #main
+    width: 980px
+    margin: 55px auto
+
+  h1
+    font-size: 49px
+    color: #1b334a
+    padding: 18px 0px 
+    font-weight: bold
+    text-align: center
+    margin: 5px auto 20px
+    width: 960px
+    line-height: 1.2
+    +text-shadow(#bfc8cf, 1px, 1px, 1px)
+
+  form
+    margin-right: 75px
+    position: relative
+    float: right
+    display: block
+    position: relative
+    +redlightbox
+    z-index: 2
+
+    li 
+      list-style: none
+
+    p.inline-hints
+      width: 340px
+
+    input[type=text], textarea
+      +border-radius(5px)
+      +box-shadow(#ccc, 1px, 1px, 2px, 0, inset)
+      border: 1px solid #ccc
+      padding: 3px 5px
+      font-size: 18px
+      font-weight: 300
+      width: 340px
+      display: block
+      +serif
+      margin: 5px 0 20px
+
+    label
+      display: block
+      text-align: left
+      color: #FFFFFF
+      font-weight: 600
+      font-size: 14px
+      text-shadow: #000000 1px 1px 1px
+      line-height: 1.2
+      width: 350px
+
+    fieldset
+      margin-bottom: 20px
+      legend
+        color: #FFFFFF
+        font-weight: 600
+        font-size: 14px
+        text-shadow: #000000 1px 1px 1px
+
+      input[type=radio]
+        margin-top: 10px
+
+      #feed_avatar_input
+        position: relative
+        margin-bottom: 20px
+
+      #feed_avatar
+        cursor: pointer
+        position: relative
+        width: 80px
+        +opacity(1)
+        right: 8px
+        top: -5px
+        z-index: 2
+        position: absolute
+        height: 30px
+
+      #file_input_fix
+        position: absolute
+        width: 360px
+        margin: -25px 0px 15px
+
+      #browse_button
+        position: absolute
+        right: 8px
+        text-align: center
+        padding: 7px
+        color: white
+        background: #808080
+        border: 1px solid #666666
+        +border-radius(5px)
+        +box-shadow(#a0a0a0 0px 0px 0px 1px inset)
+        cursor: pointer
+
+    #feed_slug_input
+      position: relative
+      p.inline-hints
+        left: -370px
+        line-height: 1.2
+        font-size: 12
+        font-family: Helvetica, sans-serif
+        top: 20px
+        padding: 10px
+        position: absolute
+        display: none
+        background-color: white
+        border: 1px solid #888
+
+  form.crop
+    margin: auto
+    float: none
+    padding: 25px
+    width: 1025px
+      
+    .jcrop-holder
+      margin: auto
+        
+    input[type=image]
+      margin: 20px auto 0
+      display: block
+
+  form.edit_feed
+    float: none
+    margin: auto
+    width: 350px
+    
+
+    li.other-actions
+      text-align: right
+      color: #fff
+      a
+        color: #fff
+
+  form.new_subscribers
+    margin: 30px auto
+    float: none
+    width: 450px
+
+    label
+      display: block
+      margin-bottom: 20px
+
+    .scrolling-table-container
+      height: 400px
+      overflow-y: auto
+      overflow-x: hidden
+      padding-right: 1px
+
+    table
+      font-family: Helvetica, sans-serif
+      width: 100%
+      background-color: #fff
+      font-size: 14px
+
+      th
+        font-weight: bold
+        padding: 2px 5px 8px
+      td, th
+        height: 15px
+        border: 1px solid #333
+        padding: 8px 5px 2px
+
+    input[type=image]
+      margin: 20px auto 0
+      display: block
+
+      
+
+  #registration_information
+    float: left
+    margin-left: 58px
+    margin-right: 40px
+    width: 370px
+    position: relative
+      
+    li 
+      +starBullet
+      font-size: 16px
+      padding-left: 35px
+
+  // @include sticky-footer(74px, "#wrapper", "#wrapper-footer", "#footer")

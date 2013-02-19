@@ -1,0 +1,78 @@
+.feeds
+  h1
+    width: 800px
+    color: #3b6085
+    line-height: 1.2
+    font-size: 25px
+    padding: 0 20px
+    margin: 5px auto 20px
+    text-align: center
+    +text-shadow(#bfc8cf 1px 1px 1px)
+
+  form.formtastic.feed
+    +lightbox
+    width: 900px
+    margin: 0 auto 75px
+    
+    fieldset.inputs
+      width: 400px
+      margin: 0px 20px 0px 15px
+
+      li
+        margin-bottom: 10px
+        label
+          display: block
+          padding-bottom: 10px
+        input[type=text],input[type=url], input[type=tel],  textarea
+          +border-radius(5px)
+          +box-shadow(#ccc 1px 1px 2px 0 inset)
+          padding: 0px 7px
+          font-size: 18px
+          width: 100%
+          +serif
+        
+        textarea
+          height: 80px
+        
+        p.inline-errors
+          color: #b7403c
+
+        p.inline-hints
+          font-size: 12px
+          text-align: left
+    input#feed_is_news
+      float: right
+      
+    fieldset#contact-info
+      #feed_website_input, #feed_phone_input
+        margin: 10px 0px
+        width: 180px
+        +inline-block
+        vertical-align: bottom
+        input
+          width: 180px
+          font-size: 18px
+      #feed_phone_input
+        margin-left: 35px
+
+        
+    fieldset.buttons
+      width: 435px
+      li.delete a, li.owner a
+        vertical-align: middle
+        color: #3B6085
+      li
+        margin-left: 20px
+        float: right
+
+  #preview
+    float: right
+    margin-left: 550px
+    margin-bottom: 15px
+    position: fixed
+    width: 447px
+    zoom: 90%
+    h2
+      background-color: #b53f3c
+      color: #fff
+      border: 1px solid #fff
