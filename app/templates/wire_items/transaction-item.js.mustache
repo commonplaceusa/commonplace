@@ -1,18 +1,18 @@
 <div class="wire-top" data-published-at="{{publishedAtISO}}">
 </div>
 <div class="post-content">
-   {{#hasImages}}
-     {{#images}}
-     <div class="image_container">
-       <a href="{{image_original}}" target="_blank"><img class="post_image" src="{{image_large}}" /></a>
-     </div>
-     {{/images}}
-   {{/hasImages}}
-   <a href="{{author_url}}"><img class="avatar-container" src="{{avatarUrl}}" /></a>
+  <a href="{{author_url}}"><img class="avatar-container" src="{{avatarUrl}}" /></a>
   <h3><a class="title" href="{{share_url}}">{{title}}</a></h3>
   {{#markdown}}
    {{body}}
   {{/markdown}}
+  {{#hasImages}}
+    {{#images}}
+    <div class="image_container">
+      <a href="{{image_original}}" target="_blank"><img class="post_image" src="{{image_large}}" /></a>
+    </div>
+    {{/images}}
+  {{/hasImages}}
   <p class="post-info"><a class="author" href="{{author_url}}">{{author}}</a> posted <a href="{{share_url}}">{{publishedAt}}</a> in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
 </div>
 <div class="post-action clear">
