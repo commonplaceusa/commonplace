@@ -35,7 +35,7 @@ class GeckoBoardAnnouncer
     end
     mailgun = RestClient::Resource.new 'https://api:key-1os8gyo-wfo1ia85yzrih0ib8xq7n050@api.mailgun.net/v2/ourcommonplace.com'
     tz = "Eastern Time (US & Canada)"
-    dashboard = Leftronic.new(ENV['LEFTRONIC_API_KEY'] || '')
+    dashboard = MemoizingDashboard.new(ENV['LEFTRONIC_API_KEY'] || '')
     dashboard.text("Statistics Information", "Update Started", "Began updating at #{DateTime.now.in_time_zone(tz).to_s}")
     dashboard.number("Users on Network", User.count)
     growths = []
@@ -252,7 +252,17 @@ class GeckoBoardAnnouncer
         total: 0
       }
     }
-    single_post_opens = daily_bulletin_opens.dup
+    single_post_opens = {
+      daily: {
+        total: 0
+      },
+      weekly: {
+        total: 0
+      },
+      monthly: {
+        total: 0
+      }
+    }
     mailgun_daily_bulletin_campaigns.each do |campaign_name|
       # Access campaign open stats
       # Coallate into daily_bulletin_opens
