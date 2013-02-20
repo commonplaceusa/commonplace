@@ -21,7 +21,9 @@
          </ul>
       </div>
   </div>
+  {{#hasAbout}}
   <p>{{about}}</p>
+  {{/hasAbout}}
   {{^isSubscribed}}<a href="#" class="red-button subscribe">Subscribe</a>{{/isSubscribed}}
   {{#isSubscribed}}<a href="#" class="red-button unsubscribe">Unsubscribe</a>{{/isSubscribed}}
 </div>

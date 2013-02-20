@@ -6,6 +6,10 @@ CommonPlace.wire_item.ProfileCard = CommonPlace.View.extend(
   name: ->
     @model.get "name"
 
+  hasAbout: ->
+    about = @model.get "about"
+    about and about.length > 0
+
   about: ->
     @model.get "about"
 

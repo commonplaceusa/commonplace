@@ -21,7 +21,9 @@
          </ul>
       </div>
   </div>
+  {{#hasAbout}}
   <p>{{about}}</p>
+  {{/hasAbout}}
   <p><span class="bold">Website:</span>  <a href={{site_url}} target="_blank">{{site_url}}</a></p>
   {{^isSubscribed}}<a href="#" class="red-button subscribe">Subscribe</a>{{/isSubscribed}}
   {{#isSubscribed}}<a href="#" class="red-button unsubscribe">Unsubscribe</a>{{/isSubscribed}}
