@@ -4,14 +4,20 @@
   background-color: #f5f3e9
   border: 1px solid #fff
   color: #333
-  margin-bottom: 13px
-  border-radius: 5px
+  margin-bottom: 15px
+  border-radius: 4px
   padding: 15px
+    bottom: 12px
   width: 543px
+  //width: 673px
   display: inline-block
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5)
   font-family: $heading
+  position: relative
   behavior: url("/assets/PIE.htc")
+  //&:hover
+    cursor: pointer
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.65)    
   span.divider
     margin-bottom: 30px
     float: left
@@ -19,16 +25,36 @@
     height: 2px
     background-color: #d5d1c8
     border-bottom: 1px solid #fff 
+  .message-link
+    &:hover
+      cursor: pointer
+      &:after
+        content: 'Send A Message'
+        padding-top: 28px
+        border-radius: 4px
+        background-color: rgba(0,0,0,0.5)
+        color: white
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.75)
+        font-family: $body
+        font-weight: bold
+        font-size: 12px
+        position: absolute
+        top: 15px
+        left: 15px
+        width: 85px
+        height: 57px
+        line-height: 15px
+        text-align: center
+        white-space: normal
   .left 
     float: left 
-    width: 100px
     .avatar-container 
-      width: 100px
-      height: 100px
-      //border-radius: 5px
+      width: 85px
+      height: 85px
+      border-radius: 4px
       box-shadow: 1px 1px 0px #fff, inset 1px 1px 2px rgba(0,0,0,0.25)
   .red-button, .blue-button, .grey-button
-    font-size: 11px
+    font-size: 12px
     padding: 5px
     font-family: $body
     color: white
@@ -39,43 +65,90 @@
     line-height: 16px
     text-align: center
     width: 89px
-  .unmeet, .unsubscribe, .just-met
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.25)f, inset 0px 1px 0px rgba(255,255,255,0.25) !important
+    &:hover
+      color: white !important
+  //.unmeet, .unsubscribe, .just-met
     @include background(linear-gradient(top center, #f4f1ea, #dcd9d0))
     border: 1px solid #d5d1c8
     color: #888
     text-shadow: 1px 1px 0px white !important
-    box-shadow: 0px 1px 0px #fff, inset 0px 1px 0px #fff
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.25), inset 0px 1px 0px rgba(255,255,255,0.25) !important
     &:hover
       @include background(linear-gradient(top center, #FAF8F2, #E3E0D5))
-      color: white
+      color: #888 !important
     &:active
       @include background(linear-gradient(top center, #dcd9d0, #f4f1ea))
       color: #bbb !important
-  .just-met
+  //.just-met
     cursor: default
     &:hover, &:active
       @include background(linear-gradient(top center, #f4f1ea, #dcd9d0))
     &:active
-      color: #888 !important
-          
-          
-
+      color: #bbb !important
+  //.message-link
+    margin-top: 0px
+  //.meet, .just-met, .unmeet
+    margin-top: 48px
+  //.message-link, .meet, .just-met, .unmeet, .subscribe, .unsubscribe
+    padding: 8px 5px
+    font-size: 12px
+    position: absolute
+    width: 104px
+    right: -145px
+    top: 0px
+  .subscribe, .unsubscribe, .meet, .just-met, .unmeet
+    padding: 2px 8px
+    margin: 0px
+    top: 0px
+    right: 0px
+    background: rgba(255, 255, 255, 0.15) !important
+    border: 1px solid #ccc
+    border-top: 0
+    border-right: 0
+    border-radius: 0px 0px 0px 5px
+    //text-transform: uppercase
+    font-size: 11px
+    box-shadow: 0px 1px 0px white
+    width: auto
+    text-shadow: 1px 1px 0px white
+    position: absolute
+  .subscribe, .meet, .unmeet
+    color: #888
+    &:hover
+      color: $red !important
+  .unsubscribe, .just-met
+    color: #aaa
+    &:hover
+      color: $red !important
+  .just-met
+    &:hover
+      color: #aaa !important
+      
   .right 
-    float: right 
-    width: 426px
+    float: left 
+    width: 443px
+    margin-left: 15px
     h2, h2 a
-      font-size: 36px
-      color: $red
-      font-family: $Yellowtail
+      font-size: 30px
+      color: $blue
+      font-family: $heading
       text-shadow: 1px 1px 0px white
-      margin-top: -2px
+      margin-top: 5px
+      white-space: nowrap
+      text-overflow: ellipsis
+      overflow: hidden
+      height: 37px
+      //padding-left: 2px
+      margin-right: 15px
     .stat-bar
+      position: relative
       ul 
-        @include background(linear-gradient(top center, #f4f1ea, #dcd9d0))
+        //@include background(linear-gradient(top center, #f4f1ea, #dcd9d0))
+        background-color: rgba(255, 255, 255, 0.15)
         border: 1px solid #d5d1c8
         border-radius: 4px
         //height: 54px
-        margin-top: 20px
         box-shadow: 0px 1px 0px #fff, inset 0px 1px 0px #fff
         display: table
         width: 100%
@@ -89,7 +162,7 @@
           border-right: 1px solid #d5d1c8
           border-left: 1px solid #fbfaf7
           //height: 43px
-          padding: 4px 10px
+          padding: 4px 8px 3px
           //cursor: pointer
           display: table-cell
           vertical-align: middle
@@ -109,6 +182,7 @@
             display: block
             font-size: 16px
             text-shadow: 1px 1px 0px white
+            margin-top: -2px
           //&:hover 
             span.little 
               color: $red
@@ -130,7 +204,7 @@
       margin-top: 5px
       margin-bottom: 5px
   p.bio
-    margin-bottom: 5px
+    //margin-bottom: 5px
   .bold
     font-weight: bold
   a

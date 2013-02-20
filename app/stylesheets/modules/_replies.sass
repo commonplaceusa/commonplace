@@ -82,7 +82,12 @@
           cursor: pointer
 
       .body, h1, h2, h3, h4, h5, h6, .reply-item .body
-        color: #444
+        color: #333
+        a
+          text-decoration: underline
+          &:hover
+            color: $red
+            text-decoration: none
 
       h1, h2, h3, h4, h5, h6
         font-weight: bold

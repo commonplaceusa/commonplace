@@ -28,7 +28,7 @@
 </div>
 <div class="post-action clear">
   <ul class="actions">
-    <li class="reply-link current">
+    <li class="reply-link default">
       <i class="icon"></i>
       <span>Reply</span>
     </li>
@@ -49,11 +49,13 @@
       <span>Flag</span>
     </li>
     {{#canEdit}}
-    <li class="edit-link">
-      <i class="icon"></i>
-      <span class="editlink"><a href="#">Edit Post</a></span>
-    </li>
-    {{/canEdit}}
+     <span class="editlink"><a href="#">
+     <li class="edit-link">
+       <i class="icon"></i>
+      <span>Edit Post</span>
+     </li>
+     </a></span>
+     {{/canEdit}}
    </ul>
 </div>
 <div class="post-interaction">

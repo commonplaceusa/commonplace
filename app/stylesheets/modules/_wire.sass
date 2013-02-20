@@ -40,8 +40,6 @@
             border-width: 8px
             top: 28px
             margin-top: -8px
-          a
-            text-decoration: none
           .wire-top
             h3
               font: 16px $body
@@ -54,9 +52,12 @@
               font-size: 12px
               color: #aaa
               a 
-                color: #aaa
+                color: $black
+                text-decoration: underline
+                font-weight: normal
                 &:hover
                   color: $red
+                  text-decoration: none
             p:last-child
               padding-right: 4px
             .editlink 
@@ -69,6 +70,13 @@
               bottom: 10px
             .image_container
               text-align: left
+              position: relative
+              &:hover
+                &:after
+                  content: url("shared/redesign/enlarge-icon.png")
+                  position: absolute
+                  top: 10px
+                  left: 5px
             .price
               +red-button
               color: white 
@@ -93,22 +101,24 @@
             h3, p, pre, code, ol, ul
               font-family: $body
               color: $black
-              font: 13px/17px $body        
+              font: 13px/17px $body
+              white-space: normal
             h3 
               font-size: 20px
               font-weight: normal
               text-shadow: none
               line-height: 22px
               a 
-                color: #333
+                color: $black
                 cursor: pointer
                 &:hover
                   text-decoration: none
             p
               a, a.author, a.wire_filter
-                color: #333
-                font-weight: bold
+                color: $black
+                font-weight: normal
                 cursor: pointer
+                text-decoration: underline
                 &:hover
                   color: $red
                   text-decoration: none
@@ -118,21 +128,23 @@
               a.author
                 color: $dark-grey
                 font-weight: normal
+                text-decoration: none
                 &:hover
                   text-decoration: none
-                  color: #333
+                  color: $black
               a
                 font-weight: normal
                 color: $dark-grey
+                text-decoration: none
                 &:hover
                   text-decoration: none
-                  color: #333
+                  color: $black
             .body p, pre, code, ol, ul
               &:last-child
               a, .markdown a
-                color: $dark-grey
+                color: $black
                 font-family: $body
-                text-decoration: none
+                text-decoration: underline
                 &:hover
                   text-decoration: none
                   color: $red 
@@ -145,7 +157,7 @@
             p.venue, p.address
               margin-bottom: 5px
               span.bold
-                color: $red
+                color: $black
                 font-weight: bold
             .calendar 
               .month 
@@ -162,7 +174,7 @@
                 background-color: #F6F4ED
                 padding: 10px 5px
                 text-align: center
-                color: #333
+                color: $black
                 text-shadow: 1px 1px 0px white
                 font-family: Helvetica Neue, Helvetica, Verdana, sans-serif
 
@@ -220,7 +232,7 @@
                   color: $red
                   .icon 
                     background-position: -15px 0px
-              li.reply-link.current
+              li.reply-link.default
                 color: $red
                 .icon
                   background-position: -15px 0px
@@ -231,11 +243,11 @@
               li.buy-link
                 color: $red
                 .icon
-                  background-position: -15px 0px
+                  background-position: -73px 0px
                 &:hover, &:focus, &:active
                   color: $dark-grey
                   .icon 
-                    background-position: -15px -27px
+                    background-position: -73px -28px
               li.message-link
                 .icon 
                   background-position: 0px -30px
@@ -246,13 +258,11 @@
 
               li.share-link
                 .icon
-                  background-position: -29px -42px
-                span 
-                  margin-top: 1px
+                  background-position: -29px -43px
                 &:hover, &:focus, &:active
                   color: $red
                   .icon 
-                    background-position: -29px 0px
+                    background-position: -29px -1px
 
               li.thank-link
                 .icon
@@ -261,6 +271,9 @@
                   color: $red
                   .icon 
                     background-position: -58px 0px
+                    
+              //li.thanked-post
+                color: #ccc
 
               li.flag-link
                 .icon
@@ -269,6 +282,16 @@
                   color: $red
                   .icon 
                     background-position: -44px 0px
+                    
+              li.edit-link
+                padding-left: 10px
+                .icon
+                  background-position: -87px -28px
+                &:hover, &:focus, &:active
+                  span, a
+                    color: $red
+                  .icon 
+                    background-position: -87px 0px
 
           .post-interaction
             font-size: 12px
@@ -321,7 +344,12 @@
         text-align: center
 
       .highlight
-        background-color: #fffa6c
+        //background-color: #fffa6c
+        //background-image: url("shared/redesign/tan-bg.png")
+        background-color: #ece7de
+        color: $blue
+        text-shadow: 1px 1px 0px white
+        padding: 1px 4px
 
 #zenbox_tab.ZenboxTabRight
   background-color: $blue !important
