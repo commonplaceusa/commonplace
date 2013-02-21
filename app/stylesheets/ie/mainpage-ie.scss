@@ -1,3 +1,6 @@
+#header {
+   display: none!important;
+}
 #search-header {
   background-color:#172e42;
   color: #fff;
@@ -65,7 +68,7 @@ li.account a:hover, li.account a:focus {
  color: #fff;
 }
 #main .wire .wire-item {
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #555;
 }
 
 textarea { overflow: auto; }
@@ -81,8 +84,15 @@ textarea { overflow: auto; }
 #sidebar {
   border-right: 1px solid #fff;
 }
+#header .community-name {
+  position: relative !important;
+}
 #header .button-wrapper {
   position: absolute;
   top: 0px;
   right: 0px;
+}
+
+.profile-card {
+   border-bottom: 1px solid #555 !important;
 }
