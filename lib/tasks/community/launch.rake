@@ -97,7 +97,8 @@ namespace :community do
       body: "Have you ever needed a local service (like a babysitter, or someone to mow your lawn), or used good (like a ladder to borrow), or wanted to meet someone in town (and host a book club or block party)? Use OurCommonPlace #{community.name} to ask your neighbors!",
       user_id: pete.id,
       subject: "Hi Neighbors!",
-      community_id: community.id
+      community_id: community.id,
+      category: "offers"
     )
   end
 
