@@ -1,9 +1,15 @@
 <div>
-   <div class="left message-link" href="#">
+   <div class="left">
      <img class="avatar-container" src={{avatar}} />
+     <a class="contact message-link" href="#">Send Message</a>
+       {{^hasMet}}
+         <a href="#" class="meet">Have You Met?</a>
+         <a class="just-met" style="display: none;">You've Met!</a>
+       {{/hasMet}}
+       {{#hasMet}}<a href="#" class="unmeet">Already Met!</a>{{/hasMet}}
    </div>
    <div class="right">
-     <h2 class="name message-link" href="#">{{name}}</h2>
+     <h2 class="name">{{name}}</h2>
       <div class="stat-bar">
          <ul>
             <li>
@@ -28,20 +34,14 @@
             </li>
          </ul>
       </div>
+      {{#hasAbout}}
+       <p class="bio">{{about}}</p>
+       {{/hasAbout}}
+       {{#hasPages}}
+       <p><span class="bold">Pages:</span>
+       {{#pages}}
+       <a class="page-link" title="{{slug}}" href="#">{{name}}</a><span>{{^last}},{{/last}}</span>  </p>
+       {{/pages}}
+       {{/hasPages}}
   </div>
-  {{#hasAbout}}
-  <p class="bio">{{about}}</p>
-  {{/hasAbout}}
-  {{#hasPages}}
-  <p><span class="bold">Pages:</span>
-  {{#pages}}
-  <a class="page-link" title="{{slug}}" href="#">{{name}}</a><span>{{^last}},{{/last}}</span>  </p>
-  {{/pages}}
-  {{/hasPages}}
-  <!--<a class="red-button message-link pie-element" href="#">Contact</a>-->
-  {{^hasMet}}
-    <a href="#" class="red-button meet">Have You Met?</a>
-    <a class="red-button just-met" style="display: none;">You've Met!</a>
-  {{/hasMet}}
-  {{#hasMet}}<a href="#" class="red-button unmeet">Already Met!</a>{{/hasMet}}
 </div>

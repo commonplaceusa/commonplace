@@ -1,9 +1,12 @@
 <div>
-   <div class="left message-link" href="#">
+   <div class="left">
       <img class="avatar-container" src={{avatar}} />
+      <a class="contact message-link" href="#">Send Message</a>
+      {{^isSubscribed}}<a href="#" class="subscribe">Subscribe</a>{{/isSubscribed}}
+      {{#isSubscribed}}<a href="#" class="unsubscribe">Unsubscribe</a>{{/isSubscribed}}
    </div>
    <div class="right">
-      <h2 class="name message-link" href="#">{{name}}</h2>
+      <h2 class="name">{{name}}</h2>
       <div class="stat-bar">
          <ul>
             <li>
@@ -20,11 +23,9 @@
             </li>
          </ul>
       </div>
+      {{#hasAbout}}
+      <p>{{about}}</p>
+      {{/hasAbout}}
+      <p><span class="bold">Website:</span>  <a href={{site_url}} target="_blank">{{site_url}}</a></p>
   </div>
-  {{#hasAbout}}
-  <p>{{about}}</p>
-  {{/hasAbout}}
-  <p><span class="bold">Website:</span>  <a href={{site_url}} target="_blank">{{site_url}}</a></p>
-  {{^isSubscribed}}<a href="#" class="red-button subscribe">Subscribe</a>{{/isSubscribed}}
-  {{#isSubscribed}}<a href="#" class="red-button unsubscribe">Unsubscribe</a>{{/isSubscribed}}
 </div>

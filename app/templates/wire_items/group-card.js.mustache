@@ -1,6 +1,8 @@
 <div>
    <div class="left">
       <img class="avatar-container" src={{avatar}} />
+      {{^isSubscribed}}<a href="#" class="subscribe">Subscribe</a>{{/isSubscribed}}
+      {{#isSubscribed}}<a href="#" class="unsubscribe">Unsubscribe</a>{{/isSubscribed}}
    </div>
    <div class="right">
       <h2 class="name">{{name}}</h2>
@@ -20,10 +22,8 @@
             </li>
          </ul>
       </div>
+      {{#hasAbout}}
+      <p>{{about}}</p>
+      {{/hasAbout}}
   </div>
-  {{#hasAbout}}
-  <p>{{about}}</p>
-  {{/hasAbout}}
-  {{^isSubscribed}}<a href="#" class="red-button subscribe">Subscribe</a>{{/isSubscribed}}
-  {{#isSubscribed}}<a href="#" class="red-button unsubscribe">Unsubscribe</a>{{/isSubscribed}}
 </div>
