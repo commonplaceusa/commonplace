@@ -95,3 +95,7 @@ textarea { overflow: auto; }
 .profile-card {
    border-bottom: 1px solid #555 !important;
 }
+
+html {
+  display: none !important;
+}
