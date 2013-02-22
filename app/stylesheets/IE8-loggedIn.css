@@ -102,3 +102,17 @@ textarea { overflow: auto; }
   background-color: #172e42 !important;
   color: white !important;
 }
+
+form select,
+form select option {
+  width: 339px;
+  padding: 8px 4px;
+  font-family: 'Rokkitt';
+  color: #555;
+  font-size: 18px;
+  border: 1px solid #bcbbae;
+}
+form .event #start_time,
+form .event #end_time {
+  width: 98px;  
+}
