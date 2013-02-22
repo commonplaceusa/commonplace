@@ -173,12 +173,14 @@
           .red-button           
             box-shadow: inset 0px 1px 0px rgba(255,255,255,0.35)
             +linear-gradient(color-stops(#ee5a56, #b53633), top)
+            behavior: url("assets/PIE.htc")
         &:active
           background-position: 0px -82px
           .red-button
             box-shadow: inset 0px 1px 0px rgba(255,255,255,0.20)
             +linear-gradient(color-stops(#d64541, #ac322f), bottom)
             text-shadow: 0px 1px 0px #64100D
+            behavior: url("assets/PIE.htc")
         .red-button
           font-size: 17px
           text-align: center
@@ -187,6 +189,7 @@
           border: 0px
           border-bottom: 2px solid rgba(0,0,0,0.75)
           box-shadow: inset 0px -1px 0px rgba(255,255,255,0.25)
+          behavior: url("assets/PIE.htc")
           &:hover, &:focus
             box-shadow: inset 0px 1px 0px rgba(255,255,255,0.35)
           &:active
@@ -195,10 +198,6 @@
             border-top: 8px transparent #8a2a23
             border-left: 8px transparent
             border-right: 8px transparent
-
-
-
-
             &:hover, &:focus
               border-top: 8px solid #cf4643
             &:active

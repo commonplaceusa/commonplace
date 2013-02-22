@@ -8,7 +8,7 @@
 }
 
 #search-header:focus {
-  background-color: #243f5b;
+  background-color: #243f5b !important;
 }
 #header #nav_wrapper .nav li.account {
   font-weight: normal;
@@ -88,4 +88,7 @@ textarea { overflow: auto; }
   position: absolute;
   top: 0px;
   right: 0px;
+}
+.red-button {
+  background-color: ##ac322f;
 }
