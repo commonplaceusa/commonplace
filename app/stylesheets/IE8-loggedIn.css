@@ -1,5 +1,5 @@
 #search-header {
-  background-color:#172e42;
+  background-color: #172e42;
   color: #fff;
   border: 1px solid #151f28;
   height: 22px;
@@ -9,6 +9,8 @@
 
 #search-header:focus {
   background-color: #243f5b !important;
+  border: 1px solid #151f28 !important;
+  border-radius: 5px !important;
 }
 #header #nav_wrapper .nav li.account {
   font-weight: normal;
@@ -64,8 +66,8 @@ li.account a:hover, li.account a:focus {
 #header #nav_wrapper .nav li.account ul.account-sub li a:hover {
  color: #fff;
 }
-#main .wire .wire-item {
-  border-bottom: 1px solid #aaa;
+#main .wire .wire-item, .profile-card {
+  border-bottom: 1px solid #666;
 }
 
 textarea { overflow: auto; }
@@ -89,6 +91,14 @@ textarea { overflow: auto; }
   top: 0px;
   right: 0px;
 }
-.red-button {
-  background-color: ##ac322f;
+#header.app #nav_wrapper .button-wrapper .red-button {
+  width: 169px !important;
+  border-bottom: 1px solid black;
+}
+#header.app #nav_wrapper .button-wrapper:hover, #header.app #nav_wrapper .button-wrapper:active {
+  background-position: 0px -2px !important;
+}
+#header.app #nav_wrapper .nav li.account ul.account-sub li a span.inbox_number {
+  background-color: #172e42 !important;
+  color: white !important;
 }

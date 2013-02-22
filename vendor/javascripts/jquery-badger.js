@@ -39,7 +39,7 @@ else if(badge.charAt(0)=='-')
 if(badgerExists)
 { this.find('#Badge').html(badge); }
 else
-{ this.append('<div class="badger-outter" id="Badger"><div class="badger-inner"><p class="badger-badge" id="Badge">'+badge+'</p></div></div>'); }
+{ this.append('<div class="badger-outter" id="Badger"><div class="badger-inner"><p class="badger-badge pie-element" id="Badge">'+badge+'</p></div></div>'); }
 
 // Badger text or number class
 if(isNaN(badge))
