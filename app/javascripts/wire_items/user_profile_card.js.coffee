@@ -9,6 +9,9 @@ CommonPlace.wire_item.UserProfileCard = CommonPlace.wire_item.ProfileCard.extend
     "click .unmeet": "unmeet"
     "click .page-link": "showPage"
 
+  defaultAbout: ->
+    "This profile hasn't been filled out yet!"
+
   post_count: ->
     @model.get "post_count"
 

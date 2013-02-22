@@ -1,47 +1,46 @@
 <div>
-   <div class="left">
-     <img class="avatar-container" src={{avatar}} />
-     <a class="contact message-link" href="#">Send Message</a>
-       {{^hasMet}}
-         <a href="#" class="meet">Have You Met?</a>
-         <a class="just-met" style="display: none;">You've Met!</a>
-       {{/hasMet}}
-       {{#hasMet}}<a href="#" class="unmeet">Already Met!</a>{{/hasMet}}
-   </div>
-   <div class="right">
-     <h2 class="name">{{name}}</h2>
-      <div class="stat-bar">
-         <ul>
-            <li>
-            <span class="big">{{post_count}}</span>
-              <span class="little">Posts</span>
-            </li>
-            <li>
-            <span class="big">{{reply_count}}</span>
-              <span class="little">Replies</span>
-            </li>
-            <li>
-              <span class="big">{{sell_count}}</span>
-              <span class="little">Items</span>
-            </li>
-            <li>
-            <span class="big">{{thank_count}}</span>
-              <span class="little">Thanks</span>
-            </li>
-            <li>
-              <span class="big">{{met_count}}</span>
-              <span class="little">Mets</span>
-            </li>
-         </ul>
-      </div>
-      {{#hasAbout}}
-       <p class="bio">{{about}}</p>
-       {{/hasAbout}}
-       {{#hasPages}}
-       <p><span class="bold">Pages:</span>
-       {{#pages}}
-       <a class="page-link" title="{{slug}}" href="#">{{name}}</a><span>{{^last}},{{/last}}</span>  </p>
-       {{/pages}}
-       {{/hasPages}}
+  <div class="left">
+    <img class="avatar-container" src={{avatar}} />
+    <a class="contact message-link" href="#">Send Message</a>
+    {{^hasMet}}
+    <a href="#" class="meet">Have You Met?</a>
+    <a class="just-met" style="display: none;">You've Met!</a>
+    {{/hasMet}}
+    {{#hasMet}}<a href="#" class="unmeet">Already Met!</a>{{/hasMet}}
+  </div>
+  <div class="right">
+    <h2 class="name">{{name}}</h2>
+    <div class="stat-bar">
+      <ul>
+        <li>
+        <span class="big">{{post_count}}</span>
+        <span class="little">Posts</span>
+        </li>
+        <li>
+        <span class="big">{{reply_count}}</span>
+        <span class="little">Replies</span>
+        </li>
+        <li>
+        <span class="big">{{sell_count}}</span>
+        <span class="little">Items</span>
+        </li>
+        <li>
+        <span class="big">{{thank_count}}</span>
+        <span class="little">Thanks</span>
+        </li>
+        <li>
+        <span class="big">{{met_count}}</span>
+        <span class="little">Mets</span>
+        </li>
+      </ul>
+    </div>
+    {{^hasAbout}}<p class="default-about">{{defaultAbout}}</p>{{/hasAbout}}
+    {{#hasAbout}}<p class="bio">{{about}}</p>{{/hasAbout}}
+    {{#hasPages}}
+    <p><span class="bold">Pages:</span>
+    {{#pages}}
+    <a class="page-link" title="{{slug}}" href="#">{{name}}</a><span>{{^last}},{{/last}}</span>  </p>
+    {{/pages}}
+    {{/hasPages}}
   </div>
 </div>
