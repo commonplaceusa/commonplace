@@ -1,0 +1,94 @@
+#search-header {
+  background-color:#172e42;
+  color: #fff;
+  border: 1px solid #151f28;
+  height: 22px;
+  border-bottom: 1px solid #31465b;
+  font-weight: normal !important;
+}
+
+#search-header:focus {
+  background-color: #243f5b;
+}
+#header #nav_wrapper .nav li.account {
+  font-weight: normal;
+  box-shadow: none !important;
+  border: 1px solid #151f28 !important;
+  border-radius: 5px !important;
+}
+li.account a {
+  color: #fff;
+}
+li.account a:hover, li.account a:focus {
+  color: #919ca7;
+}
+#header #nav_wrapper .nav li.account span.arrow {
+  text-indent: -9999px;
+  background: url(shared/redesign/down-arrow.png) left top no-repeat;
+  width: 10px;
+  height: 7px;
+  margin-top: 5px;
+}
+#header #nav_wrapper .nav li.account:hover span.arrow, #header #nav_wrapper .nav li.account:focus span.arrow {
+  text-indent: -9999px;
+  background: url(shared/redesign/down-arrow-hover.png) left top no-repeat;
+  width: 10px;
+  height: 7px;
+  margin-top: 5px;
+}
+#header #nav_wrapper .nav li.account:hover ul.account-sub, #header #nav_wrapper .nav li.account:focus ul.account-sub {
+  background-color: #1B334A !important;
+  box-shadow: none !important;
+  border-radius: 5px 0px 5px 5px;
+  border: 1px solid #151f28 !important;
+}
+#header #nav_wrapper .nav li.account:hover, #header #nav_wrapper .nav li.account:focus {
+  color: #31465b;
+  border-bottom: 1px solid #1B334A !important;
+  box-shadow: none !important;
+}
+#header #nav_wrapper .nav li.account ul.account-sub li {
+  border-top: 1px solid #31465b;
+  border-bottom: 1px solid #101e2c;
+}
+#header #nav_wrapper .nav li.account ul.account-sub li:hover {
+  background-color: #2d4e6b;
+}
+#header #nav_wrapper .nav li.account ul.account-sub li:first-child {
+ border-top: 0px none;
+}
+#header #nav_wrapper .nav li.account ul.account-sub li a {
+ font-weight: normal;
+ color: #919ca7;
+}
+#header #nav_wrapper .nav li.account ul.account-sub li a:hover {
+ color: #fff;
+}
+#main .wire .wire-item {
+  border-bottom: 1px solid #aaa;
+}
+
+textarea { overflow: auto; }
+
+.upload-section .image_file_browser {
+  z-index: 9999999999999!important;
+  display: block;
+  top: 0px;
+  left: 0px;
+  height: 124px;
+  width: 154px;
+}
+#sidebar {
+  border-right: 1px solid #fff;
+}
+#header .community-name {
+   position: relative;
+}
+#header .button-wrapper {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+html {
+display: none !important;
+}
