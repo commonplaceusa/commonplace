@@ -40,11 +40,6 @@ $(function() {
   $.when(getAccount, getCommunity).then(function() {
     window.app = new Application();
 
-    (new FeatureSwitching({
-      account: CommonPlace.account,
-      el: $("#feature-switching")})
-    ).render();
-
     Backbone.history.start({ pushState: Modernizr.history });
   });
 
