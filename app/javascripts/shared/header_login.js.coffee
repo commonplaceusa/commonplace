@@ -39,14 +39,16 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
     @$(".error").removeClass "error"
     email = @$("input[name=email]").val()
     unless email
-      @$("#errors").append @create_error("Please enter an e-mail address")
+      @$("#errors").text("Please enter an e-mail address")
       @$("input[name=email]").addClass "error"
       return
     password = @$("input[name=password][type=password]").val()
     unless password
-      @$("#errors").append @create_error("Please enter a password")
+      @$("#errors").text("Please enter a password")
       @$("input[name=password][type=password]").addClass "error"
       return
+
+    errors = @$("#errors")
     $.postJSON
       url: "/api/sessions"
       data:
@@ -56,8 +58,7 @@ CommonPlace.shared.HeaderLogin = CommonPlace.View.extend(
       success: ->
         window.location = "/users/sign_in"
 
-      error: _.bind(->
-        window.location = "/login_failed"
-      , this)
-
+      error: ->
+        errors.text("Your username or password is incorrect")
+        errors.addClass("error")
 )
