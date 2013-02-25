@@ -13,7 +13,7 @@
 %meta{ :name => "keywords", :content => "CommonPlace, CommonPlace USA" }
 %meta{ :name => "google-site-verification", :content => "HntCS6GTLIAye5nM6FCNHgtcSUlb0-aF2jVbGtd8oyI" }
 - if ENV['TINFOIL_VERIFICATION'].present?
-  %meta{ :name => "tinfoil-site-verification" :content => ENV['TINFOIL_VERIFICATION'] }
+  %meta{ :name => "tinfoil-site-verification", :content => ENV['TINFOIL_VERIFICATION'] }
 
 - if community_name = current_community.try(:name) || params[:community]
   %meta{ :name => "description", :content => "The #{community_name} CommonPlace is an online community bulletin board for neighbors in #{community_name}, designed to make it easy for neighbors and community groups to share and connect." }
