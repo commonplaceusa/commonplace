@@ -88,9 +88,10 @@ class Bootstrapper < Sinatra::Base
     haml :learn_more
   end
 
-  get ":community/art_project" do
+  get ":community/civicart" do
     @community = Community.find_by_slug(params[:community])
-    erb :art_project
+    @login_redirect = @community.links.base + "/pages/" + @community.slug + "civicart"
+    erb :civic_art
   end
 
   get %r{([\w]+)/register.*} do

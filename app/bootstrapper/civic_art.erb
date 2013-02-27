@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CommonPlace</title>
+    <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
+    <% if ENV['TINFOIL_VERIFICATION'].present? %>
+      <meta name="tinfoil-site-verification" content="<%= ENV['TINFOIL_VERIFICATION'] %>">
+    <% end %>
+
+  <link href="//fonts.googleapis.com/css?family=Rokkitt:400,700" rel="stylesheet" type="text/css">
+  <link href="/assets/favicon.png" rel="icon" type="image/png">
+    <link href="/assets/application.css" rel="stylesheet" type="text/css">
+  <style type="text/css" media="screen">
+       html {
+           background-color: #FCFAF4;
+           background-size: cover !important;
+           -webkit-background-size: cover;
+           -webkit-font-smoothing: antialiased;
+           text-rendering: optimizeLegibility;
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
+          }
+
+          body {
+            background: none !important;
+            -webkit-font-smoothing: antialiased;
+            overflow-y: scroll;
+          }
+     </style>
+       <!--[if lt IE 9]>
+                 <link rel="stylesheet" type="text/css" href="/assets/IE8-loggedOut.css" />
+       <![endif]-->
+       <!--[if lt IE 8]>
+                 <link rel="stylesheet" type="text/css" href="/assets/IE8-loggedOut.css" />
+         <![endif]-->
+    <!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+  <script src="https://connect.facebook.net/en_US/all.js"></script>
+    <script>
+      FB.init({
+        appId      : '170191166378346', // App ID
+        status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+        xfbml      : true  // parse XFBML
+      });
+    </script>
+    <body>
+       <img src="/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg" style="display:none;">
+        <img src="/assets/shared/redesign/logo3.png" style="display:none;">
+        <img src="/assets/shared/redesign/requests-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/marketplace-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/events-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/discussions-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/announcements-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/welcomebg.png" style="display:none;">
+        <img src="/assets/shared/redesign/reply-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/message-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/publicize-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/thank-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/flag-icon.png" style="display:none;">
+        <img src="/assets/shared/redesign/tan-bg.png" style="display:none;">
+        <img src="/assets/shared/redesign/red-bg.png" style="display:none;">
+        <img src="/assets/shared/redesign/blue-bg.png" style="display:none;">
+        <img src="/assets/shared/redesign/star-red.png" style="display:none;">
+        <img src="/assets/shared/redesign/star-blue.png" style="display:none;">
+        <img src="/assets/shared/redesign/welcome-divider.png" style="display:none;">
+        <img src="/assets/shared/redesign/error-bg.png" style="display:none;">
+        <img src="/assets/shared/redesign/fbreg.png" style="display:none;">
+        <img src="/assets/shared/redesign/arrow.png" style="display:none;">
+        <img src="/assets/shared/redesign/close-icon.png" style="display:none;">
+        <img src="/assets/use_facebook.png" style="display:none;">
+        <img src="/avatars/missing.png" style="display:none;">
+        <img src="/assets/loading.gif" style="display:none;">
+        <img src="/assets/group-icons/dogs.png" style="display:none;">
+        <img src="/assets/group-icons/environment.png" style="display:none;">
+        <img src="/assets/group-icons/volunteer-opportunities.png" style="display:none;">
+        <img src="/assets/group-icons/sports-recreation.png" style="display:none;">
+        <img src="/assets/group-icons/social-opportunities.png" style="display:none;">
+        <img src="/assets/group-icons/schools.png" style="display:none;">
+        <img src="/assets/group-icons/parents-families.png" style="display:none;">
+        <img src="/assets/group-icons/new-mothers.png" style="display:none;">
+        <img src="/assets/group-icons/music-arts.png" style="display:none;">
+        <img src="/assets/group-icons/local-dining.png" style="display:none;">
+        <img src="/assets/group-icons/gardening-home-improvement.png" style="display:none;">
+        <img src="/assets/group-icons/city-problem-solving.png" style="display:none;">
+    <div id="header" class="about">
+    </div>
+    <div id="about" class="info">
+      <div id="fb-root"></div>
+      <% if @login_redirect %>
+        <input type="hidden" id="login_redirect" value="<%= @login_redirect %>" />
+      <% end %>
+      <div class="header">
+        <h2>Civic Art</h2>
+        <ul class="nav">
+          <li class="selected"><a href="for-artists">For Artists</a></li>
+          <li><a href="for-voters">For Voters</a></li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="about_border">
+           <div class="left">
+             <div id="for-artists" class="slide selected">
+               <p>OurCommonPlace <%= @community.name %> is proud to announce <%= @community.name %>'s first ever Civic Art Contest! We created the Civic Art Contest as a fun and engaging way for the students of <%= @community.name %>'s public schools to show off their skills and community spirit at the same time. Create a work of art that shows your civic pride or answers the question: "Why do you love <%= @community.name %>?".</p>
+               <p><strong>How it works:</strong></p>
+               <p>
+                 1. Create a work of art (any medium!) that shows your <%= @community.name %> pride
+                 <br>
+                 2. Submit your art by <strong>March 24th</strong> to <a href="mailto:ricky@ourcommonplace.com">ricky@ourcommonplace.com</a>
+                 <br>
+                 3. Have your friends, family, and neighbors in town vote for your artwork on OurCommonPlace <%= @community.name %> for a chance to win a $100 cash prize, the Civic Art Award, and a cool t-shirt!
+               </p>
+               <p><strong>Rules:</strong></p>
+               <ul class="neighborhood_list">
+                 <li>Any and all mediums accepted! Anythings from pencil drawings to paintings to videos or songs! Be creative! We'd love to see some outside-the-box entries.</li>
+                 <li>You must be of high school age or younger to enter.</li>
+                 <li>All voting will take place on <a href="<%= @community.links.base %>/pages/<%= @community.slug %>civicart">www.<%= @community.slug %>.OurCommonPlace.com</a></li>
+                 <li>Voting closes on <strong>March 29th</strong> and all votes will be counted in the following days. The entry with the most votes wins!</li>
+               </ul>
+             </div>
+             <div id="for-voters" class="slide">
+               <p>Support local students! Vote for your favorite pieces of 'Civic Art' in <%= @community.name %>'s first ever Civic Art Contest sponsored by OurCommonPlace <%= @community.name %>! </p>
+               <p><strong>To view contest entries:</strong></p>
+               <p>
+               1. Head over to <a href="<%= @community.links.base %>/pages/<%= @community.slug %>civicart">www.<%= @community.slug %>.OurCommonPlace.com</a>
+                 <br>
+                 2. If you're not already a member, sign up (it's 100% free!) using your real first and last name. 
+                 <br>
+                 3. Click the '<%= @community.name %> Civic Art' page and browse the artist's entries that have been posted. Check back every day for new posts!
+                 </p>
+               <p><strong>To Vote:</strong></p>
+               <p>
+                 1. Click the 'Thank' button located on the posting of your favorite pieces of art. Vote for as many entries as you'd like!
+                 <br>
+                 2. Share the post with as many people as you can to ensure the art that you voted for is the winner!
+               </p>
+               <p>Voting ends on <strong>March 29th</strong>, be sure to get your votes in before then!</p>
+             </div>
+           </div>
+           <div class="right">
+             <div id="fb-root"></div>
+             <div id="registration-modal"></div>
+             <div id="nominate-form" class="nominate-form" style="display: none;"> </div>
+             <div id="apply-form" class="apply-form" style="display: none;"> </div>
+           </div>
+         </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/assets/civic_art.js"></script>
+    <script type="text/javascript">
+      CommonPlace.community = new Community(<%= Serializer::serialize(@community).to_json.html_safe %>);
+      CommonPlace.account = new Account(<%= @account.try(:persisted?) ? Serializer::serialize(Account.new(@account)).to_json : "{}" %>);
+      var header = new CommonPlace.shared.HeaderView({el: $("#header")});
+      header.render();
+
+      var communityExterior = <%= Serializer::serialize(@community.exterior).to_json.html_safe %>;
+      window.router = new CommonPlace.registration.Router({ communityExterior: communityExterior });
+
+      var communitySlug = window.location.pathname.split("/")[1];
+
+      Backbone.history.start();
+    </script>
+  </body>
+</html>
+

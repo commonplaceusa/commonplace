@@ -34,7 +34,7 @@ CommonPlace.registration.Router = Backbone.Router.extend(
   new_user: (c) ->
     if window.location.pathname.split("/").length > 2
       url = window.location.pathname.split("/")[2]
-      if url is "about" or url is "our-mission" or url is "our-story" or url is "our-platform" or url is "press" or url is "nominate"
+      if url is "about" or url is "our-mission" or url is "our-story" or url is "our-platform" or url is "press" or url is "nominate" or url is "civicart"
         @new_user_about()
       else
         @modal.showPage "new_user"

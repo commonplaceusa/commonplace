@@ -17,7 +17,7 @@
 //= require views
 //= require models
 
-//= require about/tabs
+//= require civic_art/tabs
 
 //= require_tree ./shared
 //= require_tree ./registration
