@@ -303,7 +303,7 @@ CommonPlace.main.CommunityResources = CommonPlace.View.extend(
   cancelSearch: (e) ->
     @currentQuery = ""
     @$(".sticky form.search input").val ""
-    @view.cancelSearch()
+    @view.cancelSearch() if @view
     @showTab()
     $(".sticky form.search input").removeClass "active"
     $(".sticky .cancel").hide()
