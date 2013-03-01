@@ -35,7 +35,7 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
 
       onComplete: _.bind((file, response) ->
           $upload_pic = $(".item_pic")
-          $upload_pic.attr("src", response.image_url)
+          $upload_pic.attr("src", response.image_normal)
           $upload_pic.parent().removeClass("loading")
           @data.image_id = response.id
         , this)
