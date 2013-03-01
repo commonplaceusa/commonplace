@@ -71,8 +71,9 @@
             .image_container
               text-align: left
               position: relative
-              &:hover
-                &:after
+              //&:hover
+                cursor: pointer
+                //&:after
                   content: url("shared/redesign/enlarge-icon.png")
                   position: absolute
                   top: 10px
@@ -338,7 +339,7 @@
               background-position: 5px 5px
               padding: 11px
 
-      .wire-empty-message
+      .wire-empty-message, div.loading
         color: #fff
         text-align: center
         padding: 8px
