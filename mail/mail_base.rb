@@ -178,16 +178,6 @@ class MailBase < Mustache
                           :charset => 'UTF-8',
                           :headers => mail_headers
       )
-      DailyStatistic.increment_or_create("#{self.tag}s_sent")
-      KM.identify(self.to)
-      KM.record('email sent', {
-        type: self.tag,
-        community: community ? community.slug : "administrative"
-      })
-      KM.record("#{self.tag} email sent", {
-        type: self.tag,
-        community: community ? community.slug : "administrative"
-      })
     end
   end
 
