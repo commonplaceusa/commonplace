@@ -36,6 +36,7 @@ class Feed < ActiveRecord::Base
   belongs_to :user,:counter_cache => true
 
   has_many :events, :dependent => :destroy, :as => :owner, :include => :replies
+  has_many :transactions, :as => :seller
 
   has_many :announcements, :dependent => :destroy, :as => :owner, :include => :replies
 
@@ -97,6 +98,7 @@ class Feed < ActiveRecord::Base
       "messages" => "/feeds/#{id}/messages",
       "edit" => "/feeds/#{id}/edit",
       "subscribers" => "/feeds/#{id}/subscribers",
+      "transactions" => "/feeds/#{id}/transactions",
       "self" => "/feeds/#{id}",
       "owners" => "/feeds/#{id}/owners",
       "swipes" => "/feeds/#{id}/swipes"
