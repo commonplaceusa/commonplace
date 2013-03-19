@@ -2,6 +2,14 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
   template: "main_page.forms.transaction-form"
   className: "create-transaction transaction"
 
+  initialize: (options) ->
+    CommonPlace.main.BaseForm.prototype.initialize options
+    @feeds = CommonPlace.account.get("feeds")
+    @user = CommonPlace.account.get("name")
+    @hasFeeds = false
+    if @feeds.length > 0
+      @hasFeeds = true
+
   afterRender: ->
     @data = {}
     @data.image_id = []
@@ -55,7 +63,19 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
     @data.price = price
     @data.body = @$("[name=body]").val()
 
-    @sendPost CommonPlace.community.transactions, @data
+    feed_id = @$("[name=feed_selector]").val()
+    if feed_id is ""
+      @showError "Please choose who to post as"
+      @hideSpinner()
+      @enableSubmitButton()
+      return
+
+    if feed_id isnt undefined and feed_id isnt "self"
+      feed = new Feed({links: {self: "/feeds/" + feed_id, transactions: "/feeds/" + feed_id + "/transactions"}})
+      console.log(feed)
+      @sendPost feed.transactions, @data
+    else
+      @sendPost CommonPlace.community.transactions, @data
 
   sendPost: (transactionCollection, data) ->
     self = this

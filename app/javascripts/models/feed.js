@@ -3,9 +3,10 @@ var Feed = Model.extend({
     this.announcements = new Announcements([], { uri: this.link("announcements") });
     this.events = new Events([], { uri: this.link("events") });
     this.subscribers = new Users([], { uri: this.link("subscribers") });
+    this.transactions = new Transactions([], { uri: this.link("transactions") });
     this.owners = new FeedOwners([], { uri: this.link("owners") });
   },
-  
+
   validate: function(attribs) {
     var missing = [];
     if (!attribs.name) { missing.push("feed name"); }
@@ -22,7 +23,7 @@ var Feed = Model.extend({
       return response;
     }
   },
-  
+
   cropAvatar: function(coords, callback) {
     $.ajax({
       contentType: "application/json",
@@ -41,7 +42,7 @@ var Feed = Model.extend({
       }, this)
     });
   },
-  
+
   deleteAvatar: function(callback) {
     var self = this;
     $.ajax({
@@ -49,7 +50,7 @@ var Feed = Model.extend({
       url: "/api" + this.get('links').avatar_edit,
       type: "delete",
       dataType: "json",
-      success: function(account) { 
+      success: function(account) {
         self.set(account);
         callback && callback();
       }
