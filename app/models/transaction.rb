@@ -4,7 +4,7 @@ class Transaction < ActiveRecord::Base
   serialize :metadata, Hash
 
   belongs_to :community
-  belongs_to :seller, :class_name => 'User', :foreign_key => 'user_id'
+  belongs_to :seller, :polymorphic => true, :counter_cache => true, :foreign_key => 'user_id'
   belongs_to :buyer, :class_name => 'User', :foreign_key => 'buyer_id'
 
   has_many :replies, :as => :repliable, :order => :created_at, :dependent => :destroy
@@ -34,7 +34,10 @@ class Transaction < ActiveRecord::Base
   scope :created_on, lambda { |date| { :conditions => ["transactions.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
 
   def user
-    self.seller
+    case seller
+      when User then seller
+      when Feed then seller.user
+    end
   end
 
   # Potential buyers
