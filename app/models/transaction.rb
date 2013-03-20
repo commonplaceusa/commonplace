@@ -4,7 +4,7 @@ class Transaction < ActiveRecord::Base
   serialize :metadata, Hash
 
   belongs_to :community
-  belongs_to :seller, :polymorphic => true, :counter_cache => true, :foreign_key => 'user_id'
+  belongs_to :owner, :polymorphic => true, :counter_cache => true
   belongs_to :buyer, :class_name => 'User', :foreign_key => 'buyer_id'
 
   has_many :replies, :as => :repliable, :order => :created_at, :dependent => :destroy
@@ -13,7 +13,7 @@ class Transaction < ActiveRecord::Base
   has_many :warnings, :as => :warnable, :dependent => :destroy
   has_many :images, :as => :imageable, :dependent => :destroy
 
-  validates_presence_of :seller, :community
+  validates_presence_of :owner, :community
 
   acts_as_api
 
@@ -34,10 +34,14 @@ class Transaction < ActiveRecord::Base
   scope :created_on, lambda { |date| { :conditions => ["transactions.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
 
   def user
-    case seller
-      when User then seller
-      when Feed then seller.user
+    case owner
+      when User then owner
+      when Feed then owner.user
     end
+  end
+
+  def user_id
+    user.id
   end
 
   # Potential buyers
@@ -84,7 +88,7 @@ class Transaction < ActiveRecord::Base
   searchable do
     text :title, :description
     text :author_name do
-      seller.name
+      owner.name
     end
     text :replies do
       replies.map &:body

@@ -36,7 +36,7 @@ class Feed < ActiveRecord::Base
   belongs_to :user,:counter_cache => true
 
   has_many :events, :dependent => :destroy, :as => :owner, :include => :replies
-  has_many :transactions, :as => :seller
+  has_many :transactions, :as => :owner
 
   has_many :announcements, :dependent => :destroy, :as => :owner, :include => :replies
 
