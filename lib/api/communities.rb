@@ -806,7 +806,7 @@ CONDITION
 
       transaction = Transaction.new(
         :community_id => find_community.id,
-        :seller => current_user,
+        :owner => current_user,
         :title => request_body['title'],
         :price_in_cents => request_body['price'],
         :description => request_body['body']

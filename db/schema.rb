@@ -508,7 +508,7 @@ ActiveRecord::Schema.define(:version => 20130313215735) do
     t.text     "metadata"
     t.integer  "community_id"
     t.integer  "buyer_id"
-    t.integer  "user_id",                           :null => false
+    t.integer  "owner_id",                          :null => false
     t.integer  "price_in_cents", :default => 0
     t.integer  "buyer_fee",      :default => 0
     t.integer  "seller_fee",     :default => 0
