@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130313215735) do
+ActiveRecord::Schema.define(:version => 20130320214459) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(:version => 20130313215735) do
     t.string   "background_file_name"
     t.integer  "announcements_count",  :default => 0,      :null => false
     t.integer  "events_count",         :default => 0
+    t.integer  "transactions_count",   :default => 0
   end
 
   create_table "flags", :force => true do |t|
@@ -590,6 +591,7 @@ ActiveRecord::Schema.define(:version => 20130313215735) do
     t.integer  "events_count",                     :default => 0,       :null => false
     t.integer  "replied_count",                    :default => 0,       :null => false
     t.text     "action_tags"
+    t.integer  "transactions_count",               :default => 0
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"

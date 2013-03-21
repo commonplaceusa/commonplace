@@ -106,7 +106,7 @@ class API
       control_access :owner, find_feed
 
       transaction = Transaction.new(:owner_type => "Feed",
-                                    :user_id => find_feed.user.id,
+                                    :owner_id => find_feed.id,
                                     :title => request_body['title'],
                                     :description => request_body['body'],
                                     :community => current_user.community,

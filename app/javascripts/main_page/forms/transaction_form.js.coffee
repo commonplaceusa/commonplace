@@ -72,7 +72,6 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
 
     if feed_id isnt undefined and feed_id isnt "self"
       feed = new Feed({links: {self: "/feeds/" + feed_id, transactions: "/feeds/" + feed_id + "/transactions"}})
-      console.log(feed)
       @sendPost feed.transactions, @data
     else
       @sendPost CommonPlace.community.transactions, @data
