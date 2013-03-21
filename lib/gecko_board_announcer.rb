@@ -14,6 +14,21 @@ class GeckoBoardAnnouncer
     Springfield
   ]
 
+  WATCHED_COMMUNITIES = %w[
+    FallsChurch
+    Harrisonburg
+    Vienna
+    Marquette
+    Warwick
+    OwossoCorunna
+    Chelmsford
+    Belmont
+    Watertown
+    Sudbury
+    Westwood
+    Hudson
+  ]
+
   def self.average_size(communities)
     (communities.map { |c| c.users.count }.inject{ |sum, el| sum + el }.to_f / communities.size).round(2)
   end
@@ -32,6 +47,7 @@ class GeckoBoardAnnouncer
       ENV['SKIP_POST_DISTRIBUTION'] = 'true'
       ENV['SKIP_REPLY'] = 'true'
       ENV['SKIP_REPEATED_ENGAGEMENT'] = 'true'
+      ENV['SKIP_MEMOIZED_DATA'] = 'true'
     end
     mailgun = RestClient::Resource.new 'https://api:key-1os8gyo-wfo1ia85yzrih0ib8xq7n050@api.mailgun.net/v2/ourcommonplace.com'
     tz = "Eastern Time (US & Canada)"
@@ -45,6 +61,49 @@ class GeckoBoardAnnouncer
     network_size_headers = ["Age", "#", "Avg Size", "Avg Pen"]
     action_frequencies = [["Action", "Daily %", "Weekly %", "Monthly %", "Weekly #"]]
     network_sizes << network_size_headers
+
+    unless ENV['SKIP_MEMOIZED_DATA']
+      # Handle memoized data
+      post_count_str = Resque.redis.get("statistics:post_counts")
+      unless post_count_str.present?
+        post_count_str =  ",#{WATCHED_COMMUNITIES.join(",")}"
+      end
+      # Check the first line for all communities...
+      split_post_count_lines = post_count_str.split("\n")
+      if post_count_str.split("\n").shift.split(",").count != WATCHED_COMMUNITIES.count
+        # HOLD INVARIANT: Communities will not be deleted from WATCHED_COMMUNITIES, nor reordered
+        # New communities will be appended to the end of the list
+        # This allows us to make the following optimization:
+        first_line = true
+        missing_communities = WATCHED_COMMUNITIES.map(&:to_s) - split_post_count_lines.first.split(",")
+        split_post_count_lines.each do |line|
+          if first_line
+            line << ","
+            line << missing_communities.join(",")
+          else
+            missing_communities.times do
+              line << ",0"
+            end
+          end
+          first_line = false
+        end
+      end
+
+      new_post_counts = []
+      WATCHED_COMMUNITIES.each do |slug|
+        puts slug
+        new_post_counts << Community.find_by_slug(slug).posts.today.count.to_s
+      end
+      new_post_line = "#{Date.today.to_s(:mdy)},#{new_post_counts.join(",")}"
+      post_count_str << "\n"
+      post_count_str << new_post_line
+
+      # post_headers = post_counts.shift.map { |i| i.to_s }
+      # post_string_data = post_counts.map { |row| row.map { |cell| cell.to_s } }
+      # post_count_assoc = post_string_data.map { |row| Hash[*post_headers.zip(row).flatten] }
+      Resque.redis.set("statistics:post_counts", post_count_str)
+    end
+
     unless ENV['ONLY_AU'] == 'true'
       Community.find_each do |community|
         next if EXCLUDED_COMMUNITIES.include? community.slug
@@ -61,8 +120,8 @@ class GeckoBoardAnnouncer
           community.name => community.users.count
         }
       end
-      growths = growths.sort do |g|
-        g[1].to_i
+      growths = growths.sort do |x, y|
+        x[1].to_i <=> y[1].to_i
       end
       growths << growth_headers
       growths.reverse!
