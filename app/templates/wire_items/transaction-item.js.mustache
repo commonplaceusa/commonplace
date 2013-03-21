@@ -17,7 +17,7 @@
       </ul>
     </div>
   {{/hasImages}}
-    <p class="post-info"><a class="author" href="{{author_url}}">{{author}}</a> posted <a href="{{share_url}}">{{published_at_in_words}}</a> in <a class="wire_filter" href="/{{community_slug}}/list/discussions">{{wireCategoryName}}</a></p>
+  <p class="post-info"><a class="author" {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a> posted <a href="{{share_url}}">{{published_at_in_words}}</a> in <a class="wire_filter" href="/{{community_slug}}/list/discussions">{{wireCategoryName}}</a></p>
 </div>
 <div class="post-action clear">
   <ul class="actions">
