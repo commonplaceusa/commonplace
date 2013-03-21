@@ -85,7 +85,7 @@ class GeckoBoardAnnouncer
             line << ","
             line << missing_communities.join(",")
           else
-            missing_communities.times do
+            missing_communities.count.times do
               line << ",0"
             end
           end
