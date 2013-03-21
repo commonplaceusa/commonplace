@@ -12,6 +12,8 @@ var Wire = CommonPlace.View.extend({
   afterRender: function() {
     var self = this;
 
+    this.showCard();
+
     this.appendCurrentPage();
 
     $(window).on("scroll.wire", function() { self.onScroll(); });
@@ -74,8 +76,6 @@ var Wire = CommonPlace.View.extend({
     this.$(".loading").hide();
     var self = this;
     var $ul = this.$("ul.wire-list");
-
-    this.showCard();
 
     this.collection.each(function(model) {
       var view = self.schemaToView(model);
