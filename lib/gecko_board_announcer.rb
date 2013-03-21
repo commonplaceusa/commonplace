@@ -38,6 +38,10 @@ class GeckoBoardAnnouncer
     (100 * (penetrations.inject{ |sum, el| sum + el }.to_f / communities.size)).round(2)
   end
 
+  def self.full_run
+    run(false)
+  end
+
   def self.perform(quick = true)
     run(quick)
   end
