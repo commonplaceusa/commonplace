@@ -71,10 +71,11 @@ class Administration < Sinatra::Base
   end
 
   # List available CSVs to download, or regenerate them
-  get "/download_csv" do
-    @communities = Community.all.select { |c| Resque.redis.get("statistics:csv:#{c.slug}").present? }
-    @date = Resque.redis.get("statistics:csv:meta:date")
-    haml :download_csv
+  get "/download_posts_csv" do
+    csv = Resque.redis.get("statistics:post_counts") || ""
+    content_type 'application/csv'
+    attachment "post_count_#{Date.today.to_s(:mdy)}.csv"
+    response.write csv
   end
 
   # Become a user
