@@ -19,7 +19,7 @@ namespace :community do
           community: new_community
         )
         new_community.add_default_groups!
-        Rake::Task["community:seed"].invoke(slug)
+        Rake::Task["community:seed"].invoke(args[:slug]) unless ENV['SKIP_SEED'] == 'true'
         Rake.application.invoke_task("community:fix_group_images[#{args[:slug]}]")
       rescue => e
         puts "FAILED"
