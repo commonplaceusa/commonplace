@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   has_many :swipes
   has_many :swiped_feeds, :through => :swipes, :class_name => "Feed", :source => :feed
 
-  has_many :sell_transactions, :class_name => 'Transaction', :as => :owner, :foreign_key => 'user_id', :dependent => :destroy
+  has_many :sell_transactions, :class_name => 'Transaction', :as => :owner, :foreign_key => 'owner_id', :dependent => :destroy
   has_many :buy_transactions, :class_name => 'Transaction', :foreign_key => 'buyer_id'
 
   def organizer_data_points
