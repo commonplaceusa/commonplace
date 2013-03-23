@@ -51,7 +51,6 @@ class GeckoBoardAnnouncer
       ENV['SKIP_POST_DISTRIBUTION'] = 'true'
       ENV['SKIP_REPLY'] = 'true'
       ENV['SKIP_REPEATED_ENGAGEMENT'] = 'true'
-      ENV['SKIP_MEMOIZED_DATA'] = 'true'
     end
     mailgun = RestClient::Resource.new 'https://api:key-1os8gyo-wfo1ia85yzrih0ib8xq7n050@api.mailgun.net/v2/ourcommonplace.com'
     tz = "Eastern Time (US & Canada)"
@@ -72,40 +71,42 @@ class GeckoBoardAnnouncer
       unless post_count_str.present?
         post_count_str =  ",#{WATCHED_COMMUNITIES.join(",")}"
       end
-      # Check the first line for all communities...
-      split_post_count_lines = post_count_str.split("\n")
-      if post_count_str.split("\n").shift.split(",").count != WATCHED_COMMUNITIES.count
-        # HOLD INVARIANT: Communities will not be deleted from WATCHED_COMMUNITIES, nor reordered
-        # New communities will be appended to the end of the list
-        # This allows us to make the following optimization:
-        first_line = true
-        missing_communities = WATCHED_COMMUNITIES.map(&:to_s) - split_post_count_lines.first.split(",")
-        split_post_count_lines.each do |line|
-          if first_line
-            line << ","
-            line << missing_communities.join(",")
-          else
-            missing_communities.count.times do
-              line << ",0"
+
+      lines = post_count_str.split("\n")
+      if lines.count > 1
+        last_date = Date.parse(lines.last.split(",").first)
+        if last_date != Date.today
+          # Check the first line for all communities...
+          split_post_count_lines = post_count_str.split("\n")
+          if post_count_str.split("\n").shift.split(",").count != WATCHED_COMMUNITIES.count
+            # HOLD INVARIANT: Communities will not be deleted from WATCHED_COMMUNITIES, nor reordered
+            # New communities will be appended to the end of the list
+            # This allows us to make the following optimization:
+            first_line = true
+            missing_communities = WATCHED_COMMUNITIES.map(&:to_s) - split_post_count_lines.first.split(",")
+            split_post_count_lines.each do |line|
+              if first_line
+                line << ","
+                line << missing_communities.join(",")
+              else
+                missing_communities.count.times do
+                  line << ",0"
+                end
+              end
+              first_line = false
             end
           end
-          first_line = false
+
+          new_post_counts = []
+          WATCHED_COMMUNITIES.each do |slug|
+            new_post_counts << Community.find_by_slug(slug).posts.count.to_s
+          end
+          new_post_line = "#{Date.today.to_s(:mdy)},#{new_post_counts.join(",")}"
+          post_count_str << "\n"
+          post_count_str << new_post_line
+          Resque.redis.set("statistics:post_counts", post_count_str)
         end
       end
-
-      new_post_counts = []
-      WATCHED_COMMUNITIES.each do |slug|
-        puts slug
-        new_post_counts << Community.find_by_slug(slug).posts.today.count.to_s
-      end
-      new_post_line = "#{Date.today.to_s(:mdy)},#{new_post_counts.join(",")}"
-      post_count_str << "\n"
-      post_count_str << new_post_line
-
-      # post_headers = post_counts.shift.map { |i| i.to_s }
-      # post_string_data = post_counts.map { |row| row.map { |cell| cell.to_s } }
-      # post_count_assoc = post_string_data.map { |row| Hash[*post_headers.zip(row).flatten] }
-      Resque.redis.set("statistics:post_counts", post_count_str)
     end
 
     unless ENV['ONLY_AU'] == 'true'
