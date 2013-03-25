@@ -109,8 +109,8 @@ class GeckoBoardAnnouncer
       end
     end
 
-    all_transaction_prices = Transaction.all.map(&:price_in_cents)
-    average_transaction_price = all_transaction_prices.sum / Transaction.count
+    all_transaction_prices = Transaction.where("price_in_cents < 100000000").map(&:price_in_cents)
+    average_transaction_price = all_transaction_prices.sum / all_transaction_prices.count
     dashboard.number("Listing Amount", average_transaction_price.to_f / 100)
 
     unless ENV['ONLY_AU'] == 'true'
