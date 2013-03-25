@@ -109,6 +109,10 @@ class GeckoBoardAnnouncer
       end
     end
 
+    all_transaction_prices = Transaction.all.map(&:price_in_cents)
+    average_transaction_price = all_transaction_prices.sum / Transaction.count
+    dashboard.number("Listing Amount", average_transaction_price.to_f / 100)
+
     unless ENV['ONLY_AU'] == 'true'
       Community.find_each do |community|
         next if EXCLUDED_COMMUNITIES.include? community.slug
