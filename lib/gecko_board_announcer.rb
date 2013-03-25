@@ -202,7 +202,7 @@ class GeckoBoardAnnouncer
         post_distribution = [["", "#", "Replies", "Reply %"]]
         posts_map = {
           "Questions" => Post.where(category: "help"),
-          "Marketplaces" => Post.where(category: "offers"),
+          "Marketplaces" => Transaction.scoped,
           "Events" => Event.scoped,
           "Town Discussions" => Post.where(category: "neighborhood"),
           "Announcements" => Announcement.scoped,
