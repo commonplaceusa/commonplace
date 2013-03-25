@@ -33,7 +33,11 @@ class KissmetricsDumpDownload
     if ENV['NO_REDIS'] == 'true'
       last_procecssed_file = "#{ENV['LAST_PROCESSED_FILE']}.json"
     else
-      last_processed_file = Resque.redis.get(REDIS_LAST_PROCESSED_FILE)
+      begin
+        last_processed_file = Resque.redis.get(REDIS_LAST_PROCESSED_FILE)
+      rescue
+        last_processed_file = "1.json"
+      end
     end
     if last_processed_file.nil?
       last_processed_file = "1.json"
@@ -91,6 +95,9 @@ class KissmetricsDumpDownload
     end
     progress.finish
 
-    Resque.redis.set(REDIS_LAST_PROCESSED_FILE, "#{max_file_num}.json") unless ENV['NO_REDIS'] == 'true'
+    begin
+      Resque.redis.set(REDIS_LAST_PROCESSED_FILE, "#{max_file_num}.json") unless ENV['NO_REDIS'] == 'true'
+    rescue
+    end
   end
 end
