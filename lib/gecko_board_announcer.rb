@@ -342,19 +342,19 @@ class GeckoBoardAnnouncer
       open_stats.each do |daily_dump|
         opened_at = DateTime.parse(daily_dump['day'])
         unique_recipients = daily_dump['unique']['recipient'].to_i
-        if opened_at > 1.day.ago
+        if opened_at > 2.days.ago
           daily_bulletin_opens[:daily][:total] += unique_recipients
           daily_bulletin_opens[:weekly][:total] += unique_recipients
           daily_bulletin_opens[:monthly][:total] += unique_recipients
           daily_bulletin_opens[:daily][community_slug] += unique_recipients
           daily_bulletin_opens[:weekly][community_slug] += unique_recipients
           daily_bulletin_opens[:monthly][community_slug] += unique_recipients
-        elsif opened_at > 7.days.ago
+        elsif opened_at > 8.days.ago
           daily_bulletin_opens[:weekly][:total] += unique_recipients
           daily_bulletin_opens[:monthly][:total] += unique_recipients
           daily_bulletin_opens[:weekly][community_slug] += unique_recipients
           daily_bulletin_opens[:monthly][community_slug] += unique_recipients
-        elsif opened_at > 30.days.ago
+        elsif opened_at > 31.days.ago
           daily_bulletin_opens[:monthly][:total] += unique_recipients
           daily_bulletin_opens[:monthly][community_slug] += unique_recipients
         end
@@ -369,19 +369,19 @@ class GeckoBoardAnnouncer
       open_stats.each do |daily_dump|
         opened_at = DateTime.parse(daily_dump['day'])
         unique_recipients = daily_dump['unique']['recipient'].to_i
-        if opened_at > 1.day.ago
+        if opened_at > 2.days.ago
           single_post_opens[:daily][:total] += unique_recipients
           single_post_opens[:weekly][:total] += unique_recipients
           single_post_opens[:monthly][:total] += unique_recipients
           single_post_opens[:daily][community_slug] += unique_recipients
           single_post_opens[:weekly][community_slug] += unique_recipients
           single_post_opens[:monthly][community_slug] += unique_recipients
-        elsif opened_at > 7.days.ago
+        elsif opened_at > 8.days.ago
           single_post_opens[:weekly][:total] += unique_recipients
           single_post_opens[:monthly][:total] += unique_recipients
           single_post_opens[:weekly][community_slug] += unique_recipients
           single_post_opens[:monthly][community_slug] += unique_recipients
-        elsif opened_at > 30.days.ago
+        elsif opened_at > 31.days.ago
           single_post_opens[:monthly][:total] += unique_recipients
           single_post_opens[:monthly][community_slug] += unique_recipients
         end
