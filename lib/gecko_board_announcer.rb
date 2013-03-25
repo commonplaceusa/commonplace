@@ -302,7 +302,7 @@ class GeckoBoardAnnouncer
       "PM" => "posted  message",
       "Post" => "posted  post",
       "Add Data" => "posted content",
-      "Concatenation" => "platform activity"
+      "Platform Activity" => "platform activity"
     }
     puts "Pulling and coallating data from Mailgun..."
     mailgun_campaign_list = JSON.parse(mailgun['campaigns?limit=1000'].get)['items'].map { |i| i['name'] }
