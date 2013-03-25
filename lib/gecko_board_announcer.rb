@@ -48,7 +48,7 @@ class GeckoBoardAnnouncer
 
   def self.run(quick = true)
     if quick == true
-      ENV['SKIP_POST_DISTRIBUTION'] = 'true'
+      # ENV['SKIP_POST_DISTRIBUTION'] = 'true'
       ENV['SKIP_REPLY'] = 'true'
       ENV['SKIP_REPEATED_ENGAGEMENT'] = 'true'
     end
