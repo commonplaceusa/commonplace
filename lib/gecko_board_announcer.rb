@@ -305,7 +305,7 @@ class GeckoBoardAnnouncer
       "Concatenation" => "platform activity"
     }
     puts "Pulling and coallating data from Mailgun..."
-    mailgun_campaign_list = JSON.parse(mailgun['campaigns'].get)['items'].map { |i| i['name'] }
+    mailgun_campaign_list = JSON.parse(mailgun['campaigns?limit=1000'].get)['items'].map { |i| i['name'] }
     mailgun_daily_bulletin_campaigns = mailgun_campaign_list.select { |name| name.include? "_daily" }
     mailgun_single_post_campaigns = mailgun_campaign_list.select { |name| name.include? "_post" }
     # Coallate
@@ -401,7 +401,7 @@ class GeckoBoardAnnouncer
     ]
     # Break it down by community
     (1..(growths.count-1)).each do |i|
-      community_name = growths[i][0].to_sym
+      community_name = growths[i][0].downcase.to_sym
       if daily_bulletin_opens[:weekly][community_name].nil?
         growths[i] << "N/A"
       else
