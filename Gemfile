@@ -73,9 +73,7 @@ gem 'rest-client', '= 1.6.7'
 gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref => "a090bf1d49004f501c9164d5dcd51761b48803e4"
 
 # Tech admin
-group :only_production do
-  gem 'newrelic_rpm', '= 3.5.0.1'
-end
+gem 'newrelic_rpm', '= 3.5.0.1'
 
 # Monitoring
 gem 'airbrake', '= 3.1.2'
@@ -93,7 +91,7 @@ gem 'require_all', '= 1.2.1' # require all ruby files in a directory
 
 # Analytics
 gem 'km', '= 1.1.2'
-gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "1d6ecc6eb3007cb7b78f8352479f4f698660b270"
+gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "4aa7107e4fb0ca5fc95eae583e41def44bb24da0"
 gem 'mysql2', '= 0.3.11'
 
 group :assets do

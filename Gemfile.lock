@@ -18,8 +18,8 @@ GIT
 
 GIT
   remote: https://github.com/Jberlinsky/km-db.git
-  revision: 1d6ecc6eb3007cb7b78f8352479f4f698660b270
-  ref: 1d6ecc6eb3007cb7b78f8352479f4f698660b270
+  revision: 4aa7107e4fb0ca5fc95eae583e41def44bb24da0
+  ref: 4aa7107e4fb0ca5fc95eae583e41def44bb24da0
   specs:
     km-db (0.2)
       activerecord
@@ -338,7 +338,7 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
-    parallel (0.6.2)
+    parallel (0.6.3)
     permanent_records (2.1.2)
       activerecord
     pg (0.13.2)
