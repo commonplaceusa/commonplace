@@ -66,6 +66,7 @@ class Account
       {"name" => feed.name,
         "id" => feed.id,
         "community" => feed.try(:community).try(:name),
+        "kind" => feed.kind,
         "slug" => feed.slug.blank? ? feed.id : feed.slug
       }
     end

@@ -19,6 +19,11 @@
     </div>
     {{/hasFeeds}}
     {{#hasFeeds}}
+    {{#hasBusinessFeeds}}
+      <p>This can't be used with a business feed</p>
+      <a class="back" href="#">Back</a>
+    {{/hasBusinessFeeds}}
+    {{^hasBusinessFeeds}}
     <div class="posting-header promote">
       <i class="icon"></i>
       <div class="left">
@@ -53,6 +58,7 @@
         </div>
       </form>
     </div>
+    {{/hasBusinessFeeds}}
     {{/hasFeeds}}
   </div>
 </div>

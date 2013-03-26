@@ -4,7 +4,7 @@ CommonPlace.wire_item.FeedProfileCard = CommonPlace.wire_item.ProfileCard.extend
   className: "profile-card"
 
   initialize: ->
-    @modal = new ModalView({form: this.el});
+    @modal = new ModalView({form: this.el})
 
   events:
     "click .editlink": "edit"

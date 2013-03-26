@@ -5,9 +5,15 @@ CommonPlace.main.AnnouncementForm = CommonPlace.main.BaseForm.extend(
   initialize: (options) ->
     CommonPlace.main.BaseForm.prototype.initialize options
     @feeds = CommonPlace.account.get("feeds")
+
     @hasFeeds = false
     if @feeds.length > 0
       @hasFeeds = true
+
+    @hasBusinessFeeds = false
+    for f in @feeds
+      if f.kind == 2
+        @hasBusinessFeeds = true
 
   createPost: (e) ->
     e.preventDefault()
