@@ -11,7 +11,7 @@ CommonPlace.main.PostBox = FormView.extend(
 
   clickTab: (e) ->
     e.preventDefault()
-    
+
     # DETERMINE WHAT TO DO WITH URLS WHEN WE CLICK
     @switchTab $(e.currentTarget).attr("data-tab"), e
 
