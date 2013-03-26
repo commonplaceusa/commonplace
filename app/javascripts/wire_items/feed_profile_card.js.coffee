@@ -3,6 +3,9 @@ CommonPlace.wire_item.FeedProfileCard = CommonPlace.wire_item.ProfileCard.extend
   tagName: "li"
   className: "profile-card"
 
+  initialize: ->
+    @modal = new ModalView({form: this.el});
+
   events:
     "click .editlink": "edit"
     "click .message-link": "messageUser"
@@ -10,6 +13,7 @@ CommonPlace.wire_item.FeedProfileCard = CommonPlace.wire_item.ProfileCard.extend
     "click .unsubscribe": "unsubscribe"
     "click .subscribers": "showSubscribers"
     "click .announcements": "showAnnouncements"
+    "click .transaction": "openTransactionForm"
 
   showAnnouncements: ->
     slug = CommonPlace.community.get("slug")
@@ -60,4 +64,12 @@ CommonPlace.wire_item.FeedProfileCard = CommonPlace.wire_item.ProfileCard.extend
     CommonPlace.account.unsubscribeFromFeed @model, _.bind(->
       @render()
     , this)
+
+  openTransactionForm: (e)->
+    e.preventDefault()
+    postbox = new CommonPlace.main.PostBox
+      account: CommonPlace.account
+      community: CommonPlace.community
+    postbox.render()
+    postbox.showTab("transaction", @model)
 )
