@@ -132,15 +132,17 @@ class API
     post "/:id/add_image" do
       control_access :community_member, find_postlike.community
 
-      image = Image.find_by_id(params[:image_id])
-      image.update_attributes(
-        imageable: find_postlike
-      )
+      params[:image_id].each do |i|
+        image = Image.find_by_id(i)
+        image.update_attributes(
+          imageable: find_postlike
+        )
 
-      if image.save
-        serialize image
-      else
-        [400, "errors"]
+        if image.save
+          serialize image
+        else
+          [400, "errors"]
+        end
       end
     end
 
@@ -160,7 +162,8 @@ class API
       photo.image.instance_write(:image_file_name, params[:image][:filename])
 
       if photo.save
-        serialize photo
+        response.headers["Content-Type"] = "text/html; charset=utf-8" #set this to make sure IE compatibility
+        [200, serialize(photo) ]
       else
         [400, "errors"]
       end

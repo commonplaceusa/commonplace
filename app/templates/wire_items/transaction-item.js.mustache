@@ -1,29 +1,38 @@
-<div class="wire-top" data-published-at="{{published_at}}">
+<div class="wire-top" data-published-at="{{publishedAtISO}}">
+  <!--<a href="#"><div class="icon-container {{wireCategoryClass}}"></div><h3>{{wireCategoryName}}</h3></a>-->
+  <p class="editlink">{{#canEdit}}<a href="#">EDIT POST</a>{{/canEdit}}</p>
+  <p><a href="{{share_url}}">{{publishedAt}}</a></p>
 </div>
 <div class="post-content">
-  <a href="{{author_url}}"><img class="avatar-container" src="{{avatar_url}}" /></a>
+  {{#hasImages}}
+    <div class="photo-container">
+      <ul class="multi-photo">
+        {{#images}}
+        <li class="image_container">
+          <a target="_blank"><img class="post_image" src="{{image_large}}" /></a>
+        </li>
+        {{/images}}
+      </ul>
+    </div>
+  {{/hasImages}}
+
+   <img class="avatar-container" src="{{avatar_url}}" />
   <h3><a class="title" href="{{share_url}}">{{title}}</a></h3>
+  <p><a class="author" href="{{author_url}}">{{author}}</a> posted in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
   {{#markdown}}
    {{body}}
   {{/markdown}}
-  {{#hasImages}}
-    {{#images}}
-    <div class="image_container">
-      <a href="{{image_original}}" target="_blank"><img class="post_image" src="{{image_large}}" /></a>
-    </div>
-    {{/images}}
-  {{/hasImages}}
-  <p class="post-info"><a class="author" href="{{author_url}}">{{author}}</a> posted <a href="{{share_url}}">{{published_at_in_words}}</a> in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
+  <span class="price buy-link">Buy: <strong>{{price}}</strong></span>
 </div>
 <div class="post-action clear">
   <ul class="actions">
-    <li class="buy-link default">
-      <i class="icon"></i>
-      <span>Make Offer: {{price}}</span>
-    </li>
     <li class="reply-link">
       <i class="icon"></i>
       <span>Reply</span>
+    </li>
+    <li class="message-link">
+      <i class="icon"></i>
+      <span>Message {{first_name}}</span>
     </li>
     <li class="share-link">
       <i class="icon"></i>
@@ -37,14 +46,6 @@
       <i class="icon"></i>
       <span>Flag</span>
     </li>
-    {{#canEdit}}
-     <span class="editlink"><a href="#">
-     <li class="edit-link">
-       <i class="icon"></i>
-      <span>Edit Post</span>
-     </li>
-     </a></span>
-     {{/canEdit}}
    </ul>
 </div>
 <div class="post-interaction">

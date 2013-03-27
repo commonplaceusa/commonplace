@@ -7,30 +7,37 @@
       <div class="left">
         <h1>Sell on the Marketplace</h1>
         <span>Sell something (or give it away for free!)</span>
-      </div>  
+      </div>
     </div>
     <span class="divider">
     </span>
     <form>
+      <div class="inputs">
       <input type="text" placeholder="Title" name="title" class="rounded_corners" >
+      <div class="left">
       <textarea placeholder="Message" name="body" rows="15" cols="55" class="rounded_corners description"></textarea>
-      {{#imageUploadSupported}}
+      <input type="text" placeholder="Price" name="price" class="rounded_corners price">
+      </div>
+      </div>
       <div class="upload-section">
         <div class="box">
-          <img class="item_pic" src="/assets/shared/redesign/upload-default.png" alt="This is a picture of the item for sale" />
+          <img class="item_pic one" id="1" src="/assets/shared/redesign/upload-default.png" alt="This is a picture of the item for sale" />
         </div>
-        <button class="image_file_browser">Upload Image</button>
+        <div class="box">
+          <img class="item_pic two" id="2" src="/assets/shared/redesign/upload-default.png" alt="This is a picture of the item for sale" />
+        </div>
+        <div class="box">
+          <img class="item_pic three" id="3" src="/assets/shared/redesign/upload-default.png" alt="This is a picture of the item for sale" />
+        </div>
       </div>
-      {{/imageUploadSupported}}
-      <input type="text" placeholder="Price" name="price" class="rounded_corners price" >
 
       <div class="controls">
           {{^isPostEdit}}
-           <button class="red-button submit pie-element">POST NOW</button>
+           <button class="red-button submit">POST NOW</button>
            <a class="back" href="#">Back</a>
            {{/isPostEdit}}
           {{#isPostEdit}}
-           <button class="red-button submit pie-element">SUBMIT EDIT</button>
+           <button class="red-button submit">SUBMIT EDIT</button>
            <a class="delete" href="#">Delete</a>
            {{/isPostEdit}}
          <div class="spinner"><img src='/assets/loading-post.gif' /></div>

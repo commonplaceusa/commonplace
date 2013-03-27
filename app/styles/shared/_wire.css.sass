@@ -592,3 +592,19 @@ div.post-action.clear ul.actions li
     background-color: $red !important
   &:active
     background-color: $blue !important
+
+
+.photo-container
+  width: 535px /* for instance */
+  display: table
+  &:after 
+    content: ""
+    display: table
+    clear: both
+  table-layout: fixed
+  ul 
+    display: table-row 
+  ul li 
+    display: table-cell
+  img 
+    width: 100%

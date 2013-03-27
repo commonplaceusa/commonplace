@@ -4,40 +4,41 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
 
   afterRender: ->
     @data = {}
+    @data.image_id = []
     @$("input[placeholder], textarea[placeholder]").placeholder()
-    if @imageUploadSupported() and not @isPostEdit()
-      @initImageUploader @$(".image_file_browser")
+    if not @isPostEdit()
+      @initImageUploader(@$(".one"), 1)
+      @initImageUploader(@$(".two"), 2)
+      @initImageUploader(@$(".three"), 3)
     else
-      @$(".image_file_browser").hide()
+      @$(".item_pic").hide()
     @hideSpinner()
     self = this
     @populateFormData()
 
-  imageUploadSupported: ->
-    return (not @isIE8orBelow())
-
-  initImageUploader: ($el) ->
+  initImageUploader: ($el, num) ->
     self = this
     @imageUploader = new AjaxUpload($el,
       action: "/api/transactions/image"
       name: "image"
       data: @data
-      responseType: "json"
+      responseType: "text/html"
       autoSubmit: true
       onChange: ->
-        @hasImageFile = true
+        self.hasImageFile = true
 
       onSubmit: _.bind((file, extension) ->
-          $upload_pic = $(".item_pic")
+          $upload_pic = $(".item_pic#" + num)
           $upload_pic.attr("src", "/assets/loading.gif")
           $upload_pic.parent().addClass("loading")
         , this)
 
       onComplete: _.bind((file, response) ->
-          $upload_pic = $(".item_pic")
+          response = $.parseJSON(response)
+          $upload_pic = $(".item_pic#" + num)
           $upload_pic.attr("src", response.image_normal)
           $upload_pic.parent().removeClass("loading")
-          @data.image_id = response.id
+          @data.image_id[num-1] = response.id
         , this)
     )
 
@@ -66,9 +67,8 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
     else
       transactionCollection.create data,
         success: _.bind((post) ->
-          if self.imageUploadSupported()
-            if self.imageUploader.hasImageFile
-              self.addImageToPost(post)
+          if self.hasImageFile
+            self.addImageToPost(post)
           self.render()
           CommonPlace.community.transactions.trigger "sync"
           @showShareModal(post, "Thanks for posting!", "You've just shared this post with #{@getUserCount()} neighbors in #{@community_name()}. Share with some more people!")
