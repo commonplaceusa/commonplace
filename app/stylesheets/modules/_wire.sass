@@ -12,6 +12,45 @@
           background-color: #fff 
           padding: 20px
           text-align: center 
+        .wire-item
+          &.group-member
+            padding: 10px
+            //background-image: url(shared/redesign/tan-bg.png)
+            background-color: #fafafa
+            border: 1px solid #fff
+            color: #333
+            border-radius: 4px
+            //box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5)
+            font-family: $heading
+            //-webkit-filter: none !important
+            &:after, &:before
+              display: none
+            .avatar
+              border-radius: 4px
+              box-shadow: 1px 1px 0px white
+            h3, h3 a
+              font-size: 22px
+              font-family: $heading
+              color: $blue
+              text-shadow: 1px 1px 0px white
+              line-height: 19px
+              //overflow: hidden
+              //text-overflow: ellipsis
+              //white-space: nowrap
+              &:hover
+                cursor: pointer
+                //color: #888
+            a.message-user
+              float: left
+              font-family: $body
+              font-weight: bold
+              text-transform: uppercase
+              color: $red
+              font-size: 11px
+              text-shadow: 1px 1px 0px white
+              text-indent: -1px
+              &:hover
+                color: #aaa
         .wire-item 
           background: white
           //box-shadow: 0px 1px 3px rgba(0,0,0,0.65)

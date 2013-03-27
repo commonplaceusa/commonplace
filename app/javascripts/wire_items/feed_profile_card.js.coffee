@@ -8,6 +8,18 @@ CommonPlace.wire_item.FeedProfileCard = CommonPlace.wire_item.ProfileCard.extend
     "click .message-link": "messageUser"
     "click .subscribe": "subscribe"
     "click .unsubscribe": "unsubscribe"
+    "click .subscribers": "showSubscribers"
+    "click .announcements": "showAnnouncements"
+
+  showAnnouncements: ->
+    slug = CommonPlace.community.get("slug")
+    id = @model.get("id")
+    app.showFeedPage(slug, id)
+
+  showSubscribers: ->
+    slug = CommonPlace.community.get("slug")
+    id = @model.get("id")
+    app.showFeedSubscribers(slug, id)
 
   canEdit: ->
     CommonPlace.account.canEditFeed @model
@@ -28,7 +40,7 @@ CommonPlace.wire_item.FeedProfileCard = CommonPlace.wire_item.ProfileCard.extend
   event_count: ->
     @model.get "event_count"
 
-  subscribers: ->
+  subscribers_count: ->
     @model.get "subscriber_count"
 
   isSubscribed: ->

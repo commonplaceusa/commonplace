@@ -3,6 +3,7 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
 
   initialize: (options) ->
     self = this
+    @attr_accessible [ "first_name", "last_name", "name", "avatar_url", "published_at", "images", "title", "author", "body" ]
     @model.on "destroy", ->
       self.remove()
 
@@ -196,14 +197,8 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
   removeCurrentClass: ->
     @$(".current").removeClass "current"
 
-  publishedAt: ->
-    timeAgoInWords @model.get("published_at")
-
-  publishedAtISO: ->
-    @model.get "published_at"
-
-  avatarUrl: ->
-    @model.get "avatar_url"
+  published_at_in_words: ->
+    timeAgoInWords @model.get "published_at"
 
   author_url: ->
     '/' + CommonPlace.community.get("slug") + '/show' + @model.get("links").author
@@ -216,21 +211,6 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
       return true
     else
       return false
-
-  images: ->
-    @model.get "images"
-
-  title: ->
-    @model.get "title"
-
-  author: ->
-    @model.get "author"
-
-  first_name: ->
-    @model.get "first_name"
-
-  body: ->
-    @model.get "body"
 
   numThanks: ->
     @directThanks().length

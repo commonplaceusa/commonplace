@@ -184,6 +184,14 @@
             border-left: none
           &:last-child 
             border-right: none
+          &.subscribers
+            cursor: pointer
+            &:hover
+              .big, .little
+                color: #888
+            &:active
+              .big, .little
+                color: $red
           span.big
             color: $red
             font-size: 20px

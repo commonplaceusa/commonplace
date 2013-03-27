@@ -166,6 +166,11 @@ var Application = Backbone.Router.extend({
     this.pages.community.lists.showFeedPage(id);
   },
 
+  showFeedSubscribers: function(c, id) {
+    this.showPage("community");
+    this.pages.community.lists.showFeedSubscribers(id);
+  },
+
   showGroupPage: function(c, id) {
     this.showPage("community");
     this.pages.community.lists.showGroupPage(id);

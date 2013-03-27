@@ -1,4 +1,4 @@
-<a href="{{author_url}}"><img class="avatar-container" src="{{avatarUrl}}" /></a>
+<a href="{{author_url}}"><img class="avatar-container" src="{{avatar_url}}" /></a>
 <div class="reply-info">
   <div class="reply-text">
     <span class="author"><a href="{{author_url}}">{{author}}</a></span><p class="author">
@@ -6,7 +6,7 @@
     <div class="body reply-body">
       {{#markdown}}{{body}}{{/markdown}}
       <span class="controls">
-        <span class="time">{{publishedAt}}</span>
+        <span class="time">{{published_at_in_words}}</span>
         {{#hasThanks}}<span class="thank-divider">&#9734;</span><span class="thanks-count">{{numThanks}} {{peoplePerson}} thanked {{first_name}}</span>{{/hasThanks}}
         {{#canThank}}
           {{#hasThanked}}<span class="thanked-reply">THANKED!</span>{{/hasThanked}}

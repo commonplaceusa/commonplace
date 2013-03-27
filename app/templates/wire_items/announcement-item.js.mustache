@@ -1,12 +1,12 @@
-<div class="wire-top" data-published-at="{{publishedAtISO}}">
+<div class="wire-top" data-published-at="{{published_at}}">
 </div>
 <div class="post-content">
-  <a href="{{feedUrl}}"><img class="avatar-container" src="{{avatarUrl}}" /></a>
+  <a href="{{feedUrl}}"><img class="avatar-container" src="{{avatar_url}}" /></a>
   <h3><a class="title" href="{{share_url}}">{{title}}</a></h3>
   {{#markdown}}
    {{body}}
   {{/markdown}}
-  <p class="post-info"><a class="author" {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a> posted <a href="{{share_url}}">{{publishedAt}}</a> in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
+  <p class="post-info"><a class="author" {{#isFeed}} href="{{feedUrl}}" {{/isFeed}}{{^isFeed}} href="{{author_url}}" {{/isFeed}}>{{author}}</a> posted <a href="{{share_url}}">{{published_at_in_words}}</a> in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
   
 </div>
 <div class="post-action clear">

@@ -207,6 +207,7 @@ class User < ActiveRecord::Base
 
   api_accessible :default do |t|
     t.add :id
+    t.add lambda {|u| u.id}, :as => :user_id
     t.add lambda {|u| "users"}, :as => :schema
     t.add lambda {|u| u.avatar_url(:normal)}, :as => :avatar_url
     t.add lambda {|u| "/users/#{u.id}"}, :as => :url
@@ -233,8 +234,8 @@ class User < ActiveRecord::Base
 
   def pages
     self.managable_feeds.map do |feed|
-      {"name" => feed.name, 
-        "id" => feed.id, 
+      {"name" => feed.name,
+        "id" => feed.id,
         "slug" => feed.slug.blank? ? feed.id : feed.slug
       }
     end
@@ -242,6 +243,7 @@ class User < ActiveRecord::Base
 
   def links
     {
+      "author" => "/users/#{id}",
       "messages" => "/users/#{id}/messages",
       "self" => "/users/#{id}",
       "postlikes" => "/users/#{id}/postlikes",

@@ -26,8 +26,27 @@
         width: 575px 
         margin: 0 auto 
         position: relative 
+        .wire-list
+          content: ""
+          display: table
+          clear: both
         .no-results 
           display: none 
+        .wire-item
+          &.group-member
+            min-height: 50px
+            width: 258px
+            float: left
+            &:nth-child(odd)
+              margin-left: 15px
+            .avatar
+              float: left
+              margin-right: 10px
+            h3
+              float: left
+              width: 198px
+              margin-bottom: 5px
+              margin-top: -3px
         .wire-item 
           margin-bottom: 15px
           .wire-top

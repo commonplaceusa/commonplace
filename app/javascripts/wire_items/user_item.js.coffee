@@ -2,12 +2,11 @@ CommonPlace.wire_item.UserWireItem = CommonPlace.wire_item.WireItem.extend(
   template: "wire_items/user-item"
   tagName: "li"
   className: "wire-item group-member"
-  initialize: (options) ->
-    @attr_accessible [ "first_name", "last_name", "avatar_url" ]
+
+  events:
+    "click .author": "showUserWire"
+    "click .message-user": "messageUser"
 
   afterRender: ->
     @model.on "change", @render, this
-
-  events:
-    "click button": "messageUser"
 )

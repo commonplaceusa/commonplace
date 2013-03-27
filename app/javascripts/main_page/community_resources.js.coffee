@@ -210,6 +210,21 @@ CommonPlace.main.CommunityResources = CommonPlace.View.extend(
       @showTab()
     , @))
 
+  showFeedSubscribers: (feed_slug) ->
+    $.getJSON("/api/feeds/" + feed_slug, _.bind((response) ->
+      feed = new Feed(response)
+      wire = new @PostLikeWire(
+        template: "main_page.user-wire-resources"
+        card: "feed"
+        emptyMessage: "No announcements here yet."
+        collection: feed.subscribers
+      )
+      wire.searchPage feed
+      @changeSearchText feed.get("name")
+      @view = @makeTab wire
+      @showTab()
+    , @))
+
   showGroupPage: (group_id) ->
     $.getJSON("/api/groups/" + group_id, _.bind((response) ->
       group = new Group(response)
