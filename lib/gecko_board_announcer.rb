@@ -67,44 +67,51 @@ class GeckoBoardAnnouncer
 
     unless ENV['SKIP_MEMOIZED_DATA']
       # Handle memoized data
-      post_count_str = Resque.redis.get("statistics:post_counts")
-      unless post_count_str.present?
-        post_count_str =  ",#{WATCHED_COMMUNITIES.join(",")}"
-      end
+      csvs = {
+        "post_counts" => :posts,
+        "user_counts" => :users
+      }
 
-      lines = post_count_str.split("\n")
-      if lines.count > 1
-        last_date = Date.parse(lines.last.split(",").first)
-        if last_date != Date.today
-          # Check the first line for all communities...
-          split_post_count_lines = post_count_str.split("\n")
-          if post_count_str.split("\n").shift.split(",").count != WATCHED_COMMUNITIES.count
-            # HOLD INVARIANT: Communities will not be deleted from WATCHED_COMMUNITIES, nor reordered
-            # New communities will be appended to the end of the list
-            # This allows us to make the following optimization:
-            first_line = true
-            missing_communities = WATCHED_COMMUNITIES.map(&:to_s) - split_post_count_lines.first.split(",")
-            split_post_count_lines.each do |line|
-              if first_line
-                line << ","
-                line << missing_communities.join(",")
-              else
-                missing_communities.count.times do
-                  line << ",0"
+      csvs.each do |type, method|
+        post_count_str = Resque.redis.get("statistics:#{type}")
+        unless post_count_str.present?
+          post_count_str =  ",#{WATCHED_COMMUNITIES.join(",")}"
+        end
+
+        lines = post_count_str.split("\n")
+        if lines.count > 1
+          last_date = Date.parse(lines.last.split(",").first)
+          if last_date != Date.today
+            # Check the first line for all communities...
+            split_post_count_lines = post_count_str.split("\n")
+            if post_count_str.split("\n").shift.split(",").count != WATCHED_COMMUNITIES.count
+              # HOLD INVARIANT: Communities will not be deleted from WATCHED_COMMUNITIES, nor reordered
+              # New communities will be appended to the end of the list
+              # This allows us to make the following optimization:
+              first_line = true
+              missing_communities = WATCHED_COMMUNITIES.map(&:to_s) - split_post_count_lines.first.split(",")
+              split_post_count_lines.each do |line|
+                if first_line
+                  line << ","
+                  line << missing_communities.join(",")
+                else
+                  missing_communities.count.times do
+                    line << ",0"
+                  end
                 end
+                first_line = false
               end
-              first_line = false
             end
-          end
 
-          new_post_counts = []
-          WATCHED_COMMUNITIES.each do |slug|
-            new_post_counts << Community.find_by_slug(slug).posts.count.to_s
+            new_post_counts = []
+            WATCHED_COMMUNITIES.each do |slug|
+              new_post_counts << Community.find_by_slug(slug).send(method).try(:count).try(:to_s)
+            end
+            new_post_line = "#{Date.today.to_s(:mdy)},#{new_post_counts.join(",")}"
+            post_count_str << "\n"
+            post_count_str << new_post_line
+            Resque.redis.set("statistics:#{type}", post_count_str)
           end
-          new_post_line = "#{Date.today.to_s(:mdy)},#{new_post_counts.join(",")}"
-          post_count_str << "\n"
-          post_count_str << new_post_line
-          Resque.redis.set("statistics:post_counts", post_count_str)
         end
       end
     end
