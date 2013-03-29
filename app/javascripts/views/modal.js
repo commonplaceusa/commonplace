@@ -2,6 +2,11 @@ var ModalView = CommonPlace.View.extend({
   template: "shared/modal",
   className: "modal",
 
+  events: {
+    "click .cancel": "exit",
+    "click .close": "exit"
+  },
+
   initialize: function(options) {
     var self = this;
     this.form = this.options.form;
