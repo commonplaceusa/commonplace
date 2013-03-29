@@ -620,14 +620,20 @@ input, textarea
     box-shadow: none
     margin: 1px 0 !important
 
+
+textarea.description
+  width: 150px
+  float: left
+  height: 155px
+  
 .create-transaction
   textarea.description
     width: 201px
     float: left
     height: 188px
     margin-bottom: 0
-  
-  .left 
+
+  .form-left 
     width: 219px
     overflow: hidden
     float: left
@@ -690,6 +696,56 @@ input, textarea
     overflow: auto
     font-weight: normal !important
     //box-shadow: inset 2px 2px 4px 0px #dddddd  
+
+//.upload-section 
+  float: right 
+  width: 155px
+  margin-top: 2px 
+  position: relative
+  display: table
+  .box 
+    background-color: #fff
+    box-shadow: #C8C8C8 0px 0px 4px 1px inset, rgba(255, 255, 255, 0.247059) 0px 4px 4px
+    border: 1px solid $dark-tan  
+    //padding: 8px
+      bottom: 4px
+    border-radius: 4px
+    display: table-cell
+    text-align: center
+    vertical-align: middle
+    width: 157px
+    height: 120px
+    img.item_pic 
+      max-width: 136px 
+      max-height: 104px
+      margin-top: 5px
+  .image_file_browser
+    position: absolute
+    width: 154px
+    height: 104px
+    background: none
+    text-indent: -9999px
+    border: 0 none
+    top: 8px
+    left: 8px
+    padding: 0px
+    cursor: pointer
+//input.price
+  float: right
+  width: 137px
+  margin: 18px 0px 0px 0px
+textarea   
+  width: 322px  
+  background-color: #fefffe  
+  height: 110px  
+  margin-bottom: 15px  
+  border: 1px solid $dark-tan  
+  padding: 10px 8px
+  line-height: 18px  
+  font-family: $Rokkitt
+  font-size: 18px
+  overflow: auto
+  font-weight: normal !important
 
 #disclaimer   
   width: 174px  
