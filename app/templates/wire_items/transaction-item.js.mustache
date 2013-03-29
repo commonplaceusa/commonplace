@@ -7,13 +7,17 @@
    {{body}}
   {{/markdown}}
   {{#hasImages}}
-    {{#images}}
-    <div class="image_container">
-      <a href="{{image_original}}" target="_blank"><img class="post_image" src="{{image_large}}" /></a>
+    <div class="photo-container">
+      <ul class="multi-photo">
+        {{#images}}
+        <li class="image_container">
+          <a href="{{image_original}}" target="_blank"><img class="post_image" src="{{image_large}}" /></a>
+        </li>
+        {{/images}}
+      </ul>
     </div>
-    {{/images}}
   {{/hasImages}}
-  <p class="post-info"><a class="author" href="{{author_url}}">{{author}}</a> posted <a href="{{share_url}}">{{publishedAt}}</a> in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
+    <p class="post-info"><a class="author" href="{{author_url}}">{{author}}</a> posted <a href="{{share_url}}">{{publishedAt}}</a> in <a class="wire_filter" href="{{wireCategoryUrl}}">{{wireCategoryName}}</a></p>
 </div>
 <div class="post-action clear">
   <ul class="actions">
