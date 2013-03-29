@@ -1,4 +1,4 @@
-.modal-container
+.modal-container, .container
   position: absolute
   background-image: url(shared/redesign/tan-bg.png)
   +border-radius(5px)
@@ -51,19 +51,27 @@
     background-position: 0px 0px
     text-indent: -9999em
     font-family: Helvetica, Arial, sans-serif
+    //&:hover
+      background: url(shared/redesign/close-icon.png) no-repeat
+      background-position: 0px -15px
 
   .error
-    background-color: #f4e15f
-    border: 2px solid #ffe534
-    +border-radius(3px)
-    color: #363636
+    background-color: rgba(0, 0, 0, 0.03)
+    +border-radius(4px)
+    clear: both
+    font-family: $body
+    font-size: 11px
+    font-weight: bold
+    color: $red
+    text-transform: uppercase
+    float: left
     display: none
-    margin-top: 5px
-    margin-bottom: 15px
-    padding: 5px
-    font-family: Helvetica, Arial, sans-serif
-    font-size: 14px
+    margin-bottom: 10px
+    padding: 8px 0px
     text-align: center
+    width: 100%
+    text-shadow: 0px 1px 0px white
+    box-shadow: 0px 1px 0px white, inset 0px 0px 6px rgba(0,0,0,0.25)
 
   table
     width: 390px
@@ -100,38 +108,31 @@
     color: #aaa
 
   .avatar
-    text-align: center
-    margin-top: 15px
+    text-align: left
+    margin-top: 5px
+    float: left
+    clear: both
 
     img
       vertical-align: middle
-      margin-right: 5px
-      +border-radius(2px)
+      margin-right: 20px
+      float: left
+      +border-radius(4px)
 
     .avatar-controls
-      margin: 15px auto
+      margin-top: 35px
+      width: 300px
 
       a
-        background-color: #555
+        background-color: $blue
         color: white
         font-weight: bold
-        padding: 5px
-        border-left: 1px solid #888
-        margin: 0
-        margin-left: -4px
-        Helvetica, sans-serif
+        padding: 5px 10px
+        margin-right: 6px
         text-decoration: none
-
-        &:first-child
-          border-left: 0px
-          +border-left-radius(5px)
-
-        &:last-child
-          +border-right-radius(5px)
-
+        border-radius: 4px
         &:hover
-          background-color: #888
-          text-decoration: underline
+          background-color: $red
 
   form
     //width: 392px
@@ -139,7 +140,7 @@
     display: block
     -webkit-font-smoothing: antialiased
 
-    h1
+    //h1
       font-family: $heading
       font-size: 16px
       color: #fff
@@ -153,7 +154,9 @@
       font-family: $heading
       font-weight: bold
       margin-bottom: 5px
-      text-shadow: 1px 1px 1px white
+      text-shadow: 1px 1px 0px white
+      clear: both
+      width: 322px
 
     input[type=text]
       //margin-top: 5px
@@ -164,7 +167,18 @@
       margin-top: 2px
       transition-property: all 1s ease
       border-radius: 4px
-      -webkit-font-smoothing: antialiased      
+      -webkit-font-smoothing: antialiased
+      
+    a.delete.blue-button
+      font-family: $heading !important
+      text-transform: none
+      padding: 6px 10px
+      float: left
+      margin-top: 2px
+      width: 75px
+      letter-spacing: normal
+      font-size: 18px
+      text-shadow: none
 
 #modal-shadow
   +opacity(0.8)
@@ -284,7 +298,7 @@ h1
   text-shadow: 1px 1px 1px white
   color: $blue
 
-h3
+//h3
   font: 16px Helvetica, sans-serif
   text-shadow: 1px 1px 1px white
   color: black
@@ -362,7 +376,7 @@ a.share
     margin-top: 0px
     behavior: url("assets/PIE.htc")
   a.cancel, a.delete, a.back 
-    margin-top: 14px !important 
+    margin-top: 15px !important 
     display: block !important 
     float: right !important 
     color: $red

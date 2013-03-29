@@ -9,7 +9,6 @@
     {{#hasMet}}<a href="#" class="unmeet">Already Met!</a>{{/hasMet}}
   </div>
   <div class="right">
-    {{#canEdit}}<span class="editlink"><a href="{{account_url}}">Edit</a></span>{{/canEdit}}
     <h2 class="name">{{name}}</h2>
     <div class="stat-bar">
       <ul>
@@ -35,8 +34,10 @@
         </li>
       </ul>
     </div>
-    {{^hasAbout}}<p class="default-about">{{defaultAbout}}</p>{{/hasAbout}}
-    {{#hasAbout}}<p class="bio">{{about}}</p>{{/hasAbout}}
+    {{^hasAbout}}<p class="default-about">{{defaultAbout}} {{#canEdit}}<span class="editlink"><a href="{{account_url}}">Edit Profile</a></span>{{/canEdit}}
+    </p>{{/hasAbout}}
+    {{#hasAbout}}<p class="bio">{{about}} {{#canEdit}}<span class="editlink"><a href="{{account_url}}">Edit Profile</a></span>{{/canEdit}}
+    </p>{{/hasAbout}}
     {{#hasPages}}
     <p><span class="bold">Pages:</span>
     {{#pages}}

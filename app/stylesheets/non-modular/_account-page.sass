@@ -1,26 +1,29 @@
 body.account
-  background-color: #eee
-
+  #main
+    background-image: url(shared/redesign/tan-bg.png)
+    background-color: #eeecdf
+    padding: 40px 20px 20px 20px
   #delete-account-form
     
     p 
-      padding: 20px
-      background-color: #ddd
+      padding: 0px
+      color: $black
+      font-size: 17px
+      line-height: 20px
+      text-shadow: 1px 1px 0px white
     .controls
       text-align: center
 
         
   #account-edit
-    font-family: Rockwell, Georgia, Times, "Times New Roman", serif
-    font-weight: thin
-    +lightbox
+    font-family: $heading
     h1
-      color: #3b6085
+      color: $blue
       line-height: 1.2
       font-size: 24px
       padding: 0 20px
       text-align: center
-      +text-shadow(#bfc8cf 1px 1px 1px)
+      text-shadow: 1px 1px 0px white
     
     .settings
       background-color: #AC322F
@@ -31,19 +34,33 @@ body.account
         text-decoration: none
         text-align: center
         color: white
+        cursor: pointer
         &:hover
           text-decoration: underline
       
-      > li
-        padding: 5px
-        &:hover
+      li
+        //padding: 5px
+        //&:hover
           background-color: #8f2927
-          
+        a.delete-account
+          font-size: 20px
+          border-radius: 4px
+          padding: 8px 15px
+          background-color: #8A2A23
+          font-weight: bold
+          text-transform: uppercase
+          margin: 10px auto 20px
+          display: block
+          width: 230px
+          text-align: center
+          &:hover
+            background-color: $blue
+            text-decoration: none
       .get-posts
         li
-          font-size: 13px
+          font-size: 16px
           &:hover
-            text-decoratoin: underline
+            text-decoration: underline
           input 
             padding: 0 
 
@@ -72,14 +89,96 @@ body.account
               +border-right-radius(5px)
       
     .profile
-      
+      .chzn-container
+        font-family: $Rokkitt
+        color: $black
+        font-size: 18px
+        width: 454px !important
+        margin: 10px 0px
+        a
+          &:focus
+            outline: none
+        .chzn-drop
+          width: 460px !important
+        .chzn-search 
+          display: none !important
+        .chzn-single 
+          width: 100%  
+          background-color: #fefffe
+          border: 1px solid $dark-tan  
+          padding: 0 8px
+          height: 36px 
+          line-height: 38px
+          font-family: $Rokkitt
+          color: $black
+          font-size: 18px
+          background: #fff
+          float: left
+          box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
+          span
+            color: #555
+          div 
+            background: none 
+            border-left: none
+            b 
+              background-image: url(shared/redesign/down.png)
+              background-position: 0
+              margin-left: -8px 
+
+        .chzn-results
+          width: 100%
+          border-top: 1px solid $dark-tan
+          box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
+          margin: 0px
+          padding: 0px
+          max-height: 202px
+          -webkit-border-radius: 0 0 4px 4px
+          -moz-border-radius: 0 0 4px 4px
+          border-radius: 0 0 4px 4px
+          li
+            border-bottom: 1px dotted #ccc
+            padding: 12px 8px
+            color: #333
+            font-size: 18px
+            font-family: $heading
+            &:hover
+              color: $red
+              background-color: #eee 
+
+        ul.chzn-choices 
+          border: 1px solid $dark-tan
+          font-family: $Rokkitt
+          border-radius: 4px
+          color: #333
+          font-size: 18px
+          width: 460px !important
+          box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
+          .chzn-drop 
+            width: 322px
+            border: 0px none
+          .chzn-results
+            width: 322px
+          .search-field 
+            input 
+              padding: 9px 5px 9px 10px !important
+              color: #333 !important
+              font-family: $heading
+            .default 
+              color: #333
+      .chzn-search
+        input[type="text"]
+          display: none
+          width: 378px !important
+          box-shadow: none
+          margin: 1px 0 !important
       label, input.normal, textarea
-        color: #444545
+        color: #333
         padding: 0px 3px
         font-size: 18px
         line-height: 18px
-        +border-radius(5px)
-        +box-shadow(#eee 1px 1px 3px 0 inset)
+        text-shadow: 1px 1px 0px white
+        +border-radius(4px)
+        
       label 
         padding: 5px 0
 

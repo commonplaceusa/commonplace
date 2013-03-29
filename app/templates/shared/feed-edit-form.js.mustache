@@ -1,53 +1,57 @@
-
-<form>
-  <div class="error"></div>
-  <a class="delete" href="{{deleteUrl}}">Delete</a>
-  <h1>Edit Your Page</h1>
+<div class="modal-border">
+   <form>
+     <div class="error"></div>
+     <h1>Edit Your Page</h1>
+     <span class="divider"></span>
   
-  <label for="name">Organization name:</label>
-  <input name="name" value="{{feedName}}" type="text">
+     <label for="name">Organization name:</label>
+     <input name="name" value="{{feedName}}" type="text">
   
-  <label for="about">Describe your organization:</label>
-  <textarea name="about" rows="3">{{about}}</textarea>
+     <label for="about">Describe your organization:</label>
+     <textarea name="about" rows="3">{{about}}</textarea>
   
-  <label for="slug">Nickname:</label>
-  <input name="slug" value="{{slug}}" type="text">
+     <label for="slug">Nickname:</label>
+     <input name="slug" value="{{slug}}" type="text">
   
-  <div class="avatar">
-      <img src="{{avatarUrl}}" width="50" height="50">
-      <div class="avatar-controls">
-        <a class="upload" href="#">Change</a>
-        <a class="crop" href="#">Crop</a>
-      </div>
-  </div>
+     <div class="avatar">
+         <img src="{{avatarUrl}}" width="85" height="85">
+         <div class="avatar-controls">
+           <a class="upload" href="#">Change</a>
+           <a class="crop" href="#">Crop</a>
+         </div>
+     </div>
   
-  <div style="clear: both"></div>
+     <div style="clear: both"></div>
   
-  <label for="rss">To pull Announcements from an RSS feed, type in the RSS URL:</label>
-  <input name="rss" value="{{rss}}" type="text">
+     <label for="rss">To pull Announcements from an RSS feed, type in the RSS URL:</label>
+     <input name="rss" value="{{rss}}" type="text">
   
-  <label for="website">Website:</label>
-  <input name="website" value="{{website}}" type="text">
+     <label for="website">Website:</label>
+     <input name="website" value="{{website}}" type="text">
   
-  <label for="phone">Phone number:</label>
-  <input name="phone" value="{{phone}}" type="text">
+     <label for="phone">Phone number:</label>
+     <input name="phone" value="{{phone}}" type="text">
   
-  <label for="address">Street Address:</label>
-  <input name="address" value="{{address}}" type="text">
+     <label for="address">Street Address:</label>
+     <input name="address" value="{{address}}" type="text">
   
-  <label for="kind" class="kind_list">Is your community page for:
-    <select name="kind" class="kind_list dk" id="feed_kinds">
-      <option value="1">A non-profit</option>
-      <option value="2">A community group</option>
-      <option value="3">A business</option>
-      <option value="4">A muncipal entity</option>
-      <option value="5">A newspaper, news service, or news blog</option>
-      <option value="6">Other</option>
-    </select>
-  </label>
-  
-  <div class="controls">
-    <a class="cancel" href="#">Cancel</a>
-    <button>Change Page</button>
-  </div>
-</form>
+     <label for="kind" class="kind_list">Is your community page for:
+       <select name="kind" class="kind_list dk" id="feed_kinds">
+         <option value="1">A non-profit</option>
+         <option value="2">A community group</option>
+         <option value="3">A business</option>
+         <option value="4">A muncipal entity</option>
+         <option value="5">A newspaper, news service, or news blog</option>
+         <option value="6">Other</option>
+       </select>
+     </label>
+     <label for="delete">Delete this page?</label>
+     <a class="delete blue-button" href="{{deleteUrl}}">Delete</a>
+     <div class="controls">
+       <button>Change Page</button>
+       <a class="cancel" href="#">Cancel</a>
+       <div class="spinner"><img src='/assets/loading-post.gif' /></div>
+     </div>
+   </form>
+</div>
+<div class="close">x</div>

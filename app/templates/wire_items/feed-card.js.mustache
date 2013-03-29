@@ -6,26 +6,25 @@
     {{#isSubscribed}}<a href="#" class="unsubscribe">Unsubscribe</a>{{/isSubscribed}}
   </div>
   <div class="right">
-    {{#canEdit}}<span class="editlink"><a href="">Edit</a></span>{{/canEdit}}
     <h2 class="name">{{name}}</h2>
     <div class="stat-bar">
       <ul>
         <li class="announcements">
-        <span class="big">{{announce_count}}</span>
-        <span class="little">Announcements</span>
-        </li>
-        <li>
-        <span class="big events">{{event_count}}</span>
-        <span class="little">Events</span>
-        </li>
-        <li class="subscribers">
-        <span class="big">{{subscribers_count}}</span>
-        <span class="little">Subscribers</span>
-        </li>
+          <span class="big">{{announce_count}}</span>
+          <span class="little">Announcements</span>
+          </li>
+          <li>
+          <span class="big events">{{event_count}}</span>
+          <span class="little">Events</span>
+          </li>
+          <li class="subscribers">
+          <span class="big">{{subscribers_count}}</span>
+          <span class="little">Subscribers</span>
+          </li>
       </ul>
     </div>
     {{#hasAbout}}
-    <p>{{about}}</p>
+    <p>{{about}} {{#canEdit}}<span class="editlink"><a href="">Edit Page</a></span>{{/canEdit}}</p>
     {{/hasAbout}}
     <p><span class="bold">Website:</span>  <a href={{site_url}} target="_blank">{{site_url}}</a></p>
   </div>
