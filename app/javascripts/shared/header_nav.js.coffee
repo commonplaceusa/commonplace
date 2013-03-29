@@ -9,14 +9,15 @@ CommonPlace.shared.HeaderNav = CommonPlace.View.extend(
 
   initialize: ->
     @updateUnreadMessages()
-
-  afterRender: ->
-    @updateUnreadMessagesBadge()
-    @$("input[placeholder], textarea[placeholder]").placeholder()
     self = this
     CommonPlace.account.on "sync", ->
       self.updateUnreadMessages()
       self.updateUnreadMessagesBadge()
+      self.render()
+
+  afterRender: ->
+    @updateUnreadMessagesBadge()
+    @$("input[placeholder], textarea[placeholder]").placeholder()
 
   search: (event) ->
     @query = @$("#search-header").val()

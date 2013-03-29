@@ -175,6 +175,13 @@ class API
       owner.destroy
     end
 
+    # Remove a feed
+    delete "/:id" do
+      control_access :owner, find_feed
+
+      find_feed.destroy
+    end
+
     # Create the feed avatar
     post "/:id/avatar" do
       control_access :owner, find_feed

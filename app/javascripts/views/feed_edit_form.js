@@ -2,7 +2,9 @@ var FeedEditFormView = FormView.extend({
   template: "shared/feed-edit-form",
   
   events: {
-    "click #modal-shadow": "exit",
+    "click .cancel": "exit",
+    "click .close": "exit",
+    "click .delete": "deleteFeed",
     "click .avatar-controls .crop": "cropAvatar",
     "click .avatar-controls .remove": "removeAvatar",
     "click .controls button": "send"
@@ -39,6 +41,16 @@ var FeedEditFormView = FormView.extend({
   showError: function(response) {
     this.$(".error").text(response.responseText);
     this.$(".error").show();
+  },
+
+  deleteFeed: function(e) {
+    if (e) { e.preventDefault(); }
+    this.model.destroy({
+      success: function() {
+        CommonPlace.account.trigger("sync");
+      }});
+    this.exit();
+    return app.navigate("/", true);
   },
 
   feedName: function() {
