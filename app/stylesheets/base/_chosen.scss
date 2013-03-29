@@ -194,6 +194,7 @@
   margin: 3px 0 3px 5px;
   position: relative;
   cursor: default;
+  text-shadow: 1px 1px 0px white;
 }
 .chzn-container-multi .chzn-choices .search-choice.search-choice-disabled {
   background-color: #e4e4e4;
@@ -219,13 +220,13 @@
   width: 12px;
   height: 12px;
   font-size: 1px;
-  background: url('chosen-sprite.png') -42px 1px no-repeat;
+  background: url('chosen-sprite.png') -48px -1px no-repeat;
 }
 .chzn-container-multi .chzn-choices .search-choice .search-choice-close:hover {
-  background-position: -42px -10px;
+  background-position: -48px -12px;
 }
 .chzn-container-multi .chzn-choices .search-choice-focus .search-choice-close {
-  background-position: -42px -10px;
+  background-position: -48px -12px;
 }
 /* @end */
 
