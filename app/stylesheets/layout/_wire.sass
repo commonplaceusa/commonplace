@@ -79,17 +79,15 @@
           .post-content
             position: relative
             .image_container
-              width: 100%
-              margin: 0px 0px 10px 0px
-              clear: both
-              overflow: hidden
-              max-height: 400px
+              //clear: both
+              //overflow: hidden
+              //max-height: 400px
               a
-                margin: 5px 0px 0px 0px
+                //margin: 5px 0px 0px 0px
                 padding: 0px
                 display: block
             .post_image
-              max-height: 385px
+              //max-height: 385px
             .price
               width: auto
               float: left
@@ -213,7 +211,9 @@
 
   .photo-container
     width: 535px /* for instance */
-    display: table
+    //display: table
+    overflow: hidden
+    max-height: 550px
     &:after 
       content: ""
       display: table
@@ -226,6 +226,8 @@
     img 
       width: 100%
       padding-right: 10px
+      &:nth-child(2), &:nth-child(3)
+        width: 100%
       &:last-child
         padding-right: 0
 
