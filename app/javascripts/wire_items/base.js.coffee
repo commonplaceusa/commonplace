@@ -10,7 +10,7 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
   afterRender: ->
     @model.on "change", @render, this
     replies = @model.get("replies")
-    @reply() if replies and replies.length > 0
+    @reply()
     @checkThanked()
     @checkFlagged()
 
@@ -128,9 +128,6 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
       @repliesView.render()
       @appendRepliesArea @repliesView.el
       @$(".reply-text-entry").focus() if @browserSupportsPlaceholders() and $.browser.webkit #only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
-    else
-      @state = "none"
-      @emptyRepliesArea()
 
   emptyRepliesArea: ->
     @$(".replies-area").empty()
