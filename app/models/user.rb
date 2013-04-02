@@ -30,12 +30,19 @@ class User < ActiveRecord::Base
   end
 
   def self.new_from_facebook(params, facebook_data)
-    User.new(params).tap do |user|
-      user.email = facebook_data["info"]["email"]
-      user.full_name = facebook_data["info"]["name"]
-      user.facebook_uid = facebook_data["uid"]
-      user.neighborhood_id = Neighborhood.where(community_id: params[:community_id]).first.id
+    u = User.find_by_email(facebook_data["info"]["email"])
+    if !u.nil?
+      u.facebook_uid = facebook_data["uid"]
+    else
+      u = User.new(params).tap do |user|
+        user.email = facebook_data["info"]["email"]
+        user.full_name = facebook_data["info"]["name"]
+        user.facebook_uid = facebook_data["uid"]
+        user.neighborhood_id = Neighborhood.where(community_id: params[:community_id]).first.id
+      end
     end
+
+    return u
   end
 
   geocoded_by :normalized_address
