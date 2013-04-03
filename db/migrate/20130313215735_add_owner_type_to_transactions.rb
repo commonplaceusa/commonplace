@@ -1,11 +1,14 @@
 class AddOwnerTypeToTransactions < ActiveRecord::Migration
   def self.up
     add_column :transactions, :owner_type, :string
+
+    unless column_exists? :transactions, :owner_id
+      rename_column :transactions, :user_id, :owner_id
+    end
     Transaction.all.each do |t|
       t.owner_type = "User"
       t.save!
     end
-    rename_column :transactions, :user_id, :owner_id
   end
 
   def self.down

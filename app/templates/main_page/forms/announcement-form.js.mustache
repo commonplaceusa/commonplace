@@ -20,8 +20,11 @@
     {{/hasFeeds}}
     {{#hasFeeds}}
     {{#hasBusinessFeeds}}
-      <p>This can't be used with a business feed</p>
-      <a class="back" href="#">Back</a>
+      <p>In order to publicize your business, please post a deal in the marketplace</p>
+      <div class="controls wide">
+        <button class="red-button transaction">Post to Marketplace</button>
+        <a class="back" href="#">Back</a>
+      </div>
     {{/hasBusinessFeeds}}
     {{^hasBusinessFeeds}}
     <div class="posting-header promote">
