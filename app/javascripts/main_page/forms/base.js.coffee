@@ -9,6 +9,7 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
     "focusout input, textarea": "onFormBlur"
     "click .back": "showPostbox"
     "click .delete": "deletePost"
+    "click .transaction": "openTransactionForm"
 
   initialize: (options) ->
     if options
@@ -79,10 +80,10 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
     @cleanUpPlaceholders()
     @showSpinner()
     @disableSubmitButton()
-    
+
     # Category not specified
     if @options.category is `undefined`
-      
+
       # Show a notification
       @showError "Please select a category"
       @hideSpinner()
@@ -150,9 +151,9 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
       naturalHeight = $moreInputs.actual("height")
       $moreInputs.css height: 0
       $moreInputs.show()
-      
+
       CommonPlace.layout.reset()
-  
+
   onFormBlur: (e) ->
     $("#invalid_post_tooltip").hide()
     unless @focused
@@ -168,4 +169,12 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
 
   hideLabel: (e) ->
     $("option.label", e.target).hide()
+
+  openTransactionForm: (e)->
+    e.preventDefault()
+    postbox = new CommonPlace.main.PostBox
+      account: CommonPlace.account
+      community: CommonPlace.community
+    postbox.render()
+    postbox.showTab("transaction", @model)
 )
