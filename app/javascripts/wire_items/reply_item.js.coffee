@@ -2,8 +2,6 @@ CommonPlace.wire_item.ReplyWireItem = CommonPlace.wire_item.WireItem.extend(
   tagName: "li"
   className: "reply-item"
   template: "wire_items/reply-item"
-  initialize: (options) ->
-    @model.on "destroy", @remove, this
 
   afterRender: ->
     @$(".reply-body").truncate max_length: 450
