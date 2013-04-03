@@ -176,5 +176,5 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
       account: CommonPlace.account
       community: CommonPlace.community
     postbox.render()
-    postbox.showTab("transaction", @model)
+    postbox.showTab("transaction")
 )

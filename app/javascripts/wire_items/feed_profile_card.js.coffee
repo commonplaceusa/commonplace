@@ -71,5 +71,5 @@ CommonPlace.wire_item.FeedProfileCard = CommonPlace.wire_item.ProfileCard.extend
       account: CommonPlace.account
       community: CommonPlace.community
     postbox.render()
-    postbox.showTab("transaction", @model)
+    postbox.showTab("transaction")
 )
