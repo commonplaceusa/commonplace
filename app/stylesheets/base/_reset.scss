@@ -29,7 +29,11 @@ footer,header,hgroup,menu,nav,section {
 }
 
 ul {
-    list-style:none;
+    list-style-type: none;
+}
+
+li {
+    list-style-type: none;
 }
 
 blockquote, q {
