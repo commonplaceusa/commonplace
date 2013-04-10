@@ -127,7 +127,7 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
       , this)
       @repliesView.render()
       @appendRepliesArea @repliesView.el
-      @$(".reply-text-entry").focus() if @browserSupportsPlaceholders() and $.browser.webkit #only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
+    @$(".reply-text-entry").focus() if @browserSupportsPlaceholders() and $.browser.webkit #only focus the first input if the browser supports placeholders and is webkit based (others clear the placeholder on focus)
 
   emptyRepliesArea: ->
     @$(".replies-area").empty()
