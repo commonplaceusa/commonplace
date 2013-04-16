@@ -591,6 +591,7 @@ ActiveRecord::Schema.define(:version => 20130320214459) do
     t.integer  "events_count",                     :default => 0,       :null => false
     t.integer  "replied_count",                    :default => 0,       :null => false
     t.text     "action_tags"
+    t.boolean  "guest",                            :default => false
     t.integer  "transactions_count",               :default => 0
   end
 

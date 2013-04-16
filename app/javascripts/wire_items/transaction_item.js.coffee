@@ -13,7 +13,7 @@ CommonPlace.wire_item.TransactionWireItem = CommonPlace.wire_item.WireItem.exten
     "click .flag-link": "flag"
     "click .share-link": "share"
     "click .reply-link": "reply"
-    "click .author": "showUserWire"
+    "click .author": "showAuthorWire"
     "click .title": "showWireItem"
 
   price: ->
