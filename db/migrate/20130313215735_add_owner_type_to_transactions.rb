@@ -7,7 +7,6 @@ class AddOwnerTypeToTransactions < ActiveRecord::Migration
     end
     Transaction.all.each do |t|
       t.owner_type = "User"
-      t.save!
     end
   end
 
