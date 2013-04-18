@@ -148,23 +148,12 @@ class MailBase < Mustache
 
   def deliver
     if deliver?
-      email_id = EmailTracker.new_email({
-          'recipient_email' => self.to,
-          'email_type' => self.class.name,
-          'tag_list' => self.tag_list,
-          'main_tag' => self.tag,
-          'originating_community_id' => (self.community) ? self.community.id : 0,
-          'updated_at' => DateTime.now
-      })
       # increase_email_count
 
       mail_headers = {
         "Precedence" => "list",
         "Auto-Submitted" => "auto-generated",
-        "X-Mailgun-Tag" => self.tag,
-        "X-Mailgun-Variables" => {
-          email_id: email_id
-        }.to_json
+        "X-Mailgun-Tag" => self.tag
       }
 
       mail_headers.merge!({"X-Mailgun-Campaign-Id" => "#{community.slug.downcase}_#{format_tag(self.tag.downcase)}"})
