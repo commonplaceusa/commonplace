@@ -15,6 +15,7 @@ CommonPlace.wire_item.EventWireItem = CommonPlace.wire_item.WireItem.extend(
     "click .reply-link": "reply"
     "click .message-link": "messageUser"
     "click .author": "showAuthorWire"
+    "click .avatar-container": "showAuthorWire"
     "click .title": "showWireItem"
 
   eventDateISO: ->

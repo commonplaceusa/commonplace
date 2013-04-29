@@ -146,7 +146,51 @@ CommonPlace.View = Backbone.View.extend({
 
   community_user_count: function() { return CommonPlace.community.get('user_count'); },
 
-  community_feed_count: function() { return CommonPlace.community.get('feed_count'); }
+  community_feed_count: function() { return CommonPlace.community.get('feed_count'); },
+
+  isGuest: function() {
+    if (CommonPlace.account) {
+      return CommonPlace.account.isGuest();
+    } else {
+      return true;
+    }
+  },
+
+  isHarvardNeighbors: function() {
+    if (CommonPlace.community.get('slug').toLowerCase() == "harvardneighbors") {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  showRegistration: function(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    var tour = new CommonPlace.main.TourModal({
+      el: $("#main"),
+      template: "main_page.tour.modal"
+    });
+    tour.render();
+    tour.showPage("email");
+    return false;
+  },
+
+  showFeedCreationForm: function(e) {
+    var tour;
+    if (e) {
+      e.preventDefault();
+    }
+    tour = new CommonPlace.main.TourModal({
+      el: $("#main"),
+      template: "main_page.tour.modal",
+      exitWhenDone: true
+    });
+    tour.render();
+    return tour.showPage("create_page");
+  },
+
 });
 
 var FormView = CommonPlace.View.extend({

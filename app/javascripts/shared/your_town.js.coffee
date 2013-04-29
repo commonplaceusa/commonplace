@@ -7,5 +7,6 @@ CommonPlace.shared.YourTown = CommonPlace.View.extend
 
   loadWire: (e) ->
     e.preventDefault() if e
+    return @showRegistration() if @isGuest()
     page = @$(e.currentTarget).attr("id")
     app.communityWire(CommonPlace.community.get("slug"), page)

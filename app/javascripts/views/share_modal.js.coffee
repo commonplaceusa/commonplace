@@ -44,9 +44,6 @@ CommonPlace.views.ShareModal = FormView.extend(
   email_body: ->
     "I thought you might like this post on OurCommonPlace, #{@community_name()}'s online town bulletin: #{@share_url()}"
 
-  community_name: ->
-    CommonPlace.community.get "name"
-
   shareFacebook: (e) ->
     e.preventDefault()
     $('.share-f').addClass("checked")

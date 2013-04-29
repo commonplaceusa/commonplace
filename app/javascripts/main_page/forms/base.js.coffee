@@ -10,6 +10,7 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
     "click .back": "showPostbox"
     "click .delete": "deletePost"
     "click .transaction": "openTransactionForm"
+    "click #new_feed_button": "createFeed"
 
   initialize: (options) ->
     if options
@@ -72,8 +73,10 @@ CommonPlace.main.BaseForm = CommonPlace.View.extend(
   disableSubmitButton: ->
     @$(".submit").attr "disabled", "disabled"
 
-  community_name: ->
-    CommonPlace.community.get("name")
+  createFeed: (e) ->
+    e.preventDefault() if e
+    @showFeedCreationForm()
+    @exit()
 
   createPost: (e) ->
     e.preventDefault()

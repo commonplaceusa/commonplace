@@ -152,7 +152,7 @@ class Bootstrapper < Sinatra::Base
 
     return 404 unless @community
 
-    erb @account ? :application : :register
+    erb :application
   end
 
   get "pages/:id" do
@@ -213,7 +213,7 @@ class Bootstrapper < Sinatra::Base
 
     @login_error = "Welcome to OurCommonPlace #{@community.name}! Before you can view this content you must login or reigster to verify that you are a member of the community."
     @login_redirect = request.url
-    erb @account ? :application : :register
+    erb :application
   end
 
 

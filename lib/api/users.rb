@@ -62,13 +62,13 @@ class API
 
     # Gets the users data
     get "/:id" do |id|
-      control_access :community_member, find_user.community
+      control_access :public
       serialize find_user
     end
     
     # Returns a list of all the users posts of any type
     get "/:id/postlikes" do
-      control_access :community_member, find_user.community
+      control_access :public
       
       search = Sunspot.search([Announcement, Post, GroupPost, Event, Transaction]) do
         order_by(:created_at, :desc)

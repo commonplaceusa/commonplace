@@ -11,9 +11,10 @@
   width: 543px
   //width: 673px
   display: inline-block
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5)
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.65)
   font-family: $heading
   position: relative
+  text-shadow: 1px 1px 0px white
   //&:hover
     cursor: pointer
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.65)    
@@ -101,7 +102,7 @@
     width: 104px
     right: -145px
     top: 0px
-  .subscribe, .unsubscribe, .meet, .just-met, .unmeet, .contact
+  .subscribe, .unsubscribe, .meet, .just-met, .unmeet, .contact, .editlink, .edit
     float: left
     font-family: $body
     font-weight: bold
@@ -116,16 +117,37 @@
     text-indent: -1px
     &:hover
       color: #aaa
+  .edit
+    border-top: 1px solid #d5d1c8
+    padding-top: 6px
+    margin-top: 6px
+    border-bottom: 0px none
+    box-shadow: inset 0px 1px 0px white
+    //border: 0px none
+    //box-shadow: none
+    //padding: 0px
+    //margin: 0px
+  .transaction
+    //width: 104px
+    //position: absolute
+    //top: -5px
+    //right: -148px
+    width: 79px
+    margin: 0px 0px 3px 0px
   .contact
     padding-bottom: 6px
     margin-bottom: 6px
   .meet, .just-met, .unmeet
     border: 0px transparent
     box-shadow: none
-  .subscribe, .unsubscribe
+  .subscribe, .unsubscribe, .editlink
     border: 0px transparent
     box-shadow: none
-    padding: 0px
+    //margin-bottom: 5px
+    //border-bottom: 1px solid white
+    //padding-bottom: 6px
+    //border-top: 0px transparent
+    //box-shadow: inset 0px -1px 0px #d5d1c8
   .unmeet
     color: #aaa
     &:hover

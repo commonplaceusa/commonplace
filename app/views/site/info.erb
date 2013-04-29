@@ -17,20 +17,29 @@
             <link rel="stylesheet" type="text/css" href="/assets/IE8-loggedOut.css" />
     <![endif]-->
     <style type="text/css" media="screen">
-       body {
-           background: url('/assets/shared/redesign/backgrounds/Driveway.jpg') no-repeat center center fixed;
-           background-color: #CEE7FE;
-           background-size: cover;
-           -webkit-background-size: cover;
+        html {
+             -webkit-font-smoothing: antialiased;
+             text-rendering: optimizeLegibility;
+            }
+
+         body {
+           overflow-y: scroll !important;
+           -webkit-font-smoothing: antialiased;
+           background-size: cover !important;
+           -webkit-background-size: cover !important;
            -webkit-font-smoothing: antialiased;
            text-rendering: optimizeLegibility;
-          }
+           background: url('/assets/shared/redesign/backgrounds/Driveway.jpg') no-repeat center center fixed #e9e5de;
+         }
        .choose_town_container {
           display: none;
        }
        .registration_right {
            width: 220px !important;
         }
+       .registration button {
+          width: 395px !important;
+       }
      </style>
   </head>
   <body>

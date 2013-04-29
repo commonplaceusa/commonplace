@@ -1,4 +1,3 @@
-<input type="text" id="search-header" class="pie-element" placeholder="Search {{community_name}}..." >
 <ul>
   {{#showActivity}}
     <li class="my-activity"></li>
@@ -7,7 +6,6 @@
 
   <li class="account pie-element">
     <img class="avatar-container" src="{{avatar_url}}" />
-    </div>
     <a href="{{user_url}}" data-remote>My Page </a><span class="arrow">&#9662;</span>
 
     <ul class="account-sub">
@@ -17,11 +15,11 @@
         </a>
       </li>
       <li><a href="{{user_url}}" data-remote>My Page</a></li>
+      <li><a class="create-feed-link" href="/feed_registrations/new">Create a New Page</a></li>
       {{#feeds}}
         <li><a class="feed-link" href="/{{community}}/pages/{{slug}}" id="{{slug}}">{{name}}</a></li>
       {{/feeds}}
 
-      <li><a href="/feed_registrations/new">Create a New Page</a></li>
       <li><a href="{{account_url}}" data-remote>Account Settings</a></li>
       <li><a href="{{faq_url}}" data-remote>FAQ</a></li>
 

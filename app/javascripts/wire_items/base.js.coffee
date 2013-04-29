@@ -3,13 +3,12 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
 
   initialize: (options) ->
     self = this
-    @attr_accessible [ "first_name", "last_name", "name", "avatar_url", "published_at", "images", "title", "author", "body" ]
+    @attr_accessible [ "first_name", "last_name", "name", "avatar_url", "published_at", "images", "title", "body" ]
     @model.on "destroy", ->
       self.remove()
 
   afterRender: ->
     @model.on "change", @render, this
-    replies = @model.get("replies")
     @reply()
     @checkThanked()
     @checkFlagged()
@@ -41,6 +40,7 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
 
   thank: ->
     @removeCurrentClass()
+    return @showRegistration() if @isGuest()
     return @showThanks()  if @thanked()
     _kmq.push(['record', 'Thanked Post', {'Schema': @model.get("schema"), 'ID': @model.id}]) if _kmq?
     $.post "/api" + @model.link("thank"), _.bind((response) ->
@@ -78,6 +78,7 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
       t.warnable_type isnt "Reply"
 
   flag: ->
+    return @showRegistration() if @isGuest()
     return @showFlags() if @flagged()
     _kmq.push(['record', 'Flagged Post', {'Schema': @model.get("schema"), 'ID': @model.id}]) if _kmq?
     $.post "/api" + @model.link("flag"), _.bind((response) ->
@@ -135,8 +136,15 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
   appendRepliesArea: (el) ->
     @$(".replies-area").append(el)
 
+  author: ->
+    if @isGuest()
+      "Your Neighbor"
+    else
+      @model.get("author")
+
   messageUser: (e) ->
     e.preventDefault() if e
+    return @showRegistration() if @isGuest()
     if @model.get("owner_type") is "Feed"
       recipient = new Feed(links:
         self: @model.link("author")
@@ -173,6 +181,7 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
 
   showAuthorWire: (e) ->
     e.preventDefault() if e
+    return @showRegistration() if @isGuest()
     if @isFeed()
       @showFeedWire()
     else
@@ -264,6 +273,7 @@ CommonPlace.wire_item.WireItem = CommonPlace.View.extend(
 
   loadWire: (e) ->
     e.preventDefault() if e
+    return @showRegistration() if @isGuest()
     page = @model.get("schema")
     category = @model.get("category")
     if category is "offers"

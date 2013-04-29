@@ -84,6 +84,8 @@ CommonPlace.main.PostBox = FormView.extend(
     CommonPlace.account.get "feeds"
 
   promote_header: ->
+    if @isHarvardNeighbors()
+      return "Post an Announcement"
     feeds = @feeds()
     if feeds.length is 1
       return "Promote #{feeds[0].name}"

@@ -12,6 +12,7 @@ CommonPlace.main.CommunityResources = CommonPlace.View.extend(
 
   afterRender: ->
     self = this
+    $("body").addClass "public" if @isGuest()
     @searchForm = new @SearchForm()
     @searchForm.render()
     $(@searchForm.el).prependTo @$(".sticky")

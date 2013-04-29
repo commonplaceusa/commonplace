@@ -29,6 +29,10 @@ class Account
     @user.admin?
   end
 
+  def is_guest
+    @user.guest?
+  end
+
   def accounts
     [@user] + @user.managable_feeds
   end

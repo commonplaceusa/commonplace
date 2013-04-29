@@ -1,46 +1,37 @@
 <div id="civicProfile" class="container">
   <div class="registration_border">
-     <div class="civic_title">Fill Out Your Community Profile</div>
-     <span class="divider"></span>
-     <div class='civic_left'>
-      <img class="profile_pic" src="/avatars/missing.png" alt="This is your profile photo" />
-   	<div class="not-facebook">
-         <div>
-           <a href="#" class="avatar_file_browse">Add Profile Photo</a>
-         </div>
-   	<br />or<br />
-       </div>
-       <div class="to-facebook">
-         <img class="facebook" src="/assets/use_facebook.png" alt="Connect with Facebook">
-       </div>
-     </div>
+    <h2 class="civic_title">Fill Out Your Profile</h2>
+    <span class="divider"></span>
+    <div class="civic">
+      <img class="profile_pic" src="{{avatar_url}}" alt="This is your profile photo" />
+      <input type="text" class="name" name="name" placeholder="Full Name">
+      <div class="not-facebook">
+        <a href="#" class="avatar_file_browse">Upload a Photo</a>
+        <a href="#"><img class="facebook" src="/assets/shared/redesign/use_facebook.png" alt="Connect with Facebook" /></a>
+      </div>
 
-     <div class="civic_right">
-       <textarea rows="2" cols="20" name="about" placeholder="About Me" class="civic_profile"></textarea>
-       <br />
-       <input type="text" name="status" placeholder="Your short introduction (write anything!)" class="civic_message">       
-       <br />
-       <input type="text" name="organizations" placeholder="What organizations are you part of?" class="civic_orgs">
-       <br />
-       <!--<label for="interests">Share interests with my neighborhood:</label>-->
-       <select name="interests" class="list" multiple="true" data-placeholder="Share interests with my neighborhood">
-         {{#interests}} <option value="{{.}}">{{.}}</option> {{/interests}}
-       </select>
-       <br />
-       <!--<label for="skills">Share skills with my neighborhood:</label>-->
-       <select name="skills" class="list" multiple="true" data-placeholder="Share skills with my neighborhood">
-         {{#skills}} <option value="{{.}}">{{.}}</option> {{/skills}}
-       </select>
-       <br />
-       <!--<label for="goods">Share goods with my neighborhood:</label>-->
-       <select name="goods" class="list" multiple="true" data-placeholder="Share goods with my neighborhood">
-         {{#goods}} <option value="{{.}}">{{.}}</option> {{/goods}}
-       </select>
-       <br />
-     </div>
+      <textarea rows="2" cols="20" name="about" placeholder="Tell your neighbors something about yourself..." class="civic_profile"></textarea>
+      <br />
+      <input type="text" name="organizations" placeholder="What organizations are you part of?" class="civic_orgs">
+      <br />
 
-     <div id="civic_button">
-       <a href="#" class="blue-button next-button">Continue</a>
+      {{^isHarvardNeighbors}}
+      <div class="org">
+        <p>Would you like to promote your business, organization, or service on CommonPlace?</p>
+        <input type="radio" name="org" id="yes">
+        <label class="org_yes" for="yes">Yes</label>
+        <input type="radio" name="org" id="no">
+        <label class="org_no" for="no">No</label>
+      </div>
+      {{/isHarvardNeighbors}}
+    </div>
+    <div class="controls">
+       <div class="spinner">
+          <img src='/assets/loading-post.gif' />
+       </div>
+       <div id="civic_button">
+          <a href="#" class="blue-button next-button">Continue</a>
+       </div>
      </div>
   </div>
 </div>

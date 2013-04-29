@@ -1,17 +1,16 @@
 <div id="findNeighbors" class="container">
 	<div class="registration_border">
-      <div class="find_title">Subscribe To Some Pages</div>
-      <span class="divider"></span>
+      <h2 class="find_title">Subscribe To Some Pages</h2>
       <ul class="subscribe_categories">
         {{#categories}}
       	<li><a href="#{{id}}">{{name}}</a></li>
         {{/categories}}
       </ul>
-
+      <span class="divider"></span>
       <div id="subscribe_pages">
         {{#categories}}
         <div class="page_category" id="{{id}}">
-          <a name="{{id}}"><h2>{{name}}</h2></a>
+          <a name="{{id}}"><h3>{{name}}</h2></a>
           <ul class="subscribe_pages {{id}}"></ul>
         </div>
         {{/categories}}
@@ -21,8 +20,13 @@
       <!--<div id="invite_friends">
       	<p>Are you running an organization? <br /><a href="#" class="subscribe_create">Create A New Page</a></p>
       </div>-->
-      <div id="find_button">
-      	<a href="#" class="blue-button next-button">Continue</a>
+      <div class="controls">
+         <div class="spinner">
+            <img src='/assets/loading-post.gif' />
+         </div>
+         <div id="find_button">
+            <a href="#" class="blue-button next-button">Continue</a>
+         </div>
       </div>
   </div>
 </div>

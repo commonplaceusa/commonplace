@@ -26,6 +26,8 @@ CommonPlace.shared.Directory = CommonPlace.View.extend(
 
   switchTab: (e) ->
     e.preventDefault()
+    return @showRegistration() if @isGuest()
+
     schema = $(e.target).attr("title")
     @showTab schema
 

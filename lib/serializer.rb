@@ -298,6 +298,7 @@ module Serializer
         "feed_subscriptions" => o.feed_subscriptions,
         "group_subscriptions" => o.group_subscriptions,
         "is_admin" => o.is_admin,
+        "is_guest" => o.is_guest,
         "accounts" => o.accounts.map {|a| {:name => a.name, :uid => "#{a.class.name.underscore}_#{a.id}"} },
         "short_name" => o.short_name,
         "name" => o.full_name,
@@ -309,6 +310,7 @@ module Serializer
         "announcements" => o.announcements,
         "group_posts" => o.group_posts,
         "neighborhood" => o.neighborhood,
+        "organizations" => o.organizations,
         "interests" => o.interest_list,
         "goods" => o.good_list,
         "skills" => o.skill_list,
@@ -334,7 +336,6 @@ module Serializer
           "sent" => "/account/inbox/sent",
           "feed_messages" => "/account/inbox/feeds",
           "neighborhoods_posts" => "/neighborhoods/#{o.neighborhood_id}/posts",
-          "featured_users" => "/account/featured",
           "neighbors" => "/account/neighbors",
           "swipes" => "/account/swipes",
           "history" => "/account/history"

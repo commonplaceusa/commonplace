@@ -72,6 +72,7 @@ class Community < ActiveRecord::Base
     t.add lambda {|c| $skills }, :as => :skills
     t.add lambda {|c| $interests }, :as => :interests
     t.add :resident_tags
+    t.add :referral_sources
     t.add :manual_tags
     t.add :resident_todos
     t.add :zip_code
@@ -230,6 +231,28 @@ class Community < ActiveRecord::Base
 
   def locale
     :en
+  end
+
+  def referral_sources
+    if self.slug == "HarvardNeighbors"
+      [
+        "Current Faculty",
+        "Current Staff",
+        "Retiree",
+        "Visiting Scholar/Researcher",
+        "Post-Doc Fellow/Program Fellow",
+        "Spouse/Partner"
+      ]
+    else
+      [
+        "Received a postcard in my mailbox",
+        "Received an email from Ricky Porco",
+        "Heard about it from a friend or neighbor",
+        "Heard about it in a news story",
+        "Heard about it through 50 Reasons #{name} is Awesome",
+        "Other"
+      ]
+    end
   end
 
   def posts_for_user(user)

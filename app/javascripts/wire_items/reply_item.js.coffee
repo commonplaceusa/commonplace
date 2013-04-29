@@ -10,7 +10,8 @@ CommonPlace.wire_item.ReplyWireItem = CommonPlace.wire_item.WireItem.extend(
   events:
     "click .reply-message-link": "messageUser"
     "click .delete-reply": "deleteReply"
-    "click .author": "showUserWire"
+    "click .author": "showAuthorWire"
+    "click .avatar-container": "showAuthorWire"
     "click .thank-reply": "thankReply"
 
   canEdit: ->
@@ -33,6 +34,7 @@ CommonPlace.wire_item.ReplyWireItem = CommonPlace.wire_item.WireItem.extend(
 
   thankReply: (e) ->
     e.preventDefault()  if e
+    return @showRegistration() if @isGuest()
     $.post "/api" + @model.link("thank"), @options.thankReply
 
   showThanks: (e) ->

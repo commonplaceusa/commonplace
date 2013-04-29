@@ -83,10 +83,12 @@ textarea { overflow: auto; }
 #sidebar {
   border-right: 1px solid #fff;
 }
-#header .community-name {
+#header .community-name,
+#header.app #nav_wrapper .header_left {
    position: relative;
 }
-#header .button-wrapper {
+#header .button-wrapper,
+#header.app #nav_wrapper .header_left .button-wrapper {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -123,4 +125,12 @@ form .event #end_time {
 
 .wire-item.group-member {
   margin-right: 15px;
+}*/
+/*body.public .author, body.public .author a {
+  color: #ccc !important;
+  background-color: #ccc !important;
+}
+body.public .author:hover, body.public .author a:hover {
+  color: #ccc !important;
+  background-color: #ccc !important;
 }*/

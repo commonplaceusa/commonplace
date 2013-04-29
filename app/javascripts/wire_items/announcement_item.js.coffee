@@ -13,6 +13,7 @@ CommonPlace.wire_item.AnnouncementWireItem = CommonPlace.wire_item.WireItem.exte
     "click .reply-link": "reply"
     "click .message-link": "messageUser"
     "click .author": "showAuthorWire"
+    "click .avatar-container": "showAuthorWire"
     "click .title": "showWireItem"
 
   canEdit: ->

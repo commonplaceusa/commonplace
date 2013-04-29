@@ -10,13 +10,19 @@ class API
     get "/:community_id/validate" do |community_id|
       control_access :public
 
-      user = User.new(:full_name => params["full_name"],
-                      :email => params["email"],
-                      :address => params["address"],
-                      :facebook_uid => params["fb_uid"],
-                      :community_id => community_id)
+      user = User.find_by_email(params['email'])
+      if user && user.valid_password?(params['password'])
+        warden.set_user(user, :scope => :user)
+        serialize Account.new(user)
+      else
+        user = User.new(:full_name => params["full_name"],
+                        :email => params["email"],
+                        :address => params["address"],
+                        :facebook_uid => params["fb_uid"],
+                        :community_id => community_id)
 
-      serialize user.validation_errors
+        serialize user.validation_errors
+      end
     end
 
     # Creates a new account, assigns profile attributes, sets as current

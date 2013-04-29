@@ -99,7 +99,7 @@ class CommunityExterior
   def links
     {
       "self" => "/registration/#{id}",
-      "tour" => "/#{slug}/registration",
+      "tour" => "/#{slug}/tour",
       "learn_more" => "/#{slug}/about",
       "facebook_login" => "/users/auth/facebook",
       "registration" => {

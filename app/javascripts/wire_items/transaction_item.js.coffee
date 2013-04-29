@@ -14,6 +14,7 @@ CommonPlace.wire_item.TransactionWireItem = CommonPlace.wire_item.WireItem.exten
     "click .share-link": "share"
     "click .reply-link": "reply"
     "click .author": "showAuthorWire"
+    "click .avatar-container": "showAuthorWire"
     "click .title": "showWireItem"
 
   price: ->
@@ -27,6 +28,7 @@ CommonPlace.wire_item.TransactionWireItem = CommonPlace.wire_item.WireItem.exten
 
   buyItem: (e) ->
     e.preventDefault()  if e
+    return @showRegistration() if @isGuest()
     params = { buyer: CommonPlace.account.id }
     $.post "/api" + @model.link("buy"), params, _.bind((response) ->
       subject = "Re: " + @model.get("title")

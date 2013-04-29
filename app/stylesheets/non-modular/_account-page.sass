@@ -1,7 +1,9 @@
-body.account
+body.account, body.faq, body.inbox
+  background: url(shared/redesign/tan-bg.png) #e9e5de center right
+  background-size: auto !important
   #main
-    background-image: url(shared/redesign/tan-bg.png)
-    background-color: #eeecdf
+    //background-image: url(shared/redesign/tan-bg.png)
+    //background-color: #eeecdf
     padding: 40px 20px 20px 20px
   #delete-account-form
     
@@ -93,13 +95,13 @@ body.account
         font-family: $Rokkitt
         color: $black
         font-size: 18px
-        width: 454px !important
+        width: 100%
         margin: 10px 0px
         a
           &:focus
             outline: none
         .chzn-drop
-          width: 460px !important
+          width: 100% !important
         .chzn-search 
           display: none !important
         .chzn-single 
@@ -153,18 +155,18 @@ body.account
           font-size: 18px
           width: 460px !important
           box-shadow: inset #ddd 0px 0px 3px 2px, #fff 0px 1px 0px
-          .chzn-drop 
-            width: 322px
-            border: 0px none
-          .chzn-results
-            width: 322px
           .search-field 
             input 
               padding: 9px 5px 9px 10px !important
-              color: #333 !important
-              font-family: $heading
-            .default 
               color: #333
+              font-family: $Rokkitt
+            .default 
+              color: #555
+        .chzn-drop 
+          width: 460px !important
+          border: 0px none
+        .chzn-results
+          width: 460px !important
       .chzn-search
         input[type="text"]
           display: none

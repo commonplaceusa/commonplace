@@ -17,8 +17,8 @@
     +border-radius(5px)
 
 
-  &.about
-    .community-name
+  &.about, &.app
+    .header_left
       h1
         color: white
         text-shadow: $black-shadow
@@ -29,22 +29,24 @@
         a
           text-decoration: none
           color: white
-    .top-bar
+    #user_sign_in, .choose_town_container
       h3
         color: white
         font-size: 16px
-        text-shadow: 1px 1px 1px black
+        text-shadow: 1px 1px 0px black
         font-family: $heading
       .button
-        padding: 5px
+        padding: 8px 4px
         border-radius: 4px 
-        box-shadow: inset 0 1px 1px rgba(255,255,255,.4)
+        box-shadow: inset 0 1px 0px rgba(255,255,255,0.4)
         cursor: pointer
         font-family: $heading
-        font-size: 18px
+        font-size: 17px
+        font-weight: normal
         color: white
         border: 1px solid black
         text-align: center
+        text-shadow: -1px -1px 0px #64100D
       .blue
         +linear-gradient(color-stops(#2e5274, #1b334a))
         &:hover, &:focus
@@ -60,15 +62,17 @@
         &:hover, &:focus
           color: #fff
           +linear-gradient(color-stops(#ea4e4a, #ac322f), top)
-          box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+          box-shadow: inset 0 1px 0px rgba(255,255,255,0.5)
         &:active
           color: #fff
           +linear-gradient(color-stops(#cc4441, #ac322f), bottom)
       .dropdown
         background: #EEECDF
+        background-image: url("shared/redesign/tan-bg.png")
         text-align: center
         +border-radius(4px)
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), inset 0px -1px 0px #AAA
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5)
+        border: 1px solid white
         .arrow
           background: url("shared/redesign/arrow.png") no-repeat
           background-position: 100px 12px
@@ -76,10 +80,11 @@
           -webkit-appearance: none
           font-size: 16px
           padding: 8px
-          border: 1px solid #d7d5c5
-          font-family: $Rokkitt
+          border: 1px solid #BCBBAE
+          font-family: $heading
           color: #131313
-          box-shadow: inset #eee 0px 0px 3px 2px, rgba(255,255,255,1.0) 0px 1px 0px
+          background-color: #FEFFFE
+          box-shadow: inset #ddd 0px 0px 3px 2px, rgba(255,255,255,1.0) 0px 1px 0px
           -webkit-font-smoothing: antialiased
           &:focus
             outline: none
@@ -96,11 +101,11 @@
           padding-bottom: 8px
           -webkit-font-smoothing: antialiased
           background-color: #1b334a
-          text-shadow: 0px 2px 0px #333
+          text-shadow: -1px -1px 0px #333
           &:hover, &:focus
             color: #fff
             +linear-gradient(color-stops(#3e6b96, #1b334a), top)
-            box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+            box-shadow: inset 0 1px 0px rgba(255,255,255,0.5)
           &:active
             color: #fff
             +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
@@ -110,21 +115,22 @@
           +linear-gradient(color-stops(#4e6fb6, #3b5998))
           -webkit-font-smoothing: antialiased
           background-color: #3b5998
-          text-shadow: 0px 2px 0px #333
+          text-shadow: -1px -1px 0px #333
           &:hover, &:focus
             color: #fff
             +linear-gradient(color-stops(#5c83d7, #3b5998), top)
-            box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+            box-shadow: inset 0 1px 0px rgba(255,255,255,.5)
           &:active
             color: #fff
             +linear-gradient(color-stops(#4e6fb6, #3b5998), bottom)
         p 
           padding: 12px 0px 13px 0px
           text-align: left
-          font-family: $Rokkitt
+          font-family: $heading
           cursor: pointer
-          color: #565656
-          font-weight: bold
+          color: #555
+          font-weight: normal
+          text-shadow: 1px 1px 0px white
           -webkit-font-smoothing: antialiased
           &:hover
             text-decoration: underline
@@ -158,7 +164,7 @@
       border-left: 1px solid #151f28
       border-right: 1px solid #31465b
       box-shadow: inset -1px 0px 0 0 $dark-blue
-      .community-name
+      .header_left
         border-left: 1px solid #31465b
         border-right: 1px solid #31465b
         box-shadow: inset -1px 0px 0 0 #151f28
@@ -228,7 +234,7 @@
           text-decoration: none
           color: white
 
-      .nav
+      .nav, .header_search
         #search-header
           font-size: 18px
           padding: 7px 10px 5px
@@ -383,3 +389,55 @@
   
 .badger-number
   font-size: 11px
+
+.registration_banner
+  display: none
+  width: 100%
+  position: fixed
+  //top: 51px
+  //background-color: rgba(0,0,0,0.75)
+  //background-image: url('shared/redesign/tan-bg.png')
+  padding: 15px 10px
+  left: 0px
+  overflow: hidden
+  text-align: left
+  color: white
+  bottom: 0px
+  background: $cp-blue
+  box-shadow: 0px -3px 5px rgba(0,0,0,0.25)
+  border-top: 1px solid #000
+  //z-index: 700
+  .text_container
+    width: 982px
+    left: -10px
+    position: relative
+    margin: 0px auto
+    padding: 7px 10px 5px 10px
+    border-radius: 4px
+    background-color: rgba(0,0,0,0.10)
+    border: 1px solid #151f28
+    box-shadow: 0px 1px 0px rgba(255,255,255,0.15), inset 1px 1px 3px rgba(0,0,0,0.20)
+    -webkit-font-smoothing: antialiased    
+    behavior: url("assets/PIE.htc")
+    p
+      font-size: 18px
+      //text-shadow: 1px 1px 0px black
+      //padding: 0px 25px
+      line-height: 21px
+      color: #FCFAF4
+      text-shadow: 1px 1px 0px rgba(0,0,0,0.65)
+      //color: #131313
+      width: 830px
+      display: inline-block
+      a
+        color: white
+        text-decoration: underline !important
+        &:hover
+          text-decoration: none !important
+    span.button
+      float: right !important
+      width: 125px !important
+      height: 18px
+      padding-top: 11px !important
+      a
+        color: white

@@ -9,14 +9,25 @@
   border: 1px solid white
   height: 402px
 
-.registration_border
+//.registration_border
   display: inline-block
   padding: 30px
   border: 3px solid #CFCCC1
   border-radius: 5px
   box-shadow: 1px 1px 0px white, inset 1px 1px 0px white
 
-.address
+.address_verif
+  #address
+    width: auto
+    margin: 0px auto
+  div#find_button
+    margin-top: 20px
+    float: right
+    width: 200px !important
+    text-align: center
+    a.next-button
+      width: 100% !important
+      float: right !important
   .error
     clear: both
     font-family: $body
@@ -27,7 +38,7 @@
     margin-top: 6px
     float: left
     display: none
-  h2 
+  //h2 
     font-size: 46px
     //background: url("shared/redesign/stars-address.png") no-repeat 7px 10px
     text-align: center
@@ -36,7 +47,7 @@
     color: $red
     margin: -10px 0px 0px 0px
     padding-bottom: 0px
-  p 
+  //p 
     color: $black
     font-family: $Rokkitt
     font-size: 18px
@@ -49,10 +60,9 @@
     border: 1px solid #C9C4B4
     box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
     font-family: $Rokkitt
-    width: 528px
+    width: 382px
     padding: 8px
     margin: 0px 0px 5px 0px
-    z-index: 150 !important
   input.address::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder
     color: #555
   input.referral_metadata
@@ -61,10 +71,9 @@
     border: 1px solid #C9C4B4
     box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
     font-family: $Rokkitt
-    width: 440px
+    width: 382px
     padding: 8px
-    margin: 10px 0px 0px 0px
-    z-index: 150 !important
+    margin: 15px 0px 0px 0px
   input.referral_metadata::-webkit-input-placeholder
     color: #555
   img 
@@ -80,7 +89,7 @@
     -webkit-appearance: none
     background: $blue
     @include background(linear-gradient(top center, #2e5274, #1b334a))
-    width: 393px
+    width: 100%
     padding: 10px 0
     letter-spacing: 1px
     font-family: $Ultra
@@ -93,7 +102,7 @@
   select
     width: 450px
     
-.address span.divider
+//.address span.divider
   //background: url("shared/redesign/divider.png") no-repeat top center
   //background-size: 95%
   float: left
@@ -103,43 +112,56 @@
   background-color: #CFCCC1
   border-bottom: 1px solid #fff
 
-div#find_button
-  margin-top: 20px
-  float: left
-  width: 100%  
-  text-align: center
-
 #registration1 div.redbox.address div#find_button a.blue-button.next-button
   text-align: center
 
 #dk_container_hear 
-  width: 455px
-  z-index: 10 !important
+  //width: 455px
+  //z-index: 10 !important
   float: left
   margin-bottom: 0px
   font-family: $heading
   a.dk_toggle 
-    height: 16px
-    margin-bottom: 0
+    height: 18px !important
+    margin-bottom: 15px
+    font-weight: normal
+    text-indent: 0px
+    padding: 8px
     border: 1px solid #C9C4B4
     box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
-    width: 448px !important
+    width: 382px !important
     color: $black
-    border-radius: 0px !important
-    z-index: 10 !important
+    border-radius: 4px 0px 0px 4px
     span.dk_arrow.button.blue 
-      border-radius: 0px !important
+      border-radius: 0px 4px 4px 0px
       border: 1px solid #0F1E2C
-      height: 15px
-      box-shadow: 0px 1px 0px white
-      right: 0px
+      height: 13px
+      padding: 12px 13px 9px 9px !important
+      margin: 0px !important
+      box-shadow: inset 0 1px 0px rgba(255,255,255,.25)
+      right: -1px
+      top: -1px
+      position: absolute
+      &:hover
+        +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+        box-shadow: inset 0 1px 0px rgba(255,255,255,.25)
+      &:active
+        color: rgba(255,255,255,0.4) !important
     span.dk_label 
-      width: 400px
+      width: 350px
       color: #555
       font-size: 18px
+      font-weight: normal
       font-family: $heading
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      display: inline-block
   .dk_options
     border-radius: 0px !important
+    left: 1px
+    margin-top: -2px
+    width: 100%
     li
       color: #555
       &:hover
@@ -150,6 +172,8 @@ div#find_button
         line-height: 24px !important
         font-size: 18px !important
         display: block
+        font-weight: normal
+        padding: 8px !important
         &:hover
           background-color: #eee
           color: $red
@@ -165,7 +189,7 @@ ul.ui-autocomplete
   border: 1px solid #C9C4B4
   overflow: auto
   max-height: 250px
-  z-index: 150 !important
+  z-index: 9999 !important
 
 li.ui-menu-item
   border-bottom: 1px dotted #ccc
@@ -209,3 +233,7 @@ li.ui-menu-item
   border: 1px solid #C9C4B4
   box-shadow: inset #DDD 0px 0px 3px 2px, rgba(255, 255, 255, 1.0) 0px 1px 1px
   width: 100% !important
+  
+a
+  outline: none
+  border: 0px none

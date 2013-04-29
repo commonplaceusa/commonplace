@@ -17,6 +17,7 @@
 //= require placeholder
 //= require time_ago_in_words
 //= require scrollTo
+//= require postjson
 //= require jcrop
 //= require plaxo
 //= require chosen
@@ -106,7 +107,8 @@ var Application = Backbone.Router.extend({
 
     ":community/account": "account",
 
-    ":community/registration": "tour",
+    ":community/registration": "showRegistration",
+    ":community/tour": "tour",
 
     ":community/stats": "stats",
 
@@ -224,12 +226,20 @@ var Application = Backbone.Router.extend({
     this.community();
     var tour = new CommonPlace.main.TourModal({
       el: $("#main"),
-      account: CommonPlace.account,
-      community: CommonPlace.community,
       template: "main_page.tour.modal"
     });
     tour.render();
-    tour.welcome();
+    tour.showPage("welcome");
+  },
+
+  showRegistration: function(c) {
+    this.community();
+    var tour = new CommonPlace.main.TourModal({
+      el: $("#main"),
+      template: "main_page.tour.modal"
+    });
+    tour.render();
+    tour.showPage("email");
   },
 
   showPage: function(name) {

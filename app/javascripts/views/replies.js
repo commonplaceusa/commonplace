@@ -16,7 +16,8 @@ var RepliesView = CommonPlace.View.extend({
     "focus form textarea": "showButton",
     "blur form textarea": "hideButton",
     "click form .submit-c": "sendReply",
-    "click .replies-more": "showMoreReplies"
+    "click .replies-more": "showMoreReplies",
+    "click .register": "showRegistration"
   },
 
   appendReplies: function() {
@@ -77,8 +78,13 @@ var RepliesView = CommonPlace.View.extend({
 
   showMoreReplies: function(event){
     event.preventDefault();
-    this.$('.reply-item').show();
-    this.$('.replies-more').hide();
+    if (this.isGuest()) {
+      this.showRegistration();
+      return false;
+    } else {
+      this.$('.reply-item').show();
+      this.$('.replies-more').hide();
+    }
   },
   
   showButton: function(e) { this.$(".submit-c").fadeIn(); },

@@ -12,7 +12,8 @@ CommonPlace.wire_item.PostWireItem = CommonPlace.wire_item.WireItem.extend(
     "click .share-link": "share"
     "click .reply-link": "reply"
     "click .message-link": "messageUser"
-    "click .author": "showUserWire"
+    "click .author": "showAuthorWire"
+    "click .avatar-container": "showAuthorWire"
     "click .title": "showWireItem"
 
   canEdit: ->

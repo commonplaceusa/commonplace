@@ -5,21 +5,28 @@
       <i class="icon"></i>
       <div class="left">
         <h1>Share Community Thoughts</h1>
-        <span>Discuss a town topic with your neighbors</span>
+        <span>
+          {{#isHarvardNeighbors}} 
+            Discuss a campus topic with your neighbors
+          {{/isHarvardNeighbors}}    
+
+          {{^isHarvardNeighbors}} 
+            Discuss a town topic with your neighbors
+          {{/isHarvardNeighbors}}    
+        </span>
       </div>
     </div>
     <span class="divider">
     </span>
     <form>
-      <form>
         <select name="group_selector" class="chzn-select" tabindex="1">
           <option value="">What topic are you posting to?&nbsp;&nbsp;&nbsp;&nbsp;</option>
           {{#groups}}
           <option value="{{id}}">{{name}}</option>
           {{/groups}}
         </select>
-        <input type="text" placeholder="Post Title" name="title" class="rounded_corners"></input>
-        <textarea placeholder="Write your post here!" name="body" rows="15" cols="55" class="rounded_corners"></textarea>
+        <input type="text" placeholder="Title" name="title" class="rounded_corners"></input>
+        <textarea placeholder="Message" name="body" rows="15" cols="55" class="rounded_corners"></textarea>
       <div class="controls pie-element">
           {{^isPostEdit}}
            <button class="red-button submit">POST NOW</button>

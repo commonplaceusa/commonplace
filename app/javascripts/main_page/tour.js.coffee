@@ -5,13 +5,13 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
   changedElements: []
 
   events:
-    "click a.end-tour": "end"
+    "click .close": "end"
     "click #profile-box, #community-resources, #post-box": "end"
 
   initialize: (options) ->
-    @account = options.account
-    @community = options.community
     @firstSlide = true
+    if options.exitWhenDone
+      @exitWhenDone = true
 
   render: ->
     @$("#tour").html(@renderTemplate("main_page.tour.wire", this)).attr "class", "wire"
@@ -19,12 +19,6 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
     $(@el).append(@renderTemplate("main_page.tour.modal", this))
     $("body").css(overflow: "hidden") #prevents the main page from scrolling during the tour
     $("#current-registration-page").css(overflow: "auto")
-
-  community_name: ->
-    @community.get "name"
-
-  first_name: ->
-    @account.get "short_name"
 
   showPage: (page, data) ->
     self = this
@@ -36,6 +30,24 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
 
     @fadeOut()  unless @firstSlide
     view = {
+      email: ->
+        new CommonPlace.main.EmailView(
+          nextPage: nextPage
+          data: data
+          fadeIn: fadeIn
+          community: self.community
+          account: self.account
+        )
+
+      address: ->
+        new CommonPlace.main.AddressView(
+          nextPage: nextPage
+          data: data
+          fadeIn: fadeIn
+          community: self.community
+          account: self.account
+        )
+
       welcome: ->
         new CommonPlace.main.WelcomeView(
           nextPage: nextPage
@@ -54,7 +66,17 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
           account: self.account
         )
 
-      feed: ->
+      create_page: ->
+        new CommonPlace.main.CreatePageView(
+          nextPage: nextPage
+          data: data
+          fadeIn: fadeIn
+          community: self.community
+          account: self.account
+          exitWhenDone: self.exitWhenDone
+        )
+
+      subscribe: ->
         new CommonPlace.main.SubscribeView(
           nextPage: nextPage
           fadeIn: fadeIn
@@ -84,7 +106,7 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
           nextPage: nextPage
         )
     }[page]()
-    _kmq.push(['record', 'Tour: ' + page + ' page'], {'community': self.community.get("name")}) if _kmq?
+    _kmq.push(['record', 'Tour: ' + page + ' page'], {'community': CommonPlace.community.get("name")}) if _kmq?
     view.render()
 
   welcome: ->
@@ -93,6 +115,7 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
   end: ->
     $("#tour-shadow").remove()
     $("#tour").remove()
+    $("body").css(overflow: "auto") #enable the main page scrolling
 
   centerEl: ($el) ->
     $el.css @dimensions($el)
@@ -131,18 +154,62 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
   dimensions: ($el) ->
     left = ($(window).width() - $el.width())/ 2
     left: left
-
-  exit: ->
-    $(@el).remove()
 )
 
 CommonPlace.main.TourModalPage = CommonPlace.View.extend(
   initialize: (options) ->
-    @data = options.data or isFacebook: false
-    @community = options.community
-    @account = options.account
+    @data = options.data || {}
     @fadeIn = options.fadeIn
     @nextPage = options.nextPage
     @complete = options.complete
-    @template = @facebookTemplate  if options.data and options.data.isFacebook and @facebookTemplate
+    @exitWhenDone = options.exitWhenDone
+
+  showError: ($el, $error, message) ->
+    $el.addClass "input_error"
+    $error.text message
+    $error.show()
+
+  end: ->
+    $("#tour-shadow").remove()
+    $("#tour").remove()
+    $("body").css(overflow: "auto") #enable the main page scrolling
+  first_name: ->
+    CommonPlace.account.get "short_name"
+
+  avatar_url: ->
+    CommonPlace.account.get("avatar_url")
+
+  showSpinner: ->
+    @$(".spinner").show()
+
+  hideSpinner: ->
+    @$(".spinner").hide()
+
+  validate_registration: (params, callback) ->
+    validate_api = "/api" + CommonPlace.community.get("links").registration.validate
+    $.getJSON validate_api, @data, _.bind((response) ->
+      @$(".error").hide()
+      if response.id
+        CommonPlace.account = new Account(response)
+        window.location = window.location.protocol + "//" + window.location.host + "/" + CommonPlace.community.get("slug") #performing the redirect this way ensures it works with IE and the hash routing
+      else
+        valid = true
+        unless _.isEmpty(response.facebook)
+          window.location.pathname = CommonPlace.community.links.facebook_login
+        else
+          _.each params, _.bind((field) ->
+            unless _.isEmpty(response[field])
+              error = @$(".error." + field)
+              input = @$("input[name=" + field + "]")
+              errorText = _.reduce(response[field], (a, b) ->
+                a + " and " + b
+              )
+              input.addClass "input_error"
+              error.text errorText
+              error.show()
+              valid = false
+          , this)
+          @hideSpinner() if not valid
+          callback()  if valid and callback
+    , this)
 )

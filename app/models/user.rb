@@ -546,14 +546,6 @@ WHERE
     self.posts.count + self.replies.count + self.replies_received.count + self.events.count + self.all_invitations.count + self.thanks.count + self.thanks_received.count
   end
 
-  def featured # not user-relevant yet
-    self.community.users.reorder("
-      (Case When avatar_file_name IS NOT NULL Then 1 Else 0 End)
-      + (Case When about != '' OR goods != '' OR interests != '' Then 1 Else 0 End) DESC")
-    .order("calculated_cp_credits DESC")
-  end
-
-
   def profile_history_elements
     self.posts +
       self.direct_events +

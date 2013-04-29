@@ -1,12 +1,6 @@
 
 var Account = Model.extend({
 
-  initialize: function() {
-    if (this.isAuth()) {
-      this.featuredUsers = new Users([], { uri: this.link("featured_users") });
-    }
-  },
-
   profileHistory: function(callback) {
     $.ajax({
       type: "GET",
@@ -129,8 +123,12 @@ var Account = Model.extend({
     return _.include(this.get("mets"), user.id);
   },
 
-  canEditProfile: function(user) {
+  isCurrentUser: function(user) {
     return user.get('id') == this.id
+  },
+
+  canEditProfile: function(user) {
+    return user.get('id') == this.id || this.get('is_admin');
   },
 
   canEditFeed: function(feed) {
@@ -229,6 +227,13 @@ var Account = Model.extend({
     }
   },
 
-  isAuth: function() { return !_.isEmpty(this.attributes); }
+  isAuth: function() { return !_.isEmpty(this.attributes); },
 
+  isGuest: function() {
+    if (!_.isEmpty(this.attributes)) {
+      return this.get("is_guest");
+    } else {
+      return true;
+    }
+  }
 });

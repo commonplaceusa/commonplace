@@ -17,9 +17,14 @@ class API
     #
     # Requires authentication
     get "/" do
-      control_access :authenticated
-
-      serialize Account.new(current_user)
+      if current_user
+        serialize Account.new(current_user)
+      else
+        guest_user = User.where("guest=?", true).first
+        if guest_user
+          serialize Account.new(guest_user)
+        end
+      end
     end
 
     # Updates the account's profile
@@ -43,7 +48,6 @@ class API
 
       current_user.full_name = request_body["name"]
       current_user.about = request_body["about"]
-      current_user.organizations = request_body["organizations"]
       current_user.interest_list = request_body["interests"]
       current_user.skill_list = request_body["skills"]
       current_user.good_list = request_body["goods"]
@@ -331,15 +335,6 @@ class API
 
       checked_inbox()
       serialize(paginate(current_user.feed_messages.reorder("GREATEST(replied_at, created_at) DESC")))
-    end
-
-    # Returns a list of 'featured' neighbors for the account
-    #
-    # Requires authentication
-    get "/featured" do
-      control_access :authenticated
-
-      serialize(paginate(current_user.featured))
     end
 
     # Adds Facebook connect to the account

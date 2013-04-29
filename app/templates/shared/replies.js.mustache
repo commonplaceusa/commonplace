@@ -2,15 +2,21 @@
 <a class="replies-more" href="#">View All {{replyCount}} Replies <span class="small">&#x25BC;</span></a>
 {{/hiddenReplyCount}}
 <ul class="reply-list"></ul>
-
+{{^isGuest}}
 <div class="comment">
-<form class="new-reply clear">
-  <img class="avatar-container" src="{{accountAvatarUrl}}" />
-  <div class="reply-text">
-    <textarea class="reply-text-entry" name="body" placeholder="Write your reply here..."></textarea>
-  </div>
-  <div class="submit-c pie-element"><span id="submit_text">Reply</span></div>
-
-</form>
-<div style="clear: both;"></div>
+   <form class="new-reply clear">
+     <img class="avatar-container" src="{{accountAvatarUrl}}" />
+     <div class="reply-text">
+       <textarea class="reply-text-entry" name="body" placeholder="Write your reply here..."></textarea>
+     </div>
+     <div class="submit-c pie-element"><span id="submit_text">Reply</span></div>
+   </form>
+   <div style="clear: both;"></div>
 </div>
+{{/isGuest}}
+{{#isGuest}}
+<div class="sign-up">
+  <p>OurCommonPlace is the best way to share with your neighbors in {{community_name}}. Sign up to participate.</p>
+  <a class="red-button register">Sign Up Now!</a>
+</div>
+{{/isGuest}}

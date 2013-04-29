@@ -17,9 +17,6 @@ CommonPlace.views.ShareView = CommonPlace.View.extend(
   item_name: ->
     @model.get "title"
 
-  community_name: ->
-    CommonPlace.community.get "name"
-
   events:
     "click .share-e": "showEmailShare"
     "click .share-f": "shareFacebook"

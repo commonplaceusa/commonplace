@@ -15,6 +15,7 @@ CommonPlace.wire_item.ProfileCard = CommonPlace.View.extend(
 
   messageUser: (e) ->
     e.preventDefault() if e
+    return @showRegistration() if @isGuest()
     formview = new MessageFormView(model: new Message(messagable: @model))
     formview.render()
 )

@@ -6,7 +6,13 @@
       <div class="new-announcement">
        <ul>
          <li>
-           Promote Your Work
+          {{#isHarvardNeighbors}} 
+            Post an Announcement
+          {{/isHarvardNeighbors}}    
+
+          {{^isHarvardNeighbors}} 
+            Promote Your Work
+          {{/isHarvardNeighbors}}    
          </li>
        </ul>
        <span class="divider">
@@ -20,7 +26,7 @@
     {{/hasFeeds}}
     {{#hasFeeds}}
     {{#hasBusinessFeeds}}
-      <p>In order to publicize your business, please post a deal in the marketplace</p>
+      <p>In order to publicize your business, please post a deal in the marketplace.</p>
       <div class="controls wide">
         <button class="red-button transaction">Post to Marketplace</button>
         <a class="back" href="#">Back</a>
@@ -30,8 +36,16 @@
     <div class="posting-header promote">
       <i class="icon"></i>
       <div class="left">
-      <h1>Promote Your Work</h1>
-      <span>Advertise your organization or business</span>
+
+      {{#isHarvardNeighbors}} 
+        <h1>Promote Your Work</h1>
+        <span>Advertise your organization or business</span>
+      {{/isHarvardNeighbors}}    
+
+      {{^isHarvardNeighbors}} 
+        <h1>Post an Announcement</h1>
+        <span>Publicize interest group updates</span>
+      {{/isHarvardNeighbors}}    
       </div>
     </div>
     <span class="divider">
@@ -45,8 +59,8 @@
           {{/feeds}}
         </select>
 
-        <input type="text" placeholder="Post Title" name="title" class="rounded_corners">
-        <textarea placeholder="Write your post here!" name="body" rows="15" cols="55" class="rounded_corners"></textarea>
+        <input type="text" placeholder="Title" name="title" class="rounded_corners">
+        <textarea placeholder="Message" name="body" rows="15" cols="55" class="rounded_corners"></textarea>
 
         <div class="controls">
           {{^isPostEdit}}

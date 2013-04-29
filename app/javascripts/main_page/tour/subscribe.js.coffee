@@ -9,8 +9,9 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
 
   afterRender: ->
     self = this
+    @hideSpinner()
     @$(".page_category").hide()
-    groups = @community.groups
+    groups = CommonPlace.community.groups
     groups.fetch(
       success: ->
         _.each groups.models, _.bind((group) ->
@@ -20,7 +21,7 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
           $("#discussion").show()
         , this)
     )
-    feeds = @community.feeds
+    feeds = CommonPlace.community.feeds
     feeds.fetch(
       success: ->
         _.each feeds.models, _.bind((feed) ->
@@ -33,14 +34,15 @@ CommonPlace.main.SubscribeView = CommonPlace.main.TourModalPage.extend(
     )
     @fadeIn @el
 
-  community_name: ->
-    @community.get("name")
-
   categories: ->
-    @feed_categories
+    if @isHarvardNeighbors
+      [ {name: "Community Group", id: "communitygroup"} ]
+    else
+      @feed_categories
 
   submit: (e) ->
     e.preventDefault()  if e
+    @showSpinner()
     feeds = _.map(@$("input[name=feeds_list]:checked"), (feed) ->
       $(feed).val()
     )

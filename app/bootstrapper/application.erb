@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="https://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
   <head>
-    <title>CommonPlace</title>
-    <meta name="description" content="CommonPlace helps you share and connect with your neighbors.">
+    <title>OurCommonPlace</title>
+    <meta name="description" content="OurCommonPlace helps you share and connect with your neighbors.">
     <% if ENV['TINFOIL_VERIFICATION'].present? %>
       <meta name="tinfoil-site-verification" content="<%= ENV['TINFOIL_VERIFICATION'] %>">
     <% end %>
@@ -15,8 +15,8 @@
            }
 
            body {
+             overflow-y: scroll !important;
              -webkit-font-smoothing: antialiased;
-             overflow-y: scroll;
              background-size: cover !important;
              -webkit-background-size: cover !important;
              -webkit-font-smoothing: antialiased;
@@ -24,15 +24,16 @@
              background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed #e9e5de;
            }
      </style>
-     <!--[if lt IE 10]>
+     <!--[if IE 9]>
          <link rel="stylesheet" type="text/css" href="/assets/IE8-loggedIn.css" />
      <![endif]-->
-     <!--[if lt IE 8]>
+     <!--[if lt IE 9]>
          <link rel="stylesheet" type="text/css" href="/assets/IE8-loggedIn.css" />
      <![endif]-->
   </head>
 
   <body class="application">
+     <img src="/assets/shared/redesign/stars.png" style="display:none;">
     <div id="sticky-wrapper">
       <div id="fb-root"></div>
 

@@ -27,14 +27,31 @@
           <i class="icon"></i>
           <div class="left">
             Share Community Thoughts<br />
-            <span>Discuss a town topic with your neighbors</span>
+            <span>
+              {{#isHarvardNeighbors}} 
+                Discuss a campus topic with your neighbors
+              {{/isHarvardNeighbors}}    
+
+              {{^isHarvardNeighbors}} 
+                Discuss a town topic with your neighbors
+              {{/isHarvardNeighbors}}    
+            </span>
           </div>
         </li>        
         <li class="promote" data-tab="promote">
           <i class="icon"></i>
           <div class="left">
             <h4>{{promote_header}}</h4>
-            <span>Advertise your organization or business</span>
+            <span>
+              {{#isHarvardNeighbors}} 
+              Publicize interest group updates
+              {{/isHarvardNeighbors}}    
+
+              {{^isHarvardNeighbors}} 
+              Advertise your organization or business
+              {{/isHarvardNeighbors}}    
+
+            </span>
           </div>
         </li>
       </ul>

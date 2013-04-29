@@ -2,10 +2,11 @@
   <li>
   	<a id="questions" class="wire_filter" href="/{{community_slug}}/list/questions">
   		<i class="icon"></i>
-  		<span>Town Questions</span>
+  		<span>
+      {{^isHarvardNeighbors}}Town {{/isHarvardNeighbors}}Questions      
+      </span>
   	</a>
   </li>
-
   <li>
   	<a id="transactions" class="wire_filter" href="/{{community_slug}}/list/transactions">
   		<i class="icon"></i>
@@ -23,7 +24,9 @@
   <li>
   	<a id="discussions" class="wire_filter" href="/{{community_slug}}/list/discussions">
     	<i class="icon"></i>
-    	<span>Town Discussions</span>
+    	<span>
+      {{^isHarvardNeighbors}}Town {{/isHarvardNeighbors}}Discussions  
+      </span>
   	</a>
   </li>
 

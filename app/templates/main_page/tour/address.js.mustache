@@ -1,0 +1,44 @@
+<div id="norms" class="address_verif container">
+<div class="registration_border">
+    <h2>Resident of {{community_name}}?</h2>
+    <span class="divider"></span>
+    <p>OurCommonPlace {{community_name}} is just for {{community_name}} residents! Before registering, verify that you live in town<sup>*</sup>.</p>
+    <div id="address">
+      <input name="address" type="input" type="text" class="address" placeholder="Enter your {{community_name}} street address" /><br />
+      <span class="error address"></span>
+    </div>
+    <span id="bypass" class="error" style="display:none">
+      Did we make a mistake? <a href="#" class="confirm">Click here to continue</a>
+    </span>
+    <div id="address_verification" style="display:none">
+      Please confirm your street address:<Br />
+      <input type="radio" id="suggested" checked="checked" name="verify_address" value="suggested" class="address_verify_radio" /> <span class="address_verify_radio">Use the address we have in our system:</span>
+      <div id="suggested_address"></div>
+      <input type="radio" name="verify_address" value="entered" class="address_verify_radio" /> <span class="address_verify_radio">Use the address I typed.</span><br />
+    </div>
+    <p class="caption"><sup>*</sup> We won't share your address with anyone</p>
+    <div id="referral_source">
+      <form>
+        <select name="referral_source" id="hear" class="dk" tabindex="1">
+          <option value="placeholder" selected="selected">How did you hear about CommonPlace?</option>
+          {{#referrers}}
+          <option value="{{.}}">{{.}}</option>
+          {{/referrers}}
+        </select>
+      </form>
+      <span class="error referral_source"></span>
+    </div>
+    <div id="referral_metadata">
+      <input name="referral_metadata" type="input" type="text" class="referral_metadata" placeholder="From who?" /><br />
+      <span class="error referral_metadata"></span>
+    </div>
+    <div class="controls">
+      <div class="spinner">
+         <img src='/assets/loading-post.gif' style="border:0px none;outline:none;"/>
+      </div>
+      <div id="find_button">
+         <a href="#" class="blue-button next-button">Confirm</a>
+      </div>
+    </div>
+  </div>
+</div>

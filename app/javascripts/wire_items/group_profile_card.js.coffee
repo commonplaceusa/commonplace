@@ -21,6 +21,7 @@ CommonPlace.wire_item.GroupProfileCard = CommonPlace.wire_item.ProfileCard.exten
 
   subscribe: (e) ->
     e.preventDefault() if e
+    return @showRegistration() if @isGuest()
     CommonPlace.account.subscribeToGroup @model, _.bind(->
       @render()
     , this)

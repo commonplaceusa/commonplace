@@ -1,0 +1,56 @@
+<div id="create_page_registration" class="container">
+  <div class="registration_border">
+    {{#isHarvardNeighbors}} 
+      <h2 class="civic_title">Your Organization</h2>
+    {{/isHarvardNeighbors}}    
+
+    {{^isHarvardNeighbors}} 
+      <h2 class="civic_title">Your Service or Organization</h2>
+    {{/isHarvardNeighbors}}  
+    <span class="divider"></span>
+    <div class="create_page">
+      <img class="profile_pic" src="{{avatarUrl}}" alt="This is your profile photo" />
+      <div id="name">
+        <input type="text" class="name" name="name" placeholder="Business or Organization Name" value="{{pageName}}">
+        <span class="error name"></span>
+      </div>
+      <a hre="#" class="avatar_file_browse">Upload a Photo</a>
+      
+      {{#isHarvardNeighbors}} 
+      <textarea rows="2" cols="20" name="about" placeholder="Describe your organization" class="create_page">{{about}}</textarea>
+      {{/isHarvardNeighbors}}    
+
+      {{^isHarvardNeighbors}} 
+      <textarea rows="2" cols="20" name="about" placeholder="Describe your business or organization" class="create_page">{{about}}</textarea>
+      {{/isHarvardNeighbors}}    
+
+      <input type="text" name="address" placeholder="Street Address" class="address" value="{{address}}">
+      <input type="text" name="website" placeholder="Website" class="website half" value="{{website}}">
+      <input type="text" name="phone" placeholder="Phone Number" class="phone half" value="{{phone}}">
+      {{^isHarvardNeighbors}}
+         <form>
+           <select name="page_kind" class="dk" tabindex="1">
+             <option value="">What type of business/organization is this?&nbsp;&nbsp;&nbsp;&nbsp;</option>
+             <option value="0">A non-profit</option>
+             <option value="1">A community group</option>
+             <option value="2">A business</option>
+             <option value="3">A muncipal entity</option>
+             <option value="4">A newspaper, news service, or news blog</option>
+             <option value="5">Other</option>
+           </select>
+         </form>
+         <span class="error kind"></span>
+       {{/isHarvardNeighbors}}
+      <input name="rss" value="{{rss}}" type="text" placeholder="Your RSS feed">
+    </div>
+    <div class="controls">
+       <div class="spinner">
+          <img src='/assets/loading-post.gif' />
+       </div>
+       <div id="civic_button">
+         <a href="#" class="blue-button next-button">Continue</a>
+       </div>
+       <a href="#" class="cancel cancel-button">Cancel</a>
+     </div>
+  </div>
+</div>

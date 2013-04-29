@@ -6,28 +6,38 @@ CommonPlace.shared.HeaderView = CommonPlace.View.extend(
     "click .post": "showPostbox"
 
   afterRender: ->
-    nav = undefined
+    center = undefined
+    right = undefined
     if CommonPlace.account.isAuth()
-      nav = new CommonPlace.shared.HeaderNav()
+      if CommonPlace.account.isGuest()
+        center = new CommonPlace.shared.HeaderSearch()
+        right = new CommonPlace.shared.HeaderLogin()
+        @$(".header_center").addClass("header_guest") #for changing the size of the search bar when not logged in
+      else
+        center = new CommonPlace.shared.HeaderSearch()
+        right = new CommonPlace.shared.HeaderNav()
     else
-      nav = new CommonPlace.shared.HeaderLogin()
-    window.HeaderNavigation = nav
-    nav.render()
-    @$(".nav").replaceWith nav.el
+      center = new CommonPlace.shared.HeaderWrongTown()
+      right = new CommonPlace.shared.HeaderLogin()
+    window.HeaderNavigation = right
+    center.render()
+    right.render()
+    @$(".header_center").html center.el
+    @$(".header_right").html right.el
 
   showPostbox: (e) ->
-    if e
-      e.preventDefault()
+    e.preventDefault() if e
+    return @showRegistration() if @isGuest()
     @postbox = new CommonPlace.main.PostBox
       account: CommonPlace.account
       community: CommonPlace.community
     @postbox.render()
 
   root_url: ->
-    if CommonPlace.account.isAuth()
-      "/" + CommonPlace.account.get("community_slug")
+    if CommonPlace.community
+      "/" + CommonPlace.community.get("slug")
     else
-      "/" + CommonPlace.community.get("slug")  if CommonPlace.community
+      "/"
 
   hasCommunity: ->
     CommonPlace.community
