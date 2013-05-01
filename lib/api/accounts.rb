@@ -23,6 +23,8 @@ class API
         guest_user = User.where("guest=?", true).first
         if guest_user
           serialize Account.new(guest_user)
+        else
+          [500, "could not find guest account"]
         end
       end
     end
