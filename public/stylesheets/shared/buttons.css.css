@@ -1,0 +1,9 @@
+/* line 76, ../../../app/stylesheets/shared/buttons.css.sass */
+a:focus {
+  outline: none;
+}
+
+/* line 80, ../../../app/stylesheets/shared/buttons.css.sass */
+button::-moz-focus-inner {
+  border: 0;
+}

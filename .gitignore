@@ -18,9 +18,6 @@ coverage
 coverage.data
 rerun.txt
 config/config.yml
-public/stylesheets
-public/assets
-public/internal/network_health/*
 development
 development/*
 log/exceptional.log

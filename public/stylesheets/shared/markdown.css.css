@@ -1,0 +1,36 @@
+/* line 4, ../../../app/stylesheets/shared/markdown.css.sass */
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6, .markdown a, .markdown p, .markdown ul, .markdown ol, .markdown hr, .markdown strong, .markdown em, .markdown blockquote, .markdown code, .markdown pre {
+  background-color: none;
+  border: none;
+  word-wrap: break-word;
+  font-size: inherit;
+  font-weight: inherit;
+}
+/* line 11, ../../../app/stylesheets/shared/markdown.css.sass */
+.markdown a {
+  color: #b7403c;
+}
+/* line 14, ../../../app/stylesheets/shared/markdown.css.sass */
+.markdown ul {
+  margin-top: 0;
+  margin-left: 10px;
+  clear: left;
+}
+/* line 18, ../../../app/stylesheets/shared/markdown.css.sass */
+.markdown ul li {
+  list-style-type: disc;
+}
+/* line 21, ../../../app/stylesheets/shared/markdown.css.sass */
+.markdown ol {
+  margin-top: 0;
+  margin-left: 10px;
+  clear: left;
+}
+/* line 25, ../../../app/stylesheets/shared/markdown.css.sass */
+.markdown ol li {
+  list-style-type: upper-roman;
+}
+/* line 28, ../../../app/stylesheets/shared/markdown.css.sass */
+.markdown hr {
+  display: none;
+}

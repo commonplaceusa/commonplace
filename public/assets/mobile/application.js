@@ -1,0 +1,1 @@
+MobileView=CommonPlace.View.extend({template:"mobile.landing",hello:function(){return"world"}}),$(function(){$.ajax({url:"/api/account",contentType:"application/json",data:{},dataType:"json",success:function(a){window.account=a,window.full_name=a.name,get_recommendations()},error:function(){var a=new LandingView({el:$("#main")});a.render()}})});
