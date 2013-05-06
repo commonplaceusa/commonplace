@@ -415,7 +415,7 @@ class API
     #   limit - the page limit
     #   page - the page
     get "/:id/residents" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       residents = find_community.residents.includes(:user)
       residents = paginate(residents)
@@ -953,7 +953,7 @@ CONDITION
     # Query params:
     #  query - a query to search with (optional)
     get "/:id/posts" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       last_modified_by_replied_at(Post)
 
@@ -969,7 +969,7 @@ CONDITION
     # Query params:
     #  query - a query to search with (optional)
     get "/:id/posts_and_group_posts" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       if params["query"].present?
         chronological_search([Post, GroupPost], params, find_community.id)
@@ -983,7 +983,7 @@ CONDITION
     # Query params:
     #  query - a query to search with (optional)
     get "/:id/posts/:category" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       last_modified_by_replied_at(Post)
 
@@ -1002,7 +1002,7 @@ CONDITION
 
     # Returns the community's events, possibly a search result
     get "/:id/events" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       last_modified_by_replied_at(Event)
 
@@ -1018,7 +1018,7 @@ CONDITION
 
     # Returns the community's transactions, possibly a search result
     get "/:id/transactions" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       last_modified_by_replied_at(Transaction)
 
@@ -1034,7 +1034,7 @@ CONDITION
     # Query params:
     #  query - a query to search with (optional)
     get "/:id/announcements" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       last_modified_by_replied_at(Announcement)
 
@@ -1052,7 +1052,7 @@ CONDITION
     # Query params:
     #  query - a query to search with (optional)
     get "/:id/group_posts" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       last_modified_by_replied_at(GroupPost)
 
@@ -1133,7 +1133,7 @@ CONDITION
     # Query params:
     #  query - a query to search with (optional)
     get "/:id/users" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       if params["query"].present?
         if current_user and current_user.admin
@@ -1151,7 +1151,7 @@ CONDITION
     #
     # Requires authentication
     get "/:id/users/featured" do
-      control_access :community_member
+      control_access :community_member, find_community
 
       serialize(paginate(featured_users))
     end
