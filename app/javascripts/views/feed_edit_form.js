@@ -46,9 +46,13 @@ var FeedEditFormView = FormView.extend({
   deleteFeed: function(e) {
     if (e) { e.preventDefault(); }
     this.model.destroy({
-      success: function() {
-        CommonPlace.account.trigger("sync");
-      }});
+      success: _.bind(function() {
+        this.updateAccount(function() {
+          window.Header.render();
+        });
+      }
+      , this)
+    });
     this.exit();
     return app.navigate("/", true);
   },

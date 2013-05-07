@@ -79,9 +79,11 @@ CommonPlace.main.CreatePageView = CommonPlace.main.TourModalPage.extend(
 
   next_step: ->
     if @options.exitWhenDone
-      app.showFeedPage(CommonPlace.community.get("slug"), @model.id)
-      $(".account-sub li").eq(2).after("<li><a class='feed-link' href='/pages/"+@model.get("slug")+"'>"+@model.get("name")+"</a></li>")
-      @end()
+      @updateAccount(_.bind(->
+        app.showFeedPage(CommonPlace.community.get("slug"), @model.id)
+        window.Header.render()
+        @end()
+      , this))
     else
       @nextPage "subscribe", @data
 

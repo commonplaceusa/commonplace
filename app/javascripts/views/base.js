@@ -79,6 +79,17 @@ CommonPlace.View = Backbone.View.extend({
       });
   },
 
+  updateAccount: function(callback) {
+    $.getJSON("/api/account",
+        function (response) {
+          CommonPlace.account = new Account(response);
+          if (callback) {
+            callback();
+          }
+        }
+    );
+  },
+
   // these functions work both directly and in templates
 
   assets: function(path) {
