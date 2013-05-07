@@ -96,6 +96,7 @@ CommonPlace.main.TransactionForm = CommonPlace.main.BaseForm.extend(
 
         error: (attribs, response) ->
           _kmq.push(['record', 'Post Error', {'Attributes': attribs}]) if _kmq?
+          self.hideSpinner()
           self.enableSubmitButton()
           self.showError response.responseText
 
