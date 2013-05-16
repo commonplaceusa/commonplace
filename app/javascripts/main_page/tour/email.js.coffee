@@ -51,7 +51,10 @@ CommonPlace.main.EmailView = CommonPlace.main.TourModalPage.extend(
       @showSpinner()
       params = [ "full_name", "email" ]
       @validate_registration params, _.bind(->
-        @nextPage "address", @data
+        if CommonPlace.community.get("slug").toLowerCase() is "harvardneighbors"
+          @nextPage "affiliation", @data
+        else
+          @nextPage "address", @data
       , this)
 
 )

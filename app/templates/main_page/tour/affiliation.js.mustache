@@ -1,0 +1,25 @@
+<div class="redbox address">
+
+  <div class="registration_border">
+    <h2>Resident of {{community_name}}?</h2>
+    <span class="divider"></span>
+    <p class="intro">OurCommonPlace {{community_name}} is just for {{community_name}} residents! Before registering, please verify your affiliation.</p>
+    <div id="referral_source">
+      <form>
+        <select name="affiliation" id="hear" class="dk" tabindex="1">
+          <option value="placeholder" selected="selected">What is your affiliation?</option>
+          {{#referrers}}
+          <option value="{{.}}">{{.}}</option>
+          {{/referrers}}
+        </select>
+      </form>
+      <span class="error affiliation"></span>
+    </div>
+
+    <div id="find_button">
+      <a href="#" class="blue-button next-button">Confirm</a>
+    </div>
+
+  </div>
+
+</div>

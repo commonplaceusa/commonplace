@@ -95,9 +95,6 @@ CommonPlace.main.AddressView = CommonPlace.main.TourModalPage.extend(
           @hideSpinner()
     , this)
 
-  referrers: ->
-    CommonPlace.community.get("referral_sources")
-
   initReferralQuestions: ->
     @$("#referral_metadata").hide()
     @$("select.dk").dropkick(

@@ -48,6 +48,16 @@ CommonPlace.main.TourModal = CommonPlace.View.extend(
           account: self.account
         )
 
+      affiliation: ->
+        new CommonPlace.registration.AffiliationView(
+          nextPage: nextPage
+          data: data
+          fadeIn: fadeIn
+          community: self.community
+          account: self.account
+          complete: self.options.complete
+        )
+
       welcome: ->
         new CommonPlace.main.WelcomeView(
           nextPage: nextPage
@@ -178,6 +188,9 @@ CommonPlace.main.TourModalPage = CommonPlace.View.extend(
 
   avatar_url: ->
     CommonPlace.account.get("avatar_url")
+
+  referrers: ->
+    CommonPlace.community.get("referral_sources")
 
   showSpinner: ->
     @$(".spinner").show()
