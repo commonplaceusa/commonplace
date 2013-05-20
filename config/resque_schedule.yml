@@ -28,23 +28,3 @@ recalculate_cp_credits:
   queue: credits
   description: "Checks for invalidated users and recalculates their CP Credits"
 
-send_weekly_network_health_stats:
-  cron: "0 0 * * 0"
-  class: StatisticsNetworkHealthCsvGenerator
-  args:
-  queue: statistics
-  description: "Sends out a weekly digest of network health statistics for board review"
-
-send_monthly_network_health_stats:
-  cron: "0 0 0 * *"
-  class: StatisticsNetworkHealthCsvGeneratorMonthly
-  args:
-  queue: statistics
-  description: "Sends out a monthly digest of network health statistics"
-
-fully_update_geckoboard:
-  cron: "0 13 * * *"
-  class: GeckoBoardAnnouncer
-  args: true
-  queue: statistics
-  description: "Send some statistics to our dashboard"
