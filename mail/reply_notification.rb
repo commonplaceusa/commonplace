@@ -1,6 +1,6 @@
 class ReplyNotification < PostNotification
 
-  self.template_file = PostNotification.template_file  
+  self.template_file = PostNotification.template_file
 
   def initialize(reply_id, user_id)
     @reply, @user = Reply.find(reply_id), User.find(user_id)
@@ -18,7 +18,7 @@ class ReplyNotification < PostNotification
   def user
     @user
   end
-  
+
   def reply_to
     "reply+#{@post.class.name.downcase}_#{@post.id}@ourcommonplace.com"
   end
@@ -36,7 +36,11 @@ class ReplyNotification < PostNotification
   end
 
   def title
-    @post.subject
+    if @post.respond_to?(:subject)
+      @post.subject
+    elsif @post.respond_to?(:title)
+      @post.title
+    end
   end
 
   def new_message_url
@@ -57,7 +61,7 @@ class ReplyNotification < PostNotification
 
     adverb = author == @post.user ? "just" : "also"
     possesive = author == @post.user ? "your" : @post.user.name + "'s"
-    post_text = 
+    post_text =
       case @post
       when Message then "private message"
       when Post then "post"
@@ -65,7 +69,7 @@ class ReplyNotification < PostNotification
       when Announcement then "an announcement"
       when GroupPost then "a post on the #{community_name} #{@post.group.name} Group"
       end
-    
+
     "#{author_name} #{adverb} replied to #{possesive} #{post_text} on CommonPlace."
   end
 
