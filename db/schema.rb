@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320214459) do
+ActiveRecord::Schema.define(:version => 20130428121212) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(:version => 20130320214459) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "addresses", :force => true do |t|
+    t.string   "name"
+    t.string   "primary"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -88,6 +97,16 @@ ActiveRecord::Schema.define(:version => 20130320214459) do
     t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "avatars", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.string   "image_file_size"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "civic_hero_nominations", :force => true do |t|
@@ -386,7 +405,7 @@ ActiveRecord::Schema.define(:version => 20130320214459) do
   end
 
   create_table "organizations", :force => true do |t|
-    t.string   "name",                :null => false
+    t.string   "name",                                  :null => false
     t.string   "address"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -399,6 +418,9 @@ ActiveRecord::Schema.define(:version => 20130320214459) do
     t.string   "website"
     t.integer  "community_id"
     t.string   "category"
+    t.string   "cached_tag_list"
+    t.string   "code"
+    t.boolean  "claimed",             :default => true
   end
 
   create_table "organizer_data_points", :force => true do |t|
@@ -678,8 +700,8 @@ ActiveRecord::Schema.define(:version => 20130320214459) do
     t.integer  "events_count",                     :default => 0,       :null => false
     t.integer  "replied_count",                    :default => 0,       :null => false
     t.text     "action_tags"
-    t.boolean  "guest",                            :default => false
     t.integer  "transactions_count",               :default => 0
+    t.boolean  "guest",                            :default => false
   end
 
   add_index "users", ["oauth2_token"], :name => "index_users_on_oauth2_token"
