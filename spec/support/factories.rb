@@ -7,7 +7,7 @@ FactoryGirl.define do
 
   factory :neighborhood do |f|
     f.name { Forgery(:address).street_name }
-    f.association :community 
+    f.association :community
   end
 
 
@@ -15,7 +15,9 @@ FactoryGirl.define do
     f.first_name { Forgery(:name).first_name }
     f.last_name { Forgery(:name).last_name }
     f.email {|u| "#{u.first_name}.#{u.last_name}@example.com".downcase }
+    f.address { "1 Any Ln" }
     f.password { Forgery(:basic).password }
+    f.referral_source { "Somewhere" }
   end
 
   factory :post do |f|
@@ -41,7 +43,7 @@ FactoryGirl.define do
     f.name { Forgery(:name).company_name }
     f.about { Forgery(:basic).text }
   end
-  
+
   factory :message do |f|
     f.association :user
     f.association :recipient, :factory => :user
