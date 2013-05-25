@@ -107,7 +107,7 @@ class DailyBulletin < MailBase
   end
 
   def pop_today
-    Integer (@weather.forecast.first.pop)
+    Integer (@weather.forecast.try(:first).try(:pop) || 0)
   end
 
   def rain?
