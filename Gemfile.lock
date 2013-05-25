@@ -252,6 +252,8 @@ GEM
       excon (~> 0.15.4)
     highline (1.6.19)
     hike (1.2.2)
+    honeybadger (1.6.2)
+      json
     hpricot (0.8.6)
     htmlentities (4.3.1)
     httparty (0.11.0)
@@ -400,6 +402,9 @@ GEM
       vegas (~> 0.1.2)
     resque-cleaner (0.2.7)
       resque (~> 1.0)
+    resque-honeybadger (1.0.2)
+      honeybadger
+      resque (>= 1.8.0)
     resque-scheduler (1.9.9)
       redis (>= 2.0.1)
       resque (>= 1.8.0)
@@ -542,6 +547,7 @@ DEPENDENCIES
   haml (= 3.1.4)
   heroku (= 2.28.7)
   heroku_san!
+  honeybadger
   hpricot (= 0.8.6)
   i18n (= 0.6.0)
   jasmine (= 1.2.1)
@@ -582,6 +588,7 @@ DEPENDENCIES
   require_all (= 1.2.1)
   resque (= 1.19.0)
   resque-cleaner (= 0.2.7)
+  resque-honeybadger
   resque-scheduler (= 1.9.9)
   rest-client (= 1.6.7)
   rmagick (= 2.13.1)

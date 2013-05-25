@@ -74,6 +74,8 @@ gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref
 
 # Tech admin
 gem 'newrelic_rpm', '= 3.5.0.1'
+gem 'honeybadger'
+gem 'resque-honeybadger'
 
 # Monitoring
 gem 'airbrake', '= 3.1.2'

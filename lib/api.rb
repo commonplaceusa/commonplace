@@ -1,11 +1,16 @@
 require 'rack/contrib/jsonp'
+require 'honeybadger'
 require_all Rails.root.join("lib", "api", "*.rb")
 
 class API
 
   def initialize
     @app = Rack::Builder.new do
+      Honeybadger.configure do |config|
+        config.api_key = '***REMOVED***'
+      end
 
+      use Honeybadger::Rack
       use Rack::JSONP
 
       use Rack::Session::Cookie, # share session w/ rails. replaces enable :sessions
