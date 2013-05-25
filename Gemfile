@@ -12,7 +12,7 @@ gem 'rack-contrib', '= 1.1.0'
 gem 'rack-cache', '= 1.2' # For caching
 gem 'dalli', '= 1.1.5' # memcache client, for caching
 gem 'acts_as_api', '= 0.3.11'
-gem 'barometer', '= 0.7.3' #for weather forecasts
+gem 'barometer', '= 0.8.0' #for weather forecasts
 
 # ActiveRecord
 gem 'sunspot_rails', "= 1.3.0"
@@ -100,7 +100,6 @@ group :assets do
 end
 
 group :development do
-  gem 'taps', :git => 'https://github.com/dabio/taps.git', :ref => "a56d8e8"
   gem 'heroku_san', :git => "https://github.com/Jberlinsky/heroku_san.git", :ref => "3ad7d89" # some nice additions to the Heroku gem
 end
 
@@ -121,8 +120,8 @@ group :development, :test, :remote_worker do
 end
 
 group :test do
-  gem 'resque_spec', '= 0.12.5'
-  gem 'rspec-rails', '= 2.8.1' # we use rspec-rails for tests
+  gem 'rspec-resque', :github => "Jberlinsky/rspec-resque", ref: "eba6f41cc57102a91d208cd71a6507034a59efd0"
+  gem 'rspec-rails' # we use rspec-rails for tests
   gem 'fuubar', '= 1.0.0' # we use fuubar for pretty rspec output
   gem 'spork', '= 0.9.2'
   gem 'rr', '= 1.0.4'
