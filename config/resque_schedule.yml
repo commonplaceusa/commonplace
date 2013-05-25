@@ -20,11 +20,3 @@ reset_emails_sent:
   args:
   queue: database
   description: "Resets the email_count"
-
-recalculate_cp_credits:
-  cron: "0 * * * *"
-  class: CpCreditsCalculator
-  args:
-  queue: credits
-  description: "Checks for invalidated users and recalculates their CP Credits"
-
