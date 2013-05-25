@@ -17,6 +17,12 @@ sudo service postgresql start
 # ImageMagick setup
 sudo yum install -y ImageMagick ImageMagick-devel
 
+# MongoDB Setup
+sudo cp templates/10gen_repo.template /etc/yum.repos.d/10gen-mongodb.repo
+sudo yum install -y mongo-10gen mongo-10gen-server
+sudo service mongod start
+sudo chkconfig --levels 235 mongod on
+
 # Redis setup
 wget http://redis.googlecode.com/files/redis-2.2.7.tar.gz
 tar xzf redis-2.2.7.tar.gz

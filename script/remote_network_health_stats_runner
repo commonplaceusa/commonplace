@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+# TODO: Monkey-patch 'raise' to send an email
+# REQUIRED: Run with RAILS_ENV=remote_worker
+# `service postgresql start`
+`bundle install`
+unless ENV['RAILS_ENV'] == 'remote_worker'
+  raise "Can not run in #{ENV['RAILS_ENV']} environment"
+end
+# TODO: Make sure this succeeds...
+`bundle exec heroku db:pull --app commonplace --confirm commonplace` # There must be a better way to do this...
+
+unless ENV["MONGOLAB_URI"]
+  raise 'MongoDB URL must be set for this to work...'
+end
+unless ENV["OPENREDIS_URL"]
+  raise 'Could not load local Redis data...'
+end
+# Make sure we are connecting to the right instances...
+require File.expand_path('../../config/boot',  __FILE__)
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+local_redis = Redis.new(
+  :host => 'localhost',
+  :port => '6379',
+  :password => nil,
+  :thread_safe => true
+)
+MongoMapper.config = {
+  Rails.env => {
+    'uri' => ENV['MONGOLAB_URI']
+  }
+}
+MongoMapper.connect(Rails.env)
+unless local_redis
+  raise 'Could not connect to Redis locally. Aborting.'
+end
+unless MongoMapper.connection
+  raise 'Could not connect to Mongo...'
+end
+unless StatisticsNetworkHealthCsvGenerator.perform(local_redis)
+  raise 'Could not generate network health statistics'
+end
+unless StatisticsNetworkHealthCsvGenerator.copy_redis_values(local_redis, Resque.redis)
+  raise 'Could not copy values from local to remote Redis storage'
+end
+Resque.redis.set("statistics:meta:finished", DateTime.now.to_s(:number))
+# Issue command to shut down
+ec2 = AWS::EC2::Base.new(:access_key_id => ENV['EC2_KEY_ID'],
+                        :secret_access_key => ENV['EC2_KEY_SECRET'])
+ec2.stop_instances({
+  :instance_id => [ENV['EC2_NETWORK_HEALTH_GENERATOR_INSTANCE_ID']]
+})
+
