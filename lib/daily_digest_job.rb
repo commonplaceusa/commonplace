@@ -4,11 +4,8 @@ class DailyDigestJob
   def self.perform
     date = DateTime.now.utc.to_s(:db)
 
-    Community.all.each do |community|
-      begin
-        Resque.enqueue(CommunityDailyBulletinJob, community.id, date)
-      rescue
-      end
+    Community.find_each do |community|
+      Resque.enqueue(CommunityDailyBulletinJob, community.id, date)
     end
   end
 
