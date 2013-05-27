@@ -16,6 +16,8 @@ Commonplace::Application.configure do
   # Don't compile on the fly
   # config.assets.compile = false
 
+  config.assets.precompile += ['rails_admin/rails_admin.css', 'rails_admin/rails_admin.js']
+
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   config.cache_classes = true
