@@ -3,6 +3,7 @@
   %head
     :javascript
       if (!window.CommonPlace) { window.CommonPlace = {} };
+      var _sf_startpt=(new Date()).getTime()
     = render :partial => 'layouts/common_head', :locals => { :javascripts => ["jquery", "jcrop"], :stylesheets => ["application"] }
 
   %body{ :class => "application #{params[:controller].gsub(/\//,"_")} #{params[:action]} #{ logged_in? ? "logged_in" : "logged_out" }"}
