@@ -7,13 +7,6 @@ send_daily_digest: #cron job to send the daily bulletin
   queue: daily_digest
   description: "Sends daily digest"
 
-import_feeds_rss:
-  cron: "00 * * * *"
-  class: RSSImporter
-  args:
-  queue: rss_importer
-  description: "Imports feed announcements from rss"
-
 reset_emails_sent:
   cron: "0 0 * * *"
   class: EmailCountResetter
