@@ -174,6 +174,9 @@ class API
 
       # Sets the outgoing content type to application/json
       content_type :json
+
+      # Disable IE XSS filters
+      response.headers['X-XSS-Protection'] = '0'
     end
 
     after do

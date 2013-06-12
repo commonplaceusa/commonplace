@@ -4,8 +4,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_community
   helper_method 'logged_in?'
 
-  
+
   before_filter :domain_redirect
+  before_filter :set_headers
 
   def kickoff
     @kickoff ||= KickOff.new
@@ -27,6 +28,10 @@ class ApplicationController < ActionController::Base
   def translate_with(options = {})
     @default_translate_options ||= {}
     @default_translate_options.merge!(options)
+  end
+
+  def set_headers
+    response.headers['X-XSS-Protection'] = "0"
   end
 
   def domain_redirect
@@ -59,7 +64,7 @@ class ApplicationController < ActionController::Base
         redirect_to "https://www.ourcommonplace.com#{request.fullpath}", :status => 301
       end
     end
-    
+
   end
 
   def current_community
@@ -70,7 +75,7 @@ class ApplicationController < ActionController::Base
                     else
                       nil
                     end
-    
+
     if @_community
       params[:community] = @_community.slug
       translate_with :community => @_community.name
@@ -80,7 +85,7 @@ class ApplicationController < ActionController::Base
 
     @_community
   end
-  
+
 
   def logged_in?
     user_signed_in?
