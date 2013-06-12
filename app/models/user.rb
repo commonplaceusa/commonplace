@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   include Geokit::Geocoders
 
   def self.post_receive_options
-    ["Live", "Three", "Daily", "Never"]
+    ["Daily", "Never"]
   end
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, allow_blank: true
