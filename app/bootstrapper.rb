@@ -148,9 +148,9 @@ class Bootstrapper < Sinatra::Base
   get ":community" do
     set_account
     @community = Community.find_by_slug(params[:community])
-    response.set_cookie("commonplace_community_slug", @community.slug)
-
     return 404 unless @community
+
+    response.set_cookie("commonplace_community_slug", @community.slug)
 
     erb :application
   end
