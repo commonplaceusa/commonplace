@@ -243,7 +243,7 @@ module Serializer
         {
         "id" => o.id,
         "schema" => "replies",
-        "author" => o.user.name,
+        "author" => o.user.try(:name),
         "first_name" => o.user.first_name,
         "avatar_url" => o.user.avatar_url(:thumb),
         "author_url" => "/users/#{o.user_id}",
