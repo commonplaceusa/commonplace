@@ -133,7 +133,7 @@ module Serializer
         "date" => o.date.to_time.utc,
         "title" => o.name,
         "author" => o.owner.name,
-        "first_name" => o.user.first_name,
+        "first_name" => o.user.try(:first_name),
         "body" => o.description,
         "tags" => o.tag_list,
         "starts_at" => o.start_time.try(:strftime, "%l:%M%P"),
