@@ -27,7 +27,7 @@
            -webkit-background-size: cover;
            -webkit-font-smoothing: antialiased;
            text-rendering: optimizeLegibility;
-          background: url('/assets/shared/redesign/backgrounds/<%= @community.slug.titleize %>.jpg') no-repeat center center fixed;
+          background: url('/assets/shared/redesign/backgrounds/<%= @community.try(:slug).try(:titleize) %>.jpg') no-repeat center center fixed;
           }
 
           body {
