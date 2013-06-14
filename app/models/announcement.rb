@@ -47,7 +47,7 @@ class Announcement < ActiveRecord::Base
   end
 
   def user_id
-    user.id
+    user.try(:id)
   end
 
   def between?(start_date, end_date)
