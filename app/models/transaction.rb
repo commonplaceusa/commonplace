@@ -20,7 +20,7 @@ class Transaction < ActiveRecord::Base
   api_accessible :history do |t|
     t.add :id
     t.add ->(m) { "transactions" }, :as => :schema
-    t.add :title
+    t.add :subject
   end
 
   default_scope where(:deleted_at => nil)
@@ -32,6 +32,10 @@ class Transaction < ActiveRecord::Base
   scope :up_to, lambda { |end_date| { :conditions => ["transactions.created_at <= ?", end_date.utc] } }
 
   scope :created_on, lambda { |date| { :conditions => ["transactions.created_at between ? and ?", date.utc.beginning_of_day, date.utc.end_of_day] } }
+
+  def subject
+    self.title
+  end
 
   def user
     case owner

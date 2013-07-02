@@ -101,7 +101,7 @@ module Serializer
           "author" => o.owner.name,
           "avatar_url" => o.owner.avatar_url(:thumb),
           "url" => "/transactions/#{o.id}",
-          "title" => o.title,
+          "title" => o.subject,
           "owner_type" => o.owner_type,
           "user_id" => o.user_id,
           "feed_id" => o.owner_type == "Feed" ? o.owner_id : nil,
