@@ -13,3 +13,10 @@ reset_emails_sent:
   args:
   queue: database
   description: "Resets the email_count"
+
+fully_update_geckoboard:
+  cron: "0 13 * * *"
+  class: GeckoBoardAnnouncer
+  args: true
+  queue: statistics
+  description: "Send some statistics to our dashboard"
