@@ -5,6 +5,7 @@
 <div id="sign_in" class="dropdown">
   <div class="arrow"></div>
   <form id="sign_in_form">
+    <span class="error" id="errors"></span>
     <input type="email" name="email" class="email" placeholder="Email Address" />
     <input type="password" name="password" placeholder="Password" />
     <button id="signin_button" name="signin" class="button signin">Sign In</button>
@@ -20,15 +21,15 @@
 <div class="registration_banner">
    <div class="text_container">
 
-    {{#isHarvardNeighbors}} 
+    {{#isHarvardNeighbors}}
       <p>
         Before you post or reply we need to verify that you are a Harvard Neighbor! Sign up to share updates, announcements and events with your Neighbors and connect with Harvard Neighbors interest groups.
       </p>
-    {{/isHarvardNeighbors}}    
+    {{/isHarvardNeighbors}}
 
-    {{^isHarvardNeighbors}} 
+    {{^isHarvardNeighbors}}
     <p>Before you post or reply we need to verify that you live in town! Sign up to share goods, services and events with your neighbors and connect with great local organizations. To learn more about {{#hasCommunity}}{{community_name}}{{/hasCommunity}}{{^hasCommunity}}your town{{/hasCommunity}}'s new town bulletin, <a href="/about">click here</a>.</p><span class="red-button button"><a href="#">Sign Up Now!</a></span>
-    {{/isHarvardNeighbors}}    
+    {{/isHarvardNeighbors}}
 
    </div>
 </div>
