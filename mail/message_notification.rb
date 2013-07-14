@@ -1,5 +1,5 @@
 class MessageNotification < PostNotification
-  
+
   self.template_file = PostNotification.template_file
 
   def initialize(message_id, user_id)
@@ -21,7 +21,7 @@ class MessageNotification < PostNotification
   def community
     user.community
   end
-    
+
   def post_url
     inbox_url + "#" + post.id.to_s
   end

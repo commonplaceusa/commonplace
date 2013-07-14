@@ -81,7 +81,7 @@ class NewFeedSubscriberNotification < MailBase
   end
 
   def deliver?
-    true
+    false
   end
 
 end

@@ -26,7 +26,7 @@ class StatisticsReadyNotification < MailBase
   end
 
   def deliver?
-    true
+    false
   end
 
 end

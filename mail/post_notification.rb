@@ -83,4 +83,8 @@ class PostNotification < MailBase
   def short_user_name
     user.first_name
   end
+
+  def deliver?
+    false
+  end
 end

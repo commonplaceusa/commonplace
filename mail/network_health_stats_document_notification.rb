@@ -16,4 +16,8 @@ class NetworkHealthStatsDocumentNotification < MailBase
     "jberlinsky@gmail.com"
   end
 
+  def deliver?
+    false
+  end
+
 end

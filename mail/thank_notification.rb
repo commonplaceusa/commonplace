@@ -70,13 +70,17 @@ class ThankNotification < MailBase
   def thanked_for
     if @thankable.is_a?(Reply)
       "reply on "
-    else 
+    else
       "post "
     end
   end
 
   def neighbor_profile_url
     show_user_url(@neighbor.id)
+  end
+
+  def deliver?
+    false
   end
 
 end

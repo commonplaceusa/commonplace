@@ -41,6 +41,6 @@ class NSubscribersFeedNotification < MailBase
   end
 
   def deliver?
-    true
+    false
   end
 end

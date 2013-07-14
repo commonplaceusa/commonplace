@@ -37,9 +37,13 @@ class GroupPostNotification < PostNotification
   def author_avatar_url
     asset_url(group.avatar_url(:thumb))
   end
-  
+
   def tag
     'group_post'
+  end
+
+  def deliver?
+    false
   end
 
 end

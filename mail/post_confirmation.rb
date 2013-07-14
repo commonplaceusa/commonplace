@@ -7,7 +7,7 @@ class PostConfirmation < MailBase
   def subject
     "Your post to CommonPlace"
   end
-  
+
   def post
     @post
   end
@@ -37,7 +37,7 @@ class PostConfirmation < MailBase
   end
 
   def deliver?
-    true
+    false
   end
 
 end

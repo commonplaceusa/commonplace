@@ -36,4 +36,8 @@ class SpamReportReceivedNotification < MailBase
     'spam_report'
   end
 
+  def deliver?
+    false
+  end
+
 end

@@ -4,7 +4,7 @@ class HelpANeighborOut < MailBase
     @user, @date = User.find(user_id), DateTime.parse(date)
   end
 
-  def user 
+  def user
     @user
   end
 
@@ -19,7 +19,7 @@ class HelpANeighborOut < MailBase
   def invite_them_now_button_url
     asset_url("invite-them-now-button.png")
   end
-  
+
   def short_user_name
     @user.first_name
   end
@@ -41,7 +41,7 @@ class HelpANeighborOut < MailBase
   end
 
   def deliver?
-    posts_present || announcements_present || events_present
+    false
   end
 
   def posts_present
@@ -51,12 +51,12 @@ class HelpANeighborOut < MailBase
   def yesterday
     @date.advance(:days => -1)
   end
-  
+
   def posts
     @posts ||= community.posts_for_user(@user).between(yesterday,@date).map do |post|
       Serializer::serialize(post).tap do |post|
-        post['replies'].each {|reply| 
-          reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
+        post['replies'].each {|reply|
+          reply['published_at'] = reply['published_at'].strftime("%l:%M%P")
           reply['avatar_url'] = asset_url(reply['avatar_url'])
         }
         post['avatar_url'] = asset_url(post['avatar_url'])
@@ -73,8 +73,8 @@ class HelpANeighborOut < MailBase
   def announcements
     @announcements ||= community.announcements.between(yesterday, @date).map do |announcement|
       Serializer::serialize(announcement).tap do |announcement|
-        announcement['replies'].each {|reply| 
-          reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
+        announcement['replies'].each {|reply|
+          reply['published_at'] = reply['published_at'].strftime("%l:%M%P")
           reply['avatar_url'] = asset_url(reply['avatar_url'])
         }
         announcement['avatar_url'] = asset_url(announcement['avatar_url'])
@@ -89,10 +89,10 @@ class HelpANeighborOut < MailBase
 
   def events
     @events ||= community.events.between(@date, @date.advance(:weeks => 1)).map do |event|
-      
+
       Serializer::serialize(event).tap do |event|
-        event['replies'].each {|reply| 
-          reply['published_at'] = reply['published_at'].strftime("%l:%M%P") 
+        event['replies'].each {|reply|
+          reply['published_at'] = reply['published_at'].strftime("%l:%M%P")
           reply['avatar_url'] = asset_url(reply['avatar_url'])
         }
         event["short_month"] = event['occurs_on'].strftime("%b")

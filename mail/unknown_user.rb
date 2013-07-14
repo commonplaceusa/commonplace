@@ -13,7 +13,7 @@ class UnknownUser < MailBase
   end
 
   def deliver?
-    true
+    false
   end
 
 end

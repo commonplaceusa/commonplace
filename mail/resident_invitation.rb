@@ -45,7 +45,7 @@ class ResidentInvitation < MailBase
   def organizer_name
     community.organizer_name
   end
-  
+
   def organizer_email
     community.organizer_email
   end
@@ -55,8 +55,8 @@ class ResidentInvitation < MailBase
   end
 
   def deliver?
-    true
+    false
   end
 
 end
- 
+

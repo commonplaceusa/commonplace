@@ -1,5 +1,5 @@
 class AnnouncementNotification < PostNotification
-  
+
   self.template_file = PostNotification.template_file
 
   def initialize(announcement_id, user_id)
@@ -25,7 +25,7 @@ class AnnouncementNotification < PostNotification
   def community
     @announcement.community
   end
-    
+
   def community_name
     community.name
   end
@@ -68,5 +68,9 @@ class AnnouncementNotification < PostNotification
   def tag
     'announcement'
   end
-  
+
+  def deliver?
+    false
+  end
+
 end

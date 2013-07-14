@@ -12,8 +12,8 @@ class MetNotification < ThankNotification
   end
 
   def content
-    "just told us that they know you! 
-    
+    "just told us that they know you!
+
     Go to "
   end
 
@@ -31,6 +31,10 @@ class MetNotification < ThankNotification
 
   def extra_content
     "on OurCommonPlace #{community.name} and confirm that you know them."
+  end
+
+  def deliver?
+    false
   end
 
 end

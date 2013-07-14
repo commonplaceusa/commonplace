@@ -1,5 +1,5 @@
 class NoFeedPermission < MailBase
-  
+
   def initialize(user_id, feed_id)
     @user, @feed = User.find(user_id), Feed.find(feed_id)
   end
@@ -11,7 +11,7 @@ class NoFeedPermission < MailBase
   def user
     @user
   end
-  
+
   def feed
     @feed
   end
@@ -37,7 +37,7 @@ class NoFeedPermission < MailBase
   end
 
   def deliver?
-    true
+    false
   end
 
 end

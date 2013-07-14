@@ -8,7 +8,7 @@ class UnknownAddress < MailBase
     "CommonPlace post did not go through"
   end
 
-  def user 
+  def user
     @user
   end
 
@@ -33,7 +33,7 @@ class UnknownAddress < MailBase
   end
 
   def deliver?
-    true
+    false
   end
 
 end
