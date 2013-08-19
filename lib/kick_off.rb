@@ -14,7 +14,22 @@ class KickOff
   end
 
   def deliver_reply(reply)
-    return
+    # We're delivering a reply to the author of the repliable
+    repliable_ids = [reply.repliable.user_id]
+
+    # As well as anyone else who replied
+    repliable_ids += reply.repliable.replies.map &:user_id
+
+    # But not the author of the current reply
+    repliable_ids.delete(reply.user_id)
+
+    # Only send once to each person
+    repliable_ids.uniq!
+
+    # Send it
+    repliable_ids.each do |user_id|
+      enqueue(ReplyNotification, reply.id, user_id)
+    end
   end
 
 
