@@ -42,28 +42,15 @@
                               </table>
                               <!-- END NEW HEADER -->
 
-                              <!--
-                              (Old Header)
-                              <table width="650" style="color:#1b334b;font:14px Helvetica, sans-serif;margin-bottom:0px;" cellpadding="0" cellspacing="0" border="0" class="table">
-                                <tr bgcolor="#1b334a">
-                                  <td width="30px" style="padding-left:15px;position:relative;bottom:9px;"><img src="{{logo_url}}" alt="CommonPlace Logo"><a href="{{root_url}}"></a></td>
-                                  <td class="town_name" width="450px" style="font:20px Rokkitt, 'Rockwell STD', Rockwell, serif;padding-left: 5px;position:relative;bottom:7px;">
-                                    <a href="{{root_url}}">{{community_name}}</a>
-                                  </td>
-                                  <td width="120px">
-                                    <table class="date" cellpadding="0" cellspacing="0" border="0">
-                                      <tr>
-                                        <td class="month">{{month_short}}</td>
-                                      </tr>
-                                      <tr>
-                                        <td class="day">{{day_of_month}}</td>
-                                      </tr>
-                                    </table>
+                              {{#paid_advertisement_url}}
+                              <table id="paid_advertisement" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                  <td>
+                                    <img src="{{paid_advertisement_url}}" />
                                   </td>
                                 </tr>
                               </table>
-                              (End Old Header)
-                           -->
+                              {{/paid_advertisement_url}}
 
                               <!--INTRODUCTION-->
                               <table id="introduction" width="100%" cellpadding="0" cellspacing="0" border="0">
