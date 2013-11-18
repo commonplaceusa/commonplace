@@ -42,15 +42,17 @@
                               </table>
                               <!-- END NEW HEADER -->
 
-                              {{#paid_advertisement_url}}
+                              {{#paid_advertisement_img_url}}
                               <table id="paid_advertisement" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                   <td>
-                                    <img src="{{paid_advertisement_url}}" />
+                                    <a href="{{paid_advertisement_url}}">
+                                      <img src="{{paid_advertisement_img_url}}" />
+                                    </a>
                                   </td>
                                 </tr>
                               </table>
-                              {{/paid_advertisement_url}}
+                              {{/paid_advertisement_img_url}}
 
                               <!--INTRODUCTION-->
                               <table id="introduction" width="100%" cellpadding="0" cellspacing="0" border="0">

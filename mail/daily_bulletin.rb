@@ -226,6 +226,14 @@ class DailyBulletin < MailBase
 
   def paid_advertisement_url
     if community.slug.downcase == 'warwick'
+      return 'http://www.purplechampions.com/'
+    else
+      return nil
+    end
+  end
+
+  def paid_advertisement_img_url
+    if community.slug.downcase == 'warwick'
       return asset_url('paid_advertisements/warwick/warwick_sani_common_2.jpg')
     else
       return nil
