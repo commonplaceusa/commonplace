@@ -1,6 +1,9 @@
 # Be sure to restart your server when you modify this file.
 
-Commonplace::Application.config.session_store :cookie_store, :key => '_commonplace_session'
+Commonplace::Application.config.session_store :cookie_store, {
+  :key => '_commonplace_session',
+  :expire_after => 1.year
+}
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
