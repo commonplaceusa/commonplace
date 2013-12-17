@@ -42,6 +42,7 @@
                               </table>
                               <!-- END NEW HEADER -->
 
+                              <!-- BANNER AD #1 -->
                               {{#paid_advertisement_img_url}}
                               <table id="paid_advertisement" width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
@@ -53,6 +54,7 @@
                                 </tr>
                               </table>
                               {{/paid_advertisement_img_url}}
+                              <!-- END OF BANNER AD #1 -->
 
                               <!--INTRODUCTION-->
                               <table id="introduction" width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -201,6 +203,20 @@
                               </table>
                               {{/transactions}}
                               {{/transactions_present}}
+
+                              <!-- BANNER AD #2 -->
+                              {{#paid_advertisement_img_url2}}
+                              <table id="paid_advertisement" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                  <td>
+                                    <a href="{{paid_advertisement_url2}}">
+                                      <img src="{{paid_advertisement_img_url2}}" />
+                                    </a>
+                                  </td>
+                                </tr>
+                              </table>
+                              {{/paid_advertisement_img_url2}}
+                              <!-- END OF BANNER AD #2 -->
 
                               {{#events_present}}
                               <table width="100%" cellpadding="25" cellspacing="0" border="0" class="section_container">
