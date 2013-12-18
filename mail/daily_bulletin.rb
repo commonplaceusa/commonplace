@@ -254,7 +254,7 @@ class DailyBulletin < MailBase
 
   def paid_advertisement_img_url2
     if community.slug.downcase == 'fallschurch'
-      return asset_url('paid_advertisements/warwick/Bikenetic.jpg')
+      return asset_url('paid_advertisements/fallschurch/Bikenetic.jpg')
     else
       return nil
     end
