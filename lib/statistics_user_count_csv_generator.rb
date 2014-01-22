@@ -1,7 +1,7 @@
 class StatisticsUserCountCsvGenerator
   def self.perform!
     csv = "Date,"
-    communities = Community.all.reject { |c| GeckoBoardAnnouncer::EXCLUDED_COMMUNITIES.include? c.slug }
+    communities = Community.order("id ASC").map { |c| c.slug }.reject { |c| GeckoBoardAnnouncer::EXCLUDED_COMMUNITIES.include? c }
     csv << communities.join(",")
     start_date = Date.parse("1-1-2010").to_datetime
     start_date.upto(Date.today - 1.day) do |date|

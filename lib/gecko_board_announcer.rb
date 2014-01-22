@@ -6,27 +6,12 @@ class GeckoBoardAnnouncer
     Clarkston
     GroveHall
     Akron
-    hinckley
-    missionhill
+    Hinckley
+    MissionHill
     GraduateCommons
     HarvardNeighbors
     Avon
     Springfield
-  ]
-
-  WATCHED_COMMUNITIES = %w[
-    FallsChurch
-    Harrisonburg
-    Vienna
-    Marquette
-    Warwick
-    OwossoCorunna
-    Chelmsford
-    Belmont
-    Watertown
-    Sudbury
-    Westwood
-    Hudson
   ]
 
   def self.average_size(communities)
@@ -72,25 +57,25 @@ class GeckoBoardAnnouncer
         "user_counts" => :users
       }
 
+      communities = Community.order("id ASC").map { |c| c.slug }.reject { |c| EXCLUDED_COMMUNITIES.include? c }
       csvs.each do |type, method|
-        post_count_str = Resque.redis.get("statistics:#{type}")
-        unless post_count_str.present?
-          post_count_str =  ",#{WATCHED_COMMUNITIES.join(",")}"
+        count_str = Resque.redis.get("statistics:#{type}")
+        unless count_str.present?
+          count_str =  ",#{communities.join(",")}"
         end
 
-        lines = post_count_str.split("\n")
+        lines = count_str.split("\n")
         if lines.count > 1
           last_date = Date.parse(lines.last.split(",").first)
           if last_date != Date.today
             # Check the first line for all communities...
-            split_post_count_lines = post_count_str.split("\n")
-            if post_count_str.split("\n").shift.split(",").count != WATCHED_COMMUNITIES.count
-              # HOLD INVARIANT: Communities will not be deleted from WATCHED_COMMUNITIES, nor reordered
+            if count_str.split("\n").shift.split(",").count != communities.count
+              # HOLD INVARIANT: Communities will not be reordered
               # New communities will be appended to the end of the list
               # This allows us to make the following optimization:
               first_line = true
-              missing_communities = WATCHED_COMMUNITIES.map(&:to_s) - split_post_count_lines.first.split(",")
-              split_post_count_lines.each do |line|
+              missing_communities = communities.map(&:to_s) - lines.first.split(",")
+              lines.each do |line|
                 if first_line
                   line << ","
                   line << missing_communities.join(",")
@@ -104,13 +89,13 @@ class GeckoBoardAnnouncer
             end
 
             new_post_counts = []
-            WATCHED_COMMUNITIES.each do |slug|
+            communities.each do |slug|
               new_post_counts << Community.find_by_slug(slug).send(method).try(:count).try(:to_s)
             end
             new_post_line = "#{Date.today.to_s(:mdy)},#{new_post_counts.join(",")}"
-            post_count_str << "\n"
-            post_count_str << new_post_line
-            Resque.redis.set("statistics:#{type}", post_count_str)
+            count_str << "\n"
+            count_str << new_post_line
+            Resque.redis.set("statistics:#{type}", count_str)
           end
         end
       end
