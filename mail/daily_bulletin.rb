@@ -238,7 +238,7 @@ class DailyBulletin < MailBase
     if community.slug.downcase == ''
       return asset_url('')
     elsif community.slug.downcase == 'fallschurch'
-      return asset_url('paid_advertisements/fallschurch/fotanzania.jpg')
+      return asset_url('paid_advertisements/fallschurch/Tanzania.jpg')
     else
       return nil
     end
