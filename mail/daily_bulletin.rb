@@ -225,20 +225,20 @@ class DailyBulletin < MailBase
   end
 
   def paid_advertisement_url
-    if community.slug.downcase == 'warwick'
-      return 'http://www.purplechampions.com/'
+    if community.slug.downcase == ''
+      return ''
     elsif community.slug.downcase == 'fallschurch'
-      return 'http://www.bikenetic.com/'
+      return 'http://www.fotanzania.org/'
     else
       return nil
     end
   end
 
   def paid_advertisement_img_url
-    if community.slug.downcase == 'warwick'
-      return asset_url('paid_advertisements/warwick/warwick_sani_common_2.jpg')
+    if community.slug.downcase == ''
+      return asset_url('')
     elsif community.slug.downcase == 'fallschurch'
-      return asset_url('paid_advertisements/fallschurch/Bikenetic.jpg')
+      return asset_url('paid_advertisements/fallschurch/fotanzania.jpg')
     else
       return nil
     end
