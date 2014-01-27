@@ -84,6 +84,13 @@ class Administration < Sinatra::Base
     response.write csv
   end
 
+  get "/download_temp_csv" do
+    csv = Resque.redis.get("statistics:temp")
+    content_type 'applicatoin/csv'
+    attachment "Emails.csv"
+    response.write csv
+  end
+
   # Become a user
   #
   # Params: id - the user to become
