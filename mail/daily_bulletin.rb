@@ -228,7 +228,7 @@ class DailyBulletin < MailBase
     if community.slug.downcase == ''
       return ''
     elsif community.slug.downcase == 'fallschurch'
-      return 'http://www.fotanzania.org/'
+      return 'http://kathysellsvirginiahomes.com/'
     else
       return nil
     end
@@ -238,7 +238,7 @@ class DailyBulletin < MailBase
     if community.slug.downcase == ''
       return asset_url('')
     elsif community.slug.downcase == 'fallschurch'
-      return asset_url('paid_advertisements/fallschurch/Tanzania.jpg')
+      return asset_url('paid_advertisements/fallschurch/Symanski-NEW.jpg')
     else
       return nil
     end
@@ -246,7 +246,7 @@ class DailyBulletin < MailBase
 
   def paid_advertisement_url2
     if community.slug.downcase == 'fallschurch'
-      return 'http://kathysellsvirginiahomes.com/'
+      return 'http://www.fallschurchshelterfriends.org/'
     else
       return nil
     end
@@ -254,7 +254,7 @@ class DailyBulletin < MailBase
 
   def paid_advertisement_img_url2
     if community.slug.downcase == 'fallschurch'
-      return asset_url('paid_advertisements/fallschurch/Symanski.jpg')
+      return asset_url('paid_advertisements/fallschurch/Homeless.jpg')
     else
       return nil
     end
