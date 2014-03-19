@@ -252,7 +252,7 @@ GEM
       excon (~> 0.15.4)
     highline (1.6.19)
     hike (1.2.2)
-    honeybadger (1.6.2)
+    honeybadger (1.11.2)
       json
     hpricot (0.8.6)
     htmlentities (4.3.1)
@@ -314,7 +314,6 @@ GEM
     multi_xml (0.5.3)
     multipart-post (1.2.0)
     mustache (0.99.4)
-    mysql2 (0.3.11)
     netrc (0.7.7)
     newrelic_rpm (3.5.0.1)
     nokogiri (1.5.9)
@@ -563,8 +562,7 @@ DEPENDENCIES
   mongo_mapper (= 0.11.0)
   multi_json (= 1.2.0)
   mustache (= 0.99.4)
-  mysql2 (= 0.3.11)
-  newrelic_rpm (= 3.5.0.1)
+  newrelic_rpm
   omniauth (= 1.0.3)
   omniauth-facebook (= 1.2.0)
   paperclip (= 2.4.5)

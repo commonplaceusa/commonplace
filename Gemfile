@@ -73,7 +73,7 @@ gem 'rest-client', '= 1.6.7'
 gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref => "a090bf1d49004f501c9164d5dcd51761b48803e4"
 
 # Tech admin
-gem 'newrelic_rpm', '= 3.5.0.1'
+gem 'newrelic_rpm'
 gem 'honeybadger'
 gem 'resque-honeybadger'
 
@@ -94,7 +94,6 @@ gem 'require_all', '= 1.2.1' # require all ruby files in a directory
 # Analytics
 gem 'km', '= 1.1.2'
 gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "65bf2c5ffc203a773c9cc2d491306924a6c78cd2"
-gem 'mysql2', '= 0.3.11'
 
 group :assets do
   gem 'uglifier', '= 1.2.3'

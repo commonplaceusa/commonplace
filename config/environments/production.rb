@@ -22,7 +22,8 @@ Commonplace::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
-  # Full error reports are disabled and caching is turned on
+  # Full error reports are enabled and caching is turned on
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = true
 
   #config.action_controller.asset_host = "http://www.commonplaceusa.com"
@@ -37,7 +38,7 @@ Commonplace::Application.configure do
   # just comment this out and Rails will serve the files
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
