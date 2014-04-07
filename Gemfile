@@ -21,7 +21,7 @@ gem 'pg', '= 0.13.2' # for postgres
 gem 'permanent_records', '= 2.1.2' # adds soft-delete if a model has a deleted_at column
 gem 'cocaine', '= 0.3.2'
 gem 'paperclip', "= 2.4.5" # we use this to store avatars
-gem 'rmagick', '= 2.13.1' # we use this to crop avatars
+gem 'rmagick'
 gem 'geocoder', '= 1.0.5' # we use geocoder to find user latlngs from addresses
 gem 'glebm-geokit', '= 1.5.2', :require => 'geokit' # use this to find latlngs from address again. try to remove in favor of geocoder
 
@@ -112,7 +112,7 @@ group :development, :test, :remote_worker do
   gem 'factory_girl', '= 2.6.3' # we use factory_girl to generate models for tests
   gem 'forgery', '= 0.5.0' # we use forgery to generate data for tests
   gem 'foreman', '= 0.40.0' # we use foreman to start all the processes we need for development
-  gem 'therubyracer', '= 0.9.10' # because something was yelling at us for not having a javascript runtime
+  gem 'therubyracer'
   gem 'cucumber', '= 1.1.0'
   gem 'simplecov', '= 0.6.4', :require => false
   gem 'selenium', '= 0.2.5'
