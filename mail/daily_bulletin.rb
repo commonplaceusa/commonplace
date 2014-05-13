@@ -239,6 +239,8 @@ class DailyBulletin < MailBase
       return asset_url('')
     elsif community.slug.downcase == 'fallschurch'
       return asset_url('paid_advertisements/fallschurch/Syzmanski-March.jpg')
+    elsif community.slug.downcase == 'vienna'
+      return asset_url('paid_advertisements/vienna/Crime-Alerts-May.jpg')
     else
       return nil
     end
@@ -247,6 +249,8 @@ class DailyBulletin < MailBase
   def paid_advertisement_url2
     if community.slug.downcase == 'fallschurch'
       return 'http://www.fallschurchshelterfriends.org/'
+    if community.slug.downcase == 'vienna'
+      return 'http://bit.ly/spotcrimem'
     else
       return nil
     end
@@ -258,5 +262,5 @@ class DailyBulletin < MailBase
     else
       return nil
     end
-  end  
+  end
 end
