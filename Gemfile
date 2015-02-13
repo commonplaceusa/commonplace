@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 source "http://gems.github.com"
 
-ruby '1.9.3'
+ruby '2.1.5'
 
 gem 'rails', "= 3.2.11"
 gem 'sass-rails', '= 3.2.4'
@@ -26,7 +26,7 @@ gem 'geocoder', '= 1.0.5' # we use geocoder to find user latlngs from addresses
 gem 'glebm-geokit', '= 1.5.2', :require => 'geokit' # use this to find latlngs from address again. try to remove in favor of geocoder
 
 # MongoDB
-gem 'bson_ext', '= 1.6.1'
+gem 'bson_ext'
 gem 'mongo_mapper', '= 0.11.0' # used to represent site visits
 
 # Deployment
@@ -41,14 +41,16 @@ gem 'omniauth-facebook', '= 1.2.0' # Facebook strategy for OmniAuth
 gem 'cancan', '= 1.6.7' # Authorization, see app/models/ability.rb, should be refactored/redone
 
 # Assets
-gem 'aws-s3', '= 0.6.2', :require => 'aws/s3' # storing avatars and stuff
+gem 'aws-s3', :require => 'aws/s3' # storing avatars and stuff
 gem 'amazon-ec2', '= 0.9.17', :require => 'AWS' # managing instances
 
 # Worker Jobs
 gem 'mock_redis', :git => "https://github.com/causes/mock_redis.git", :ref => "fe01880"
 gem 'redis', '= 2.2.2' # for queueing with resque
 gem 'redis-namespace', '= 1.0.3', :require => false # resque wants it, we don't need to require it
-gem 'mcbean', '= 0.4.0' # We use this to pull data from rss feeds for import
+gem 'mcbean' # We use this to pull data from rss feeds for import
+gem 'loofah'
+gem 'nokogiri'
 gem 'redcarpet', "= 2.0.1" # We use this to format user messages in emails
 
 # Jobs
@@ -112,7 +114,7 @@ group :development, :test, :remote_worker do
   gem 'factory_girl', '= 2.6.3' # we use factory_girl to generate models for tests
   gem 'forgery', '= 0.5.0' # we use forgery to generate data for tests
   gem 'foreman', '= 0.40.0' # we use foreman to start all the processes we need for development
-  gem 'therubyracer'
+  # gem 'therubyracer'
   gem 'cucumber', '= 1.1.0'
   gem 'simplecov', '= 0.6.4', :require => false
   gem 'selenium', '= 0.2.5'
@@ -149,3 +151,4 @@ gem 'sprockets', '= 2.2.1'
 gem 'treetop', '= 1.4.10'
 gem 'tzinfo', '= 0.3.32'
 gem 'area', '= 0.9.0', :require => false
+gem 'iconv'
