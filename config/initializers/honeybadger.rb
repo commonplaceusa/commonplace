@@ -1,3 +1,3 @@
 Honeybadger.configure do |config|
-  config.api_key = '***REMOVED***'
+  config.api_key = '**removed**'
 end

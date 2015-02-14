@@ -16,12 +16,12 @@ git push personal-staging-$USER master;
 heroku pgbackups:restore DATABASE `heroku pgbackups:url --app commonplace` --app commonplace-staging-$USER --confirm commonplace-staging-$USER;
 
 heroku config:add ERROR_PAGE_URL=https://s3.amazonaws.com/commonplace-heroku-pages/maintenance.html --app commonplace-staging-$USER;
-heroku config:add S3_KEY_ID=***REMOVED*** --app commonplace-staging-$USER;
-heroku config:add S3_KEY_SECRET=***REMOVED*** --app commonplace-staging-$USER;
-heroku config:add facebook_app_id=***REMOVED*** --app commonplace-staging-$USER;
-heroku config:add facebook_app_secret=***REMOVED*** --app commonplace-staging-$USER;
+heroku config:add S3_KEY_ID=**removed** --app commonplace-staging-$USER;
+heroku config:add S3_KEY_SECRET=**removed** --app commonplace-staging-$USER;
+heroku config:add facebook_app_id=**removed** --app commonplace-staging-$USER;
+heroku config:add facebook_app_secret=**removed** --app commonplace-staging-$USER;
 heroku config:add facebook_password=staging --app commonplace-staging-$USER;
-heroku config:add facebook_salt=***REMOVED*** --app commonplace-staging-$USER;
+heroku config:add facebook_salt=**removed** --app commonplace-staging-$USER;
 heroku config:add metrics_server=localhost --app commonplace-staging-$USER;
 
 heroku run rake sunspot:reindex --app commonplace-staging-$USER;

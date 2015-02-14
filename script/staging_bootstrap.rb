@@ -64,12 +64,12 @@ end
 def environment
   [
     ['ERROR_PAGE_URL', 'https://s3.amazonaws.com/commonplace-heroku-pages/maintenance.html'],
-    ['S3_KEY_ID', '***REMOVED***'],
-    ['S3_KEY_SECRET', '***REMOVED***'],
-    ['facebook_app_id', '***REMOVED***'],
-    ['facebook_app_secret', '***REMOVED***'],
+    ['S3_KEY_ID', '**removed**'],
+    ['S3_KEY_SECRET', '**removed**'],
+    ['facebook_app_id', '**removed**'],
+    ['facebook_app_secret', '**removed**'],
     ['facebook_password', 'staging'],
-    ['facebook_salt', '***REMOVED***'],
+    ['facebook_salt', '**removed**'],
     ['BUNDLE_WITHOUT', 'development:test:osx:remote_worker'],
     ['RAILS_ENV', 'staging']
   ]
