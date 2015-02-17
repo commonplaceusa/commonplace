@@ -7,7 +7,7 @@ class API
   def initialize
     @app = Rack::Builder.new do
       Honeybadger.configure do |config|
-        config.api_key = '***REMOVED***'
+        config.api_key = '**REMOVED**'
       end
 
       use Honeybadger::Rack
