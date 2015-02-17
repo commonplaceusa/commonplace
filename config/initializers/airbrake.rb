@@ -1,3 +1,3 @@
 Airbrake.configure do |config|
-  config.api_key = '***REMOVED***'
+  config.api_key = '**REMOVED**'
 end
