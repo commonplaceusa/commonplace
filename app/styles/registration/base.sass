@@ -11,7 +11,7 @@
 
 /* Woo colors */
 
-$blue: $veryDarkBlue
+$blue: $cp-blue
 $dark-blue: #151f28
 $light-blue: #32485c
 $red: #ac322f
@@ -45,7 +45,7 @@ $black-shadow: 0px 2px 1px black
   font-weight: bold
   height: 18px
   font-family: $heading
-  +linear-gradient(#d0413d, #ac322f), top
+  +linear-gradient(to top, #d0413d, #ac322f)
   display: block
   font-size: 21px
   text-decoration: none
@@ -57,11 +57,11 @@ $black-shadow: 0px 2px 1px black
     bottom: 16px
   &:hover, &:focus
     color: #fff
-    +linear-gradient($paleRed, $christmasRed), top
+    +linear-gradient(to top, $paleRed, $christmasRed)
     box-shadow: 0px 2px 4px #adab9f
   &:active
     color: #fff
-    +linear-gradient(#d64541, #ac322f), bottom
+    +linear-gradient(to bottom, #d64541, #ac322f)
     text-shadow: -1px -1px -1px #cb5450
 
 .green-button
@@ -72,7 +72,7 @@ $black-shadow: 0px 2px 1px black
   font-weight: bold
   height: 18px
   font-family: $heading
-  +linear-gradient(#62AF46, #569E3F), top
+  +linear-gradient(to top, #62AF46, #569E3F)
   display: block
   font-size: 20px
   text-decoration: none
@@ -84,11 +84,11 @@ $black-shadow: 0px 2px 1px black
     bottom: 13px
   &:hover, &:focus
     color: #fff
-    +linear-gradient(#62AF46, #569E3F), top
+    +linear-gradient(to top, #62AF46, #569E3F)
     box-shadow: 0px 2px 4px #adab9f
   &:active
     color: #fff
-    +linear-gradient(#62AF46, #569E3F), bottom
+    +linear-gradient(to bottom, #62AF46, #569E3F)
 
 /* Overall Styles */
 .right
@@ -412,7 +412,7 @@ aside
         margin-right: 10px
         float: left
         background-color: #ccc
-        background-position: top center
+        background-position: top
         background-size: cover
         background-repeat: no-repeat
         img
@@ -469,7 +469,7 @@ aside
       margin-right: 10px
       float: left
       background-color: #ccc
-      background-position: top center
+      background-position: top
       background-size: cover
       background-repeat: no-repeat
       img

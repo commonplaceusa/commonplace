@@ -6,7 +6,7 @@
 
 /* Woo colors */
 
-$blue: $veryDarkBlue
+$blue: $cp-blue
 $dark-blue: #151f28
 $light-blue: #32485c
 $red: #ac322f
@@ -45,7 +45,7 @@ strong
   font-weight: bold
   height: 18px
   font-family: $heading
-  +linear-gradient(#d0413d, #ac322f), top
+  +linear-gradient(to top, #d0413d, #ac322f)
   display: block
   font-size: 21px
   text-decoration: none
@@ -57,11 +57,11 @@ strong
     bottom: 16px
   &:hover, &:focus
     color: #fff
-    +linear-gradient($paleRed, $christmasRed), top
+    +linear-gradient(to top, $paleRed, $christmasRed)
     box-shadow: 0px 2px 4px #adab9f
   &:active
     color: #fff
-    +linear-gradient(#d64541, #ac322f), bottom
+    +linear-gradient(to bottom, #d64541, #ac322f)
     text-shadow: -1px -1px -1px #cb5450
 
 .green-button
@@ -72,7 +72,7 @@ strong
   font-weight: bold
   height: 18px
   font-family: $heading
-  +linear-gradient(#62AF46, #569E3F), top
+  +linear-gradient(to top, #62AF46, #569E3F)
   display: block
   font-size: 20px
   text-decoration: none
@@ -84,11 +84,11 @@ strong
     bottom: 13px
   &:hover, &:focus
     color: #fff
-    +linear-gradient(#62AF46, #569E3F), top
+    +linear-gradient(to top, #62AF46, #569E3F)
     box-shadow: 0px 2px 4px #adab9f
   &:active
     color: #fff
-    +linear-gradient(#62AF46, #569E3F), bottom 
+    +linear-gradient(to bottom , #62AF46, #569E3F)
     
 .blue-button  
   -webkit-font-smoothing: antialiased
@@ -101,19 +101,19 @@ strong
   border: 1px solid #151f28
   color: white
   text-transform: uppercase
-  +linear-gradient($darkModerateBlue, $veryDarkBlue), top
+  +linear-gradient(to top, $darkModerateBlue, $cp-blue)
   box-shadow: 1px 1px 1px rgba(0,0,0,.25)
   text-shadow: 1px 2px 3px rgba(0,0,0,.65)
   cursor: pointer
   margin-top: 0px
   &:hover, &:focus
     color: #fff
-    +linear-gradient($darkModerateBlue, $veryDarkBlue), top
+    +linear-gradient(to top, $darkModerateBlue, $cp-blue)
     text-shadow: 1px 2px 3px rgba(0,0,0,.65)
     box-shadow: 0px 2px 4px rgba(0,0,0,.65)
   &:active
     color: #fff
-    +linear-gradient($darkModerateBlue, $veryDarkBlue), bottom
+    +linear-gradient(to bottom, $darkModerateBlue, $cp-blue)
     text-shadow: -1px -1px -1px rgba(0,0,0,.65)
     box-shadow: 1px 1px 1px rgba(0,0,0,.25)
 
@@ -126,7 +126,7 @@ strong
   clear: both
 
 $darkRed: #ad312f
-$darkBlue: $veryDarkBlue
+$darkBlue: $cp-blue
 
 
 #tour-shadow
@@ -656,7 +656,7 @@ img.page_img
     text-transform: uppercase
     font-weight: bold
     font-size: 10px
-    background: $veryDarkBlue
+    background: $cp-blue
     padding: 4px 12px
     color: white
   input.name, input.email
@@ -716,7 +716,7 @@ img.page_img
       margin-left: 10px
       margin-right: 10px
       .query
-        color: $veryDarkBlue
+        color: $cp-blue
         font-weight: bold
         
     .initial_load
@@ -818,18 +818,18 @@ img.page_img
       font: bold 16px/0 $heading
       margin-left: 10px
       border: 1px solid #151f28
-      +linear-gradient($darkModerateBlue, $veryDarkBlue), top
+      +linear-gradient(to top, $darkModerateBlue, $cp-blue)
       box-shadow: 1px 1px 1px rgba(0,0,0,.25)
       text-shadow: 1px 2px 3px rgba(0,0,0,.65)
       cursor: pointer
       &:hover, &:focus
         color: #fff
-        +linear-gradient($darkModerateBlue, $veryDarkBlue), top
+        +linear-gradient(to top, $darkModerateBlue, $cp-blue)
         text-shadow: 1px 2px 3px rgba(0,0,0,.65)
         box-shadow: 0px 2px 4px rgba(0,0,0,.65)
       &:active
         color: #fff
-        +linear-gradient($darkModerateBlue, $veryDarkBlue), bottom
+        +linear-gradient(to bottom, $darkModerateBlue, $cp-blue)
         text-shadow: -1px -1px -1px rgba(0,0,0,.65)
         box-shadow: 1px 1px 1px rgba(0,0,0,.25)
       img 

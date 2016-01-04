@@ -8,10 +8,6 @@
  *
  */
 
-/***** Begin Theme, feel free to edit in here! ******/
-
-@import "compass/css3";
-
 /* One container to bind them... */
 .dk_container {
     width: 100%;
@@ -55,18 +51,18 @@ a.dk_toggle {
     @include box-shadow(0 0 0 1px darken(#ac322f,10%),
                         2px 2px 5px #ccc inset);
 
-    
+
 }
 
 .dk_toggle:hover {
-    
+
 }
 /* Applied when the dropdown is focused */
 .dk_focus .dk_toggle {
-    
+
 }
 .dk_focus .dk_toggle {
-    
+
 }
 
 /* Applied whenever the dropdown is open */
@@ -78,7 +74,7 @@ a.dk_toggle {
     z-index: 10;
 }
 .dk_open .dk_toggle {
-    
+
 }
 
 /* The outer container of the options */
@@ -86,7 +82,7 @@ a.dk_toggle {
     position: relative;
     z-index: 1;
     @include border-radius(0 0 4px 4px);
-    background: white; 
+    background: white;
     width: 99.9%;
     display: block;
     @include box-shadow(0 1px 2px #666);
@@ -197,7 +193,7 @@ a.dk_toggle {
         font-weight: bold;
         padding: 10px 13px 11px 9px;
         margin: -10px -3.5% 0 0;
-        @include background-image(linear-gradient(#294d6f 0%, $veryDarkBlue 50%));
+        @include background-image(linear-gradient(#294d6f 0%, $cp-blue 50%));
         @include border-radius(4px);
         text-decoration: none;
         @include box-shadow(0 0 0 1px #254564 inset, 0 0 0 1px #112130, 0 5px 6px -4px #070c12);

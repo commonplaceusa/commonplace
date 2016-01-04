@@ -1,4 +1,4 @@
-$blue: $veryDarkBlue
+$blue: $cp-blue
 $dark-blue: #151f28
 $light-blue: #32485c
 $red: #ac322f
@@ -429,7 +429,7 @@ $black-shadow: 0px 2px 1px black
         text-transform: capitalize
         border-radius: 5px
         top: 17px
-        +linear-gradient($darkModerateBlue, $veryDarkBlue), top
+        +linear-gradient(to top, $darkModerateBlue, $cp-blue)
         box-shadow: 0px 1px 3px rgba(0,0,0,0.25), inset -0px -1px 0px rgba(255,255,255,0.15)
         //text-shadow: 1px 1px 0px rgba(0,0,0,0.75)
         cursor: pointer
@@ -467,7 +467,7 @@ $black-shadow: 0px 2px 1px black
             text-shadow: -1px -1px 0px rgba(0,0,0, 0.85)
         //&:active
           color: #fff
-          +linear-gradient($darkModerateBlue, $veryDarkBlue), bottom
+          +linear-gradient(to bottom, $darkModerateBlue, $cp-blue)
           text-shadow: -1px -1px -1px rgba(0,0,0,.65)
           box-shadow: 1px 1px 1px rgba(0,0,0,.25)
         span.arrow
@@ -482,7 +482,7 @@ $black-shadow: 0px 2px 1px black
         ul.account-sub
           position: absolute
           display: none
-          background-color: $veryDarkBlue
+          background-color: $cp-blue
           box-shadow: 0px 2px 2px rgba(0,0,0,0.40), inset 0px -1px 0px rgba(255,255,255,0.15)
           width: 155px
           margin-top: 15px
@@ -579,24 +579,24 @@ $black-shadow: 0px 2px 1px black
                 text-shadow: 0px 2px 0px #424242
               .blue
                 margin-right: 20px
-                +linear-gradient($darkModerateBlue, $veryDarkBlue)
+                +linear-gradient($darkModerateBlue, $cp-blue)
                 &:hover, &:focus
                   color: #fff
-                  +linear-gradient(#3e6b96, $veryDarkBlue), top
+                  +linear-gradient(to top, #3e6b96, $cp-blue)
                   box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
                 &:active
                   color: #fff
-                  +linear-gradient($darkModerateBlue, $veryDarkBlue), bottom
+                  +linear-gradient(to bottom, $darkModerateBlue, $cp-blue)
               .red
                 background: $red
                 +linear-gradient(#cc4441, #ac322f)
                 &:hover, &:focus
                   color: #fff
-                  +linear-gradient(#ea4e4a, #ac322f), top
+                  +linear-gradient(to top, #ea4e4a, #ac322f)
                   box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
                 &:active
                   color: #fff
-                  +linear-gradient(#cc4441, #ac322f), bottom
+                  +linear-gradient(to bottom, #cc4441, #ac322f)
             .dropdown
               width: 300px
               background: #EEECDF
@@ -642,7 +642,7 @@ $black-shadow: 0px 2px 1px black
                 text-align: center
                 float: right
                 width: 110px
-                +linear-gradient($darkModerateBlue, $veryDarkBlue)
+                +linear-gradient($darkModerateBlue, $cp-blue)
                 font-weight: bold
                 font-size: 16px
                 margin-right: 15px
@@ -651,15 +651,15 @@ $black-shadow: 0px 2px 1px black
                 margin-top: 5px
                 height: auto
                 -webkit-font-smoothing: antialiased
-                background-color: $veryDarkBlue
+                background-color: $cp-blue
                 text-shadow: 0px 2px 0px #333
                 &:hover, &:focus
                   color: #fff
-                  +linear-gradient(#3e6b96, $veryDarkBlue), top
+                  +linear-gradient(to top, #3e6b96, $cp-blue)
                   box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
                 &:active
                   color: #fff
-                  +linear-gradient($darkModerateBlue, $veryDarkBlue), bottom
+                  +linear-gradient(to bottom, $darkModerateBlue, $cp-blue)
               button.signin.facebook
                 width: 148px
                 height: auto
@@ -672,11 +672,11 @@ $black-shadow: 0px 2px 1px black
                 text-shadow: 0px 2px 0px #333
                 &:hover, &:focus
                   color: #fff
-                  +linear-gradient(#5c83d7, #3b5998), top
+                  +linear-gradient(to top, #5c83d7, #3b5998)
                   box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
                 &:active
                   color: #fff
-                  +linear-gradient(#4e6fb6, #3b5998), bottom
+                  +linear-gradient(to bottom, #4e6fb6, #3b5998)
               p
                 clear: both
                 margin-left: 14px

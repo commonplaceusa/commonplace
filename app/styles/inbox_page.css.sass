@@ -10,7 +10,7 @@ body.inbox, body.feed_inbox, body.outbox
       color: #333
       text-align: center
       background-image: image-url("loading.gif")
-      background-position: bottom center
+      background-position: bottom
       background-repeat: no-repeat
       height: 50px
   a.more
@@ -31,14 +31,14 @@ body.inbox, body.feed_inbox, body.outbox
     padding-right: 30px
     margin-top: 20px
     float: left
-    
-    a 
+
+    a
       +border-radius(3px)
       display: block
       padding: 5px 20px
-      color: $veryDarkBlue
+      color: $cp-blue
       text-decoration: none
-    
+
     .current
       background-color: #ac322f
       color: white
@@ -51,7 +51,7 @@ body.inbox, body.feed_inbox, body.outbox
     background-color: white
     margin-top: 20px
     float: left
-    
+
     .more
       margin-top: 10px
 
@@ -59,7 +59,7 @@ body.inbox, body.feed_inbox, body.outbox
       color: #333
       text-align: center
       background-image: image-url("loading.gif")
-      background-position: bottom center
+      background-position: bottom
       background-repeat: no-repeat
       height: 50px
     h2
@@ -71,18 +71,18 @@ body.inbox, body.feed_inbox, body.outbox
       +border-top-radius(5px)
       font-family: Helvetica, Arial, sans-serif
       font-size: 14px
-    
+
     ul.list
       +border-bottom-radius(4px)
-      +min-height(500px)
-    
+      min-height: 500px
+
       .message-item
         border-bottom: 1px solid #bbb
         padding: 15px
-    
+
         .clear
           clear: both
-    
+
         .replies-area
           margin-top: 10px
           padding-left: 28px
@@ -125,28 +125,28 @@ body.inbox, body.feed_inbox, body.outbox
             float: left
             margin-right: 15px
             border-radius: 5px
-    
+
           .corner
             float: right
             color: #bab9bf
             font-size: 18px
-    
+
           h3
             color: #af473e
             font-size: 24px
             margin-bottom: 10px
             font-weight: bold
             font-family: Rokkitt, Rockwell, Helvetica, Arial, Verdana, sans-serif
-    
+
           .messagable
             color: #ad312f
             text-decoration: none
-    
+
           .date
             color: #888
             font-size: 16px
             margin-bottom: 5px
-    
+
           .body
             color: #333
             line-height: 22px

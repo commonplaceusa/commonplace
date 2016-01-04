@@ -79,3 +79,30 @@
   resize: none
   -webkit-font-smoothing: antialiased
   @include box-shadow(0 0 0 1px #8b2324, 2px 2px 5px #ccc inset)
+
+@mixin border-radius($radius)
+  +border-top-radius($radius)
+  +border-right-radius($radius)
+  +border-bottom-radius($radius)
+  +border-left-radius($radius)
+
+// @mixin border-top-left-radius($radius)
+  // +border-top-radius($radius)
+  // +border-left-radius($radius)
+
+// @mixin border-top-right-radius($radius)
+  // +border-top-radius($radius)
+  // +border-right-radius($radius)
+
+// @mixin border-bottom-left-radius($radius)
+  // +border-bottom-radius($radius)
+  // +border-left-radius($radius)
+
+// @mixin border-bottom-right-radius($radius)
+  // +border-bottom-radius($radius)
+  // +border-right-radius($radius)
+
+@mixin opacity($opacity)
+  opacity: $opacity
+  $opacity-ie: $opacity * 100
+  filter: alpha(opacity=$opacity-ie) //IE8

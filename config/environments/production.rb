@@ -11,7 +11,6 @@ Commonplace::Application.configure do
   # config.assets.manifest = YOUR_PATH
 
   config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :scss
 
   # Don't compile on the fly
   # config.assets.compile = false

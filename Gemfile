@@ -5,6 +5,7 @@ ruby '2.1.5'
 
 gem 'rails', "= 3.2.21"
 gem 'sass-rails'
+gem "coffee-rails"
 
 # API
 gem 'sinatra', "= 1.2.7"
@@ -14,6 +15,7 @@ gem 'dalli', '= 1.1.5' # memcache client, for caching
 gem 'acts_as_api', '= 0.3.11'
 gem 'barometer', '= 0.8.0' #for weather forecasts
 gem "bourbon", "= 3.1.8"
+gem "compass-rails"
 
 # ActiveRecord
 gem 'sunspot_rails', "= 1.3.0"
@@ -73,6 +75,7 @@ gem 'sass', "= 3.2.19"
 # Admin
 gem 'rest-client', '= 1.6.7'
 gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref => "a090bf1d49004f501c9164d5dcd51761b48803e4"
+
 
 # Tech admin
 gem 'newrelic_rpm'

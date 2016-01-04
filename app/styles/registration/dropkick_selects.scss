@@ -186,7 +186,7 @@ a.dk_toggle {
         position: relative;
         right: -1px;
         top: -1px;
-        @include background-image(linear-gradient(#294d6f 0%, $veryDarkBlue 50%));
+        @include background-image(linear-gradient(#294d6f 0%, $cp-blue 50%));
         border-radius: 0px 4px 4px 0px;
         text-decoration: none;
         position: absolute;
@@ -194,10 +194,10 @@ a.dk_toggle {
 }
 
 a.dk_toggle span.dk_arrow:hover {
-   @include background-image(linear-gradient(#3e6b96 0%, $veryDarkBlue 50%));
+   @include background-image(linear-gradient(#3e6b96 0%, $cp-blue 50%));
 }
 a.dk_toggle span.dk_arrow:active {
-   @include background-image(linear-gradient($veryDarkBlue 0%, #294d6f 50%));
+   @include background-image(linear-gradient($cp-blue 0%, #294d6f 50%));
 }
 
 /** Critical to the continued enjoyment of working dropdowns ******/

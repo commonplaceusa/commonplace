@@ -6,7 +6,7 @@
   font-weight: bold
   height: 18px
   font-family: $heading
-  @include background(linear-gradient(top center, #d0413d, #ac322f))
+  @include background(linear-gradient(top, #d0413d, #ac322f))
   display: block
   font-size: 21px
   text-decoration: none
@@ -19,11 +19,11 @@
     bottom: 16px
   &:hover, &:focus
     color: #fff
-    @include background(linear-gradient(top center, $paleRed, $christmasRed))
+    @include background(linear-gradient(top, $paleRed, $christmasRed))
     box-shadow: 0px 2px 4px #adab9f
   &:active
     color: #fff
-    @include background(linear-gradient(bottom center, #d64541, #ac322f))
+    @include background(linear-gradient(bottom, #d64541, #ac322f))
     text-shadow: 0px 1px 0px #64100D
 
 .green-button
@@ -34,7 +34,7 @@
   font-weight: bold
   height: 18px
   font-family: $heading
-  +linear-gradient(#62AF46, #569E3F), top
+  +linear-gradient(to top, #62AF46, #569E3F)
   display: block
   font-size: 20px
   text-decoration: none
@@ -46,11 +46,11 @@
     bottom: 13px
   &:hover, &:focus
     color: #fff
-    +linear-gradient(#62AF46, #569E3F), top
+    +linear-gradient(to top, #62AF46, #569E3F)
     box-shadow: 0px 2px 4px #adab9f
   &:active
     color: #fff
-    +linear-gradient(#62AF46, #569E3F), bottom
+    +linear-gradient(to bottom, #62AF46, #569E3F)
 
 /* Overall Styles */
 .right
