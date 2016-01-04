@@ -90,14 +90,15 @@ class Transaction < ActiveRecord::Base
   end
 
   searchable do
-    text :title, :description
-    text :author_name do
+    string :title
+    string :description
+    string :author_name do
       owner.name
     end
-    text :replies do
+    string :replies do
       replies.map &:body
     end
-    text :reply_author do
+    string :reply_author do
       replies.map { |r| r.user.name }
     end
     integer :community_id

@@ -17,28 +17,35 @@ describe "Daily Bulletins" do
   let!(:user10) { FactoryGirl.create(:user, community: community_3, neighborhood: FactoryGirl.create(:neighborhood, community_id: community_3.id)) }
   let!(:user11) { FactoryGirl.create(:user, community: community_3, neighborhood: FactoryGirl.create(:neighborhood, community_id: community_3.id)) }
   let!(:user12) { FactoryGirl.create(:user, community: community_3, neighborhood: FactoryGirl.create(:neighborhood, community_id: community_3.id)) }
+
   before do
-    Community.count.should == 4
-    User.count.should == 12
-    RspecResque.reset!
-    Resque.enqueue(DailyDigestJob);
+    expect(Community.count).to eq 4
+    expect(User.count).to eq 12
   end
+
   describe "Running the job" do
     it "should enqueue DailyDigestJob" do
-      DailyDigestJob.should have_queue_size_of(1)
+      Resque.enqueue(DailyDigestJob)
+      expect(DailyDigestJob).to have_queue_size_of(1)
     end
 
     it "should enqueue multiple community jobs" do
-      run_resque(:daily_digest)
+      DailyDigestJob.perform
+
       CommunityDailyBulletinJob.should have_queue_size_of(Community.count)
     end
 
     it "should enqueue lots of specific daily bulletins" do
-      run_resque(:daily_digest)
-      run_resque(:community_daily_bulletin)
+      [
+        community_1,
+        community_2,
+        community_3,
+        community_4,
+      ].each do |community|
+        CommunityDailyBulletinJob.perform(community.id, DateTime.current.to_s)
+      end
+
       DailyBulletin.should have_queue_size_of(User.count)
     end
-
   end
-
 end

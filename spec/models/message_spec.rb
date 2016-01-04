@@ -2,34 +2,43 @@ require 'spec_helper'
 
 describe Message do
   describe "#valid?" do
-    subject { Message.new }
-    before { subject.valid? }
+    it "requires certain fields" do
+      message = Message.new
 
-    it { should have(1).errors_on(:subject) }
-    it { should have(1).errors_on(:body) }
-    it { should have(1).errors_on(:user) }
-    it { should have(1).errors_on(:messagable) }
+      message.valid?
+
+      expect(message.errors.keys).to include :subject
+      expect(message.errors.keys).to include :body
+      expect(message.errors.keys).to include :user
+      expect(message.errors.keys).to include :messagable
+    end
   end
 
   describe "#most_recent_body" do
-    let(:message) { mock_model(Message, :body => Forgery(:basic).text) }
-
     context "given a message with no replies" do
-      before { stub(message).replies { [] } }      
+      it "is the message body" do
+        message = Message.new
+        allow(message).to receive(:body).and_return(Forgery(:basic).text)
+        allow(message).to receive(:replies).and_return([])
 
-      subject { message.most_recent_body }
-
-      it { should == message.body }
+        expect(message.most_recent_body).to eq message.body
+      end
     end
 
     context "given a message with replies" do
-      let(:replies) { Array.new(3) { |i| mock_model(Reply, :body => "body #{i}")} }
-      
-      subject { message.most_recent_body }
+      it "is the most recent reply" do
+        message = Message.new
+        allow(message).to receive(:body).and_return(Forgery(:basic).text)
+        replies = Array.new(3) do |i|
+          double(
+            "Reply",
+            body: "Body #{i}",
+          )
+        end
+        allow(message).to receive(:replies).and_return(replies)
 
-      before { stub(message).replies { replies } }
-
-      it { should == replies.last.body }
+        expect(message.most_recent_body).to eq message.replies.last.body
+      end
     end
   end
 

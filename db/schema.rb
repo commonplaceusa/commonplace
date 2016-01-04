@@ -11,31 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617194417) do
+ActiveRecord::Schema.define(:version => 20151221013838) do
 
   create_table "active_admin_comments", :force => true do |t|
-    t.integer  "resource_id",   :null => false
-    t.string   "resource_type", :null => false
-    t.integer  "author_id"
-    t.string   "author_type"
+    t.string   "namespace",     :limit => nil
     t.text     "body"
+    t.string   "resource_id",   :limit => nil, :null => false
+    t.string   "resource_type", :limit => nil, :null => false
+    t.integer  "author_id"
+    t.string   "author_type",   :limit => nil
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "namespace"
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_active_admin_comments_on_resource_type_and_resource_id"
 
-  create_table "addresses", :force => true do |t|
-    t.string   "name"
-    t.string   "primary"
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "admin_notes", :force => true do |t|
+    t.integer  "resource_id",     :null => false
+    t.string   "resource_type",   :null => false
+    t.integer  "admin_user_id"
+    t.string   "admin_user_type"
+    t.text     "body"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
+
+  add_index "admin_notes", ["admin_user_type", "admin_user_id"], :name => "index_admin_notes_on_admin_user_type_and_admin_user_id"
+  add_index "admin_notes", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -48,8 +52,8 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -58,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
   create_table "announcement_cross_postings", :force => true do |t|
     t.integer  "announcement_id"
     t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "announcements", :force => true do |t|
@@ -78,35 +82,11 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.datetime "replied_at"
   end
 
-  create_table "archived_posts", :id => false, :force => true do |t|
-    t.integer  "id",                :null => false
-    t.text     "body",              :null => false
-    t.integer  "user_id",           :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "subject"
-    t.string   "category"
-    t.integer  "community_id"
-    t.boolean  "sent_to_community"
-    t.boolean  "published"
-    t.datetime "deleted_at"
-  end
-
   create_table "attendances", :force => true do |t|
     t.integer  "event_id",   :null => false
     t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "avatars", :force => true do |t|
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.string   "image_file_size"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
   end
 
   create_table "civic_hero_nominations", :force => true do |t|
@@ -160,17 +140,13 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.string   "geckoboard_population_chart_id"
   end
 
-  create_table "conversation_memberships", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "conversation_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "conversations", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "connections", :force => true do |t|
+    t.integer  "requester_id",                        :null => false
+    t.integer  "target_id",                           :null => false
+    t.text     "personal_message"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "sent",             :default => false, :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -182,17 +158,8 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.text     "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "essays", :force => true do |t|
-    t.string   "subject"
-    t.text     "body"
-    t.integer  "user_id"
-    t.integer  "feed_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "event_checkins", :force => true do |t|
@@ -205,8 +172,8 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
   create_table "event_cross_postings", :force => true do |t|
     t.integer  "event_id"
     t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "event_notes", :force => true do |t|
@@ -219,9 +186,12 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
 
   create_table "events", :force => true do |t|
     t.string   "name",            :null => false
+    t.string   "address"
     t.text     "description",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "lat"
+    t.decimal  "lng"
     t.integer  "owner_id"
     t.string   "cached_tag_list"
     t.date     "date"
@@ -229,7 +199,6 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.time     "end_time"
     t.string   "owner_type"
     t.string   "source_feed_id"
-    t.string   "address"
     t.string   "venue"
     t.string   "type"
     t.string   "host_group_name"
@@ -243,14 +212,17 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
   create_table "feed_owners", :force => true do |t|
     t.integer  "feed_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "feeds", :force => true do |t|
     t.string   "name",                                     :null => false
+    t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "lat"
+    t.decimal  "lng"
     t.text     "about"
     t.string   "phone"
     t.string   "website"
@@ -263,7 +235,6 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.string   "type",                 :default => "Feed"
     t.string   "feed_url"
     t.string   "avatar_file_name"
-    t.string   "address"
     t.string   "hours"
     t.string   "slug"
     t.string   "twitter_name"
@@ -282,13 +253,26 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",           :limit => nil, :null => false
+    t.integer  "sluggable_id",                  :null => false
+    t.string   "sluggable_type", :limit => 50
+    t.string   "scope",          :limit => nil
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", :unique => true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
   create_table "group_posts", :force => true do |t|
     t.string   "subject"
     t.text     "body"
     t.integer  "user_id"
     t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.datetime "deleted_at"
     t.datetime "replied_at"
   end
@@ -299,8 +283,8 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.string   "about"
     t.integer  "community_id"
     t.string   "avatar_file_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "half_users", :force => true do |t|
@@ -310,8 +294,8 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.string   "street_address"
     t.string   "email"
     t.string   "single_access_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "middle_name"
     t.integer  "community_id"
   end
@@ -335,8 +319,8 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.string   "college"
     t.integer  "graduation_year"
     t.text     "essay"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "invites", :force => true do |t|
@@ -349,20 +333,11 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.integer  "invitee_id"
   end
 
-  create_table "links", :force => true do |t|
-    t.integer  "linkable_id",   :null => false
-    t.string   "linkable_type", :null => false
-    t.integer  "linker_id",     :null => false
-    t.string   "linker_type",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "receive_method", :default => "Live"
   end
 
@@ -389,56 +364,22 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
   create_table "neighborhoods", :force => true do |t|
     t.string   "name",         :null => false
     t.integer  "community_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.text     "bounds"
     t.decimal  "latitude"
     t.decimal  "longitude"
-  end
-
-  create_table "notifications", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "notifiable_id",   :null => false
-    t.string   "notifiable_type", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "organizations", :force => true do |t|
-    t.string   "name",                                  :null => false
-    t.string   "address"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.text     "about"
-    t.string   "phone"
-    t.string   "website"
-    t.integer  "community_id"
-    t.string   "category"
-    t.string   "cached_tag_list"
-    t.string   "code"
-    t.boolean  "claimed",             :default => true
   end
 
   create_table "organizer_data_points", :force => true do |t|
     t.integer  "organizer_id"
     t.string   "address"
     t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.float    "lat"
     t.float    "lng"
     t.boolean  "attempted_geolocating"
-  end
-
-  create_table "platform_updates", :force => true do |t|
-    t.string   "subject",    :null => false
-    t.text     "body",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "posts", :force => true do |t|
@@ -448,34 +389,12 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.datetime "updated_at"
     t.string   "subject"
     t.string   "category"
+    t.boolean  "published",         :default => true
     t.integer  "community_id"
     t.boolean  "sent_to_community"
-    t.boolean  "published",         :default => true
     t.datetime "deleted_at"
     t.datetime "replied_at"
   end
-
-  create_table "profile_fields", :force => true do |t|
-    t.string   "subject",         :null => false
-    t.text     "body",            :null => false
-    t.integer  "organization_id", :null => false
-    t.integer  "position",        :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "rails_admin_histories", :force => true do |t|
-    t.text     "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month"
-    t.integer  "year",       :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "referrals", :force => true do |t|
     t.integer  "event_id",    :null => false
@@ -483,6 +402,13 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.integer  "referrer_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "releases", :force => true do |t|
+    t.text     "details"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "requester_type"
   end
 
   create_table "replies", :force => true do |t|
@@ -500,8 +426,8 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.string   "name"
     t.string   "email"
     t.string   "sponsor_organization"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "residents", :force => true do |t|
@@ -532,20 +458,6 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.integer  "last_examined_story"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "roles", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "organization_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sent_emails", :force => true do |t|
-    t.string   "tag"
-    t.integer  "community_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
 
   create_table "stories", :force => true do |t|
@@ -648,6 +560,9 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.datetime "updated_at"
     t.string   "first_name",                                            :null => false
     t.string   "last_name",                                             :null => false
+    t.string   "address",                                               :null => false
+    t.decimal  "lat"
+    t.decimal  "lng"
     t.text     "about"
     t.integer  "neighborhood_id",                                       :null => false
     t.text     "interests"
@@ -656,7 +571,6 @@ ActiveRecord::Schema.define(:version => 20130617194417) do
     t.boolean  "admin",                            :default => false
     t.string   "state"
     t.string   "avatar_file_name"
-    t.string   "address"
     t.string   "facebook_uid"
     t.string   "oauth2_token"
     t.integer  "community_id"

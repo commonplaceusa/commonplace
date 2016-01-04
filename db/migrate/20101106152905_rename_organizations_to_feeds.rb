@@ -3,40 +3,18 @@ class RenameOrganizationsToFeeds < ActiveRecord::Migration
   end
 
   def self.up
-    Avatar.all.select {|a| a.owner_type == "Organization"}.each do |a|
-      a.owner_type = "Feed"
-      a.save
-    end
-    
-    ActsAsTaggableOn::Tagging.all.select {|t| t.taggable_type == "Organization"}.each do |t|
-      t.taggable_type = "Feed"
-      t.save
-    end
-
+    execute "UPDATE avatars SET owner_type = 'Feed' WHERE owner_type = 'Organization'"
+    execute "UPDATE taggings SET taggable_type = 'Feed' WHERE taggable_type = 'Organization'"
     add_column :organizations, :user_id, :integer
-
-    Role.all.each do |r|
-      begin
-        o = Organization.find(r.organization_id)
-        o.user_id = r.user_id 
-        o.save
-      rescue
-      end
-    end
-
+    execute "UPDATE organizations SET user_id = (SELECT user_id FROM roles WHERE roles.organization_id = organizations.id)"
     rename_column :announcements,  :organization_id, :feed_id
     rename_column :events,         :organization_id, :feed_id
     rename_column :profile_fields, :organization_id, :feed_id
     rename_column :subscriptions,  :organization_id, :feed_id
-
     rename_table :organizations, :feeds
-    
     drop_table :roles
-        
     drop_table :links
-
     drop_table :platform_updates
-    
   end
 
   def self.down

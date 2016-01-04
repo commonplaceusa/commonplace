@@ -1,6 +1,6 @@
 class MoveStreetAddressToUsers < ActiveRecord::Migration
   def self.up
-    add_column :users, :address, :string
+    # add_column :users, :address, :string
     User.reset_column_information
 
     User.find_each do |user|
@@ -12,13 +12,13 @@ class MoveStreetAddressToUsers < ActiveRecord::Migration
 
   def self.down
     User.find_each do |user|
-      location = Location.new(:street_address => user.address, 
+      location = Location.new(:street_address => user.address,
                               :zip_code => user.community.zip_code,
-                              :locatable_type => 'User', 
+                              :locatable_type => 'User',
                               :locatable_id => user.id)
       location.save!
     end
-      
-    remove_column :user, :address
+
+    # remove_column :user, :address
   end
 end

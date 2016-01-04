@@ -3,8 +3,8 @@ source "http://gems.github.com"
 
 ruby '2.1.5'
 
-gem 'rails', "= 3.2.11"
-gem 'sass-rails', '= 3.2.4'
+gem 'rails', "= 3.2.21"
+gem 'sass-rails'
 
 # API
 gem 'sinatra', "= 1.2.7"
@@ -21,7 +21,7 @@ gem 'pg', '= 0.13.2' # for postgres
 gem 'permanent_records', '= 2.1.2' # adds soft-delete if a model has a deleted_at column
 gem 'cocaine', '= 0.3.2'
 gem 'paperclip', "= 2.4.5" # we use this to store avatars
-gem 'rmagick'
+gem 'rmagick', '~> 2.15.4'
 gem 'geocoder', '= 1.0.5' # we use geocoder to find user latlngs from addresses
 gem 'glebm-geokit', '= 1.5.2', :require => 'geokit' # use this to find latlngs from address again. try to remove in favor of geocoder
 
@@ -45,7 +45,7 @@ gem 'aws-s3', :require => 'aws/s3' # storing avatars and stuff
 gem 'amazon-ec2', '= 0.9.17', :require => 'AWS' # managing instances
 
 # Worker Jobs
-gem 'mock_redis', :git => "https://github.com/causes/mock_redis.git", :ref => "fe01880"
+# gem 'mock_redis', :git => "https://github.com/causes/mock_redis.git", :ref => "fe01880"
 gem 'redis', '= 2.2.2' # for queueing with resque
 gem 'redis-namespace', '= 1.0.3', :require => false # resque wants it, we don't need to require it
 gem 'mcbean' # We use this to pull data from rss feeds for import
@@ -59,7 +59,7 @@ gem 'resque-scheduler', '= 1.9.9' # we use this to queue jobs at specific times
 gem 'resque-cleaner', '= 0.2.7'
 
 # Mail
-gem 'mail', '= 2.4.4' # Used for mail
+gem 'mail'
 gem 'mustache', '= 0.99.4' # used for mail
 gem 'premailer', '= 1.7.3' # we use this to inline css in our emails
 
@@ -67,7 +67,7 @@ gem 'premailer', '= 1.7.3' # we use this to inline css in our emails
 gem 'sanitize', '= 2.0.3' # used in app/controllers/posts_controller.rb (which is dead code) ! remove
 gem 'haml', '= 3.1.4' # used for view templates
 gem 'formtastic', '= 2.0.2' # used for view templates
-gem 'sass', '= 3.1.15' # used for stylesheets
+gem 'sass'
 
 # Admin
 gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git', :ref => "1eda06e"
@@ -99,7 +99,7 @@ gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "65bf2c5
 
 group :assets do
   gem 'uglifier', '= 1.2.3'
-  gem 'compass', '= 0.12.alpha.0'
+  gem 'compass'
 end
 
 group :development do
@@ -123,15 +123,14 @@ group :development, :test, :remote_worker do
 end
 
 group :test do
-  gem 'rspec-resque', :github => "Jberlinsky/rspec-resque", ref: "eba6f41cc57102a91d208cd71a6507034a59efd0"
-  gem 'rspec-rails' # we use rspec-rails for tests
-  gem 'fuubar', '= 1.0.0' # we use fuubar for pretty rspec output
+  gem "capybara-screenshot"
+  gem "resque_spec"
+  gem "rspec-mocks"
+  gem "rspec-rails", "~> 3.2.1"
   gem 'spork', '= 0.9.2'
-  gem 'rr', '= 1.0.4'
-  gem 'capybara', '= 1.1.2'
+  gem 'capybara'
   gem 'launchy', '= 2.1.0' # we use launchy to launch a browser during integration testing
-  gem 'database_cleaner', '= 0.7.1' # we use database_cleaner to clean the database between tests
-  gem 'jasmine', '= 1.2.1' # we use jasmine for javascript tests
+  gem 'database_cleaner'
   gem 'cucumber-rails', '= 1.1.1'
 end
 
@@ -140,7 +139,7 @@ gem 'acts-as-taggable-on', '= 2.3.1'
 gem 'amatch', '= 0.2.10'
 
 gem 'builder', '= 3.0.0'
-gem 'i18n', '= 0.6.0'
+gem 'i18n'
 gem 'journey', :git => "git://github.com/Jberlinsky/journey.git", :ref => "v1.0.3-shim"# :ref => "cd6aa3e"
 gem 'multi_json', '= 1.2.0'
 gem 'rack', '= 1.4.5'
