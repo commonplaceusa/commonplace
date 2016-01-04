@@ -10,9 +10,6 @@
 @import footer
 @import date_picker
 @import neutral_notification
-@import "compass/reset"
-@import "compass/css3/gradient"
-@import "compass/css3/pie"
 @import pie
 
 @import shared/wire
@@ -44,7 +41,7 @@
 
 /* Woo colors */
 
-$blue: #1b334a
+$blue: $veryDarkBlue
 $dark-blue: #151f28
 $light-blue: #32485c
 $red: #ac322f
@@ -72,7 +69,7 @@ $body: Helvetica Neue, Helvetica, Tahoma, serif
 @media screen and (-webkit-min-device-pixel-ratio:0)
   .placeholder input, .placeholder textarea
     color: #555
-    padding: 4px 
+    padding: 4px
 
 
 /* Woo Shadows */
@@ -82,8 +79,9 @@ $black-shadow: 0px 2px 1px black
   width: 100%
   +background-image(linear-gradient(#ddd,  #efefef))
 footer, #footer
-  +clearfix
+  @extend %clearfix
   +sans
+
   font-size: 0.8em
   width: 972px
   margin: 1em auto
@@ -108,7 +106,8 @@ body
   font-family: $heading
 
   #sticky-wrapper
-    +pie-clearfix
+    @extend %clearfix
+
     position: relative
     min-height: 100% // real browsers
     height: auto !important // real browsers
@@ -120,12 +119,13 @@ body
       bottom: 0
 
   #main
-    +pie-clearfix
+    @extend %clearfix
+
     margin: 10px auto 0
 
   footer, #footer
     width: auto
-    background: #1b334a
+    background: $veryDarkBlue
     height: 30px
     border-top: 4px solid #fff
     padding: 20px 0 0
@@ -151,7 +151,8 @@ body
           font-size: 12px
 
   #wrap
-    +clearfix
+    @extend %clearfix
+
     width: 972px
     margin: auto
     color: $baseText
@@ -168,17 +169,17 @@ body
 
   #information
     +single-box-shadow(#666, 0px, 2px, 7px, -2px)
-    
+
   form.crop
     margin: auto
     float: none
     padding: 25px
     background-color: #ac322f
     +border-radius(4px)
-    
+
     .jcrop-holder
       margin: auto
-      
+
     input[type=image]
       margin: 20px auto 0
       display: block
@@ -191,7 +192,7 @@ body.application.logged_out
 
   header, #header
     text-align: center
-    background: #1b334a
+    background: $veryDarkBlue
     border-bottom: 4px solid #fff
     height: 31px
     width: 100%
@@ -339,7 +340,7 @@ body.application.logged_out
           label
             display: block
             padding: 4px 2px
-            color: #1b334a
+            color: $veryDarkBlue
             +sans
             text-align: left
             font-weight: bold
@@ -443,7 +444,7 @@ textarea:-moz-placeholder
 
 .chzn-container
   margin-top: 5px
-    
+
 select[multiple]
   width: 365px
 

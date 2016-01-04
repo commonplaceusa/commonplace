@@ -17,7 +17,7 @@
   behavior: url("assets/PIE.htc")
   &:hover, &:focus
     color: #fff
-    @include background(linear-gradient(top center, #ee5a56, #b53633))
+    @include background(linear-gradient(top center, $paleRed, $christmasRed))
     box-shadow: 0px 2px 4px #adab9f, inset 0px 1px 0px #e28986
   &:active
     color: #fff
@@ -44,7 +44,7 @@
   behavior: url("assets/PIE.htc")
   &:hover, &:focus
     color: #fff
-    @include background(linear-gradient(top center, #ee5a56, #b53633))
+    @include background(linear-gradient(top center, $paleRed, $christmasRed))
     box-shadow: 0px 2px 4px #adab9f, inset 0px 1px 0px #e28986
   &:active
     color: #fff
@@ -53,10 +53,10 @@
 
 @mixin blue-button
   +shiny-button
-  background: #1b334a
-  background: -moz-linear-gradient(top, #2e4b67 0%, #1b334a 50%, #1b334a 50%, #1b334a 100%)
-  background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #2e4b67), color-stop(0.5, #1b334a), color-stop(0.5, #1b334a), color-stop(1, #1b334a))
-  -pie-background: linear-gradient(top center, #2e4b67, #1b334a)
+  background: $veryDarkBlue
+  background: -moz-linear-gradient(top, #2e4b67 0%, $veryDarkBlue 50%, $veryDarkBlue 50%, $veryDarkBlue 100%)
+  background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #2e4b67), color-stop(0.5, $veryDarkBlue), color-stop(0.5, $veryDarkBlue), color-stop(1, $veryDarkBlue))
+  -pie-background: linear-gradient(top center, #2e4b67, $veryDarkBlue)
   border: 1px solid #112639
   -moz-border-radius: 5px
   -webkit-border-radius: 5px

@@ -13,6 +13,7 @@ gem 'rack-cache', '= 1.2' # For caching
 gem 'dalli', '= 1.1.5' # memcache client, for caching
 gem 'acts_as_api', '= 0.3.11'
 gem 'barometer', '= 0.8.0' #for weather forecasts
+gem "bourbon", "= 3.1.8"
 
 # ActiveRecord
 gem 'sunspot_rails', "= 1.3.0"
@@ -65,12 +66,11 @@ gem 'premailer', '= 1.7.3' # we use this to inline css in our emails
 
 # ActionView
 gem 'sanitize', '= 2.0.3' # used in app/controllers/posts_controller.rb (which is dead code) ! remove
-gem 'haml', '= 3.1.4' # used for view templates
+gem 'haml'
 gem 'formtastic', '= 2.0.2' # used for view templates
-gem 'sass'
+gem 'sass', "= 3.2.19"
 
 # Admin
-gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git', :ref => "1eda06e"
 gem 'rest-client', '= 1.6.7'
 gem 'leftronic', :git => 'https://github.com/Jberlinsky/leftronic-gem.git', :ref => "a090bf1d49004f501c9164d5dcd51761b48803e4"
 
@@ -99,7 +99,6 @@ gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "65bf2c5
 
 group :assets do
   gem 'uglifier', '= 1.2.3'
-  gem 'compass'
 end
 
 group :development do

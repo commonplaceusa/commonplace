@@ -2,9 +2,6 @@ require Rails.root.join("app", "bootstrapper.rb")
 require Rails.root.join("app", "administration.rb")
 Commonplace::Application.routes.draw do
 
-
-  mount RailsAdmin::Engine => '/administration', :as => 'rails_admin'
-
   devise_for :admin_users
 
   match "/info" => "site#info"

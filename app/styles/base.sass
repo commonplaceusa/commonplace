@@ -19,7 +19,7 @@
     bottom: 16px
   &:hover, &:focus
     color: #fff
-    @include background(linear-gradient(top center, #ee5a56, #b53633))
+    @include background(linear-gradient(top center, $paleRed, $christmasRed))
     box-shadow: 0px 2px 4px #adab9f
   &:active
     color: #fff
@@ -50,8 +50,8 @@
     box-shadow: 0px 2px 4px #adab9f
   &:active
     color: #fff
-    +linear-gradient(color-stops(#62AF46, #569E3F), bottom) 
-    
+    +linear-gradient(color-stops(#62AF46, #569E3F), bottom)
+
 /* Overall Styles */
 .right
   float: right
@@ -76,7 +76,7 @@ html
 #wrapper
   width: 1100px
   margin: 0px auto
-  
+
 //#content div.list div.wire div.post-replies p.replies
   display: none
 

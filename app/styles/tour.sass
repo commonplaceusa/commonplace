@@ -6,7 +6,7 @@
 
 /* Woo colors */
 
-$blue: #1b334a
+$blue: $veryDarkBlue
 $dark-blue: #151f28
 $light-blue: #32485c
 $red: #ac322f
@@ -57,7 +57,7 @@ strong
     bottom: 16px
   &:hover, &:focus
     color: #fff
-    +linear-gradient(color-stops(#ee5a56, #b53633), top)
+    +linear-gradient(color-stops($paleRed, $christmasRed), top)
     box-shadow: 0px 2px 4px #adab9f
   &:active
     color: #fff
@@ -101,19 +101,19 @@ strong
   border: 1px solid #151f28
   color: white
   text-transform: uppercase
-  +linear-gradient(color-stops(#2e5274, #1b334a), top)
+  +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
   box-shadow: 1px 1px 1px rgba(0,0,0,.25)
   text-shadow: 1px 2px 3px rgba(0,0,0,.65)
   cursor: pointer
   margin-top: 0px
   &:hover, &:focus
     color: #fff
-    +linear-gradient(color-stops(#2e5274, #1b334a), top)
+    +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
     text-shadow: 1px 2px 3px rgba(0,0,0,.65)
     box-shadow: 0px 2px 4px rgba(0,0,0,.65)
   &:active
     color: #fff
-    +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+    +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
     text-shadow: -1px -1px -1px rgba(0,0,0,.65)
     box-shadow: 1px 1px 1px rgba(0,0,0,.25)
 
@@ -126,7 +126,7 @@ strong
   clear: both
 
 $darkRed: #ad312f
-$darkBlue: #1b334a
+$darkBlue: $veryDarkBlue
 
 
 #tour-shadow
@@ -656,7 +656,7 @@ img.page_img
     text-transform: uppercase
     font-weight: bold
     font-size: 10px
-    background: #1b334a
+    background: $veryDarkBlue
     padding: 4px 12px
     color: white
   input.name, input.email
@@ -716,7 +716,7 @@ img.page_img
       margin-left: 10px
       margin-right: 10px
       .query
-        color: #1b334a
+        color: $veryDarkBlue
         font-weight: bold
         
     .initial_load
@@ -818,18 +818,18 @@ img.page_img
       font: bold 16px/0 $heading
       margin-left: 10px
       border: 1px solid #151f28
-      +linear-gradient(color-stops(#2e5274, #1b334a), top)
+      +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
       box-shadow: 1px 1px 1px rgba(0,0,0,.25)
       text-shadow: 1px 2px 3px rgba(0,0,0,.65)
       cursor: pointer
       &:hover, &:focus
         color: #fff
-        +linear-gradient(color-stops(#2e5274, #1b334a), top)
+        +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
         text-shadow: 1px 2px 3px rgba(0,0,0,.65)
         box-shadow: 0px 2px 4px rgba(0,0,0,.65)
       &:active
         color: #fff
-        +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+        +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
         text-shadow: -1px -1px -1px rgba(0,0,0,.65)
         box-shadow: 1px 1px 1px rgba(0,0,0,.25)
       img 

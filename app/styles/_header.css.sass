@@ -1,4 +1,4 @@
-$blue: #1b334a
+$blue: $veryDarkBlue
 $dark-blue: #151f28
 $light-blue: #32485c
 $red: #ac322f
@@ -61,14 +61,14 @@ $black-shadow: 0px 2px 1px black
       float: right
       &:hover
         background-position: 0px -42px
-        .red-button           
+        .red-button
           box-shadow: inset 0px 1px 0px rgba(255,255,255,0.35)
-          +linear-gradient(color-stops(#ee5a56, #b53633), top)
+          @include linear-gradient(to top, $paleRed, $christmasRed)
       &:active
         background-position: 0px -82px
         .red-button
           box-shadow: inset 0px 1px 0px rgba(255,255,255,0.20)
-          +linear-gradient(color-stops(#d64541, #ac322f), bottom)
+          +linear-gradient(to bottom, #d64541, #ac322f)
           text-shadow: 0px 1px 0px #64100D
       .red-button
         width: 170px
@@ -144,7 +144,7 @@ $black-shadow: 0px 2px 1px black
         vertical-align: bottom
     .nav
       float: right
-      width: 647px      
+      width: 647px
       #search-header
         margin-left: 15px
         margin-right: 10px
@@ -205,7 +205,7 @@ $black-shadow: 0px 2px 1px black
         float: left
         margin-right: 16px
         display: block
-      li.my-activity 
+      li.my-activity
         position: relative
         padding-right: 9px
         .my-activity-sub
@@ -213,7 +213,7 @@ $black-shadow: 0px 2px 1px black
           display: none
           background: white
           color: #505250
-          width: 240px 
+          width: 240px
           margin-top: 13px
           padding: 10px
           font-family: $body
@@ -313,7 +313,7 @@ $black-shadow: 0px 2px 1px black
             font-size: 12px
             line-height: 10px
             margin-top: 20px
-          .sub-title 
+          .sub-title
             padding-left: 5px
             font-weight: bold
             color: #1B334A
@@ -322,7 +322,7 @@ $black-shadow: 0px 2px 1px black
             font-weight: bold
             color: #1B334A
             padding: 0 4px
-            +border-radius(3px)  
+            +border-radius(3px)
           .this-week, .all-time
             font-size: 10px
             margin-top: -27px
@@ -355,13 +355,13 @@ $black-shadow: 0px 2px 1px black
         border: 1px solid #d7d7d7
         border-bottom: 0px
         +border-radius(5px 5px 0 0)
-             
-        a 
+
+        a
           text-shadow: none
           color: #1B334A
         .my-activity-sub
           display: block
-        
+
       li.invite
         padding-right: 9px
         a
@@ -391,13 +391,13 @@ $black-shadow: 0px 2px 1px black
                 height: 11px
                 font-weight: bold
                 text-transform: uppercase
-              
+
           .inbox-right
             float: right
       li.register_feed
         margin-right: 35px
-      .avatar-container 
-        height: 18px 
+      .avatar-container
+        height: 18px
         width: 18px
         margin-right: 8px
         float: left
@@ -407,7 +407,7 @@ $black-shadow: 0px 2px 1px black
         background-size: cover
         background-position: center center
         behavior: url("/assets/PIE.htc")
-      //li.account 
+      //li.account
         margin-top: 11px !important
         width: 94px
         padding-left: 8px
@@ -429,8 +429,8 @@ $black-shadow: 0px 2px 1px black
         text-transform: capitalize
         border-radius: 5px
         top: 17px
-        +linear-gradient(color-stops(#2e5274, #1b334a), top)
-        box-shadow: 0px 1px 3px rgba(0,0,0,0.25), inset -0px -1px 0px rgba(255,255,255,0.15) 
+        +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
+        box-shadow: 0px 1px 3px rgba(0,0,0,0.25), inset -0px -1px 0px rgba(255,255,255,0.15)
         //text-shadow: 1px 1px 0px rgba(0,0,0,0.75)
         cursor: pointer
         position: relative
@@ -445,10 +445,9 @@ $black-shadow: 0px 2px 1px black
           height: 25px
           border-bottom: 0px
           box-shadow: 0px 2px 2px rgba(0,0,0,0.40)
-          //box-shadow: inset 0px 1px 0px rgba(255,255,255,0.12) 
-          //+linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          //box-shadow: inset 0px 1px 0px rgba(255,255,255,0.12)
           //text-shadow: 1px 2px 3px rgba(0,0,0,.65)
-          //box-shadow: 0px 1px 2px rgba(0,0,0,.15), inset 0px 1px 0px rgba(255,255,255,0.15) 
+          //box-shadow: 0px 1px 2px rgba(0,0,0,.15), inset 0px 1px 0px rgba(255,255,255,0.15)
           +border-bottom-right-radius(0px)
           +border-bottom-left-radius(0px)
           z-index: 900
@@ -456,7 +455,7 @@ $black-shadow: 0px 2px 1px black
           ul.account-sub
             display: block
             z-index: 100
-          //a 
+          //a
             text-shadow: none
             color: rgba(255,255,255,0.65)
             &:hover, &:active
@@ -468,7 +467,7 @@ $black-shadow: 0px 2px 1px black
             text-shadow: -1px -1px 0px rgba(0,0,0, 0.85)
         //&:active
           color: #fff
-          +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
           text-shadow: -1px -1px -1px rgba(0,0,0,.65)
           box-shadow: 1px 1px 1px rgba(0,0,0,.25)
         span.arrow
@@ -483,9 +482,8 @@ $black-shadow: 0px 2px 1px black
         ul.account-sub
           position: absolute
           display: none
-          background-color: #1b334a
-          //+linear-gradient(color-stops(#2e5274, #1b334a), bottom)
-          box-shadow: 0px 2px 2px rgba(0,0,0,0.40), inset 0px -1px 0px rgba(255,255,255,0.15) 
+          background-color: $veryDarkBlue
+          box-shadow: 0px 2px 2px rgba(0,0,0,0.40), inset 0px -1px 0px rgba(255,255,255,0.15)
           width: 155px
           margin-top: 15px
           font-family: $heading
@@ -512,7 +510,7 @@ $black-shadow: 0px 2px 1px black
               border-top: 0px none
               +border-top-left-radius(5px)
               box-shadow: inset 0px 1px 0px rgba(255,255,255,0.10)
-              padding-top: 2px 
+              padding-top: 2px
             &:last-child
               border-bottom: 0px none
             &:hover
@@ -531,7 +529,7 @@ $black-shadow: 0px 2px 1px black
               position: relative
               span.inbox_number
                 //background-color: $red
-                color: rgba(255,255,255,0.65)              
+                color: rgba(255,255,255,0.65)
                 border-radius: 30px
                 padding: 3px 4px 4px 4px
                 float: right
@@ -552,7 +550,7 @@ $black-shadow: 0px 2px 1px black
                 span.inbox_number
                   color: #fff
                   text-shadow: 1px 1px 0px #000
-              
+
         //&:hover
           background: $blu
           color: #1B334A
@@ -562,12 +560,12 @@ $black-shadow: 0px 2px 1px black
           +border-radius(5px 5px 0 0)
           ul.account-sub
             display: block
-          a 
+          a
             text-shadow: none
             color: #1B334A
               .button
                 padding: 5px
-                border-radius: 4px 
+                border-radius: 4px
                 box-shadow: inset 0 1px 1px rgba(255,255,255,.4)
                 cursor: pointer
                 width: 70px
@@ -581,14 +579,14 @@ $black-shadow: 0px 2px 1px black
                 text-shadow: 0px 2px 0px #424242
               .blue
                 margin-right: 20px
-                +linear-gradient(color-stops(#2e5274, #1b334a))
+                +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue))
                 &:hover, &:focus
                   color: #fff
-                  +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+                  +linear-gradient(color-stops(#3e6b96, $veryDarkBlue), top)
                   box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
                 &:active
                   color: #fff
-                  +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+                  +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
               .red
                 background: $red
                 +linear-gradient(color-stops(#cc4441, #ac322f))
@@ -616,7 +614,7 @@ $black-shadow: 0px 2px 1px black
                 background: url("shared/redesign/arrow.png") no-repeat
                 background-position: 100px 12px
                 position: absolute
-                top: -19px 
+                top: -19px
                 display: block
                 right: 0
               input
@@ -644,7 +642,7 @@ $black-shadow: 0px 2px 1px black
                 text-align: center
                 float: right
                 width: 110px
-                +linear-gradient(color-stops(#2e5274, #1b334a))
+                +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue))
                 font-weight: bold
                 font-size: 16px
                 margin-right: 15px
@@ -653,15 +651,15 @@ $black-shadow: 0px 2px 1px black
                 margin-top: 5px
                 height: auto
                 -webkit-font-smoothing: antialiased
-                background-color: #1b334a
+                background-color: $veryDarkBlue
                 text-shadow: 0px 2px 0px #333
                 &:hover, &:focus
                   color: #fff
-                  +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+                  +linear-gradient(color-stops(#3e6b96, $veryDarkBlue), top)
                   box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
                 &:active
                   color: #fff
-                  +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+                  +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
               button.signin.facebook
                 width: 148px
                 height: auto
@@ -679,7 +677,7 @@ $black-shadow: 0px 2px 1px black
                 &:active
                   color: #fff
                   +linear-gradient(color-stops(#4e6fb6, #3b5998), bottom)
-              p 
+              p
                 clear: both
                 margin-left: 14px
                 padding: 12px 0px 13px 0px
@@ -722,8 +720,8 @@ $black-shadow: 0px 2px 1px black
                     display: block
                     cursor: pointer
                     &:hover
-                      color: $red  
-      .number 
+                      color: $red
+      .number
         background: #d5d5d5
         color: #ac322f
         font-family: $body
@@ -820,7 +818,7 @@ $black-shadow: 0px 2px 1px black
   .border
     border: 1px solid #ccc
     +border-radius(5px)
-    
+
   #user_sign_in
     float: right
     margin-top: 2px
@@ -849,7 +847,7 @@ $black-shadow: 0px 2px 1px black
     &.open
       border-bottom: 0px
       +border-radius(5px 5px 0px 0px)
-      
+
   #sign_in_form
     z-index: 10000
     position: absolute

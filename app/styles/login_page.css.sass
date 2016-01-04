@@ -10,7 +10,7 @@ body
 
 h1
   font-size: 44px
-  color: #1b334a
+  color: $veryDarkBlue
   padding: 20px 0px 10px
   font-weight: bold
   text-align: center
@@ -20,13 +20,14 @@ h1
   width: 800px
   margin: auto
   form
+    @extend %clearfix
+
     position: relative
     margin: 50px auto 40px
     +redlightbox
     padding: 14px 24px 26px 24px
     width: 360px
     z-index: 2
-    +clearfix
     abbr[title=required]
       display: none
     h2.notice
@@ -88,7 +89,7 @@ h1
       margin-top: 15px
       float: right
       margin-right: 6px
- 
+
     &.forgot-password
       .buttons
         text-align: center

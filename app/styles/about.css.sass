@@ -9,7 +9,7 @@
 
 /* Woo colors */
 
-$blue: #1b334a
+$blue: $veryDarkBlue
 $dark-blue: #151f28
 $light-blue: #32485c
 $red: #ac322f
@@ -122,14 +122,14 @@ em
       text-align: center
     .blue
       margin-right: 20px
-      +linear-gradient(color-stops(#2e5274, #1b334a))
+      +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue))
       &:hover, &:focus
         color: #fff
-        +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+        +linear-gradient(color-stops(#3e6b96, $veryDarkBlue), top)
         box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
       &:active
         color: #fff
-        +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+        +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
     .red
       background: $red
       +linear-gradient(color-stops(#cc4441, #ac322f))
@@ -186,7 +186,7 @@ em
         text-align: center
         float: right
         width: 110px
-        +linear-gradient(color-stops(#2e5274, #1b334a))
+        +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue))
         font-weight: bold
         font-size: 16px
         margin-right: 15px
@@ -195,15 +195,15 @@ em
         margin-top: 5px
         height: auto
         -webkit-font-smoothing: antialiased
-        background-color: #1b334a
+        background-color: $veryDarkBlue
         text-shadow: 0px 2px 0px #333
         &:hover, &:focus
           color: #fff
-          +linear-gradient(color-stops(#3e6b96, #1b334a), top)
+          +linear-gradient(color-stops(#3e6b96, $veryDarkBlue), top)
           box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
         &:active
           color: #fff
-          +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
       button.signin.facebook
         width: 148px
         height: auto
@@ -592,19 +592,19 @@ em
         border: 1px solid #151f28
         color: white
         text-transform: uppercase
-        +linear-gradient(color-stops(#2e5274, #1b334a), top)
+        +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
         box-shadow: 1px 1px 1px rgba(0,0,0,.25)
         text-shadow: 1px 2px 3px rgba(0,0,0,.65)
         cursor: pointer
         margin-top: 12px
         &:hover, &:focus
           color: #fff
-          +linear-gradient(color-stops(#2e5274, #1b334a), top)
+          +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
           text-shadow: 1px 2px 3px rgba(0,0,0,.65)
           box-shadow: 0px 2px 4px rgba(0,0,0,.65)
         &:active
           color: #fff
-          +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+          +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
           text-shadow: -1px -1px -1px rgba(0,0,0,.65)
           box-shadow: 1px 1px 1px rgba(0,0,0,.25)
       .facebook, .leader-button
@@ -692,19 +692,19 @@ span#apply-btn, span#nominate-btn, .register-btn
           border: 1px solid #151f28
           color: white
           text-transform: uppercase
-          +linear-gradient(color-stops(#2e5274, #1b334a), top)
+          +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
           box-shadow: 1px 1px 1px rgba(0,0,0,.25)
           text-shadow: 1px 2px 3px rgba(0,0,0,.65)
           cursor: pointer
           margin-top: 12px
           &:hover, &:focus
             color: #fff
-            +linear-gradient(color-stops(#2e5274, #1b334a), top)
+            +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
             text-shadow: 1px 2px 3px rgba(0,0,0,.65)
             box-shadow: 0px 2px 4px rgba(0,0,0,.65)
           &:active
             color: #fff
-            +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+            +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
             text-shadow: -1px -1px -1px rgba(0,0,0,.65)
             box-shadow: 1px 1px 1px rgba(0,0,0,.25)
         .bottom
@@ -813,7 +813,7 @@ li.ui-menu-item:last-child
   input[type=button]
     -webkit-appearance: none
     background: $blue
-    @include background(linear-gradient(top center, #2e5274, #1b334a))
+    @include background(linear-gradient(top center, $darkModerateBlue, $veryDarkBlue))
     width: 393px
     padding: 10px 0
     letter-spacing: 1px
@@ -854,7 +854,7 @@ li.ui-menu-item:last-child
   border: 1px solid #151f28
   color: white
   text-transform: uppercase
-  +linear-gradient(color-stops(#2e5274, #1b334a), top)
+  +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
   box-shadow: 1px 1px 1px rgba(0,0,0,.25)
   text-shadow: 1px 2px 3px rgba(0,0,0,.65)
   cursor: pointer
@@ -863,12 +863,12 @@ li.ui-menu-item:last-child
   text-align: center
   &:hover, &:focus
     color: #fff
-    +linear-gradient(color-stops(#2e5274, #1b334a), top)
+    +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), top)
     text-shadow: 1px 2px 3px rgba(0,0,0,.65)
     box-shadow: 0px 2px 4px rgba(0,0,0,.65)
   &:active
     color: #fff
-    +linear-gradient(color-stops(#2e5274, #1b334a), bottom)
+    +linear-gradient(color-stops($darkModerateBlue, $veryDarkBlue), bottom)
     text-shadow: -1px -1px -1px rgba(0,0,0,.65)
     box-shadow: 1px 1px 1px rgba(0,0,0,.25)
 #dk_container_hear 

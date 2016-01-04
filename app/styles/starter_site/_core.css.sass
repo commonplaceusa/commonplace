@@ -17,24 +17,25 @@ em
   +border-radius(7px)
 
 #con
-  background: white  
-  
+  background: white
+
 #main
   width: 970px
   margin: 10px auto
   +museo
 
 nav.page-navigation, .nav.page-navigation
-  .links 
+  .links
     text-align: right
     padding-top: 8px
 
 
 #banner
+  @extend %clearfix
+
   display: block
   text-align: right
-  +clearfix
-  
+
 #banner
   img
     float: left
@@ -57,7 +58,7 @@ nav.page-navigation, .nav.page-navigation
         padding-bottom: 2px
         border-bottom: 2px solid $cpRed
 
-    
+
 footer, #footer
   +sans
   display: block
@@ -74,4 +75,4 @@ footer, #footer
     +inline-block
     vertical-align: top
     padding: 7px
-    
+
