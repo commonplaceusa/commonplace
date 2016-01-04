@@ -59,3 +59,8 @@
   &:hover 
     border-color: #888
 
+@mixin border-radius($radius)
+  +border-top-radius($radius)
+  +border-right-radius($radius)
+  +border-bottom-radius($radius)
+  +border-left-radius($radius)
