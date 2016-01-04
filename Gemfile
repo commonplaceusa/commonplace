@@ -5,6 +5,7 @@ ruby '2.1.5'
 
 gem 'rails', "= 3.2.11"
 gem 'sass-rails'
+gem "sprockets", ">= 2.2.2"
 
 # API
 gem 'sinatra', "= 1.2.7"
@@ -100,7 +101,7 @@ gem 'km', '= 1.1.2'
 gem 'km-db', :git => "https://github.com/Jberlinsky/km-db.git", :ref => "65bf2c5ffc203a773c9cc2d491306924a6c78cd2"
 
 group :assets do
-  gem 'uglifier', '= 1.2.3'
+  gem 'uglifier'
 end
 
 group :development do
@@ -147,7 +148,6 @@ gem 'rack', '= 1.4.5'
 gem 'rack-ssl', '= 1.3.2'
 gem 'rack-test', '= 0.6.1'
 gem 'rake', '= 0.9.2.2'
-gem 'sprockets', '= 2.2.1'
 gem 'treetop', '= 1.4.10'
 gem 'tzinfo', '= 0.3.32'
 gem 'area', '= 0.9.0', :require => false
