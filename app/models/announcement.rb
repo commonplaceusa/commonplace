@@ -27,7 +27,7 @@ class Announcement < ActiveRecord::Base
 
   scope :this_week, :conditions => ["announcements.created_at between ? and ?", DateTime.now.at_beginning_of_week, DateTime.now]
 
-  default_scope where(:deleted_at => nil)
+  # default_scope where(:deleted_at => nil)
   after_create :update_user_announcements_counter
 
   def has_reply

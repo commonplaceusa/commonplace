@@ -263,7 +263,6 @@ class Resident < ActiveRecord::Base
     string :type_tags, :multiple => true
     string :first_name
     string :last_name
-    text :full_name
   end
 
   # If a correlation is found, then stuff has to be merged into one file

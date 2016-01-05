@@ -6,15 +6,6 @@ GIT
     journey (1.0.4.20120222115248)
 
 GIT
-  remote: git://github.com/Jberlinsky/rspec-resque.git
-  revision: eba6f41cc57102a91d208cd71a6507034a59efd0
-  ref: eba6f41cc57102a91d208cd71a6507034a59efd0
-  specs:
-    rspec-resque (0.0.1)
-      resque (~> 1.19.0)
-      rspec (>= 2.6.0)
-
-GIT
   remote: https://github.com/Jberlinsky/heroku_san.git
   revision: 3ad7d89733bc9aa82a514b9557d51f0486f0177f
   ref: 3ad7d89
@@ -43,13 +34,6 @@ GIT
   ref: a090bf1d49004f501c9164d5dcd51761b48803e4
   specs:
     leftronic (0.0.4)
-
-GIT
-  remote: https://github.com/causes/mock_redis.git
-  revision: fe0188048dad03c9e18d2ae199c0992b7bd48e27
-  ref: fe01880
-  specs:
-    mock_redis (0.6.3)
 
 GIT
   remote: https://github.com/sferik/rails_admin.git
@@ -146,7 +130,8 @@ GEM
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
-    bootstrap-sass (2.1.1.0)
+    bootstrap-sass (2.3.2.2)
+      sass (~> 3.2)
     brakeman (1.8.2)
       activesupport
       erubis (~> 2.6)
@@ -164,30 +149,32 @@ GEM
       bson (~> 1.6.1)
     builder (3.0.0)
     cancan (1.6.7)
-    capybara (1.1.2)
+    capybara (2.5.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
-      selenium-webdriver (~> 2.0)
-      xpath (~> 0.1.4)
-    childprocess (0.5.2)
-      ffi (~> 1.0, >= 1.0.11)
-    chunky_png (1.3.0)
+      xpath (~> 2.0)
+    capybara-screenshot (1.0.11)
+      capybara (>= 1.0, < 3)
+      launchy
+    chunky_png (1.3.5)
     cocaine (0.3.2)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
-    coffee-script (2.2.0)
+    coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.7.0)
+    coffee-script-source (1.10.0)
     colored (1.2)
-    compass (0.12.alpha.0)
+    compass (0.12.7)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
-      sass (~> 3.1)
+      sass (~> 3.2.19)
+    compass-rails (1.1.6)
+      compass (>= 0.12.2)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     creole (0.5.0)
@@ -218,7 +205,7 @@ GEM
     escape (0.0.4)
     eventmachine (1.0.3)
     excon (0.15.5)
-    execjs (2.0.2)
+    execjs (2.6.0)
     factory_girl (2.6.3)
       activesupport (>= 2.3.9)
     faraday (0.7.6)
@@ -226,7 +213,6 @@ GEM
       multipart-post (~> 1.1)
       rack (~> 1.1)
     fastercsv (1.5.5)
-    ffi (1.9.3)
     foreman (0.40.0)
       term-ansicolor (~> 1.0.7)
       thor (>= 0.13.6)
@@ -234,10 +220,6 @@ GEM
     formtastic (2.0.2)
       rails (~> 3.0)
     fssm (0.2.10)
-    fuubar (1.0.0)
-      rspec (~> 2.0)
-      rspec-instafail (~> 0.2.0)
-      ruby-progressbar (~> 0.0.10)
     geocoder (1.0.5)
     gherkin (2.5.4)
       json (>= 1.4.6)
@@ -249,7 +231,7 @@ GEM
       oauth2 (~> 0.5.2)
     glebm-geokit (1.5.2)
     guardrail_notifier (0.2.12)
-    haml (3.1.4)
+    haml (3.1.8)
     hashie (1.2.0)
     heroku (2.28.7)
       heroku-api (~> 0.2.6)
@@ -268,16 +250,10 @@ GEM
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
-    i18n (0.6.0)
+    i18n (0.7.0)
     iconv (1.0.4)
     jar_wrapper (0.1.8)
       zip
-    jasmine (1.2.1)
-      jasmine-core (>= 1.2.0)
-      rack (~> 1.0)
-      rspec (>= 1.3.1)
-      selenium-webdriver (>= 0.1.3)
-    jasmine-core (2.0.0)
     jeweler (2.0.1)
       builder
       bundler (>= 1.0)
@@ -287,7 +263,7 @@ GEM
       nokogiri (>= 1.5.10)
       rake
       rdoc
-    jquery-rails (3.1.0)
+    jquery-rails (3.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (0.2.2)
@@ -295,7 +271,7 @@ GEM
       railties (>= 3.1.0)
     json (1.6.6)
     json_pure (1.8.1)
-    kaminari (0.15.1)
+    kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     km (1.1.2)
@@ -352,7 +328,7 @@ GEM
     pg (0.13.2)
     plucky (0.4.4)
       mongo (~> 1.5)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     pr_geohash (1.0.0)
     premailer (1.7.3)
       css_parser (>= 1.1.9)
@@ -367,9 +343,9 @@ GEM
       rack (>= 0.4)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
-    rack-pjax (0.7.0)
+    rack-pjax (0.8.0)
       nokogiri (~> 1.5)
-      rack (~> 1.3)
+      rack (~> 1.1)
     rack-ssl (1.3.2)
       rack
     rack-test (0.6.1)
@@ -415,55 +391,53 @@ GEM
       redis (>= 2.0.1)
       resque (>= 1.8.0)
       rufus-scheduler
+    resque_spec (0.17.0)
+      resque (>= 1.19.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
+      rspec-mocks (>= 3.0.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rmagick (2.13.2)
-    rr (1.0.4)
+    rmagick (2.15.4)
     rsolr (1.0.10)
       builder (>= 2.1.2)
-    rspec (2.14.1)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.8)
-    rspec-expectations (2.14.5)
-      diff-lcs (>= 1.1.3, < 2.0)
-    rspec-instafail (0.2.4)
-    rspec-mocks (2.14.6)
-    rspec-rails (2.14.2)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      railties (>= 3.0)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
+    rspec-core (3.2.3)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-rails (3.2.3)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.2)
     ruby-hmac (0.4.0)
-    ruby-progressbar (0.0.10)
     ruby2ruby (1.3.1)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
-    rubyzip (1.1.2)
+    rubyzip (1.1.7)
     rufus-scheduler (3.0.7)
       tzinfo
     safe_yaml (1.0.2)
     sanitize (2.0.3)
       nokogiri (>= 1.4.4, < 1.6)
-    sass (3.1.15)
-    sass-rails (3.2.4)
+    sass (3.2.19)
+    sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
     selenium (0.2.5)
       jar_wrapper
       jeweler
-    selenium-webdriver (2.41.0)
-      childprocess (>= 0.5.0)
-      multi_json (~> 1.0)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0.4)
     sexp_processor (3.2.0)
     simplecov (0.6.4)
       multi_json (~> 1.0)
@@ -474,7 +448,7 @@ GEM
       tilt (>= 1.2.2, < 2.0)
     slop (3.5.0)
     spork (0.9.2)
-    sprockets (2.2.1)
+    sprockets (2.2.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -502,16 +476,15 @@ GEM
       polyglot (>= 0.3.1)
     trollop (1.16.2)
     tzinfo (0.3.32)
-    uglifier (1.2.3)
+    uglifier (2.2.1)
       execjs (>= 0.3.0)
-      multi_json (>= 1.0.2)
+      multi_json (~> 1.0, >= 1.0.2)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.1.1)
       rack (>= 1.0)
-    websocket (1.0.7)
     xml-simple (1.1.4)
-    xpath (0.1.4)
+    xpath (2.0.0)
       nokogiri (~> 1.3)
     yajl-ruby (1.2.0)
     zip (2.0.2)
@@ -532,32 +505,31 @@ DEPENDENCIES
   bson_ext
   builder (= 3.0.0)
   cancan (= 1.6.7)
-  capybara (= 1.1.2)
+  capybara
+  capybara-screenshot
   cocaine (= 0.3.2)
   colored (= 1.2)
-  compass (= 0.12.alpha.0)
+  compass-rails
   cucumber (= 1.1.0)
   cucumber-rails (= 1.1.1)
   dalli (= 1.1.5)
-  database_cleaner (= 0.7.1)
+  database_cleaner
   deadweight (= 0.2.1)
   devise (= 2.0.5)
   factory_girl (= 2.6.3)
   foreman (= 0.40.0)
   forgery (= 0.5.0)
   formtastic (= 2.0.2)
-  fuubar (= 1.0.0)
   geocoder (= 1.0.5)
   glebm-geokit (= 1.5.2)
   guardrail_notifier (= 0.2.12)
-  haml (= 3.1.4)
+  haml
   heroku (= 2.28.7)
   heroku_san!
   honeybadger
   hpricot (= 0.8.6)
-  i18n (= 0.6.0)
+  i18n
   iconv
-  jasmine (= 1.2.1)
   journey!
   json (= 1.6.6)
   km (= 1.1.2)
@@ -565,9 +537,8 @@ DEPENDENCIES
   launchy (= 2.1.0)
   leftronic!
   loofah
-  mail (= 2.4.4)
+  mail
   mcbean
-  mock_redis!
   mongo_mapper (= 0.11.0)
   multi_json (= 1.2.0)
   mustache (= 0.99.4)
@@ -598,19 +569,19 @@ DEPENDENCIES
   resque-cleaner (= 0.2.7)
   resque-honeybadger
   resque-scheduler (= 1.9.9)
+  resque_spec
   rest-client (= 1.6.7)
-  rmagick
-  rr (= 1.0.4)
-  rspec-rails
-  rspec-resque!
+  rmagick (~> 2.15.4)
+  rspec-mocks
+  rspec-rails (~> 3.2.1)
   sanitize (= 2.0.3)
-  sass (= 3.1.15)
-  sass-rails (= 3.2.4)
+  sass (= 3.2.19)
+  sass-rails
   selenium (= 0.2.5)
   simplecov (= 0.6.4)
   sinatra (= 1.2.7)
   spork (= 0.9.2)
-  sprockets (= 2.2.1)
+  sprockets (>= 2.2.2)
   sunspot_rails (= 1.3.0)
   sunspot_solr (= 1.3.0)
   thin (= 1.3.1)
@@ -618,4 +589,4 @@ DEPENDENCIES
   trollop (= 1.16.2)
   turing-contacts!
   tzinfo (= 0.3.32)
-  uglifier (= 1.2.3)
+  uglifier

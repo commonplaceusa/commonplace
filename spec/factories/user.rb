@@ -6,6 +6,7 @@ FactoryGirl.define do
     longitude 0.0
     community_id 1
   end
+
   factory :community do
     name "Test Community"
     slug "testCommunity"
@@ -13,11 +14,11 @@ FactoryGirl.define do
       community.neighborhoods << Factory.build(:neighborhood, :community => community)
     }
   end
+
   factory :user do
     community
     sequence(:first_name) { |n| "User#{n}" }
     sequence(:last_name) { |n| "Doe#{n}" }
-    sequence(:address) { |n| "#{n} Any Lane"}
     password "foobar"
     email { "#{first_name}@example.com" }
     admin false

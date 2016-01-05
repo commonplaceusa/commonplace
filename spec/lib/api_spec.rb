@@ -18,17 +18,17 @@ describe API do
     end
   }
 
-  let(:community) { mock_model(Community) }
+  let(:community) { double("Community", id: 1) }
 
   shared_examples "A JSON endpoint" do
     it "returns a valid JSON response" do
-      lambda {JSON.parse(last_response.body)}.should_not raise_error(JSON::ParserError)
+      lambda {JSON.parse(last_response.body)}.should_not raise_error
     end
   end
 
   before do
-    stub(User).find_by_authentication_token { true }
-    stub(Community).find(community.id.to_s) { community }
+    allow(Community).to receive(:find).with(community.id.to_s).and_return(community)
+    allow(User).to receive(:find_by_authentication_token).and_return(true)
   end
 
   describe "GET /" do
@@ -37,22 +37,4 @@ describe API do
       last_response.should_not be_ok
     end
   end
-
-  describe "GET /contacts/authorization_url/yahoo" do
-    # before do
-      # stub_request(:post, "https://api.login.yahoo.com/oauth/v2/get_request_token").
-        # to_return(:status => 200, :body => "AUTH_TOKEN")
-    # end
-    it_behaves_like "A JSON endpoint" do
-      let(:uri) { "/contacts/authorization_url/yahoo" }
-    end
-
-    it "receives a valid authentication url" do
-      #post "/contacts/authorization_url/yahoo", {:return_url => "ourcommonplace.com"}
-      #@json = JSON.parse last_response.body
-      #@json.should_not be_nil
-      #@json[:authentication_url].should_not be_nil
-    end
-  end
-
 end

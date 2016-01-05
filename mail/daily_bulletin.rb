@@ -249,7 +249,7 @@ class DailyBulletin < MailBase
   def paid_advertisement_url2
     if community.slug.downcase == 'fallschurch'
       return 'http://www.fallschurchshelterfriends.org/'
-    if community.slug.downcase == 'vienna'
+    elsif community.slug.downcase == 'vienna'
       return 'http://bit.ly/spotcrimem'
     else
       return nil

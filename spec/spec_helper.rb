@@ -1,43 +1,32 @@
+require File.expand_path("../../config/environment", __FILE__)
+# require 'rspec/rails'
+require 'rspec/rails'
+require 'capybara/rspec'
+require "capybara-screenshot/rspec"
+require "database_cleaner"
+require "resque_spec"
 
-require 'spork'
+include Capybara::DSL
 
-Spork.prefork do
-  ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
-  require 'capybara/rspec'
-  require 'capybara/rails'
-  require 'rr_patch'
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join("spec/acceptance/support/**/*.rb")].each {|f| require f}
 
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-  Dir[Rails.root.join("spec/acceptance/support/**/*.rb")].each {|f| require f}
+RSpec.configure do |config|
+  config.include Features, type: :feature
+  config.include FactoryGirl::Syntax::Methods
 
-  RSpec.configure do |config|
-    config.use_transactional_examples = false
+  config.infer_spec_type_from_file_location!
+  config.use_transactional_fixtures = false
 
-    config.mock_with :rr
-
-    config.before :all do
-      stub(Geocoder).search
-    end
-
-    config.before :suite do
-      DatabaseCleaner.strategy = :transaction
-      # DatabaseCleaner.clean_with(:truncation)
-    end
-
-    config.before :each do
-      DatabaseCleaner.start
-    end
-
-    config.after :each do
-      DatabaseCleaner.clean
-    end
-
-    config.include Matchers
-    config.include Helpers, :type => :request
+  config.before :suite do
+    DatabaseCleaner.strategy = :transaction
   end
 
-end
+  config.before :each do
+    DatabaseCleaner.start
+  end
 
-Spork.each_run { }
+  config.after :each do
+    DatabaseCleaner.clean
+  end
+end

@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe CommunityDailyBulletinJob do
   describe "default values" do
-    subject { CommunityDailyBulletinJob }
-    its(instance_variable_get("@queue")) { should_not be_nil }
+    it "has a queue specified" do
+      expect(CommunityDailyBulletinJob.instance_variable_get("@queue")).not_to be_nil
+    end
   end
-  # TODO: Test perform
 
   describe "#perform" do
     before do
