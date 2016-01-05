@@ -117,7 +117,6 @@ group :development, :test, :remote_worker do
   gem 'forgery', '= 0.5.0' # we use forgery to generate data for tests
   gem 'foreman', '= 0.40.0' # we use foreman to start all the processes we need for development
   # gem 'therubyracer'
-  gem 'cucumber', '= 1.1.0'
   gem 'simplecov', '= 0.6.4', :require => false
   gem 'selenium', '= 0.2.5'
   gem 'trollop', '= 1.16.2'
@@ -133,7 +132,6 @@ group :test do
   gem 'capybara'
   gem 'launchy', '= 2.1.0' # we use launchy to launch a browser during integration testing
   gem 'database_cleaner'
-  gem 'cucumber-rails', '= 1.1.1'
 end
 
 gem 'rb-readline', '= 0.4.2'
