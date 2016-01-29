@@ -1,6 +1,6 @@
 MongoMapper.config = {
   Rails.env => {
-    'uri' => ENV['MONGOHQ_URL'] || 'mongodb://localhost/commonplace_stats'
+    'uri' => ENV['MONGOLAB_URI'] || 'mongodb://localhost/commonplace_stats'
   }
 }
 
