@@ -1,0 +1,33 @@
+db:
+  image: postgres
+  environment:
+    POSTGRES_PASSWORD: bob2penguin
+    POSTGRES_USER: commonplace
+    POSTGRES_DB: commonplace_development
+  ports:
+    - "5432:5432"
+redis:
+  image: redis
+mongodata:
+  image: mongo:3.0.4
+  volumes:
+    - /data/db
+  command: --break-mongo
+mongo:
+  image: mongo:3.0.4
+  volumes_from:
+    - mongodata
+  ports:
+    - "27017:27017"
+  command: --smallfiles --rest --auth
+web:
+  build: .
+  dockerfile: docker/files/Dockerfile.app
+  command: bundle exec rails s -b 0.0.0.0
+  volumes:
+    - .:/commonplace
+  ports:
+    - "3000:3000"
+  links:
+    - db
+    - mongo
