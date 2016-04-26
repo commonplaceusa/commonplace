@@ -11,12 +11,12 @@ spam_report_received_notification:
   outro: Once again, we greatly apologize for any inconvenience that may have been encountered. If you continue to have issues, please feel free to respond to this e-mail, and a member of our technical team will assist you further.
   thanks: Thank you very much for using The {{community_name}} CommonPlace!
 
-welcome: 
+welcome:
   intro: We are happy to hear you have joined your neighbors on {{community_name}}'s CommonPlace, a new web platform for local community engagement here in {{community_name}}.  {{community_name}}'s CommonPlace is like an online bulletin for people who live in {{community_name}}, designed to make it really easy for you to share requests, offers and other information with your neighbors and to stay up-to-date with what's happening in {{community_name}}.
 
   list-intro: |
     Here are some platform features that you might be interested in using to get connected with your community:
-  
+
   post-feature-title: Neighborhood Posts
   post-feature-desc: |
     Need to borrow a ladder?  Lost a cat?  Looking for a babysitter or an electrician recommendation?  See a downed wire in the neighborhood?  Click "Post to Your Neighborhood" in the red box on the top left of the mainpage to post a message to all your neighbors.  Have a ladder?  Found the cat?  Up for babysitting?  Click on any neighborhood post and a reply box will appear for you to reply directly to your neighbor.
@@ -40,9 +40,9 @@ welcome:
     <p>If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  Also, please email us if you are interested in helping out with signing your neighbors up with CommonPlace. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for neighbors in {{community_name}} to connect, so make sure to tell your neighbors to sign up at <a href="{{root_url}}"><span>{{root_url}}</span></a>.</p>
 
     <p>Thanks again for joining {{community_name}}'s CommonPlace and thanks for being a great neighbor!</p>
-  
+
     <p>Cheers, <br> The {{community_name}} CommonPlace</p>
-  
+
   outro: |
     If you have any questions about CommonPlace, consider checking out the <a href="{{faq_url}}"><span>Frequently Asked Questions page</span></a>, and feel free to email {{organizer_email}} anytime.  Also, please email us if you are interested in helping out with signing your neighbors up with CommonPlace. The more people in {{community_name}} that are on CommonPlace, the better a tool it is for neighbors in {{community_name}} to connect, so make sure to tell your neighbors to sign up at <a href="{{root_url}}"><span>{{root_url}}</span></a>.
 
@@ -113,7 +113,7 @@ feed_invitation:
 daily_bulletin:
   posts-section-title: Recent Neighborhood Questions
   group-posts-section-title: Recent Discussion Topics
-  transactions-section-title: Recent Marketplace Listings
+  transactions-section-title: Recent Yardsale Listings
   events-section-title: Upcoming Community Events
   announcements-section-title: Recent Community Announcements
 
@@ -135,7 +135,7 @@ daily_bulletin:
   announce-action-title: Publicize an Announcement
   announce-action-body: |
     Does your business have a new promotion?  Is your civic organization running a volunteer drive? Get the word out in tomorrow's Daily Bulletin!</p>
-    
+
   new-feed-action-title: Register a Community Feed
   new-feed-action-body: |
     Are you part of a community organization, business, municipal agency or cause that wants to send announcements and events through {{community_name}}'s CommonPlace?
